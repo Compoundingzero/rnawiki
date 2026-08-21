@@ -1085,4 +1085,988 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 3. Dorzolamide — the first carbonic anhydrase inhibitor that could be put in the eye instead of
+  //    swallowed, and the one glaucoma drop with a warning about dissolving the cornea.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'dorzolamide',
+    name: 'Dorzolamide',
+    tradeName: 'Trusopt',
+    sponsor: 'Merck Sharp & Dohme (MSD, a subsidiary of Merck & Co)',
+    targetGene: 'CA2 — the human carbonic anhydrase II gene',
+    targetProtein: 'Carbonic anhydrase II in the epithelium of the ciliary processes',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1994,
+    indication:
+      'Treatment of elevated intraocular pressure in patients with ocular hypertension or open-angle glaucoma',
+    patientFriendlyIndication:
+      'High pressure inside the eye, treated by slowing the chemistry that drives fluid production',
+    anatomicalSite:
+      'Ciliary process epithelium, where bicarbonate transport drives the secretion of aqueous humour',
+    conditionContext: {
+      conditionExplainer:
+        'Fluid does not simply leak into the eye. It is pumped, and the pump runs on bicarbonate. An enzyme called carbonic anhydrase makes that bicarbonate out of carbon dioxide and water, thousands of times a second. Block the enzyme and the pump slows.',
+      whyItMatters:
+        'Swallowed carbonic anhydrase inhibitors have worked in glaucoma since the 1950s and are miserable to take: tingling in the hands and feet, fatigue, appetite loss, kidney stones. Dorzolamide was the first version of that chemistry potent and soluble enough to work as a drop, which took Merck three decades of medicinal chemistry.',
+      whoTakesThis:
+        'Adults with open-angle glaucoma or ocular hypertension, usually as a second or third agent. It is one of the few options in people for whom beta-blockade is contraindicated by asthma or heart block.',
+      clinicalGoals:
+        'A reduction in millimetres of mercury. Its particular value is overnight, where it keeps working and timolol does not, and its particular liability is the cornea.',
+    },
+    oneSentenceVerdict:
+      'A thienothiopyran sulfonamide that shuts down carbonic anhydrase II in the ciliary epithelium and starves the fluid pump of bicarbonate, lowering pressure 2.49 mmHg at three months across 114 pooled trials — eleventh of fourteen first-line drops — while keeping its effect at 3 AM where timolol loses it, and carrying a label warning for irreversible corneal decompensation after a case series in which seven of nine affected patients needed a corneal transplant.',
+    laymanHowItWorks:
+      'The tissue behind your iris pumps fluid into the eye, and the pump is driven by a salt the cells have to manufacture on the spot. One enzyme does that manufacturing. Dorzolamide jams that enzyme, so the raw material runs short, the pump slows and pressure falls. The same enzyme sits in the cells that keep the cornea clear, which is why an eye with an already-damaged cornea can be pushed over the edge by it.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 74,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.8910 per millilitre, median across the 23 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'The cheapest drug in this batch by acquisition cost, and cheaper per millilitre than timolol despite having been far harder to invent. Trusopt was approved on 9 December 1994 under NDA 020408 and lost exclusivity in the 2000s. Most current prescribing is of the fixed combination with timolol rather than dorzolamide alone, which is why the single-agent listing carries 23 products and the combination carries its own.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label:
+          'Nearest published cost-of-production analysis: Hill AM, Barber MJ, Gotham D. Estimated costs of production and potential prices for the WHO Essential Medicines List. BMJ Glob Health 2018;3:e000571. Its methods restrict the analysis to solid oral formulations and exclude eye drops, which is why the synthesis cost field on this page is empty.',
+        identifier: '10.1136/bmjgh-2017-000571',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Dorzolamide competes on two things and neither is potency: it works overnight, and it does not block beta receptors. Its direct replacement is brinzolamide, which the head-to-head trial found equal in effect and far more comfortable. Its alternative in patients who can take a beta-blocker is timolol, which is stronger by day and weaker by night. Acetazolamide taken by mouth is more powerful than any of them and is the reason topical carbonic anhydrase inhibitors were developed at all.',
+      conventionalRx: [
+        {
+          name: 'Brinzolamide (Azopt)',
+          class: 'Topical carbonic anhydrase inhibitor, suspension rather than solution',
+          howItCompares:
+            'The same mechanism at near-identical potency. In the 572-patient head-to-head trial, brinzolamide twice daily gave -3.8 to -5.7 mmHg against dorzolamide three times daily at -4.3 to -5.9, statistically equivalent. The difference is comfort: ocular burning and stinging occurred in 1.8% of brinzolamide patients twice daily against 16.4% of dorzolamide patients (p=0.000).',
+          typicalCost:
+            'US$10.08 per millilitre, median across the 9 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: nine times less stinging, twice-daily rather than three times daily. Cons: eleven times the acquisition cost per millilitre, and being a suspension it blurs vision transiently after instillation.',
+        },
+        {
+          name: 'Timolol (Timoptic)',
+          class: 'Non-selective beta-adrenergic antagonist',
+          howItCompares:
+            'Stronger overall — 3.70 mmHg against 2.49 in the pooled analysis — and in the one-year head-to-head trial 25% peak reduction against dorzolamide’s 23%. But in the round-the-clock crossover study dorzolamide beat timolol at midnight and 3 AM.',
+          typicalCost:
+            'US$1.06 per millilitre, median across the 65 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: stronger by day, twice rather than three times daily, no corneal endothelium warning. Cons: contraindicated in asthma and heart block, and the systemic risk that dorzolamide was reached for to avoid.',
+        },
+        {
+          name: 'Acetazolamide (Diamox), taken by mouth',
+          class: 'Systemic carbonic anhydrase inhibitor',
+          howItCompares:
+            'The original version of this mechanism and considerably more effective at lowering pressure, because it reaches the enzyme at full systemic concentration rather than by corneal diffusion. It is reserved for short-term use and acute situations.',
+          typicalCost:
+            'Not compared in the CMS listing consulted for this page — the oral and ophthalmic products are separate entries with different units',
+          prosAndCons:
+            'Pros: much stronger. Cons: paraesthesia, fatigue, appetite and taste disturbance, metabolic acidosis, kidney stones and blood dyscrasias, which is the entire reason a topical version was pursued.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Say if you have had a corneal transplant or any cornea problem',
+          action:
+            'Report a previous corneal graft, Fuchs endothelial dystrophy, complicated cataract surgery, or any history of corneal swelling, before starting.',
+          patientImpact:
+            'The label carries a Corneal Endothelium warning. A published multicentre case series documented nine patients who developed overt corneal decompensation after starting dorzolamide, three to twenty weeks in, that did not resolve when the drug was stopped. All nine had prior intraocular surgery, four had previous corneal transplants, and seven subsequently needed a transplant.',
+          clinicalPrecaution:
+            'Every affected patient in that series had a pre-existing reason for endothelial compromise. That is what makes the warning actionable: the risk is concentrated in an identifiable group rather than spread across everyone.',
+        },
+        {
+          name: 'Report any sulfa drug reaction you have ever had',
+          action:
+            'Name any past reaction to a sulfonamide antibiotic or diuretic, however long ago and however mild it seemed.',
+          patientImpact:
+            'Dorzolamide is a sulfonamide and is absorbed systemically despite being applied to the eye. The label states that fatalities have occurred, rarely, from severe sulfonamide reactions including Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis and aplastic anaemia.',
+          clinicalPrecaution:
+            'The label notes that sensitisation can recur when a sulfonamide is given again by any route. A previous reaction to an oral sulfa drug is therefore relevant to an eye drop, which is not intuitive.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCN[C@H]1C[C@@H](S(=O)(=O)C2=C1C=C(S2)S(=O)(=O)N)C',
+      chemicalFormula: 'C10H16N2O4S3',
+      molecularWeight: '324.40 g/mol',
+      targetReceptorAffinity:
+        'A high-affinity inhibitor of human carbonic anhydrase II, the isoform that carries the great majority of the catalytic activity in the ciliary processes. The primary sulfonamide group is the zinc-binding warhead: it deprotonates and coordinates the active-site zinc directly, which is why every drug in this family, from acetazolamide onwards, carries an unsubstituted SO2NH2. The thienothiopyran ring and the ethylamino and methyl substituents were the part Merck engineered, to raise potency and water solubility far enough that a topically applied drop could reach an inhibitory concentration in the ciliary body.',
+      structureSource: {
+        label: 'PubChem CID 5284549 (dorzolamide) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284549',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dor-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirmation of the 4S,6S relative and absolute configuration',
+          description:
+            'Verify both stereocentres on the thiopyran ring. The trans 4S,6S diastereomer is dorzolamide, and the other three stereoisomers differ substantially in potency at carbonic anhydrase II. This is a chirality check, not a chromatographic formality.',
+          reagentsAndBuffer:
+            'Dorzolamide hydrochloride reference standard, chiral HPLC, 1H NMR in deuterium oxide with coupling constant analysis across the ring, optical rotation',
+        },
+        {
+          id: 'dor-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Sulfonation and stereoselective amination of the thienothiopyran core',
+          description:
+            'Build the bicyclic thienothiopyran, install the primary sulfonamide at the thiophene 2-position and set the ethylamino group at C4 with the correct configuration. The primary sulfonamide has to survive every subsequent step because it is the zinc-binding group and cannot be protected as an alkyl sulfonamide without losing all activity.',
+          dependsOnStepId: 'dor-w1',
+          reagentsAndBuffer:
+            'Chlorosulfonic acid then ammonia for the sulfonamide, oxidation to the sulfone, stereoselective reductive amination with ethylamine, anhydrous conditions, nitrogen atmosphere',
+        },
+        {
+          id: 'dor-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Diastereomer separation and hydrochloride salt formation',
+          description:
+            'Separate the cis and trans diastereomers and convert the correct one to the hydrochloride. The salt is what makes the compound soluble enough for a 2% aqueous drop, and the solubility problem is the reason this class took thirty years to move from tablet to drop.',
+          dependsOnStepId: 'dor-w2',
+          reagentsAndBuffer:
+            'Preparative chromatography or fractional crystallisation, hydrogen chloride in alcoholic solvent, recrystallisation, residual solvent analysis by headspace gas chromatography',
+        },
+        {
+          id: 'dor-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Corneal permeation and red cell partitioning',
+          description:
+            'Measure permeation across excised cornea, and separately measure binding to carbonic anhydrase in erythrocytes. Red cells accumulate the drug and its N-desethyl metabolite for months, which is the reason its systemic pharmacokinetics are unusual and the reason systemic sulfonamide reactions are possible from a drop.',
+          dependsOnStepId: 'dor-w3',
+          reagentsAndBuffer:
+            'Excised cornea in a diffusion cell, balanced salt solution at 34 degrees Celsius, whole blood incubation, LC-MS/MS quantification of dorzolamide and N-desethyldorzolamide',
+        },
+        {
+          id: 'dor-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Carbonic anhydrase II inhibition with a CA-I and CA-IV counter-screen',
+          description:
+            'Measure inhibition of recombinant carbonic anhydrase II by stopped-flow carbon dioxide hydration, then repeat against carbonic anhydrase I and the membrane-anchored CA-IV. CA-IV is expressed on the corneal endothelium, which is the isoform relevant to the corneal decompensation warning, so an assay that reports only CA-II potency measures the benefit and not the hazard.',
+          dependsOnStepId: 'dor-w4',
+          reagentsAndBuffer:
+            'Recombinant human CA-I, CA-II and CA-IV, stopped-flow apparatus with pH indicator, carbon dioxide-saturated buffer, acetazolamide as reference inhibitor',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dor-a1',
+        category: 'measured',
+        title: 'Comparable to betaxolol and behind timolol at one year',
+        laymanSummary:
+          'Five hundred and twenty-three patients at 34 sites took dorzolamide, timolol or betaxolol for a year. Dorzolamide sat between the two beta-blockers, closer to the weaker one, and did not cause the electrolyte problems that swallowed versions of the same drug do.',
+        technicalDetails:
+          'The International Dorzolamide Study Group ran a double-masked, randomised, parallel comparison in 523 patients aged 17 to 85 with open-angle glaucoma or ocular hypertension at 34 international sites, after washout of prior medication. At one year, mean percent reduction in intraocular pressure at peak was approximately 23% for dorzolamide 2% three times daily, 25% for timolol 0.5% twice daily and 21% for betaxolol 0.5% twice daily. At afternoon trough the figures were 17%, 20% and 15%. The authors concluded that dorzolamide’s efficacy is comparable with betaxolol and that long-term use was not associated with clinically meaningful electrolyte disturbances or the systemic effects seen with oral carbonic anhydrase inhibitors.',
+        evidenceSource: 'Strahlman E, Tipping R, Vogel R. Arch Ophthalmol 1995;113:1009-1016',
+        doi: '10.1001/archopht.1995.01100080061030',
+        measuredMetric:
+          'Percent intraocular pressure reduction at peak and trough at one year, three-arm comparison',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dor-a2',
+        category: 'measured',
+        title: 'It keeps working at 3 AM, which timolol does not',
+        laymanSummary:
+          'In a study that measured pressure every three hours around the clock, dorzolamide is weaker than timolol on average but beats it overnight — at midnight and at three in the morning, timolol’s two worst hours.',
+        technicalDetails:
+          'In the 20-patient randomised crossover study with masked evaluators and inpatient 24-hour tonometry, all three study drugs significantly reduced pressure against baseline at every time point except timolol at 3 AM. Dorzolamide performed better than timolol at midnight and at 3 AM (P = 0.05 at both), while timolol was better than dorzolamide at 3 PM (P = 0.05). Latanoprost was better than dorzolamide at 9 AM, noon, 3 PM and 6 PM. The mechanistic reading is that aqueous secretion falls overnight, so a beta-blocker suppressing sympathetic drive has less to suppress, while carbonic anhydrase inhibition targets the bicarbonate transport that continues.',
+        evidenceSource:
+          'Orzalesi N et al., Invest Ophthalmol Vis Sci 2000;41:2566-2573 (PMID 10937568)',
+        measuredMetric:
+          'Intraocular pressure at eight times across 24 hours, dorzolamide against timolol and latanoprost',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dor-a3',
+        category: 'failed',
+        title: 'Nine corneas that did not recover when the drug was stopped',
+        laymanSummary:
+          'Nine patients, all of whom had already had eye surgery, developed clouding of the cornea after starting dorzolamide. Stopping the drug did not fix it. Seven of them went on to need a corneal transplant.',
+        technicalDetails:
+          'A multicentre chart review documented nine eyes of nine patients who developed overt corneal decompensation after starting topical dorzolamide, at three to twenty weeks of therapy (mean 7.8 weeks), which did not resolve on stopping the drug. All nine had undergone intraocular surgery: eight had cataract surgery, three were aphakic, three had posterior chamber lenses, two had anterior chamber lenses plus trabeculectomies, four had previous penetrating keratoplasties each complicated by a treated allograft rejection episode, and two had asymptomatic Fuchs endothelial dystrophy. Seven have since undergone successful penetrating keratoplasty. The proposed mechanism is inhibition of carbonic anhydrase in the corneal endothelium, whose pump maintains stromal deturgescence. The FDA label carries a Corneal Endothelium warning as section 5.3. This is a case series with no denominator: it shows the harm is real and cannot state how often it occurs.',
+        evidenceSource: 'Konowal A et al., Am J Ophthalmol 1999;127:403-406',
+        doi: '10.1016/s0002-9394(98)00438-3',
+        measuredMetric:
+          'Irreversible corneal decompensation after starting dorzolamide, nine cases with endothelial compromise',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dor-a4',
+        category: 'failed',
+        title: 'One patient in six finds it painful to instil',
+        laymanSummary:
+          'In the head-to-head trial against brinzolamide, 16.4% of dorzolamide patients reported burning and stinging on putting the drop in. On brinzolamide it was under 2%. That is a nine-fold difference in a side effect people stop the drug for.',
+        technicalDetails:
+          'In the 572-patient multicentre double-masked comparison, the incidence of ocular discomfort on instillation was 16.4% with dorzolamide 2% three times daily against 1.8% with brinzolamide twice daily and 3.0% with brinzolamide three times daily (P = .000 for the comparison). The mechanism is the formulation, not the molecule: dorzolamide is a solution buffered to roughly pH 5.6 because that is where the drug is soluble and stable, and brinzolamide is a near-neutral suspension. The trade is direct — brinzolamide’s comfort is bought by suspending a less soluble compound, and the suspension transiently blurs vision after instillation.',
+        evidenceSource: 'Silver LH. Am J Ophthalmol 1998;126:400-408',
+        doi: '10.1016/s0002-9394(98)00095-6',
+        measuredMetric:
+          'Incidence of ocular burning and stinging on instillation, dorzolamide against brinzolamide',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dor-a5',
+        category: 'inferred',
+        title: 'The ocular blood flow claim was never converted into a vision outcome',
+        laymanSummary:
+          'This drug is often said to protect the optic nerve by improving blood flow to the back of the eye, on top of lowering pressure. Nobody has shown that it preserves vision better than an equal drop in pressure achieved another way.',
+        technicalDetails:
+          'A prospective, randomised, double-blind crossover study measured intraocular pressure, blood pressure, ocular perfusion pressure and retrobulbar haemodynamics by colour Doppler imaging in 15 patients with open-angle glaucoma before and one month after treatment with brimonidine/timolol and dorzolamide/timolol. Intraocular pressure, blood pressure, ocular perfusion pressure and retrobulbar blood flow velocities did not differ significantly between the two combinations. Fifteen patients is a small study and its null result is weak evidence of no effect. The point stands regardless: the neuroprotection-through-perfusion argument for this drug has produced surrogate measurements of blood velocity and no randomised comparison with a visual field or optic disc endpoint.',
+        evidenceSource: 'Siesky B et al., Adv Ther 2012;29:53-63',
+        doi: '10.1007/s12325-011-0092-3',
+        inferredClaim:
+          'That dorzolamide protects the optic nerve by improving ocular perfusion independently of pressure lowering — an argument built on Doppler velocity measurements, never tested against a vision endpoint',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'dor-a6',
+        category: 'conclusion_shift',
+        title: 'A drop is systemic: the sulfonamide warnings came with it',
+        laymanSummary:
+          'Putting a sulfa drug in the eye instead of swallowing it removed the tingling, fatigue and kidney stones. It did not remove the rare, severe sulfonamide reactions, and the label says so.',
+        technicalDetails:
+          'The premise of the topical carbonic anhydrase inhibitor programme was that local delivery would separate the pressure-lowering effect from the systemic toxicity of oral acetazolamide, and on the common toxicities it worked: the one-year trial found no clinically meaningful electrolyte disturbance. The label states the limit of that separation directly. Dorzolamide is a sulfonamide and, although administered topically, is absorbed systemically, so the same types of adverse reactions attributable to sulfonamides may occur — and fatalities have occurred, rarely, from Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis, aplastic anaemia and other blood dyscrasias. The label further notes that sensitisation may recur when a sulfonamide is readministered by any route. Dorzolamide also accumulates in erythrocytes by binding carbonic anhydrase there, with a washout measured in months rather than hours.',
+        evidenceSource:
+          'Dorzolamide hydrochloride ophthalmic solution US prescribing information, Warnings and Precautions 5.1 Sulfonamide Hypersensitivity and 5.3 Corneal Endothelium',
+        inferredClaim:
+          'That topical delivery of a sulfonamide avoids systemic sulfonamide risk — true for the common dose-related toxicities and explicitly not true for the severe idiosyncratic ones',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'An acidic drop that most people can feel',
+        laymanDesc:
+          'The drop is buffered to be acidic, because that is the only way to keep enough of the drug dissolved. That is why one person in six finds it stings.',
+        molecularDetail:
+          'Dorzolamide hydrochloride 2% is formulated as an aqueous solution at roughly pH 5.6, the range in which the compound is both soluble and chemically stable. The head-to-head trial recorded burning and stinging on instillation in 16.4% of dorzolamide patients against 1.8% on the near-neutral brinzolamide suspension.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It crosses the cornea into the front chamber',
+        laymanDesc:
+          'The drug passes through the clear front of the eye and reaches the tissue behind the iris that makes the fluid. A fraction also enters the bloodstream, where it sticks to red blood cells for months.',
+        molecularDetail:
+          'Dorzolamide partitions across the cornea into the aqueous humour and reaches the ciliary process epithelium. Systemically absorbed drug binds carbonic anhydrase in erythrocytes, and both dorzolamide and its N-desethyl metabolite accumulate there, producing a red cell washout measured in months. That accumulation is why a topically applied sulfonamide can still produce a systemic sulfonamide reaction.',
+        iconName: 'Eye',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'A sulfonamide group grabs the zinc atom in the enzyme',
+        laymanDesc:
+          'The enzyme it targets has a single zinc atom at its heart, and that is where all the chemistry happens. One end of the drug molecule locks onto the zinc and shuts the site down.',
+        molecularDetail:
+          'The unsubstituted primary sulfonamide deprotonates and coordinates the catalytic zinc ion in the active site of carbonic anhydrase II, displacing the zinc-bound hydroxide that performs catalysis. This binding mode is shared by every drug in the class from acetazolamide onwards, which is why the SO2NH2 group cannot be modified. The rest of the molecule, the thienothiopyran scaffold, is what Merck engineered for potency and aqueous solubility.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The pump runs out of bicarbonate',
+        laymanDesc:
+          'Without the enzyme, the cells cannot make the salt that drives fluid into the eye. Sodium and water follow the salt, so when the salt stops moving, so does the fluid.',
+        molecularDetail:
+          'Carbonic anhydrase II catalyses the hydration of carbon dioxide to bicarbonate and a proton in the ciliary epithelium. Inhibition slows bicarbonate formation, which reduces the sodium and fluid transport coupled to it, and therefore the rate of aqueous humour secretion. The label describes the mechanism in exactly these terms and uses the word "presumably" for the coupling step.',
+        iconName: 'Beaker',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Pressure falls, and unusually it falls at night too',
+        laymanDesc:
+          'Pressure drops by about two and a half millimetres of mercury. Unlike the beta-blockers, the effect holds through the small hours, because it does not depend on nerve signals that quieten during sleep.',
+        molecularDetail:
+          'Pooled reduction is 2.49 mmHg (95% credible interval 1.85 to 3.13) at three months, eleventh of fourteen first-line agents. In 24-hour tonometry dorzolamide significantly reduced pressure against baseline at all eight measurement times and outperformed timolol at midnight and 3 AM. Bicarbonate-dependent secretion does not have the same circadian collapse as sympathetically driven secretion.',
+        iconName: 'Moon',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same enzyme keeps the cornea clear',
+        laymanDesc:
+          'The cornea stays transparent because a layer of cells on its inner surface pumps water out of it continuously. That pump uses the same enzyme. In an eye whose cornea is already damaged, blocking it can tip the balance.',
+        molecularDetail:
+          'The corneal endothelium maintains stromal deturgescence through a bicarbonate-dependent pump involving membrane-anchored carbonic anhydrase. In a series of nine patients with pre-existing endothelial compromise — previous grafts, aphakia, anterior chamber lenses, Fuchs dystrophy — overt corneal decompensation developed 3 to 20 weeks after starting dorzolamide and did not reverse on stopping. Seven required penetrating keratoplasty. The label carries this as Warnings and Precautions 5.3.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'International Dorzolamide Study (Strahlman 1995)',
+        phase: 'Double-masked, randomised, parallel comparison at 34 international sites',
+        sampleSize: 523,
+        primaryEndpoint:
+          'Safety profile and intraocular pressure reduction at up to one year, dorzolamide against timolol and betaxolol',
+        endpointMet: true,
+        statisticalPValue:
+          'Peak reduction approximately 23% dorzolamide, 25% timolol, 21% betaxolol; trough 17%, 20%, 15%. Reported descriptively rather than with a p-value for the primary comparison.',
+        unreportedAdverseSignals:
+          'Corneal decompensation in patients with pre-existing endothelial compromise was not identified here. It emerged from a case series four years after approval and is now a labelled warning.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Brinzolamide Primary Therapy Study (Silver 1998)',
+        phase: 'Multicentre, double-masked, prospective, parallel-group',
+        sampleSize: 572,
+        primaryEndpoint:
+          'Diurnally corrected intraocular pressure reduction at peak and trough over 3 months, brinzolamide against dorzolamide and timolol',
+        endpointMet: true,
+        statisticalPValue:
+          'Dorzolamide three times daily -4.3 to -5.9 mmHg, statistically equivalent to brinzolamide (confidence limit ≤1.5 mmHg); ocular discomfort 16.4% against 1.8%, P = .000',
+        unreportedAdverseSignals:
+          'Sponsored by Alcon, the manufacturer of the comparator that won on tolerability. The efficacy finding is equivalence, so the trial’s conclusion rests entirely on the side effect it was best placed to detect.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Orzalesi circadian crossover (2000)',
+        phase: 'Randomised crossover, masked evaluators, in-hospital 24-hour tonometry',
+        sampleSize: 20,
+        primaryEndpoint:
+          'Around-the-clock intraocular pressure reduction, dorzolamide against timolol and latanoprost',
+        endpointMet: true,
+        statisticalPValue:
+          'Significant reduction against baseline at all eight measurement times; superior to timolol at midnight and 3 AM (P = 0.05 both)',
+        unreportedAdverseSignals:
+          'Twenty patients across three one-month treatment periods. Small, unreplicated at this level of measurement detail, and the source of a claim now made routinely about the whole class.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Siesky retrobulbar haemodynamics crossover (2012)',
+        phase: 'Prospective, randomised, double-blind crossover',
+        sampleSize: 15,
+        primaryEndpoint:
+          'Ocular perfusion pressure and retrobulbar blood flow velocities after one month, dorzolamide/timolol against brimonidine/timolol',
+        endpointMet: false,
+        statisticalPValue:
+          'No significant difference between combinations in intraocular pressure, blood pressure, ocular perfusion pressure or retrobulbar flow velocities',
+        unreportedAdverseSignals:
+          'Fifteen patients with already well-controlled pressure. A null result in a sample this size is weak evidence of no effect, and it is quoted here only because it is the direct test of a claim usually made without any test at all.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Mean intraocular pressure reduction of 2.49 mmHg (95% credible interval 1.85 to 3.13) at three months, pooled across 114 randomised trials in 20,275 participants',
+        'Approximately 23% peak and 17% trough reduction at one year in 523 patients, against timolol’s 25% and 20%',
+        'Statistically equivalent to brinzolamide on pressure in 572 patients, with ocular discomfort in 16.4% against 1.8% (P = .000)',
+        'Superior to timolol at midnight and 3 AM in masked 24-hour tonometry in 20 patients',
+      ],
+      unsupportedInferences: [
+        'That dorzolamide protects the optic nerve through improved ocular perfusion — measured as blood velocity, never against a vision endpoint',
+        'That topical delivery of a sulfonamide removes systemic sulfonamide risk; the label states the opposite for the severe reactions',
+        'That the case series of nine corneal decompensations gives a rate — it has no denominator and cannot',
+        'That overnight superiority to timolol translates into better preserved visual fields, which no trial has compared',
+      ],
+      whatFailedInitially: [
+        'Corneal decompensation in eyes with compromised endothelium was not seen in the 523-patient registration programme and was described four years after approval',
+        'The formulation stings: 16.4% of patients reported burning on instillation, which is the reason a competitor built on the same mechanism took the market',
+        'Three-times-daily dosing was required for monotherapy, against twice daily for the beta-blockers it was competing with',
+      ],
+      realWorldOutcome: [
+        'The first topically active carbonic anhydrase inhibitor, approved 9 December 1994 under NDA 020408, ending four decades in which this mechanism required a tablet',
+        'Now used mostly as the second component of a fixed combination with timolol rather than alone',
+        'The cheapest drug in this batch at a median United States acquisition cost of US$0.89 per millilitre',
+        'Retained specifically for patients in whom beta-blockade is contraindicated, and for overnight pressure control',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ophthalmic solution 2%, instilled three times daily as monotherapy',
+      description:
+        'An aqueous solution buffered to roughly pH 5.6, which is where the compound is soluble and stable and also why it stings. It crosses the cornea to the ciliary body, and the systemically absorbed fraction binds carbonic anhydrase in red blood cells, where it accumulates with a washout measured in months rather than hours.',
+      safetyProfile:
+        'Labelled warnings for sulfonamide hypersensitivity, bacterial keratitis from contaminated multi-dose containers, corneal endothelium, allergic reactions and acute angle-closure glaucoma. The sulfonamide warning states that fatalities have occurred rarely from Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis, aplastic anaemia and other blood dyscrasias, and that sensitisation may recur on readministration by any route. Ocular burning and stinging in roughly one patient in six. Bitter taste after instillation, from nasolacrimal drainage. Superficial punctate keratitis and ocular allergy. Unlike timolol it does not block beta receptors and is therefore usable in asthma and heart block.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does it sting so much?',
+        a: 'Because of the acidity, not the drug. Dorzolamide will only stay dissolved and stable in a solution buffered to around pH 5.6, and the ocular surface objects to that. In the head-to-head trial against brinzolamide, 16.4% of dorzolamide patients reported burning and stinging on instillation against 1.8% on brinzolamide. Brinzolamide gets away with a near-neutral pH by being formulated as a suspension of a less soluble compound rather than a solution — which is why it briefly blurs vision instead. The two drugs lower pressure by the same amount, so the choice between them is almost entirely about which trade-off you prefer.',
+      },
+      {
+        q: 'I have had a corneal transplant. Is this drug safe for me?',
+        a: 'That is exactly the group the label warns about. The cornea stays clear because a single layer of cells on its inner surface pumps water out of it continuously, and that pump uses the same enzyme dorzolamide blocks. A published series described nine patients who developed corneal clouding three to twenty weeks after starting the drug, which did not resolve when it was stopped, and seven of them needed a corneal transplant afterwards. Every one of the nine had a prior reason for endothelial compromise: previous grafts, cataract surgery, anterior chamber lenses, or Fuchs dystrophy. It is a case series, so nobody can tell you the odds. What it does tell you is that this is a question to raise before the first drop rather than after.',
+        auditNote:
+          'Nine cases collected across multiple centres is the weakest study design that can still establish causation, and it did so here because the timing, the mechanism and the irreversibility all lined up.',
+      },
+      {
+        q: 'Can I use it if I am allergic to sulfa drugs?',
+        a: 'Ask, and say so explicitly, because the connection is not obvious. Dorzolamide is a sulfonamide — the same chemical family as the sulfa antibiotics and several diuretics — and although it goes in the eye, it is absorbed into the bloodstream. The label states plainly that the same types of reactions attributable to sulfonamides may occur, that fatalities have occurred rarely from Stevens-Johnson syndrome, toxic epidermal necrolysis, hepatic necrosis and blood disorders, and that sensitisation may recur when a sulfonamide is given again by any route. These reactions are rare and they are not dose-dependent, which is why a small topical dose does not make them impossible.',
+      },
+      {
+        q: 'Is it weaker than the other drops?',
+        a: 'Yes, and knowing where it is weaker matters more than the average. Pooled across 114 trials it lowers pressure 2.49 mmHg against latanoprost’s 4.85 and timolol’s 3.70, which puts it eleventh of fourteen. But averages hide the shape of the day. In the one study that measured pressure eight times across 24 hours with masked evaluators, dorzolamide worked at every hour tested, and beat timolol at midnight and 3 AM — the hours when a beta-blocker has least to suppress because aqueous production has already fallen naturally. If nocturnal pressure is the concern, the ranking by daytime average is the wrong ranking.',
+      },
+      {
+        q: 'Why did it take so long to make a version you could put in the eye?',
+        a: 'Because the chemistry and the pharmacokinetics pull in opposite directions. Acetazolamide has worked in glaucoma since the 1950s, but to inhibit enough of the enzyme in the ciliary body from a drop, a molecule has to be both very potent and soluble enough to be delivered at a workable concentration through the cornea — and the group that binds the enzyme, an unsubstituted sulfonamide, is fixed and cannot be tuned. Merck spent decades building the rest of the molecule around that fixed point. Dorzolamide arrived in 1994. Its own successor, brinzolamide, arrived four years later and solved the comfort problem rather than the potency one.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Strahlman E, Tipping R, Vogel R. A double-masked, randomized 1-year study comparing dorzolamide (Trusopt), timolol, and betaxolol. Arch Ophthalmol 1995;113:1009-1016',
+        identifier: '10.1001/archopht.1995.01100080061030',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Konowal A et al. Irreversible corneal decompensation in patients treated with topical dorzolamide. Am J Ophthalmol 1999;127:403-406',
+        identifier: '10.1016/s0002-9394(98)00438-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Silver LH. Clinical efficacy and safety of brinzolamide (Azopt), a new topical carbonic anhydrase inhibitor for primary open-angle glaucoma and ocular hypertension. Am J Ophthalmol 1998;126:400-408',
+        identifier: '10.1016/s0002-9394(98)00095-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Orzalesi N, Rossetti L, Invernizzi T, Bottoli A, Autelitano A. Effect of timolol, latanoprost, and dorzolamide on circadian IOP in glaucoma or ocular hypertension. Invest Ophthalmol Vis Sci 2000;41:2566-2573',
+        identifier: '10937568',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Siesky B et al. Short-term effects of brimonidine/timolol and dorzolamide/timolol on ocular perfusion pressure and blood flow in glaucoma. Adv Ther 2012;29:53-63',
+        identifier: '10.1007/s12325-011-0092-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Li T et al. Comparative effectiveness of first-line medications for primary open-angle glaucoma: a systematic review and network meta-analysis. Ophthalmology 2016;123:129-140',
+        identifier: '10.1016/j.ophtha.2015.09.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: TRUSOPT (dorzolamide hydrochloride ophthalmic solution), NDA 020408, MSD Sub Merck — original approval 9 December 1994',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020408',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5284549 — dorzolamide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284549',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Brinzolamide — the same mechanism as dorzolamide, the same effect on pressure, nine times
+  //    less stinging, and eleven times the acquisition cost per millilitre.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'brinzolamide',
+    name: 'Brinzolamide',
+    tradeName: 'Azopt',
+    sponsor: 'Sandoz — developed and originally marketed by Alcon Laboratories',
+    targetGene: 'CA2 — the human carbonic anhydrase II gene',
+    targetProtein: 'Carbonic anhydrase II in the epithelium of the ciliary processes',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1998,
+    indication:
+      'Treatment of elevated intraocular pressure in patients with ocular hypertension or open-angle glaucoma',
+    patientFriendlyIndication:
+      'High pressure inside the eye, treated with a drop that does not sting',
+    anatomicalSite:
+      'Ciliary process epithelium, reached as suspended drug particles that dissolve slowly on the ocular surface',
+    conditionContext: {
+      conditionExplainer:
+        'The eye pumps fluid in continuously, driven by bicarbonate that an enzyme manufactures inside the ciliary cells. Blocking that enzyme slows the pump. Brinzolamide does the same job as dorzolamide by the same route.',
+      whyItMatters:
+        'A glaucoma drop is taken every day for decades. A drug that works but is unpleasant to instil is a drug people stop taking. Brinzolamide exists because dorzolamide stings, and it is the clearest example in this batch of a molecule redesigned for tolerability rather than potency.',
+      whoTakesThis:
+        'Adults with open-angle glaucoma or ocular hypertension, usually as an added agent. Like dorzolamide it is one of the options where beta-blockade is contraindicated.',
+      clinicalGoals:
+        'A reduction in millimetres of mercury equivalent to dorzolamide’s, obtained without the burning. The endpoint the drug was actually developed against was comfort.',
+    },
+    oneSentenceVerdict:
+      'A thienothiazine sulfonamide that inhibits the same carbonic anhydrase II as dorzolamide and lowers pressure by an equivalent amount — 2.42 mmHg at three months across 114 pooled trials, twelfth of fourteen first-line drops — while causing burning on instillation in 1.8% of patients against dorzolamide’s 16.4%, at eleven times dorzolamide’s acquisition cost per millilitre and with blurred vision in 5% to 10% instead.',
+    laymanHowItWorks:
+      'It jams the same enzyme dorzolamide jams, in the same tissue, so less fluid is pumped into the eye and pressure falls. The difference is how it is delivered. Rather than dissolving the drug in acid to keep it in solution, brinzolamide is supplied as fine particles floating in a near-neutral liquid. The eye does not object to the acidity because there is none. The particles do briefly blur vision as they dissolve.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 72,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$10.08 per millilitre, median across the 9 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Brinzolamide is generic and still costs eleven times dorzolamide per millilitre in the same acquisition-cost survey on the same date — US$10.08 against US$0.8910 — with nine listed products against twenty-three. The two drugs inhibit the same enzyme in the same tissue and lower pressure by statistically equivalent amounts. What the price difference tracks is the number of manufacturers, not the pharmacology. Azopt was approved on 1 April 1998 under NDA 020816.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label:
+          'Nearest published cost-of-production analysis: Hill AM, Barber MJ, Gotham D. Estimated costs of production and potential prices for the WHO Essential Medicines List. BMJ Glob Health 2018;3:e000571. Its methods restrict the analysis to solid oral formulations and exclude eye drops, which is why the synthesis cost field on this page is empty.',
+        identifier: '10.1136/bmjgh-2017-000571',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Brinzolamide’s only genuine competitor is dorzolamide, and the head-to-head trial that established brinzolamide found the two statistically equivalent on the thing they are prescribed for. The choice is therefore between stinging and blurring, at an eleven-fold price difference in the wrong direction. Against the rest of the field, both carbonic anhydrase inhibitors are near the bottom of the pooled efficacy ranking.',
+      conventionalRx: [
+        {
+          name: 'Dorzolamide (Trusopt)',
+          class: 'Topical carbonic anhydrase inhibitor, solution rather than suspension',
+          howItCompares:
+            'The same target and, in the 572-patient registration trial, statistically equivalent pressure lowering with a confidence limit of 1.5 mmHg or less. The pooled network analysis separates them by 0.07 mmHg, which is noise. Dorzolamide stings in 16.4% of patients and brinzolamide in 1.8%.',
+          typicalCost:
+            'US$0.8910 per millilitre, median across the 23 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: one eleventh the acquisition cost, no transient blurring, a clear solution needing no shaking. Cons: stings on instillation in roughly one patient in six.',
+        },
+        {
+          name: 'Timolol (Timoptic)',
+          class: 'Non-selective beta-adrenergic antagonist',
+          howItCompares:
+            'Stronger by day — 3.70 mmHg against brinzolamide’s 2.42 in the pooled analysis, and -5.2 to -6.3 mmHg against brinzolamide’s -3.8 to -5.7 in the head-to-head trial — and twice daily rather than three times.',
+          typicalCost:
+            'US$1.06 per millilitre, median across the 65 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: stronger, cheaper, fewer daily doses. Cons: contraindicated in asthma, chronic obstructive pulmonary disease, bradycardia and heart block, none of which apply to brinzolamide.',
+        },
+        {
+          name: 'Brinzolamide/brimonidine fixed combination (Simbrinza)',
+          class: 'Carbonic anhydrase inhibitor plus alpha-2 adrenergic agonist in one bottle',
+          howItCompares:
+            'Combines two agents that both reduce aqueous production, in a single suspension. The clinical case for it is one bottle instead of two rather than an effect neither component has alone.',
+          typicalCost:
+            'Not separately listed in the single-agent CMS entry consulted for this page — the fixed combination is its own product line',
+          prosAndCons:
+            'Pros: fewer bottles, and neither component blocks beta receptors. Cons: brimonidine carries its own ocular allergy rate and causes drowsiness, and a fixed ratio removes the ability to adjust one component.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Shake the bottle every single time',
+          action:
+            'Shake well immediately before each drop, as the label instructs, rather than at the start of the day.',
+          patientImpact:
+            'Brinzolamide is a suspension, not a solution. The drug is present as solid particles that settle. An unshaken bottle delivers a drop that is mostly vehicle at the top of the bottle and increasingly concentrated at the bottom, so the dose varies with how long it has been standing.',
+          clinicalPrecaution:
+            'This is the one instruction that separates this drug from every other glaucoma drop in this batch, and it is the reason the label carries "Shake well before use" in its dosage section rather than in a footnote.',
+        },
+        {
+          name: 'Report any sulfa drug reaction you have ever had',
+          action:
+            'Name any past reaction to a sulfonamide antibiotic or diuretic before starting.',
+          patientImpact:
+            'Brinzolamide is a sulfonamide and is absorbed systemically despite being applied to the eye. The label states that fatalities have occurred, rarely, from severe sulfonamide reactions including Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis and aplastic anaemia.',
+          clinicalPrecaution:
+            'The label adds that sensitisation may recur when a sulfonamide is readministered by any route, and directs immediate discontinuation if signs of a serious reaction appear.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCN[C@H]1CN(S(=O)(=O)C2=C1C=C(S2)S(=O)(=O)N)CCCOC',
+      chemicalFormula: 'C12H21N3O5S3',
+      molecularWeight: '383.50 g/mol',
+      targetReceptorAffinity:
+        'A high-affinity inhibitor of human carbonic anhydrase II, binding the catalytic zinc through its unsubstituted primary sulfonamide in the same manner as dorzolamide and acetazolamide. The structural difference from dorzolamide is a ring nitrogen carrying a methoxypropyl chain in place of a ring carbon carrying a methyl group, which lowers aqueous solubility enough that the product must be formulated as a suspension. That formulation choice is what removes the acidic buffer and, with it, the stinging.',
+      structureSource: {
+        label: 'PubChem CID 68844 (brinzolamide) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/68844',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'brz-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Configuration at C4 and integrity of the primary sulfonamide',
+          description:
+            'Confirm the single stereocentre bearing the ethylamino group and verify that the thiophene sulfonamide is unsubstituted. Any alkylation of that nitrogen abolishes zinc binding and therefore all activity, so this is a go or no-go check rather than a specification limit.',
+          reagentsAndBuffer:
+            'Brinzolamide reference standard, chiral HPLC, 1H and 13C NMR in DMSO-d6, infrared confirmation of the primary sulfonamide N-H stretch',
+        },
+        {
+          id: 'brz-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Construction of the thienothiazine ring and N-alkylation with the methoxypropyl chain',
+          description:
+            'Build the bicyclic thieno-thiazine, oxidise the ring sulfur to the sulfone, install the primary sulfonamide on the thiophene and alkylate the ring nitrogen with a 3-methoxypropyl group. The methoxypropyl chain is the whole design difference from dorzolamide and it is installed last, on the nitrogen dorzolamide does not have.',
+          dependsOnStepId: 'brz-w1',
+          reagentsAndBuffer:
+            '3-methoxypropyl halide, base, oxidising agent for the sulfone, chlorosulfonic acid then ammonia for the sulfonamide, anhydrous aprotic solvent, nitrogen atmosphere',
+        },
+        {
+          id: 'brz-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Enantiomer resolution and particle size control',
+          description:
+            'Resolve the enantiomers and then mill the isolated solid to a controlled particle size distribution. Particle size is a potency-determining specification for a suspension in a way it never is for a solution: it sets the dissolution rate on the ocular surface, the duration of blurring, and how fast the bottle settles between shakes.',
+          dependsOnStepId: 'brz-w2',
+          reagentsAndBuffer:
+            'Chiral resolution by preparative chromatography or diastereomeric salt formation, wet or jet milling, laser diffraction particle sizing, sedimentation rate testing in the final vehicle',
+        },
+        {
+          id: 'brz-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Dissolution and corneal permeation from the suspended solid',
+          description:
+            'Measure how much drug dissolves from the suspended particles in simulated tear fluid, then measure permeation of the dissolved fraction across excised cornea. A suspension has an extra rate-limiting step no solution has, and skipping the dissolution measurement means measuring the wrong bottleneck.',
+          dependsOnStepId: 'brz-w3',
+          reagentsAndBuffer:
+            'Simulated tear fluid at 34 degrees Celsius, excised cornea in a diffusion cell, timed sampling, LC-MS/MS quantification of brinzolamide and its N-desethyl metabolite',
+        },
+        {
+          id: 'brz-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Carbonic anhydrase II inhibition with erythrocyte binding measurement',
+          description:
+            'Measure inhibition of recombinant carbonic anhydrase II by stopped-flow carbon dioxide hydration, and separately measure red cell binding of both parent and N-desethyl metabolite. The metabolite is itself an active inhibitor and accumulates in erythrocytes, so an assay of parent drug alone understates the systemic sulfonamide burden the label warns about.',
+          dependsOnStepId: 'brz-w4',
+          reagentsAndBuffer:
+            'Recombinant human CA-I and CA-II, stopped-flow apparatus with pH indicator, carbon dioxide-saturated buffer, whole blood incubation, acetazolamide as reference inhibitor',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'brz-a1',
+        category: 'measured',
+        title: 'Statistically equivalent to dorzolamide, and to itself at two doses',
+        laymanSummary:
+          'The trial that got this drug approved put 572 patients on brinzolamide twice daily, brinzolamide three times daily, dorzolamide three times daily or timolol. The three carbonic anhydrase arms were indistinguishable from one another.',
+        technicalDetails:
+          'In a multicentre, double-masked, prospective, parallel-group study of 572 patients with primary open-angle glaucoma or ocular hypertension, mean intraocular pressure changes with brinzolamide 1.0% twice daily (-3.8 to -5.7 mmHg) and three times daily (-4.2 to -5.6 mmHg) were statistically equivalent to each other and to dorzolamide 2.0% three times daily (-4.3 to -5.9 mmHg), with an equivalence confidence limit of 1.5 mmHg or less. Timolol 0.5% twice daily ranged from -5.2 to -6.3 mmHg. Clinically relevant pressure change, defined as a reduction of at least 5 mmHg or a pressure of 21 mmHg or less, was reached in up to 75.7% of patients on brinzolamide twice daily and 80.1% three times daily. The primary endpoint was diurnally corrected pressure reduction at peak and trough over 3 months.',
+        evidenceSource: 'Silver LH. Am J Ophthalmol 1998;126:400-408',
+        doi: '10.1016/s0002-9394(98)00095-6',
+        measuredMetric:
+          'Diurnally corrected intraocular pressure reduction at peak and trough over 3 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'brz-a2',
+        category: 'measured',
+        title: 'Nine times less stinging than the drug it replaced',
+        laymanSummary:
+          'This is the number the drug exists for. Fewer than two patients in a hundred found brinzolamide uncomfortable to put in. On dorzolamide it was sixteen in a hundred.',
+        technicalDetails:
+          'In the same 572-patient trial, the incidence of ocular discomfort — burning and stinging on instillation — was 1.8% with brinzolamide twice daily and 3.0% three times daily, against 16.4% with dorzolamide (P = .000). The mechanistic explanation is formulation rather than molecule: dorzolamide is a solution buffered to roughly pH 5.6 because that is where it stays dissolved, while brinzolamide is a suspension at near-neutral pH and the eye has no acid to object to. The trade-off appears in the label’s adverse reactions section, where blurred vision and bitter, sour or unusual taste are the most frequent reactions at 5% to 10%.',
+        evidenceSource:
+          'Silver LH. Am J Ophthalmol 1998;126:400-408; AZOPT US prescribing information, Adverse Reactions 6.1',
+        doi: '10.1016/s0002-9394(98)00095-6',
+        measuredMetric:
+          'Incidence of ocular burning and stinging on instillation, brinzolamide against dorzolamide',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'brz-a3',
+        category: 'failed',
+        title: 'Twelfth of fourteen first-line drops on pressure lowering',
+        laymanSummary:
+          'Pooling 114 trials, brinzolamide lowers pressure by 2.42 millimetres of mercury. Only betaxolol and unoprostone do less. It is roughly half as effective as the prostaglandin analogues.',
+        technicalDetails:
+          'In the Bayesian network meta-analysis of 114 randomised trials in 20,275 participants, brinzolamide reduced intraocular pressure at 3 months by 2.42 mmHg (95% credible interval 1.62 to 3.23), ranking twelfth of fourteen first-line agents. Bimatoprost at 5.61, latanoprost at 4.85 and travoprost at 4.83 are roughly double. Dorzolamide at 2.49 (1.85 to 3.13) is indistinguishable from brinzolamide. The credible interval on brinzolamide is wider than dorzolamide’s, reflecting fewer contributing trials. This is not a defect in the drug — the class is genuinely weaker — but a page that reports the equivalence with dorzolamide without reporting where the pair sits in the field has told half the story.',
+        evidenceSource: 'Li T et al., Ophthalmology 2016;123:129-140',
+        doi: '10.1016/j.ophtha.2015.09.005',
+        measuredMetric:
+          'Mean intraocular pressure reduction at 3 months, pooled across 114 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'brz-a4',
+        category: 'failed',
+        title: 'Comfort was traded for blurring, and the label says so',
+        laymanSummary:
+          'Removing the sting did not remove the side effects, it changed them. The most common complaints in the trials were blurred vision and a bitter taste, each in five to ten patients in a hundred.',
+        technicalDetails:
+          'The FDA label lists blurred vision and bitter, sour or unusual taste as the most frequently reported adverse reactions, at an incidence of 5% to 10%. Reactions occurring in 1% to 5% include blepharitis, dermatitis, dry eye, foreign body sensation, headache, hyperemia, ocular discharge and ocular discomfort. Transient blurring is a direct consequence of the suspension: undissolved drug particles scatter light on the tear film until they dissolve. The bitter taste is nasolacrimal drainage carrying drug to the pharynx, which is shared with dorzolamide. So the comparison is not comfort against discomfort but stinging against blurring plus a required shaking step, in a drug taken three times a day for decades.',
+        evidenceSource:
+          'AZOPT (brinzolamide ophthalmic suspension) 1% US prescribing information, Adverse Reactions 6.1 and Dosage and Administration 2 (NDA 020816)',
+        measuredMetric: 'Labelled adverse reaction incidence bands from the clinical trial programme',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'brz-a5',
+        category: 'inferred',
+        title: 'Better tolerated is not the same as better taken, and nobody measured the second',
+        laymanSummary:
+          'The commercial case for this drug is that a comfortable drop gets used more reliably, and reliable use preserves more sight. The comfort was measured. The chain from comfort to adherence to vision was not.',
+        technicalDetails:
+          'The registration trial measured pressure and it measured instillation discomfort, and it found equivalence on the first and a nine-fold difference on the second. What it did not measure — and what no randomised comparison of brinzolamide against dorzolamide has since measured — is persistence on therapy, adherence, or any visual outcome. The inference is reasonable: glaucoma treatment is lifelong, non-adherence is the commonest reason it fails, and drop discomfort is a documented reason people stop. It remains an inference. On the available evidence the two drugs lower pressure identically, one costs eleven times the other per millilitre in the same acquisition survey, and the case for the difference rests on an endpoint nobody has collected.',
+        evidenceSource:
+          'Silver LH. Am J Ophthalmol 1998;126:400-408; Li T et al., Ophthalmology 2016;123:129-140',
+        doi: '10.1016/j.ophtha.2015.09.005',
+        inferredClaim:
+          'That reduced instillation discomfort produces better adherence and therefore better preserved vision — plausible, commercially decisive, and unmeasured in any randomised comparison of these two drugs',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'brz-a6',
+        category: 'conclusion_shift',
+        title: 'The sulfonamide and corneal warnings followed the class, not the molecule',
+        laymanSummary:
+          'Brinzolamide inherited both of dorzolamide’s serious warnings unchanged, because they come from the mechanism rather than the formulation. Making the drop comfortable did nothing about either.',
+        technicalDetails:
+          'The brinzolamide label carries two Warnings and Precautions: sulfonamide hypersensitivity reactions, and corneal oedema in patients with low endothelial cell counts. The first states that brinzolamide is a sulfonamide, that it is absorbed systemically despite topical administration, that fatalities have occurred rarely from Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis, aplastic anaemia and other blood dyscrasias, and that sensitisation may recur on readministration by any route. The second mirrors the corneal endothelium warning dorzolamide acquired after a 1999 case series, because the corneal endothelial pump depends on the same carbonic anhydrase chemistry. Both warnings are properties of inhibiting this enzyme, and a formulation change cannot address either.',
+        evidenceSource:
+          'AZOPT (brinzolamide ophthalmic suspension) 1% US prescribing information, Warnings and Precautions 5.1 and 5.2; Konowal A et al., Am J Ophthalmol 1999;127:403-406',
+        doi: '10.1016/s0002-9394(98)00438-3',
+        inferredClaim:
+          'That a better-tolerated formulation of the same mechanism is a safer drug — true for the surface irritation it was designed around, false for the two warnings that matter',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A cloudy drop of suspended particles, not a solution',
+        laymanDesc:
+          'The bottle contains solid drug floating in liquid rather than dissolved in it. That is why it looks milky and why it has to be shaken before every single use.',
+        molecularDetail:
+          'Brinzolamide 1% is an ophthalmic suspension at near-neutral pH. The compound’s aqueous solubility is too low to formulate as a solution at a therapeutic concentration without an acidic buffer, so the drug is milled to a controlled particle size and suspended. The label instructs "Shake well before use" in its dosage section, because the particles settle and an unshaken bottle delivers an inconsistent dose.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The particles dissolve on the eye and briefly blur vision',
+        laymanDesc:
+          'The solid particles sit on the tear film and dissolve over the following minutes. While they are there they scatter light, which is why vision goes soft for a short time after each drop.',
+        molecularDetail:
+          'Dissolution from the suspended solid into the tear film is an additional rate-limiting step absent from solution formulations. Undissolved particles scatter incident light, producing the transient blurred vision the label lists among its most frequent adverse reactions at 5% to 10% incidence.',
+        iconName: 'Eye',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Dissolved drug crosses the cornea to the ciliary body',
+        laymanDesc:
+          'Once dissolved, the drug passes through the front of the eye to reach the tissue that makes the fluid. Some also drains into the nose, which is what causes the bitter taste.',
+        molecularDetail:
+          'The dissolved fraction partitions across the corneal epithelium and stroma into the aqueous humour, reaching the ciliary process epithelium. Nasolacrimal drainage carries a portion to the pharynx, producing the bitter, sour or unusual taste the label records at 5% to 10%. Systemically absorbed drug and its active N-desethyl metabolite bind carbonic anhydrase in erythrocytes and accumulate there.',
+        iconName: 'ArrowRight',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'The sulfonamide group locks onto the enzyme’s zinc',
+        laymanDesc:
+          'One end of the molecule clamps onto the single zinc atom at the heart of the enzyme, which is where all its chemistry happens. The enzyme stops working.',
+        molecularDetail:
+          'The unsubstituted primary sulfonamide deprotonates and coordinates the catalytic zinc of carbonic anhydrase II, displacing the zinc-bound hydroxide that performs the hydration of carbon dioxide. This is the identical binding mode used by dorzolamide and acetazolamide, which is why the two topical drugs are equipotent in the eye despite differing in the ring system around the warhead.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 5,
+        title: 'Bicarbonate production slows and so does the fluid pump',
+        laymanDesc:
+          'The cells cannot make the salt that pulls fluid into the eye. Sodium and water follow the salt, so less of both moves, and pressure falls.',
+        molecularDetail:
+          'Inhibition of carbonic anhydrase II in the ciliary processes slows bicarbonate formation and the sodium and fluid transport coupled to it, reducing the rate of aqueous humour secretion. Measured reduction is 2.42 mmHg (95% credible interval 1.62 to 3.23) at three months in the pooled network, statistically indistinguishable from dorzolamide’s 2.49.',
+        iconName: 'Beaker',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'The two serious risks came along unchanged',
+        laymanDesc:
+          'Making the drop comfortable did nothing about the two things on the label that actually matter: severe sulfa reactions, and corneal swelling in eyes whose cornea is already fragile.',
+        molecularDetail:
+          'Both labelled Warnings and Precautions are consequences of the mechanism rather than the vehicle. Sulfonamide hypersensitivity follows from systemic absorption of a sulfonamide, and the label lists Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis and aplastic anaemia among rarely fatal reactions. Corneal oedema in patients with low endothelial cell counts follows from inhibiting the carbonic anhydrase the corneal endothelial pump depends on.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Brinzolamide Primary Therapy Study (Silver 1998)',
+        phase: 'Multicentre, double-masked, prospective, parallel-group, four-arm',
+        sampleSize: 572,
+        primaryEndpoint:
+          'Diurnally corrected intraocular pressure reduction from baseline at peak and trough over 3 months',
+        endpointMet: true,
+        statisticalPValue:
+          'Brinzolamide twice daily -3.8 to -5.7 mmHg and three times daily -4.2 to -5.6, statistically equivalent to each other and to dorzolamide -4.3 to -5.9 (equivalence limit ≤1.5 mmHg); ocular discomfort 1.8% and 3.0% against dorzolamide 16.4%, P = .000',
+        unreportedAdverseSignals:
+          'Conducted by Alcon, whose drug it was, against the incumbent competitor. The efficacy result is equivalence, so the entire case for the product rests on the tolerability endpoint, which is the one the sponsor was best positioned to define and detect.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'International Dorzolamide Study (Strahlman 1995)',
+        phase: 'Double-masked, randomised, parallel comparison at 34 international sites',
+        sampleSize: 523,
+        primaryEndpoint:
+          'Intraocular pressure reduction at one year for the class, dorzolamide against timolol and betaxolol',
+        endpointMet: true,
+        statisticalPValue:
+          'Dorzolamide approximately 23% peak and 17% trough reduction, comparable with betaxolol and below timolol',
+        unreportedAdverseSignals:
+          'Cited here for the class rather than for brinzolamide, which did not exist when it ran. It is the source of the one-year durability evidence brinzolamide inherits by equivalence.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Orzalesi circadian crossover (2000)',
+        phase: 'Randomised crossover, masked evaluators, in-hospital 24-hour tonometry',
+        sampleSize: 20,
+        primaryEndpoint:
+          'Around-the-clock pressure reduction for the carbonic anhydrase class, dorzolamide against timolol and latanoprost',
+        endpointMet: true,
+        statisticalPValue:
+          'Dorzolamide significant against baseline at all eight measurement times and superior to timolol at midnight and 3 AM (P = 0.05)',
+        unreportedAdverseSignals:
+          'Tested dorzolamide, not brinzolamide. The overnight advantage often attributed to brinzolamide is inherited from this study by analogy of mechanism, not measured on this molecule.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Statistically equivalent to dorzolamide on pressure in 572 randomised patients, equivalence confidence limit 1.5 mmHg or less',
+        'Ocular burning and stinging in 1.8% of patients twice daily and 3.0% three times daily, against dorzolamide’s 16.4% (P = .000)',
+        'Mean pressure reduction of 2.42 mmHg (95% credible interval 1.62 to 3.23) at three months, twelfth of fourteen first-line agents in 114 pooled trials',
+        'Blurred vision and bitter, sour or unusual taste as the most frequent labelled adverse reactions, at 5% to 10% incidence',
+      ],
+      unsupportedInferences: [
+        'That better instillation comfort produces better adherence and better preserved vision — never measured in any randomised comparison of these two drugs',
+        'That brinzolamide shares dorzolamide’s overnight advantage; that finding comes from a 20-patient study of dorzolamide and is transferred by mechanism',
+        'That the eleven-fold acquisition cost difference against dorzolamide reflects anything about the drugs rather than the number of listed manufacturers',
+        'That a gentler formulation is a safer drug, when both labelled warnings arise from the mechanism and are carried over unchanged',
+      ],
+      whatFailedInitially: [
+        'The comfort was bought rather than gained: blurred vision and bitter taste replaced stinging, each at 5% to 10%',
+        'The suspension requires shaking before every dose, a step no other drop in this batch needs and a new way for a dose to go wrong',
+        'Three-times-daily dosing was carried over from dorzolamide despite the trial finding twice daily equivalent',
+        'The class sits near the bottom of the pooled efficacy ranking, at roughly half the effect of a prostaglandin analogue',
+      ],
+      realWorldOutcome: [
+        'Approved 1 April 1998 under NDA 020816, four years after the drug it was designed to displace',
+        'Now generic, with nine listed products against dorzolamide’s twenty-three, and eleven times the acquisition cost per millilitre',
+        'Widely used as an add-on and as the carbonic anhydrase half of the brinzolamide/brimonidine fixed combination',
+        'Retained in patients who cannot tolerate dorzolamide’s acidity and who cannot take a beta-blocker',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ophthalmic suspension 1%, instilled three times daily',
+      description:
+        'A near-neutral aqueous suspension of milled drug particles rather than a solution, which is what removes the acidic sting and what makes shaking before every dose mandatory. Particles dissolve on the tear film over minutes, transiently blurring vision, before the dissolved fraction crosses the cornea. If more than one topical eye product is used, the label directs at least ten minutes between them.',
+      safetyProfile:
+        'Two labelled Warnings and Precautions: sulfonamide hypersensitivity reactions, with rare fatalities from Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis, aplastic anaemia and other blood dyscrasias, and recurrence of sensitisation on readministration by any route; and corneal oedema in patients with low endothelial cell counts. Most frequent adverse reactions at 5% to 10% are blurred vision and bitter, sour or unusual taste. Blepharitis, dermatitis, dry eye, foreign body sensation, headache, hyperemia, ocular discharge and ocular discomfort at 1% to 5%. No beta-blockade, so no respiratory or cardiac contraindications.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it better than dorzolamide?',
+        a: 'On the thing it is prescribed for, no — the trial that approved it found the two statistically equivalent, with a confidence limit of 1.5 millimetres of mercury or less, and the pooled analysis of 114 trials separates them by 0.07 mmHg, which is noise. On instillation comfort, decisively yes: 1.8% of brinzolamide patients reported burning against 16.4% on dorzolamide. What you are choosing between is stinging on one hand and transient blurring, a bitter taste and a bottle you must shake before every dose on the other. In the same United States acquisition-cost survey on the same date, brinzolamide costs US$10.08 per millilitre and dorzolamide US$0.89.',
+        auditNote:
+          'Both drugs are generic. The price gap tracks the number of listed manufacturers — nine against twenty-three — rather than anything about the molecules.',
+      },
+      {
+        q: 'Why does my vision go blurry after I put it in?',
+        a: 'Because the drug is not dissolved. Brinzolamide is not soluble enough in water to be made into a clear drop at a useful strength without adding acid, and adding acid is exactly what makes dorzolamide sting. So it is supplied as fine solid particles suspended in liquid. Those particles sit on the tear film and scatter light until they dissolve, which takes a few minutes. The label lists blurred vision as one of its two most common adverse reactions, at 5% to 10%. It is a direct consequence of the design decision that removed the stinging.',
+      },
+      {
+        q: 'Does it really matter if I forget to shake it?',
+        a: 'Yes, and this is the only drop in this group where it does. In a suspension the drug is a solid that settles under gravity. A bottle standing overnight has a dilute layer at the top and a concentrated layer at the bottom, so an unshaken drop is not a full dose and the following one may be more than a full dose. This is why "Shake well before use" appears in the dosage and administration section of the label rather than in small print. Every other drop in this batch is a true solution, where the concentration is the same everywhere in the bottle whatever you do to it.',
+      },
+      {
+        q: 'Is it strong enough on its own?',
+        a: 'It is one of the weaker options, and worth knowing where it sits. Pooled across 114 randomised trials it lowers pressure by 2.42 millimetres of mercury at three months, twelfth of fourteen first-line drops. Bimatoprost, latanoprost and travoprost all lower it by roughly double. Timolol lowers it by about 50% more. That is why brinzolamide is usually an added agent rather than the first one, and why it is also sold combined with brimonidine in a single bottle. What it offers is a mechanism nothing else in the common list shares, so it adds to a prostaglandin analogue rather than overlapping with it.',
+      },
+      {
+        q: 'I am allergic to sulfa antibiotics. Does that apply here?',
+        a: 'Raise it, because the answer is not obvious from the fact that this goes in your eye. Brinzolamide is a sulfonamide, and the label states that although it is applied topically it is absorbed systemically, so the same types of reactions attributable to sulfonamides may occur. It goes on to say that fatalities have occurred, rarely, from Stevens-Johnson syndrome, toxic epidermal necrolysis, fulminant hepatic necrosis, agranulocytosis and aplastic anaemia, and that sensitisation may recur when a sulfonamide is given again irrespective of the route. These are idiosyncratic reactions rather than dose-dependent ones, which is why a small topical dose does not put you out of range.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Silver LH. Clinical efficacy and safety of brinzolamide (Azopt), a new topical carbonic anhydrase inhibitor for primary open-angle glaucoma and ocular hypertension. Am J Ophthalmol 1998;126:400-408',
+        identifier: '10.1016/s0002-9394(98)00095-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Li T et al. Comparative effectiveness of first-line medications for primary open-angle glaucoma: a systematic review and network meta-analysis. Ophthalmology 2016;123:129-140',
+        identifier: '10.1016/j.ophtha.2015.09.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Strahlman E, Tipping R, Vogel R. A double-masked, randomized 1-year study comparing dorzolamide (Trusopt), timolol, and betaxolol. Arch Ophthalmol 1995;113:1009-1016',
+        identifier: '10.1001/archopht.1995.01100080061030',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Konowal A et al. Irreversible corneal decompensation in patients treated with topical dorzolamide. Am J Ophthalmol 1999;127:403-406',
+        identifier: '10.1016/s0002-9394(98)00438-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Orzalesi N et al. Effect of timolol, latanoprost, and dorzolamide on circadian IOP in glaucoma or ocular hypertension. Invest Ophthalmol Vis Sci 2000;41:2566-2573',
+        identifier: '10937568',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Drugs@FDA: AZOPT (brinzolamide ophthalmic suspension) 1%, NDA 020816, Sandoz — original approval 1 April 1998',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020816',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 68844 — brinzolamide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/68844',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey, generic listing effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]

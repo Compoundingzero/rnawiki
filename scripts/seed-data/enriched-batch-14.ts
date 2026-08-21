@@ -1224,4 +1224,575 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 3. Diphenhydramine — on the market since 1946, the only active ingredient the FDA's nighttime
+  //    sleep-aid monograph recognises, and the drug the sleep medicine profession recommends
+  //    against for sleep.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'diphenhydramine',
+    name: 'Diphenhydramine',
+    tradeName: 'Benadryl / Allergy Relief / Nighttime Sleep Aid',
+    sponsor:
+      'Introduced in the United States in 1946; now sold overwhelmingly as generic under the over-the-counter monograph system, with McNeil Consumer among the listed labellers',
+    targetGene: 'HRH1',
+    targetProtein:
+      'Histamine H1 receptor, with substantial off-target antagonism of muscarinic acetylcholine receptors',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1946,
+    indication:
+      'Amelioration of allergic reactions to blood or plasma, adjunct to epinephrine in anaphylaxis after acute symptoms are controlled, other uncomplicated immediate-type allergic conditions where oral therapy is impossible, active treatment of motion sickness, and — under 21 CFR 338 — over-the-counter use as a nighttime sleep aid',
+    patientFriendlyIndication:
+      'Allergic reactions, itching and hives, motion sickness, and trouble falling asleep',
+    anatomicalSite:
+      'Everywhere — peripheral H1 receptors in nose and skin, brain H1 receptors in the tuberomammillary wakefulness pathway, and muscarinic receptors in bladder, gut, eye and cortex',
+    conditionContext: {
+      conditionExplainer:
+        'Histamine does two unrelated jobs. In the nose and skin it drives the allergic reaction. In the brain it is one of the chemicals that keeps you awake. A drug that blocks the receptor cannot tell those two jobs apart.',
+      whyItMatters:
+        'This is the drug that established the class in 1946, and it is still the one most households have. It is also the one that goes everywhere in the body, which is why it makes people sleepy, dries them out, and appears on every list of medicines older adults should avoid.',
+      whoTakesThis:
+        'Adults and children, over the counter, for allergy, for itch, for travel sickness and for sleep. It is also the only intravenous antihistamine that was available in the United States for sixty-four years.',
+      clinicalGoals:
+        'Relief of an allergic reaction, or induction of sleep. The evidence for the first is old and thin; the evidence against the second is recent and specific.',
+    },
+    oneSentenceVerdict:
+      'The first prescription antihistamine, an H1 antagonist that crosses freely into the brain and also blocks muscarinic receptors — it was non-inferior to intravenous cetirizine on two-hour itch relief in 262 patients with acute urticaria while sending twice as many of them back for a second visit, it impaired simulated driving more than a 0.1% blood alcohol concentration, its sedative effect disappeared completely by day four of continuous use, and it failed outright as an infant sleep aid in a randomised trial that a safety board stopped early.',
+    laymanHowItWorks:
+      'Histamine sits in the receptor and starts the allergic reaction; this drug takes the seat first and holds it. What separates it from the modern antihistamines is that it does not stay where the allergy is. It crosses into the brain, where histamine is one of the signals that keeps you awake, and blocking it there is what makes you drowsy. It also blocks a second, unrelated receptor for acetylcholine, which is why it dries your mouth and eyes, blurs vision, slows the gut and can make an older person confused.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 54,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$0.0444 per unit, median across 120 listed products (CMS National Average Drug Acquisition Cost, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Low',
+      openPatentNotes:
+        'Patent protection ended decades ago and the molecule is now a commodity: 120 separate products appear in the CMS acquisition survey, and it is the cheapest per unit of any antihistamine in this group. It is not sold under a modern new drug application at all. Over-the-counter marketing runs under the FDA monograph system, and 21 CFR 338.10 names diphenhydramine hydrochloride and diphenhydramine citrate as the only two nighttime sleep-aid active ingredients the monograph recognises.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for diphenhydramine; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 120 listed diphenhydramine products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'For allergy there is a direct replacement with better evidence and fewer effects; a randomised trial in an emergency department compared them head to head. For sleep there is no replacement, because the sleep medicine profession recommends against the drug rather than in favour of an alternative antihistamine.',
+      conventionalRx: [
+        {
+          name: 'Cetirizine, oral or intravenous',
+          class: 'Second-generation H1 antagonist',
+          howItCompares:
+            'Tested against intravenous diphenhydramine head to head in 262 adults presenting with acute urticaria. Two-hour itch relief was non-inferior (-1.6 against -1.5, 95% CI -0.1 to 0.3), while patients on cetirizine spent less time in the treatment centre (1.7 against 2.1 hours, p=0.005), returned less often (5.5% against 14.1%, p=0.02) and were less sedated (sedation score change 0.1 against 0.5, p=0.03).',
+          typicalCost:
+            '$0.0629 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: equal itch relief, less sedation, fewer repeat presentations, once daily rather than every four to six hours. Cons: costs more per unit; not available as an oral solution in as many forms.',
+        },
+        {
+          name: 'Loratadine or fexofenadine',
+          class: 'Second-generation H1 antagonists that do not meaningfully enter the brain',
+          howItCompares:
+            'Both stay peripheral. In the Iowa Driving Simulator, drivers given diphenhydramine 50 mg were worse than drivers given enough alcohol to reach roughly 0.1% blood alcohol concentration, while fexofenadine was indistinguishable from placebo on the same measures.',
+          typicalCost:
+            '$0.0532 per unit for loratadine and $0.2407 per unit for fexofenadine at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no measurable driving impairment, no anticholinergic drying, once daily. Cons: slower onset than an injection, and neither is available intravenously in the way diphenhydramine is.',
+        },
+        {
+          name: 'Cognitive behavioural therapy for insomnia',
+          class: 'Non-pharmacological, and the first-line treatment for chronic insomnia',
+          howItCompares:
+            'For the sleep indication specifically, the comparison is not another drug. The American Academy of Sleep Medicine reviewed the randomised evidence drug by drug and issued a recommendation that clinicians not use diphenhydramine for sleep onset or sleep maintenance insomnia in adults.',
+          typicalCost: 'No drug acquisition cost; delivered as therapy or through structured programmes',
+          prosAndCons:
+            'Pros: the guideline-recommended first-line treatment, no tolerance and no anticholinergic burden. Cons: requires access, effort and weeks rather than a tablet tonight.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Do not treat a child’s sleep with it',
+          action:
+            'Avoid using it to settle an infant or young child at night, however routine the practice looks.',
+          patientImpact:
+            'The one randomised trial of exactly this — 44 infants aged 6 to 15 months with frequent night waking — was stopped early by its data safety monitoring board for lack of effectiveness. One of 22 infants on diphenhydramine improved against three of 22 on placebo.',
+          clinicalPrecaution:
+            'Paradoxical excitation rather than sedation is common in young children, and fatal monointoxication in infants is documented in the forensic literature. This is a drug with a genuine anticholinergic toxidrome, not a mild one.',
+        },
+        {
+          name: 'Count how many nights in a row you have taken it',
+          action: 'Notice whether the sedative effect is still there after three or four nights.',
+          patientImpact:
+            'In a randomised crossover in 15 healthy men, both objective and subjective sleepiness on diphenhydramine were significantly higher than placebo on day 1 and completely indistinguishable from placebo by day 4. The performance impairment reversed on the same schedule.',
+          clinicalPrecaution:
+            'Tolerance to the sedation does not mean tolerance to the anticholinergic effects, so continued use past the point where it stops working carries the burden without the benefit.',
+        },
+        {
+          name: 'If you are over 65, ask whether this is the right drug at all',
+          action:
+            'Check whether a first-generation antihistamine is on the list of medicines to avoid at your age, including in combination products bought without a prescription.',
+          patientImpact:
+            'First-generation antihistamines, diphenhydramine among them, appear on the American Geriatrics Society Beers Criteria of potentially inappropriate medications in adults 65 and older, on the grounds of anticholinergic effect, reduced clearance with age, and risk of confusion, dry mouth, constipation and urinary retention.',
+          clinicalPrecaution:
+            'A prospective cohort of 3,434 people aged 65 and over found a dose-response relationship between ten-year cumulative anticholinergic exposure and incident dementia, with an adjusted hazard ratio of 1.54 in the highest exposure band. That is an association in an observational study, not a demonstrated cause.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN(C)CCOC(C1=CC=CC=C1)C2=CC=CC=C2',
+      chemicalFormula: 'C17H21NO',
+      molecularWeight: '255.35 g/mol',
+      targetReceptorAffinity:
+        'The molecule is small, lipophilic and uncharged at the ether oxygen, with a single basic tertiary amine — the opposite of the zwitterionic second-generation drugs — so it crosses the blood-brain barrier freely. Its selectivity for H1 over muscarinic acetylcholine receptors is poor, and the muscarinic block is not a rare side effect but a routine, dose-proportional part of what the drug does.',
+      structureSource: {
+        label: 'PubChem CID 3100 (diphenhydramine) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3100',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dph-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and residual solvent check on benzhydrol',
+          description:
+            'Confirm the diphenylmethanol starting material and its purity. There are no stereocentres in this molecule and no salt complexity, which is why the drug costs four cents a unit: the whole route is two reagents and a salt formation, and quality control is correspondingly simple.',
+          reagentsAndBuffer:
+            'Benzhydrol reference standard, gas chromatography with headspace sampling for residual solvents, melting point determination, 1H NMR in CDCl3',
+        },
+        {
+          id: 'dph-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Williamson ether synthesis joining benzhydryl to dimethylaminoethanol',
+          description:
+            'Convert benzhydrol to the benzhydryl halide and displace with 2-dimethylaminoethanol, forming the ether that is the entire molecule. Nothing here is charged or polar, and that is the pharmacological point: the finished compound has no carboxylate to keep it out of the brain, unlike every second-generation antihistamine that followed it.',
+          dependsOnStepId: 'dph-w1',
+          reagentsAndBuffer:
+            'Thionyl chloride or hydrogen bromide for the benzhydryl halide, 2-(dimethylamino)ethanol, sodium hydride or potassium carbonate as base, toluene or xylene at reflux under nitrogen',
+        },
+        {
+          id: 'dph-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrochloride salt formation and recrystallisation',
+          description:
+            'Precipitate the hydrochloride from the free base and recrystallise. The citrate salt is made by the same route with citric acid and is the form used in some sleep-aid products; 21 CFR 338.10 recognises both salts and nothing else as nighttime sleep-aid actives.',
+          dependsOnStepId: 'dph-w2',
+          reagentsAndBuffer:
+            'Hydrogen chloride in isopropanol or diethyl ether, recrystallisation from isopropanol or acetone, loss on drying, chloride assay by argentometric titration',
+        },
+        {
+          id: 'dph-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Parallel dosing of H1 and muscarinic receptor membranes',
+          description:
+            'Apply the compound to membranes expressing human H1 and, in the same experiment, to membranes expressing the five muscarinic subtypes. Running the muscarinic panel alongside rather than afterwards is the point: for this molecule the anticholinergic activity is a primary pharmacological property and testing H1 alone would describe a different drug from the one people take.',
+          dependsOnStepId: 'dph-w3',
+          reagentsAndBuffer:
+            'CHO membranes expressing human HRH1 and CHRM1 through CHRM5, [3H]mepyramine for H1 and [3H]N-methylscopolamine for muscarinic, 50 mM Tris-HCl at pH 7.4 with 10 mM magnesium chloride, atropine and triprolidine for non-specific binding',
+        },
+        {
+          id: 'dph-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'H1-to-muscarinic selectivity ratio and brain-penetration index',
+          description:
+            'Report the two affinities as a ratio rather than separately, and pair them with a measured brain-to-plasma partition. A selectivity ratio close to one is the quantitative statement of why this drug sedates and dries where a second-generation agent does neither, and it is the single number that most usefully separates the generations.',
+          dependsOnStepId: 'dph-w4',
+          reagentsAndBuffer:
+            'Scintillation counting, non-linear regression to Ki with Cheng-Prusoff correction; for brain penetration, LC-MS/MS quantification in matched plasma and brain homogenate, or [11C]doxepin displacement in a human PET protocol',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dph-a1',
+        category: 'measured',
+        title: 'It impaired driving more than being over the drink-drive limit',
+        laymanSummary:
+          'Forty licensed drivers drove for an hour in a simulator on four separate weeks: on this drug, on a modern antihistamine, on enough alcohol to put them around the legal limit, and on a dummy tablet. This drug was the worst of the four.',
+        technicalDetails:
+          'In a randomised, double-blind, double-dummy four-period crossover in the Iowa Driving Simulator, 40 licensed drivers aged 25 to 44 with seasonal allergic rhinitis received diphenhydramine 50 mg, fexofenadine 60 mg, alcohol to approximately 0.1% blood alcohol concentration, or placebo at weekly intervals. Coherence — the ability to match a lead vehicle’s varying speed — was significantly better after alcohol or fexofenadine than after diphenhydramine. Lane keeping, measured as steering instability and centre-line crossings, was impaired after both alcohol and diphenhydramine relative to fexofenadine. Self-reported drowsiness did not predict lack of coherence, so subjects could not tell how impaired they were.',
+        evidenceSource: 'Weiler JM et al., Ann Intern Med 2000;132:354-363',
+        doi: '10.7326/0003-4819-132-5-200003070-00004',
+        measuredMetric:
+          'Coherence, steering instability and centre-line crossings over one hour of simulated driving',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dph-a2',
+        category: 'failed',
+        title: 'The sedative effect is completely gone by the fourth night',
+        laymanSummary:
+          'The reason people take this for sleep is that it makes them drowsy. Measured objectively, that drowsiness disappears within four days of taking it every day. The drying and the other effects do not disappear.',
+        technicalDetails:
+          'Fifteen healthy men aged 18 to 50 received diphenhydramine 50 mg or placebo twice daily for four days in a randomised, double-blind crossover, with objective and subjective sleepiness measures and computer-based psychomotor testing. Both objective and subjective sleepiness were significantly higher on diphenhydramine than placebo on day 1. By day 4, sleepiness on diphenhydramine was indistinguishable from placebo, and the significant psychomotor impairment seen initially had completely reversed. The authors described this as the first objective demonstration of tolerance to the sedative effect of a first-generation H1 antihistamine.',
+        evidenceSource: 'Richardson GS et al., J Clin Psychopharmacol 2002;22:511-515',
+        doi: '10.1097/00004714-200210000-00012',
+        measuredMetric:
+          'Objective and subjective sleepiness and psychomotor performance, day 1 against day 4 of continuous dosing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dph-a3',
+        category: 'failed',
+        title: 'TIRED: it did not settle infants, and a safety board stopped the trial',
+        laymanSummary:
+          'A randomised trial gave this drug or a placebo to infants who woke frequently at night. It was stopped early because the drug was doing nothing. One infant of twenty-two improved on the drug; three of twenty-two improved on placebo.',
+        technicalDetails:
+          'The Trial of Infant Response to Diphenhydramine was a double-blind, randomised, controlled trial in 44 infants aged 6 to 15 months with frequent parent-reported night awakenings, dosed 30 minutes before anticipated bedtime for one week with follow-up at 2 and 4 weeks. On 6 June 2005 the data safety monitoring board voted unanimously to stop the trial early for lack of effectiveness. One of 22 children on diphenhydramine improved against 3 of 22 on placebo. The authors calculated that to reach the pre-specified sample size and still reject the null hypothesis, 15 of the next 16 diphenhydramine infants and none of the next 16 placebo infants would have had to improve.',
+        evidenceSource: 'Merenstein D et al., Arch Pediatr Adolesc Med 2006;160:707-712 (TIRED)',
+        doi: '10.1001/archpedi.160.7.707',
+        measuredMetric:
+          'Parental report of improvement in night awakenings requiring assistance, day 14',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dph-a4',
+        category: 'conclusion_shift',
+        title:
+          'A regulation names it the sleep aid; the sleep medicine profession recommends against it',
+        laymanSummary:
+          'Federal regulation recognises exactly two ingredients as over-the-counter sleep aids, and both of them are this drug. The specialist body that reviewed the actual trial evidence drug by drug came to the opposite conclusion and recommended against using it for insomnia.',
+        technicalDetails:
+          '21 CFR 338.10 lists diphenhydramine hydrochloride and diphenhydramine citrate as the only nighttime sleep-aid active ingredients in the over-the-counter monograph. The American Academy of Sleep Medicine convened a four-expert task force, ran a systematic review of randomised controlled trials and applied GRADE to individual drugs rather than classes, and issued the recommendation that clinicians not use diphenhydramine as a treatment for sleep onset or sleep maintenance insomnia in adults, graded WEAK. The gap is not a contradiction between two evidence reviews: the monograph reflects a pre-1962 marketing framework, and the guideline reflects the randomised evidence that has accumulated since.',
+        evidenceSource:
+          'Sateia MJ et al., J Clin Sleep Med 2017;13:307-349; 21 CFR 338.10, nighttime sleep-aid active ingredients',
+        doi: '10.5664/jcsm.6470',
+        inferredClaim:
+          'That regulatory recognition as an over-the-counter sleep aid implies demonstrated efficacy for insomnia — the guideline built on the randomised trials recommends the opposite',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'dph-a5',
+        category: 'measured',
+        title:
+          'Equal itch relief to intravenous cetirizine, and twice as many patients came back',
+        laymanSummary:
+          'In an emergency department trial in people with sudden hives, this drug relieved itching just as well as a modern antihistamine given the same way. But patients on it were more sedated, stayed longer, and were more than twice as likely to return for another visit.',
+        technicalDetails:
+          'A multicentre randomised phase 3 noninferiority trial enrolled 262 adults presenting to emergency departments and urgent care centres with acute urticaria requiring an intravenous antihistamine, randomising them to intravenous cetirizine 10 mg or intravenous diphenhydramine 50 mg. The two-hour change from baseline in patient-rated pruritus score was -1.6 for cetirizine against -1.5 for diphenhydramine (95% CI -0.1 to 0.3), meeting noninferiority in cetirizine’s favour. Secondary endpoints all favoured cetirizine: mean time in the treatment centre 1.7 against 2.1 hours (p=0.005), return to the treatment centre 5.5% against 14.1% (p=0.02), and two-hour change in sedation score 0.1 against 0.5 (p=0.03).',
+        evidenceSource: 'Abella BS et al., Ann Emerg Med 2020;76:489-500',
+        doi: '10.1016/j.annemergmed.2020.05.025',
+        measuredMetric:
+          'Two-hour pruritus score change, treatment centre time, return rate and sedation, against intravenous cetirizine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dph-a6',
+        category: 'inferred',
+        title: 'Cumulative anticholinergic exposure tracks with dementia, and this is an observation',
+        laymanSummary:
+          'A long-running study of older adults found that the more anticholinergic medicine someone had taken over ten years, the more likely they were to develop dementia. First-generation antihistamines were one of the three commonest drug groups involved. This is an association measured in a population, not a demonstration that the drug causes the disease.',
+        technicalDetails:
+          'The Adult Changes in Thought cohort followed 3,434 participants aged 65 and over with no dementia at entry, using computerised pharmacy dispensing records to compute total standardised daily doses of anticholinergics over ten years, excluding the most recent twelve months to avoid capturing prodromal use. Over a mean 7.3 years, 797 participants (23.2%) developed dementia, 637 of them Alzheimer disease. A ten-year cumulative dose-response relationship was observed (test for trend p<0.001), with adjusted hazard ratios against non-use of 0.92 (95% CI 0.74 to 1.16) for 1 to 90 total standardised daily doses, 1.19 (0.94 to 1.51) for 91 to 365, 1.23 (0.94 to 1.62) for 366 to 1,095 and 1.54 (1.21 to 1.96) above 1,095. The three commonest classes were tricyclic antidepressants, first-generation antihistamines and bladder antimuscarinics. The design cannot separate the drug from the reason it was prescribed, and the authors framed the finding as a reason to minimise exposure rather than as proof of causation.',
+        evidenceSource: 'Gray SL et al., JAMA Intern Med 2015;175:401-407',
+        doi: '10.1001/jamainternmed.2014.7663',
+        inferredClaim:
+          'That taking diphenhydramine causes dementia — the cohort measured cumulative exposure across a whole drug class and reports an association with a dose-response gradient, which is suggestive and is not a causal demonstration',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dph-a7',
+        category: 'failed',
+        title: 'It is one of the commonest agents in adolescent self-poisoning',
+        laymanSummary:
+          'Because it is cheap, unrestricted and in every house, it turns up constantly in deliberate overdoses. Poison centre records show tens of thousands of adolescent cases, rising over time, and the largest ingestions cause life-threatening effects in about one in five.',
+        technicalDetails:
+          'A National Poison Data System analysis of 47,644 diphenhydramine ingestions in 13 to 19 year-olds between 2007 and 2020 found rising case numbers, a rising proportion of intentional ingestions and a rising proportion of suspected suicide, with cardiac complications, seizures, coma and death more common after intentional ingestion than after misuse or abuse. A separate NPDS time-series of 24,358 cases in 6 to 18 year-olds from 2016 to 2023 found a 34.3% increase in ingestions, with 1,190 (4.9%) classified as massive; massive ingestions required inpatient admission in 69.6% of cases against 26.2% for non-massive, and produced major effects — life-threatening symptoms, residual disability or death — in 21.3% against 1.0%. FDA issued a warning about intentional misuse and abuse of diphenhydramine in September 2020.',
+        evidenceSource:
+          'Darracq MA, Thornton SL. Clin Toxicol 2022;60:851-859; Luke M et al., Clin Toxicol 2026, online ahead of print',
+        doi: '10.1080/15563650.2022.2051536',
+        measuredMetric:
+          'National Poison Data System case counts, admission rates and major-effect rates by ingestion size',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dph-a8',
+        category: 'inferred',
+        title: 'Eighty years on the market is not eighty years of evidence',
+        laymanSummary:
+          'This drug reached pharmacies in 1946, sixteen years before manufacturers were first required to prove that a medicine works. Most of what is claimed for it has never been tested the way a new drug would be tested today.',
+        technicalDetails:
+          'Diphenhydramine was introduced in the United States in 1946. The Kefauver-Harris amendment of 1962 first required substantial evidence of effectiveness for approval. Today the drug is not marketed under a modern new drug application at all: over-the-counter sale runs under the FDA monograph system, and the CMS acquisition survey lists 120 separate products. Where randomised trials have been run against the specific claims — infant sleep in TIRED, adult insomnia in the evidence base the American Academy of Sleep Medicine reviewed, tolerance to sedation over four days — the results have been null or negative. The strongest positive randomised result on this page comes from a trial designed to show that a different drug could replace it.',
+        evidenceSource:
+          '21 CFR 338, Nighttime Sleep-Aid Drug Products for Over-the-Counter Human Use; Merenstein D et al., Arch Pediatr Adolesc Med 2006;160:707-712; Sateia MJ et al., J Clin Sleep Med 2017;13:307-349',
+        inferredClaim:
+          'That long-standing availability and regulatory recognition constitute evidence of effectiveness — they are facts about the history of drug regulation, and the randomised trials that exist point the other way',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed quickly and heavily processed by the liver',
+        laymanDesc:
+          'It gets into the blood fast, which is why drowsiness arrives within an hour. A large fraction is broken down by the liver before it ever reaches the circulation.',
+        molecularDetail:
+          'A small, lipophilic tertiary amine with high oral absorption and extensive first-pass metabolism, principally by CYP2D6 with contributions from CYP1A2, CYP2C9 and CYP2C19. Poor CYP2D6 metabolisers reach substantially higher exposure from the same amount. Elimination half-life lengthens in older adults, which compounds the sensitivity that age already brings.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It crosses into the brain without resistance',
+        laymanDesc:
+          'Nothing in the molecule stops it entering the brain. That is not a flaw in the design; the design predates the idea that an antihistamine should stay out.',
+        molecularDetail:
+          'The molecule is uncharged apart from a single basic amine, has no carboxylate to form a zwitterion and is not a strong P-glycoprotein substrate, so it distributes freely across the blood-brain barrier. Brain H1 receptor occupancy for first-generation antihistamines measured by PET runs to a large fraction of available receptors, against -0.1% for fexofenadine in the same kind of study.',
+        iconName: 'Brain',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the histamine receptor in two places at once',
+        laymanDesc:
+          'In the nose and skin, blocking the receptor stops the allergic itching and running. In the brain, the same receptor is part of the system that keeps you awake, and blocking it there makes you sleepy. The drug cannot separate the two.',
+        molecularDetail:
+          'Peripheral HRH1 antagonism on postcapillary venule endothelium and sensory nerve endings produces the antiallergic effect. Central HRH1 antagonism in the projections of the tuberomammillary nucleus suppresses histaminergic arousal, producing sedation. The therapeutic effect and the principal adverse effect are the same molecular event in two tissues.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It also blocks a completely different receptor',
+        laymanDesc:
+          'Alongside histamine, it blocks the receptor for acetylcholine. That is what dries the mouth and eyes, blurs near vision, slows the bowel, makes passing urine harder and can tip an older person into confusion.',
+        molecularDetail:
+          'Muscarinic acetylcholine receptor antagonism is substantial rather than incidental, and the H1-to-muscarinic selectivity ratio is close enough to one that ordinary doses produce measurable antimuscarinic effects. This is why the drug appears on the American Geriatrics Society Beers Criteria and why it dominates the anticholinergic-burden scales used in geriatric practice.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The sedation wears off; the rest does not',
+        laymanDesc:
+          'Take it every night and within four days you no longer feel drowsy from it. The dry mouth, the blurred vision and the effect on the bladder and bowel carry on.',
+        molecularDetail:
+          'Objective and subjective sleepiness on 50 mg twice daily were significantly above placebo on day 1 and indistinguishable from placebo by day 4 in a randomised crossover, with psychomotor impairment reversing on the same schedule. No comparable tolerance to antimuscarinic effects has been demonstrated, so continued use shifts the balance of effects unfavourably over days.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'In overdose it stops being an antihistamine',
+        laymanDesc:
+          'Taken in large amounts it produces agitation, hallucinations, fever, a racing heart and seizures. It is one of the drugs poison centres see most often in deliberate overdose, precisely because it is cheap and unrestricted.',
+        molecularDetail:
+          'Massive ingestion produces the full anticholinergic toxidrome together with cardiac complications and seizures. In a National Poison Data System series of 24,358 paediatric and adolescent cases, ingestions of 2,500 mg or more led to inpatient admission in 69.6% of cases and to major effects — life-threatening symptoms, residual disability or death — in 21.3%, against 1.0% for smaller ingestions.',
+        iconName: 'Skull',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Weiler 2000 (Iowa Driving Simulator, Ann Intern Med 132:354-363)',
+        phase: 'Randomised, double-blind, double-dummy, four-period crossover',
+        sampleSize: 40,
+        primaryEndpoint:
+          'Coherence — ability to match the varying speed of a lead vehicle over one hour of simulated driving',
+        endpointMet: false,
+        statisticalPValue:
+          'Coherence significantly worse after diphenhydramine 50 mg than after alcohol at approximately 0.1% blood alcohol concentration or after fexofenadine; lane keeping impaired relative to fexofenadine',
+        unreportedAdverseSignals:
+          'Self-reported drowsiness did not predict lack of coherence, so subjects were impaired without being able to detect it.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Richardson 2002 (J Clin Psychopharmacol 22:511-515)',
+        phase: 'Randomised, double-blind, four-day crossover',
+        sampleSize: 15,
+        primaryEndpoint:
+          'Objective and subjective daytime sleepiness and psychomotor performance on 50 mg twice daily',
+        endpointMet: false,
+        statisticalPValue:
+          'Significantly greater sleepiness and impairment than placebo on day 1; indistinguishable from placebo by day 4',
+        unreportedAdverseSignals:
+          'Fifteen healthy young men, four days. Tolerance to the antimuscarinic effects was not assessed and there is no evidence it develops on the same schedule.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'TIRED (Arch Pediatr Adolesc Med 2006;160:707-712)',
+        phase: 'Randomised, double-blind, placebo-controlled — stopped early for futility',
+        sampleSize: 44,
+        primaryEndpoint:
+          'Parental report of improvement in night awakenings requiring assistance at day 14, in infants aged 6 to 15 months',
+        endpointMet: false,
+        statisticalPValue:
+          '1 of 22 improved on diphenhydramine against 3 of 22 on placebo; data safety monitoring board voted unanimously to stop for lack of effectiveness',
+        unreportedAdverseSignals:
+          'Stopped at 44 of a planned larger enrolment, so the trial is small. The direction of the result and the futility calculation are nonetheless unambiguous.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Abella 2020 (Ann Emerg Med 76:489-500)',
+        phase: 'Phase 3, multicentre, randomised, noninferiority — as the active comparator',
+        sampleSize: 262,
+        primaryEndpoint:
+          'Two-hour change from baseline in patient-rated pruritus score in acute urticaria',
+        endpointMet: true,
+        statisticalPValue:
+          'Intravenous cetirizine -1.6 against intravenous diphenhydramine -1.5 (95% CI -0.1 to 0.3), noninferiority met in cetirizine’s favour',
+        unreportedAdverseSignals:
+          'Diphenhydramine patients spent longer in the treatment centre (2.1 against 1.7 hours, p=0.005), returned more often (14.1% against 5.5%, p=0.02) and were more sedated (0.5 against 0.1, p=0.03). The trial was designed and funded to displace it.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Adult Changes in Thought cohort (JAMA Intern Med 2015;175:401-407)',
+        phase: 'Prospective population-based cohort, not a trial',
+        sampleSize: 3434,
+        primaryEndpoint:
+          'Incident dementia and Alzheimer disease against ten-year cumulative anticholinergic exposure',
+        endpointMet: true,
+        statisticalPValue:
+          'Dose-response trend p<0.001; adjusted hazard ratio 1.54 (95% CI 1.21 to 1.96) above 1,095 total standardised daily doses against non-use',
+        unreportedAdverseSignals:
+          'Observational. Exposure is measured across a whole anticholinergic class rather than for diphenhydramine specifically, and confounding by indication cannot be excluded.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Simulated driving coherence and lane keeping worse on 50 mg than at approximately 0.1% blood alcohol concentration, in a four-period crossover in 40 drivers',
+        'Sedation and psychomotor impairment significant on day 1 and completely gone by day 4 of twice-daily dosing in 15 healthy men',
+        '1 of 22 infants improved against 3 of 22 on placebo in TIRED, which was stopped early for futility',
+        'Two-hour pruritus relief of -1.5 in acute urticaria, statistically non-inferior to intravenous cetirizine at -1.6',
+        'Major effects in 21.3% of massive paediatric ingestions against 1.0% of non-massive, across 24,358 poison centre cases',
+      ],
+      unsupportedInferences: [
+        'That being the only active ingredient in the over-the-counter nighttime sleep-aid monograph means it has been shown to treat insomnia',
+        'That eighty years on the market constitutes evidence of effectiveness — the drug predates the 1962 requirement to prove any',
+        'That the cumulative anticholinergic dementia association proves causation, when it is an observational class-level exposure measure',
+        'That feeling alert on it means driving is unaffected — self-reported drowsiness failed to predict measured impairment',
+      ],
+      whatFailedInitially: [
+        'TIRED was stopped by its data safety monitoring board for lack of effectiveness in infant night waking',
+        'The sedative effect, which is the reason it is bought as a sleep aid, disappears within four days of continuous use',
+        'The American Academy of Sleep Medicine reviewed the randomised evidence and recommended against using it for insomnia in adults',
+        'In the emergency department trial it lost on sedation, on length of stay and on repeat presentations while merely matching on itch relief',
+      ],
+      realWorldOutcome: [
+        'Introduced in 1946 and never withdrawn; still the cheapest antihistamine in the CMS survey at $0.0444 per unit across 120 products',
+        'Named in 21 CFR 338.10 as one of only two recognised over-the-counter nighttime sleep-aid active ingredients, both of them salts of this molecule',
+        'On the American Geriatrics Society Beers Criteria list of medications potentially inappropriate for adults aged 65 and over',
+        'The subject of an FDA warning in September 2020 about intentional misuse and abuse, against a background of tens of thousands of adolescent poison centre cases',
+      ],
+    },
+    deliverySystem: {
+      type:
+        'Oral tablet, capsule, liquid and orally disintegrating strip; topical cream; and injection, which for sixty-four years was the only intravenous antihistamine available in the United States',
+      description:
+        'The injectable form is labelled for use when oral therapy is impossible or contraindicated. Onset of sedation after an oral dose is within about an hour; the effect on driving is present at that point whether or not the person feels it.',
+      safetyProfile:
+        'Sedation and psychomotor impairment exceeding that produced by alcohol at roughly the legal driving limit, with tolerance to the sedation but not to the rest within four days. A full antimuscarinic profile at ordinary doses: dry mouth, blurred near vision, constipation, urinary retention and, in older adults, confusion. Paradoxical excitation is common in young children, and fatal monointoxication in infants is documented. In massive ingestion the anticholinergic toxidrome is accompanied by cardiac complications and seizures. Metabolised by CYP2D6, so poor metabolisers and people taking CYP2D6 inhibitors reach higher exposure.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it safe to drive after taking it?',
+        a: 'The measurement says no. In the Iowa Driving Simulator, forty licensed drivers with hay fever drove for an hour on four separate occasions — on diphenhydramine 50 mg, on fexofenadine, on enough alcohol to reach about 0.1% blood alcohol concentration, and on placebo. Diphenhydramine was the worst of the four on the primary measure, worse than the alcohol. Lane keeping was impaired the same way. The finding that matters most in practice is that self-reported drowsiness did not predict impairment: people on the drug could not tell how badly they were driving.',
+      },
+      {
+        q: 'It stopped making me sleepy after a few nights. Why?',
+        a: 'Because tolerance to the sedative effect develops fast, and it has been measured. Fifteen healthy men took 50 mg twice daily or placebo for four days in a crossover trial. On day 1 both objective and subjective sleepiness were clearly higher on the drug. By day 4 they were indistinguishable from placebo, and the psychomotor impairment had completely reversed. That is the sedation. The dry mouth, the blurred vision, the effect on the bladder and gut have not been shown to fade on the same schedule, so continuing past the point where it stops working leaves you with the burden and not the benefit.',
+      },
+      {
+        q: 'Can I give it to my child to help them sleep?',
+        a: 'The one randomised trial of exactly this question was stopped early because the drug was not working. Forty-four infants aged six to fifteen months with frequent night waking were given diphenhydramine or placebo half an hour before bedtime for a week. On 6 June 2005 the data safety monitoring board voted unanimously to stop for lack of effectiveness: one of twenty-two infants improved on the drug against three of twenty-two on placebo. Separately, young children often become agitated rather than sleepy on it, and fatal poisoning in infants is documented in the forensic literature.',
+        auditNote:
+          'The trial was small, and it was stopped because the result was going nowhere rather than because it was harmful. The futility calculation the authors published is the useful part: fifteen of the next sixteen treated infants would have had to improve, and none of the next sixteen on placebo.',
+      },
+      {
+        q: 'Does it cause dementia?',
+        a: 'It has not been shown to, and there is a real signal worth knowing about. A cohort of 3,434 people aged 65 and over with no dementia at entry was followed for a mean of 7.3 years, with anticholinergic exposure measured from pharmacy records over ten years. Higher cumulative exposure tracked with higher dementia risk in a dose-response pattern, and in the highest exposure band the adjusted hazard ratio was 1.54 with a confidence interval from 1.21 to 1.96. First-generation antihistamines were one of the three commonest classes involved. But this is an observational study measuring a whole drug class: it cannot separate the drug from the reasons people were taking it, and the authors framed it as grounds for minimising exposure, not as proof of cause.',
+      },
+      {
+        q: 'If the trials are this bad, why is it still sold as a sleep aid?',
+        a: 'Because of when it arrived. Diphenhydramine reached the United States market in 1946, sixteen years before the law first required a manufacturer to prove a drug works. Over-the-counter sale today runs under the FDA monograph system rather than under a modern new drug application, and 21 CFR 338.10 names diphenhydramine hydrochloride and diphenhydramine citrate as the only two recognised nighttime sleep-aid actives. When the American Academy of Sleep Medicine did review the randomised evidence drug by drug, its recommendation was that clinicians not use diphenhydramine for sleep onset or sleep maintenance insomnia in adults. Both statements are current and they point in opposite directions.',
+        auditNote:
+          'This is the clearest example in this batch of regulatory recognition and evidence quality being separate things. The monograph is a fact about the history of American drug law.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Weiler JM et al. Effects of fexofenadine, diphenhydramine, and alcohol on driving performance: a randomized, placebo-controlled trial in the Iowa driving simulator. Ann Intern Med 2000;132:354-363',
+        identifier: '10.7326/0003-4819-132-5-200003070-00004',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Richardson GS, Roehrs TA, Rosenthal L, Koshorek G, Roth T. Tolerance to daytime sedative effects of H1 antihistamines. J Clin Psychopharmacol 2002;22:511-515',
+        identifier: '10.1097/00004714-200210000-00012',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Merenstein D et al. The trial of infant response to diphenhydramine: the TIRED study — a randomized, controlled, patient-oriented trial. Arch Pediatr Adolesc Med 2006;160:707-712',
+        identifier: '10.1001/archpedi.160.7.707',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sateia MJ, Buysse DJ, Krystal AD, Neubauer DN, Heald JL. Clinical practice guideline for the pharmacologic treatment of chronic insomnia in adults. J Clin Sleep Med 2017;13:307-349',
+        identifier: '10.5664/jcsm.6470',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Abella BS et al. Intravenous cetirizine versus intravenous diphenhydramine for the treatment of acute urticaria: a phase III randomized controlled noninferiority trial. Ann Emerg Med 2020;76:489-500',
+        identifier: '10.1016/j.annemergmed.2020.05.025',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gray SL et al. Cumulative use of strong anticholinergics and incident dementia: a prospective cohort study. JAMA Intern Med 2015;175:401-407',
+        identifier: '10.1001/jamainternmed.2014.7663',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Darracq MA, Thornton SL. A different challenge with Benadryl: adolescent diphenhydramine ingestions reported to National Poison Database System, 2007-2020. Clin Toxicol 2022;60:851-859',
+        identifier: '10.1080/15563650.2022.2051536',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Luke M et al. Frequency of massive diphenhydramine ingestions in children 6-18 years of age. Clin Toxicol 2026, online ahead of print',
+        identifier: '10.1080/15563650.2026.2680177',
+        kind: 'doi',
+      },
+      {
+        label:
+          'American Geriatrics Society 2023 updated AGS Beers Criteria for potentially inappropriate medication use in older adults. J Am Geriatr Soc 2023;71:2052-2081',
+        identifier: '10.1111/jgs.18372',
+        kind: 'doi',
+      },
+      {
+        label:
+          '21 CFR 338.10 — nighttime sleep-aid active ingredients: diphenhydramine hydrochloride and diphenhydramine citrate',
+        identifier: 'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-338',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3100 — diphenhydramine structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3100',
+        kind: 'url',
+      },
+    ],
+  },
 ]

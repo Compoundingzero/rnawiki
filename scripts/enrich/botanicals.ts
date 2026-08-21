@@ -335,6 +335,52 @@ export async function lookupLiterature(term: string): Promise<Literature | null>
   return literature
 }
 
+/**
+ * Fills the cache for many names at once, a few requests in flight at a time.
+ *
+ * The enrichment loop is sequential because it writes rows, and every lookup inside it was a
+ * round trip: ninety-eight hundred records at roughly thirty a minute is six hours, most of it
+ * spent waiting. The lookups themselves have no order and no shared state, so they are done first,
+ * against the same cache the loop reads, and the loop then runs at the speed of Postgres.
+ *
+ * Six at a time is deliberate restraint. Both APIs are free public infrastructure funded by
+ * research budgets, and this is a bulk read of a few thousand records that will be repeated
+ * whenever the corpus is rebuilt.
+ */
+export async function warmCache(
+  jobs: ReadonlyArray<{ name: string; kind: 'organism' | 'literature' }>,
+  onProgress?: (done: number, total: number) => void,
+): Promise<void> {
+  const CONCURRENCY = 6
+  const store = load()
+
+  const pending = jobs.filter((job) => {
+    const key = job.kind === 'literature' ? `lit:${job.name.toLowerCase()}` : job.name.toLowerCase()
+    const entry = store[key]
+    return !entry || (entry.litVersion ?? 1) < LITERATURE_QUERY_VERSION
+  })
+
+  let done = 0
+  let next = 0
+
+  async function worker(): Promise<void> {
+    for (;;) {
+      const index = next
+      next += 1
+      const job = pending[index]
+      if (!job) return
+      if (job.kind === 'literature') await lookupLiterature(job.name)
+      else await lookupBotanical(job.name)
+      done += 1
+      if (done % 250 === 0) onProgress?.(done, pending.length)
+    }
+  }
+
+  await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
+  flushBotanicalCache()
+  onProgress?.(done, pending.length)
+}
+
 export function botanicalCacheStats(): { total: number; resolved: number; withPapers: number } {
   const store = load()
   const values = Object.values(store)

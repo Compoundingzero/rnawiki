@@ -1747,4 +1747,548 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 4. Methylprednisolone — the glucocorticoid with a randomised trial showing it kills people,
+  //    and a lost indication that stood for twenty-three years on a subgroup.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'methylprednisolone',
+    name: 'Methylprednisolone',
+    tradeName:
+      'Medrol / Solu-Medrol / Depo-Medrol / A-Methapred / Methylprednisolone Sodium Succinate',
+    sponsor:
+      'Originally The Upjohn Company, now Pfizer, which still holds Solu-Medrol under NDA 011856 and the Depo-Medrol and Medrol brands. Off patent; dozens of generic manufacturers make the injectable succinate and the oral tablet.',
+    targetGene: 'NR3C1',
+    targetProtein:
+      'Glucocorticoid receptor (NR3C1). The 6-alpha methyl group raises glucocorticoid potency over prednisolone and further reduces the residual mineralocorticoid activity.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1957,
+    indication:
+      'Endocrine, rheumatic, collagen, dermatologic, allergic, ophthalmic, respiratory, haematologic, neoplastic, oedematous, gastrointestinal and nervous system disorders, given orally, intravenously, intramuscularly, intra-articularly, intralesionally or into soft tissue, including acute exacerbations of multiple sclerosis',
+    patientFriendlyIndication:
+      'Severe inflammation, autoimmune flares and allergic reactions, particularly where a high dose is needed quickly by injection',
+    anatomicalSite:
+      'Cytoplasm and nucleus of nucleated cells throughout the body. The depot acetate formulation acts additionally as a local reservoir at the injection site — a joint, an epidural space, a lesion.',
+    conditionContext: {
+      conditionExplainer:
+        'Methylprednisolone occupies the same mechanism as prednisolone with about a 25% higher potency per milligram and less salt retention. Its distinguishing feature is not chemistry but delivery: a water-soluble succinate ester that can be pushed into a vein at very high dose, and a poorly soluble acetate that stays where it is injected for weeks.',
+      whyItMatters:
+        'That delivery flexibility is why it became the standard high-dose intravenous steroid — for multiple sclerosis relapses, transplant rejection, and for two conditions where large randomised trials later found it did not help and in one case did harm. It is also the drug at the centre of the worst pharmaceutical contamination event in modern United States history.',
+      whoTakesThis:
+        'People having a multiple sclerosis relapse, an acute transplant rejection episode, a severe asthma or autoimmune flare, or a joint or epidural injection.',
+      clinicalGoals:
+        'Deliver a large, brief glucocorticoid exposure to shorten an inflammatory event, or a small, sustained one to a single anatomical site. Both goals attract the same objection: the drug does not distinguish the inflammation you want suppressed from the immune function you need.',
+    },
+    oneSentenceVerdict:
+      'Prednisolone with an added methyl group, formulated so that very large doses can be given intravenously — it shortens multiple sclerosis relapses with oral and intravenous routes proving equivalent in 199 randomised patients, and in the 10,008-patient CRASH trial it raised death within two weeks after head injury from 17.9% to 21.1% (relative risk 1.18, 95% CI 1.09 to 1.27, p=0.0001).',
+    laymanHowItWorks:
+      'Methylprednisolone works exactly the way prednisolone does: it enters cells, frees a receptor that travels into the nucleus, and switches off the genes that produce inflammatory signals. One extra methyl group makes it slightly stronger per milligram and removes most of the salt-retaining effect, which matters when very large amounts are given at once. What sets it apart is how it can be delivered — a water-soluble form that goes into a vein by the gram, and an oily form that sits in a joint for weeks releasing slowly. Neither of those changes what the drug does inside a cell; they change how much of it arrives, and where.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 62,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$2.87 per unit at United States pharmacy acquisition cost (CMS NADAC, generic, median across 46 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Introduced by Upjohn in 1957 and out of patent for decades; Solu-Medrol remains listed under NDA 011856 alongside many generic sodium succinate products. The pricing question that matters for this molecule is not patent but supply: preservative-free methylprednisolone acetate for epidural use was, in 2012, being produced in bulk by a compounding pharmacy operating outside the manufacturing standards that apply to an approved product, and the resulting contamination killed 61 people. The Drug Quality and Security Act of 2013 was written in response.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Within the class, prednisolone does the same job orally at about four-fifths the potency per milligram and dexamethasone does it with a longer duration and no salt retention. The evidence that most changes practice here is that for a multiple sclerosis relapse, high-dose oral methylprednisolone was not inferior to the intravenous route — the substitute for the infusion is the same drug swallowed. Outside the class, nothing substitutes for a high-dose glucocorticoid in an acute autoimmune flare, and for the two indications where methylprednisolone was tested hardest — head injury and acute spinal cord injury — the substitute recommended by current guidance is not giving it.',
+      conventionalRx: [
+        {
+          name: 'Oral methylprednisolone at the same total dose',
+          class: 'Same molecule, different route',
+          howItCompares:
+            'In the COPOUSEP trial, 1,000 mg daily for three days given orally was non-inferior to the same given intravenously for multiple sclerosis relapse: 81% against 80% improved by day 28, absolute difference 0.5% (90% CI -9.5 to 10.4). Insomnia was more frequent orally (77% against 64%).',
+          typicalCost:
+            'Tablets are substantially cheaper than an infusion once administration costs are counted; the molecule itself is generic in both forms',
+          prosAndCons:
+            'Pros: no infusion, no day unit, no cannula, same measured outcome. Cons: more insomnia, and it depends on being able to swallow a large tablet load.',
+        },
+        {
+          name: 'Prednisolone or prednisone',
+          class: 'Glucocorticoid, intermediate-acting',
+          howItCompares:
+            'About four-fifths of methylprednisolone’s potency per milligram, with a little more mineralocorticoid activity. For ordinary oral courses the two are near-interchangeable, and prednisolone has the larger randomised evidence base in rheumatoid arthritis and in Bell’s palsy.',
+          typicalCost:
+            'Generic tablets cost cents; the oral solution has a United States pharmacy acquisition cost of US$4.39 per millilitre',
+          prosAndCons:
+            'Pros: cheapest, most studied. Cons: more fluid retention, and no water-soluble ester allowing gram-scale intravenous administration.',
+        },
+        {
+          name: 'Dexamethasone',
+          class: 'Fluorinated glucocorticoid, long-acting',
+          howItCompares:
+            'Roughly five times more potent per milligram than methylprednisolone with a much longer half-life and no mineralocorticoid activity at all. It is the steroid with the strongest randomised mortality evidence in any condition, and the one used where fluid retention would be harmful.',
+          typicalCost:
+            'US$0.2461 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no salt retention, long duration, best outcome evidence in the class. Cons: harder to taper, faster accumulation of adrenal suppression.',
+        },
+        {
+          name: 'No steroid at all (for acute traumatic brain and spinal cord injury)',
+          class: 'Withholding a treatment on the basis of trial evidence',
+          howItCompares:
+            'CRASH randomised 10,008 adults with head injury and found more deaths on methylprednisolone at two weeks and at six months. The 2013 AANS/CNS guideline on acute spinal cord injury issued a Level I recommendation that methylprednisolone is not recommended, on the grounds that no Class I or Class II evidence supports a benefit and that harmful side effects are consistently documented.',
+          typicalCost: 'No cost',
+          prosAndCons:
+            'Pros: avoids a demonstrated increase in mortality after head injury and a documented complication rate after spinal injury. Cons: nothing has replaced it, and the neuroprotection those trials were looking for is still an unsolved problem.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask what an injection contains and where it was made',
+          action:
+            'Before an epidural or joint steroid injection, ask whether the product is an FDA-approved manufactured preparation or a compounded one.',
+          patientImpact:
+            'In 2012, preservative-free methylprednisolone acetate from a single compounding pharmacy caused 749 fungal infections across 20 states, with 61 deaths and 40 strokes. The median time from injection to diagnosis was 47 days, so the harm appeared long after the procedure.',
+          clinicalPrecaution:
+            'This is a manufacturing failure, not a property of the molecule. The relevant law changed afterwards, and the question is still a reasonable one to ask about any compounded injectable.',
+        },
+        {
+          name: 'Expect a "steroid flush" and insomnia after a high-dose course',
+          action:
+            'Plan for two or three disturbed nights after a high-dose pulse, and mention palpitations or a metallic taste rather than assuming they are abnormal.',
+          patientImpact:
+            'Insomnia occurred in 77% of patients given high-dose oral methylprednisolone and 64% of those given it intravenously in the COPOUSEP trial. Facial flushing and altered taste are common and self-limiting.',
+          clinicalPrecaution:
+            'Persistent agitation, mania or marked mood change is a different matter and is on the label for the class; it warrants a call rather than waiting it out.',
+        },
+        {
+          name: 'Report new hip or groin pain after a high-dose course, even months later',
+          action:
+            'Mention deep groin, buttock or thigh pain that started weeks or months after a high-dose steroid course.',
+          patientImpact:
+            'Osteonecrosis of the femoral head is a recognised complication of high-dose glucocorticoid exposure and typically presents long after treatment ends, when the connection is no longer obvious to the patient.',
+          clinicalPrecaution:
+            'Early imaging changes the options available. This is listed among the musculoskeletal adverse reactions on the label for the class.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H]1C[C@H]2[C@@H]3CC[C@@]([C@]3(C[C@@H]([C@@H]2[C@@]4(C1=CC(=O)C=C4)C)O)C)(C(=O)CO)O',
+      chemicalFormula: 'C22H30O5',
+      molecularWeight: '374.50 g/mol',
+      targetReceptorAffinity:
+        'Roughly five times the anti-inflammatory potency of cortisol per milligram and about 1.25 times that of prednisolone, with lower mineralocorticoid activity than prednisolone. Biological half-life 12 to 36 hours, in the intermediate-acting band with prednisolone. The 6-alpha methyl group is the only difference from prednisolone.',
+      structureSource: {
+        label:
+          'PubChem CID 6741 (methylprednisolone) — canonical SMILES, molecular formula C22H30O5 and molecular weight 374.5 g/mol, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6741',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mp-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Confirm the 6-alpha methyl group and its orientation',
+          description:
+            'Establish that the methyl group is present at C6 and in the alpha configuration. The 6-beta epimer has markedly lower activity, and the des-methyl compound is prednisolone — a different marketed drug at a different potency. None of the three separates on molecular weight.',
+          reagentsAndBuffer:
+            'Methylprednisolone USP reference standard, 1H NMR in DMSO-d6 with attention to the C6 methyl doublet, reversed-phase HPLC resolving prednisolone and the 6-beta epimer, ultraviolet detection at 243 nm',
+        },
+        {
+          id: 'mp-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Introduce the 6-alpha methyl, then dehydrogenate ring A',
+          description:
+            'Methylate at C6 through the 3-enol ether or a 4,6-dien-3-one intermediate with stereochemical control, then install the 1,2-double bond by microbial delta-1-dehydrogenation as for the rest of the class. Order matters: dehydrogenating first makes the C6 position far harder to functionalise selectively.',
+          dependsOnStepId: 'mp-w1',
+          reagentsAndBuffer:
+            'Hydrocortisone or a 6-dehydro intermediate, methyl Grignard or methanol-acid enol ether route, hydrogenation catalyst for stereochemical control at C6, Arthrobacter simplex culture for the delta-1 step',
+        },
+        {
+          id: 'mp-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallise away from prednisolone and the 6-beta epimer',
+          description:
+            'Separate the target from unmethylated prednisolone and from the 6-beta epimer. This is a potency-determining separation: a batch contaminated with prednisolone assays as active steroid and delivers a lower effective potency than labelled.',
+          dependsOnStepId: 'mp-w2',
+          reagentsAndBuffer:
+            'Fractional crystallisation from acetone-water or ethanol, preparative reversed-phase HPLC against USP related-compounds standards, 1H NMR for epimeric ratio',
+        },
+        {
+          id: 'mp-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Esterify to the sodium succinate and to the acetate',
+          description:
+            'Form the 21-hemisuccinate sodium salt for intravenous use and the 21-acetate for depot injection. These two esters are the reason this molecule occupies its clinical niche: the succinate is freely water-soluble and can be pushed into a vein at gram scale, and the acetate is a poorly soluble crystal suspension that stays at the injection site for weeks. Both are prodrugs requiring esterase hydrolysis to release the parent.',
+          dependsOnStepId: 'mp-w3',
+          reagentsAndBuffer:
+            'Succinic anhydride in pyridine followed by sodium bicarbonate neutralisation for the succinate; acetic anhydride with a base catalyst for the acetate; lyophilisation for the succinate powder, controlled crystal-size micronisation for the acetate suspension',
+        },
+        {
+          id: 'mp-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Sterility and endotoxin testing appropriate to the route of administration',
+          description:
+            'A product intended for intrathecal, epidural or intra-articular delivery must be tested to the standard the route demands, not the standard the facility finds convenient. This step is on this workflow because of the 2012 outbreak: three lots of compounded preservative-free methylprednisolone acetate with visible fungus in unopened vials produced 749 infections and 61 deaths, and the failure was one of manufacturing controls rather than of chemistry.',
+          dependsOnStepId: 'mp-w4',
+          reagentsAndBuffer:
+            'USP <71> sterility testing by membrane filtration, USP <85> bacterial endotoxin test, fungal culture on Sabouraud dextrose agar with extended incubation, PCR panel for Exserohilum and Aspergillus species, container-closure integrity testing',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mp-a1',
+        category: 'failed',
+        title: 'CRASH: more people died on methylprednisolone after head injury',
+        laymanSummary:
+          'Steroids had been given after severe head injury for thirty years on the reasoning that they reduce brain swelling. A trial of just over ten thousand patients was stopped early because more of the people getting the drug were dying. The excess was still there six months later.',
+        technicalDetails:
+          'MRC CRASH randomised 10,008 adults with head injury and a Glasgow Coma Scale of 14 or less, within 8 hours of injury, to a 48-hour methylprednisolone infusion or placebo. Death from all causes within 2 weeks was 1,052 (21.1%) against 893 (17.9%), relative risk 1.18 (95% CI 1.09 to 1.27, P=0.0001). The increase did not differ by injury severity (P=0.22) or by time since injury (P=0.05). At 6 months, with data on 9,673 patients (96.7%), death was 1,248 (25.7%) against 1,075 (22.3%), relative risk 1.15 (95% CI 1.07 to 1.24, P=0.0001), and death or severe disability 38.1% against 36.3% (1.05, 0.99 to 1.10, P=0.079). The data monitoring committee stopped recruitment. The authors state the cause of the excess mortality is unclear.',
+        evidenceSource:
+          'MRC CRASH Trial Collaborators, Lancet 2004;364:1321-1328 and Lancet 2005;365:1957-1959 (ISRCTN74459797)',
+        doi: '10.1016/S0140-6736(04)17188-2',
+        measuredMetric:
+          'All-cause mortality at 2 weeks and at 6 months, against placebo, in 10,008 randomised patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mp-a2',
+        category: 'conclusion_shift',
+        title: 'Acute spinal cord injury: a standard of care built on a subgroup, then withdrawn',
+        laymanSummary:
+          'For more than twenty years, anyone with a fresh spinal cord injury was given high-dose methylprednisolone. The trial behind that practice reported a benefit only in patients treated within eight hours — a slice of the trial, not the trial. In 2013 the neurosurgical guideline reversed the recommendation entirely.',
+        technicalDetails:
+          'NASCIS II randomised 487 patients with acute spinal cord injury to methylprednisolone, naloxone or placebo. The published benefit was confined to the subgroup treated within 8 hours of injury: at six months, motor function change scores of 16.0 against 11.2 (P=0.03), pinprick 11.4 against 6.6 (P=0.02) and touch 8.9 against 4.3 (P=0.03). Patients treated after 8 hours did not differ from placebo, and mortality and major morbidity were similar in all three groups. The 8-hour threshold was not the trial’s prespecified primary comparison, and the whole-cohort analysis did not show benefit. The 2013 AANS/CNS guideline on pharmacological therapy for acute spinal cord injury reviewed the accumulated evidence and issued a Level I recommendation that administration of methylprednisolone is not recommended, noting no Class I or Class II evidence of benefit and consistent Class I, II and III evidence of harmful side effects including death.',
+        evidenceSource:
+          'Bracken MB et al., N Engl J Med 1990;322:1405-1411 (NASCIS II); Hurlbert RJ et al., Neurosurgery 2013;72 Suppl 2:93-105',
+        doi: '10.1227/NEU.0b013e31827765c6',
+        inferredClaim:
+          'That a timing-defined subgroup result in 487 patients established a standard of care — the field held that position for twenty-three years and then formally reversed it',
+        auditFlag: 'retracted',
+      },
+      {
+        id: 'mp-a3',
+        category: 'failed',
+        title: 'The 2012 fungal meningitis outbreak: 749 infections and 61 deaths from one pharmacy',
+        laymanSummary:
+          'A compounding pharmacy in Massachusetts made preservative-free methylprednisolone for spinal injections. Three batches were contaminated with fungus, visible in unopened vials. Seven hundred and forty-nine people across twenty states became infected and sixty-one died, most of them from meningitis, on average seven weeks after their injection.',
+        technicalDetails:
+          'Following the September 2012 recall of three lots of preservative-free methylprednisolone acetate from a single compounding pharmacy, more than 99% of 13,534 potentially exposed persons were contacted by 19 October 2012. As of 1 July 2013 there were 749 reported infections across 20 states with 61 deaths (8%). Laboratory evidence of Exserohilum rostratum was found in specimens from 153 patients (20%). Of 728 patients with additional data, 229 (31%) had meningitis with no other documented infection. Median age was 64 years, median number of implicated injections was 1, median incubation from last injection to first diagnosis was 47 days (range 0 to 249), and 40 patients (5%) had a stroke.',
+        evidenceSource:
+          'Smith RM et al., Multistate Fungal Infection Outbreak Response Team, N Engl J Med 2013;369:1598-1609',
+        doi: '10.1056/NEJMoa1213978',
+        measuredMetric:
+          'Confirmed fungal infections, deaths and strokes attributable to contaminated lots, in a public health outbreak investigation',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mp-a4',
+        category: 'measured',
+        title: 'Multiple sclerosis relapse: the tablet matched the drip',
+        laymanSummary:
+          'High-dose steroid for a multiple sclerosis relapse had always meant three days attached to a drip. A blinded French trial gave the same total amount by mouth instead. Eight in ten improved either way, and the difference was half a percentage point.',
+        technicalDetails:
+          'COPOUSEP was a multicentre, double-blind, randomised non-inferiority trial at 13 French multiple sclerosis centres. 199 patients aged 18 to 55 with a relapse in the previous 15 days were assigned to oral or intravenous methylprednisolone 1,000 mg once daily for three days, with saline and placebo capsules maintaining blinding in both directions. In the per-protocol population, 66 of 82 (81%) in the oral group and 72 of 90 (80%) in the intravenous group met the primary endpoint of improvement by day 28 without retreatment, absolute difference 0.5% (90% CI -9.5 to 10.4), inside the prespecified 15% non-inferiority margin. Adverse event rates were similar; insomnia was more frequent orally (77% against 64%).',
+        evidenceSource: 'Le Page E et al., Lancet 2015;386:974-981 (COPOUSEP, NCT00984984)',
+        doi: '10.1016/S0140-6736(15)61137-0',
+        measuredMetric:
+          'Proportion improving by day 28 without corticosteroid retreatment, oral against intravenous, non-inferiority',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mp-a5',
+        category: 'inferred',
+        title: 'Shortening a relapse is not the same as changing the disease',
+        laymanSummary:
+          'High-dose steroid speeds recovery from a multiple sclerosis attack. It has not been shown to change how much disability a person accumulates over the years, and the trials that established the practice were not designed to look.',
+        technicalDetails:
+          'The COPOUSEP endpoint was improvement of at least one point on the most affected Kurtzke Functional System Scale score at 28 days without retreatment — a short-term functional measure in a relapsing-remitting population. Neither that trial nor the intravenous-route trials it was benchmarked against were powered or designed to measure long-term disability accumulation, conversion to secondary progressive disease, or lesion burden years later. The claim that glucocorticoid treatment of relapses alters the long-run course of multiple sclerosis is a separate proposition from the one the trials tested, and it is the disease-modifying therapies rather than the relapse steroids that carry that evidence.',
+        evidenceSource: 'Le Page E et al., Lancet 2015;386:974-981 (COPOUSEP)',
+        doi: '10.1016/S0140-6736(15)61137-0',
+        inferredClaim:
+          'That faster recovery from a relapse translates into less disability over decades — the measured endpoint is a functional score at 28 days, and nothing in these trials speaks to the longer question',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mp-a6',
+        category: 'inferred',
+        title: 'The epidural route is used far more than its evidence supports',
+        laymanSummary:
+          'Depot methylprednisolone is injected into the space around the spinal cord for back and leg pain millions of times a year. No formulation of any steroid is approved by the FDA for that route, and the agency warned in 2014 that it can cause rare but serious neurological injury.',
+        technicalDetails:
+          'Methylprednisolone acetate is labelled for intramuscular, intra-articular, intralesional and soft-tissue injection. Epidural administration is not an approved route for it or for any other corticosteroid product, and the label for the acetate suspension states that it is not for intrathecal use. The label’s Warnings section carries a subsection headed "Epidural Administration" which states that serious neurologic events, some resulting in death, have been reported with epidural injection of corticosteroids — spinal cord infarction, paraplegia, quadriplegia, cortical blindness and stroke — with and without the use of fluoroscopy, and that the safety and effectiveness of epidural administration of corticosteroids have not been established and corticosteroids are not approved for this use. The practice continues at scale regardless.',
+        evidenceSource:
+          'United States prescribing information for methylprednisolone acetate injectable suspension (DEPO-MEDROL), Indications and Warnings sections, "Epidural Administration"',
+        inferredClaim:
+          'That epidural corticosteroid injection is an established use of this product — it is an unapproved route carrying an explicit label warning about spinal cord infarction, paralysis, blindness and stroke',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mp-a7',
+        category: 'measured',
+        title: 'The harm signal in CRASH was not explained, only measured',
+        laymanSummary:
+          'The trial that found methylprednisolone increasing deaths after head injury said plainly that it did not know why. That is unusual and it is honest. The excess did not track with how badly injured people were or how quickly they were treated.',
+        technicalDetails:
+          'In CRASH the relative increase in death did not differ by injury severity on the Glasgow Coma Scale (P=0.22) or by time from injury to randomisation (P=0.05), so the harm was not concentrated in a subgroup that could be excluded. The authors wrote that the cause of the rise in risk of death within 2 weeks is unclear. Candidate mechanisms discussed in the surrounding literature — infection, hyperglycaemia, gastrointestinal bleeding — were not established by the trial. What the trial establishes is the effect, not the mechanism, and the distinction matters because "we do not know why" is a different statement from "the effect is not real".',
+        evidenceSource:
+          'MRC CRASH Trial Collaborators, Lancet 2004;364:1321-1328; Edwards P et al., Lancet 2005;365:1957-1959',
+        doi: '10.1016/S0140-6736(05)66552-X',
+        measuredMetric:
+          'Subgroup interaction tests for injury severity and time to treatment on the mortality effect',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mp-a8',
+        category: 'conclusion_shift',
+        title: 'From "steroids reduce brain swelling, therefore they help brain injury" to the opposite',
+        laymanSummary:
+          'Steroids genuinely do reduce the swelling around a brain tumour. The reasoning that they would therefore help a swollen injured brain held for three decades and was wrong: the two kinds of swelling are different, and the trial that finally tested the idea found more deaths.',
+        technicalDetails:
+          'Glucocorticoids reduce vasogenic oedema, which arises from a leaky blood-brain barrier around a tumour or abscess and is driven by VEGF and endothelial permeability. Traumatic brain injury produces predominantly cytotoxic oedema, which is intracellular water accumulation following energy failure, and there is no mechanism by which transcriptional suppression of inflammatory genes reverses it. The inference from one to the other was made in the 1970s, sustained by small trials and by physiological plausibility, and tested definitively only in 2004 in 10,008 patients, where it produced a relative risk of death of 1.18 at two weeks and 1.15 at six months. This is the clearest case in this batch of a mechanism-based inference surviving for decades because the trial to refute it was expensive.',
+        evidenceSource:
+          'MRC CRASH Trial Collaborators, Lancet 2004;364:1321-1328; DEPO-MEDROL and SOLU-MEDROL United States prescribing information, Indications section',
+        doi: '10.1016/S0140-6736(04)17188-2',
+        inferredClaim:
+          'That the anti-oedema effect demonstrated around brain tumours transfers to traumatic brain injury — refuted at a relative risk of 1.18 for death, and the two oedema mechanisms are now understood to be different',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Two esters decide where the drug goes',
+        laymanDesc:
+          'The molecule itself barely dissolves in water. Attaching one chemical group makes it dissolve freely so it can be injected into a vein in large amounts; attaching a different one makes it dissolve even less, so it stays where it is put.',
+        molecularDetail:
+          'The 21-hemisuccinate sodium salt is freely water-soluble and is the form used for intravenous and intramuscular administration at doses up to grams. The 21-acetate is a poorly soluble crystalline suspension with a depot effect lasting one to several weeks at the injection site. Both are prodrugs: plasma and tissue esterases hydrolyse them to release free methylprednisolone.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Free drug crosses into cells everywhere it reaches',
+        laymanDesc:
+          'Once the ester is cleaved the drug behaves like any other steroid: it diffuses through cell membranes with no transporter and no gate.',
+        molecularDetail:
+          'Passive diffusion across the lipid bilayer, consistent with the logP of about 2.1 held on this record. From a depot injection this happens progressively over weeks; from an intravenous infusion it happens within minutes and at concentrations far above anything the adrenal glands could produce.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The receptor is freed and moves to the nucleus',
+        laymanDesc:
+          'The same step as every other steroid on this site: the drug binds a receptor held by chaperone proteins, the chaperones let go, and the receptor travels into the nucleus.',
+        molecularDetail:
+          'Dissociation of the HSP90-HSP70-p23-immunophilin complex on NR3C1, FKBP51 to FKBP52 exchange, dynein-mediated nuclear import. The 6-alpha methyl group raises affinity modestly over prednisolone and lowers mineralocorticoid receptor cross-reactivity.',
+        iconName: 'Unlock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'At gram-scale exposure, non-genomic effects appear as well',
+        laymanDesc:
+          'At the very high doses used for a relapse or a rejection episode, the drug does more than change which genes are read. It also acts directly on cell membranes within minutes, faster than any gene could respond.',
+        molecularDetail:
+          'Above roughly 100 mg prednisolone-equivalent, non-genomic mechanisms contribute: direct physicochemical interaction with plasma and mitochondrial membranes altering cation transport, and interaction with membrane-bound glucocorticoid receptors. These act within minutes rather than the hours transcriptional effects require, and they are the usual explanation for the speed of pulse therapy. They are also less well characterised than the genomic pathway.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The inflammatory event is shortened',
+        laymanDesc:
+          'In a multiple sclerosis relapse or a transplant rejection episode, a short burst of very high exposure ends the attack faster than leaving it alone would.',
+        molecularDetail:
+          'COPOUSEP measured improvement of at least one point on the most affected Kurtzke Functional System Scale score by day 28 without retreatment in 81% of orally treated and 80% of intravenously treated patients. The endpoint is recovery from the relapse, not the long-run course of the disease.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Where the target was not inflammation, the same exposure did harm',
+        laymanDesc:
+          'Given after a head injury, on the theory that it would reduce brain swelling, more people died. The trial that showed it was large enough that there is no serious argument with the result.',
+        molecularDetail:
+          '10,008 patients randomised; death within 2 weeks 21.1% against 17.9%, relative risk 1.18 (95% CI 1.09 to 1.27, P=0.0001), sustained at 6 months at 25.7% against 22.3%. The oedema of traumatic brain injury is predominantly cytotoxic and does not respond to the mechanism that reduces vasogenic oedema around a tumour.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MRC CRASH (ISRCTN74459797)',
+        phase: 'Phase 3, international, randomised, placebo-controlled',
+        sampleSize: 10008,
+        primaryEndpoint: 'Death within 2 weeks of injury; death or disability at 6 months',
+        endpointMet: false,
+        statisticalPValue:
+          'Death at 2 weeks 21.1% against 17.9%, relative risk 1.18 (95% CI 1.09 to 1.27), P=0.0001 — favouring placebo; death at 6 months 25.7% against 22.3%, RR 1.15 (1.07 to 1.24), P=0.0001',
+        unreportedAdverseSignals:
+          'Recruitment was stopped by the steering committee on the data monitoring committee’s recommendation. The trial reports that the cause of the excess mortality is unclear, and the effect did not differ by injury severity or time since injury, so no subgroup can be carved out to preserve the indication.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NASCIS II (Bracken 1990)',
+        phase: 'Multicentre, randomised, double-blind, placebo-controlled, three-arm',
+        sampleSize: 487,
+        primaryEndpoint:
+          'Motor and sensory function change from admission at six weeks and six months after acute spinal cord injury',
+        endpointMet: false,
+        statisticalPValue:
+          'Benefit reported only in the subgroup treated within 8 hours: motor change 16.0 against 11.2 (P=0.03), pinprick 11.4 against 6.6 (P=0.02), touch 8.9 against 4.3 (P=0.03). Patients treated after 8 hours did not differ from placebo.',
+        unreportedAdverseSignals:
+          'The 8-hour threshold was not the prespecified primary comparison and the whole-cohort analysis did not show benefit. The 2013 AANS/CNS guideline subsequently issued a Level I recommendation against administering methylprednisolone in acute spinal cord injury.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'COPOUSEP (NCT00984984)',
+        phase: 'Phase 3, multicentre, randomised, double-blind, non-inferiority',
+        sampleSize: 199,
+        primaryEndpoint:
+          'Improvement of at least one point on the most affected Kurtzke Functional System Scale score by day 28 without corticosteroid retreatment',
+        endpointMet: true,
+        statisticalPValue:
+          '81% oral against 80% intravenous; absolute difference 0.5% (90% CI -9.5 to 10.4), within the prespecified 15% non-inferiority margin',
+        unreportedAdverseSignals:
+          'Insomnia was more frequent in the oral group (77% against 64%). The per-protocol population was 172 of 199 randomised, which is the appropriate analysis for non-inferiority but discards 14% of participants.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Death within 2 weeks of head injury 21.1% against 17.9% on placebo in 10,008 patients, relative risk 1.18 (95% CI 1.09 to 1.27), P=0.0001',
+        'Death at 6 months 25.7% against 22.3%, relative risk 1.15 (95% CI 1.07 to 1.24), in 9,673 followed patients',
+        'Multiple sclerosis relapse improvement by day 28: 81% oral against 80% intravenous, difference 0.5% (90% CI -9.5 to 10.4)',
+        '749 fungal infections, 61 deaths and 40 strokes across 20 states from three contaminated compounded lots, median incubation 47 days',
+        'Insomnia in 77% of orally and 64% of intravenously treated patients in a blinded trial',
+      ],
+      unsupportedInferences: [
+        'That reducing vasogenic oedema around a tumour means reducing the cytotoxic oedema of traumatic brain injury',
+        'That a subgroup defined by treatment within 8 hours in 487 patients established a standard of care in spinal cord injury',
+        'That shortening a multiple sclerosis relapse changes long-term disability accumulation — nothing in these trials measured it',
+        'That epidural injection is an established use, when no corticosteroid product is approved for that route and the label warns of paralysis, blindness and stroke by it',
+      ],
+      whatFailedInitially: [
+        'CRASH was stopped early because methylprednisolone increased death after head injury, and the excess persisted at six months',
+        'The spinal cord injury indication was formally reversed by a Level I guideline recommendation in 2013 after twenty-three years of use',
+        'The 2012 compounding contamination produced the largest healthcare-associated outbreak in modern United States history and led to new federal legislation',
+        'CRASH could offer no mechanism for the harm it measured, and the effect did not concentrate in any subgroup that could be excluded',
+      ],
+      realWorldOutcome: [
+        'Still the standard high-dose intravenous glucocorticoid for multiple sclerosis relapses and acute transplant rejection',
+        'The COPOUSEP result moved relapse treatment towards tablets, removing infusion visits without changing the measured outcome',
+        'The Drug Quality and Security Act of 2013 was passed in direct response to the outbreak traced to this molecule',
+        'A median United States pharmacy acquisition cost of US$2.87 per unit across 46 listed generic products',
+      ],
+    },
+    deliverySystem: {
+      type:
+        'Oral tablet including dose packs, sodium succinate powder for intravenous and intramuscular injection, and acetate suspension for intramuscular, intra-articular, intralesional and soft-tissue depot injection',
+      description:
+        'The molecule is poorly water-soluble, and the two esters solve opposite problems. The succinate dissolves freely and allows gram-scale intravenous administration over minutes. The acetate is a micronised crystal suspension that dissolves slowly and acts as a local depot for one to several weeks. The acetate suspension is explicitly not for intrathecal use, and no corticosteroid product is approved for epidural administration.',
+      safetyProfile:
+        'Full class profile: adrenal suppression, infection risk and masking, hyperglycaemia, hypertension, osteoporosis and osteonecrosis, myopathy, cataract and glaucoma, peptic ulceration with NSAIDs, and psychiatric disturbance. Specific to this molecule: a randomised trial in 10,008 patients found increased mortality when given after head injury; the 2013 AANS/CNS guideline recommends against its use in acute spinal cord injury; the label warns that epidural injection of corticosteroids has caused serious neurologic events including spinal cord infarction, paraplegia, quadriplegia, cortical blindness and stroke, some resulting in death, and that corticosteroids are not approved for that route; and depot injections carry the infection risk of any injectable, which in 2012 produced 749 fungal infections and 61 deaths from contaminated compounded product.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does this drug have a trial showing it killed people?',
+        a: 'Because it was given for thirty years on a mechanism argument that nobody had tested at scale. Steroids reduce the swelling around a brain tumour, so it was assumed they would reduce the swelling of an injured brain. CRASH randomised 10,008 adults with head injury and found death within two weeks in 21.1% on methylprednisolone against 17.9% on placebo, relative risk 1.18, and the excess was still there at six months. Recruitment was stopped early. The two kinds of brain swelling turn out to be different: a tumour leaks fluid out of blood vessels, which steroids act on, while an injured brain accumulates water inside its own cells, which they do not. The trial did not identify why the deaths happened, and said so.',
+        auditNote:
+          'This is the clearest demonstration on this site that a plausible mechanism is not evidence of benefit. Nothing about the pharmacology was wrong; the inference from one kind of oedema to another was.',
+      },
+      {
+        q: 'Is it still given for spinal cord injury?',
+        a: 'Not as a standard of care, and the change is documented rather than informal. NASCIS II in 1990 reported improved motor and sensory scores at six months, but only in patients treated within eight hours of injury — a subgroup, not the trial’s primary comparison, and patients treated later did not differ from placebo. That eight-hour window became practice worldwide. In 2013 the American Association of Neurological Surgeons and Congress of Neurological Surgeons guideline issued a Level I recommendation that methylprednisolone is not recommended in acute spinal cord injury, on the grounds that no Class I or Class II evidence supports a benefit and that harmful side effects including death are consistently documented. Practice varies, and the guideline position is unambiguous.',
+      },
+      {
+        q: 'Do I need to be on a drip for a multiple sclerosis relapse?',
+        a: 'The evidence says no. COPOUSEP randomised 199 patients with a relapse to 1,000 mg of methylprednisolone daily for three days, given orally or intravenously, with placebo capsules and saline maintaining the blind in both directions. Eighty-one percent of the oral group and 80% of the intravenous group had improved by day 28 without needing retreatment, an absolute difference of half a percentage point. Insomnia was more common on the tablets. The practical consequence is that a relapse can be treated at home rather than in a day unit, which is the whole reason the trial was run.',
+      },
+      {
+        q: 'What happened in the 2012 meningitis outbreak?',
+        a: 'A compounding pharmacy in Massachusetts was producing preservative-free methylprednisolone acetate in bulk for spinal injections, outside the manufacturing standards that apply to an approved product. Three lots were contaminated with fungus — visible in unopened vials on later examination. More than 13,500 people had been exposed. As of July 2013 there were 749 reported infections in 20 states, 61 deaths, 229 cases of meningitis with no other documented infection, and 40 strokes. The median time from the last injection to diagnosis was 47 days, which is why the outbreak was slow to be recognised. Congress passed the Drug Quality and Security Act the following year. Nothing about this was a property of methylprednisolone itself.',
+      },
+      {
+        q: 'Are epidural steroid injections approved?',
+        a: 'No corticosteroid product is FDA-approved for epidural injection, including this one. The methylprednisolone acetate label covers intramuscular, intra-articular, intralesional and soft-tissue routes, and states the suspension is not for intrathecal use. The label’s Warnings section states that serious neurologic events, some resulting in death, have been reported with epidural injection of corticosteroids — spinal cord infarction, paraplegia, quadriplegia, cortical blindness and stroke — with and without fluoroscopy, and that safety and effectiveness by that route have not been established. The procedure is nevertheless performed at very large scale. That combination — widespread use, no approved product, an explicit label warning — is the audit finding, not a recommendation either way about an individual procedure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'MRC CRASH Trial Collaborators. Effect of intravenous corticosteroids on death within 14 days in 10008 adults with clinically significant head injury. Lancet 2004;364:1321-1328',
+        identifier: '10.1016/S0140-6736(04)17188-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Edwards P et al. Final results of MRC CRASH, a randomised placebo-controlled trial of intravenous corticosteroid in adults with head injury — outcomes at 6 months. Lancet 2005;365:1957-1959',
+        identifier: '10.1016/S0140-6736(05)66552-X',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bracken MB et al. A randomized, controlled trial of methylprednisolone or naloxone in the treatment of acute spinal-cord injury (NASCIS II). N Engl J Med 1990;322:1405-1411',
+        identifier: '10.1056/NEJM199005173222001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Hurlbert RJ et al. Pharmacological therapy for acute spinal cord injury. Neurosurgery 2013;72 Suppl 2:93-105',
+        identifier: '10.1227/NEU.0b013e31827765c6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Smith RM et al. Fungal infections associated with contaminated methylprednisolone injections. N Engl J Med 2013;369:1598-1609',
+        identifier: '10.1056/NEJMoa1213978',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Le Page E et al. Oral versus intravenous high-dose methylprednisolone for treatment of relapses in patients with multiple sclerosis (COPOUSEP). Lancet 2015;386:974-981',
+        identifier: '10.1016/S0140-6736(15)61137-0',
+        kind: 'doi',
+      },
+      {
+        label: 'COPOUSEP: oral versus intravenous methylprednisolone for multiple sclerosis relapse',
+        identifier: 'NCT00984984',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: SOLU-MEDROL (methylprednisolone sodium succinate) for injection, NDA 011856, Pharmacia and Upjohn — label and approval history',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=011856',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'DailyMed: DEPO-MEDROL (methylprednisolone acetate) injectable suspension, Pharmacia and Upjohn — Warnings, "Epidural Administration"',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=823b0010-2b57-4e76-b5ac-4a8c2963438f',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 6741 — methylprednisolone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6741',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

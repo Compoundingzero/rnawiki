@@ -23,7 +23,8 @@
     "ingest:structures": "tsx scripts/ingest/build-structures.ts",
     "ingest": "tsx scripts/ingest/run.ts",
     "enrich": "tsx scripts/enrich/run.ts",
-    "export:dataset": "tsx scripts/export/dataset.ts"
+    "export:dataset": "tsx scripts/export/dataset.ts",
+    "fold:merged": "tsx scripts/ingest/fold-merged.ts"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",

@@ -16,6 +16,7 @@ import {
   lookupBotanical,
   lookupLiterature,
   splitPlantName,
+  warmCache,
 } from './botanicals'
 import { type SubstanceRecord, substanceContext } from './substance-context'
 import { biologicStem, isKnownBiologicStem, suffixedBiologicContext } from './suffixed-biologics'
@@ -174,6 +175,30 @@ async function main(): Promise<void> {
     verified: 0,
     promoted: 0,
     untouched: 0,
+  }
+
+  // Every network lookup the loop below would make, made first and in parallel. The loop then
+  // reads the cache; see warmCache.
+  if (!options.skipBotanicals) {
+    type WarmJob = { name: string; kind: 'organism' | 'literature' }
+    const jobs = work.flatMap<WarmJob>((row) => {
+      if (looksBinomial(splitPlantName(row.name).binomial)) {
+        return [{ name: row.name, kind: 'organism' }]
+      }
+      // Only the records that will reach the substance pass. A row that already has a mechanism or
+      // a context is not going to ask for its publication count, and there are five thousand of
+      // them.
+      if (!row.conditionContext && !row.laymanHowItWorks) {
+        return [{ name: row.name, kind: 'literature' }]
+      }
+      return []
+    })
+    console.log(
+      `[enrich] warming taxonomy and literature for ${jobs.length.toLocaleString()} names…`,
+    )
+    await warmCache(jobs, (done, total) => {
+      console.log(`[enrich]   ${done.toLocaleString()}/${total.toLocaleString()} looked up`)
+    })
   }
 
   for (const [index, row] of work.entries()) {

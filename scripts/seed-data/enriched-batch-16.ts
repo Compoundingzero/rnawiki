@@ -2052,4 +2052,972 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 5. Teriparatide — the hormone that dissolves bone when it is always present and builds bone
+  //    when it arrives once a day, and the rat tumour finding that shaped its label for 18 years.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'teriparatide',
+    name: 'Teriparatide',
+    tradeName: 'Forteo / Bonsity',
+    sponsor:
+      'Eli Lilly and Company (originator, Forteo, approved 2002); biosimilar and follow-on products now exist',
+    targetGene: 'PTH1R — the parathyroid hormone 1 receptor gene, on osteoblasts and kidney tubule',
+    targetProtein:
+      'Parathyroid hormone 1 receptor, a G-protein-coupled receptor; the drug is the first 34 amino acids of human parathyroid hormone',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2002,
+    indication:
+      'Treatment of postmenopausal women with osteoporosis at high risk for fracture or who have failed or are intolerant of other therapy; to increase bone mass in men with primary or hypogonadal osteoporosis at high risk; and treatment of men and women with osteoporosis associated with sustained systemic glucocorticoid therapy at high risk for fracture',
+    patientFriendlyIndication:
+      'Severe bone thinning, where the aim is to build new bone rather than only slow its loss',
+    anatomicalSite:
+      'The osteoblast and its precursor on the bone surface, and the kidney tubule where the same receptor handles calcium and phosphate',
+    conditionContext: {
+      conditionExplainer:
+        'Parathyroid hormone is the body’s calcium thermostat. When calcium in blood falls, the parathyroid glands release it, and one of the things it does is release calcium from bone. A person whose glands are overactive loses bone continuously. Yet the same hormone, given as one injection a day rather than being present constantly, builds bone instead.',
+      whyItMatters:
+        'Every other drug in this file slows bone loss. This one and romosozumab are the only two that add bone, and this is the older of them. The reason it works is a timing effect, not a different molecule, and that is one of the more surprising results in endocrinology.',
+      whoTakesThis:
+        'People with severe osteoporosis at high fracture risk, particularly those who have already fractured on an antiresorptive drug or cannot take one.',
+      clinicalGoals:
+        'Fewer fractures. In the one head-to-head trial with fracture as the declared primary outcome, it beat risedronate.',
+    },
+    oneSentenceVerdict:
+      'The first 34 amino acids of parathyroid hormone, injected once daily so the receptor is pulsed rather than saturated, which cut new spinal fractures from 14% to 5% and non-vertebral fragility fractures from 6% to 3% in 1637 women, and which carried a boxed warning for osteosarcoma from 2002 until 2020 on the strength of a rat study that human surveillance has not reproduced.',
+    laymanHowItWorks:
+      'Parathyroid hormone is the signal that pulls calcium out of bone when blood calcium falls. If it is present all the time, bone is lost. If it arrives as one short daily spike, the effect reverses: the cells that build bone survive longer and work harder, and the demolition response never has time to get going. The drug is a fragment of that hormone, injected once a day to produce exactly that spike.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 85,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$494.81 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 10 listed products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in November 2002. The original patents have expired and follow-on products exist, but the acquisition price remains roughly two thousand times that of a generic bisphosphonate tablet per unit. Peptide manufacture and a refrigerated multidose pen are genuinely more expensive than a pressed tablet; whether they are that much more expensive is not something this dataset can answer.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The choice here is between building bone and preserving it, and the evidence now favours building first in people at very high risk. Teriparatide beat risedronate on fracture in a trial designed for that comparison. Romosozumab beat alendronate in a trial designed for that comparison and carries a cardiovascular boxed warning teriparatide does not. What all three anabolic strategies share is that the gain is lost unless an antiresorptive follows, which makes them a first course rather than a treatment.',
+      conventionalRx: [
+        {
+          name: 'Risedronate',
+          class: 'Nitrogen-containing bisphosphonate, oral',
+          howItCompares:
+            'The comparator in VERO, the first trial to compare two osteoporosis drugs with incident fracture as the primary outcome. New vertebral fractures at 24 months were 5.4% on teriparatide against 12.0% on risedronate, risk ratio 0.44 (95% CI 0.29 to 0.68).',
+          typicalCost:
+            'US$2.01 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 13 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: a tablet, and a tiny fraction of the cost. Cons: significantly more vertebral and clinical fractures than teriparatide in the head-to-head trial in women with severe osteoporosis.',
+        },
+        {
+          name: 'Romosozumab',
+          class: 'Anti-sclerostin monoclonal antibody, monthly for twelve months',
+          howItCompares:
+            'The other bone-building option, and the only one that raises formation and lowers resorption at the same time. It is given monthly rather than daily, for twelve months rather than up to two years, and carries a boxed warning for myocardial infarction, stroke and cardiovascular death.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for romosozumab was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: monthly rather than daily injection; larger early density gains. Cons: cardiovascular boxed warning; a fixed twelve-month course.',
+        },
+        {
+          name: 'Abaloparatide',
+          class: 'Parathyroid hormone-related protein analogue, daily subcutaneous',
+          howItCompares:
+            'A closely related anabolic peptide acting at the same receptor with a different bias between its two conformations, which is the basis of the claim that it produces less resorptive response. No head-to-head fracture trial separates the two.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for abaloparatide was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: same anabolic mechanism, room-temperature stability in the marketed pen. Cons: no fracture comparison against teriparatide; the receptor-bias argument is a pharmacology claim, not an outcome.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Take the first dose where you can sit or lie down',
+          action: 'Plan the first few injections for a moment when standing up is optional.',
+          patientImpact:
+            'Transient orthostatic hypotension is a labelled reaction to initial doses. It reflects the vascular action of the hormone and settles.',
+          clinicalPrecaution:
+            'The label frames this as a caution about initial doses specifically, not an ongoing one.',
+        },
+        {
+          name: 'Say if you have ever had radiotherapy involving bone',
+          action:
+            'Include implant radiation and childhood treatment, not only recent external beam.',
+          patientImpact:
+            'The label directs avoiding the drug in people at increased baseline risk of osteosarcoma, which includes prior skeletal radiation, Paget disease, bone metastases, open growth plates and hereditary predisposition.',
+          clinicalPrecaution:
+            'This is a contraindication list built around a baseline risk, not a claim that the drug causes the tumour in ordinary use. The distinction is the whole audit on this page.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC[C@H](C)[C@@H](C(=O)N[C@@H](CCC(=O)N)C(=O)N[C@@H](CC(C)C)C(=O)N[C@@H](CCSC)C(=O)N[C@@H](CC1=CNC=N1)C(=O)N[C@@H](CC(=O)N)C(=O)N[C@@H](CC(C)C)C(=O)NCC(=O)N[C@@H](CCCCN)C(=O)N[C@@H](CC2=CNC=N2)C(=O)N[C@@H](CC(C)C)C(=O)N[C@@H](CC(=O)N)C(=O)N[C@@H](CO)C(=O)N[C@@H](CCSC)C(=O)N[C@@H](CCC(=O)O)C(=O)N[C@@H](CCCNC(=N)N)C(=O)N[C@@H](C(C)C)C(=O)N[C@@H](CCC(=O)O)C(=O)N[C@@H](CC3=CNC4=CC=CC=C43)C(=O)N[C@@H](CC(C)C)C(=O)N[C@@H](CCCNC(=N)N)C(=O)N[C@@H](CCCCN)C(=O)N[C@@H](CCCCN)C(=O)N[C@@H](CC(C)C)C(=O)N[C@@H](CCC(=O)N)C(=O)N[C@@H](CC(=O)O)C(=O)N[C@@H](C(C)C)C(=O)N[C@@H](CC5=CNC=N5)C(=O)N[C@@H](CC(=O)N)C(=O)N[C@@H](CC6=CC=CC=C6)C(=O)O)NC(=O)[C@H](CCC(=O)O)NC(=O)[C@H](CO)NC(=O)[C@H](C(C)C)NC(=O)[C@H](CO)N',
+      chemicalFormula: 'C181H291N55O51S2',
+      molecularWeight: '4118.00 g/mol',
+      targetReceptorAffinity:
+        'Binds the parathyroid hormone 1 receptor, a class B G-protein-coupled receptor, through the same N-terminal 1-34 region as the full 84-residue hormone; residues 1-34 carry essentially all the receptor-activating information, which is why the fragment is the drug. The structure is declared here as a connection table rather than as a residue sequence because the record holds a machine-checked SMILES, and a sequence declaration with a connection table has been rejected before in this corpus.',
+      structureSource: {
+        label:
+          'PubChem CID 16133850 (teriparatide) — canonical SMILES, molecular formula and weight, as held on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16133850',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ter-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Sequence and N-terminal integrity check',
+          description:
+            'Confirm the full 34-residue sequence and, above all, that residues 1 and 2 are intact. Removing even the first two amino acids converts an agonist into an antagonist at this receptor, and truncation at the N-terminus is the characteristic degradation of this peptide in storage.',
+          reagentsAndBuffer:
+            'Reference standard, Edman degradation or LC-MS/MS peptide mapping after endoproteinase digestion, intact-mass electrospray mass spectrometry, amino acid analysis after acid hydrolysis',
+        },
+        {
+          id: 'ter-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Recombinant expression in Escherichia coli',
+          description:
+            'Express the 34-residue peptide as a fusion in E. coli and cleave it. Recombinant production rather than solid-phase synthesis is what makes a 34-mer economic at this scale, and it moves the hard problem from coupling efficiency to correct cleavage at exactly the right residue.',
+          dependsOnStepId: 'ter-w1',
+          reagentsAndBuffer:
+            'E. coli expression strain with a fusion-partner construct, isopropyl beta-D-thiogalactoside induction, cell lysis under controlled shear, site-specific protease for fusion cleavage',
+        },
+        {
+          id: 'ter-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Preparative chromatography and formulation into the multidose pen',
+          description:
+            'Purify to remove the fusion partner, host-cell protein and the deamidated and oxidised variants, then formulate. The pen is a multidose device kept refrigerated, so the formulation has to hold a peptide stable through repeated withdrawal over weeks rather than a single use.',
+          dependsOnStepId: 'ter-w2',
+          reagentsAndBuffer:
+            'Preparative reversed-phase and ion-exchange chromatography, acetate buffer with mannitol and metacresol as in the marketed formulation, host-cell protein and residual DNA immunoassays, endotoxin testing',
+        },
+        {
+          id: 'ter-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Pulsatile against continuous exposure in an osteoblastic line',
+          description:
+            'Give the same total amount of peptide to osteoblastic cells as a short daily pulse and as a continuous infusion, and compare. This is the experiment the whole drug rests on: continuous exposure raises RANKL and drives resorption, intermittent exposure favours formation, and an assay that only uses continuous dosing measures the opposite of the therapeutic effect.',
+          dependsOnStepId: 'ter-w3',
+          reagentsAndBuffer:
+            'UMR-106 or primary calvarial osteoblasts, medium exchange protocol for one-hour pulse against 24-hour continuous exposure, cyclic AMP accumulation assay, RANKL and osteoprotegerin quantification by immunoassay',
+        },
+        {
+          id: 'ter-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Bone formation marker time course and calcium safety readout',
+          description:
+            'Track procollagen type 1 N-propeptide as the formation readout and serum and urinary calcium as the safety readout. Both are needed: the same receptor that drives the bone effect also drives renal calcium handling, and hypercalcaemia and urolithiasis are labelled cautions rather than theoretical ones.',
+          dependsOnStepId: 'ter-w4',
+          reagentsAndBuffer:
+            'Fasting serum for P1NP and CTX by automated immunoassay, albumin-corrected serum calcium, 24-hour urinary calcium, standardised sampling time relative to injection to control the post-dose calcium peak',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ter-a1',
+        category: 'measured',
+        title: 'It cut spinal fractures by two-thirds and non-spinal fractures by half',
+        laymanSummary:
+          'In 1637 women who had already fractured a vertebra, fourteen in a hundred on placebo had a new spinal fracture over a median of 21 months, against five in a hundred on the drug. Fractures outside the spine halved as well.',
+        technicalDetails:
+          'Neer and colleagues randomised 1637 postmenopausal women with prior vertebral fractures to 20 or 40 micrograms of PTH(1-34) or placebo by daily self-injection, with a median observation of 21 months. New vertebral fractures occurred in 14% on placebo, 5% at 20 micrograms and 4% at 40 micrograms; relative risks 0.35 (95% CI 0.22 to 0.55) and 0.31 (0.19 to 0.50). New non-vertebral fragility fractures occurred in 6% on placebo and 3% in each active group, relative risks 0.47 (0.25 to 0.88) and 0.46 (0.25 to 0.86). Lumbar spine bone density rose 9 and 13 percentage points more than placebo and femoral neck 3 and 6; the 40 microgram dose decreased radial shaft density by 2 percentage points more than placebo.',
+        evidenceSource: 'Neer RM et al., N Engl J Med 2001;344:1434-1441',
+        doi: '10.1056/NEJM200105103441904',
+        measuredMetric:
+          'New vertebral fracture 5% against 14%, relative risk 0.35 (95% CI 0.22 to 0.55); non-vertebral fragility fracture 3% against 6%, RR 0.47 (0.25 to 0.88)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a2',
+        category: 'measured',
+        title: 'The first trial to compare two osteoporosis drugs on fracture, and it won',
+        laymanSummary:
+          'Until 2018 no trial had compared two osteoporosis drugs with fractures as the main thing being counted. VERO did, against risedronate, and spinal fractures were less than half as common on teriparatide.',
+        technicalDetails:
+          'VERO enrolled 680 women per group with at least two moderate or one severe vertebral fracture and a T-score of -1.50 or lower, randomised double-blind and double-dummy to teriparatide 20 micrograms daily or risedronate 35 mg weekly for 24 months. New radiographic vertebral fractures, the primary outcome, occurred in 28 of 680 (5.4%) on teriparatide against 64 of 680 (12.0%) on risedronate, risk ratio 0.44 (95% CI 0.29 to 0.68, P<0.0001). Clinical fractures occurred in 30 (4.8%) against 61 (9.8%), hazard ratio 0.48 (0.32 to 0.74, P=0.0009). Non-vertebral fragility fractures were 25 (4.0%) against 38 (6.1%), hazard ratio 0.66 (0.39 to 1.10, P=0.10) — not significant. The trial was funded by Lilly.',
+        evidenceSource:
+          'Kendler DL et al., Lancet 2018;391:230-240 (VERO, NCT01709110)',
+        doi: '10.1016/S0140-6736(17)32137-2',
+        measuredMetric:
+          'New vertebral fracture at 24 months, 5.4% against 12.0%, risk ratio 0.44 (95% CI 0.29 to 0.68)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a3',
+        category: 'conclusion_shift',
+        title: 'The osteosarcoma warning: from rats, to a boxed warning, to its removal in 2020',
+        laymanSummary:
+          'Rats given the drug for two years developed bone tumours at high rates, and the drug carried the strongest possible warning for eighteen years. Human surveillance never found the same thing, and the boxed warning and the two-year limit were removed in 2020.',
+        technicalDetails:
+          'Fischer 344 rats, 60 per sex per group, given daily PTH(1-34) for two years at 5, 30 or 75 micrograms per kilogram developed osteosarcoma in 3, 21 and 31 males and 4, 12 and 23 females respectively. The authors themselves concluded that the lesions reflected the long treatment duration relative to the rat lifespan and the exaggerated response of the growing rat skeleton, and were likely not predictive for skeletally mature adults treated for a limited period. Regulators nonetheless required a boxed warning and a lifetime limit of two years. The Forteo Patient Registry then followed 75,247 enrolled United States patients over 361,763 person-years, linked annually to 42 state cancer registries covering 93% of the population, and found no incident osteosarcoma: crude incidence rate 0 (95% CI 0 to 10.2) per million person-years, standardised incidence ratio 0 (95% CI 0 to 3.0). The registry authors are explicit that follow-up time was smaller than expected and that no cases were found, which limits what can be concluded. The current label carries no boxed warning and states that an increased risk of osteosarcoma has not been observed in observational studies in humans, while noting limited data beyond two years of use.',
+        evidenceSource:
+          'Vahle JL et al., Toxicol Pathol 2002;30:312-321; Gilsenan A et al., Osteoporos Int 2021;32:645-651; teriparatide United States prescribing information, Warnings and Precautions 5.1',
+        doi: '10.1007/s00198-020-05718-0',
+        inferredClaim:
+          'That a rat carcinogenicity signal at up to 75 micrograms per kilogram for a rat’s whole adult life predicts human risk at 20 micrograms a day for two years — an inference the study authors disputed at the time and that eighteen years of human surveillance did not support',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a4',
+        category: 'inferred',
+        title: 'A registry that found zero cases is weaker evidence than zero suggests',
+        laymanSummary:
+          'The safety study found no cases of bone cancer at all. That sounds conclusive, but the researchers say the amount of follow-up was smaller than planned, and finding nothing in a short window is not the same as showing there is nothing.',
+        technicalDetails:
+          'The Forteo Patient Registry accumulated 361,763 person-years across 75,247 enrolled patients. Against a background osteosarcoma rate of about 3 per million person-years, that person-time predicts roughly one expected case, so observing zero yields a confidence interval on the incidence rate of 0 to 10.2 per million person-years and a standardised incidence ratio interval of 0 to 3.0. An upper bound of 3 means a threefold excess would not have been excluded. Enrolment was voluntary and exposure self-reported, which introduces a second limitation the authors state directly in their conclusion. The finding is genuinely reassuring and it is not a demonstration of no effect.',
+        evidenceSource:
+          'Gilsenan A et al., Long-term cancer surveillance: results from the Forteo Patient Registry Surveillance Study. Osteoporos Int 2021;32:645-651',
+        doi: '10.1007/s00198-020-05718-0',
+        inferredClaim:
+          'That zero observed cases proves no risk — the upper confidence bound on the standardised incidence ratio is 3.0, and the study was funded by the manufacturer with voluntary enrolment and self-reported exposure',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ter-a5',
+        category: 'measured',
+        title: 'The same hormone destroys bone if it is present continuously',
+        laymanSummary:
+          'People whose parathyroid glands are overactive lose bone, because the hormone is always there. Given as one spike a day, the identical molecule builds bone. The difference is entirely in the timing.',
+        technicalDetails:
+          'Continuous elevation of parathyroid hormone, as in primary hyperparathyroidism or a continuous infusion, raises osteoblast RANKL expression and lowers osteoprotegerin, driving osteoclast recruitment and net bone loss, particularly cortical. Intermittent once-daily exposure produces a transient receptor signal that favours osteoblast survival and differentiation before the resorptive programme is engaged, giving a period of uncoupled formation known as the anabolic window. The clinical signature of that asymmetry is visible in the pivotal trial: lumbar spine density rose 9 to 13 percentage points above placebo while the 40 microgram dose lowered density at the radial shaft, a predominantly cortical site, by 2 percentage points.',
+        evidenceSource:
+          'Neer RM et al., N Engl J Med 2001;344:1434-1441, bone mineral density results by site',
+        doi: '10.1056/NEJM200105103441904',
+        measuredMetric:
+          'Lumbar spine density +9 and +13 percentage points against placebo; radial shaft density -2 percentage points at 40 micrograms',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ter-a6',
+        category: 'failed',
+        title: 'The head-to-head trial did not reduce non-vertebral fractures significantly',
+        laymanSummary:
+          'In the comparison against risedronate, spinal and clinical fractures were clearly fewer. Fractures outside the spine were fewer too, but not by enough to be sure the difference was real.',
+        technicalDetails:
+          'In VERO, non-vertebral fragility fractures occurred in 25 of 680 (4.0%) on teriparatide against 38 of 680 (6.1%) on risedronate, hazard ratio 0.66 (95% CI 0.39 to 1.10, P=0.10). It was a gated secondary outcome, and the gating sequence means the result should be read as descriptive. The pivotal placebo-controlled trial did reduce non-vertebral fragility fracture, 3% against 6% with a relative risk of 0.47, so the finding is that teriparatide beats placebo on this endpoint and has not been shown to beat risedronate on it. The two statements are compatible and are routinely merged.',
+        evidenceSource: 'Kendler DL et al., Lancet 2018;391:230-240 (VERO)',
+        doi: '10.1016/S0140-6736(17)32137-2',
+        measuredMetric:
+          'Non-vertebral fragility fracture, teriparatide against risedronate: hazard ratio 0.66 (95% CI 0.39 to 1.10), P=0.10',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected once a day under the skin',
+        laymanDesc:
+          'A small daily injection from a pen kept in the fridge. The daily rhythm is not a convenience choice — it is the mechanism.',
+        molecularDetail:
+          'Subcutaneous 20 micrograms of recombinant human PTH(1-34) produces a short, high peak and rapid clearance. The pharmacokinetic profile is the therapeutic principle: a sustained-release version of this molecule would be a different and worse drug.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It binds the parathyroid hormone receptor on bone-building cells',
+        laymanDesc:
+          'The fragment carries all the parts of the hormone the receptor reads. It docks on the cells that build bone and on their precursors.',
+        molecularDetail:
+          'PTH(1-34) contains essentially all the receptor-activating information of the 84-residue hormone. It binds PTH1R, a class B G-protein-coupled receptor, on osteoblasts, osteocytes and bone marrow stromal precursors, and in the renal tubule where the same receptor governs calcium reabsorption and phosphate excretion.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The signal is over before the demolition response starts',
+        laymanDesc:
+          'A brief pulse tells the building cells to survive and get to work. The instruction that would summon the demolition cells needs sustained signalling, and the pulse ends first.',
+        molecularDetail:
+          'Receptor activation raises cyclic AMP and activates protein kinase A, driving CREB-dependent transcription that suppresses osteoblast apoptosis and recruits lining cells and precursors into active osteoblasts. Sustained signalling raises RANKL and lowers osteoprotegerin in the same cells, which is the resorptive arm; an intermittent pulse dissipates before that arm dominates.',
+        iconName: 'Clock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Bone is added, including in places nothing was being remodelled',
+        laymanDesc:
+          'For a period the building runs ahead of the demolition. New bone is laid down on existing surfaces as well as at sites being rebuilt, which is what no antiresorptive drug can do.',
+        molecularDetail:
+          'Formation markers such as P1NP rise within weeks and precede the rise in resorption markers, defining the anabolic window. Both remodelling-based and modelling-based formation occur, the latter adding bone on quiescent surfaces without a preceding resorption pit.',
+        iconName: 'TrendingUp',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'Spine gains most; the cortical shaft of the forearm can lose a little',
+        laymanDesc:
+          'The gain is not even across the skeleton. Spinal density rose sharply, while the shaft of the forearm at the higher dose lost a small amount.',
+        molecularDetail:
+          'In the pivotal trial lumbar spine density rose 9 and 13 percentage points above placebo at 20 and 40 micrograms and femoral neck 3 and 6, while the 40 microgram dose reduced radial shaft density by 2 percentage points more than placebo. Total-body bone mineral rose 2 to 4 percentage points. The pattern reflects the higher trabecular surface-to-volume ratio in the spine and the increased cortical remodelling the hormone also drives.',
+        iconName: 'BarChart',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Fewer fractures, and the gain has to be locked in afterwards',
+        laymanDesc:
+          'Spinal fractures fell by about two-thirds against placebo, and by more than half against risedronate. Bone gained this way is lost again unless a bone-preserving drug follows.',
+        molecularDetail:
+          'Neer: vertebral fracture relative risk 0.35 (95% CI 0.22 to 0.55). VERO: 5.4% against 12.0% on risedronate, risk ratio 0.44 (0.29 to 0.68). Because the newly formed bone is remodelled at the prevailing rate once the anabolic stimulus stops, sequential therapy is the standard approach — which makes this a course rather than a maintenance drug.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Fracture Prevention Trial (Neer 2001)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 1637,
+        primaryEndpoint: 'New vertebral fracture by radiograph, median observation 21 months',
+        endpointMet: true,
+        statisticalPValue:
+          '5% at 20 micrograms against 14% on placebo; relative risk 0.35 (95% CI 0.22 to 0.55)',
+        unreportedAdverseSignals:
+          'The trial was stopped early when the rat osteosarcoma findings emerged, which is why the median observation is 21 months rather than the planned duration. That truncation is rarely mentioned alongside the result.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'VERO (NCT01709110)',
+        phase: 'Phase 4, randomised, double-blind, double-dummy, active-controlled',
+        sampleSize: 1360,
+        primaryEndpoint: 'New radiographic vertebral fracture at 24 months against risedronate',
+        endpointMet: true,
+        statisticalPValue:
+          '5.4% against 12.0%; risk ratio 0.44 (95% CI 0.29 to 0.68), P<0.0001. Clinical fracture hazard ratio 0.48 (0.32 to 0.74), P=0.0009',
+        unreportedAdverseSignals:
+          'Non-vertebral fragility fracture, a gated secondary outcome, did not reach significance: hazard ratio 0.66 (0.39 to 1.10), P=0.10. The trial was funded by the manufacturer of the winning drug.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId:
+          'Forteo Patient Registry Surveillance Study, 2009-2019 (Gilsenan 2021)',
+        phase: 'Prospective voluntary registry linked to 42 state cancer registries',
+        sampleSize: 75247,
+        primaryEndpoint: 'Incident osteosarcoma among teriparatide-treated adults',
+        endpointMet: true,
+        statisticalPValue:
+          'Zero incident cases in 361,763 person-years; crude rate 0 (95% CI 0 to 10.2) per million person-years, standardised incidence ratio 0 (95% CI 0 to 3.0)',
+        unreportedAdverseSignals:
+          'The authors state that follow-up time was smaller than expected and that no cases were identified, which limits the conclusions. An upper bound of 3.0 on the standardised incidence ratio does not exclude a threefold excess.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'New vertebral fracture 5% against 14% over a median 21 months in 1637 women, relative risk 0.35 (95% CI 0.22 to 0.55)',
+        'Non-vertebral fragility fracture 3% against 6% against placebo, relative risk 0.47 (95% CI 0.25 to 0.88)',
+        'New vertebral fracture 5.4% against 12.0% on risedronate in 1360 women, risk ratio 0.44 (95% CI 0.29 to 0.68)',
+        'Osteosarcoma in 31 of 60 male rats at 75 micrograms per kilogram daily for two years, against 3 at 5 micrograms per kilogram',
+        'Zero incident human osteosarcomas in 361,763 person-years of registry follow-up',
+      ],
+      unsupportedInferences: [
+        'That the rat tumour finding predicted human risk — the study authors argued against that reading in the paper that reported it',
+        'That zero cases in the registry demonstrates no risk, when the upper confidence bound on the standardised incidence ratio is 3.0',
+        'That it beats risedronate on non-vertebral fracture, where the head-to-head result was hazard ratio 0.66 with P=0.10',
+        'That the bone gained persists after stopping — it is remodelled away without a following antiresorptive, which is why sequential therapy is standard',
+      ],
+      whatFailedInitially: [
+        'The pivotal trial was stopped early because of the rat carcinogenicity findings, truncating observation to a median of 21 months',
+        'A boxed warning and a two-year lifetime limit constrained the drug for eighteen years on animal data the original authors said was probably not predictive',
+        'Non-vertebral fracture reduction was not demonstrated against an active comparator',
+        'The 40 microgram dose lowered radial shaft bone density and caused more side effects without improving fracture outcomes over 20 micrograms',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in November 2002 and the first approved anabolic treatment for osteoporosis',
+        'The boxed warning for osteosarcoma and the two-year cumulative limit were removed in 2020; the current label states an increased risk has not been observed in observational studies',
+        'VERO in 2018 was the first trial to compare two osteoporosis drugs with incident fracture as the primary outcome, and it shifted practice toward anabolic-first sequencing in very high risk',
+        'It remains roughly two thousand times the per-unit acquisition cost of a generic bisphosphonate, which is what confines it to severe disease',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection, 20 micrograms once daily from a refrigerated multidose pen',
+      description:
+        'Self-injected into thigh or abdomen. The daily schedule is pharmacological rather than practical: continuous exposure to this hormone causes bone loss, and the therapeutic effect depends on the signal being brief.',
+      safetyProfile:
+        'No boxed warning since 2020. Labelled warnings cover osteosarcoma — with instruction to avoid use in people at increased baseline risk, including open epiphyses, Paget disease, bone metastases, prior skeletal radiation and hereditary predisposition — together with hypercalcaemia and cutaneous calcification, exacerbation of urolithiasis, and transient orthostatic hypotension with initial doses. In the pivotal trial side effects were described as minor, chiefly occasional nausea and headache. The label notes limited data on osteosarcoma risk beyond two years of use.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can a hormone that removes bone be used to build it?',
+        a: 'Because the receptor responds to the shape of the signal, not only to its presence. When parathyroid hormone is continuously elevated, as in an overactive parathyroid gland, the bone-building cells are pushed into making the signal that recruits bone-dissolving cells, and bone is lost. When the same hormone arrives as a single short daily spike, the first thing that happens is that the building cells live longer and work harder — and the pulse is over before the recruiting signal takes hold. That gap is called the anabolic window, and the entire drug is an attempt to hit it once a day.',
+      },
+      {
+        q: 'Does it cause bone cancer?',
+        a: 'The evidence says no in humans, and the story of how that was established is the audit on this page. Rats given the drug daily for two years — most of their adult life, at up to 75 micrograms per kilogram — developed osteosarcoma at high rates. The scientists who ran that study wrote in the same paper that the finding probably did not predict human risk, because of the duration relative to lifespan and the growing rat skeleton. Regulators required a boxed warning and a two-year lifetime limit anyway. Eighteen years later, a registry of 75,247 treated patients linked to state cancer registries covering 93% of the United States found no cases at all, and the boxed warning and the time limit were removed in 2020. The current label says an increased risk has not been observed in observational studies.',
+        auditNote:
+          'Zero cases is not the same as zero risk. With the person-time accumulated, the upper confidence bound on the standardised incidence ratio was 3.0, so a threefold excess would not have been detected. The registry was funded by the manufacturer.',
+      },
+      {
+        q: 'Is it better than a bisphosphonate?',
+        a: 'In women with severe osteoporosis, on the one trial designed to answer that question, yes. VERO randomised 1360 women with at least two moderate or one severe vertebral fracture to teriparatide or risedronate under double-dummy blinding for 24 months. New spinal fractures were 5.4% against 12.0%, and clinical fractures 4.8% against 9.8%. Non-vertebral fractures were fewer but not significantly so, at 4.0% against 6.1% with a P value of 0.10. The trial was funded by teriparatide’s manufacturer, and it was the first trial ever to compare two osteoporosis drugs with incident fracture as the primary outcome.',
+      },
+      {
+        q: 'What happens when I stop?',
+        a: 'The bone that was added is remodelled away unless something is given to hold it. Newly formed bone is subject to the ordinary turnover rate once the anabolic stimulus is removed, so an antiresorptive is normally started afterwards to preserve the gain. That makes this a course of treatment followed by something else, rather than a drug taken indefinitely. What follows, and when, is a prescriber’s decision and is not addressed on this page.',
+      },
+      {
+        q: 'Why is it so much more expensive?',
+        a: 'It is a 34-amino-acid recombinant peptide in a refrigerated multidose injection pen, against a pressed tablet of a small molecule made by simple chemistry. Peptide expression, purification and cold-chain packaging are genuinely more costly. At about US$495 per millilitre at pharmacy acquisition against about twenty-eight cents for a generic alendronate tablet, the ratio is roughly two thousandfold per unit, and no published cost-of-production study for this molecule could be verified for this page, so how much of that gap is manufacturing is not something the data here can settle.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Neer RM et al. Effect of parathyroid hormone (1-34) on fractures and bone mineral density in postmenopausal women with osteoporosis. N Engl J Med 2001;344:1434-1441',
+        identifier: '10.1056/NEJM200105103441904',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kendler DL et al. Effects of teriparatide and risedronate on new fractures in post-menopausal women with severe osteoporosis (VERO). Lancet 2018;391:230-240',
+        identifier: '10.1016/S0140-6736(17)32137-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vahle JL et al. Skeletal changes in rats given daily subcutaneous injections of recombinant human parathyroid hormone (1-34) for 2 years and relevance to human safety. Toxicol Pathol 2002;30:312-321',
+        identifier: '10.1080/01926230252929882',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gilsenan A et al. Long-term cancer surveillance: results from the Forteo Patient Registry Surveillance Study. Osteoporos Int 2021;32:645-651',
+        identifier: '10.1007/s00198-020-05718-0',
+        kind: 'doi',
+      },
+      {
+        label: 'VERO — teriparatide against risedronate, ClinicalTrials.gov registration',
+        identifier: 'NCT01709110',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Teriparatide injection United States prescribing information (openFDA label endpoint) — indications, warnings and precautions including the osteosarcoma section',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22teriparatide%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 6. Romosozumab — a drug designed from a rare bone disease, rejected once by the FDA, and
+  //    approved with a cardiovascular boxed warning it earned in its own head-to-head trial.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'romosozumab',
+    name: 'Romosozumab',
+    tradeName: 'Evenity',
+    sponsor: 'Amgen Inc. with UCB Pharma (approved in the United States in April 2019)',
+    targetGene: 'SOST — the gene whose loss of function causes sclerosteosis and van Buchem disease',
+    targetProtein:
+      'Sclerostin, the osteocyte-secreted protein that shuts down bone formation by blocking the Wnt co-receptors LRP5 and LRP6',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2019,
+    indication:
+      'Treatment of osteoporosis in postmenopausal women at high risk for fracture, defined as a history of osteoporotic fracture or multiple risk factors for fracture, or in patients who have failed or are intolerant of other available therapy. The label limits duration to 12 monthly doses and says an antiresorptive should be considered afterwards if treatment remains warranted',
+    patientFriendlyIndication:
+      'Severe bone thinning in women at high risk of breaking a bone, treated for one year only',
+    anatomicalSite:
+      'The osteocyte network inside bone, and the bone surface where the signal it suppresses is read',
+    conditionContext: {
+      conditionExplainer:
+        'Osteocytes are cells buried inside bone that act as its sensors. One of the things they secrete is sclerostin, a brake on bone formation. People born without a working copy of the gene for it grow abnormally dense, heavy bone throughout life. This drug is an antibody that removes the brake on purpose, for twelve months.',
+      whyItMatters:
+        'It is the clearest example in this file of a drug reasoned backwards from a rare human genetic disease, and of a regulator refusing an application until the cardiovascular data from a second trial were available. The refusal was right: that trial found the signal.',
+      whoTakesThis:
+        'Postmenopausal women at high fracture risk, particularly those who have fractured already or failed another treatment, and who have not had a heart attack or stroke in the previous year.',
+      clinicalGoals:
+        'Fewer fractures within a single twelve-month course, and a larger bone mass to hand over to an antiresorptive afterwards.',
+    },
+    oneSentenceVerdict:
+      'An antibody against sclerostin, the bone-formation brake whose genetic absence causes a rare high-bone-mass disease, which cut new spinal fractures from 1.8% to 0.5% in twelve months in 7180 women and beat alendronate on hip fracture, 2.0% against 3.2%, in 4093 women — and in that same head-to-head trial produced more adjudicated serious cardiovascular events in year one, 2.5% against 1.9%, which is now its boxed warning.',
+    laymanHowItWorks:
+      'Cells buried inside bone release a molecule that tells the surface to stop building. This drug is an antibody that mops that molecule up. With the brake off, the building cells work harder for several months, and unusually the demolition side slows at the same time — every other bone drug does one or the other. The effect fades over the year as the body adjusts, which is why the course is fixed at twelve months.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 74,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'Not stated: no verified CMS National Average Drug Acquisition Cost entry for romosozumab was held on this record at the time of writing',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in April 2019 and still on patent. The monthly dose is 210 mg delivered as two 105 mg single-use prefilled syringes, so a full course is twenty-four syringes. No verified acquisition price is stated here because none was held on the record; an estimate would be an invented number.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — checked for this molecule and found to carry no listed entry at the time of writing, which is why no price is stated',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'The comparison is against the other bone-building option and against the antiresorptive it is meant to precede. Teriparatide builds bone by a different route with no cardiovascular warning but a daily injection. Alendronate is the drug romosozumab beat in ARCH, and it is also the drug that follows romosozumab in the same trial’s design. Nothing sold as a food or supplement raises bone formation the way removing sclerostin does.',
+      conventionalRx: [
+        {
+          name: 'Alendronate',
+          class: 'Nitrogen-containing bisphosphonate, oral',
+          howItCompares:
+            'The comparator in ARCH and the drug given after romosozumab in the same trial. Over 24 months new vertebral fractures were 11.9% on alendronate throughout against 6.2% on romosozumab then alendronate, and hip fracture 3.2% against 2.0%. Alendronate has no cardiovascular boxed warning.',
+          typicalCost:
+            'US$0.2842 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 24 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheap, oral, no cardiovascular warning, decades of data. Cons: significantly more vertebral, clinical, non-vertebral and hip fractures than the romosozumab sequence in the head-to-head trial.',
+        },
+        {
+          name: 'Teriparatide',
+          class: 'Parathyroid hormone (1-34), daily subcutaneous',
+          howItCompares:
+            'The other anabolic option. It beat risedronate on fracture in VERO. It requires a daily injection rather than a monthly one and carries no cardiovascular warning, but does carry an osteosarcoma caution and a list of people in whom it should be avoided.',
+          typicalCost:
+            'US$494.81 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 10 listed products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no cardiovascular boxed warning; longer human track record since 2002. Cons: daily self-injection and refrigeration; raises resorption as well as formation, where romosozumab lowers it.',
+        },
+        {
+          name: 'Denosumab',
+          class: 'Anti-RANKL monoclonal antibody, subcutaneous every six months',
+          howItCompares:
+            'The other antibody in bone, and one of the antiresorptives used to hold the gain after a romosozumab course. It suppresses resorption only and has no anabolic phase.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for denosumab was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: twice-yearly injection; no cardiovascular boxed warning. Cons: purely antiresorptive; rebound vertebral fractures are reported after discontinuation.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Weight-bearing and impact loading',
+          activeCompound: 'Mechanical strain sensed by osteocytes',
+          biologicalMechanism:
+            'Loading a bone lowers sclerostin output from the osteocytes inside it, which releases the same Wnt signal this antibody releases pharmacologically. The pathway is identical; the magnitude is not.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated: this page carries no exercise prescription. The mechanistic link between loading and sclerostin suppression is well characterised, and no exercise programme has a fracture result comparable to the 0.5% against 1.8% measured in FRAME.',
+          monthlyCost: 'None',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Say whether you have had a heart attack or a stroke, and when',
+          action: 'Give the date, not just the fact.',
+          patientImpact:
+            'The boxed warning states the drug should not be started in anyone who has had a myocardial infarction or stroke within the preceding year, and that it should be discontinued if either occurs during treatment.',
+          clinicalPrecaution:
+            'The one-year window is explicit in the label. For other cardiovascular risk factors the label asks the prescriber to weigh benefit against risk rather than to refuse treatment.',
+        },
+        {
+          name: 'Have calcium and vitamin D corrected before the first dose',
+          action: 'Ask whether calcium has been checked, particularly if kidney function is poor.',
+          patientImpact:
+            'Hypocalcaemia has occurred with this drug and the label requires it to be corrected before starting and adequately supplemented throughout.',
+          clinicalPrecaution:
+            'Risk is higher with severe renal impairment or dialysis. Correcting calcium is a prescriber’s step; the patient’s part is making sure it was not skipped.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      molecularWeight: 'Approximately 149 kDa',
+      targetReceptorAffinity:
+        'A humanized IgG2 monoclonal antibody produced in Chinese hamster ovary cells that binds and inhibits sclerostin. It shows non-linear pharmacokinetics, with mean AUC rising about 550-fold for a 100-fold rise in subcutaneous dose, and a median time to maximum concentration of 5 days. A single 210 mg dose in healthy volunteers gave a mean maximum serum concentration of 22.2 micrograms per millilitre, and steady state was reached by month 3 with mean trough concentrations of 8 to 13 micrograms per millilitre. Estimated steady-state volume of distribution is about 3.92 L.',
+      structureSource: {
+        label:
+          'EVENITY (romosozumab-aqqg) United States prescribing information, Description 11 and Clinical Pharmacology 12.3 (openFDA label endpoint)',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22EVENITY%22',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'rom-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, glycosylation and IgG2 disulfide isoform profile',
+          description:
+            'Confirm the antibody identity and, specifically, the IgG2 hinge disulfide isoform distribution. IgG2 antibodies interconvert between structural isoforms with different hinge disulfide connectivity, and those isoforms can differ in potency, so isoform ratio is a release specification and not a curiosity.',
+          reagentsAndBuffer:
+            'Reference standard, peptide mapping by LC-MS/MS after trypsin digestion, non-reduced capillary electrophoresis for disulfide isoforms, released N-glycan analysis by hydrophilic interaction chromatography',
+        },
+        {
+          id: 'rom-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Expression in a Chinese hamster ovary cell line',
+          description:
+            'Grow the transfected CHO line in a fed-batch bioreactor and harvest the secreted antibody. Cell-culture conditions decide the glycan profile and the charge-variant distribution, which is why process parameters here are part of the product definition rather than of the manufacturing convenience.',
+          dependsOnStepId: 'rom-w1',
+          reagentsAndBuffer:
+            'Stable CHO clone, chemically defined fed-batch medium, controlled dissolved oxygen, pH and temperature shift, depth filtration harvest',
+        },
+        {
+          id: 'rom-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Protein A capture, polishing and formulation into the prefilled syringe',
+          description:
+            'Capture on protein A, polish by ion exchange, then formulate. The marketed presentation is two 105 mg prefilled syringes per monthly dose, each delivering 1.17 mL, so the formulation has to keep a 149 kDa protein stable at high concentration in a small volume without a preservative.',
+          dependsOnStepId: 'rom-w2',
+          reagentsAndBuffer:
+            'Protein A affinity resin, low-pH viral inactivation, ion-exchange polishing, viral filtration, acetate buffer with calcium, polysorbate 20 and sucrose at pH 5.2 as in the marketed formulation',
+        },
+        {
+          id: 'rom-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Wnt reporter de-repression in an osteoblastic line',
+          description:
+            'Add sclerostin to a Wnt-responsive osteoblastic reporter line to suppress the signal, then add the antibody and measure how much signal returns. The assay has to be run as a de-repression rather than as a stimulation, because the antibody does nothing on its own — it only removes an inhibitor.',
+          dependsOnStepId: 'rom-w3',
+          reagentsAndBuffer:
+            'Wnt-responsive TCF/LEF luciferase reporter in an osteoblastic line, recombinant human sclerostin, Wnt3a conditioned medium, isotype control antibody, LRP5/LRP6 binding competition by surface plasmon resonance',
+        },
+        {
+          id: 'rom-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Formation and resorption marker time course over twelve months',
+          description:
+            'Track P1NP and CTX from baseline through month 12 and beyond. This is the assay that explains why the label caps the course at twelve doses: the formation signal is transient and reverses, and the marker curve shows it doing so before any fracture endpoint could.',
+          dependsOnStepId: 'rom-w4',
+          reagentsAndBuffer:
+            'Fasting serum, automated P1NP and CTX immunoassays with matched-lot calibrators, standardised sampling time, paired placebo control samples run in the same batch',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'rom-a1',
+        category: 'measured',
+        title: 'Spinal fractures fell by nearly three-quarters within twelve months',
+        laymanSummary:
+          'In 7180 women, new spinal fractures on x-ray occurred in about five per thousand on the drug against eighteen per thousand on placebo over one year, and the gap persisted after both groups moved to a different drug.',
+        technicalDetails:
+          'FRAME enrolled 7180 postmenopausal women with a T-score of -2.5 to -3.5 at the total hip or femoral neck, randomised to monthly subcutaneous romosozumab 210 mg or placebo for 12 months, after which all received denosumab for 12 months. New vertebral fractures at 12 months occurred in 16 of 3321 (0.5%) against 59 of 3322 (1.8%), a 73% lower risk, P<0.001. At 24 months, after both groups had transitioned to denosumab, the rates were 0.6% against 2.5%, a 75% lower risk, P<0.001. Clinical fractures at 12 months were 58 of 3589 (1.6%) against 90 of 3591 (2.5%), 36% lower, P=0.008.',
+        evidenceSource: 'Cosman F et al., N Engl J Med 2016;375:1532-1543 (FRAME, NCT01575834)',
+        doi: '10.1056/NEJMoa1607948',
+        measuredMetric:
+          'New vertebral fracture at 12 months, 0.5% against 1.8%, a 73% lower risk (P<0.001)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rom-a2',
+        category: 'failed',
+        title: 'Non-vertebral fractures were not significantly reduced in the pivotal trial',
+        laymanSummary:
+          'The fractures that happen outside the spine — wrists, hips, arms — were slightly fewer on the drug, but the difference did not reach statistical significance.',
+        technicalDetails:
+          'In FRAME, non-vertebral fractures at 12 months occurred in 56 of 3589 romosozumab patients (1.6%) against 75 of 3591 placebo patients (2.1%), P=0.10. The trial met both co-primary vertebral endpoints and the clinical fracture secondary endpoint, and missed this one. It is the reason the second trial mattered: ARCH, in a higher-risk population and against an active comparator rather than placebo, did show significant reductions in non-vertebral fracture, 8.7% against 10.6%, P=0.04, and in hip fracture, 2.0% against 3.2%, P=0.02.',
+        evidenceSource: 'Cosman F et al., N Engl J Med 2016;375:1532-1543 (FRAME)',
+        doi: '10.1056/NEJMoa1607948',
+        measuredMetric: 'Non-vertebral fracture 1.6% against 2.1% at 12 months, P=0.10',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rom-a3',
+        category: 'failed',
+        title: 'The head-to-head trial found more serious cardiovascular events in year one',
+        laymanSummary:
+          'When the drug was compared with alendronate, it prevented more fractures. In the first year, serious heart and stroke events adjudicated by an independent committee occurred in 50 patients on the drug against 38 on alendronate.',
+        technicalDetails:
+          'ARCH enrolled 4093 postmenopausal women with osteoporosis and a fragility fracture, randomised 1:1 to monthly romosozumab 210 mg or weekly oral alendronate 70 mg blinded for 12 months, followed by open-label alendronate in both arms. During year 1, positively adjudicated serious cardiovascular adverse events occurred in 50 of 2040 romosozumab patients (2.5%) against 38 of 2014 alendronate patients (1.9%). Overall adverse events and serious adverse events were balanced. During the open-label alendronate period, adjudicated osteonecrosis of the jaw occurred once in each group and atypical femoral fracture twice on the romosozumab-to-alendronate arm against four times on alendronate throughout. The imbalance in year 1 is the basis of the boxed warning: the label states that romosozumab may increase the risk of myocardial infarction, stroke and cardiovascular death, must not be started within a year of either event, and should be discontinued if either occurs on treatment.',
+        evidenceSource:
+          'Saag KG et al., N Engl J Med 2017;377:1417-1427 (ARCH, NCT01631214); EVENITY United States prescribing information, Boxed Warning and Warnings and Precautions 5.1',
+        doi: '10.1056/NEJMoa1708322',
+        measuredMetric:
+          'Positively adjudicated serious cardiovascular adverse events in year 1: 50 of 2040 (2.5%) against 38 of 2014 (1.9%)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rom-a4',
+        category: 'measured',
+        title: 'It beat alendronate on every fracture endpoint including hip',
+        laymanSummary:
+          'Over two years, women who got twelve months of the antibody followed by alendronate had roughly half as many spinal fractures and a third fewer hip fractures than women who took alendronate the whole time.',
+        technicalDetails:
+          'In ARCH over 24 months, new vertebral fracture occurred in 127 of 2046 (6.2%) in the romosozumab-to-alendronate group against 243 of 2047 (11.9%) in the alendronate-to-alendronate group, a 48% lower risk, P<0.001. Clinical fractures were 198 of 2046 (9.7%) against 266 of 2047 (13.0%), 27% lower, P<0.001. Non-vertebral fractures were 178 (8.7%) against 217 (10.6%), 19% lower, P=0.04. Hip fractures were 41 (2.0%) against 66 (3.2%), 38% lower, P=0.02. Because the comparator was an active drug with its own established fracture reduction rather than placebo, these are differences on top of effective treatment.',
+        evidenceSource: 'Saag KG et al., N Engl J Med 2017;377:1417-1427 (ARCH)',
+        doi: '10.1056/NEJMoa1708322',
+        measuredMetric:
+          'Hip fracture over 24 months, 2.0% against 3.2% on alendronate throughout, a 38% lower risk (P=0.02)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rom-a5',
+        category: 'measured',
+        title: 'The whole drug was reasoned backwards from a rare bone disease',
+        laymanSummary:
+          'People born with two broken copies of one gene grow abnormally thick, dense bone for their whole lives. Finding that gene in 2001 identified the brake on bone formation, and this drug removes that brake deliberately.',
+        technicalDetails:
+          'Balemans and colleagues mapped sclerosteosis and van Buchem disease to the same region of chromosome 17q12-q21, narrowed the critical interval to about 1 Mb, and positionally cloned SOST. Two nonsense mutations and one splice-site mutation were found in sclerosteosis patients. The paper states that loss of SOST function results in formation of massive amounts of normal bone throughout life, that the physiological role of the protein is most likely suppression of bone formation, and — in its final sentence — that the gene might become an important tool for developing osteoporosis therapies. That was eighteen years before approval. The disease also shows the ceiling: sclerosteosis causes cranial nerve compression with facial palsy, hearing loss and optic atrophy from skull overgrowth, which is what a lifetime of complete sclerostin absence looks like as against twelve monthly doses of an antibody.',
+        evidenceSource: 'Balemans W et al., Hum Mol Genet 2001;10:537-543',
+        doi: '10.1093/hmg/10.5.537',
+        measuredMetric:
+          'Three loss-of-function SOST mutations identified in sclerosteosis patients, producing lifelong excess formation of normal bone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rom-a6',
+        category: 'inferred',
+        title: 'Approved for men on a bone-density endpoint in 245 people',
+        laymanSummary:
+          'The trial in men measured the number on a scan, not fractures, in 245 participants. It also showed the same numerical excess of serious heart events.',
+        technicalDetails:
+          'BRIDGE randomised 245 men aged 55 to 90 with a T-score of -2.5 or lower, or -1.5 or lower with a prior fragility fracture, 2:1 to romosozumab 210 mg monthly or placebo for 12 months at 31 centres. The primary endpoint was percentage change from baseline in lumbar spine bone mineral density at month 12: 12.1% against 1.2%, and total hip 2.5% against -0.5%, both P<0.001. Adverse and serious adverse events were balanced, with a numerical imbalance in positively adjudicated serious cardiovascular events — 8 of 163 (4.9%) against 2 of 82 (2.5%). No fracture endpoint was measured. The current United States indication is confined to postmenopausal women, so this trial supports a mechanism in men rather than an approved use.',
+        evidenceSource:
+          'Lewiecki EM et al., J Clin Endocrinol Metab 2018;103:3183-3193 (BRIDGE, NCT02186171)',
+        doi: '10.1210/jc.2017-02163',
+        inferredClaim:
+          'That a 12.1% rise in spinal bone density in 245 men implies the fracture reduction measured in 7180 women — a surrogate result in a small trial, with the same cardiovascular imbalance present',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rom-a7',
+        category: 'measured',
+        title: 'The effect is transient by design, and the label caps the course at twelve doses',
+        laymanSummary:
+          'The bone-building signal peaks two weeks in and is gone by nine months. By month twelve it has fallen below where it started. The course is limited to twelve doses because after that there is nothing left to gain.',
+        technicalDetails:
+          'The label reports that P1NP, the formation marker, peaks at about 145% above placebo two weeks after starting, returns to placebo levels by month 9, and is approximately 15% below the placebo change by month 12. CTX, the resorption marker, falls to about 55% below placebo at two weeks and remains about 25% below at month 12. After discontinuation, P1NP returns to baseline within 12 months while CTX rises above baseline within 3 months and returns toward baseline by month 12. The label limits use to 12 monthly doses and states that if osteoporosis therapy remains warranted, continued therapy with an antiresorptive should be considered. This is one of the few drugs whose approved duration is set by its own pharmacodynamic curve rather than by a trial comparison.',
+        evidenceSource:
+          'EVENITY United States prescribing information, Indications and Usage 1.2 and Clinical Pharmacology 12.2 (openFDA label endpoint)',
+        measuredMetric:
+          'P1NP +145% at week 2, back to placebo by month 9, about 15% below placebo at month 12; CTX -55% at week 2, about 25% below at month 12',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Two injections under the skin, once a month',
+        laymanDesc:
+          'The monthly dose is large enough that it comes as two separate prefilled syringes. It is given for twelve months and then stopped.',
+        molecularDetail:
+          'The 210 mg monthly dose is delivered as two 105 mg single-use prefilled syringes, each 1.17 mL of a preservative-free acetate-buffered solution at pH 5.2. Median time to maximum concentration is 5 days and steady state is reached by month 3, with trough concentrations of 8 to 13 micrograms per millilitre.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The antibody finds sclerostin in the bone microenvironment',
+        laymanDesc:
+          'It does not act on a cell. It binds a small signalling protein released by cells buried inside bone and takes it out of circulation.',
+        molecularDetail:
+          'Sclerostin is a cysteine-knot protein secreted by osteocytes, encoded by SOST. Romosozumab is a humanized IgG2 that binds it directly. Estimated steady-state volume of distribution is about 3.92 L and the pharmacokinetics are non-linear, with AUC rising roughly 550-fold across a 100-fold dose range, consistent with a saturable target-mediated clearance route.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The Wnt brake comes off the bone surface',
+        laymanDesc:
+          'Free sclerostin normally plugs a receptor that bone-building cells need in order to hear a growth signal. Once it is mopped up, the signal gets through.',
+        molecularDetail:
+          'Sclerostin binds the LRP5 and LRP6 co-receptors and blocks Wnt ligands from assembling a signalling complex with Frizzled. Removing it allows beta-catenin to accumulate and enter the nucleus, driving osteoblast differentiation and survival genes. The human genetics are the proof of the pathway: loss-of-function SOST mutations produce lifelong formation of massive amounts of normal bone.',
+        iconName: 'Unlock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Formation rises and resorption falls at the same time',
+        laymanDesc:
+          'This is the unusual part. Every other bone drug either builds or preserves. For a few months this one does both.',
+        molecularDetail:
+          'P1NP rises about 145% above placebo by week 2 while CTX falls about 55% below it, an uncoupling no antiresorptive or parathyroid hormone analogue produces. The dual effect follows from Wnt signalling driving osteoblast activity and simultaneously raising osteoprotegerin, which sequesters RANKL and starves osteoclast formation.',
+        iconName: 'TrendingUp',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The window closes, and the course ends',
+        laymanDesc:
+          'By nine months the building signal is back to where it would have been anyway, and by twelve it is below. The label stops the treatment there.',
+        molecularDetail:
+          'P1NP returns to placebo levels by month 9 and sits about 15% below placebo at month 12, while CTX remains about 25% below. After discontinuation CTX rises above baseline within 3 months. The label limits use to 12 monthly doses and directs that an antiresorptive be considered afterwards, because bone gained during the window is otherwise remodelled away.',
+        iconName: 'Clock',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Fewer fractures, and a cardiovascular signal that came with them',
+        laymanDesc:
+          'Spinal fractures fell by nearly three-quarters against placebo and hip fractures by more than a third against alendronate. In the alendronate comparison, serious heart and stroke events in the first year were more common on the antibody.',
+        molecularDetail:
+          'FRAME: vertebral fracture 0.5% against 1.8% at 12 months. ARCH: hip fracture 2.0% against 3.2% at 24 months, P=0.02. Also ARCH: adjudicated serious cardiovascular adverse events in year 1, 2.5% against 1.9%. No mechanism links sclerostin inhibition to cardiovascular events with any confidence; sclerostin is expressed in vascular tissue, which is a hypothesis rather than a finding.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'FRAME (NCT01575834)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 7180,
+        primaryEndpoint:
+          'Co-primary: cumulative incidence of new vertebral fracture at 12 months and at 24 months',
+        endpointMet: true,
+        statisticalPValue:
+          '0.5% against 1.8% at 12 months (73% lower, P<0.001); 0.6% against 2.5% at 24 months (75% lower, P<0.001)',
+        unreportedAdverseSignals:
+          'Non-vertebral fracture, a secondary endpoint, was 1.6% against 2.1% with P=0.10 — not significant. One atypical femoral fracture and two cases of osteonecrosis of the jaw occurred in the romosozumab group.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ARCH (NCT01631214)',
+        phase: 'Phase 3, randomised, double-blind, active-controlled against alendronate',
+        sampleSize: 4093,
+        primaryEndpoint:
+          'Co-primary: new vertebral fracture at 24 months, and clinical fracture at the primary analysis',
+        endpointMet: true,
+        statisticalPValue:
+          'Vertebral 6.2% against 11.9% (48% lower, P<0.001); clinical 9.7% against 13.0% (27% lower, P<0.001); hip 2.0% against 3.2% (P=0.02)',
+        unreportedAdverseSignals:
+          'Positively adjudicated serious cardiovascular adverse events in year 1 were 50 of 2040 (2.5%) against 38 of 2014 (1.9%). This imbalance became the boxed warning and delayed approval by nearly two years.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'BRIDGE (NCT02186171)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled, in men',
+        sampleSize: 245,
+        primaryEndpoint: 'Percentage change from baseline in lumbar spine bone mineral density at month 12',
+        endpointMet: true,
+        statisticalPValue: 'Lumbar spine 12.1% against 1.2%; total hip 2.5% against -0.5%, both P<0.001',
+        unreportedAdverseSignals:
+          'A surrogate endpoint, not fracture. Positively adjudicated serious cardiovascular events were 8 of 163 (4.9%) against 2 of 82 (2.5%) — the same direction as ARCH, in a trial far too small to measure it.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'New vertebral fracture 0.5% against 1.8% at 12 months in 7180 women, a 73% lower risk',
+        'Hip fracture 2.0% against 3.2% over 24 months against alendronate in 4093 women, P=0.02',
+        'Adjudicated serious cardiovascular adverse events in year 1 of ARCH, 2.5% against 1.9%',
+        'P1NP +145% above placebo at week 2, returning to placebo by month 9 and about 15% below at month 12',
+        'Three loss-of-function SOST mutations in sclerosteosis, producing lifelong excess bone formation',
+      ],
+      unsupportedInferences: [
+        'That the fracture benefit continues beyond twelve months — the pharmacodynamic effect has reversed by then and the label caps the course there',
+        'That the cardiovascular imbalance is explained; no mechanism has been established and vascular sclerostin expression is a hypothesis',
+        'That a 12.1% spinal density gain in 245 men implies the fracture reduction measured in women',
+        'That an antibody given for twelve months reproduces the skeletal phenotype of lifelong SOST deficiency, which includes cranial nerve compression',
+      ],
+      whatFailedInitially: [
+        'FRAME missed its non-vertebral fracture endpoint at 12 months, 1.6% against 2.1%, P=0.10',
+        'ARCH found more adjudicated serious cardiovascular events on romosozumab in the blinded first year',
+        'The United States application was not approved on the first review cycle; approval followed in April 2019 with a boxed warning for myocardial infarction, stroke and cardiovascular death',
+        'The men’s trial was powered for a density endpoint in 245 participants and reproduced the cardiovascular imbalance without being able to measure it',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in April 2019 for postmenopausal women at high fracture risk, with use limited to 12 monthly doses',
+        'The only approved agent that raises bone formation and lowers bone resorption simultaneously',
+        'The boxed warning bars initiation within a year of a myocardial infarction or stroke and requires discontinuation if either occurs on treatment',
+        'It is the clearest modern case of a drug target identified from a rare recessive human disease, eighteen years from gene to approval',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection, 210 mg monthly as two 105 mg prefilled syringes, for 12 doses',
+      description:
+        'Given monthly for one year and then stopped, with an antiresorptive considered afterwards if treatment remains warranted. The fixed course is a pharmacodynamic limit, not a convenience: the bone-formation effect has reversed by month twelve.',
+      safetyProfile:
+        'Boxed warning for potential risk of myocardial infarction, stroke and cardiovascular death. Not to be initiated in patients who have had a myocardial infarction or stroke within the preceding year, and to be discontinued if either occurs on treatment. Other labelled warnings cover hypersensitivity including angioedema and erythema multiforme, hypocalcaemia which must be corrected before starting and is a greater risk in severe renal impairment or dialysis, osteonecrosis of the jaw, and atypical femoral fracture with instruction to evaluate new thigh, hip or groin pain.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is it only given for a year?',
+        a: 'Because after a year it has stopped working, and the label says so in the indications section rather than burying it. The bone-formation marker P1NP peaks about 145% above placebo two weeks in, falls back to placebo levels by month nine, and is roughly 15% below placebo by month twelve. The resorption marker stays suppressed longer. So the anabolic window is a few months wide, and twelve doses covers it. What follows matters: bone gained this way is remodelled away unless an antiresorptive is given afterwards, which is exactly the design of both pivotal trials.',
+      },
+      {
+        q: 'What is the heart warning about?',
+        a: 'It comes from the trial that compared the drug with alendronate. Over the blinded first year, an independent committee adjudicated serious cardiovascular events in 50 of 2040 women on romosozumab against 38 of 2014 on alendronate — 2.5% against 1.9%. The placebo-controlled trial had not shown that imbalance, and the United States application was not approved on its first review cycle; approval came in April 2019 with a boxed warning. The label bars starting the drug within a year of a heart attack or stroke and requires stopping it if either happens during treatment. No mechanism has been established.',
+        auditNote:
+          'The regulator’s refusal to approve before the second trial reported is the most defensible decision on this page. The signal it was waiting for is the one that turned up.',
+      },
+      {
+        q: 'How was this drug invented?',
+        a: 'By working backwards from people who have too much bone rather than too little. Sclerosteosis is a rare recessive disease in which the skeleton keeps thickening throughout life — the skull, the jaw, the ribs, the long bones — to the point where cranial nerves are compressed and people lose facial movement, hearing and sight. In 2001 a group in Antwerp mapped it, cloned the responsible gene SOST, and found loss-of-function mutations in affected patients. Their paper concluded that the protein’s job is to suppress bone formation and that the gene might become a tool for treating osteoporosis. That is precisely what happened, eighteen years later.',
+      },
+      {
+        q: 'Is it better than a bisphosphonate?',
+        a: 'On fractures, in the population studied, yes — and it was compared against a bisphosphonate that works. In ARCH, 4093 women with osteoporosis and a fragility fracture got either twelve months of romosozumab then alendronate, or alendronate throughout. Over 24 months, spinal fractures were 6.2% against 11.9%, clinical fractures 9.7% against 13.0%, non-vertebral 8.7% against 10.6% and hip 2.0% against 3.2%. All four favoured romosozumab. Against that sit the cardiovascular imbalance in year one, the boxed warning, the fact that it is an injection given in a clinic setting, and a cost the acquisition dataset does not even list.',
+      },
+      {
+        q: 'Can men take it?',
+        a: 'The United States indication covers postmenopausal women only. A trial in 245 men did run for twelve months and found the expected effect on the scan — lumbar spine density rose 12.1% against 1.2% on placebo — but it measured bone density, not fractures, and it was far too small to assess anything else. It also showed the same numerical excess of adjudicated serious cardiovascular events, 4.9% against 2.5%, in numbers too small to interpret. Mechanistically there is no reason it would not work in men; that is an inference, and this page keeps it labelled as one.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Cosman F et al. Romosozumab treatment in postmenopausal women with osteoporosis. N Engl J Med 2016;375:1532-1543 (FRAME)',
+        identifier: '10.1056/NEJMoa1607948',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Saag KG et al. Romosozumab or alendronate for fracture prevention in women with osteoporosis. N Engl J Med 2017;377:1417-1427 (ARCH)',
+        identifier: '10.1056/NEJMoa1708322',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lewiecki EM et al. A phase III randomized placebo-controlled trial to evaluate efficacy and safety of romosozumab in men with osteoporosis (BRIDGE). J Clin Endocrinol Metab 2018;103:3183-3193',
+        identifier: '10.1210/jc.2017-02163',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Balemans W et al. Increased bone density in sclerosteosis is due to the deficiency of a novel secreted protein (SOST). Hum Mol Genet 2001;10:537-543',
+        identifier: '10.1093/hmg/10.5.537',
+        kind: 'doi',
+      },
+      {
+        label: 'FRAME — romosozumab against placebo, ClinicalTrials.gov registration',
+        identifier: 'NCT01575834',
+        kind: 'nct',
+      },
+      {
+        label: 'ARCH — romosozumab against alendronate, ClinicalTrials.gov registration',
+        identifier: 'NCT01631214',
+        kind: 'nct',
+      },
+      {
+        label: 'BRIDGE — romosozumab in men with osteoporosis, ClinicalTrials.gov registration',
+        identifier: 'NCT02186171',
+        kind: 'nct',
+      },
+      {
+        label:
+          'EVENITY (romosozumab-aqqg) United States prescribing information (openFDA label endpoint) — boxed warning, indications and limitations of use, description, clinical pharmacology',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22EVENITY%22',
+        kind: 'regulatory',
+      },
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

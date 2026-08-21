@@ -1534,4 +1534,975 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 4. Clindamycin — the acne cream whose own Indications section tells the prescriber to consider
+  //    whether something else would be better, because a face lotion can cause colitis.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'clindamycin',
+    name: 'Clindamycin',
+    tradeName:
+      'Cleocin / Cleocin T (topical) / Clindagel / Clindamycin Phosphate lotion, gel, foam and solution / Cabtreo (with adapalene and benzoyl peroxide)',
+    sponsor: 'Pfizer, through the acquisition of the Upjohn Company, which developed it',
+    targetGene:
+      'rrl — the bacterial 23S ribosomal RNA gene. There is no human target; the human ribosome is not inhibited',
+    targetProtein:
+      'The peptidyl transferase centre of the bacterial 50S ribosomal subunit, at domain V of 23S rRNA',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1970,
+    indication:
+      'The topical lotion, gel, foam and solution are indicated in the treatment of acne vulgaris. The oral and injectable forms are indicated for serious infections caused by susceptible anaerobic bacteria and by susceptible streptococci, pneumococci and staphylococci, with the label directing that their use be reserved for penicillin-allergic patients or those for whom a penicillin is inappropriate',
+    patientFriendlyIndication: 'Acne, when applied to the skin; serious bacterial infection when taken by mouth or by drip',
+    anatomicalSite:
+      'The sebaceous follicle, where Cutibacterium acnes lives — and, unavoidably, the colon, because topical clindamycin is absorbed through the skin',
+    conditionContext: {
+      conditionExplainer:
+        'Cutibacterium acnes multiplies behind a blocked pore and drives the inflammation that makes acne red and painful. Clindamycin stops that bacterium making protein. It is bacteriostatic — it halts growth rather than killing outright — and it also damps inflammation directly, which is part of why it works faster than the bacterial counts alone would predict.',
+      whyItMatters:
+        'This is the clearest example in dermatology of a local treatment with a systemic consequence. The label for a lotion applied to a face carries the colitis warning written for an intravenous antibiotic, because the drug crosses the skin, and the Indications section itself tells the prescriber to consider using something else.',
+      whoTakesThis:
+        'People with inflammatory acne, almost always in a fixed combination rather than alone. Guidelines and labels have converged on never using it as monotherapy, and the trial evidence for why is on this page.',
+      clinicalGoals:
+        'Fewer inflammatory lesions. The measured secondary goal, and the more interesting one, is what happens to the resistant bacterial population on the patient’s own skin.',
+    },
+    oneSentenceVerdict:
+      'A lincosamide that jams the bacterial ribosome at the peptidyl transferase centre — indistinguishable from benzoyl peroxide on every pooled acne outcome, and shown in a controlled 16-week trial to raise clindamycin-resistant Cutibacterium acnes counts on the patient’s own face by more than 1,600% when used alone, which is why the modern product is a three-drug gel and why the topical label tells prescribers to consider whether another agent would be more appropriate.',
+    laymanHowItWorks:
+      'Bacteria build their proteins on a machine called a ribosome, which is different enough from the human version that a drug can block one and leave the other alone. Clindamycin wedges itself into the part of the bacterial ribosome where each new amino acid gets stitched onto the growing chain. Protein production stalls and the bacteria stop multiplying. Enough of the drug crosses the skin into the bloodstream that the same effect reaches the bacteria in the gut, which is why a cream for the face carries a warning about the bowel.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 66,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1684 per unit, the median United States pharmacy acquisition cost across 96 listed clindamycin products of all routes (CMS NADAC, generic, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent since the 1980s, with 96 separately listed products spanning capsules, injections and topical preparations. The commercially protected objects are the fixed combinations built on top of it — the clindamycin/benzoyl peroxide gels, and the triple-combination gel approved under NDA 216632 — not the molecule.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Every serious alternative to topical clindamycin in acne is either something that cannot select resistance, or clindamycin with that something added to it. The Cochrane overview could not distinguish clindamycin from benzoyl peroxide on any pooled outcome, and the microbiology trial explains why nobody recommends the antibiotic on its own regardless.',
+      conventionalRx: [
+        {
+          name: 'Benzoyl peroxide',
+          class: 'Oxidising antimicrobial with no molecular target',
+          howItCompares:
+            'Statistically indistinguishable from clindamycin on total lesions (MD -3.50, 95% CI -7.54 to 0.54), inflammatory lesions, non-inflammatory lesions, participant self-assessment (RR 0.95, 95% CI 0.68 to 1.34) and investigator assessment (RR 1.10, 95% CI 0.83 to 1.45) in the 2024 Cochrane overview. It differs by being incapable of selecting resistance.',
+          typicalCost:
+            'US$0.3993 per gram, median United States pharmacy acquisition cost across 53 listed products (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: same measured effect, no resistance, no colitis warning, no prescription. Cons: bleaches fabric, irritates more, and degrades to benzene on warm storage.',
+        },
+        {
+          name: 'Clindamycin phosphate with benzoyl peroxide (fixed combination gel)',
+          class: 'Lincosamide plus oxidising antimicrobial in one product',
+          howItCompares:
+            'The combination beat matching clindamycin monotherapy on total, inflammatory and comedonal lesion counts (P<=0.046) in a 16-week randomised comparison, and reversed the growth of clindamycin-resistant organisms that monotherapy produced.',
+          typicalCost: 'Sold as a combination product; not comparable to the per-unit clindamycin figure',
+          prosAndCons:
+            'Pros: better efficacy and better microbiology than clindamycin alone, from the same trial. Cons: inherits benzoyl peroxide’s bleaching and irritation, and the topical clindamycin colitis warning still applies.',
+        },
+        {
+          name: 'Clindamycin phosphate 1.2% / adapalene 0.15% / benzoyl peroxide 3.1% gel (Cabtreo)',
+          class: 'Fixed-dose triple combination, approved under NDA 216632',
+          howItCompares:
+            'In a 741-participant phase 2 trial, treatment success at week 12 was 52.5% for the triple against 27.8% to 30.5% for the three component dyads and 8.1% for vehicle (P<=0.001 for all). The two phase 3 confirmatory trials compared it only with vehicle: 49.6% and 50.5% against 24.9% and 20.5%.',
+          typicalCost: 'Branded prescription gel; not comparable to the generic per-unit figure',
+          prosAndCons:
+            'Pros: the only topical acne product that has beaten its own two-drug components in a randomised trial. Cons: that comparison exists in one phase 2 study and was not repeated in either phase 3 trial, and the phase 3 authors list inter-observer variation in severity ratings as a limitation.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report persistent diarrhoea, even though this is a cream',
+          action:
+            'The topical label instructs that the drug be discontinued when significant diarrhoea occurs.',
+          patientImpact:
+            'Diarrhoea, bloody diarrhoea and colitis including pseudomembranous colitis have been reported with topical as well as systemic clindamycin, because the topical formulation is absorbed from the skin surface. The label states that orally and parenterally administered clindamycin has been associated with severe colitis which may result in patient death.',
+          clinicalPrecaution:
+            'The label specifically warns that antiperistaltic agents such as opiates and diphenoxylate with atropine may prolong or worsen the condition. This is a reason to tell a clinician rather than to self-treat the diarrhoea.',
+        },
+        {
+          name: 'Ask why it is not being used on its own',
+          action:
+            'Modern products pair clindamycin with benzoyl peroxide or with benzoyl peroxide and a retinoid.',
+          patientImpact:
+            'In a controlled comparison, sixteen weeks of clindamycin alone multiplied clindamycin-resistant bacteria on patients’ faces by more than 1,600%, while the identical gel with benzoyl peroxide added reduced them. The patients whose resistant counts fell were the patients whose lesion counts fell.',
+          clinicalPrecaution:
+            'This is a description of published trial results, not a treatment recommendation. What to use and for how long is a clinician’s decision.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CCC[C@@H]1C[C@H](N(C1)C)C(=O)N[C@@H]([C@@H]2[C@@H]([C@@H]([C@H]([C@H](O2)SC)O)O)O)[C@H](C)Cl',
+      chemicalFormula: 'C18H33ClN2O5S',
+      molecularWeight: '425.00 g/mol',
+      targetReceptorAffinity:
+        'Binds the peptidyl transferase centre of the bacterial 50S subunit at domain V of 23S rRNA, overlapping the A-site and P-site substrate positions. It shares that binding pocket with the macrolides and streptogramin B, which is the structural reason for inducible cross-resistance through erm-mediated methylation of A2058. It does not inhibit the human 80S ribosome. Potency against Cutibacterium acnes is reported as a minimum inhibitory concentration rather than an affinity constant.',
+      structureSource: {
+        label:
+          'PubChem CID 446598 (clindamycin) — canonical SMILES, molecular formula and weight, as held on the record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/446598',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cli-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Configuration at C-7 and identity of the chlorine substitution',
+          description:
+            'Confirm the chlorine at the 7 position and its stereochemistry. Clindamycin is lincomycin with a hydroxyl replaced by chlorine with inversion of configuration, and that single substitution is what raised the potency and the oral absorption. The 7-epimer and residual lincomycin are the impurities that matter.',
+          reagentsAndBuffer:
+            'Clindamycin hydrochloride reference standard, reversed-phase HPLC with refractive index or evaporative light scattering detection, 1H NMR in D2O, chloride content by ion chromatography',
+        },
+        {
+          id: 'cli-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Phosphorylation to the inactive prodrug ester',
+          description:
+            'Esterify the 2-hydroxyl to give clindamycin phosphate, which is what actually goes into a topical or intravenous product. The phosphate ester has no antibacterial activity of its own: it is a solubility and stability device that skin and blood phosphatases undo.',
+          dependsOnStepId: 'cli-w1',
+          reagentsAndBuffer:
+            'Phosphorylating agent with protecting-group strategy, aqueous workup, pH-controlled crystallisation of the disodium or free acid form, residual solvent analysis by headspace GC',
+        },
+        {
+          id: 'cli-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separation of the prodrug from free clindamycin and hydrolysis products',
+          description:
+            'Quantify how much free clindamycin is already present in the finished product. A topical clindamycin phosphate lotion that has partly hydrolysed in the tube is delivering active drug to the surface before it reaches the follicle, which changes both the local exposure and the systemic one.',
+          dependsOnStepId: 'cli-w2',
+          reagentsAndBuffer:
+            'Gradient reversed-phase HPLC with ultraviolet detection at 210 nm, phosphate buffer mobile phase, accelerated stability at 40C and 75% relative humidity',
+        },
+        {
+          id: 'cli-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Percutaneous absorption and systemic exposure measurement',
+          description:
+            'Measure how much drug crosses intact skin into the systemic circulation. This experiment is not a formality: the entire colitis warning on a topical acne product rests on the fact that the answer is not zero, and the label says so in its first sentence about the topical formulation.',
+          dependsOnStepId: 'cli-w3',
+          reagentsAndBuffer:
+            'Franz diffusion cells with dermatomed human skin, or in vivo serial plasma sampling, LC-MS/MS quantification of clindamycin phosphate and free clindamycin, urinary excretion collection',
+        },
+        {
+          id: 'cli-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Cutibacterium acnes minimum inhibitory concentration and resistant-subpopulation counting',
+          description:
+            'Determine the minimum inhibitory concentration against clinical isolates, then plate the same sample on clindamycin-containing agar to count the resistant fraction separately. The second number is the one that moved in the 16-week clinical trial, and a susceptibility result reported without it hides the effect that matters most.',
+          dependsOnStepId: 'cli-w4',
+          reagentsAndBuffer:
+            'Cutibacterium acnes clinical isolates, anaerobic Brucella or reinforced clostridial agar, clindamycin-supplemented selective plates, erythromycin disc for inducible resistance detection, CLSI anaerobe methodology',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cli-a1',
+        category: 'failed',
+        title: 'Sixteen weeks alone multiplied the resistant bacteria more than sixteenfold',
+        laymanSummary:
+          'Seventy-nine patients were randomised to clindamycin gel or the identical gel with benzoyl peroxide added. By sixteen weeks the antibiotic-alone group had more than sixteen times as many clindamycin-resistant bacteria on their faces as when they started. The combination group had fewer.',
+        technicalDetails:
+          'Cunliffe and colleagues enrolled 79 patients aged 13 to 30 with facial Cutibacterium acnes counts of at least 10^4 colony-forming units per square centimetre and randomised them to clindamycin 1% with benzoyl peroxide 5% or to matching clindamycin 1% alone, twice daily for 16 weeks; 70 were analysed. Clindamycin-resistant C. acnes counts rose by more than 1,600% at week 16 on monotherapy and fell from baseline on the combination (P=0.018 between groups). Total C. acnes count also fell significantly more on the combination (P=0.002). Reduction in resistant organisms correlated with reduction in inflammatory lesions (r2=0.31, P=0.016) and total lesions (r2=0.28, P=0.027), and the combination reduced total, inflammatory and comedonal lesion counts significantly more (P<=0.046). This is a single-centre trial in 70 analysed patients, and it is the study the whole no-monotherapy convention rests on.',
+        evidenceSource: 'Cunliffe WJ, Holland KT, Bojar R, Levy SF. Clin Ther 2002;24:1117-1133 (PMID 12182256)',
+        doi: '10.1016/s0149-2918(02)80023-6',
+        measuredMetric:
+          'Clindamycin-resistant Cutibacterium acnes colony counts at 16 weeks, monotherapy against combination',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cli-a2',
+        category: 'failed',
+        title: 'The label’s Indications section tells the prescriber to consider something else',
+        laymanSummary:
+          'Most drug labels use the Indications section to say what the drug is for. This one says what it is for and then, in the same paragraph, tells the doctor to think about whether another treatment would be better, because of the risk of bloody diarrhoea and colitis from a lotion applied to a face.',
+        technicalDetails:
+          'The topical clindamycin phosphate lotion label reads: "Clindamycin phosphate topical lotion is indicated in the treatment of acne vulgaris. In view of the potential for diarrhea, bloody diarrhea and pseudomembranous colitis, the physician should consider whether other agents are more appropriate." The Warnings section opens by stating that orally and parenterally administered clindamycin has been associated with severe colitis which may result in patient death, then that use of the topical formulation results in absorption of the antibiotic from the skin surface, and that diarrhoea, bloody diarrhoea and colitis including pseudomembranous colitis have been reported with topical as well as systemic clindamycin. It directs that the drug be discontinued when significant diarrhoea occurs and warns that antiperistaltic agents may prolong or worsen the condition.',
+        evidenceSource:
+          'Clindamycin Phosphate Topical Lotion United States prescribing information, Indications and Usage and Warnings sections (ANDA 214604, openFDA label endpoint)',
+        measuredMetric:
+          'Regulatory label text — an indication qualified in its own first paragraph by a direction to consider alternatives',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cli-a3',
+        category: 'inferred',
+        title: 'No measurable advantage over benzoyl peroxide on any pooled outcome',
+        laymanSummary:
+          'Pooled across trials with more than two thousand patients, an antibiotic that carries a colitis warning performed the same as an over-the-counter oxidising cream that carries none.',
+        technicalDetails:
+          'The 2024 Cochrane overview reports that against clindamycin, benzoyl peroxide may have little to no effect on total lesion counts (MD -3.50, 95% CI -7.54 to 0.54; 1 trial, 641 participants), inflammatory lesion counts (MD -1.20, 95% CI -2.99 to 0.59), non-inflammatory lesion counts (MD -2.4, 95% CI -5.3 to 0.5), participant’s global self-assessment (RR 0.95, 95% CI 0.68 to 1.34; 1 trial, 240 participants), investigator’s global assessment (RR 1.10, 95% CI 0.83 to 1.45; 2 trials, 2,277 participants) or incidence of a less serious adverse event (RR 1.27, 95% CI 0.98 to 1.64; 5 trials, 2,842 participants). Certainty was very low or low for every estimate. The overview separately notes that no included review collected data comparing topical antibiotics with placebo at all.',
+        evidenceSource: 'Yuan Y et al., Cochrane Database Syst Rev 2024;10:CD014918 (PMID 39440650)',
+        doi: '10.1002/14651858.CD014918.pub2',
+        inferredClaim:
+          'That an antibiotic is the stronger option for inflammatory acne — every pooled comparison against benzoyl peroxide crosses no difference, and no pooled comparison against placebo exists at all',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cli-a4',
+        category: 'measured',
+        title: 'The triple combination beat all three of its own two-drug components',
+        laymanSummary:
+          'A gel with an antibiotic, an oxidiser and a retinoid in it was tested against each of the three possible pairs and against a dummy gel, in seven hundred and forty-one people. It beat every one of them.',
+        technicalDetails:
+          'A phase 2, double-blind, multicentre randomised 12-week study enrolled 741 participants aged 9 and over with moderate to severe acne, randomised equally to clindamycin phosphate 1.2%/benzoyl peroxide 3.1%/adapalene 0.15% gel, vehicle, or one of three component dyads. At week 12 treatment success — a two-grade reduction in Evaluator’s Global Severity Score plus clear or almost clear skin — was 52.5% on the triple against 8.1% on vehicle and 27.8% to 30.5% across the dyads, P<=0.001 for all. Absolute reductions in inflammatory (29.9) and non-inflammatory (35.5) lesions exceeded vehicle and all dyads (P<0.05, all), corresponding to more than 70% reduction. Registered as NCT03170388.',
+        evidenceSource:
+          'Stein Gold L et al., Am J Clin Dermatol 2022;23:93-104 (PMID 34674160; NCT03170388)',
+        doi: '10.1007/s40257-021-00650-3',
+        measuredMetric:
+          'Treatment success at week 12, triple combination against three dyads and vehicle in one randomised trial',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cli-a5',
+        category: 'inferred',
+        title: 'The confirmatory trials dropped the comparison that mattered',
+        laymanSummary:
+          'The finding that made the three-drug gel interesting was that it beat the two-drug versions. Neither of the two confirmatory trials that supported approval included a two-drug arm. Both compared it only with a gel containing nothing.',
+        technicalDetails:
+          'The two phase 3, double-blind 12-week studies randomised 183 and 180 participants aged 9 and over 2:1 to once-daily triple-combination gel or vehicle gel. Treatment success at week 12 was 49.6% and 50.5% against 24.9% and 20.5% on vehicle (P<0.01 both), with least-squares mean lesion reductions of 72.7% to 80.1% against 47.6% to 59.6% (P<0.001 all). Neither trial contained a dyad arm, so the superiority over two-drug combinations rests on the single phase 2 study. The authors list inter-observer bias and variation in acne severity ratings, limited treatment duration and population generalisability as limitations. Registered as NCT04214639 and NCT04214652; approved under NDA 216632.',
+        evidenceSource:
+          'Stein Gold L et al., J Am Acad Dermatol 2023;89:927-935 (PMID 37656094; NCT04214639, NCT04214652)',
+        doi: '10.1016/j.jaad.2022.08.069',
+        inferredClaim:
+          'That the three-drug gel is established as better than the two-drug gels — a single phase 2 trial made that comparison and neither confirmatory phase 3 trial repeated it',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cli-a6',
+        category: 'conclusion_shift',
+        title: 'Clindamycin resistance is real but far rarer than the reputation suggests',
+        laymanSummary:
+          'The story people tell is that acne antibiotics have stopped working because of resistance. Pooling thirty-nine studies, about three in a hundred acne bacteria were clindamycin-resistant. For erythromycin, the drug clindamycin largely replaced, it was thirty-seven in a hundred.',
+        technicalDetails:
+          'A random-effects meta-analysis of 39 studies estimated the pooled proportion of clindamycin-resistant Cutibacterium acnes isolates at 0.031 (95% CI 0.014 to 0.071). Erythromycin resistance was 0.366 (95% CI 0.302 to 0.434) and azithromycin 0.149 (95% CI 0.061 to 0.322); doxycycline 0.079, tetracycline 0.062 and minocycline 0.025. The authors’ own conclusion still describes a concerning increase in resistant C. acnes with antibiotic use in acne. Both readings are supportable and they are not in conflict: the population-level prevalence is low, and the within-patient selection effect demonstrated in the 16-week monotherapy trial is large. What a pooled prevalence cannot capture is what happens to one person’s own skin flora over a course of treatment.',
+        evidenceSource: 'Beig M et al., J Glob Antimicrob Resist 2024;39:82-91 (PMID 39179105)',
+        doi: '10.1016/j.jgar.2024.07.005',
+        inferredClaim:
+          'That topical clindamycin has been rendered ineffective by resistance — the pooled prevalence is around 3%, and the case against monotherapy rests on within-patient selection rather than on population-level failure',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Applied as an inactive ester that the skin switches on',
+        laymanDesc:
+          'What is in the bottle is not the working drug. It is a phosphate version with no antibacterial activity, which enzymes in the skin snip off to release the active molecule.',
+        molecularDetail:
+          'Clindamycin phosphate is a prodrug with no intrinsic antibacterial activity. Phosphatases in skin and plasma hydrolyse the 2-phosphate ester to free clindamycin. The ester exists for aqueous solubility and formulation stability, not for targeting, and its hydrolysis in the tube is a stability specification.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Some of it crosses the skin into the bloodstream',
+        laymanDesc:
+          'Not all of the drug stays where it is put. Enough passes through the skin to reach the rest of the body, and that is the entire reason a face lotion carries a warning about the bowel.',
+        molecularDetail:
+          'The topical label states directly that use of the topical formulation results in absorption of the antibiotic from the skin surface, and this is the stated basis for extending the systemic colitis warning to topical products. The absorbed fraction is small but not nil, and it reaches the colonic flora.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It plugs the bacterial protein factory',
+        laymanDesc:
+          'Inside the bacterium the drug jams itself into the exact spot where each new building block gets attached to a growing protein. The chain cannot be extended.',
+        molecularDetail:
+          'Clindamycin binds domain V of 23S rRNA in the 50S ribosomal subunit at the peptidyl transferase centre, overlapping the A-site and P-site substrate positions and blocking peptide bond formation and early chain elongation. It does not inhibit the human 80S ribosome, which is the basis for its selectivity.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Growth stops, and the survivors are the resistant ones',
+        laymanDesc:
+          'The bacteria stop multiplying rather than dying outright. Any organism that already carries a change in the target site keeps growing, and over weeks it inherits the space the others vacated.',
+        molecularDetail:
+          'Clindamycin is bacteriostatic against Cutibacterium acnes. Resistance arises from mutation at A2058 or G2057 in 23S rRNA or from erm-mediated methylation of A2058, which also confers macrolide cross-resistance because the binding pockets overlap. Sixteen weeks of monotherapy raised resistant colony counts by more than 1,600% in the controlled comparison.',
+        iconName: 'Bug',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Inflammatory lesions fall',
+        laymanDesc:
+          'Fewer bacteria and less inflammation mean fewer red spots. In the pooled comparisons this is the same amount of improvement an over-the-counter oxidising cream delivers.',
+        molecularDetail:
+          'Against benzoyl peroxide, pooled total lesion difference was MD -3.50 (95% CI -7.54 to 0.54) and investigator global assessment RR 1.10 (95% CI 0.83 to 1.45) across 2,277 participants, both crossing no difference. Clindamycin also has direct anti-inflammatory activity independent of bacterial killing, which is the proposed reason lesion counts fall faster than colony counts.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the endpoint does not measure',
+        laymanDesc:
+          'The trials count spots on a face. Nothing in that count shows what has happened to the bacteria living on the rest of the patient, and the one trial that did look found the answer was unflattering.',
+        molecularDetail:
+          'Lesion counts and Evaluator’s Global Severity Score are the registration endpoints. Resistant-subpopulation counting is not part of any pivotal acne trial programme and was measured in a separate 79-patient microbiology study, where the resistant fraction rose more than 1,600% on monotherapy over 16 weeks.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cunliffe 2002 clindamycin microbiology trial (PMID 12182256)',
+        phase: 'Single-centre, randomised, double-blind, parallel-group, active-controlled',
+        sampleSize: 79,
+        primaryEndpoint:
+          'Cutibacterium acnes and clindamycin-resistant C. acnes counts and lesion counts at 16 weeks, clindamycin/benzoyl peroxide against matching clindamycin alone',
+        endpointMet: true,
+        statisticalPValue:
+          'Total C. acnes P=0.002 and clindamycin-resistant count P=0.018 favouring combination; resistant counts rose more than 1,600% on clindamycin monotherapy. Lesion reductions P<=0.046',
+        unreportedAdverseSignals:
+          'The headline result is usually reported as the combination being more effective. The more consequential finding is what happened in the monotherapy arm, and it is a microbiological endpoint that no pivotal acne trial collects.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'IDP-126 phase 2, triple combination against three dyads (NCT03170388)',
+        phase: 'Phase 2, multicentre, randomised, double-blind, vehicle- and active-controlled',
+        sampleSize: 741,
+        primaryEndpoint:
+          'Treatment success at week 12 and absolute change in inflammatory and non-inflammatory lesion counts',
+        endpointMet: true,
+        statisticalPValue:
+          'Treatment success 52.5% against 8.1% vehicle and 27.8% to 30.5% across the three dyads, P<=0.001 for all; lesion reductions greater than every comparator, P<0.05',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'IDP-126 phase 3 trial 1 (NCT04214639)',
+        phase: 'Phase 3, double-blind, randomised, vehicle-controlled',
+        sampleSize: 183,
+        primaryEndpoint:
+          'Treatment success and change in inflammatory and non-inflammatory lesion counts at week 12 against vehicle',
+        endpointMet: true,
+        statisticalPValue:
+          '49.6% treatment success against 24.9% on vehicle, P<0.01; least-squares mean lesion reductions 72.7% to 80.1% against 47.6% to 59.6%, P<0.001',
+        unreportedAdverseSignals:
+          'Vehicle-controlled only. The dyad comparison that justified a three-drug product was not included, and the authors list inter-observer variation in severity ratings as a limitation.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'IDP-126 phase 3 trial 2 (NCT04214652)',
+        phase: 'Phase 3, double-blind, randomised, vehicle-controlled',
+        sampleSize: 180,
+        primaryEndpoint:
+          'Treatment success and change in inflammatory and non-inflammatory lesion counts at week 12 against vehicle',
+        endpointMet: true,
+        statisticalPValue: '50.5% treatment success against 20.5% on vehicle, P<0.01',
+        unreportedAdverseSignals:
+          'Same design limitation as the companion trial: no active comparator arm of any kind.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane overview pooled clindamycin against benzoyl peroxide (CD014918)',
+        phase: 'Overview of systematic reviews, pooled randomised evidence',
+        sampleSize: 2277,
+        primaryEndpoint:
+          'Investigator’s global assessment at 12 weeks, benzoyl peroxide against clindamycin',
+        endpointMet: false,
+        statisticalPValue:
+          'RR 1.10 (95% CI 0.83 to 1.45), 2 trials, very low-certainty evidence; every other pooled outcome in the comparison also crosses no difference',
+        unreportedAdverseSignals:
+          'The overview records that no included review collected data for topical antibiotics against placebo or against topical retinoids, so clindamycin has no pooled placebo comparison at all.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clindamycin-resistant Cutibacterium acnes counts rose more than 1,600% over 16 weeks of monotherapy and fell when benzoyl peroxide was added (P=0.018)',
+        'The combination reduced total, inflammatory and comedonal lesions more than clindamycin alone (P<=0.046)',
+        'Triple-combination gel produced 52.5% treatment success against 27.8% to 30.5% for the three dyads and 8.1% for vehicle in 741 randomised participants',
+        'Triple-combination gel produced 49.6% and 50.5% treatment success against 24.9% and 20.5% on vehicle in the two phase 3 trials',
+        'Pooled clindamycin resistance among C. acnes isolates is 3.1% (95% CI 1.4 to 7.1) across 39 studies, against 36.6% for erythromycin',
+      ],
+      unsupportedInferences: [
+        'That a topical antibiotic outperforms benzoyl peroxide in inflammatory acne — every pooled comparison crosses no difference',
+        'That the three-drug gel is established as better than the two-drug gels, when only the phase 2 trial made that comparison',
+        'That topical clindamycin is a local treatment — the label states it is absorbed from the skin surface and extends the systemic colitis warning to it',
+        'That resistance has made the drug ineffective, when population prevalence is around 3% and the demonstrated problem is within-patient selection',
+      ],
+      whatFailedInitially: [
+        'Monotherapy failed on its own microbiology, multiplying resistant organisms on patients’ faces more than sixteenfold in 16 weeks',
+        'The topical label qualifies its own Indications section with a direction to consider whether other agents are more appropriate',
+        'No pooled comparison of topical antibiotics against placebo exists in the 2024 Cochrane overview',
+        'Neither phase 3 trial of the triple combination retained the dyad comparison that made the product interesting',
+      ],
+      realWorldOutcome: [
+        'Approved in 1970 and still in first-line acne use, but effectively never as a single agent',
+        'Ninety-six listed products across all routes at a median United States acquisition cost of US$0.1684 per unit',
+        'Now most commonly dispensed inside a fixed combination, culminating in the triple-combination gel approved under NDA 216632',
+        'Carries the same colitis warning on a facial lotion as on an intravenous infusion, because the skin absorbs it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical lotion, gel, foam and solution for acne; oral capsules and intravenous solution for systemic infection',
+      description:
+        'The topical forms deliver clindamycin phosphate, an inactive ester that skin phosphatases hydrolyse to free clindamycin. The label states that the topical formulation is absorbed from the skin surface, which is why systemic warnings apply. Modern products almost always pair it with benzoyl peroxide, or with benzoyl peroxide and adapalene in a single fixed-dose gel, because monotherapy selects resistance on the treated skin.',
+      safetyProfile:
+        'The topical label carries the colitis warning written for the systemic drug: diarrhoea, bloody diarrhoea and colitis including pseudomembranous colitis have been reported with topical as well as systemic use, and orally or parenterally administered clindamycin has been associated with severe colitis which may result in patient death. The drug should be discontinued when significant diarrhoea occurs, and antiperistaltic agents may prolong or worsen the condition. Local effects are dryness, erythema, burning and peeling, at rates not distinguishable from benzoyl peroxide in the pooled comparisons (RR 1.27, 95% CI 0.98 to 1.64).',
+    },
+    commonQuestions: [
+      {
+        q: 'Can a cream really cause colitis?',
+        a: 'The label says it has been reported, and explains the mechanism in its first sentence about the topical form: use of the topical formulation results in absorption of the antibiotic from the skin surface. Enough drug reaches the bloodstream, and from there the colon, to disturb the gut flora that keeps Clostridioides difficile in check. The Warnings section opens by noting that orally and parenterally administered clindamycin has been associated with severe colitis which may result in patient death, and the topical Indications section itself says that in view of the potential for diarrhoea, bloody diarrhoea and pseudomembranous colitis, the physician should consider whether other agents are more appropriate. It is rare. It is also the reason this drug is not a first choice on its own.',
+        auditNote:
+          'An Indications section that qualifies itself with a suggestion to use something else is unusual enough to be worth reading in the original.',
+      },
+      {
+        q: 'Why is it never prescribed on its own any more?',
+        a: 'Because of one trial and its microbiology. Seventy-nine patients were randomised to clindamycin gel or the identical gel with benzoyl peroxide in it, for sixteen weeks, with bacterial counts taken from their faces. On clindamycin alone, the number of clindamycin-resistant organisms rose by more than 1,600%. On the combination it fell. And the patients whose resistant counts fell were the patients whose spots cleared — the two correlated. Benzoyl peroxide has no target for a bacterium to mutate, so pairing them lets the antibiotic work without breeding its own replacement.',
+      },
+      {
+        q: 'Is it stronger than benzoyl peroxide?',
+        a: 'The pooled evidence says no. On total lesion counts the difference was -3.50 with a confidence interval from -7.54 to 0.54. On the patient’s own assessment, 0.95 with an interval from 0.68 to 1.34. On the investigator’s assessment, across 2,277 participants, 1.10 with an interval from 0.83 to 1.45. Every one of those crosses no difference, and every one is graded low or very low certainty. There is also no pooled comparison of topical antibiotics against placebo anywhere in the Cochrane overview, which is a striking gap for a drug class in use since 1970.',
+      },
+      {
+        q: 'Has resistance made acne antibiotics useless?',
+        a: 'Not on the numbers, and the numbers are less alarming than the reputation. Pooling 39 studies, 3.1% of Cutibacterium acnes isolates were clindamycin-resistant, with a confidence interval from 1.4% to 7.1%. Erythromycin, the drug clindamycin largely displaced, sits at 36.6%. So the population prevalence is low. What is genuinely established is the within-patient effect: a course of monotherapy reshapes one person’s own skin flora towards resistance within months. Those two facts are both true, and the second is the one that drives how the drug is used.',
+        auditNote:
+          'The authors of that meta-analysis still describe a concerning increase in resistant organisms. Reporting the pooled figure without their conclusion, or their conclusion without the figure, would each be a partial reading.',
+      },
+      {
+        q: 'Is the three-drug gel worth it over the two-drug one?',
+        a: 'One trial says yes and the two trials that mattered for approval did not ask. In a 741-person phase 2 study the triple gel achieved 52.5% treatment success against 27.8% to 30.5% for each of the three two-drug combinations and 8.1% for vehicle. That is a genuine and well-designed comparison. The two phase 3 trials that followed randomised 183 and 180 people against vehicle only, and reported 49.6% and 50.5% against 24.9% and 20.5%. So the vehicle-controlled result has been replicated and the comparison against the two-drug alternatives has not. The phase 3 authors also list inter-observer variation in acne severity ratings among their limitations, which is a fair caution about every number on this page.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Cunliffe WJ, Holland KT, Bojar R, Levy SF. A randomized, double-blind comparison of a clindamycin phosphate/benzoyl peroxide gel formulation and a matching clindamycin gel with respect to microbiologic activity and clinical efficacy in the topical treatment of acne vulgaris. Clin Ther 2002;24:1117-1133',
+        identifier: '10.1016/s0149-2918(02)80023-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Yuan Y et al. Topical, light-based, and complementary interventions for acne: an overview of systematic reviews. Cochrane Database Syst Rev 2024;10:CD014918',
+        identifier: '10.1002/14651858.CD014918.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stein Gold L et al. Efficacy and safety of a fixed-dose clindamycin phosphate 1.2%, benzoyl peroxide 3.1%, and adapalene 0.15% gel for moderate-to-severe acne: a randomized phase II study of the first triple-combination drug. Am J Clin Dermatol 2022;23:93-104',
+        identifier: '10.1007/s40257-021-00650-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Stein Gold L et al. Clindamycin phosphate 1.2%/adapalene 0.15%/benzoyl peroxide 3.1% gel for moderate-to-severe acne: efficacy and safety results from two randomized phase 3 trials. J Am Acad Dermatol 2023;89:927-935',
+        identifier: '10.1016/j.jaad.2022.08.069',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Beig M et al. Prevalence of antibiotic-resistant Cutibacterium acnes (formerly Propionibacterium acnes) isolates, a systematic review and meta-analysis. J Glob Antimicrob Resist 2024;39:82-91',
+        identifier: '10.1016/j.jgar.2024.07.005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Clindamycin Phosphate Topical Lotion United States prescribing information, Indications and Usage and Warnings — ANDA 214604, retrieved from the openFDA label endpoint',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA214604%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'IDP-126 triple combination phase 2 trial registration record, 741 participants',
+        identifier: 'NCT03170388',
+        kind: 'nct',
+      },
+      {
+        label: 'IDP-126 triple combination phase 3 trial registration record, 183 participants',
+        identifier: 'NCT04214639',
+        kind: 'nct',
+      },
+      {
+        label: 'IDP-126 triple combination phase 3 trial registration record, 180 participants',
+        identifier: 'NCT04214652',
+        kind: 'nct',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 5. Tacrolimus ointment — a boxed warning issued in 2006 on animal data and case reports, and
+  //    the 2021 meta-analysis of 408,366 treated people that half-confirmed it.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tacrolimus',
+    name: 'Tacrolimus',
+    tradeName: 'Protopic (ointment) / Prograf, Astagraf XL, Envarsus XR (systemic)',
+    sponsor:
+      'Discovered by Fujisawa, now Astellas; the topical ointment was approved as Protopic under NDA 050777 and that application is now held by LEO Pharma',
+    targetGene:
+      'FKBP1A, and through it PPP3CA and PPP3R1 — the FK506-binding protein 12 gene and the calcineurin catalytic and regulatory subunit genes',
+    targetProtein:
+      'The tacrolimus–FKBP-12 complex, which binds and inhibits the calcium-dependent phosphatase calcineurin',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1994,
+    indication:
+      'The ointment is indicated as second-line therapy for the short-term and non-continuous chronic treatment of moderate to severe atopic dermatitis in non-immunocompromised adults and children aged 2 and over who have failed to respond adequately to other topical prescription treatments, or for whom those treatments are not advisable. The oral and intravenous forms are indicated for prophylaxis of organ rejection after liver, kidney or heart transplantation',
+    patientFriendlyIndication:
+      'Moderate to severe eczema, when steroid creams have not worked or cannot be used',
+    anatomicalSite:
+      'The skin-resident T lymphocyte and Langerhans cell — tacrolimus acts on the immune cells in the dermis and epidermis, not on the keratinocyte',
+    conditionContext: {
+      conditionExplainer:
+        'Atopic dermatitis is an immune reaction against the person’s own skin, sustained by T cells that keep arriving and keep signalling. Steroid creams shut that down broadly and, applied for long enough to the wrong place, thin the skin permanently. Tacrolimus interrupts one specific step in T-cell activation and does not thin skin, which is why it exists.',
+      whyItMatters:
+        'This is the clearest case in dermatology of a regulator acting on a theory. In 2006 the FDA put a boxed cancer warning on a skin ointment on the strength of animal studies and case reports, because the same molecule swallowed by transplant patients raises lymphoma risk. Fifteen years later a meta-analysis of more than 400,000 treated people gave a genuinely mixed answer, and that answer is the spine of this page.',
+      whoTakesThis:
+        'Adults and children aged 2 and over with moderate to severe eczema that steroids have not controlled, or on sites — face, eyelids, skin folds — where steroids would thin the skin quickly.',
+      clinicalGoals:
+        'A physician-graded improvement in eczema severity and less itch. The label’s own wording constrains the goal further: short-term and non-continuous use, second line, on areas of involvement only.',
+    },
+    oneSentenceVerdict:
+      'A macrolide that jams the calcium-triggered switch inside T cells so they cannot transcribe interleukin-2 — 36.8% of adults reached a 90% improvement against 6.6% on vehicle in 632 randomised patients, it matches a potent steroid without thinning skin, and it carries a 2006 boxed cancer warning that a 2021 meta-analysis of 408,366 treated people neither confirmed for cancer overall (RR 1.03, 95% CI 0.92 to 1.16) nor dismissed for lymphoma (RR 1.86, 95% CI 1.39 to 2.49).',
+    laymanHowItWorks:
+      'When a T cell decides to attack, calcium floods in and flips a molecular switch called calcineurin, which releases a messenger that travels to the nucleus and turns on the genes for inflammation. Tacrolimus grabs a small protein already inside the cell, and the pair together clamp onto calcineurin and hold it shut. The messenger never gets released, the inflammation genes stay off, and the eczema settles. Because it acts on immune cells rather than on the structure of the skin, it does not thin the skin the way a steroid does — which is the entire reason it is used on faces and eyelids.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 72,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.6591 per unit, the median United States pharmacy acquisition cost across 86 listed tacrolimus products of all routes (CMS NADAC, generic, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'The ointment has been generic since the Protopic patents expired, and 86 tacrolimus products across all routes are listed in the CMS survey. The molecule is a fermentation product of Streptomyces tsukubaensis rather than a synthetic compound, which puts a floor under manufacturing cost that a purely synthetic small molecule does not have.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The comparison that matters is against topical corticosteroids, and the 2005 BMJ meta-analysis made it carefully: tacrolimus 0.1% matches a potent steroid, tacrolimus 0.03% is beaten by one, both burn more than steroids do, and no study has demonstrated the long-term safety advantage that is the whole argument for using them.',
+      conventionalRx: [
+        {
+          name: 'Potent topical corticosteroid (for example hydrocortisone butyrate 0.1%)',
+          class: 'Glucocorticoid receptor agonist',
+          howItCompares:
+            'Tacrolimus 0.1% was as effective as potent topical corticosteroids at three weeks in the pooled analysis, and more effective than a combined potent-on-trunk, weak-on-face regimen at 12 weeks (NNT 6). Tacrolimus 0.03% was less effective than hydrocortisone butyrate 0.1% (NNT -8). Steroids do not burn on application; tacrolimus does.',
+          typicalCost: 'Varies by molecule and strength; most potent topical steroids are generic',
+          prosAndCons:
+            'Pros: cheaper, faster, no burning, no boxed warning. Cons: skin atrophy, telangiectasia and striae with prolonged use, particularly on the face, eyelids and skin folds — which is the specific problem tacrolimus was introduced to solve.',
+        },
+        {
+          name: 'Weak topical corticosteroid (hydrocortisone acetate 1%)',
+          class: 'Glucocorticoid receptor agonist',
+          howItCompares:
+            'Both tacrolimus strengths beat it: NNT 4 for 0.1% and NNT 5 for 0.03% in the pooled comparison. This is the comparison most favourable to tacrolimus and the one most often quoted.',
+          typicalCost: 'Available over the counter in many countries at negligible cost',
+          prosAndCons:
+            'Pros: extremely well tolerated and safe on the face. Cons: often not strong enough for moderate to severe disease, which is why the comparison flatters the alternative.',
+        },
+        {
+          name: 'Pimecrolimus cream 1% (Elidel)',
+          class: 'The other topical calcineurin inhibitor',
+          howItCompares:
+            'Far less effective than betamethasone valerate 0.1% (NNT -3 at three weeks) in the same pooled analysis, and the reviewers concluded that in the absence of key comparisons against mild corticosteroids, the clinical need for it is unclear. It shares the boxed warning.',
+          typicalCost: 'Available generically; priced separately from tacrolimus ointment',
+          prosAndCons:
+            'Pros: less burning than tacrolimus in most comparisons, and licensed for mild to moderate disease. Cons: the pooled evidence puts it well behind both tacrolimus and a potent steroid.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'The burning is expected and it fades',
+          action:
+            'Skin burning on application is the characteristic adverse effect of both topical calcineurin inhibitors.',
+          patientImpact:
+            'The pooled analysis found significantly more skin burning with tacrolimus and pimecrolimus than with topical corticosteroids. Rates of skin infection did not differ in any comparison, which is a reassurance that matters for a drug that suppresses local immunity.',
+          clinicalPrecaution:
+            'Burning that does not settle, or spreading infection of treated skin, are reasons to consult a clinician rather than continue.',
+        },
+        {
+          name: 'Read what the label actually licenses',
+          action:
+            'The indication is second-line, short-term and non-continuous, in non-immunocompromised people aged 2 and over.',
+          patientImpact:
+            'The boxed warning instructs that continuous long-term use in any age group be avoided and that application be limited to areas of involvement. Only the 0.03% strength is indicated for children aged 2 to 15, and neither strength is indicated below age 2.',
+          clinicalPrecaution:
+            'Those constraints come from the boxed warning, not from evidence that continuous use is harmful — the warning states plainly that a causal relationship has not been established.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@@H]1C[C@@H]([C@@H]2[C@H](C[C@H]([C@@](O2)(C(=O)C(=O)N3CCCC[C@H]3C(=O)O[C@@H]([C@@H]([C@H](CC(=O)[C@@H](/C=C(/C1)\\C)CC=C)O)C)/C(=C/[C@@H]4CC[C@H]([C@@H](C4)OC)O)/C)O)C)OC)OC',
+      chemicalFormula: 'C44H69NO12',
+      molecularWeight: '804.00 g/mol',
+      targetReceptorAffinity:
+        'Binds FK506-binding protein 12 (FKBP-12) with nanomolar affinity. Neither tacrolimus nor FKBP-12 alone inhibits calcineurin; the composite surface of the two together is what binds the calcineurin A/B heterodimer and blocks substrate access to its active site. Molecular weight 804 g/mol is high for a topical drug, which is the reason systemic absorption through intact skin is low and why the ointment’s systemic exposure is far below the transplant range.',
+      structureSource: {
+        label:
+          'PubChem CID 445643 (tacrolimus) — canonical SMILES, molecular formula and weight, as held on the record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445643',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tac-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Fermentation broth identity and tautomer ratio',
+          description:
+            'Confirm the producing organism and assay the broth. Tacrolimus is made by Streptomyces tsukubaensis, not by synthesis, and it exists in solution as an equilibrium of two rotamers about the pipecolinyl amide. An assay method that does not resolve or deliberately coalesce them will report the wrong potency.',
+          reagentsAndBuffer:
+            'Streptomyces tsukubaensis culture, tacrolimus reference standard, HPLC at elevated column temperature to coalesce rotamers, 1H NMR in CDCl3 for rotamer ratio, LC-MS for related macrolides',
+        },
+        {
+          id: 'tac-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Extraction from broth and formulation into a petrolatum-based ointment',
+          description:
+            'Extract, then formulate into white petrolatum with mineral oil and propylene carbonate. The vehicle is not incidental: an 804-dalton macrolide does not cross intact stratum corneum easily, and the ointment base exists to hold it against inflamed, barrier-disrupted skin long enough for it to get in.',
+          dependsOnStepId: 'tac-w1',
+          reagentsAndBuffer:
+            'Organic solvent extraction from fermentation broth, white petrolatum, mineral oil, propylene carbonate, white wax and paraffin, controlled-temperature melt and cool',
+        },
+        {
+          id: 'tac-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Chromatographic purification and related-substance profiling',
+          description:
+            'Separate tacrolimus from the structurally similar macrolides the same organism makes. This matters more than for a synthetic drug: a fermentation stream contains congeners that differ by a methyl or a hydroxyl and that co-elute unless the method is developed against them specifically.',
+          dependsOnStepId: 'tac-w2',
+          reagentsAndBuffer:
+            'Preparative reversed-phase chromatography, acetonitrile-water gradient, ascomycin and 8-epi-tacrolimus as marker impurities, evaporative light scattering or mass detection',
+        },
+        {
+          id: 'tac-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Penetration through intact against barrier-disrupted skin',
+          description:
+            'Measure flux across both healthy and tape-stripped skin. The two answers should differ substantially, and that difference is the pharmacological argument of the whole product: the drug reaches inflamed skin where the barrier is broken, and largely does not reach intact skin once the eczema resolves.',
+          dependsOnStepId: 'tac-w3',
+          reagentsAndBuffer:
+            'Franz cells with intact and tape-stripped human skin, receptor fluid with solubiliser for a lipophilic macrolide, LC-MS/MS quantification in receptor fluid and in skin layers, blood sampling in vivo for systemic exposure',
+        },
+        {
+          id: 'tac-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Calcineurin phosphatase inhibition and IL-2 transcription readout',
+          description:
+            'Measure calcineurin phosphatase activity directly, then measure interleukin-2 transcription in stimulated primary T cells. The first is the biochemistry and the second is the biology, and only the second speaks to what the drug does in skin. Reporting the enzyme number alone is the most common way this mechanism gets overstated.',
+          dependsOnStepId: 'tac-w4',
+          reagentsAndBuffer:
+            'Recombinant calcineurin A/B with calmodulin and RII phosphopeptide substrate, primary human T cells stimulated with anti-CD3/anti-CD28 or PMA/ionomycin, quantitative PCR and ELISA for IL-2, NFAT nuclear translocation imaging',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tac-a1',
+        category: 'measured',
+        title: '632 adults, and a fivefold separation from vehicle',
+        laymanSummary:
+          'In two randomised blinded trials, about one in three adults on the stronger ointment improved by ninety per cent or more. On the ointment base with no drug in it, about one in fifteen did.',
+        technicalDetails:
+          'Hanifin and colleagues pooled two randomised, double-blind studies in 632 adults with atopic dermatitis applying tacrolimus ointment 0.03% or 0.1% or vehicle twice daily for up to 12 weeks. Mean body surface area affected at baseline was 45% and 56% had severe disease. A 90% or greater improvement from baseline was reached by 6.6% on vehicle, 27.5% on 0.03% and 36.8% on 0.1% (P<0.001); 50% or better improvement by 19.8%, 61.6% and 72.7%. Tacrolimus was significantly better than vehicle on every parameter measured, including body surface area affected, individual sign scores, patient-assessed pruritus and the Eczema Area and Severity Index. The 0.1% strength outperformed 0.03%, particularly in severe or extensive disease and in African American patients.',
+        evidenceSource: 'Hanifin JM et al., J Am Acad Dermatol 2001;44:S28-S38 (PMID 11145793)',
+        doi: '10.1067/mjd.2001.109810',
+        measuredMetric:
+          'Proportion reaching 90% or greater and 50% or greater improvement at up to 12 weeks against vehicle',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tac-a2',
+        category: 'failed',
+        title: 'The weaker strength lost to an ordinary steroid ointment',
+        laymanSummary:
+          'The strength licensed for children was compared with a potent steroid ointment and came off worse. The stronger adult strength matched the steroid. Neither burned less — both burned more.',
+        technicalDetails:
+          'Ashcroft and colleagues pooled 25 randomised controlled trials in which 4,186 of 6,897 participants received pimecrolimus or tacrolimus. Tacrolimus 0.1% was as effective as potent topical corticosteroids at three weeks and more effective than combined hydrocortisone butyrate 0.1% on trunk plus hydrocortisone acetate 1% on face at 12 weeks (NNT 6), and more effective than hydrocortisone acetate 1% alone (NNT 4). Tacrolimus 0.03% was more effective than hydrocortisone acetate 1% (NNT 5) but less effective than hydrocortisone butyrate 0.1% (NNT -8). Direct comparison of the two strengths favoured 0.1%, significantly so only after 12 weeks (rate ratio 0.80, 95% CI 0.65 to 0.99). Both calcineurin inhibitors caused significantly more skin burning than topical corticosteroids; rates of skin infection did not differ in any comparison.',
+        evidenceSource: 'Ashcroft DM et al., BMJ 2005;330:516 (PMID 15731121)',
+        doi: '10.1136/bmj.38376.439653.D3',
+        measuredMetric:
+          'Number needed to treat against topical corticosteroid comparators, pooled across 25 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tac-a3',
+        category: 'inferred',
+        title: 'The reason to use it has never been demonstrated',
+        laymanSummary:
+          'The argument for a calcineurin inhibitor is that it spares skin from the thinning steroids cause over years. The pooled reviewers looked for studies showing that long-term safety gain and found none, and said so.',
+        technicalDetails:
+          'The BMJ meta-analysis concluded that both drugs are more effective than placebo treatments, "but in the absence of studies that show long term safety gains, any advantage over topical corticosteroids is unclear". It adds that topical tacrolimus is similar to potent topical corticosteroids and may have a place for long-term use on sites where corticosteroid side effects develop quickly, and that the usefulness of either treatment in patients who have failed to respond adequately to topical corticosteroids is also unclear — which is precisely the population the label licenses it for. The trials were three to twelve weeks long; skin atrophy from corticosteroids is a multi-year problem, so the comparison that would settle the question has never been run at the necessary duration.',
+        evidenceSource: 'Ashcroft DM et al., BMJ 2005;330:516 (PMID 15731121)',
+        doi: '10.1136/bmj.38376.439653.D3',
+        inferredClaim:
+          'That tacrolimus ointment is preferable to a topical steroid because it spares the skin over the long term — biologically well grounded, clinically routine, and never demonstrated in a trial long enough to measure it',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tac-a4',
+        category: 'conclusion_shift',
+        title: 'A boxed warning issued on theory, half-confirmed fifteen years later',
+        laymanSummary:
+          'In 2006 the regulator put a cancer warning on the ointment because the same drug swallowed by transplant patients raises lymphoma risk, and because of animal studies and scattered case reports. A meta-analysis of more than four hundred thousand treated people later found no overall cancer signal — but did find a lymphoma one.',
+        technicalDetails:
+          'Lam and colleagues pooled eight cohort studies (408,366 treated participants, 1,764,313 non-active comparator controls, 1,067,280 topical corticosteroid controls) and three case-control studies (3,898 cases, 14,026 cancer-free controls), from 2,464 non-duplicate records. There was no association between topical calcineurin inhibitor use and cancer overall against non-active comparators (RR 1.03, 95% CI 0.92 to 1.16), and no significant association with melanoma or keratinocyte carcinoma. Lymphoma risk was elevated against both non-active comparators (RR 1.86, 95% CI 1.39 to 2.49) and topical corticosteroid comparators (RR 1.35, 95% CI 1.13 to 1.61). The authors conclude that combined with the low absolute risk of lymphoma, the increase attributable to these drugs for any individual patient is likely very small. Confounding by indication is the standing objection: more severe atopic dermatitis both attracts second-line treatment and is itself associated with lymphoma, and observational data cannot separate the two.',
+        evidenceSource: 'Lam M, Zhu JW, Tadrous M, Drucker AM. JAMA Dermatol 2021;157:549-558 (PMID 33787818)',
+        doi: '10.1001/jamadermatol.2021.0345',
+        inferredClaim:
+          'That the 2006 boxed warning was either vindicated or refuted — the pooled data show no overall cancer excess and a real lymphoma association of uncertain causality, which is neither',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tac-a5',
+        category: 'inferred',
+        title: 'The boxed warning says in its own text that causality is not established',
+        laymanSummary:
+          'The warning is worth reading rather than summarising. It states that although a causal relationship has not been established, rare cases of skin cancer and lymphoma have been reported — and then instructs that continuous long-term use be avoided in any age group.',
+        technicalDetails:
+          'The boxed warning reads in full: "Long-term Safety of Topical Calcineurin Inhibitors Has Not Been Established. Although a causal relationship has not been established, rare cases of malignancy (e.g., skin and lymphoma) have been reported in patients treated with topical calcineurin inhibitors, including tacrolimus ointment. Therefore: Continuous long-term use of topical calcineurin inhibitors, including tacrolimus ointment, in any age group should be avoided, and application limited to areas of involvement with atopic dermatitis. Tacrolimus ointment is not indicated for use in children less than 2 years of age. Only 0.03% tacrolimus ointment is indicated for use in children 2-15 years of age." The Indications section correspondingly restricts the drug to second-line, short-term and non-continuous chronic use in non-immunocompromised patients who have failed other topical prescription treatments. A restriction derived from an explicitly non-causal association is a regulatory judgment about uncertainty, not a finding about the drug.',
+        evidenceSource:
+          'Tacrolimus ointment United States prescribing information, boxed warning and Indications and Usage (ANDA 200744, openFDA label endpoint); Protopic original approval NDA 050777, 8 December 2000',
+        inferredClaim:
+          'That the boxed warning records a demonstrated harm — its own first clause states that a causal relationship has not been established, and the restrictions follow from the uncertainty rather than from evidence of injury',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tac-a6',
+        category: 'measured',
+        title: 'No excess skin infection, which for an immunosuppressant is not obvious',
+        laymanSummary:
+          'A drug that switches off local immune cells might reasonably be expected to let infections take hold in treated skin. Across all the pooled comparisons, it did not.',
+        technicalDetails:
+          'In the BMJ meta-analysis of 25 randomised controlled trials, rates of skin infections did not differ in any of the comparisons, including against vehicle and against topical corticosteroids. This is a genuine negative finding rather than an absence of data, and it constrains the plausible magnitude of local immunosuppression at the concentrations reached through skin. It does not extend to the systemic drug, whose transplant indication carries an explicit increased-risk-of-infection warning, nor does it address herpetic infection specifically, which the ointment label handles separately.',
+        evidenceSource: 'Ashcroft DM et al., BMJ 2005;330:516 (PMID 15731121)',
+        doi: '10.1136/bmj.38376.439653.D3',
+        measuredMetric:
+          'Proportion of patients with skin infections, pooled across all comparisons in 25 randomised trials',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A heavy molecule that only gets in where the skin is broken',
+        laymanDesc:
+          'Tacrolimus is large for a drug that has to cross skin. It penetrates inflamed, cracked eczema skin far better than healthy skin — so as the eczema improves, less of it gets through.',
+        molecularDetail:
+          'Molecular weight 804 g/mol, well above the rule-of-thumb ceiling for passive percutaneous absorption. Penetration is substantially higher through barrier-disrupted skin than intact stratum corneum, which produces a self-limiting exposure profile: systemic concentrations from the ointment sit far below the trough concentrations targeted in transplantation.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It captures a protein already inside the cell',
+        laymanDesc:
+          'On its own the drug does nothing. Inside a T cell it grabs a small resident protein, and only the two of them stuck together have any effect.',
+        molecularDetail:
+          'Tacrolimus binds FK506-binding protein 12 with nanomolar affinity. Neither partner inhibits calcineurin alone: the composite surface formed by the drug-protein complex is the actual inhibitor, which is why this class is described as acting through a gain-of-function rather than by occupying an active site.',
+        iconName: 'Link',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The pair clamp shut the calcium switch',
+        laymanDesc:
+          'When a T cell is triggered, calcium floods in and activates an enzyme that releases the signal for inflammation. The drug complex jams that enzyme.',
+        molecularDetail:
+          'The tacrolimus–FKBP-12 complex binds the calcineurin A/B heterodimer at a composite surface adjacent to the active site, sterically blocking access of the substrate NFAT to the phosphatase. Calcineurin is the only calcium- and calmodulin-dependent protein phosphatase in the cell, which is the basis for the selectivity of the effect.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The inflammation genes are never switched on',
+        laymanDesc:
+          'Without that enzyme, the messenger cannot move into the nucleus, and the genes that summon more immune cells stay silent.',
+        molecularDetail:
+          'NFAT remains phosphorylated and cytoplasmic, so it cannot assemble with AP-1 on the promoters of IL-2, IL-3, IL-4, IL-5, GM-CSF, TNF-alpha and interferon-gamma. Tacrolimus additionally reduces FcεRI expression on Langerhans cells and inhibits mast cell and basophil mediator release, which is the proposed basis for the rapid effect on itch.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Eczema clears, and the skin does not thin',
+        laymanDesc:
+          'About a third of adults on the stronger ointment improve by ninety per cent or more. Because the drug never touches the machinery that makes collagen, it does not cause the skin thinning that steroids do.',
+        molecularDetail:
+          '90% or greater improvement in 36.8% on 0.1% and 27.5% on 0.03% against 6.6% on vehicle in 632 randomised adults (P<0.001). Tacrolimus does not act on the glucocorticoid receptor and does not suppress dermal fibroblast collagen synthesis, so telangiectasia, striae and atrophy are not features of it.',
+        iconName: 'Sparkles',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the endpoint does not measure',
+        laymanDesc:
+          'The trials ran for three to twelve weeks. The reason to choose this drug over a steroid is what happens over years, and no trial has been long enough to measure it. The cancer question has only ever been answered by observational data.',
+        molecularDetail:
+          'The pooled reviewers state that in the absence of studies showing long-term safety gains, any advantage over topical corticosteroids is unclear. The 2021 cancer meta-analysis rests entirely on eight cohort and three case-control studies; no randomised trial has ever been powered for malignancy, and confounding by disease severity cannot be excluded from the lymphoma association.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Tacrolimus ointment adult pivotal programme (PMID 11145793)',
+        phase: 'Two randomised, double-blind, vehicle-controlled 12-week studies, pooled',
+        sampleSize: 632,
+        primaryEndpoint:
+          'Physician’s global evaluation of clinical response, with body surface area, EASI and patient-assessed pruritus',
+        endpointMet: true,
+        statisticalPValue:
+          '90% or greater improvement in 6.6% vehicle, 27.5% tacrolimus 0.03% and 36.8% tacrolimus 0.1% (P<0.001); 50% or greater improvement in 19.8%, 61.6% and 72.7%',
+        unreportedAdverseSignals:
+          'Vehicle-controlled only. No corticosteroid comparator arm existed in the registration programme, so the comparison that determines whether the drug should be used had to be assembled later from separate trials.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Ashcroft 2005 pooled calcineurin-inhibitor meta-analysis (PMID 15731121)',
+        phase: 'Systematic review and meta-analysis of 25 randomised controlled trials',
+        sampleSize: 6897,
+        primaryEndpoint:
+          'Investigators’ and patients’ global assessment of response, flares, quality of life, withdrawal and tolerability against vehicle and against topical corticosteroids',
+        endpointMet: true,
+        statisticalPValue:
+          'Tacrolimus 0.1% equal to potent corticosteroids at 3 weeks; NNT 6 against a combined steroid regimen at 12 weeks and NNT 4 against hydrocortisone acetate 1%. Tacrolimus 0.03% NNT -8 against hydrocortisone butyrate 0.1%. Strength comparison rate ratio 0.80 (95% CI 0.65 to 0.99) at 12 weeks',
+        unreportedAdverseSignals:
+          'Significantly more skin burning than topical corticosteroids for both calcineurin inhibitors. The reviewers state that no study demonstrates the long-term safety gain that is the reason for using the class at all.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Lam 2021 topical calcineurin inhibitor cancer meta-analysis (PMID 33787818)',
+        phase: 'Systematic review and meta-analysis of 8 cohort and 3 case-control studies',
+        sampleSize: 408366,
+        primaryEndpoint:
+          'Risk of cancer overall and of lymphoma, melanoma and keratinocyte carcinoma with topical calcineurin inhibitor use',
+        endpointMet: false,
+        statisticalPValue:
+          'Cancer overall RR 1.03 (95% CI 0.92 to 1.16) against non-active comparators; lymphoma RR 1.86 (95% CI 1.39 to 2.49) against non-active and RR 1.35 (95% CI 1.13 to 1.61) against topical corticosteroids; no significant association with melanoma or keratinocyte carcinoma',
+        unreportedAdverseSignals:
+          'Entirely observational. Confounding by indication is unresolved: severe atopic dermatitis is itself associated with lymphoma and is also what leads to a second-line drug being prescribed. No randomised trial has ever been powered for malignancy.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '90% or greater improvement in 36.8% on tacrolimus 0.1% and 27.5% on 0.03% against 6.6% on vehicle in 632 randomised adults (P<0.001)',
+        '50% or greater improvement in 72.7%, 61.6% and 19.8% respectively in the same programme',
+        'Tacrolimus 0.1% as effective as potent topical corticosteroids at three weeks, NNT 6 against a combined steroid regimen at 12 weeks',
+        'Tacrolimus 0.03% less effective than hydrocortisone butyrate 0.1%, NNT -8',
+        'No association with cancer overall (RR 1.03, 95% CI 0.92 to 1.16) and an association with lymphoma (RR 1.86, 95% CI 1.39 to 2.49) across 408,366 treated participants',
+        'No difference in skin infection rates in any pooled comparison, including against vehicle',
+      ],
+      unsupportedInferences: [
+        'That the boxed warning documents a demonstrated harm — its own text states a causal relationship has not been established',
+        'That the lymphoma association is causal, when severe eczema itself carries that risk and is what leads to the drug being prescribed',
+        'That tacrolimus is safer than a steroid over years, which is the reason it is chosen and has never been tested at that duration',
+        'That effectiveness in trials of people who had not failed steroids transfers to the steroid-refractory population the label licenses it for',
+      ],
+      whatFailedInitially: [
+        'The 0.03% strength, the only one licensed for children, lost to a potent topical corticosteroid (NNT -8)',
+        'Both calcineurin inhibitors burn on application significantly more than topical corticosteroids do',
+        'The pooled reviewers could find no study demonstrating the long-term safety advantage that justifies the class',
+        'The reviewers also state that usefulness in patients who failed topical corticosteroids is unclear, which is the licensed indication',
+      ],
+      realWorldOutcome: [
+        'Approved as an ointment under NDA 050777 on 8 December 2000, now generic and held by LEO Pharma',
+        'Carries a boxed warning added in 2006 restricting it to non-continuous use on involved areas only, in people aged 2 and over',
+        'Remains the standard second-line option for eczema on the face, eyelids and skin folds, where steroid atrophy appears fastest',
+        'Eighty-six listed tacrolimus products across all routes at a median United States acquisition cost of US$0.6591 per unit',
+      ],
+    },
+    deliverySystem: {
+      type: 'Topical ointment at 0.03% and 0.1% in a petrolatum base',
+      description:
+        'A white petrolatum ointment rather than a cream, because an 804-dalton macrolide needs prolonged occlusive contact to cross skin at all. Penetration is far greater through the disrupted barrier of active eczema than through intact skin, so exposure falls as the disease improves. Systemic concentrations achieved this way are far below the trough levels targeted when the same molecule is used to prevent transplant rejection.',
+      safetyProfile:
+        'Boxed warning: long-term safety has not been established, and although a causal relationship has not been established, rare cases of skin malignancy and lymphoma have been reported with topical calcineurin inhibitors. Continuous long-term use in any age group should be avoided and application limited to involved areas. Not indicated below age 2; only the 0.03% strength is indicated for ages 2 to 15. Skin burning and stinging on application are common and significantly more frequent than with topical corticosteroids. Skin infection rates did not differ from comparators in the pooled randomised evidence. It does not cause the skin atrophy, telangiectasia or striae that prolonged corticosteroid use does.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does this ointment cause cancer?',
+        a: 'The most complete answer available pools eight cohort studies and three case-control studies covering 408,366 treated people. It found no association with cancer overall (RR 1.03, 95% CI 0.92 to 1.16) and no association with melanoma or with the common skin cancers. It did find an association with lymphoma: 1.86 times the risk against untreated comparators and 1.35 times against people using topical steroids. The authors’ own conclusion is that combined with how rare lymphoma is to begin with, the increase attributable to the drug for any individual is likely very small. The unresolved problem is that severe eczema is itself associated with lymphoma, and severe eczema is exactly what leads to this drug being prescribed. Observational data cannot separate those two things, and no randomised trial has ever been large enough to try.',
+        auditNote:
+          'This is a page where the honest answer is neither reassurance nor alarm. The signal is real, its cause is not established, and the boxed warning says the same thing in its first clause.',
+      },
+      {
+        q: 'Why is there a boxed warning if causality was never established?',
+        a: 'Because in 2006 the regulator was reasoning from three things: the same molecule taken by mouth by transplant patients raises lymphoma risk, animal studies at high systemic exposure showed malignancy, and case reports had accumulated. None of those is evidence that an ointment causes cancer, and the warning says so — it opens "Although a causal relationship has not been established". What follows from it are restrictions rather than a prohibition: avoid continuous long-term use, apply only to involved areas, not below age 2, only the weaker strength in children. That is a regulator acting on uncertainty rather than on injury, which is a defensible thing to do and a different thing from a demonstrated harm.',
+      },
+      {
+        q: 'Is it better than a steroid cream?',
+        a: 'For the stronger strength, it is about equal. Tacrolimus 0.1% matched potent topical corticosteroids at three weeks in the pooled analysis and beat a mixed steroid regimen at twelve weeks with a number needed to treat of six. The 0.03% strength, which is the only one licensed for children, was actually less effective than hydrocortisone butyrate 0.1%. Both strengths burn on application significantly more than steroids do. So on effectiveness there is no clear win. The reason to reach for it is that it does not thin skin — and the pooled reviewers looked specifically for studies demonstrating that long-term safety gain, and reported that they found none.',
+        auditNote:
+          'Three to twelve weeks is the length of these trials. Steroid atrophy is a multi-year problem. The comparison that would settle the question is the one nobody has run.',
+      },
+      {
+        q: 'Does it make skin infections more likely?',
+        a: 'The pooled randomised evidence says no. Across 25 trials, rates of skin infection did not differ in any comparison — not against vehicle and not against topical corticosteroids. That is a real negative result rather than missing data, and for a drug that switches off local T cells it is not the answer you would predict from the mechanism. It also does not extend to the systemic drug, where suppressing immunity enough to prevent transplant rejection carries an explicit infection warning.',
+      },
+      {
+        q: 'Is this the same drug transplant patients take?',
+        a: 'The same molecule, at a wholly different exposure. Swallowed or infused for transplantation, tacrolimus is titrated to blood concentrations that suppress the whole immune system, and it carries warnings about infection and lymphoma that are not theoretical. Applied as an ointment, an 804-dalton macrolide crosses skin poorly, penetrates best where eczema has broken the barrier, and produces systemic levels far below the transplant range — and less of it gets in as the skin heals. The 2006 boxed warning is the point where those two very different exposures were treated as one risk, and the 2021 meta-analysis is the best attempt so far to find out whether that was right.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Hanifin JM, Ling MR, Langley R, Breneman D, Rafal E. Tacrolimus ointment for the treatment of atopic dermatitis in adult patients: part I, efficacy. J Am Acad Dermatol 2001;44:S28-S38',
+        identifier: '10.1067/mjd.2001.109810',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ashcroft DM, Dimmock P, Garside R, Stein K, Williams HC. Efficacy and tolerability of topical pimecrolimus and tacrolimus in the treatment of atopic dermatitis: meta-analysis of randomised controlled trials. BMJ 2005;330:516',
+        identifier: '10.1136/bmj.38376.439653.D3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lam M, Zhu JW, Tadrous M, Drucker AM. Association between topical calcineurin inhibitor use and risk of cancer, including lymphoma, keratinocyte carcinoma, and melanoma: a systematic review and meta-analysis. JAMA Dermatol 2021;157:549-558',
+        identifier: '10.1001/jamadermatol.2021.0345',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tacrolimus ointment United States prescribing information, boxed warning and Indications and Usage — ANDA 200744, retrieved from the openFDA label endpoint',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.application_number:%22ANDA200744%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA record for NDA 050777 (PROTOPIC tacrolimus ointment), original approval 8 December 2000, LEO Pharma AS',
+        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=application_number:%22NDA050777%22',
+        kind: 'regulatory',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

@@ -559,25 +559,43 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
                   {drug.conditionContext.conditionExplainer}
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                  <div className="p-3.5 rounded-2xl bg-white border border-black/[0.05] space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#0071E3] block">
-                      Why It Matters For Health
-                    </span>
-                    <p className="text-xs text-[#52525B] leading-relaxed">
-                      {drug.conditionContext.whyItMatters}
-                    </p>
-                  </div>
+                {/* A heading with nothing under it reads as a missing answer rather than an
+                    absent question. Records built from a taxonomy or an FDA product listing have
+                    no sourced answer to "why it matters", and every plant page was showing the
+                    label above an empty box. */}
+                {(hasText(drug.conditionContext.whyItMatters) ||
+                  hasText(drug.conditionContext.whoTakesThis)) && (
+                  <div
+                    className={`grid grid-cols-1 gap-3 pt-1 ${
+                      hasText(drug.conditionContext.whyItMatters) &&
+                      hasText(drug.conditionContext.whoTakesThis)
+                        ? 'sm:grid-cols-2'
+                        : ''
+                    }`}
+                  >
+                    {hasText(drug.conditionContext.whyItMatters) && (
+                      <div className="p-3.5 rounded-2xl bg-white border border-black/[0.05] space-y-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#0071E3] block">
+                          Why It Matters For Health
+                        </span>
+                        <p className="text-xs text-[#52525B] leading-relaxed">
+                          {drug.conditionContext.whyItMatters}
+                        </p>
+                      </div>
+                    )}
 
-                  <div className="p-3.5 rounded-2xl bg-white border border-black/[0.05] space-y-1">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 block">
-                      Who Takes This Medicine
-                    </span>
-                    <p className="text-xs text-[#52525B] leading-relaxed">
-                      {drug.conditionContext.whoTakesThis}
-                    </p>
+                    {hasText(drug.conditionContext.whoTakesThis) && (
+                      <div className="p-3.5 rounded-2xl bg-white border border-black/[0.05] space-y-1">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 block">
+                          Who Takes This Medicine
+                        </span>
+                        <p className="text-xs text-[#52525B] leading-relaxed">
+                          {drug.conditionContext.whoTakesThis}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                </div>
+                )}
 
                 {drug.conditionContext.clinicalGoals && (
                   <div className="pt-1 flex items-start gap-2 text-xs text-[#27272A] bg-blue-50/50 p-3 rounded-xl border border-[#0071E3]/15">

@@ -620,4 +620,1030 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 2. Carvedilol — the beta-blocker approved for heart failure after its own exercise endpoint
+  //    failed in three of four trials, and the advisory committee reversed itself.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'carvedilol',
+    name: 'Carvedilol',
+    tradeName: 'Coreg',
+    sponsor:
+      'Waylis Therapeutics (current holder of NDA 020297); originated at Boehringer Mannheim and developed for heart failure by SmithKline Beecham',
+    targetGene: 'ADRB1, ADRB2 and ADRA1A',
+    targetProtein:
+      'Beta-1 and beta-2 adrenergic receptors, blocked non-selectively, plus the alpha-1 adrenergic receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1995,
+    indication:
+      'Mild to severe chronic heart failure; left ventricular dysfunction following myocardial infarction in clinically stable patients; and hypertension',
+    patientFriendlyIndication: 'A weakened, failing heart, and the months after a heart attack',
+    anatomicalSite:
+      'Cardiac myocyte membrane and vascular smooth muscle — the beta-1 receptor on the heart and the alpha-1 receptor on the artery wall',
+    conditionContext: {
+      conditionExplainer:
+        'In heart failure the pump empties too little with each beat. The body reads this as blood loss and switches on the adrenaline system permanently: faster heart, tighter arteries, retained salt. Those responses buy days and cost years, because sustained adrenergic drive kills heart muscle cells and remodels the chamber into a thinner, rounder, worse pump.',
+      whyItMatters:
+        'For thirty years beta-blockers were considered contraindicated in heart failure, on the reasoning that a failing pump needs all the adrenergic support it can get. That reasoning was correct about the short term and wrong about the long term, and reversing it is one of the largest changes of mind in modern cardiology.',
+      whoTakesThis:
+        'Adults with chronic heart failure across the full severity range, adults with reduced ejection fraction after a myocardial infarction, and adults with high blood pressure. Not people in decompensated failure needing intravenous inotropes, and not people with asthma.',
+      clinicalGoals:
+        'Staying alive and staying out of hospital. Unusually for this group, those are the endpoints the trials actually measured rather than a surrogate — though the trial that established the drug measured them by accident rather than by design.',
+    },
+    oneSentenceVerdict:
+      'A non-selective beta-blocker that also blocks the alpha-1 receptor, which cut deaths by 35% in 2,289 patients with severe heart failure in COPERNICUS and beat metoprolol tartrate on mortality in COMET — and which reached the United States market despite failing its prespecified exercise endpoint in three of four registration trials, on a mortality signal that no single trial had been designed to test.',
+    laymanHowItWorks:
+      'A failing heart is drowned in adrenaline, and the adrenaline that keeps it beating hard today wears it out over years. Carvedilol blocks the receptors adrenaline uses on heart muscle, so the heart beats slower and with less strain and the muscle stops being flogged. It also blocks a second kind of receptor on artery walls, so the arteries widen and the weakened heart has less resistance to push against. The first few weeks feel worse rather than better, because the heart temporarily loses support it had come to rely on.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 88,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0214 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 88 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 14 September 1995 under NDA 020297 and generic since 2007. At about two United States cents a tablet it is one of the cheapest life-extending drugs in existence, which is worth stating alongside the fact that the trials establishing it cost hundreds of millions of dollars to run.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The realistic alternatives are the other two beta-blockers with their own heart failure mortality trials, and the choice between them is not a coin toss: each was tested in a different population, and COMET is the one head-to-head trial in the group. Nothing sold as a food or supplement replaces a beta-blocker in heart failure, and stopping one abruptly is dangerous in a way that stopping most drugs is not.',
+      conventionalRx: [
+        {
+          name: 'Bisoprolol (Zebeta, Cardicor)',
+          class: 'Beta-1 selective adrenergic blocker',
+          howItCompares:
+            'Selective for the beta-1 receptor, so it does not carry carvedilol alpha-blocking vasodilatation and does not lower blood pressure as much. In CIBIS-II, 2,647 patients in NYHA class III or IV had all-cause mortality of 11.8% against 17.3% on placebo (HR 0.66, 95% CI 0.54 to 0.81, p<0.0001) and the trial was stopped early.',
+          typicalCost:
+            'US$0.2096 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 93 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: beta-1 selectivity means less bronchospasm risk and less postural hypotension; once daily. Cons: CIBIS-II excluded severe class IV instability and its authors said so explicitly; no alpha blockade, so less blood pressure effect where that is also wanted.',
+        },
+        {
+          name: 'Metoprolol succinate extended release (Toprol-XL)',
+          class: 'Beta-1 selective adrenergic blocker, controlled-release formulation',
+          howItCompares:
+            'In MERIT-HF, 3,991 patients on metoprolol CR/XL titrated to 200 mg once daily had all-cause mortality of 7.2% per patient-year against 11.0% on placebo (RR 0.66, 95% CI 0.53 to 0.81, p=0.00009). This is the formulation and target dose with the mortality evidence, and it is not the one COMET compared carvedilol against.',
+          typicalCost: 'Generic; a few United States cents per tablet at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: once daily, beta-1 selective, mortality benefit of the same magnitude as carvedilol against placebo. Cons: the immediate-release tartrate salt is a different drug clinically and is often substituted for it; MERIT-HF was stopped early at a mean follow-up of one year.',
+        },
+        {
+          name: 'Sacubitril / valsartan (Entresto)',
+          class: 'Angiotensin receptor-neprilysin inhibitor',
+          howItCompares:
+            'Not a substitute but the drug added on top. In PARADIGM-HF, 8,442 patients with reduced ejection fraction — 93% of whom were already on a beta-blocker — had a primary composite event rate of 21.8% against 26.5% on enalapril (HR 0.80, 95% CI 0.73 to 0.87, p<0.001).',
+          typicalCost:
+            'US$0.5291 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 100 listed products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: benefit on top of a beta-blocker and an ACE inhibitor, the largest single trial in the field. Cons: far more expensive; hypotension and angioedema; replaces the ACE inhibitor rather than the beta-blocker.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Never stop it suddenly',
+          action:
+            'If you want to come off it, or run out, say so before the tablets stop rather than after.',
+          patientImpact:
+            'The label warns that severe exacerbation of angina, myocardial infarction and ventricular arrhythmias have been reported after abrupt discontinuation of beta-blockers, sometimes without any warning worsening of angina first. It directs that discontinuation be spread over one to two weeks.',
+          clinicalPrecaution:
+            'The label extends this caution to people taking carvedilol only for blood pressure or heart failure, on the reasoning that coronary disease is common and often unrecognised.',
+        },
+        {
+          name: 'Expect the first few weeks to feel worse',
+          action:
+            'Report tiredness, dizziness or breathlessness during up-titration rather than stopping the tablet.',
+          patientImpact:
+            'Bradycardia occurred in about 9% of heart failure patients in trials, and hypotension or postural hypotension in 9.7% with syncope in 3.4%, against 3.6% and 2.5% on placebo. Worsening heart failure and fluid retention during titration are recognised in the label and are managed by adjusting dose, not by abandoning the drug.',
+          clinicalPrecaution:
+            'This is the central paradox of the drug: the short-term effect is negative inotropy and the long-term effect is the opposite. Judging it by week two is judging the wrong thing.',
+        },
+        {
+          name: 'Say if you have asthma, or wheeze at all',
+          action:
+            'Mention any history of asthma, wheeze or bronchospastic lung disease before the first tablet.',
+          patientImpact:
+            'Bronchial asthma is an absolute contraindication. The label records that deaths from status asthmaticus have been reported following single doses of carvedilol.',
+          clinicalPrecaution:
+            'Carvedilol is non-selective, so it blocks the beta-2 receptors that keep airways open as well as the beta-1 receptors on the heart. A beta-1 selective agent is a different risk profile, not a safe one.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'COC1=CC=CC=C1OCCNCC(COC2=CC=CC3=C2C4=CC=CC=C4N3)O',
+      chemicalFormula: 'C24H26N2O4',
+      molecularWeight: '406.50 g/mol',
+      targetReceptorAffinity:
+        'A racemate in which the two enantiomers do different jobs. Non-selective beta-adrenoceptor blockade resides in the S(-) enantiomer; alpha-1 adrenergic blockade resides in both R(+) and S(-) at equal potency. The label records no intrinsic sympathomimetic activity, which distinguishes it from the beta-blockers that failed in heart failure.',
+      structureSource: {
+        label: 'PubChem CID 2585 (carvedilol) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2585',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'cvd-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity and enantiomeric ratio of the racemate',
+          description:
+            'Confirm that the material is a true 50:50 racemate rather than an enriched mixture, because the two enantiomers carry different pharmacology: beta blockade lives only in S(-) while alpha-1 blockade is equal in both. A batch skewed toward R(+) would still assay as carvedilol and would be a weaker beta-blocker.',
+          reagentsAndBuffer:
+            'Carvedilol reference standard, chiral HPLC on a polysaccharide stationary phase, 1H NMR in DMSO-d6, ultraviolet detection at 240 and 285 nanometres, Karl Fischer titration',
+        },
+        {
+          id: 'cvd-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Epoxide opening between the carbazole and the aryloxyethylamine',
+          description:
+            'Couple 4-(oxiran-2-ylmethoxy)-9H-carbazole to 2-(2-methoxyphenoxy)ethylamine. The epoxide is opened at the less hindered carbon to give the secondary alcohol that every beta-blocker in this family carries, and the carbazole ring is the part responsible for the compound antioxidant behaviour in vitro.',
+          dependsOnStepId: 'cvd-w1',
+          reagentsAndBuffer:
+            '4-(2,3-epoxypropoxy)carbazole, 2-(2-methoxyphenoxy)ethylamine, isopropanol or toluene at reflux under nitrogen, reaction monitored by thin-layer chromatography',
+        },
+        {
+          id: 'cvd-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Removal of the bis-alkylated impurity and crystallisation',
+          description:
+            'The secondary amine formed in the coupling can react with a second epoxide, giving a tertiary bis-adduct that is inactive and difficult to remove late. Purification targets that impurity specifically, then crystallises the free base.',
+          dependsOnStepId: 'cvd-w2',
+          reagentsAndBuffer:
+            'Silica chromatography with dichloromethane and methanol gradient, crystallisation from ethyl acetate or isopropanol, HPLC with a specified limit for the bis-alkylated impurity',
+        },
+        {
+          id: 'cvd-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Receptor occupancy in a cell line expressing human beta-1 and alpha-1A',
+          description:
+            'Dose cells expressing each receptor separately and confirm that the same batch blocks both. Testing only the beta receptor would miss the entire alpha-blocking half of the molecule, which is what separates carvedilol from the beta-1 selective agents in blood pressure effect and in postural hypotension.',
+          dependsOnStepId: 'cvd-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 cells stably expressing human ADRB1, ADRB2 or ADRA1A, isoproterenol or phenylephrine as agonist, cyclic AMP or calcium flux readout, assay buffer with bovine serum albumin to limit non-specific binding',
+        },
+        {
+          id: 'cvd-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Functional antagonism and Schild analysis on isolated tissue',
+          description:
+            'Measure the shift in the agonist concentration-response curve on isolated atrium for beta-1 and on aortic ring for alpha-1, and derive the antagonist affinity. A Schild slope near unity confirms competitive antagonism; a shallower slope points at a second site or at insurmountable binding, and that distinction changes how the drug behaves under high sympathetic drive.',
+          dependsOnStepId: 'cvd-w4',
+          reagentsAndBuffer:
+            'Isolated guinea-pig right atrium and rat thoracic aortic rings in Krebs-Henseleit buffer at 37 degrees Celsius, cumulative isoproterenol and phenylephrine concentration-response curves, isometric force transducers',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'cvd-a1',
+        category: 'measured',
+        title: 'COPERNICUS: 35% fewer deaths in the sickest patients ever randomised to a beta-blocker',
+        laymanSummary:
+          'Patients with symptoms at rest and a pumping fraction under a quarter — the group beta-blockers were supposed to be most dangerous in — were randomised to carvedilol or a dummy tablet. A third fewer died on the drug.',
+        technicalDetails:
+          'COPERNICUS randomised 2,289 patients with symptoms of heart failure at rest or on minimal exertion, clinically euvolemic, with ejection fraction below 25%: 1,156 to carvedilol and 1,133 to placebo, for a mean of 10.4 months. There were 130 deaths on carvedilol against 190 on placebo, a 35% reduction in risk of death (95% CI 19 to 48, p=0.00013 unadjusted, p=0.0014 adjusted for interim analyses). Death or hospitalisation occurred in 425 against 507, a 24% reduction (95% CI 13 to 33, p<0.001). Fewer patients withdrew on carvedilol than on placebo (p=0.02). Patients requiring intensive care, with marked fluid retention, or on intravenous vasodilators or inotropes were excluded.',
+        evidenceSource: 'Packer M et al., N Engl J Med 2001;344:1651-1658 (COPERNICUS)',
+        doi: '10.1056/NEJM200105313442201',
+        measuredMetric: 'All-cause mortality against placebo in severe heart failure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cvd-a2',
+        category: 'measured',
+        title: 'COMET: fewer deaths than on metoprolol, over an average of five years',
+        laymanSummary:
+          'Three thousand patients were randomised to carvedilol or to metoprolol and followed for nearly five years. Thirty-four percent of the carvedilol group died against forty percent of the metoprolol group. The combined measure of death or any hospital admission showed no difference.',
+        technicalDetails:
+          'COMET randomised 1,511 patients to carvedilol at a target of 25 mg twice daily and 1,518 to metoprolol tartrate at a target of 50 mg twice daily, in chronic heart failure with NYHA class II to IV, ejection fraction below 0.35 and a previous cardiovascular admission. Mean study duration was 58 months. All-cause mortality was 512 of 1,511 (34%) against 600 of 1,518 (40%), hazard ratio 0.83 (95% CI 0.74 to 0.93, p=0.0017), consistent across predefined subgroups. The co-primary composite of mortality or all-cause admission occurred in 1,116 (74%) against 1,160 (76%), hazard ratio 0.94 (95% CI 0.86 to 1.02, p=0.122) — not significant. Side effects and drug withdrawals did not differ much between groups.',
+        evidenceSource: 'Poole-Wilson PA et al., Lancet 2003;362:7-13 (COMET)',
+        doi: '10.1016/S0140-6736(03)13800-7',
+        measuredMetric:
+          'All-cause mortality and the composite of mortality or all-cause admission, carvedilol against metoprolol tartrate',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'cvd-a3',
+        category: 'failed',
+        title: 'The registration programme failed its own prespecified endpoint',
+        laymanSummary:
+          'The four American trials were designed around how far patients could exercise. In three of them exercise was no better on carvedilol than on placebo. The drug was approved on a death count that was collected across the whole programme rather than being any one trial primary question.',
+        technicalDetails:
+          'Fisher summarises the record: carvedilol did not meet the FDA two-positive-trial paradigm, because an exercise endpoint was not statistically different from placebo in three of the four United States trials. Most other endpoints were highly significant, and death, which was monitored across the whole United States programme rather than as a single trial primary endpoint, differed at p<0.0001. In the pooled programme of 1,094 patients, mortality was 7.8% on placebo against 3.2% on carvedilol, a 65% risk reduction (95% CI 39 to 80, p<0.001), which led the Data and Safety Monitoring Board to recommend early termination. The number quoted for this drug ever since — a 65% mortality reduction — comes from an analysis across four differently designed protocols, terminated early, that no individual trial was powered to make.',
+        evidenceSource:
+          'Fisher LD. Carvedilol and the Food and Drug Administration (FDA) approval process: the FDA paradigm and reflections on hypothesis testing. Control Clin Trials 1999;20:16-39; Packer M et al., N Engl J Med 1996;334:1349-1355',
+        doi: '10.1016/s0197-2456(98)00054-3',
+        measuredMetric:
+          'Prespecified exercise endpoint, which was not different from placebo in three of four United States trials',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cvd-a4',
+        category: 'conclusion_shift',
+        title: 'The same advisory committee looked at the same data twice and decided the opposite way',
+        laymanSummary:
+          'The FDA expert committee reviewed carvedilol on two occasions and reached opposite conclusions. What changed was not the data but the argument about whether a death count collected outside the trial design can carry an approval.',
+        technicalDetails:
+          'The carvedilol dossier was evaluated twice by the Cardiovascular and Renal Drugs Advisory Committee of the FDA, and the two meetings produced opposite decisions. Fisher records the crux as the two-positive-trial paradigm: carvedilol failed the exercise endpoint that the trials were built on, while the mortality signal collected across the programme was extremely strong. His conclusion, published alongside a dissenting analysis in the same issue, is that the usual paradigm is very useful but not an absolute principle, and that control of the type I error rate should rarely be violated but must be considered in context. Carvedilol was approved in 1995 and its heart failure benefit was later confirmed by COPERNICUS and by CAPRICORN, which does not retrospectively make the 1995 evidence what it was not.',
+        evidenceSource:
+          'Fisher LD, Moye LA. Carvedilol and the Food and Drug Administration approval process: an introduction. Control Clin Trials 1999;20:1-15; Fisher LD, Control Clin Trials 1999;20:16-39',
+        doi: '10.1016/s0197-2456(98)00052-x',
+        inferredClaim:
+          'That the 1995 approval rested on trials designed to test survival — it rested on a cross-programme mortality analysis after the designed endpoint failed, and the committee split on whether that was sufficient',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cvd-a5',
+        category: 'failed',
+        title: 'CAPRICORN missed its primary endpoint and is quoted for a component of it',
+        laymanSummary:
+          'In patients with a weakened heart after a heart attack, the main measure — dying or being admitted to hospital — was no better on carvedilol. Deaths alone were lower, and that is the number everyone quotes.',
+        technicalDetails:
+          'CAPRICORN randomised 1,959 patients with proven acute myocardial infarction and ejection fraction at or below 40% to carvedilol or placebo. The primary endpoint, all-cause mortality or hospital admission for cardiovascular problems, occurred in 340 (35%) against 367 (37%), hazard ratio 0.92 (95% CI 0.80 to 1.07) — no difference. All-cause mortality alone was lower: 116 (12%) against 151 (15%), hazard ratio 0.77 (95% CI 0.60 to 0.98, p=0.03). Cardiovascular mortality and non-fatal reinfarction were also lower. A trial that misses its primary endpoint and hits a component of it is hypothesis-generating for that component, and CAPRICORN is routinely cited as though the mortality result were the primary finding.',
+        evidenceSource: 'Dargie HJ, Lancet 2001;357:1385-1390 (CAPRICORN)',
+        doi: '10.1016/s0140-6736(00)04560-8',
+        measuredMetric:
+          'Composite of all-cause mortality or cardiovascular hospital admission after myocardial infarction',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'cvd-a6',
+        category: 'inferred',
+        title: 'COMET compared carvedilol against a metoprolol that no mortality trial ever used',
+        laymanSummary:
+          'Carvedilol beat metoprolol in a head-to-head trial. The metoprolol used was a short-acting salt at fifty milligrams twice a day. The metoprolol with its own survival trial is a different salt, in a slow-release form, at four times that daily dose.',
+        technicalDetails:
+          'COMET used metoprolol tartrate at a target of 50 mg twice daily. MERIT-HF, the trial that established metoprolol in heart failure, used metoprolol succinate controlled-release at a target of 200 mg once daily in 3,991 patients and reported all-cause mortality of 7.2% per patient-year against 11.0% on placebo (RR 0.66, 95% CI 0.53 to 0.81, p=0.00009). Whether COMET demonstrated that carvedilol is superior to metoprolol, or that 100 mg of tartrate daily is inferior to 200 mg of succinate daily, cannot be settled from COMET, and the trial that would settle it has not been run. The COMET authors state their results suggest carvedilol extends survival compared with metoprolol; the comparator dose is the reason that sentence has been argued about ever since.',
+        evidenceSource:
+          'Poole-Wilson PA et al., Lancet 2003;362:7-13 (COMET); MERIT-HF Study Group, Lancet 1999;353:2001-2007',
+        doi: '10.1016/S0140-6736(03)13800-7',
+        inferredClaim:
+          'That carvedilol is superior to the beta-blocker class rather than to one dose of one salt of one member of it — an inference the trial design cannot support',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'cvd-a7',
+        category: 'failed',
+        title: 'A contraindication that has killed people',
+        laymanSummary:
+          'Carvedilol blocks the receptors that keep airways open as well as the ones on the heart. In asthma that is not a caution, it is a bar: the label records deaths from status asthmaticus after single doses.',
+        technicalDetails:
+          'Bronchial asthma and related bronchospastic conditions are an absolute contraindication, and the label states that deaths from status asthmaticus have been reported following single doses of carvedilol. Other contraindications are second- or third-degree AV block, sick sinus syndrome, severe bradycardia without a pacemaker, cardiogenic shock or decompensated failure requiring intravenous inotropes, and severe hepatic impairment. In trials, bradycardia occurred in about 2% of hypertensive patients, 9% of heart failure patients and 6.5% of post-infarction patients; hypotension and postural hypotension in 9.7% and syncope in 3.4% of mild-to-moderate heart failure patients, against 3.6% and 2.5% on placebo. In diabetes the drug can mask the adrenergic warning symptoms of hypoglycaemia.',
+        evidenceSource:
+          'Carvedilol United States prescribing information, Contraindications section 4 and Warnings and Precautions 5.1 to 5.6 (NDA 020297)',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A failing heart is soaked in adrenaline',
+        laymanDesc:
+          'When the pump weakens, the body reacts as though blood is being lost: it raises adrenaline, speeds the heart and tightens the arteries. That keeps blood pressure up today and destroys heart muscle over years.',
+        molecularDetail:
+          'Chronic sympathetic activation drives beta-1 receptor stimulation, calcium overload, myocyte apoptosis and adverse remodelling, along with renin release and salt retention. Circulating noradrenaline concentration is one of the strongest predictors of death in heart failure, which is the observation the whole beta-blocker programme was built on.',
+        iconName: 'Flame',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'One molecule, two enantiomers, two jobs',
+        laymanDesc:
+          'The tablet contains two mirror-image forms of the same molecule. One blocks the heart receptors. Both block the artery receptors. That is why it lowers blood pressure more than a plain beta-blocker.',
+        molecularDetail:
+          'Carvedilol is a racemate: non-selective beta-adrenoceptor blockade is present only in the S(-) enantiomer, while alpha-1 adrenergic blockade is present in both R(+) and S(-) at equal potency. There is no intrinsic sympathomimetic activity, which distinguishes it from the partial agonists that failed in heart failure trials.',
+        iconName: 'Split',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Beta receptors on the heart are covered',
+        laymanDesc:
+          'With the receptors blocked, adrenaline cannot reach the heart muscle. The rate falls, each beat costs less oxygen, and the muscle stops being driven past what it can sustain.',
+        molecularDetail:
+          'Beta-1 and beta-2 blockade reduces heart rate, contractility and myocardial oxygen demand, and over months reverses the downregulation of beta-1 receptors that chronic adrenergic drive produces. Ejection fraction typically rises after several months of treatment, having first fallen.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Alpha receptors on the arteries are covered too',
+        laymanDesc:
+          'The second half of the molecule relaxes the arteries, so the weakened heart has less resistance to push blood against. This is also why the drug can make you dizzy when you stand.',
+        molecularDetail:
+          'Alpha-1 blockade lowers systemic vascular resistance and afterload. The cost is postural hypotension: hypotension and postural hypotension occurred in 9.7% and syncope in 3.4% of mild-to-moderate heart failure patients in trials, against 3.6% and 2.5% on placebo.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'It feels worse before it works',
+        laymanDesc:
+          'For the first weeks the heart has lost support it had been leaning on, and people often feel more tired and more breathless. The benefit arrives months later.',
+        molecularDetail:
+          'Acute negative inotropy transiently reduces cardiac output, and worsening heart failure or fluid retention during up-titration is recognised in the label and managed by dose adjustment. The long-term effect is the opposite of the short-term effect, which is the reason the drug was contraindicated for thirty years.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Over years, fewer deaths',
+        laymanDesc:
+          'The endpoint here is not a laboratory number. In the severe heart failure trial, a third fewer patients died on carvedilol than on the dummy tablet.',
+        molecularDetail:
+          'COPERNICUS measured a 35% reduction in all-cause mortality in 2,289 patients (95% CI 19 to 48, p=0.00013) and a 24% reduction in death or hospitalisation. COMET measured 34% against 40% all-cause mortality against metoprolol tartrate over a mean 58 months (HR 0.83, p=0.0017).',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'COPERNICUS (N Engl J Med 2001;344:1651-1658)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 2289,
+        primaryEndpoint: 'All-cause mortality in severe chronic heart failure',
+        endpointMet: true,
+        statisticalPValue:
+          '35% risk reduction (95% CI 19 to 48), p=0.00013 unadjusted and p=0.0014 adjusted for interim analyses',
+        unreportedAdverseSignals:
+          'Patients needing intensive care, with marked fluid retention, or on intravenous vasodilators or inotropes were excluded, so the result does not extend to decompensated failure.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'US Carvedilol Heart Failure Program (N Engl J Med 1996;334:1349-1355)',
+        phase: 'Phase 3, four stratified double-blind placebo-controlled protocols analysed together',
+        sampleSize: 1094,
+        primaryEndpoint:
+          'Exercise capacity within each of four protocols; mortality was monitored across the programme rather than as a protocol primary endpoint',
+        endpointMet: false,
+        statisticalPValue:
+          'Exercise endpoint not different from placebo in three of the four United States trials; programme-wide mortality 7.8% against 3.2%, a 65% risk reduction (95% CI 39 to 80), p<0.001',
+        unreportedAdverseSignals:
+          'Terminated early by the Data and Safety Monitoring Board on the mortality signal. The 65% figure comes from pooling four differently designed protocols on an endpoint none of them was powered for, and the FDA advisory committee reached opposite conclusions on it at two separate meetings.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'COMET (Lancet 2003;362:7-13)',
+        phase: 'Phase 3, randomised, double-blind, active-controlled',
+        sampleSize: 3029,
+        primaryEndpoint:
+          'All-cause mortality, and the composite of all-cause mortality or all-cause admission, against metoprolol tartrate',
+        endpointMet: true,
+        statisticalPValue:
+          'Mortality 34% against 40%, HR 0.83 (95% CI 0.74 to 0.93), p=0.0017; composite HR 0.94 (0.86 to 1.02), p=0.122',
+        unreportedAdverseSignals:
+          'One of the two co-primary endpoints was not met. The comparator was metoprolol tartrate 50 mg twice daily, not the succinate controlled-release 200 mg once daily used in MERIT-HF.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'CAPRICORN (Lancet 2001;357:1385-1390)',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 1959,
+        primaryEndpoint:
+          'All-cause mortality or hospital admission for cardiovascular problems after myocardial infarction with ejection fraction at or below 40%',
+        endpointMet: false,
+        statisticalPValue:
+          'Primary composite 340 (35%) against 367 (37%), HR 0.92 (95% CI 0.80 to 1.07); all-cause mortality alone 12% against 15%, HR 0.77 (0.60 to 0.98), p=0.03',
+        unreportedAdverseSignals:
+          'The mortality result is a component of a composite that was not met, and it is the number the trial is universally cited for.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '35% reduction in all-cause mortality in 2,289 patients with severe heart failure in COPERNICUS (95% CI 19 to 48, p=0.00013)',
+        'All-cause mortality 34% against 40% versus metoprolol tartrate over a mean 58 months in COMET (HR 0.83, p=0.0017)',
+        'All-cause mortality 12% against 15% after myocardial infarction in CAPRICORN (HR 0.77, p=0.03)',
+        'Bradycardia in about 9% of heart failure patients, hypotension in 9.7% and syncope in 3.4%, against 3.6% and 2.5% on placebo',
+      ],
+      unsupportedInferences: [
+        'That the 65% mortality reduction quoted from the United States programme came from a trial designed to measure mortality — it came from pooling four protocols whose own exercise endpoint failed',
+        'That COMET showed carvedilol superior to the beta-blocker class, when the comparator was one salt of metoprolol at half the daily dose of the formulation with its own mortality trial',
+        'That CAPRICORN showed a mortality benefit as its primary result, when its primary composite endpoint was not met',
+        'That the alpha-blocking component contributes to the survival benefit — it is a plausible mechanism, and no trial has isolated it',
+      ],
+      whatFailedInitially: [
+        'The prespecified exercise endpoint was not different from placebo in three of the four United States registration trials',
+        'The FDA Cardiovascular and Renal Drugs Advisory Committee reviewed the dossier twice and reached opposite decisions',
+        'The composite endpoint in COMET, and the primary composite in CAPRICORN, were both missed',
+        'Bronchial asthma is an absolute contraindication after deaths from status asthmaticus following single doses',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States on 14 September 1995 under NDA 020297, generic since 2007 and now about two United States cents a tablet',
+        'One of three beta-blockers with an independent mortality trial in heart failure, alongside bisoprolol and metoprolol succinate',
+        'The reversal it belongs to — from beta-blockers being contraindicated in heart failure to being a cornerstone of it — is among the largest changes of mind in cardiology',
+        'Its approval remains the standard teaching case for when regulators should and should not depart from the two-positive-trial rule',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet at 3.125, 6.25, 12.5 and 25 mg, taken twice daily; an extended-release capsule taken once daily also exists',
+      description:
+        'Taken with food, which slows absorption and reduces the orthostatic hypotension that follows a peak concentration. Extensive first-pass metabolism by CYP2D6 and CYP2C9 means exposure varies several-fold between people by genotype, and the label directs that discontinuation be spread over one to two weeks rather than stopped at once.',
+      safetyProfile:
+        'Contraindicated in bronchial asthma and related bronchospastic conditions, where deaths from status asthmaticus have been reported after single doses; also in second- or third-degree AV block, sick sinus syndrome, severe bradycardia without a pacemaker, cardiogenic shock or decompensated failure requiring intravenous inotropes, and severe hepatic impairment. Bradycardia, hypotension and worsening heart failure or fluid retention occur during up-titration and are managed by dose reduction. In diabetes it may mask the adrenergic warning symptoms of hypoglycaemia and alter glucose levels.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why do I feel worse since starting it?',
+        a: 'Because for the first weeks that is what the drug does. A failing heart has been running on adrenaline, and carvedilol takes that support away before the benefit — which comes from the muscle no longer being flogged — has had time to appear. Tiredness, dizziness and more breathlessness during up-titration are recognised in the label and are managed by adjusting the dose rather than by stopping. The evidence that matters was measured over months and years: a 35% reduction in deaths over a mean of ten months in the severe heart failure trial. Judging the drug at week two is judging the phase in which it is expected to feel worst.',
+      },
+      {
+        q: 'Is carvedilol better than the other beta-blockers?',
+        a: 'It is the only one to have won a head-to-head trial, and the trial has a real problem. In COMET, 34% of carvedilol patients died against 40% on metoprolol over an average of five years. But the metoprolol used was the tartrate salt at 50 mg twice daily, and the metoprolol with its own survival trial is the succinate controlled-release form at 200 mg once daily — four times the daily dose in a different formulation. So COMET may have shown that carvedilol beats metoprolol, or that it beats an underdosed metoprolol. Bisoprolol and metoprolol succinate each have their own placebo-controlled mortality trial, and all three reduce deaths by a similar margin against placebo.',
+        auditNote:
+          'The trial that would settle the question — carvedilol against metoprolol succinate at 200 mg — has never been run, and after twenty years is unlikely to be.',
+      },
+      {
+        q: 'Was this drug properly proved before it was approved?',
+        a: 'That is exactly what the FDA advisory committee argued about, twice, reaching opposite conclusions. The four American trials were designed around exercise capacity, and in three of them exercise was no better on carvedilol than on placebo. What was extremely strong was mortality, monitored across the whole programme rather than being any single trial primary question: 7.8% deaths on placebo against 3.2% on carvedilol. The statistician who published the FDA account argued that the usual two-positive-trial rule is very useful but not absolute. Later trials — COPERNICUS in severe failure, CAPRICORN after infarction — confirmed the benefit. That confirmation is what makes the drug trustworthy now; it does not change what the 1995 evidence was.',
+        auditNote:
+          'This is on the page because it is the clearest published example of a regulator departing from its own paradigm, argued in print by the people who made the decision.',
+      },
+      {
+        q: 'Can I take it if I have asthma?',
+        a: 'No. Bronchial asthma and related bronchospastic conditions are an absolute contraindication, and the label records deaths from status asthmaticus following single doses of carvedilol. The reason is that carvedilol is non-selective: it blocks the beta-2 receptors that keep airways open as well as the beta-1 receptors on the heart. Beta-1 selective agents such as bisoprolol are a different and lower risk, not an absent one, and that is a decision for a prescriber who knows the lung history.',
+      },
+      {
+        q: 'What happens if I stop taking it?',
+        a: 'Not nothing, and this is one of the few drugs where stopping abruptly is dangerous in its own right. The label warns that severe worsening of angina, myocardial infarction and ventricular arrhythmias have been reported after abrupt withdrawal of beta-blockers, sometimes without any warning worsening of angina first, and directs that discontinuation be spread over one to two weeks. It extends that caution to people taking it only for blood pressure, on the reasoning that coronary disease is common and often undiagnosed. Running out of tablets is a reason to contact a prescriber the same week rather than to wait for the next appointment.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Packer M, Coats AJ, Fowler MB, et al. Effect of carvedilol on survival in severe chronic heart failure. N Engl J Med 2001;344:1651-1658 (COPERNICUS)',
+        identifier: '10.1056/NEJM200105313442201',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Packer M, Bristow MR, Cohn JN, et al. The effect of carvedilol on morbidity and mortality in patients with chronic heart failure. N Engl J Med 1996;334:1349-1355',
+        identifier: '10.1056/NEJM199605233342101',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Poole-Wilson PA, Swedberg K, Cleland JG, et al. Comparison of carvedilol and metoprolol on clinical outcomes in patients with chronic heart failure in the Carvedilol Or Metoprolol European Trial (COMET). Lancet 2003;362:7-13',
+        identifier: '10.1016/S0140-6736(03)13800-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dargie HJ. Effect of carvedilol on outcome after myocardial infarction in patients with left-ventricular dysfunction: the CAPRICORN randomised trial. Lancet 2001;357:1385-1390',
+        identifier: '10.1016/s0140-6736(00)04560-8',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fisher LD. Carvedilol and the Food and Drug Administration (FDA) approval process: the FDA paradigm and reflections on hypothesis testing. Control Clin Trials 1999;20:16-39',
+        identifier: '10.1016/s0197-2456(98)00054-3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fisher LD, Moye LA. Carvedilol and the Food and Drug Administration approval process: an introduction. Control Clin Trials 1999;20:1-15',
+        identifier: '10.1016/s0197-2456(98)00052-x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'MERIT-HF Study Group. Effect of metoprolol CR/XL in chronic heart failure: Metoprolol CR/XL Randomised Intervention Trial in Congestive Heart Failure (MERIT-HF). Lancet 1999;353:2001-2007',
+        identifier: '10.1016/S0140-6736(99)04440-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'The Cardiac Insufficiency Bisoprolol Study II (CIBIS-II): a randomised trial. Lancet 1999;353:9-13',
+        identifier: '10023943',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Drugs@FDA: COREG (carvedilol), NDA 020297 — original approval 14 September 1995',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020297',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — carvedilol, 88 listed generic products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 2585 — carvedilol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2585',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 3. Bisoprolol — a heart failure drug that is not licensed for heart failure in the United
+  //    States, and the beta-blocker at the centre of the largest data fabrication in cardiology.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'bisoprolol',
+    name: 'Bisoprolol',
+    tradeName: 'Zebeta',
+    sponsor: 'Teva Branded Pharmaceuticals; originated at E. Merck in Darmstadt',
+    targetGene: 'ADRB1',
+    targetProtein:
+      'Beta-1 adrenergic receptor, blocked selectively at ordinary exposures and non-selectively at high ones',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1992,
+    indication:
+      'Management of hypertension in adults, alone or in combination with other antihypertensive agents. The United States label carries no heart failure indication, and lists overt cardiac failure as a contraindication',
+    patientFriendlyIndication: 'High blood pressure — and, in most of the world, a weakened heart',
+    anatomicalSite:
+      'Beta-1 adrenergic receptor on the cardiac myocyte membrane and on the juxtaglomerular cells of the kidney',
+    conditionContext: {
+      conditionExplainer:
+        'A beta-1 blocker turns down the adrenaline signal reaching the heart. In high blood pressure that lowers the pressure by slowing the heart and cutting renin release from the kidney. In heart failure it does something different and slower: it stops the chronic adrenergic drive that wears the muscle out.',
+      whyItMatters:
+        'Bisoprolol is one of only three beta-blockers with a mortality trial of its own in heart failure, and in most of the world it is licensed for that. In the United States it is not: the label covers hypertension only and names overt cardiac failure as a contraindication. Prescribing it for heart failure in the United States is guideline-directed and off-label at the same time.',
+      whoTakesThis:
+        'Adults with high blood pressure everywhere; adults with heart failure and reduced ejection fraction in the many countries where that indication exists, and in the United States on the strength of CIBIS-II rather than the label.',
+      clinicalGoals:
+        'A lower blood pressure, which is the licensed endpoint, or staying alive in heart failure, which is the measured endpoint of the trial the drug is famous for and is not what its United States label is about.',
+    },
+    oneSentenceVerdict:
+      'A beta-1 selective blocker that cut all-cause mortality from 17.3% to 11.8% in 2,647 patients with severe heart failure in CIBIS-II, after its own earlier trial in 641 patients had missed survival entirely at p=0.22 — and whose most-cited use, before non-cardiac surgery, rested on a family of trials later judged not secure by the meta-analysts who then found a 27% increase in perioperative deaths in the trials that survived.',
+    laymanHowItWorks:
+      'Adrenaline speeds the heart and raises blood pressure by landing on a receptor called beta-1, which sits mostly on heart muscle and on the kidney cells that release the hormone that tightens arteries. Bisoprolol covers that receptor and leaves the closely related beta-2 receptor in the lungs largely alone, at least at ordinary strengths. The heart beats slower and less forcefully, the kidney releases less renin, and blood pressure falls. In a failing heart the useful part is different: removing the constant adrenaline drive lets the muscle stop wearing itself out.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 84,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2096 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 93 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1992 and generic for decades. Bisoprolol appears on the WHO Model List of Essential Medicines as a representative beta-blocker. The United States price is about ten times that of carvedilol per tablet, which reflects the number of manufacturers rather than anything about the molecules.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For heart failure the alternatives are the two other beta-blockers with their own mortality trials, and they are genuinely different drugs: carvedilol also blocks alpha-1 receptors and lowers blood pressure more, metoprolol succinate is beta-1 selective like bisoprolol but only in its controlled-release form. For hypertension alone, beta-blockers are no longer first-line in most guidelines, and the honest comparison is against the drug classes that displaced them.',
+      conventionalRx: [
+        {
+          name: 'Carvedilol (Coreg)',
+          class: 'Non-selective beta-blocker with alpha-1 blockade',
+          howItCompares:
+            'The one head-to-head beta-blocker trial in heart failure is COMET, and it compared carvedilol against metoprolol tartrate rather than against bisoprolol. Against placebo the two are similar: 35% mortality reduction in COPERNICUS against 34% in CIBIS-II, in different populations.',
+          typicalCost:
+            'US$0.0214 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 88 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: about a tenth the price; carries a United States heart failure indication that bisoprolol does not; more blood pressure effect. Cons: twice daily; non-selective, so absolutely contraindicated in asthma; more postural hypotension.',
+        },
+        {
+          name: 'Metoprolol succinate extended release (Toprol-XL)',
+          class: 'Beta-1 selective adrenergic blocker, controlled-release',
+          howItCompares:
+            'Beta-1 selective like bisoprolol, with its own placebo-controlled mortality trial: MERIT-HF found all-cause mortality of 7.2% per patient-year against 11.0% in 3,991 patients (RR 0.66, 95% CI 0.53 to 0.81, p=0.00009). The magnitude matches CIBIS-II almost exactly.',
+          typicalCost: 'Generic; a few United States cents per tablet at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: a United States heart failure indication, once daily, beta-1 selective. Cons: the immediate-release tartrate salt is frequently substituted and is not the drug that was tested; MERIT-HF was stopped early at a mean of one year.',
+        },
+        {
+          name: 'Amlodipine, or a thiazide-like diuretic, for blood pressure alone',
+          class: 'Calcium channel blocker or diuretic',
+          howItCompares:
+            'For uncomplicated hypertension without heart failure or recent infarction, beta-blockers have been demoted in most guidelines because they prevent stroke less well than the alternatives at equal blood pressure. This is a comparison about outcomes, not about the number on the cuff.',
+          typicalCost:
+            'Among the cheapest prescription drugs in the United States at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: better stroke prevention per millimetre of mercury in the trial record; no bradycardia, no fatigue, no rebound on stopping. Cons: no benefit in heart failure or after infarction, where the beta-blocker is doing something a vasodilator cannot.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Taper rather than stop',
+          action:
+            'Do not stop the tablets abruptly, and say if you are running out before you run out.',
+          patientImpact:
+            'The label warns that exacerbation of angina and, in some cases, myocardial infarction or ventricular arrhythmia have been observed after abrupt cessation of beta-blockers in coronary disease, and advises tapering over approximately one week even in patients without known coronary disease.',
+          clinicalPrecaution:
+            'The rebound comes from receptors that have been upregulated during blockade being suddenly exposed to circulating catecholamines. It is a pharmacological consequence, not a withdrawal syndrome in the addiction sense.',
+        },
+        {
+          name: 'Say if you have diabetes and use insulin',
+          action:
+            'Mention insulin or sulfonylurea use, and how you normally notice a low blood sugar.',
+          patientImpact:
+            'Beta-blockade masks the adrenergic warning signs of hypoglycaemia — tremor, palpitation, anxiety — while leaving sweating intact. The first warning a person is used to may simply not arrive.',
+          clinicalPrecaution:
+            'Beta-1 selectivity reduces but does not remove this, and selectivity is lost at higher doses. The label states that cardioselectivity is not absolute and that beta-2 receptors are inhibited at 20 mg and above.',
+        },
+        {
+          name: 'Ask which indication you are being treated for',
+          action:
+            'If it was prescribed for heart failure in the United States, it is worth knowing that this is guideline-directed rather than label-directed.',
+          patientImpact:
+            'The United States label covers hypertension only and lists overt cardiac failure as a contraindication, while CIBIS-II measured a 34% reduction in deaths in exactly that population. Both statements are true and they are about different documents.',
+          clinicalPrecaution:
+            'This is not a reason to stop. It is a reason to understand that a label is a regulatory record of what a sponsor applied for, not a summary of what is known.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC(C)NCC(COC1=CC=C(C=C1)COCCOC(C)C)O',
+      chemicalFormula: 'C18H31NO4',
+      molecularWeight: '325.40 g/mol (free base); dispensed as bisoprolol fumarate',
+      targetReceptorAffinity:
+        'Beta-1 selective without significant membrane-stabilising activity or intrinsic sympathomimetic activity in the therapeutic range. The label is explicit that cardioselectivity is not absolute: at 20 mg and above bisoprolol also inhibits beta-2 adrenoceptors in bronchial and vascular muscle, so selectivity is a property of the exposure rather than of the molecule alone. Oral bioavailability is about 80%, protein binding about 30%, and the plasma elimination half-life 9 to 12 hours.',
+      structureSource: {
+        label:
+          'PubChem CID 2405 (bisoprolol) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2405',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bis-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity, fumarate stoichiometry and water content',
+          description:
+            'Confirm the hemifumarate stoichiometry rather than assuming it. Bisoprolol is dispensed as the fumarate at a two-to-one base-to-acid ratio, and a batch at the wrong ratio assays as the right compound while delivering the wrong amount of base per milligram of powder.',
+          reagentsAndBuffer:
+            'Bisoprolol fumarate reference standard, potentiometric titration for fumarate content, 1H NMR in DMSO-d6, ion chromatography, Karl Fischer titration',
+        },
+        {
+          id: 'bis-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Etherification then epoxide opening with isopropylamine',
+          description:
+            'Build the para-substituted phenol ether that carries the isopropoxyethoxymethyl side chain, alkylate the phenol with epichlorohydrin to install the epoxide, then open it with isopropylamine to give the aminopropanol that every beta-blocker in this class shares. The side chain is what makes this molecule beta-1 selective rather than another propranolol.',
+          dependsOnStepId: 'bis-w1',
+          reagentsAndBuffer:
+            '4-hydroxybenzyl alcohol derivative, 2-isopropoxyethyl chloride with base, epichlorohydrin with sodium hydroxide, isopropylamine in isopropanol at reflux under nitrogen',
+        },
+        {
+          id: 'bis-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Salt formation and control of the bis-alkylated by-product',
+          description:
+            'Form the fumarate salt and crystallise. The recurring impurity in this chemistry is the tertiary amine from a second epoxide opening, which is pharmacologically inert and hard to remove once carried forward, so it is controlled at this step rather than at release.',
+          dependsOnStepId: 'bis-w2',
+          reagentsAndBuffer:
+            'Fumaric acid in ethanol or isopropanol, crystallisation with controlled cooling, HPLC with a specified limit for the bis-alkylated impurity and for residual isopropylamine',
+        },
+        {
+          id: 'bis-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Selectivity ratio measured on beta-1 and beta-2 in parallel',
+          description:
+            'Run the same batch against cells expressing human beta-1 and human beta-2 across a full concentration range, not at a single concentration. Selectivity here is a ratio that collapses as exposure rises, and a single-point assay reports a property the drug only has at low dose.',
+          dependsOnStepId: 'bis-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 cells stably expressing human ADRB1 or ADRB2, isoproterenol as agonist, cyclic AMP accumulation readout, assay buffer with a phosphodiesterase inhibitor',
+        },
+        {
+          id: 'bis-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Functional chronotropy against tracheal relaxation',
+          description:
+            'Quantify the separation between the wanted effect and the unwanted one on tissue: blockade of isoproterenol-induced rate increase on isolated atrium against blockade of isoproterenol-induced tracheal relaxation. The gap between those two curves is the entire clinical argument for a cardioselective agent, and it is measurable rather than assumed.',
+          dependsOnStepId: 'bis-w4',
+          reagentsAndBuffer:
+            'Guinea-pig isolated right atrium and tracheal strips in Krebs-Henseleit buffer at 37 degrees Celsius, cumulative isoproterenol curves, isometric force transducers and rate counters',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bis-a1',
+        category: 'measured',
+        title: 'CIBIS-II: a third fewer deaths, and the trial was stopped early because of it',
+        laymanSummary:
+          'Two and a half thousand patients with severe heart failure were randomised to bisoprolol or a dummy tablet. Deaths fell from about one in six to about one in eight, and sudden deaths nearly halved. The trial was stopped before its planned end.',
+        technicalDetails:
+          'CIBIS-II randomised 2,647 symptomatic patients in NYHA class III or IV with ejection fraction 35% or less, on standard diuretic and ACE inhibitor therapy, to bisoprolol titrated to a maximum of 10 mg daily or placebo, followed for a mean of 1.3 years. All-cause mortality was 156 (11.8%) against 228 (17.3%), hazard ratio 0.66 (95% CI 0.54 to 0.81, p<0.0001). Sudden deaths were 48 (3.6%) against 83 (6.3%), hazard ratio 0.56 (95% CI 0.39 to 0.80, p=0.0011). Treatment effects were independent of the severity or cause of heart failure. The trial was stopped after the second interim analysis. The authors state explicitly that the results should not be extrapolated to patients with severe class IV symptoms and recent instability, because safety and efficacy were not established there.',
+        evidenceSource: 'CIBIS-II Investigators and Committees, Lancet 1999;353:9-13',
+        doi: '10.1016/S0140-6736(98)11181-9',
+        measuredMetric: 'All-cause mortality against placebo in chronic heart failure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bis-a2',
+        category: 'failed',
+        title: 'CIBIS-I found the same benefit and could not prove it',
+        laymanSummary:
+          'The first bisoprolol trial, five years earlier, was too small. Fifty-three patients died on the drug against sixty-seven on placebo — the right direction, and nowhere near statistically convincing. The authors wrote that a survival benefit remained to be demonstrated.',
+        technicalDetails:
+          'CIBIS randomised 641 patients with chronic heart failure and ejection fraction below 40%, 95% in NYHA class III, to bisoprolol (n=320) or placebo (n=321) for a mean 1.9 years. Deaths were 53 against 67; the difference did not reach significance (p=0.22, relative risk 0.80, 95% CI 0.56 to 1.15). Sudden deaths were 15 against 17 and deaths from documented ventricular arrhythmia 4 against 7, neither significant. Functional endpoints did separate: fewer hospitalisations for cardiac decompensation (61 against 90, p<0.01) and more patients improving by at least one NYHA class (68 against 48, p=0.04). The conclusion reads: improvement in survival while on beta-blockade remains to be demonstrated. Reading a positive result into CIBIS-I because CIBIS-II later succeeded is the error the trial record exists to prevent.',
+        evidenceSource: 'CIBIS Investigators and Committees, Circulation 1994;90:1765-1773',
+        doi: '10.1161/01.cir.90.4.1765',
+        measuredMetric: 'All-cause mortality against placebo, underpowered at 641 patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bis-a3',
+        category: 'conclusion_shift',
+        title: 'The perioperative evidence was fabricated, and the surviving trials point the other way',
+        laymanSummary:
+          'For a decade, guidelines on two continents told surgeons to start a beta-blocker before an operation, largely on a family of Dutch trials. Those trials were found not to be secure. When the remaining honest trials were pooled, starting a beta-blocker before surgery came out associated with more deaths, not fewer.',
+        technicalDetails:
+          'Bouri and colleagues analysed the randomised trials of beta-blocker initiation before non-cardiac surgery, separating the DECREASE family — which they describe as no longer secure — from the rest. Nine secure trials totalling 10,529 patients with 291 deaths met criteria. Initiation of a course of beta-blockers before surgery was associated with a 27% increase in 30-day all-cause mortality (p=0.04). The DECREASE studies substantially contradict the secure meta-analysis on mortality (p=0.05 for divergence). Among the secure trials, beta-blockade reduced non-fatal myocardial infarction (RR 0.73, p=0.001) while increasing stroke (RR 1.73, p=0.05) and hypotension (RR 1.51, p<0.00001); these results were dominated by one large trial. The authors conclusion is unusually direct: guideline bodies should retract their recommendations based on fictitious data without further delay. The original DECREASE report had described 112 randomised vascular surgery patients with cardiac death in 3.4% on bisoprolol against 17% on standard care (p=0.02) and non-fatal infarction in 0% against 17% (p<0.001).',
+        evidenceSource:
+          'Bouri S, Shun-Shin MJ, Cole GD, Mayet J, Francis DP. Meta-analysis of secure randomised controlled trials of beta-blockade to prevent perioperative death in non-cardiac surgery. Heart 2014;100:456-464; Poldermans D et al., N Engl J Med 1999;341:1789-1794 (DECREASE)',
+        doi: '10.1136/heartjnl-2013-304262',
+        inferredClaim:
+          'That starting a beta-blocker before non-cardiac surgery prevents perioperative death — an inference built on trials the field no longer treats as secure, and reversed in sign when only the secure trials are pooled',
+        auditFlag: 'retracted',
+      },
+      {
+        id: 'bis-a4',
+        category: 'inferred',
+        title: 'The United States label contradicts the way the drug is used',
+        laymanSummary:
+          'In the United States this drug is licensed for blood pressure only, and its label names overt heart failure as a reason not to give it. It is nevertheless recommended for heart failure by United States guidelines, on the strength of a European trial.',
+        technicalDetails:
+          'The United States prescribing information states that bisoprolol fumarate tablets are indicated in the management of hypertension, alone or in combination. Contraindications include overt cardiac failure. The Warnings section reads that beta-blocking agents should in general be avoided in patients with overt congestive failure and, where necessary in compensated failure, used cautiously. CIBIS-II, conducted in Europe, measured a 34% reduction in all-cause mortality in exactly the population the label warns about. Bisoprolol carries heart failure indications in many other jurisdictions. Nothing here is a contradiction in the evidence; it is a gap between what a sponsor applied for in one country and what the evidence shows, and it means every United States heart failure prescription of bisoprolol is off-label.',
+        evidenceSource:
+          'Bisoprolol fumarate United States prescribing information, Indications and Usage, Contraindications and Warnings sections; CIBIS-II Investigators, Lancet 1999;353:9-13',
+        inferredClaim:
+          'That an absent indication means absent evidence — the United States label reflects a regulatory filing history, and the mortality evidence for heart failure exists independently of it',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bis-a5',
+        category: 'failed',
+        title: 'CIBIS-III proved non-inferiority in one analysis and not in the other',
+        laymanSummary:
+          'A trial asked whether heart failure treatment can start with the beta-blocker instead of the usual first drug. In the main analysis the answer was yes. In the stricter analysis — the one that matters most for this kind of question — it was not proven.',
+        technicalDetails:
+          'CIBIS-III randomised 1,010 patients with mild to moderate heart failure and ejection fraction at or below 35%, on no ACE inhibitor, beta-blocker or angiotensin receptor blocker, to six months of open-label bisoprolol or enalapril monotherapy followed by the combination. Non-inferiority required the upper bound of the 95% CI for the absolute difference to be below 5%, corresponding to a hazard ratio of 1.17. In the intention-to-treat sample the primary composite of all-cause mortality or hospitalisation occurred in 178 against 186 (HR 0.94, 95% CI 0.77 to 1.16) — the bound was met. In the per-protocol sample it occurred in 163 against 165 (HR 0.97, 95% CI 0.78 to 1.21) — the bound was not met. For a non-inferiority trial the per-protocol analysis is the conservative one, because dropouts and crossovers push an intention-to-treat result toward no difference, which is the direction non-inferiority wants. The authors state that non-inferiority was not proven in the per-protocol analysis and that the results indicate it may be as safe and efficacious to start with bisoprolol.',
+        evidenceSource:
+          'Willenheimer R et al., Circulation 2005;112:2426-2435 (CIBIS III)',
+        doi: '10.1161/CIRCULATIONAHA.105.582320',
+        measuredMetric:
+          'Composite of all-cause mortality or hospitalisation, bisoprolol-first against enalapril-first, against a non-inferiority margin of HR 1.17',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bis-a6',
+        category: 'inferred',
+        title: 'Cardioselectivity is a property of the dose, not of the drug',
+        laymanSummary:
+          'Bisoprolol is described as heart-selective, which is why it is used where a non-selective beta-blocker would be dangerous. The label says selectivity is not absolute and is lost at higher strengths.',
+        technicalDetails:
+          'The label describes bisoprolol as a beta-1 selective adrenoceptor blocking agent without significant membrane-stabilising or intrinsic sympathomimetic activity in its therapeutic range, then adds that cardioselectivity is not absolute and that at 20 mg and above it also inhibits beta-2 adrenoceptors, chiefly in bronchial and vascular musculature, so the lowest effective dose is needed to retain selectivity. The practical consequence is that the safety argument for using a cardioselective beta-blocker in someone with airway disease weakens as the dose is titrated up, and there is no threshold at which it stops applying and starts not applying.',
+        evidenceSource:
+          'Bisoprolol fumarate United States prescribing information, Clinical Pharmacology section',
+        inferredClaim:
+          'That a cardioselective beta-blocker is safe in airway disease at any dose — selectivity is a ratio that narrows with exposure, and the label says so',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed and almost entirely absorbed',
+        laymanDesc:
+          'The tablet is taken once a day. Almost all of it reaches the bloodstream, food does not change that, and it lasts long enough that one dose covers a day.',
+        molecularDetail:
+          'Absolute bioavailability after a 10 mg oral dose is about 80% with only about 20% first-pass metabolism; absorption is unaffected by food. Serum protein binding is about 30%, peak concentration comes at 2 to 4 hours, and the plasma elimination half-life is 9 to 12 hours with steady state within 5 days. Clearance is split roughly evenly between renal and hepatic routes, which is why neither organ failing alone transforms the exposure.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It covers the heart receptor and mostly spares the lung one',
+        laymanDesc:
+          'Adrenaline works through two similar receptors: one mainly on the heart, one mainly on airways and blood vessels. This drug binds the heart one much more tightly, which is why it is chosen when a lung is a concern.',
+        molecularDetail:
+          'Competitive antagonism at the beta-1 adrenoceptor with a large selectivity ratio over beta-2, and no intrinsic sympathomimetic or membrane-stabilising activity. The label states the selectivity is not absolute and that beta-2 blockade appears at 20 mg and above.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The heart slows and the kidney stops shouting',
+        laymanDesc:
+          'With the receptor covered the heart beats slower and less hard. Separately, the kidney stops releasing the hormone that starts the chain tightening the arteries.',
+        molecularDetail:
+          'Beta-1 blockade reduces heart rate, contractility and cardiac output acutely, and suppresses renin release from juxtaglomerular cells, lowering angiotensin II and aldosterone. The blood pressure effect builds over days as vascular resistance, which rises briefly at the start, settles back.',
+        iconName: 'Gauge',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'In a failing heart, the useful part is what stops happening',
+        laymanDesc:
+          'A weak heart is kept going by constant adrenaline, and that constant drive is itself destroying the muscle. Blocking it does nothing helpful this week and a great deal over a year.',
+        molecularDetail:
+          'Chronic beta-1 blockade interrupts catecholamine-mediated myocyte apoptosis and adverse remodelling and reverses receptor downregulation. In CIBIS-II the mortality curves separate after the first months, and sudden death — the mode most directly tied to adrenergic drive — fell proportionally more than total death: 3.6% against 6.3%.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'Stopping suddenly is its own risk',
+        laymanDesc:
+          'Receptors multiply while they are being blocked. Removing the block all at once exposes a larger number of them to normal adrenaline, which can trigger angina or worse.',
+        molecularDetail:
+          'The label records exacerbation of angina and, in some instances, myocardial infarction or ventricular arrhythmia after abrupt cessation in coronary disease, and advises tapering over approximately one week even without known coronary disease. This is receptor upregulation rather than dependence.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the label does not say',
+        laymanDesc:
+          'In the United States this drug is licensed for blood pressure and warns against use in overt heart failure. The trial it is famous for measured a third fewer deaths in exactly that condition.',
+        molecularDetail:
+          'CIBIS-II reported all-cause mortality of 11.8% against 17.3% (HR 0.66, 95% CI 0.54 to 0.81) in NYHA class III and IV. The United States label lists overt cardiac failure under Contraindications. The two documents are describing different things: one is an evidence base, the other a filing history.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'CIBIS-II (Lancet 1999;353:9-13)',
+        phase: 'Phase 3, multicentre, randomised, double-blind, placebo-controlled',
+        sampleSize: 2647,
+        primaryEndpoint: 'All-cause mortality in NYHA class III or IV heart failure',
+        endpointMet: true,
+        statisticalPValue:
+          '11.8% against 17.3%; hazard ratio 0.66 (95% CI 0.54 to 0.81), p<0.0001; sudden death HR 0.56 (0.39 to 0.80), p=0.0011',
+        unreportedAdverseSignals:
+          'Stopped early at the second interim analysis. The authors state the results should not be extrapolated to severe class IV patients with recent instability, in whom safety and efficacy were not established.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'CIBIS-I (Circulation 1994;90:1765-1773)',
+        phase: 'Phase 3, multicentre, randomised, double-blind, placebo-controlled',
+        sampleSize: 641,
+        primaryEndpoint: 'All-cause mortality in chronic heart failure',
+        endpointMet: false,
+        statisticalPValue:
+          '53 deaths against 67; relative risk 0.80 (95% CI 0.56 to 1.15), p=0.22 over a mean 1.9 years',
+        unreportedAdverseSignals:
+          'Functional endpoints separated while survival did not: hospitalisation for decompensation 61 against 90 (p<0.01) and NYHA class improvement in 68 against 48 (p=0.04). A trial can be right about the mechanism and unable to demonstrate the outcome.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'CIBIS-III (Circulation 2005;112:2426-2435)',
+        phase: 'Phase 4, randomised, open-label monotherapy phase with blinded endpoint comparison',
+        sampleSize: 1010,
+        primaryEndpoint:
+          'Composite of all-cause mortality or hospitalisation, bisoprolol-first against enalapril-first, non-inferiority margin HR 1.17',
+        endpointMet: false,
+        statisticalPValue:
+          'Intention-to-treat HR 0.94 (95% CI 0.77 to 1.16) met the margin; per-protocol HR 0.97 (95% CI 0.78 to 1.21) did not',
+        unreportedAdverseSignals:
+          'For a non-inferiority question the per-protocol analysis is the conservative one, and it is the analysis that failed. The published conclusion is that non-inferiority was not proven per protocol.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'DECREASE (N Engl J Med 1999;341:1789-1794)',
+        phase: 'Randomised, open, perioperative trial in high-risk vascular surgery',
+        sampleSize: 112,
+        primaryEndpoint:
+          'Death from cardiac causes or non-fatal myocardial infarction within 30 days of major vascular surgery',
+        endpointMet: true,
+        statisticalPValue:
+          'Cardiac death 3.4% against 17% (p=0.02) and non-fatal infarction 0% against 17% (p<0.001) in 59 bisoprolol and 53 standard-care patients',
+        unreportedAdverseSignals:
+          'The DECREASE family of trials is described by the authors of the 2014 meta-analysis as no longer secure. Pooling only the secure trials — 10,529 patients — gives a 27% increase in 30-day all-cause mortality from perioperative beta-blocker initiation, the opposite of this result.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'All-cause mortality 11.8% against 17.3% in 2,647 patients in CIBIS-II (HR 0.66, 95% CI 0.54 to 0.81, p<0.0001)',
+        'Sudden death 3.6% against 6.3% in the same trial (HR 0.56, 95% CI 0.39 to 0.80, p=0.0011)',
+        'No significant survival difference in the 641-patient CIBIS-I (RR 0.80, 95% CI 0.56 to 1.15, p=0.22)',
+        'A 27% increase in 30-day all-cause mortality from perioperative beta-blocker initiation across 9 secure trials in 10,529 patients (p=0.04)',
+      ],
+      unsupportedInferences: [
+        'That bisoprolol prevents perioperative death, which rested on a trial family the meta-analysts describe as no longer secure',
+        'That the absence of a United States heart failure indication means the heart failure evidence is weak',
+        'That CIBIS-III established bisoprolol-first as non-inferior, when the per-protocol analysis did not meet the margin',
+        'That cardioselectivity makes the drug safe in airway disease at any dose — the label states selectivity is lost at 20 mg and above',
+      ],
+      whatFailedInitially: [
+        'CIBIS-I could not demonstrate a survival benefit at 641 patients and its authors said so',
+        'The DECREASE family of perioperative trials was found not secure, and the meta-analysis of what remained reversed the direction of the effect',
+        'CIBIS-III failed its non-inferiority margin in the per-protocol analysis',
+        'The United States label still contraindicates the drug in the condition its most-cited trial was conducted in',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 1992 for hypertension under NDA 019982, and licensed for heart failure across much of the rest of the world',
+        'One of three beta-blockers with an independent mortality trial in heart failure, alongside carvedilol and metoprolol succinate',
+        'The perioperative episode changed how cardiology guidelines treat single-group evidence, and is cited whenever a guideline rests on one investigator',
+        'Listed on the WHO Model List of Essential Medicines as a representative beta-blocker',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet at 5 and 10 mg, taken once daily; also sold combined with hydrochlorothiazide',
+      description:
+        'Absorption is about 80% and unaffected by food, and the 9 to 12 hour half-life supports once-daily dosing with steady state in five days. Clearance is divided roughly equally between renal excretion of unchanged drug and hepatic metabolism, so exposure roughly doubles rather than multiplying when either organ is impaired.',
+      safetyProfile:
+        'Contraindicated in cardiogenic shock, overt cardiac failure, second- or third-degree AV block and marked sinus bradycardia. Abrupt cessation can exacerbate angina and precipitate infarction or ventricular arrhythmia; the label advises tapering over about a week. Beta-1 selectivity is lost at 20 mg and above, so bronchospasm risk rises with dose. It masks the adrenergic warning symptoms of hypoglycaemia in diabetes and may alter glucose levels.',
+    },
+    commonQuestions: [
+      {
+        q: 'My doctor prescribed this for heart failure, but the leaflet says not to use it in heart failure. Which is right?',
+        a: 'Both, and the conflict is regulatory rather than scientific. In the United States, bisoprolol was only ever filed for high blood pressure, so the label covers hypertension and — following the standard beta-blocker class warning of the era — lists overt cardiac failure as a contraindication. The trial that made bisoprolol a heart failure drug, CIBIS-II, was run in Europe in 2,647 patients with class III and IV symptoms and found deaths fell from 17.3% to 11.8%. Bisoprolol carries a heart failure indication in many other countries and is recommended for it by United States guidelines. Prescribing it for heart failure in the United States is evidence-based and off-label at once. That is worth understanding, and it is not a reason to stop.',
+        auditNote:
+          'A label is a record of what a company applied for and what a regulator granted. It is not a summary of what is known about a molecule, and the two diverge most for old generic drugs that nobody has an economic reason to re-file.',
+      },
+      {
+        q: 'Should I take a beta-blocker before an operation?',
+        a: 'The evidence for starting one before surgery went the other way, and how it went is worth knowing. For years, European and American guidelines recommended starting a beta-blocker before intermediate- or high-risk non-cardiac surgery, largely on a family of Dutch trials called DECREASE. Those trials were found not to be secure. When researchers pooled only the trials that survived scrutiny — nine trials, 10,529 patients, 291 deaths — starting a beta-blocker before surgery was associated with a 27% increase in 30-day mortality, along with fewer non-fatal heart attacks but more strokes and much more hypotension. This is about starting one before surgery. Continuing a beta-blocker you are already established on is a different question with a different answer, and stopping abruptly is itself a known risk.',
+        auditNote:
+          'The meta-analysis authors wrote that guideline bodies should retract recommendations based on fictitious data without further delay. That sentence is why this record is on the page.',
+      },
+      {
+        q: 'Is bisoprolol safe if I have asthma or COPD?',
+        a: 'It is safer than a non-selective beta-blocker and it is not neutral. The label describes bisoprolol as beta-1 selective, then says plainly that cardioselectivity is not absolute and that at 20 mg and above it also blocks the beta-2 receptors in the airways, so the lowest effective dose should be used to keep selectivity. There is no dose below which the selectivity is total. In practice this is a judgement about how bad the airway disease is against how much the heart needs the drug, and it is a judgement that changes if the dose is titrated up.',
+      },
+      {
+        q: 'The first bisoprolol trial did not work. Why do we believe the second one?',
+        a: 'Because the first one was too small to answer the question, and it said so. CIBIS-I randomised 641 patients and found 53 deaths on bisoprolol against 67 on placebo — the right direction, p=0.22, and its authors concluded that a survival benefit remained to be demonstrated. CIBIS-II randomised four times as many patients, in a sicker population, and found a 34% reduction in deaths at p<0.0001, strong enough that the trial was stopped early. That is how the process is supposed to work: an underpowered trial that points somewhere is a reason to run a larger trial, not a reason to claim the result. The temptation to read CIBIS-I as positive in hindsight is exactly the error the record guards against.',
+      },
+      {
+        q: 'Why do I feel so tired on it?',
+        a: 'Because the drug is doing what it does. A slower, less forceful heart means less cardiac output for a given demand, and that is felt as fatigue and reduced exercise capacity, particularly in the first weeks and particularly in people who were relying on a fast heart rate to compensate. It usually eases. It sometimes does not, and in high blood pressure — where beta-blockers are no longer first-line in most guidelines — that is a reasonable trigger to ask whether a different class would do the same job. In heart failure or after a heart attack the calculation is different, because the benefit being bought is survival rather than a number.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'CIBIS-II Investigators and Committees. The Cardiac Insufficiency Bisoprolol Study II (CIBIS-II): a randomised trial. Lancet 1999;353:9-13',
+        identifier: '10023943',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'CIBIS Investigators and Committees. A randomized trial of beta-blockade in heart failure. The Cardiac Insufficiency Bisoprolol Study (CIBIS). Circulation 1994;90:1765-1773',
+        identifier: '10.1161/01.cir.90.4.1765',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Willenheimer R, van Veldhuisen DJ, Silke B, et al. Effect on survival and hospitalization of initiating treatment for chronic heart failure with bisoprolol followed by enalapril, as compared with the opposite sequence: CIBIS III. Circulation 2005;112:2426-2435',
+        identifier: '10.1161/CIRCULATIONAHA.105.582320',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bouri S, Shun-Shin MJ, Cole GD, Mayet J, Francis DP. Meta-analysis of secure randomised controlled trials of beta-blockade to prevent perioperative death in non-cardiac surgery. Heart 2014;100:456-464',
+        identifier: '10.1136/heartjnl-2013-304262',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Poldermans D, Boersma E, Bax JJ, et al. The effect of bisoprolol on perioperative mortality and myocardial infarction in high-risk patients undergoing vascular surgery. N Engl J Med 1999;341:1789-1794 (DECREASE)',
+        identifier: '10.1056/NEJM199912093412402',
+        kind: 'doi',
+      },
+      {
+        label:
+          'MERIT-HF Study Group. Effect of metoprolol CR/XL in chronic heart failure (MERIT-HF). Lancet 1999;353:2001-2007',
+        identifier: '10.1016/S0140-6736(99)04440-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'DailyMed: bisoprolol fumarate tablets United States prescribing information — Indications and Usage, Contraindications, Warnings and Clinical Pharmacology',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22bisoprolol+fumarate%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — bisoprolol, 93 listed generic products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 2405 — bisoprolol structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2405',
+        kind: 'url',
+      },
+    ],
+  },
 ]
