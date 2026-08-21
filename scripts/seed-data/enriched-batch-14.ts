@@ -3260,4 +3260,517 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Azelastine — an antihistamine sprayed into the nose, where roughly two-fifths of it is
+  //    absorbed anyway, one in five people taste it bitterly, and one in nine gets sleepy.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'azelastine',
+    name: 'Azelastine',
+    tradeName: 'Astelin / Astepro / Astepro Allergy',
+    sponsor:
+      'Originated as Astelin, NDA 020114, approved 1 November 1996; the current United States applications are Astepro (NDA 022203, 15 October 2008), Astepro Allergy over-the-counter (NDA 213872, 17 June 2021, Bayer HealthCare) and the fluticasone combination Dymista (NDA 202236, 1 May 2012); generics are labelled by Rising and others',
+    targetGene: 'HRH1',
+    targetProtein:
+      'Histamine H1 receptor, with additional inhibition of mediator release from mast cells and of leukotriene and platelet-activating factor pathways demonstrated in human cell lines',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1996,
+    indication:
+      'Treatment of the symptoms of seasonal allergic rhinitis in adults and children aged 5 years and older, and of vasomotor rhinitis in adults and adolescents aged 12 years and older; an ophthalmic solution is separately indicated for allergic conjunctivitis',
+    patientFriendlyIndication:
+      'Hay fever, and the non-allergic runny nose that weather, smells and temperature set off',
+    anatomicalSite:
+      'Nasal mucosa — sprayed directly onto the tissue, though about 40% of the delivered amount is absorbed into the circulation',
+    conditionContext: {
+      conditionExplainer:
+        'Spraying an antihistamine into the nose puts the drug where the histamine is being released rather than sending it round the whole body to get there. That is the argument for the route: faster onset, higher local concentration, and an effect on nasal blockage that swallowed antihistamines largely fail to achieve.',
+      whyItMatters:
+        'Azelastine is also the drug that tests the assumption behind that argument. Roughly two-fifths of a nasal dose reaches the bloodstream, and the label carries the same somnolence warning as an oral antihistamine, at more than twice the placebo rate. "Topical" is a description of where it is applied, not of where it stays.',
+      whoTakesThis:
+        'Adults and children from five years, sold without a prescription in the United States since June 2021 — the first antihistamine nasal spray to make that switch.',
+      clinicalGoals:
+        'A lower total nasal symptom score, including congestion, within minutes rather than hours. The trials support that and also show it is the weakest of the three active nasal options tested against it.',
+    },
+    oneSentenceVerdict:
+      'A phthalazinone H1 antagonist sprayed onto the nasal lining that also suppresses mast cell mediator release — in a meta-analysis of three trials in 3,398 patients it reduced reflective total nasal symptom score by 4.4 points against 3.0 on placebo (p<0.001) while intranasal fluticasone reached 5.1 and the two combined reached 5.7; its systemic bioavailability by that route is about 40%, and 19.7% of patients tasted it bitterly against 0.6% on placebo while 11.5% became somnolent against 5.4%.',
+    laymanHowItWorks:
+      'Instead of swallowing an antihistamine and waiting for it to circulate to your nose, you spray it straight onto the lining. It blocks the histamine receptor there within minutes, and it also makes the cells that release histamine less willing to do so, which an oral antihistamine does not. The catch is that the nose is a very absorbent surface: about two-fifths of what you spray ends up in your bloodstream, which is why a nasal spray can still make you sleepy. And a good deal of what you spray runs down the back of your throat, where it tastes strongly bitter.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 76,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        '$1.01 per mL, median across 17 listed products (CMS National Average Drug Acquisition Cost, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      synthesisComplexity: 'Moderate',
+      openPatentNotes:
+        'The original Astelin application, NDA 020114 of 1 November 1996, and the Astepro reformulation, NDA 022203 of 15 October 2008, are both listed as discontinued; the marketed products are the over-the-counter Astepro Allergy under NDA 213872, approved 17 June 2021, and generics. It is by some distance the most expensive drug per unit in this batch on the CMS acquisition survey, at roughly eleven times the per-millilitre cost of oxymetazoline nasal spray.',
+      costSource: {
+        label:
+          'No published cost-of-production study exists for azelastine; the field is left empty rather than estimated',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'url',
+      },
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) weekly reference file, effective 19 August 2026 — median across 17 listed azelastine products',
+        identifier: 'https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing',
+        kind: 'regulatory',
+      },
+    },
+    substitutes: {
+      summary:
+        'The head-to-head data here are unusually clean, because three trials in 3,398 patients compared this drug, an intranasal steroid, their combination and placebo on the same endpoint at the same time. Azelastine came third of the three active arms. The case for it is speed and the option of using it when an oral antihistamine has already failed, not superior symptom control.',
+      conventionalRx: [
+        {
+          name: 'Intranasal fluticasone propionate',
+          class: 'Topical corticosteroid',
+          howItCompares:
+            'Beat azelastine directly in the pooled analysis of the three registration trials: reflective total nasal symptom score fell 5.1 points on fluticasone against 4.4 on azelastine and 3.0 on placebo, all comparisons p<0.001. It works more slowly, over days rather than minutes, and it carries no somnolence warning.',
+          typicalCost:
+            'US$0.6920 per millilitre, median across 51 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: larger effect on total nasal symptoms, no sedation, no bitter taste of consequence, cheaper per millilitre. Cons: days to full effect, nosebleeds in a minority, and it does nothing in the first fifteen minutes.',
+        },
+        {
+          name: 'Azelastine plus fluticasone in one device (Dymista)',
+          class: 'Fixed combination of the two, approved as NDA 202236 on 1 May 2012',
+          howItCompares:
+            'The best-performing arm of the three trials: 5.7 points against 5.1 for fluticasone alone, 4.4 for azelastine alone and 3.0 for placebo, all p<0.001, with the benefit present from the first day of assessment and response reached consistently days earlier than with either single agent.',
+          typicalCost:
+            'No median acquisition cost for the fixed combination is listed separately in the CMS survey extract used here',
+          prosAndCons:
+            'Pros: the largest measured effect and the fastest time to response, including in the most severe patients. Cons: it carries azelastine’s bitter taste and somnolence alongside the steroid; a combination product is a single prescription, not a smaller drug burden.',
+        },
+        {
+          name: 'Oral second-generation antihistamine',
+          class: 'Systemic H1 antagonist — loratadine, cetirizine, fexofenadine',
+          howItCompares:
+            'One trial answers this comparison directly and unusually. It enrolled 334 patients who had already taken fexofenadine 60 mg twice daily for a week and improved by less than a third, then randomised them: azelastine spray beat placebo (p=0.007), and adding fexofenadine on top of the spray gave no better result than the spray alone.',
+          typicalCost:
+            '$0.0532 per unit for loratadine and $0.2407 per unit for fexofenadine at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: far cheaper, no bitter taste, no device technique to get right. Cons: little effect on nasal congestion, hours rather than minutes to onset, and in the trial above they had already failed.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Aim the spray away from the septum and do not sniff hard',
+          action:
+            'Point the nozzle towards the outer wall of the nostril, tilt the head slightly forward, and breathe gently rather than inhaling sharply.',
+          patientImpact:
+            'Most of the bitter taste comes from drug running down the back of the throat, which sniffing hard makes worse. Bitter taste was reported by 19.7% of patients on azelastine against 0.6% on placebo — a thirty-fold difference and the single most distinctive thing about using this drug.',
+          clinicalPrecaution:
+            'Nasal burning (4.1% against 1.7%) and epistaxis (2.0% against 1.4%) are also more common than on placebo, and aiming at the septum increases both.',
+        },
+        {
+          name: 'Treat it as a sedating drug until you know it is not',
+          action:
+            'Find out how it affects you before driving on it, and avoid alcohol and other sedatives alongside it.',
+          patientImpact:
+            'Somnolence was reported by 45 of 391 patients (11.5%) against 19 of 353 on placebo (5.4%), and the label carries an explicit caution against hazardous occupations requiring complete mental alertness. Being a spray does not make it a local drug: systemic bioavailability by the nasal route is about 40%.',
+          clinicalPrecaution:
+            'The label directs that concurrent use with alcohol or other central nervous system depressants be avoided because further reductions in alertness and impairment of performance may occur.',
+        },
+        {
+          name: 'Saline irrigation before, not instead',
+          action:
+            'Rinse the nose with salt water before spraying if it is heavily congested or crusted.',
+          patientImpact:
+            'A spray cannot coat mucosa it cannot reach. Clearing the passage first is a technique adjustment rather than a treatment, and it is one of the few things that changes how much of the drug lands where it is meant to.',
+          clinicalPrecaution:
+            'Only sterile, distilled or previously boiled water. Fatal amoebic meningoencephalitis has been traced to nasal irrigation with untreated tap water.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1CCCC(CC1)N2C(=O)C3=CC=CC=C3C(=N2)CC4=CC=C(C=C4)Cl',
+      chemicalFormula: 'C22H24ClN3O',
+      molecularWeight: '381.90 g/mol',
+      targetReceptorAffinity:
+        'Azelastine is a phthalazinone with H1 antagonist activity demonstrated in isolated tissues, animal models and humans, administered as a racemate with no difference in pharmacologic activity between the enantiomers in vitro. Its principal metabolite desmethylazelastine is also an H1 antagonist and reaches 20% to 50% of parent plasma concentration at steady state. Beyond H1, in vitro work in human cell lines demonstrates inhibition of histamine and other mediator release from mast cells, inhibition of leukotriene and platelet-activating factor pathways, and decreased eosinophil chemotaxis and activation — a broader profile than a pure receptor blocker.',
+      structureSource: {
+        label: 'PubChem CID 2267 (azelastine) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2267',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'aze-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Phthalazinone core identity and chlorobenzyl position',
+          description:
+            'Confirm the 4-chlorobenzyl substitution on the phthalazinone ring and the N-methylazepane attachment. The molecule has one stereocentre on the azepane ring and is deliberately supplied as a racemate: the label records no difference in pharmacologic activity between the enantiomers in vitro, so unlike levocetirizine there is no single-enantiomer product to distinguish it from.',
+          reagentsAndBuffer:
+            'Azelastine hydrochloride reference standard, reversed-phase HPLC with ultraviolet detection, 1H and 13C NMR in DMSO-d6, chloride assay by ion chromatography',
+        },
+        {
+          id: 'aze-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Condensation to the phthalazinone and N-alkylation with the azepane',
+          description:
+            'Build the 4-(4-chlorobenzyl)phthalazin-1(2H)-one from the substituted phthalide or ketoacid with hydrazine, then alkylate the ring nitrogen with 1-methylazepan-4-yl halide or tosylate. Alkylating the correct nitrogen is the selectivity problem: the phthalazinone has two nitrogens and the wrong regiochemistry gives an inactive isomer that is difficult to remove downstream.',
+          dependsOnStepId: 'aze-w1',
+          reagentsAndBuffer:
+            'Hydrazine hydrate, 2-(4-chlorobenzyl)benzoic acid derivative, 1-methyl-4-azepanyl chloride or tosylate, sodium hydride or potassium carbonate in dimethylformamide, nitrogen atmosphere',
+        },
+        {
+          id: 'aze-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Regioisomer removal and hydrochloride crystallisation',
+          description:
+            'Separate the N1 and N2 alkylation products and crystallise the hydrochloride. Because the finished product is a nasal solution rather than a tablet, the specification on particulates and on solution clarity is tighter than for an oral form: anything insoluble in a spray becomes an inhaled particle.',
+          dependsOnStepId: 'aze-w2',
+          reagentsAndBuffer:
+            'Preparative reversed-phase chromatography, hydrogen chloride in isopropanol, recrystallisation from ethanol and water, sub-visible particulate counting by light obscuration on the reconstituted solution',
+        },
+        {
+          id: 'aze-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Human mast cell mediator-release inhibition',
+          description:
+            'Challenge human mast cells or basophils with anti-IgE and measure histamine, leukotriene and platelet-activating factor release with and without the compound. This is the assay that distinguishes azelastine from a plain H1 blocker: the receptor-blocking activity is shared with every antihistamine, and the mediator-release inhibition is the part of the profile that justifies calling it more than one.',
+          dependsOnStepId: 'aze-w3',
+          reagentsAndBuffer:
+            'Human lung or skin mast cells or peripheral blood basophils, anti-IgE or calcium ionophore A23187 as secretagogue, HEPES-buffered Tyrode solution with calcium and magnesium, histamine and cysteinyl leukotriene enzyme immunoassays, eosinophil chemotaxis chambers',
+        },
+        {
+          id: 'aze-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Nasal deposition, systemic bioavailability and QTc',
+          description:
+            'Quantify what fraction of a sprayed dose is absorbed, and pair it with cardiac repolarisation measurement. Reporting a nasal drug as though it were purely local is the error this step exists to prevent: azelastine’s nasal bioavailability is about 40%, and while the nasal route showed no QTc effect over 56 days, oral azelastine 4 mg twice daily produced a mean QTc change of 7.2 msec.',
+          dependsOnStepId: 'aze-w4',
+          reagentsAndBuffer:
+            'LC-MS/MS quantification of azelastine and desmethylazelastine in plasma, gamma scintigraphy or nasal cast deposition modelling, serial 12-lead electrocardiography with Fridericia correction, matched intravenous reference arm for absolute bioavailability',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'aze-a1',
+        category: 'measured',
+        title:
+          'In 3,398 patients it beat placebo and lost to the steroid it is usually compared against',
+        laymanSummary:
+          'Three trials run in different pollen seasons compared this spray, a steroid spray, both together, and a dummy. All three active treatments beat the dummy. The steroid beat this drug, and the combination beat the steroid.',
+        technicalDetails:
+          'Three multicentre, randomised, double-blind, placebo- and active-controlled parallel-group trials — MP4002 (NCT00651118), MP4004 (NCT00740792) and MP4006 (NCT00883168) — enrolled 3,398 patients aged 12 and over with moderate-to-severe seasonal allergic rhinitis, each running 14 days in a different allergy season. The primary variable was the sum of morning and evening change from baseline in reflective total nasal symptom score, range 0 to 24. In the meta-analysis, mean reduction was 5.7 (SD 5.3) for the azelastine-fluticasone combination, 5.1 (SD 4.9) for fluticasone propionate, 4.4 (SD 4.8) for azelastine and 3.0 (SD 4.2) for placebo, with the combination superior to each single agent and to placebo at p<0.001. The benefit was present from the first day of assessment and extended to each individual nasal symptom, including in the most severely affected patients.',
+        evidenceSource:
+          'Carr W et al., J Allergy Clin Immunol 2012;129:1282-1289.e10 (MP4002 NCT00651118, MP4004 NCT00740792, MP4006 NCT00883168)',
+        doi: '10.1016/j.jaci.2012.01.077',
+        measuredMetric:
+          'Change from baseline in reflective total nasal symptom score over 14 days, four-arm comparison',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aze-a2',
+        category: 'failed',
+        title: 'A nasal spray with a driving warning, because 40% of it gets into the blood',
+        laymanSummary:
+          'People assume a spray stays in the nose. About two-fifths of this one is absorbed into the circulation, and one patient in nine reported drowsiness against one in eighteen on the dummy spray. The label tells you not to drive on it.',
+        technicalDetails:
+          'Systemic bioavailability after intranasal administration is approximately 40%, with peak plasma concentrations at 2 to 3 hours and greater-than-proportional increases in Cmax and AUC above two sprays per nostril twice daily. Across six placebo- and active-controlled trials in 391 patients aged 12 and over, somnolence was reported in 45 (11.5%) against 19 of 353 on vehicle placebo (5.4%). The Warnings and Precautions section directs patients to avoid hazardous occupations requiring complete mental alertness such as driving or operating machinery, and to avoid concurrent alcohol or other central nervous system depressants because further decreased alertness and impairment of central nervous system performance may occur. The active metabolite desmethylazelastine reaches 20% to 50% of parent plasma concentration at steady state and is itself an H1 antagonist.',
+        evidenceSource:
+          'Azelastine hydrochloride nasal spray prescribing information, sections 5.1, 6.1 Table 1 and 12.3',
+        inferredClaim:
+          'That applying an antihistamine topically confines its effect to the site of application — the nasal mucosa absorbs about 40% of the delivered amount, and the somnolence rate and label warning follow from that',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'aze-a3',
+        category: 'measured',
+        title: 'One patient in five tastes it, against one in a hundred and sixty-six on placebo',
+        laymanSummary:
+          'Bitter taste is the defining complaint about this drug and the numbers are extreme: nearly twenty percent of patients reported it against half a percent on the dummy spray. It did not, however, make more people stop treatment in the trials.',
+        technicalDetails:
+          'In placebo-controlled seasonal allergic rhinitis trials at two sprays per nostril twice daily, bitter taste was reported by 77 of 391 patients (19.7%) against 2 of 353 on vehicle placebo (0.6%) — a rate ratio above thirty and by far the largest treatment-attributable difference on the label. Nasal burning was 4.1% against 1.7%, paroxysmal sneezing 3.1% against 1.1%, nausea 2.8% against 1.1% and weight increase 2.0% against 0.0%. Notably, discontinuation due to adverse reactions was 2.2% on azelastine against 2.8% on placebo, so within the trials the taste did not drive people off treatment even though it was overwhelmingly attributable to the drug.',
+        evidenceSource:
+          'Azelastine hydrochloride nasal spray prescribing information, section 6.1, Table 1 (391 patients against 353 placebo)',
+        measuredMetric:
+          'Adverse reaction incidence at ≥2% and greater than placebo, six controlled trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aze-a4',
+        category: 'measured',
+        title: 'It worked in people an oral antihistamine had already failed',
+        laymanSummary:
+          'A trial deliberately recruited people who had taken an oral antihistamine for a week and barely improved. The spray helped them. Adding the tablet back on top of the spray added nothing.',
+        technicalDetails:
+          'A multicentre, randomised, double-blind, placebo-controlled two-week study opened with a one-week open-label lead-in on fexofenadine 60 mg twice daily. The 334 patients who improved by less than 25% to 33% were randomised to azelastine nasal spray two sprays per nostril twice daily, the same spray plus fexofenadine, or saline placebo spray with placebo capsules. At day 14 both azelastine arms improved total nasal symptom score against placebo — p=0.007 for spray alone and p=0.003 for the combination — and azelastine monotherapy was as effective as azelastine plus fexofenadine on the total score and on each of its four component symptoms.',
+        evidenceSource: 'LaForce CF et al., Ann Allergy Asthma Immunol 2004;93:154-159',
+        doi: '10.1016/S1081-1206(10)61468-8',
+        measuredMetric:
+          'Change from baseline to day 14 in total nasal symptom score in oral-antihistamine non-responders',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aze-a5',
+        category: 'inferred',
+        title: 'A phase 2 trial found fewer COVID infections, on twenty events and one centre',
+        laymanSummary:
+          'A German trial had 450 healthy adults spray either this drug or a placebo three times a day for eight weeks and tested them for COVID twice weekly. Five infections occurred in the drug group and fifteen in the placebo group. That is a real difference and it rests on twenty events at one hospital, in a trial run by the manufacturer.',
+        technicalDetails:
+          'The CONTAIN trial was a phase 2, double-blind, placebo-controlled, single-centre study conducted at Saarland University Hospital from March 2023 to July 2024, randomising 450 healthy adults 1:1 to azelastine 0.1% nasal spray or placebo three times daily for 56 days, with rapid antigen testing twice weekly and PCR confirmation. In the intention-to-treat population, PCR-confirmed SARS-CoV-2 infection occurred in 5 of 227 (2.2%) on azelastine against 15 of 223 (6.7%) on placebo, odds ratio 0.31 (95% CI 0.11 to 0.87). Secondary findings were longer mean time to infection among those infected (31.2 against 19.5 days), fewer PCR-confirmed symptomatic infections (21 of 227 against 49 of 223) and lower PCR-confirmed rhinovirus incidence (1.8% against 6.3%). Adverse events were comparable. The trial sponsor is the manufacturer Ursapharm and two authors are company employees including its chief executive; the authors themselves call for confirmation in larger, multicentric trials. An erratum was published alongside the paper.',
+        evidenceSource:
+          'Lehr T et al.; CONTAIN Study Group. JAMA Intern Med 2025;185:1309-1317 (EudraCT 2022-003756-13); erratum JAMA Intern Med 2025;185:1401',
+        doi: '10.1001/jamainternmed.2025.4283',
+        inferredClaim:
+          'That azelastine nasal spray prevents respiratory viral infection — a single-centre phase 2 result on twenty total events, sponsored and co-authored by the manufacturer, which the investigators explicitly say needs confirmation',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'aze-a6',
+        category: 'conclusion_shift',
+        title:
+          'The route was chosen partly to avoid a cardiac effect the oral form actually produces',
+        laymanSummary:
+          'Taken as a tablet, this drug lengthens the heart’s electrical recovery time slightly. Sprayed into the nose for eight weeks, it does not. The nasal route is not only about getting the drug to the nose.',
+        technicalDetails:
+          'In a placebo-controlled study of 95 subjects with allergic rhinitis, two sprays per nostril twice daily for 56 days showed no evidence of an effect on cardiac repolarisation as represented by the corrected QT interval. By contrast, multiple-dose oral azelastine produced a mean QTc change of 7.2 msec at 4 mg twice daily and 3.6 msec at 8 mg twice daily. Interaction studies with erythromycin and ketoconazole found no QTc effect on serial electrocardiograms, and at approximately eight times the maximum recommended nasal amount the drug does not prolong QTc to a clinically relevant extent. The specific cytochrome P450 isoforms responsible for its metabolism have never been identified.',
+        evidenceSource:
+          'Azelastine hydrochloride nasal spray prescribing information, section 12.2 Cardiac Electrophysiology',
+        inferredClaim:
+          'That a nasal antihistamine is simply an oral antihistamine delivered closer to the target — the same molecule shows a measurable QTc signal by mouth and none by spray, so the route changes the drug’s risk profile as well as its onset',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Sprayed onto the tissue that is inflamed',
+        laymanDesc:
+          'The drug lands directly on the lining of the nose rather than travelling there through the bloodstream, which is why it starts working in minutes instead of an hour.',
+        molecularDetail:
+          'Delivered as a metered nasal spray of the hydrochloride salt. Peak plasma concentration comes at 2 to 3 hours, but local mucosal concentration is immediate and far above anything achievable orally. The ophthalmic formulation shows onset of itch prevention within 3 minutes, which is the same principle applied to the conjunctiva.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'About two-fifths of it is absorbed anyway',
+        laymanDesc:
+          'The nasal lining is thin and richly supplied with blood. A large fraction of the dose crosses into the circulation, so the drug is not confined to the nose in the way the word "topical" suggests.',
+        molecularDetail:
+          'Systemic bioavailability after intranasal administration is approximately 40%, with a steady-state volume of distribution of 14.5 L/kg and 88% plasma protein binding. Above two sprays per nostril twice daily, Cmax and AUC rise more than proportionally with dose.',
+        iconName: 'ArrowRightLeft',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the histamine receptor on the spot',
+        laymanDesc:
+          'On the nasal lining it occupies the receptor histamine acts through, stopping the itch, sneeze and runny nose signal at the tissue where it starts.',
+        molecularDetail:
+          'H1 receptor antagonism demonstrated in isolated tissues, animal models and humans, given as a racemate with no in vitro difference between enantiomers. The principal metabolite desmethylazelastine is itself an H1 antagonist at 20% to 50% of parent plasma concentration and has a long enough presence to contribute to the twice-daily interval.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It also quietens the cells that release histamine',
+        laymanDesc:
+          'Beyond blocking the receiver, it makes mast cells less willing to release their contents in the first place, and damps down two other inflammatory chemical families. This is what oral antihistamines do not do.',
+        molecularDetail:
+          'In vitro work in human cell lines demonstrates inhibition of histamine and other mediator release from mast cells, inhibition of leukotrienes and platelet-activating factor, and decreased eosinophil chemotaxis and activation. Leukotrienes are a principal driver of nasal congestion, which is the plausible explanation for the congestion effect an oral H1 blocker cannot match.',
+        iconName: 'ShieldCheck',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Total nasal symptoms fall by about four and a half points out of twenty-four',
+        laymanDesc:
+          'Across three trials in nearly three and a half thousand people, the score summing runny nose, sneezing, itchy nose and blocked nose fell by 4.4 points on this drug against 3.0 on placebo — and by 5.1 on a steroid spray.',
+        molecularDetail:
+          'Reflective total nasal symptom score, range 0 to 24, summed morning and evening over 14 days: -4.4 (SD 4.8) azelastine, -5.1 (SD 4.9) intranasal fluticasone, -5.7 (SD 5.3) the combination, -3.0 (SD 4.2) placebo, all differences p<0.001 in the pooled analysis of 3,398 patients.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The price paid is taste and alertness',
+        laymanDesc:
+          'One person in five tastes it bitterly and one in nine feels sleepy on it. Neither is a rare reaction; both are ordinary consequences of the route and the molecule.',
+        molecularDetail:
+          'Bitter taste 19.7% against 0.6% on placebo; somnolence 11.5% against 5.4%; nasal burning 4.1% against 1.7%. Discontinuation for adverse reactions was nonetheless 2.2% on drug against 2.8% on placebo, so within the trials these effects were tolerated rather than treatment-limiting.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MP4002 (NCT00651118), MP4004 (NCT00740792) and MP4006 (NCT00883168), pooled',
+        phase: 'Three Phase 3, randomised, double-blind, placebo- and active-controlled, 14 days each',
+        sampleSize: 3398,
+        primaryEndpoint:
+          'Sum of morning and evening change from baseline in reflective total nasal symptom score (0-24) over 14 days',
+        endpointMet: true,
+        statisticalPValue:
+          'Combination -5.7, fluticasone -5.1, azelastine -4.4, placebo -3.0; combination superior to each single agent and to placebo, all p<0.001',
+        unreportedAdverseSignals:
+          'The trials were designed to register the fixed combination, so azelastine appears as an active comparator rather than as the drug under study. On that comparison it is the weakest of the three active arms.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'LaForce 2004 (Ann Allergy Asthma Immunol 93:154-159)',
+        phase: 'Randomised, double-blind, placebo-controlled, 2 weeks after open-label lead-in',
+        sampleSize: 334,
+        primaryEndpoint:
+          'Change from baseline to day 14 in total nasal symptom score in patients still symptomatic after a week of fexofenadine',
+        endpointMet: true,
+        statisticalPValue:
+          'Azelastine spray P=0.007 and azelastine plus fexofenadine P=0.003 against placebo; the two azelastine arms did not differ',
+        unreportedAdverseSignals:
+          'Enrichment by prior non-response to an oral antihistamine makes the population unusually favourable to a nasal agent, and the trial had no active nasal comparator.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'CONTAIN (EudraCT 2022-003756-13)',
+        phase: 'Phase 2, single-centre, randomised, double-blind, placebo-controlled, 56 days',
+        sampleSize: 450,
+        primaryEndpoint: 'Number of PCR-confirmed SARS-CoV-2 infections during the study',
+        endpointMet: true,
+        statisticalPValue:
+          '5 of 227 (2.2%) against 15 of 223 (6.7%); odds ratio 0.31 (95% CI 0.11 to 0.87)',
+        unreportedAdverseSignals:
+          'Twenty events in total, one centre, sponsor is the manufacturer and two authors are company employees including the chief executive. An erratum was published. The investigators call for confirmation in larger multicentric trials.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cardiac repolarisation study, azelastine nasal spray',
+        phase: 'Placebo-controlled, 56 days',
+        sampleSize: 95,
+        primaryEndpoint:
+          'Effect on cardiac repolarisation as represented by the corrected QT interval',
+        endpointMet: true,
+        statisticalPValue:
+          'No evidence of an effect on QTc at two sprays per nostril twice daily for 56 days; oral azelastine 4 mg twice daily produced a mean QTc change of 7.2 msec',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Reflective total nasal symptom score reduction of 4.4 points against 3.0 on placebo in a pooled analysis of 3,398 patients',
+        'Intranasal fluticasone reached 5.1 and the fixed combination 5.7 on the same endpoint in the same trials',
+        'Bitter taste in 19.7% against 0.6% on placebo, and somnolence in 11.5% against 5.4%, across 391 treated patients',
+        'Systemic bioavailability of approximately 40% by the nasal route, with peak plasma concentration at 2 to 3 hours',
+        'PCR-confirmed SARS-CoV-2 infection in 5 of 227 against 15 of 223, odds ratio 0.31 (95% CI 0.11 to 0.87), in a phase 2 trial',
+      ],
+      unsupportedInferences: [
+        'That a nasal spray acts only where it is sprayed — about two-fifths is absorbed and the label carries a driving warning',
+        'That azelastine is the strongest nasal option — the steroid beat it and the combination beat the steroid in the same trials',
+        'That the COVID prevention result is established — twenty events, one centre, manufacturer-sponsored, and the authors say so',
+        'That bitter taste drives people off treatment — discontinuation was 2.2% on drug against 2.8% on placebo',
+      ],
+      whatFailedInitially: [
+        'Azelastine came third of three active arms in the pooled registration analysis, behind fluticasone and behind the combination',
+        'Somnolence at more than twice the placebo rate, in a product route chosen partly to avoid systemic effects',
+        'Oral azelastine produced a mean QTc change of 7.2 msec at 4 mg twice daily, which is why the marketed forms are topical',
+        'The cytochrome P450 isoforms responsible for its metabolism have never been identified, so interaction prediction rests on empirical studies alone',
+      ],
+      realWorldOutcome: [
+        'First approved as Astelin, NDA 020114, on 1 November 1996; reformulated as Astepro, NDA 022203, on 15 October 2008',
+        'The first antihistamine nasal spray sold over the counter in the United States, NDA 213872, approved 17 June 2021',
+        'Combined with fluticasone as Dymista, NDA 202236, approved 1 May 2012 on the strength of the three-trial programme above',
+        'The most expensive product per unit in this batch on the CMS acquisition survey, at $1.01 per millilitre',
+      ],
+    },
+    deliverySystem: {
+      type:
+        'Metered nasal spray (0.1% and 0.15%), and a separate ophthalmic solution for allergic conjunctivitis',
+      description:
+        'Sprayed onto the nasal mucosa, aimed away from the septum, with the head tilted slightly forward to limit run-off into the pharynx — which is what produces the bitter taste. Onset is within minutes; the ophthalmic form prevents itch within 3 minutes and lasts about 8 hours.',
+      safetyProfile:
+        'Bitter taste in 19.7% against 0.6% on placebo and somnolence in 11.5% against 5.4%, with an explicit label caution against driving or operating machinery and against concurrent alcohol or other central nervous system depressants. Nasal burning, epistaxis, paroxysmal sneezing, nausea, dry mouth, fatigue, dizziness and weight increase all occur at ≥2% and above placebo. Discontinuation for adverse reactions was 2.2% against 2.8% on placebo. No effect on QTc over 56 days by the nasal route, against a mean 7.2 msec change on oral azelastine 4 mg twice daily. The P450 isoforms responsible for metabolism have not been identified.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does it taste so bad?',
+        a: 'Because a good deal of what you spray runs down the back of the nose into the throat, and the molecule is intensely bitter. The number is on the label: bitter taste was reported by 19.7% of patients against 0.6% of those on the dummy spray — one of the largest treatment-attributable differences on any label in this batch. Technique reduces it: aim the nozzle towards the outer wall of the nostril rather than the middle, tilt the head slightly forward rather than back, and breathe gently instead of sniffing hard. Worth knowing: in the trials, the taste did not actually make more people stop treatment than placebo did.',
+      },
+      {
+        q: 'Can a nasal spray really make me sleepy?',
+        a: 'Yes, and the reason is that "nasal" is not the same as "local". About 40% of what you spray is absorbed into your bloodstream through the nasal lining, which is thin and richly supplied with blood. Somnolence was reported by 11.5% of patients on azelastine against 5.4% on the placebo spray, and the label carries the same warning an oral antihistamine would: avoid hazardous occupations requiring complete mental alertness, and avoid alcohol or other sedatives alongside it.',
+        auditNote:
+          'This is the clearest illustration in this batch that a route of administration is a claim about where a drug is applied, not about where it ends up.',
+      },
+      {
+        q: 'Is it better than a steroid spray?',
+        a: 'No, and the comparison was done properly. Three trials in 3,398 people with moderate-to-severe hay fever compared azelastine, intranasal fluticasone, both in one device, and placebo, on the same 24-point nasal symptom score. The reductions were 3.0 on placebo, 4.4 on azelastine, 5.1 on fluticasone and 5.7 on the combination. So azelastine was the weakest of the three active treatments, and the combination beat both single agents, with response reached days earlier. Where azelastine has the advantage is speed of onset — minutes rather than days — and the ability to work in people an oral antihistamine has already failed.',
+      },
+      {
+        q: 'Does it prevent COVID?',
+        a: 'One trial says maybe, and it is not enough to act on. The CONTAIN study randomised 450 healthy adults in Germany to azelastine nasal spray or placebo three times daily for eight weeks and tested them twice weekly. Five infections occurred in the azelastine group and fifteen in the placebo group — 2.2% against 6.7%, odds ratio 0.31 with a confidence interval from 0.11 to 0.87. Rhinovirus infections were also lower. But this is a phase 2 trial at a single hospital with twenty infections in total, sponsored by the manufacturer, with two of the authors employed by the company including its chief executive, and the investigators end their own paper by saying the finding needs confirmation in larger multicentric trials.',
+      },
+      {
+        q: 'Why is it sold as a spray rather than a tablet?',
+        a: 'Two reasons, and the second is rarely mentioned. The first is that spraying it onto the nasal lining gets it to the tissue in minutes and produces an effect on nasal congestion that swallowed antihistamines mostly do not. The second is on the label: multiple-dose oral azelastine produced a mean QTc change of 7.2 msec at 4 mg twice daily, while the nasal spray at two sprays per nostril twice daily for 56 days showed no evidence of an effect on cardiac repolarisation in 95 subjects. The route was not only a delivery decision.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Carr W et al. A novel intranasal therapy of azelastine with fluticasone for the treatment of allergic rhinitis. J Allergy Clin Immunol 2012;129:1282-1289.e10',
+        identifier: '10.1016/j.jaci.2012.01.077',
+        kind: 'doi',
+      },
+      {
+        label: 'MP4002 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
+        identifier: 'NCT00651118',
+        kind: 'nct',
+      },
+      {
+        label: 'MP4004 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
+        identifier: 'NCT00740792',
+        kind: 'nct',
+      },
+      {
+        label: 'MP4006 — azelastine, fluticasone, MP29-02 and placebo in seasonal allergic rhinitis',
+        identifier: 'NCT00883168',
+        kind: 'nct',
+      },
+      {
+        label:
+          'LaForce CF et al. Efficacy of azelastine nasal spray in seasonal allergic rhinitis patients who remain symptomatic after treatment with fexofenadine. Ann Allergy Asthma Immunol 2004;93:154-159',
+        identifier: '10.1016/S1081-1206(10)61468-8',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lehr T et al.; CONTAIN Study Group. Azelastine nasal spray for prevention of SARS-CoV-2 infections: a phase 2 randomized clinical trial. JAMA Intern Med 2025;185:1309-1317',
+        identifier: '10.1001/jamainternmed.2025.4283',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Azelastine hydrochloride nasal spray prescribing information — Warnings and Precautions 5.1, Adverse Reactions 6.1 Table 1, Clinical Pharmacology 12.2 and 12.3, via openFDA drug labelling',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22azelastine+hydrochloride%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: ASTELIN, NDA 020114, approved 1 November 1996; ASTEPRO, NDA 022203, 15 October 2008; ASTEPRO ALLERGY over-the-counter, NDA 213872, 17 June 2021; DYMISTA, NDA 202236, 1 May 2012',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020114',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2267 — azelastine structure, formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2267',
+        kind: 'url',
+      },
+    ],
+  },
 ]

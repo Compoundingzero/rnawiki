@@ -8,7 +8,7 @@ import { aggregateOpenFda } from '../ingest/openfda'
 import { enrichFromLabel } from './from-labels'
 import { formatNadacPrice, loadNadac, nadacNote, type NadacPrice } from './nadac'
 import { fetchTrials, flushTrialCache, trialCacheStats } from './trials'
-import { mergeProvenance, SOURCE_LABELS, trimToSentence } from './provenance'
+import { cleanLabelProse, mergeProvenance, SOURCE_LABELS, trimToSentence } from './provenance'
 import {
   botanicalCacheStats,
   flushBotanicalCache,
@@ -281,7 +281,13 @@ async function main(): Promise<void> {
       const existing = (patch.conditionContext ?? row.conditionContext) as {
         whoTakesThis?: string
       } | null
-      const purpose = trimToSentence(existing?.whoTakesThis || row.indication || '', 300)
+      // Cleaned again here, not only in the label pass. On a record with no label the purpose is
+      // read back out of what a previous run stored, so a cleaner added later would never reach
+      // it — 1,711 plant records were carrying footnote markers by that route.
+      const purpose = trimToSentence(
+        cleanLabelProse(existing?.whoTakesThis || row.indication || ''),
+        300,
+      )
       const context = botanicalContext(facts, row.name, purpose)
       if (context) {
         patch.conditionContext = context.conditionContext

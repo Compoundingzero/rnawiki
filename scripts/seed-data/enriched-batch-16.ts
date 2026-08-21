@@ -320,7 +320,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       {
         id: 'aln-a5',
         category: 'conclusion_shift',
-        title: 'Atypical femur fracture: from case reports, to an underpowered null, to a real risk',
+        title:
+          'Atypical femur fracture: from case reports, to an underpowered null, to a real risk',
         laymanSummary:
           'Surgeons began reporting an unusual thigh-bone fracture in long-term users. A re-analysis of the big randomised trials found the event was far too rare for those trials to settle the question. A Swedish national study of every femoral fracture in a year then showed the association is real, and small.',
         technicalDetails:
@@ -578,7 +579,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Alendronate sodium United States prescribing information (openFDA label endpoint) — indications, limitations of use, clinical pharmacology and warnings',
-        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22alendronate+sodium%22',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22alendronate+sodium%22',
         kind: 'regulatory',
       },
       NADAC_SOURCE,
@@ -684,8 +686,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       homeRemedies: [
         {
           name: 'Take the tablet with a full glass of plain water and stay upright',
-          action:
-            'Plain water only, and no lying down until after the first food of the day.',
+          action: 'Plain water only, and no lying down until after the first food of the day.',
           patientImpact:
             'Absolute oral bioavailability of the immediate-release tablet is 0.63%, and the molecule is irritant if it lodges in the oesophagus. Both problems are addressed by the same handful of instructions.',
           clinicalPrecaution:
@@ -1267,7 +1268,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'Nearly eight thousand women were randomised to a yearly infusion or a yearly dummy infusion. Spinal fractures on x-ray fell from about eleven in a hundred to about three. Hip fractures fell from 2.5 in a hundred to 1.4.',
         technicalDetails:
           'HORIZON-PFT randomised 3889 patients to a single 15-minute infusion of zoledronic acid 5 mg and 3876 to placebo at baseline, 12 months and 24 months, with follow-up to 36 months; mean age 73. Morphometric vertebral fracture fell 70% (3.3% against 10.9%, relative risk 0.30, 95% CI 0.24 to 0.38) and hip fracture 41% (1.4% against 2.5%, hazard ratio 0.59, 95% CI 0.42 to 0.83). Non-vertebral, clinical and clinical vertebral fractures fell 25%, 33% and 77% respectively, all P<0.001. Change in renal function was similar between groups.',
-        evidenceSource: 'Black DM et al., N Engl J Med 2007;356:1809-1822 (HORIZON-PFT, NCT00049829)',
+        evidenceSource:
+          'Black DM et al., N Engl J Med 2007;356:1809-1822 (HORIZON-PFT, NCT00049829)',
         doi: '10.1056/NEJMoa067312',
         measuredMetric:
           'Hip fracture 1.4% against 2.5% at three years, HR 0.59 (95% CI 0.42 to 0.83); morphometric vertebral 3.3% against 10.9%, RR 0.30',
@@ -1296,7 +1298,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'Two thousand people who had just had a hip fracture repaired were given the infusion or a placebo. New fractures fell by a third, which was the point of the trial. Deaths from any cause fell by 28%, which was not.',
         technicalDetails:
           'HORIZON-RFT randomised 1065 patients to yearly zoledronic acid 5 mg and 1062 to placebo, first given within 90 days of surgical repair of a low-trauma hip fracture, with all patients receiving calcium and vitamin D; median follow-up 1.9 years, mean age 74.5. New clinical fracture, the primary endpoint, occurred in 8.6% against 13.9%, a 35% reduction, P=0.001. In the safety analysis, 101 of 1054 (9.6%) died on zoledronic acid against 141 of 1057 (13.3%) on placebo, a 28% reduction in all-cause mortality, P=0.01. No cases of osteonecrosis of the jaw were reported and rates of atrial fibrillation and stroke were similar between groups in this trial.',
-        evidenceSource: 'Lyles KW et al., N Engl J Med 2007;357:1799-1809 (HORIZON-RFT, NCT00046254)',
+        evidenceSource:
+          'Lyles KW et al., N Engl J Med 2007;357:1799-1809 (HORIZON-RFT, NCT00046254)',
         doi: '10.1056/NEJMoa074941',
         measuredMetric:
           'All-cause mortality 9.6% against 13.3% over a median 1.9 years, a 28% reduction, P=0.01',
@@ -1324,8 +1327,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'Oral bisphosphonates were never shown to prevent fractures in women whose bones were only mildly thin. A six-year New Zealand trial gave the intravenous drug to two thousand such women and found fractures fell by more than a third.',
         technicalDetails:
           'Reid and colleagues randomised 2000 women aged 65 or over with osteopenia — a T-score of -1.0 to -2.5 at the total hip or femoral neck — to four infusions of zoledronate 5 mg or saline at 18-month intervals over six years. Median baseline 10-year hip-fracture risk was 2.3%. A fragility fracture, the primary endpoint, occurred in 122 of the zoledronate group against 190 of the placebo group, hazard ratio 0.63 (95% CI 0.50 to 0.79, P<0.001), number needed to treat 15. Non-vertebral fragility fracture hazard ratio was 0.66 (P=0.001), symptomatic fracture 0.73 (P=0.003) and vertebral fracture odds ratio 0.45 (P=0.002). The contrast with the oral primary-prevention literature is not a contradiction about the class: it is a trial that was adequately sized and long enough where the oral ones were not.',
-        evidenceSource:
-          'Reid IR et al., N Engl J Med 2018;379:2407-2416 (ACTRN12609000593235)',
+        evidenceSource: 'Reid IR et al., N Engl J Med 2018;379:2407-2416 (ACTRN12609000593235)',
         doi: '10.1056/NEJMoa1808082',
         inferredClaim:
           'That bisphosphonates do not work in osteopenia — an inference from short, small oral trials that a six-year intravenous trial in 2000 women overturned',
@@ -1547,8 +1549,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       {
         label:
           'Reclast (zoledronic acid injection) United States prescribing information (openFDA label endpoint) — indications, warnings and precautions, adverse reactions',
-        identifier:
-          'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Reclast%22',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Reclast%22',
         kind: 'regulatory',
       },
       NADAC_SOURCE,
@@ -1663,7 +1664,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Expect hot flushes rather than relief from them',
-          action: 'Report vasomotor symptoms as a treatment effect, not as the condition returning.',
+          action:
+            'Report vasomotor symptoms as a treatment effect, not as the condition returning.',
           patientImpact:
             'This drug is an estrogen antagonist in the tissues that mediate vasomotor symptoms, so it can cause or worsen hot flushes. It is not a treatment for them.',
           clinicalPrecaution:
@@ -1673,8 +1675,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString:
-        'C1CCN(CC1)CCOC2=CC=C(C=C2)C(=O)C3=C(SC4=C3C=CC(=C4)O)C5=CC=C(C=C5)O',
+      smilesString: 'C1CCN(CC1)CCOC2=CC=C(C=C2)C(=O)C3=C(SC4=C3C=CC(=C4)O)C5=CC=C(C=C5)O',
       chemicalFormula: 'C28H27NO4S',
       molecularWeight: '473.60 g/mol',
       targetReceptorAffinity:
@@ -2252,8 +2253,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'Until 2018 no trial had compared two osteoporosis drugs with fractures as the main thing being counted. VERO did, against risedronate, and spinal fractures were less than half as common on teriparatide.',
         technicalDetails:
           'VERO enrolled 680 women per group with at least two moderate or one severe vertebral fracture and a T-score of -1.50 or lower, randomised double-blind and double-dummy to teriparatide 20 micrograms daily or risedronate 35 mg weekly for 24 months. New radiographic vertebral fractures, the primary outcome, occurred in 28 of 680 (5.4%) on teriparatide against 64 of 680 (12.0%) on risedronate, risk ratio 0.44 (95% CI 0.29 to 0.68, P<0.0001). Clinical fractures occurred in 30 (4.8%) against 61 (9.8%), hazard ratio 0.48 (0.32 to 0.74, P=0.0009). Non-vertebral fragility fractures were 25 (4.0%) against 38 (6.1%), hazard ratio 0.66 (0.39 to 1.10, P=0.10) — not significant. The trial was funded by Lilly.',
-        evidenceSource:
-          'Kendler DL et al., Lancet 2018;391:230-240 (VERO, NCT01709110)',
+        evidenceSource: 'Kendler DL et al., Lancet 2018;391:230-240 (VERO, NCT01709110)',
         doi: '10.1016/S0140-6736(17)32137-2',
         measuredMetric:
           'New vertebral fracture at 24 months, 5.4% against 12.0%, risk ratio 0.44 (95% CI 0.29 to 0.68)',
@@ -2407,8 +2407,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Unreplicated',
       },
       {
-        trialId:
-          'Forteo Patient Registry Surveillance Study, 2009-2019 (Gilsenan 2021)',
+        trialId: 'Forteo Patient Registry Surveillance Study, 2009-2019 (Gilsenan 2021)',
         phase: 'Prospective voluntary registry linked to 42 state cancer registries',
         sampleSize: 75247,
         primaryEndpoint: 'Incident osteosarcoma among teriparatide-treated adults',
@@ -2531,7 +2530,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
     name: 'Romosozumab',
     tradeName: 'Evenity',
     sponsor: 'Amgen Inc. with UCB Pharma (approved in the United States in April 2019)',
-    targetGene: 'SOST — the gene whose loss of function causes sclerosteosis and van Buchem disease',
+    targetGene:
+      'SOST — the gene whose loss of function causes sclerosteosis and van Buchem disease',
     targetProtein:
       'Sclerostin, the osteocyte-secreted protein that shuts down bone formation by blocking the Wnt co-receptors LRP5 and LRP6',
     modality: 'Monoclonal Antibody (mAb)',
@@ -2903,9 +2903,11 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
         trialId: 'BRIDGE (NCT02186171)',
         phase: 'Phase 3, randomised, double-blind, placebo-controlled, in men',
         sampleSize: 245,
-        primaryEndpoint: 'Percentage change from baseline in lumbar spine bone mineral density at month 12',
+        primaryEndpoint:
+          'Percentage change from baseline in lumbar spine bone mineral density at month 12',
         endpointMet: true,
-        statisticalPValue: 'Lumbar spine 12.1% against 1.2%; total hip 2.5% against -0.5%, both P<0.001',
+        statisticalPValue:
+          'Lumbar spine 12.1% against 1.2%; total hip 2.5% against -0.5%, both P<0.001',
         unreportedAdverseSignals:
           'A surrogate endpoint, not fracture. Positively adjudicated serious cardiovascular events were 8 of 163 (4.9%) against 2 of 82 (2.5%) — the same direction as ARCH, in a trial far too small to measure it.',
         independentReplicationStatus: 'Unreplicated',
@@ -3644,8 +3646,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'The largest trial of this drug enrolled 3883 dialysis patients and followed them for up to five years. In the analysis it had committed to in advance, deaths and major cardiovascular events were not significantly reduced.',
         technicalDetails:
           'EVOLVE randomised 3883 haemodialysis patients with moderate-to-severe secondary hyperparathyroidism — median intact parathyroid hormone 693 pg/mL — to cinacalcet or placebo, with all patients eligible for conventional therapy including phosphate binders and vitamin D sterols, and followed them for up to 64 months. The primary composite of death, myocardial infarction, hospitalisation for unstable angina, heart failure or a peripheral vascular event occurred in 938 of 1948 (48.2%) on cinacalcet and 952 of 1935 (49.2%) on placebo, relative hazard 0.93 (95% CI 0.85 to 1.02, P=0.11), in the prespecified intention-to-treat analysis. Median study-drug exposure was 21.2 months on cinacalcet against 17.5 months on placebo, a difference that is itself part of the interpretive problem. Hypocalcaemia and gastrointestinal adverse events were significantly more frequent on cinacalcet.',
-        evidenceSource:
-          'EVOLVE Trial Investigators, N Engl J Med 2012;367:2482-2494 (NCT00345839)',
+        evidenceSource: 'EVOLVE Trial Investigators, N Engl J Med 2012;367:2482-2494 (NCT00345839)',
         doi: '10.1056/NEJMoa1205624',
         measuredMetric:
           'Primary composite endpoint relative hazard 0.93 (95% CI 0.85 to 1.02), P=0.11 — not met',
@@ -3659,7 +3660,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'Clinical fractures were counted as a planned secondary outcome. Unadjusted, there was no significant difference. Adjusted for baseline differences and repeated fractures it became significant, and adjusted further for how long people actually took the drug it grew larger.',
         technicalDetails:
           'Clinical fractures occurred in 255 of 1935 placebo patients (13.2%) and 238 of 1948 cinacalcet patients (12.2%). Unadjusted intention-to-treat relative hazard was 0.89 (95% CI 0.75 to 1.07). After adjustment for baseline characteristics and multiple fractures it was 0.83 (0.72 to 0.98). Using the prespecified lag-censoring analysis, a measure of actual drug exposure, it was 0.72 (0.58 to 0.90); censoring at cointerventions such as parathyroidectomy, transplantation or commercial cinacalcet gave 0.71 (0.58 to 0.87). The authors state both halves plainly: in the unadjusted intention-to-treat analysis cinacalcet did not reduce fracture, and after accounting for baseline differences, multiple fractures and discontinuation it reduced fracture by 16% to 29%. Every adjustment moves the estimate the same way, which is either a real effect obscured by crossover and dropout, or the signature of analytical flexibility. The trial cannot distinguish between those.',
-        evidenceSource: 'Moe SM et al., J Am Soc Nephrol 2015;26:1466-1475 (EVOLVE fracture analysis)',
+        evidenceSource:
+          'Moe SM et al., J Am Soc Nephrol 2015;26:1466-1475 (EVOLVE fracture analysis)',
         doi: '10.1681/ASN.2014040414',
         inferredClaim:
           'That cinacalcet reduces fractures — the declared unadjusted analysis says it does not, and every adjusted analysis says it does by between 16% and 29%',
@@ -4089,8 +4091,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'The largest trial ever run of calcium and vitamin D gave it to more than thirty-six thousand postmenopausal women for seven years. Hip bone density rose by about one percent. Hip fractures did not fall significantly. Kidney stones went up.',
         technicalDetails:
           'The Women’s Health Initiative Calcium/Vitamin D trial randomised 36,282 postmenopausal women aged 50 to 79 to 1000 mg of elemental calcium as calcium carbonate with 400 IU of vitamin D3 daily or placebo, with fractures ascertained over an average of 7.0 years. Hip bone density was 1.06% higher on treatment (P<0.01). In intention-to-treat analysis the hazard ratio was 0.88 for hip fracture (95% CI 0.72 to 1.08), 0.90 for clinical spine fracture (0.74 to 1.10) and 0.96 for total fractures (0.91 to 1.02) — none significant. Renal calculi increased, hazard ratio 1.17 (95% CI 1.02 to 1.34). Censoring at non-adherence lowered the hip fracture hazard ratio to 0.71 (0.52 to 0.97), which is an on-treatment analysis rather than a randomised comparison. Effects did not vary by prerandomisation serum vitamin D.',
-        evidenceSource:
-          'Jackson RD et al., N Engl J Med 2006;354:669-683 (WHI CaD, NCT00000611)',
+        evidenceSource: 'Jackson RD et al., N Engl J Med 2006;354:669-683 (WHI CaD, NCT00000611)',
         doi: '10.1056/NEJMoa055218',
         measuredMetric:
           'Hip fracture hazard ratio 0.88 (95% CI 0.72 to 1.08); renal calculi hazard ratio 1.17 (1.02 to 1.34)',
@@ -4120,8 +4121,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'The United States preventive task force looked at the evidence and issued its second-strongest negative grade: do not take 1000 mg of calcium with 400 IU of vitamin D to prevent fractures if you are a healthy postmenopausal woman living at home.',
         technicalDetails:
           'The 2018 USPSTF statement found adequate evidence that daily supplementation with 400 IU or less of vitamin D and 1000 mg or less of calcium has no benefit for the primary prevention of fractures in community-dwelling postmenopausal women, and issued a D recommendation against it. It found inadequate evidence to estimate benefits at higher doses, or in men and premenopausal women at any dose, issuing I statements for both. It found adequate evidence that supplementation with vitamin D and calcium increases the incidence of kidney stones. The recommendations explicitly exclude people with osteoporosis, vitamin D deficiency, a previous fracture, or long-term steroid use — which is most of the population the drugs elsewhere in this file are for.',
-        evidenceSource:
-          'US Preventive Services Task Force. JAMA 2018;319:1592-1599',
+        evidenceSource: 'US Preventive Services Task Force. JAMA 2018;319:1592-1599',
         doi: '10.1001/jama.2018.3185',
         measuredMetric:
           'D recommendation against ≤400 IU vitamin D with ≤1000 mg calcium for primary fracture prevention in community-dwelling postmenopausal women',
@@ -4331,7 +4331,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'Patel AM, Adeseun GA, Goldfarb S. Calcium-alkali syndrome in the modern era. Nutrients 2013;5:4880-4893',
+        label:
+          'Patel AM, Adeseun GA, Goldfarb S. Calcium-alkali syndrome in the modern era. Nutrients 2013;5:4880-4893',
         identifier: '10.3390/nu5124880',
         kind: 'doi',
       },
@@ -4458,7 +4459,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Be wary of very large, infrequent doses',
-          action: 'Ask why an annual or four-monthly mega-dose is being used rather than a smaller regular one.',
+          action:
+            'Ask why an annual or four-monthly mega-dose is being used rather than a smaller regular one.',
           patientImpact:
             'The two large ergocalciferol trials that used four-monthly and annual mega-doses found no fracture benefit, and an annual 500,000 IU trial of the D3 form found significantly more falls and fractures.',
           clinicalPrecaution:
@@ -4468,7 +4470,8 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
     },
     molecularSchema: {
       structureType: 'small_molecule_smiles',
-      smilesString: 'C[C@H](/C=C/[C@H](C)C(C)C)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](CCC3=C)O)C',
+      smilesString:
+        'C[C@H](/C=C/[C@H](C)C(C)C)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](CCC3=C)O)C',
       chemicalFormula: 'C28H44O',
       molecularWeight: '396.60 g/mol',
       targetReceptorAffinity:
@@ -4602,8 +4605,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
           'Giving a huge dose once or a few times a year was adopted to get around people forgetting a daily tablet. Tested properly it did not prevent fractures with the fungal form, and with the human form it caused more falls and more fractures.',
         technicalDetails:
           'Sanders and colleagues randomised 2256 community-dwelling women aged 70 and over at high fracture risk to a single annual oral 500,000 IU dose of cholecalciferol or placebo for three to five years. Fractures were 171 against 135, incidence rate ratio 1.26 (95% CI 1.00 to 1.59, P=0.047). Falls occurred at 83.4 per 100 person-years on treatment against 72.7 on placebo, incidence rate ratio 1.15 (1.02 to 1.30, P=0.03), and a post hoc analysis found the excess concentrated in the first three months after dosing — rate ratio 1.31 in the first three months against 1.13 over the following nine, test for homogeneity P=0.02. Median baseline 25-hydroxyvitamin D was 49 nmol/L, so this was not a deficient population. Read alongside the two null ergocalciferol bolus trials, the pattern is a dosing schedule adopted for adherence that has never demonstrated benefit in either form and has demonstrated harm in one.',
-        evidenceSource:
-          'Sanders KM et al., JAMA 2010;303:1815-1822 (ACTRN12605000658617)',
+        evidenceSource: 'Sanders KM et al., JAMA 2010;303:1815-1822 (ACTRN12605000658617)',
         doi: '10.1001/jama.2010.594',
         measuredMetric:
           'Fracture incidence rate ratio 1.26 (95% CI 1.00 to 1.59, P=0.047) and falls 1.15 (1.02 to 1.30, P=0.03) with annual 500,000 IU cholecalciferol',
