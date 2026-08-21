@@ -275,12 +275,14 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       {
         id: 'lid-a1',
         category: 'measured',
-        title: 'The receptor site is a single pore-lining phenylalanine, and mutating it away works',
+        title:
+          'The receptor site is a single pore-lining phenylalanine, and mutating it away works',
         laymanSummary:
           'Researchers changed one amino acid deep inside the sodium channel and local anaesthetics almost stopped working on it. That is the cleanest evidence there is that the drug acts where it is said to act.',
         technicalDetails:
           'Ragsdale, McPhee, Scheuer and Catterall made site-directed mutations in transmembrane segment S6 of domain IV of the rat brain sodium channel alpha subunit and expressed them in Xenopus oocytes. Mutation F1764A, near the middle of the segment, reduced affinity of the open and inactivated channel to 1% of wild type and almost completely abolished both the use-dependence and the voltage-dependence of block. N1769A increased resting-state affinity 15-fold. I1760A opened an access route for drug to reach the site from outside the cell. Together the three mutations locate the local anaesthetic receptor inside the channel pore and identify the residues that make binding state-dependent.',
-        evidenceSource: 'Ragsdale DS, McPhee JC, Scheuer T, Catterall WA. Science 1994;265:1724-1728',
+        evidenceSource:
+          'Ragsdale DS, McPhee JC, Scheuer T, Catterall WA. Science 1994;265:1724-1728',
         doi: '10.1126/science.8085162',
         measuredMetric:
           'Fold change in open and inactivated state binding affinity after single-residue substitution in DIV-S6',
@@ -315,12 +317,14 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       {
         id: 'lid-a4',
         category: 'conclusion_shift',
-        title: 'Prophylactic lidocaine after a heart attack cut arrhythmias and may have killed people',
+        title:
+          'Prophylactic lidocaine after a heart attack cut arrhythmias and may have killed people',
         laymanSummary:
           'For years, anyone with a suspected heart attack got lidocaine to prevent a dangerous rhythm. Pooling fourteen trials found it did prevent the rhythm, and that the people given it died slightly more often. The practice was abandoned.',
         technicalDetails:
           'MacMahon, Collins, Peto, Koster and Yusuf pooled 14 randomised trials of prophylactic lidocaine in suspected acute myocardial infarction: 6,961 patients in the intramuscular trials followed for one to four hours and 2,194 in the intravenous trials followed for 24 to 48 hours, with 103 cases of ventricular fibrillation and 137 deaths in total. Allocation to lidocaine reduced the odds of ventricular fibrillation by about one third (95% CI 3% to 56% reduction). Odds of early death were about one third greater on lidocaine, not statistically significant (95% CI 2% reduction to 95% increase). The authors were explicit that the pooled data could not settle whether the drug was helpful or harmful. That an intervention can suppress the surrogate it was aimed at while trending the wrong way on death is the reason this class of reasoning is audited here at all.',
-        evidenceSource: 'MacMahon S, Collins R, Peto R, Koster RW, Yusuf S. JAMA 1988;260:1910-1916',
+        evidenceSource:
+          'MacMahon S, Collins R, Peto R, Koster RW, Yusuf S. JAMA 1988;260:1910-1916',
         doi: '10.1001/jama.1988.03410130118037',
         inferredClaim:
           'That suppressing ventricular fibrillation after myocardial infarction with prophylactic lidocaine saves lives — a surrogate-to-outcome inference the pooled trials pointed against',
@@ -333,7 +337,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The lidocaine patch is prescribed very widely for nerve pain. A Cochrane review of every double-blind trial found 508 people in total, judged every trial at high risk of bias, and could not pool a single efficacy result.',
         technicalDetails:
-          'Derry, Wiffen, Moore and Quinlan reviewed randomised double-blind studies of at least two weeks comparing topical lidocaine with placebo or an active control in chronic neuropathic pain. Twelve studies with 508 participants qualified, across 5% patch, 5% cream, 5% gel and 8% spray, mostly cross-over designs. There was no first-tier and no second-tier evidence by the review\'s own grading, no pooling of efficacy data was possible, and all studies were judged at high risk of bias because of small size, incomplete outcome assessment or both. Only one multiple-dose study reported the review\'s primary outcome of at least 30% or 50% pain intensity reduction. The registration evidence itself is thin: the pivotal Rowbotham study was 35 subjects in a four-session cross-over, with each patch session lasting 12 hours.',
+          "Derry, Wiffen, Moore and Quinlan reviewed randomised double-blind studies of at least two weeks comparing topical lidocaine with placebo or an active control in chronic neuropathic pain. Twelve studies with 508 participants qualified, across 5% patch, 5% cream, 5% gel and 8% spray, mostly cross-over designs. There was no first-tier and no second-tier evidence by the review's own grading, no pooling of efficacy data was possible, and all studies were judged at high risk of bias because of small size, incomplete outcome assessment or both. Only one multiple-dose study reported the review's primary outcome of at least 30% or 50% pain intensity reduction. The registration evidence itself is thin: the pivotal Rowbotham study was 35 subjects in a four-session cross-over, with each patch session lasting 12 hours.",
         evidenceSource:
           'Derry S, Wiffen PJ, Moore RA, Quinlan J. Cochrane Database Syst Rev 2014;(7):CD010958; pivotal trial Rowbotham MC et al. Pain 1996;65:39-44',
         doi: '10.1002/14651858.CD010958.pub2',
@@ -478,7 +482,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           'Pain score at rest, gastrointestinal recovery and adverse events after surgery',
         endpointMet: false,
         statisticalPValue:
-          'SMD -0.14 (95% CI -0.25 to -0.04) at 24 hours and -0.11 (95% CI -0.25 to 0.04) at 48 hours; both moderate quality and both below the review\'s threshold for clinical relevance',
+          "SMD -0.14 (95% CI -0.25 to -0.04) at 24 hours and -0.11 (95% CI -0.25 to 0.04) at 48 hours; both moderate quality and both below the review's threshold for clinical relevance",
         unreportedAdverseSignals:
           'Only a small number of the 68 trials systematically analysed adverse events, so the safety side of the comparison is graded very low quality.',
         independentReplicationStatus: 'Partially Replicated',
@@ -501,7 +505,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         'Mutating phenylalanine 1764 in domain IV segment S6 cuts open and inactivated state binding to 1% of wild type and abolishes use-dependence — the receptor site is inside the pore',
         'Survival to hospital discharge of 23.7% on lidocaine against 21.0% on saline placebo in 3,026 cardiac arrests, a difference of 2.6 percentage points that did not reach significance',
         'Survival to hospital admission of 12.0% on lidocaine against 22.8% on amiodarone in 347 shock-resistant ventricular fibrillations',
-        'A standardised mean difference in postoperative pain at 24 hours of -0.14 across 33 trials and 1,847 participants — real, and smaller than the review\'s own threshold for meaning anything',
+        "A standardised mean difference in postoperative pain at 24 hours of -0.14 across 33 trials and 1,847 participants — real, and smaller than the review's own threshold for meaning anything",
       ],
       unsupportedInferences: [
         'That suppressing ventricular fibrillation with prophylactic lidocaine after myocardial infarction saves lives — the pooled trials trended the other way on death',
@@ -521,8 +525,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Injection for infiltration, nerve block, epidural and spinal use; intravenous solution for arrhythmia; topical gel, cream, ointment, spray, jelly and 5% medicated patch',
+      type: 'Injection for infiltration, nerve block, epidural and spinal use; intravenous solution for arrhythmia; topical gel, cream, ointment, spray, jelly and 5% medicated patch',
       description:
         'The route decides the drug. An infiltration injection is meant to stay in the tissue and act on nearby nerves; an intravenous infusion is meant to reach the heart or the whole body. Many injectable presentations are co-formulated with adrenaline, which constricts local vessels, slows washout and lengthens the block. Preservative-free presentations exist because preservatives are not acceptable in the epidural or spinal space.',
       safetyProfile:
@@ -647,7 +650,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         'Abolish sensation in a defined territory for several hours, with as little motor block and as little systemic absorption as possible. Whether that also reduces opioid use, chronic post-surgical pain or length of stay is a separate question, asked separately below.',
     },
     oneSentenceVerdict:
-      'A long-acting sodium channel blocker whose defining measurement is not an analgesia score but an unbinding rate — it leaves the cardiac sodium channel with a time constant of 1,557 milliseconds against lidocaine\'s 154, which is why one injection numbs for hours and why an accidental intravascular dose can stop a heart that is then hard to restart.',
+      "A long-acting sodium channel blocker whose defining measurement is not an analgesia score but an unbinding rate — it leaves the cardiac sodium channel with a time constant of 1,557 milliseconds against lidocaine's 154, which is why one injection numbs for hours and why an accidental intravascular dose can stop a heart that is then hard to restart.",
     laymanHowItWorks:
       'Bupivacaine blocks the same sodium gates in nerves that lidocaine blocks, and it blocks them the same way — from the inside of the nerve, in the mouth of the pore. The difference is that it is far greasier and it clings. Once it is on the channel it takes about ten times longer to fall off, so the numbness lasts hours instead of an hour. That same clinginess is the problem when the drug reaches the heart, because heart muscle cells also depend on those gates, and a drug that will not let go between beats accumulates block with every beat.',
     auditConfidence: 'Moderate / Debated',
@@ -671,7 +674,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           name: 'Ropivacaine (Naropin)',
           class: 'Long-acting amide local anaesthetic, single S-enantiomer',
           howItCompares:
-            'In 12 volunteers given intravenous infusions of both drugs in crossover, the maximum tolerated unbound plasma concentration was twice as high for ropivacaine (P<0.001), bupivacaine widened the QRS complex where ropivacaine did not, and bupivacaine depressed both systolic and diastolic left ventricular function where ropivacaine depressed only systolic. Against that, ropivacaine is measurably weaker: its minimum local analgesic concentration in labour epidural was 0.111% against bupivacaine\'s 0.067%, a potency ratio of 0.6.',
+            "In 12 volunteers given intravenous infusions of both drugs in crossover, the maximum tolerated unbound plasma concentration was twice as high for ropivacaine (P<0.001), bupivacaine widened the QRS complex where ropivacaine did not, and bupivacaine depressed both systolic and diastolic left ventricular function where ropivacaine depressed only systolic. Against that, ropivacaine is measurably weaker: its minimum local analgesic concentration in labour epidural was 0.111% against bupivacaine's 0.067%, a potency ratio of 0.6.",
           typicalCost:
             'No NADAC value is held on this record for ropivacaine and none is asserted here',
           prosAndCons:
@@ -685,13 +688,13 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           typicalCost:
             'Not marketed in the United States; no NADAC value exists and none is asserted here',
           prosAndCons:
-            'Pros: keeps bupivacaine\'s potency while discarding the more cardiotoxic enantiomer. Cons: withdrawn from the US market for commercial reasons, so in America the choice is between the racemate and ropivacaine.',
+            "Pros: keeps bupivacaine's potency while discarding the more cardiotoxic enantiomer. Cons: withdrawn from the US market for commercial reasons, so in America the choice is between the racemate and ropivacaine.",
         },
         {
           name: 'Lidocaine (Xylocaine)',
           class: 'Intermediate-acting amide local anaesthetic',
           howItCompares:
-            'Blocks the same site but unbinds from the cardiac channel roughly ten times faster — a diastolic recovery time constant of 154 ms against bupivacaine\'s 1,557 ms — so block does not accumulate beat to beat at normal heart rates. It is the safer molecule and the shorter-acting one, and that trade is the entire reason both drugs remain on the shelf.',
+            "Blocks the same site but unbinds from the cardiac channel roughly ten times faster — a diastolic recovery time constant of 154 ms against bupivacaine's 1,557 ms — so block does not accumulate beat to beat at normal heart rates. It is the safer molecule and the shorter-acting one, and that trade is the entire reason both drugs remain on the shelf.",
           typicalCost:
             'US$0.3221 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 161 listed products, effective 19 August 2026)',
           prosAndCons:
@@ -747,7 +750,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           id: 'bup-w2',
           stepNumber: 2,
           phase: 'Synthesis',
-          name: 'Amide coupling to 2\',6\'-pipecoloxylidide',
+          name: "Amide coupling to 2',6'-pipecoloxylidide",
           description:
             'Couple the activated pipecolic acid to 2,6-dimethylaniline to give the secondary-amine intermediate. The two ortho methyl groups are the same steric shield that protects lidocaine from plasma esterases, and they are the reason this is an amide anaesthetic with a long half-life rather than an ester one with a short one.',
           dependsOnStepId: 'bup-w1',
@@ -804,7 +807,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       {
         id: 'bup-a1',
         category: 'measured',
-        title: 'Fast-in, slow-out: the off-rate from the cardiac channel is ten times lidocaine\'s',
+        title: "Fast-in, slow-out: the off-rate from the cardiac channel is ten times lidocaine's",
         laymanSummary:
           'Both drugs block the sodium gate during a heartbeat. Lidocaine falls off again in about a sixth of a second; bupivacaine takes about a second and a half. At a normal heart rate there is not enough time between beats for it to clear, so block builds up.',
         technicalDetails:
@@ -817,7 +820,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       {
         id: 'bup-a2',
         category: 'conclusion_shift',
-        title: 'The 0.75% concentration was withdrawn from obstetric use after Albright\'s editorial',
+        title:
+          "The 0.75% concentration was withdrawn from obstetric use after Albright's editorial",
         laymanSummary:
           'In 1979 an anaesthetist published six cases in which patients given a long-acting local anaesthetic had cardiac arrest almost at the same moment as the seizure, rather than afterwards. The strongest concentration was withdrawn from use in childbirth.',
         technicalDetails:
@@ -876,11 +880,11 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       {
         id: 'bup-a6',
         category: 'inferred',
-        title: 'Part of ropivacaine\'s safety margin is that it is a weaker drug',
+        title: "Part of ropivacaine's safety margin is that it is a weaker drug",
         laymanSummary:
           'Comparing the two by the milligram makes the newer one look safer. Measured properly, it takes about 1.7 times as much ropivacaine to produce the same pain relief, so a milligram-for-milligram safety comparison is not a fair one.',
         technicalDetails:
-          'Polley and colleagues determined minimum local analgesic concentration by up-down sequential allocation in 73 labouring women at 7 cm dilation or less, giving 20 mL of epidural test solution and defining effectiveness as a visual analogue score of 10 mm or less within 30 minutes. The minimum local analgesic concentration was 0.111% weight/volume for ropivacaine (95% CI 0.100 to 0.122) and 0.067% for bupivacaine (95% CI 0.052 to 0.082), a potency ratio of 0.6 (95% CI 0.49 to 0.74). No difference in motor effects was seen. The toxicity comparisons that established ropivacaine\'s reputation, including Scott 1989 and Knudsen 1997, infused equal milligram doses of the two drugs. This audit is not a claim that ropivacaine has no safety advantage — Knudsen measured a real one in unbound plasma concentration — but that the size of the advantage quoted from equal-milligram studies is inflated by roughly the potency ratio, and the therapeutic index is the number that should be compared.',
+          "Polley and colleagues determined minimum local analgesic concentration by up-down sequential allocation in 73 labouring women at 7 cm dilation or less, giving 20 mL of epidural test solution and defining effectiveness as a visual analogue score of 10 mm or less within 30 minutes. The minimum local analgesic concentration was 0.111% weight/volume for ropivacaine (95% CI 0.100 to 0.122) and 0.067% for bupivacaine (95% CI 0.052 to 0.082), a potency ratio of 0.6 (95% CI 0.49 to 0.74). No difference in motor effects was seen. The toxicity comparisons that established ropivacaine's reputation, including Scott 1989 and Knudsen 1997, infused equal milligram doses of the two drugs. This audit is not a claim that ropivacaine has no safety advantage — Knudsen measured a real one in unbound plasma concentration — but that the size of the advantage quoted from equal-milligram studies is inflated by roughly the potency ratio, and the therapeutic index is the number that should be compared.",
         evidenceSource:
           'Polley LS, Columb MO, Naughton NN, Wagner DS, van de Ven CJ. Anesthesiology 1999;90:944-950',
         doi: '10.1097/00000542-199904000-00003',
@@ -1035,8 +1039,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Sterile injection for infiltration, peripheral nerve block, epidural and caudal use; preservative-free presentations for intrathecal use, some with dextrose for hyperbaric spinal anaesthesia; some presentations co-formulated with epinephrine; a separate patented liposomal suspension for infiltration and interscalene block',
+      type: 'Sterile injection for infiltration, peripheral nerve block, epidural and caudal use; preservative-free presentations for intrathecal use, some with dextrose for hyperbaric spinal anaesthesia; some presentations co-formulated with epinephrine; a separate patented liposomal suspension for infiltration and interscalene block',
       description:
         'Every presentation is the same molecule and the route decides what it does. Preservative-free formulations exist because methylparaben is not acceptable in the intrathecal or epidural space. Hyperbaric presentations add dextrose so that the solution sinks in cerebrospinal fluid and the block can be positioned by patient posture. Epinephrine-containing presentations slow systemic absorption and also act as an intravascular test: a sudden rise in heart rate after a test dose suggests the needle is in a vessel. The liposomal suspension is a multivesicular lipid particle that releases bupivacaine over roughly 72 hours, and it is a different product with a different price and its own evidence base.',
       safetyProfile:
@@ -1153,7 +1156,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         'The same block as bupivacaine with a wider margin before cardiac effects. Whether the wider margin translates into fewer deaths has never been measured and, given how rare the event is, is unlikely ever to be.',
     },
     oneSentenceVerdict:
-      'The safer mirror-image of bupivacaine with one carbon removed: volunteers tolerate roughly twice the unbound plasma concentration before symptoms appear and it does not widen the QRS complex where bupivacaine does, but it is also measurably weaker — a minimum local analgesic concentration of 0.111% against bupivacaine\'s 0.067%, a potency ratio of 0.6 — so a milligram-for-milligram safety comparison overstates the advantage.',
+      "The safer mirror-image of bupivacaine with one carbon removed: volunteers tolerate roughly twice the unbound plasma concentration before symptoms appear and it does not widen the QRS complex where bupivacaine does, but it is also measurably weaker — a minimum local analgesic concentration of 0.111% against bupivacaine's 0.067%, a potency ratio of 0.6 — so a milligram-for-milligram safety comparison overstates the advantage.",
     laymanHowItWorks:
       'Ropivacaine blocks the same sodium gates in nerves that bupivacaine blocks, from the same place inside the channel. Two things were changed on purpose. Only one of the two mirror-image forms is present, and it is the form that troubles the heart less. And the side chain is one carbon shorter, which makes the molecule less greasy, so less of it partitions into heart muscle and it washes out faster. The block is a little weaker as a result, which is the price of the design.',
     auditConfidence: 'Moderate / Debated',
@@ -1166,7 +1169,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           name: 'Bupivacaine (Marcaine, Sensorcaine)',
           class: 'Long-acting amide local anaesthetic, racemic',
           howItCompares:
-            'More potent by a measured factor: 0.067% against 0.111% for the same labour epidural effect. Also the drug that unbinds from the cardiac sodium channel with a time constant of 1,557 ms against lidocaine\'s 154, which is the property ropivacaine was built to avoid.',
+            "More potent by a measured factor: 0.067% against 0.111% for the same labour epidural effect. Also the drug that unbinds from the cardiac sodium channel with a time constant of 1,557 ms against lidocaine's 154, which is the property ropivacaine was built to avoid.",
           typicalCost:
             'US$0.0860 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 12 listed products, effective 22 April 2026)',
           prosAndCons:
@@ -1176,7 +1179,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           name: 'Levobupivacaine (Chirocaine)',
           class: 'The S-enantiomer of bupivacaine',
           howItCompares:
-            'Keeps bupivacaine\'s four-carbon chain and discards the more cardiotoxic R-enantiomer, so it sits between the two on both potency and toxicity. By the same up-down potency method, ropivacaine was less potent than levobupivacaine with a potency ratio of 0.83.',
+            "Keeps bupivacaine's four-carbon chain and discards the more cardiotoxic R-enantiomer, so it sits between the two on both potency and toxicity. By the same up-down potency method, ropivacaine was less potent than levobupivacaine with a potency ratio of 0.83.",
           typicalCost: 'Not marketed in the United States; no NADAC value exists',
           prosAndCons:
             'Pros: the enantiomer benefit without the potency loss. Cons: commercially unavailable in the largest market, which is why the American argument is only ever ropivacaine against the racemate.',
@@ -1199,7 +1202,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           action:
             'Tinnitus, a metallic taste, perioral numbness or sudden light-headedness during an epidural top-up or a large block are the earliest signs that drug has entered the circulation.',
           patientImpact:
-            'Ropivacaine\'s advantage is precisely that these symptoms appear at a plasma concentration further below the cardiac one than bupivacaine\'s do. That margin is only useful if someone says something.',
+            "Ropivacaine's advantage is precisely that these symptoms appear at a plasma concentration further below the cardiac one than bupivacaine's do. That margin is only useful if someone says something.",
           clinicalPrecaution:
             'A reporting instruction, not a treatment. Systemic toxicity is managed by the clinical team.',
         },
@@ -1209,7 +1212,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       structureType: 'small_molecule_smiles',
       smilesString: 'CCCN1CCCC[C@H]1C(=O)NC2=C(C=CC=C2C)C',
       chemicalFormula: 'C17H26N2O',
-      molecularWeight: '274.40 g/mol (free base); dispensed as ropivacaine hydrochloride monohydrate',
+      molecularWeight:
+        '274.40 g/mol (free base); dispensed as ropivacaine hydrochloride monohydrate',
       targetReceptorAffinity:
         'The clinically meaningful affinity number for this molecule is a human one rather than a channel one. In 12 volunteers infused at 10 mg per minute in randomised crossover, the maximum tolerated unbound arterial plasma concentration was twice as high for ropivacaine as for bupivacaine (P<0.001), with an apparent central nervous system toxicity threshold near 0.6 mg/L free ropivacaine against 0.3 mg/L free bupivacaine. Ropivacaine is also more highly protein bound in plasma than its lower lipid solubility alone would suggest, which further limits the free fraction available to the heart.',
       structureSource: {
@@ -1279,7 +1283,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Normalise toxicity to potency before reporting a ratio',
           description:
-            'Report the cardiac endpoint per unit of analgesic effect and not per milligram. This is the step the historical literature skipped: the volunteer studies that established ropivacaine\'s reputation infused equal milligram doses of two drugs later measured to differ in potency by a factor near 0.6, and a therapeutic index is the only honest way to state the result.',
+            "Report the cardiac endpoint per unit of analgesic effect and not per milligram. This is the step the historical literature skipped: the volunteer studies that established ropivacaine's reputation infused equal milligram doses of two drugs later measured to differ in potency by a factor near 0.6, and a therapeutic index is the only honest way to state the result.",
           dependsOnStepId: 'rop-w5',
           reagentsAndBuffer:
             'Half-maximal blocking concentrations fitted per state and per tissue, minimum local analgesic concentration data from up-down sequential allocation as the potency denominator, confidence intervals propagated through the ratio',
@@ -1294,7 +1298,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Twelve healthy men were infused with each drug on separate days and told to stop the infusion when they first felt definite symptoms. They could take about twice as much unbound ropivacaine in the blood as unbound bupivacaine, and only bupivacaine distorted their ECG.',
         technicalDetails:
-          'Knudsen and colleagues ran a randomised double-blind crossover of ropivacaine, bupivacaine and placebo infused at 10 mg per minute in 12 volunteers previously familiarised with lignocaine\'s central effects. The maximum tolerated dose was higher on ropivacaine in nine of 12 subjects, with 95% confidence limits on the mean difference of -30 to 7 mg — a difference in dose that did not itself reach significance. The maximum tolerated unbound arterial plasma concentration, which is the pharmacologically meaningful quantity, was twice as high for ropivacaine (P<0.001), with thresholds near 0.6 and 0.3 mg/L free drug respectively. Muscular twitching was more frequent after bupivacaine (P<0.05) and symptoms resolved faster after ropivacaine (P<0.05). Bupivacaine widened QRS against placebo (P<0.001) and against ropivacaine (P<0.01), and depressed both systolic and diastolic left ventricular function; ropivacaine depressed systolic function only.',
+          "Knudsen and colleagues ran a randomised double-blind crossover of ropivacaine, bupivacaine and placebo infused at 10 mg per minute in 12 volunteers previously familiarised with lignocaine's central effects. The maximum tolerated dose was higher on ropivacaine in nine of 12 subjects, with 95% confidence limits on the mean difference of -30 to 7 mg — a difference in dose that did not itself reach significance. The maximum tolerated unbound arterial plasma concentration, which is the pharmacologically meaningful quantity, was twice as high for ropivacaine (P<0.001), with thresholds near 0.6 and 0.3 mg/L free drug respectively. Muscular twitching was more frequent after bupivacaine (P<0.05) and symptoms resolved faster after ropivacaine (P<0.05). Bupivacaine widened QRS against placebo (P<0.001) and against ropivacaine (P<0.01), and depressed both systolic and diastolic left ventricular function; ropivacaine depressed systolic function only.",
         evidenceSource:
           'Knudsen K, Beckman Suurkula M, Blomberg S, Sjovall J, Edvardsson N. Br J Anaesth 1997;78:507-514',
         doi: '10.1093/bja/78.5.507',
@@ -1310,7 +1314,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           'The first human comparison, eight years earlier, used the same design and found volunteers could take at least a quarter more ropivacaine before symptoms, with conduction and contractility effects appearing later and at lower plasma levels for bupivacaine.',
         technicalDetails:
           'Scott and colleagues infused ropivacaine and bupivacaine at 10 mg per minute to a maximum of 150 mg in 12 healthy men, randomised, double-blind, at least seven days apart, with a preliminary lidocaine injection to familiarise subjects with the symptoms. Ropivacaine caused fewer central nervous system symptoms and was at least 25% less toxic in terms of the dose tolerated. Both drugs raised heart rate and arterial pressure and reduced stroke volume and ejection fraction with no change in cardiac output, but depression of conductivity and contractility appeared at lower doses and lower plasma concentrations with bupivacaine. This study is where the ropivacaine safety claim originates, and it is an equal-milligram comparison, which is the point audited below.',
-        evidenceSource: 'Scott DB, Lee A, Fagan D, Bowler GM, Bloomfield P, Lundh R. Anesth Analg 1989;69:563-569 (PMID 2679230)',
+        evidenceSource:
+          'Scott DB, Lee A, Fagan D, Bowler GM, Bloomfield P, Lundh R. Anesth Analg 1989;69:563-569 (PMID 2679230)',
         measuredMetric:
           'Maximum tolerated intravenous dose to first definite central nervous system symptoms, with electrocardiographic and echocardiographic change',
         auditFlag: 'verified',
@@ -1322,7 +1327,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The safety studies gave both drugs by the milligram. But it takes about 1.7 times as much ropivacaine to produce the same pain relief, so comparing equal milligrams compares unequal blocks and flatters the newer drug.',
         technicalDetails:
-          'Polley and colleagues determined minimum local analgesic concentration by up-down sequential allocation in 73 labouring women at 7 cm dilation or less, using 20 mL epidural test solutions and a visual analogue score of 10 mm or less within 30 minutes as the definition of effect. Ropivacaine\'s minimum local analgesic concentration was 0.111% weight/volume (95% CI 0.100 to 0.122) against bupivacaine\'s 0.067% (95% CI 0.052 to 0.082), a potency ratio of 0.6 (95% CI 0.49 to 0.74). Against levobupivacaine by the same method the ratio was 0.83. The correct comparison for a safety claim is a therapeutic index — toxic concentration divided by effective concentration — and the equal-milligram volunteer studies do not supply one. This audit does not say the advantage is imaginary: Knudsen measured a genuine twofold difference in tolerated free concentration. It says the advantage is smaller than the raw dose comparison implies, and that the difference between those two statements is the single most common overreach in this drug\'s literature.',
+          "Polley and colleagues determined minimum local analgesic concentration by up-down sequential allocation in 73 labouring women at 7 cm dilation or less, using 20 mL epidural test solutions and a visual analogue score of 10 mm or less within 30 minutes as the definition of effect. Ropivacaine's minimum local analgesic concentration was 0.111% weight/volume (95% CI 0.100 to 0.122) against bupivacaine's 0.067% (95% CI 0.052 to 0.082), a potency ratio of 0.6 (95% CI 0.49 to 0.74). Against levobupivacaine by the same method the ratio was 0.83. The correct comparison for a safety claim is a therapeutic index — toxic concentration divided by effective concentration — and the equal-milligram volunteer studies do not supply one. This audit does not say the advantage is imaginary: Knudsen measured a genuine twofold difference in tolerated free concentration. It says the advantage is smaller than the raw dose comparison implies, and that the difference between those two statements is the single most common overreach in this drug's literature.",
         evidenceSource:
           'Polley LS, Columb MO, Naughton NN, Wagner DS, van de Ven CJ. Anesthesiology 1999;90:944-950',
         doi: '10.1097/00000542-199904000-00003',
@@ -1337,7 +1342,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Ropivacaine is widely described as blocking pain while leaving muscle power alone. In the study that compared the two drugs at the concentrations that give equal pain relief, there was no difference in motor effects.',
         technicalDetails:
-          'The differential-block claim originates in comparisons at equal concentrations, where ropivacaine, being less potent, produces less of every effect including motor block. Polley\'s up-down study reported explicitly that no difference in motor effects was observed between the groups when each drug was given at its own minimum local analgesic concentration. The mechanistic story usually attached to the claim — that lower lipid solubility spares large myelinated motor fibres preferentially — is a plausible account of a difference that the equipotent comparison did not find. Differential block between sensory and motor fibres is real and concentration-dependent for every drug in this class; that it is greater for ropivacaine than for bupivacaine at equal effect is the part that failed.',
+          "The differential-block claim originates in comparisons at equal concentrations, where ropivacaine, being less potent, produces less of every effect including motor block. Polley's up-down study reported explicitly that no difference in motor effects was observed between the groups when each drug was given at its own minimum local analgesic concentration. The mechanistic story usually attached to the claim — that lower lipid solubility spares large myelinated motor fibres preferentially — is a plausible account of a difference that the equipotent comparison did not find. Differential block between sensory and motor fibres is real and concentration-dependent for every drug in this class; that it is greater for ropivacaine than for bupivacaine at equal effect is the part that failed.",
         evidenceSource:
           'Polley LS, Columb MO, Naughton NN, Wagner DS, van de Ven CJ. Anesthesiology 1999;90:944-950',
         doi: '10.1097/00000542-199904000-00003',
@@ -1380,7 +1385,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         step: 1,
         title: 'Injected into the epidural space or around a major nerve',
         laymanDesc:
-          'This drug is chosen where the volume is large — an epidural, a whole limb\'s nerve supply — because that is where an accident would matter most.',
+          "This drug is chosen where the volume is large — an epidural, a whole limb's nerve supply — because that is where an accident would matter most.",
         molecularDetail:
           'Lower lipid solubility than bupivacaine means less sequestration in local fat and a slightly shorter block, and it means less partitioning into myocardium if the drug reaches the circulation. Ropivacaine also produces vasoconstriction at low concentrations in some vascular beds, which slows its own systemic absorption and is one of the few pharmacological differences that works in its favour without a potency caveat.',
         iconName: 'Syringe',
@@ -1392,7 +1397,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Only the electrically neutral form gets through the fatty sheath. Inside the nerve it picks up a proton, and the charged form does the blocking.',
         molecularDetail:
-          'The pKa near 8.1 is essentially identical to bupivacaine\'s, so the neutral fraction available at physiological pH is the same and onset time is similar. The difference between the two molecules is not in getting in; it is in how much is available in plasma to reach other tissues, where ropivacaine\'s higher protein binding and lower partition coefficient both reduce the free fraction.',
+          "The pKa near 8.1 is essentially identical to bupivacaine's, so the neutral fraction available at physiological pH is the same and onset time is similar. The difference between the two molecules is not in getting in; it is in how much is available in plasma to reach other tissues, where ropivacaine's higher protein binding and lower partition coefficient both reduce the free fraction.",
         iconName: 'ArrowDownToLine',
         visualStage: 'cellular_entry',
       },
@@ -1432,7 +1437,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'The liver breaks it down and it leaves. Because less of it hides in fat and muscle, the concentration in the blood falls more predictably during a long infusion.',
         molecularDetail:
-          'Elimination is hepatic, principally by CYP1A2 to 3-hydroxyropivacaine with a smaller CYP3A4 route to the N-dealkylated metabolite, which matters because CYP1A2 inhibition by fluvoxamine substantially reduces clearance. Systemic clearance and terminal half-life are more favourable than bupivacaine\'s for continuous infusion, which is part of why the drug is preferred where an epidural will run for days rather than hours.',
+          "Elimination is hepatic, principally by CYP1A2 to 3-hydroxyropivacaine with a smaller CYP3A4 route to the N-dealkylated metabolite, which matters because CYP1A2 inhibition by fluvoxamine substantially reduces clearance. Systemic clearance and terminal half-life are more favourable than bupivacaine's for continuous infusion, which is part of why the drug is preferred where an epidural will run for days rather than hours.",
         iconName: 'RotateCcw',
         visualStage: 'therapeutic_result',
       },
@@ -1498,7 +1503,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         'A maximum tolerated unbound arterial plasma concentration twice that of bupivacaine in a 12-subject randomised crossover (P<0.001)',
         'No QRS widening at doses where bupivacaine widens it, and depression of systolic but not diastolic left ventricular function',
         'At least 25% less toxic than bupivacaine by tolerated intravenous dose in the original 1989 volunteer study',
-        'A minimum local analgesic concentration of 0.111% against bupivacaine\'s 0.067% — a potency ratio of 0.6 (95% CI 0.49 to 0.74)',
+        "A minimum local analgesic concentration of 0.111% against bupivacaine's 0.067% — a potency ratio of 0.6 (95% CI 0.49 to 0.74)",
         'Delirium in 1.8% versus 5.0% when epidural ropivacaine was added to general anaesthesia in 1,720 older surgical patients, alongside 49% versus 33% intraoperative hypotension',
       ],
       unsupportedInferences: [
@@ -1519,8 +1524,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Preservative-free sterile solution for epidural, caudal, major peripheral nerve block and infiltration use, in single-dose ampoules, single-dose vials and ready-to-use infusion bags',
+      type: 'Preservative-free sterile solution for epidural, caudal, major peripheral nerve block and infiltration use, in single-dose ampoules, single-dose vials and ready-to-use infusion bags',
       description:
         'Every presentation is preservative-free because the principal routes are epidural and major nerve block, where preservatives are unacceptable. Infusion bags exist because continuous epidural infusion over days is the use case ropivacaine was best suited to, and drawing repeated syringes from ampoules for a multi-day infusion is an error source. Unlike lidocaine and bupivacaine, ropivacaine is not routinely co-formulated with epinephrine, partly because it has intrinsic vasoconstrictor activity at clinical concentrations.',
       safetyProfile:
@@ -1545,7 +1549,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'The epidural trial found less delirium. Is that a reason to have one?',
-        a: 'It is a real, large, randomised result and it is worth stating exactly. In 1,720 patients aged 60 to 90 having major thoracic or abdominal surgery, adding an epidural of ropivacaine to general anaesthesia reduced delirium in the first week from 5.0% to 1.8%, a relative risk of 0.351 and a number needed to treat of 31. The same trial found intraoperative systolic pressure below 80 mmHg in 49% of the epidural group against 33%, and more vasopressor use. The authors\' own conclusion was to consider the combination in patients at risk of delirium and avoid it in patients at risk of hypotension. It is also worth noting what the trial does not establish: whether the benefit belongs to ropivacaine specifically, to epidural analgesia generally, or to the reduced opioid exposure that came with it.',
+        a: "It is a real, large, randomised result and it is worth stating exactly. In 1,720 patients aged 60 to 90 having major thoracic or abdominal surgery, adding an epidural of ropivacaine to general anaesthesia reduced delirium in the first week from 5.0% to 1.8%, a relative risk of 0.351 and a number needed to treat of 31. The same trial found intraoperative systolic pressure below 80 mmHg in 49% of the epidural group against 33%, and more vasopressor use. The authors' own conclusion was to consider the combination in patients at risk of delirium and avoid it in patients at risk of hypotension. It is also worth noting what the trial does not establish: whether the benefit belongs to ropivacaine specifically, to epidural analgesia generally, or to the reduced opioid exposure that came with it.",
       },
       {
         q: 'What does the S in S-enantiomer actually change?',
@@ -1663,16 +1667,18 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           class: 'Inhalational general anaesthetic',
           howItCompares:
             'In MYRIAD, 5,400 patients having elective coronary bypass were randomised to a volatile agent or to total intravenous anaesthesia. One-year mortality was 2.8% against 3.0% (relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71) and the trial was stopped for futility at the second interim analysis. No secondary outcome differed, including myocardial infarction.',
-          typicalCost: 'No NADAC value is held on this record for sevoflurane and none is asserted here',
+          typicalCost:
+            'No NADAC value is held on this record for sevoflurane and none is asserted here',
           prosAndCons:
-            'Pros: end-tidal concentration is directly measurable, which propofol\'s brain concentration is not. Cons: more postoperative nausea, and an operating-theatre greenhouse-gas footprint propofol does not have.',
+            "Pros: end-tidal concentration is directly measurable, which propofol's brain concentration is not. Cons: more postoperative nausea, and an operating-theatre greenhouse-gas footprint propofol does not have.",
         },
         {
           name: 'Etomidate (Amidate)',
           class: 'Imidazole intravenous induction agent',
           howItCompares:
             'Acts at the same beta3 subunit residue — the N265M knock-in mouse is unresponsive to both drugs — but causes far less drop in blood pressure. It buys that stability with dose-dependent inhibition of adrenal steroid synthesis, which is a real and measured harm rather than a theoretical one.',
-          typicalCost: 'No NADAC value is held on this record for etomidate and none is asserted here',
+          typicalCost:
+            'No NADAC value is held on this record for etomidate and none is asserted here',
           prosAndCons:
             'Pros: haemodynamic stability at induction. Cons: adrenal suppression from a single dose, and an outcome literature that has repeatedly pointed the wrong way.',
         },
@@ -1805,7 +1811,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'One changed amino acid abolishes propofol anaesthesia in a living animal',
         laymanSummary:
-          'Researchers swapped a single amino acid in one subunit of the brain\'s main inhibitory receptor. Mice carrying the change no longer stopped moving in response to propofol at all, while gas anaesthetics still worked on them.',
+          "Researchers swapped a single amino acid in one subunit of the brain's main inhibitory receptor. Mice carrying the change no longer stopped moving in response to propofol at all, while gas anaesthetics still worked on them.",
         technicalDetails:
           'Jurd and colleagues used gene targeting to generate mice carrying an N265M point mutation in the second transmembrane region of the GABA-A receptor beta3 subunit. In these animals, suppression of noxious-evoked movement by intravenous etomidate and propofol was completely abolished, while it was only slightly decreased for the volatile anaesthetics enflurane and halothane. The mutants also showed a profound reduction in the duration of loss of righting reflex in response to intravenous but not volatile agents. Electrophysiology in cortical brain slices from the mutants showed that the anaesthetics were significantly less effective both at enhancing GABA-A mediated currents and at reducing spontaneous action potential firing. This is as close to a mechanism proof as pharmacology gets: a specific residue, altered in the whole animal, removes the behavioural effect of the drug, and the control drugs in the same animals are unaffected.',
         evidenceSource:
@@ -1826,7 +1832,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Landoni G, Lomivorotov VV, Nigro Neto C, et al. Volatile anesthetics versus total intravenous anesthesia for cardiac surgery. N Engl J Med 2019;380:1214-1225 (NCT02105610)',
         doi: '10.1056/NEJMoa1816476',
-        measuredMetric: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        measuredMetric:
+          'Death from any cause at one year after elective coronary artery bypass grafting',
         auditFlag: 'verified',
       },
       {
@@ -1840,7 +1847,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Sessler DI, Pei L, Huang Y, et al. Recurrence of breast cancer after regional or general anaesthesia: a randomised controlled trial. Lancet 2019;394:1807-1815 (NCT00418457)',
         doi: '10.1016/S0140-6736(19)32313-X',
-        measuredMetric: 'Local or metastatic breast cancer recurrence, and persistent incisional pain at 6 and 12 months',
+        measuredMetric:
+          'Local or metastatic breast cancer recurrence, and persistent incisional pain at 6 and 12 months',
         auditFlag: 'verified',
       },
       {
@@ -1913,9 +1921,9 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         step: 3,
         title: 'It grips the GABA-A receptor at the beta subunit',
         laymanDesc:
-          'It binds the brain\'s main inhibitory receptor, at a site on a different part of the protein from where alcohol or benzodiazepines act.',
+          "It binds the brain's main inhibitory receptor, at a site on a different part of the protein from where alcohol or benzodiazepines act.",
         molecularDetail:
-          'The site involves asparagine 265 in transmembrane domain 2 of the beta subunit. Mice carrying the beta3(N265M) substitution lose propofol\'s immobilising action completely and most of its hypnotic action, while enflurane and halothane remain largely effective, which localises the intravenous anaesthetic effect to this residue and shows the volatiles act through a broader set of targets.',
+          "The site involves asparagine 265 in transmembrane domain 2 of the beta subunit. Mice carrying the beta3(N265M) substitution lose propofol's immobilising action completely and most of its hypnotic action, while enflurane and halothane remain largely effective, which localises the intravenous anaesthetic effect to this residue and shows the volatiles act through a broader set of targets.",
         iconName: 'Lock',
         visualStage: 'target_binding',
       },
@@ -1952,10 +1960,12 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'MYRIAD — volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery (NCT02105610)',
+        trialId:
+          'MYRIAD — volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery (NCT02105610)',
         phase: 'Pragmatic multicentre single-blind randomised controlled trial',
         sampleSize: 5400,
-        primaryEndpoint: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        primaryEndpoint:
+          'Death from any cause at one year after elective coronary artery bypass grafting',
         endpointMet: false,
         statisticalPValue:
           '2.8% volatile versus 3.0% total intravenous anaesthesia; relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71',
@@ -1968,7 +1978,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           'Sessler breast cancer recurrence after regional or general anaesthesia (NCT00418457)',
         phase: 'Randomised controlled trial at 13 hospitals in 8 countries',
         sampleSize: 2132,
-        primaryEndpoint: 'Local or metastatic breast cancer recurrence after potentially curative resection',
+        primaryEndpoint:
+          'Local or metastatic breast cancer recurrence after potentially curative resection',
         endpointMet: false,
         statisticalPValue:
           '102 of 1,043 (10%) with paravertebral block plus propofol versus 111 of 1,065 (10%) with sevoflurane plus opioid; hazard ratio 0.97, 95% CI 0.74 to 1.28, P=0.84',
@@ -1977,10 +1988,12 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Unreplicated',
       },
       {
-        trialId: 'Cremer retrospective cohort of long-term propofol infusion in head-injured adults',
+        trialId:
+          'Cremer retrospective cohort of long-term propofol infusion in head-injured adults',
         phase: 'Retrospective cohort study following five index deaths',
         sampleSize: 67,
-        primaryEndpoint: 'Occurrence of propofol infusion syndrome in sedated ventilated head-injured adults',
+        primaryEndpoint:
+          'Occurrence of propofol infusion syndrome in sedated ventilated head-injured adults',
         endpointMet: true,
         statisticalPValue:
           'Odds ratio 1.93 for each mg/kg per hour increase in mean propofol dose above 5 mg/kg per hour (95% CI 1.12 to 3.32, P=0.018); 7 of 67 patients judged to have died of the syndrome',
@@ -1989,7 +2002,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Partially Replicated',
       },
       {
-        trialId: 'Asserhoj investigation of propofol allergy in egg, soy and peanut allergic adults',
+        trialId:
+          'Asserhoj investigation of propofol allergy in egg, soy and peanut allergic adults',
         phase: 'Two-part clinical investigation with skin testing and intravenous provocation',
         sampleSize: 793,
         primaryEndpoint:
@@ -2004,7 +2018,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
     ],
     measuredVsInferredSummary: {
       strictlyMeasured: [
-        'A single N265M substitution in the GABA-A beta3 subunit completely abolishes propofol\'s suppression of noxious-evoked movement in mice, while volatile anaesthetics still work in the same animals',
+        "A single N265M substitution in the GABA-A beta3 subunit completely abolishes propofol's suppression of noxious-evoked movement in mice, while volatile anaesthetics still work in the same animals",
         'One-year mortality of 3.0% with total intravenous anaesthesia against 2.8% with a volatile agent in 5,400 coronary bypass patients',
         'Breast cancer recurrence of 10% with propofol plus paravertebral block against 10% with sevoflurane plus opioid, hazard ratio 0.97, in 2,108 analysed women',
         'A dose-response association between propofol infusion rate and fatal propofol infusion syndrome, odds ratio 1.93 per mg/kg/h above 5 mg/kg/h',
@@ -2030,8 +2044,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       ],
     },
     deliverySystem: {
-      type:
-        'Sterile 1% oil-in-water injectable emulsion for intravenous bolus and infusion, in ampoules, vials and prefilled syringes; delivered by weight-based or target-controlled infusion',
+      type: 'Sterile 1% oil-in-water injectable emulsion for intravenous bolus and infusion, in ampoules, vials and prefilled syringes; delivered by weight-based or target-controlled infusion',
       description:
         'The emulsion is the delivery system. Soybean oil provides the lipid phase, purified egg phosphatide the emulsifier and glycerol the tonicity, and the droplet size distribution has to be tight enough that the suspension can go safely into a vein. Because that vehicle supports rapid bacterial growth, presentations either include a growth retardant such as disodium edetate, sodium metabisulfite or benzyl alcohol, or are strictly single-patient with a short in-use time. The lipid load itself is clinically relevant during long infusions and is one reason propofol is not simply run indefinitely.',
       safetyProfile:
@@ -2058,7 +2071,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'I am allergic to eggs. Can I have propofol?',
-        a: 'The evidence says the connection does not exist, and the rule that says otherwise was never based on evidence. Propofol\'s emulsion does contain egg lecithin and soybean oil, and for decades that ingredient list was treated as a contraindication in people with egg, soy or peanut allergy — on the strength of six case reports that lacked confirmatory evidence of an allergic reaction. When it was investigated properly, four of 153 propofol-exposed patients under investigation for perioperative reactions turned out to be genuinely allergic to propofol, and none of them had food allergy or specific IgE to egg or soy. Separately, 520 adults with confirmed IgE to egg, soy or peanut were reviewed, and no allergic reaction to propofol appeared in 171 retrieved anaesthetic charts. Tell your anaesthetist about the allergy regardless; the point is what they should conclude from it.',
+        a: "The evidence says the connection does not exist, and the rule that says otherwise was never based on evidence. Propofol's emulsion does contain egg lecithin and soybean oil, and for decades that ingredient list was treated as a contraindication in people with egg, soy or peanut allergy — on the strength of six case reports that lacked confirmatory evidence of an allergic reaction. When it was investigated properly, four of 153 propofol-exposed patients under investigation for perioperative reactions turned out to be genuinely allergic to propofol, and none of them had food allergy or specific IgE to egg or soy. Separately, 520 adults with confirmed IgE to egg, soy or peanut were reviewed, and no allergic reaction to propofol appeared in 171 retrieved anaesthetic charts. Tell your anaesthetist about the allergy regardless; the point is what they should conclude from it.",
         auditNote:
           'Filed as a change of mind rather than an unproven claim, because it was a standing clinical practice that direct investigation contradicted.',
       },
@@ -2083,7 +2096,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         kind: 'doi',
       },
       {
-        label: 'NCT02105610 — MYRIAD, volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery',
+        label:
+          'NCT02105610 — MYRIAD, volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery',
         identifier: 'NCT02105610',
         kind: 'nct',
       },
@@ -2150,12 +2164,12 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       whoTakesThis:
         'Most children having an operation, and a very large fraction of adults. It is on the WHO Model List of Essential Medicines.',
       clinicalGoals:
-        'A smooth induction, a controllable and directly measurable depth, and rapid emergence. Whether the choice of a gas over an intravenous agent changes survival, cancer recurrence or a child\'s later intelligence is a separate set of claims, and each of them has now been tested.',
+        "A smooth induction, a controllable and directly measurable depth, and rapid emergence. Whether the choice of a gas over an intravenous agent changes survival, cancer recurrence or a child's later intelligence is a separate set of claims, and each of them has now been tested.",
     },
     oneSentenceVerdict:
       'A fluorinated ether so insoluble in blood — a blood-gas partition coefficient of 0.63 to 0.69 — that alveolar and arterial concentrations equilibrate within minutes, giving anaesthesia you can titrate off the exhaled breath; the largest randomised test of the fear attached to it found that just under an hour of it in infancy left full-scale IQ at age five at 98.97 against 99.08 for awake-regional anaesthesia, a difference of 0.23 points.',
     laymanHowItWorks:
-      'Sevoflurane is breathed in, crosses from the lung into the blood and then into the brain. It barely dissolves in blood at all, which sounds like a disadvantage and is the opposite: because the blood cannot soak much of it up, the amount in the lungs and the amount in the brain come into balance within a few minutes, in both directions. So the anaesthetist can raise or lower the depth quickly and can read the concentration off the patient\'s own exhaled breath. Once there, it does not act on one receptor. It nudges several kinds of ion channel at once, mostly in the direction of making neurons harder to excite.',
+      "Sevoflurane is breathed in, crosses from the lung into the blood and then into the brain. It barely dissolves in blood at all, which sounds like a disadvantage and is the opposite: because the blood cannot soak much of it up, the amount in the lungs and the amount in the brain come into balance within a few minutes, in both directions. So the anaesthetist can raise or lower the depth quickly and can read the concentration off the patient's own exhaled breath. Once there, it does not act on one receptor. It nudges several kinds of ion channel at once, mostly in the direction of making neurons harder to excite.",
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 75,
     substitutes: {
@@ -2166,17 +2180,19 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           name: 'Desflurane (Suprane)',
           class: 'Halogenated ether inhalational anaesthetic',
           howItCompares:
-            'Even less soluble in blood, so on and off faster still, and it does not form Compound A. Against that it is pungent enough to cause coughing and laryngospasm on induction, so it is not used to send anyone to sleep, and its 100-year global warming potential is 1,620 against sevoflurane\'s 210.',
-          typicalCost: 'No NADAC value is held on this record for desflurane and none is asserted here',
+            "Even less soluble in blood, so on and off faster still, and it does not form Compound A. Against that it is pungent enough to cause coughing and laryngospasm on induction, so it is not used to send anyone to sleep, and its 100-year global warming potential is 1,620 against sevoflurane's 210.",
+          typicalCost:
+            'No NADAC value is held on this record for desflurane and none is asserted here',
           prosAndCons:
-            'Pros: the fastest emergence of the three. Cons: airway irritation, and roughly eight times sevoflurane\'s climate impact per molecule emitted.',
+            "Pros: the fastest emergence of the three. Cons: airway irritation, and roughly eight times sevoflurane's climate impact per molecule emitted.",
         },
         {
           name: 'Isoflurane (Forane)',
           class: 'Halogenated ether inhalational anaesthetic',
           howItCompares:
             'More soluble in blood, so slower on and slower off, and pungent. Cheap, extremely well characterised, and still the workhorse in much of the world. Global warming potential 510 over 100 years.',
-          typicalCost: 'No NADAC value is held on this record for isoflurane and none is asserted here',
+          typicalCost:
+            'No NADAC value is held on this record for isoflurane and none is asserted here',
           prosAndCons:
             'Pros: inexpensive and predictable. Cons: slower recovery and an airway too irritant for gas induction.',
         },
@@ -2194,7 +2210,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
           name: 'Nitrous oxide',
           class: 'Inhaled anaesthetic and analgesic gas',
           howItCompares:
-            'Cannot produce surgical anaesthesia on its own at safe concentrations and is used as a carrier that reduces how much of the potent agent is needed. Its global warming potential is far higher and its atmospheric lifetime far longer than sevoflurane\'s.',
+            "Cannot produce surgical anaesthesia on its own at safe concentrations and is used as a carrier that reduces how much of the potent agent is needed. Its global warming potential is far higher and its atmospheric lifetime far longer than sevoflurane's.",
           typicalCost: 'Piped medical gas; no NADAC value applies and none is asserted here',
           prosAndCons:
             'Pros: genuine analgesia, which the volatile ethers do not provide. Cons: expands into gas-filled spaces, inactivates vitamin B12-dependent enzymes on prolonged exposure, and is a long-lived greenhouse gas.',
@@ -2323,7 +2339,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The paediatric neurotoxicity warning on the label rests on animal studies',
         laymanSummary:
-          'The label warns that anaesthetics used for more than three hours in a very young child may cause lasting cognitive harm. In the label\'s own words, that comes from published animal studies, and the clinical significance is not clear.',
+          "The label warns that anaesthetics used for more than three hours in a very young child may cause lasting cognitive harm. In the label's own words, that comes from published animal studies, and the clinical significance is not clear.",
         technicalDetails:
           'The approved United States label states that published animal studies demonstrate that anaesthetic and sedation drugs which block NMDA receptors or potentiate GABA activity increase neuronal apoptosis in the developing brain and result in long-term cognitive deficits when used for longer than three hours, and that the clinical significance of these findings is not clear. It places the window of vulnerability from the third trimester through the first several months of life, possibly extending to about three years of age in humans. It notes that some published studies in children suggest similar deficits after repeated or prolonged exposure, that those studies have substantial limitations, and that it is not clear whether the observed effects are due to the drugs or to the surgery and underlying illness. This audit is not a claim that the warning is wrong. It is a statement of what supports it: an animal model, plus observational human studies the label itself describes as substantially limited, against one randomised human trial of a single short exposure that found equivalence. The warning is an inference from apoptosis in rodent brains to intelligence in human children, and the label says so.',
         evidenceSource:
@@ -2335,11 +2351,12 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       {
         id: 'sev-a3',
         category: 'conclusion_shift',
-        title: 'Compound A: real biomarker injury in volunteers, then reassurance measured the wrong thing',
+        title:
+          'Compound A: real biomarker injury in volunteers, then reassurance measured the wrong thing',
         laymanSummary:
           'Sevoflurane breaks down in the anaesthetic machine into a compound that damages rat kidneys. In volunteers, careful urine tests found genuine kidney injury markers — and the routine blood tests missed it entirely. The large study that reassured everyone used those routine blood tests.',
         technicalDetails:
-          'Sevoflurane reacts with the strong base in carbon dioxide absorbents to form pentafluoroisopropenyl fluoromethyl ether, known as Compound A, and the amount formed rises as fresh gas flow falls. Eger and colleagues gave fluid-restricted volunteers eight hours of 1.25 MAC sevoflurane (n=10) or desflurane (n=9) at 2 L/min in a standard circle absorber. Mean inspired Compound A was 41 +/- 3 ppm. Desflurane produced no renal injury. Sevoflurane produced transient injury at three sites: glomerular, shown by post-anaesthetic albuminuria; proximal tubular, shown by glucosuria and raised urinary alpha-glutathione-S-transferase; and distal tubular, shown by raised urinary pi-glutathione-S-transferase. The magnitude varied enormously between subjects — on day 3, 24-hour albumin excretion ranged from normal in one volunteer to 4.4 g in another. Critically, neither agent changed serum creatinine or blood urea nitrogen, and neither changed urinary concentrating ability in response to vasopressin: in the authors\' words, these measures failed to reveal the injury produced. Three years later Mazze and colleagues pooled 22 trials with 3,436 adult surgical patients — 1,941 sevoflurane, 1,495 control — and found similar incidences of raised serum creatinine and blood urea nitrogen, with no trend by fresh gas flow rate or absorbent type. That is a real and useful result about clinically apparent nephrotoxicity, and it uses precisely the two measurements the volunteer study had shown to be insensitive to the injury in question. The label still restricts fresh gas flow.',
+          "Sevoflurane reacts with the strong base in carbon dioxide absorbents to form pentafluoroisopropenyl fluoromethyl ether, known as Compound A, and the amount formed rises as fresh gas flow falls. Eger and colleagues gave fluid-restricted volunteers eight hours of 1.25 MAC sevoflurane (n=10) or desflurane (n=9) at 2 L/min in a standard circle absorber. Mean inspired Compound A was 41 +/- 3 ppm. Desflurane produced no renal injury. Sevoflurane produced transient injury at three sites: glomerular, shown by post-anaesthetic albuminuria; proximal tubular, shown by glucosuria and raised urinary alpha-glutathione-S-transferase; and distal tubular, shown by raised urinary pi-glutathione-S-transferase. The magnitude varied enormously between subjects — on day 3, 24-hour albumin excretion ranged from normal in one volunteer to 4.4 g in another. Critically, neither agent changed serum creatinine or blood urea nitrogen, and neither changed urinary concentrating ability in response to vasopressin: in the authors' words, these measures failed to reveal the injury produced. Three years later Mazze and colleagues pooled 22 trials with 3,436 adult surgical patients — 1,941 sevoflurane, 1,495 control — and found similar incidences of raised serum creatinine and blood urea nitrogen, with no trend by fresh gas flow rate or absorbent type. That is a real and useful result about clinically apparent nephrotoxicity, and it uses precisely the two measurements the volunteer study had shown to be insensitive to the injury in question. The label still restricts fresh gas flow.",
         evidenceSource:
           'Eger EI 2nd, Koblin DD, Bowland T, et al. Anesth Analg 1997;84:160-168; Mazze RI, Callan CM, Galvez ST, Delgado-Herrera L, Mayer DB. Anesth Analg 2000;90:683-688',
         doi: '10.1097/00000539-199701000-00029',
@@ -2358,7 +2375,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Landoni G, Lomivorotov VV, Nigro Neto C, et al. Volatile anesthetics versus total intravenous anesthesia for cardiac surgery. N Engl J Med 2019;380:1214-1225 (NCT02105610)',
         doi: '10.1056/NEJMoa1816476',
-        measuredMetric: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        measuredMetric:
+          'Death from any cause at one year after elective coronary artery bypass grafting',
         auditFlag: 'verified',
       },
       {
@@ -2372,7 +2390,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         evidenceSource:
           'Short TG, Campbell D, Frampton C, et al. Anaesthetic depth and complications after major surgery: an international, randomised controlled trial. Lancet 2019;394:1907-1914 (ACTRN12612000632897)',
         doi: '10.1016/S0140-6736(19)32315-3',
-        measuredMetric: 'One-year all-cause mortality in older patients at increased risk after major surgery',
+        measuredMetric:
+          'One-year all-cause mortality in older patients at increased risk after major surgery',
         auditFlag: 'verified',
       },
       {
@@ -2412,7 +2431,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'A calibrated vaporiser turns the liquid into a precise percentage of the gas being breathed. Unlike an injected drug, the dose can be turned down as easily as it was turned up.',
         molecularDetail:
-          'The label requires vaporisers producing predictable concentrations, because the depth of anaesthesia can change rapidly. Saturated vapour pressure and the agent-specific vaporiser design are what make a percentage dial meaningful; sevoflurane\'s non-pungency, unusual in this class, is what allows a mask induction without airway irritation.',
+          "The label requires vaporisers producing predictable concentrations, because the depth of anaesthesia can change rapidly. Saturated vapour pressure and the agent-specific vaporiser design are what make a percentage dial meaningful; sevoflurane's non-pungency, unusual in this class, is what allows a mask induction without airway irritation.",
         iconName: 'Wind',
         visualStage: 'delivery',
       },
@@ -2460,7 +2479,7 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         step: 6,
         title: 'It is breathed back out almost entirely unchanged',
         laymanDesc:
-          'Only a small fraction is metabolised. The rest leaves through the lungs the way it came in, and then leaves the building through the theatre\'s scavenging system into the atmosphere.',
+          "Only a small fraction is metabolised. The rest leaves through the lungs the way it came in, and then leaves the building through the theatre's scavenging system into the atmosphere.",
         molecularDetail:
           'Roughly 3 to 5% undergoes hepatic defluorination by CYP2E1, producing inorganic fluoride and hexafluoroisopropanol, which is glucuronidated; the rest is exhaled. Because elimination is by ventilation rather than metabolism, emergence tracks the same low solubility that made induction fast. The exhaled remainder is vented, which is why a measured 100-year global warming potential of 210 is a property of the treatment and not a footnote to it.',
         iconName: 'RotateCcw',
@@ -2469,7 +2488,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
     ],
     trials: [
       {
-        trialId: 'GAS — general anaesthesia versus awake-regional anaesthesia in infancy (NCT00756600)',
+        trialId:
+          'GAS — general anaesthesia versus awake-regional anaesthesia in infancy (NCT00756600)',
         phase: 'International assessor-masked randomised controlled equivalence trial',
         sampleSize: 722,
         primaryEndpoint:
@@ -2482,10 +2502,12 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         independentReplicationStatus: 'Partially Replicated',
       },
       {
-        trialId: 'MYRIAD — volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery (NCT02105610)',
+        trialId:
+          'MYRIAD — volatile anaesthetics versus total intravenous anaesthesia for cardiac surgery (NCT02105610)',
         phase: 'Pragmatic multicentre single-blind randomised controlled trial',
         sampleSize: 5400,
-        primaryEndpoint: 'Death from any cause at one year after elective coronary artery bypass grafting',
+        primaryEndpoint:
+          'Death from any cause at one year after elective coronary artery bypass grafting',
         endpointMet: false,
         statisticalPValue:
           '2.8% volatile versus 3.0% intravenous; relative risk 0.94, 95% CI 0.69 to 1.29, P=0.71',
@@ -2497,7 +2519,8 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         trialId: 'BALANCED — anaesthetic depth and complications after major surgery',
         phase: 'International randomised controlled trial at 73 centres in 7 countries',
         sampleSize: 6644,
-        primaryEndpoint: 'One-year all-cause mortality in older patients at increased risk after major surgery',
+        primaryEndpoint:
+          'One-year all-cause mortality in older patients at increased risk after major surgery',
         endpointMet: false,
         statisticalPValue:
           '6.5% at bispectral index target 50 versus 7.2% at target 35; hazard ratio 0.88, 95% CI 0.73 to 1.07, absolute risk reduction 0.8% (95% CI -0.5 to 2.0)',
@@ -2557,25 +2580,24 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
         'On the WHO Model List of Essential Medicines, and the standard agent for inhalational induction in children worldwide because it does not irritate the airway',
         'No CMS National Average Drug Acquisition Cost value is held on this record for sevoflurane, so no United States acquisition price is stated here',
         'Its label still restricts fresh gas flow because of Compound A, three decades after the human outcome data failed to show clinically apparent renal injury — a warning that has outlived the strength of its evidence in either direction',
-        'Its measured global warming potential of 210, against desflurane\'s 1,620, has become a real basis for institutional agent choice',
+        "Its measured global warming potential of 210, against desflurane's 1,620, has become a real basis for institutional agent choice",
       ],
     },
     deliverySystem: {
-      type:
-        'Volatile liquid for inhalation, delivered as vapour from an agent-specific calibrated vaporiser into a circle breathing system, with a carbon dioxide absorber and scavenging',
+      type: 'Volatile liquid for inhalation, delivered as vapour from an agent-specific calibrated vaporiser into a circle breathing system, with a carbon dioxide absorber and scavenging',
       description:
         'The delivery system is a machine, not a formulation, and the machine changes the drug. Fresh gas flow, absorbent chemistry and absorbent hydration determine how much Compound A the patient inhales, so the same vaporiser setting delivers different exposures on different circuits. The agent is stabilised with water because it degrades on contact with Lewis acids. Uniquely among the agents in routine use it is non-pungent, which is why a child can be anaesthetised through a mask without a cannula, and that property is a physical fact about the molecule rather than a clinical claim.',
       safetyProfile:
-        'Contraindicated in known or suspected genetic susceptibility to malignant hyperthermia, which every volatile agent triggers. The label warns of Compound A-associated renal injury and restricts fresh gas flow accordingly, and carries the class Pediatric Neurotoxicity warning describing animal evidence of neuronal apoptosis with exposures over three hours in the developing brain, with the clinical significance stated as unclear. Emergence agitation in young children is common and self-limiting. Reaction with desiccated carbon dioxide absorbents, particularly potassium hydroxide-containing types, has caused extreme absorber heating and fire. Depth changes rapidly, which is the drug\'s main advantage and the reason the label restricts administration to trained personnel with vaporisers of predictable output. No dosing guidance appears on this page.',
+        "Contraindicated in known or suspected genetic susceptibility to malignant hyperthermia, which every volatile agent triggers. The label warns of Compound A-associated renal injury and restricts fresh gas flow accordingly, and carries the class Pediatric Neurotoxicity warning describing animal evidence of neuronal apoptosis with exposures over three hours in the developing brain, with the clinical significance stated as unclear. Emergence agitation in young children is common and self-limiting. Reaction with desiccated carbon dioxide absorbents, particularly potassium hydroxide-containing types, has caused extreme absorber heating and fire. Depth changes rapidly, which is the drug's main advantage and the reason the label restricts administration to trained personnel with vaporisers of predictable output. No dosing guidance appears on this page.",
     },
     commonQuestions: [
       {
-        q: 'Will an anaesthetic damage my child\'s brain?',
+        q: "Will an anaesthetic damage my child's brain?",
         a: 'The best evidence available says a single short anaesthetic in infancy does not. The GAS trial randomised 722 babies having the same hernia operation to either a sevoflurane general anaesthetic or an awake spinal, and measured full-scale IQ at age five with masked assessors and a predefined equivalence margin of 5 points. Median anaesthetic duration was 54 minutes. Mean IQ was 98.97 with general anaesthesia and 99.08 with awake-regional — a difference of 0.23 points, with a confidence interval from -2.59 to 3.06, comfortably inside the margin. That is a positive demonstration of equivalence, not merely a failure to find a difference. What it does not cover is repeated anaesthetics or exposures of several hours, which is exactly what the FDA warning is about, and there is no randomised trial of those.',
       },
       {
         q: 'Then why does the label carry a neurotoxicity warning?',
-        a: 'Because of what happens to animals. The label says it plainly: published animal studies show that drugs blocking NMDA receptors or potentiating GABA increase neuronal apoptosis in the developing brain and cause long-term cognitive deficits when used for longer than three hours, and that the clinical significance of those findings is not clear. It places the vulnerable window from the third trimester through the first months of life, possibly to about three years. It acknowledges human studies suggesting similar deficits after repeated or prolonged exposure, and says those studies have substantial limitations and cannot separate the drug from the surgery and the underlying illness. So the warning is an extrapolation from rodent apoptosis, hedged in the label\'s own text, and this page records it as one.',
+        a: "Because of what happens to animals. The label says it plainly: published animal studies show that drugs blocking NMDA receptors or potentiating GABA increase neuronal apoptosis in the developing brain and cause long-term cognitive deficits when used for longer than three hours, and that the clinical significance of those findings is not clear. It places the vulnerable window from the third trimester through the first months of life, possibly to about three years. It acknowledges human studies suggesting similar deficits after repeated or prolonged exposure, and says those studies have substantial limitations and cannot separate the drug from the surgery and the underlying illness. So the warning is an extrapolation from rodent apoptosis, hedged in the label's own text, and this page records it as one.",
         auditNote:
           'The warning may well be right for long or repeated exposures. It is filed as an inference because that is what the label itself calls it.',
       },
@@ -2656,6 +2678,1495 @@ export const ENRICHED_BATCH_10_DOSSIERS: SeedDossier[] = [
       {
         label: 'PubChem CID 5206 — sevoflurane structure, formula and molecular weight',
         identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5206',
+        kind: 'url',
+      },
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Rocuronium — a paralysing agent that is measurably worse than the drug it replaced at the
+  //    one job it was designed to take over, and is used anyway for reasons the trials do not test.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'rocuronium',
+    name: 'Rocuronium',
+    tradeName: 'Zemuron; marketed as Esmeron outside the United States',
+    sponsor:
+      'Organon USA Inc. (originator and US label holder at approval); developed at Organon in the Netherlands as a low-potency, fast-onset aminosteroid and approved in the United States in 1994',
+    targetGene: 'CHRNA1, CHRNB1, CHRND, CHRNE',
+    targetProtein:
+      'Nicotinic acetylcholine receptor of the adult neuromuscular junction — the pentamer of two alpha1, one beta1, one delta and one epsilon subunit — occupied competitively at the acetylcholine binding sites on the alpha1 subunits without opening the channel',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1994,
+    indication:
+      'Adjunct to general anaesthesia in inpatients and outpatients to facilitate both rapid sequence and routine tracheal intubation, and to provide skeletal muscle relaxation during surgery or mechanical ventilation',
+    patientFriendlyIndication:
+      'Paralysing the muscles so a breathing tube can be placed and so the body stays still during an operation',
+    anatomicalSite:
+      'Postsynaptic membrane of the motor endplate, at the neuromuscular junction of skeletal muscle',
+    conditionContext: {
+      conditionExplainer:
+        'A nerve tells a muscle to contract by releasing acetylcholine into a gap a few tens of nanometres wide. On the far side, receptors bind it and open a channel that depolarises the muscle fibre. Rocuronium sits in those binding sites without opening anything. The nerve fires, the transmitter is released, and nothing happens.',
+      whyItMatters:
+        'Paralysis is what makes tracheal intubation reliable and abdominal surgery possible. It also removes every sign by which an anaesthetist would otherwise notice that a patient is inadequately anaesthetised, which is why awareness under anaesthesia is overwhelmingly a problem of paralysed patients.',
+      whoTakesThis:
+        'Most adults having a general anaesthetic with a breathing tube, and most patients intubated in an emergency department or intensive care unit.',
+      clinicalGoals:
+        'Complete, reversible relaxation of skeletal muscle for a defined period. Whether using a paralysing agent improves anything a patient would recognise, once the tube is in, is a separate question — and the largest prospective study of it found the association pointing the wrong way.',
+    },
+    oneSentenceVerdict:
+      'A steroid-backbone competitive blocker of the neuromuscular junction, deliberately made weak so that more molecules can be given and onset is fast — and, across 50 randomised trials and 4,151 participants, measurably worse than the 1952 drug it was meant to replace at producing excellent intubating conditions, with a risk ratio of 0.86.',
+    laymanHowItWorks:
+      'Nerves make muscles contract by releasing a chemical called acetylcholine onto receptors on the muscle. Rocuronium is shaped enough like acetylcholine to occupy those receptors, but not enough like it to switch them on. So it sits in the way. The nerve keeps signalling and the muscle stays limp until the drug diffuses away or is chemically removed. It is deliberately a weak drug: because a weak drug has to be given in large numbers of molecules, the concentration gradient driving it into the junction is steep, and it arrives fast.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 73,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.3942 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 24 listed generic products, survey effective 22 April 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent and widely genericised, with 24 listed United States products. The economically interesting molecule in this story is not rocuronium but its antidote: sugammadex remained single-source and patented long after rocuronium itself became a commodity, so the cost of a rocuronium anaesthetic is dominated by how it is reversed rather than by the relaxant.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        "The choice is between the depolarising agent, succinylcholine, and the non-depolarising ones. For rapid sequence intubation the pooled randomised evidence favours succinylcholine on intubating conditions; rocuronium is chosen where succinylcholine's specific harms — hyperkalaemia, malignant hyperthermia trigger, myalgia, prolonged block in cholinesterase deficiency — are unacceptable. Among non-depolarising agents the difference is mostly duration, metabolism and reversibility. Nothing in a diet paralyses a muscle and nothing is listed here.",
+      conventionalRx: [
+        {
+          name: 'Succinylcholine (Anectine, Quelicin)',
+          class: 'Depolarising neuromuscular blocking agent',
+          howItCompares:
+            'In 50 randomised trials with 4,151 participants, succinylcholine was superior for excellent intubating conditions (risk ratio 0.86, 95% CI 0.81 to 0.92) and for clinically acceptable conditions (risk ratio 0.97, 95% CI 0.95 to 0.99). At the highest rocuronium dose studied there was no statistical difference in conditions, and the review still called succinylcholine clinically superior because its block wears off in minutes.',
+          typicalCost:
+            'No NADAC value is held on this record for succinylcholine and none is asserted here',
+          prosAndCons:
+            'Pros: fastest onset, shortest duration, best intubating conditions. Cons: a boxed warning for cardiac arrest in children with undiagnosed myopathy, malignant hyperthermia trigger, hyperkalaemia, and prolonged paralysis in butyrylcholinesterase deficiency.',
+        },
+        {
+          name: 'Vecuronium (Norcuron)',
+          class: 'Aminosteroid non-depolarising neuromuscular blocking agent',
+          howItCompares:
+            'The close structural relative rocuronium was derived from — more potent, and therefore slower in onset by the same logic that makes rocuronium fast. Also encapsulated by sugammadex, though less avidly than rocuronium.',
+          typicalCost:
+            'No NADAC value is held on this record for vecuronium and none is asserted here',
+          prosAndCons:
+            'Pros: haemodynamically quiet, well characterised. Cons: slower onset makes it unsuitable for rapid sequence, and its active metabolite accumulates in renal failure.',
+        },
+        {
+          name: 'Cisatracurium (Nimbex)',
+          class: 'Benzylisoquinolinium non-depolarising neuromuscular blocking agent',
+          howItCompares:
+            'Eliminated by Hofmann degradation — spontaneous chemical breakdown at body temperature and pH — so its offset does not depend on liver or kidney function at all. That independence is the reason it is preferred for long intensive care infusions and in organ failure.',
+          typicalCost:
+            'No NADAC value is held on this record for cisatracurium and none is asserted here',
+          prosAndCons:
+            'Pros: organ-independent elimination. Cons: slow onset, not reversible by sugammadex, and laudanosine accumulates in theory during very long infusions.',
+        },
+        {
+          name: 'Sugammadex (Bridion)',
+          class:
+            'Modified gamma-cyclodextrin encapsulating agent — an antidote rather than a substitute',
+          howItCompares:
+            "Not an alternative relaxant but the reason rocuronium's longer duration became tolerable: it forms a one-to-one complex with rocuronium in plasma and pulls it off the junction, reversing even a profound block. Two large observational studies disagree about whether that translates into fewer pulmonary complications.",
+          typicalCost:
+            'No NADAC value is held on this record for sugammadex and none is asserted here',
+          prosAndCons:
+            'Pros: reverses depths of block that neostigmine cannot touch. Cons: the outcome case is surrogate-heavy, and the two largest observational datasets point in opposite directions.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report any previous anaesthetic reaction, however vague',
+          action:
+            'Neuromuscular blocking agents were the culprit in 65 of 199 identified agents in a national audit of perioperative anaphylaxis, second only to antibiotics, and the reaction usually begins within minutes of induction.',
+          patientImpact:
+            'A prior unexplained collapse, rash or bronchospasm during an anaesthetic is the single most useful piece of history a patient can supply, because formal allergy testing after the event is the only way to identify the culprit.',
+          clinicalPrecaution:
+            'This is history-taking, not treatment. Perioperative anaphylaxis is a resuscitation emergency handled by the theatre team.',
+        },
+        {
+          name: 'If you have ever been aware during an operation, say so',
+          action:
+            'Paralysis removes every outward sign of light anaesthesia — movement, grimacing, breathing against the ventilator — so awareness under anaesthesia is overwhelmingly a problem of paralysed patients.',
+          patientImpact:
+            'A previous episode changes the monitoring and the drug plan. It is one of the few risks on this page a patient can materially reduce by speaking beforehand.',
+          clinicalPrecaution:
+            'Nothing here substitutes for a preoperative assessment, and nothing here is a reason to decline paralysis where it is needed.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(=O)O[C@H]1[C@H](C[C@@H]2[C@@]1(CC[C@H]3[C@H]2CC[C@@H]4[C@@]3(C[C@@H]([C@H](C4)O)N5CCOCC5)C)C)[N+]6(CCCC6)CC=C',
+      chemicalFormula: 'C32H53N2O4',
+      molecularWeight:
+        '529.80 g/mol as the quaternary cation shown; dispensed as rocuronium bromide, 609.68 g/mol',
+      targetReceptorAffinity:
+        "Rocuronium is deliberately a low-potency agent, and that is its design principle rather than a shortcoming. Bowman's relationship holds that within a series of neuromuscular blockers, onset speed varies inversely with potency: a weak drug must be given in far more molecules, the concentration gradient into the synaptic cleft is steeper, and the receptors fill faster. Rocuronium is roughly six to eight times less potent than vecuronium, the compound it was derived from, and correspondingly faster in onset. It is the only non-depolarising agent whose onset approaches succinylcholine's, and it achieves that by being weak on purpose.",
+      structureSource: {
+        label:
+          'PubChem CID 441290 (rocuronium cation) — canonical SMILES, molecular formula and weight; the bromide salt is CID 441351',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441290',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'roc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemical identity of the androstane core',
+          description:
+            'The molecule carries eleven defined stereocentres on a steroid skeleton, and the pharmacology depends on the three-dimensional distance between the two nitrogen centres rather than on any single functional group. Confirm the configuration of the starting steroid before any substitution: an epimer at a single ring-junction carbon is a different drug with different receptor geometry and is invisible to a simple assay.',
+          reagentsAndBuffer:
+            'Androstane reference standard, nuclear magnetic resonance for stereochemical assignment, optical rotation, chiral and achiral HPLC with UV detection, differential scanning calorimetry for polymorph identity',
+        },
+        {
+          id: 'roc-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Morpholine substitution at the 2-beta position',
+          description:
+            "Introduce the morpholino group at C2. Replacing vecuronium's piperidine with a morpholine — an oxygen in the ring instead of a carbon — is one of the two changes that deliberately lowered potency, and lowering potency is what bought the faster onset.",
+          dependsOnStepId: 'roc-w1',
+          reagentsAndBuffer:
+            'Morpholine, an activated 2-position steroid intermediate, base, anhydrous aprotic solvent, nitrogen blanket',
+        },
+        {
+          id: 'roc-w3',
+          stepNumber: 3,
+          phase: 'Synthesis',
+          name: 'Allyl quaternisation of the 16-position pyrrolidine',
+          description:
+            'Quaternise the pyrrolidine nitrogen with an allyl group to give the permanent positive charge. That fixed charge is what confines the drug to the extracellular space and keeps it out of the central nervous system entirely — the reason a paralysed patient is fully awake unless separately anaesthetised.',
+          dependsOnStepId: 'roc-w2',
+          reagentsAndBuffer:
+            'Allyl bromide, pyrrolidine-substituted steroid intermediate, acetonitrile, controlled temperature, exclusion of light and moisture',
+        },
+        {
+          id: 'roc-w4',
+          stepNumber: 4,
+          phase: 'Purification',
+          name: 'Bromide salt isolation and acetate ester stability control',
+          description:
+            'Isolate the bromide salt and control the 3-acetate ester, which hydrolyses on storage to the 3-desacetyl metabolite. That degradation is why the product is refrigerated and why the in-use period at room temperature is limited: it is a stability specification, not a convenience.',
+          dependsOnStepId: 'roc-w3',
+          reagentsAndBuffer:
+            'Recrystallisation from an alcohol-ether system, reversed-phase ion-pair HPLC with UV detection at 210 nm for 3-desacetylrocuronium, refrigerated storage at 2 to 8 degrees C, buffered aqueous formulation near pH 4',
+        },
+        {
+          id: 'roc-w5',
+          stepNumber: 5,
+          phase: 'Cellular_Delivery',
+          name: 'Isolated nerve-muscle preparation with train-of-four stimulation',
+          description:
+            'Apply the drug to an isolated phrenic nerve-diaphragm or rat hemidiaphragm preparation and stimulate the nerve in trains of four at 2 Hz. The delivery question is a diffusion question: how quickly the drug crosses from the capillary into the synaptic cleft, which is what the potency-onset relationship is ultimately about.',
+          dependsOnStepId: 'roc-w4',
+          reagentsAndBuffer:
+            'Rat phrenic nerve-hemidiaphragm in Krebs-Henseleit solution gassed with 95% oxygen and 5% carbon dioxide at 32 degrees C, supramaximal nerve stimulation, force transducer, vecuronium comparator at equipotent concentration',
+        },
+        {
+          id: 'roc-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Train-of-four ratio to full recovery, not to first twitch',
+          description:
+            'Report the ratio of the fourth twitch to the first, and follow it to 0.9 or above rather than stopping when the first twitch returns. This is the measurement the clinical literature has repeatedly shown matters and repeatedly failed to make: residual block that a clinician cannot see by eye is defined entirely by this ratio.',
+          dependsOnStepId: 'roc-w5',
+          reagentsAndBuffer:
+            'Train-of-four at 2 Hz every 12 seconds, acceleromyographic or electromyographic quantification with baseline normalisation, recovery followed to a ratio of at least 0.9, temperature control to avoid cold-induced artefact',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'roc-a1',
+        category: 'failed',
+        title: 'Fifty randomised trials say the 1952 drug still intubates better',
+        laymanSummary:
+          'Rocuronium was introduced partly to replace an older paralysing agent with dangerous side effects. Pooling every randomised comparison — 4,151 patients — the older drug still produced better conditions for placing the breathing tube.',
+        technicalDetails:
+          "Tran and colleagues updated their Cochrane review through February 2015, including any randomised or controlled clinical trial reporting intubating conditions with rocuronium at 0.6 mg/kg or more against succinylcholine at 1 mg/kg or more, in any age group or setting. Fifty trials with 4,151 participants were summarised. Succinylcholine was superior for excellent intubating conditions, risk ratio 0.86 (95% CI 0.81 to 0.92, n=4,151), and for clinically acceptable conditions, risk ratio 0.97 (95% CI 0.95 to 0.99, n=3,992, 48 trials). The advantage was larger when thiopental was the induction agent, risk ratio 0.81 (95% CI 0.73 to 0.88, n=2,302, 28 trials). At the highest rocuronium dose studied there was no statistical difference in intubating conditions, and the reviewers still judged succinylcholine clinically superior because of its much shorter duration of action. No severe adverse outcomes were reported in any included trial. High detection bias and significant heterogeneity limit this to moderate-quality evidence, and the conclusion was unchanged from the previous update. The reason rocuronium is nevertheless used for rapid sequence intubation is that succinylcholine's harms — hyperkalaemic arrest, malignant hyperthermia, prolonged block — are catastrophic when they occur, which is a legitimate argument the intubating-conditions data does not measure.",
+        evidenceSource:
+          'Tran DTT, Newton EK, Mount VAH, Lee JS, Wells GA, Perry JJ. Rocuronium versus succinylcholine for rapid sequence induction intubation. Cochrane Database Syst Rev 2015;10:CD002788',
+        doi: '10.1002/14651858.CD002788.pub3',
+        measuredMetric:
+          'Risk ratio for excellent and for clinically acceptable intubating conditions across 50 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'roc-a2',
+        category: 'failed',
+        title:
+          'POPULAR: using a relaxant at all tracked with more lung complications, and nothing fixed it',
+        laymanSummary:
+          'Twenty-two thousand patients across Europe were followed after surgery. Those given a paralysing agent had almost twice the odds of a pulmonary complication — and using a nerve monitor, giving a reversal drug, choosing the newer reversal drug, or waiting for full recovery before removing the tube made no measurable difference.',
+        technicalDetails:
+          'Kirmeier and colleagues prospectively recruited adults having general anaesthesia for any in-hospital procedure except cardiac surgery, at 211 hospitals in 28 European countries, over two weeks, with a postoperative physical examination within three days and follow-up to day 28. Data from 22,803 patients were collected. Use of a neuromuscular blocking agent was associated with an increased incidence of postoperative pulmonary complications — 1,658 of 21,694 patients, 7.6% — with an adjusted odds ratio of 1.86 (95% CI 1.53 to 2.26). The four mitigations widely believed to solve the problem all came back null: neuromuscular monitoring, adjusted odds ratio 1.31 (95% CI 1.15 to 1.49); administration of reversal agents, 1.23 (1.07 to 1.41); sugammadex rather than neostigmine, 1.03 (95% CI 0.85 to 1.25); and extubation at a train-of-four ratio of 0.9 or above, 1.03 (95% CI 0.82 to 1.31). None was associated with better pulmonary outcomes. This is an observational study and confounding by indication is severe — only 2.3% of high-risk patients were anaesthetised without a relaxant, so the comparison groups are not alike. It is on this page because it is the largest prospective attempt to demonstrate the benefit of monitoring and reversal, and it did not.',
+        evidenceSource:
+          'Kirmeier E, Eriksson LI, Lewald H, et al. Post-anaesthesia pulmonary complications after use of muscle relaxants (POPULAR). Lancet Respir Med 2019;7:129-140 (NCT01865513)',
+        doi: '10.1016/S2213-2600(18)30294-7',
+        measuredMetric:
+          'Adjusted odds ratio for postoperative pulmonary complications to day 28, by relaxant use, monitoring, reversal agent and train-of-four ratio at extubation',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'roc-a3',
+        category: 'measured',
+        title: 'Neuromuscular blockers are the second commonest cause of anaesthetic anaphylaxis',
+        laymanSummary:
+          'A year-long national audit of every serious allergic reaction under anaesthesia in the United Kingdom found paralysing agents responsible for 65 of the 199 reactions where a culprit was identified — second only to antibiotics.',
+        technicalDetails:
+          'The 6th National Audit Project collected and reviewed 266 reports of Grade 3 to 5 perioperative anaphylaxis over one year from all NHS hospitals in the United Kingdom. Estimated incidence was about 1 in 10,000 anaesthetics, and the authors note that exclusions for reporting delay and incomplete data mean the true figure might be around 70% higher. Of 199 identified culprit agents, antibiotics accounted for 94, neuromuscular blocking agents 65, chlorhexidine 18 and Patent Blue dye 9. Within the relaxants, succinylcholine-induced anaphylaxis — mainly presenting with bronchospasm — was twice as likely as with the other agents, and the non-depolarising agents, rocuronium among them, had similar incidences to one another. Onset was rapid for relaxants and antibiotics. Hypotension was the commonest presenting feature at 46% and every patient was hypotensive at some point. There were 40 cardiac arrests and 10 deaths, with pulseless electrical activity the usual arrest rhythm. Only 24% of cases were reported to the national pharmacovigilance scheme.',
+        evidenceSource:
+          'Harper NJN, Cook TM, Garcez T, et al. Anaesthesia, surgery, and life-threatening allergic reactions: epidemiology and clinical features of perioperative anaphylaxis in the 6th National Audit Project (NAP6). Br J Anaesth 2018;121:159-171',
+        doi: '10.1016/j.bja.2018.04.014',
+        measuredMetric:
+          'Distribution of culprit agents across 199 identified cases, and estimated incidence of perioperative anaphylaxis',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'roc-a4',
+        category: 'measured',
+        title: 'Made weak on purpose: low potency is what buys the fast onset',
+        laymanSummary:
+          'Rocuronium is a deliberately weakened version of an older drug. Because you have to give many more molecules to get the same effect, the drug floods into the gap between nerve and muscle faster, and paralysis arrives sooner.',
+        technicalDetails:
+          "Rocuronium was derived from vecuronium by two substitutions that reduce receptor affinity: a morpholine replacing the piperidine at the 2-beta position, and an allyl rather than methyl quaternising group at C16. The result is roughly six to eight times lower potency and correspondingly faster onset, consistent with Bowman's relationship that within a series of neuromuscular blockers onset time varies inversely with potency. The mechanism is diffusion: for a given clinical effect, a low-potency drug is administered at a far higher molar dose, so the concentration gradient from plasma into the synaptic cleft is steeper and receptor occupancy builds faster. This is an unusual entry for this file because it is a design decision made against the usual direction of drug development — potency was traded away deliberately — and because the property it bought is the entire clinical case for the molecule.",
+        evidenceSource:
+          'FDA-approved US prescribing information for rocuronium bromide injection, Clinical Pharmacology; and the structure-activity relationship established across the aminosteroid neuromuscular blocking series',
+        measuredMetric:
+          'Relative potency against vecuronium and the resulting onset time, with the fixed quaternary charge confining distribution to the extracellular space',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'roc-a5',
+        category: 'inferred',
+        title: 'Paralysis removes every clinical sign that anaesthesia is inadequate',
+        laymanSummary:
+          'Without a relaxant, a patient who is not deeply enough anaesthetised moves, grimaces or breathes against the ventilator. A paralysed patient does none of those things, so the warning system is gone and the anaesthetist is reasoning from indirect signs.',
+        technicalDetails:
+          "The clinical signs conventionally used to judge anaesthetic depth — purposeful movement, facial grimacing, respiratory effort against the ventilator — are all motor outputs, and a neuromuscular blocking agent abolishes all of them without touching consciousness. Rocuronium's permanent quaternary charge means it does not cross the blood-brain barrier at all, so it has no hypnotic, amnestic or analgesic effect whatsoever. What remains available to the anaesthetist are autonomic signs, which are unreliable and confounded by every other drug given, and processed electroencephalographic monitors, which are indirect. This entry is filed as inferred rather than measured because the quantity of interest — how much of the awareness risk in paralysed patients is attributable to the loss of motor signs rather than to the underlying anaesthetic technique — has not been isolated by any trial. What is not in doubt is the pharmacology: this drug paralyses without sedating, and every case of awareness with paralysis is a case where those two effects came apart.",
+        evidenceSource:
+          'FDA-approved US prescribing information for rocuronium bromide injection, Warnings — rocuronium has no known effect on consciousness, pain threshold or cerebration',
+        inferredClaim:
+          'That monitoring practices developed for unparalysed patients remain adequate once the motor signs of light anaesthesia have been abolished pharmacologically',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'roc-a6',
+        category: 'inferred',
+        title: 'Sugammadex made a long-acting relaxant behave like a short one — on a surrogate',
+        laymanSummary:
+          "Rocuronium's drawback against the older drug was that its effect lasts much longer. An antidote that grabs the molecule out of the bloodstream was supposed to erase that drawback, and it does erase it on the nerve monitor. Whether it changes what happens to patients is disputed by the two largest studies.",
+        technicalDetails:
+          'Sugammadex is a modified gamma-cyclodextrin that forms a one-to-one inclusion complex with rocuronium in plasma, creating a concentration gradient that draws the relaxant off the neuromuscular junction. On the surrogate endpoint — time to a train-of-four ratio of 0.9 — the effect is large, fast and reproducible, including from depths of block that neostigmine cannot reverse at all. On patient outcomes the evidence conflicts. STRONGER, a matched-cohort analysis of 45,712 patients across 12 United States hospitals, found sugammadex associated with a 30% lower adjusted odds of major pulmonary complications (adjusted odds ratio 0.70, 95% CI 0.63 to 0.77), 47% lower for pneumonia and 55% lower for respiratory failure. POPULAR, a prospective observational cohort of 22,803 patients across 28 European countries, found no association at all between the choice of sugammadex over neostigmine and pulmonary outcomes (adjusted odds ratio 1.03, 95% CI 0.85 to 1.25). Both are observational, both are large, and they disagree. The correct summary is that a surrogate improvement is certain and an outcome improvement is contested.',
+        evidenceSource:
+          'Kheterpal S, Vaughn MT, Dubovoy TZ, et al. Anesthesiology 2020;132:1371-1381; Kirmeier E, Eriksson LI, Lewald H, et al. Lancet Respir Med 2019;7:129-140',
+        doi: '10.1097/ALN.0000000000003256',
+        inferredClaim:
+          'That reversing rocuronium with sugammadex reduces postoperative pulmonary complications — supported by one large matched cohort, contradicted by another large prospective cohort, and never tested against a clinical outcome in a randomised trial',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected into a vein and confined to the bloodstream',
+        laymanDesc:
+          'The molecule carries a permanent positive charge, so it cannot cross into the brain or into cells. It stays in the water outside cells and goes where the blood takes it.',
+        molecularDetail:
+          'The fixed quaternary ammonium charge restricts distribution to the extracellular fluid and excludes the drug from the central nervous system entirely. This is why the label states rocuronium has no known effect on consciousness, pain threshold or cerebration, and why paralysis and anaesthesia are separate problems that must be separately solved.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Its weakness makes it fast',
+        laymanDesc:
+          'Because it is a weak drug, a large number of molecules has to be given. That large number creates a steep gradient into the tiny gap between nerve and muscle, and the receptors fill quickly.',
+        molecularDetail:
+          "Rocuronium is roughly six to eight times less potent than vecuronium, from which it was derived by replacing a piperidine with a morpholine and a methyl with an allyl group. Bowman's relationship — onset varies inversely with potency across a neuromuscular blocker series — is the design principle: the molar dose is what drives diffusion into the junctional cleft.",
+        iconName: 'Timer',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the acetylcholine site without switching it on',
+        laymanDesc:
+          'The receptor needs two acetylcholine molecules to open. Rocuronium sits in one of those slots and does nothing, so the channel stays shut.',
+        molecularDetail:
+          'The nicotinic receptor of the adult endplate is a pentamer of two alpha1, one beta1, one delta and one epsilon subunit, with agonist sites at the alpha1-delta and alpha1-epsilon interfaces. Occupancy of a single site by a competitive antagonist prevents channel opening, and because transmission has a large safety margin, roughly 70 to 80% of receptors must be occupied before any weakness is measurable at all.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The nerve keeps firing and the muscle stops answering',
+        laymanDesc:
+          'Nothing about the nerve changes. It goes on releasing its transmitter into a gap where the receiving stations are already occupied, and the muscle stays limp.',
+        molecularDetail:
+          'Block is competitive and surmountable, which is the basis of neostigmine reversal: inhibiting acetylcholinesterase raises junctional acetylcholine concentration so it can outcompete the antagonist. That strategy has a ceiling, because once the enzyme is fully inhibited no further acetylcholine can be recruited, and it is why neostigmine cannot reverse a profound block at all.',
+        iconName: 'Unplug',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Complete, silent, reversible paralysis',
+        laymanDesc:
+          'Muscles relax in a sequence — small fast muscles of the eye and jaw first, the diaphragm last and least — and the patient cannot move, breathe or signal anything at all.',
+        molecularDetail:
+          'The diaphragm is comparatively resistant and recovers first, while the upper airway and pharyngeal muscles are among the most sensitive and the last to recover fully, which is the physiological reason residual block is an airway and aspiration problem rather than a ventilation problem. Detecting it requires a quantitative train-of-four ratio; clinical tests such as head lift are insensitive to ratios between 0.5 and 0.9.',
+        iconName: 'PauseOctagon',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'It washes out, or it is pulled out',
+        laymanDesc:
+          'Left alone, the drug is taken up by the liver and excreted, and power returns over three quarters of an hour or so. Given the antidote, it is trapped in the bloodstream and removed from the junction within minutes.',
+        molecularDetail:
+          'Elimination is primarily biliary with a smaller renal component, and duration is prolonged in hepatic impairment. Sugammadex reverses by encapsulation rather than by competition: a one-to-one inclusion complex forms in plasma, the free plasma concentration collapses, and the gradient reverses so that drug leaves the junction. Because the mechanism is sequestration rather than competition with acetylcholine, it works at depths of block where an anticholinesterase has no effect at all.',
+        iconName: 'RotateCcw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'Tran Cochrane review of rocuronium versus succinylcholine for rapid sequence intubation',
+        phase:
+          'Systematic review and meta-analysis of 50 randomised and controlled clinical trials',
+        sampleSize: 4151,
+        primaryEndpoint: 'Excellent intubating conditions during rapid sequence induction',
+        endpointMet: false,
+        statisticalPValue:
+          'Succinylcholine superior: risk ratio 0.86 (95% CI 0.81 to 0.92) for excellent conditions and 0.97 (95% CI 0.95 to 0.99) for clinically acceptable conditions',
+        unreportedAdverseSignals:
+          'High incidence of detection bias and significant heterogeneity across trials limits this to moderate-quality evidence. No severe adverse outcomes were reported in any included trial, which means the trials cannot speak to the harms that motivate the choice of rocuronium in the first place.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId:
+          'POPULAR — post-anaesthesia pulmonary complications after use of muscle relaxants (NCT01865513)',
+        phase: 'Multicentre prospective observational cohort at 211 hospitals in 28 countries',
+        sampleSize: 22803,
+        primaryEndpoint:
+          'Incidence of postoperative pulmonary complications from end of surgery to day 28',
+        endpointMet: false,
+        statisticalPValue:
+          'Relaxant use adjusted odds ratio 1.86 (95% CI 1.53 to 2.26); neuromuscular monitoring 1.31 (1.15 to 1.49); reversal agents 1.23 (1.07 to 1.41); sugammadex versus neostigmine 1.03 (0.85 to 1.25); extubation at train-of-four ratio 0.9 or above 1.03 (0.82 to 1.31)',
+        unreportedAdverseSignals:
+          'Only 2.3% of high-risk surgical patients and those with adverse respiratory profiles were anaesthetised without a relaxant, so confounding by indication is severe and the headline association cannot be read as causal.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NAP6 — 6th National Audit Project on perioperative anaphylaxis',
+        phase: 'National prospective audit of Grade 3 to 5 reactions over one year',
+        sampleSize: 266,
+        primaryEndpoint:
+          'Incidence, culprit agent distribution and clinical features of perioperative anaphylaxis',
+        endpointMet: true,
+        statisticalPValue:
+          'Estimated incidence about 1 in 10,000 anaesthetics; neuromuscular blocking agents were 65 of 199 identified culprits; non-depolarising agents had similar incidences to one another and succinylcholine was twofold more likely',
+        unreportedAdverseSignals:
+          'Case exclusion for reporting delay and incomplete data means the true incidence might be about 70% higher. Only 24% of cases were reported to the national pharmacovigilance scheme, so routine surveillance was capturing a quarter of what a dedicated audit found.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId:
+          'STRONGER — sugammadex versus neostigmine and postoperative pulmonary complications',
+        phase: 'Multicentre matched-cohort observational analysis across 12 US hospitals',
+        sampleSize: 45712,
+        primaryEndpoint:
+          'Composite of major postoperative pulmonary complications — pneumonia, respiratory failure or other pulmonary complication',
+        endpointMet: true,
+        statisticalPValue:
+          '3.5% with sugammadex versus 4.8% with neostigmine; adjusted odds ratio 0.70 (95% CI 0.63 to 0.77), pneumonia 0.53 (0.44 to 0.62), respiratory failure 0.45 (0.37 to 0.56)',
+        unreportedAdverseSignals:
+          "Observational and matched on institution, sex, age, comorbidity, obesity, procedure type and relaxant, but not randomised. Its direction is opposite to POPULAR's null result on the same comparison, and neither study can settle it.",
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Succinylcholine superior to rocuronium for excellent intubating conditions across 50 trials and 4,151 participants, risk ratio 0.86 (95% CI 0.81 to 0.92)',
+        'Neuromuscular blocking agent use associated with an adjusted odds ratio of 1.86 for postoperative pulmonary complications in 22,803 prospectively followed patients',
+        'Neuromuscular blocking agents responsible for 65 of 199 identified culprit agents in 266 cases of perioperative anaphylaxis, at an estimated incidence of 1 in 10,000 anaesthetics',
+        "Roughly six to eight times lower potency than vecuronium, with the correspondingly faster onset that is the drug's entire clinical rationale",
+        'A permanent quaternary charge that excludes the drug from the central nervous system, so it has no effect on consciousness or pain',
+      ],
+      unsupportedInferences: [
+        'That neuromuscular monitoring, reversal, sugammadex or extubation at a train-of-four ratio above 0.9 reduces pulmonary complications — all four came back null in the largest prospective study of the question',
+        'That reaching a train-of-four ratio of 0.9 is a patient outcome; it is a surrogate, and the study that tested it against a real outcome found no association',
+        'That the STRONGER result showing 30% fewer pulmonary complications with sugammadex is settled — the other large cohort found an odds ratio of 1.03',
+        'That the excess pulmonary complications seen with relaxant use are caused by the relaxant, when only 2.3% of high-risk patients were managed without one',
+      ],
+      whatFailedInitially: [
+        'The intubating-conditions case for replacing succinylcholine failed: fifty randomised trials still favour the older drug',
+        'Every proposed mitigation of residual neuromuscular block failed to show a pulmonary benefit in POPULAR — monitoring, reversal, agent choice and extubation threshold alike',
+        'Routine pharmacovigilance failed to capture perioperative anaphylaxis: only 24% of NAP6 cases had been reported through the national scheme',
+      ],
+      realWorldOutcome: [
+        'The most widely used non-depolarising relaxant in the world, and the default for rapid sequence intubation wherever succinylcholine is judged too risky',
+        'About 39 cents per millilitre at United States pharmacy acquisition cost across 24 listed generic products — while its antidote remained single-source and patented for years afterwards',
+        'Its existence, together with sugammadex, is what allows a profound block to be established and then removed on demand, which is a genuine change in what is possible in an operating theatre even where the outcome data is silent',
+      ],
+    },
+    deliverySystem: {
+      type: 'Sterile aqueous solution for intravenous bolus and infusion, buffered near pH 4, refrigerated at 2 to 8 degrees C with a limited room-temperature in-use period',
+      description:
+        'Refrigeration is a chemistry requirement, not a convention: the 3-acetate ester hydrolyses on storage to 3-desacetylrocuronium, so the room-temperature in-use period is a stability specification. The acidic formulation is why injection through a running line commonly causes pain or withdrawal in a lightly anaesthetised patient, and why it is not mixed with alkaline drugs such as thiopental in the same line. The drug is given intravenously only; there is no other route and no depot presentation.',
+      safetyProfile:
+        "This drug paralyses without sedating and has no effect on consciousness or pain, so it must never be given to a patient who is not already unconscious or who cannot be ventilated. Its duration is much longer than succinylcholine's, which is the accepted trade for avoiding succinylcholine's specific harms. Neuromuscular blocking agents are the second commonest cause of perioperative anaphylaxis after antibiotics, with an overall anaphylaxis incidence of about 1 in 10,000 anaesthetics. Residual block below a train-of-four ratio of 0.9 is undetectable by clinical examination and affects pharyngeal and airway muscles preferentially. Duration is prolonged in hepatic impairment. Nothing on this page is dosing guidance.",
+    },
+    commonQuestions: [
+      {
+        q: 'If the older drug intubates better, why is rocuronium used?',
+        a: 'Because the comparison that favours succinylcholine measures the wrong kind of thing. Fifty randomised trials in 4,151 patients found succinylcholine superior for excellent intubating conditions with a risk ratio of 0.86, and the Cochrane reviewers noted no severe adverse outcomes were reported in any of those trials — which is precisely the problem, because the reasons to avoid succinylcholine are rare catastrophes rather than common inconveniences. Succinylcholine carries a boxed warning for cardiac arrest from hyperkalaemic rhabdomyolysis in children with undiagnosed muscle disease, triggers malignant hyperthermia, raises potassium dangerously in burns, crush injury and prolonged immobility, and paralyses for hours in people with inherited cholinesterase deficiency. Trials of a few thousand elective patients cannot see those. So the honest statement is that succinylcholine is better at the measured endpoint and rocuronium is chosen on unmeasured tail risk.',
+        auditNote:
+          'Filed as a failed endpoint rather than a wrong decision. The clinical argument for rocuronium is real and is simply not what these trials measured.',
+      },
+      {
+        q: 'Does the nerve monitor and the reversal drug actually prevent complications?',
+        a: 'The largest prospective study designed to show it says no. POPULAR followed 22,803 patients at 211 hospitals in 28 European countries with a physical examination within three days of surgery. Using a neuromuscular monitor had an adjusted odds ratio of 1.31 for pulmonary complications, giving a reversal agent 1.23, choosing sugammadex over neostigmine 1.03, and extubating at a train-of-four ratio of 0.9 or more 1.03. None was associated with better outcomes. That is a striking result because all four are standard recommendations. The caveats are serious: this is observational, and monitoring and reversal are used preferentially in the patients most at risk, which biases against them. But it remains the case that the best prospective test of these practices did not find the benefit they are recommended for.',
+        auditNote:
+          'This is the single most uncomfortable finding on this page and it is exactly the kind of thing an audit layer exists to show.',
+      },
+      {
+        q: 'Can I be awake and paralysed?',
+        a: 'That is the specific risk this class of drug creates, and it comes straight from the pharmacology. Rocuronium carries a permanent positive charge and cannot cross into the brain, so the label states plainly that it has no known effect on consciousness, pain threshold or cerebration. It paralyses and nothing else. In an unparalysed patient, inadequate anaesthesia announces itself by movement, grimacing or breathing against the ventilator; a paralysed patient can do none of those. What remains is autonomic signs, which are confounded by every other drug in the anaesthetic, and processed EEG monitors, which are indirect. This is why accidental awareness under anaesthesia is overwhelmingly a phenomenon of paralysed patients, and why a previous episode is worth telling an anaesthetist about before the next operation.',
+      },
+      {
+        q: 'Why is it kept in a fridge?',
+        a: 'For a chemical reason rather than a microbiological one. The molecule carries an acetate ester on the steroid ring, and that ester slowly hydrolyses in solution to 3-desacetylrocuronium. Refrigeration at 2 to 8 degrees slows the reaction, and the limited period the vial may spend at room temperature once removed is a stability specification derived from how fast that degradation proceeds, not a general caution. The same acidic formulation that keeps the ester stable is what makes injection painful in a lightly anaesthetised patient.',
+      },
+      {
+        q: 'How likely is an allergic reaction?',
+        a: 'A national audit of every serious perioperative anaphylaxis in the United Kingdom over one year found an estimated incidence of about 1 in 10,000 anaesthetics, with the caveat that exclusions for late or incomplete reporting mean the true figure might be around 70% higher. Of 199 cases where a culprit was identified, neuromuscular blocking agents accounted for 65, second to antibiotics at 94. Within the relaxants the non-depolarising drugs including rocuronium had similar incidences to each other, while succinylcholine was twice as likely and tended to present with bronchospasm. Across all agents there were 40 cardiac arrests and 10 deaths among 266 reported reactions, and poor outcomes were associated with higher ASA grade, obesity, and beta blocker or ACE inhibitor use.',
+      },
+      {
+        q: 'Why does this page show a price when the sevoflurane page does not?',
+        a: 'Because the CMS National Average Drug Acquisition Cost survey holds a value for rocuronium and not for sevoflurane. That survey measures what United States retail pharmacies pay to acquire a drug, and different products reach the hospital through different channels. For rocuronium the figure is about 39 cents per millilitre as a median across 24 listed generic products. It is a price, not a manufacturing cost, and no verified per-dose cost-of-production study exists for this molecule, so no synthesis cost is shown.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Tran DTT, Newton EK, Mount VAH, Lee JS, Wells GA, Perry JJ. Rocuronium versus succinylcholine for rapid sequence induction intubation. Cochrane Database Syst Rev 2015;10:CD002788',
+        identifier: '10.1002/14651858.CD002788.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kirmeier E, Eriksson LI, Lewald H, et al. Post-anaesthesia pulmonary complications after use of muscle relaxants (POPULAR): a multicentre, prospective observational study. Lancet Respir Med 2019;7:129-140',
+        identifier: '10.1016/S2213-2600(18)30294-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'NCT01865513 — POPULAR, post-anaesthesia pulmonary complications after use of muscle relaxants',
+        identifier: 'NCT01865513',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Harper NJN, Cook TM, Garcez T, et al. Anaesthesia, surgery, and life-threatening allergic reactions: epidemiology and clinical features of perioperative anaphylaxis in the 6th National Audit Project (NAP6). Br J Anaesth 2018;121:159-171',
+        identifier: '10.1016/j.bja.2018.04.014',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kheterpal S, Vaughn MT, Dubovoy TZ, et al. Sugammadex versus neostigmine for reversal of neuromuscular blockade and postoperative pulmonary complications (STRONGER). Anesthesiology 2020;132:1371-1381',
+        identifier: '10.1097/ALN.0000000000003256',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 441290 — rocuronium cation structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441290',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Succinylcholine — still the best drug in the world at the job, and carrying a boxed warning
+  //    written after apparently healthy children died on the table.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'succinylcholine',
+    name: 'Succinylcholine',
+    tradeName: 'Anectine, Quelicin, Quelicin Preservative Free; formerly Sucostrin',
+    sponsor:
+      'Sandoz (current US label holder for Anectine); the paralysing action was described by Daniel Bovet in 1949 and the drug entered clinical anaesthesia in 1951-1952. Long off patent.',
+    targetGene: 'CHRNA1, CHRNB1, CHRND, CHRNE, CHRNG, BCHE',
+    targetProtein:
+      'Nicotinic acetylcholine receptor of the motor endplate, occupied as an agonist rather than an antagonist; cleared by butyrylcholinesterase (plasma pseudocholinesterase) in plasma rather than at the junction',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1952,
+    indication:
+      'Adjunct to general anaesthesia in adults and paediatric patients, to facilitate tracheal intubation and to provide skeletal muscle relaxation during surgery or mechanical ventilation; in paediatric patients its use is reserved for emergency intubation or where immediate securing of the airway is necessary',
+    patientFriendlyIndication:
+      'Paralysing the muscles for about five minutes so a breathing tube can be placed quickly in an emergency',
+    anatomicalSite:
+      'Postsynaptic membrane of the motor endplate, and the plasma compartment where the enzyme that destroys the drug lives',
+    conditionContext: {
+      conditionExplainer:
+        'Every other paralysing agent works by blocking the receptor. Succinylcholine works by overstimulating it: it is literally two molecules of acetylcholine joined tail to tail, and it switches the receptor on and keeps it on. A muscle whose endplate is permanently depolarised cannot fire again, so after a brief burst of visible twitching it goes limp.',
+      whyItMatters:
+        'Its onset is faster and its offset shorter than anything else available, which is why it has survived seventy years of attempts to replace it. Those seventy years also produced the most specific and most alarming boxed warning in anaesthesia, written after apparently healthy children arrested minutes after receiving it.',
+      whoTakesThis:
+        'Adults needing rapid intubation in an emergency department, an operating theatre or an ambulance, and patients having electroconvulsive therapy. Its paediatric use is now restricted by the label to emergencies.',
+      clinicalGoals:
+        'Complete relaxation within about a minute and full recovery within about five to ten, without needing any reversal agent. There is no outcome claim here beyond that: succinylcholine has never been shown to improve survival, and it is chosen because of what it does in the first sixty seconds.',
+    },
+    oneSentenceVerdict:
+      'Two acetylcholine molecules joined tail to tail, which paralyses by switching the endplate on rather than off and wears off in minutes because a plasma enzyme destroys it before most of it ever reaches the muscle — still superior to rocuronium for excellent intubating conditions across 50 trials and 4,151 patients (risk ratio 0.86), and carrying a boxed warning added after healthy-looking children with undiagnosed muscular dystrophy died of hyperkalaemic cardiac arrest.',
+    laymanHowItWorks:
+      'The nerve normally tells a muscle to contract by releasing acetylcholine, which is destroyed within a millisecond so the muscle can reset. Succinylcholine is two of those molecules stuck together, and the enzyme at the junction cannot break it down. It switches the receptor on and holds it on. The muscle twitches once — the visible flicker anaesthetists call fasciculation — and then cannot respond again while the drug is there. The drug leaves quickly not because the muscle clears it, but because a different enzyme in the blood is chewing through it the entire time, so only a fraction ever arrives and it is drawn back out within minutes.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 78,
+    substitutes: {
+      summary:
+        'The only real substitute is a non-depolarising agent, and the pooled randomised evidence says the substitute is worse at the job while being safer in the specific ways succinylcholine is dangerous. That is the entire debate: better intubating conditions and a five-minute offset against a boxed warning, a malignant hyperthermia trigger, a hyperkalaemia contraindication and a genetic sensitivity affecting about 1 in 2,500 people. Nothing in a diet substitutes for a paralysing agent and nothing is listed here.',
+      conventionalRx: [
+        {
+          name: 'Rocuronium (Zemuron)',
+          class: 'Aminosteroid non-depolarising neuromuscular blocking agent',
+          howItCompares:
+            "Across 50 randomised trials with 4,151 participants, rocuronium was inferior for excellent intubating conditions (risk ratio 0.86 favouring succinylcholine, 95% CI 0.81 to 0.92) and for clinically acceptable conditions (0.97, 95% CI 0.95 to 0.99). At the highest rocuronium dose studied the difference in conditions disappeared and the reviewers still judged succinylcholine clinically superior for its shorter duration. Rocuronium is chosen when succinylcholine's specific catastrophes are unacceptable.",
+          typicalCost:
+            'US$0.3942 per mL at United States pharmacy acquisition cost (CMS NADAC, median across 24 listed products, effective 22 April 2026)',
+          prosAndCons:
+            'Pros: no hyperkalaemia risk, no malignant hyperthermia trigger, no myalgia, and reversible on demand with sugammadex. Cons: measurably worse intubating conditions and a block lasting three quarters of an hour rather than five minutes.',
+        },
+        {
+          name: 'Sugammadex (Bridion)',
+          class: 'Encapsulating reversal agent — relevant only because it changes the argument',
+          howItCompares:
+            "Not a relaxant. Its existence is the main reason the choice between succinylcholine and rocuronium has shifted, because a rocuronium block can now be abolished within minutes rather than waited out, which removes succinylcholine's duration advantage in settings where the antidote is immediately available and affordable.",
+          typicalCost:
+            'No NADAC value is held on this record for sugammadex and none is asserted here',
+          prosAndCons:
+            'Pros: makes a long block behave like a short one. Cons: the outcome evidence for that mattering is observational and contradictory, and it is not universally available.',
+        },
+        {
+          name: 'Cisatracurium (Nimbex)',
+          class: 'Benzylisoquinolinium non-depolarising neuromuscular blocking agent',
+          howItCompares:
+            'Broken down by spontaneous chemical degradation at body temperature and pH rather than by any organ, which makes it the choice in liver and kidney failure. Far too slow in onset to substitute for succinylcholine in a rapid sequence intubation.',
+          typicalCost:
+            'No NADAC value is held on this record for cisatracurium and none is asserted here',
+          prosAndCons:
+            'Pros: organ-independent elimination and no accumulation. Cons: slow onset, so it is not in the same conversation for emergency airway control.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Know your family anaesthetic history, especially muscle disease',
+          action:
+            'The boxed warning exists because of children who looked healthy and turned out to have undiagnosed Duchenne muscular dystrophy. Malignant hyperthermia susceptibility is also inherited, through RYR1 and CACNA1S variants.',
+          patientImpact:
+            'A family history of muscular dystrophy, of unexplained anaesthetic death, or of a relative who became dangerously hot during an operation is the only warning available before the first event, and it changes the drug chosen.',
+          clinicalPrecaution:
+            'This is history to hand over before an anaesthetic. It is not a treatment and it does not substitute for a preoperative assessment.',
+        },
+        {
+          name: 'Report a family member who took hours to wake up',
+          action:
+            'About 1 in 2,500 people are homozygous for an atypical plasma cholinesterase gene and are extremely sensitive to this drug, staying paralysed far longer than expected. It runs in families.',
+          patientImpact:
+            'It is not dangerous if it is known about in advance — the patient stays ventilated and asleep until the block wears off — and it is frightening if it is discovered for the first time in recovery.',
+          clinicalPrecaution:
+            'Testing and the management of a prolonged block belong to the clinical team. This is a fact to volunteer, not something to act on.',
+        },
+        {
+          name: 'Expect aching muscles the next day',
+          action:
+            'The visible twitching that precedes paralysis is unsynchronised muscle contraction, and it commonly leaves generalised aching for a day or two, most often in young, muscular, ambulatory patients.',
+          patientImpact:
+            'Knowing that the ache is an expected consequence of the drug rather than a sign of injury from the surgery is worth having in advance.',
+          clinicalPrecaution:
+            'New or severe muscle pain with dark urine after an anaesthetic is a different matter entirely and needs medical assessment, not reassurance.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[N+](C)(C)CCOC(=O)CCC(=O)OCC[N+](C)(C)C',
+      chemicalFormula: 'C14H30N2O4',
+      molecularWeight:
+        '290.40 g/mol as the dication shown; dispensed as succinylcholine chloride, 361.30 g/mol',
+      targetReceptorAffinity:
+        'Succinylcholine is an agonist at the nicotinic receptor, not an antagonist, so the relevant quantity is not affinity but residence time. Acetylcholine is hydrolysed by acetylcholinesterase within the synaptic cleft in about a millisecond; succinylcholine is not a substrate for that enzyme and persists at the endplate, holding the channel in a depolarised state. Its short clinical duration comes from a completely different place: butyrylcholinesterase in plasma hydrolyses it before most of an injected dose ever reaches the neuromuscular junction, so recovery is governed by a plasma enzyme rather than by anything happening at the receptor.',
+      structureSource: {
+        label:
+          'PubChem CID 5314 (succinylcholine dication) — canonical SMILES, molecular formula and weight; the chloride salt is CID 22475',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5314',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sux-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Water content and free choline in the drug substance',
+          description:
+            'The molecule is a diester and water is its enemy. Assay residual water and the hydrolysis products succinylmonocholine and choline before release, because the same reaction that terminates the drug in the patient also destroys it in the vial.',
+          reagentsAndBuffer:
+            'Karl Fischer titration, ion chromatography for choline and succinate, reversed-phase ion-pair HPLC with refractive index or evaporative light scattering detection, controlled low-humidity handling',
+        },
+        {
+          id: 'sux-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Diesterification of succinic acid with two cholines',
+          description:
+            'Join succinic acid to two molecules of choline to give the bis-choline ester. The design is transparent and deliberate: the product is two acetylcholine molecules joined at their acetyl ends, which is why it behaves as an agonist and why nothing subtler was needed to make a depolarising blocker.',
+          dependsOnStepId: 'sux-w1',
+          reagentsAndBuffer:
+            'Succinyl chloride or succinic anhydride, choline chloride, anhydrous conditions, acid catalysis, controlled temperature with azeotropic water removal',
+        },
+        {
+          id: 'sux-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Chloride salt crystallisation with the monoester as the critical impurity',
+          description:
+            'Crystallise the dichloride and control succinylmonocholine, the singly hydrolysed intermediate, which is both a degradation product and a weakly active compound. The specification is written around the hydrolysis pathway rather than around synthesis by-products.',
+          dependsOnStepId: 'sux-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from anhydrous ethanol or isopropanol, succinylmonocholine reference standard, HPLC with UV detection at low wavelength, dry nitrogen atmosphere',
+        },
+        {
+          id: 'sux-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Depolarisation recorded at the endplate, not just twitch loss',
+          description:
+            'Record endplate membrane potential in an isolated nerve-muscle preparation rather than only measuring force. The whole point of this drug is that the muscle is paralysed while depolarised, which looks identical to competitive block on a force transducer and is the opposite of it electrically.',
+          dependsOnStepId: 'sux-w3',
+          reagentsAndBuffer:
+            'Rat phrenic nerve-hemidiaphragm or mouse diaphragm, intracellular microelectrode recording of endplate potential, Krebs-Henseleit solution gassed with 95% oxygen and 5% carbon dioxide, tubocurarine comparator for competitive block',
+        },
+        {
+          id: 'sux-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Distinguish Phase I from Phase II block by train-of-four fade',
+          description:
+            'Apply train-of-four stimulation and report whether the four responses fade. A depolarising Phase I block produces four equally reduced twitches with no fade; prolonged exposure converts it to a Phase II block that fades like a competitive one and responds to an anticholinesterase. Misreading which one is present is the classic error, because giving neostigmine into a Phase I block prolongs it.',
+          dependsOnStepId: 'sux-w4',
+          reagentsAndBuffer:
+            'Train-of-four at 2 Hz, tetanic stimulation at 50 Hz for post-tetanic facilitation, acceleromyography with baseline normalisation, edrophonium challenge to characterise the block type',
+        },
+        {
+          id: 'sux-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Dibucaine number and genotype, reported together',
+          description:
+            'Characterise butyrylcholinesterase activity by dibucaine inhibition and by BCHE genotype. Activity alone conflates the two situations that look the same in a recovery room: an inherited atypical enzyme and a normal enzyme depleted by pregnancy, liver disease, burns or an anticholinesterase exposure. The management of a prolonged block is identical; the counselling of the family is not.',
+          dependsOnStepId: 'sux-w5',
+          reagentsAndBuffer:
+            'Plasma butyrylcholinesterase activity assay with benzoylcholine substrate, dibucaine and fluoride inhibition numbers, BCHE sequencing for the atypical and other variants, family testing where an index case is found',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sux-a1',
+        category: 'conclusion_shift',
+        title: 'A boxed warning written after healthy-looking children arrested and died',
+        laymanSummary:
+          'For decades this was the standard paralysing agent for children. Then apparently healthy children began having cardiac arrest within minutes of receiving it, and were found afterwards to have muscular dystrophy nobody knew about. Routine paediatric use was withdrawn.',
+        technicalDetails:
+          'The approved United States label carries a boxed warning stating that acute rhabdomyolysis with hyperkalaemia followed by ventricular dysrhythmias, cardiac arrest and death has occurred after administration of succinylcholine to apparently healthy paediatric patients subsequently found to have undiagnosed skeletal muscle myopathy, most frequently Duchenne muscular dystrophy. It instructs that when a healthy-appearing paediatric patient arrests within minutes of administration, and this is not attributable to inadequate ventilation, oxygenation or anaesthetic overdose, immediate treatment for hyperkalaemia should be started, with concurrent treatment for malignant hyperthermia if its signs are present. It reserves paediatric use for emergency intubation or where immediate securing of the airway is necessary — laryngospasm, difficult airway, full stomach — or for intramuscular use where no vein is accessible. Duchenne muscular dystrophy is X-linked and typically undiagnosed in a boy under about four years old, so the children at risk were by definition the ones who looked well. This is a genuine reversal: a drug given to essentially every anaesthetised child became a drug reserved for emergencies, on the strength of a mechanism nobody had anticipated in a population nobody could identify in advance.',
+        evidenceSource:
+          'FDA-approved US prescribing information for ANECTINE (succinylcholine chloride) injection, BOXED WARNING and Warnings and Precautions 5.1 (DailyMed SPL 04a4e6f5-6fa1-42e1-a3f9-21fca7786b15)',
+        inferredClaim:
+          'That a drug safe in a healthy child is safe in every child who appears healthy — an assumption that fails precisely where the underlying myopathy has not yet declared itself',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sux-a2',
+        category: 'measured',
+        title: 'Still the best drug for intubating conditions after seventy years of replacements',
+        laymanSummary:
+          'Every randomised comparison against the modern alternative was pooled: fifty trials, four thousand one hundred and fifty-one patients. The 1952 drug still produced better conditions for getting a breathing tube in.',
+        technicalDetails:
+          'Tran and colleagues pooled 50 randomised and controlled clinical trials with 4,151 participants comparing succinylcholine at 1 mg/kg or more with rocuronium at 0.6 mg/kg or more for rapid sequence or modified rapid sequence intubation, in any age group or setting. Succinylcholine was superior for excellent intubating conditions, risk ratio 0.86 (95% CI 0.81 to 0.92, n=4,151), and for clinically acceptable conditions, risk ratio 0.97 (95% CI 0.95 to 0.99, n=3,992 across 48 trials). Superiority was greater when thiopental was the induction agent, risk ratio 0.81 (95% CI 0.73 to 0.88, n=2,302, 28 trials). At the highest rocuronium dose there was no statistical difference in conditions, and the reviewers still concluded succinylcholine was clinically superior because of its shorter duration of action. High detection bias and significant heterogeneity make this moderate-quality evidence, and the conclusion was unchanged from the two previous updates. Notably, no severe adverse outcomes were reported in any included trial — which means these trials measured the advantage and were structurally incapable of measuring the disadvantage.',
+        evidenceSource:
+          'Tran DTT, Newton EK, Mount VAH, Lee JS, Wells GA, Perry JJ. Rocuronium versus succinylcholine for rapid sequence induction intubation. Cochrane Database Syst Rev 2015;10:CD002788',
+        doi: '10.1002/14651858.CD002788.pub3',
+        measuredMetric:
+          'Risk ratio for excellent and clinically acceptable intubating conditions across 50 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sux-a3',
+        category: 'measured',
+        title: 'About 1 in 2,500 people cannot clear it, and the label gives the number',
+        laymanSummary:
+          'The drug is destroyed by an enzyme in the blood. Roughly one person in two and a half thousand has inherited two copies of a variant enzyme that barely touches it, and stays paralysed for hours instead of minutes.',
+        technicalDetails:
+          'The label states that patients homozygous for the atypical plasma cholinesterase gene, about 1 in 2,500, are extremely sensitive to the neuromuscular blocking effect of succinylcholine. It further lists the acquired causes of reduced plasma cholinesterase activity — pregnancy, severe liver or kidney disease, malignant tumours, infections, burns, anaemia, decompensated heart disease, peptic ulcer and myxoedema — and the drugs that lower it, including chronic oral contraceptives, glucocorticoids, certain monoamine oxidase inhibitors, and irreversible inhibitors such as organophosphate insecticides, echothiophate and certain antineoplastics. The label does not recommend the drug in patients with reduced plasma cholinesterase activity. This audit is filed as measured because the frequency is a stated, labelled number with a defined genetic basis, and because the consequence is entirely benign if anticipated and entirely alarming if not: a patient who cannot be woken must simply be kept anaesthetised and ventilated until the enzyme finishes its work.',
+        evidenceSource:
+          'FDA-approved US prescribing information for ANECTINE (succinylcholine chloride) injection, Warnings and Precautions 5.9 — Risk of Prolonged Neuromuscular Block in Patients with Reduced Plasma Cholinesterase Activity',
+        measuredMetric:
+          'Stated population frequency of homozygosity for the atypical plasma cholinesterase gene, with named genetic and acquired causes of reduced activity',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sux-a4',
+        category: 'measured',
+        title:
+          'Contraindicated after burns and denervation, because the muscle grows new receptors',
+        laymanSummary:
+          'After a major burn, a crush injury, a spinal cord injury or prolonged paralysis, muscle spreads immature receptors across its whole surface instead of keeping them at the nerve junction. Giving this drug then dumps potassium out of every muscle cell at once, and can stop the heart.',
+        technicalDetails:
+          'The label contraindicates succinylcholine after the acute phase of injury following major burns, multiple trauma, extensive denervation of skeletal muscle or upper motor neuron injury, because administration in those patients may result in severe hyperkalaemia and cardiac arrest. The mechanism is receptor upregulation: denervated or immobilised muscle expresses immature extrajunctional nicotinic receptors containing the gamma rather than the epsilon subunit across the whole fibre membrane, and those channels have a longer open time. A depolarising agonist therefore opens far more channels, for longer, over a far larger membrane area, and the potassium efflux is systemic rather than local. The label also names chronic abdominal infection, subarachnoid haemorrhage and conditions causing degeneration of central and peripheral nervous systems as increasing the risk, and states that the onset and duration of the risk period after such injuries are undetermined — which is an honest admission that nobody knows exactly when the window opens or closes.',
+        evidenceSource:
+          'FDA-approved US prescribing information for ANECTINE (succinylcholine chloride) injection, CONTRAINDICATIONS and Warnings and Precautions 5.4',
+        measuredMetric:
+          'Labelled contraindications by injury type, with the risk window explicitly stated as undetermined',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sux-a5',
+        category: 'measured',
+        title: 'It triggers malignant hyperthermia, and the genes are named on the label',
+        laymanSummary:
+          'In people carrying certain inherited muscle-calcium variants, this drug can start a runaway metabolic crisis with rigidity, high temperature and muscle breakdown. It is a contraindication, and the risk rises when it is combined with an anaesthetic gas.',
+        technicalDetails:
+          'The label contraindicates succinylcholine in patients with known or suspected genetic susceptibility to malignant hyperthermia, and separately in skeletal muscle myopathies. Its warnings state that in susceptible individuals succinylcholine may trigger malignant hyperthermia, a skeletal muscle hypermetabolic state leading to high oxygen demand, that fatal outcomes have been reported, and that the risk increases with concomitant administration of a volatile anaesthetic. It names inherited ryanodine receptor RYR1 and dihydropyridine receptor CACNA1S variants as the genetic basis, and lists hyperthermia, hypoxia, hypercapnia and muscle rigidity including masseter spasm among the signs. Succinylcholine and the volatile agents are the two trigger classes in anaesthesia, and this drug is the only one of the two that can be avoided without abandoning general anaesthesia altogether.',
+        evidenceSource:
+          'FDA-approved US prescribing information for ANECTINE (succinylcholine chloride) injection, CONTRAINDICATIONS and Warnings and Precautions 5.5 — Malignant Hyperthermia',
+        measuredMetric:
+          'Labelled contraindication with named susceptibility genes RYR1 and CACNA1S, and stated potentiation by concomitant volatile anaesthetic',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sux-a6',
+        category: 'measured',
+        title:
+          'Twice as likely to cause anaphylaxis as the other relaxants, usually as bronchospasm',
+        laymanSummary:
+          'A year-long national audit of serious allergic reactions under anaesthesia found paralysing agents second only to antibiotics as a cause, and within that class succinylcholine was twice as likely as the others — typically presenting as sudden difficulty ventilating rather than as a rash.',
+        technicalDetails:
+          'The 6th National Audit Project reviewed 266 reports of Grade 3 to 5 perioperative anaphylaxis over one year across all NHS hospitals, estimating an overall incidence of about 1 in 10,000 anaesthetics and noting that exclusions for reporting delay and incomplete data mean the true figure might be about 70% higher. Of 199 identified culprit agents, neuromuscular blocking agents accounted for 65, second to antibiotics at 94. Succinylcholine-induced anaphylaxis, mainly presenting with bronchospasm, was twofold more likely than with the other neuromuscular blocking agents, whereas atracurium-induced anaphylaxis mainly presented with hypotension and the non-depolarising agents had similar incidences to one another. Onset was rapid for relaxants. Across all agents there were 40 cardiac arrests and 10 deaths, with pulseless electrical activity the usual arrest rhythm, and poor outcomes associated with higher ASA grade, obesity and beta blocker or angiotensin-converting enzyme inhibitor use. Only 24% of cases had been reported through the national pharmacovigilance scheme.',
+        evidenceSource:
+          'Harper NJN, Cook TM, Garcez T, et al. Anaesthesia, surgery, and life-threatening allergic reactions: epidemiology and clinical features of perioperative anaphylaxis in the 6th National Audit Project (NAP6). Br J Anaesth 2018;121:159-171',
+        doi: '10.1016/j.bja.2018.04.014',
+        measuredMetric:
+          'Relative frequency of succinylcholine-induced anaphylaxis against other neuromuscular blocking agents, and its characteristic presenting feature',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sux-a7',
+        category: 'inferred',
+        title: 'The advantage is measured in seconds; the harms are measured in case reports',
+        laymanSummary:
+          'The trials that show this drug is better all measure the same thing: how good the view was when the tube went in. The reasons to avoid it are rare disasters that no trial of a few thousand elective patients could ever contain.',
+        technicalDetails:
+          'The Cochrane review is explicit that no severe adverse outcomes were reported in any of its 50 included trials. That is not evidence of safety; it is a statement about what a trial of 4,151 mostly elective patients can detect. Hyperkalaemic arrest in undiagnosed myopathy, malignant hyperthermia, and prolonged block from homozygous atypical cholinesterase all occur at frequencies between roughly 1 in 2,500 and considerably rarer, and the boxed warning was assembled from case reports and post-marketing surveillance rather than from a randomised comparison. This produces a structural asymmetry that a reader should see plainly: the benefit is quantified with confidence intervals, and the harms are quantified as labelled contraindications and population frequencies. Both are real. They are not commensurable, and any statement that succinylcholine is "better" or "worse" than rocuronium is a statement about how a clinician weighs a measured common advantage against an unmeasured rare catastrophe.',
+        evidenceSource:
+          'Tran DTT et al. Cochrane Database Syst Rev 2015;10:CD002788 (no severe adverse outcomes reported across 50 trials); FDA-approved US prescribing information for ANECTINE, BOXED WARNING',
+        doi: '10.1002/14651858.CD002788.pub3',
+        inferredClaim:
+          'That an intubating-conditions advantage established in 4,151 elective patients settles the choice, when the harms driving the alternative occur at frequencies those trials could not have observed',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected, and most of it is destroyed on the way',
+        laymanDesc:
+          'An enzyme in the blood starts breaking the drug down the moment it is injected, so only a small fraction of the dose ever reaches the muscles.',
+        molecularDetail:
+          'Butyrylcholinesterase, also called plasma or pseudocholinesterase, hydrolyses succinylcholine in plasma to succinylmonocholine and then to succinic acid and choline. Because this happens before and during distribution, the amount arriving at the neuromuscular junction is a small fraction of the dose given, and the plasma enzyme rather than the receptor determines how long the block lasts.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the endplate and switches the receptor on',
+        laymanDesc:
+          'Unlike every other paralysing agent, this one is not a blocker. It is a copy of the natural transmitter — two of them joined together — and it activates the receptor.',
+        molecularDetail:
+          'The molecule is succinic acid diesterified with two cholines, structurally two acetylcholine molecules joined at their acyl ends. It binds the agonist sites at the alpha1-delta and alpha1-epsilon interfaces of the adult endplate receptor and opens the channel, producing the initial depolarisation seen clinically as fasciculation.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The junctional enzyme cannot remove it, so the switch stays on',
+        laymanDesc:
+          'Acetylcholine is destroyed within a thousandth of a second so the muscle can reset. Succinylcholine is not, so the endplate stays permanently switched on and the muscle cannot fire again.',
+        molecularDetail:
+          'Acetylcholinesterase in the synaptic cleft hydrolyses acetylcholine within about a millisecond but does not act on succinylcholine. Persistent agonist occupancy holds the endplate depolarised; the voltage-gated sodium channels in the surrounding perijunctional membrane become inactivated and cannot regenerate an action potential, so the fibre is unexcitable despite being depolarised.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Potassium leaves the muscle cell, which is usually trivial and sometimes fatal',
+        laymanDesc:
+          'Every time those channels open, potassium leaks out of the muscle into the blood. In a healthy person the rise is small. In someone whose muscle has grown extra receptors after a burn or a paralysis, it can be enough to stop the heart.',
+        molecularDetail:
+          'Serum potassium rises modestly in normal muscle. After denervation, burns, prolonged immobility or upper motor neuron injury, muscle expresses immature gamma-subunit-containing extrajunctional receptors across the whole fibre surface with prolonged channel open times, so agonist exposure produces a far larger and more widespread efflux. The label contraindicates use after the acute phase of such injuries and states that the onset and duration of the risk period are undetermined.',
+        iconName: 'AlertTriangle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Complete paralysis in about a minute, gone in about five',
+        laymanDesc:
+          'Onset is faster than anything else available, and recovery happens on its own without any antidote — because the enzyme in the blood has been working the whole time.',
+        molecularDetail:
+          'The concentration gradient reverses as plasma drug is consumed, and succinylcholine diffuses back off the endplate into plasma to be hydrolysed. No reversal agent is used or needed, and an anticholinesterase given during a Phase I block prolongs it rather than reversing it, because inhibiting butyrylcholinesterase removes the only clearance mechanism there is.',
+        iconName: 'Timer',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'With prolonged exposure the block changes character',
+        laymanDesc:
+          'After enough drug or enough time, the block stops behaving like an overstimulated receptor and starts behaving like a blocked one — which changes what will and will not reverse it.',
+        molecularDetail:
+          'Phase I block shows no fade on train-of-four stimulation and no post-tetanic facilitation, and is deepened by anticholinesterases. With repeated or prolonged exposure it converts to a Phase II block that fades, shows post-tetanic facilitation and resembles a non-depolarising block, and may then respond to an anticholinesterase. The label warns that a Phase II block must be confirmed by a peripheral nerve stimulator and that spontaneous recovery must have plateaued, precisely because misdiagnosing the type and giving an anticholinesterase into a Phase I block prolongs the paralysis.',
+        iconName: 'GitBranch',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'Tran Cochrane review of rocuronium versus succinylcholine for rapid sequence intubation',
+        phase:
+          'Systematic review and meta-analysis of 50 randomised and controlled clinical trials',
+        sampleSize: 4151,
+        primaryEndpoint: 'Excellent intubating conditions during rapid sequence induction',
+        endpointMet: true,
+        statisticalPValue:
+          'Succinylcholine superior: risk ratio 0.86 (95% CI 0.81 to 0.92) for excellent conditions, 0.97 (95% CI 0.95 to 0.99) for clinically acceptable conditions, 0.81 (95% CI 0.73 to 0.88) with thiopental induction',
+        unreportedAdverseSignals:
+          'No severe adverse outcomes were reported in any included trial. That is the central limitation: the harms that justify choosing rocuronium instead occur at frequencies these 4,151 patients could not have revealed.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NAP6 — 6th National Audit Project on perioperative anaphylaxis',
+        phase: 'National prospective audit of Grade 3 to 5 reactions over one year',
+        sampleSize: 266,
+        primaryEndpoint:
+          'Incidence, culprit agent distribution and clinical features of perioperative anaphylaxis',
+        endpointMet: true,
+        statisticalPValue:
+          'Estimated incidence about 1 in 10,000 anaesthetics; neuromuscular blocking agents 65 of 199 identified culprits; succinylcholine twofold more likely than other relaxants and mainly presenting with bronchospasm',
+        unreportedAdverseSignals:
+          'True incidence might be about 70% higher after allowing for excluded and late reports; only 24% of cases reached the national pharmacovigilance scheme.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId:
+          'Post-marketing surveillance and case reports underlying the paediatric hyperkalaemic rhabdomyolysis boxed warning',
+        phase: 'Regulatory pharmacovigilance and published case reports',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Cardiac arrest and death from hyperkalaemic rhabdomyolysis in apparently healthy children with undiagnosed skeletal muscle myopathy',
+        endpointMet: true,
+        statisticalPValue:
+          'No trial exists and none could ethically be run. The evidence is case-based and the regulatory response was to restrict routine paediatric use rather than to quantify a rate.',
+        unreportedAdverseSignals:
+          'The label does not state an incidence, and this page does not supply one. The affected population is by definition undiagnosed at the time of exposure, so a denominator is not available.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Superior to rocuronium for excellent intubating conditions across 50 randomised trials and 4,151 participants, risk ratio 0.86 (95% CI 0.81 to 0.92)',
+        'About 1 in 2,500 people are homozygous for the atypical plasma cholinesterase gene and are extremely sensitive to the drug, per the approved label',
+        'Twofold higher anaphylaxis risk than other neuromuscular blocking agents in a national audit of 266 reactions, presenting mainly with bronchospasm',
+        'Labelled contraindications after burns, multiple trauma, extensive denervation and upper motor neuron injury, on a defined receptor-upregulation mechanism',
+        'A labelled malignant hyperthermia trigger with named RYR1 and CACNA1S susceptibility variants, potentiated by concomitant volatile anaesthetic',
+      ],
+      unsupportedInferences: [
+        'That an intubating-conditions advantage measured in elective patients settles the choice against rocuronium, when the harms driving that choice are rarer than the trials could detect',
+        'That a child who appears healthy has no myopathy — the assumption the boxed warning exists to break',
+        'That the absence of severe adverse outcomes across 50 trials is evidence of safety rather than a statement about sample size',
+        'That the risk window after a burn or denervating injury is known; the label states its onset and duration are undetermined',
+      ],
+      whatFailedInitially: [
+        'Routine paediatric use was withdrawn after apparently healthy children died of hyperkalaemic cardiac arrest, and the label now reserves paediatric use for emergency airway control',
+        'Seventy years of attempts to replace it have not produced a non-depolarising agent that matches it on intubating conditions in a pooled randomised comparison',
+        'Routine pharmacovigilance captured only 24% of the perioperative anaphylaxis cases a dedicated national audit found',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines and still the fastest-acting, shortest-lasting paralysing agent available anywhere',
+        'No CMS National Average Drug Acquisition Cost value is held on this record for succinylcholine, so no United States acquisition price is stated here',
+        'Its risks generated an entire safety architecture: the boxed warning, the malignant hyperthermia registries, dantrolene stocking rules, and cholinesterase genotyping of affected families',
+        'Sugammadex has done more to displace it than any relaxant did, by removing the duration advantage that kept it in use',
+      ],
+    },
+    deliverySystem: {
+      type: 'Sterile aqueous solution for intravenous injection and infusion, and for intramuscular use where no vein is accessible; refrigerated, with a limited room-temperature period',
+      description:
+        'Refrigeration is chemistry again: the molecule is a diester and hydrolyses in aqueous solution, so the potency of a warm vial falls with time. The intramuscular route exists specifically for the situation the boxed warning contemplates — a child with laryngospasm and no intravenous access — and it is the only common paralysing agent with a usable intramuscular route. There is no reversal agent and none is needed, because the plasma enzyme is the reversal mechanism.',
+      safetyProfile:
+        'Carries a boxed warning for ventricular dysrhythmias, cardiac arrest and death from hyperkalaemic rhabdomyolysis in paediatric patients with undiagnosed skeletal muscle myopathy, most often Duchenne muscular dystrophy, and paediatric use is reserved for emergency airway control. Contraindicated in known or suspected malignant hyperthermia susceptibility, in skeletal muscle myopathies, in known hypersensitivity, and after the acute phase of major burns, multiple trauma, extensive denervation or upper motor neuron injury. Not recommended where plasma cholinesterase activity is reduced, whether genetically or from pregnancy, liver or kidney disease, tumours, infection, burns, anaemia, decompensated heart disease, peptic ulcer, myxoedema, or exposure to oral contraceptives, glucocorticoids, certain monoamine oxidase inhibitors or organophosphates. It paralyses without sedating. Myalgia after fasciculation is common. No dosing guidance appears on this page.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does a seventy-year-old drug still beat the modern one?',
+        a: 'Because of what it does to the receptor rather than how it was designed. Every modern relaxant blocks the receptor and has to wait for enough molecules to arrive to occupy 70 to 80% of them before anything happens. Succinylcholine activates the receptor, and one burst of activation is enough to make the endplate unexcitable. That is why paralysis is complete in under a minute and why, pooled across 50 randomised trials and 4,151 patients, it still produced better intubating conditions than rocuronium, with a risk ratio of 0.86. Its short duration comes from a second piece of luck: a plasma enzyme destroys most of the dose before it arrives, so recovery happens on its own in about five minutes with no antidote.',
+      },
+      {
+        q: 'What is the boxed warning about, and does it apply to adults?',
+        a: 'It applies specifically to children. Acute rhabdomyolysis with hyperkalaemia, ventricular dysrhythmias, cardiac arrest and death occurred in apparently healthy children who were found afterwards to have undiagnosed skeletal muscle myopathy, most often Duchenne muscular dystrophy. Duchenne is X-linked and usually not diagnosed until a boy is three or four, so the children who died were by definition the ones who looked fine. The label now reserves paediatric use for emergency intubation or where the airway must be secured immediately — laryngospasm, difficult airway, full stomach — or for intramuscular use when no vein is available. It also instructs that a healthy-looking child who arrests within minutes of the drug should be treated immediately for hyperkalaemia. In adults the analogous risk sits with burns, crush injury, spinal cord injury and prolonged immobility, which are contraindications.',
+        auditNote:
+          'Filed as a change of mind rather than a caution because a drug given to essentially every anaesthetised child became a drug reserved for emergencies.',
+      },
+      {
+        q: 'Why can a burn or a spinal injury make this drug dangerous weeks later?',
+        a: 'Because muscle that has lost its nerve supply, or has been immobilised, rebuilds its receptors. Normally the nicotinic receptors are packed into the endplate, a tiny fraction of the fibre surface, and they contain an epsilon subunit. After denervation or prolonged disuse, the muscle reverts to the fetal pattern: immature receptors containing a gamma subunit, spread across the entire fibre membrane, with channels that stay open longer. A depolarising agonist then opens vastly more channels, over a much larger area, for longer — and potassium pours out of every muscle in the body at once. The rise can be enough to stop the heart. The label contraindicates the drug after the acute phase of major burns, multiple trauma, extensive denervation and upper motor neuron injury, and states plainly that the onset and duration of the risk period are undetermined.',
+      },
+      {
+        q: 'What happens if you cannot break the drug down?',
+        a: 'You stay paralysed for hours instead of minutes, and if it is known about it is uneventful. The drug is destroyed by butyrylcholinesterase in plasma, and about 1 in 2,500 people are homozygous for a variant of that enzyme that barely touches it. The label names them, along with the acquired causes of low activity — pregnancy, severe liver or kidney disease, tumours, infection, burns, anaemia, decompensated heart disease, peptic ulcer, myxoedema — and the drugs that lower it, including oral contraceptives, glucocorticoids, some monoamine oxidase inhibitors and organophosphate exposure. Management is simply to keep the patient anaesthetised and ventilated until the block resolves. The important consequence is for the family: it is inherited, and an index case means relatives can be tested before they meet the drug themselves.',
+      },
+      {
+        q: 'Why does it make my muscles ache the day after?',
+        a: 'Because of the twitching that precedes the paralysis. Succinylcholine activates the receptor before it renders the muscle unexcitable, and that activation is unsynchronised across muscle fibres — a visible ripple across the face, chest and limbs called fasciculation. It is a brief, chaotic, involuntary contraction of muscle that has not been warmed up, and the resulting soreness is described most often in young, muscular, ambulatory patients. It is an expected consequence of the drug rather than a sign of surgical injury. New or severe muscle pain with dark urine after an anaesthetic is a different matter and needs assessment.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the CMS National Average Drug Acquisition Cost survey holds no value for succinylcholine on this record. That survey measures what United States retail pharmacies pay to acquire a drug, and a refrigerated emergency injectable used almost entirely inside hospitals may not pass through retail pharmacy at all. Rather than substitute a list price, an international figure or an estimate, this page shows nothing. No verified per-dose cost-of-production study exists for it either, so no synthesis cost is shown.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'FDA-approved US prescribing information for ANECTINE (succinylcholine chloride) injection, Sandoz Inc — boxed warning, contraindications, malignant hyperthermia, hyperkalaemia and plasma cholinesterase sections',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04a4e6f5-6fa1-42e1-a3f9-21fca7786b15',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Tran DTT, Newton EK, Mount VAH, Lee JS, Wells GA, Perry JJ. Rocuronium versus succinylcholine for rapid sequence induction intubation. Cochrane Database Syst Rev 2015;10:CD002788',
+        identifier: '10.1002/14651858.CD002788.pub3',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Harper NJN, Cook TM, Garcez T, et al. Anaesthesia, surgery, and life-threatening allergic reactions: epidemiology and clinical features of perioperative anaphylaxis in the 6th National Audit Project (NAP6). Br J Anaesth 2018;121:159-171',
+        identifier: '10.1016/j.bja.2018.04.014',
+        kind: 'doi',
+      },
+      {
+        label:
+          'PubChem CID 5314 — succinylcholine dication structure, formula and molecular weight; chloride salt CID 22475',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5314',
+        kind: 'url',
+      },
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Sugammadex — a drug with no human target, whose reversal effect is certain and whose patient
+  //    benefit rests on two large observational studies that contradict each other.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'sugammadex',
+    name: 'Sugammadex',
+    tradeName: 'Bridion',
+    sponsor:
+      'Merck Sharp & Dohme (MSD, subsidiary of Merck); designed at Organon Research in Newhouse, Scotland, published in 2002, authorised in the European Union on 25 July 2008 and approved in the United States on 15 December 2015',
+    targetGene: 'None — sugammadex has no human gene or protein target',
+    targetProtein:
+      'The drug molecules rocuronium and vecuronium themselves, captured in a one-to-one inclusion complex in plasma; the nicotinic receptor is affected only indirectly, by the removal of what was blocking it',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2015,
+    indication:
+      'Reversal of neuromuscular blockade induced by rocuronium bromide and vecuronium bromide in adult and paediatric patients aged 2 years and older undergoing surgery',
+    patientFriendlyIndication:
+      'Undoing the paralysis at the end of an operation, quickly and completely, so the breathing tube can come out',
+    anatomicalSite:
+      'Plasma. Nothing about this drug happens inside a cell, and its only site of action is the bloodstream',
+    conditionContext: {
+      conditionExplainer:
+        'Almost every drug works by binding a protein in the body. Sugammadex does not bind anything in the body at all. It is a molecular cage — a doughnut of eight sugar rings with eight negatively charged arms hanging off it — sized and charged so that a rocuronium molecule fits inside and will not come out. Injected into a vein, it captures rocuronium in the blood, the free concentration collapses, and the drug is drawn back off the neuromuscular junction by simple diffusion.',
+      whyItMatters:
+        'The old reversal agents worked by flooding the junction with more acetylcholine, which has a hard ceiling: once the enzyme is fully inhibited there is no more acetylcholine to be had, and a deep block simply cannot be reversed. Sugammadex has no such ceiling, because it removes the drug rather than competing with it. That turned a long-acting relaxant into one that can be switched off on demand.',
+      whoTakesThis:
+        'Adults and children over two who have received rocuronium or vecuronium during surgery. It does nothing whatsoever for succinylcholine, cisatracurium or atracurium.',
+      clinicalGoals:
+        'Return the train-of-four ratio to 0.9 or above within minutes, from any depth of block. Whether restoring that number changes whether a patient gets pneumonia is the question this page is mostly about, and the two largest studies of it disagree.',
+    },
+    oneSentenceVerdict:
+      'A designed molecular cage that reverses rocuronium by capturing it in plasma rather than by acting on the patient at all — reliable and fast at its surrogate endpoint, and split down the middle on outcomes, with one matched cohort of 45,712 patients finding 30% fewer pulmonary complications (adjusted odds ratio 0.70) and a prospective cohort of 22,803 finding none at all (adjusted odds ratio 1.03).',
+    laymanHowItWorks:
+      'Sugammadex is shaped like a bucket made of sugar, with a greasy inside and eight negatively charged arms round the rim. Rocuronium is a greasy molecule carrying a positive charge. It slides into the bucket, the greasy parts stick together and the charges lock, and the pair travels around the bloodstream as one object that cannot reach the muscle. Because the free rocuronium in the blood suddenly drops to almost nothing, the rocuronium already sitting on the muscle receptors leaves and flows back into the blood, where more buckets are waiting. Within minutes the muscle can work again. The whole thing is chemistry between two drugs; the patient is just the container it happens in.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 71,
+    substitutes: {
+      summary:
+        'The alternative is neostigmine, which reverses by a completely different route and has a ceiling sugammadex does not. The comparison on the surrogate endpoint is not close; the comparison on patient outcomes has two large observational studies pointing in opposite directions and no randomised trial. Nothing in a diet reverses neuromuscular blockade and nothing is listed here.',
+      conventionalRx: [
+        {
+          name: 'Neostigmine with glycopyrrolate or atropine',
+          class: 'Acetylcholinesterase inhibitor plus antimuscarinic cover',
+          howItCompares:
+            'Works by raising acetylcholine at the junction so it can outcompete the relaxant. That strategy saturates: once the enzyme is fully inhibited no more acetylcholine can be recruited, so a deep block cannot be reversed at all, and the drug must be given with an antimuscarinic to prevent bradycardia, secretions and bronchoconstriction. On pulmonary outcomes, STRONGER found it worse than sugammadex and POPULAR found no difference.',
+          typicalCost:
+            'No NADAC value is held on this record for neostigmine and none is asserted here',
+          prosAndCons:
+            'Pros: decades of use, inexpensive, and it works on every non-depolarising relaxant rather than only the steroid ones. Cons: a hard ceiling, obligatory antimuscarinic co-administration, and no effect on a profound block.',
+        },
+        {
+          name: 'Waiting',
+          class: 'No pharmacological intervention',
+          howItCompares:
+            'Spontaneous recovery from rocuronium takes roughly three quarters of an hour from an intubating dose, and residual block below a train-of-four ratio of 0.9 is undetectable by clinical examination. In POPULAR, extubating at a ratio of 0.9 or above had an adjusted odds ratio of 1.03 for pulmonary complications — that is, waiting for the number the whole practice is built around was not associated with better outcomes either.',
+          typicalCost: 'No cost',
+          prosAndCons:
+            'Pros: no drug, no cost, no hypersensitivity risk. Cons: theatre time, and residual block that cannot be excluded without quantitative monitoring.',
+        },
+        {
+          name: 'Cisatracurium (Nimbex) as the relaxant instead',
+          class: 'Benzylisoquinolinium relaxant with organ-independent elimination',
+          howItCompares:
+            'Sidesteps the reversal question by using a relaxant that degrades spontaneously at body temperature and pH. Sugammadex does not bind it at all — the encapsulation is specific to the steroid-backbone agents.',
+          typicalCost:
+            'No NADAC value is held on this record for cisatracurium and none is asserted here',
+          prosAndCons:
+            'Pros: predictable offset regardless of liver or kidney function. Cons: slow onset, and if a block needs abolishing urgently there is no antidote at all.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'If you take hormonal contraception, ask about this drug specifically',
+          action:
+            'The cage that captures rocuronium also captures progestogens. The label instructs that patients must use an additional non-hormonal method of contraception for seven days after receiving sugammadex.',
+          patientImpact:
+            'This is one of the very few interactions on any page in this file that changes what a patient should do after they go home, and it is easy to miss because the drug was given while they were asleep.',
+          clinicalPrecaution:
+            "The seven-day instruction is the label's, not this page's, and the discussion belongs with the clinical team.",
+        },
+        {
+          name: 'Report a previous reaction to a reversal drug',
+          action:
+            'Serious hypersensitivity including anaphylaxis has occurred, and in a dedicated randomised repeat-dose study in healthy volunteers the frequency of anaphylaxis was 0.3%.',
+          patientImpact:
+            'Sugammadex is given at the very end of an operation, when monitoring is being removed and the team is preparing to move the patient, which is the least convenient moment for a reaction to begin.',
+          clinicalPrecaution:
+            'History to volunteer beforehand. Anaphylaxis management belongs entirely to the clinical team.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C(CSC[C@@H]1[C@@H]2[C@@H]([C@H]([C@H](O1)O[C@@H]3[C@H](O[C@@H]([C@@H]([C@H]3O)O)O[C@@H]4[C@H](O[C@@H]([C@@H]([C@H]4O)O)O[C@@H]5[C@H](O[C@@H]([C@@H]([C@H]5O)O)O[C@@H]6[C@H](O[C@@H]([C@@H]([C@H]6O)O)O[C@@H]7[C@H](O[C@@H]([C@@H]([C@H]7O)O)O[C@@H]8[C@H](O[C@@H]([C@@H]([C@H]8O)O)O[C@@H]9[C@H](O[C@H](O2)[C@@H]([C@H]9O)O)CSCCC(=O)O)CSCCC(=O)O)CSCCC(=O)O)CSCCC(=O)O)CSCCC(=O)O)CSCCC(=O)O)CSCCC(=O)O)O)O)C(=O)O',
+      chemicalFormula: 'C72H112O48S8',
+      molecularWeight: '2002.20 g/mol as the free acid; dispensed as the sodium salt',
+      targetReceptorAffinity:
+        'There is no receptor. The relevant quantity is the strength of a host-guest inclusion complex between two drug molecules in plasma, formed one-to-one. The gamma-cyclodextrin core is a ring of eight glucose units whose interior is hydrophobic and whose rim was extended with eight thioether-linked carboxylate arms. The hydrophobic androstane skeleton of rocuronium slides into the cavity and its quaternary nitrogen is held by electrostatic attraction to the negatively charged arms. Affinity is highest for rocuronium, lower for vecuronium, and negligible for the benzylisoquinolinium relaxants, which is why the drug reverses two agents and not the class.',
+      structureSource: {
+        label: 'PubChem CID 6918585 (sugammadex) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6918585',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sug-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Ring size and substitution count of the gamma-cyclodextrin starting material',
+          description:
+            'Confirm the starting cyclodextrin is the eight-glucose gamma ring and not the seven-glucose beta one. Cavity diameter is the whole design: a beta ring is too small for the steroid guest, and a mixture of ring sizes produces a product with the right formula on average and the wrong binding in practice.',
+          reagentsAndBuffer:
+            'Gamma-cyclodextrin reference standard, mass spectrometry for ring size distribution, nuclear magnetic resonance for substitution pattern, high-performance anion-exchange chromatography with pulsed amperometric detection',
+        },
+        {
+          id: 'sug-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Perhalogenation at the primary 6-positions',
+          description:
+            'Convert all eight primary hydroxyls at the 6-position to leaving groups without touching the secondary rim. Incomplete substitution is the dominant impurity class here and it is not a trace concern: a seven-armed molecule binds measurably differently from an eight-armed one, and the label acknowledges the product may contain up to 7% of the mono-hydroxy derivative.',
+          dependsOnStepId: 'sug-w1',
+          reagentsAndBuffer:
+            'Iodine and triphenylphosphine in dimethylformamide or an equivalent halogenation system, anhydrous conditions, controlled temperature, mass spectrometry to track the degree of substitution',
+        },
+        {
+          id: 'sug-w3',
+          stepNumber: 3,
+          phase: 'Conjugation',
+          name: 'Thioether coupling of eight 3-mercaptopropionic acid arms',
+          description:
+            "Displace all eight leaving groups with the thiolate of 3-mercaptopropionic acid to install the negatively charged arms. Arm length was the tuned variable in the original design programme: too short and the carboxylates do not reach the guest's quaternary nitrogen, too long and they fold back into the cavity and block it.",
+          dependsOnStepId: 'sug-w2',
+          reagentsAndBuffer:
+            '3-mercaptopropionic acid, sodium hydride or an equivalent base, dimethylformamide under nitrogen, controlled temperature, thiol handling under inert atmosphere to prevent disulfide formation',
+        },
+        {
+          id: 'sug-w4',
+          stepNumber: 4,
+          phase: 'Purification',
+          name: 'Separation by degree of substitution, not by molecular weight alone',
+          description:
+            'Purify by ion-exchange and preparative chromatography against a substitution-count specification. Species differing by one arm differ by 88 daltons in a 2,002-dalton molecule, so a weight-only specification is not discriminating and the release test has to resolve charge as well as mass.',
+          dependsOnStepId: 'sug-w2',
+          reagentsAndBuffer:
+            'Anion-exchange chromatography, preparative reversed-phase HPLC, mono-hydroxy derivative reference standard, capillary electrophoresis for charge heterogeneity, sodium salt formation and lyophilisation',
+        },
+        {
+          id: 'sug-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Isothermal titration calorimetry against rocuronium, vecuronium and the decoys',
+          description:
+            'Measure the binding thermodynamics of the complex directly, and measure it against the molecules the drug must not capture as well as the ones it must. Selectivity is a safety property here, not a marketing one: the same cavity that takes an androstane steroid also takes progestogens and toremifene, which is exactly why both appear in the label.',
+          dependsOnStepId: 'sug-w4',
+          reagentsAndBuffer:
+            'Isothermal titration calorimetry in phosphate-buffered saline at 37 degrees C, rocuronium and vecuronium as guests, progestogen and toremifene as counter-screens, cisatracurium as a negative control, stoichiometry fitted to a one-site model',
+        },
+        {
+          id: 'sug-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'Train-of-four ratio to 0.9, reported as the surrogate it is',
+          description:
+            'Measure time from administration to a train-of-four ratio of 0.9 or above, from defined depths of block, with acceleromyography normalised to baseline. Report it as a neuromuscular measurement and not as a clinical outcome. Everything this drug is known to do is measured here, and everything that is argued about lies downstream of it.',
+          dependsOnStepId: 'sug-w5',
+          reagentsAndBuffer:
+            'Train-of-four at 2 Hz every 12 seconds, post-tetanic count for profound block, acceleromyography or electromyography with baseline normalisation, neostigmine comparator at matched depth, temperature control at the monitored limb',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sug-a1',
+        category: 'measured',
+        title: 'A drug designed as a container, and it works exactly as designed',
+        laymanSummary:
+          'Chemists set out to build a molecule that would swallow rocuronium rather than compete with it. They published the working molecule in 2002. It does precisely that, and it is the reason a deep paralysis can now be abolished in minutes.',
+        technicalDetails:
+          'Bom and colleagues at Organon Research in Newhouse published the concept of chemical encapsulation of rocuronium by a cyclodextrin-based synthetic host in 2002. The design took a gamma-cyclodextrin — a ring of eight glucose units with a hydrophobic interior — and extended the rim with eight thioether-linked carboxylate arms, so that the hydrophobic androstane core of rocuronium enters the cavity while its quaternary ammonium is held electrostatically by the arms. The approved label describes the mechanism in the same terms: a modified gamma cyclodextrin that forms a complex with rocuronium and vecuronium and reduces the amount available to bind nicotinic receptors at the neuromuscular junction. This is unusual enough to be worth stating plainly: sugammadex has no human target, no receptor, no enzyme and no transporter. Its pharmacodynamics are the chemistry of two drugs meeting in plasma, and the patient is the vessel.',
+        evidenceSource:
+          'Bom A, Bradley M, Cameron K, et al. A novel concept of reversing neuromuscular block: chemical encapsulation of rocuronium bromide by a cyclodextrin-based synthetic host. Angew Chem Int Ed Engl 2002;41:266-270; FDA-approved US prescribing information, Mechanism of Action 12.1',
+        doi: '10.1002/1521-3773(20020118)41:2<265::aid-anie265>3.0.co;2-q',
+        measuredMetric:
+          'Formation of a one-to-one inclusion complex with rocuronium and vecuronium in plasma, with negligible binding to benzylisoquinolinium relaxants',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sug-a2',
+        category: 'inferred',
+        title: 'Two large studies of the same question reached opposite answers',
+        laymanSummary:
+          'Does reversing with sugammadex instead of the older drug mean fewer lung complications after surgery? A study of 45,712 American patients said 30% fewer. A study of 22,803 European patients said no difference at all. Neither was randomised.',
+        technicalDetails:
+          'STRONGER matched 22,856 sugammadex patients to 22,856 neostigmine patients across 12 United States hospitals, exact-matching on institution, sex, age, comorbidity, obesity, procedure type and relaxant. The composite of major postoperative pulmonary complications occurred in 3.5% versus 4.8%, giving an adjusted odds ratio of 0.70 (95% CI 0.63 to 0.77); pneumonia 1.3% versus 2.2%, adjusted odds ratio 0.53 (0.44 to 0.62); respiratory failure 0.8% versus 1.7%, adjusted odds ratio 0.45 (0.37 to 0.56). POPULAR prospectively followed 22,803 patients at 211 hospitals in 28 European countries with a physical examination within three days of surgery, and found the choice of sugammadex rather than neostigmine had an adjusted odds ratio of 1.03 (95% CI 0.85 to 1.25) for postoperative pulmonary complications, with an adjusted absolute risk reduction of -0.3% (95% CI -2.4 to 1.5). In the same dataset, giving any reversal agent had an odds ratio of 1.23 and extubating at a train-of-four ratio of 0.9 or above had an odds ratio of 1.03. Both studies are large, both are observational, and both are subject to different confounding — STRONGER to institutional practice differences that matching cannot fully absorb, POPULAR to selection of sicker patients into more intensive management. No randomised trial has tested sugammadex against neostigmine on a clinical outcome. The honest position is that the surrogate benefit is certain and the outcome benefit is unresolved.',
+        evidenceSource:
+          'Kheterpal S, Vaughn MT, Dubovoy TZ, et al. Anesthesiology 2020;132:1371-1381; Kirmeier E, Eriksson LI, Lewald H, et al. Lancet Respir Med 2019;7:129-140',
+        doi: '10.1097/ALN.0000000000003256',
+        inferredClaim:
+          'That reversing with sugammadex reduces postoperative pulmonary complications — an inference supported by one large matched cohort, contradicted by another large prospective cohort, and never tested in a randomised outcome trial',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'sug-a3',
+        category: 'measured',
+        title: 'Anaphylaxis at 0.3% in the study built to look for it',
+        laymanSummary:
+          'Rather than relying on reports coming in after approval, a randomised placebo-controlled study gave healthy volunteers repeated doses specifically to characterise hypersensitivity. One in 299 had anaphylaxis.',
+        technicalDetails:
+          'The label describes a randomised, double-blind, placebo-controlled, parallel-group, repeat-dose study in which 375 subjects received three doses with a five-week washout: 151 at 4 mg/kg, 148 at 16 mg/kg and 76 on placebo. The frequency of anaphylaxis among the 299 healthy volunteers who received sugammadex was 0.3%, a single case in the 16 mg/kg group on the first dose, with conjunctival oedema, urticaria, erythema, swelling of the uvula and a reduction in peak expiratory flow. This is a better class of evidence than most hypersensitivity data, because it is a prospective randomised design with a defined denominator rather than a spontaneous reporting rate, and it is worth noting that the case occurred on first exposure. The label carries anaphylaxis and hypersensitivity as its lead warning and instructs clinicians to be prepared for it.',
+        evidenceSource:
+          'FDA-approved US prescribing information for sugammadex injection, Warnings and Precautions 5.1 — Anaphylaxis and Hypersensitivity (DailyMed SPL 8e685b67-6804-4d97-b43e-0259b3fe231f)',
+        measuredMetric:
+          'Frequency of anaphylaxis in 299 healthy volunteers in a randomised placebo-controlled repeat-dose study',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sug-a4',
+        category: 'measured',
+        title: 'Marked bradycardia, some of it cardiac arrest, within minutes of administration',
+        laymanSummary:
+          'The label warns that the heart rate can drop severely within minutes of giving this drug, and that some of those episodes have ended in cardiac arrest.',
+        technicalDetails:
+          'The approved label states that cases of marked bradycardia, some of which have resulted in cardiac arrest, have been observed within minutes after administration of sugammadex, and instructs monitoring for haemodynamic changes with administration of an anticholinergic such as atropine if clinically significant bradycardia occurs. This warning is worth setting against the usual framing of the drug, which contrasts it favourably with neostigmine precisely because neostigmine requires a co-administered antimuscarinic to prevent bradycardia. Sugammadex is given without routine antimuscarinic cover and can still produce the same effect. The mechanism is not established, and no incidence is stated on the label, so none is stated here.',
+        evidenceSource:
+          'FDA-approved US prescribing information for sugammadex injection, Warnings and Precautions 5.2 — Marked Bradycardia',
+        measuredMetric:
+          'Labelled warning of marked bradycardia and cardiac arrest within minutes of administration, without a stated incidence',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sug-a5',
+        category: 'measured',
+        title: 'The cage also captures hormonal contraceptives, and the label says so',
+        laymanSummary:
+          'The same cavity that swallows rocuronium swallows progestogens. Anyone using hormonal contraception is told to use an additional non-hormonal method for seven days after receiving this drug.',
+        technicalDetails:
+          'The label states that certain drugs, including hormonal contraceptives, could become less effective because sugammadex lowers their free plasma concentration, and instructs that patients must use an additional non-hormonal method of contraception for seven days after administration. It also names toremifene, which has a relatively high binding affinity for sugammadex and may reach relatively high plasma concentrations, as capable of displacing rocuronium or vecuronium from the complex and delaying recovery to a train-of-four ratio of 0.9. The label states that its interaction assessments are based on binding affinity, preclinical experiments, clinical studies and pharmacokinetic-pharmacodynamic simulation, and that no clinically significant pharmacodynamic interactions are expected other than these two. This audit is on the page because it is the clearest consequence of a drug whose mechanism is promiscuous molecular capture: the cavity does not know what it is supposed to catch.',
+        evidenceSource:
+          'FDA-approved US prescribing information for sugammadex injection, Warnings and Precautions 5.6 and Drug Interactions 7.1 to 7.3',
+        measuredMetric:
+          'Labelled requirement for seven days of additional non-hormonal contraception, and labelled displacement interaction with toremifene',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sug-a6',
+        category: 'conclusion_shift',
+        title: 'Seven and a half years between European and American approval',
+        laymanSummary:
+          'Europe authorised this drug in July 2008. The United States approved it in December 2015. The reversal effect was never in question for either regulator.',
+        technicalDetails:
+          'The European Medicines Agency granted marketing authorisation for Bridion on 25 July 2008 to Merck Sharp & Dohme B.V. The United States Food and Drug Administration approved the original application, NDA 022225, on 15 December 2015 — a gap of seven years and five months, during which the drug was in routine use across Europe and unavailable in the United States. Both regulators had the same neuromuscular efficacy data. What separates them is how each weighed the hypersensitivity signal, and the eventual United States label leads with anaphylaxis as its first warning and cites a dedicated randomised repeat-dose study of 375 subjects designed to characterise it. This entry is filed as a change of position rather than a failure because nothing about the drug changed across those years: the same molecule, the same surrogate endpoint and the same efficacy were judged sufficient in one jurisdiction and insufficient in another for most of a decade.',
+        evidenceSource:
+          'European Medicines Agency EPAR for Bridion, marketing authorisation dated 25 July 2008; FDA Drugs@FDA record for NDA 022225, original approval 15 December 2015',
+        inferredClaim:
+          'That regulatory approval of a reversal agent turns on its reversal efficacy — when the efficacy was never disputed and the seven-year divergence was entirely about a safety signal',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sug-a7',
+        category: 'inferred',
+        title: 'Every efficacy claim is anchored to a number on a nerve monitor',
+        laymanSummary:
+          'The endpoint in every trial is the train-of-four ratio reaching 0.9. That is a measurement of muscle twitch, not of anything a patient experiences, and the one large study that tested whether reaching it improves outcomes found no association.',
+        technicalDetails:
+          'A train-of-four ratio is the height of the fourth twitch divided by the first, in response to four electrical stimuli delivered to a peripheral nerve. A ratio of 0.9 became the accepted threshold for adequate recovery because below it pharyngeal function and upper airway patency are measurably impaired in volunteers. Sugammadex reaches that threshold faster and from deeper blocks than neostigmine can, reliably and reproducibly, and that is the basis of its licence. The chain from there to a patient outcome has one weak link and one broken one. The weak link is that residual block is associated with pulmonary complications in observational data. The broken link is POPULAR, which found that extubating at a train-of-four ratio of 0.9 or above had an adjusted odds ratio of 1.03 (95% CI 0.82 to 1.31) for postoperative pulmonary complications — the surrogate itself did not track the outcome. This does not mean the surrogate is meaningless; it means the inference from the surrogate to the outcome has been tested once at scale and did not hold.',
+        evidenceSource:
+          'Kirmeier E, Eriksson LI, Lewald H, et al. Lancet Respir Med 2019;7:129-140; FDA-approved US prescribing information for sugammadex injection, Clinical Studies',
+        doi: '10.1016/S2213-2600(18)30294-7',
+        inferredClaim:
+          'That restoring the train-of-four ratio to 0.9 or above delivers the clinical benefit the ratio is used to represent',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected into a vein, and it stays there',
+        laymanDesc:
+          'The molecule is large, heavily charged and extremely water-soluble. It does not enter cells, does not cross into the brain, and does not bind anything in the body.',
+        molecularDetail:
+          'At 2,002 daltons with eight carboxylate groups, sugammadex is confined to the extracellular space and is not metabolised. It is excreted essentially unchanged by the kidney, which is why renal function governs how long it and its complex remain in circulation, and why waiting times before giving another relaxant are longer in renal impairment.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Rocuronium slides into the cavity',
+        laymanDesc:
+          'The molecule is a ring of eight sugars with a greasy hole in the middle. The greasy steroid skeleton of rocuronium fits into that hole.',
+        molecularDetail:
+          'The gamma-cyclodextrin cavity is hydrophobic and its diameter was the design constraint: the seven-unit beta ring is too narrow for an androstane guest. Inclusion is driven by the hydrophobic effect, with the steroid nucleus displacing ordered water from the cavity.',
+        iconName: 'Container',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The charged arms close around it',
+        laymanDesc:
+          'Eight negatively charged arms hang off the rim of the ring. Rocuronium carries a positive charge, and the arms hold onto it so it cannot slip back out.',
+        molecularDetail:
+          'The thioether-linked carboxylate arms were the tuned element of the original design programme, with arm length chosen so the negative charges sit at the right distance to interact with the quaternary ammonium of the guest. The result is a one-to-one complex with high affinity for rocuronium, lower for vecuronium, and essentially none for benzylisoquinolinium relaxants such as cisatracurium.',
+        iconName: 'Magnet',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Free rocuronium in the blood collapses toward zero',
+        laymanDesc:
+          'With enough cages circulating, there is almost no unbound rocuronium left in the bloodstream.',
+        molecularDetail:
+          'Because sequestration is stoichiometric rather than competitive, the free plasma concentration falls in proportion to how much sugammadex is present, with no ceiling. This is the structural difference from neostigmine, which raises junctional acetylcholine to compete with the relaxant and can raise it no further once acetylcholinesterase is fully inhibited.',
+        iconName: 'TrendingDown',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The relaxant leaves the muscle because the gradient reversed',
+        laymanDesc:
+          'Nothing is done to the muscle at all. The drug sitting on the receptors simply diffuses back into the blood, because that is now where the empty space is.',
+        molecularDetail:
+          'Rocuronium leaves the neuromuscular junction down its own concentration gradient into plasma, where further sugammadex captures it. Receptor occupancy falls, endplate potentials recover above threshold and neuromuscular transmission resumes. Because the mechanism is removal rather than competition, it works from profound block — where an anticholinesterase has no effect at all.',
+        iconName: 'ArrowLeftRight',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Both molecules leave together through the kidney',
+        laymanDesc:
+          'The cage and its captive are excreted in the urine as a single unit, unchanged.',
+        molecularDetail:
+          'The complex is cleared renally without metabolism. Two consequences follow directly. In renal impairment the complex persists, which is why the label sets longer waiting times before another steroid relaxant may be given. And if too little sugammadex is given for the amount of relaxant present, the complex can dissociate as free drug is cleared, producing recurrence of paralysis — a labelled risk both from under-dosing and from displacement by a competing guest such as toremifene.',
+        iconName: 'RotateCcw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId:
+          'STRONGER — sugammadex versus neostigmine and postoperative pulmonary complications',
+        phase: 'Multicentre matched-cohort observational analysis across 12 US hospitals',
+        sampleSize: 45712,
+        primaryEndpoint:
+          'Composite of major postoperative pulmonary complications — pneumonia, respiratory failure or other pulmonary complication',
+        endpointMet: true,
+        statisticalPValue:
+          '3.5% with sugammadex versus 4.8% with neostigmine; adjusted odds ratio 0.70 (95% CI 0.63 to 0.77); pneumonia 0.53 (0.44 to 0.62); respiratory failure 0.45 (0.37 to 0.56)',
+        unreportedAdverseSignals:
+          'Observational and matched rather than randomised. Its result is directly contradicted by POPULAR on the identical comparison, and neither design can adjudicate between them.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId:
+          'POPULAR — post-anaesthesia pulmonary complications after use of muscle relaxants (NCT01865513)',
+        phase: 'Multicentre prospective observational cohort at 211 hospitals in 28 countries',
+        sampleSize: 22803,
+        primaryEndpoint:
+          'Incidence of postoperative pulmonary complications from end of surgery to day 28',
+        endpointMet: false,
+        statisticalPValue:
+          'Sugammadex versus neostigmine adjusted odds ratio 1.03 (95% CI 0.85 to 1.25), adjusted absolute risk reduction -0.3% (95% CI -2.4 to 1.5); extubation at train-of-four ratio 0.9 or above 1.03 (0.82 to 1.31)',
+        unreportedAdverseSignals:
+          'The same study found that giving any reversal agent had an adjusted odds ratio of 1.23 and that using neuromuscular monitoring had 1.31 — every recommended mitigation came back null or worse, which is consistent with confounding by indication rather than with harm.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId:
+          'Randomised placebo-controlled repeat-dose hypersensitivity study in healthy volunteers',
+        phase: 'Randomised, double-blind, placebo-controlled, parallel-group, repeat-dose study',
+        sampleSize: 375,
+        primaryEndpoint: 'Nature and frequency of anaphylaxis and hypersensitivity',
+        endpointMet: true,
+        statisticalPValue:
+          'Anaphylaxis in 0.3% of the 299 volunteers who received sugammadex — one case, in the 16 mg/kg group, on the first dose',
+        unreportedAdverseSignals:
+          'The single case occurred on first exposure rather than on repeat dosing, which is the opposite of what a sensitisation model would predict and which the label does not attempt to explain.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Formation of a one-to-one inclusion complex with rocuronium and vecuronium in plasma, with negligible affinity for benzylisoquinolinium relaxants',
+        'Reversal to a train-of-four ratio of 0.9 within minutes and from depths of block that an anticholinesterase cannot reverse at all',
+        'Anaphylaxis in 0.3% of 299 healthy volunteers in a randomised placebo-controlled repeat-dose study built to measure it',
+        'Adjusted odds ratio 0.70 for major pulmonary complications versus neostigmine in a matched cohort of 45,712 patients',
+        'Adjusted odds ratio 1.03 for the identical comparison in a prospective cohort of 22,803 patients',
+        'Labelled capture of hormonal contraceptives requiring seven days of additional non-hormonal contraception, and labelled displacement by toremifene',
+      ],
+      unsupportedInferences: [
+        'That faster reversal to a train-of-four ratio of 0.9 delivers fewer pulmonary complications — the two largest studies of it disagree and no randomised outcome trial exists',
+        'That the train-of-four ratio is itself a patient outcome; extubating at 0.9 or above had an odds ratio of 1.03 in the study that checked',
+        'That a drug with no human target has a correspondingly clean safety profile — the label leads with anaphylaxis and warns of bradycardia progressing to cardiac arrest',
+        'That capturing rocuronium is all the cavity does; it also captures progestogens, and that is a labelled consequence for the patient',
+      ],
+      whatFailedInitially: [
+        'The pulmonary outcome case failed to replicate: STRONGER found a 30% reduction and POPULAR found none, on the same comparison',
+        'The surrogate itself failed its own test in POPULAR, where extubation at a train-of-four ratio of 0.9 or above was not associated with better outcomes',
+        'United States approval failed for seven years and five months after European authorisation, on a safety signal rather than on efficacy',
+      ],
+      realWorldOutcome: [
+        'Changed what is possible in an operating theatre: a profound neuromuscular block can now be abolished on demand, which no previous agent could do',
+        'No CMS National Average Drug Acquisition Cost value is held on this record for sugammadex, so no United States acquisition price is stated here',
+        "Has done more to displace succinylcholine from rapid sequence intubation than any relaxant did, by removing rocuronium's duration disadvantage",
+        'Remains the only marketed drug in routine anaesthesia whose mechanism involves no human molecular target at all',
+      ],
+    },
+    deliverySystem: {
+      type: 'Sterile aqueous solution for intravenous bolus injection, as the sodium salt; single-dose vials',
+      description:
+        'There is no formulation problem to solve. The molecule is extremely water-soluble, is not metabolised, does not enter cells and does not cross the blood-brain barrier, so it is presented as a simple aqueous solution and given as a single bolus into a running intravenous line. The dose depends on the depth of block being reversed rather than on time elapsed, because the drug works stoichiometrically — it must outnumber the relaxant present. That relationship, rather than any pharmacokinetic subtlety, is why under-dosing causes recurrence of paralysis.',
+      safetyProfile:
+        'The label leads with anaphylaxis and hypersensitivity, characterised prospectively at 0.3% in 299 healthy volunteers. It warns of marked bradycardia, some cases resulting in cardiac arrest, within minutes of administration, and instructs monitoring with anticholinergic treatment if needed. Ventilatory support is mandatory until spontaneous respiration and airway patency are assured, because paralysis can persist or recur. Recurrence can also follow under-dosing or displacement of the relaxant from the complex by another drug, with the risk greatest over about three elimination half-lives. Hormonal contraception is rendered less effective and an additional non-hormonal method is required for seven days. Waiting times before a steroid relaxant may be given again are longer in renal impairment, and a non-steroidal relaxant should be considered instead. No dosing guidance appears on this page.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can a drug work without acting on the body at all?',
+        a: "Because its target is another drug. Sugammadex is a modified gamma-cyclodextrin: a ring of eight glucose units with a greasy hole through the middle and eight negatively charged arms round the rim. Rocuronium is a greasy steroid carrying a positive charge. The steroid slides into the hole, the arms hold the charge, and the two travel as a single complex that cannot reach a muscle receptor. Because free rocuronium in the blood collapses toward zero, the rocuronium already sitting on the neuromuscular junction diffuses back off it into the plasma. Nothing is done to the patient's receptors, enzymes or transporters. The label describes this in the same terms — a modified gamma cyclodextrin that reduces the amount of relaxant available to bind nicotinic receptors — and it is the only drug in routine anaesthesia with no human target.",
+      },
+      {
+        q: 'Does it actually make surgery safer, or just make the monitor look better?',
+        a: 'That is precisely the unresolved question, and it is worth seeing the two answers side by side. STRONGER matched 22,856 sugammadex patients to 22,856 neostigmine patients across twelve United States hospitals and found major pulmonary complications in 3.5% versus 4.8%, an adjusted odds ratio of 0.70, with pneumonia down 47% and respiratory failure down 55%. POPULAR prospectively followed 22,803 patients at 211 hospitals across 28 European countries and found an adjusted odds ratio of 1.03 for the same comparison — no difference. Both are large. Neither is randomised. In the same POPULAR dataset, using a nerve monitor, giving any reversal agent, and extubating at a train-of-four ratio of 0.9 or above were all likewise not associated with better outcomes, which suggests the confounding runs deep. No randomised trial has tested sugammadex against neostigmine on a clinical outcome.',
+        auditNote:
+          'This is the central unresolved question about a drug that is now used routinely, and the page states it as unresolved rather than picking the flattering study.',
+      },
+      {
+        q: 'Why did the United States take seven extra years to approve it?',
+        a: 'The European Medicines Agency authorised Bridion on 25 July 2008. The FDA approved the same product on 15 December 2015 — seven years and five months later. Neither regulator ever disputed that the drug reverses rocuronium. What differed was the weight placed on the hypersensitivity signal, and the eventual American label reflects it: anaphylaxis and hypersensitivity is the first warning, and it cites a dedicated randomised, double-blind, placebo-controlled repeat-dose study of 375 subjects designed specifically to characterise the risk, in which anaphylaxis occurred in 0.3% of the 299 who received the drug. During that gap the drug was in ordinary use across Europe and unobtainable in the United States.',
+      },
+      {
+        q: 'I am on the pill. Does this drug affect it?',
+        a: 'Yes, and the label is specific about what to do. The cavity that captures rocuronium also captures progestogens, lowering their free plasma concentration and making hormonal contraception less effective. The label instructs that patients must use an additional, non-hormonal method of contraception for seven days after receiving sugammadex. This is unusually consequential for an intraoperative drug, because it is given while the patient is unconscious and the effect lands entirely after discharge. The same promiscuity of the cavity underlies the other named interaction, with toremifene, which can displace rocuronium from the complex and delay recovery.',
+      },
+      {
+        q: 'If it has no target in the body, is it harmless?',
+        a: 'No, and the label makes that clear from its first warning. Serious hypersensitivity including anaphylaxis has occurred, characterised prospectively at 0.3% in healthy volunteers, with the one case occurring on first exposure. The label also warns of marked bradycardia, some cases of which have resulted in cardiac arrest, within minutes of administration, and instructs anticholinergic treatment if clinically significant bradycardia appears. That warning deserves attention because sugammadex is often contrasted favourably with neostigmine on exactly this point: neostigmine has to be given with an antimuscarinic to prevent bradycardia, and sugammadex is not, and can still cause it. Paralysis can also recur if too little is given or if another drug displaces the relaxant from the complex.',
+      },
+      {
+        q: 'Why is there no price on this page?',
+        a: 'Because the CMS National Average Drug Acquisition Cost survey holds no value for sugammadex on this record. That survey measures what United States retail pharmacies pay, and a hospital-only intraoperative injectable does not pass through retail pharmacy. Rather than substitute a wholesale list price or an estimate, this page shows nothing. What can be said without a number is that this is a synthesised eight-armed cyclodextrin requiring substitution-count-specific purification, which is a genuinely more demanding manufacture than the commodity molecule it reverses.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Bom A, Bradley M, Cameron K, et al. A novel concept of reversing neuromuscular block: chemical encapsulation of rocuronium bromide by a cyclodextrin-based synthetic host. Angew Chem Int Ed Engl 2002;41:266-270',
+        identifier: '12491405',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Kheterpal S, Vaughn MT, Dubovoy TZ, et al. Sugammadex versus neostigmine for reversal of neuromuscular blockade and postoperative pulmonary complications (STRONGER). Anesthesiology 2020;132:1371-1381',
+        identifier: '10.1097/ALN.0000000000003256',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kirmeier E, Eriksson LI, Lewald H, et al. Post-anaesthesia pulmonary complications after use of muscle relaxants (POPULAR). Lancet Respir Med 2019;7:129-140',
+        identifier: '10.1016/S2213-2600(18)30294-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA-approved US prescribing information for sugammadex injection (DailyMed structured product label, Fresenius Kabi USA) — anaphylaxis, marked bradycardia, contraceptive and toremifene interactions, mechanism of action',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8e685b67-6804-4d97-b43e-0259b3fe231f',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'European Medicines Agency, Bridion (sugammadex) European Public Assessment Report — marketing authorisation dated 25 July 2008',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/bridion',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 6918585 — sugammadex structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/6918585',
         kind: 'url',
       },
       COST_OF_PRODUCTION_SOURCE,

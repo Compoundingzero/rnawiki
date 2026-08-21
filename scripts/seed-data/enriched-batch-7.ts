@@ -3764,4 +3764,1474 @@ export const ENRICHED_BATCH_7_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 8. Silodosin — the most subtype-selective drug in its class, which is also why 28% of the men
+  //    who take it stop ejaculating; the trial that named that effect wrongly; and a stone trial
+  //    that missed its primary endpoint and reported an unpowered subgroup instead.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'silodosin',
+    name: 'Silodosin',
+    tradeName: 'Rapaflo',
+    sponsor: 'Abbvie',
+    targetGene: 'ADRA1A',
+    targetProtein:
+      'Alpha-1A adrenergic receptor on prostatic, bladder-neck and seminal-tract smooth muscle; the US label states that silodosin binds with high affinity to the alpha-1A subtype and this is the most subtype-selective drug of its class',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2008,
+    indication:
+      'Treatment of the signs and symptoms of benign prostatic hyperplasia. The label states explicitly that it is not indicated for the treatment of hypertension.',
+    patientFriendlyIndication:
+      'A weak, slow or hesitant stream and getting up at night, caused by an enlarged prostate',
+    anatomicalSite:
+      'Smooth muscle of the prostatic stroma, prostatic urethra and bladder neck — and of the seminal vesicles and vas deferens, which use the same receptor subtype',
+    conditionContext: {
+      conditionExplainer:
+        'Roughly seventy per cent of the alpha-1 receptors in the human prostate are of the alpha-1A subtype. Every drug in this class exploits that. Silodosin takes the idea further than any other: it is the most alpha-1A-preferring agent licensed, which is why it produces the least cardiovascular effect and the most sexual effect of the group.',
+      whyItMatters:
+        'Subtype selectivity is usually presented as an unmixed good — the same target, fewer off-target consequences. Silodosin is the clearest counterexample in urology. The seminal vesicles and vas deferens run on the alpha-1A receptor too, so the more selective the drug, the more reliably it abolishes seminal emission. Twenty-eight per cent of men on silodosin report it, against 0.9% on placebo.',
+      whoTakesThis:
+        'Men with moderate to severe lower urinary tract symptoms attributed to benign prostatic hyperplasia, particularly where blood pressure or postural symptoms are the limiting factor and where ejaculatory function is not a priority.',
+      clinicalGoals:
+        'Lower the International Prostate Symptom Score and raise peak urine flow. The registration trials delivered about 2.9 points and 1.0 to 1.4 mL/sec over placebo respectively.',
+    },
+    oneSentenceVerdict:
+      'The most alpha-1A-selective alpha-blocker licensed, which lowered the International Prostate Symptom Score by 6.5 and 6.3 points against 3.6 and 3.4 on placebo in its two registration trials while producing absent or retrograde ejaculation in 28.1% of patients against 0.9% on placebo — the same receptor preference generating both results, and the trial that examined it finding that the men who lost seminal emission had 1.75 times the odds of a symptomatic response.',
+    laymanHowItWorks:
+      'The prostate and the neck of the bladder are wrapped in muscle held tense by nerve signals, and that tension squeezes the tube urine passes through. Silodosin blocks the specific receptor variant those signals use — the one the prostate is richest in — so the muscle relaxes and the channel opens. The gland does not shrink. The problem is that the tubes carrying semen use the same receptor variant to push their contents forward at orgasm, so blocking it well enough to help the urine stream also stops seminal emission in about one man in four. The two effects are not separable, because they are the same molecular event in two different organs.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 71,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.3137 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, median across 21 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 2008 and now generic, with twenty-one products in the acquisition-cost file. At thirty-one cents a capsule it is the most expensive alpha-blocker in this group — roughly six times tamsulosin — because it is the newest and has the fewest suppliers.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The alpha-blocker class trades one side effect against another along a single axis. The more a drug prefers the alpha-1A subtype, the less it drops blood pressure and the more reliably it stops ejaculation. Silodosin sits at one end of that axis, alfuzosin and terazosin at the other, tamsulosin in between. Only the 5-alpha-reductase inhibitors leave the axis entirely, and they act on the gland rather than the muscle.',
+      conventionalRx: [
+        {
+          name: 'Tamsulosin (Flomax)',
+          class: 'Alpha-1A-preferring adrenergic antagonist',
+          howItCompares:
+            'The same design idea, less far pursued. Abnormal ejaculation appears in 8.4% at 0.4 mg and 18.1% at 0.8 mg against 0.2% on placebo, against silodosin\'s 28.1% against 0.9%. Symptom-score effects are of the same order. The dose-response within tamsulosin is itself evidence that the ejaculatory effect tracks alpha-1A occupancy rather than being idiosyncratic.',
+          typicalCost:
+            'US$0.0509 per capsule at United States pharmacy acquisition cost (CMS NADAC, generic, median across 33 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: one sixth the acquisition cost, thirty-three suppliers, less ejaculatory disturbance. Cons: more postural hypotension, and a claims-data signal of severe hypotension concentrated in the first weeks.',
+        },
+        {
+          name: 'Alfuzosin (Uroxatral)',
+          class: 'Alpha-1 antagonist with no subtype preference, in an extended-release tablet',
+          howItCompares:
+            'The opposite design choice: no subtype selectivity at all, with the cardiovascular problem solved by formulation instead. Its adverse-event table has no ejaculatory signal; its leading effect is dizziness at 5.7% against 2.8%. Symptom-score margins over placebo are about two points against silodosin\'s 2.9.',
+          typicalCost:
+            'US$0.1077 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 12 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: ejaculation preserved, and a third of the cost. Cons: hard contraindications with potent CYP3A4 inhibitors and in Child-Pugh B or C liver impairment, and its two-year trial missed its primary endpoint.',
+        },
+        {
+          name: 'Finasteride (Proscar) or dutasteride (Avodart)',
+          class: '5-alpha-reductase inhibitor',
+          howItCompares:
+            'Shrinks the gland over months instead of relaxing the muscle over days, and is the only drug class shown to reduce acute urinary retention and the need for surgery. Its sexual adverse effects are of a different kind — reduced libido and erectile dysfunction rather than absent emission — and they persist while treatment continues.',
+          typicalCost:
+            'US$0.0684 per tablet for finasteride at United States pharmacy acquisition cost (CMS NADAC, generic, median across 50 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: the only class with a demonstrated effect on retention and surgery, and a fifth of the cost. Cons: takes months, halves serum PSA, and carries its own sexual adverse-effect profile.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Decide about ejaculation before starting, not after the first dose',
+          action:
+            'Ask specifically what the effect on ejaculation is likely to be, and say whether it matters to you, before the prescription is written.',
+          patientImpact:
+            'In the pooled 12-week registration trials, 28.1% of 466 men on silodosin reported the effect against 0.9% of 457 on placebo. Of 134 such events, 110 — 82% — were reported as orgasm with absence of seminal emission rather than as retrograde flow into the bladder. Orgasm is preserved; the emission is not.',
+          clinicalPrecaution:
+            'The effect resolves on stopping the drug. It is not a fertility statement in itself, but a man trying to conceive has a concrete reason to raise it before starting rather than after.',
+        },
+        {
+          name: 'Tell an eye surgeon before cataract surgery, even about past use',
+          action:
+            'The intraoperative floppy iris warning applies to the whole alpha-blocker class, and silodosin is the most alpha-1A-selective member of it.',
+          patientImpact:
+            'The syndrome was first described in tamsulosin users and has since been extended across the class. Surgeons told in advance can change technique and instrumentation; those who meet it mid-operation cannot.',
+          clinicalPrecaution:
+            'Stopping the drug beforehand has not been shown to prevent it — cases occur in men who stopped months earlier — so disclosure rather than withdrawal is what changes the outcome.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@H](CC1=CC2=C(C(=C1)C(=O)N)N(CC2)CCCO)NCCOC3=CC=CC=C3OCC(F)(F)F',
+      chemicalFormula: 'C25H32F3N3O4',
+      molecularWeight: '495.50 g/mol',
+      targetReceptorAffinity:
+        'The US label states that silodosin "is a selective antagonist of post-synaptic alpha-1 adrenoreceptors" and that it "binds with high affinity to the alpha-1A subtype". No numeric subtype ratio is quoted on the label text retrieved for this record, so none is stated here. The functional evidence for the selectivity is in the adverse-event table rather than in a binding constant: 28.1% absent or retrograde ejaculation against 0.9% on placebo, alongside orthostatic hypotension at 2.6% against 1.5%. One stereocentre, the (R) configuration, is carried in the structure. The trifluoroethoxyphenoxyethyl tail and the primary carboxamide on the indoline core are what distinguish it from tamsulosin\'s sulfonamide, and the molecule is the largest and most heavily functionalised in this file.',
+      structureSource: {
+        label: 'PubChem CID 5312125 — silodosin structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5312125',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sil-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric excess of the (R)-aminopropyl indoline intermediate',
+          description:
+            'Establish enantiomeric excess of the chiral amine before it is joined to the phenoxyethyl fragment. Silodosin is a single enantiomer and the (S) antipode is the specified chiral impurity. As with tamsulosin, the stereocentre is measured where it is set rather than argued about in the finished substance.',
+          reagentsAndBuffer:
+            'Chiral stationary-phase HPLC on an amylose tris(3,5-dimethylphenylcarbamate) column, n-hexane with 2-propanol and diethylamine, UV detection at 225 nm, (S)-enantiomer reference standard',
+        },
+        {
+          id: 'sil-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'N-alkylation with the trifluoroethoxyphenoxyethyl fragment, then nitrile hydration',
+          description:
+            'Couple the chiral secondary amine to the 2-(2-(2,2,2-trifluoroethoxy)phenoxy)ethyl electrophile, then convert the indoline nitrile to the primary carboxamide that the receptor pocket requires. Running the hydration last avoids exposing the amide to the alkylation conditions.',
+          dependsOnStepId: 'sil-w1',
+          reagentsAndBuffer:
+            '2-(2-(2,2,2-trifluoroethoxy)phenoxy)ethyl halide or tosylate, potassium carbonate or diisopropylethylamine, sodium iodide, acetonitrile or dimethylformamide under nitrogen; then controlled nitrile hydration with hydrogen peroxide and base or an enzymatic nitrile hydratase',
+        },
+        {
+          id: 'sil-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation with control of the over-alkylated and carboxylic acid impurities',
+          description:
+            'Crystallise the free base and re-run both the achiral and chiral methods on the finished solid. Two impurities dominate the specification: the tertiary amine from over-alkylation, and the carboxylic acid from over-hydration of the nitrile past the amide stage.',
+          dependsOnStepId: 'sil-w2',
+          reagentsAndBuffer:
+            'Ethyl acetate or 2-propanol with heptane antisolvent, activated charcoal, reversed-phase HPLC with gradient elution for related substances, chiral HPLC for enantiomeric purity, X-ray powder diffraction for polymorph identity',
+        },
+        {
+          id: 'sil-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Application to each human alpha-1 subtype, and to a seminal-vesicle preparation',
+          description:
+            'Apply the compound to three stable lines carrying human ADRA1A, ADRA1B or ADRA1D. The receptor faces outward from the plasma membrane, so no cell entry step exists. For this molecule a fourth preparation belongs alongside them: isolated seminal vesicle or vas deferens smooth muscle, because that tissue expresses the same alpha-1A receptor the drug was optimised for and is where 28% of the clinical effect lands.',
+          dependsOnStepId: 'sil-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human ADRA1A, ADRA1B or ADRA1D, Ham F-12 or DMEM with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4, Krebs-Henseleit buffer gassed with 95% oxygen and 5% carbon dioxide for the organ-bath preparation',
+        },
+        {
+          id: 'sil-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Subtype-resolved binding and function, with the seminal tissue reported alongside',
+          description:
+            'Measure radioligand displacement at each subtype for affinity, then blockade of phenylephrine-evoked calcium for functional antagonism, then inhibition of agonist-evoked contraction in the seminal tissue. Reporting the third alongside the first two is what makes the selectivity claim honest: a high alpha-1A preference is simultaneously the efficacy result and the adverse-event result, and an assay panel that omits the seminal tissue reports only half of what the drug does.',
+          dependsOnStepId: 'sil-w4',
+          reagentsAndBuffer:
+            'Tritiated prazosin as radioligand, phentolamine for non-specific binding, GF/C filter plates, Fluo-4 AM calcium indicator, phenylephrine as agonist, isometric force transducers for the organ bath, probenecid-containing assay buffer',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sil-a1',
+        category: 'measured',
+        title: 'Ejaculation stops in 28.1% against 0.9% on placebo — thirty times the rate',
+        laymanSummary:
+          'More than one man in four on silodosin stops producing semen at orgasm. On placebo it is fewer than one in a hundred. This is the drug working, in the wrong organ.',
+        technicalDetails:
+          'Pooled 12-week placebo-controlled data on the US label, from 466 patients on silodosin and 457 on placebo, report retrograde ejaculation in 28.1% against 0.9%. Dizziness was 3.2% against 1.1%, orthostatic hypotension 2.6% against 1.5% and diarrhoea 2.6% against 1.3% — every other effect an order of magnitude smaller than the ejaculatory one. The mechanism is not incidental: seminal vesicle and vas deferens smooth muscle expresses the alpha-1A subtype that silodosin was designed to prefer, so the same receptor occupancy that relaxes the prostatic urethra abolishes seminal emission. The rate is dose-ordered across the class as well: tamsulosin reports 8.4% at 0.4 mg and 18.1% at 0.8 mg, and silodosin, the most alpha-1A-preferring agent, reports 28.1%.',
+        evidenceSource:
+          'US prescribing information for silodosin capsules, Adverse Reactions section, pooled 12-week placebo-controlled studies (openFDA drug label endpoint)',
+        measuredMetric:
+          'Incidence of retrograde or absent ejaculation, dizziness, orthostatic hypotension and diarrhoea against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sil-a2',
+        category: 'conclusion_shift',
+        title: 'Most of the "retrograde ejaculation" was not retrograde',
+        laymanSummary:
+          'The label calls the effect retrograde ejaculation, which means semen going backwards into the bladder. When the trial data were examined, 82% of the events were something different: orgasm with no seminal emission at all.',
+        technicalDetails:
+          'Roehrborn and colleagues analysed the two phase 3 registration studies (NCT00224107 and NCT00224120). Of 466 patients receiving silodosin, 131 (28%) reported retrograde ejaculation and 335 (72%) did not; 4 of 457 placebo patients (0.9%) reported it. Of 134 such events in silodosin-treated patients, 110 — 82% — were reported as "orgasm with absence of seminal emission." Retrograde flow and absent emission are different physiological events with different implications: one deposits semen in the bladder, the other means the seminal tract never contracts. The label term survives because it is the coded adverse-event category, and the distinction only appeared when someone went back to the case reports. It matters to a patient being counselled, and it matters to anyone reasoning about the mechanism.',
+        evidenceSource:
+          'Roehrborn CG, Kaplan SA, Lepor H, Volinn W, Prostate Cancer Prostatic Dis 2011;14:143-148 (PMID 21135869)',
+        doi: '10.1038/pcan.2010.46',
+        measuredMetric:
+          'Proportion of coded retrograde-ejaculation events that were reported as orgasm with absence of seminal emission',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sil-a3',
+        category: 'measured',
+        title: 'The men who lost emission had 1.75 times the odds of a symptomatic response',
+        laymanSummary:
+          'The side effect turns out to track the benefit. Men who stopped producing semen were significantly more likely to reach a meaningful improvement in both their symptom score and their flow rate.',
+        technicalDetails:
+          'In the same analysis of the two phase 3 trials, silodosin-treated patients with and without the ejaculatory effect both improved significantly against placebo on symptom score, peak flow and quality of life (P<0.02). The men who lost emission improved numerically more, though not significantly on the continuous measures (P>0.05). The responder analysis was significant: for patients with absent emission, the odds of achieving both a 3-point improvement in symptom score and a 3 mL/sec improvement in peak flow by study end were 1.75 times those of patients without it, P=0.0127. The authors concluded that absence of seminal emission may predict superior efficacy in individual patients. Read carefully, this is target-engagement evidence: the adverse effect is a biomarker for how thoroughly the alpha-1A receptor is blocked, and blockade produces both outcomes. It does not license a claim that the side effect should be sought.',
+        evidenceSource:
+          'Roehrborn CG, Kaplan SA, Lepor H, Volinn W, Prostate Cancer Prostatic Dis 2011;14:143-148 (PMID 21135869)',
+        doi: '10.1038/pcan.2010.46',
+        measuredMetric:
+          'Odds ratio for achieving a 3-point symptom-score and 3 mL/sec peak-flow improvement, with versus without absent seminal emission',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sil-a4',
+        category: 'failed',
+        title: 'The stone trial missed its primary endpoint and reported a subgroup instead',
+        laymanSummary:
+          'A randomised trial tested silodosin against placebo for passing kidney stones. Overall, 52% passed on the drug and 44% on placebo, p=0.2 — no difference. The result that got reported was a subgroup the trial was not sized to test.',
+        technicalDetails:
+          'Sur and colleagues ran a multi-institutional, randomised, double-blinded, placebo-controlled trial in adults with a unilateral ureteral calculus of 4 to 10 mm, randomised 1:1 to silodosin 8 mg or placebo for up to four weeks, with spontaneous stone passage as the primary outcome. The passage rate for all stones was 52% against 44%, p=0.2 — not significant. No significant differences were found for emergency-room visits, hospital admission or analgesic use either. Distal ureteric stones passed significantly more often on silodosin, p=0.01, and that is the finding the paper is usually cited for. The abstract itself states two limitations plainly: the intent-to-treat population was slightly below the calculated sample size, 232 against 240, and "sample sizes were not calculated for subgroup analyses." A subgroup result from a trial that missed its primary endpoint and was slightly underpowered for the endpoint it did specify is a hypothesis, and the authors say as much when they call for additional future studies.',
+        evidenceSource: 'Sur RL et al., Eur Urol 2015;67:959-964 (PMID 25465978)',
+        doi: '10.1016/j.eururo.2014.10.049',
+        measuredMetric:
+          'Spontaneous stone passage rate for all stones, silodosin versus placebo, with the distal subgroup reported separately',
+        inferredClaim:
+          'That silodosin is effective medical expulsive therapy for ureteric stones — the primary endpoint across the whole ureter was not met, and the positive result comes from an unpowered subgroup',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sil-a5',
+        category: 'measured',
+        title: 'About 2.9 points of symptom score and 1.0 to 1.4 mL/sec of flow over placebo',
+        laymanSummary:
+          'Both registration trials found a real effect. The symptom score fell about three points more than placebo, and the flow rate improved by about one millilitre a second more.',
+        technicalDetails:
+          'The label reports two 12-week placebo-controlled studies. International Prostate Symptom Score total fell 6.5 and 6.3 points against 3.6 and 3.4 on placebo, treatment effects of 2.9 points in both. Peak urine flow rose 2.2 to 2.9 mL/sec against 1.2 to 1.9 on placebo. The symptom-score margin is at the upper end of the alpha-blocker class — alfuzosin\'s three trials delivered about 2.0 points and tamsulosin\'s two delivered 2.8 and 1.5 — and it sits near the commonly cited minimally important difference of around three points for this instrument. That is worth stating precisely because it is unusual: most drugs in this file deliver margins that fall below their instrument\'s own threshold for a noticeable change, and this one lands close to it.',
+        evidenceSource:
+          'US prescribing information for silodosin capsules, Clinical Studies section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Change in International Prostate Symptom Score total and peak urine flow rate at 12 weeks against placebo, in two registration trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sil-a6',
+        category: 'measured',
+        title: 'A dedicated QT study in 189 men found no increase at all',
+        laymanSummary:
+          'At three times the usual dose for five days, silodosin did not lengthen the heart\'s electrical interval at any measured time point. The antibiotic used as a positive control in the same study did.',
+        technicalDetails:
+          'A cardiac safety trial in 189 healthy males aged 18 to 45 tested silodosin at 8 mg and 24 mg daily for five days. The label states silodosin "was not associated with an increase in individual corrected (QTcI) QT interval at any time during steady state measurement," while moxifloxacin as active control produced a maximum increase of 9.59 msec. That is a genuine negative with a demonstrably sensitive assay — the positive control worked. It is recorded here rather than omitted because a clean negative reported with its positive control is a different object from silence, and because tolterodine\'s label in this same file reports 11.84 msec at twice its therapeutic dose with confidence intervals overlapping the same comparator.',
+        evidenceSource:
+          'US prescribing information for silodosin capsules, Clinical Pharmacology section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Individual corrected QT interval change at 8 mg and 24 mg for five days, against a moxifloxacin positive control',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sil-a7',
+        category: 'measured',
+        title: 'Four absolute contraindications, two of them about how the drug leaves the body',
+        laymanSummary:
+          'Silodosin must not be taken by anyone with severe kidney impairment, severe liver impairment, or on a strong inhibitor of the enzyme that clears it. These are contraindications, not cautions.',
+        technicalDetails:
+          'The US label lists four contraindications: severe renal impairment with creatinine clearance below 30 mL/min, severe hepatic impairment at Child-Pugh 10 or above, concomitant use of strong CYP3A4 inhibitors, and hypersensitivity. Two of those are clearance statements: the drug depends on CYP3A4 for metabolism and on the kidney for elimination of its metabolites, and removing either route raises exposure of a compound whose whole design point is high receptor occupancy. Alfuzosin\'s label carries a comparable CYP3A4 contraindication for the same structural reason. Tamsulosin, cleared by two enzymes rather than one, handles the same interaction with a warning.',
+        evidenceSource:
+          'US prescribing information for silodosin capsules, Contraindications section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Contraindicated conditions and interactions listed on the US label, with the clearance basis for each',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A once-daily capsule with a single clearance route',
+        laymanDesc:
+          'One capsule daily with a meal. The body clears it mainly through one liver enzyme and then through the kidneys, which is why severe impairment of either rules the drug out entirely.',
+        molecularDetail:
+          'Oral capsule, once daily with food. Metabolised principally by CYP3A4 with UGT2B7 conjugation, and metabolites eliminated renally. Contraindicated with strong CYP3A4 inhibitors, in creatinine clearance below 30 mL/min and at Child-Pugh 10 or above. A dedicated QT study at 8 mg and 24 mg for five days found no QTcI increase.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the receptor from outside the muscle cell',
+        laymanDesc:
+          'The target sits on the outer surface of the smooth muscle cell, facing the bloodstream. The drug arrives and occupies it; nothing is transported inside.',
+        molecularDetail:
+          'Alpha-1 adrenoceptors are plasma-membrane G-protein-coupled receptors with an outward-facing orthosteric pocket, so no transporter step and no intracellular accumulation is required. The same access applies wherever the receptor is expressed, including the seminal vesicles and vas deferens.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It picks out one receptor variant more sharply than any rival',
+        laymanDesc:
+          'There are three versions of this receptor in the body. The prostate is rich in one of them, and silodosin prefers that one more strongly than any other drug in its class. That preference is the entire design.',
+        molecularDetail:
+          'The label states silodosin binds with high affinity to the alpha-1A subtype. The functional consequence is visible in two places at once: orthostatic hypotension at 2.6% against 1.5% on placebo, because the alpha-1B subtype governing vascular tone is largely spared, and retrograde or absent ejaculation at 28.1% against 0.9%, because the seminal tract runs on alpha-1A.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The calcium signal holding the muscle tense collapses',
+        laymanDesc:
+          'Smooth muscle tension needs a continuous internal calcium signal. With the receptor blocked, that signal falls and the muscle releases — in the prostate, and in the tubes that carry semen.',
+        molecularDetail:
+          'Loss of alpha-1A-Gq/11 coupling ends phospholipase C activation, so inositol trisphosphate falls, sarcoplasmic reticulum calcium release drops and myosin light-chain kinase activity declines. Prostatic and bladder-neck smooth muscle relaxes; seminal vesicle and vas deferens smooth muscle fails to generate the coordinated emission contraction. Prostate volume is unchanged.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Nearly three points of symptom score, and no semen in one man in four',
+        laymanDesc:
+          'The symptom score improves by about three points more than placebo and the flow rate by about one millilitre a second. Roughly 28% of men stop producing semen at orgasm. Those who do are more likely to be the ones whose symptoms improved.',
+        molecularDetail:
+          'IPSS fell 6.5 and 6.3 against 3.6 and 3.4 on placebo; peak flow rose 2.2 to 2.9 against 1.2 to 1.9 mL/sec. Retrograde or absent ejaculation 28.1% against 0.9%, of which 82% were absence of seminal emission rather than retrograde flow. Men with the effect had 1.75 times the odds of a combined 3-point symptom and 3 mL/sec flow response, P=0.0127.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'US phase 3 registration trial (NCT00224120)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled, 12 weeks',
+        sampleSize: 462,
+        primaryEndpoint:
+          'Change from baseline in International Prostate Symptom Score total at 12 weeks',
+        endpointMet: true,
+        statisticalPValue:
+          'Pooled across the two registration studies, IPSS fell 6.5 and 6.3 points against 3.6 and 3.4 on placebo, with peak flow rising 2.2 to 2.9 mL/sec against 1.2 to 1.9',
+        unreportedAdverseSignals:
+          'Retrograde or absent ejaculation occurred in 28.1% of 466 silodosin patients against 0.9% of 457 on placebo across the pooled programme. A later analysis found 82% of those events were absence of seminal emission rather than retrograde flow.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Silodosin for ureteral stone passage (Sur 2015)',
+        phase: 'Phase 2 randomised double-blind placebo-controlled multi-institutional, 4 weeks',
+        sampleSize: 232,
+        primaryEndpoint:
+          'Spontaneous passage of a unilateral ureteral calculus of 4 to 10 mm within four weeks',
+        endpointMet: false,
+        statisticalPValue:
+          'Passage of all stones 52% on silodosin against 44% on placebo, p=0.2. Distal ureteric stones passed significantly more often on silodosin, p=0.01, in an analysis for which no sample size was calculated.',
+        unreportedAdverseSignals:
+          'The intent-to-treat population was below the calculated sample size, 232 against 240. No significant differences were seen in emergency-room visits, hospital admission or analgesic use.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Long-term safety study (NCT00224133)',
+        phase: 'Phase 3 open-label extension, adverse events as primary endpoint',
+        sampleSize: 661,
+        primaryEndpoint: 'Adverse events',
+        endpointMet: true,
+        statisticalPValue:
+          'A safety endpoint with no efficacy hypothesis test and no placebo arm; the study describes tolerability over extended exposure rather than effect size',
+        unreportedAdverseSignals:
+          'An open-label extension cannot separate drug effect from expectation, and no placebo arm exists to subtract. It is a legitimate safety dataset and not an efficacy one.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'European symptom-score trial (NCT00359905)',
+        phase: 'Phase 3 randomised, 12 weeks',
+        sampleSize: 1228,
+        primaryEndpoint:
+          'Change in baseline total score on the International Prostate Symptom Score',
+        endpointMet: false,
+        statisticalPValue:
+          'No results are posted on the registry record for this study. `endpointMet: false` records the absence of a public result, not a missed endpoint.',
+        unreportedAdverseSignals:
+          'The largest registered randomised symptom-score trial of this drug, with 1,228 participants, carries no results section on the public registry record.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'International Prostate Symptom Score fell 6.5 and 6.3 points against 3.6 and 3.4 on placebo in the two registration trials',
+        'Peak urine flow rose 2.2 to 2.9 mL/sec against 1.2 to 1.9 on placebo',
+        'Retrograde or absent ejaculation in 28.1% of 466 patients against 0.9% of 457 on placebo',
+        'Of 134 such events, 110 (82%) were reported as orgasm with absence of seminal emission rather than retrograde flow',
+        'Men with absent emission had 1.75 times the odds of a combined 3-point symptom-score and 3 mL/sec peak-flow response, P=0.0127',
+        'Stone passage for all stones 52% on silodosin against 44% on placebo, p=0.2',
+        'No QTcI increase at 8 mg or 24 mg for five days in 189 healthy men, against a 9.59 msec maximum for the moxifloxacin control',
+      ],
+      unsupportedInferences: [
+        'That silodosin works as medical expulsive therapy for ureteric stones — the whole-ureter primary endpoint was not met and the positive finding is an unpowered subgroup',
+        'That the ejaculatory effect is retrograde flow — 82% of the coded events were absence of seminal emission, a different physiological event',
+        'That absent emission should be sought as a marker of adequate dosing — the association is a target-engagement observation from a post hoc responder analysis, not a dosing strategy',
+        'That greater subtype selectivity means fewer side effects — here it means a different and far more frequent one',
+      ],
+      whatFailedInitially: [
+        'The primary endpoint of the ureteric-stone trial, at 52% against 44%, p=0.2, in a population slightly below the calculated sample size',
+        'The public reporting of NCT00359905, a 1,228-participant randomised symptom-score trial with no results posted',
+        'Ejaculatory function in 28.1% of men treated, which is not a failure of the drug but a failure of the premise that selectivity means safety',
+      ],
+      realWorldOutcome: [
+        'Thirty-one cents a capsule at United States pharmacy acquisition cost, the dearest alpha-blocker in this group and about six times tamsulosin',
+        'Chosen where postural hypotension is the limiting factor, and avoided where ejaculatory function matters',
+        'Its adverse-event rate is the clearest illustration in this file that an on-target effect in the wrong organ is not a safety margin problem but a design consequence',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule, once daily with a meal',
+      description:
+        'A conventional capsule taken with food, because absorption depends on it. There is no modified-release engineering here: silodosin solves the cardiovascular problem through receptor subtype preference rather than through a release profile, which is the opposite of alfuzosin\'s approach to the same problem. Dose is reduced in moderate renal impairment and the drug is contraindicated below a creatinine clearance of 30 mL/min.',
+      safetyProfile:
+        'Retrograde or absent ejaculation dominates at 28.1% against 0.9% on placebo, and is the reason most discontinuations occur. Dizziness, orthostatic hypotension and diarrhoea each occur in under 4% and separate only modestly from placebo. Contraindicated in severe renal impairment, severe hepatic impairment, with strong CYP3A4 inhibitors, and in hypersensitivity. Warnings cover orthostatic hypotension, intraoperative floppy iris syndrome in cataract and glaucoma surgery, and priapism. A dedicated QT study at three times the therapeutic dose found no increase.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will this stop me ejaculating?',
+        a: 'For roughly one man in four, yes, and it is the most likely thing this drug will do to you other than help your stream. In the pooled registration trials, 28.1% of men on silodosin reported the effect against 0.9% on placebo. A later analysis of those trials found that 82% of the events were not retrograde flow into the bladder — despite that being what the label calls them — but orgasm with no seminal emission at all. Orgasm itself is preserved. The reason is mechanical and unavoidable: the tubes that carry semen contract through the same alpha-1A receptor the drug was designed to prefer, and the more sharply a drug prefers that receptor, the more reliably it does both jobs. The effect reverses on stopping the drug.',
+        auditNote:
+          'The class shows a clean gradient. Tamsulosin: 8.4% at 0.4 mg, 18.1% at 0.8 mg. Silodosin, the most alpha-1A-preferring: 28.1%. Alfuzosin, with no subtype preference: no ejaculatory signal in its table at all.',
+      },
+      {
+        q: 'If I get that side effect, does it mean the drug is working better?',
+        a: 'The data point that way, and the finding is more interesting than it is actionable. Analysing the two phase 3 trials, Roehrborn and colleagues found that men who lost seminal emission had 1.75 times the odds of achieving both a 3-point symptom-score improvement and a 3 mL/sec flow improvement by the end of the study, P=0.0127. On the continuous measures the difference favoured them but was not statistically significant. The sensible interpretation is that the ejaculatory effect is a visible marker of how thoroughly the receptor is being blocked, and thorough blockade produces both outcomes. What it does not mean is that the effect should be aimed for, or that its absence means the drug is not working — men without it still improved significantly against placebo.',
+      },
+      {
+        q: 'Does silodosin help pass a kidney stone?',
+        a: 'The randomised trial that asked did not show it, for stones anywhere in the ureter. Sur and colleagues randomised adults with a unilateral 4 to 10 mm ureteric stone to silodosin 8 mg or placebo for up to four weeks. Passage of all stones was 52% on the drug against 44% on placebo, p=0.2. There were no significant differences in emergency-room visits, hospital admissions or painkiller use either. Distal stones did pass significantly more often on silodosin, p=0.01, and that is the number the trial is usually cited for — but the paper says in its own abstract that sample sizes were not calculated for the subgroup analyses, and that the analysed population was slightly below the trial\'s calculated size. The authors called for further studies rather than declaring the question settled, which is the right reading of it.',
+        auditNote:
+          'A subgroup finding inside a trial that missed its primary endpoint is a hypothesis for the next trial. This is the same pattern that took a decade to unwind for tamsulosin and ureteric stones.',
+      },
+      {
+        q: 'Why does this drug have contraindications rather than warnings?',
+        a: 'Because it has one metabolic route out and one elimination route out, and blocking either raises exposure of a drug whose design point is high receptor occupancy. The label contraindicates strong CYP3A4 inhibitors, severe renal impairment below a creatinine clearance of 30 mL/min, severe hepatic impairment at Child-Pugh 10 or above, and hypersensitivity. Tamsulosin, which is cleared by two enzymes rather than one, handles the same interaction with a warning instead. The trade is visible elsewhere in the drug\'s profile too: a dedicated QT study at three times the therapeutic dose found no increase in the corrected QT interval at any time point, while the moxifloxacin positive control in the same study produced 9.59 milliseconds.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for silodosin could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about thirty-one cents a capsule in the CMS acquisition-cost survey across twenty-one listed products — which is a price, not a cost of manufacture. It is the highest figure of any alpha-blocker in this group, and the drug is also the newest and the most synthetically complex of them.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Roehrborn CG, Kaplan SA, Lepor H, Volinn W. Symptomatic and urodynamic responses in patients with reduced or no seminal emission during silodosin treatment for LUTS and BPH. Prostate Cancer Prostatic Dis 2011;14:143-148',
+        identifier: '10.1038/pcan.2010.46',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sur RL, Shore N, L\'Esperance J, et al. Silodosin to facilitate passage of ureteral stones: a multi-institutional, randomized, double-blinded, placebo-controlled trial. Eur Urol 2015;67:959-964',
+        identifier: '10.1016/j.eururo.2014.10.049',
+        kind: 'doi',
+      },
+      {
+        label: 'US phase 3 registration trial of silodosin 8 mg in benign prostatic hyperplasia',
+        identifier: 'NCT00224120',
+        kind: 'nct',
+      },
+      {
+        label: 'US phase 3 long-term safety study of silodosin in benign prostatic hyperplasia',
+        identifier: 'NCT00224133',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Randomised trial of silodosin with change in International Prostate Symptom Score as primary endpoint',
+        identifier: 'NCT00359905',
+        kind: 'nct',
+      },
+      {
+        label:
+          'US prescribing information for silodosin capsules — mechanism of action, clinical pharmacology, contraindications, clinical studies and adverse reactions (openFDA drug label endpoint)',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22silodosin%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5312125 — silodosin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5312125',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 9. Darifenacin — the M3-selective antimuscarinic sold on sparing the brain, whose selectivity
+  //    over the receptor that actually matters for memory is only nine-fold, and whose supporting
+  //    cognitive trial ran for three weeks in healthy volunteers who could not tell they had been
+  //    impaired.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'darifenacin',
+    name: 'Darifenacin',
+    tradeName: 'Enablex',
+    sponsor: 'Abbvie',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'M3 muscarinic acetylcholine receptor on detrusor smooth muscle; the US label quantifies the selectivity as 9-fold over M1, 12-fold over M5 and 59-fold over both M2 and M4',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Treatment of overactive bladder with symptoms of urge urinary incontinence, urgency and frequency.',
+    patientFriendlyIndication:
+      'An overactive bladder — sudden urgency, going too often, and leaking — treated with the most M3-selective drug in the class',
+    anatomicalSite:
+      'Detrusor smooth muscle of the bladder wall, with the M1 receptors of the brain and salivary gland only nine-fold less well bound',
+    conditionContext: {
+      conditionExplainer:
+        'Five muscarinic receptor subtypes exist, M1 to M5. The bladder contracts mostly through M3. Memory and cognition depend heavily on M1. The whole commercial argument for darifenacin is that a drug preferring M3 should leave M1 alone, and therefore leave the brain alone.',
+      whyItMatters:
+        'The label puts a number on that argument, and the number is the weakest part of it. Darifenacin has 59-fold selectivity over M2 and M4, but only 9-fold over M1 — the subtype the cognitive argument is about. A nine-fold margin is a real preference and a thin one.',
+      whoTakesThis:
+        'Adults with overactive bladder, and specifically older adults in whom anticholinergic cognitive burden is the deciding concern. That is the population the drug was positioned for and the population in which the supporting evidence is thinnest.',
+      clinicalGoals:
+        'Fewer weekly urge incontinence episodes on a diary. The label reports a placebo-adjusted reduction of 1.5 to 2.8 episodes a week at 7.5 mg and 2.1 to 4.3 at 15 mg — which is between a fifth and six-tenths of an episode a day.',
+    },
+    oneSentenceVerdict:
+      'The most M3-selective antimuscarinic licensed, marketed on the premise that M3 preference spares cognition: its label reports weekly urge incontinence episodes falling 1.5 to 2.8 more than placebo at 7.5 mg and 2.1 to 4.3 at 15 mg, and a three-week randomised trial in 150 healthy volunteers over 60 found no memory effect against placebo (p=0.908) while oxybutynin ER in the same trial produced impairment equivalent to ten years of brain ageing — but the label\'s own selectivity figure over M1, the receptor that governs memory, is only nine-fold.',
+    laymanHowItWorks:
+      'The bladder wall contracts when acetylcholine lands on muscarinic receptors, and darifenacin blocks them so the involuntary squeeze during filling is weakened. There are five varieties of that receptor. The bladder uses mostly one of them, called M3; the brain relies heavily on a different one, M1. Darifenacin binds M3 fifty-nine times more tightly than M2 or M4, which is a large margin — but only nine times more tightly than M1, which is the one the cognitive argument is actually about. That is why the evidence for brain-sparing rests on measured cognitive testing rather than on the binding numbers.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 57,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.5762 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 18 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 2004 and now generic, with eighteen products in the acquisition-cost file. At fifty-eight cents a tablet it is by a wide margin the most expensive antimuscarinic in this group — more than three times solifenacin and seven times oxybutynin — despite being neither the newest nor the only generic.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'If the reason for choosing darifenacin is cognition, the two serious alternatives approach the same problem differently: trospium carries a permanent electrical charge that keeps it out of the brain by physics rather than by receptor preference, and mirabegron avoids the acetylcholine system altogether. Both arguments are structural. Neither of the three has a long-term randomised cognitive outcome trial behind it.',
+      conventionalRx: [
+        {
+          name: 'Trospium chloride (Sanctura)',
+          class: 'Quaternary ammonium muscarinic antagonist',
+          howItCompares:
+            'Solves the brain problem by molecular charge rather than by subtype preference: a permanently charged quaternary ammonium crosses lipid membranes poorly, so central penetration is limited regardless of which subtype it binds. That is a stronger structural argument than a nine-fold M1 margin, and it rests on the same absence of long-term outcome data.',
+          typicalCost:
+            'US$0.2121 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 16 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: about a third of the cost, and a mechanism of exclusion that does not depend on a binding ratio. Cons: absorption falls 70% to 80% with a high-fat meal, and the immediate-release form is twice daily.',
+        },
+        {
+          name: 'Mirabegron (Myrbetriq)',
+          class: 'Beta-3 adrenergic agonist',
+          howItCompares:
+            'Not an anticholinergic at all, so it contributes nothing to anticholinergic burden by any measure. Its diary effect is comparable: incontinence episodes fell 1.38 to 1.57 a day at 50 mg against 0.96 to 1.17 on placebo across three trials, and one-year persistence is roughly double that of the antimuscarinic class.',
+          typicalCost:
+            'US$9.60 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 17 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: removes the question rather than answering it. Cons: about sixteen times the acquisition cost of darifenacin, plus a blood-pressure warning and a CYP2D6 interaction.',
+        },
+        {
+          name: 'Solifenacin (Vesicare)',
+          class: 'M3-preferring muscarinic antagonist',
+          howItCompares:
+            'Also M3-preferring, less sharply so, and far cheaper. Dry mouth at 5 mg is 10.9% against darifenacin\'s 20.2% at 7.5 mg, though the doses are not equivalent and no head-to-head trial has compared them.',
+          typicalCost:
+            'US$0.1754 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 40 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: less than a third of the price, forty suppliers, and a large modern placebo-controlled dataset. Cons: no cognitive-sparing evidence of its own, and the same class-level dementia association.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Do not rely on noticing a cognitive effect yourself',
+          action:
+            'If cognition is the reason a particular bladder drug was chosen, the check should be a conversation with someone who sees you regularly, not self-assessment.',
+          patientImpact:
+            'In the 150-volunteer trial that established darifenacin\'s cognitive profile, oxybutynin ER produced memory impairment the authors described as comparable in magnitude to ten years of brain ageing — and there were no between-treatment differences in self-rated memory. The paper states plainly that subjects were unaware of the deterioration.',
+          clinicalPrecaution:
+            'That finding applies to the comparator, not to darifenacin, which did not differ from placebo. Its importance here is methodological: an anticholinergic cognitive effect large enough to measure was invisible to the people experiencing it.',
+        },
+        {
+          name: 'Count the whole anticholinergic load, not this prescription alone',
+          action:
+            'Antihistamines, tricyclic antidepressants, antipsychotics and antiparkinson drugs all carry anticholinergic activity that adds to whatever a bladder drug contributes.',
+          patientImpact:
+            'Coupland and colleagues, in 58,769 dementia cases and 225,574 controls, found the adjusted odds ratio rising from 1.06 (95% CI 1.03 to 1.09) at the lowest cumulative exposure to 1.49 (1.44 to 1.54) at the highest, with bladder antimuscarinics as a class at 1.65 (1.56 to 1.75).',
+          clinicalPrecaution:
+            'Those analyses treat bladder antimuscarinics as a single class. No observational dataset has been large enough to separate darifenacin from the rest of it, so its subtype selectivity has never been tested against a dementia endpoint.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CN(C[C@@H]1C(C2=CC=CC=C2)(C3=CC=CC=C3)C(=O)N)CCC4=CC5=C(C=C4)OCC5',
+      chemicalFormula: 'C28H30N2O2',
+      molecularWeight: '426.50 g/mol (free base); dispensed as darifenacin hydrobromide',
+      targetReceptorAffinity:
+        'The US label quantifies the subtype preference directly, which is unusual in this group: 9-fold and 12-fold greater affinity for M3 than for M1 and M5 respectively, and 59-fold greater affinity for M3 than for either M2 or M4. Those four numbers are the drug\'s entire commercial case and its principal vulnerability at the same time — the largest margins are over the subtypes least relevant to cognition, and the smallest is over M1, which is the one that matters for it. One stereocentre, the (S) configuration, is carried in the structure. The diphenylacetamide head and the dihydrobenzofuran tail give the molecule a high calculated lipophilicity, which is the property that determines how readily it crosses membranes.',
+      structureSource: {
+        label: 'PubChem CID 444031 — darifenacin structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/444031',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dar-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Enantiomeric excess of the (S)-pyrrolidine-3-yl diphenylacetamide core',
+          description:
+            'Establish enantiomeric excess of the chiral pyrrolidine before the benzofuran tail is attached. Darifenacin is a single enantiomer and the (R) antipode is the specified chiral impurity; measuring it at the point it is set is the only way a failure can be attributed to a step rather than to the route.',
+          reagentsAndBuffer:
+            'Chiral stationary-phase HPLC on an amylose or cellulose carbamate column, n-hexane with 2-propanol and diethylamine, UV detection at 220 nm, (R)-enantiomer reference standard',
+        },
+        {
+          id: 'dar-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'N-alkylation of the pyrrolidine with the dihydrobenzofuranyl ethyl fragment',
+          description:
+            'Alkylate the pyrrolidine nitrogen with 2-(2,3-dihydrobenzofuran-5-yl)ethyl halide to complete the molecule. The stereocentre is not touched, and the primary carboxamide on the diphenylacetyl group is left intact rather than generated here, because it does not survive strongly basic alkylation conditions well.',
+          dependsOnStepId: 'dar-w1',
+          reagentsAndBuffer:
+            '2-(2,3-dihydrobenzofuran-5-yl)ethyl bromide or mesylate, potassium carbonate or diisopropylethylamine, sodium iodide, acetonitrile or dimethylformamide under nitrogen',
+        },
+        {
+          id: 'dar-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Hydrobromide salt formation and control of the nitrile and acid impurities',
+          description:
+            'Form the hydrobromide and recrystallise, then re-run the chiral assay on the finished salt. The specification is written around the unhydrated nitrile precursor and the over-hydrolysed carboxylic acid, which bracket the amide in both directions.',
+          dependsOnStepId: 'dar-w2',
+          reagentsAndBuffer:
+            'Hydrogen bromide in acetic acid or 2-propanol, ethanol and water for recrystallisation, activated charcoal, reversed-phase HPLC with gradient elution for related substances, chiral HPLC for enantiomeric purity',
+        },
+        {
+          id: 'dar-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Application to cell lines expressing all five human muscarinic subtypes',
+          description:
+            'Apply the compound to five stable lines carrying human CHRM1 through CHRM5. For this molecule the five-subtype panel is not a formality: the label\'s selectivity claim is a set of four ratios, and every one of them comes from this experiment. Omitting M1 or reporting only the M2 and M4 ratios would state the case at its strongest and hide its weakest point.',
+          dependsOnStepId: 'dar-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human CHRM1 to CHRM5, DMEM or Ham F-12 with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4',
+        },
+        {
+          id: 'dar-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Radioligand competition across five subtypes, with functional confirmation at M1 and M3',
+          description:
+            'Measure displacement of a labelled non-selective muscarinic antagonist at each of the five subtypes to obtain the affinity ratios the label quotes, then confirm functional antagonism at the two subtypes the clinical argument turns on — M3 for the bladder effect and M1 for the cognitive one. Affinity ratios and functional ratios do not always agree, and the drug\'s whole positioning rests on a ratio, so reporting both is the difference between a claim and a number.',
+          dependsOnStepId: 'dar-w4',
+          reagentsAndBuffer:
+            'Tritiated N-methylscopolamine as radioligand, atropine for non-specific binding, GF/B filter plates, Fluo-4 AM calcium indicator for the Gq-coupled subtypes, carbachol as agonist, probenecid-containing assay buffer',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dar-a1',
+        category: 'measured',
+        title: 'No memory effect at three weeks, where oxybutynin aged the brain ten years',
+        laymanSummary:
+          'A hundred and fifty healthy people over 60 took darifenacin, oxybutynin or placebo for three weeks and had their memory tested. Darifenacin was indistinguishable from placebo. Oxybutynin produced impairment the authors compared to ten years of brain ageing.',
+        technicalDetails:
+          'Kay and colleagues randomised 150 healthy subjects aged 60 and over to darifenacin, oxybutynin ER or placebo in a multicentre, double-blind, double-dummy, parallel-group, three-week study, with doses escalated according to US labels. The primary endpoint was accuracy on the Name-Face Association Test for delayed recall at week 3. Darifenacin did not differ from placebo (mean difference -0.06, p=0.908). Oxybutynin ER scored significantly worse than both placebo (mean difference -1.30, p=0.011) and darifenacin (-1.24, p=0.022), with the authors describing the magnitude as comparable to brain ageing of ten years. Additional delayed-recall tests agreed. This is a real, well-designed, positive-control-bearing result, and it establishes exactly what it measured: three weeks, healthy volunteers, one memory instrument.',
+        evidenceSource: 'Kay G et al., Eur Urol 2006;50:317-326 (PMID 16687205)',
+        doi: '10.1016/j.eururo.2006.03.057',
+        measuredMetric:
+          'Delayed recall accuracy on the Name-Face Association Test at week 3, darifenacin and oxybutynin ER versus placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dar-a2',
+        category: 'measured',
+        title: 'Nobody could tell they had been impaired',
+        laymanSummary:
+          'The same trial asked participants how their memory felt. The group with measurable impairment reported no more problems than anyone else.',
+        technicalDetails:
+          'Kay and colleagues report that no between-treatment differences were detected in self-rated memory, and state the conclusion explicitly: subjects were unaware of memory deterioration. That is a finding about the oxybutynin arm, not the darifenacin arm, and it is included on this page because it changes how every other cognitive claim in this drug class should be read. An adverse effect large enough to show up on a validated instrument and invisible to the person having it cannot be monitored by asking the patient, and will not appear in a spontaneous adverse-event table. Every antimuscarinic trial that relies on volunteered adverse-event reporting to characterise cognitive safety is measuring the wrong thing.',
+        evidenceSource: 'Kay G et al., Eur Urol 2006;50:317-326 (PMID 16687205)',
+        doi: '10.1016/j.eururo.2006.03.057',
+        measuredMetric:
+          'Self-rated memory scores by treatment arm, against objectively measured delayed-recall performance',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dar-a3',
+        category: 'inferred',
+        title: 'The selectivity margin over the memory receptor is nine-fold',
+        laymanSummary:
+          'Darifenacin\'s case is that preferring the bladder receptor spares the brain. Its own label says it prefers the bladder receptor fifty-nine times over two irrelevant ones — and only nine times over the one the brain uses for memory.',
+        technicalDetails:
+          'The US label states darifenacin has 9-fold and 12-fold greater affinity for M3 than for M1 and M5 respectively, and 59-fold greater affinity for M3 than for M2 or M4. M1 is the subtype most closely tied to cognitive function; M2 and M4 are the subtypes over which the drug\'s selectivity is greatest and whose blockade has least to do with memory. Presenting darifenacin as "M3-selective" without stating which ratios apply to which subtype describes the drug at its strongest and omits its weakest number. Nine-fold is a genuine preference — it is not nothing — but it is the margin on which the cognitive argument rests, and it is the smallest of the four.',
+        evidenceSource:
+          'US prescribing information for darifenacin extended-release tablets, Mechanism of Action section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Reported affinity ratios of M3 over M1, M2, M4 and M5 as stated on the US label',
+        inferredClaim:
+          'That M3 selectivity confers cognitive safety — the selectivity over M1, the subtype cognition depends on, is nine-fold, and no long-term cognitive outcome trial of this drug exists',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'dar-a4',
+        category: 'inferred',
+        title: 'Three weeks in healthy volunteers is not a dementia study',
+        laymanSummary:
+          'The cognitive evidence for this drug is a three-week trial in healthy people. The concern it is meant to answer is about years of use in people who are already frail.',
+        technicalDetails:
+          'The Kay trial ran for three weeks in healthy subjects aged 60 and over. A companion crossover study in 27 healthy men aged 19 to 44 found darifenacin at 7.5 and 15 mg produced no cognitive effect, no clinically relevant EEG change and no effect on visual nearpoint or heart rate, while dicyclomine as an M1-selective comparator impaired five of twelve cognitive variables and slowed the EEG. Both are clean, informative pharmacodynamic studies. Neither addresses the epidemiological question, which concerns cumulative exposure measured in years: Coupland and colleagues reported an adjusted odds ratio of 1.65 (95% CI 1.56 to 1.75) for bladder antimuscarinics as a class across exposure windows of 1 to 11 years, and Gray and colleagues a hazard ratio of 1.54 (1.21 to 1.96) above 1,095 standardised daily doses over ten years. Those datasets treat the class as one thing and have never been powered to separate darifenacin out of it.',
+        evidenceSource:
+          'Kay G et al., Eur Urol 2006;50:317-326; Kay GG, Wesnes KA, BJU Int 2005;96:1055-1062 (PMID 16225528); Coupland CAC et al., JAMA Intern Med 2019;179:1084-1093',
+        doi: '10.1111/j.1464-410X.2005.05745.x',
+        inferredClaim:
+          'That short-term pharmacodynamic equivalence to placebo predicts long-term dementia risk — the exposure windows differ by three orders of magnitude and no study bridges them',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dar-a5',
+        category: 'measured',
+        title: 'The dry mouth and constipation are ordinary for the class, and dose-dependent',
+        laymanSummary:
+          'Sparing the brain does not spare the mouth or the gut. One in five patients at the lower dose and one in three at the higher dose report dry mouth, and one in five at the higher dose reports constipation.',
+        technicalDetails:
+          'The US label reports dry mouth in 20.2% at 7.5 mg and 35.3% at 15 mg against 8.2% on placebo, and constipation in 14.8% and 21.3% against 6.2%. Those rates sit at the higher end of the class: solifenacin reports 10.9% and 27.6% dry mouth against 4.2%, and trospium extended-release reported 8.7% against 3% in its pivotal trial. Constipation in particular is more prominent here than elsewhere in the group, which is consistent with the label\'s own selectivity data — M3 is the subtype that drives gut smooth muscle as well as bladder smooth muscle, so an M3-preferring drug has no route to sparing the intestine. Selectivity relocates the side-effect burden; it does not remove it.',
+        evidenceSource:
+          'US prescribing information for darifenacin extended-release tablets, Adverse Reactions section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Incidence of dry mouth and constipation at 7.5 mg and 15 mg against placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dar-a6',
+        category: 'measured',
+        title: 'A clean QT study at five times the maximum dose',
+        laymanSummary:
+          'At doses up to 75 mg — five times the highest licensed dose — darifenacin did not lengthen the heart\'s electrical interval. The antibiotic used as a control in the same study did.',
+        technicalDetails:
+          'A controlled electrophysiology trial in 179 healthy adults receiving doses up to 75 mg found that darifenacin did not result in QT or QTc interval prolongation, while moxifloxacin as active control produced an increase of approximately 7 msec. Five times the maximum recommended dose with a demonstrably sensitive assay is about as strong as a negative QT finding gets. It is recorded rather than omitted because within this file the same study design produced 11.84 msec for tolterodine at twice its therapeutic dose with confidence intervals overlapping the positive control, and nothing at all for silodosin at three times its dose. A negative result is only interpretable next to the assay that produced it.',
+        evidenceSource:
+          'US prescribing information for darifenacin extended-release tablets, Clinical Pharmacology section (openFDA drug label endpoint)',
+        measuredMetric:
+          'QT and QTc interval change at doses up to 75 mg against a moxifloxacin positive control, in 179 healthy adults',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dar-a7',
+        category: 'failed',
+        title: 'A 445-patient trial of "warning time" with no result on the registry',
+        laymanSummary:
+          'Novartis ran a 445-patient placebo-controlled trial of how much warning a patient gets before an urgent need to void. No result is posted on the public registry record.',
+        technicalDetails:
+          'NCT00171145 was a 12-week randomised trial of darifenacin 15 mg against placebo in 445 patients, with change from baseline in warning time at week 12 as the primary outcome. Warning time — the interval between first sensation of urgency and involuntary voiding — is arguably the endpoint that maps most directly onto what patients complain about, and it is far less common than the episode counts every other trial in this indication uses. The registry record carries no results section. A completed 445-patient placebo-controlled trial of a novel patient-centred endpoint, with no public result, is a gap in the evidence base for this drug rather than a criticism of it — but it is a gap, and it is the kind that only shows up when the registry is read alongside the label.',
+        evidenceSource: 'ClinicalTrials.gov record, NCT00171145',
+        measuredMetric:
+          'Presence or absence of a posted results section for a completed 445-patient randomised trial',
+        inferredClaim:
+          'That the published efficacy record for this drug is complete — a 445-patient placebo-controlled trial of a distinct primary endpoint has no public result',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dar-a8',
+        category: 'measured',
+        title: 'The weekly numbers convert to a fraction of an episode a day',
+        laymanSummary:
+          'The label reports the benefit in episodes per week, which sounds larger than it is. At the lower dose it works out at about one fifth to two fifths of an accident a day.',
+        technicalDetails:
+          'Across three pivotal trials the label reports mean weekly reductions in urge incontinence episodes against placebo of 1.5 to 2.8 at 7.5 mg and 2.1 to 4.3 at 15 mg. Divided by seven, those are 0.21 to 0.40 episodes a day at 7.5 mg and 0.30 to 0.61 at 15 mg. Reporting in weekly units is entirely legitimate and matches the diary period, and it also makes the same effect look between three and seven times larger than the daily figures every other drug in this file is reported in. Placed on the common scale, darifenacin sits in the same band as everything else in the class: solifenacin 0.45 against placebo in SYNERGY, mirabegron 0.34 to 0.59 across three trials, tolterodine 0.12 to 0.15 in the Pfizer studies.',
+        evidenceSource:
+          'US prescribing information for darifenacin extended-release tablets, Clinical Studies section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Mean weekly reduction in urge incontinence episodes against placebo at 7.5 mg and 15 mg, converted to a daily rate',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A once-daily extended-release tablet',
+        laymanDesc:
+          'One tablet daily, swallowed whole. The extended-release design keeps the level steady rather than spiking, which is what the tolerability of the whole class depends on.',
+        molecularDetail:
+          'Oral extended-release tablet, once daily. Metabolised by CYP2D6 and CYP3A4, so strong inhibitors of either raise exposure and the label caps the dose accordingly. Dispensed as the hydrobromide. A dedicated QT study at doses up to 75 mg found no QT or QTc prolongation.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the receptor from outside the cell',
+        laymanDesc:
+          'The target sits on the outer face of the bladder muscle cell. The drug arrives from the bloodstream and occupies it; nothing has to be carried inside.',
+        molecularDetail:
+          'Muscarinic receptors are plasma-membrane G-protein-coupled receptors with an outward-facing orthosteric pocket, so no transporter step exists. Darifenacin is a lipophilic tertiary amine, which is the physical property that governs how much of it reaches tissues behind the blood-brain barrier — a separate question from which subtype it binds once there.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It prefers M3 by 59-fold over two subtypes and 9-fold over the one that matters',
+        laymanDesc:
+          'The drug picks out the receptor variety the bladder uses. It picks it out very strongly over two varieties that have little to do with memory, and only moderately over the one that does.',
+        molecularDetail:
+          'Competitive muscarinic antagonism with the label-stated ratios: 59-fold M3 over M2 and M4, 12-fold over M5, 9-fold over M1. M1 is the subtype most implicated in cognitive function. The ordering of those four numbers is the drug\'s entire pharmacological story, and the smallest of them is the one the marketing argument depends on.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The calcium signal driving the contraction is blunted',
+        laymanDesc:
+          'A contraction needs a burst of calcium inside the muscle cell. With M3 blocked, the burst is smaller and the involuntary squeeze during filling weakens.',
+        molecularDetail:
+          'Loss of M3-Gq/11 coupling reduces phospholipase C activity, inositol trisphosphate falls, sarcoplasmic reticulum calcium release drops and myosin light-chain phosphorylation declines. The identical cascade is interrupted in gut smooth muscle, which is why constipation is more prominent for this drug than for the rest of the class: M3 is the subtype the intestine uses too, so selectivity offers no escape from it.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'A fifth to three fifths of an episode a day, and no measurable memory effect',
+        laymanDesc:
+          'Weekly leaks fall by one and a half to four more than on placebo, depending on dose and trial — a fraction of an episode a day. Memory testing over three weeks found no difference from placebo, where oxybutynin in the same study did worse.',
+        molecularDetail:
+          'Weekly urge incontinence episodes fell 1.5 to 2.8 more than placebo at 7.5 mg and 2.1 to 4.3 at 15 mg — 0.21 to 0.61 episodes a day. Dry mouth 20.2% and 35.3% against 8.2%; constipation 14.8% and 21.3% against 6.2%. Delayed recall at three weeks did not differ from placebo (p=0.908) while oxybutynin ER differed by -1.30 (p=0.011).',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Darifenacin versus oxybutynin ER on memory in older subjects (Kay 2006)',
+        phase: 'Randomised double-blind double-dummy parallel-group, 3 weeks',
+        sampleSize: 150,
+        primaryEndpoint:
+          'Accuracy on the Name-Face Association Test for delayed recall at week 3, in healthy subjects aged 60 and over',
+        endpointMet: true,
+        statisticalPValue:
+          'Darifenacin versus placebo mean difference -0.06, p=0.908. Oxybutynin ER versus placebo -1.30, p=0.011; versus darifenacin -1.24, p=0.022',
+        unreportedAdverseSignals:
+          'No between-treatment difference in self-rated memory: the impaired group did not know they were impaired. The trial ran three weeks in healthy volunteers and cannot address cumulative exposure over years.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Darifenacin versus dicyclomine pharmacodynamics (Kay and Wesnes 2005)',
+        phase: 'Double-blind four-way crossover, 7-day treatment periods',
+        sampleSize: 27,
+        primaryEndpoint:
+          'Cognitive function, quantitative EEG, salivation, visual nearpoint and heart rate variability on day 7 of each period',
+        endpointMet: true,
+        statisticalPValue:
+          'Darifenacin 7.5 and 15 mg: no cognitive effect versus placebo and no clinically relevant EEG change. Dicyclomine impaired 5 of 12 cognitive variables — simple reaction time p=0.009, numeric working memory speed p=0.012, spatial working memory speed p=0.048, picture recognition speed p=0.04 and sensitivity p=0.03',
+        unreportedAdverseSignals:
+          'Both agents decreased salivary flow rate against placebo, so peripheral antimuscarinic activity was demonstrated for darifenacin in the same study that found no central effect. Twenty-seven healthy men aged 19 to 44 is not the population the cognitive concern is about.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Warning time trial (NCT00171145)',
+        phase: 'Randomised placebo-controlled, 12 weeks',
+        sampleSize: 445,
+        primaryEndpoint: 'Change from baseline in warning time at week 12',
+        endpointMet: false,
+        statisticalPValue:
+          'No results are posted on the registry record. `endpointMet: false` records the absence of a public result, not a missed endpoint.',
+        unreportedAdverseSignals:
+          'Warning time is the endpoint closest to the complaint patients actually bring, and it is rarely used. A completed 445-patient placebo-controlled trial of it has no public result.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Long-term safety and tolerability study (NCT00170755)',
+        phase: 'Phase 3 open-label long-term safety',
+        sampleSize: 718,
+        primaryEndpoint:
+          'Long-term safety and tolerability, by adverse events, laboratory values, vital signs and physical condition',
+        endpointMet: true,
+        statisticalPValue:
+          'A safety endpoint with no efficacy hypothesis test and no placebo arm; it describes tolerability over extended exposure and not effect size',
+        unreportedAdverseSignals:
+          'The longest exposure dataset for this drug measures spontaneously reported adverse events. The Kay trial showed that an anticholinergic cognitive effect can be invisible to the person experiencing it, which is exactly what a spontaneous-reporting safety study cannot capture.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Delayed recall at three weeks did not differ from placebo (mean difference -0.06, p=0.908) while oxybutynin ER differed by -1.30 (p=0.011) in 150 healthy subjects over 60',
+        'Self-rated memory did not differ between arms: the impaired group was unaware of the impairment',
+        'Label affinity ratios: 9-fold M3 over M1, 12-fold over M5, 59-fold over M2 and M4',
+        'Weekly urge incontinence episodes fell 1.5 to 2.8 more than placebo at 7.5 mg and 2.1 to 4.3 at 15 mg',
+        'Dry mouth 20.2% and 35.3% against 8.2% on placebo; constipation 14.8% and 21.3% against 6.2%',
+        'No QT or QTc prolongation at doses up to 75 mg in 179 healthy adults, against a 7 msec moxifloxacin control',
+      ],
+      unsupportedInferences: [
+        'That M3 selectivity delivers cognitive safety — the margin over M1 is nine-fold, the smallest of the four ratios the label quotes',
+        'That a three-week trial in healthy volunteers answers a question about cumulative exposure over years',
+        'That weekly episode counts describe a larger benefit than the class average — converted to a daily rate they sit in the same band as every other drug in this file',
+        'That the long-term open-label safety study can characterise cognitive risk — it relies on spontaneous reporting of an effect the pivotal cognitive trial showed to be unnoticeable',
+      ],
+      whatFailedInitially: [
+        'The public reporting of the 445-patient warning-time trial, which has no results section on the registry record',
+        'The premise that receptor selectivity relocates side effects out of existence — constipation is more prominent here than elsewhere in the class, because the gut uses M3 too',
+        'Any attempt to test the cognitive claim on a dementia endpoint: the observational datasets treat bladder antimuscarinics as one class and have never separated this drug out',
+      ],
+      realWorldOutcome: [
+        'Fifty-eight cents a tablet at United States pharmacy acquisition cost — more than three times solifenacin and seven times oxybutynin, across eighteen listed products',
+        'Positioned for older adults on cognitive grounds, in a market where the cheaper alternative with a structural rather than a ratio-based argument, trospium, costs a third as much',
+        'Its cognitive trial remains the most-cited head-to-head evidence in the class, and remains three weeks long',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral extended-release tablet, once daily',
+      description:
+        'Swallowed whole and not chewed, crushed or divided, because the release rate is engineered into the tablet. Dose is capped in the presence of strong CYP3A4 inhibitors and in moderate hepatic impairment, and the drug is not recommended in severe hepatic impairment. Metabolism runs through both CYP2D6 and CYP3A4.',
+      safetyProfile:
+        'Dry mouth and constipation dominate and are clearly dose-dependent, with constipation more prominent than for most of the class because M3 governs gut smooth muscle as well as bladder. Contraindicated in patients with or at risk for urinary retention, gastric retention, or uncontrolled narrow-angle glaucoma. A dedicated QT study at up to five times the maximum dose found no prolongation. The cognitive question that the drug was positioned to answer has been tested for three weeks in healthy volunteers and never over the exposure windows the epidemiology concerns.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is this the bladder drug that is safe for the brain?',
+        a: 'It is the one with the best short-term evidence, and the evidence is short-term. Kay and colleagues randomised 150 healthy people aged 60 and over to darifenacin, oxybutynin ER or placebo for three weeks and tested delayed recall. Darifenacin was indistinguishable from placebo, mean difference -0.06 with p=0.908. Oxybutynin scored significantly worse than both, and the authors put the size of that impairment at roughly ten years of brain ageing. That is a genuine, well-controlled result. What it is not is an answer to the question people are actually worried about, which concerns years of exposure in people who are already frail — a question the observational literature raises and no trial in this class has been designed to settle.',
+        auditNote:
+          'The label\'s own selectivity figures are worth reading in this light: 59-fold over M2 and M4, and 9-fold over M1, which is the subtype cognition depends on.',
+      },
+      {
+        q: 'Why is it so much more expensive than the others?',
+        a: 'Not because it is newer — it was approved in 2004, the same year as solifenacin and trospium. The CMS acquisition-cost file lists eighteen products for darifenacin at a median of fifty-eight cents a tablet, against forty products for solifenacin at eighteen cents, fifty-four for tolterodine at twenty-five cents, and ninety-two for oxybutynin at eight cents. Price in this market tracks the number of suppliers far more closely than it tracks anything about the molecule, and darifenacin\'s extended-release tablet is a technical barrier to entry. What that number is not is a manufacturing cost: it is what pharmacies pay, and no verifiable per-dose cost-of-production study exists for this molecule.',
+      },
+      {
+        q: 'Will it still dry my mouth out?',
+        a: 'Yes, and more than most of the class. The label reports dry mouth in 20.2% at 7.5 mg and 35.3% at 15 mg, against 8.2% on placebo — higher than solifenacin\'s 10.9% at its starting dose and far higher than trospium extended-release, which reported 8.7% in its pivotal trial. Constipation is also more prominent: 14.8% and 21.3% against 6.2%. There is a mechanistic reason. The salivary gland and the gut both use the M3 receptor, which is the receptor darifenacin was designed to prefer. Selectivity for M3 moves the side-effect burden away from the brain and towards the mouth and the gut; it does not shrink it.',
+      },
+      {
+        q: 'How much better than placebo is it, in daily terms?',
+        a: 'Between about a fifth and three fifths of an accident a day. The label reports the benefit in weekly units, which is what the diary period was: mean weekly reductions in urge incontinence episodes against placebo of 1.5 to 2.8 at 7.5 mg and 2.1 to 4.3 at 15 mg. Divide by seven and those become 0.21 to 0.40 and 0.30 to 0.61 episodes a day. That puts darifenacin in the same band as everything else in this class — solifenacin at 0.45 against placebo in SYNERGY, mirabegron at 0.34 to 0.59, tolterodine at 0.12 to 0.15. Weekly reporting is honest and it also makes the same number look several times larger, which is worth knowing when comparing across labels.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for darifenacin could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about fifty-eight cents a tablet in the CMS acquisition-cost survey across eighteen listed products — which is a price, not a cost of manufacture. It is the highest figure of any antimuscarinic in this group.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Kay G, Crook T, Rekeda L, Lima R, Ebinger U, Arguinzoniz M, Steel M. Differential effects of the antimuscarinic agents darifenacin and oxybutynin ER on memory in older subjects. Eur Urol 2006;50:317-326',
+        identifier: '10.1016/j.eururo.2006.03.057',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kay GG, Wesnes KA. Pharmacodynamic effects of darifenacin, a muscarinic M3 selective receptor antagonist for the treatment of overactive bladder, in healthy volunteers. BJU Int 2005;96:1055-1062',
+        identifier: '10.1111/j.1464-410X.2005.05745.x',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Coupland CAC, Hill T, Dening T, Morriss R, Moore M, Hippisley-Cox J. Anticholinergic drug exposure and the risk of dementia: a nested case-control study. JAMA Intern Med 2019;179:1084-1093',
+        identifier: '10.1001/jamainternmed.2019.0677',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gray SL, Anderson ML, Dublin S, et al. Cumulative use of strong anticholinergics and incident dementia: a prospective cohort study. JAMA Intern Med 2015;175:401-407',
+        identifier: '10.1001/jamainternmed.2014.7663',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Twelve-week placebo-controlled trial of darifenacin 15 mg with change in warning time as the primary endpoint',
+        identifier: 'NCT00171145',
+        kind: 'nct',
+      },
+      {
+        label: 'Long-term safety and tolerability study of darifenacin in overactive bladder',
+        identifier: 'NCT00170755',
+        kind: 'nct',
+      },
+      {
+        label:
+          'US prescribing information for darifenacin extended-release tablets — mechanism of action with subtype affinity ratios, clinical pharmacology, contraindications, clinical studies and adverse reactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22darifenacin%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 444031 — darifenacin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/444031',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 10. Trospium — the charged molecule that cannot easily enter the brain, whose two pivotal
+  //     trials published abstracts containing the word "significantly" and no effect size at all,
+  //     and whose central-nervous-system safety claim rests on the headache rate.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'trospium',
+    name: 'Trospium',
+    tradeName: 'Sanctura',
+    sponsor: 'Allergan',
+    targetGene: 'CHRM3',
+    targetProtein:
+      'Muscarinic acetylcholine receptors in cholinergically innervated organs, non-selectively across subtypes; the molecule is a quaternary ammonium cation and carries a permanent positive charge',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Treatment of overactive bladder with symptoms of urge urinary incontinence, urgency and urinary frequency.',
+    patientFriendlyIndication:
+      'An overactive bladder — sudden urgency, going too often, and leaking — treated with a drug built not to reach the brain',
+    anatomicalSite:
+      'Detrusor smooth muscle of the bladder wall, reached from the bloodstream; central nervous system penetration is limited by the molecule\'s permanent charge',
+    conditionContext: {
+      conditionExplainer:
+        'Every other antimuscarinic in this indication is a tertiary amine: uncharged, fat-soluble, and free to cross the blood-brain barrier. Trospium is a quaternary ammonium compound with a permanent positive charge, which makes crossing a lipid membrane energetically expensive. That single structural difference is the drug\'s entire reason for existing.',
+      whyItMatters:
+        'It converts the cognitive-safety argument from a receptor-selectivity ratio, which darifenacin relies on, into a physical-chemistry property. A charge is not a preference — it applies to every tissue behind every lipid barrier at once. That is a stronger form of argument, and it has been no better tested against a long-term outcome.',
+      whoTakesThis:
+        'Adults with overactive bladder, particularly older adults already carrying anticholinergic load from other prescriptions, and people for whom the cognitive question is decisive.',
+      clinicalGoals:
+        'Fewer voids and fewer urge incontinence episodes per 24 hours on a diary. Both pivotal trials report those endpoints as met, and neither published abstract reports by how much.',
+    },
+    oneSentenceVerdict:
+      'A quaternary ammonium muscarinic antagonist whose permanent positive charge limits entry to the brain by physics rather than by receptor preference: its two pivotal 12-week placebo-controlled trials in 523 and 601 patients both met their dual primary endpoints, both published abstracts state the results as "significant" without a single effect size, and the central-nervous-system safety claim rests on a headache rate that was lower on drug (1.0%) than on placebo (2.6%).',
+    laymanHowItWorks:
+      'Trospium blocks the same receptors as every other bladder antimuscarinic, so the bladder wall contracts less forcefully while it fills. What makes it different is not what it binds but where it can go. The molecule carries a permanent electrical charge, and charged molecules cross the fatty membranes that wall off the brain very poorly. That is a physical property, not a design preference, and it is the reason this drug is reached for when the worry is cognition. The same charge means food interferes badly with absorption, and the kidneys rather than the liver do the clearing.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 56,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.2121 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 16 listed products, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 2004 and now generic, with sixteen products in the acquisition-cost file. At twenty-one cents a tablet it costs a third of darifenacin, the other drug in this indication marketed on a cognitive argument, and about two and a half times oxybutynin, the drug that argument is aimed at.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Three drugs claim to be the answer to anticholinergic cognitive burden and they use three different arguments. Trospium relies on molecular charge, darifenacin on a receptor-affinity ratio, and mirabegron on not being an anticholinergic at all. Only the third of those removes the question rather than answering it, and it is by far the most expensive.',
+      conventionalRx: [
+        {
+          name: 'Mirabegron (Myrbetriq)',
+          class: 'Beta-3 adrenergic agonist',
+          howItCompares:
+            'Does not touch the acetylcholine system, so it contributes nothing to anticholinergic burden by any measure and needs no argument about membranes or ratios. Effect size is comparable: incontinence episodes fell 1.38 to 1.57 a day at 50 mg against 0.96 to 1.17 on placebo across three trials, and real-world one-year persistence runs 32% to 38% against 12% to 25% for the antimuscarinic class.',
+          typicalCost:
+            'US$9.60 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 17 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: removes the anticholinergic question entirely. Cons: about forty-five times the acquisition cost, plus a blood-pressure warning and a CYP2D6 interaction.',
+        },
+        {
+          name: 'Darifenacin (Enablex)',
+          class: 'M3-preferring muscarinic antagonist',
+          howItCompares:
+            'The rival cognitive argument, built on receptor selectivity rather than exclusion. Its supporting evidence is stronger — a three-week randomised trial in 150 healthy people over 60 found no memory effect against placebo (p=0.908) while oxybutynin in the same trial produced measurable impairment. Its label also states the selectivity margin over M1, the memory subtype, as only nine-fold.',
+          typicalCost:
+            'US$0.5762 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 18 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: an actual randomised cognitive trial behind it, and no food restriction. Cons: nearly three times the cost, dry mouth in 20.2% to 35.3%, and its argument depends on the smallest of its four affinity ratios.',
+        },
+        {
+          name: 'Solifenacin (Vesicare)',
+          class: 'M3-preferring muscarinic antagonist',
+          howItCompares:
+            'The default choice in this class, with the largest modern placebo-controlled dataset: incontinence episodes fell 1.79 a day against 1.34 on placebo in the 3,527-patient SYNERGY trial. It makes no cognitive claim and is a tertiary amine that crosses into the brain freely.',
+          typicalCost:
+            'US$0.1754 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, median across 40 listed products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheapest of the three, once daily, and its trials report actual numbers. Cons: no cognitive-sparing evidence, and full membership of the class carrying the observational dementia association.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Take it away from food, or most of the dose is wasted',
+          action:
+            'The label directs administration at least one hour before meals, and the reason is quantified rather than precautionary.',
+          patientImpact:
+            'Administration with a high-fat meal reduced absorption substantially: area under the curve and peak concentration were 70% to 80% lower than in the fasting state. A drug taken with dinner delivers a fraction of the exposure the trials measured.',
+          clinicalPrecaution:
+            'This is a larger food effect than almost any oral drug in common use, and it follows directly from the permanent charge that makes the molecule attractive in the first place. The property that keeps it out of the brain also keeps it out of the bloodstream.',
+        },
+        {
+          name: 'Check kidney function, because the kidney does the clearing',
+          action:
+            'Trospium is eliminated renally by active tubular secretion rather than being metabolised by the liver.',
+          patientImpact:
+            'Mean renal clearance is 29.07 L/hour, roughly four-fold higher than average glomerular filtration rate, which the label identifies as evidence of active tubular secretion. In severe renal impairment exposure rises substantially and dosing is adjusted accordingly.',
+          clinicalPrecaution:
+            'The upside of the same fact is that trospium has no known drug-drug interactions of the cytochrome kind, which is a real advantage in a person taking many medicines — the population this drug is most often chosen for.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CC[N+]2(C1)[C@@H]3CC[C@H]2CC(C3)OC(=O)C(C4=CC=CC=C4)(C5=CC=CC=C5)O',
+      chemicalFormula: 'C25H30NO3',
+      molecularWeight:
+        '392.50 g/mol for the trospium cation shown here; dispensed as trospium chloride, in which the chloride counter-ion is not part of the structure above',
+      targetReceptorAffinity:
+        'The US label describes the pharmacology functionally rather than numerically: trospium chloride "antagonizes the effect of acetylcholine on muscarinic receptors" in cholinergically innervated organs, with no subtype selectivity claimed and no binding constant given, so none is stated here. The pharmacologically decisive feature is the quaternary nitrogen at the bridgehead of the azoniabicyclo system, visible in the structure as [N+]. It carries a permanent positive charge at every physiological pH, which is why the molecule crosses lipid membranes poorly, why food cuts its absorption by 70% to 80%, why the kidney rather than the liver clears it, and why it has no cytochrome-mediated drug interactions. Every distinctive property of this drug follows from that one atom.',
+      structureSource: {
+        label: 'PubChem CID 5284632 — trospium cation structure, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284632',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tro-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemical and diastereomeric purity of the nortropanol bicyclic core',
+          description:
+            'Confirm the configuration of the bridged bicyclic alcohol before it is esterified. The azabicyclic scaffold carries fixed stereocentres and the endo and exo alcohols behave differently on esterification, so identity and diastereomeric ratio are established here rather than inferred from the finished salt.',
+          reagentsAndBuffer:
+            'Chiral and achiral reversed-phase HPLC with refractive-index or charged-aerosol detection, nuclear magnetic resonance for endo and exo assignment, reference standards for both diastereomers',
+        },
+        {
+          id: 'tro-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Benzilate esterification, then quaternisation of the bridgehead nitrogen',
+          description:
+            'Esterify the bicyclic alcohol with benzilic acid, then quaternise the bridgehead nitrogen with 1,4-dibromobutane to close the spiro pyrrolidinium ring and install the permanent positive charge. The quaternisation is the step that makes this drug what it is, and it is deliberately last: a charged nitrogen changes the solubility of everything downstream.',
+          dependsOnStepId: 'tro-w1',
+          reagentsAndBuffer:
+            'Benzilic acid or its methyl ester with acid catalysis or transesterification conditions, 1,4-dibromobutane, potassium carbonate, acetonitrile or dimethylformamide under nitrogen, followed by chloride ion exchange',
+        },
+        {
+          id: 'tro-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Chloride exchange, recrystallisation and control of the benzilic acid hydrolysis product',
+          description:
+            'Exchange the bromide for chloride and recrystallise the quaternary salt. Benzilate esters hydrolyse, so the specification is written around free benzilic acid and the free bicyclic alcohol, and stability testing tracks both. Residual bromide is controlled as an ion in its own right.',
+          dependsOnStepId: 'tro-w2',
+          reagentsAndBuffer:
+            'Anion-exchange resin in chloride form or silver chloride metathesis, ethanol and water for recrystallisation, ion chromatography for residual bromide, reversed-phase HPLC with ion-pairing for related substances, Karl Fischer titration',
+        },
+        {
+          id: 'tro-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Muscarinic subtype panel plus a membrane-permeability assay run alongside it',
+          description:
+            'Apply the compound to five stable lines carrying human CHRM1 through CHRM5, and in parallel run a bidirectional permeability assay across a polarised cell monolayer. For every other drug in this file the permeability assay would be a footnote. Here it is the primary claim: the receptor panel establishes that the drug is an ordinary non-selective antimuscarinic, and the permeability assay is the only experiment that tests the reason for using it.',
+          dependsOnStepId: 'tro-w3',
+          reagentsAndBuffer:
+            'CHO or HEK293 lines stably expressing human CHRM1 to CHRM5, DMEM with 10% fetal bovine serum, geneticin selection, HEPES-buffered assay saline at pH 7.4; Caco-2 or MDCK-MDR1 monolayers on permeable supports with transepithelial electrical resistance monitoring and lucifer yellow as integrity marker',
+        },
+        {
+          id: 'tro-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Receptor occupancy quantified against measured apparent permeability',
+          description:
+            'Measure radioligand displacement and carbachol-evoked calcium blockade at each subtype, then report those numbers next to the apparent permeability coefficient and efflux ratio from the monolayer. Reporting them together is the point: a drug that blocks all five subtypes equally and cannot reach the brain is a different clinical object from one that prefers M3 and can, and the two facts have to be quantified in the same document for either to mean anything.',
+          dependsOnStepId: 'tro-w4',
+          reagentsAndBuffer:
+            'Tritiated N-methylscopolamine as radioligand, atropine for non-specific binding, GF/B filter plates, Fluo-4 AM calcium indicator, carbachol as agonist, LC-MS/MS quantification of compound in donor and receiver chambers, propranolol and atenolol as high- and low-permeability controls',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tro-a1',
+        category: 'failed',
+        title: 'Both pivotal trials published abstracts with no effect size at all',
+        laymanSummary:
+          'The two trials that registered this drug enrolled 523 and 601 patients. Both met their endpoints. Neither published abstract contains a single number describing how much better the drug was than placebo.',
+        technicalDetails:
+          'Zinner and colleagues randomised 523 patients at 51 sites to trospium 20 mg twice daily or placebo for 12 weeks, with change in average toilet voids and change in urge incontinence episodes per 24 hours as dual primary endpoints. The results section states that trospium "significantly decreased average frequency of toilet voids and urge incontinent episodes compared to placebo" and "significantly increased average volume per void" — with no means, no differences, no confidence intervals and no p-values. Staskin and colleagues randomised 601 subjects to trospium extended-release 60 mg once daily (298) or placebo (303), and reported that treatment "resulted in significant improvements over placebo in all primary and key secondary efficacy outcomes at weeks 1 through 12" — again with no effect size. Both abstracts do give adverse-event percentages to one decimal place. A reader can learn exactly how many patients got dry mouth and cannot learn how many fewer accidents they had.',
+        evidenceSource:
+          'Zinner N et al., J Urol 2004;171:2311-2315 (PMID 15126811); Staskin D et al., J Urol 2007;178:978-984 (PMID 17632131)',
+        doi: '10.1097/01.ju.0000127742.73136.0c',
+        measuredMetric:
+          'Presence of any quantified treatment effect in the published abstracts of the two pivotal trials',
+        inferredClaim:
+          'That "significant improvements in all primary and key secondary outcomes" conveys the size of the benefit — it conveys only the direction and the p-value threshold',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tro-a2',
+        category: 'inferred',
+        title: 'The brain-sparing claim is supported by the headache rate',
+        laymanSummary:
+          'The reason to choose this drug is that it should not reach the brain. The evidence offered in its own pivotal trial is that 1.0% of patients reported headache against 2.6% on placebo.',
+        technicalDetails:
+          'Staskin and colleagues report: "Central nervous system adverse events were rare (headache with trospium 1.0% vs placebo 2.6%)." Zinner and colleagues open by asserting that trospium is "an anticholinergic agent with predominantly peripheral nonselective antimuscarinic activity lacking central nervous system effects" — a statement in the purpose section, before any data. Headache is a poor proxy for central anticholinergic effect; it was lower on drug than on placebo, which if taken at face value would imply a protective effect that nobody claims. Meanwhile the Kay trial in this same file showed that a measurable anticholinergic memory impairment can be entirely invisible to the person experiencing it and would therefore never enter a spontaneous adverse-event table. The structural argument for trospium is genuinely strong — a permanent cationic charge does limit membrane crossing — and it has not been converted into a measured cognitive outcome.',
+        evidenceSource:
+          'Staskin D et al., J Urol 2007;178:978-984 (PMID 17632131); Zinner N et al., J Urol 2004;171:2311-2315 (PMID 15126811); Kay G et al., Eur Urol 2006;50:317-326 (PMID 16687205)',
+        doi: '10.1016/j.juro.2007.05.058',
+        inferredClaim:
+          'That a low spontaneous headache rate demonstrates absence of central nervous system effect — it demonstrates the absence of volunteered headache reports, and the pivotal cognitive literature in this class shows the relevant effect is not volunteered',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tro-a3',
+        category: 'measured',
+        title: 'A high-fat meal removes 70% to 80% of the dose',
+        laymanSummary:
+          'Taken with a fatty meal, this drug delivers between a fifth and a third of the exposure it delivers on an empty stomach. That is one of the largest food effects of any common oral medicine.',
+        technicalDetails:
+          'The US label states that administration with a high-fat (50%) meal resulted in reduced absorption, with area under the curve and peak concentration values 70% to 80% lower than in the fasting state, and directs that dosing occur at least one hour before meals. The magnitude follows directly from the permanent positive charge: a cation is poorly absorbed across the gut wall at the best of times, and a fatty meal makes it worse. This is the cost side of the same structural property the drug is chosen for. It is also the property that makes real-world effectiveness likely to differ from trial effectiveness by more than usual, because trial participants take medicines on schedule and the schedule here is demanding.',
+        evidenceSource:
+          'US prescribing information for trospium chloride, Clinical Pharmacology section (openFDA drug label endpoint)',
+        measuredMetric:
+          'Reduction in area under the curve and peak concentration with a high-fat meal against fasting administration',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tro-a4',
+        category: 'measured',
+        title: 'Cleared by the kidney by active secretion, not by any liver enzyme',
+        laymanSummary:
+          'Most drugs in this class are broken down by liver enzymes and therefore interact with anything else those enzymes handle. Trospium is pumped out by the kidneys instead, which is why it has essentially no cytochrome drug interactions.',
+        technicalDetails:
+          'The label reports mean renal clearance for trospium of 29.07 L/hour, approximately four-fold higher than average glomerular filtration rate, and identifies active tubular secretion as the major elimination route. Zinner and colleagues open their pivotal trial by noting the drug "has no known drug-drug interactions, an advantage for patients taking many medications." That advantage is real and it is structurally guaranteed rather than empirically hoped for: a permanently charged compound is a poor substrate for the lipophilic-substrate cytochromes. The corresponding cost is that renal function, not hepatic function, sets exposure — and renal function declines with age in exactly the population the drug is chosen for.',
+        evidenceSource:
+          'US prescribing information for trospium chloride, Clinical Pharmacology section; Zinner N et al., J Urol 2004;171:2311-2315',
+        measuredMetric:
+          'Mean renal clearance against average glomerular filtration rate, establishing active tubular secretion',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tro-a5',
+        category: 'measured',
+        title: 'The once-daily formulation more than halved the dry mouth rate',
+        laymanSummary:
+          'On the pooled twice-daily data the label reports dry mouth in one patient in five. The once-daily extended-release trial reported it in fewer than one in eleven.',
+        technicalDetails:
+          'The US label reports dry mouth in 20.1% against 5.8% on placebo and constipation in 9.6%, drawn from the twice-daily immediate-release programme. Staskin and colleagues, testing the 60 mg once-daily extended-release formulation in 601 subjects, reported dry mouth in 8.7% against 3% and constipation in 9.4% against 1.3%, and stated that dry mouth "was elicited at the lowest reported rate in the oral antimuscarinic drug class." The pattern is the same one oxybutynin and tolterodine show: slowing release lowers the peak concentration and roughly halves the peripheral anticholinergic effects without changing the molecule. It is worth noting the two figures are not from the same study and the comparison is across programmes, not within one.',
+        evidenceSource:
+          'US prescribing information for trospium chloride, Adverse Reactions section; Staskin D et al., J Urol 2007;178:978-984 (PMID 17632131)',
+        doi: '10.1016/j.juro.2007.05.058',
+        measuredMetric:
+          'Incidence of dry mouth and constipation against placebo, immediate-release pooled data versus the extended-release pivotal trial',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tro-a6',
+        category: 'measured',
+        title: 'The effect started within a week and held for twelve',
+        laymanSummary:
+          'Both pivotal trials reported that the improvement appeared by the end of the first week and lasted the full twelve. Nocturnal frequency took four weeks.',
+        technicalDetails:
+          'Zinner and colleagues report that all effects occurred by week 1 and were sustained throughout the study, with nocturnal frequency decreasing significantly by week 4 and Incontinence Impact Questionnaire scores improving at week 12. Staskin and colleagues report significant improvements over placebo in all primary and key secondary outcomes at weeks 1 through 12. Time course is one of the few things these abstracts do report clearly, and it is informative: a receptor antagonist acting on a surface receptor with no intracellular step should work within days, and it does. What neither paper reports is the magnitude at any of those time points.',
+        evidenceSource:
+          'Zinner N et al., J Urol 2004;171:2311-2315 (PMID 15126811); Staskin D et al., J Urol 2007;178:978-984 (PMID 17632131)',
+        measuredMetric:
+          'Time to onset and duration of the reported treatment effect in both pivotal trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tro-a7',
+        category: 'inferred',
+        title: 'The class dementia association was never tested with this drug separated out',
+        laymanSummary:
+          'The large studies linking bladder anticholinergics to dementia treat them as one group. If the charge argument is right, trospium should be the exception — and no dataset has been able to check.',
+        technicalDetails:
+          'Coupland and colleagues reported an adjusted odds ratio of 1.65 (95% CI 1.56 to 1.75) for bladder antimuscarinic drugs as a single class in 58,769 dementia cases and 225,574 controls. Gray and colleagues reported an adjusted hazard ratio of 1.54 (1.21 to 1.96) above 1,095 total standardised daily doses of strong anticholinergics in 3,434 people followed a mean 7.3 years, with bladder antimuscarinics among the three commonest contributing classes. Neither analysis separated the one drug in that class whose pharmacology predicts it should behave differently. Trospium is also the least prescribed of the group, which makes such a separation statistically hard rather than merely unattempted. The result is a testable prediction that has gone untested for two decades: if central penetration drives the association, the quaternary compound should sit outside it.',
+        evidenceSource:
+          'Coupland CAC et al., JAMA Intern Med 2019;179:1084-1093 (PMID 31233095); Gray SL et al., JAMA Intern Med 2015;175:401-407 (PMID 25621434)',
+        doi: '10.1001/jamainternmed.2019.0677',
+        inferredClaim:
+          'That trospium is exempt from the class dementia association because it does not enter the brain — a mechanistically reasonable prediction that no observational dataset has separated out and no trial has tested',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed on an empty stomach, or most of it never arrives',
+        laymanDesc:
+          'The tablet must be taken at least an hour before eating. With a fatty meal, between seventy and eighty per cent of the dose that would otherwise be absorbed is lost.',
+        molecularDetail:
+          'Oral tablet; the immediate-release form is twice daily and an extended-release capsule is once daily. A high-fat meal reduces area under the curve and peak concentration by 70% to 80%. Absorption is poor by design consequence rather than by formulation failure: a permanently charged cation crosses the gut wall badly.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It reaches the bladder, and largely stops at the blood-brain barrier',
+        laymanDesc:
+          'The receptor it needs sits on the outside of the bladder muscle cell, so it can be reached from the bloodstream. The brain sits behind a fatty barrier that a charged molecule crosses poorly.',
+        molecularDetail:
+          'The quaternary nitrogen carries a permanent positive charge at all physiological pH, so passive lipid diffusion is energetically unfavourable. Muscarinic receptors in the detrusor face the extracellular space and need no cell entry, so the bladder target is accessible while central penetration is limited. This is exclusion by physical chemistry rather than by receptor preference, which is the distinction from darifenacin.',
+        iconName: 'ShieldOff',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks acetylcholine at every muscarinic receptor it reaches',
+        laymanDesc:
+          'Unlike the newer drugs, trospium makes no attempt to prefer one receptor variety over another. Its selectivity is about place, not about type.',
+        molecularDetail:
+          'The label describes non-selective antagonism of acetylcholine at muscarinic receptors in cholinergically innervated organs, and quotes no subtype ratios. That is not an oversight: the entire design premise is anatomical exclusion, which makes subtype preference redundant. Where the drug arrives, it blocks everything; the argument is about where it arrives.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The calcium signal driving the squeeze weakens',
+        laymanDesc:
+          'A bladder contraction needs a burst of calcium inside the muscle cell. With the receptors blocked, the burst is smaller and the involuntary squeeze while filling is blunted.',
+        molecularDetail:
+          'Loss of M3-Gq/11 coupling reduces phospholipase C activity, inositol trisphosphate falls, sarcoplasmic reticulum calcium release drops and myosin light-chain phosphorylation declines; M2 blockade removes the inhibition of adenylyl cyclase that opposes relaxation. Detrusor tone during filling falls and functional bladder capacity rises, with the reported effect present by the end of week 1.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Endpoints met, magnitude unpublished, dry mouth the lowest in the class',
+        laymanDesc:
+          'Both pivotal trials say the drug beat placebo on every main measure. Neither says by how much. What they do report is the dry mouth rate, which on the once-daily form was the lowest of any drug in this class.',
+        molecularDetail:
+          'Zinner 2004 (n=523) and Staskin 2007 (n=601) both report all primary and key secondary endpoints met from week 1 through week 12, with no effect size in either abstract. Dry mouth 8.7% against 3% and constipation 9.4% against 1.3% on the extended-release form; 20.1% against 5.8% on the pooled immediate-release label data. Headache 1.0% against 2.6% on placebo.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Trospium 20 mg twice daily pivotal trial (Zinner 2004)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled multicentre, 12 weeks',
+        sampleSize: 523,
+        primaryEndpoint:
+          'Dual: change in average number of toilet voids and change in urge incontinence episodes per 24 hours',
+        endpointMet: true,
+        statisticalPValue:
+          'The published abstract states that trospium significantly decreased toilet void frequency and urge incontinence episodes and significantly increased volume per void, and reports no means, differences, confidence intervals or p-values',
+        unreportedAdverseSignals:
+          'A 523-patient trial across 51 sites whose published abstract contains no quantified treatment effect. Onset by week 1 and sustained effect through week 12 are reported; magnitude is not.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Trospium extended-release 60 mg once daily pivotal trial (Staskin 2007)',
+        phase: 'Phase 3 randomised double-blind placebo-controlled multicentre, 12 weeks',
+        sampleSize: 601,
+        primaryEndpoint:
+          'Change in diary-recorded daily urinary frequency and daily urgency urinary incontinence episodes',
+        endpointMet: true,
+        statisticalPValue:
+          'Reported as significant improvements over placebo in all primary and key secondary outcomes at weeks 1 through 12, with no effect size given in the abstract',
+        unreportedAdverseSignals:
+          'Adverse events are quantified to one decimal place — dry mouth 8.7% against 3%, constipation 9.4% against 1.3%, headache 1.0% against 2.6% — while the efficacy is not quantified at all. The headache figure is the basis offered for the central-nervous-system safety claim.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Both pivotal trials, in 523 and 601 patients, met their dual primary endpoints from week 1 through week 12',
+        'Dry mouth 8.7% against 3% and constipation 9.4% against 1.3% on the once-daily extended-release form; 20.1% against 5.8% on the pooled immediate-release label data',
+        'Headache 1.0% on trospium against 2.6% on placebo',
+        'A high-fat meal reduced area under the curve and peak concentration by 70% to 80% against fasting',
+        'Mean renal clearance 29.07 L/hour, about four-fold higher than average glomerular filtration rate, indicating active tubular secretion',
+      ],
+      unsupportedInferences: [
+        'That a headache rate of 1.0% against 2.6% demonstrates absence of central nervous system effect — the cognitive effect this class produces has been shown to be unnoticeable to the patient and would never be volunteered',
+        'That trospium is exempt from the class dementia association — a reasonable prediction from its charge, and one no observational dataset has separated out',
+        'That "significant improvements in all primary and key secondary outcomes" tells a reader how much better the drug is than placebo',
+        'That trial exposures describe real-world exposures for a drug whose absorption falls 70% to 80% if taken with a meal',
+      ],
+      whatFailedInitially: [
+        'The reporting of both pivotal trials, whose abstracts quantify adverse events to a decimal place and quantify efficacy not at all',
+        'Absorption, in anyone who takes the tablet with food — the property that keeps the molecule out of the brain keeps it out of the bloodstream too',
+        'The two-decade opportunity to test the central-exclusion hypothesis against a cognitive or dementia endpoint, which has not been taken',
+      ],
+      realWorldOutcome: [
+        'Twenty-one cents a tablet at United States pharmacy acquisition cost across sixteen listed products — a third of darifenacin, the other cognitively positioned drug in this indication',
+        'The least prescribed antimuscarinic in the group, which is also why the class-level epidemiology cannot separate it out',
+        'No cytochrome-mediated drug interactions, which is a structurally guaranteed advantage in the polypharmacy population it is chosen for',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral immediate-release tablet twice daily, and extended-release capsule once daily',
+      description:
+        'Both forms must be taken at least an hour before a meal, because a high-fat meal cuts absorption by 70% to 80%. The extended-release capsule halves the dry-mouth rate relative to the pooled immediate-release data by lowering the peak concentration, the same trade oxybutynin and tolterodine make with their own extended-release forms. Dose is reduced in severe renal impairment, because active tubular secretion by the kidney is the elimination route.',
+      safetyProfile:
+        'Dry mouth and constipation dominate as they do across the class, and are lower on the once-daily form than on any other oral antimuscarinic reported. There are no known cytochrome-mediated drug interactions, which follows structurally from the permanent charge. Warnings across the class apply: urinary retention, decreased gastrointestinal motility, and caution in narrow-angle glaucoma. The central nervous system claim rests on absence of volunteered central adverse events rather than on any cognitive measurement.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why would I take this instead of one of the newer bladder drugs?',
+        a: 'For one structural reason. Every other antimuscarinic in this indication is an uncharged, fat-soluble molecule that crosses into the brain freely; trospium carries a permanent positive charge, and charged molecules cross fatty membranes badly. That makes central exposure low as a matter of physical chemistry rather than as a matter of receptor preference — which is a stronger kind of argument than the nine-fold affinity ratio darifenacin relies on for the same purpose. It also has no cytochrome drug interactions, because a charged compound is a poor substrate for those enzymes, which matters if you take several medicines. The cost of the same property is that food removes 70% to 80% of the absorbed dose and the kidneys rather than the liver do the clearing.',
+      },
+      {
+        q: 'How much better than placebo is it?',
+        a: 'The published record does not say, and that is a real finding rather than an omission on this page. The two pivotal trials enrolled 523 and 601 patients and both met their dual primary endpoints. Zinner and colleagues wrote that trospium "significantly decreased average frequency of toilet voids and urge incontinent episodes compared to placebo" and left it there. Staskin and colleagues wrote that treatment "resulted in significant improvements over placebo in all primary and key secondary efficacy outcomes at weeks 1 through 12" and left it there. Neither abstract contains a mean, a difference, a confidence interval or a p-value for efficacy. Both quantify adverse events to a decimal place. Given the rest of this class delivers between 0.12 and 0.6 episodes a day over placebo, the honest answer is that this drug is probably in that band and the published abstracts do not let a reader check.',
+        auditNote:
+          'Reporting standards have tightened since 2004 and 2007. This is what the record for a widely prescribed drug looks like when it has not been revisited.',
+      },
+      {
+        q: 'Does it really not affect the brain?',
+        a: 'The chemistry says it should not, and the clinical evidence offered is weaker than the chemistry. The pivotal trial\'s statement is: "Central nervous system adverse events were rare (headache with trospium 1.0% vs placebo 2.6%)." Headache is a poor stand-in for central anticholinergic effect, and the rate was lower on the drug than on placebo, which nobody claims is protective. The reason this matters is a finding from a different drug in the same class: when 150 healthy volunteers over 60 were formally memory-tested, the oxybutynin arm showed impairment comparable to ten years of brain ageing, and self-rated memory did not differ between arms at all — the impaired group did not know. An effect people cannot notice will not appear in a table of volunteered adverse events. Trospium\'s structural case is genuinely good. It has never been converted into a measured cognitive outcome.',
+      },
+      {
+        q: 'Does it really matter if I take it with dinner?',
+        a: 'More than for almost any other tablet you are likely to be given. The label states that a high-fat meal reduced both the total absorbed amount and the peak concentration by 70% to 80% compared with fasting, and directs administration at least an hour before eating. That is not a minor bioavailability note — it means a dose taken with a meal delivers something between a fifth and a third of what the trials measured. The cause is the same permanent charge that keeps the drug out of the brain: a cation is poorly absorbed across the gut wall, and fat makes it worse. If the schedule is not workable for you, that is a reason to say so rather than to take it with food and assume it still works.',
+      },
+      {
+        q: 'Why does this page not show a manufacturing cost?',
+        a: 'Because no per-dose cost-of-production figure for trospium could be verified and cited. The cost-of-production literature checked publishes an estimation method and aggregate ranges rather than a per-dose figure for this molecule. What is shown instead is what pharmacies pay — about twenty-one cents a tablet in the CMS acquisition-cost survey across sixteen listed products — which is a price, not a cost of manufacture.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Zinner N, Gittelman M, Harris R, et al. Trospium chloride improves overactive bladder symptoms: a multicenter phase III trial. J Urol 2004;171(6 Pt 1):2311-2315',
+        identifier: '10.1097/01.ju.0000127742.73136.0c',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Staskin D, Sand P, Zinner N, Dmochowski R, Trospium Study Group. Once daily trospium chloride is effective and well tolerated for the treatment of overactive bladder: results from a multicenter phase III trial. J Urol 2007;178(3 Pt 1):978-984',
+        identifier: '10.1016/j.juro.2007.05.058',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kay G, Crook T, Rekeda L, et al. Differential effects of the antimuscarinic agents darifenacin and oxybutynin ER on memory in older subjects. Eur Urol 2006;50:317-326',
+        identifier: '10.1016/j.eururo.2006.03.057',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Coupland CAC, Hill T, Dening T, Morriss R, Moore M, Hippisley-Cox J. Anticholinergic drug exposure and the risk of dementia: a nested case-control study. JAMA Intern Med 2019;179:1084-1093',
+        identifier: '10.1001/jamainternmed.2019.0677',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Gray SL, Anderson ML, Dublin S, et al. Cumulative use of strong anticholinergics and incident dementia: a prospective cohort study. JAMA Intern Med 2015;175:401-407',
+        identifier: '10.1001/jamainternmed.2014.7663',
+        kind: 'doi',
+      },
+      {
+        label:
+          'US prescribing information for trospium chloride — mechanism of action, clinical pharmacology including the food effect and renal clearance, and adverse reactions (openFDA drug label endpoint)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22trospium+chloride%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5284632 — trospium cation structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284632',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

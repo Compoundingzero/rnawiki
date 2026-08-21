@@ -3479,4 +3479,1330 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Acarbose — a bacterial fermentation product that barely enters the bloodstream, whose 2003
+  //    cardiovascular claim was dismantled by a published critique and then refuted by a
+  //    6,522-patient trial, and whose diabetes-prevention effect survived both.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'acarbose',
+    name: 'Acarbose',
+    tradeName: 'Precose',
+    sponsor: 'Bayer HealthCare (originator); marketed as generics',
+    targetGene: 'MGAM',
+    targetProtein:
+      'Membrane-bound intestinal alpha-glucosidases of the brush border — maltase-glucoamylase (MGAM) and sucrase-isomaltase (SI) — together with pancreatic alpha-amylase in the lumen of the small intestine',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1995,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus.',
+    patientFriendlyIndication: 'Type 2 diabetes — a tablet that slows the digestion of starch in the gut',
+    anatomicalSite:
+      'The lumen and brush border of the small intestine. Less than 2% of a dose reaches the circulation as active drug.',
+    conditionContext: {
+      conditionExplainer:
+        'Starch is not sugar until enzymes cut it into glucose, and that cutting happens in the small intestine. Acarbose is a decoy that those enzymes bind instead of the starch, so digestion slows and glucose enters the blood more gradually.',
+      whyItMatters:
+        'The drug does not enter the body in any meaningful quantity: less than 2% of a dose is absorbed as active drug. That makes it unusual — its effects, good and bad, are almost entirely local to the gut. It also makes its side effects predictable: carbohydrate that is not digested in the small intestine is fermented by bacteria in the large one.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, alone or added to other drugs. Use is far more common in East Asia, where rice-based diets make the post-meal glucose spike a larger share of total exposure, than in North America or Europe.',
+      clinicalGoals:
+        'Flatten the post-meal glucose rise and lower HbA1c. Its label states there is no conclusive evidence of macrovascular risk reduction with acarbose or any other antidiabetic drug, and the 6,522-patient trial that tested exactly that found none.',
+    },
+    oneSentenceVerdict:
+      'A bacterial oligosaccharide that competitively blocks the intestinal enzymes which turn starch into glucose, of which less than 2% is absorbed as active drug — which reduced conversion of impaired glucose tolerance to diabetes by 25% in 1,429 randomised patients and by 18% in 6,522 more, and whose widely cited 2003 claim of a 49% reduction in cardiovascular events was refuted by a hazard ratio of 0.98 when the question was finally tested properly.',
+    laymanHowItWorks:
+      'Starch has to be chopped into glucose before it can be absorbed, and enzymes lining the small intestine do the chopping. Acarbose looks enough like the starch fragments those enzymes normally cut that they grab it instead, and it does not come apart. The enzymes are occupied, digestion slows, and glucose trickles into the blood over a longer stretch of intestine instead of arriving all at once. The drug itself barely enters the bloodstream. The starch it failed to digest travels on to the large intestine, where bacteria ferment it, which is why the main side effect is gas.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 57,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1760 per tablet at United States pharmacy acquisition cost, the median across 12 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Precose in 1995 and long off patent. Only 12 products appear in the current NADAC file, which is fewer than for any sulfonylurea in this batch and is reflected in a per-tablet price several times theirs. Acarbose is not synthesised: it is isolated from the fermentation broth of Actinoplanes utahensis, which puts a floor under its manufacturing cost that a purely synthetic molecule does not have.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Acarbose occupies an odd position: it is the only glucose-lowering drug in wide use that works without entering the body, and it is the only one whose diabetes-prevention effect has been shown twice, in 1,429 and then 6,522 randomised patients. It is also the only one in this file whose most-quoted benefit — a 49% reduction in cardiovascular events — was published, criticised in print as methodologically unsound, and then contradicted by a properly powered trial. Metformin prevents diabetes too, is better tolerated and is cheaper.',
+      conventionalRx: [
+        {
+          name: 'Metformin',
+          class: 'Biguanide',
+          howItCompares:
+            'Also prevents progression from impaired glucose tolerance to diabetes, is cheaper per tablet at NADAC, and does not cause the fermentation side effects that limit acarbose. It has no gut-local mechanism and does not flatten the post-meal spike the same way.',
+          typicalCost: 'Cheaper than acarbose per tablet in the current NADAC file',
+          prosAndCons:
+            'Pros: better tolerated, cheaper, more evidence. Cons: gastrointestinal intolerance of a different kind, contraindicated at low kidney function.',
+        },
+        {
+          name: 'Miglitol',
+          class: 'Alpha-glucosidase inhibitor',
+          howItCompares:
+            'The same mechanism in a molecule that, unlike acarbose, is systemically absorbed and renally excreted. No trial has compared the two on any clinical outcome, and neither has a cardiovascular outcome result of its own beyond the acarbose ACE trial.',
+          typicalCost: 'No NADAC figure for miglitol is held on this record',
+          prosAndCons:
+            'Pros: does not inhibit pancreatic amylase, which may shift the side-effect profile. Cons: absorbed systemically, so the local-only argument for this class does not apply to it.',
+        },
+        {
+          name: 'DPP-4 inhibitors',
+          class: 'Incretin enhancers',
+          howItCompares:
+            'Also target post-meal glucose, without hypoglycaemia and without gastrointestinal fermentation. Their cardiovascular outcome trials were designed to exclude harm rather than show benefit, and none has shown a cardiovascular benefit.',
+          typicalCost: 'Alogliptin is US$5.18 per tablet at NADAC, roughly thirty times acarbose',
+          prosAndCons:
+            'Pros: far better tolerated, once daily. Cons: much more expensive, and no demonstrated benefit on any hard endpoint.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Know that ordinary sugar will not fix a hypo on this drug',
+          action:
+            'Acarbose alone does not cause hypoglycaemia, because it does not release insulin. Combined with a sulfonylurea or insulin it can contribute to one — and the drug that caused the problem also blocks the usual remedy. Table sugar is sucrose, and acarbose inhibits the enzyme that splits sucrose into absorbable glucose.',
+          patientImpact:
+            'The FDA label states directly that oral glucose (dextrose), whose absorption is not inhibited by acarbose, should be used instead of sucrose (cane sugar) for mild to moderate hypoglycaemia, and that sucrose is unsuitable for rapid correction because its hydrolysis is inhibited. Severe episodes may require intravenous glucose or glucagon.',
+          clinicalPrecaution:
+            'This is a fact about which sugar works, not a dosing instruction. Anyone taking acarbose alongside insulin or a sulfonylurea should have this planned with their prescribing clinician in advance. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@@H]2[C@H](O[C@@H]([C@@H]([C@H]2O)O)O[C@H]([C@@H](CO)O)[C@@H]([C@H](C=O)O)O)CO)O)O)N[C@H]3C=C([C@H]([C@@H]([C@H]3O)O)O)CO',
+      chemicalFormula: 'C25H43NO18',
+      molecularWeight: '645.60 g/mol',
+      targetReceptorAffinity:
+        'A competitive, reversible inhibitor of pancreatic alpha-amylase and of the membrane-bound intestinal alpha-glucoside hydrolases of the brush border, as the FDA label states. The molecule is a pseudotetrasaccharide: an unsaturated cyclitol joined through a nitrogen atom to a deoxyhexose and then to two glucose units. That nitrogen bridge is the point — it cannot be hydrolysed, so the enzyme binds a substrate mimic it cannot cut and is occupied. Acarbose has no inhibitory activity against lactase and does not induce lactose intolerance. In six healthy men, less than 2% of an oral dose was absorbed as active drug, while about 35% of total radioactivity from a carbon-14 labelled dose was absorbed and 51% was excreted in faeces as unabsorbed drug-related radioactivity within 96 hours.',
+      structureSource: {
+        label:
+          'PubChem CID 9811704 (acarbose) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint and matched to the FDA label description section',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9811704',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'aca-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Release of the Actinoplanes utahensis production strain',
+          description:
+            'Identify and release the working cell bank of Actinoplanes utahensis, confirming strain identity, purity and productivity. This is where acarbose differs from every other small molecule in this file: it is not made by chemistry, it is a secondary metabolite of a soil actinomycete, and the organism is the process.',
+          reagentsAndBuffer:
+            '16S ribosomal RNA sequencing and whole-genome identity, sporulation and vegetative growth media, contaminant screening, cryopreserved working cell bank vials with viability and productivity release testing',
+        },
+        {
+          id: 'aca-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Submerged fed-batch fermentation with maltose feeding',
+          description:
+            'Grow the organism in submerged fed-batch culture and feed maltose or a maltose-rich carbon source, which the biosynthetic pathway extends into the pseudotetrasaccharide. Yield is dominated by the carbon feed regime: the same pathway produces a family of related pseudo-oligosaccharides of different chain lengths, and the ratio between them is set here, not later.',
+          dependsOnStepId: 'aca-w1',
+          reagentsAndBuffer:
+            'Complex nitrogen source with maltose or starch hydrolysate feed, trace-element solution, antifoam, stainless-steel stirred-tank fermenter with dissolved-oxygen and pH control, off-gas mass spectrometry',
+        },
+        {
+          id: 'aca-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Cation-exchange capture and separation from homologous components',
+          description:
+            'Clarify the broth, capture acarbose on cation-exchange resin using the basicity of its bridging nitrogen, then resolve it from component B, C and higher homologues by further chromatography and crystallise. Separation from the homologues is the hard part and the reason a fermentation-derived oligosaccharide costs several times what a two-step condensation product costs.',
+          dependsOnStepId: 'aca-w2',
+          reagentsAndBuffer:
+            'Broth filtration and ultrafiltration, strong cation-exchange resin with ammonia elution, activated carbon decolourisation, preparative chromatography, high-performance anion-exchange chromatography with pulsed amperometric detection for homologue profiling',
+        },
+        {
+          id: 'aca-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Brush-border membrane vesicle inhibition and simulated luminal digestion',
+          description:
+            'Prepare brush-border membrane vesicles from intestinal mucosa and measure inhibition of maltase, sucrase and isomaltase activity, then run a simulated luminal digestion of starch with pancreatic amylase in the presence and absence of drug. This step models the only compartment the drug ever reaches at therapeutic concentration, which is why an ordinary plasma pharmacokinetic study tells you almost nothing about this molecule.',
+          dependsOnStepId: 'aca-w3',
+          reagentsAndBuffer:
+            'Rat or human intestinal brush-border membrane vesicles, maltose, sucrose and isomaltose substrates, glucose oxidase coupled detection, porcine pancreatic alpha-amylase, soluble starch, simulated intestinal fluid at pH 6.8',
+        },
+        {
+          id: 'aca-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Lactase counter-screen and colonic fermentation gas measurement',
+          description:
+            'Confirm the absence of lactase inhibition, which the label claims explicitly, and quantify hydrogen and methane production when the undigested carbohydrate is incubated with faecal microbiota. The gas measurement is not a curiosity: colonic fermentation is the dose-limiting adverse effect of this drug and the reason 7% of patients in the ACE trial stopped or reduced it.',
+          dependsOnStepId: 'aca-w4',
+          reagentsAndBuffer:
+            'Recombinant lactase-phlorizin hydrolase, lactose substrate, anaerobic batch fermentation with pooled human faecal inoculum, gas chromatography for hydrogen and methane, short-chain fatty acid quantitation',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'aca-a1',
+        category: 'conclusion_shift',
+        title: 'The 2003 claim of a 49% cardiovascular reduction did not survive being tested',
+        laymanSummary:
+          'A 2003 paper reported that acarbose cut cardiovascular events by half in people with pre-diabetes, and heart attacks by 91%. A published critique in 2004 called the underlying trial seriously flawed. In 2017 a trial six times larger, designed to answer the question directly, found no effect at all.',
+        technicalDetails:
+          'Chiasson and colleagues reported in JAMA in 2003 that among 1,429 patients with impaired glucose tolerance randomised to acarbose 100 mg three times daily or placebo and followed a mean 3.3 years, cardiovascular events fell with a hazard ratio of 0.51 (95% CI 0.28 to 0.95, p=0.03), a 2.5% absolute risk reduction, with the largest component being myocardial infarction at a hazard ratio of 0.09 (95% CI 0.01 to 0.72, p=0.02) — an effect resting on a very small number of events. Kaiser and Sawicki published a systematic review of the trial documentation in Diabetologia in 2004 reporting "several serious flaws in the STOP-NIDDM study, especially selection bias, inadequate blinding, bias in data analysis and reporting, and potential sponsoring bias", and concluded that the validity of the results was seriously flawed and the clinical benefit unproven. The Acarbose Cardiovascular Evaluation trial then randomised 6,522 Chinese patients with established coronary heart disease and impaired glucose tolerance to acarbose 50 mg three times daily or placebo on top of standard secondary prevention, and followed them a median 5.0 years. The primary five-point composite occurred in 470 of 3,272 (14%) against 479 of 3,250 (15%): hazard ratio 0.98 (95% CI 0.86 to 1.11, p=0.73). No secondary cardiovascular outcome differed either.',
+        evidenceSource:
+          'Chiasson JL et al., JAMA 2003;290:486-494; Kaiser T, Sawicki PT, Diabetologia 2004;47:575-580; Holman RR et al., Lancet Diabetes Endocrinol 2017;5:877-886 (ACE, NCT00829660)',
+        doi: '10.1016/S2213-8587(17)30309-1',
+        measuredMetric:
+          'Hazard ratio for the five-point cardiovascular composite in 6,522 randomised patients over a median 5.0 years, against the 2003 estimate of 0.51 in 1,429 patients',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'aca-a2',
+        category: 'measured',
+        title: 'The diabetes-prevention effect held up in both trials',
+        laymanSummary:
+          'The claim that did survive is the smaller one. In the original trial, 32% of the acarbose group progressed to diabetes against 42% on placebo. In the much larger 2017 trial, it was 13% against 16%. Both differences were statistically significant.',
+        technicalDetails:
+          'STOP-NIDDM randomised 714 patients with impaired glucose tolerance to acarbose 100 mg three times daily and 715 to placebo, excluding 61 (4%) who did not have impaired glucose tolerance or had no post-randomisation data. Diabetes, defined by yearly oral glucose tolerance test, developed in 221 of 682 (32%) on acarbose and 285 of 686 (42%) on placebo: relative hazard 0.75 (95% CI 0.63 to 0.90, p=0.0015). Acarbose also significantly increased reversion of impaired glucose tolerance to normal (p<0.0001). In the ACE trial, diabetes developed in 436 of 3,272 (13%; 3.17 per 100 person-years) on acarbose against 513 of 3,250 (16%; 3.84 per 100 person-years) on placebo: rate ratio 0.82 (95% CI 0.71 to 0.94, p=0.005). Two independent trials in different populations, one in Europe and Canada and one in China, agreeing on the direction and roughly on the magnitude, is the strongest claim on this page.',
+        evidenceSource:
+          'Chiasson JL et al., Lancet 2002;359:2072-2077 (STOP-NIDDM); Holman RR et al., Lancet Diabetes Endocrinol 2017;5:877-886 (ACE)',
+        doi: '10.1016/S0140-6736(02)08905-5',
+        measuredMetric:
+          'Relative hazard and rate ratio for progression from impaired glucose tolerance to type 2 diabetes, in 1,368 and 6,522 randomised patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aca-a3',
+        category: 'inferred',
+        title: 'A third of the acarbose group left the trial, against a fifth on placebo',
+        laymanSummary:
+          'In the original prevention trial, far more people stopped taking acarbose than stopped taking placebo — 31% against 19%. And when everyone was switched to placebo for three months at the end, conversion to diabetes rose. Both facts complicate the claim that the drug prevents diabetes rather than masking it.',
+        technicalDetails:
+          'STOP-NIDDM reports that 211 of 682 patients (31%) in the acarbose group and 130 of 686 (19%) on placebo discontinued treatment early, with flatulence and diarrhoea the most frequent side effects of acarbose. Differential dropout of that magnitude, in a trial whose endpoint is a laboratory test administered yearly, is a route by which the two arms stop being comparable. The same paper records that at the end of the study, treatment with placebo for three months was associated with an increase in conversion of impaired glucose tolerance to diabetes — consistent with a pharmacological effect on the glucose tolerance test itself rather than with a durable change in disease trajectory. Kaiser and Sawicki flagged inadequate blinding and bias in data analysis and reporting in the same trial. The ACE trial, which used a lower dose and reported a smaller effect, did not resolve this question because it did not include a washout.',
+        evidenceSource:
+          'Chiasson JL et al., Lancet 2002;359:2072-2077; Kaiser T, Sawicki PT, Diabetologia 2004;47:575-580',
+        doi: '10.1007/s00125-003-1318-y',
+        inferredClaim:
+          'That the reduced conversion rate reflects prevented diabetes rather than a drug effect on the oral glucose tolerance test used to diagnose it — the post-study placebo period, in which conversion rose, is compatible with either',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'aca-a4',
+        category: 'failed',
+        title: 'Gas and diarrhoea are the dose-limiting effect, and they are mechanistic',
+        laymanSummary:
+          'Carbohydrate that the small intestine failed to digest arrives in the large intestine, where bacteria ferment it. The result is flatulence, bloating and diarrhoea — the most common reason people stop the drug, and a direct consequence of how it works.',
+        technicalDetails:
+          'In the ACE trial, gastrointestinal disorders were the most common adverse event associated with drug discontinuation or dose change: 215 of 3,263 patients (7%) on acarbose against 150 of 3,241 (5%) on placebo, p=0.0007. In STOP-NIDDM, at the higher 100 mg three-times-daily dose, flatulence and diarrhoea were the most frequent side effects and 31% of the acarbose arm discontinued treatment early. This is not an idiosyncratic reaction: undigested oligosaccharide reaching the colon is fermented to hydrogen, methane and short-chain fatty acids, which is the same process by which beans cause flatulence. It is therefore proportional to both the dose and the carbohydrate content of the meal, and it is the reason the drug is titrated slowly in practice.',
+        evidenceSource:
+          'Holman RR et al., Lancet Diabetes Endocrinol 2017;5:877-886; Chiasson JL et al., Lancet 2002;359:2072-2077',
+        doi: '10.1016/S2213-8587(17)30309-1',
+        measuredMetric:
+          'Proportion of patients with gastrointestinal adverse events leading to discontinuation or dose change, and early discontinuation rates by arm',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aca-a5',
+        category: 'measured',
+        title: 'Liver enzymes rise in a dose-related way, reversibly',
+        laymanSummary:
+          'In year-long American studies, treatment-emergent rises in liver enzymes were about twice as common on acarbose as on placebo at every threshold measured. They were symptomless, reversible, and more frequent in women.',
+        technicalDetails:
+          'The FDA label reports that in long-term United States studies of up to 12 months, including doses up to 300 mg three times daily, treatment-emergent elevations of serum aspartate or alanine aminotransferase above the upper limit of normal, above 1.8 times that limit, and above 3 times that limit occurred in 14%, 6% and 3% of acarbose-treated patients respectively, against 7%, 2% and 1% of placebo-treated patients. The differences were statistically significant. The label characterises the elevations as asymptomatic, reversible, more common in females, generally unassociated with other evidence of liver dysfunction, and dose related. This is a case where the label carries a clean quantified signal that the trial literature does not foreground.',
+        evidenceSource:
+          'FDA prescribing information for acarbose tablets USP, PRECAUTIONS (Elevated Serum Transaminase Levels)',
+        measuredMetric:
+          'Proportion with treatment-emergent transaminase elevation at three thresholds, acarbose against placebo, in studies up to 12 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'aca-a6',
+        category: 'measured',
+        title: 'Less than 2% of a dose is absorbed as active drug',
+        laymanSummary:
+          'Almost none of this drug gets into the bloodstream in a form that still works. It acts in the gut, on enzymes lining the gut wall, and most of it leaves in the stool.',
+        technicalDetails:
+          'In a study of six healthy men, less than 2% of an oral dose of acarbose was absorbed as active drug, while approximately 35% of total radioactivity from a carbon-14 labelled oral dose was absorbed — the difference being bacterial degradation products rather than intact drug — and an average of 51% of an oral dose was excreted in the faeces as unabsorbed drug-related radioactivity within 96 hours. The label states that acarbose does not enhance insulin secretion, in contrast to sulfonylureas, that its effect is additive to sulfonylureas, insulin or metformin because the mechanism differs, and that it diminishes the insulinotropic and weight-increasing effects of sulfonylureas. It has no inhibitory activity against lactase and would not be expected to induce lactose intolerance.',
+        evidenceSource:
+          'FDA prescribing information for acarbose tablets USP, CLINICAL PHARMACOLOGY and Pharmacokinetics',
+        measuredMetric:
+          'Fraction of an oral dose absorbed as active drug, fraction of total radioactivity absorbed, and fraction excreted unabsorbed in faeces within 96 hours',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed with food and stays in the gut',
+        laymanDesc:
+          'Unlike almost every other tablet, this one is not meant to be absorbed. It works in the same place the food is, and most of it leaves in the stool.',
+        molecularDetail:
+          'Less than 2% of an oral dose is absorbed as active drug; about 51% is excreted in faeces as unabsorbed drug-related radioactivity within 96 hours. The therapeutic compartment is the lumen and brush border of the small intestine, not plasma.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It impersonates the sugar chain the enzymes are built to cut',
+        laymanDesc:
+          'The molecule is a chain of sugar-like units that looks to the digestive enzymes exactly like the starch fragment they normally attack — except that one of the links cannot be cut.',
+        molecularDetail:
+          'Acarbose is a pseudotetrasaccharide: an unsaturated cyclitol linked through a secondary amine to a 4,6-dideoxyglucose and then to two glucose units. The nitrogen bridge mimics the oxocarbenium transition state of glycoside hydrolysis but is not hydrolysable, giving competitive, reversible inhibition with far higher affinity than the natural substrate.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'Starch digestion slows in both the lumen and the gut wall',
+        laymanDesc:
+          'Two sets of enzymes are blocked: the ones released by the pancreas into the gut, and the ones anchored to the surface of the intestinal lining.',
+        molecularDetail:
+          'The label describes competitive reversible inhibition of pancreatic alpha-amylase, which cleaves complex starch to oligosaccharides in the lumen, and of the membrane-bound intestinal alpha-glucosidases of the brush border, which cleave oligosaccharides, trisaccharides and disaccharides to glucose. Lactase is not inhibited.',
+        iconName: 'Split',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Glucose arrives more slowly and further down the intestine',
+        laymanDesc:
+          'The same total amount of glucose still gets absorbed. It just arrives spread out over a longer stretch of gut and a longer stretch of time, so the spike after a meal is lower.',
+        molecularDetail:
+          'Delayed hydrolysis moves the site of glucose absorption distally and flattens the post-prandial excursion. Because average blood glucose over time is what glycates haemoglobin, the flattened excursion translates into a lower HbA1c without any change in insulin secretion.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'Bacteria in the large intestine ferment what was not digested',
+        laymanDesc:
+          'Carbohydrate that escaped digestion reaches the colon, where gut bacteria break it down and produce gas. This is the dose-limiting side effect and it is inseparable from the mechanism.',
+        molecularDetail:
+          'Colonic microbiota ferment the undigested oligosaccharide to hydrogen, methane, carbon dioxide and short-chain fatty acids. In the ACE trial, gastrointestinal disorders led to discontinuation or dose change in 7% of the acarbose arm against 5% on placebo (p=0.0007); in STOP-NIDDM, at three times the dose, 31% of the acarbose arm discontinued early.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'And the same block makes table sugar useless in a hypo',
+        laymanDesc:
+          'If low blood sugar happens because acarbose is combined with insulin or a sulfonylurea, ordinary sugar will not lift it quickly, because the drug blocks the enzyme that splits it.',
+        molecularDetail:
+          'Sucrose requires sucrase-isomaltase hydrolysis to glucose and fructose before absorption, and that enzyme is inhibited. The label specifies oral glucose (dextrose), whose absorption is not inhibited, as the appropriate treatment for mild to moderate hypoglycaemia, and states that sucrose is unsuitable for rapid correction. Severe hypoglycaemia may require intravenous glucose or glucagon.',
+        iconName: 'ShieldAlert',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ACE — Acarbose Cardiovascular Evaluation (NCT00829660)',
+        phase: 'Phase 4 randomised double-blind placebo-controlled trial, median 5.0 years',
+        sampleSize: 6522,
+        primaryEndpoint:
+          'Five-point composite of cardiovascular death, non-fatal myocardial infarction, non-fatal stroke, hospital admission for unstable angina and hospital admission for heart failure, in Chinese patients with coronary heart disease and impaired glucose tolerance',
+        endpointMet: false,
+        statisticalPValue:
+          'Hazard ratio 0.98 (95% CI 0.86 to 1.11, P = 0.73) — no effect. Diabetes incidence rate ratio 0.82 (95% CI 0.71 to 0.94, P = 0.005)',
+        unreportedAdverseSignals:
+          'No secondary cardiovascular outcome differed either. Gastrointestinal disorders caused discontinuation or dose change in 7% against 5% (P = 0.0007). The trial was funded by Bayer AG, the originator.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'STOP-NIDDM — diabetes prevention endpoint',
+        phase: 'Multicentre randomised double-blind placebo-controlled trial, mean 3.3 years',
+        sampleSize: 1429,
+        primaryEndpoint:
+          'Development of type 2 diabetes on yearly oral glucose tolerance testing in patients with impaired glucose tolerance',
+        endpointMet: true,
+        statisticalPValue:
+          'P = 0.0015; relative hazard 0.75 (95% CI 0.63 to 0.90). 221 of 682 (32%) against 285 of 686 (42%)',
+        unreportedAdverseSignals:
+          'Discontinuation was 31% on acarbose against 19% on placebo, and conversion to diabetes rose during a three-month placebo period at the end of the study — both compatible with an effect on the diagnostic test rather than on the disease.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'STOP-NIDDM — cardiovascular and hypertension analysis (JAMA 2003)',
+        phase: 'Secondary analysis of the same randomised trial, mean 3.3 years',
+        sampleSize: 1368,
+        primaryEndpoint:
+          'Development of major cardiovascular events and of hypertension in patients with impaired glucose tolerance',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 0.51 (95% CI 0.28 to 0.95, P = 0.03) for cardiovascular events; 0.09 (95% CI 0.01 to 0.72, P = 0.02) for myocardial infarction; 0.66 (95% CI 0.49 to 0.89, P = 0.006) for new hypertension',
+        unreportedAdverseSignals:
+          'A published critique in Diabetologia reported selection bias, inadequate blinding, bias in data analysis and reporting, and potential sponsoring bias, and concluded the validity of the results was seriously flawed. The 6,522-patient ACE trial subsequently found a hazard ratio of 0.98.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A hazard ratio of 0.98 (95% CI 0.86 to 1.11, p=0.73) for the five-point cardiovascular composite in 6,522 randomised patients over a median 5.0 years',
+        'A relative hazard of 0.75 (95% CI 0.63 to 0.90) and a rate ratio of 0.82 (95% CI 0.71 to 0.94) for progression to diabetes, in two independent randomised trials',
+        'Gastrointestinal adverse events causing discontinuation or dose change in 7% against 5% (p=0.0007), and 31% early discontinuation at the higher dose',
+        'Treatment-emergent transaminase elevation above three times the upper limit of normal in 3% against 1% on placebo, dose related and reversible',
+        'Less than 2% of an oral dose absorbed as active drug, with 51% excreted unabsorbed in faeces within 96 hours',
+      ],
+      unsupportedInferences: [
+        'That acarbose reduces cardiovascular events — the 2003 estimate of a 49% reduction rested on very few events in a trial a published critique found seriously flawed, and a trial six times larger found a hazard ratio of 0.98',
+        'That flattening the post-meal glucose spike prevents macrovascular disease — ACE tested that hypothesis directly in the population where it should have been easiest to show, and found nothing',
+        'That the diabetes-prevention effect is prevention rather than masking — conversion rose during the post-study placebo period, and no washout was built into the confirmatory trial',
+        'That the label supports a cardiovascular claim — it states there is no conclusive evidence of macrovascular risk reduction with acarbose or any other antidiabetic drug',
+      ],
+      whatFailedInitially: [
+        'The 2003 cardiovascular claim was published in JAMA, criticised in Diabetologia in 2004 as resting on selection bias, inadequate blinding and biased analysis, and refuted by the ACE trial in 2017',
+        'Nearly a third of the acarbose arm of the original prevention trial stopped treatment, against a fifth on placebo, almost entirely because of flatulence and diarrhoea',
+        'No secondary cardiovascular outcome in the ACE trial differed either — not death, not myocardial infarction, not stroke, not unstable angina, not heart failure, not renal impairment',
+      ],
+      realWorldOutcome: [
+        'US$0.1760 per tablet at United States pharmacy acquisition cost, the median across 12 listed generic products in the CMS NADAC survey — several times the price of the sulfonylureas, because it is a fermentation product',
+        'Widely used in East Asia, where post-meal glucose is a larger share of total glycaemic exposure, and comparatively little used in North America and Europe',
+        'The only oral glucose-lowering drug in common use that acts entirely within the gut lumen and brush border',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet taken with the first bite of a meal, in 25 mg, 50 mg and 100 mg strengths',
+      description:
+        'A conventional tablet of a water-soluble oligosaccharide with a pKa of 5.1, isolated from the fermentation broth of Actinoplanes utahensis. The timing relative to food is not a convenience: the drug and the starch have to reach the enzymes together, because the inhibition is competitive and reversible. Taken away from food it has nothing to compete with and does nothing.',
+      safetyProfile:
+        'Flatulence, abdominal distension and diarrhoea are the dominant adverse effects, are dose-related and meal-related, and are the usual reason for stopping. Dose-related, asymptomatic and reversible transaminase elevations occur, more commonly in women. Acarbose alone does not cause hypoglycaemia because it does not release insulin, but it increases the risk when combined with insulin or a sulfonylurea, and in that setting sucrose is unsuitable for rapid correction because its hydrolysis is inhibited — oral glucose is specified instead. The label states there have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with acarbose or any other antidiabetic drug.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does acarbose prevent heart attacks?',
+        a: 'No, and the history of that question is worth knowing. In 2003 a secondary analysis of the STOP-NIDDM trial reported a 49% relative reduction in cardiovascular events with acarbose in people with impaired glucose tolerance, and a 91% reduction in myocardial infarction — a hazard ratio of 0.09 resting on a handful of events. In 2004, a systematic review of the trial documentation published in Diabetologia reported selection bias, inadequate blinding, bias in data analysis and reporting, and potential sponsoring bias, and concluded the trial validity was seriously flawed. In 2017 the ACE trial randomised 6,522 Chinese patients who already had coronary heart disease and impaired glucose tolerance, followed them a median five years, and found a hazard ratio of 0.98 (95% CI 0.86 to 1.11, p=0.73). No secondary cardiovascular outcome differed either.',
+        auditNote:
+          'This is the clearest sequence on this page: a claim, a documented methodological critique, and a properly powered refutation, all in the peer-reviewed record.',
+      },
+      {
+        q: 'Does it prevent diabetes?',
+        a: 'That claim survived, in both trials, with a caveat. STOP-NIDDM found 32% of the acarbose group progressing to diabetes against 42% on placebo, relative hazard 0.75 (95% CI 0.63 to 0.90, p=0.0015). The much larger ACE trial found 13% against 16%, rate ratio 0.82 (95% CI 0.71 to 0.94, p=0.005). Two independent trials in very different populations agreeing is a strong result. The caveat is that diabetes here is diagnosed by an oral glucose tolerance test, and acarbose blunts exactly the glucose rise that test measures. STOP-NIDDM reported that conversion to diabetes rose during a three-month placebo period at the end of the study, which is what you would expect if the drug had been masking rather than preventing. No trial has settled this.',
+      },
+      {
+        q: 'Why does it cause so much gas?',
+        a: 'Because that is the mechanism, seen from the other end. Acarbose blocks the enzymes that break starch into glucose in the small intestine. Some carbohydrate therefore passes undigested into the large intestine, where the resident bacteria ferment it into hydrogen, methane and short-chain fatty acids. It is the same chemistry that makes beans produce gas, deliberately induced. In the ACE trial, at 50 mg three times daily, gastrointestinal problems caused 7% of patients to stop or reduce the drug against 5% on placebo. In STOP-NIDDM, at twice the dose, 31% of the acarbose arm discontinued treatment early against 19% on placebo.',
+      },
+      {
+        q: 'If I take this, will ordinary sugar still fix low blood sugar?',
+        a: 'Not quickly, and the label addresses this directly. Acarbose on its own does not cause hypoglycaemia because it does not release insulin. But combined with insulin or a sulfonylurea it can contribute to an episode — and the enzyme it blocks is the same one that splits table sugar into absorbable glucose. The label states that oral glucose (dextrose), whose absorption is not inhibited, should be used instead of sucrose, and that sucrose is unsuitable for rapid correction because its hydrolysis is inhibited. Severe episodes may require intravenous glucose or glucagon. This is a fact about which sugar works; what to keep to hand and when is a conversation with the prescribing clinician.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for acarbose could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.1760 per tablet, the median across 12 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is several times the price of the sulfonylureas on this site, and there is a plausible structural reason: acarbose is not synthesised but isolated from a bacterial fermentation broth and separated from a family of closely related molecules. That is an explanation, not a measurement, and this page does not claim to know the manufacturing cost.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Chiasson JL, Josse RG, Gomis R, Hanefeld M, Karasik A, Laakso M. Acarbose for prevention of type 2 diabetes mellitus: the STOP-NIDDM randomised trial. Lancet 2002;359:2072-2077',
+        identifier: '10.1016/S0140-6736(02)08905-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chiasson JL, Josse RG, Gomis R, Hanefeld M, Karasik A, Laakso M. Acarbose treatment and the risk of cardiovascular disease and hypertension in patients with impaired glucose tolerance: the STOP-NIDDM trial. JAMA 2003;290:486-494',
+        identifier: '10.1001/jama.290.4.486',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Kaiser T, Sawicki PT. Acarbose for prevention of diabetes, hypertension and cardiovascular events? A critical analysis of the STOP-NIDDM data. Diabetologia 2004;47:575-580',
+        identifier: '10.1007/s00125-003-1318-y',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Holman RR, Coleman RL, Chan JCN et al. Effects of acarbose on cardiovascular and diabetes outcomes in patients with coronary heart disease and impaired glucose tolerance (ACE): a randomised, double-blind, placebo-controlled trial. Lancet Diabetes Endocrinol 2017;5:877-886',
+        identifier: '10.1016/S2213-8587(17)30309-1',
+        kind: 'doi',
+      },
+      {
+        label: 'ACE: Acarbose Cardiovascular Evaluation Trial',
+        identifier: 'NCT00829660',
+        kind: 'nct',
+      },
+      {
+        label:
+          'FDA prescribing information for acarbose tablets USP — DESCRIPTION, CLINICAL PHARMACOLOGY (Mechanism of Action, Pharmacokinetics) and PRECAUTIONS (Macrovascular Outcomes, Hypoglycemia, Elevated Serum Transaminase Levels)',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22acarbose%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 9811704 — acarbose structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/9811704',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Repaglinide — thirty years on the market and, in the words of the Cochrane review, no study
+  //    has reported its effect on mortality or morbidity. Contraindicated with a common fibrate
+  //    that raises its exposure eightfold.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'repaglinide',
+    name: 'Repaglinide',
+    tradeName: 'Prandin',
+    sponsor:
+      'Novo Nordisk developed and launched Prandin; NDA 020741 is now held by Gemini Laboratories LLC, and the market is generic',
+    targetGene: 'ABCC8',
+    targetProtein:
+      'Sulfonylurea receptor 1 (SUR1) on the pancreatic beta-cell ATP-sensitive potassium channel, at a binding site distinct from the sulfonylurea site',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1997,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not for use in type 1 diabetes mellitus or diabetic ketoacidosis.',
+    patientFriendlyIndication: 'Type 2 diabetes — a fast, short-acting tablet taken with meals',
+    anatomicalSite: 'Pancreatic islet beta cell plasma membrane',
+    conditionContext: {
+      conditionExplainer:
+        'Repaglinide does what a sulfonylurea does — close the beta-cell potassium channel to force insulin out — but it binds a different site, works within an hour and is gone within a few. The design intent was to cover meals rather than the whole day.',
+      whyItMatters:
+        'A shorter action should mean less hypoglycaemia between meals, and the pharmacology supports that. What no trial has ever measured is whether any of it changes how long people live or what happens to their eyes, kidneys, hearts or feet. The Cochrane review of the class says so in one sentence.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, particularly where meal times are irregular or where kidney function makes a long-acting sulfonylurea risky, since repaglinide is cleared mainly by the liver.',
+      clinicalGoals:
+        'Blunt the post-meal glucose rise. The label states there have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with repaglinide.',
+    },
+    oneSentenceVerdict:
+      'A meglitinide that binds its own site on the beta-cell potassium channel to release insulin within an hour and stop within a few, lowering HbA1c by between 0.1 and 2.1 percentage points across eleven placebo-controlled trials — and for which, as the Cochrane review of fifteen trials and 3,781 participants states in terms, no study has reported an effect on mortality or morbidity.',
+    laymanHowItWorks:
+      'Insulin-producing cells sit quiet because potassium leaks out through an open channel. Repaglinide plugs that channel, the cell becomes electrically active, calcium rushes in, and insulin is released. It differs from the older sulfonylurea tablets in two ways: it grips a different part of the same channel, and it does everything fast — in the blood within an hour, largely gone within a few. That is why it is taken with meals rather than once a day.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 46,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0937 per tablet at United States pharmacy acquisition cost, the median across 17 listed generic products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Prandin under NDA 020741 on 22 December 1997 and long off patent, with 17 generic products in the current NADAC file. The application is now held by Gemini Laboratories LLC rather than by the developer.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The Cochrane review compared repaglinide against metformin in three trials and 248 participants and found a similar reduction in HbA1c, with up to three kilograms more weight gain in three months and more hypoglycaemia, though rarely severe enough to need assistance. Against nateglinide, the other meglitinide, repaglinide lowered HbA1c more in two trials and 342 participants. None of those trials measured mortality or morbidity, and neither meglitinide has a cardiovascular outcome trial that reported anything. Metformin does.',
+      conventionalRx: [
+        {
+          name: 'Metformin',
+          class: 'Biguanide',
+          howItCompares:
+            'In three randomised trials totalling 248 participants pooled by Cochrane, repaglinide had a similar effect on HbA1c to metformin. Weight gain was generally greater on the meglitinide — up to three kilograms in three months — diarrhoea occurred less often, and hypoglycaemia occurred more often though rarely severely.',
+          typicalCost: 'Comparable or cheaper',
+          prosAndCons:
+            'Pros: no hypoglycaemia alone, no weight gain, and a randomised cardiovascular win over a sulfonylurea that no meglitinide has. Cons: gastrointestinal intolerance, contraindicated at low kidney function.',
+        },
+        {
+          name: 'Nateglinide',
+          class: 'Meglitinide (D-phenylalanine derivative)',
+          howItCompares:
+            'The same class with a shorter action and a weaker effect. Cochrane found HbA1c reductions of 0.1% to 2.1% for repaglinide across placebo-controlled trials against 0.2% to 0.6% for nateglinide, and in two direct comparisons totalling 342 participants repaglinide reduced HbA1c more. Nateglinide, unlike repaglinide, was tested in a 9,306-patient cardiovascular outcome trial, and failed all three of its co-primary endpoints.',
+          typicalCost: 'US$0.2345 per tablet at NADAC, more than twice repaglinide',
+          prosAndCons:
+            'Pros: has actually been tested for outcomes, even though the answer was negative. Cons: weaker glycaemic effect, and the outcome trial found no benefit.',
+        },
+        {
+          name: 'Sulfonylureas (glipizide, glimepiride)',
+          class: 'Second-generation sulfonylureas',
+          howItCompares:
+            'The same channel, a different binding site, a much longer duration and a much lower price. Glimepiride is under four cents a tablet against nine for repaglinide, and it is the only drug of either class with a dedicated cardiovascular outcome trial. Repaglinide is cleared chiefly by the liver rather than the kidney, which is the usual argument for choosing it.',
+          typicalCost: 'US$0.0373 to US$0.0668 per tablet at NADAC',
+          prosAndCons:
+            'Pros: cheaper, once daily, and one of them has a six-year outcome trial. Cons: longer duration means hypoglycaemia risk extends between meals and overnight, and renal impairment prolongs several of them.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Tell every prescriber and pharmacist that you take this drug',
+          action:
+            'Repaglinide has one of the strongest documented drug interactions of any oral diabetes drug. Gemfibrozil, a fibrate used for high triglycerides, raises repaglinide exposure more than eightfold, and the combination is contraindicated. Clopidogrel raises it around four to fivefold. Neither is an obscure medicine.',
+          patientImpact:
+            'In twelve healthy volunteers, gemfibrozil raised the area under the repaglinide concentration curve 8.1-fold, prolonged its half-life from 1.3 to 3.7 hours and increased the 7-hour plasma concentration 28.6-fold. Adding itraconazole raised exposure 19.4-fold and the 7-hour concentration 70.4-fold. The investigators wrote that repaglinide "became a long-acting and stronger antidiabetic".',
+          clinicalPrecaution:
+            'This is a reason to make sure prescribers know what you are taking, not a reason to adjust anything yourself. Any change belongs with the prescribing clinician. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCOC1=C(C=CC(=C1)CC(=O)N[C@@H](CC(C)C)C2=CC=CC=C2N3CCCCC3)C(=O)O',
+      chemicalFormula: 'C27H36N2O4',
+      molecularWeight: '452.60 g/mol',
+      targetReceptorAffinity:
+        'The FDA label states that repaglinide closes ATP-dependent potassium channels in the beta-cell membrane "by binding at characterizable sites", that insulin release is glucose-dependent and diminishes at low glucose concentrations, and that the ion channel mechanism is highly tissue selective with low affinity for heart and skeletal muscle. Absolute bioavailability is 56%, peak plasma concentration occurs within one hour, and the half-life is 1.0 to 1.4 hours with an individual range extending to 8 hours. Clearance is linear from 0.5 to 4 mg and the drug does not accumulate. Metabolism is by CYP2C8 and CYP3A4, which is why inhibitors of those enzymes produce interactions of unusual magnitude.',
+      structureSource: {
+        label:
+          'PubChem CID 65981 (repaglinide) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/65981',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'rep-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Chiral identity of the S-enantiomer building block',
+          description:
+            'Confirm the identity and enantiomeric purity of the (S)-2-ethoxy-4-substituted benzoic acid fragment and the (S)-3-methyl-1-(2-piperidin-1-ylphenyl)butylamine. Repaglinide is a single enantiomer and the R-enantiomer is far less active; enantiomeric excess is a release specification, not a preference, and it is set by the amine building block rather than recovered later.',
+          reagentsAndBuffer:
+            'Chiral HPLC with polysaccharide stationary phase, optical rotation, nuclear magnetic resonance identity, Karl Fischer water determination, residual solvent screening',
+        },
+        {
+          id: 'rep-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amide coupling of the benzoic acid to the chiral butylamine',
+          description:
+            'Couple the ethoxy-substituted benzoic acid ester to the piperidinylphenyl butylamine to form the central amide, then hydrolyse the ester to reveal the free carboxylic acid that the finished molecule carries. Racemisation at the benzylic stereocentre during coupling is the process risk, so the activation chemistry and temperature are the controlled variables.',
+          dependsOnStepId: 'rep-w1',
+          reagentsAndBuffer:
+            'Carbodiimide or mixed-anhydride activation with racemisation-suppressing additive, tertiary amine base, anhydrous dichloromethane or tetrahydrofuran at controlled low temperature, aqueous base for ester hydrolysis',
+        },
+        {
+          id: 'rep-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with chiral purity and polymorph release',
+          description:
+            'Recrystallise the free acid to the specified polymorph while confirming enantiomeric excess and controlling the des-ethoxy and unhydrolysed ester impurities. Repaglinide is poorly water soluble and its absolute bioavailability is 56%, so polymorph and particle size sit directly upstream of the exposure the clinical programme measured.',
+          dependsOnStepId: 'rep-w2',
+          reagentsAndBuffer:
+            'Ethanol-water or acetone recrystallisation, chiral and achiral reversed-phase HPLC, X-ray powder diffraction, differential scanning calorimetry, laser diffraction particle sizing',
+        },
+        {
+          id: 'rep-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'CYP2C8 and CYP3A4 phenotyping and OATP1B1 uptake',
+          description:
+            'Determine the relative contribution of CYP2C8 and CYP3A4 to clearance in human liver microsomes with selective inhibitors, and measure hepatic uptake through the OATP1B1 transporter. This step is where the eightfold gemfibrozil interaction is predictable in advance: gemfibrozil glucuronide is a mechanism-based CYP2C8 inhibitor and also inhibits OATP1B1, so two clearance routes close at once.',
+          dependsOnStepId: 'rep-w3',
+          reagentsAndBuffer:
+            'Pooled and genotyped human liver microsomes, recombinant CYP2C8 and CYP3A4, montelukast and ketoconazole as selective inhibitors, gemfibrozil 1-O-beta-glucuronide, OATP1B1-transfected HEK293 cells, liquid chromatography with tandem mass spectrometry',
+        },
+        {
+          id: 'rep-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Glucose-dependent insulin secretion and cardiac channel counter-screen',
+          description:
+            'Measure insulin secretion from islets at low and high glucose to test the label claim that release is glucose-dependent and diminishes at low glucose, and counter-screen the cardiac SUR2A and vascular SUR2B channels to test the claim of tissue selectivity. Both are assertions on the label and both are measurable; a page that repeats them without noting they are assay results rather than clinical findings has done the reader no favours.',
+          dependsOnStepId: 'rep-w4',
+          reagentsAndBuffer:
+            'Isolated rodent or human islets, static incubation at 2.8 and 16.7 mmol/L glucose, insulin ELISA, HEK293 cells expressing SUR1/Kir6.2, SUR2A/Kir6.2 and SUR2B/Kir6.1, inside-out patch clamp',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'rep-a1',
+        category: 'inferred',
+        title: 'No study has reported the effect of this class on mortality or morbidity',
+        laymanSummary:
+          'A Cochrane review gathered every randomised trial of at least ten weeks comparing this class of drugs against placebo, against each other or against metformin. Fifteen trials, 3,781 people. Not one of them measured whether the drugs affect death or disease.',
+        technicalDetails:
+          'Black and colleagues searched the Cochrane Library, MEDLINE, EMBASE, ongoing-trial databases and the American Diabetes Association and European Association for the Study of Diabetes conference records, and contacted manufacturers, for randomised parallel or crossover trials of at least ten weeks of meglitinide treatment against placebo, head to head, against metformin or in combination with insulin. Fifteen trials involving 3,781 participants met the criteria. Their first stated result is that no included study reported the effect of meglitinides on mortality or morbidity. Across eleven placebo-controlled studies, repaglinide reduced HbA1c by 0.1 to 2.1 percentage points and nateglinide by 0.2 to 0.6. The reviewers concluded that meglitinides may offer an oral agent of similar potency to metformin where metformin is not tolerated or is contraindicated, but that there is no evidence available to indicate what effect meglitinides will have on important long-term outcomes, particularly mortality. That review was published in 2007, ten years after approval; no cardiovascular outcome trial of repaglinide has reported since.',
+        evidenceSource:
+          'Black C, Donnelly P, McIntyre L, Royle PL, Shepherd JP, Thomas S. Cochrane Database Syst Rev 2007;(2):CD004654 (PMID 17443551)',
+        doi: '10.1002/14651858.CD004654.pub2',
+        inferredClaim:
+          'That lowering HbA1c with repaglinide reduces any clinical event — fifteen randomised trials in 3,781 people contain no measurement of mortality or morbidity, and the label states no macrovascular benefit has been conclusively established',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rep-a2',
+        category: 'measured',
+        title: 'Gemfibrozil raises exposure 8.1-fold, and the combination is contraindicated',
+        laymanSummary:
+          'A cholesterol drug commonly given to people with diabetes turns out to block the liver enzyme that clears repaglinide. In twelve volunteers it multiplied drug exposure eightfold and turned a short-acting tablet into a long-acting one. Combining them is now forbidden on the label.',
+        technicalDetails:
+          'Niemi and colleagues ran a randomised crossover study in 12 healthy volunteers who received gemfibrozil 600 mg twice daily, itraconazole, both, or placebo for three days, then a single 0.25 mg dose of repaglinide. Gemfibrozil raised the area under the repaglinide concentration-time curve 8.1-fold (range 5.5 to 15.0, p<0.001) and prolonged half-life from 1.3 to 3.7 hours (p<0.001). Itraconazole alone raised exposure 1.4-fold; the combination raised it 19.4-fold (range 12.9 to 24.7) and prolonged half-life to 6.1 hours. Plasma repaglinide at seven hours rose 28.6-fold with gemfibrozil and 70.4-fold with the combination (p<0.001). The authors reported that gemfibrozil alone and with itraconazole considerably enhanced and prolonged the glucose-lowering effect, and that repaglinide "became a long-acting and stronger antidiabetic". The FDA label now lists concomitant gemfibrozil under CONTRAINDICATIONS, and records clopidogrel raising exposure 3.9 to 5.1-fold and cyclosporine 2.5-fold.',
+        evidenceSource:
+          'Niemi M, Backman JT, Neuvonen M, Neuvonen PJ. Diabetologia 2003;46:347-351; FDA prescribing information for repaglinide tablets, sections 4 and 7',
+        doi: '10.1007/s00125-003-1034-7',
+        measuredMetric:
+          'Fold change in repaglinide area under the curve, half-life and 7-hour plasma concentration with gemfibrozil alone and with itraconazole, in a randomised crossover study of 12 volunteers',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rep-a3',
+        category: 'failed',
+        title: 'Combined with NPH insulin it produced six myocardial ischaemia events to one',
+        laymanSummary:
+          'Across seven controlled trials, six serious events of reduced blood flow to the heart occurred in people taking repaglinide together with NPH insulin, against one in people on insulin alone. That combination is now explicitly not indicated.',
+        technicalDetails:
+          'The FDA label states, under Warnings and Precautions 5.2: "Across seven controlled trials, there were six serious adverse events of myocardial ischemia in patients treated with repaglinide plus NPH-insulin from two studies, and one event in patients using insulin formulations alone from another study." The label concludes that repaglinide is not indicated for use in combination with NPH insulin. Six events against one is a small number in absolute terms and the comparison is across studies rather than within a randomised contrast, which is exactly why it produced a labelling restriction rather than a mechanistic claim. It is nonetheless the only cardiovascular signal that has ever been attached to this drug, and it points in the wrong direction.',
+        evidenceSource:
+          'FDA prescribing information for repaglinide tablets, section 5.2 Serious Cardiovascular Adverse Reactions with Concomitant Use with NPH-insulin',
+        measuredMetric:
+          'Count of serious myocardial ischaemia adverse events with repaglinide plus NPH insulin against insulin alone, across seven controlled trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rep-a4',
+        category: 'measured',
+        title: 'Similar HbA1c to metformin, with more weight and more hypoglycaemia',
+        laymanSummary:
+          'Where the two were compared head to head, repaglinide brought average blood sugar down about as much as metformin. It also added up to three kilograms in three months and caused more low blood sugar, though rarely severe.',
+        technicalDetails:
+          'The Cochrane review pooled three trials with 248 participants comparing repaglinide against metformin and found a similar degree of HbA1c reduction. Weight gain was generally greater with meglitinides than with metformin, up to three kilograms in three months. Diarrhoea occurred less frequently and hypoglycaemia occurred more frequently, but rarely severely enough to require assistance. Two trials totalling 342 participants compared repaglinide against nateglinide, with greater HbA1c reduction on repaglinide. The reviewers described meglitinides as a possible alternative of similar potency to metformin where metformin is intolerable or contraindicated — a conditional recommendation, made in the absence of any long-term outcome data at all.',
+        evidenceSource: 'Black C et al., Cochrane Database Syst Rev 2007;(2):CD004654',
+        doi: '10.1002/14651858.CD004654.pub2',
+        measuredMetric:
+          'Pooled HbA1c reduction, weight change, diarrhoea and hypoglycaemia frequency for repaglinide against metformin across three randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rep-a5',
+        category: 'measured',
+        title: 'It is in and out within hours, which is the entire design rationale',
+        laymanSummary:
+          'The tablet reaches peak levels within an hour and half of it is cleared within about ninety minutes. That short window is what the drug was built for: cover a meal, then stop.',
+        technicalDetails:
+          'The label reports complete gastrointestinal absorption, absolute bioavailability of 56%, peak plasma concentration within one hour, and a half-life of 1.0 to 1.4 hours with an individual range from 0.4 to 8.0 hours. Total body clearance is 38 ± 16 L/hr and volume of distribution at steady state 31 ± 12 L. Clearance does not change across the 0.5 to 4 mg range, indicating linear pharmacokinetics, and the drug does not accumulate in serum on repeated dosing. The individual half-life range reaching 8.0 hours is worth noting alongside the mean: the population value is short, and some individuals are not.',
+        evidenceSource:
+          'FDA prescribing information for repaglinide tablets, section 12.3 Pharmacokinetics, Tables 5 and 6',
+        measuredMetric:
+          'Absolute bioavailability, time to peak concentration, half-life with individual range, clearance and volume of distribution',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rep-a6',
+        category: 'inferred',
+        title: 'The tissue-selectivity and glucose-dependence claims are assay results',
+        laymanSummary:
+          'The label says insulin release on this drug is glucose-dependent and falls off when blood sugar is low, and that the drug barely touches the channels in heart and muscle. Both are laboratory findings. Neither has been shown to translate into fewer clinical events.',
+        technicalDetails:
+          'The mechanism section of the label states that "insulin release is glucose-dependent and diminishes at low glucose concentrations" and that "the ion channel mechanism is highly tissue selective with low affinity for heart and skeletal muscle". Both statements describe in vitro pharmacology. The clinical consequence that would follow — less hypoglycaemia and no cardiac liability relative to sulfonylureas — has not been demonstrated in an outcome trial, because no outcome trial of repaglinide exists. The Cochrane review found hypoglycaemia occurring more frequently on meglitinides than on metformin, and the only cardiovascular observation attached to the drug is the six-to-one myocardial ischaemia imbalance in combination with NPH insulin. The label separately states that no clinical study has established conclusive evidence of macrovascular risk reduction with repaglinide.',
+        evidenceSource:
+          'FDA prescribing information for repaglinide tablets, sections 12.1 and 5.3; Black C et al., Cochrane Database Syst Rev 2007;(2):CD004654',
+        inferredClaim:
+          'That glucose-dependent secretion and low cardiac channel affinity make repaglinide clinically safer than a sulfonylurea — these are in vitro properties, and no trial has compared clinical outcomes between the two classes',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed within an hour and cleared within a few',
+        laymanDesc:
+          'Taken with a meal, the drug is fully absorbed and peaks within an hour. Half of it is gone in roughly ninety minutes. The whole design is to be present while food is being digested and absent afterwards.',
+        molecularDetail:
+          'Complete gastrointestinal absorption, absolute bioavailability 56%, peak plasma concentration within one hour, half-life 1.0 to 1.4 hours with an individual range from 0.4 to 8.0 hours, linear clearance from 0.5 to 4 mg and no accumulation.',
+        iconName: 'Timer',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It binds its own site on the same channel a sulfonylurea uses',
+        laymanDesc:
+          'The target is the potassium gate on insulin-producing cells — the same gate the old sulfonylurea tablets close, gripped at a different handhold.',
+        molecularDetail:
+          'The label states repaglinide closes ATP-dependent potassium channels in the beta-cell membrane "by binding at characterizable sites". The binding site on SUR1 is distinct from the classical sulfonylurea site, which is why the two classes are not simply additive at the receptor.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'The channel closes, the cell depolarises, calcium enters',
+        laymanDesc:
+          'With potassium held in, the cell becomes electrically active, calcium channels open, and calcium floods in.',
+        molecularDetail:
+          'Potassium channel blockade depolarises the beta cell, which opens voltage-gated calcium channels; the resulting calcium influx induces insulin secretion. The label describes this sequence explicitly and notes the mechanism is highly tissue selective with low affinity for heart and skeletal muscle.',
+        iconName: 'Zap',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Insulin is released — and the label says the release tracks glucose',
+        laymanDesc:
+          'Insulin comes out. The label states that this release depends on glucose and falls off when blood sugar is low, which would in principle make hypoglycaemia less likely than on a longer-acting drug.',
+        molecularDetail:
+          'Insulin release is described as glucose-dependent and diminishing at low glucose concentrations, and as dependent on functioning beta cells. This is in vitro pharmacology; the Cochrane pooling nonetheless found hypoglycaemia more frequent on meglitinides than on metformin.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Two liver enzymes clear it, and both can be blocked',
+        laymanDesc:
+          'The liver removes the drug using two enzymes. Some common medicines shut one of them down, and when that happens the drug stops being short-acting.',
+        molecularDetail:
+          'Metabolism is by CYP2C8 and CYP3A4, with hepatic uptake through OATP1B1. Gemfibrozil, whose glucuronide is a mechanism-based CYP2C8 inhibitor and an OATP1B1 inhibitor, raises exposure 8.1-fold and half-life from 1.3 to 3.7 hours; combined with itraconazole, 19.4-fold and 6.1 hours. Clopidogrel raises exposure 3.9 to 5.1-fold and cyclosporine 2.5-fold.',
+        iconName: 'Recycle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'HbA1c falls — and that is the end of what has been measured',
+        laymanDesc:
+          'Average blood sugar comes down by somewhere between a tenth of a point and two points, depending on the trial. Beyond that, nothing has been counted: not heart attacks, not kidney failure, not deaths.',
+        molecularDetail:
+          'Across eleven placebo-controlled trials pooled by Cochrane, repaglinide reduced HbA1c by 0.1 to 2.1 percentage points. The same review states that no included study reported the effect of meglitinides on mortality or morbidity, and the label states no clinical study has established conclusive evidence of macrovascular risk reduction with repaglinide.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane review of meglitinide analogues for type 2 diabetes',
+        phase: 'Systematic review and meta-analysis of 15 randomised trials of at least 10 weeks',
+        sampleSize: 3781,
+        primaryEndpoint:
+          'Effects of meglitinide analogues on glycaemic control, mortality, morbidity, weight and adverse events against placebo, head to head, or against metformin',
+        endpointMet: false,
+        statisticalPValue:
+          'HbA1c reduction of 0.1 to 2.1 percentage points for repaglinide across eleven placebo-controlled studies; no pooled effect estimate for mortality or morbidity was possible',
+        unreportedAdverseSignals:
+          'The reviewers state that no included study reported the effect of meglitinides on mortality or morbidity, and that there is no evidence available to indicate what effect meglitinides will have on important long-term outcomes, particularly mortality.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Niemi 2003 gemfibrozil and itraconazole interaction study',
+        phase: 'Randomised crossover pharmacokinetic and pharmacodynamic study in healthy volunteers',
+        sampleSize: 12,
+        primaryEndpoint:
+          'Effect of gemfibrozil, itraconazole and their combination on repaglinide pharmacokinetics and blood glucose response',
+        endpointMet: true,
+        statisticalPValue:
+          'P < 0.001 for an 8.1-fold increase in area under the curve with gemfibrozil and a 19.4-fold increase with the combination; half-life prolonged from 1.3 to 3.7 and 6.1 hours',
+        unreportedAdverseSignals:
+          'Twelve healthy volunteers at a single 0.25 mg dose. The clinical consequence in people with diabetes taking therapeutic doses is inferred from the magnitude, not measured — which is why the outcome was a contraindication rather than a warning.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Repaglinide plus NPH insulin safety observation across seven controlled trials',
+        phase: 'Cross-study adverse event tabulation reported on the FDA label',
+        sampleSize: 7,
+        primaryEndpoint:
+          'Serious adverse events of myocardial ischaemia with repaglinide plus NPH insulin against insulin formulations alone',
+        endpointMet: false,
+        statisticalPValue:
+          'Six events with repaglinide plus NPH insulin across two studies against one event on insulin alone in another study; no statistical comparison is reported on the label',
+        unreportedAdverseSignals:
+          'This is a count across non-randomised comparisons between different studies, not a within-trial contrast. The sample size field is the number of controlled trials tabulated, not a participant count, which the label does not give.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'An HbA1c reduction of 0.1 to 2.1 percentage points across eleven placebo-controlled randomised trials',
+        'A similar HbA1c effect to metformin in three trials and 248 participants, with up to three kilograms more weight gain in three months and more frequent hypoglycaemia',
+        'An 8.1-fold increase in repaglinide exposure with gemfibrozil, and 19.4-fold with gemfibrozil plus itraconazole, in 12 randomised volunteers',
+        'Absolute bioavailability of 56%, peak within one hour and a half-life of 1.0 to 1.4 hours with an individual range up to 8.0 hours',
+      ],
+      unsupportedInferences: [
+        'That repaglinide changes any clinical outcome — the Cochrane review of 15 trials in 3,781 people states that no study reported an effect on mortality or morbidity',
+        'That glucose-dependent secretion makes it clinically safer than a sulfonylurea — that is an in vitro property, and no trial has compared the classes for clinical outcomes',
+        'That low affinity for cardiac and skeletal muscle channels confers cardiovascular safety — the only cardiovascular observation attached to the drug is an unfavourable one, in combination with NPH insulin',
+        'That the short half-life protects against hypoglycaemia in every patient — the individual half-life range on the label extends to 8.0 hours, and enzyme inhibitors extend it much further',
+      ],
+      whatFailedInitially: [
+        'Six serious myocardial ischaemia events against one, in combination with NPH insulin, produced a labelling restriction against that combination',
+        'The gemfibrozil interaction was not recognised until 2003, six years after approval, and it moved the drug from marketed to contraindicated with a common fibrate',
+        'No cardiovascular outcome trial of repaglinide has ever been run, nearly thirty years after approval; nateglinide, the other drug in the class, was tested and failed',
+      ],
+      realWorldOutcome: [
+        'US$0.0937 per tablet at United States pharmacy acquisition cost, the median across 17 listed generic products in the CMS NADAC survey',
+        'Cleared chiefly by the liver rather than the kidney, which is the usual clinical argument for choosing it over a sulfonylurea',
+        'Contraindicated with gemfibrozil, and use with clopidogrel is to be avoided — both common medicines in the population that takes this drug',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet taken before meals, in 0.5 mg, 1 mg and 2 mg strengths',
+      description:
+        'A conventional immediate-release tablet of a poorly water-soluble carboxylic acid, taken in relation to meals rather than at a fixed time of day. The pharmacokinetics are what make that structure necessary rather than optional: peak concentration within an hour and a half-life near ninety minutes mean the drug covers a single meal and nothing else.',
+      safetyProfile:
+        'Hypoglycaemia can occur and can be severe, causing seizures and, rarely, death; the label notes awareness may be blunted in longstanding diabetes, diabetic neuropathy, beta-blocker use or recurrent hypoglycaemia. Concomitant gemfibrozil is a contraindication because it raises exposure 8.1-fold. Clopidogrel is to be avoided and cyclosporine requires caution. Combination with NPH insulin is not indicated after six serious myocardial ischaemia events were recorded against one on insulin alone. Weight gain occurs. The label states there have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with repaglinide.',
+    },
+    commonQuestions: [
+      {
+        q: 'Has anyone ever measured whether this drug helps people live longer?',
+        a: 'No. That is not a rhetorical framing — it is the first stated result of the Cochrane review of the class. Fifteen randomised trials involving 3,781 participants met the inclusion criteria, and the reviewers report that no included study reported the effect of meglitinides on mortality or morbidity, concluding that there is no evidence available to indicate what effect these drugs will have on important long-term outcomes, particularly mortality. That was published in 2007, ten years after approval. Nearly twenty years later, no cardiovascular outcome trial of repaglinide has reported. The drug has been shown to lower HbA1c and nothing else.',
+        auditNote:
+          'The other drug in this class, nateglinide, was tested in a 9,306-patient outcome trial. It failed. Repaglinide has never been tested.',
+      },
+      {
+        q: 'Why is it forbidden with a cholesterol drug?',
+        a: 'Because gemfibrozil closes the main route by which the body clears repaglinide, and the effect is enormous. In a randomised crossover study of twelve healthy volunteers, three days of gemfibrozil raised repaglinide exposure 8.1-fold and stretched its half-life from 1.3 hours to 3.7. Adding itraconazole took exposure to 19.4-fold and the seven-hour plasma concentration to 70.4 times control. The investigators wrote that repaglinide "became a long-acting and stronger antidiabetic" — which for a drug whose entire safety argument rests on being short-acting is the specific thing that must not happen. The FDA moved the combination into the contraindications section. Clopidogrel, which is not obscure either, raises exposure around four to fivefold and is to be avoided.',
+      },
+      {
+        q: 'Is it safer than a sulfonylurea?',
+        a: 'The pharmacology argues yes and the clinical evidence does not exist. The label states that insulin release on repaglinide is glucose-dependent and diminishes at low glucose, and that the ion channel mechanism is highly tissue selective with low affinity for heart and skeletal muscle. Both are laboratory measurements, and both are the kind of finding that should translate into less hypoglycaemia and no cardiac liability. Nobody has run the trial. The Cochrane pooling found hypoglycaemia more frequent on meglitinides than on metformin, and the only cardiovascular observation ever attached to repaglinide is unfavourable: six serious myocardial ischaemia events in combination with NPH insulin against one on insulin alone.',
+      },
+      {
+        q: 'What is the point of a short-acting version?',
+        a: 'To match the drug to the meal rather than to the day. A sulfonylurea keeps pushing insulin out for many hours after the food has gone, which is where between-meal and overnight hypoglycaemia comes from. Repaglinide peaks within an hour of a dose and has a half-life of 1.0 to 1.4 hours, so the exposure is tied to eating. The design also means the drug is cleared mainly by the liver rather than the kidney, which is why it is sometimes chosen when kidney function is poor. The individual half-life range on the label reaches 8.0 hours, so the short duration is a population average and not a guarantee for a particular person.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for repaglinide could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.0937 per tablet, the median across 17 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost, and this page will not guess at the difference.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Black C, Donnelly P, McIntyre L, Royle PL, Shepherd JP, Thomas S. Meglitinide analogues for type 2 diabetes mellitus. Cochrane Database Syst Rev 2007;(2):CD004654',
+        identifier: '10.1002/14651858.CD004654.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Niemi M, Backman JT, Neuvonen M, Neuvonen PJ. Effects of gemfibrozil, itraconazole, and their combination on the pharmacokinetics and pharmacodynamics of repaglinide: potentially hazardous interaction between gemfibrozil and repaglinide. Diabetologia 2003;46:347-351',
+        identifier: '10.1007/s00125-003-1034-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA prescribing information for repaglinide tablets — section 4 CONTRAINDICATIONS (gemfibrozil), 5.1 to 5.3, 7 DRUG INTERACTIONS, 12.1 and 12.3',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22repaglinide%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA — NDA 020741 (PRANDIN, original approval 22 December 1997; application now held by Gemini Laboratories LLC)',
+        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22PRANDIN%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 65981 — repaglinide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/65981',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Saxagliptin — the drug that proved the point of mandatory cardiovascular outcome trials by
+  //     being the first modern diabetes agent one of them caught. Neutral on heart attacks, and 27%
+  //     more heart-failure hospitalisations.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'saxagliptin',
+    name: 'Saxagliptin',
+    tradeName: 'Onglyza',
+    sponsor:
+      'AstraZeneca AB (NDA 022350), developed in alliance with Bristol-Myers Squibb; generics now marketed',
+    targetGene: 'DPP4',
+    targetProtein:
+      'Dipeptidyl peptidase-4 (DPP-4, CD26), a serine exopeptidase that cleaves and inactivates the incretin hormones GLP-1 and GIP within minutes of their release',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2009,
+    indication:
+      'As an adjunct to diet and exercise to improve glycaemic control in adults with type 2 diabetes mellitus. Not recommended for the treatment of type 1 diabetes mellitus or diabetic ketoacidosis.',
+    patientFriendlyIndication: 'Type 2 diabetes — a tablet that makes the gut hormone signal last longer',
+    anatomicalSite:
+      'Plasma and the endothelial surface, where DPP-4 circulates and is membrane-anchored; the downstream effect is on pancreatic alpha and beta cells',
+    conditionContext: {
+      conditionExplainer:
+        'When food arrives, the small intestine releases hormones that tell the pancreas to make insulin — but only while blood sugar is high. An enzyme in the blood destroys those hormones within minutes. Saxagliptin blocks the enzyme, so the signal lasts longer.',
+      whyItMatters:
+        'Because the hormone signal itself is glucose-dependent, prolonging it does not cause hypoglycaemia the way forcing insulin out does. That was the class advantage. The question nobody had answered when these drugs were licensed was whether any of it prevents anything — and when a 16,492-patient trial finally asked, the answer on heart attacks was no and on heart failure was worse than no.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, usually added to metformin, and particularly where hypoglycaemia is the constraint. It is now generic.',
+      clinicalGoals:
+        'Lower HbA1c without hypoglycaemia. The 16,492-patient outcome trial concluded that although saxagliptin improves glycaemic control, other approaches are necessary to reduce cardiovascular risk.',
+    },
+    oneSentenceVerdict:
+      'A competitive inhibitor of the enzyme that destroys the gut hormones GLP-1 and GIP, which lowers blood sugar without causing hypoglycaemia on its own — and which, in a 16,492-patient randomised trial, changed the rate of cardiovascular death, heart attack and ischaemic stroke by nothing at all (hazard ratio 1.00) while raising hospitalisation for heart failure by 27% (hazard ratio 1.27, 95% CI 1.07 to 1.51, p=0.007), a finding now written into its label.',
+    laymanHowItWorks:
+      'Eating triggers the gut to release hormones that tell the pancreas to release insulin — but only while blood sugar is actually high, which is why they do not cause hypoglycaemia. An enzyme circulating in the blood chews those hormones up within a couple of minutes. Saxagliptin plugs that enzyme, so the hormones survive longer and their signal is stronger. The pancreas makes more insulin after meals and less glucagon, and the liver stops pushing out extra sugar.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 68,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$1.14 per tablet at United States pharmacy acquisition cost, the median across 16 listed products in the CMS NADAC survey effective 19 August 2026',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved as Onglyza under NDA 022350 on 31 July 2009. Now off patent with generics in the current NADAC file, which is why the median acquisition cost is US$1.14 rather than the branded price. It remains roughly twelve times the price of the most expensive sulfonylurea on this site and about six times the price of acarbose.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Every DPP-4 inhibitor lowers HbA1c by a similar modest amount without hypoglycaemia, and every one of them has an outcome trial designed to exclude harm rather than demonstrate benefit. Saxagliptin is the one whose trial found harm. Against glimepiride, the DPP-4 inhibitor linagliptin was non-inferior on cardiovascular events with about a quarter of the hypoglycaemia; against placebo, saxagliptin was neutral on ischaemic events and worse on heart failure. The classes that have shown benefit on hard endpoints — SGLT2 inhibitors and GLP-1 receptor agonists — are different drugs entirely.',
+      conventionalRx: [
+        {
+          name: 'Sitagliptin',
+          class: 'DPP-4 inhibitor',
+          howItCompares:
+            'The same mechanism with a different molecule and a different outcome trial. No head-to-head cardiovascular comparison exists between the two. In the GRADE trial, sitagliptin was the weakest of four second-line agents at holding HbA1c below 7.0%, at 38.1 events per 100 participant-years against 30.4 for glimepiride, 26.5 for insulin glargine and 26.1 for liraglutide.',
+          typicalCost: 'No NADAC figure for sitagliptin is held on this record',
+          prosAndCons:
+            'Pros: no heart-failure signal in its own outcome trial. Cons: same class, same modest glycaemic effect, same absence of demonstrated benefit.',
+        },
+        {
+          name: 'Alogliptin',
+          class: 'DPP-4 inhibitor',
+          howItCompares:
+            'The other DPP-4 inhibitor whose United States label carries a heart-failure discussion. Its outcome trial, EXAMINE, was run in patients recently hospitalised with acute coronary syndrome and was neutral on its primary endpoint.',
+          typicalCost: 'US$5.18 per tablet at NADAC, more than four times saxagliptin',
+          prosAndCons:
+            'Pros: tested in the highest-risk population any DPP-4 trial enrolled. Cons: much more expensive at acquisition cost, and no benefit demonstrated.',
+        },
+        {
+          name: 'SGLT2 inhibitors',
+          class: 'Sodium-glucose cotransporter 2 inhibitors',
+          howItCompares:
+            'The class that reduces heart-failure hospitalisation, which is the specific harm saxagliptin was found to cause. Their outcome trials met superiority endpoints rather than non-inferiority margins.',
+          typicalCost: 'Mostly branded and considerably more expensive',
+          prosAndCons:
+            'Pros: demonstrated reductions in heart-failure hospitalisation and renal outcomes. Cons: genital mycotic infection, volume depletion, and a rare risk of euglycaemic ketoacidosis.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report breathlessness, ankle swelling or sudden weight gain rather than waiting',
+          action:
+            'The heart-failure finding in SAVOR-TIMI 53 is on the label, and the label asks patients to be told the characteristic symptoms of heart failure and to report them immediately. Those symptoms are breathlessness on exertion or lying flat, swelling of the ankles or abdomen, and rapid unexplained weight gain.',
+          patientImpact:
+            'In SAVOR-TIMI 53, 289 of 8,280 patients on saxagliptin (3.5%) were hospitalised for heart failure against 228 of 8,212 on placebo (2.8%), hazard ratio 1.27 (95% CI 1.07 to 1.51). The label notes that patients with a prior history of heart failure and those with renal impairment had a higher risk irrespective of which treatment they received.',
+          clinicalPrecaution:
+            'Symptoms of heart failure need medical assessment, not self-management. Any change to a diabetes regimen belongs with the prescribing clinician. This page gives no dosing guidance of any kind.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1[C@@H]2C[C@@H]2N([C@@H]1C#N)C(=O)[C@H](C34CC5CC(C3)CC(C5)(C4)O)N',
+      chemicalFormula: 'C18H25N3O2',
+      molecularWeight: '315.40 g/mol',
+      targetReceptorAffinity:
+        'A competitive DPP-4 inhibitor. The FDA label explains the chain: GLP-1 and GIP are released from the small intestine in response to meals, cause glucose-dependent insulin release from beta cells, and are inactivated by DPP-4 within minutes; GLP-1 additionally lowers glucagon secretion from alpha cells and so reduces hepatic glucose production. In type 2 diabetes GLP-1 concentrations are reduced while the insulin response to GLP-1 is preserved, which is the therapeutic opening. Saxagliptin slows that inactivation and lowers fasting and post-prandial glucose in a glucose-dependent manner. It carries an adamantyl group and a cyanopyrrolidine warhead that forms a reversible covalent adduct with the catalytic serine. CYP3A4 and CYP3A5 convert it to 5-hydroxysaxagliptin, an active metabolite whose plasma exposure after a 5 mg dose is roughly three times that of the parent — 214 against 78 ng·h/mL.',
+      structureSource: {
+        label:
+          'PubChem CID 11243969 (saxagliptin) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11243969',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sax-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Stereochemical release of the adamantylglycine and the cyanopyrrolidine',
+          description:
+            'Confirm identity and stereochemistry of the 3-hydroxyadamantyl glycine fragment and the (1S,3S,5S)-2-azabicyclo[3.1.0]hexane-3-carbonitrile. Saxagliptin has three defined stereocentres in the bicyclic nitrile alone; the wrong configuration binds DPP-4 far more weakly, so enantiomeric and diastereomeric purity is a potency specification rather than a cosmetic one.',
+          reagentsAndBuffer:
+            'Chiral HPLC and supercritical fluid chromatography, optical rotation, two-dimensional nuclear magnetic resonance, Karl Fischer water determination, cyanide content by ion chromatography',
+        },
+        {
+          id: 'sax-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amide coupling of the protected amino acid to the bicyclic nitrile',
+          description:
+            'Couple the Boc-protected hydroxyadamantyl glycine to the strained bicyclic proline nitrile, then deprotect. The cyanopyrrolidine is the reactive warhead and it is also the process liability: under acidic or basic conditions the free amine cyclises intramolecularly onto the nitrile to give an inactive cyclic amidine, which is the principal degradation product of the drug substance.',
+          dependsOnStepId: 'sax-w1',
+          reagentsAndBuffer:
+            'Carbodiimide or uronium coupling reagent with hydroxybenzotriazole additive, tertiary amine base, anhydrous dichloromethane at controlled low temperature, acidic Boc deprotection with immediate neutralisation',
+        },
+        {
+          id: 'sax-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Salt or hydrate selection and cyclic amidine control',
+          description:
+            'Crystallise as the specified hydrate or salt form and control the cyclic amidine degradant to monograph limits, including under accelerated stability conditions. This impurity forms on storage as well as in the reactor, so the specification has to be met at release and again at the end of shelf life.',
+          dependsOnStepId: 'sax-w2',
+          reagentsAndBuffer:
+            'Aqueous-organic recrystallisation, reversed-phase HPLC with ultraviolet detection and mass-spectrometric peak identification, X-ray powder diffraction, dynamic vapour sorption, accelerated stability chambers at 40 degrees Celsius and 75% relative humidity',
+        },
+        {
+          id: 'sax-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'CYP3A4/5 conversion to 5-hydroxysaxagliptin and renal clearance modelling',
+          description:
+            'Quantify formation of the active 5-hydroxy metabolite in human liver microsomes and hepatocytes, and characterise renal handling of both parent and metabolite. This step matters clinically: the active metabolite carries roughly three times the plasma exposure of the parent after a single dose, and both are renally cleared, so kidney function changes total active exposure more than it changes parent concentration alone.',
+          dependsOnStepId: 'sax-w3',
+          reagentsAndBuffer:
+            'Pooled human liver microsomes and cryopreserved hepatocytes, recombinant CYP3A4 and CYP3A5, ketoconazole as a selective inhibitor, synthesised 5-hydroxysaxagliptin standard, renal proximal tubule transporter panel, liquid chromatography with tandem mass spectrometry',
+        },
+        {
+          id: 'sax-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'DPP-4 inhibition with DPP-8 and DPP-9 counter-screens, and active GLP-1 measurement',
+          description:
+            'Measure DPP-4 inhibition and plasma DPP-4 activity, counter-screen the closely related DPP-8 and DPP-9 enzymes, and quantify intact active GLP-1 after a meal challenge. The DPP-8 and DPP-9 counter-screen is not optional history: non-selective inhibitors of this family produced severe toxicity in preclinical species, and selectivity is the property that separates a drug from a compound in this class.',
+          dependsOnStepId: 'sax-w4',
+          reagentsAndBuffer:
+            'Recombinant human DPP-4, DPP-8, DPP-9 and fibroblast activation protein, Gly-Pro-aminomethylcoumarin fluorogenic substrate, human plasma for ex vivo enzyme activity, DPP-4 inhibitor-stabilised blood tubes, active GLP-1 (7-36 amide) immunoassay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sax-a1',
+        category: 'failed',
+        title: 'SAVOR-TIMI 53 found 27% more hospitalisations for heart failure',
+        laymanSummary:
+          'The trial required to prove saxagliptin did not cause harm found harm — not the harm it was looking for. Heart attacks and strokes were unchanged. Admissions to hospital for heart failure rose from 2.8% to 3.5%, and the finding is now printed on the label.',
+        technicalDetails:
+          'SAVOR-TIMI 53 randomised 16,492 patients with type 2 diabetes who had a history of, or were at risk for, cardiovascular events to saxagliptin or placebo, with physicians free to adjust other therapy, and followed them a median 2.1 years. More patients on saxagliptin were hospitalised for heart failure: 3.5% against 2.8%, hazard ratio 1.27 (95% CI 1.07 to 1.51, p=0.007). The FDA label reproduces the counts — 289 of 8,280 against 228 of 8,212 — and adds that patients with prior heart failure and those with renal impairment were at higher risk irrespective of treatment assignment. Section 5.2 of the label instructs prescribers to consider the risks and benefits before initiating in patients at higher risk of heart failure, to observe for signs and symptoms during therapy, to advise patients of the characteristic symptoms and to report them immediately, and to consider discontinuation if heart failure develops.',
+        evidenceSource:
+          'Scirica BM et al., N Engl J Med 2013;369:1317-1326 (SAVOR-TIMI 53, NCT01107886); FDA prescribing information for saxagliptin tablets, section 5.2',
+        doi: '10.1056/NEJMoa1307684',
+        measuredMetric:
+          'Hazard ratio and absolute rates of hospitalisation for heart failure over a median 2.1 years in 16,492 randomised patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sax-a2',
+        category: 'measured',
+        title: 'On the endpoint it was built to test, the result was exactly nothing',
+        laymanSummary:
+          'The primary endpoint was cardiovascular death, heart attack or ischaemic stroke. It happened to 7.3% of the saxagliptin group and 7.2% of the placebo group. The hazard ratio was 1.00.',
+        technicalDetails:
+          'A primary endpoint event occurred in 613 patients on saxagliptin and 609 on placebo — 7.3% and 7.2% by two-year Kaplan-Meier estimate — hazard ratio 1.00 (95% CI 0.89 to 1.12), p=0.99 for superiority and p<0.001 for non-inferiority. The on-treatment analysis agreed at 1.03 (95% CI 0.91 to 1.17). The major secondary endpoint, a broader composite adding hospitalisation for unstable angina, coronary revascularisation and heart failure, occurred in 1,059 against 1,034 patients — 12.8% and 12.4% — hazard ratio 1.02 (95% CI 0.94 to 1.11, p=0.66). The trial authors concluded that DPP-4 inhibition with saxagliptin did not increase or decrease the rate of ischaemic events, and that "although saxagliptin improves glycemic control, other approaches are necessary to reduce cardiovascular risk in patients with diabetes."',
+        evidenceSource: 'Scirica BM et al., N Engl J Med 2013;369:1317-1326 (NCT01107886)',
+        doi: '10.1056/NEJMoa1307684',
+        measuredMetric:
+          'Hazard ratios for the primary composite of cardiovascular death, myocardial infarction or ischaemic stroke, and for the major secondary composite, in 16,492 patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sax-a3',
+        category: 'conclusion_shift',
+        title: 'This is the trial that justified making outcome trials compulsory',
+        laymanSummary:
+          'After rosiglitazone, the FDA started requiring every new diabetes drug to prove it did not increase cardiovascular risk. Saxagliptin was among the first drugs put through that requirement, and it was the first whose trial found a problem the licensing programme had missed entirely.',
+        technicalDetails:
+          'The DPP-4 inhibitors were licensed on HbA1c in phase 3 programmes that were not designed or powered to detect a difference in heart-failure hospitalisation. The signal in SAVOR-TIMI 53 emerged only because 16,492 patients were followed with adjudicated endpoints over a median 2.1 years — roughly two orders of magnitude more patient-years than a registration programme provides. The consequence was a labelling change rather than a withdrawal: the current United States label devotes a numbered warnings section to heart failure and reproduces the trial counts. The same class effect discussion appears on the alogliptin label. What changed was not the drug but what is known about it, and the mechanism by which that knowledge arrived was a regulatory requirement introduced because of a different drug entirely.',
+        evidenceSource:
+          'Scirica BM et al., N Engl J Med 2013;369:1317-1326; FDA prescribing information for saxagliptin tablets, section 5.2',
+        doi: '10.1056/NEJMoa1307684',
+        measuredMetric:
+          'The heart-failure hazard ratio detectable only at 16,492 patients and a median 2.1 years, against a registration programme powered on HbA1c',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sax-a4',
+        category: 'measured',
+        title: 'Acute pancreatitis was numerically higher and not statistically distinguishable',
+        laymanSummary:
+          'Pancreatitis was the safety worry that dominated discussion of this class before the trial. In 16,413 patients it occurred in 17 on saxagliptin and 9 on placebo — 0.2% against 0.1%.',
+        technicalDetails:
+          'The FDA label reports that in SAVOR, definite acute pancreatitis was confirmed in 17 of 8,240 patients receiving saxagliptin (0.2%) against 9 of 8,173 receiving placebo (0.1%). Pre-existing risk factors for pancreatitis were identified in 15 of the 17 saxagliptin cases (88%) and in all 9 placebo cases. The published trial reports rates of adjudicated acute pancreatitis as similar between groups at 0.3% and 0.2%, and chronic pancreatitis at below 0.1% and 0.1%. The label nonetheless carries a numbered pancreatitis warning on the strength of postmarketing reports, instructing prompt discontinuation if pancreatitis is suspected. Twenty-six events across sixteen thousand patients is a small enough number that the confidence interval around any ratio would be wide, and the label does not present one.',
+        evidenceSource:
+          'FDA prescribing information for saxagliptin tablets, section 5.1; Scirica BM et al., N Engl J Med 2013;369:1317-1326',
+        doi: '10.1056/NEJMoa1307684',
+        measuredMetric:
+          'Confirmed definite acute pancreatitis counts and rates by arm in the cardiovascular outcome trial, with pre-existing risk factor prevalence',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sax-a5',
+        category: 'measured',
+        title: 'Two class harms were only discovered after approval',
+        laymanSummary:
+          'Severe disabling joint pain and a blistering skin disease serious enough to require hospital admission were both added to the labels of this drug class from postmarketing reports, not from the trials that licensed them.',
+        technicalDetails:
+          'The current saxagliptin label carries two warnings derived entirely from postmarketing surveillance. Section 5.5 states that severe and disabling arthralgia has been reported in patients taking DPP-4 inhibitors, and instructs prescribers to consider the drug as a possible cause of severe joint pain and to discontinue if appropriate. Section 5.6 states that there have been postmarketing reports of bullous pemphigoid requiring hospitalisation in patients taking DPP-4 inhibitors, instructs that patients be told to report blisters or erosions, and requires discontinuation if bullous pemphigoid is suspected. Section 5.4 records postmarketing reports of serious hypersensitivity reactions including anaphylaxis, angioedema and exfoliative skin conditions. None of these appeared in the registration programme; all are class findings that accumulated after tens of millions of patient-exposures.',
+        evidenceSource:
+          'FDA prescribing information for saxagliptin tablets, sections 5.4, 5.5 and 5.6',
+        measuredMetric:
+          'Postmarketing-derived warnings for arthralgia, bullous pemphigoid and serious hypersensitivity added to the label after approval',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sax-a6',
+        category: 'inferred',
+        title: 'The active metabolite carries three times the exposure of the parent drug',
+        laymanSummary:
+          'The liver converts saxagliptin into a second compound that also blocks the enzyme, and there is about three times as much of it in the blood. Both are cleared by the kidney, so kidney function changes total active drug more than a parent-drug measurement suggests.',
+        technicalDetails:
+          'The label reports that after a single 5 mg oral dose in healthy subjects, mean plasma area under the curve was 78 ng·h/mL for saxagliptin and 214 ng·h/mL for the active metabolite 5-hydroxysaxagliptin, with peak concentrations of 24 and 47 ng/mL respectively. Exposure to both increases proportionally from 2.5 to 400 mg, variability is under 25%, and neither accumulates on repeated once-daily dosing. Formation of the metabolite is by CYP3A4 and CYP3A5, so strong inhibitors of those enzymes shift the parent-to-metabolite ratio. Both species are renally eliminated. A page describing this drug purely in terms of the parent compound is describing a quarter of the circulating active material.',
+        evidenceSource:
+          'FDA prescribing information for saxagliptin tablets, section 12.3 Pharmacokinetics',
+        inferredClaim:
+          'That saxagliptin plasma concentration describes the drug exposure — the active 5-hydroxy metabolite carries roughly three times the area under the curve, and both depend on renal clearance',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A meal makes the gut release two short-lived hormones',
+        laymanDesc:
+          'When food reaches the small intestine, cells there release hormones into the blood that prime the pancreas for the glucose about to arrive.',
+        molecularDetail:
+          'GLP-1 is released from intestinal L cells and GIP from K cells in response to nutrient arrival. The label states these hormones cause insulin release from pancreatic beta cells in a glucose-dependent manner. In type 2 diabetes GLP-1 concentrations are reduced while the insulin response to GLP-1 is preserved.',
+        iconName: 'Utensils',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'An enzyme in the blood destroys them within minutes',
+        laymanDesc:
+          'A protein-cutting enzyme circulating in blood and anchored on blood vessel surfaces clips the ends off both hormones and switches them off almost immediately.',
+        molecularDetail:
+          'Dipeptidyl peptidase-4 removes the N-terminal dipeptide from GLP-1 and GIP, inactivating them within minutes of release. The half-life of intact active GLP-1 in plasma is of the order of a couple of minutes, which is what makes the enzyme, rather than the hormone, the practical drug target.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Saxagliptin sits in the enzyme active site and blocks the cut',
+        laymanDesc:
+          'The drug is shaped like the end of the hormone the enzyme normally grabs, so the enzyme grabs the drug instead — and this time nothing gets cut.',
+        molecularDetail:
+          'The cyanopyrrolidine nitrile forms a slowly reversible covalent adduct with the catalytic serine of DPP-4, giving competitive inhibition with a long residence time. Selectivity over the closely related DPP-8 and DPP-9 enzymes is a design requirement of the class, not an incidental property.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The hormone signal lasts longer, and only while sugar is high',
+        laymanDesc:
+          'With the enzyme blocked, the gut hormones survive longer and their message to the pancreas is louder. Crucially, the message itself only works when blood sugar is elevated.',
+        molecularDetail:
+          'The label states saxagliptin reduces fasting and post-prandial glucose "in a glucose-dependent manner". That dependence is the reason a DPP-4 inhibitor alone does not cause hypoglycaemia, and it is also the reason the effect size is modest compared with drugs that force insulin release unconditionally.',
+        iconName: 'Cpu',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Insulin rises after meals and glucagon falls',
+        laymanDesc:
+          'Two things happen at once: the pancreas releases more insulin after eating, and it releases less of the hormone that tells the liver to make sugar.',
+        molecularDetail:
+          'GLP-1 raises glucose-dependent insulin secretion from beta cells and lowers glucagon secretion from alpha cells, reducing hepatic glucose production. Both arms contribute to the fall in fasting and post-prandial glucose that the label describes.',
+        iconName: 'ArrowRightLeft',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'HbA1c falls, ischaemic events do not, and heart failure admissions rise',
+        laymanDesc:
+          'Average blood sugar comes down. Heart attacks and strokes stay exactly where they were. Admissions to hospital for heart failure went up by about a quarter in the trial that looked.',
+        molecularDetail:
+          'In SAVOR-TIMI 53, the primary composite hazard ratio was 1.00 (95% CI 0.89 to 1.12) and hospitalisation for heart failure 1.27 (95% CI 1.07 to 1.51, p=0.007). The mechanism of the heart-failure signal is unresolved; DPP-4 has substrates beyond the incretins, including stromal cell-derived factor-1 and brain natriuretic peptide, which is a hypothesis rather than a demonstrated cause.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SAVOR-TIMI 53 (NCT01107886)',
+        phase: 'Randomised double-blind placebo-controlled cardiovascular outcome trial, median 2.1 years',
+        sampleSize: 16492,
+        primaryEndpoint:
+          'Composite of cardiovascular death, myocardial infarction or ischaemic stroke, in patients with type 2 diabetes with a history of or at risk for cardiovascular events',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 1.00 (95% CI 0.89 to 1.12); P = 0.99 for superiority, P < 0.001 for non-inferiority. On-treatment analysis 1.03 (95% CI 0.91 to 1.17)',
+        unreportedAdverseSignals:
+          'Hospitalisation for heart failure was higher on saxagliptin — 3.5% against 2.8%, hazard ratio 1.27 (95% CI 1.07 to 1.51, P = 0.007) — a finding now carried in a numbered warnings section of the label. Definite acute pancreatitis was confirmed in 17 of 8,240 against 9 of 8,173.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A hazard ratio of 1.00 (95% CI 0.89 to 1.12) for cardiovascular death, myocardial infarction or ischaemic stroke in 16,492 randomised patients over a median 2.1 years',
+        'A hazard ratio of 1.27 (95% CI 1.07 to 1.51, p=0.007) for hospitalisation for heart failure — 289 of 8,280 against 228 of 8,212',
+        'A major secondary composite hazard ratio of 1.02 (95% CI 0.94 to 1.11, p=0.66)',
+        'Definite acute pancreatitis confirmed in 17 of 8,240 on saxagliptin against 9 of 8,173 on placebo, with pre-existing risk factors in 88% and 100% of those cases',
+        'An active 5-hydroxy metabolite whose plasma exposure after a 5 mg dose is 214 ng·h/mL against 78 for the parent compound',
+      ],
+      unsupportedInferences: [
+        'That lowering HbA1c with saxagliptin reduces cardiovascular risk — the trial that tested it returned a hazard ratio of exactly 1.00, and its authors wrote that other approaches are necessary',
+        'That the absence of hypoglycaemia makes the class clinically safer overall — the outcome trial found an excess of heart-failure hospitalisation instead',
+        'That the heart-failure signal is explained by a known mechanism — DPP-4 has substrates beyond the incretins, and no causal pathway has been demonstrated',
+        'That the pancreatitis question is resolved — 26 adjudicated events across 16,413 patients cannot exclude a modest effect, and the label carries a warning built on postmarketing reports',
+      ],
+      whatFailedInitially: [
+        'Saxagliptin was the first modern diabetes drug whose mandatory cardiovascular outcome trial found a harm its registration programme had missed, and the label now carries a numbered heart-failure warning as a result',
+        'Superiority on the primary endpoint was not merely unmet — the point estimate was 1.00, with the confidence interval symmetric about no effect',
+        'Severe disabling arthralgia and bullous pemphigoid requiring hospitalisation were both added to the label from postmarketing reports after approval',
+      ],
+      realWorldOutcome: [
+        'US$1.14 per tablet at United States pharmacy acquisition cost, the median across 16 listed products in the CMS NADAC survey — around twelve times the priciest sulfonylurea on this site',
+        'Now off patent, with generics in the NADAC file, more than fifteen years after approval',
+        'The heart-failure finding is reproduced verbatim on the current label, including the trial arm counts',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, once daily, in 2.5 mg and 5 mg strengths',
+      description:
+        'A conventional immediate-release tablet. Exposure to both saxagliptin and its active 5-hydroxy metabolite rises proportionally from 2.5 to 400 mg, variability is under 25%, and neither accumulates on repeated once-daily dosing. Both are renally eliminated, so the strength appropriate to a given level of kidney function is a prescribing decision this page does not enter into.',
+      safetyProfile:
+        'Saxagliptin alone does not cause hypoglycaemia, because the incretin signal it prolongs is itself glucose-dependent; combined with insulin or an insulin secretagogue the risk rises. Section 5.2 of the label carries the SAVOR heart-failure finding with its trial counts and asks prescribers to weigh risks and benefits in patients at higher risk, to monitor, and to consider discontinuation if heart failure develops. Postmarketing reports underlie warnings for acute pancreatitis, serious hypersensitivity including anaphylaxis and angioedema, severe and disabling arthralgia, and bullous pemphigoid requiring hospitalisation. It is not recommended in type 1 diabetes or diabetic ketoacidosis.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does saxagliptin cause heart failure?',
+        a: 'The randomised evidence says it increases hospitalisation for it, and the label says so too. SAVOR-TIMI 53 randomised 16,492 people with type 2 diabetes at cardiovascular risk to saxagliptin or placebo and followed them a median 2.1 years. Hospitalisation for heart failure occurred in 289 of 8,280 on saxagliptin (3.5%) against 228 of 8,212 on placebo (2.8%), hazard ratio 1.27 (95% CI 1.07 to 1.51, p=0.007). That is an absolute difference of about seven admissions per thousand patients over two years, and the confidence interval excludes no effect. The label reproduces those counts, notes that prior heart failure and renal impairment raise the risk regardless of treatment, and asks prescribers to weigh risks and benefits before starting the drug in higher-risk patients. What causes it is unknown; DPP-4 has substrates other than the incretin hormones, which is a hypothesis and not a demonstration.',
+        auditNote:
+          'A hazard ratio of 1.27 on a secondary endpoint would normally be treated as hypothesis-generating. It became a labelled warning because the trial was large, blinded, and the endpoint adjudicated.',
+      },
+      {
+        q: 'Did it prevent anything?',
+        a: 'No. The primary endpoint — cardiovascular death, heart attack or ischaemic stroke — occurred in 613 patients on saxagliptin and 609 on placebo, 7.3% against 7.2%, hazard ratio 1.00 with a confidence interval from 0.89 to 1.12. The broader secondary composite was 1.02. The trial met its non-inferiority margin, which was what it was designed to do, and its authors ended with a sentence worth quoting exactly: "Although saxagliptin improves glycemic control, other approaches are necessary to reduce cardiovascular risk in patients with diabetes." That is the manufacturer-funded trial saying so.',
+      },
+      {
+        q: 'Why does this drug not cause low blood sugar?',
+        a: 'Because it amplifies a signal that is itself conditional on blood sugar being high. GLP-1 and GIP are released by the gut in response to food and tell the pancreas to release insulin — but only in a glucose-dependent way, so when glucose is normal the signal does nothing. Saxagliptin blocks the enzyme that destroys those hormones, making the signal last longer and hit harder, without removing its conditionality. That is the class advantage over sulfonylureas, which force insulin out whether glucose is high or not. It is also why the glycaemic effect is more modest: the drug cannot push harder than the underlying physiology allows.',
+      },
+      {
+        q: 'Why did nobody know about the heart failure risk before 2013?',
+        a: 'Because the licensing programme was not built to find it. Saxagliptin was approved in 2009 on trials powered to show a change in HbA1c over a few months in a few thousand patients. Heart-failure hospitalisation at 3.5% against 2.8% over two years is invisible at that scale. After rosiglitazone, the FDA began requiring new diabetes drugs to demonstrate they did not increase cardiovascular risk, which meant tens of thousands of patients followed for years with adjudicated endpoints. SAVOR-TIMI 53 was one of the first of those trials to report, and it found something the approval package could not have. The result was a labelling change, not a withdrawal.',
+      },
+      {
+        q: 'Does this page show what the drug costs to make?',
+        a: 'No, because no verifiable per-dose cost-of-production figure for saxagliptin could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$1.14 per tablet, the median across 16 listed products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost. It is worth noting only that this is a generic price for an off-patent molecule, and it is still roughly twelve times what pharmacies pay for glimepiride.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Scirica BM, Bhatt DL, Braunwald E et al. Saxagliptin and cardiovascular outcomes in patients with type 2 diabetes mellitus (SAVOR-TIMI 53). N Engl J Med 2013;369:1317-1326',
+        identifier: '10.1056/NEJMoa1307684',
+        kind: 'doi',
+      },
+      {
+        label:
+          'SAVOR-TIMI 53: Does Saxagliptin Reduce the Risk of Cardiovascular Events When Used Alone or Added to Other Diabetes Medications',
+        identifier: 'NCT01107886',
+        kind: 'nct',
+      },
+      {
+        label:
+          'FDA prescribing information for saxagliptin tablets — sections 5.1 Pancreatitis, 5.2 Heart Failure, 5.4 Hypersensitivity-Related Events, 5.5 Arthralgia, 5.6 Bullous Pemphigoid, 12.1 and 12.3',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22saxagliptin%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'openFDA Drugs@FDA — NDA 022350 (ONGLYZA, AstraZeneca AB, original approval 31 July 2009)',
+        identifier: 'https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:%22ONGLYZA%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 11243969 — saxagliptin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/11243969',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

@@ -1895,4 +1895,1429 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Meropenem — the reserve antibiotic that won the one trial designed to make it unnecessary,
+  //    and whose most confident pharmacological prediction failed in 607 patients.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'meropenem',
+    name: 'Meropenem',
+    tradeName: 'Merrem IV',
+    sponsor:
+      'Sumitomo Pharmaceuticals (discovery) with Zeneca, later AstraZeneca, as developer; the current United States application holder on NDA 050706 is Pfizer, and generics are widely marketed',
+    targetGene:
+      'Bacterial cell-wall genes ftsI (PBP3), mrcB (PBP1b) and relatives — bacterial penicillin-binding-protein genes, not human ones',
+    targetProtein:
+      'Bacterial penicillin-binding proteins, principally PBP2 and PBP3 in Gram-negative organisms',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1996,
+    indication:
+      'Complicated skin and skin structure infections, complicated intra-abdominal infections, and bacterial meningitis in paediatric patients, caused by susceptible isolates of the designated microorganisms',
+    patientFriendlyIndication:
+      'Severe hospital infections, including infections in the abdomen, skin and the lining of the brain',
+    anatomicalSite:
+      'The bacterial periplasm and cell envelope, reached through outer-membrane porins that admit meropenem where other beta-lactams are excluded',
+    conditionContext: {
+      conditionExplainer:
+        'Meropenem is one of the last antibiotics that reliably works when the common ones have failed. It is used in severe hospital infections, in the abdomen, in the bloodstream, and in meningitis, especially when the organism carries enzymes that destroy penicillins and cephalosporins.',
+      whyItMatters:
+        'The whole logic of antibiotic stewardship is to use meropenem as little as possible so that it still works when it is needed. The most important trial about it was designed to show a cheaper drug could take its place. It showed the opposite, and the argument about carbapenem-sparing has never fully recovered.',
+      whoTakesThis:
+        'Hospitalised adults and children with severe infection, including infections caused by extended-spectrum beta-lactamase-producing Enterobacterales and by Pseudomonas aeruginosa.',
+      clinicalGoals:
+        'Survival in the sickest populations, and clinical cure in the rest. Unusually for an antibiotic, its most important trials used 30-day and 28-day mortality as the primary endpoint rather than a cure rate.',
+    },
+    oneSentenceVerdict:
+      'A carbapenem with a methyl group that blocks the human kidney enzyme which destroyed its predecessor, and a ring that resists almost every bacterial beta-lactamase — in the MERINO trial, 30-day mortality was 3.7% on meropenem against 12.3% on piperacillin-tazobactam in ceftriaxone-resistant bloodstream infection, and in MERCY, the continuous infusion that pharmacology predicted would work better made no difference at all in 607 patients with sepsis.',
+    laymanHowItWorks:
+      'Meropenem jams the machinery bacteria use to build their cell wall, and it is shaped so that almost none of the enzymes bacteria use to destroy antibiotics can get a grip on it. An earlier drug of the same type was destroyed by an enzyme in the human kidney; meropenem carries an extra methyl group in exactly the place that stops that happening, so it can be given on its own.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 86,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$4.67 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 13 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States on 21 June 1996 under NDA 050706. Composition-of-matter protection has expired and thirteen generic products appear in the acquisition-cost survey. At about US$4.67 a vial, price is not what restricts meropenem use — stewardship is. It is the clearest case in this file of a drug whose scarcity is deliberately manufactured rather than economic.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The honest summary is that there is often no substitute, and that is the problem. Piperacillin-tazobactam was the designated carbapenem-sparing option and lost its head-to-head trial in bloodstream infection. Ertapenem is a carbapenem too, so substituting it saves nothing in class terms. Cefepime is narrower against the enzymes that matter. Nothing sold as food or a supplement treats a carbapenem-requiring infection, and this is a page where the alternatives question has an uncomfortable answer.',
+      conventionalRx: [
+        {
+          name: 'Piperacillin-tazobactam',
+          class: 'Antipseudomonal penicillin plus beta-lactamase inhibitor',
+          howItCompares:
+            'The designated carbapenem-sparing option, and the one that was tested. In MERINO, definitive therapy with piperacillin-tazobactam produced 30-day mortality of 12.3% against 3.7% with meropenem in ceftriaxone-resistant Escherichia coli and Klebsiella bloodstream infection, and did not meet its 5% non-inferiority margin.',
+          typicalCost:
+            'US$3.49 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 12 listed generic tazobactam-containing products, survey effective 21 January 2026)',
+          prosAndCons:
+            'Pros: cheaper, spares the carbapenem class, no measured excess kidney injury in ACORN. Cons: failed the definitive bloodstream trial; susceptibility testing for it is unreliable, which is part of why it failed.',
+        },
+        {
+          name: 'Ertapenem',
+          class: 'Carbapenem, once daily',
+          howItCompares:
+            'The same class with a longer half-life and no useful antipseudomonal activity. Substituting it for meropenem simplifies administration but does nothing for carbapenem stewardship, because it exerts selection pressure on the same class.',
+          typicalCost:
+            'US$27.76 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 14 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: once daily, suits outpatient parenteral therapy. Cons: about six times the price, no Pseudomonas cover, and no stewardship advantage.',
+        },
+        {
+          name: 'Cefepime',
+          class: 'Fourth-generation cephalosporin',
+          howItCompares:
+            'Resists AmpC enzymes but is hydrolysed by the extended-spectrum beta-lactamases that meropenem is used for, and shows a marked inoculum effect against them. It is the reasonable choice when the organism is an AmpC producer and the wrong one when it is a CTX-M producer.',
+          typicalCost:
+            'US$3.73 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 8 listed generic products, survey effective 20 August 2025)',
+          prosAndCons:
+            'Pros: spares the carbapenem class, similar price, stable to AmpC. Cons: hydrolysed by ESBLs; the ACORN trial found more delirium and coma than with piperacillin-tazobactam.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Flag valproate or divalproex before the first dose',
+          action:
+            'Tell the treating team about any epilepsy medication, and name valproic acid or divalproex sodium specifically if they are being taken.',
+          patientImpact:
+            'Carbapenems including meropenem drop valproic acid concentrations, often below the range that controls seizures, and the label warns of breakthrough seizures. The mechanism is not fully established; in vitro and animal data suggest carbapenems block the conversion of the valproate glucuronide metabolite back into active drug.',
+          clinicalPrecaution:
+            'The label states that antibacterial drugs other than carbapenems should be considered in patients whose seizures are well controlled on valproate. This is a description of a documented interaction, not advice about any medicine.',
+        },
+        {
+          name: 'Ask whether a narrower antibiotic could finish the course',
+          action:
+            'Once a culture result is back, ask whether the same infection could be treated with something narrower.',
+          patientImpact:
+            'Meropenem’s usefulness is a shared resource that erodes with use. Every trial on this page measures what happens to the patient in front of the clinician; none of them measures what happens to the next patient.',
+          clinicalPrecaution:
+            'De-escalation is a clinical judgement that depends on the organism, the site and the patient. This is a question worth asking, not an action to take.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@@H]1[C@@H]2[C@H](C(=O)N2C(=C1S[C@H]3C[C@H](NC3)C(=O)N(C)C)C(=O)O)[C@@H](C)O',
+      chemicalFormula: 'C17H25N3O5S',
+      molecularWeight: '383.50 g/mol',
+      targetReceptorAffinity:
+        'Meropenem acylates bacterial DD-transpeptidases with high affinity for PBP2 and PBP3 in Gram-negative organisms — binding two essential targets rather than one is part of why carbapenem resistance is hard for a bacterium to reach by point mutation. The trans-hydroxyethyl side chain at C6 is the feature that makes the acyl-enzyme resistant to hydrolysis by almost all serine beta-lactamases, including extended-spectrum and AmpC enzymes. The 1-beta-methyl group is a human-pharmacology feature rather than an antibacterial one: it blocks hydrolysis by renal dehydropeptidase-1, which is why meropenem needs no cilastatin while imipenem does.',
+      structureSource: {
+        label: 'PubChem CID 441130 (meropenem) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441130',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mem-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Configuration check at C1, C5, C6 and the pyrrolidinyl centres',
+          description:
+            'Confirm the 1-beta-methyl configuration and the trans relationship of the C6 hydroxyethyl side chain before anything else. These are the two substituents that define the molecule: one stops the human kidney destroying it, the other stops bacteria destroying it. An epimer at either is a different drug, not a weaker one.',
+          reagentsAndBuffer:
+            'Meropenem trihydrate reference standard, chiral HPLC, 1H NMR in D2O, optical rotation, Karl Fischer titration for the trihydrate stoichiometry',
+        },
+        {
+          id: 'mem-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Construction of the carbapenem bicycle and thiol side-chain coupling',
+          description:
+            'Build the strained bicyclic carbapenem nucleus, then couple the dimethylcarbamoyl pyrrolidinyl thiol at C2. Carbapenem manufacture is the most demanding chemistry in this file: the ring system is more strained than a penicillin’s, the intermediates are thermally labile, and the process runs cold.',
+          dependsOnStepId: 'mem-w1',
+          reagentsAndBuffer:
+            'Protected 4-nitrobenzyl carbapenem enol phosphate intermediate, (2S,4S)-4-mercapto-N,N-dimethylpyrrolidine-2-carboxamide, diisopropylethylamine in acetonitrile at sub-zero temperature under nitrogen',
+        },
+        {
+          id: 'mem-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Deprotection, crystallisation as the trihydrate and open-ring control',
+          description:
+            'Remove the protecting groups under conditions mild enough to leave the beta-lactam intact, then crystallise the trihydrate. The critical specification is the ring-opened hydrolysis product: carbapenems degrade in solution faster than most beta-lactams, which is why reconstituted vials have short in-use limits.',
+          dependsOnStepId: 'mem-w2',
+          reagentsAndBuffer:
+            'Catalytic hydrogenation over palladium on carbon, aqueous buffer at controlled pH, crystallisation from water-acetone, stability-indicating HPLC for the ring-opened degradant',
+        },
+        {
+          id: 'mem-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'OprD-dependent uptake in Pseudomonas aeruginosa',
+          description:
+            'Confirm entry through the specific porin that admits carbapenems in Pseudomonas, using an OprD-deficient strain as the negative control. This step exists because the commonest route to carbapenem resistance in Pseudomonas is not an enzyme but the loss of a doorway — an organism that never lets the drug in does not need to destroy it.',
+          dependsOnStepId: 'mem-w3',
+          reagentsAndBuffer:
+            'Pseudomonas aeruginosa PAO1 with an isogenic oprD deletion mutant, cation-adjusted Mueller-Hinton broth, osmotic shock periplasmic fractionation, LC-MS/MS quantification of intracellular meropenem',
+        },
+        {
+          id: 'mem-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Carbapenemase hydrolysis panel and dehydropeptidase-1 stability assay',
+          description:
+            'Measure hydrolysis by the enzymes that do defeat meropenem — KPC, NDM, VIM, OXA-48 — and, separately, run the drug against purified human renal dehydropeptidase-1 with imipenem as the paired comparator. The second assay is the historical one: it is the experiment that showed a single methyl group could turn a drug that needed a co-administered enzyme inhibitor into one that did not.',
+          dependsOnStepId: 'mem-w4',
+          reagentsAndBuffer:
+            'Purified KPC-2, NDM-1, VIM-2 and OXA-48 enzymes, spectrophotometric hydrolysis assay at 298 nm, porcine or recombinant human dehydropeptidase-1, imipenem as paired substrate, phosphate buffer at pH 7.4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mem-a1',
+        category: 'measured',
+        title: 'MERINO: 3.7% mortality on meropenem against 12.3% on the carbapenem-sparing option',
+        laymanSummary:
+          'A trial across nine countries set out to show that a cheaper, older antibiotic could replace meropenem in serious bloodstream infections, so that meropenem could be saved for later. It found that three times as many patients died on the alternative.',
+        technicalDetails:
+          'MERINO enrolled at 26 sites in 9 countries. Of 1,646 patients screened, 391 were randomised: adults with at least one blood culture growing Escherichia coli or Klebsiella non-susceptible to ceftriaxone but susceptible to piperacillin-tazobactam. In the primary analysis population of 379 patients (mean age 66.5, 47.8% women), 30-day all-cause mortality was 23 of 187 (12.3%) with piperacillin-tazobactam against 7 of 191 (3.7%) with meropenem — a risk difference of 8.6% with a one-sided 97.5% confidence bound of 14.5%, against a pre-specified non-inferiority margin of 5%. P for non-inferiority was .90. The effect was consistent in the per-protocol population. Non-fatal serious adverse events were 2.7% and 1.6%.',
+        evidenceSource: 'Harris PNA et al., JAMA 2018;320:984-994 (MERINO, NCT02176122)',
+        doi: '10.1001/jama.2018.12163',
+        measuredMetric:
+          'All-cause mortality 30 days after randomisation, non-inferiority design with a 5% margin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mem-a2',
+        category: 'conclusion_shift',
+        title: 'Half the MERINO effect was a susceptibility-testing artefact — and the answer held',
+        laymanSummary:
+          'When the blood isolates were retested in a single central laboratory, some had been wrongly called susceptible to the comparator drug. Correcting that cut the mortality gap roughly in half. It did not close it, and the conclusion did not change.',
+        technicalDetails:
+          'Central broth microdilution and whole genome sequencing were performed on 320 of 379 isolates. Piperacillin-tazobactam susceptibility was 94% and meropenem susceptibility 100%. The piperacillin-tazobactam non-susceptible breakpoint of MIC above 16 mg/L best predicted 30-day mortality after adjustment for confounders (odds ratio 14.9, 95% CI 2.8 to 87.2). The absolute risk increase for piperacillin-tazobactam against meropenem was 9% (95% CI 3 to 15%) in the original primary analysis population and 8% (95% CI 2 to 15%) in the microbiologically assessable population, falling to 5% (95% CI -1 to 10%) once strains with MIC above 16 mg/L were excluded. Isolates co-harbouring an extended-spectrum beta-lactamase and OXA-1 had elevated MICs and the highest risk increase at 14% (95% CI 2 to 28%). The authors concluded that poor reliability of piperacillin-tazobactam susceptibility testing, and the high prevalence of OXA-1 alongside ESBLs, mean meropenem remains the preferred choice.',
+        evidenceSource: 'Henderson A et al., Clin Infect Dis 2021;73:e3842-e3850 (MERINO post hoc)',
+        doi: '10.1093/cid/ciaa1479',
+        inferredClaim:
+          'That MERINO measured a pure drug-versus-drug difference — a substantial part of it was the comparator being given to patients whose organism was not actually susceptible, which is a finding about diagnostic reliability as much as about pharmacology',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mem-a3',
+        category: 'failed',
+        title:
+          'Continuous infusion: the strongest pharmacological prediction in the field, and null',
+        laymanSummary:
+          'Beta-lactams kill best when the drug level stays above a threshold, so giving meropenem as a slow continuous drip rather than short doses should work better. In 607 critically ill patients it made no difference to anything. Two larger studies since have pulled in the other direction without settling it.',
+        technicalDetails:
+          'MERCY was a double-blind randomised trial in 607 critically ill patients with sepsis or septic shock across 31 intensive care units in Croatia, Italy, Kazakhstan and Russia, receiving an equal daily dose of meropenem by continuous (n=303) or intermittent (n=304) administration. Sixty-one percent had septic shock; median time from admission to randomisation was 9 days and median therapy duration 11 days. The composite primary outcome of all-cause mortality plus emergence of pandrug-resistant or extensively drug-resistant bacteria at day 28 occurred in 142 (47%) against 149 (49%), relative risk 0.96 (95% CI 0.81 to 1.13), P=.60. None of the four secondary outcomes was statistically significant. Mortality at 90 days was 42% in both groups — 127 of 303 against 127 of 304. The question did not end there: BLING III later randomised 7,031 critically ill adults to continuous or intermittent piperacillin-tazobactam or meropenem and found 90-day mortality of 24.9% against 26.8%, odds ratio 0.91 (95% CI 0.81 to 1.01), P=.08, with higher clinical cure on continuous infusion; a Bayesian pooling of 18 trials in 9,108 patients then estimated a mortality risk ratio of 0.86 (95% credible interval 0.72 to 0.98) at high certainty. MERCY is null, the largest trial missed significance, and the pooled estimate favours prolonged infusion.',
+        evidenceSource: 'Monti G et al., JAMA 2023;330:141-151 (MERCY, NCT03452839)',
+        doi: '10.1001/jama.2023.10598',
+        measuredMetric:
+          'Composite of 28-day all-cause mortality and emergence of pandrug-resistant or extensively drug-resistant bacteria',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mem-a4',
+        category: 'measured',
+        title:
+          'No seizures attributed to the drug in 607 critically ill patients over a median 11 days',
+        laymanSummary:
+          'Carbapenems have a reputation for causing seizures, earned by the first drug in the class. In a trial giving meropenem to six hundred severely ill patients for a median of eleven days, no seizures or allergic reactions were attributed to it.',
+        technicalDetails:
+          'MERCY recorded seizures, allergic reactions and mortality as adverse events by protocol. In 607 patients with sepsis or septic shock, median meropenem duration 11 days (IQR 6 to 17), no adverse events of seizures or allergic reactions related to the study drug were reported. This is consistent with the structural difference: the 1-beta-methyl group that confers dehydropeptidase-1 stability also reduces the central nervous system liability that characterised imipenem. The label nonetheless carries a seizure warning, records severe cutaneous adverse reactions including Stevens-Johnson syndrome and toxic epidermal necrolysis, and warns that meropenem lowers valproic acid concentrations enough to cause breakthrough seizures.',
+        evidenceSource:
+          'Monti G et al., JAMA 2023;330:141-151 (MERCY); Meropenem for Injection United States prescribing information, Warnings and Precautions 5.2 to 5.4 and Drug Interactions 7.2',
+        doi: '10.1001/jama.2023.10598',
+        measuredMetric:
+          'Protocol-recorded seizures and allergic reactions attributed to study drug in a 607-patient randomised trial',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mem-a5',
+        category: 'inferred',
+        title: 'Every trial measures this patient; none measures the next one',
+        laymanSummary:
+          'The entire reason meropenem is rationed is that using it breeds bacteria that resist it. Not one of the trials on this page measured that. The case for restraint rests on mechanism and on population surveillance, not on any randomised comparison.',
+        technicalDetails:
+          'MERINO’s stated purpose was to identify a carbapenem-sparing option, precisely because treating ESBL producers with carbapenems is expected to select for carbapenem resistance. The trial measured 30-day mortality and did not measure subsequent carbapenem-resistant colonisation or infection in either arm, in participants or in their units. MERCY came closest of any trial in this file: it made emergence of pandrug-resistant or extensively drug-resistant bacteria at day 28 part of its composite primary outcome — and found no difference between infusion strategies, which answers a question about how to give the drug rather than whether to. The proposition that restricting meropenem preserves its usefulness is supported by mechanism, by ecological surveillance and by the observed spread of KPC, NDM, VIM and OXA-48 enzymes, and it has never been tested by randomising patients or units to different stewardship policies with resistance as the primary endpoint.',
+        evidenceSource:
+          'Harris PNA et al., JAMA 2018;320:984-994 (MERINO); Monti G et al., JAMA 2023;330:141-151 (MERCY)',
+        doi: '10.1001/jama.2018.12163',
+        inferredClaim:
+          'That restricting meropenem preserves its future effectiveness — the entire premise of carbapenem stewardship, mechanistically compelling, ecologically supported, and not measured as a randomised endpoint by any trial on this page',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Given into a vein, with nothing added to protect it',
+        laymanDesc:
+          'The first drug of this type was destroyed by an enzyme in the human kidney and had to be given with a second drug to block that enzyme. Meropenem carries one extra methyl group in exactly the right place, and needs no companion.',
+        molecularDetail:
+          'The 1-beta-methyl substituent sterically blocks hydrolysis by renal dehydropeptidase-1, the brush-border enzyme that degrades imipenem. Imipenem is therefore co-formulated with cilastatin, a dehydropeptidase inhibitor; meropenem is given alone. The same substituent reduces the central nervous system liability that gave the class its seizure reputation.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It enters through a doorway most antibiotics cannot use',
+        laymanDesc:
+          'Gram-negative bacteria control what gets in through specific protein channels. Meropenem is small and compact enough to use them. Losing one of those doorways is how Pseudomonas becomes resistant without needing any enzyme at all.',
+        molecularDetail:
+          'Entry into Pseudomonas aeruginosa is largely through the OprD porin. Loss or downregulation of OprD is the commonest mechanism of carbapenem resistance in that organism and confers resistance without any beta-lactamase, which is why a resistant isolate can still test susceptible to every other class.',
+        iconName: 'DoorOpen',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Almost no bacterial enzyme can open its ring',
+        laymanDesc:
+          'The side arm on meropenem’s ring points the wrong way for the usual bacterial scissors. Enzymes that shred penicillins and cephalosporins simply cannot complete the reaction on it.',
+        molecularDetail:
+          'The trans-orientated 6-alpha-hydroxyethyl side chain leaves the acyl-enzyme intermediate in a conformation that resists deacylation by serine beta-lactamases, including extended-spectrum and AmpC enzymes. Only the dedicated carbapenemases — KPC, NDM, VIM, IMP and OXA-48 — hydrolyse it efficiently, and those are the enzymes whose global spread defines the current resistance emergency.',
+        iconName: 'Shield',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It jams two essential tools at once',
+        laymanDesc:
+          'Most beta-lactams block one wall-building enzyme. Meropenem blocks two of the essential ones, which is part of why bacteria find it so hard to escape by a single mutation.',
+        molecularDetail:
+          'High affinity for both PBP2, which maintains rod shape, and PBP3, which builds the division septum, produces rapid killing with characteristic morphological change. Binding two independently essential targets means a single point mutation in either does not confer resistance.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The cell lyses',
+        laymanDesc: 'Wall repair stops, wall demolition does not, and the bacterium bursts.',
+        molecularDetail:
+          'Killing is time-dependent on the fraction of the dosing interval during which free concentration exceeds the minimum inhibitory concentration — the pharmacodynamic rationale that predicted continuous infusion would be superior, and that MERCY tested and did not confirm.',
+        iconName: 'Zap',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What is spent when it is used',
+        laymanDesc:
+          'Meropenem works partly because it is used sparingly. Every course adds pressure toward the enzymes that destroy it, and those enzymes are spreading. That cost falls on future patients, and no trial has measured it.',
+        molecularDetail:
+          'Carbapenemase genes — blaKPC, blaNDM, blaVIM, blaIMP and blaOXA-48 — are carried on mobile genetic elements and spread horizontally between species. MERCY included emergence of pandrug-resistant or extensively drug-resistant bacteria at day 28 in its composite primary outcome and found no difference between infusion strategies; no trial in this file randomised patients to different stewardship policies with resistance as the primary endpoint.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MERINO (NCT02176122, ACTRN12613000532707)',
+        phase: 'Phase 4, randomised, parallel-group, non-inferiority, 26 sites in 9 countries',
+        sampleSize: 379,
+        primaryEndpoint: 'All-cause mortality 30 days after randomisation',
+        endpointMet: true,
+        statisticalPValue:
+          '3.7% (7 of 191) on meropenem against 12.3% (23 of 187) on piperacillin-tazobactam; risk difference 8.6%, one-sided 97.5% CI upper bound 14.5%, non-inferiority margin 5%, P=.90 for non-inferiority',
+        unreportedAdverseSignals:
+          'A post-hoc central laboratory reanalysis found piperacillin-tazobactam susceptibility testing unreliable: excluding isolates with MIC above 16 mg/L reduced the absolute risk increase from 9% to 5% with an interval crossing zero. The trial answered a clinical question and exposed a diagnostic one.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'MERCY (NCT03452839)',
+        phase: 'Phase 4, double-blind, randomised, 31 intensive care units in 4 countries',
+        sampleSize: 607,
+        primaryEndpoint:
+          'Composite of all-cause mortality and emergence of pandrug-resistant or extensively drug-resistant bacteria at day 28',
+        endpointMet: false,
+        statisticalPValue:
+          '47% against 49%, relative risk 0.96 (95% CI 0.81 to 1.13), P=.60; 90-day mortality 42% in both groups',
+        unreportedAdverseSignals:
+          'None of the four secondary outcomes was significant either. The trial randomised the administration schedule, not the drug, so it says nothing about whether meropenem was the right agent — only that the pharmacokinetic argument for infusing it continuously did not translate into outcome.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '30-day mortality 3.7% on meropenem against 12.3% on piperacillin-tazobactam in 379 randomised patients with ceftriaxone-resistant bloodstream infection',
+        'Piperacillin-tazobactam MIC above 16 mg/L predicted 30-day mortality with an odds ratio of 14.9 (95% CI 2.8 to 87.2) after adjustment',
+        'Continuous against intermittent administration: 47% against 49% composite outcome, relative risk 0.96 (95% CI 0.81 to 1.13), in 607 critically ill patients',
+        'No seizures or allergic reactions attributed to study drug across 607 patients treated for a median of 11 days',
+      ],
+      unsupportedInferences: [
+        'That restricting meropenem preserves its effectiveness — the premise of stewardship, never tested with resistance as a randomised primary endpoint',
+        'That keeping free drug concentrations continuously above the minimum inhibitory concentration improves outcome — null in MERCY, P=.08 in the 7,031-patient BLING III trial, and supported at high certainty only by Bayesian pooling of 18 trials',
+        'That MERINO measured a clean drug-versus-drug difference, when a substantial part of it was comparator given to organisms that were not truly susceptible',
+        'That a single 391-patient trial settles definitive therapy for all ESBL bloodstream infections; MERINO has not been independently replicated',
+      ],
+      whatFailedInitially: [
+        'The carbapenem-sparing strategy failed its own definitive trial: piperacillin-tazobactam missed a 5% non-inferiority margin with a mortality difference of 8.6 percentage points',
+        'Continuous infusion produced no benefit on any outcome in the 607-patient MERCY trial, and the 7,031-patient BLING III trial missed significance on mortality at P=.08',
+        'Routine susceptibility testing for the comparator was shown to be unreliable enough to distort a multinational randomised trial',
+        'Carbapenemases that hydrolyse meropenem are carried on mobile elements and have spread globally, which is the ceiling on everything above',
+      ],
+      realWorldOutcome: [
+        'Approved 21 June 1996 under NDA 050706 and on the WHO Model List of Essential Medicines as a Reserve or Watch group antibiotic',
+        'Available at about US$4.67 a vial: what restricts its use is policy, not price',
+        'MERINO reversed the direction of carbapenem-sparing practice for ESBL bloodstream infection',
+        'Needs no dehydropeptidase inhibitor, unlike imipenem, because of one methyl group added in the 1980s',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion or bolus injection; no oral formulation exists',
+      description:
+        'Parenteral only. Unlike imipenem it requires no co-administered dehydropeptidase inhibitor, because the 1-beta-methyl group blocks the renal enzyme that would otherwise degrade it. Predominantly renally cleared. Reconstituted solutions are less stable than most beta-lactams, which constrains how it can be given.',
+      safetyProfile:
+        'Better tolerated than its class reputation suggests: in 607 critically ill patients treated for a median 11 days, no seizures or allergic reactions were attributed to the drug. The label nonetheless warns of seizures and other central nervous system events, of serious and occasionally fatal anaphylaxis, and of severe cutaneous adverse reactions including Stevens-Johnson syndrome, toxic epidermal necrolysis, DRESS, erythema multiforme and acute generalised exanthematous pustulosis. Thrombocytopenia has been observed in renal dysfunction. The interaction that most often matters is with valproic acid or divalproex: meropenem lowers valproate concentrations, potentially below the range that controls seizures, and the label advises considering a non-carbapenem alternative in patients whose epilepsy is controlled on valproate.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why is it kept in reserve if it is cheap?',
+        a: 'Because what is scarce about meropenem is not the molecule, it is the susceptibility. At about US$4.67 a vial it costs less than many antibiotics used without a second thought. What restricts it is that the enzymes capable of destroying it — KPC, NDM, VIM, IMP, OXA-48 — sit on mobile genetic elements that move between bacterial species, and every course of meropenem is selection pressure in their favour. Once an organism carries one, there is very little left. That makes meropenem an unusual case in this file: a drug whose scarcity is deliberately manufactured by policy rather than imposed by price.',
+      },
+      {
+        q: 'Was the trial that made meropenem preferred a fair one?',
+        a: 'Fair, and more complicated than its headline. MERINO randomised 379 patients with bloodstream infection caused by ceftriaxone-resistant E. coli or Klebsiella and found 30-day mortality of 12.3% with piperacillin-tazobactam against 3.7% with meropenem, missing its 5% non-inferiority margin decisively. A later central-laboratory reanalysis retested the isolates and found that piperacillin-tazobactam susceptibility results from local laboratories were unreliable. Excluding isolates whose true MIC was above 16 mg/L cut the absolute risk increase from 9% to 5%, with the interval now crossing zero. So part of what MERINO measured was the comparator being given to organisms it could not treat. The authors’ conclusion did not change — if you cannot reliably tell which isolates are susceptible, that unreliability is part of the treatment decision.',
+        auditNote:
+          'MERINO has not been independently replicated. A single 391-patient trial is a thin foundation for a global change in practice, and that is true even when the result is as clean as this one looks.',
+      },
+      {
+        q: 'Should it be given as a continuous drip?',
+        a: 'The pharmacology says yes and the trial says it makes no difference. Beta-lactams kill in proportion to how long the drug concentration stays above the threshold that inhibits the organism, so a continuous infusion should outperform intermittent doses of the same total amount. MERCY tested exactly that in 607 critically ill patients with sepsis, double-blind, with the same daily amount in both arms. The composite of 28-day death and emergence of extensively or pandrug-resistant bacteria occurred in 47% against 49%, relative risk 0.96. None of the four secondary outcomes differed. Ninety-day mortality was 42% in both arms — 127 patients in each. Two larger studies have since pulled the other way without settling it: BLING III, in 7,031 patients receiving piperacillin-tazobactam or meropenem, found 90-day mortality of 24.9% against 26.8% with a P value of .08 and clearly higher clinical cure, and a Bayesian pooling of 18 trials in 9,108 patients estimated a mortality risk ratio of 0.86 (credible interval 0.72 to 0.98) at high certainty. So the honest position is that MERCY found nothing, the largest single trial missed, and the pooled estimate favours the infusion.',
+      },
+      {
+        q: 'Does it cause seizures?',
+        a: 'Much less than the class reputation suggests, and the reputation was earned by a different drug. Imipenem, the first carbapenem, has a genuine seizure liability. Meropenem carries an extra methyl group at position 1 that both protects it from a human kidney enzyme and reduces its central nervous system effects. In MERCY, 607 critically ill patients received it for a median of eleven days and no seizures or allergic reactions were attributed to the study drug. The label still warns about seizures, and there is one interaction worth knowing: meropenem drives valproic acid concentrations down, sometimes below the level that controls epilepsy, and the label suggests considering a non-carbapenem antibiotic in someone whose seizures are well controlled on valproate.',
+      },
+      {
+        q: 'Does using it now make resistance worse later?',
+        a: 'Almost certainly, and no trial on this page measured it. That is the honest shape of the evidence. MERINO existed because of this concern — its whole purpose was to find a carbapenem-sparing option — but its endpoint was 30-day mortality, and neither arm was followed for subsequent carbapenem-resistant colonisation. MERCY came closest, building emergence of pandrug-resistant or extensively drug-resistant bacteria into its composite primary outcome, and found no difference between two ways of giving the same drug. What supports restraint is the mechanism, the mobility of carbapenemase genes between species, and worldwide surveillance showing them spreading. That is a strong case. It is not the same kind of evidence as the mortality figures on this page, and this record keeps them apart.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Harris PNA, Tambyah PA, Lye DC, et al. Effect of piperacillin-tazobactam vs meropenem on 30-day mortality for patients with E coli or Klebsiella pneumoniae bloodstream infection and ceftriaxone resistance: the MERINO randomized clinical trial. JAMA 2018;320:984-994',
+        identifier: '10.1001/jama.2018.12163',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Henderson A, Paterson DL, Chatfield MD, et al. Association between minimum inhibitory concentration, beta-lactamase genes and mortality for patients treated with piperacillin/tazobactam or meropenem from the MERINO study. Clin Infect Dis 2021;73:e3842-e3850',
+        identifier: '10.1093/cid/ciaa1479',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Monti G, Bradic N, Marzaroli M, et al. Continuous vs intermittent meropenem administration in critically ill patients with sepsis: the MERCY randomized clinical trial. JAMA 2023;330:141-151',
+        identifier: '10.1001/jama.2023.10598',
+        kind: 'doi',
+      },
+      {
+        label:
+          'MERINO: piperacillin-tazobactam against meropenem in ceftriaxone-resistant bacteraemia',
+        identifier: 'NCT02176122',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Dulhunty JM, Brett SJ, De Waele JJ, et al. Continuous vs intermittent beta-lactam antibiotic infusions in critically ill patients with sepsis: the BLING III randomized clinical trial. JAMA 2024;332:629-637',
+        identifier: '10.1001/jama.2024.9779',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Abdul-Aziz MH, Hammond NE, Brett SJ, et al. Prolonged vs intermittent infusions of beta-lactam antibiotics in adults with sepsis or septic shock: a systematic review and meta-analysis. JAMA 2024;332:638-648',
+        identifier: '10.1001/jama.2024.9803',
+        kind: 'doi',
+      },
+      {
+        label: 'MERCY: continuous against intermittent meropenem in sepsis',
+        identifier: 'NCT03452839',
+        kind: 'nct',
+      },
+      {
+        label: 'BLING III: continuous against intermittent beta-lactam infusion in sepsis',
+        identifier: 'NCT03213990',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: MERREM IV (meropenem), NDA 050706 — original approval 21 June 1996; United States prescribing information, Warnings and Precautions 5.1 to 5.8 and Drug Interactions 7.2',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=050706',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 441130 — meropenem structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441130',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Piperacillin-tazobactam — the most-used empirical antibiotic in Western intensive care,
+  //    blamed for kidney injury it does not cause and cleared of a failure it did.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'piperacillin-tazobactam',
+    name: 'Piperacillin and Tazobactam',
+    tradeName: 'Zosyn',
+    sponsor:
+      'Lederle and Wyeth (originator, NDA 050684 approved 22 October 1993); the enriched record for this page lists the generic holder Eugia Pharma and a 2023 ANDA date, which is a manufacturing approval rather than the drug’s approval',
+    targetGene:
+      'Bacterial cell-wall genes ftsI, mrcA/mrcB and relatives, plus class A beta-lactamase genes including blaTEM and blaSHV — all bacterial',
+    targetProtein:
+      'Bacterial penicillin-binding proteins for piperacillin; class A serine beta-lactamases for tazobactam',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1993,
+    indication:
+      'Moderate to severe appendicitis complicated by rupture or abscess and peritonitis, uncomplicated and complicated skin and skin structure infections, postpartum endometritis or pelvic inflammatory disease, community-acquired pneumonia and nosocomial pneumonia, caused by susceptible beta-lactamase-producing isolates of the designated organisms',
+    patientFriendlyIndication:
+      'Severe hospital infections of the abdomen, skin, lungs and pelvis, given by drip',
+    anatomicalSite:
+      'The bacterial periplasm — where tazobactam intercepts the enzyme and piperacillin reaches the wall-building machinery',
+    conditionContext: {
+      conditionExplainer:
+        'This is the drug most often started when someone is admitted to intensive care with an infection and nobody yet knows what it is. It covers a very wide range, including bowel organisms, Pseudomonas and anaerobes, which is why it is the default in abdominal infection.',
+      whyItMatters:
+        'It sits at the centre of two of the largest arguments in hospital antibiotic practice: whether it damages kidneys, which a 2,511-patient trial answered in 2023, and whether it can replace a carbapenem in resistant bloodstream infection, which a nine-country trial answered in 2018. The answers went in opposite directions.',
+      whoTakesThis:
+        'Hospitalised adults and children with severe infection, particularly intra-abdominal infection, hospital-acquired pneumonia and neutropenic fever.',
+      clinicalGoals:
+        'Clinical cure, and survival in the critically ill. Its two most consequential trials both used mortality as the primary endpoint, which is unusual for an antibiotic.',
+    },
+    oneSentenceVerdict:
+      'An antipseudomonal penicillin paired with a beta-lactamase inhibitor that covers Gram-negatives, Gram-positives and anaerobes in one bag — the ACORN trial in 2,511 patients found it caused no more acute kidney injury or death than cefepime (OR 0.95, 95% CI 0.80 to 1.13) and less neurological dysfunction, and the MERINO trial found 30-day mortality of 12.3% against meropenem’s 3.7% in ceftriaxone-resistant bloodstream infection, missing its non-inferiority margin decisively.',
+    laymanHowItWorks:
+      'Piperacillin is a wide-reaching penicillin that jams the tool bacteria use to build their cell wall. Many bacteria destroy penicillins with an enzyme, so the bag also contains tazobactam, a decoy that the enzyme attacks and is destroyed by. Between them they cover almost everything a hospital infection is likely to be, which is exactly why the drug is started before anyone knows what the infection is.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 80,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$3.49 per vial at United States pharmacy acquisition cost, recorded in the CMS NADAC survey against tazobactam-containing products (median across 12 listed generic products, survey effective 21 January 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Zosyn was approved in the United States on 22 October 1993 under NDA 050684, held by Wyeth. Composition-of-matter protection has long expired and generics are widely marketed; the enriched record behind this page carries a 2023 date and a generic sponsor, which is that manufacturer’s abbreviated application rather than the drug’s approval, and the discrepancy is recorded here rather than propagated. Tazobactam is not marketed alone in the United States, so the acquisition-cost survey line for tazobactam is a line for this combination.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Two comparisons matter and both have been settled by randomisation. Against cefepime, in 2,511 patients, there was no kidney difference and less delirium with piperacillin-tazobactam. Against meropenem, in ceftriaxone-resistant bloodstream infection, it lost. Its unique advantage over both is anaerobic cover in one agent. Nothing sold as a food or supplement treats an intra-abdominal infection, and this is a page where that has to be said without qualification.',
+      conventionalRx: [
+        {
+          name: 'Cefepime',
+          class: 'Fourth-generation cephalosporin',
+          howItCompares:
+            'Similar Gram-negative and antipseudomonal reach with no useful anaerobic cover, so it is usually paired with a second agent in abdominal infection. In the head-to-head ACORN trial it produced no less kidney injury and more neurological dysfunction: days alive and free of delirium and coma were fewer on cefepime, odds ratio 0.79 (95% CI 0.65 to 0.95).',
+          typicalCost:
+            'US$3.73 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 8 listed generic products, survey effective 20 August 2025)',
+          prosAndCons:
+            'Pros: stable to AmpC enzymes, similar price. Cons: no anaerobic cover, more delirium and coma in the randomised comparison, hydrolysed by extended-spectrum beta-lactamases.',
+        },
+        {
+          name: 'Meropenem',
+          class: 'Carbapenem',
+          howItCompares:
+            'Covers everything this combination covers plus the extended-spectrum beta-lactamase producers it cannot reliably treat. In MERINO, definitive therapy with meropenem produced 30-day mortality of 3.7% against 12.3% with piperacillin-tazobactam in ceftriaxone-resistant Escherichia coli and Klebsiella bloodstream infection.',
+          typicalCost:
+            'US$4.67 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 13 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: reliable against ESBL producers, the evidence-supported choice in that setting. Cons: it is the class held in reserve, and every course spends some of that reserve.',
+        },
+        {
+          name: 'Ertapenem',
+          class: 'Carbapenem, once daily',
+          howItCompares:
+            'Matches the anaerobic and Enterobacterales cover, including ESBL producers, and adds once-daily administration, but has no useful activity against Pseudomonas — which is a large part of why piperacillin-tazobactam is chosen empirically in the first place.',
+          typicalCost:
+            'US$27.76 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 14 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: once daily, covers ESBL producers and anaerobes. Cons: about eight times the price, no Pseudomonas cover, carbapenem selection pressure.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask what the culture grew before assuming the drip is still needed',
+          action:
+            'Once cultures are back, ask whether the same infection could be finished with something narrower or by mouth.',
+          patientImpact:
+            'This combination is chosen because nobody knows the organism yet. Once the organism is known, the reason for the breadth has usually gone, and breadth is not free — it is the selection pressure that produces the resistant organisms the next patient meets.',
+          clinicalPrecaution:
+            'De-escalation depends on the organism, the site and how the patient is doing. This is a question to ask the team, not a decision to make.',
+        },
+        {
+          name: 'Do not accept a kidney-injury story as settled fact',
+          action:
+            'If someone is switched off this drug specifically to protect their kidneys, it is reasonable to ask what that is based on.',
+          patientImpact:
+            'The belief that piperacillin-tazobactam plus vancomycin damages kidneys came from retrospective studies in which the sicker patients received the combination. When 2,511 patients were randomised, three-quarters of them on vancomycin, there was no difference in the highest stage of kidney injury or death by day 14.',
+          clinicalPrecaution:
+            'One randomised trial at one academic centre is not the last word, and there may be good reasons to switch in a particular patient. The point is that the general claim is weaker than its currency suggests.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CCN1CCN(C(=O)C1=O)C(=O)N[C@@](C)(C2=CC=CC=C2)C(=O)N[C@H]3[C@@H]4N(C3=O)[C@H](C(S4)(C)C)C(=O)O.C[C@@]1([C@@H](N2[C@H](S1(=O)=O)CC2=O)C(=O)O)CN3C=CN=N3',
+      chemicalFormula: 'C34H41N9O12S2',
+      molecularWeight: '831.90 g/mol',
+      targetReceptorAffinity:
+        'The structure is a two-component mixture and is written as one: the piperacillin ureidopenicillin and the tazobactam penicillanic acid sulfone, separated by the period in the connection table. Piperacillin acylates bacterial DD-transpeptidases across an unusually wide range including Pseudomonas aeruginosa and the anaerobes. Tazobactam is a mechanism-based inactivator of class A serine beta-lactamases with a sulfone that drives irreversible enzyme modification; it is a weaker inhibitor of AmpC than sulbactam is and does not touch metallo-beta-lactamases or most carbapenemases. Neither component has a mammalian receptor.',
+      structureSource: {
+        label:
+          'PubChem CID 461573 (piperacillin and tazobactam mixture) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/461573',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tzp-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Component ratio and sulfone integrity assay',
+          description:
+            'Confirm the fixed 8:1 mass ratio of piperacillin to tazobactam and check that the tazobactam sulfone group is intact. This is a ratio product: a vial with the correct total mass and the wrong ratio delivers either an unprotected penicillin or a wasted inhibitor, and neither failure is visible without the assay.',
+          reagentsAndBuffer:
+            'Piperacillin sodium and tazobactam sodium reference standards, gradient HPLC with ultraviolet detection, 1H NMR in D2O, Karl Fischer titration',
+        },
+        {
+          id: 'tzp-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ureido side-chain acylation and separate sulfone oxidation',
+          description:
+            'Build the two molecules by unrelated routes. Piperacillin is made by acylating ampicillin with the ethyl-dioxopiperazinyl carbamoyl chloride that gives it its Pseudomonas reach; tazobactam is made by oxidising a triazolylmethyl penicillanic acid to the sulfone. They meet for the first time in the blending step.',
+          dependsOnStepId: 'tzp-w1',
+          reagentsAndBuffer:
+            '4-ethyl-2,3-dioxopiperazine-1-carbonyl chloride, ampicillin, trimethylsilyl protection in dichloromethane; separately, peracid oxidation of 2-beta-(1,2,3-triazol-1-ylmethyl)penicillanic acid, controlled temperature under nitrogen',
+        },
+        {
+          id: 'tzp-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Lyophilisation of the blended sodium salts with EDTA and citrate control',
+          description:
+            'Freeze-dry the two sodium salts together to the specified ratio. The commercial formulation contains edetate disodium and sodium citrate, which is why this product is compatible with lactated Ringer’s solution while the older formulation was not — a formulation change with a real bedside consequence.',
+          dependsOnStepId: 'tzp-w2',
+          reagentsAndBuffer:
+            'Edetate disodium, sodium citrate, sterile water for injection, lyophilisation with controlled shelf temperature, residual moisture by Karl Fischer, sub-visible particle counting',
+        },
+        {
+          id: 'tzp-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Paired periplasmic accumulation in Pseudomonas and Enterobacterales',
+          description:
+            'Measure how much of each component reaches the periplasm in an organism with efflux pumps intact and in an efflux-deficient mutant. Piperacillin is a MexAB-OprM substrate in Pseudomonas, so periplasmic concentration depends on export as much as on entry, and an assay run only in Escherichia coli will miss that entirely.',
+          dependsOnStepId: 'tzp-w3',
+          reagentsAndBuffer:
+            'Pseudomonas aeruginosa PAO1 with an isogenic mexAB-oprM deletion, Escherichia coli reference strain, osmotic shock periplasmic fractionation, LC-MS/MS quantification of both components',
+        },
+        {
+          id: 'tzp-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Fixed-ratio MIC panel with inoculum escalation and OXA-1 genotyping',
+          description:
+            'Run minimum inhibitory concentrations at the fixed inhibitor concentration used clinically, at standard and raised inoculum, against isolates genotyped for extended-spectrum beta-lactamases and for OXA-1. This is the assay the MERINO reanalysis showed was going wrong in routine laboratories: isolates co-carrying an ESBL and OXA-1 had elevated MICs, were sometimes reported susceptible, and carried the highest excess mortality of any subgroup.',
+          dependsOnStepId: 'tzp-w4',
+          reagentsAndBuffer:
+            'Broth microdilution at a fixed 4 mg/L tazobactam concentration, cation-adjusted Mueller-Hinton broth at 5x10^5 and 5x10^7 CFU/mL, PCR or whole genome sequencing for blaCTX-M, blaSHV and blaOXA-1',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tzp-a1',
+        category: 'failed',
+        title: 'MERINO: 12.3% mortality against meropenem’s 3.7%, and non-inferiority not met',
+        laymanSummary:
+          'A nine-country trial tested whether this cheaper, more familiar drug could replace a carbapenem in serious bloodstream infections caused by resistant bacteria. Three times as many patients died on it. The trial’s own conclusion is that its findings do not support using it in that setting.',
+        technicalDetails:
+          'MERINO screened 1,646 patients at 26 sites in 9 countries and randomised 391 adults with at least one blood culture growing Escherichia coli or Klebsiella non-susceptible to ceftriaxone but susceptible to piperacillin-tazobactam. Among 379 in the primary analysis population, 30-day all-cause mortality was 23 of 187 (12.3%) with piperacillin-tazobactam against 7 of 191 (3.7%) with meropenem — a risk difference of 8.6% with a one-sided 97.5% confidence bound of 14.5%, against a pre-specified non-inferiority margin of 5%. P for non-inferiority was .90. The result was consistent in the per-protocol population. Non-fatal serious adverse events were 5 of 188 (2.7%) and 3 of 191 (1.6%).',
+        evidenceSource: 'Harris PNA et al., JAMA 2018;320:984-994 (MERINO, NCT02176122)',
+        doi: '10.1001/jama.2018.12163',
+        measuredMetric:
+          'All-cause mortality 30 days after randomisation in a non-inferiority design with a 5% margin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tzp-a2',
+        category: 'conclusion_shift',
+        title: 'Much of that failure was the laboratory, not the drug — and the advice stood',
+        laymanSummary:
+          'When every blood isolate was retested centrally, some had been wrongly reported as susceptible. Excluding those cut the mortality gap almost in half and its confidence interval crossed zero. The recommendation did not change, because a drug you cannot reliably test for is a drug you cannot reliably use.',
+        technicalDetails:
+          'Central broth microdilution and whole genome sequencing covered 320 of 379 isolates. Piperacillin-tazobactam susceptibility was 94% against meropenem’s 100%. A piperacillin-tazobactam MIC above 16 mg/L was the strongest predictor of 30-day mortality after adjustment for confounders (odds ratio 14.9, 95% CI 2.8 to 87.2). The absolute risk increase for piperacillin-tazobactam was 9% (95% CI 3 to 15%) in the original primary analysis population and 8% (95% CI 2 to 15%) in the microbiologically assessable population, falling to 5% (95% CI -1 to 10%) once strains above that MIC were excluded. Isolates co-harbouring an extended-spectrum beta-lactamase and OXA-1 had elevated MICs and the highest risk increase of any subgroup, 14% (95% CI 2 to 28%). The authors concluded that poor reliability of piperacillin-tazobactam susceptibility testing, together with the high prevalence of OXA-1 alongside ESBLs, means meropenem remains preferred.',
+        evidenceSource: 'Henderson A et al., Clin Infect Dis 2021;73:e3842-e3850 (MERINO post hoc)',
+        doi: '10.1093/cid/ciaa1479',
+        inferredClaim:
+          'That MERINO measured the drug — a large part of what it measured was a diagnostic failure, which changes the explanation without changing the recommendation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tzp-a3',
+        category: 'measured',
+        title: 'It does not damage kidneys more than cefepime, in 2,511 randomised patients',
+        laymanSummary:
+          'For a decade hospitals moved patients off this drug to protect their kidneys. Randomised, against the drug they moved them to, there was no difference at all.',
+        technicalDetails:
+          'ACORN randomised 2,511 adults for whom antipseudomonal antibiotics were ordered within 12 hours of presenting to an emergency department or medical intensive care unit. On the five-level ordinal primary outcome of highest stage of acute kidney injury or death by day 14, 97 of 1,297 in the piperacillin-tazobactam group (7.5%) reached stage 3 acute kidney injury and 78 (6.0%) died, against 85 of 1,214 (7.0%) and 92 (7.6%) with cefepime — odds ratio 0.95 (95% CI 0.80 to 1.13), P=.56. Major adverse kidney events at day 14 were 114 (8.8%) against 124 (10.2%), absolute difference 1.4% (95% CI -1.0 to 3.8). Crucially, 77.2% of participants were receiving vancomycin at enrolment, so the trial tested the combination that generated the original concern. Days alive and free of delirium and coma favoured piperacillin-tazobactam: mean 12.2 (SD 4.3) against 11.9 (SD 4.6), odds ratio 0.79 (95% CI 0.65 to 0.95) against cefepime.',
+        evidenceSource: 'Qian ET et al., JAMA 2023;330:1557-1567 (ACORN, NCT05094154)',
+        doi: '10.1001/jama.2023.20583',
+        measuredMetric:
+          'Highest stage of acute kidney injury or death by day 14, and days alive and free of delirium and coma',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tzp-a4',
+        category: 'conclusion_shift',
+        title:
+          'The nephrotoxicity reputation came from studies that could not control for sickness',
+        laymanSummary:
+          'The claim that this drug plus vancomycin wrecks kidneys came from looking back at records. In those records, the sickest patients got the combination — and the sickest patients get kidney injury. Randomisation removed the confusion and the effect vanished.',
+        technicalDetails:
+          'The hypothesis arose from retrospective cohorts and pharmacovigilance disproportionality analyses in which treatment was assigned by clinicians who could see how ill each patient was, a form of confounding by indication that no statistical adjustment fully removes. It changed prescribing at scale. ACORN tested it directly by randomisation, in a population where three-quarters were on vancomycin, and found the primary ordinal outcome unchanged (OR 0.95, 95% CI 0.80 to 1.13) and major adverse kidney events statistically indistinguishable. A second mechanism worth noting is measurement rather than injury: piperacillin-tazobactam interferes with creatinine secretion and some assay methods, so part of the historical signal may be a creatinine rise without a fall in glomerular filtration.',
+        evidenceSource: 'Qian ET et al., JAMA 2023;330:1557-1567 (ACORN, NCT05094154)',
+        doi: '10.1001/jama.2023.20583',
+        inferredClaim:
+          'That piperacillin-tazobactam, especially with vancomycin, causes acute kidney injury — a strongly held inference from non-randomised data that the randomised comparison did not support',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tzp-a5',
+        category: 'inferred',
+        title: 'Prolonged infusion: the biggest trial missed, the pooled analysis says it works',
+        laymanSummary:
+          'Giving this class of antibiotic slowly rather than in short bursts should work better, because they kill in proportion to how long the level stays high. The largest trial ever run on the question, in seven thousand patients, missed statistical significance on survival. A pooled analysis published in the same journal weeks later concluded, with high certainty, that it does save lives.',
+        technicalDetails:
+          'BLING III randomised 7,031 critically ill adults with sepsis across 104 intensive care units in seven countries to an equivalent 24-hour dose of piperacillin-tazobactam or meropenem by continuous or intermittent infusion. Ninety-day all-cause mortality was 864 of 3,474 (24.9%) against 939 of 3,507 (26.8%) — absolute difference -1.9% (95% CI -4.9 to 1.1), odds ratio 0.91 (95% CI 0.81 to 1.01), P=.08. Clinical cure was higher with continuous infusion, 55.7% against 50.0%, absolute difference 5.7% (95% CI 2.4 to 9.1). Other secondary outcomes did not differ. A Bayesian systematic review of 18 randomised trials in 9,108 critically ill adults, with 17 trials contributing to the primary outcome, then estimated a risk ratio for 90-day mortality of 0.86 (95% credible interval 0.72 to 0.98, I2 21.5%, high certainty), with a 99.1% posterior probability of benefit, alongside intensive care unit mortality 0.84 (0.70 to 0.97) and clinical cure 1.16 (1.07 to 1.31). The earlier MERCY trial of continuous meropenem alone, in 607 patients, had found nothing on its composite endpoint (RR 0.96, 95% CI 0.81 to 1.13).',
+        evidenceSource:
+          'Dulhunty JM et al., JAMA 2024;332:629-637 (BLING III, NCT03213990); Abdul-Aziz MH et al., JAMA 2024;332:638-648',
+        doi: '10.1001/jama.2024.9779',
+        inferredClaim:
+          'That prolonged infusion reduces mortality — supported at high certainty by a Bayesian pooling of 18 trials, and not established by the single largest trial in that pool, which returned P=.08 on its primary endpoint',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Two molecules in a fixed ratio, given by drip',
+        laymanDesc:
+          'One of the pair kills bacteria across an unusually wide range. The other kills almost nothing and exists only to absorb the enzyme that would otherwise destroy the first. They are freeze-dried together in a fixed proportion.',
+        molecularDetail:
+          'Piperacillin is a ureidopenicillin; tazobactam is a penicillanic acid sulfone with negligible intrinsic antibacterial activity. The combination is supplied lyophilised at a fixed 8:1 ratio with edetate disodium and sodium citrate, a formulation that made the product compatible with lactated Ringer’s solution.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Both cross into the periplasm, and one of them can be pumped back out',
+        laymanDesc:
+          'The drugs have to reach the space between a bacterium’s outer skin and its wall. Pseudomonas has pumps that push the killing molecule straight back out again, which is one of the ways it becomes resistant without changing its target at all.',
+        molecularDetail:
+          'Entry is through outer-membrane porins. In Pseudomonas aeruginosa, piperacillin is a substrate of the MexAB-OprM efflux system, so periplasmic concentration is set by the balance of influx and export. Efflux upregulation confers resistance with no change in penicillin-binding proteins and no beta-lactamase.',
+        iconName: 'ArrowRightLeft',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Tazobactam is spent destroying the enzyme',
+        laymanDesc:
+          'Resistant bacteria fill the periplasm with enzymes that cut penicillins apart. Tazobactam is shaped enough like a penicillin that the enzyme attacks it, and the reaction leaves the enzyme permanently broken.',
+        molecularDetail:
+          'Tazobactam is a mechanism-based inactivator of class A serine beta-lactamases including TEM and SHV enzymes. It has limited activity against class C AmpC cephalosporinases, none against class B metallo-beta-lactamases, and it is overwhelmed when an isolate carries an extended-spectrum enzyme alongside OXA-1 — the combination the MERINO reanalysis identified as carrying the highest excess mortality.',
+        iconName: 'Shield',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Piperacillin jams the wall-building enzymes',
+        laymanDesc:
+          'With the defence enzymes used up, piperacillin reaches the tools that stitch the bacterial wall together and locks onto them.',
+        molecularDetail:
+          'Piperacillin acylates bacterial DD-transpeptidases across an unusually wide range: Gram-positive cocci, Enterobacterales, anaerobes including Bacteroides fragilis, and Pseudomonas aeruginosa. Anaerobic cover in a single agent is the property that makes this the default in intra-abdominal infection.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The cell lyses',
+        laymanDesc:
+          'Wall repair stops, wall demolition continues, and the bacterium bursts under its own pressure.',
+        molecularDetail:
+          'Killing is time-dependent on the fraction of the dosing interval with free concentration above the minimum inhibitory concentration — the argument for prolonged infusion, supported at high certainty by pooled analysis of 18 trials and not reached by the largest single trial in that pool.',
+        iconName: 'Zap',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Where the reputation and the evidence part company',
+        laymanDesc:
+          'For years this drug was blamed for kidney damage on the basis of records rather than trials. When it was finally randomised against its main rival, kidneys came out the same and brains came out better.',
+        molecularDetail:
+          'In 2,511 randomised patients, 77.2% of whom were also receiving vancomycin, the highest stage of acute kidney injury or death by day 14 was unchanged (OR 0.95, 95% CI 0.80 to 1.13) and major adverse kidney events at day 14 were 8.8% against cefepime’s 10.2%. Days alive and free of delirium and coma favoured piperacillin-tazobactam. Piperacillin also interferes with tubular creatinine secretion and with some creatinine assays, which can raise a measured creatinine without a fall in filtration.',
+        iconName: 'BarChart3',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'MERINO (NCT02176122)',
+        phase: 'Phase 4, randomised, parallel-group, non-inferiority, 26 sites in 9 countries',
+        sampleSize: 379,
+        primaryEndpoint: 'All-cause mortality 30 days after randomisation',
+        endpointMet: false,
+        statisticalPValue:
+          '12.3% (23 of 187) against meropenem 3.7% (7 of 191); risk difference 8.6%, one-sided 97.5% CI upper bound 14.5% against a 5% margin, P=.90 for non-inferiority',
+        unreportedAdverseSignals:
+          'Central retesting later showed local susceptibility results for piperacillin-tazobactam were unreliable; excluding isolates with MIC above 16 mg/L reduced the absolute risk increase from 9% to 5% with an interval crossing zero. The trial is a drug result and a diagnostic result at the same time, and it is usually quoted only as the first.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'ACORN (NCT05094154)',
+        phase: 'Phase 4, pragmatic, randomised, unblinded, single-centre',
+        sampleSize: 2511,
+        primaryEndpoint:
+          'Highest stage of acute kidney injury or death by day 14 on a five-level ordinal scale',
+        endpointMet: true,
+        statisticalPValue:
+          'Odds ratio 0.95 (95% CI 0.80 to 1.13), P=.56 — no excess kidney injury against cefepime; major adverse kidney events 8.8% against 10.2%, absolute difference 1.4% (95% CI -1.0 to 3.8)',
+        unreportedAdverseSignals:
+          'Single centre, 94.7% enrolled in the emergency department, unblinded. Days alive and free of delirium and coma favoured this arm, which was a secondary outcome and is the finding that changed practice more than the primary one did.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'BLING III (NCT03213990)',
+        phase: 'Phase 4, international, open-label, randomised, 104 intensive care units',
+        sampleSize: 7031,
+        primaryEndpoint: 'All-cause mortality within 90 days of randomisation',
+        endpointMet: false,
+        statisticalPValue:
+          'Continuous 24.9% (864 of 3,474) against intermittent 26.8% (939 of 3,507); absolute difference -1.9% (95% CI -4.9 to 1.1), odds ratio 0.91 (95% CI 0.81 to 1.01), P=.08',
+        unreportedAdverseSignals:
+          'Clinical cure was higher with continuous infusion, 55.7% against 50.0% (absolute difference 5.7%, 95% CI 2.4 to 9.1), while the mortality primary endpoint missed. The authors state the confidence interval includes both no important effect and a clinically important benefit — an unusually honest way to describe P=.08.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '30-day mortality 12.3% against meropenem’s 3.7% in 379 randomised patients with ceftriaxone-resistant bloodstream infection',
+        'No difference in highest stage of acute kidney injury or death against cefepime in 2,511 randomised patients (OR 0.95, 95% CI 0.80 to 1.13)',
+        'Major adverse kidney events at day 14: 8.8% against cefepime’s 10.2%, absolute difference 1.4% (95% CI -1.0 to 3.8)',
+        '90-day mortality 24.9% with continuous against 26.8% with intermittent infusion in 7,031 critically ill adults, P=.08',
+        'Clinical cure 55.7% against 50.0% with continuous infusion, absolute difference 5.7% (95% CI 2.4 to 9.1)',
+      ],
+      unsupportedInferences: [
+        'That this combination causes acute kidney injury, particularly with vancomycin — the belief that reshaped a decade of prescribing, unconfirmed by randomisation',
+        'That prolonged infusion reduces mortality, which pooled Bayesian analysis supports at high certainty and the largest single trial did not reach',
+        'That susceptibility reported by a routine laboratory means the drug will work — central retesting found 6% of MERINO isolates non-susceptible, concentrated in the deaths',
+        'That a 1993 combination approval implies contemporary evidence for every listed indication; most of them were approved on cure rates without mortality comparison',
+      ],
+      whatFailedInitially: [
+        'It failed its own carbapenem-sparing trial, with a mortality difference of 8.6 percentage points against a 5% non-inferiority margin',
+        'Routine susceptibility testing for it proved unreliable enough to distort a multinational randomised trial',
+        'Isolates co-carrying an extended-spectrum beta-lactamase and OXA-1 had the highest excess mortality of any subgroup, 14% (95% CI 2 to 28%)',
+        'The mortality endpoint of the largest infusion trial ever conducted in this class returned P=.08 and did not meet significance',
+      ],
+      realWorldOutcome: [
+        'Approved 22 October 1993 under NDA 050684 and now the most-used empirical antibiotic in many Western intensive care units',
+        'Available at about US$3.49 a vial, comparable to cefepime and cheaper than meropenem',
+        'ACORN removed the main reason clinicians were switching away from it, and gave them a reason to switch toward it',
+        'MERINO removed it from consideration as definitive therapy in ceftriaxone-resistant bloodstream infection',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion, supplied as a lyophilised fixed-ratio powder with edetate disodium and sodium citrate',
+      description:
+        'Parenteral only. The current formulation contains edetate disodium and sodium citrate, which made it compatible with lactated Ringer’s solution where the earlier formulation was not. Predominantly renally cleared, with a minor biliary route for piperacillin. It is the agent most often combined with vancomycin in empirical intensive care regimens, which is why the kidney question mattered so much.',
+      safetyProfile:
+        'The reputation for nephrotoxicity, particularly alongside vancomycin, was not confirmed when 2,511 patients were randomised, three-quarters of them on vancomycin. Part of the historical signal is likely analytical: piperacillin interferes with tubular creatinine secretion and with some creatinine assays. Real and documented harms include hypersensitivity as with any penicillin, Clostridioides difficile-associated diarrhoea, thrombocytopenia and other cytopenias with prolonged use, and hypokalaemia from the sodium load. Neurological toxicity is less than with cefepime in the randomised comparison. It is not reliable against extended-spectrum beta-lactamase producers and should not be inferred to be from a routine susceptibility report.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it true that this drug damages the kidneys?',
+        a: 'The randomised evidence says no, and it is a good illustration of why the distinction matters. The belief came from retrospective studies showing that patients given this combination with vancomycin had more acute kidney injury. Those studies could not separate the drug from the patient: clinicians choose broad-spectrum combinations for the sickest people, and the sickest people get kidney injury. The ACORN trial randomised 2,511 adults, 77.2% of whom were on vancomycin, and found the highest stage of kidney injury or death by day 14 was no different from cefepime — odds ratio 0.95, confidence interval 0.80 to 1.13. Major adverse kidney events at 14 days were 8.8% against 10.2%. There is also a measurement wrinkle worth knowing: piperacillin interferes with how the kidney secretes creatinine and with some laboratory assays, so it can raise a creatinine number without the kidney actually filtering less.',
+        auditNote:
+          'ACORN was a single-centre unblinded trial. That is a genuine limitation. It is still a far better instrument for this question than any number of database studies, because the confounding it removes is exactly the confounding that produced the belief.',
+      },
+      {
+        q: 'Why was it dropped for resistant bloodstream infections?',
+        a: 'Because it lost the trial designed to promote it. MERINO randomised 379 patients with bloodstream infection caused by ceftriaxone-resistant E. coli or Klebsiella that tested susceptible to this combination. Thirty-day mortality was 12.3% against meropenem’s 3.7%, well outside the 5% non-inferiority margin. The published conclusion is unusually blunt: the findings do not support use in this setting. A later central-laboratory reanalysis found part of the answer — local laboratories had reported some isolates susceptible when central testing showed they were not, and excluding those cut the excess mortality from 9% to 5% with an interval crossing zero. That is a diagnostic failure rather than a pharmacological one, but the practical conclusion is the same: if you cannot reliably tell which isolates it will work on, you cannot rely on it here.',
+      },
+      {
+        q: 'Should it be given as a slow continuous infusion?',
+        a: 'This is the most interesting open question in the file, and the two best papers on it were published in the same issue of the same journal. BLING III randomised 7,031 critically ill adults with sepsis across 104 intensive care units to the same daily amount by continuous or intermittent infusion. Ninety-day mortality was 24.9% against 26.8% — an absolute difference of -1.9%, confidence interval -4.9 to 1.1, P=.08. Not significant. Clinical cure, a secondary outcome, was clearly higher with continuous infusion: 55.7% against 50.0%. A Bayesian pooled analysis of 18 trials in 9,108 patients then estimated a mortality risk ratio of 0.86, credible interval 0.72 to 0.98, rated high certainty, with a 99.1% posterior probability of benefit. Both papers are honest. They just answer slightly different questions about the same data.',
+      },
+      {
+        q: 'What does it cover that cefepime does not?',
+        a: 'Anaerobes, and that is most of the reason it is the default in abdominal infection. Piperacillin has meaningful activity against Bacteroides fragilis and the other gut anaerobes, so one bag covers the mixed flora that leaks from a perforated bowel. Cefepime does not, and is usually paired with a second agent for that reason. The two are otherwise closely matched on Gram-negative and antipseudomonal reach, and the head-to-head trial found no kidney difference and less delirium with piperacillin-tazobactam. What neither covers reliably is the extended-spectrum beta-lactamase producers, and for those the randomised evidence points to a carbapenem.',
+      },
+      {
+        q: 'Why does this record say 1993 when the database says 2023?',
+        a: 'Because the pipeline that built the underlying record picked up a generic manufacturer’s abbreviated application from 2023 rather than the drug’s original approval. Zosyn was approved in the United States on 22 October 1993 under NDA 050684, held by Wyeth. A 2023 date on a drug that has been in intensive care units for thirty years is the kind of error that looks harmless and is not: it would make a reader think the evidence base is a third of its actual age. The corrected date is used on this page and the discrepancy is recorded rather than quietly overwritten.',
+        auditNote:
+          'This is the kind of thing an audit layer exists to catch. Automated identity extraction is reliable for structures and prices and unreliable for approval history, because a drug accumulates dozens of applications and only one of them is the first.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Harris PNA, Tambyah PA, Lye DC, et al. Effect of piperacillin-tazobactam vs meropenem on 30-day mortality for patients with E coli or Klebsiella pneumoniae bloodstream infection and ceftriaxone resistance: the MERINO randomized clinical trial. JAMA 2018;320:984-994',
+        identifier: '10.1001/jama.2018.12163',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Henderson A, Paterson DL, Chatfield MD, et al. Association between minimum inhibitory concentration, beta-lactamase genes and mortality for patients treated with piperacillin/tazobactam or meropenem from the MERINO study. Clin Infect Dis 2021;73:e3842-e3850',
+        identifier: '10.1093/cid/ciaa1479',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Qian ET, Casey JD, Wright A, et al. Cefepime vs piperacillin-tazobactam in adults hospitalized with acute infection: the ACORN randomized clinical trial. JAMA 2023;330:1557-1567',
+        identifier: '10.1001/jama.2023.20583',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Dulhunty JM, Brett SJ, De Waele JJ, et al. Continuous vs intermittent beta-lactam antibiotic infusions in critically ill patients with sepsis: the BLING III randomized clinical trial. JAMA 2024;332:629-637',
+        identifier: '10.1001/jama.2024.9779',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Abdul-Aziz MH, Hammond NE, Brett SJ, et al. Prolonged vs intermittent infusions of beta-lactam antibiotics in adults with sepsis or septic shock: a systematic review and meta-analysis. JAMA 2024;332:638-648',
+        identifier: '10.1001/jama.2024.9803',
+        kind: 'doi',
+      },
+      {
+        label: 'ACORN: cefepime against piperacillin-tazobactam in hospitalised adults',
+        identifier: 'NCT05094154',
+        kind: 'nct',
+      },
+      {
+        label: 'BLING III: continuous against intermittent beta-lactam infusion in sepsis',
+        identifier: 'NCT03213990',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: ZOSYN (piperacillin and tazobactam), NDA 050684, Wyeth — original approval 22 October 1993',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=050684',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'PubChem CID 461573 — piperacillin and tazobactam mixture structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/461573',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Vancomycin — sixty years in use, and the number the whole world monitors it against comes
+  //    from one retrospective pharmacokinetic analysis.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'vancomycin',
+    name: 'Vancomycin',
+    tradeName: 'Vancocin',
+    sponsor:
+      'Eli Lilly (originator, isolated 1953 from Amycolatopsis orientalis); the current United States application holder on this record is ANI Pharmaceuticals, and the drug is made generically worldwide',
+    targetGene:
+      'None — vancomycin binds a structure, not a protein. Resistance is conferred by the bacterial vanA and vanB operons, which rebuild that structure.',
+    targetProtein:
+      'No enzyme target: vancomycin binds the D-alanyl-D-alanine terminus of the peptidoglycan precursor itself',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1964,
+    indication:
+      'Intravenously, serious or severe infections caused by susceptible strains of methicillin-resistant staphylococci, including bloodstream infection, endocarditis, bone infection, pneumonia and skin infection. Orally, Clostridioides difficile-associated diarrhoea and staphylococcal enterocolitis — a separate drug in the same molecule, because oral vancomycin is not absorbed.',
+    patientFriendlyIndication:
+      'Serious infections caused by MRSA and other resistant Gram-positive bacteria, and, taken by mouth, severe antibiotic-associated bowel infection',
+    anatomicalSite:
+      'The outer face of the bacterial cytoplasmic membrane, where peptidoglycan precursors are assembled. Taken by mouth it stays in the gut lumen and goes nowhere else.',
+    conditionContext: {
+      conditionExplainer:
+        'MRSA is Staphylococcus aureus that has swapped its wall-building enzyme for a version no penicillin can grip. Vancomycin gets around that by ignoring the enzyme entirely and grabbing the building material instead, so it does not matter which enzyme the bacterium uses.',
+      whyItMatters:
+        'Vancomycin has been the backbone of MRSA treatment for four decades, and almost everything about how it is used — including the laboratory value the entire world monitors it against — was worked out after approval, retrospectively, rather than in the trials that approved it.',
+      whoTakesThis:
+        'Hospitalised adults and children with serious Gram-positive infection, especially MRSA bloodstream infection and endocarditis. Taken by mouth, patients with Clostridioides difficile infection.',
+      clinicalGoals:
+        'Clearance of bacteria from blood and survival for the intravenous indication; resolution of diarrhoea without recurrence for the oral one.',
+    },
+    oneSentenceVerdict:
+      'A glycopeptide that binds the bacterial wall’s building block rather than the enzyme that assembles it, so resistance requires rebuilding the block itself — in the head-to-head MRSA pneumonia trial it achieved clinical success in 46.6% of per-protocol patients against linezolid’s 57.6% (P=.042) with nephrotoxicity in 18.2% against 8.4%, and the exposure target the entire world monitors it against comes from a retrospective pharmacokinetic analysis rather than a randomised trial.',
+    laymanHowItWorks:
+      'Most antibiotics of this kind jam the tool a bacterium uses to build its wall. Vancomycin does something different: it clamps onto the bricks themselves, so the tool has nothing it can pick up. That is why it still works against bacteria that have swapped their tool for one penicillins cannot grip. The molecule is far too big to be absorbed from the gut, so swallowing it treats only the bowel and injecting it treats everywhere else.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 74,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$2.31 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 17 December 2025)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Isolated in 1953 from a soil actinomycete collected in Borneo and approved in the United States in the following decade. It is a fermentation product, not a synthetic one, and remains on the WHO Model List of Essential Medicines. The intravenous product is inexpensive; the oral capsules, treating a different disease with the same molecule, have historically been priced very differently, which is one of the clearest illustrations in medicine that price tracks market position rather than manufacturing cost.',
+      synthesisComplexity: 'High',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Vancomycin has three fairly distinct jobs and a different competitor for each. In MRSA pneumonia linezolid beat it on clinical success. In MRSA bloodstream infection daptomycin matched it with less kidney injury. In Clostridioides difficile fidaxomicin matched it on cure and halved recurrence. It survives as the default not because it wins these comparisons but because it is cheap, familiar and has sixty years of accumulated experience behind it. Nothing sold as a food or supplement treats MRSA.',
+      conventionalRx: [
+        {
+          name: 'Linezolid',
+          class: 'Oxazolidinone — a ribosome inhibitor',
+          howItCompares:
+            'In the ZEPHyR trial of MRSA nosocomial pneumonia, clinical success in the per-protocol population at end of study was 57.6% with linezolid against 46.6% with dose-optimised vancomycin (95% CI for the difference 0.5% to 21.6%, P=.042). Sixty-day mortality was the same, 15.7% against 17.0%. Nephrotoxicity was 8.4% against 18.2%.',
+          typicalCost:
+            'US$1.38 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 17 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: better lung penetration, oral and intravenous forms are interchangeable, no kidney monitoring. Cons: reversible myelosuppression after two weeks, serotonin syndrome with serotonergic drugs, optic and peripheral neuropathy with prolonged use.',
+        },
+        {
+          name: 'Daptomycin',
+          class: 'Cyclic lipopeptide',
+          howItCompares:
+            'In the randomised trial of Staphylococcus aureus bacteraemia and endocarditis, success was 44.2% with daptomycin against 41.7% with standard therapy — an antistaphylococcal penicillin or vancomycin plus initial low-dose gentamicin. Clinically significant renal dysfunction was 11.0% against 26.3% (P=.004). It is inactivated by lung surfactant and cannot be used for pneumonia.',
+          typicalCost:
+            'US$21.85 per vial at United States pharmacy acquisition cost (CMS NADAC, median across 41 listed generic products, survey effective 20 May 2026)',
+          prosAndCons:
+            'Pros: far less renal dysfunction, once daily, no monitoring of drug levels. Cons: useless in pneumonia; creatine kinase elevation and rare rhabdomyolysis; emergent non-susceptibility appeared in 6 of 19 microbiological failures in the trial.',
+        },
+        {
+          name: 'Fidaxomicin (for the oral indication only)',
+          class: 'Macrocyclic RNA polymerase inhibitor, minimally absorbed',
+          howItCompares:
+            'For Clostridioides difficile infection it matched oral vancomycin on clinical cure — 88.2% against 85.8% by modified intention to treat — and halved recurrence, 15.4% against 25.3% (P=0.005). It has a narrower spectrum and disturbs the surrounding gut flora less, which is the likely reason.',
+          typicalCost:
+            'US$95.02 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 4 listed products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: same cure, roughly ten percentage points fewer recurrences. Cons: many times the price per course; the recurrence advantage was seen with non-NAP1 strains rather than uniformly.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask for the infusion to be slowed if flushing starts',
+          action:
+            'Report flushing of the face and upper body, itching, or chest and back muscle pain during an infusion.',
+          patientImpact:
+            'This is an infusion-rate reaction caused by direct histamine release, not an allergy, and it is the reason vancomycin is given slowly. The label records that in studies of normal volunteers, infusion-related events did not occur at slower rates, and that stopping the infusion usually stops the reaction promptly.',
+          clinicalPrecaution:
+            'Rapid bolus administration has caused exaggerated hypotension, shock and rarely cardiac arrest. Mistaking this reaction for a penicillin-style allergy leads to patients being labelled vancomycin-allergic for life, which removes an option they may badly need later.',
+        },
+        {
+          name: 'Ask what the drug level is being used for',
+          action:
+            'If blood levels are being taken, it is reasonable to ask what target they are aimed at and where that target came from.',
+          patientImpact:
+            'Vancomycin is one of very few antibiotics whose blood concentration is routinely measured. The exposure target underlying that practice was derived from a retrospective pharmacokinetic analysis of Staphylococcus aureus lower respiratory tract infections, not from a randomised trial, and the monitoring approach was formally revised in 2020.',
+          clinicalPrecaution:
+            'How a patient is monitored is a decision for the treating team and depends on kidney function, the infection and local practice. This page describes where the target came from and does not recommend one.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@H]1[C@H]([C@@](C[C@@H](O1)O[C@@H]2[C@H]([C@@H]([C@H](O[C@H]2OC3=C4C=C5C=C3OC6=C(C=C(C=C6)[C@H]([C@H](C(=O)N[C@H](C(=O)N[C@H]5C(=O)N[C@@H]7C8=CC(=C(C=C8)O)C9=C(C=C(C=C9O)O)[C@H](NC(=O)[C@H]([C@@H](C1=CC(=C(O4)C=C1)Cl)O)NC7=O)C(=O)O)CC(=O)N)NC(=O)[C@@H](CC(C)C)NC)O)Cl)CO)O)O)(C)N)O',
+      chemicalFormula: 'C66H75Cl2N9O24',
+      molecularWeight: '1449.20 g/mol',
+      targetReceptorAffinity:
+        'Vancomycin has no enzyme target. Its rigid cup-shaped heptapeptide aglycone forms five hydrogen bonds with the D-alanyl-D-alanine terminus of the lipid II peptidoglycan precursor, sequestering the substrate so that transglycosylation and transpeptidation cannot proceed. Because the target is a substrate rather than a protein, resistance requires remodelling the substrate: the vanA and vanB operons substitute D-alanyl-D-lactate, which loses one hydrogen bond and reduces affinity roughly a thousandfold. At 1,449 daltons the molecule is far too large to cross the Gram-negative outer membrane, which is why its spectrum is Gram-positive only, and far too large to be absorbed from the gut, which is why oral and intravenous vancomycin are effectively two different drugs.',
+      structureSource: {
+        label: 'PubChem CID 14969 (vancomycin) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/14969',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'van-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Aglycone integrity and CDP-1 degradant quantification',
+          description:
+            'Confirm the intact heptapeptide cup and quantify crystalline degradation product 1, the rearranged form that arises when the asparagine residue deamidates. CDP-1 is far less active and accumulates in stored or improperly handled material, so this assay is a potency specification rather than a purity nicety.',
+          reagentsAndBuffer:
+            'Vancomycin hydrochloride reference standard, gradient reversed-phase HPLC with ultraviolet detection at 280 nm, mass spectrometric confirmation, Karl Fischer titration',
+        },
+        {
+          id: 'van-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fermentation from Amycolatopsis orientalis',
+          description:
+            'Vancomycin is not synthesised. It is a fermentation product of a soil actinomycete originally isolated from a Borneo soil sample in 1953, and total chemical synthesis of the molecule, achieved in the 1990s, remains a landmark of organic chemistry rather than a manufacturing route. Everything about the cost structure of this drug follows from that.',
+          dependsOnStepId: 'van-w1',
+          reagentsAndBuffer:
+            'Amycolatopsis orientalis production strain, complex nitrogen and glucose feed medium, controlled dissolved oxygen and pH, antifoam, submerged aerobic fermentation',
+        },
+        {
+          id: 'van-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Ion-exchange capture and removal of the early "Mississippi mud" impurities',
+          description:
+            'Capture the product on ion-exchange resin and polish it. Early preparations were brown and impure enough to be nicknamed Mississippi mud, and much of the drug’s reputation for kidney and ear toxicity was formed against material that would not pass a modern specification. Separating what the impurities did from what the molecule does is a live question in interpreting the older literature.',
+          dependsOnStepId: 'van-w2',
+          reagentsAndBuffer:
+            'Cation-exchange resin, aqueous ammonia elution, activated carbon polishing, reversed-phase preparative chromatography, spray drying or lyophilisation',
+        },
+        {
+          id: 'van-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Cell-wall access in Gram-positive organisms and an outer-membrane exclusion control',
+          description:
+            'Confirm that the molecule reaches lipid II at the outer face of the cytoplasmic membrane in a Gram-positive organism, and confirm it does not reach anything in a Gram-negative one. The negative control is the informative half: at 1,449 daltons vancomycin is excluded by the Gram-negative outer membrane, and that single physical fact defines the entire clinical spectrum.',
+          dependsOnStepId: 'van-w3',
+          reagentsAndBuffer:
+            'Staphylococcus aureus and Enterococcus faecium reference strains, Escherichia coli as exclusion control, fluorescently labelled vancomycin (BODIPY-vancomycin) for membrane localisation, confocal microscopy, Mueller-Hinton broth',
+        },
+        {
+          id: 'van-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'D-Ala-D-Ala binding affinity against a D-Ala-D-Lac vanA counter-screen',
+          description:
+            'Measure binding to a synthetic D-alanyl-D-alanine peptide and repeat against the D-alanyl-D-lactate depsipeptide that vanA-carrying organisms make instead. The loss of a single hydrogen bond between those two ligands is worth roughly a thousandfold in affinity, and that number is the entire molecular explanation of vancomycin-resistant enterococci.',
+          dependsOnStepId: 'van-w4',
+          reagentsAndBuffer:
+            'Synthetic N-acetyl-D-Ala-D-Ala and N-acetyl-D-Ala-D-Lac ligands, isothermal titration calorimetry or ultraviolet difference spectroscopy, vanA-positive Enterococcus faecium clinical isolate, broth microdilution panels',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'van-a1',
+        category: 'failed',
+        title: 'ZEPHyR: 46.6% clinical success against linezolid’s 57.6% in MRSA pneumonia',
+        laymanSummary:
+          'In the only large head-to-head trial of vancomycin against linezolid in hospital-acquired MRSA pneumonia, with vancomycin doses adjusted by blood levels, fewer than half the vancomycin patients were counted as successes. More than twice as many had kidney injury. The same proportion of each group was alive at sixty days.',
+        technicalDetails:
+          'ZEPHyR was a prospective, double-blind, controlled, multicentre trial in hospitalised adults with hospital-acquired or healthcare-associated MRSA pneumonia. Of 1,184 patients treated, 448 entered the modified intention-to-treat population and 348 the per-protocol population. Clinical success at end of study in the per-protocol population was 95 of 165 (57.6%) with linezolid against 81 of 174 (46.6%) with vancomycin — 95% confidence interval for the difference 0.5% to 21.6%, P=.042. All-cause 60-day mortality was similar at 15.7% and 17.0%, and overall adverse event rates were similar. Nephrotoxicity was more frequent with vancomycin, 18.2% against 8.4%. Vancomycin dosing was adjusted on trough levels, so this is not a comparison against under-dosed vancomycin.',
+        evidenceSource: 'Wunderink RG et al., Clin Infect Dis 2012;54:621-629 (ZEPHyR)',
+        doi: '10.1093/cid/cir895',
+        measuredMetric:
+          'Clinical outcome at end of study in the per-protocol population, and nephrotoxicity incidence',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'van-a2',
+        category: 'inferred',
+        title: 'The exposure target the world monitors it against is retrospective',
+        laymanSummary:
+          'Vancomycin is one of the very few antibiotics whose blood level is routinely measured, and the number those levels are aimed at was worked out by looking back at what happened to patients who happened to receive different amounts. No trial randomised anyone to different targets and counted the outcomes.',
+        technicalDetails:
+          'The pharmacodynamic index used for vancomycin is the ratio of the 24-hour area under the concentration-time curve to the minimum inhibitory concentration, and the threshold value in general use derives from Moise-Broder and colleagues’ retrospective pharmacokinetic and pharmacodynamic analysis of patients with Staphylococcus aureus lower respiratory tract infections. That is an observational exposure-response analysis in a single infection type, generalised since to bloodstream infection, endocarditis, bone infection and skin infection, none of which it studied. The 2020 revised consensus guideline from the Infectious Diseases Society of America, the Society of Infectious Diseases Pharmacists, the American Society of Health-System Pharmacists and the Pediatric Infectious Diseases Society is built on this index, and it states its own evidence base rather than concealing it. No randomised trial has compared clinical outcomes between exposure targets.',
+        evidenceSource:
+          'Moise-Broder PA et al., Clin Pharmacokinet 2004;43:925-942; Rybak MJ et al., Clin Infect Dis 2020;71:1361-1364 (revised consensus guideline)',
+        doi: '10.2165/00003088-200443130-00005',
+        inferredClaim:
+          'That achieving a specific area-under-the-curve to minimum-inhibitory-concentration ratio improves clinical outcome across the range of infections vancomycin treats — extrapolated from one retrospective respiratory-infection cohort and never tested by randomising patients to different targets',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'van-a3',
+        category: 'conclusion_shift',
+        title: 'Monitoring moved from a single trough value to total exposure in 2020',
+        laymanSummary:
+          'For years vancomycin was monitored by one blood level taken just before the next dose, because it was easy. In 2020 the guideline moved to estimating total drug exposure instead. The evidence for the change is a set of observational comparisons rated low-certainty, not a trial.',
+        technicalDetails:
+          'The 2020 revised consensus guideline replaced trough-only monitoring with area-under-the-curve-guided monitoring for serious MRSA infection. A systematic review and meta-analysis of 10 studies in 4,231 patients found area-under-the-curve-guided strategies associated with significantly less vancomycin-induced acute kidney injury than trough-guided strategies: odds ratio 0.625 (95% CI 0.469 to 0.834, p=0.001, I2 25.5%), and 0.475 (95% CI 0.261 to 0.863, p=0.015) in the three studies reporting adjusted odds ratios. Stratified by definition, the association reached significance using the guideline definition of acute kidney injury (OR 0.552, 95% CI 0.341 to 0.894, p=0.016) and not using the alternatives. The authors graded the overall certainty as low and named confounding bias and inconsistent injury definitions as the limitations. The change was made on this evidence, which is better than what preceded it and is not a randomised comparison.',
+        evidenceSource:
+          'Oda K et al. and successors, Pharmacotherapy 2022;42:741-753; Rybak MJ et al., Clin Infect Dis 2020;71:1361-1364',
+        doi: '10.1002/phar.2722',
+        inferredClaim:
+          'That trough-guided monitoring was causing avoidable kidney injury and exposure-guided monitoring prevents it — supported by pooled observational comparison at low certainty, and adopted worldwide on that basis',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'van-a4',
+        category: 'measured',
+        title: 'Renal dysfunction in 26.3% of the standard-therapy arm against 11.0% on daptomycin',
+        laymanSummary:
+          'In the randomised trial of bloodstream infection and heart-valve infection caused by Staphylococcus aureus, roughly a quarter of the patients on the older regimen — which was vancomycin or an antistaphylococcal penicillin, plus gentamicin — developed clinically significant kidney problems. On the newer drug it was about one in nine.',
+        technicalDetails:
+          'The trial randomised 124 patients with Staphylococcus aureus bacteraemia with or without endocarditis to daptomycin and 122 to initial low-dose gentamicin plus either an antistaphylococcal penicillin or vancomycin. Success at 42 days after end of therapy in the modified intention-to-treat analysis was 53 of 120 (44.2%) against 48 of 115 (41.7%) — absolute difference 2.4%, 95% CI -10.2 to 15.1, meeting the pre-specified non-inferiority criteria. Clinically significant renal dysfunction occurred in 11.0% on daptomycin against 26.3% on standard therapy, P=.004. The comparator arm mixes vancomycin with beta-lactams and adds gentamicin, so the renal figure is not attributable to vancomycin alone — but gentamicin was low-dose and brief, and the direction is consistent with ZEPHyR’s 18.2% against 8.4%.',
+        evidenceSource: 'Fowler VG Jr et al., N Engl J Med 2006;355:653-665 (NCT00093067)',
+        doi: '10.1056/NEJMoa053783',
+        measuredMetric:
+          'Clinically significant renal dysfunction and 42-day treatment success in randomised Staphylococcus aureus bacteraemia',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'van-a5',
+        category: 'failed',
+        title: 'For bowel infection it cures as well as fidaxomicin and relapses far more often',
+        laymanSummary:
+          'Swallowed vancomycin treats a completely different disease from injected vancomycin, because none of it is absorbed. In the head-to-head trial for that disease it cured just as many people as the newer drug and then had them come back with it roughly ten percentage points more often.',
+        technicalDetails:
+          'A phase 3 trial randomised 629 adults with acute Clostridioides difficile infection and a positive stool toxin test to oral fidaxomicin or oral vancomycin for 10 days, with 548 evaluable per protocol. Clinical cure with fidaxomicin was non-inferior in both the modified intention-to-treat analysis (88.2% against 85.8%) and the per-protocol analysis (92.1% against 89.8%). Recurrence within four weeks was significantly lower with fidaxomicin in both: 15.4% against 25.3% (P=0.005) and 13.3% against 24.0% (P=0.004). The recurrence advantage was seen in patients with non-NAP1 strains rather than uniformly. Adverse event profiles were similar. The likely explanation is spectrum: vancomycin suppresses the surrounding colonic flora that would otherwise resist recolonisation, and fidaxomicin disturbs it less.',
+        evidenceSource: 'Louie TJ et al., N Engl J Med 2011;364:422-431',
+        doi: '10.1056/NEJMoa0910812',
+        measuredMetric:
+          'Clinical cure and 4-week recurrence of Clostridioides difficile infection, oral vancomycin against fidaxomicin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'van-a6',
+        category: 'measured',
+        title: 'Resistance requires rebuilding the target, which is why it took so long',
+        laymanSummary:
+          'Vancomycin does not attack an enzyme, it grabs the building material. A bacterium cannot escape by tweaking a protein — it has to manufacture a different brick. That is a much bigger genetic undertaking, and it is why sixty years of heavy use has produced widespread resistance in enterococci and almost none in Staphylococcus aureus.',
+        technicalDetails:
+          'The vanA and vanB operons encode a set of enzymes that replace the D-alanyl-D-alanine terminus of the peptidoglycan precursor with D-alanyl-D-lactate. That single substitution removes one of the five hydrogen bonds vancomycin makes with its ligand and reduces binding affinity by roughly three orders of magnitude. Acquiring it requires horizontal transfer of a multi-gene operon plus the regulatory machinery to switch it on, not a point mutation — which is the structural reason vancomycin-resistant enterococci are common while fully vancomycin-resistant Staphylococcus aureus remains vanishingly rare despite decades of exposure.',
+        evidenceSource:
+          'Vancomycin Hydrochloride for Injection United States prescribing information, Microbiology; mechanism as characterised in the glycopeptide resistance literature',
+        measuredMetric:
+          'Fold change in binding affinity between the D-Ala-D-Ala and D-Ala-D-Lac ligands',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Two completely different drugs in one molecule',
+        laymanDesc:
+          'Injected, it treats infections anywhere in the body. Swallowed, it treats only the bowel, because the molecule is far too big to be absorbed. The same powder is two medicines depending on the route.',
+        molecularDetail:
+          'At 1,449 daltons vancomycin has negligible oral bioavailability. Oral capsules deliver high luminal colonic concentrations with essentially no systemic exposure, which is why they treat Clostridioides difficile infection and nothing else, and why the intravenous form does not treat it.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It cannot get into Gram-negative bacteria at all',
+        laymanDesc:
+          'Some bacteria have an extra outer skin with small pores. Vancomycin is simply too large to fit through them, so it never reaches its target in those organisms. That is a physical limit, not a resistance mechanism.',
+        molecularDetail:
+          'Exclusion by the Gram-negative outer membrane is a size limitation, which is why the spectrum is Gram-positive only and why no Gram-negative organism has ever needed to evolve resistance to it.',
+        iconName: 'Ban',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It clamps onto the brick, not the bricklayer',
+        laymanDesc:
+          'Penicillins jam the tool that lays the bricks. Vancomycin grips the end of the brick itself, so no tool can pick it up. It does not matter which tool the bacterium has.',
+        molecularDetail:
+          'The rigid cup of the heptapeptide aglycone forms five hydrogen bonds with the D-alanyl-D-alanine terminus of lipid II, the membrane-anchored peptidoglycan precursor. Sequestering the substrate blocks both transglycosylation and transpeptidation. Because MRSA’s resistance mechanism is an altered transpeptidase, and vancomycin does not touch transpeptidases, MRSA is fully susceptible.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Wall assembly stops',
+        laymanDesc:
+          'With the building material locked up, the wall cannot be extended or repaired, and the growing bacterium fails.',
+        molecularDetail:
+          'Killing is slow relative to beta-lactams, time-dependent, and requires active growth. The comparatively slow bactericidal action is one proposed explanation for its underperformance against beta-lactams in methicillin-susceptible infection.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Escaping it means building a different brick',
+        laymanDesc:
+          'A bacterium cannot dodge vancomycin by changing a protein. It has to manufacture a different building block, which takes a whole set of borrowed genes. That is why resistance is common in enterococci and almost unheard of in Staphylococcus aureus.',
+        molecularDetail:
+          'The vanA and vanB operons substitute D-alanyl-D-lactate for D-alanyl-D-alanine, losing one hydrogen bond and roughly a thousandfold of affinity. Acquisition requires horizontal transfer of a multi-gene operon with its regulatory system, not a point mutation.',
+        iconName: 'Dna',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What it costs the kidneys and the ears',
+        laymanDesc:
+          'Vancomycin can damage the kidneys, and rarely hearing, and the risk rises with how much drug the body is exposed to. That is why it is one of the few antibiotics whose blood level is measured routinely.',
+        molecularDetail:
+          'The label states that systemic exposure may result in acute kidney injury and that risk increases as systemic exposure and serum levels increase; interstitial nephritis is also reported. Ototoxicity, transient or permanent, has occurred mostly with excessive exposure, pre-existing hearing loss or concomitant ototoxic agents. Nephrotoxicity was 18.2% against linezolid’s 8.4% in ZEPHyR. Infusion-rate reactions are separate and are direct histamine release rather than allergy.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ZEPHyR (Wunderink 2012)',
+        phase: 'Phase 4, prospective, double-blind, controlled, multicentre',
+        sampleSize: 1184,
+        primaryEndpoint:
+          'Clinical outcome at end of study in evaluable per-protocol patients with MRSA nosocomial pneumonia',
+        endpointMet: false,
+        statisticalPValue:
+          'Vancomycin 46.6% (81 of 174) against linezolid 57.6% (95 of 165); 95% CI for the difference 0.5% to 21.6%, P=.042 in favour of linezolid',
+        unreportedAdverseSignals:
+          '1,184 patients were treated but only 448 entered the modified intention-to-treat and 348 the per-protocol population, so the primary result rests on under a third of those exposed. Sixty-day mortality was identical between arms, which is the outcome most readers care about and the one the trial did not separate.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Fowler 2006 Staphylococcus aureus bacteraemia trial (NCT00093067)',
+        phase: 'Phase 3, randomised, open-label, non-inferiority',
+        sampleSize: 246,
+        primaryEndpoint: 'Treatment success 42 days after the end of therapy',
+        endpointMet: true,
+        statisticalPValue:
+          'Standard therapy 41.7% (48 of 115) against daptomycin 44.2% (53 of 120); absolute difference 2.4%, 95% CI -10.2 to 15.1, non-inferiority met',
+        unreportedAdverseSignals:
+          'The comparator arm mixed vancomycin with antistaphylococcal penicillins and added initial low-dose gentamicin, so its 26.3% renal dysfunction rate cannot be attributed to vancomycin alone. Success rates in both arms were below 45%, which is the more striking number and is rarely quoted.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Louie 2011 fidaxomicin against oral vancomycin',
+        phase: 'Phase 3, randomised, double-blind, non-inferiority',
+        sampleSize: 629,
+        primaryEndpoint: 'Clinical cure of Clostridioides difficile infection',
+        endpointMet: true,
+        statisticalPValue:
+          'Vancomycin 85.8% against fidaxomicin 88.2% by modified intention to treat, non-inferiority met; recurrence 25.3% against 15.4%, P=0.005',
+        unreportedAdverseSignals:
+          'The primary endpoint was cure, on which the drugs matched. The recurrence difference, a secondary endpoint, is what changed practice, and it was concentrated in patients with non-NAP1 strains rather than distributed evenly.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clinical success 46.6% against linezolid’s 57.6% in per-protocol MRSA nosocomial pneumonia, P=.042',
+        'Nephrotoxicity 18.2% against linezolid’s 8.4% in the same trial, with vancomycin dosing adjusted on trough levels',
+        'Clinically significant renal dysfunction 26.3% in the vancomycin-containing standard-therapy arm against 11.0% on daptomycin, P=.004',
+        'Clostridioides difficile recurrence 25.3% against fidaxomicin’s 15.4% (P=0.005) with equivalent cure rates',
+        'A roughly thousandfold loss of binding affinity between the D-Ala-D-Ala and D-Ala-D-Lac ligands',
+      ],
+      unsupportedInferences: [
+        'That achieving a specific exposure-to-MIC ratio improves outcomes across all the infections vancomycin treats — derived retrospectively from one respiratory cohort and never randomised',
+        'That exposure-guided monitoring prevents kidney injury, supported by pooled observational data the reviewers themselves graded low certainty',
+        'That the 26.3% renal dysfunction rate in the bacteraemia trial is attributable to vancomycin, when the arm also contained beta-lactams and gentamicin',
+        'That sixty years of safe use implies the drug is well characterised; most of what is known about how to use it was worked out after approval, without trials',
+      ],
+      whatFailedInitially: [
+        'It lost the only large head-to-head trial in MRSA nosocomial pneumonia on clinical success, though not on mortality',
+        'It relapses roughly ten percentage points more often than fidaxomicin in Clostridioides difficile infection despite matching it on cure',
+        'Success in Staphylococcus aureus bacteraemia was under 45% in both arms of the randomised trial — the disease remains poorly treated by any agent',
+        'Early preparations were impure enough to be nicknamed Mississippi mud, and much of the drug’s toxicity reputation was formed against material no modern specification would pass',
+      ],
+      realWorldOutcome: [
+        'Isolated in 1953 from Borneo soil, approved in the United States in the following decade, and still the default for serious MRSA infection',
+        'On the WHO Model List of Essential Medicines at about US$2.31 per intravenous unit',
+        'Monitoring practice was formally revised in 2020, from a single trough value to estimated total exposure',
+        'Sixty years of heavy use has produced widespread resistance in enterococci and almost none in Staphylococcus aureus, because the target is a substrate rather than a protein',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion for systemic infection; oral capsules and solution for Clostridioides difficile infection, which are not absorbed',
+      description:
+        'The two routes are effectively two drugs. Intravenous vancomycin does not reach useful concentrations in the colonic lumen and does not treat Clostridioides difficile infection; oral vancomycin achieves high luminal concentrations with essentially no systemic exposure and treats nothing outside the gut. Intravenous administration must be given slowly diluted, over not less than 60 minutes, because rapid infusion causes direct histamine release.',
+      safetyProfile:
+        'Rapid bolus administration may cause exaggerated hypotension including shock and rarely cardiac arrest; the characteristic flushing of the upper body is an infusion-rate reaction rather than an allergy, and mislabelling it as one costs patients an option they may need. Systemic exposure may cause acute kidney injury, with risk rising as exposure rises; interstitial nephritis is also reported. Ototoxicity, transient or permanent, has occurred mostly with excessive exposure, pre-existing hearing loss or concomitant ototoxic drugs. Severe dermatologic reactions including toxic epidermal necrolysis, Stevens-Johnson syndrome, DRESS, acute generalised exanthematous pustulosis and linear IgA bullous dermatosis have been reported. Reversible neutropenia has been reported, usually a week or more into therapy.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why do they keep taking blood samples while I am on it?',
+        a: 'Because vancomycin is one of a small number of antibiotics where the amount in the blood is measured rather than assumed, and because kidney injury risk rises as exposure rises. What is worth knowing is where the target came from. The exposure threshold in use worldwide derives from a retrospective pharmacokinetic analysis of patients with Staphylococcus aureus lower respiratory tract infections — an observational exposure-response study in one infection type, later generalised to bloodstream infection, endocarditis and bone infection, none of which it examined. No trial has randomised patients to different targets and compared what happened to them. That does not make the monitoring pointless; it makes the precision of the number less than it appears.',
+        auditNote:
+          'Guidelines built on retrospective exposure-response data are not unusual in antibiotics. What is unusual here is how precisely the number is quoted and how little of it was ever tested prospectively.',
+      },
+      {
+        q: 'Is it still the best drug for MRSA?',
+        a: 'It is the default, which is not the same thing. In the only large head-to-head trial in MRSA hospital-acquired pneumonia, clinical success was 46.6% with dose-optimised vancomycin against 57.6% with linezolid, and nephrotoxicity was 18.2% against 8.4%. Sixty-day mortality was the same in both arms. In MRSA bloodstream infection, daptomycin matched the vancomycin-containing standard regimen with less than half the renal dysfunction. Vancomycin holds its position because it is cheap, because sixty years of experience means everyone knows how it behaves, and because the alternatives each have a hole in them — linezolid suppresses the bone marrow after a couple of weeks, and daptomycin is inactivated in the lung.',
+      },
+      {
+        q: 'I got flushed and itchy during the drip. Am I allergic?',
+        a: 'Probably not, and this matters because being labelled vancomycin-allergic removes an option you may need badly one day. The characteristic reaction — flushing of the face and upper body, itching, sometimes chest or back muscle pain — is caused by vancomycin directly triggering histamine release from mast cells, not by an immune response to the drug. It is a rate phenomenon: the label records that in studies of normal volunteers, infusion-related events did not occur at slower infusion rates, and that stopping the infusion usually stops the reaction promptly. A genuine immune-mediated allergy to vancomycin exists but is much rarer.',
+      },
+      {
+        q: 'Why has resistance taken so long to appear?',
+        a: 'Because vancomycin does not attack a protein. Almost every antibiotic binds an enzyme, and an enzyme can be altered by a single mutation. Vancomycin grips the building block itself — the D-alanyl-D-alanine tail on the wall precursor — so a bacterium can only escape by manufacturing a different building block. That means acquiring a whole operon of genes and the regulatory machinery to control them, usually by horizontal transfer from another organism. Enterococci have done it, through the vanA and vanB operons, and vancomycin-resistant enterococci are now common. Staphylococcus aureus has almost never managed it: fully vancomycin-resistant S. aureus remains vanishingly rare after four decades of intense selection pressure.',
+      },
+      {
+        q: 'Why do the capsules and the drip treat different diseases?',
+        a: 'Because the molecule weighs almost 1,450 daltons, which is enormous for a drug, and essentially none of it crosses the gut wall. Swallowed vancomycin travels the length of the intestine and arrives in the colon at very high concentration with almost nothing in the bloodstream, so it treats Clostridioides difficile infection and nothing else. Injected vancomycin reaches the whole body but not the colonic lumen, so it does not treat C. difficile at all. It is the same compound doing two unrelated jobs, and confusing the routes is a genuine clinical error rather than a technicality.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Wunderink RG, Niederman MS, Kollef MH, et al. Linezolid in methicillin-resistant Staphylococcus aureus nosocomial pneumonia: a randomized, controlled study. Clin Infect Dis 2012;54:621-629',
+        identifier: '10.1093/cid/cir895',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fowler VG Jr, Boucher HW, Corey GR, et al. Daptomycin versus standard therapy for bacteremia and endocarditis caused by Staphylococcus aureus. N Engl J Med 2006;355:653-665',
+        identifier: '10.1056/NEJMoa053783',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Louie TJ, Miller MA, Mullane KM, et al. Fidaxomicin versus vancomycin for Clostridium difficile infection. N Engl J Med 2011;364:422-431',
+        identifier: '10.1056/NEJMoa0910812',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Moise-Broder PA, Forrest A, Birmingham MC, Schentag JJ. Pharmacodynamics of vancomycin and other antimicrobials in patients with Staphylococcus aureus lower respiratory tract infections. Clin Pharmacokinet 2004;43:925-942',
+        identifier: '10.2165/00003088-200443130-00005',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rybak MJ, Le J, Lodise TP, et al. Therapeutic monitoring of vancomycin for serious methicillin-resistant Staphylococcus aureus infections: a revised consensus guideline and review. Clin Infect Dis 2020;71:1361-1364',
+        identifier: '10.1093/cid/ciaa303',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Vancomycin area under the curve versus trough only guided dosing and the risk of acute kidney injury: systematic review and meta-analysis. Pharmacotherapy 2022;42:741-753',
+        identifier: '10.1002/phar.2722',
+        kind: 'doi',
+      },
+      {
+        label: 'Daptomycin against standard therapy in Staphylococcus aureus bacteraemia',
+        identifier: 'NCT00093067',
+        kind: 'nct',
+      },
+      {
+        label: 'PubChem CID 14969 — vancomycin structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/14969',
+        kind: 'url',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — United States pharmacy acquisition prices',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]

@@ -2153,4 +2153,1509 @@ export const ENRICHED_BATCH_11_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Famotidine — the weaker drug that outlived its whole class, inherited the market when
+  //    ranitidine was withdrawn for a contaminant, and was then asked to treat a pandemic.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'famotidine',
+    name: 'Famotidine',
+    tradeName: 'Pepcid / Pepcid AC',
+    sponsor:
+      'Bausch Health (current US label holder for the prescription product) — discovered at Yamanouchi in Japan, developed and marketed in the United States by Merck, approved under NDA 019462 on 15 October 1986',
+    targetGene: 'HRH2 — the gene encoding the histamine H2 receptor',
+    targetProtein:
+      'Histamine H2 receptor on the basolateral membrane of the gastric parietal cell, a Gs-coupled seven-transmembrane receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1986,
+    indication:
+      'Active duodenal ulcer and maintenance of healed duodenal ulcer; active benign gastric ulcer; gastroesophageal reflux disease including erosive esophagitis; and pathological hypersecretory conditions including Zollinger-Ellison syndrome. The over-the-counter product is indicated for relief and prevention of heartburn associated with acid indigestion.',
+    patientFriendlyIndication:
+      'Heartburn and acid indigestion, and healing of stomach and duodenal ulcers',
+    anatomicalSite:
+      'Basolateral membrane of the gastric parietal cell — the outside face of the cell, not the acid-secreting channel inside it',
+    conditionContext: {
+      conditionExplainer:
+        'A parietal cell decides how much acid to make by adding up three incoming signals: histamine, acetylcholine and gastrin. Histamine is the loudest of the three, and it is released by neighbouring cells in response to the other two. Blocking the histamine receptor turns the volume down on all three at once, without touching the pump itself.',
+      whyItMatters:
+        'Famotidine is measurably weaker than a proton pump inhibitor, and it has three things they do not: it works within an hour, it involves no covalent chemistry, and it has almost no drug interactions. It is also, since 2020, the only H2 blocker most people can buy.',
+      whoTakesThis:
+        'Adults and children with reflux or ulcer disease, an enormous number of people self-treating heartburn off a supermarket shelf, and — during the COVID-19 pandemic — a great many people taking it on the strength of a hypothesis that had not been tested.',
+      clinicalGoals:
+        'The registered endpoints are ulcer healing and oesophagitis healing seen at endoscopy, and relief of heartburn. The pandemic-era claims about viral illness were tested against symptom endpoints and are audited below.',
+    },
+    oneSentenceVerdict:
+      'A histamine H2-receptor blocker that turns down the loudest of the three signals telling the stomach to make acid, without touching the pump itself: it heals erosive oesophagitis in 51.9% of patients pooled across 43 trials against 83.6% for a proton pump inhibitor and 28.2% for placebo, loses part of its effect within days of continuous dosing, and — in the only randomised trial of it against placebo in COVID-19 — missed its primary endpoint of time to symptom resolution at P=0.4 in 55 outpatients.',
+    laymanHowItWorks:
+      'The cells that make stomach acid are switched on by three separate chemical messages, and histamine is by far the strongest of them. Famotidine sits on the histamine receptor on the outside of those cells and blocks it, so the loudest signal never gets through and the cell turns its acid production down. Because it blocks a switch rather than destroying the machinery, it works within about an hour and wears off as the drug leaves the body. It also means the cell can partly get around the block over a few days, which is why the effect fades with regular use in a way a proton pump inhibitor’s does not.',
+    auditConfidence: 'High Confidence',
+    confidenceScore: 76,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0494 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 139 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent since the early 2000s and made by well over a hundred manufacturers. Its commercial position changed for reasons unrelated to its own merits: after the FDA requested the withdrawal of all ranitidine products in April 2020 over N-nitrosodimethylamine contamination, famotidine became effectively the only H2 blocker on the American shelf. It is on the WHO Model List of Essential Medicines.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The comparison that matters is against the proton pump inhibitors, and famotidine loses it on healing by a wide margin — 51.9% against 83.6% pooled across 43 randomised trials — while winning on speed of onset, absence of drug interactions and absence of any covalent chemistry. The other H2 blockers are largely gone: ranitidine was withdrawn worldwide in 2020 and nizatidine and cimetidine are marginal. Antacids are the honest comparison for occasional heartburn, and they work faster still.',
+      conventionalRx: [
+        {
+          name: 'Omeprazole (Prilosec, Prilosec OTC)',
+          class: 'Proton pump inhibitor, substituted benzimidazole',
+          howItCompares:
+            'Destroys the pump rather than blocking one of its switches, and heals erosive oesophagitis in about five in six patients against about half for an H2 blocker, at nearly twice the speed. It takes three to five days to reach full effect, where famotidine works within the hour, and it carries a CYP2C19 interaction profile that famotidine does not.',
+          typicalCost:
+            'US$0.0816 per delayed-release capsule at United States pharmacy acquisition cost (CMS NADAC, median across 151 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: much more effective healing, no tolerance. Cons: slow onset, drug interactions, and rebound acid hypersecretion on stopping.',
+        },
+        {
+          name: 'Ranitidine (Zantac)',
+          class: 'Histamine H2-receptor antagonist',
+          howItCompares:
+            'The drug famotidine replaced. Same mechanism, similar efficacy, and withdrawn from the market worldwide at the FDA’s request in April 2020 after N-nitrosodimethylamine was found in products and shown to increase with time and temperature during storage. A randomised crossover trial in 18 healthy people subsequently found no increase in urinary NDMA excretion after a 300 mg oral dose, so the contamination was in the product rather than produced in the body.',
+          typicalCost: 'Not marketed in the United States; withdrawn from sale in April 2020',
+          prosAndCons:
+            'Pros: none over famotidine that survived the withdrawal. Cons: unavailable, and the withdrawal is the reason famotidine has the shelf to itself.',
+        },
+        {
+          name: 'Antacids (calcium carbonate, magnesium and aluminium hydroxide)',
+          class: 'Direct chemical neutralisation of gastric acid',
+          howItCompares:
+            'Neutralise acid already present rather than reducing its production, so they act within minutes and last an hour or two. For occasional heartburn they are the faster option; for healing an erosion they are not in the same class — the pooled placebo healing rate in erosive oesophagitis trials was 28.2%.',
+          typicalCost:
+            'No single NADAC value applies across the antacid category and none is asserted here',
+          prosAndCons:
+            'Pros: fastest relief available, no systemic absorption for most. Cons: very short duration, and aluminium- and magnesium-containing products bind other medicines in the stomach.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Notice whether it is working less well than it did',
+          action:
+            'Pay attention to whether a dose that worked in week one still works in week three.',
+          patientImpact:
+            'Diminution of the antisecretory effect with repeated dosing — tolerance — is established in healthy volunteers for this whole drug class, and it appears within days rather than months. It is one of the least advertised properties of an over-the-counter medicine.',
+          clinicalPrecaution:
+            'The published reviews find tolerance is less pronounced in people with duodenal ulcer disease than in healthy volunteers, and its clinical significance is contested. Escalating a dose because an effect is fading is a decision for a prescriber.',
+        },
+        {
+          name: 'Say if your kidneys are not working well',
+          action:
+            'Make sure the prescriber knows about reduced kidney function, including the age-related decline that has no diagnosis attached to it.',
+          patientImpact:
+            'Famotidine is cleared largely unchanged by the kidney. In renal impairment it accumulates, and the label records central nervous system adverse effects — confusion, delirium, agitation — in that setting, most often in older people.',
+          clinicalPrecaution:
+            'This is one of the more common causes of unexplained confusion in an older hospital inpatient, and it is reversible. It is a question to raise, not a dose to change.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=C(N=C(S1)N=C(N)N)CSCC/C(=N/S(=O)(=O)N)/N',
+      chemicalFormula: 'C8H15N7O2S3',
+      molecularWeight: '337.50 g/mol',
+      targetReceptorAffinity:
+        'A competitive, fully reversible antagonist at the histamine H2 receptor, roughly twenty to fifty times more potent per milligram than cimetidine and seven to twenty times more potent than ranitidine in the antisecretory assays used to rank the class. Nothing about the interaction is covalent, and the effect ends when the drug leaves. Its calculated logP is about -0.2 — it is a strikingly polar molecule, which is why it is cleared by the kidney largely unchanged and why it interacts with almost nothing.',
+      structureSource: {
+        label:
+          'PubChem CID 5702160 (famotidine) — canonical SMILES, molecular formula and molecular weight, as ingested onto this record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5702160',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fam-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the guanidinothiazole and the sulfamoyl amidine, and the geometry of the double bond',
+          description:
+            'Confirm both halves of the molecule and, critically, the configuration of the amidine double bond. Famotidine has a defined geometry at that bond and the alternative isomer is a different substance. This is also where nitrosamine screening belongs: the class-wide lesson from the ranitidine withdrawal is that an impurity nobody was looking for ended a drug.',
+          reagentsAndBuffer:
+            '2-guanidinothiazole and sulfamide reference standards, 1H and 13C NMR with NOE experiments in DMSO-d6 to establish double-bond geometry, LC-MS/MS nitrosamine screening at parts-per-billion sensitivity, Karl Fischer titration',
+        },
+        {
+          id: 'fam-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Thioether chain assembly and installation of the sulfamoyl amidine head',
+          description:
+            'Alkylate the guanidinothiazole thiol with the propionitrile chain, then convert the nitrile through the imidate to the sulfamoyl amidine. The amidine step sets the geometry checked in the previous stage and is the point at which a stereochemically mixed batch is created or avoided.',
+          dependsOnStepId: 'fam-w1',
+          reagentsAndBuffer:
+            '2-guanidinothiazol-4-ylmethyl thiol, 3-chloropropionitrile, sodium hydroxide in aqueous ethanol; then methanolic hydrogen chloride to the imidate and sulfamide with base, under nitrogen',
+        },
+        {
+          id: 'fam-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation and polymorph control',
+          description:
+            'Recrystallise to a single polymorph. Famotidine has two well-characterised anhydrous forms with different dissolution behaviour, so a batch that is chemically pure and polymorphically mixed will not perform as the reference product does.',
+          dependsOnStepId: 'fam-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from aqueous methanol or acetonitrile with controlled cooling rate, powder X-ray diffraction against form A and form B reference patterns, differential scanning calorimetry, HPLC for related substances',
+        },
+        {
+          id: 'fam-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Antagonism of histamine-stimulated cAMP in parietal cells',
+          description:
+            'Apply the compound to isolated gastric parietal cells or an H2-expressing cell line and show it blocks the histamine-driven rise in cyclic AMP without affecting the response to forskolin. That control is what separates receptor blockade from generalised interference with the signalling pathway downstream of it.',
+          dependsOnStepId: 'fam-w3',
+          reagentsAndBuffer:
+            'Isolated rabbit or canine gastric parietal cells, or HEK293 cells expressing human HRH2; histamine and forskolin as stimulus and bypass control, isobutylmethylxanthine to block phosphodiesterase, cAMP immunoassay',
+        },
+        {
+          id: 'fam-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Schild analysis for competitive reversibility, and a repeated-dosing tolerance arm',
+          description:
+            'Run a Schild plot to confirm surmountable competitive antagonism, then repeat the assay after prolonged agonist-free exposure to look for receptor upregulation. The second arm is the mechanistic counterpart of the tolerance seen in volunteers, and an assay that omits it will not reproduce the clinical behaviour of the drug.',
+          dependsOnStepId: 'fam-w4',
+          reagentsAndBuffer:
+            'Full histamine concentration-response curves at several antagonist concentrations, Schild regression with slope estimation, 48- to 72-hour antagonist pre-exposure arm, radioligand binding with [3H]-tiotidine to quantify receptor density',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fam-a1',
+        category: 'measured',
+        title: 'Half the healing of a proton pump inhibitor, at half the speed',
+        laymanSummary:
+          'Pooling 43 randomised trials in 7,635 people, H2 blockers healed erosive damage to the oesophagus in about half of patients and proton pump inhibitors in about five in six. Placebo healed a quarter. The healing also happened about twice as fast on the stronger drug.',
+        technicalDetails:
+          'Chiba and colleagues applied strict inclusion criteria to single- or double-blind randomised studies in adults with endoscopically proven erosive or ulcerative oesophagitis. Mean healing proportion within 12 weeks was 51.9% (SD 17.1) for H2-receptor antagonists against 83.6% (11.4) for proton pump inhibitors, 39.2% (22.4) for sucralfate and 28.2% (15.6) for placebo. Healing speed was 5.9% per week against 11.7% for PPIs and 2.9% for placebo. Corrected heartburn-free proportions were 47.6% (15.5) against 77.4% (10.4). The endpoint throughout is mucosa seen down an endoscope.',
+        evidenceSource:
+          'Chiba N, De Gara CJ, Wilkinson JM, Hunt RH. Gastroenterology 1997;112:1798-1810',
+        doi: '10.1053/gast.1997.v112.pm9178669',
+        measuredMetric:
+          'Proportion healed and heartburn-free at up to 12 weeks, pooled across 43 randomised trials in 7,635 patients, by drug class',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fam-a2',
+        category: 'failed',
+        title: 'It stops working as well within days, and this is established, not disputed',
+        laymanSummary:
+          'The acid-suppressing effect of this drug class shrinks with repeated dosing over a few days. That has been demonstrated in healthy volunteers and it is a property of the mechanism — blocking a receptor prompts the cell to make more receptors.',
+        technicalDetails:
+          'Diminution of the antisecretory effect with repeated oral dosing, termed tolerance, is established in healthy volunteers across the H2-receptor antagonist class, with anecdotal evidence of the same phenomenon on intravenous dosing. The review that summarises the literature is explicit that tolerance may be clinically relevant where tight control of acidity is required. It is equally explicit about the limits of the evidence: patients with duodenal ulcer disease do not appear to develop significant tolerance according to the sparse investigations available, and the mechanisms remain unclear. Receptor upregulation is the usual explanation and has not been proved to be the operative one in humans. The important asymmetry is that a proton pump inhibitor cannot show this behaviour, because it destroys the pump rather than occupying a receptor.',
+        evidenceSource:
+          'Wilder-Smith CH, Merki HS. Tolerance during dosing with H2-receptor antagonists: an overview. Scand J Gastroenterol Suppl 1992;193:14-19',
+        doi: '10.3109/00365529209096000',
+        measuredMetric:
+          'Attenuation of the antisecretory effect on repeated dosing, measured by intragastric pH in healthy volunteers',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fam-a3',
+        category: 'failed',
+        title:
+          'The COVID-19 trial missed its primary endpoint, and the observational study that started it all was retrospective',
+        laymanSummary:
+          'Early in the pandemic a hospital database study suggested famotidine users did better, and a great deal of public attention followed. When a randomised trial was finally run, in 55 outpatients, the primary endpoint — how quickly symptoms went away — was not met. A secondary measure of the rate of resolution did favour the drug.',
+        technicalDetails:
+          'The originating signal was a propensity-score-matched retrospective cohort of hospitalised COVID-19 patients reporting an association between famotidine use and improved outcomes. The randomised test was a double-blind, placebo-controlled, fully remote phase 2 trial enrolling 55 symptomatic unvaccinated adult outpatients with confirmed COVID-19 at two United States centres between January and April 2021, self-administering 80 mg famotidine or placebo three times daily for 14 days. Median age was 35. The primary endpoint, time to symptom resolution, was not statistically improved (P=0.4). The secondary endpoint, rate of symptom resolution, was improved (P<0.0001), with estimated 50% reduction of baseline symptom scores at 8.2 days (95% CI 7 to 9.8) against 11.4 days (10.3 to 12.6). Fewer patients on famotidine had detectable plasma interferon alpha at day 7 (P=0.04). The authors state that additional randomised trials are required. Fifty-five participants is a phase 2 sample and the trial was not designed to detect an effect on hospitalisation or death.',
+        evidenceSource:
+          'Brennan CM et al., Gut 2022;71:879-888 (NCT04724720); Freedberg DE et al., Gastroenterology 2020;159:1129-1131',
+        doi: '10.1136/gutjnl-2022-326952',
+        measuredMetric:
+          'Time to symptom resolution in 55 randomised non-hospitalised adults with COVID-19, against matching placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fam-a4',
+        category: 'conclusion_shift',
+        title:
+          'Famotidine inherited the market because ranitidine was withdrawn — and the mechanism everyone assumed turned out to be wrong',
+        laymanSummary:
+          'In 2020 every ranitidine product was pulled worldwide because it contained a probable carcinogen. The petition that triggered it argued the drug turned into that carcinogen inside the body. A randomised trial then tested exactly that and found no increase at all. The contamination was in the product, not in the patient.',
+        technicalDetails:
+          'The FDA requested withdrawal of all ranitidine products in April 2020 after N-nitrosodimethylamine was detected and shown to increase in the product with time and with storage temperature. The 2019 citizen petition had proposed a second and more alarming mechanism: that ranitidine converts to NDMA within the human body, based largely on a small clinical study of urinary NDMA. A randomised, double-blind, placebo-controlled crossover trial in 18 healthy participants then measured 24-hour urinary NDMA excretion after 300 mg oral ranitidine against placebo, on both a non-cured-meats and a cured-meats diet. There was no statistically significant difference on either diet — median paired differences of 0 ng (IQR -6.9 to 0, P=0.54) and -1.1 ng (IQR -9.1 to 11.5, P=0.71). The cured-meats diet raised NDMA excretion far more than the drug did. The withdrawal stands on product contamination, which is a real and sufficient reason. The in-body conversion hypothesis, which drove much of the alarm, was tested and not supported.',
+        evidenceSource:
+          'Florian J et al., JAMA 2021;326:240-249 (NCT04397445)',
+        doi: '10.1001/jama.2021.9199',
+        inferredClaim:
+          'That ranitidine is converted to a carcinogen inside the body — the hypothesis behind the citizen petition, tested in a randomised crossover trial and not supported',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fam-a5',
+        category: 'measured',
+        title:
+          'In 26,828 ventilated patients, H2 blockers were numerically better on mortality than proton pump inhibitors',
+        laymanSummary:
+          'The largest comparison ever run between the two ways of preventing stress ulcers in intensive care found the stronger drug bled slightly fewer patients and the weaker drug had slightly fewer deaths. Neither difference in mortality reached the significance threshold.',
+        technicalDetails:
+          'PEPTIC was a cluster crossover randomised trial at 50 intensive care units in five countries, in which each unit used a preferential proton pump inhibitor strategy and a preferential H2 blocker strategy for six months each in random order. Of 26,982 randomised, 26,828 were analysed. In-hospital mortality by day 90 was 2,459 of 13,415 (18.3%) in the PPI group against 2,333 of 13,356 (17.5%) in the H2 blocker group — risk ratio 1.05 (95% CI 1.00 to 1.10), absolute difference 0.93 percentage points (95% CI -0.01 to 1.88), P=0.054. Clinically important upper gastrointestinal bleeding was 1.3% against 1.8%, risk ratio 0.73 (95% CI 0.57 to 0.92), P=0.009, favouring the proton pump inhibitor. C. difficile rates and lengths of stay did not differ. Interpretation is limited by crossover: an estimated 20.1% of patients randomised by site to H2 blockers actually received a proton pump inhibitor, which would bias the mortality comparison toward the null.',
+        evidenceSource: 'PEPTIC Investigators, Young PJ et al., JAMA 2020;323:616-626 (ACTRN12616000481471)',
+        doi: '10.1001/jama.2019.22190',
+        measuredMetric:
+          'All-cause in-hospital mortality within 90 days, and clinically important upper gastrointestinal bleeding, PPI strategy against H2 blocker strategy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fam-a6',
+        category: 'inferred',
+        title: 'Its safety reputation rests on the absence of evidence rather than on trials',
+        laymanSummary:
+          'Famotidine is generally described as very safe, and it probably is. What it does not have is what pantoprazole has: a placebo-controlled trial in tens of thousands of people over years, systematically counting harms. Its record is built from decades of use rather than from a trial designed to find problems.',
+        technicalDetails:
+          'No placebo-controlled randomised trial of famotidine comparable in scale or duration to the COMPASS proton pump inhibitor substudy — 17,598 participants, median 3.01 years, fourteen prespecified safety outcomes collected six-monthly — has been conducted for this molecule or for its class. What exists is a very large post-marketing experience, the label’s recorded adverse reactions, and a known and mechanistically explicable problem: the drug is cleared largely unchanged by the kidney, so in renal impairment it accumulates and produces central nervous system effects including confusion, delirium and agitation, most often in older patients. That is a well-characterised harm found through use rather than through a trial. Describing the drug as proven safe overstates what the record contains; describing it as unsafe would overstate it in the other direction.',
+        evidenceSource:
+          'PEPCID United States prescribing information, Warnings and Precautions and Adverse Reactions (NDA 019462); Moayyedi P et al., Gastroenterology 2019;157:682-691 for the comparison',
+        inferredClaim:
+          'That long familiarity with a drug is equivalent to a systematic safety trial — a common inference, and the reason the proton pump inhibitor safety questions were answerable in 2019 while the H2 blocker ones are not',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed plain, with no coating needed',
+        laymanDesc:
+          'Unlike the proton pump inhibitors, this molecule is perfectly stable in stomach acid, so the tablet needs no protective shell. It starts being absorbed straight away.',
+        molecularDetail:
+          'Famotidine is acid-stable and orally bioavailable at 40 to 45%, unaffected by food. Peak plasma concentration comes at one to three hours and the plasma half-life is 2.5 to 3.5 hours — which, unlike a proton pump inhibitor, is close to the duration of its effect, because the effect ends when the drug leaves the receptor.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaches the outside of the acid-making cell',
+        laymanDesc:
+          'It works on the outer surface of the stomach cell, not inside the acid channel. Nothing has to trap it and nothing has to activate it.',
+        molecularDetail:
+          'The H2 receptor sits on the basolateral membrane, facing the bloodstream rather than the gastric lumen. Famotidine is highly polar, with a logP near -0.2, and does not need to cross a membrane or accumulate in an acidic compartment to reach its target.',
+        iconName: 'Droplets',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Occupies the histamine switch',
+        laymanDesc:
+          'Three chemicals tell the stomach cell to make acid, and histamine is the loudest. Famotidine sits in the histamine slot so that message never arrives. The other two signals also weaken, because much of their effect works through histamine.',
+        molecularDetail:
+          'Competitive, surmountable, fully reversible antagonism at the Gs-coupled H2 receptor. Blocking it prevents adenylyl cyclase activation and the rise in cyclic AMP that drives protein kinase A. Because gastrin and acetylcholine act substantially through histamine release from enterochromaffin-like cells, blocking H2 attenuates all three stimulatory arms rather than one.',
+        iconName: 'ToggleLeft',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The pump is never activated, but never destroyed either',
+        laymanDesc:
+          'The acid pump itself is untouched. It simply never receives the instruction to move to the cell surface and start working. That is why the effect is complete only while the drug is present.',
+        molecularDetail:
+          'Without protein kinase A signalling, the H+/K+-ATPase-containing tubulovesicles do not fuse with the canalicular membrane and the pump is not inserted into the secretory surface. No covalent chemistry occurs anywhere. Acid secretion resumes as receptor occupancy falls.',
+        iconName: 'ToggleRight',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And the cell adapts to being blocked',
+        laymanDesc:
+          'Over a few days of regular dosing, the same dose suppresses less acid. Blocking a receptor is the kind of intervention a cell can compensate for; destroying the pump is not.',
+        molecularDetail:
+          'Tolerance to the antisecretory effect is established in healthy volunteers with repeated oral dosing and reported with intravenous dosing. Receptor upregulation is the usual proposed mechanism and is not proven in humans. The reviews note it is less pronounced in duodenal ulcer patients than in volunteers, and its clinical significance remains contested.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'Cleared by the kidney, largely untouched',
+        laymanDesc:
+          'The liver barely processes it, which is why it interacts with almost nothing. The kidney does the work instead, so when kidney function falls the drug builds up — and in older people that shows up as confusion.',
+        molecularDetail:
+          'Roughly 65 to 70% is excreted unchanged, most of it renally, with minimal cytochrome P450 involvement — the reason famotidine has none of the interaction profile that made cimetidine notorious. In renal impairment, accumulation produces the central nervous system adverse effects recorded in the label: confusion, delirium, hallucinations, agitation, most often in elderly patients.',
+        iconName: 'Filter',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Chiba pooled analysis of 43 randomised oesophagitis trials',
+        phase: 'Meta-analysis of single- and double-blind randomised trials',
+        sampleSize: 7635,
+        primaryEndpoint:
+          'Proportion healed and proportion heartburn-free at up to 12 weeks, by drug class',
+        endpointMet: true,
+        statisticalPValue:
+          'H2-receptor antagonists 51.9% (SD 17.1) against proton pump inhibitors 83.6% (11.4), sucralfate 39.2% (22.4) and placebo 28.2% (15.6); healing speed 5.9% per week against 11.7% and 2.9%',
+        unreportedAdverseSignals:
+          'A class-level pooled estimate, not a head-to-head trial of famotidine specifically, and the endpoint is endoscopic appearance rather than any patient outcome.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'PEPTIC (ACTRN12616000481471)',
+        phase: 'Cluster crossover randomised clinical trial, 50 ICUs in 5 countries',
+        sampleSize: 26828,
+        primaryEndpoint: 'All-cause in-hospital mortality within 90 days',
+        endpointMet: false,
+        statisticalPValue:
+          '18.3% on the proton pump inhibitor strategy against 17.5% on the H2 blocker strategy; risk ratio 1.05 (95% CI 1.00 to 1.10), P=0.054',
+        unreportedAdverseSignals:
+          'An estimated 20.1% of patients randomised by site to H2 blockers actually received a proton pump inhibitor. That crossover biases the comparison toward the null and the authors say so.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Famotidine against placebo in outpatient COVID-19 (NCT04724720)',
+        phase: 'Phase 2, randomised, double-blind, placebo-controlled, fully remote',
+        sampleSize: 55,
+        primaryEndpoint: 'Time to symptom resolution',
+        endpointMet: false,
+        statisticalPValue:
+          'Not statistically improved, P=0.4. Secondary rate of symptom resolution improved, P<0.0001, with 50% reduction of baseline symptom score at 8.2 days (95% CI 7 to 9.8) against 11.4 days (10.3 to 12.6).',
+        unreportedAdverseSignals:
+          'Fifty-five participants, median age 35, all unvaccinated outpatients. The trial was not designed or powered to detect an effect on hospitalisation or death, and the authors state further randomised trials are required.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Ranitidine and urinary NDMA excretion (NCT04397445)',
+        phase: 'Randomised, double-blind, placebo-controlled crossover in healthy volunteers',
+        sampleSize: 18,
+        primaryEndpoint: 'Twenty-four-hour urinary excretion of N-nitrosodimethylamine',
+        endpointMet: false,
+        statisticalPValue:
+          'No significant difference on a non-cured-meats diet (median paired difference 0 ng, IQR -6.9 to 0, P=0.54) or a cured-meats diet (-1.1 ng, IQR -9.1 to 11.5, P=0.71)',
+        unreportedAdverseSignals:
+          'The trial is about ranitidine, not famotidine, and appears here because it is the reason famotidine has the H2 blocker market to itself. The withdrawal rests on contamination found in the product, which this trial does not address.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'H2-receptor antagonists healed 51.9% of erosive oesophagitis against 83.6% for proton pump inhibitors and 28.2% for placebo, pooled across 43 randomised trials in 7,635 people',
+        'In-hospital mortality 17.5% on an H2 blocker strategy against 18.3% on a proton pump inhibitor strategy in 26,828 ventilated patients (RR 1.05, P=0.054), with bleeding favouring the proton pump inhibitor at 1.8% against 1.3%',
+        'Time to COVID-19 symptom resolution not improved against placebo in 55 randomised outpatients (P=0.4)',
+        'Attenuation of the antisecretory effect with repeated dosing, established in healthy volunteers across the class',
+      ],
+      unsupportedInferences: [
+        'That famotidine treats COVID-19 — an observational association whose randomised test missed its primary endpoint in 55 people',
+        'That ranitidine converts to a carcinogen inside the body, the hypothesis behind the citizen petition, refuted by a randomised crossover trial',
+        'That long safe use is equivalent to a systematic safety trial; no COMPASS-scale placebo-controlled study exists for this class',
+        'That an H2 blocker is interchangeable with a proton pump inhibitor for healing erosive disease, when the pooled difference is 32 percentage points',
+      ],
+      whatFailedInitially: [
+        'Tolerance: the antisecretory effect shrinks within days of repeated dosing, a limitation the mechanism makes unavoidable',
+        'The COVID-19 primary endpoint was not met, though the drug was safe and a secondary rate measure favoured it',
+        'Renal accumulation causes confusion and delirium in older patients, a harm found through use rather than through a trial',
+        'PEPTIC could not deliver a clean comparison, because a fifth of the H2 blocker arm received a proton pump inhibitor instead',
+      ],
+      realWorldOutcome: [
+        'Approved under NDA 019462 on 15 October 1986 and available without prescription since 1995',
+        'On the WHO Model List of Essential Medicines, and about five cents a tablet at pharmacy acquisition cost',
+        'Became effectively the only H2 blocker on the American market after ranitidine was withdrawn worldwide in April 2020',
+        'Still the drug of choice where speed of onset or freedom from drug interactions matters more than depth of acid suppression',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, orally disintegrating tablet, oral suspension, chewable over-the-counter tablet, and intravenous solution including a preservative-free presentation',
+      description:
+        'No enteric coating is needed, because unlike the proton pump inhibitors this molecule is stable in gastric acid. Onset is within about an hour by mouth, which is the property that keeps it in use alongside more effective drugs. The intravenous form is widely used in hospital, including as stress ulcer prophylaxis.',
+      safetyProfile:
+        'The label records central nervous system adverse effects — confusion, delirium, hallucinations, disorientation, agitation, seizure — in patients with moderate or severe renal impairment, in whom the drug accumulates because it is cleared largely unchanged by the kidney. QT prolongation has been reported in the same setting. Commonest adverse reactions are headache, dizziness, constipation and diarrhoea. Cytochrome P450 involvement is minimal, so the drug interaction profile is unusually clean; the interactions that do matter are with drugs whose absorption depends on gastric acidity.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it as good as omeprazole?',
+        a: 'For healing damage, no, and the gap is large. Pooled across 43 randomised trials in 7,635 people, H2 blockers healed erosive oesophagitis in 51.9% of patients and proton pump inhibitors in 83.6%, with placebo at 28.2%. Healing also happened about twice as fast on the stronger class. What famotidine has instead is speed of onset — it works within about an hour where a proton pump inhibitor takes three to five days to reach full effect — and an almost complete absence of drug interactions, because the liver barely touches it. For occasional heartburn those properties matter more than depth of suppression. For an erosion seen down an endoscope, they do not.',
+      },
+      {
+        q: 'Why does it seem to stop working after a week or two?',
+        a: 'Because it probably is working less well, and this is a known property of the drug class rather than imagination. Repeated dosing produces measurable attenuation of the acid-suppressing effect within days — it has been demonstrated in healthy volunteers with intragastric pH monitoring, and it is reported with intravenous dosing too. The usual explanation is that blocking a receptor prompts the cell to make more receptors, though that has not been proved in humans. It is worth knowing that the reviews of this literature are careful: tolerance appears less pronounced in people with duodenal ulcer disease than in healthy volunteers, and how much it matters clinically is still argued about. A proton pump inhibitor cannot behave this way, because it destroys the pump instead of occupying a switch.',
+      },
+      {
+        q: 'What happened to Zantac, and is famotidine affected?',
+        a: 'Ranitidine was withdrawn worldwide in 2020 because N-nitrosodimethylamine, a probable human carcinogen, was found in the products and shown to increase with time and storage temperature. Famotidine is a different molecule and was not part of that action. There is a further twist worth knowing: the citizen petition that triggered the investigation argued that ranitidine converts into NDMA inside the human body, which would have been far more alarming. A randomised crossover trial in 18 healthy people then measured 24-hour urinary NDMA after a 300 mg dose against placebo and found no difference on either a normal or a cured-meats diet. Eating cured meat raised NDMA excretion considerably more than the drug did. The contamination was real and in the product; the in-body conversion was not supported.',
+        auditNote:
+          'Famotidine’s current market position is an accident of another drug’s withdrawal rather than a demonstration of its own superiority.',
+      },
+      {
+        q: 'Does famotidine help with COVID-19?',
+        a: 'The randomised evidence does not support it, though the story is more nuanced than a flat no. An early propensity-matched retrospective cohort of hospitalised patients suggested famotidine users did better, and that got wide attention. The randomised test was a fully remote, double-blind, placebo-controlled trial in 55 unvaccinated outpatients taking 80 mg three times daily for 14 days. The primary endpoint — time to symptom resolution — was not improved, at P=0.4. A secondary measure, the rate of symptom resolution, was improved, with 50% of baseline symptoms gone at 8.2 days against 11.4. Fifty-five people, median age 35, is a phase 2 sample. It was not designed to detect an effect on hospitalisation or death, and the authors explicitly called for further trials that have not arrived.',
+      },
+      {
+        q: 'Could this be why my elderly relative is confused in hospital?',
+        a: 'It is a recognised possibility and worth raising with the team. Famotidine is cleared almost entirely by the kidney rather than the liver, which is what makes it so free of drug interactions. The other side of that is that when kidney function is reduced — including the slow decline that comes with age and carries no diagnosis — the drug accumulates. The label records confusion, delirium, hallucinations, disorientation, agitation and seizure in patients with moderate or severe renal impairment, most often elderly ones. It is reversible when recognised. Raising the question is reasonable; changing a dose is a decision for the treating team.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Chiba N, De Gara CJ, Wilkinson JM, Hunt RH. Speed of healing and symptom relief in grade II to IV gastroesophageal reflux disease: a meta-analysis. Gastroenterology 1997;112:1798-1810',
+        identifier: '10.1053/gast.1997.v112.pm9178669',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Wilder-Smith CH, Merki HS. Tolerance during dosing with H2-receptor antagonists: an overview. Scand J Gastroenterol Suppl 1992;193:14-19',
+        identifier: '10.3109/00365529209096000',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Brennan CM et al. Oral famotidine versus placebo in non-hospitalised patients with COVID-19: a randomised, double-blind, data-intense, phase 2 clinical trial. Gut 2022;71:879-888',
+        identifier: '10.1136/gutjnl-2022-326952',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Freedberg DE et al. Famotidine use is associated with improved clinical outcomes in hospitalized COVID-19 patients: a propensity score matched retrospective cohort study. Gastroenterology 2020;159:1129-1131',
+        identifier: '10.1053/j.gastro.2020.05.053',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Florian J et al. Effect of oral ranitidine on urinary excretion of N-nitrosodimethylamine (NDMA): a randomized clinical trial. JAMA 2021;326:240-249',
+        identifier: '10.1001/jama.2021.9199',
+        kind: 'doi',
+      },
+      {
+        label:
+          'PEPTIC Investigators (Young PJ et al.). Effect of stress ulcer prophylaxis with proton pump inhibitors vs histamine-2 receptor blockers on in-hospital mortality among ICU patients receiving invasive mechanical ventilation. JAMA 2020;323:616-626',
+        identifier: '10.1001/jama.2019.22190',
+        kind: 'doi',
+      },
+      {
+        label: 'Famotidine against placebo in non-hospitalised adults with COVID-19',
+        identifier: 'NCT04724720',
+        kind: 'nct',
+      },
+      {
+        label: 'Ranitidine and 24-hour urinary NDMA excretion, randomised crossover',
+        identifier: 'NCT04397445',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: PEPCID (famotidine) tablets, NDA 019462, Bausch — original approval 15 October 1986',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019462',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: PEPCID AC (famotidine), NDA 020325 — over-the-counter approval 28 April 1995',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020325',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5702160 — famotidine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5702160',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Sucralfate — a drug that is essentially not absorbed, works by turning into glue, and lost
+  //    the one 1,200-patient head-to-head that mattered.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'sucralfate',
+    name: 'Sucralfate',
+    tradeName: 'Carafate',
+    sponsor:
+      'AbbVie (current US label holder) — developed by Chugai in Japan and approved in the United States under NDA 018333 on 30 October 1981',
+    targetGene:
+      'None. Sucralfate has no molecular target in the human genome — it acts physically on exposed tissue',
+    targetProtein:
+      'Positively charged proteins exposed in an ulcer crater, to which the polymerised polyanion binds electrostatically. It is a surface, not a receptor.',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1981,
+    indication:
+      'Short-term treatment, up to 8 weeks, of active duodenal ulcer, and maintenance therapy for duodenal ulcer patients at reduced dosage after healing of acute ulcers',
+    patientFriendlyIndication: 'Duodenal ulcers, and keeping a healed duodenal ulcer from returning',
+    anatomicalSite:
+      'The floor of the ulcer crater itself — a physical surface in the stomach or duodenum, not a cell and not a receptor',
+    conditionContext: {
+      conditionExplainer:
+        'An ulcer is a hole in the lining where the protective mucus layer has been breached and the tissue underneath is exposed to acid and to pepsin, the stomach’s protein-digesting enzyme. Everything else in this file works by reducing what is poured onto that hole. Sucralfate works by covering it.',
+      whyItMatters:
+        'It is the only drug in this group that is not absorbed in any meaningful quantity — under 5% crosses the gut wall — which makes it uniquely free of systemic effects and uniquely dependent on physical contact for anything at all. It is also the one whose place in practice was decided by losing a trial rather than by winning one.',
+      whoTakesThis:
+        'People with duodenal ulcer, people who cannot take acid suppression, and — off label and very widely — people with radiation proctitis, oral or oesophageal mucosal injury, and bile reflux. Most of those uses are extrapolations from the licensed one.',
+      clinicalGoals:
+        'The registered endpoint is duodenal ulcer healing seen at endoscopy within eight weeks. Whether the barrier mechanism does anything at other sites is inferred from the chemistry rather than measured at those sites.',
+    },
+    oneSentenceVerdict:
+      'A sugar molecule wrapped in eight sulfate groups and complexed with aluminium, which is barely absorbed and does nothing systemically: in stomach acid it polymerises into a sticky paste that binds to exposed protein in an ulcer crater and physically covers it — healing 39.2% of erosive oesophagitis against 28.2% for placebo and 83.6% for a proton pump inhibitor across 43 pooled trials, and losing the definitive 1,200-patient intensive-care comparison, where clinically important bleeding was 3.8% on sucralfate against 1.7% on ranitidine.',
+    laymanHowItWorks:
+      'Sucralfate is a large, heavily charged molecule that the gut hardly absorbs at all, so almost the entire dose stays inside the digestive tract. When it meets stomach acid the molecules link up into a thick, sticky gel. That gel carries a strong negative charge and the raw protein in the floor of an ulcer carries a positive one, so the gel sticks there far more than it sticks to intact lining. The result is a physical patch over the wound that keeps acid and digestive enzymes off it while the tissue underneath repairs. Nothing about this involves a receptor or a hormone, and nothing about it reduces how much acid the stomach makes.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 63,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.1725 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 21 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Off patent for decades, but the generic market is thin: 21 listed products against 139 for famotidine and 151 for omeprazole. The oral suspension in particular has a short list of manufacturers and has been on United States drug shortage lists more than once, which is what a low-margin product with few suppliers looks like.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'For an ulcer, everything else in this file heals more of them. Sucralfate’s case is not that it is stronger but that it is not absorbed, so it has no systemic drug interactions, no effect on gastric pH and nothing to rebound when it stops. That matters in pregnancy, in people already on many medicines, and where lowering stomach acid is undesirable. Where a comparison has been run head to head in the sickest patients, it lost.',
+      conventionalRx: [
+        {
+          name: 'Omeprazole (Prilosec, Prilosec OTC)',
+          class: 'Proton pump inhibitor, substituted benzimidazole',
+          howItCompares:
+            'Heals about twice as much erosive damage — 83.6% against 39.2% in the pooled analysis of 43 randomised trials — by cutting acid production rather than covering the wound. It is absorbed and it interacts with other drugs, which sucralfate does not.',
+          typicalCost:
+            'US$0.0816 per delayed-release capsule at United States pharmacy acquisition cost (CMS NADAC, median across 151 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: far more effective healing, once daily, cheaper per unit. Cons: systemic drug interactions, acid rebound on withdrawal, and it does not physically protect anything.',
+        },
+        {
+          name: 'Famotidine (Pepcid, Pepcid AC)',
+          class: 'Histamine H2-receptor antagonist',
+          howItCompares:
+            'Heals 51.9% of erosive oesophagitis against sucralfate’s 39.2% in the same pooled analysis. In the definitive intensive-care head-to-head, the H2 blocker arm — ranitidine, the same class — had less than half the clinically important bleeding of the sucralfate arm.',
+          typicalCost:
+            'US$0.0494 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 139 listed generic products, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: more effective, cheaper, faster, does not bind other medicines. Cons: absorbed and renally cleared, so it accumulates in kidney impairment where sucralfate’s aluminium does too.',
+        },
+        {
+          name: 'Misoprostol (Cytotec)',
+          class: 'Synthetic prostaglandin E1 analogue',
+          howItCompares:
+            'The other mucosal-defence drug, and the only one that restores the prostaglandin an anti-inflammatory drug removes. In 537 NSAID users it left 93% ulcer-free at twelve weeks against 80 to 82% for lansoprazole and 51% for placebo, at the cost of considerably more diarrhoea and cramping.',
+          typicalCost:
+            'No NADAC value is held on this record for misoprostol and none is asserted here',
+          prosAndCons:
+            'Pros: addresses the actual mechanism of NSAID injury. Cons: poorly tolerated, and an abortifacient that cannot be used in pregnancy — which is precisely the setting where sucralfate’s lack of absorption is an advantage.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask about spacing it from your other tablets',
+          action:
+            'Check with the pharmacist whether any other medicine needs to be separated in time from this one.',
+          patientImpact:
+            'Sucralfate is a large polyanion sitting in the stomach as a gel, and it binds other drugs. The label records reduced bioavailability of fluoroquinolone antibiotics, digoxin, phenytoin, levothyroxine, ketoconazole, warfarin, quinidine and theophylline when taken together. Nothing is absorbed by the patient; the problem is what the gel absorbs.',
+          clinicalPrecaution:
+            'The interaction is mechanical rather than metabolic, so it does not appear in interaction checkers built around liver enzymes. Timing is a matter for the prescriber or pharmacist.',
+        },
+        {
+          name: 'Say if you have kidney disease or are on dialysis',
+          action:
+            'Make sure the prescriber knows about any reduced kidney function before this is started.',
+          patientImpact:
+            'Each gram of sucralfate carries roughly 207 mg of aluminium. Under 5% is absorbed, which is harmless with working kidneys and is not harmless without them. In a study of 19 ventilated children on sucralfate for a median of seven days, serum aluminium was higher in the nine who also received peritoneal dialysis.',
+          clinicalPrecaution:
+            'The label warns against use in renal impairment for exactly this reason, and aluminium accumulation is associated with encephalopathy and bone disease. This is a question to raise, not a dose to adjust.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@]2([C@H]([C@@H]([C@H](O2)COS(=O)(=O)O[Al])OS(=O)(=O)O[Al])OS(=O)(=O)O[Al])COS(=O)(=O)O[Al])OS(=O)(=O)O[Al])OS(=O)(=O)O[Al])OS(=O)(=O)O[Al])OS(=O)(=O)O[Al].O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.[Al]',
+      chemicalFormula: 'C12H54Al9O55S8',
+      molecularWeight: '1577.90 g/mol',
+      targetReceptorAffinity:
+        'There is no receptor and no affinity constant, because there is no molecular target. The interaction is electrostatic and physical: the polyanionic sucrose octasulfate, polymerised in acid, adheres to positively charged proteins exposed in an ulcer base. The stated molecular weight and formula describe a single idealised aluminium complex; the marketed substance is a basic aluminium salt whose exact composition varies within specification, which is why it is defined by aluminium content and degree of sulfation rather than by a molecular weight alone.',
+      structureSource: {
+        label:
+          'PubChem CID 121494085 (sucralfate) — canonical SMILES, molecular formula and molecular weight, as ingested onto this record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/121494085',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'suc-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Degree of sulfation and aluminium content, because the molecule is a specification not a formula',
+          description:
+            'Establish that on average eight sulfate esters are present per sucrose and quantify aluminium. Unlike every other drug in this file, sucralfate is not a single defined molecule: it is a basic aluminium complex of sucrose octasulfate, and identity is a compositional range rather than a structure. A batch with the right formula and the wrong aluminium ratio does not gel correctly.',
+          reagentsAndBuffer:
+            'Sucrose octasulfate reference standard, ion chromatography for sulfate, inductively coupled plasma optical emission spectrometry for aluminium, loss on drying and residue on ignition',
+        },
+        {
+          id: 'suc-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Exhaustive sulfation of sucrose, then aluminium complexation',
+          description:
+            'Sulfate all eight free hydroxyls of sucrose, isolate the octasulfate as its salt, then precipitate the basic aluminium complex. The second step is where the product’s behaviour is set: too little aluminium and the material stays soluble and washes away, too much and it will not polymerise into an adherent gel at gastric pH.',
+          dependsOnStepId: 'suc-w1',
+          reagentsAndBuffer:
+            'Sulfur trioxide-pyridine or chlorosulfonic acid complex in pyridine or dimethylformamide, sodium or potassium hydroxide neutralisation, aluminium chloride or sodium aluminate under controlled pH',
+        },
+        {
+          id: 'suc-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Washing to remove free aluminium and soluble sulfate',
+          description:
+            'Wash the precipitate exhaustively. Free aluminium salt left in the product is the fraction most available for absorption, and the whole safety argument for the drug rests on almost nothing being absorbed. Residual soluble sulfate and free sucrose octasulfate are the other impurities that change dissolution behaviour.',
+          dependsOnStepId: 'suc-w2',
+          reagentsAndBuffer:
+            'Repeated aqueous washing with pH control, filtration or centrifugation, conductivity monitoring of washings, ICP-OES on the filtrate to quantify free aluminium',
+        },
+        {
+          id: 'suc-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Adhesion to ulcerated against intact mucosa, side by side',
+          description:
+            'Apply labelled material to an ex vivo or animal preparation carrying both an induced ulcer and adjacent intact mucosa, and measure how much sticks to each. This is the step that tests the central claim — selective binding to the ulcer base — and it is the one that has to be done in tissue rather than on a plate, because selectivity is the whole argument for the drug.',
+          dependsOnStepId: 'suc-w3',
+          reagentsAndBuffer:
+            'Rat or porcine gastric mucosa with an induced acetic-acid ulcer, tritiated or aluminium-traced sucralfate, simulated gastric fluid at pH 1.2 and a neutral control at pH 7.0, scintillation counting or ICP-OES per tissue region',
+        },
+        {
+          id: 'suc-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Viscosity, pepsin inhibition and bile-salt binding across the pH range',
+          description:
+            'Measure gel viscosity at pH 1 against pH 7, quantify inhibition of pepsin proteolysis, and measure bile-salt binding capacity. The pH dependence is the point: a preparation that gels at neutral pH would not be sucralfate, and a preparation that fails to gel at pH 1 would be inert in the place it is meant to work.',
+          dependsOnStepId: 'suc-w4',
+          reagentsAndBuffer:
+            'Rotational viscometry across pH 1 to 7, haemoglobin or casein pepsin substrate assay, taurocholate and glycocholate binding by equilibrium dialysis, simulated gastric and intestinal fluids',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'suc-a1',
+        category: 'failed',
+        title:
+          'It lost the definitive intensive-care trial: 3.8% bleeding against 1.7% on ranitidine',
+        laymanSummary:
+          'Twelve hundred patients on breathing machines were randomly given sucralfate or ranitidine to prevent stress ulcer bleeding. More than twice as many bled on sucralfate. The theory that sucralfate would cause less pneumonia — because it does not remove the acid that kills swallowed bacteria — was tested in the same trial and did not hold up.',
+        technicalDetails:
+          'A multicentre, randomised, blinded, double-dummy trial in 1,200 patients requiring mechanical ventilation compared nasogastric sucralfate suspension 1 g six-hourly with intravenous ranitidine 50 mg eight-hourly, each with a matching placebo by the other route. Clinically important gastrointestinal bleeding occurred in 10 of 596 (1.7%) on ranitidine against 23 of 604 (3.8%) on sucralfate — relative risk 0.44 (95% CI 0.21 to 0.92, P=0.02). Ventilator-associated pneumonia was 114 of 596 (19.1%) against 98 of 604 (16.2%), relative risk 1.18 (95% CI 0.92 to 1.51, P=0.19), numerically favouring sucralfate but not significantly. Intensive care mortality was 23.5% against 22.9% and median ICU stay was nine days in both groups. The trial settled the question and sucralfate largely left intensive care as a result.',
+        evidenceSource:
+          'Cook D et al., N Engl J Med 1998;338:791-797 (Canadian Critical Care Trials Group)',
+        doi: '10.1056/NEJM199803193381203',
+        measuredMetric:
+          'Clinically important upper gastrointestinal bleeding, ventilator-associated pneumonia and mortality in 1,200 randomised ventilated patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'suc-a2',
+        category: 'measured',
+        title: 'The weakest healing figure of any active drug in the pooled oesophagitis analysis',
+        laymanSummary:
+          'Across 43 randomised trials in more than 7,600 people, sucralfate healed erosive damage to the gullet in about two in five patients. Placebo healed a bit over one in four. Proton pump inhibitors healed five in six.',
+        technicalDetails:
+          'Mean healing proportion within 12 weeks was 39.2% (SD 22.4) for sucralfate, against 28.2% (15.6) for placebo, 51.9% (17.1) for H2-receptor antagonists and 83.6% (11.4) for proton pump inhibitors. The standard deviation on the sucralfate estimate is the largest of the four, which reflects both a smaller pooled sample and genuine heterogeneity between the studies contributing to it. The endpoint is mucosa seen down an endoscope, and the indication sucralfate actually holds a licence for is duodenal ulcer rather than oesophagitis, so this is a measurement of the drug outside its label and should be read as one.',
+        evidenceSource:
+          'Chiba N, De Gara CJ, Wilkinson JM, Hunt RH. Gastroenterology 1997;112:1798-1810',
+        doi: '10.1053/gast.1997.v112.pm9178669',
+        measuredMetric:
+          'Proportion healed at up to 12 weeks in erosive oesophagitis, pooled across 43 randomised trials by drug class',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'suc-a3',
+        category: 'inferred',
+        title: 'The mechanism is a laboratory observation applied to every mucosa in the body',
+        laymanSummary:
+          'The claim that sucralfate sticks preferentially to ulcers rests on animal and laboratory work. Its licence covers duodenal ulcers only. It is used very widely for radiation damage to the rectum, mouth ulcers, oesophageal injury and bile reflux — all of them extensions of the same chemistry to places where it was never licensed.',
+        technicalDetails:
+          'The accepted mechanism has three components, each demonstrated in vitro or in animals: acid-driven polymerisation into a viscous adhesive gel; electrostatic binding of the polyanion to positively charged protein exposed in an ulcer crater, with selectivity for ulcerated over intact mucosa shown by tissue autoradiography; and adsorption of pepsin and bile salts. Local prostaglandin and bicarbonate stimulation is also proposed. The United States label indication is short-term treatment of active duodenal ulcer and reduced-dose maintenance after healing — nothing else. Radiation proctitis, oral and oesophageal mucositis, bile reflux gastritis and stoma or wound care are all off-label extrapolations from the chemistry, and while randomised trials exist for several of them, the licence and the mechanism evidence do not extend that far on their own.',
+        evidenceSource:
+          'CARAFATE (sucralfate) United States prescribing information, Indications and Usage and Clinical Pharmacology (NDA 018333, AbbVie)',
+        inferredClaim:
+          'That a barrier mechanism demonstrated in the duodenum works at every other mucosal surface it is applied to — a chemically plausible extrapolation, and the basis of most of this drug’s actual use',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'suc-a4',
+        category: 'failed',
+        title: 'It carries aluminium, and kidneys are what keep that harmless',
+        laymanSummary:
+          'Every gram of sucralfate contains about 207 milligrams of aluminium. Only a tiny fraction is absorbed, which does not matter if the kidneys clear it and does matter if they do not. In critically ill children on the drug for about a week, blood aluminium was higher in those who also needed dialysis.',
+        technicalDetails:
+          'A retrospective study measured serum aluminium in 19 mechanically ventilated children given nasogastric sucralfate suspension for a median of seven days (range 3 to 14). Serum aluminium showed no correlation with total dose (P=0.35) or with dose per kilogram (P=0.55), but was higher in the nine patients who also received peritoneal dialysis. The lack of dose correlation is itself informative: absorption is not the rate-limiting variable, elimination is. The label warns against use in patients with chronic renal failure or on dialysis because absorbed aluminium is not excreted and accumulates, and aluminium accumulation in renal failure is associated with encephalopathy and osteomalacia. Concurrent aluminium-containing antacids add to the load.',
+        evidenceSource:
+          'Thorburn K, Samuel M, Smith EA. Aluminum accumulation in critically ill children on sucralfate therapy. Pediatr Crit Care Med 2001;2:247-249',
+        doi: '10.1097/00130478-200107000-00011',
+        measuredMetric:
+          'Serum aluminium concentration after a median seven days of nasogastric sucralfate in 19 ventilated children, stratified by dialysis',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'suc-a5',
+        category: 'measured',
+        title:
+          'It binds other medicines in the stomach, and that interaction is invisible to interaction checkers',
+        laymanSummary:
+          'The same stickiness that makes it work also makes it grab other tablets sitting in the stomach at the same time. Antibiotics, thyroid hormone, digoxin, phenytoin and warfarin are all absorbed less well when taken with it. Because the mechanism is physical rather than metabolic, most drug-interaction software does not flag it.',
+        technicalDetails:
+          'The label records reduced bioavailability of ciprofloxacin, norfloxacin, ofloxacin and other fluoroquinolones, digoxin, phenytoin, levothyroxine, ketoconazole, warfarin, quinidine and theophylline when co-administered, attributed to binding by sucralfate in the gastrointestinal tract. The label notes the interaction can generally be managed by separating administration in time. The fluoroquinolone effect is the clinically largest and the levothyroxine effect the most easily missed, because thyroid replacement is a long-term background medicine that nobody re-examines when an ulcer drug is added. This is a well-characterised, mechanistically obvious and frequently overlooked interaction class, and it exists precisely because the drug is not absorbed.',
+        evidenceSource:
+          'CARAFATE (sucralfate) United States prescribing information, Drug Interactions (NDA 018333, AbbVie)',
+        measuredMetric:
+          'Reduced bioavailability of co-administered drugs measured in interaction studies recorded in the label',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'suc-a6',
+        category: 'conclusion_shift',
+        title:
+          'The pneumonia argument that kept it in intensive care did not survive the trial designed to test it',
+        laymanSummary:
+          'For years the case for sucralfate in intensive care was that it prevents bleeding without removing stomach acid, and stomach acid kills bacteria that would otherwise be aspirated into the lungs. The trial built to test that found no significant difference in pneumonia — and more bleeding on sucralfate.',
+        technicalDetails:
+          'The hypothesis was mechanistically coherent: raising gastric pH permits bacterial overgrowth in the stomach, and retrograde colonisation of the oropharynx and aspiration was proposed as a route to ventilator-associated pneumonia. The 1,200-patient trial measured both endpoints in the same population. Pneumonia was 16.2% on sucralfate against 19.1% on ranitidine, relative risk 1.18 (95% CI 0.92 to 1.51, P=0.19) — numerically in the predicted direction and not significant. Bleeding was 3.8% against 1.7%, relative risk 0.44 (95% CI 0.21 to 0.92, P=0.02) — significantly worse on sucralfate. Twenty years later the same pneumonia question was put to placebo in 4,821 patients in REVISE, and ventilator-associated pneumonia was again no different. The trade-off that justified sucralfate in this setting had one arm that was real and one that was not, and the practice moved accordingly.',
+        evidenceSource:
+          'Cook D et al., N Engl J Med 1998;338:791-797; Cook D et al., N Engl J Med 2024;391:9-20 (REVISE)',
+        doi: '10.1056/NEJM199803193381203',
+        inferredClaim:
+          'That preserving gastric acidity with a non-absorbed barrier agent prevents ventilator-associated pneumonia — a mechanistically coherent inference that the trial designed to test it did not confirm',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, and almost entirely staying put',
+        laymanDesc:
+          'The molecule is too large and too heavily charged for the gut to absorb. Under one twentieth of a dose crosses into the body; the rest travels through and out.',
+        molecularDetail:
+          'Sucralfate is a basic aluminium salt of sucrose octasulfate. Less than 5% of an oral dose is absorbed, chiefly as free sucrose octasulfate and a small quantity of aluminium. Absorbed sucrose octasulfate is excreted unchanged in urine. There is no hepatic metabolism and no systemic pharmacology to speak of.',
+        iconName: 'Package',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Stomach acid turns it into glue',
+        laymanDesc:
+          'On contact with acid the molecules cross-link into a thick, sticky paste. This only happens in an acidic environment — in a neutral one the material stays inert.',
+        molecularDetail:
+          'At gastric pH the aluminium hydroxide moieties are released and the polyanionic sucrose octasulfate polymerises into a viscous, adhesive gel. The transformation is pH-dependent and is the reason the drug is inert until it reaches the stomach.',
+        iconName: 'Beaker',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The paste sticks to the hole, not to the healthy lining',
+        laymanDesc:
+          'Raw tissue in an ulcer carries a positive charge that intact lining does not. The negatively charged paste is drawn to it, so it concentrates where the damage is.',
+        molecularDetail:
+          'The polyanion binds electrostatically to positively charged proteins exposed in the ulcer base — chiefly albumin and fibrinogen in the crater exudate. Tissue autoradiography in animal models shows several-fold greater adherence to ulcerated than to intact mucosa, which is the empirical basis of the selectivity claim.',
+        iconName: 'Magnet',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'A physical lid on the wound',
+        laymanDesc:
+          'The layer keeps acid and the stomach’s protein-digesting enzyme off the exposed tissue. It also soaks up bile salts. None of this changes how much acid the stomach makes.',
+        molecularDetail:
+          'The adherent gel provides a diffusion barrier against hydrogen ions and pepsin, and adsorbs pepsin and bile salts directly. Local stimulation of prostaglandin E2 and bicarbonate secretion and of epidermal growth factor binding at the ulcer site are additional proposed contributions. Gastric acid output is unaffected.',
+        iconName: 'Shield',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'And it grabs whatever else is in the stomach',
+        laymanDesc:
+          'The same stickiness that makes it work catches other tablets. Antibiotics, thyroid tablets, digoxin and several others are absorbed less well if they are in the stomach at the same time.',
+        molecularDetail:
+          'The label records reduced bioavailability for fluoroquinolones, digoxin, phenytoin, levothyroxine, ketoconazole, warfarin, quinidine and theophylline, attributed to binding in the gastrointestinal tract. The mechanism is adsorption, not enzyme inhibition, so it is invisible to interaction screening built around cytochrome P450.',
+        iconName: 'Magnet',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What it heals, and what it lost',
+        laymanDesc:
+          'It heals duodenal ulcers, which is what it is licensed for. In the trials that compared it with acid suppression it healed less, and in the trial that compared it in the sickest patients more of them bled.',
+        molecularDetail:
+          'Pooled erosive oesophagitis healing was 39.2% against 28.2% for placebo, 51.9% for H2 blockers and 83.6% for proton pump inhibitors. In 1,200 ventilated patients, clinically important bleeding was 3.8% on sucralfate against 1.7% on ranitidine (RR 0.44, 95% CI 0.21 to 0.92, P=0.02), with no significant difference in pneumonia, ICU mortality or length of stay.',
+        iconName: 'CircleSlash',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Canadian Critical Care Trials Group sucralfate against ranitidine',
+        phase: 'Phase 4, randomised, blinded, double-dummy, multicentre',
+        sampleSize: 1200,
+        primaryEndpoint:
+          'Clinically important upper gastrointestinal bleeding in patients requiring mechanical ventilation',
+        endpointMet: false,
+        statisticalPValue:
+          '3.8% on sucralfate against 1.7% on ranitidine; relative risk 0.44 (95% CI 0.21 to 0.92) favouring ranitidine, P=0.02',
+        unreportedAdverseSignals:
+          'Ventilator-associated pneumonia, the endpoint sucralfate was expected to win, was 16.2% against 19.1% (RR 1.18, 95% CI 0.92 to 1.51, P=0.19) — the right direction and not significant. ICU mortality and length of stay were identical.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Chiba pooled analysis of 43 randomised oesophagitis trials',
+        phase: 'Meta-analysis of single- and double-blind randomised trials',
+        sampleSize: 7635,
+        primaryEndpoint: 'Proportion healed at up to 12 weeks, by drug class',
+        endpointMet: true,
+        statisticalPValue:
+          'Sucralfate 39.2% (SD 22.4) against placebo 28.2% (15.6), H2-receptor antagonists 51.9% (17.1) and proton pump inhibitors 83.6% (11.4)',
+        unreportedAdverseSignals:
+          'The standard deviation on the sucralfate estimate is the widest of the four classes. Oesophagitis is also outside this drug’s United States licence, which covers duodenal ulcer only.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Serum aluminium in ventilated children on sucralfate',
+        phase: 'Retrospective clinical study, single paediatric intensive care unit',
+        sampleSize: 19,
+        primaryEndpoint:
+          'Serum aluminium concentration after a median seven days of nasogastric sucralfate',
+        endpointMet: true,
+        statisticalPValue:
+          'No correlation with total dose (P=0.35) or dose per kilogram (P=0.55); higher levels in the nine patients receiving peritoneal dialysis',
+        unreportedAdverseSignals:
+          'Nineteen patients, retrospective, single centre. It establishes that aluminium accumulates when elimination is impaired, not how often that causes harm.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Clinically important gastrointestinal bleeding 3.8% on sucralfate against 1.7% on ranitidine in 1,200 randomised ventilated patients (RR 0.44, P=0.02)',
+        'Ventilator-associated pneumonia 16.2% against 19.1% in the same trial — the predicted direction, not statistically significant',
+        'Erosive oesophagitis healed in 39.2% on sucralfate against 28.2% on placebo across 43 pooled randomised trials',
+        'Under 5% of an oral dose absorbed, and serum aluminium higher in dialysed than non-dialysed children on the drug',
+      ],
+      unsupportedInferences: [
+        'That preserving gastric acidity prevents ventilator-associated pneumonia — tested in the same 1,200-patient trial and not confirmed',
+        'That the duodenal barrier mechanism works identically at every other mucosal surface the drug is applied to off label',
+        'That a drug which is not absorbed cannot cause systemic harm; the aluminium it carries is absorbed in small quantity and is not excreted in renal failure',
+        'That a drug with no systemic pharmacology has no interactions; it binds at least eight named drug classes in the stomach',
+      ],
+      whatFailedInitially: [
+        'The intensive-care head-to-head against ranitidine, on the endpoint it was being given for',
+        'The pneumonia advantage that was the entire argument for using it in that setting',
+        'Erosive oesophagitis healing at 39.2%, the lowest of any active drug in the pooled analysis',
+        'Aluminium accumulation in renal impairment, which restricts the drug in exactly the population most likely to be prescribed it in hospital',
+      ],
+      realWorldOutcome: [
+        'Approved under NDA 018333 on 30 October 1981, and still the only marketed drug of its kind',
+        'Largely displaced from intensive care by the 1998 trial, and from ulcer treatment by the proton pump inhibitors',
+        'Now used mostly off label, for radiation proctitis, mucosal injury and bile reflux, on the strength of the chemistry',
+        'Only 21 listed generic products, and a supply base thin enough that the suspension has been on shortage lists',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet and oral suspension, both intended to act locally in the stomach and duodenum',
+      description:
+        'The formulation exists to put material in contact with an ulcer, not to get anything into the bloodstream — under 5% of a dose is absorbed. The suspension is used where contact matters more than convenience, including nasogastric administration in hospital and off-label application to the mouth and oesophagus.',
+      safetyProfile:
+        'The commonest adverse effect is constipation, from the aluminium. The label warns against use in chronic renal failure and dialysis, because absorbed aluminium is not excreted and accumulates, and warns about concurrent aluminium-containing antacids adding to that load. Bezoar formation has been reported, chiefly in critically ill patients on enteral feeds and in premature infants. The drug binds several co-administered medicines in the gut and reduces their absorption. There is essentially no systemic pharmacology, which is both the safety argument for the drug and the reason its harms are the unusual kind: a metal, a physical obstruction, and an interaction that is mechanical rather than metabolic.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can a drug work if it is not absorbed?',
+        a: 'Because it is not trying to reach anything inside the body. Sucralfate is a sugar molecule carrying eight sulfate groups and complexed with aluminium — large, heavily charged, and almost impossible for the gut to take up. Under one twentieth of a dose crosses the gut wall. When the rest meets stomach acid it cross-links into a thick, sticky paste. Raw protein in the floor of an ulcer carries a positive charge, the paste carries a strong negative one, and so it concentrates over the damaged area and forms a physical lid. It keeps acid and pepsin off the wound while the tissue underneath repairs. Nothing in that sequence needs the drug to enter the bloodstream, which is why it has essentially no systemic side effects and why it must be in the stomach at the same time as the acid to do anything at all.',
+      },
+      {
+        q: 'Why does the hospital not use this for stress ulcers any more?',
+        a: 'Because of one trial in 1998. Twelve hundred ventilated patients were randomly assigned to sucralfate or ranitidine, each with a matching placebo by the other route so nobody knew which they were on. Clinically important bleeding occurred in 3.8% on sucralfate against 1.7% on ranitidine — more than twice as many. The counter-argument for sucralfate had always been pneumonia: because it does not raise stomach pH, it should not allow the bacterial overgrowth thought to seed ventilator-associated pneumonia. That was measured in the same patients and came out at 16.2% against 19.1%, in the predicted direction and not statistically significant. So the harm it was supposed to avoid was not clearly avoided, and the bleeding it was supposed to prevent was worse.',
+      },
+      {
+        q: 'Is the aluminium in it dangerous?',
+        a: 'It depends entirely on kidney function. Each gram carries roughly 207 mg of aluminium, and under 5% of it is absorbed — a quantity working kidneys clear without difficulty. In chronic renal failure or on dialysis, absorbed aluminium is not excreted and accumulates, and aluminium accumulation in that setting is associated with encephalopathy and bone disease. The label warns against use for exactly this reason. A study of 19 ventilated children found serum aluminium after about a week of the drug was unrelated to how much they had been given but higher in those also receiving peritoneal dialysis, which is the pattern you would expect if elimination rather than absorption is what decides the level. Aluminium-containing antacids taken alongside add to the total.',
+      },
+      {
+        q: 'Does it interact with my other medicines?',
+        a: 'Yes, and in a way most interaction checkers will not catch. Ordinary drug interactions happen in the liver, where one drug changes how another is broken down. This one happens in the stomach: a sticky polyanionic gel sitting in the stomach binds other tablets and stops them being absorbed. The label names fluoroquinolone antibiotics, digoxin, phenytoin, levothyroxine, ketoconazole, warfarin, quinidine and theophylline. Because the mechanism is physical, it does not show up in software built around liver enzymes, and because thyroid replacement is a long-term background medicine nobody re-examines, levothyroxine is the one most often missed. Separating the timing generally handles it, and how to do that is a question for the pharmacist.',
+      },
+      {
+        q: 'People use this for mouth ulcers and radiation damage. Is that approved?',
+        a: 'No. The United States licence covers short-term treatment of active duodenal ulcer and reduced-dose maintenance after healing. That is the whole indication. Everything else — swished for mouth ulcers, given for radiation proctitis, used for oesophageal injury or bile reflux gastritis — is off-label extrapolation from the chemistry: if it sticks to raw tissue in a duodenum, it should stick to raw tissue anywhere. That is a reasonable expectation and it is not the same as evidence. Randomised trials do exist for several of those uses with mixed results, but the mechanism work behind the drug was done in the stomach and duodenum, and the regulatory record has never been extended.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Cook D et al. A comparison of sucralfate and ranitidine for the prevention of upper gastrointestinal bleeding in patients requiring mechanical ventilation. N Engl J Med 1998;338:791-797',
+        identifier: '10.1056/NEJM199803193381203',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Chiba N, De Gara CJ, Wilkinson JM, Hunt RH. Speed of healing and symptom relief in grade II to IV gastroesophageal reflux disease: a meta-analysis. Gastroenterology 1997;112:1798-1810',
+        identifier: '10.1053/gast.1997.v112.pm9178669',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Thorburn K, Samuel M, Smith EA. Aluminum accumulation in critically ill children on sucralfate therapy. Pediatr Crit Care Med 2001;2:247-249',
+        identifier: '10.1097/00130478-200107000-00011',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cook D et al. Stress ulcer prophylaxis during invasive mechanical ventilation. N Engl J Med 2024;391:9-20 (REVISE), for the ventilator-associated pneumonia comparison against placebo',
+        identifier: '10.1056/NEJMoa2404245',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: CARAFATE (sucralfate) tablets, NDA 018333, AbbVie — original approval 30 October 1981',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=018333',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: CARAFATE (sucralfate) oral suspension, NDA 019183, AbbVie — approval 16 December 1993',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019183',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 121494085 — sucralfate structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/121494085',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Mesalamine — a molecule whose mechanism is still unsettled after forty years, which works in
+  //    ulcerative colitis, does not work in Crohn's disease, and is graded inferior to the cheaper
+  //    drug it was invented to replace.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mesalamine',
+    name: 'Mesalamine',
+    tradeName: 'Rowasa / Canasa / Asacol / Pentasa / Lialda / Apriso',
+    sponsor:
+      'Mylan Speciality LP (current US label holder for Rowasa) — the rectal suspension was approved under NDA 019618 on 24 December 1987, and the oral delayed-release formulations followed from 1992',
+    targetGene:
+      'PPARG is the best-supported candidate and is not established; no target has been confirmed as the one that matters clinically',
+    targetProtein:
+      'Peroxisome proliferator-activated receptor gamma in colonic epithelial cells — the mechanism with the strongest experimental support, demonstrated in mice and in human colonic biopsy culture rather than in patients',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1987,
+    indication:
+      'Treatment of mildly to moderately active ulcerative colitis and maintenance of remission. Formulation determines the reach: rectal suspension for distal disease to the splenic flexure, suppository for ulcerative proctitis, and several oral delayed- and extended-release systems for more extensive colonic involvement.',
+    patientFriendlyIndication:
+      'Ulcerative colitis — inflammation and ulceration of the lining of the large bowel',
+    anatomicalSite:
+      'The luminal surface of the colonic epithelium — the drug works from the inside of the bowel outward, which is why the formulation decides which part of the colon it reaches',
+    conditionContext: {
+      conditionExplainer:
+        'Ulcerative colitis is continuous inflammation of the lining of the large bowel, always starting at the rectum and extending upward by a variable distance. It causes bloody diarrhoea, urgency and pain, and it runs in relapses and remissions over decades. Crohn’s disease looks similar from the outside and is a different illness: it can affect any part of the gut, in patches, through the full thickness of the wall.',
+      whyItMatters:
+        'That distinction is the central fact on this page. Mesalamine is the mainstay of mild to moderate ulcerative colitis and has high-certainty randomised evidence behind it. In Crohn’s disease the same drug has been tested repeatedly and does not work, and it is prescribed there anyway.',
+      whoTakesThis:
+        'Most people with mild to moderate ulcerative colitis, usually for years or for life, because the evidence for maintenance is stronger than the evidence for induction. Also a substantial number of people with Crohn’s disease, where the evidence does not support it.',
+      clinicalGoals:
+        'The registered endpoints are induction of clinical and endoscopic remission and prevention of relapse. Neither is a count of colectomies or cancers, and the chemoprevention claim frequently attached to this drug is observational.',
+    },
+    oneSentenceVerdict:
+      'The anti-inflammatory half of sulfasalazine, released directly into the colon so the sulfa half that caused the side effects can be left out — probably acting through PPAR-gamma, a mechanism shown in mice and in cultured human biopsies and never confirmed in a patient: it prevents relapse in ulcerative colitis with high-certainty evidence, 37% relapsing against 55% on placebo across 44 trials in 9,967 people, and the same Cochrane reviews grade it inferior to the older sulfasalazine it replaced and find no benefit at all in Crohn’s disease.',
+    laymanHowItWorks:
+      'Mesalamine is the working half of an older drug called sulfasalazine. In sulfasalazine that half is chained to a sulfa antibiotic, and gut bacteria snap the chain in the colon to release it; the sulfa half was responsible for most of the side effects, so the obvious move was to give the working half on its own. The problem is that on its own it is absorbed high up in the small intestine and never reaches the colon, so every product is an engineering solution to that — coatings that only dissolve at colonic pH, granules that release slowly over hours, enemas and suppositories that go in from the other end. Once it is in contact with inflamed colon lining it damps the inflammation down, though after forty years there is still no agreement on exactly how.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 71,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.7953 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 56 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        '5-aminosalicylic acid itself has been a known compound since the nineteenth century and cannot be patented. Every commercial product is therefore a patent on a delivery system rather than on a molecule: a pH-dependent Eudragit coat, ethylcellulose microgranules, a lipophilic-hydrophilic matrix, a delayed-release capsule. That is why the same active substance is sold under six brand names at different prices, and why it remains, at eighty cents a unit, by far the most expensive drug in this file. The Cochrane reviewers put the consequence plainly: considering relative costs, a clinical advantage to using oral 5-ASA in place of sulfasalazine appears unlikely.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The most interesting substitute is the drug mesalamine was designed to improve on. Sulfasalazine costs a fraction as much, and the Cochrane review grades it superior for maintenance with high-certainty evidence and equivalent for induction. Its disadvantage is the sulfapyridine half, which causes nausea, headache and reversible male infertility. Above mesalamine sit corticosteroids for induction and thiopurines and biologics for disease it cannot hold. Nothing sold as a food induces remission in ulcerative colitis.',
+      conventionalRx: [
+        {
+          name: 'Sulfasalazine (Azulfidine)',
+          class: 'Azo-bonded conjugate of 5-aminosalicylic acid and sulfapyridine',
+          howItCompares:
+            'The parent compound, and the comparison mesalamine loses. In the Cochrane maintenance review, 48% of 5-ASA patients relapsed at six to eighteen months against 43% on sulfasalazine — risk ratio 1.14 (95% CI 1.03 to 1.27), graded high-certainty evidence of inferiority. For induction the two were equivalent (RR 0.90, 95% CI 0.77 to 1.04). It costs a small fraction as much.',
+          typicalCost:
+            'No NADAC value is held on this record for sulfasalazine and none is asserted here',
+          prosAndCons:
+            'Pros: superior for maintenance on high-certainty evidence, far cheaper, and the only one of the two with an established rheumatological use. Cons: the sulfapyridine half causes nausea, headache, rash and reversible reduction in male fertility, which is why mesalamine was developed.',
+        },
+        {
+          name: 'Budesonide MMX (Uceris)',
+          class: 'Locally acting corticosteroid with extensive first-pass metabolism',
+          howItCompares:
+            'A steroid engineered to act in the colon and then be destroyed by the liver before it reaches the rest of the body. Used for induction where mesalamine has not achieved remission, rather than for maintenance, because steroid exposure over years is not acceptable regardless of first-pass clearance.',
+          typicalCost:
+            'No NADAC value is held on this record for budesonide MMX and none is asserted here',
+          prosAndCons:
+            'Pros: more potent for induction than an aminosalicylate. Cons: not a maintenance drug; first-pass metabolism reduces but does not abolish systemic corticosteroid effect.',
+        },
+        {
+          name: 'Azathioprine and mercaptopurine',
+          class: 'Thiopurine immunosuppressants',
+          howItCompares:
+            'A different order of intervention, used when aminosalicylates cannot hold remission or when a patient is steroid-dependent. Weeks to months to take effect, and requires monitoring for marrow suppression and hepatotoxicity, with TPMT or NUDT15 genotyping before starting.',
+          typicalCost:
+            'No NADAC value is held on this record for azathioprine and none is asserted here',
+          prosAndCons:
+            'Pros: genuinely steroid-sparing in disease an aminosalicylate cannot control. Cons: systemic immunosuppression, slow onset, mandatory monitoring, and a small increase in lymphoma and skin cancer risk.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Ask which diagnosis this is being prescribed for',
+          action:
+            'Establish clearly whether the diagnosis is ulcerative colitis or Crohn’s disease.',
+          patientImpact:
+            'In ulcerative colitis the evidence for this drug is high-certainty and favourable. In Crohn’s disease the Cochrane review of 20 studies in 2,367 patients concluded that high-dose mesalamine is not more effective than placebo for inducing response or remission, and that low-dose mesalamine and olsalazine are not superior to placebo either.',
+          clinicalPrecaution:
+            'There are reasons a clinician may still choose it in Crohn’s disease, including tolerability and the limits of the alternatives. Asking what it is expected to do is reasonable; stopping it unilaterally is not.',
+        },
+        {
+          name: 'Ask whether your kidney function is being checked',
+          action:
+            'Confirm that renal function was measured before starting and is being rechecked periodically.',
+          patientImpact:
+            'Mesalamine can cause interstitial nephritis, and the label directs that renal function be evaluated before starting and periodically during treatment. The injury is usually reversible if caught early and can be permanent if it is not, and it produces no symptoms until it is advanced.',
+          clinicalPrecaution:
+            'This is a monitoring question rather than a dosing one. The reason it matters is that the drug is often taken for decades and the harm is silent.',
+        },
+        {
+          name: 'Tell someone if the colitis gets suddenly worse after starting',
+          action:
+            'Report cramping, bloody diarrhoea and fever that begin or worsen shortly after starting the drug.',
+          patientImpact:
+            'Mesalamine can cause an acute intolerance syndrome that is difficult to distinguish from a flare of the disease it is treating. The label describes it and it is recognised precisely because the instinct — to increase the dose — makes it worse.',
+          clinicalPrecaution:
+            'Distinguishing the two requires a clinician. The point is that the possibility exists and is easy to miss.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=CC(=C(C=C1N)C(=O)O)O',
+      chemicalFormula: 'C7H7NO3',
+      molecularWeight: '153.14 g/mol',
+      targetReceptorAffinity:
+        'No clinically validated receptor affinity exists. The best-supported candidate is PPAR-gamma: 5-ASA increases PPAR-gamma expression in epithelial cells, promotes its translocation from cytoplasm to nucleus, and induces a conformational change permitting coactivator recruitment and activation of a peroxisome-proliferator response element. In heterozygous PPAR-gamma knockout mice, 5-ASA lost its benefit in experimental colitis; in wild-type littermates it retained it. Competing accounts — inhibition of cyclooxygenase and lipoxygenase, scavenging of reactive oxygen species, inhibition of NF-kappaB — coexist with it. The molecule is one of the simplest in this file and one of the least mechanistically settled.',
+      structureSource: {
+        label:
+          'PubChem CID 4075 (5-aminosalicylic acid, mesalamine) — canonical SMILES, molecular formula and molecular weight, as ingested onto this record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4075',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mes-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Purity and oxidation state of the aminophenol',
+          description:
+            'Check for oxidation products before anything else. 5-aminosalicylic acid is an aminophenol and darkens on exposure to air and light as it oxidises to quinone-imine species. A discoloured batch is a partly oxidised one, and the coloured impurities are the ones that matter both for stability and for the drug’s tendency to stain.',
+          reagentsAndBuffer:
+            '5-aminosalicylic acid reference standard, HPLC with diode-array detection under nitrogen-sparged mobile phase, UV-visible spectrophotometry for coloured degradants, loss on drying',
+        },
+        {
+          id: 'mes-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Reduction of 5-nitrosalicylic acid to the amine',
+          description:
+            'Reduce the nitro group to the amine. The chemistry is old and cheap — the molecule has been known since the nineteenth century and is unpatentable — and this is exactly why every commercial product is a patent on a delivery system rather than on a synthesis.',
+          dependsOnStepId: 'mes-w1',
+          reagentsAndBuffer:
+            '5-nitrosalicylic acid, catalytic hydrogenation over palladium on carbon or iron in acetic acid, under nitrogen with light exclusion throughout',
+        },
+        {
+          id: 'mes-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation under inert atmosphere and away from light',
+          description:
+            'Recrystallise with oxygen excluded. Everything about handling this compound is about keeping air off it. The finished crystals are stored protected from light, and the same constraint governs the shelf life of the finished dosage forms, particularly the rectal suspension.',
+          dependsOnStepId: 'mes-w2',
+          reagentsAndBuffer:
+            'Recrystallisation from water or aqueous ethanol under nitrogen, sodium metabisulfite or ascorbate as antioxidant where the formulation permits, amber packaging, HPLC for related substances',
+        },
+        {
+          id: 'mes-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Delivery-system encapsulation, which is the actual invention',
+          description:
+            'Build the release mechanism. Free 5-ASA is absorbed in the jejunum and never reaches the colon, so every product is an engineered answer to that: a methacrylate coat that dissolves only above pH 7, ethylcellulose microgranules releasing over hours, a lipophilic-hydrophilic matrix, or an azo bond to a carrier that colonic bacteria cleave. This step, not the synthesis, is what distinguishes one branded product from another.',
+          dependsOnStepId: 'mes-w3',
+          reagentsAndBuffer:
+            'Methacrylic acid copolymer types S and L for pH-dependent coats, ethylcellulose for time-dependent microgranules, lipophilic and hydrophilic matrix excipients, coating pan or fluid-bed apparatus with in-process film thickness measurement',
+        },
+        {
+          id: 'mes-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Sequential-pH dissolution, and a PPAR-gamma reporter arm',
+          description:
+            'Run dissolution through a simulated gastric, then intestinal, then colonic pH sequence and confirm the drug appears where the product claims it appears — the release profile is the product. In parallel, run a PPAR-gamma reporter assay in colonic epithelial cells, because the mechanism most likely to be the operative one is still a hypothesis and belongs in the quantification step rather than in the marketing copy.',
+          dependsOnStepId: 'mes-w4',
+          reagentsAndBuffer:
+            'USP apparatus with sequential media at pH 1.2, 6.8 and 7.2, HPLC quantification at each stage; Caco-2 or HT-29 cells transfected with a peroxisome-proliferator response element luciferase reporter, PPAR-gamma antagonist control arm',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mes-a1',
+        category: 'measured',
+        title:
+          'For keeping ulcerative colitis in remission it works, on high-certainty evidence: 37% relapse against 55%',
+        laymanSummary:
+          'Pooling 44 randomised trials in nearly ten thousand people, about 37 in a hundred taking mesalamine relapsed within six to twelve months against about 55 in a hundred on placebo. Cochrane graded the certainty of that finding as high, which is the top of their scale and rare.',
+        technicalDetails:
+          'The Cochrane review identified 44 studies in 9,967 participants, most at low risk of bias. For maintenance of clinical or endoscopic remission, 37% (335 of 907) of 5-ASA participants relapsed at six to twelve months against 55% (355 of 648) of placebo participants — risk ratio 0.68 (95% CI 0.61 to 0.76), 8 studies, 1,555 participants, high-certainty evidence. Serious adverse events were 1% (6 of 550) against 2% (5 of 276), risk ratio 0.60 (95% CI 0.19 to 1.84), low-certainty evidence, and there is probably little or no difference in adverse events overall (RR 0.93, 95% CI 0.73 to 1.18, moderate certainty). Once-daily dosing had a similar benefit and harm profile to conventional two- or three-times-daily dosing.',
+        evidenceSource:
+          'Murray A et al., Cochrane Database Syst Rev 2020;8:CD000544',
+        doi: '10.1002/14651858.CD000544.pub4',
+        measuredMetric:
+          'Failure to maintain clinical or endoscopic remission at six to twelve months, against placebo, pooled across 44 randomised trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mes-a2',
+        category: 'failed',
+        title: 'It is graded inferior to the older, cheaper drug it was invented to replace',
+        laymanSummary:
+          'Mesalamine exists because sulfasalazine caused side effects from the half of the molecule that does nothing useful. Removing that half also made it work slightly less well. Cochrane rates the inferiority as high-certainty evidence, and points out that once cost is considered the case for the newer drug is hard to make.',
+        technicalDetails:
+          'In the maintenance review, 48% (416 of 871) of 5-ASA participants relapsed at six to eighteen months against 43% (336 of 784) of sulfasalazine participants — risk ratio 1.14 (95% CI 1.03 to 1.27), 12 studies, 1,655 participants, graded high-certainty evidence of inferiority. For induction, the two were equivalent: 54% (150 of 279) of 5-ASA participants failed to enter remission against 58% (144 of 247) on sulfasalazine, risk ratio 0.90 (95% CI 0.77 to 1.04), moderate certainty. Commonly reported adverse events — flatulence, abdominal pain, nausea, diarrhoea, headache, dyspepsia — showed probably little or no difference between the two. The authors state that considering relative costs, a clinical advantage to using oral 5-ASA in place of sulfasalazine appears unlikely. The counter-argument is real and is not in the pooled numbers: sulfapyridine causes reversible reduction in male fertility, and that matters enormously to some patients and not at all to others.',
+        evidenceSource:
+          'Murray A et al., Cochrane Database Syst Rev 2020;8:CD000544; Murray A et al., Cochrane Database Syst Rev 2020;8:CD000543',
+        doi: '10.1002/14651858.CD000544.pub4',
+        measuredMetric:
+          'Failure to maintain remission, 5-ASA against sulfasalazine, pooled across 12 randomised trials in 1,655 participants',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'mes-a3',
+        category: 'failed',
+        title: 'It does not work in Crohn’s disease, and it is prescribed there anyway',
+        laymanSummary:
+          'Twenty randomised trials in 2,367 patients have asked whether aminosalicylates help active Crohn’s disease. High-dose mesalamine was no better than placebo. Low-dose mesalamine was no better than placebo. Sulfasalazine showed a trend and lost to steroids.',
+        technicalDetails:
+          'The Cochrane review included 20 studies in 2,367 patients, ten at low risk of bias. Sulfasalazine showed a non-significant trend over placebo for inducing remission, with benefit confined mainly to Crohn’s colitis: 45% (63 of 141) entered remission at 17 to 18 weeks against 29% (43 of 148) on placebo, risk ratio 1.38 (95% CI 1.00 to 1.89), two studies, moderate certainty on sparse data. Sulfasalazine was significantly less effective than corticosteroids: 43% (55 of 128) against 60% (79 of 132), risk ratio 0.68 (95% CI 0.51 to 0.91). Olsalazine and low-dose mesalamine at 1 to 2 g daily were not superior to placebo. High-dose mesalamine at 3.2 to 4 g daily was not more effective than placebo for inducing response or remission. Trials of 4 to 4.5 g daily against budesonide yielded conflicting results and no firm conclusion. The authors called for large randomised trials to provide definitive evidence, and none has since arrived.',
+        evidenceSource: 'Lim WC et al., Cochrane Database Syst Rev 2016;7:CD008870',
+        doi: '10.1002/14651858.CD008870.pub2',
+        measuredMetric:
+          'Induction of remission or clinical response in mildly to moderately active Crohn’s disease, pooled across 20 randomised trials in 2,367 patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mes-a4',
+        category: 'inferred',
+        title:
+          'After forty years the mechanism is a hypothesis supported in mice and cultured biopsies',
+        laymanSummary:
+          'Nobody has established how this drug works. The best evidence points to a nuclear receptor called PPAR-gamma: mice bred to have less of it stopped responding to the drug, and human bowel tissue in culture behaves the way the theory predicts. Neither of those is a measurement in a patient.',
+        technicalDetails:
+          'Rousseaux and colleagues induced colitis in heterozygous PPAR-gamma knockout mice and in wild-type littermates and treated both with 5-ASA. The drug was beneficial in wild-type animals and not in heterozygotes. In epithelial cells 5-ASA increased PPAR-gamma expression, promoted translocation from cytoplasm to nucleus, and induced a conformational change permitting coactivator recruitment and activation of a peroxisome-proliferator response element. The findings were validated in organ cultures of human colonic biopsies. That is a strong, mechanistically specific result and it is not evidence in living patients: no trial has stratified response by PPAR-gamma genotype or expression, and competing accounts — cyclooxygenase and lipoxygenase inhibition, reactive-oxygen scavenging, NF-kappaB inhibition — remain in the literature alongside it. A drug in use since the 1980s with high-certainty efficacy evidence and an unsettled mechanism is unusual and worth stating plainly.',
+        evidenceSource: 'Rousseaux C et al., J Exp Med 2005;201:1205-1215',
+        doi: '10.1084/jem.20041948',
+        inferredClaim:
+          'That PPAR-gamma agonism is the mechanism by which mesalamine treats ulcerative colitis in humans — demonstrated in a mouse knockout and in cultured human biopsies, never tested in patients',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mes-a5',
+        category: 'measured',
+        title: 'Once daily works as well as twice daily, in 1,027 randomised patients',
+        laymanSummary:
+          'A twelve-month trial gave people either the whole daily amount at once or split across two doses. Remission at six months was 90.5% and 91.8% — a difference of just over one percentage point, well within the range of chance. Fewer doses is easier to keep taking.',
+        technicalDetails:
+          'A multicentre, investigator-blinded, randomised, 12-month, parallel-group non-inferiority study compared 1.6 to 2.4 g of delayed-release mesalamine once daily against the same total split twice daily in 1,027 patients with ulcerative colitis in remission. The percentage remaining in remission at month 6 by the Simple Clinical Colitis Activity Index was 90.5% against 91.8%, a difference of 1.3 percentage points (95% CI -2.3 to 4.9, P=0.5016). At month 3 the figures were 94.8% and 95.6%, difference 0.8 points (95% CI -1.8 to 3.5, P=0.5426). The Cochrane review reached the same conclusion across five studies in 1,761 participants with high-certainty evidence: 60% of once-daily participants failed to enter clinical remission against 61% on conventional dosing (RR 0.99, 95% CI 0.93 to 1.06). This is one of the cleaner adherence results in gastroenterology and it took a 1,027-patient trial to establish something the pharmacology already implied.',
+        evidenceSource:
+          'Warner Chilcott, once-daily against twice-daily delayed-release mesalamine (NCT00505778), posted results; Murray A et al., Cochrane Database Syst Rev 2020;8:CD000543',
+        doi: '10.1002/14651858.CD000543.pub5',
+        measuredMetric:
+          'Percentage remaining in remission at month 6 by Simple Clinical Colitis Activity Index, once-daily against twice-daily dosing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mes-a6',
+        category: 'failed',
+        title: 'It can damage the kidneys silently, and can mimic the flare it is treating',
+        laymanSummary:
+          'Two harms matter more than the rest. The drug can inflame the kidneys with no symptoms until the damage is advanced, which is why blood tests are meant to be repeated. And it can cause a sudden bout of cramping and bloody diarrhoea that looks exactly like the colitis getting worse — the instinct is to take more, which makes it worse.',
+        technicalDetails:
+          'The United States labels for mesalamine products carry a Warnings and Precautions instruction to evaluate renal function prior to initiation and periodically during treatment, on the basis of reported renal impairment including minimal change nephropathy, acute and chronic interstitial nephritis and, rarely, renal failure. The injury is typically insidious and asymptomatic until substantial function is lost. Separately, the labels describe an acute intolerance syndrome — cramping, acute abdominal pain, bloody diarrhoea, sometimes fever, headache and rash — that is clinically indistinguishable from an exacerbation of the underlying ulcerative colitis, and that resolves on withdrawal. Hepatic failure has been reported in patients with pre-existing liver disease. Mesalamine-induced cardiac hypersensitivity reactions, myocarditis and pericarditis are also recorded. None of these are common; all are the kind of harm that a decades-long prescription makes worth naming.',
+        evidenceSource:
+          'Mesalamine United States prescribing information, Warnings and Precautions — renal impairment, mesalamine-induced acute intolerance syndrome, hepatic failure and cardiac hypersensitivity (Rowasa NDA 019618 and the oral delayed-release products)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mes-a7',
+        category: 'inferred',
+        title: 'The cancer-prevention claim is observational and has never been randomised',
+        laymanSummary:
+          'Long-standing ulcerative colitis raises the risk of bowel cancer, and mesalamine is often described as reducing it. That belief comes from observational studies of people who happened to be taking the drug, not from any trial that randomly assigned it and counted cancers.',
+        technicalDetails:
+          'No randomised controlled trial has tested mesalamine against placebo with colorectal cancer or dysplasia as a primary endpoint. The chemoprevention hypothesis rests on observational cohort and case-control data, which is subject to a specific and severe confounder in this disease: people who take maintenance therapy reliably have better-controlled inflammation, and inflammatory burden is itself the strongest known driver of colitis-associated dysplasia. Separating a direct chemopreventive effect of the molecule from the effect of simply having less inflammation is not possible in an observational design. The Cochrane reviews of this drug do not report cancer as an outcome, because the randomised literature does not contain it. The claim may well be true. It has not been measured the way an efficacy claim in this file is measured.',
+        evidenceSource:
+          'Murray A et al., Cochrane Database Syst Rev 2020;8:CD000544 and 2020;8:CD000543 — neither review reports colorectal cancer or dysplasia among the outcomes available in the randomised literature',
+        doi: '10.1002/14651858.CD000544.pub4',
+        inferredClaim:
+          'That mesalamine reduces colorectal cancer risk in ulcerative colitis — an observational association inseparable, by design, from the effect of better-controlled inflammation',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'The half of an older drug that actually did the work',
+        laymanDesc:
+          'Sulfasalazine is two molecules chained together: an anti-inflammatory and a sulfa antibiotic. Gut bacteria break the chain in the colon. The anti-inflammatory half is mesalamine, and the sulfa half caused most of the side effects.',
+        molecularDetail:
+          'Sulfasalazine is 5-aminosalicylic acid joined by an azo bond to sulfapyridine. Colonic bacterial azoreductases cleave the bond, releasing both. The therapeutic activity in inflammatory bowel disease resides in the 5-ASA moiety; sulfapyridine is absorbed systemically and accounts for the nausea, headache, rash, haemolysis and reversible male infertility associated with the parent drug.',
+        iconName: 'Scissors',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Given alone, it never reaches the colon',
+        laymanDesc:
+          'Free mesalamine is absorbed in the small intestine long before it gets anywhere near the diseased bowel. That single fact is why the drug is sold in half a dozen elaborate formulations.',
+        molecularDetail:
+          'Unformulated 5-ASA is rapidly and almost completely absorbed in the proximal jejunum, acetylated in the intestinal mucosa and liver to N-acetyl-5-ASA, and excreted renally. Systemic 5-ASA has no useful anti-inflammatory effect on the colon: the drug acts topically on the mucosa from the luminal side.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'The formulation is the invention',
+        laymanDesc:
+          'Each product is a different engineering answer to the same problem. Some have coats that dissolve only where the bowel becomes less acidic, some release slowly over hours, and some go in from the other end as an enema or suppository.',
+        molecularDetail:
+          'Delayed-release products use methacrylic acid copolymer coats dissolving above pH 6 or pH 7. Ethylcellulose-coated microgranules release continuously from the duodenum onward. Matrix systems disperse the drug through a lipophilic-hydrophilic vehicle for colonic release. Rectal suspension reaches to the splenic flexure and suppositories treat the rectum. Choice of formulation is choice of anatomical reach, which is why the same molecule has six brand names.',
+        iconName: 'Package',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'Contact with inflamed lining, by a mechanism still argued about',
+        laymanDesc:
+          'Once in contact with the inflamed bowel lining it damps down the inflammation. The best-supported explanation involves a nuclear receptor called PPAR-gamma, shown in mice and in human tissue in a dish. It has never been confirmed in a patient.',
+        molecularDetail:
+          '5-ASA increases PPAR-gamma expression in colonic epithelial cells, drives its nuclear translocation, and induces a conformation permitting coactivator recruitment and PPRE-driven transcription. Heterozygous PPAR-gamma knockout mice lose the benefit that wild-type littermates retain. Competing mechanisms — cyclooxygenase and lipoxygenase inhibition, reactive-oxygen scavenging, NF-kappaB inhibition — remain in the literature and are not excluded.',
+        iconName: 'HelpCircle',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 5,
+        title: 'Relapse becomes less likely, in one disease',
+        laymanDesc:
+          'In ulcerative colitis it cuts the chance of relapsing over the following year from about 55 in a hundred to about 37. In Crohn’s disease, tested repeatedly, it does not beat a dummy tablet.',
+        molecularDetail:
+          'Pooled maintenance relapse was 37% against 55% on placebo (RR 0.68, 95% CI 0.61 to 0.76, high certainty). In Crohn’s disease, high-dose mesalamine at 3.2 to 4 g daily was not more effective than placebo for inducing response or remission across 20 randomised trials in 2,367 patients. Whether that difference reflects disease depth — colitis is mucosal, Crohn’s is transmural — or the drug’s topical mode of action is a plausible account rather than a demonstrated one.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What it costs, and what the comparison shows',
+        laymanDesc:
+          'The molecule itself is unpatentable and cheap. The delivery systems are patented and are why this is the most expensive drug on any page in this file. Against sulfasalazine, the drug it was meant to improve on, it is graded inferior for maintenance.',
+        molecularDetail:
+          'Relapse was 48% on 5-ASA against 43% on sulfasalazine (RR 1.14, 95% CI 1.03 to 1.27, high certainty). The Cochrane authors state that considering relative costs, a clinical advantage to using oral 5-ASA in place of sulfasalazine appears unlikely. The trade the newer drug wins is tolerability, not efficacy, and for men concerned about fertility that trade is decisive.',
+        iconName: 'CircleSlash',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Cochrane CD000544: oral 5-ASA for maintenance of remission in ulcerative colitis',
+        phase: 'Systematic review and meta-analysis of 44 randomised trials',
+        sampleSize: 9967,
+        primaryEndpoint: 'Failure to maintain clinical or endoscopic remission at six months or more',
+        endpointMet: true,
+        statisticalPValue:
+          'Relapse 37% (335 of 907) against 55% (355 of 648) on placebo; risk ratio 0.68 (95% CI 0.61 to 0.76), 8 studies, 1,555 participants, high-certainty evidence',
+        unreportedAdverseSignals:
+          'The same review grades 5-ASA inferior to sulfasalazine for maintenance with high-certainty evidence (RR 1.14, 95% CI 1.03 to 1.27), which is rarely quoted alongside the placebo comparison.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane CD000543: oral 5-ASA for induction of remission in ulcerative colitis',
+        phase: 'Systematic review and meta-analysis of 54 randomised trials',
+        sampleSize: 9612,
+        primaryEndpoint: 'Failure to enter clinical remission in active ulcerative colitis',
+        endpointMet: true,
+        statisticalPValue:
+          '71% (1,107 of 1,550) of 5-ASA participants failed to enter remission against 83% (695 of 837) on placebo; risk ratio 0.86 (95% CI 0.82 to 0.89), 11 studies, 2,387 participants, high-certainty evidence',
+        unreportedAdverseSignals:
+          'The absolute numbers are worth reading directly: even on active treatment, seven in ten patients did not enter clinical remission. This is a modest effect measured precisely, not a large one.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Cochrane CD008870: aminosalicylates for induction in Crohn’s disease',
+        phase: 'Systematic review and meta-analysis of 20 randomised trials',
+        sampleSize: 2367,
+        primaryEndpoint:
+          'Induction of remission or clinical response in mildly to moderately active Crohn’s disease',
+        endpointMet: false,
+        statisticalPValue:
+          'High-dose mesalamine at 3.2 to 4 g daily not more effective than placebo; low-dose mesalamine and olsalazine not superior to placebo; sulfasalazine 45% against 29% on placebo (RR 1.38, 95% CI 1.00 to 1.89) and inferior to corticosteroids (RR 0.68, 95% CI 0.51 to 0.91)',
+        unreportedAdverseSignals:
+          'Eight of the 20 studies were at high risk of bias from incomplete outcome data and potential selective reporting. The authors called for definitive large trials, and none has been published in the decade since.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'Once-daily against twice-daily delayed-release mesalamine (NCT00505778)',
+        phase: 'Phase 3, randomised, investigator-blinded, 12-month non-inferiority',
+        sampleSize: 1027,
+        primaryEndpoint:
+          'Percentage of patients remaining in remission at month 6 by the Simple Clinical Colitis Activity Index',
+        endpointMet: true,
+        statisticalPValue:
+          '90.5% once daily against 91.8% twice daily; difference 1.3 percentage points (95% CI -2.3 to 4.9), P=0.5016',
+        unreportedAdverseSignals:
+          'Investigator-blinded rather than double-blind, and industry-sponsored. The result is nonetheless corroborated by the Cochrane pooled analysis of five studies in 1,761 participants at high certainty.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Relapse of ulcerative colitis 37% against 55% on placebo across 44 randomised trials in 9,967 participants (RR 0.68, high-certainty evidence)',
+        'Failure to induce remission 71% against 83% on placebo across 54 randomised trials in 9,612 participants (RR 0.86, high-certainty evidence)',
+        'Relapse 48% on 5-ASA against 43% on sulfasalazine (RR 1.14, 95% CI 1.03 to 1.27) — graded high-certainty evidence of inferiority',
+        'Remission at six months 90.5% on once-daily against 91.8% on twice-daily dosing in 1,027 randomised patients (P=0.50)',
+      ],
+      unsupportedInferences: [
+        'That mesalamine treats Crohn’s disease — 20 randomised trials in 2,367 patients found high-dose mesalamine no better than placebo',
+        'That PPAR-gamma agonism is the operative mechanism in patients, shown in a mouse knockout and in cultured human biopsies and never tested clinically',
+        'That mesalamine prevents colorectal cancer in colitis, an observational association inseparable from the effect of controlling inflammation',
+        'That the newer, more expensive drug improved on the older one; it improved tolerability and lost efficacy',
+      ],
+      whatFailedInitially: [
+        'Crohn’s disease, repeatedly and across every dose tested',
+        'The comparison against sulfasalazine for maintenance, graded high-certainty inferiority',
+        'Even at its best, seven in ten patients on active treatment did not enter clinical remission in the pooled induction analysis',
+        'Interstitial nephritis and an acute intolerance syndrome that mimics a colitis flare, both label-recorded, both easy to miss',
+      ],
+      realWorldOutcome: [
+        'The rectal suspension was approved under NDA 019618 in December 1987 and the oral delayed-release forms followed from 1992',
+        'Now the first-line maintenance treatment for mild to moderate ulcerative colitis worldwide',
+        'Sold under at least six brand names that differ in delivery system rather than in active substance, and priced accordingly',
+        'The most expensive drug in this file at pharmacy acquisition cost, for a molecule known since the nineteenth century',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral delayed-release tablet, extended-release capsule, controlled-release microgranule capsule, rectal suspension enema, and rectal suppository',
+      description:
+        'The delivery system is the drug’s entire design problem. Free 5-aminosalicylic acid is absorbed in the small intestine and never reaches the colon, so each product engineers a different route to the target: pH-dependent methacrylate coats, time-dependent ethylcellulose microgranules, matrix systems, or rectal administration. Formulation therefore determines anatomical reach — a suppository treats the rectum, an enema reaches to the splenic flexure, and an oral delayed-release product is required for more extensive disease.',
+      safetyProfile:
+        'The labels direct that renal function be evaluated before starting and periodically during treatment, because of reported minimal change nephropathy, acute and chronic interstitial nephritis and rarely renal failure — harms that are usually silent until advanced. A mesalamine-induced acute intolerance syndrome of cramping, abdominal pain, bloody diarrhoea and sometimes fever, headache and rash can be indistinguishable from a flare of the disease. Hepatic failure has been reported in patients with pre-existing liver disease, and cardiac hypersensitivity reactions including myocarditis and pericarditis are recorded. Commonest adverse effects in trials are headache, abdominal pain, nausea, flatulence and diarrhoea, at rates similar to placebo.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why are there so many different brands of the same drug?',
+        a: 'Because the active substance cannot be patented and the packaging can. 5-aminosalicylic acid has been a known chemical since the nineteenth century. Its problem is that, taken plainly, it is absorbed in the small intestine and never arrives at the colon where the disease is. Every product on the market is a different engineered answer to that: a coat that only dissolves above a particular pH, microgranules that release slowly over hours, a matrix that disperses the drug through the colon, an enema, a suppository. Those delivery systems are patentable and are what the brand names refer to. It is also why the formulation matters clinically — a suppository treats the rectum, an enema reaches about as far as the splenic flexure, and extensive disease needs an oral product.',
+      },
+      {
+        q: 'Is it better than sulfasalazine?',
+        a: 'For maintenance, the evidence says no, and Cochrane grades that finding as high certainty — their top rating. Across 12 trials in 1,655 people, 48% relapsed on mesalamine against 43% on sulfasalazine, a risk ratio of 1.14 with a confidence interval that excludes no difference. For inducing remission the two were equivalent. Commonly reported side effects were similar. The reviewers went further and wrote that considering relative costs, a clinical advantage to using oral 5-ASA in place of sulfasalazine appears unlikely. What the pooled numbers do not capture is the specific harm mesalamine avoids: sulfapyridine causes reversible reduction in male fertility. For a man planning a family that is not a minor consideration, and it is a real reason to choose the drug that performs slightly worse.',
+        auditNote:
+          'The comparison that made mesalamine’s reputation was against placebo. The comparison against the drug it replaced is less often quoted and less flattering.',
+      },
+      {
+        q: 'I have Crohn’s disease and I am taking this. Does it work?',
+        a: 'The randomised evidence says no, and it is not a close call. The Cochrane review pooled 20 trials in 2,367 patients with mildly to moderately active Crohn’s disease. High-dose mesalamine, at 3.2 to 4 grams a day, was not more effective than placebo for inducing either response or remission. Low-dose mesalamine and olsalazine were not superior to placebo either. Sulfasalazine showed a trend over placebo, mainly in people whose Crohn’s affected the colon, and lost outright to corticosteroids. The authors called for definitive large trials and none has appeared in the decade since. Clinicians still prescribe it, partly because it is well tolerated and partly because the alternatives carry more risk. That is a defensible reason to accept a drug that probably does nothing, and it is worth knowing which one you are being given.',
+      },
+      {
+        q: 'How does it actually work?',
+        a: 'Honestly, nobody is certain, and that is unusual for a drug in daily use since the 1980s with high-certainty efficacy evidence behind it. The best-supported account involves PPAR-gamma, a nuclear receptor in the cells lining the colon. In a 2005 experiment, mice bred to have half the normal amount of PPAR-gamma stopped responding to the drug while their normal littermates kept responding, and in human bowel biopsies grown in culture the drug pushed PPAR-gamma into the nucleus and switched on the genes the theory predicts. That is strong, specific evidence — in mice and in tissue in a dish. Nobody has tested whether a patient’s PPAR-gamma genotype or expression predicts response. Older explanations involving prostaglandin pathways, free-radical scavenging and NF-kappaB are all still in the literature and none has been ruled out.',
+      },
+      {
+        q: 'Does it prevent bowel cancer?',
+        a: 'It is often said to, and no trial has tested it. Long-standing ulcerative colitis does raise colorectal cancer risk, and observational studies of patients taking mesalamine have reported lower rates. The problem with those studies is structural rather than statistical: people who take maintenance therapy consistently have better-controlled inflammation, and inflammation is the strongest known driver of colitis-associated cancer. No observational design can separate a chemopreventive effect of the molecule from the effect of simply having a quieter colon. No randomised trial has ever used cancer or dysplasia as a primary endpoint here, which is why neither Cochrane review reports it. The claim may well be true. It sits in a different evidence class from the relapse-prevention figure on this page, and this record keeps them apart.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Murray A et al. Oral 5-aminosalicylic acid for maintenance of remission in ulcerative colitis. Cochrane Database Syst Rev 2020;8:CD000544',
+        identifier: '10.1002/14651858.CD000544.pub4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Murray A et al. Oral 5-aminosalicylic acid for induction of remission in ulcerative colitis. Cochrane Database Syst Rev 2020;8:CD000543',
+        identifier: '10.1002/14651858.CD000543.pub5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lim WC et al. Aminosalicylates for induction of remission or response in Crohn’s disease. Cochrane Database Syst Rev 2016;7:CD008870',
+        identifier: '10.1002/14651858.CD008870.pub2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Rousseaux C et al. Intestinal antiinflammatory effect of 5-aminosalicylic acid is dependent on peroxisome proliferator-activated receptor-gamma. J Exp Med 2005;201:1205-1215',
+        identifier: '10.1084/jem.20041948',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Once-daily against twice-daily delayed-release mesalamine in ulcerative colitis remission, 12-month non-inferiority, posted results',
+        identifier: 'NCT00505778',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: ROWASA (mesalamine) rectal suspension enema, NDA 019618, Mylan Speciality LP — original approval 24 December 1987',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019618',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: ASACOL (mesalamine) delayed-release tablets, NDA 019651 — original approval 31 January 1992',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019651',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 4075 — mesalamine structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/4075',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

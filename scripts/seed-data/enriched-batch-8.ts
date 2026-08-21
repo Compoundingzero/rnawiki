@@ -3743,4 +3743,1467 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       NADAC_SOURCE,
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Roflumilast — an oral anti-inflammatory whose two largest COPD trials both missed, and whose
+  //    clearest results came a decade later from putting the same molecule on skin.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'roflumilast',
+    name: 'Roflumilast',
+    tradeName: 'Daliresp / Zoryve',
+    sponsor:
+      'AstraZeneca (Daliresp oral tablets; originated at Byk Gulden and developed through Nycomed and Takeda). The Zoryve topical formulations are from Arcutis Biotherapeutics.',
+    targetGene: 'PDE4B',
+    targetProtein:
+      'Phosphodiesterase 4 — the major cyclic AMP-metabolising enzyme in lung tissue, inhibited by roflumilast and by its active N-oxide metabolite',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2011,
+    indication:
+      'Oral tablet: to reduce the risk of COPD exacerbations in patients with severe COPD associated with chronic bronchitis and a history of exacerbations. Not a bronchodilator and not for relief of acute bronchospasm; the 250 microgram strength is a four-week starting dose and not the therapeutic dose. Topical cream: plaque psoriasis including intertriginous areas from age 2 (0.3%), and mild to moderate atopic dermatitis from age 6 (0.15%) and ages 2 to 5 (0.05%).',
+    patientFriendlyIndication:
+      'A daily tablet that damps down inflammation in severe smokers’ lung disease, and — as a cream — a treatment for psoriasis and eczema',
+    anatomicalSite:
+      'Inflammatory cells of the airway wall — neutrophils, macrophages, T cells — and, for the cream, keratinocytes and immune cells in the skin',
+    conditionContext: {
+      conditionExplainer:
+        'Chronic bronchitis is the version of chronic obstructive pulmonary disease dominated by inflamed, mucus-producing airways rather than by destroyed air sacs. The inflammation is driven largely by neutrophils, which inhaled steroids control poorly. Roflumilast attacks it from a different direction, by raising a signalling molecule inside inflammatory cells that switches them down.',
+      whyItMatters:
+        'It is the only oral anti-inflammatory approved for this disease, and the only drug in this file that is not inhaled. It is also the one whose two largest trials both missed their primary endpoint, which is why its indication is written so narrowly.',
+      whoTakesThis:
+        'A specific and small group: severe chronic obstructive pulmonary disease, with chronic bronchitis, and a history of exacerbations. It is not for breathlessness, not for emphysema without bronchitis, and not for an attack happening now.',
+      clinicalGoals:
+        'Fewer exacerbations. The lung-function gain is real and small — 48 mL — and the label states plainly that this is not a bronchodilator.',
+    },
+    oneSentenceVerdict:
+      'A phosphodiesterase-4 inhibitor taken as a tablet, which raises cyclic AMP inside airway inflammatory cells; across two 52-week trials in 3,091 people it cut moderate or severe exacerbations by 17% and raised FEV1 by 48 mL, and then missed its primary endpoint in both of the larger trials that followed — REACT at p=0.0529 and RE2SPOND at p=0.163 — while causing 2.17 kg of weight loss and psychiatric adverse reactions in 5.9% against 3.3% on placebo.',
+    laymanHowItWorks:
+      'Inflammatory cells hold a chemical messenger called cyclic AMP that acts as a brake on them, and an enzyme inside those cells constantly destroys it. Roflumilast blocks that enzyme, so the messenger builds up and the cells calm down. It is a tablet, not an inhaler, so the effect reaches inflammatory cells everywhere in the body — which is why it works, and also why it causes diarrhoea, nausea, weight loss and mood changes that an inhaled drug would not.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 62,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$2.00 per tablet, the median across 43 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'The oral tablet has gone generic across 43 listed presentations, which is why it appears here at two dollars a tablet. The same molecule was then reformulated as a topical cream and launched as a new brand for psoriasis and atopic dermatitis. A molecule whose patent has expired can re-enter the market at brand pricing through a new route of administration and a new indication, and roflumilast is the clearest example of that pattern in this file.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Roflumilast occupies a narrow slot: severe chronic obstructive pulmonary disease with chronic bronchitis and continuing exacerbations despite inhaled treatment. The realistic alternatives in that slot are an inhaled corticosteroid added to bronchodilators, or long-term azithromycin. All three reduce exacerbations by roughly comparable amounts and all three carry a distinct cost — pneumonia, hearing loss and resistance, or weight loss and mood change.',
+      conventionalRx: [
+        {
+          name: 'An inhaled corticosteroid added to bronchodilators',
+          class: 'Inhaled corticosteroid, in a combination inhaler',
+          howItCompares:
+            'Delivered to the lung rather than the whole body, and effective on exacerbations: in IMPACT, adding fluticasone furoate to two bronchodilators cut moderate or severe exacerbations from 1.21 to 0.91 per year in 10,355 patients.',
+          typicalCost:
+            'US$0.6920 per millilitre for generic fluticasone propionate at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026); the branded combination inhalers cost far more',
+          prosAndCons:
+            'Pros: no systemic weight loss or psychiatric signal, larger exacerbation effect in the frequent-exacerbator population. Cons: clinician-diagnosed pneumonia was 53% more likely in the steroid arm of IMPACT, hazard ratio 1.53 (95% CI 1.22 to 1.92).',
+        },
+        {
+          name: 'Long-term azithromycin',
+          class: 'Macrolide antibiotic used for its anti-inflammatory and antimicrobial effect',
+          howItCompares:
+            'The other oral option for reducing exacerbations in this population, taken daily or three times weekly rather than as a course. It is used for the same reason roflumilast is: inhaled treatment has run out.',
+          typicalCost: 'Generic and inexpensive across many listed presentations',
+          prosAndCons:
+            'Pros: cheap, generally well tolerated, no weight loss. Cons: hearing loss, QT prolongation and the selection of macrolide-resistant organisms — a population-level cost as well as an individual one.',
+        },
+        {
+          name: 'Roflumilast cream (Zoryve)',
+          class: 'The same PDE4 inhibitor applied to skin rather than swallowed',
+          howItCompares:
+            'Not a substitute for the tablet — a different disease entirely. It is listed here because it is the same molecule, and because its trials show what this pharmacology looks like when the drug is kept out of the bloodstream: IGA success at 8 weeks of 42.4% against 6.1% on vehicle, with serious adverse events in 0.7% of both arms.',
+          typicalCost:
+            'Brand-priced; the oral generic tablet is US$2.00 per unit at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: large effect against vehicle, and the systemic tolerability problem largely disappears. Cons: it treats skin, not lung, and the psoriasis trials ran eight weeks.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Weigh yourself regularly and report unexplained loss',
+          action:
+            'Keep a record of weight from before the first tablet and check it periodically.',
+          patientImpact:
+            'The label instructs monitoring weight regularly and evaluating, with consideration of discontinuation, if unexplained or clinically significant weight loss occurs. In the pooled 52-week trials the difference in weight change against placebo was -2.17 kg.',
+          clinicalPrecaution:
+            'Weight loss in severe chronic obstructive pulmonary disease is itself a bad prognostic sign, which makes drug-caused weight loss harder to interpret and more consequential in exactly the population being treated.',
+        },
+        {
+          name: 'Tell someone if your mood or sleep changes',
+          action:
+            'Ask a family member or carer to watch for new insomnia, anxiety, low mood or thoughts of self-harm, and to raise them promptly.',
+          patientImpact:
+            'The label carries a Warnings and Precautions entry for psychiatric events including suicidality, and records psychiatric adverse reactions in 5.9% of 4,438 patients on 500 micrograms daily across 8 controlled trials against 3.3% on placebo.',
+          clinicalPrecaution:
+            'The label asks prescribers to weigh risks and benefits carefully in anyone with a history of depression or suicidal thoughts. This is a systemic drug reaching the brain, unlike everything else in this file.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1CC1COC2=C(C=CC(=C2)C(=O)NC3=C(C=NC=C3Cl)Cl)OC(F)F',
+      chemicalFormula: 'C17H14Cl2F2N2O3',
+      molecularWeight: '403.20 g/mol',
+      targetReceptorAffinity:
+        'The label describes roflumilast and its active metabolite roflumilast N-oxide as selective inhibitors of phosphodiesterase 4, the major cyclic AMP-metabolising enzyme in lung tissue, and states that inhibition leads to accumulation of intracellular cyclic AMP. It also states that the specific mechanism by which the drug exerts its therapeutic action in COPD is not well defined and is thought to relate to the effects of increased intracellular cyclic AMP in lung cells. No numeric IC50 is given in the prescribing information and none is stated here.',
+      structureSource: {
+        label: 'PubChem CID 449193 (roflumilast) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/449193',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'rof-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the difluoromethoxy catechol ether and the dichloropyridine amine',
+          description:
+            'Confirm both fragments before amide coupling. The difluoromethoxy group is the feature that raised metabolic stability enough to make a once-daily oral PDE4 inhibitor possible, and the 3,5-dichloropyridin-4-yl amine is the fragment that carries selectivity for PDE4 over the other phosphodiesterase families.',
+          reagentsAndBuffer:
+            'Roflumilast reference standard, reversed-phase HPLC with ultraviolet detection, 1H, 13C and 19F NMR in DMSO-d6, Karl Fischer titration, residual solvent testing by headspace gas chromatography',
+        },
+        {
+          id: 'rof-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Amide bond formation between the benzoic acid and the aminopyridine',
+          description:
+            'Activate 3-cyclopropylmethoxy-4-difluoromethoxybenzoic acid and couple it to 4-amino-3,5-dichloropyridine. Coupling an electron-poor, sterically hindered aminopyridine is the difficult step of the route and is where most of the process yield is decided.',
+          dependsOnStepId: 'rof-w1',
+          reagentsAndBuffer:
+            '3-cyclopropylmethoxy-4-difluoromethoxybenzoic acid, thionyl chloride or oxalyl chloride for acid chloride formation, 4-amino-3,5-dichloropyridine, sodium hydride or lithium bis(trimethylsilyl)amide, anhydrous tetrahydrofuran or toluene under nitrogen',
+        },
+        {
+          id: 'rof-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation and control of the des-cyclopropylmethyl impurity',
+          description:
+            'Recrystallise and assay for dealkylated and hydrolysed degradants. The N-oxide is not an impurity here but the active human metabolite, formed by CYP3A4 and CYP1A2 after dosing; a process assay that treats it as a contaminant is measuring the wrong thing.',
+          dependsOnStepId: 'rof-w2',
+          reagentsAndBuffer:
+            'Ethanol or ethyl acetate and heptane recrystallisation, activated carbon treatment, HPLC purity with identified impurity limits, X-ray powder diffraction and differential scanning calorimetry for polymorph identity',
+        },
+        {
+          id: 'rof-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Cyclic AMP accumulation in human peripheral blood neutrophils',
+          description:
+            'Expose isolated human neutrophils and measure intracellular cyclic AMP, then challenge them and measure the functional consequence. Neutrophils are the point: this pharmacology exists because the neutrophilic inflammation of chronic bronchitis is the part inhaled corticosteroids handle worst.',
+          dependsOnStepId: 'rof-w3',
+          reagentsAndBuffer:
+            'Human peripheral blood neutrophils isolated by density gradient, RPMI-1640 with HEPES, formyl-methionyl-leucyl-phenylalanine or lipopolysaccharide challenge, cyclic AMP immunoassay, roflumilast N-oxide run alongside the parent compound',
+        },
+        {
+          id: 'rof-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'PDE isoenzyme selectivity panel including PDE3',
+          description:
+            'Run inhibition curves across the phosphodiesterase families, with PDE3 explicitly included. PDE3 inhibition is what made earlier non-selective xanthines cardiotoxic and arrhythmogenic; a PDE4 potency reported without a PDE3 counter-screen cannot support the word selective, which is the word the label uses.',
+          dependsOnStepId: 'rof-w4',
+          reagentsAndBuffer:
+            'Recombinant human PDE1 through PDE7 preparations, scintillation proximity or fluorescence polarisation cyclic nucleotide hydrolysis assay, cilomilast and theophylline as reference inhibitors, non-linear regression to four-parameter logistic curves',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'rof-a1',
+        category: 'measured',
+        title: 'M2-124 and M2-125: a 17% cut in exacerbations, and 48 mL of lung function',
+        laymanSummary:
+          'Two identical year-long trials in just over three thousand people with severe smokers’ lung disease and chronic bronchitis. Exacerbations fell from 1.37 to 1.14 per person per year. Lung function rose by 48 millilitres, which is about half of what a person would normally notice.',
+        technicalDetails:
+          'Two placebo-controlled, double-blind, 52-week trials of identical design in patients over 40 with severe airflow limitation, bronchitic symptoms and a history of exacerbations randomised 1,537 to roflumilast 500 micrograms once daily and 1,554 to placebo. Both co-primary endpoints were achieved. Pooled, prebronchodilator FEV1 increased by 48 mL against placebo (p<0.0001) and moderate or severe exacerbations fell from 1.37 to 1.14 per patient per year, a 17% reduction (95% CI 8 to 25, p<0.0003). Adverse events were more common on roflumilast, 1,040 of 1,537 (67%) against 963 of 1,554 (62%), and discontinuation for adverse events was 219 (14%) against 177 (12%). The pooled difference in weight change was -2.17 kg.',
+        evidenceSource:
+          'Calverley PMA, Rabe KF, Goehring U-M, et al. Lancet 2009;374:685-694 (M2-124, NCT00297102; M2-125, NCT00297115)',
+        doi: '10.1016/S0140-6736(09)61255-1',
+        measuredMetric:
+          'Change in prebronchodilator FEV1 and rate of moderate or severe exacerbations over 52 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rof-a2',
+        category: 'failed',
+        title: 'REACT missed its primary analysis at p=0.0529 and is quoted from its sensitivity one',
+        laymanSummary:
+          'The trial that asked whether roflumilast helps people already on inhaled combination treatment reported a 13.2% reduction in flare-ups — and a p-value of 0.0529, just the wrong side of the line. The figure usually quoted from this trial comes from a different, prespecified statistical method that gave 0.0424.',
+        technicalDetails:
+          'REACT enrolled 1,945 patients aged 40 or over with at least 20 pack-years, severe airflow limitation, chronic bronchitis and at least two exacerbations in the previous year, all on a fixed inhaled corticosteroid and long-acting beta-agonist combination with tiotropium permitted, and randomised 973 to roflumilast 500 micrograms and 972 to placebo for one year. The primary outcome, rate of moderate to severe exacerbations per patient per year by Poisson regression, was 13.2% lower on roflumilast (0.805 against 0.927; rate ratio 0.868, 95% CI 0.753 to 1.002, p=0.0529). A predefined sensitivity analysis by negative binomial regression gave 14.2% lower (0.823 against 0.959; rate ratio 0.858, 95% CI 0.740 to 0.995, p=0.0424). Adverse events were reported by 67% on roflumilast against 59% on placebo, and withdrawal for adverse events by 104 of 968 (11%) against 52 of 967 (5%).',
+        evidenceSource:
+          'Martinez FJ, Calverley PMA, Goehring U-M, et al. Lancet 2015;385:857-866 (REACT, NCT01329029)',
+        doi: '10.1016/S0140-6736(14)62410-7',
+        measuredMetric:
+          'Rate of moderate to severe COPD exacerbations per patient per year, primary Poisson analysis',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rof-a3',
+        category: 'failed',
+        title: 'RE2SPOND failed outright in 2,354 patients, and reported a post hoc subgroup instead',
+        laymanSummary:
+          'The larger follow-up trial gave roflumilast or placebo to more than two thousand three hundred people already on inhaled combination treatment. Flare-ups fell by 8.5% and the difference was not statistically significant. The positive result from this trial is a subgroup found after the fact.',
+        technicalDetails:
+          'RE2SPOND randomised 2,354 participants aged 40 or over with severe or very severe COPD, chronic bronchitis and two or more exacerbations or hospitalisations in the previous year, all on inhaled corticosteroid plus long-acting beta-agonist with or without a long-acting muscarinic antagonist for three months or more, equally to roflumilast 500 micrograms (n=1,178) or placebo (n=1,176) for 52 weeks. The rate of moderate or severe exacerbations per patient per year was 8.5% lower on roflumilast, and the between-group difference was not statistically significant: rate ratio 0.92 (95% CI 0.81 to 1.04, P=0.163). The authors state that roflumilast failed to significantly reduce exacerbations in the overall population, and report a post hoc analysis showing a significant reduction in participants with more than three exacerbations or one or more hospitalisations in the prior year. Adverse-event-related discontinuation was 11.7% against 5.4%; deaths were 2.5% against 2.1%.',
+        evidenceSource:
+          'Martinez FJ, Rabe KF, Sethi S, et al. Am J Respir Crit Care Med 2016;194:559-567 (RE2SPOND, NCT01443845)',
+        doi: '10.1164/rccm.201607-1349OC',
+        measuredMetric:
+          'Rate of moderate or severe COPD exacerbations per patient per year in the overall randomised population',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rof-a4',
+        category: 'failed',
+        title: 'Weight loss of 2.17 kg and psychiatric reactions in 5.9% against 3.3%',
+        laymanSummary:
+          'This is the price of a tablet rather than an inhaler. People lost more than two kilograms on average, in a disease where losing weight is already a bad sign, and psychiatric side effects including suicidal thinking were roughly twice as common as on placebo.',
+        technicalDetails:
+          'In the pooled M2-124 and M2-125 analysis the difference in weight change against placebo was -2.17 kg, and the label instructs regular weight monitoring with consideration of discontinuation for unexplained or clinically significant loss. Across 8 controlled clinical trials, psychiatric adverse reactions were reported by 5.9% (263) of patients on roflumilast 500 micrograms daily against 3.3% (137) on placebo, most commonly insomnia, anxiety and depression, and the label carries a Warnings and Precautions entry for psychiatric events including suicidality. The most common adverse reactions at 2% or more were diarrhoea, weight decrease, nausea, headache, back pain, influenza, insomnia, dizziness and decreased appetite. Discontinuation for adverse events ran 14% against 12% in the pivotal pair and 11.7% against 5.4% in RE2SPOND. The drug is contraindicated in moderate to severe hepatic impairment.',
+        evidenceSource:
+          'DALIRESP United States prescribing information, Contraindications 4, Warnings and Precautions 5.2 and 5.3, Adverse Reactions 6.1; Calverley PMA et al., Lancet 2009;374:685-694',
+        measuredMetric:
+          'Weight change against placebo and rate of psychiatric adverse reactions across 8 controlled trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'rof-a5',
+        category: 'conclusion_shift',
+        title: 'The same molecule on skin produced effects the tablet never approached',
+        laymanSummary:
+          'A decade after the lung indication, roflumilast was reformulated as a cream. In two psoriasis trials, four in ten treated patients reached clear or almost-clear skin against roughly one in fifteen on the cream base alone — and the weight loss and mood effects of the tablet did not appear.',
+        technicalDetails:
+          'DERMIS-1 and DERMIS-2 randomised 881 patients aged 2 or over with plaque psoriasis covering 2% to 20% of body surface area, 2:1, to roflumilast cream 0.3% or vehicle cream once daily for 8 weeks. Investigator Global Assessment success at week 8 was 42.4% against 6.1% in trial 1 (difference 39.6%, 95% CI 32.3 to 46.9) and 37.5% against 6.9% in trial 2 (difference 28.9%, 95% CI 20.8 to 36.9), P<0.001 for both. Intertriginous IGA success was 71.2% against 13.8% and 68.1% against 18.5%; PASI-75 was 41.6% against 7.6% and 39.0% against 5.3%. Treatment-emergent adverse events were 25.2% against 23.5% and 25.9% against 18.4%; serious adverse events were 0.7% against 0.7% and 0% against 0.7%. Keeping a PDE4 inhibitor out of the bloodstream removes the tolerability problem that constrains the oral drug, and the effect sizes are of a different order from the 17% exacerbation reduction in the lung trials.',
+        evidenceSource:
+          'Lebwohl MG, Kircik LH, Moore AY, et al. JAMA 2022;328:1073-1084 (DERMIS-1, NCT04211363; DERMIS-2, NCT04211389)',
+        doi: '10.1001/jama.2022.15632',
+        inferredClaim:
+          'That roflumilast is a marginal drug — true of the swallowed tablet in COPD, and not true of the same molecule applied to skin, where the comparison against vehicle is one of the largest in topical dermatology',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rof-a6',
+        category: 'inferred',
+        title: 'The 48 mL lung-function gain is not bronchodilation, and the label says so',
+        laymanSummary:
+          'Roflumilast improves a breathing test by 48 millilitres. That is real, and it is roughly half the change a person would be expected to notice, and it does not happen by opening the airway. The label states outright that this is not a bronchodilator.',
+        technicalDetails:
+          'The DALIRESP Limitations of Use state that the drug is not a bronchodilator and is not indicated for the relief of acute bronchospasm. The 48 mL prebronchodilator FEV1 improvement in the pooled pivotal trials is therefore an indirect consequence of reduced airway inflammation rather than smooth-muscle relaxation. For comparison, tiotropium produced 87 to 103 mL in UPLIFT and umeclidinium 127 mL at 12 weeks, both by relaxing muscle. Reading a 48 mL figure as though it were a bronchodilator response overstates what the drug does and understates what makes it unusual, which is that it is the only oral anti-inflammatory approved for this disease.',
+        evidenceSource:
+          'DALIRESP United States prescribing information, Indications and Usage 1 with Limitations of Use; Calverley PMA et al., Lancet 2009;374:685-694',
+        doi: '10.1016/S0140-6736(09)61255-1',
+        inferredClaim:
+          'That the FEV1 improvement makes roflumilast a bronchodilator — a reading the label explicitly forecloses in its Limitations of Use',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rof-a7',
+        category: 'inferred',
+        title: 'The indication is narrower than the population that failed to benefit',
+        laymanSummary:
+          'The label restricts the drug to severe disease with chronic bronchitis and a history of flare-ups. The two large trials in exactly that kind of population — people still flaring despite inhaled treatment — are the ones that missed. The narrowing came from the trials that worked, not from the ones that did not.',
+        technicalDetails:
+          'The indication reads: to reduce the risk of COPD exacerbations in patients with severe COPD associated with chronic bronchitis and a history of exacerbations. M2-124 and M2-125, which met their endpoints, enrolled that phenotype on variable background therapy. REACT and RE2SPOND enrolled the same phenotype but required an inhaled corticosteroid and long-acting beta-agonist combination as background, and both missed their primary analyses — REACT at p=0.0529, RE2SPOND at p=0.163. RE2SPOND’s positive result is a post hoc subgroup of the most frequent exacerbators. A phenotype restriction derived from responder analyses is a hypothesis about who benefits, and the trials designed to test it in the modern treatment context did not confirm it on their primary endpoints.',
+        evidenceSource:
+          'Martinez FJ et al., Lancet 2015;385:857-866; Martinez FJ et al., Am J Respir Crit Care Med 2016;194:559-567; DALIRESP United States prescribing information, Indications and Usage 1',
+        doi: '10.1164/rccm.201607-1349OC',
+        inferredClaim:
+          'That the labelled phenotype identifies the patients in whom roflumilast works — a claim the two trials run in that phenotype on modern background therapy did not confirm on their primary endpoints',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, not inhaled',
+        laymanDesc:
+          'It is a tablet taken once a day. That is the whole difference between this drug and everything else on this list, and it explains both what it does and what it costs the person taking it.',
+        molecularDetail:
+          'Roflumilast 500 micrograms once daily, with a 250 microgram starting strength for the first four weeks only, which the label states explicitly is not the therapeutic dose. Contraindicated in moderate to severe hepatic impairment, and not recommended with strong cytochrome P450 inducers such as rifampicin, phenobarbital, carbamazepine and phenytoin.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The liver converts part of it into a second active drug',
+        laymanDesc:
+          'The body turns some of the tablet into a related molecule that is also active. Both forms do the same job, which is why the effect lasts through the day from a single dose.',
+        molecularDetail:
+          'Roflumilast is oxidised to roflumilast N-oxide by CYP3A4 and CYP1A2. The label treats parent and N-oxide together as selective inhibitors of phosphodiesterase 4, and the N-oxide contributes the majority of total PDE4 inhibitory activity in humans.',
+        iconName: 'RefreshCw',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the enzyme that destroys the cell’s brake signal',
+        laymanDesc:
+          'Inflammatory cells hold a messenger that damps them down, and an enzyme inside them constantly chews it up. Roflumilast stops that enzyme.',
+        molecularDetail:
+          'Selective inhibition of phosphodiesterase 4, described in the label as the major cyclic AMP-metabolising enzyme in lung tissue. Selectivity for PDE4 over PDE3 is the property that separates this drug from the non-selective xanthines and from their cardiac toxicity.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Cyclic AMP accumulates inside inflammatory cells',
+        laymanDesc:
+          'With the enzyme blocked, the brake signal builds up. Neutrophils and other inflammatory cells become less active.',
+        molecularDetail:
+          'The label states that inhibition leads to accumulation of intracellular cyclic AMP, and that the specific mechanism by which the drug exerts its therapeutic action in COPD is not well defined but is thought to relate to the effects of increased intracellular cyclic AMP in lung cells. This is unusually explicit uncertainty for a mechanism-of-action section.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Exacerbations become less frequent',
+        laymanDesc:
+          'Over a year, flare-ups fall from about 1.4 per person to about 1.1. Lung function rises by 48 millilitres, which the label is careful to say is not bronchodilation.',
+        molecularDetail:
+          'Pooled across the two pivotal 52-week trials: moderate or severe exacerbations 1.14 against 1.37 per patient per year, a 17% reduction (95% CI 8 to 25, p<0.0003), and prebronchodilator FEV1 +48 mL (p<0.0001). In the two later trials on inhaled combination background the same endpoint gave rate ratios of 0.868 (p=0.0529) and 0.92 (p=0.163).',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'The same enzyme is blocked everywhere else too',
+        laymanDesc:
+          'Phosphodiesterase 4 is not confined to the lung. Blocking it in the gut causes diarrhoea and nausea, blocking it elsewhere causes weight loss, and blocking it in the brain is why the label warns about mood and suicidal thinking.',
+        molecularDetail:
+          'Pooled weight change against placebo was -2.17 kg. Psychiatric adverse reactions occurred in 5.9% against 3.3% across 8 controlled trials, most commonly insomnia, anxiety and depression. Discontinuation for adverse events ran 11.7% against 5.4% in RE2SPOND. The topical formulation exists precisely because keeping the same pharmacology out of the circulation removes this step.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'M2-124 and M2-125 (NCT00297102 and NCT00297115)',
+        phase: 'Phase 3, two identically designed randomised, double-blind, placebo-controlled trials, 52 weeks',
+        sampleSize: 3091,
+        primaryEndpoint:
+          'Co-primary: change in prebronchodilator FEV1 and rate of moderate or severe exacerbations',
+        endpointMet: true,
+        statisticalPValue:
+          'Pooled FEV1 +48 mL (p<0.0001); exacerbations 1.14 against 1.37 per patient per year, 17% reduction (95% CI 8 to 25), p<0.0003',
+        unreportedAdverseSignals:
+          'Adverse events 67% against 62%, discontinuation for adverse events 14% against 12%, and a pooled weight difference of -2.17 kg against placebo in a disease where weight loss is itself a poor prognostic sign.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'REACT (NCT01329029)',
+        phase: 'Phase 3/4, randomised, double-blind, placebo-controlled, parallel group, one year',
+        sampleSize: 1945,
+        primaryEndpoint:
+          'Rate of moderate to severe COPD exacerbations per patient per year, on a background of inhaled corticosteroid plus long-acting beta-agonist',
+        endpointMet: false,
+        statisticalPValue:
+          'Poisson regression: rate ratio 0.868 (95% CI 0.753 to 1.002), p=0.0529. Predefined negative binomial sensitivity analysis: 0.858 (0.740 to 0.995), p=0.0424.',
+        unreportedAdverseSignals:
+          'The trial is routinely cited using the sensitivity analysis rather than the primary one. Withdrawal for adverse events was 11% against 5%.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'RE2SPOND (NCT01443845)',
+        phase: 'Phase 4, randomised, double-blind, placebo-controlled, 52 weeks',
+        sampleSize: 2354,
+        primaryEndpoint:
+          'Rate of moderate or severe COPD exacerbations per patient per year on inhaled corticosteroid plus long-acting beta-agonist, with or without a long-acting muscarinic antagonist',
+        endpointMet: false,
+        statisticalPValue: 'Rate ratio 0.92 (95% CI 0.81 to 1.04), P=0.163 — an 8.5% reduction, not significant',
+        unreportedAdverseSignals:
+          'The reported positive finding is a post hoc subgroup of participants with more than three prior exacerbations or at least one hospitalisation. Adverse-event-related discontinuation was 11.7% against 5.4%.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'DERMIS-1 and DERMIS-2 (NCT04211363 and NCT04211389)',
+        phase: 'Phase 3, two randomised, double-blind, vehicle-controlled trials, 8 weeks',
+        sampleSize: 881,
+        primaryEndpoint:
+          'Investigator Global Assessment success at week 8 in chronic plaque psoriasis, roflumilast cream 0.3% against vehicle',
+        endpointMet: true,
+        statisticalPValue:
+          'Trial 1: 42.4% against 6.1% (difference 39.6%, 95% CI 32.3 to 46.9). Trial 2: 37.5% against 6.9% (difference 28.9%, 95% CI 20.8 to 36.9). P<0.001 for both.',
+        unreportedAdverseSignals:
+          'Eight weeks of follow-up, and a vehicle rather than an active comparator. The authors state that further research is needed to assess efficacy against other active treatments and longer-term efficacy and safety.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A 17% reduction in moderate or severe exacerbations, 1.14 against 1.37 per patient per year, in 3,091 patients across two 52-week trials',
+        'A 48 mL increase in prebronchodilator FEV1 against placebo, pooled across those two trials',
+        'Rate ratio 0.868 (95% CI 0.753 to 1.002, p=0.0529) in REACT and 0.92 (0.81 to 1.04, P=0.163) in RE2SPOND, both on inhaled combination background',
+        'A pooled weight difference of -2.17 kg against placebo, and psychiatric adverse reactions in 5.9% against 3.3% across 8 controlled trials',
+        'Investigator Global Assessment success of 42.4% against 6.1% on vehicle at 8 weeks for the 0.3% cream in plaque psoriasis',
+      ],
+      unsupportedInferences: [
+        'That roflumilast added to inhaled combination therapy reduces exacerbations — the two trials designed to test that both missed their primary analyses',
+        'That the labelled phenotype identifies who benefits, when the confirmation for it comes from a post hoc subgroup in a failed trial',
+        'That a 48 mL FEV1 improvement represents bronchodilation, which the Limitations of Use section rules out in one sentence',
+        'That the tablet and the cream can be discussed as one drug — same molecule, different route, and effect sizes an order of magnitude apart',
+      ],
+      whatFailedInitially: [
+        'REACT missed its primary Poisson analysis at p=0.0529 and is generally cited from its sensitivity analysis instead',
+        'RE2SPOND failed outright in 2,354 patients, rate ratio 0.92 (95% CI 0.81 to 1.04, P=0.163)',
+        'Weight loss of 2.17 kg on average, in a disease where weight loss is an independent marker of poor outcome',
+        'Psychiatric adverse reactions including suicidality at nearly twice the placebo rate, and discontinuation for adverse events up to 11.7% against 5.4%',
+      ],
+      realWorldOutcome: [
+        'Approved in 2011 with a deliberately narrow indication: severe COPD with chronic bronchitis and a history of exacerbations',
+        'The only oral anti-inflammatory approved for chronic obstructive pulmonary disease and the only non-inhaled drug in this group',
+        'Now generic as a tablet across 43 listed presentations at about two dollars each',
+        'Relaunched as a topical cream for psoriasis and atopic dermatitis a decade after the lung approval, at brand pricing',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet, 250 and 500 micrograms once daily; separately, topical cream at 0.3%, 0.15% and 0.05%',
+      description:
+        'The tablet is taken once daily with or without food. The 250 microgram strength exists only as a four-week starting dose to improve tolerability and is stated in the label not to be the therapeutic dose. The cream is a different product for a different disease, and is included on this page because it is the same molecule and the contrast in tolerability between the two routes is the clearest evidence of where the tablet’s side effects come from.',
+      safetyProfile:
+        'Contraindicated in moderate to severe hepatic impairment (Child-Pugh B or C). Not a bronchodilator and not for acute bronchospasm. Warnings for psychiatric events including suicidality — insomnia, anxiety, depression, suicidal thoughts or other mood changes, reported in 5.9% against 3.3% on placebo across 8 controlled trials — and for weight decrease, with instructions to monitor weight regularly and consider discontinuation. Strong cytochrome P450 inducers such as rifampicin, phenobarbital, carbamazepine and phenytoin are not recommended. The most common adverse reactions at 2% or more were diarrhoea, weight decrease, nausea, headache, back pain, influenza, insomnia, dizziness and decreased appetite.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does roflumilast actually work?',
+        a: 'It depends which trial you read, and that is the honest answer rather than an evasion. In the two 52-week trials that supported approval, in 3,091 people, exacerbations fell from 1.37 to 1.14 per person per year — a 17% reduction with a confidence interval of 8 to 25 and p<0.0003. In the two later and larger trials, run in people already taking an inhaled corticosteroid and a long-acting beta-agonist, it missed: REACT at p=0.0529 on its primary analysis and RE2SPOND at p=0.163. The difference between those two sets of trials is the background treatment. Whether roflumilast adds anything on top of modern inhaled therapy is the question that has been asked twice and answered negatively twice on the primary endpoint.',
+        auditNote:
+          'REACT is almost always quoted using its negative binomial sensitivity analysis, p=0.0424, rather than its prespecified Poisson primary, p=0.0529. Both were prespecified; only one was primary.',
+      },
+      {
+        q: 'Why does it cause weight loss?',
+        a: 'Because it is swallowed. Phosphodiesterase 4 is present throughout the body, not only in the lung, and a tablet reaches all of it. The average difference against placebo across the pivotal trials was -2.17 kg, alongside diarrhoea, nausea and decreased appetite as some of the commonest adverse reactions. That matters more here than it would elsewhere: unintentional weight loss in severe chronic obstructive pulmonary disease is itself associated with worse outcomes, so the label asks for regular weighing and for considering stopping the drug if the loss is unexplained or clinically significant.',
+      },
+      {
+        q: 'Is it true it can affect mood?',
+        a: 'Yes, and the label says so directly. Across eight controlled trials, psychiatric adverse reactions were reported by 5.9% of patients on roflumilast against 3.3% on placebo, most commonly insomnia, anxiety and depression, and the Warnings and Precautions section is headed psychiatric events including suicidality. Patients, families and carers are asked to watch for new or worsening insomnia, anxiety, depression, suicidal thoughts or other mood changes and to report them. Anyone with a history of depression or suicidal thinking should have the risks and benefits weighed carefully before starting.',
+      },
+      {
+        q: 'Is the cream the same drug?',
+        a: 'The same molecule, applied to skin instead of swallowed, and it behaves very differently. In two 8-week psoriasis trials in 881 people, 42.4% and 37.5% of those using roflumilast cream 0.3% reached clear or almost-clear skin with at least a two-grade improvement, against 6.1% and 6.9% on the cream base alone. Serious adverse events were 0.7% in both arms of one trial and 0% against 0.7% in the other. The systemic weight loss and mood effects that constrain the tablet do not appear, because the drug is not being distributed through the bloodstream. It treats skin, not lung, and it is not interchangeable with the tablet in any direction.',
+      },
+      {
+        q: 'Will it help my breathing?',
+        a: 'Not in the way an inhaler does, and the label forecloses the question in one sentence: it is not a bronchodilator and is not indicated for the relief of acute bronchospasm. The 48 mL improvement in lung function measured in the pivotal trials is a downstream consequence of less airway inflammation, and 48 mL is roughly half the change usually taken as noticeable. What the drug is prescribed for is fewer exacerbations, in one narrow group — severe disease, chronic bronchitis, a history of flare-ups. If breathlessness is the problem, this is not the drug for it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Calverley PMA, Rabe KF, Goehring U-M, et al. Roflumilast in symptomatic chronic obstructive pulmonary disease: two randomised clinical trials. Lancet 2009;374:685-694',
+        identifier: '10.1016/S0140-6736(09)61255-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Martinez FJ, Calverley PMA, Goehring U-M, et al. Effect of roflumilast on exacerbations in patients with severe COPD uncontrolled by combination therapy (REACT). Lancet 2015;385:857-866',
+        identifier: '10.1016/S0140-6736(14)62410-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Martinez FJ, Rabe KF, Sethi S, et al. Effect of Roflumilast and Inhaled Corticosteroid/Long-Acting beta2-Agonist on COPD Exacerbations (RE2SPOND). Am J Respir Crit Care Med 2016;194:559-567',
+        identifier: '10.1164/rccm.201607-1349OC',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lebwohl MG, Kircik LH, Moore AY, et al. Effect of Roflumilast Cream vs Vehicle Cream on Chronic Plaque Psoriasis: The DERMIS-1 and DERMIS-2 Randomized Clinical Trials. JAMA 2022;328:1073-1084',
+        identifier: '10.1001/jama.2022.15632',
+        kind: 'doi',
+      },
+      {
+        label: 'M2-124 — roflumilast against placebo in severe COPD with chronic bronchitis',
+        identifier: 'NCT00297102',
+        kind: 'nct',
+      },
+      {
+        label: 'M2-125 — the replicate roflumilast trial',
+        identifier: 'NCT00297115',
+        kind: 'nct',
+      },
+      {
+        label: 'REACT — roflumilast added to inhaled corticosteroid plus long-acting beta-agonist',
+        identifier: 'NCT01329029',
+        kind: 'nct',
+      },
+      {
+        label: 'RE2SPOND — the 2,354-patient follow-up trial',
+        identifier: 'NCT01443845',
+        kind: 'nct',
+      },
+      {
+        label: 'DERMIS-1 — roflumilast cream 0.3% in chronic plaque psoriasis',
+        identifier: 'NCT04211363',
+        kind: 'nct',
+      },
+      {
+        label:
+          'DALIRESP (roflumilast tablets) United States prescribing information — Indications and Limitations of Use, Contraindications 4, Warnings and Precautions 5.1 to 5.4, Adverse Reactions 6.1, Clinical Pharmacology 12.1',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22DALIRESP%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 449193 — roflumilast structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/449193',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Theophylline — the oldest drug here, whose most elegant modern mechanism was published in
+  //    2002, tested properly in 2018, and did not survive the test.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'theophylline',
+    name: 'Theophylline',
+    tradeName: 'Theo-Dur / Theo-24 / Slo-Phyllin / Slo-Bid / Uniphyl',
+    sponsor:
+      'No single originator — a methylxanthine isolated from tea in the nineteenth century and in respiratory use since the 1930s. Baxter Healthcare holds the listed intravenous presentation; the oral extended-release tablets are made by many manufacturers.',
+    targetGene: 'PDE3A',
+    targetProtein:
+      'Phosphodiesterase III and, to a lesser extent, phosphodiesterase IV; separately an adenosine receptor antagonist, and at low concentrations an activator of histone deacetylase',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1976,
+    indication:
+      'Treatment of the symptoms and reversible airflow obstruction associated with chronic asthma and other chronic lung diseases, such as emphysema and chronic bronchitis.',
+    patientFriendlyIndication:
+      'An old oral tablet that opens the airways, with a narrow margin between a helpful dose and a dangerous one',
+    anatomicalSite:
+      'Airway smooth muscle, airway inflammatory cells and the diaphragm — reached systemically, because the drug is swallowed',
+    conditionContext: {
+      conditionExplainer:
+        'Theophylline is a methylxanthine, chemically a close relative of the caffeine in coffee, and it was treating asthma before inhalers existed. It relaxes airway muscle, damps inflammation and strengthens the contraction of the diaphragm, all through different mechanisms, and it does all of it from the bloodstream.',
+      whyItMatters:
+        'It is the cheapest maintenance option for obstructive lung disease anywhere in the world, and in much of the world it is the only one available. It is also the one drug in this file where an ordinary antibiotic prescription can push a stable patient into seizures.',
+      whoTakesThis:
+        'People whose asthma or chronic obstructive pulmonary disease is not controlled by inhaled treatment, and — far more commonly — people for whom inhaled treatment is unaffordable or unavailable.',
+      clinicalGoals:
+        'Symptom relief and reversible airflow obstruction, which is exactly what the label claims. Not exacerbation prevention: the trial that tested that in 1,578 people found nothing.',
+    },
+    oneSentenceVerdict:
+      'A methylxanthine that relaxes airway muscle by inhibiting phosphodiesterase III and IV, blocks adenosine receptors, and at low concentrations restores histone deacetylase activity to make steroids work better — a mechanism published in 2002 and tested in 1,578 patients in 2018, where adding it to an inhaled steroid changed the exacerbation rate from 2.23 to 2.24 per year, incidence rate ratio 0.99 (95% CI 0.91 to 1.08).',
+    laymanHowItWorks:
+      'Theophylline is a chemical cousin of caffeine, swallowed as a tablet. It blocks an enzyme inside airway muscle cells so a relaxing signal accumulates, and it blocks a second receptor that would otherwise make the airway twitchy — which is also where most of its side effects come from. At very low concentrations it does something else again, reactivating an enzyme that steroids need in order to switch inflammatory genes off. The gap between a dose that helps and a dose that causes vomiting, racing heart and seizures is narrow, and a great many ordinary medicines shift a person across it.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 58,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$1.05 per tablet, the median across 30 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Theophylline has no meaningful patent history left: it is a nineteenth-century natural product, fully generic, and available almost everywhere. Its real cost is not the tablet. Safe use requires serum concentration measurement, dose adjustment for age, fever, heart failure, liver disease and smoking status, and re-checking whenever another medicine is started or stopped. That monitoring burden is invisible in an acquisition price and is the reason a one-dollar tablet is not the bargain it looks like in settings that cannot deliver it.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Almost everything else in this file is a better-tolerated substitute for theophylline, and almost all of it costs more and needs a device. That trade is the whole story of this drug: it is displaced wherever inhaled treatment is available and affordable, and retained wherever it is not. The one genuine claim it retains is that adding a small amount of it to a low-dose steroid matched a doubled steroid dose in a 62-patient trial without suppressing cortisol.',
+      conventionalRx: [
+        {
+          name: 'An inhaled corticosteroid',
+          class: 'Inhaled corticosteroid',
+          howItCompares:
+            'Delivered to the lung instead of the whole body, with no serum concentration to monitor and no interaction with erythromycin or ciprofloxacin. In the 62-patient Evans trial, doubling the budesonide dose worked as well as adding theophylline, but lowered serum cortisol from 18.4 to 15.9 micrograms per decilitre (P=0.02) while the theophylline arm did not.',
+          typicalCost:
+            'US$0.6920 per millilitre for generic fluticasone propionate at United States pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no systemic toxicity at ordinary doses, no monitoring, first-line in every guideline. Cons: needs a working inhaler and correct technique, and higher doses do measurably suppress the adrenal axis.',
+        },
+        {
+          name: 'Roflumilast (Daliresp)',
+          class: 'Selective phosphodiesterase-4 inhibitor, oral',
+          howItCompares:
+            'The modern selective version of half of what theophylline does. Selectivity for PDE4 over PDE3 is the point: PDE3 inhibition is where theophylline’s hypotension, tachycardia and vomiting come from.',
+          typicalCost:
+            'US$2.00 per tablet at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no serum monitoring, no seizure risk, a defined exacerbation indication. Cons: 2.17 kg of weight loss, psychiatric adverse reactions in 5.9% against 3.3%, and two large trials that missed their primary endpoints.',
+        },
+        {
+          name: 'A long-acting bronchodilator inhaler',
+          class: 'Long-acting beta-2 agonist or long-acting muscarinic antagonist',
+          howItCompares:
+            'Far more effective bronchodilation delivered to the target organ. Tiotropium raised trough FEV1 by 87 to 103 mL in UPLIFT and reduced exacerbations; theophylline has no comparable exacerbation evidence and one large negative trial.',
+          typicalCost:
+            'US$6.74 to US$11.73 per unit at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: better bronchodilation, no monitoring, no drug-interaction cliff. Cons: six to eleven times the acquisition cost, and requires a device a patient can use.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Tell every prescriber you take theophylline',
+          action:
+            'Name it before any new medicine is started or stopped, including short antibiotic courses.',
+          patientImpact:
+            'The label states that adding a drug which inhibits theophylline metabolism, such as cimetidine, erythromycin or tacrine, or stopping one that enhances it, such as carbamazepine or rifampin, is a readily identifiable cause of reduced clearance, and that severe and potentially fatal toxicity can occur if the dose is not appropriately reduced.',
+          clinicalPrecaution:
+            'This is the single most dangerous property of the drug and it is entirely predictable. The interaction list in the label runs to whole tables.',
+        },
+        {
+          name: 'Treat repeated vomiting as an emergency, not a stomach upset',
+          action:
+            'If nausea or repetitive vomiting begins, withhold further doses and get a serum theophylline concentration measured.',
+          patientImpact:
+            'The label instructs exactly this: whenever a patient on theophylline develops nausea or vomiting, particularly repetitive vomiting, or other signs consistent with toxicity — even if another cause is suspected — additional doses should be withheld and a serum concentration measured.',
+          clinicalPrecaution:
+            'Vomiting is often the first sign of toxicity and precedes the arrhythmias and seizures. Attributing it to a virus is how a manageable situation becomes a fatal one.',
+        },
+        {
+          name: 'Say if you have stopped smoking',
+          action:
+            'Report stopping smoking, and report a fever above 102°F lasting a day or more, to whoever manages the theophylline dose.',
+          patientImpact:
+            'The label lists cessation of smoking, fever of 102°F for 24 hours or more, congestive heart failure, cor pulmonale, acute pulmonary oedema, hypothyroidism, liver disease, sepsis and shock among conditions that reduce theophylline clearance and require dose reconsideration.',
+          clinicalPrecaution:
+            'Tobacco smoke induces the enzyme that clears theophylline. Quitting raises the blood level of an unchanged dose, so the healthiest decision a smoker makes is also the one that can make their tablet toxic.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CN1C2=C(C(=O)N(C1=O)C)NC=N2',
+      chemicalFormula: 'C7H8N4O2',
+      molecularWeight: '180.16 g/mol',
+      targetReceptorAffinity:
+        'The label is unusually candid: it states that the mechanisms of action are not known with certainty, that animal studies suggest bronchodilation is mediated by inhibition of phosphodiesterase III and, to a lesser extent, phosphodiesterase IV, and that the non-bronchodilator prophylactic actions are probably mediated through one or more different molecular mechanisms that do not involve PDE III inhibition or adenosine receptor antagonism. It attributes hypotension, tachycardia, headache and emesis to PDE III inhibition and alterations in cerebral blood flow to adenosine receptor antagonism, and records that theophylline increases the force of contraction of diaphragmatic muscles through enhanced calcium uptake via an adenosine-mediated channel.',
+      structureSource: {
+        label: 'PubChem CID 2153 (theophylline) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2153',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'the-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Discrimination of theophylline from theobromine and caffeine',
+          description:
+            'Confirm the 1,3-dimethylxanthine substitution pattern and exclude its two isomeric relatives. Theophylline, theobromine and caffeine differ only in which ring nitrogens carry methyl groups, and they have markedly different pharmacology; an assay that cannot separate them cannot certify identity.',
+          reagentsAndBuffer:
+            'Theophylline anhydrous reference standard, reversed-phase HPLC with ultraviolet detection at 271 nm, caffeine and theobromine as resolution markers, 1H NMR in DMSO-d6, loss on drying for hydrate state',
+        },
+        {
+          id: 'the-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Traube purine synthesis and selective N-methylation',
+          description:
+            'Build the xanthine ring by the classical Traube route and methylate selectively at N1 and N3. Selectivity is the whole problem: over-methylation at N7 gives caffeine, and separating the two after the fact is far harder than controlling the methylation.',
+          dependsOnStepId: 'the-w1',
+          reagentsAndBuffer:
+            'N,N-dimethylurea, cyanoacetic acid and acetic anhydride for ring construction, sodium nitrite for nitrosation, sodium dithionite reduction, formamide or formic acid for ring closure, dimethyl sulfate or methyl iodide with base for methylation',
+        },
+        {
+          id: 'the-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation and control of the extended-release matrix',
+          description:
+            'Recrystallise from water and formulate into an extended-release matrix with a characterised dissolution profile. For a drug with this therapeutic index the release profile is not a convenience feature: dose-dumping from a damaged or incorrectly formulated tablet is a route to a toxic serum concentration from a correct prescription.',
+          dependsOnStepId: 'the-w2',
+          reagentsAndBuffer:
+            'Water recrystallisation, activated carbon decolourisation, hydrophilic matrix polymer or wax matrix excipients, USP apparatus 2 dissolution testing across multiple pH media, content uniformity testing',
+        },
+        {
+          id: 'the-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Histone deacetylase activity in alveolar macrophages at low concentration',
+          description:
+            'Expose alveolar macrophages or bronchial epithelial cells to theophylline at 1 to 5 mg/L — far below the classical bronchodilator range — and measure histone deacetylase activity and inflammatory gene expression, with and without a corticosteroid. Running the corticosteroid arm is the point of the experiment: the claimed effect is cooperative, not additive, and a single-agent design cannot detect it.',
+          dependsOnStepId: 'the-w3',
+          reagentsAndBuffer:
+            'Human alveolar macrophages or BEAS-2B bronchial epithelial cells, RPMI-1640 with 10% fetal bovine serum, lipopolysaccharide or tumour necrosis factor alpha challenge, dexamethasone as corticosteroid partner, HDAC activity fluorometric assay, IL-8 ELISA',
+        },
+        {
+          id: 'the-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Concentration-response across the bronchodilator and sub-bronchodilator ranges',
+          description:
+            'Quantify the effect across two orders of magnitude of concentration, from 1 mg/L to above 20 mg/L, and report phosphodiesterase inhibition and adenosine antagonism separately from the histone deacetylase effect. Theophylline is the clearest case in this file of one molecule with three mechanisms operating in different concentration bands, and collapsing them into a single potency figure destroys the only interesting thing about it.',
+          dependsOnStepId: 'the-w4',
+          reagentsAndBuffer:
+            'Recombinant human PDE3 and PDE4 hydrolysis assays, adenosine A1 and A2A radioligand binding, HDAC activity assay, serum theophylline immunoassay for concentration verification, four-parameter logistic regression per readout',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'the-a1',
+        category: 'failed',
+        title: 'TWICS: 1,578 patients, and the exacerbation rate went from 2.23 to 2.24',
+        laymanSummary:
+          'The trial built to test theophylline’s most attractive modern claim gave a low dose or a placebo to more than fifteen hundred people with chronic obstructive pulmonary disease already on a steroid inhaler. Over a year they had 3,430 flare-ups between them, and the two groups were indistinguishable.',
+        technicalDetails:
+          'TWICS was a pragmatic, double-blind, placebo-controlled randomised trial in 121 UK primary and secondary care sites, enrolling 1,578 participants with FEV1/FVC below 0.7, at least two exacerbations in the previous year and current inhaled corticosteroid use. Participants received low-dose theophylline 200 mg once or twice daily, dosed by ideal body weight and smoking status to give plasma concentrations of 1 to 5 mg/L (n=791), or placebo (n=787). Primary outcome data were available for 1,536 of 1,567 analysed participants (98%). There were 3,430 exacerbations in total: 1,727 on theophylline (mean 2.24 per year, 95% CI 2.10 to 2.38) against 1,703 on placebo (mean 2.23, 95% CI 2.09 to 2.37); unadjusted mean difference 0.01 (95% CI -0.19 to 0.21), adjusted incidence rate ratio 0.99 (95% CI 0.91 to 1.08). Nausea was reported by 10.9% against 7.9% and headache by 9.0% against 7.9%; gastrointestinal serious adverse events were 2.7% against 1.3%. The authors conclude that the findings do not support this use.',
+        evidenceSource:
+          'Devereux G, Cotton S, Fielding S, et al. JAMA 2018;320:1548-1559 (TWICS, ISRCTN27066620)',
+        doi: '10.1001/jama.2018.14432',
+        measuredMetric:
+          'Participant-reported moderate or severe exacerbations treated with antibiotics, oral corticosteroids or both, over one year',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'the-a2',
+        category: 'conclusion_shift',
+        title: 'A beautiful mechanism from 2002 that a trial in 2018 did not confirm',
+        laymanSummary:
+          'In 2002 a paper explained why a tiny dose of theophylline should make steroids work better: it reactivates an enzyme steroids need, and it does so at concentrations far below the ones that cause side effects. It was elegant, widely cited and dosed precisely in the trial that followed. The trial found nothing.',
+        technicalDetails:
+          'Ito and colleagues showed in vitro and in vivo that low-dose theophylline enhances histone deacetylase activity in epithelial cells and macrophages, that the increased activity is then available for corticosteroid recruitment, and that this occurs at therapeutic concentrations and is dissociated from phosphodiesterase inhibition — the bronchodilator mechanism — and from adenosine receptor blockade, which causes side effects. The prediction was a cooperative interaction between corticosteroids and theophylline. TWICS was designed around it: 200 mg once or twice daily titrated by ideal body weight and smoking status specifically to hit 1 to 5 mg/L, in 1,578 patients all taking an inhaled corticosteroid. The adjusted incidence rate ratio for exacerbations was 0.99 (95% CI 0.91 to 1.08). The mechanism is not thereby disproved; the clinical prediction drawn from it was tested and did not hold.',
+        evidenceSource:
+          'Ito K, Lim S, Caramori G, et al. Proc Natl Acad Sci U S A 2002;99:8921-8926; Devereux G et al., JAMA 2018;320:1548-1559',
+        doi: '10.1073/pnas.132556899',
+        inferredClaim:
+          'That low-dose theophylline restores corticosteroid sensitivity to a degree that reduces exacerbations — a mechanism-derived prediction tested at the predicted concentration in 1,578 patients, with an incidence rate ratio of 0.99',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'the-a3',
+        category: 'measured',
+        title: 'It matched a doubled steroid dose in 62 patients, without touching cortisol',
+        laymanSummary:
+          'A small trial in moderate asthma compared adding theophylline to a low steroid dose against simply doubling the steroid. The combination did slightly better on two lung-function measures, and unlike the doubled steroid it did not suppress the body’s own cortisol. The theophylline levels achieved were below the range the drug is supposed to need.',
+        technicalDetails:
+          'A double-blind, placebo-controlled trial randomised 62 patients with persistent asthma symptoms despite inhaled glucocorticoid to budesonide 400 micrograms twice daily plus theophylline 250 or 375 mg twice daily by body weight, or budesonide 800 micrograms twice daily, for three months. Both improved lung function and both sustained it. Compared with high-dose budesonide, low-dose budesonide plus theophylline produced greater improvements in forced vital capacity (P=0.03) and FEV1 (P=0.03). Reductions in beta-agonist use and in peak-flow variability were significant and similar in both arms. Serum cortisol fell in the high-dose budesonide group, from 18.4±2.4 to 15.9±2.1 micrograms per decilitre (P=0.02), and was unchanged in the theophylline group. The median serum theophylline concentration was 8.7 micrograms per millilitre, against a stated therapeutic range of 10 to 20.',
+        evidenceSource:
+          'Evans DJ, Taylor DA, Zetterstrom O, et al. N Engl J Med 1997;337:1412-1418',
+        doi: '10.1056/NEJM199711133372002',
+        measuredMetric:
+          'FVC, FEV1, beta-agonist use, peak-flow variability and serum cortisol at three months, low-dose budesonide plus theophylline against doubled budesonide',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'the-a4',
+        category: 'failed',
+        title: 'An antibiotic course can make a correct prescription lethal',
+        laymanSummary:
+          'Theophylline has a narrow gap between a helpful blood level and a dangerous one, and dozens of ordinary medicines and conditions move a person across it. The label lists the causes: some antibiotics, a fever lasting a day, heart failure, liver disease, being over sixty, and quitting smoking.',
+        technicalDetails:
+          'The label states that there are several readily identifiable causes of reduced theophylline clearance and that if the total daily dose is not appropriately reduced in their presence, severe and potentially fatal theophylline toxicity can occur. Named risk factors include neonates, children under 1, adults over 60, acute pulmonary oedema, congestive heart failure, cor pulmonale, fever of 102°F for 24 hours or more, hypothyroidism, cirrhosis and acute hepatitis, reduced renal function in infants under 3 months, sepsis with multi-organ failure, shock, and cessation of smoking. Drug interactions are handled in whole tables; the label singles out adding cimetidine, erythromycin or tacrine, or stopping carbamazepine or rifampin. Theophylline is to be used with extreme caution in active peptic ulcer disease, seizure disorders and cardiac arrhythmias. The label instructs withholding doses and measuring a serum concentration whenever nausea or repetitive vomiting occurs, even if another cause is suspected.',
+        evidenceSource:
+          'Theophylline anhydrous extended-release United States prescribing information — Warnings, Concurrent Illness and Conditions That Reduce Theophylline Clearance; Precautions, Drug Interactions',
+        measuredMetric:
+          'Documented causes of reduced theophylline clearance and their consequence for serum concentration',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'the-a5',
+        category: 'inferred',
+        title: 'The label admits it does not know how the useful half works',
+        laymanSummary:
+          'The prescribing information says the mechanisms are not known with certainty. It attributes the airway-opening effect to blocking one enzyme, and then says the anti-inflammatory effect is probably something else entirely that it cannot name — while attributing the side effects to the two mechanisms it can.',
+        technicalDetails:
+          'The Mechanism of Action section states that theophylline has two distinct actions in the airways — smooth muscle relaxation and suppression of airway responsiveness — that the mechanisms are not known with certainty, that animal studies suggest bronchodilation is mediated by inhibition of phosphodiesterase III and to a lesser extent IV, and that the non-bronchodilator prophylactic actions are probably mediated through one or more different molecular mechanisms that do not involve PDE III inhibition or adenosine receptor antagonism. It then assigns hypotension, tachycardia, headache and emesis to PDE III inhibition and altered cerebral blood flow to adenosine antagonism. In other words the two mechanisms that are identified are the ones that produce harm, and the mechanism behind the prophylactic benefit is explicitly unnamed. That is a rare and honest statement to find in a mechanism-of-action section, and it is the context in which the histone deacetylase hypothesis was proposed as the missing piece.',
+        evidenceSource:
+          'Theophylline anhydrous extended-release United States prescribing information, Clinical Pharmacology — Mechanism of Action',
+        inferredClaim:
+          'That the anti-inflammatory action of theophylline is understood — the label says it is not, and names only the mechanisms responsible for the adverse effects',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'the-a6',
+        category: 'inferred',
+        title: 'Its continued use worldwide is an argument about price, not about evidence',
+        laymanSummary:
+          'Theophylline remains one of the most widely used respiratory drugs on earth, and the reason is that it costs about a dollar a tablet and needs no inhaler. That is a real and serious argument. It is not the same argument as the drug being effective.',
+        technicalDetails:
+          'The CMS acquisition survey lists theophylline at a median US$1.05 per tablet across 30 generic presentations, against US$6.74 to US$11.73 per unit for the branded long-acting inhalers in this file. Against that: TWICS found an incidence rate ratio of 0.99 for exacerbations in 1,578 patients, and the label’s indication is limited to symptoms and reversible airflow obstruction rather than exacerbation prevention. The hidden cost is monitoring — serum concentrations, dose adjustment for a long list of conditions and drugs, and re-checking after any change — which is precisely the infrastructure least available in the settings where the price advantage matters most. Inferring effectiveness from persistence of use inverts the causation: the drug persists because it is affordable, and its affordability says nothing about what it does.',
+        evidenceSource:
+          'CMS National Average Drug Acquisition Cost (NADAC) 2026 file, prices effective 19 August 2026; Devereux G et al., JAMA 2018;320:1548-1559',
+        doi: '10.1001/jama.2018.14432',
+        inferredClaim:
+          'That theophylline’s continued global use reflects demonstrated benefit — it substantially reflects an acquisition price of about a dollar per tablet and the absence of a device requirement',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed as an extended-release tablet',
+        laymanDesc:
+          'It is taken by mouth once or twice a day. No inhaler, no technique, no coordination — which is exactly why it is still used where inhalers are hard to get.',
+        molecularDetail:
+          'Theophylline anhydrous in an extended-release matrix, most often 200 to 400 mg once or twice daily. Absorption is complete; the constraint is not getting the drug in but keeping the serum concentration inside a narrow window.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The liver decides the blood level, and many things change its mind',
+        laymanDesc:
+          'How much drug ends up in the blood depends on an enzyme in the liver, and that enzyme is sped up by cigarette smoke and slowed down by fever, heart failure, liver disease, age and a long list of other medicines.',
+        molecularDetail:
+          'Clearance is predominantly hepatic via CYP1A2 with a contribution from CYP3A4, and it is the reason the label devotes tables to interactions. Tobacco smoke induces CYP1A2, so smoking cessation raises the serum concentration of an unchanged dose. Cimetidine, erythromycin and tacrine inhibit clearance; carbamazepine and rifampin induce it.',
+        iconName: 'RefreshCw',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the enzyme that destroys the muscle’s relaxing signal',
+        laymanDesc:
+          'Airway muscle holds a messenger that tells it to relax, and an enzyme constantly breaks it down. Theophylline blocks that enzyme, so the messenger builds up and the airway opens.',
+        molecularDetail:
+          'The label attributes bronchodilation to inhibition of phosphodiesterase III and, to a lesser extent, phosphodiesterase IV, based on animal studies. PDE III is also expressed in cardiac and vascular smooth muscle, which is where hypotension and tachycardia come from — the same inhibition, in the wrong tissue.',
+        iconName: 'Ban',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'It also blocks adenosine, which is where the jitteriness comes from',
+        laymanDesc:
+          'A second, separate action blocks adenosine receptors. That contributes to keeping the airway open and it is also why the drug feels like strong coffee, and why an overdose causes seizures.',
+        molecularDetail:
+          'Adenosine receptor antagonism is a mechanism theophylline shares with caffeine, its close structural relative. The label attributes alterations in cerebral blood flow to it. It also records that theophylline increases the force of contraction of diaphragmatic muscles through enhanced calcium uptake via an adenosine-mediated channel — a genuinely distinctive effect no inhaled drug has.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'At very low concentrations it does something different again',
+        laymanDesc:
+          'Well below the level needed to open an airway, theophylline reactivates an enzyme that steroids depend on to switch inflammatory genes off. This is the mechanism the 2018 trial was built around.',
+        molecularDetail:
+          'Ito and colleagues showed that low-dose theophylline enhances histone deacetylase activity in epithelial cells and macrophages, making it available for corticosteroid recruitment, at therapeutic concentrations and dissociated from both phosphodiesterase inhibition and adenosine antagonism. TWICS dosed to 1 to 5 mg/L specifically to exploit this.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'The airway opens, and the flare-up rate does not move',
+        laymanDesc:
+          'Symptoms and reversible obstruction improve, which is what the label claims. Adding it to a steroid inhaler to prevent flare-ups was tested in 1,578 people and the rates came out at 2.24 against 2.23 per year.',
+        molecularDetail:
+          'The indication is limited to symptoms and reversible airflow obstruction in chronic asthma and other chronic lung diseases. TWICS gave an adjusted incidence rate ratio of 0.99 (95% CI 0.91 to 1.08) for exacerbations, with more nausea (10.9% against 7.9%) and more gastrointestinal serious adverse events (2.7% against 1.3%) on theophylline.',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'TWICS (ISRCTN27066620)',
+        phase: 'Phase 4, pragmatic, randomised, double-blind, placebo-controlled, one year',
+        sampleSize: 1578,
+        primaryEndpoint:
+          'Number of participant-reported moderate or severe COPD exacerbations treated with antibiotics, oral corticosteroids or both, over one year',
+        endpointMet: false,
+        statisticalPValue:
+          'Mean 2.24 (95% CI 2.10 to 2.38) against 2.23 (2.09 to 2.37) exacerbations per year; unadjusted mean difference 0.01 (95% CI -0.19 to 0.21); adjusted incidence rate ratio 0.99 (95% CI 0.91 to 1.08)',
+        unreportedAdverseSignals:
+          'Nausea 10.9% against 7.9%, headache 9.0% against 7.9%, gastrointestinal serious adverse events 2.7% against 1.3%. A null efficacy result with a non-null harm profile is a net negative rather than a neutral one.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Evans 1997 — theophylline against doubled inhaled budesonide',
+        phase: 'Randomised, double-blind, placebo-controlled, active comparator, three months',
+        sampleSize: 62,
+        primaryEndpoint:
+          'Lung function, peak expiratory flow, symptoms and albuterol use, low-dose budesonide plus theophylline against doubled budesonide',
+        endpointMet: true,
+        statisticalPValue:
+          'Greater improvement in FVC (P=0.03) and FEV1 (P=0.03) on the combination; serum cortisol fell from 18.4±2.4 to 15.9±2.1 micrograms per decilitre on doubled budesonide (P=0.02) and was unchanged on the combination',
+        unreportedAdverseSignals:
+          'Sixty-two patients over three months, with lung function rather than exacerbations as the endpoint. The effect was achieved at a median serum theophylline concentration of 8.7 micrograms per millilitre, below the stated therapeutic range of 10 to 20 — an observation that seeded two decades of low-dose theophylline research.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Adjusted incidence rate ratio 0.99 (95% CI 0.91 to 1.08) for COPD exacerbations with low-dose theophylline added to an inhaled corticosteroid in 1,578 patients',
+        '2.24 against 2.23 exacerbations per patient per year across 3,430 events in TWICS',
+        'Greater FVC and FEV1 improvement on low-dose budesonide plus theophylline than on doubled budesonide in 62 patients (P=0.03 for both)',
+        'Serum cortisol falling from 18.4 to 15.9 micrograms per decilitre on doubled budesonide and unchanged on the theophylline combination',
+        'Enhanced histone deacetylase activity in epithelial cells and macrophages at therapeutic concentrations, dissociated from phosphodiesterase inhibition and adenosine antagonism',
+      ],
+      unsupportedInferences: [
+        'That low-dose theophylline reduces exacerbations by restoring corticosteroid sensitivity — the prediction was dosed precisely and tested in 1,578 people, and returned 0.99',
+        'That the anti-inflammatory mechanism is understood, when the label states it is probably something other than the two mechanisms it can name',
+        'That a 62-patient three-month lung-function trial establishes a steroid-sparing strategy',
+        'That worldwide use reflects demonstrated benefit rather than an acquisition price of about a dollar a tablet and no device requirement',
+      ],
+      whatFailedInitially: [
+        'TWICS found no reduction in exacerbations and more nausea and gastrointestinal serious adverse events',
+        'The histone deacetylase hypothesis produced a clinical prediction that a purpose-built trial did not confirm',
+        'The therapeutic index is narrow enough that fever, heart failure, quitting smoking or a course of erythromycin can push a stable patient into toxicity',
+        'The label’s own mechanism section identifies the mechanisms behind the side effects and not the one behind the prophylactic benefit',
+      ],
+      realWorldOutcome: [
+        'In respiratory use since the 1930s and among the most widely used respiratory drugs in the world, overwhelmingly outside high-income countries',
+        'Displaced from first-line asthma and COPD care wherever inhaled treatment is available',
+        'Its indication remains symptoms and reversible airflow obstruction, and has never extended to exacerbation prevention',
+        'About a dollar a tablet, with a monitoring requirement that does not appear anywhere in that price',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral extended-release tablets and capsules, and an intravenous solution in dextrose for hospital use',
+      description:
+        'Taken once or twice daily. There is no inhaler and no technique to get wrong, which is the drug’s single practical advantage and the reason it survives in settings where devices are unaffordable or unavailable. The cost of that simplicity is that dosing is by serum concentration rather than by a fixed strength, and the correct dose changes when the patient’s circumstances do.',
+      safetyProfile:
+        'A narrow therapeutic index drug. Extreme caution in active peptic ulcer disease, seizure disorders and cardiac arrhythmias other than bradyarrhythmias. Numerous conditions reduce clearance and require dose reduction — neonates and children under 1, adults over 60, acute pulmonary oedema, congestive heart failure, cor pulmonale, sustained fever of 102°F, hypothyroidism, cirrhosis and acute hepatitis, sepsis with multi-organ failure, shock, and cessation of smoking. Interactions are extensive: adding cimetidine, erythromycin or tacrine, or stopping carbamazepine or rifampin, raises concentrations, and the label warns that severe and potentially fatal toxicity can follow if the dose is not reduced. Nausea or repetitive vomiting requires doses to be withheld and a serum concentration measured, even when another cause is suspected.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is theophylline still worth taking?',
+        a: 'It depends entirely on what the alternative is. If an inhaled corticosteroid and a long-acting bronchodilator are available and affordable, almost every comparison favours them: better bronchodilation delivered to the lung, no serum concentration to monitor, and no interaction cliff. If they are not available, theophylline is a real drug that genuinely opens airways for about a dollar a tablet. What it has not been shown to do is prevent exacerbations: TWICS tested that in 1,578 people and found 2.24 against 2.23 per year, incidence rate ratio 0.99.',
+      },
+      {
+        q: 'Why does it need blood tests?',
+        a: 'Because the gap between the concentration that helps and the concentration that harms is small, and a great many ordinary things move a person across it. The label lists them: being over sixty, a fever of 102°F lasting a day, heart failure, cirrhosis, hypothyroidism, sepsis — and stopping smoking, because tobacco smoke speeds up the liver enzyme that clears the drug. Adding cimetidine or erythromycin, or stopping carbamazepine or rifampin, does the same thing. The label states plainly that if the dose is not reduced in the presence of these factors, severe and potentially fatal toxicity can occur.',
+        auditNote:
+          'The most dangerous property of this drug is not the drug. It is the routine, well-intentioned prescription of something else alongside it.',
+      },
+      {
+        q: 'What was the low-dose theophylline idea?',
+        a: 'One of the more elegant hypotheses in respiratory medicine, and it did not survive its test. In 2002 a group showed that theophylline at concentrations far below the bronchodilator range reactivates histone deacetylase, the enzyme corticosteroids recruit in order to switch inflammatory genes off — and that this happens independently of the mechanisms that cause the side effects. The prediction was that a tiny, well-tolerated dose would make steroids work better. TWICS dosed 1,578 people precisely into that window, 1 to 5 mg/L, on top of their existing steroid inhaler, and found an incidence rate ratio of 0.99. The mechanism may still be real. The clinical claim built on it was tested and failed.',
+      },
+      {
+        q: 'I get nausea on it. Does that matter?',
+        a: 'Yes, and the label treats it as a warning sign rather than a nuisance. It instructs that whenever a patient on theophylline develops nausea or vomiting, particularly repetitive vomiting, or other signs consistent with toxicity — even if another cause may be suspected — additional doses should be withheld and a serum concentration measured. Vomiting often precedes the arrhythmias and seizures of serious toxicity. In TWICS, nausea was reported by 10.9% on theophylline against 7.9% on placebo, so at low concentrations most of it is not toxicity; the reason to check is that some of it is.',
+      },
+      {
+        q: 'Is it the same as caffeine?',
+        a: 'Chemically it is a very close relative — both are methylxanthines, differing in which nitrogens of the same ring carry methyl groups — and they share the adenosine-blocking mechanism that produces the jitteriness, the racing heart and, at high enough exposure, the seizures. They are not interchangeable: theophylline is a substantially more potent bronchodilator, and it is dosed and monitored as a drug with a narrow therapeutic index rather than consumed as a beverage. Coffee is not a treatment for asthma.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Devereux G, Cotton S, Fielding S, et al. Effect of Theophylline as Adjunct to Inhaled Corticosteroids on Exacerbations in Patients With COPD: A Randomized Clinical Trial. JAMA 2018;320:1548-1559',
+        identifier: '10.1001/jama.2018.14432',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ito K, Lim S, Caramori G, et al. A molecular mechanism of action of theophylline: induction of histone deacetylase activity to decrease inflammatory gene expression. Proc Natl Acad Sci U S A 2002;99:8921-8926',
+        identifier: '10.1073/pnas.132556899',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Evans DJ, Taylor DA, Zetterstrom O, et al. A comparison of low-dose inhaled budesonide plus theophylline and high-dose inhaled budesonide for moderate asthma. N Engl J Med 1997;337:1412-1418',
+        identifier: '10.1056/NEJM199711133372002',
+        kind: 'doi',
+      },
+      {
+        label: 'TWICS — theophylline with inhaled corticosteroids, registration record',
+        identifier: 'https://www.isrctn.com/ISRCTN27066620',
+        kind: 'url',
+      },
+      {
+        label:
+          'Theophylline anhydrous extended-release tablets United States prescribing information — Indications and Usage, Warnings (Concurrent Illness; Conditions That Reduce Theophylline Clearance; When Signs or Symptoms of Theophylline Toxicity Are Present), Precautions (Drug Interactions), Clinical Pharmacology (Mechanism of Action)',
+        identifier:
+          'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22theophylline%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 2153 — theophylline structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/2153',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Mometasone — the steroid whose receptor-affinity ranking is quoted everywhere, and whose
+  //     own label says the clinical significance of that ranking is unknown.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'mometasone',
+    name: 'Mometasone',
+    tradeName: 'Asmanex Twisthaler / Asmanex HFA / Nasonex / Elocon / Sinuva',
+    sponsor:
+      'Organon (spun out of Merck; the molecule originated at Schering-Plough, which Merck acquired in 2009)',
+    targetGene: 'NR3C1',
+    targetProtein: 'Glucocorticoid receptor (nuclear receptor subfamily 3 group C member 1)',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1987,
+    indication:
+      'Inhalation powder and aerosol: maintenance treatment of asthma as prophylactic therapy from age 5, not for relief of acute bronchospasm. Nasal spray: prophylaxis of seasonal allergic rhinitis from age 12, treatment of seasonal and perennial allergic rhinitis, and treatment of chronic rhinosinusitis with nasal polyps in adults. Also a topical cream, ointment and lotion for corticosteroid-responsive dermatoses, and a sinus implant for recurrent nasal polyps.',
+    patientFriendlyIndication:
+      'A steroid that comes as an asthma inhaler, a hay-fever nasal spray, a skin cream and a sinus implant',
+    anatomicalSite:
+      'Airway epithelium and submucosal inflammatory cells (inhaled); nasal and sinus mucosa (spray and implant); epidermis and dermis (topical)',
+    conditionContext: {
+      conditionExplainer:
+        'Corticosteroids work by entering a cell, binding a receptor in the cytoplasm and carrying it into the nucleus, where the pair switches inflammatory genes off and anti-inflammatory ones on. Every steroid in this file does that. What separates them is how tightly they bind the receptor, how much escapes into the bloodstream, and how fast the liver destroys what does.',
+      whyItMatters:
+        'Mometasone furoate was designed around the second and third of those. Its systemic availability is very low, and the clearest demonstration of that is a one-year growth study in children which found nothing — published in the same issue of the same journal as a study of another intranasal steroid which found 0.9 cm.',
+      whoTakesThis:
+        'People with persistent asthma from age 5, people with allergic rhinitis or nasal polyps, and people with inflammatory skin disease — four different products with four different exposure profiles that should not be reasoned about interchangeably.',
+      clinicalGoals:
+        'Control of inflammation with as little systemic steroid effect as possible. The inhaled product still carries warnings for growth effects, adrenal suppression, glaucoma and cataracts; the nasal product carries a negative growth trial.',
+    },
+    oneSentenceVerdict:
+      'A corticosteroid the label describes as binding the human glucocorticoid receptor about 12 times as tightly as dexamethasone and 1.5 times as tightly as fluticasone — while stating that the clinical significance of those ratios is unknown; its nasal spray produced no growth suppression in a one-year randomised trial in 98 children, and adding formoterol to it in 11,729 patients gave a serious-asthma-event hazard ratio of 1.22 (95% CI 0.76 to 1.94) with 11% fewer exacerbations.',
+    laymanHowItWorks:
+      'Mometasone crosses into the cells lining the airway or the nose, binds a receptor there and carries it into the nucleus, where it switches off the genes that produce inflammatory signals. It is built to stay where it is put: what escapes into the bloodstream is very small, and most of what is swallowed is destroyed by the liver before it circulates. That is why a year of the nasal spray did not slow children’s growth — and it is not a guarantee for the inhaler, which delivers more drug and still carries a growth warning.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 80,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.7141 per millilitre, the median across 28 listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'The nasal spray and the topical preparations are generic across 28 listed presentations, at about seventy cents a millilitre. The inhaled asthma products and the sinus implant are not. This is the same split that runs through the file: the molecule is free, and the delivery system is where the value has migrated — a dry-powder Twisthaler, a pressurised aerosol, and a bioabsorbable implant placed inside a sinus are three separate pieces of engineering carrying three separate sets of protection.',
+      synthesisComplexity: 'Moderate',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'The inhaled and intranasal corticosteroids all act on the same receptor and the head-to-head differences between them are small next to the difference between taking one and not taking one. Where mometasone has a real and specific claim is systemic exposure in children using a nasal spray, and that claim rests on a trial designed and sized exactly like the one that detected suppression with a competitor.',
+      conventionalRx: [
+        {
+          name: 'Fluticasone propionate (Flovent, Flonase)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'The comparator the mometasone label names directly: mometasone furoate binds the human glucocorticoid receptor about 1.5 times as tightly as fluticasone in vitro, with clinical significance stated as unknown. Both are available as nasal sprays and inhalers, and fluticasone is generic in more presentations.',
+          typicalCost:
+            'US$0.6920 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: cheaper per millilitre, very widely available, decades of use in both routes. Cons: a documented interaction with ritonavir and other strong CYP3A4 inhibitors that can cause Cushing syndrome, which applies to mometasone as well.',
+        },
+        {
+          name: 'Budesonide (Pulmicort, Rhinocort)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'About a fifth of mometasone’s in-vitro receptor affinity by the label’s own ranking, and the only inhaled steroid with a measured final-adult-height outcome — 1.2 cm lower in the children followed from the CAMP trial into adulthood.',
+          typicalCost:
+            'US$0.7198 per millilitre at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: nebuliser suspension for young children, on the WHO Model List of Essential Medicines, the best long-term growth data of any steroid here. Cons: those data are the reason we know the growth cost is permanent.',
+        },
+        {
+          name: 'Beclometasone dipropionate (Qvar, Beconase)',
+          class: 'Inhaled and intranasal corticosteroid',
+          howItCompares:
+            'The intranasal steroid that did suppress growth: 5.0 cm against 5.9 cm over a year in 100 children, in a study published alongside the mometasone one. That pair is the clearest evidence in this file that these drugs are not interchangeable on systemic exposure.',
+          typicalCost:
+            'US$30.24 per gram at United States pharmacy acquisition cost (CMS NADAC, brand, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: extrafine formulations reach the small airways. Cons: the intranasal growth finding, and no cheaper.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Rinse and spit after every inhaled dose',
+          action:
+            'Rinse the mouth with water and spit it out — do not swallow — after each inhalation.',
+          patientImpact:
+            'The label states that Candida albicans infection of the mouth and throat may occur, asks for periodic monitoring of the oral cavity, and gives this instruction directly.',
+          clinicalPrecaution:
+            'Rinsing removes the drug deposited on the mouth and throat. It does not reduce the dose reaching the lung, so it costs nothing in effect.',
+        },
+        {
+          name: 'Ask about ritonavir and other strong CYP3A4 inhibitors',
+          action:
+            'List every medicine, including antiretrovirals and antifungals, before starting an inhaled or intranasal steroid.',
+          patientImpact:
+            'The label warns that strong cytochrome P450 3A4 inhibitors such as ritonavir raise systemic corticosteroid effects and asks for caution. This is the route by which an inhaled steroid can cause full Cushing syndrome.',
+          clinicalPrecaution:
+            'The interaction defeats the design of the drug. Mometasone’s low systemic exposure depends on rapid hepatic destruction of what is absorbed; blocking the enzyme that does the destroying removes the safety margin.',
+        },
+        {
+          name: 'Have a child on an inhaled steroid measured routinely',
+          action:
+            'Ask for height to be recorded at each review, with a stadiometer rather than a wall mark.',
+          patientImpact:
+            'The inhaled label carries growth effects in paediatric patients as a specific Warnings and Precautions entry. The reassuring one-year growth study was of the nasal spray, not the inhaler.',
+          clinicalPrecaution:
+            'Growth velocity is the earliest measurable systemic effect of an inhaled steroid and it is detectable within a month or two. It is only detectable if someone measures.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'C[C@@H]1C[C@H]2[C@@H]3CCC4=CC(=O)C=C[C@@]4([C@]3([C@H](C[C@@]2([C@]1(C(=O)CCl)O)C)O)Cl)C',
+      chemicalFormula: 'C22H28Cl2O4',
+      molecularWeight: '427.40 g/mol',
+      targetReceptorAffinity:
+        'The label states that mometasone furoate has been shown in vitro to exhibit a binding affinity for the human glucocorticoid receptor approximately 12 times that of dexamethasone, 7 times that of triamcinolone acetonide, 5 times that of budesonide and 1.5 times that of fluticasone — and then states that the clinical significance of these findings is unknown. It also states that the precise mechanism of corticosteroid action in asthma is not known, and attributes efficacy to inhibitory effects across mast cells, eosinophils, neutrophils, macrophages and lymphocytes and across histamine, eicosanoids, leukotrienes and cytokines.',
+      structureSource: {
+        label: 'PubChem CID 441335 (mometasone) — canonical SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441335',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'mom-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Identity of the 9,21-dichloro pregnadiene core',
+          description:
+            'Confirm both chlorine substitutions and the 16-alpha methyl group before esterification. The two chlorines are what distinguish mometasone from the fluorinated steroids around it, and the 17-furoate ester added later is what makes it a topical drug rather than a systemic one.',
+          reagentsAndBuffer:
+            'Mometasone furoate reference standard, reversed-phase HPLC with ultraviolet detection at 248 nm, 1H and 13C NMR in DMSO-d6, elemental chlorine analysis, loss on drying',
+        },
+        {
+          id: 'mom-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Esterification of the 17-hydroxyl with furoic acid',
+          description:
+            'Acylate the 17-alpha hydroxyl with 2-furoyl chloride. This is the step that defines the drug: the bulky furoate ester raises receptor affinity and lipophilicity, and it is hydrolysed and cleared rapidly once the molecule reaches the liver, which is the whole basis of the low systemic exposure claim.',
+          dependsOnStepId: 'mom-w1',
+          reagentsAndBuffer:
+            '2-furoyl chloride, triethylamine or pyridine base, anhydrous dichloromethane or tetrahydrofuran, 4-dimethylaminopyridine catalyst, nitrogen atmosphere',
+        },
+        {
+          id: 'mom-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallisation of the monohydrate and control of the 21-desloro impurity',
+          description:
+            'Crystallise the appropriate hydrate for the intended product and assay for dehalogenated and de-esterified degradants. The nasal spray is an aqueous suspension of the monohydrate and the inhalation powder is the anhydrous form; these are different solids with different dissolution behaviour and are not interchangeable in formulation.',
+          dependsOnStepId: 'mom-w2',
+          reagentsAndBuffer:
+            'Acetone or ethanol and water crystallisation, controlled-humidity conditioning, X-ray powder diffraction and differential scanning calorimetry, HPLC purity with identified impurity limits, laser diffraction particle sizing',
+        },
+        {
+          id: 'mom-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Glucocorticoid receptor translocation and reporter activation',
+          description:
+            'Dose cells expressing the human glucocorticoid receptor and follow translocation to the nucleus and activation of a glucocorticoid response element reporter, with dexamethasone run in parallel. The parallel arm is essential: every affinity ratio quoted for these drugs is a ratio to something else, and a number without its comparator on the same plate means nothing.',
+          dependsOnStepId: 'mom-w3',
+          reagentsAndBuffer:
+            'A549 or human bronchial epithelial cells, charcoal-stripped fetal bovine serum to remove endogenous steroid, GRE-luciferase reporter construct, dexamethasone, budesonide and fluticasone propionate as parallel references, mifepristone as receptor antagonist control',
+        },
+        {
+          id: 'mom-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Receptor affinity ranking with hepatic clearance measured alongside',
+          description:
+            'Report the competition binding constant together with intrinsic clearance in human hepatocytes. Affinity alone predicts topical potency and nothing about systemic safety; the reason mometasone furoate has an unusual safety profile is what the liver does to it after absorption, and an affinity ranking published without that half is the exact number the label refuses to interpret.',
+          dependsOnStepId: 'mom-w4',
+          reagentsAndBuffer:
+            'Tritiated dexamethasone competition binding on cytosolic glucocorticoid receptor preparations, cryopreserved human hepatocyte incubations with LC-MS/MS quantification, human plasma protein binding by equilibrium dialysis',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'mom-a1',
+        category: 'measured',
+        title: 'A one-year growth trial in children found nothing — and it was built to find it',
+        laymanSummary:
+          'Ninety-eight children aged 3 to 9 with year-round hay fever were given mometasone nasal spray or placebo for a full year, with height measured on a calibrated stadiometer seven times. They grew the same. Adrenal function testing showed no suppression either.',
+        technicalDetails:
+          'A randomised, placebo-controlled, double-blind, multicentre trial randomised 98 prepubertal children aged 3 to 9 with perennial allergic rhinitis to mometasone furoate aqueous nasal spray 100 micrograms once daily or placebo for one year, with baseline height between the 5th and 95th percentile and skeletal age within two years of chronological age. Eighty-two completed, 42 on drug and 40 on placebo, with 93% achieving at least 80% compliance. The primary safety variable was change in standing height. No growth suppression was seen; change in height at one year was 6.95 cm on mometasone against 6.35 cm on placebo, and growth rate averaged across all time points was 0.018 cm per day in both groups. Cosyntropin stimulation testing at baseline, 26 and 52 weeks showed no evidence of hypothalamic-pituitary-adrenal axis suppression at any time point. Treatment-related adverse events were 16% on drug against 22% on placebo.',
+        evidenceSource:
+          'Schenkel EJ, Skoner DP, Bronsky EA, et al. Pediatrics 2000;105:E22',
+        doi: '10.1542/peds.105.2.e22',
+        measuredMetric:
+          'Change in standing height and growth rate over one year, and cosyntropin-stimulated cortisol response',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mom-a2',
+        category: 'measured',
+        title: 'The same journal issue carried the opposite result for another nasal steroid',
+        laymanSummary:
+          'The mometasone growth study is convincing because of what was published next to it. In the same issue of the same journal, a study of almost identical design found that intranasal beclometasone slowed growth: 5.0 cm against 5.9 cm over a year.',
+        technicalDetails:
+          'Skoner and colleagues randomised 100 prepubertal children aged 6 to 9 with perennial allergic rhinitis to aqueous beclometasone dipropionate 168 micrograms twice daily (n=51) or placebo (n=49) for one year, with the same entry criteria on height percentile and skeletal age and the same primary parameter, rate of change in standing height. Ninety completed. Overall growth rate was significantly slower on beclometasone in both the intention-to-treat and completer analyses; mean change in standing height at one year was 5.0 cm against 5.9 cm. The difference was evident by the one-month visit and was consistent across age and sex subgroups and across children with and without prior corticosteroid use. A z-score analysis normalising to national height data confirmed the difference was attributable to treatment rather than to a baseline imbalance. No between-group difference was found in hypothalamic-pituitary-adrenal axis assessments. A negative safety trial is only as good as the ability of that design to detect an effect, and the sibling study demonstrates the design detects 0.9 cm.',
+        evidenceSource: 'Skoner DP, Rachelefsky GS, Meltzer EO, et al. Pediatrics 2000;105:E23',
+        doi: '10.1542/peds.105.2.e23',
+        measuredMetric:
+          'Rate of change in standing height over one year in a study of matched design and size',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mom-a3',
+        category: 'inferred',
+        title: 'The receptor-affinity ranking is quoted constantly and disclaimed by its own label',
+        laymanSummary:
+          'Mometasone is routinely described as the most potent inhaled steroid, on the basis that it binds the receptor twelve times as tightly as dexamethasone and one and a half times as tightly as fluticasone. The sentence immediately after those numbers in the prescribing information says the clinical significance is unknown.',
+        technicalDetails:
+          'The Mechanism of Action section states the in-vitro binding affinity for the human glucocorticoid receptor as approximately 12 times dexamethasone, 7 times triamcinolone acetonide, 5 times budesonide and 1.5 times fluticasone, and immediately adds that the clinical significance of these findings is unknown. It also states that the precise mechanism of corticosteroid action in asthma is not known. Receptor affinity governs topical potency at the site of deposition; it says nothing about how much drug is deposited, how much is absorbed, or how quickly the liver removes what is. A drug can bind five times more tightly than budesonide and be dosed at a similar microgram strength, which is exactly the situation here, and that is why the ratio does not translate into a clinical ranking.',
+        evidenceSource:
+          'ASMANEX (mometasone furoate) United States prescribing information, Clinical Pharmacology 12.1',
+        inferredClaim:
+          'That a 12-fold in-vitro receptor affinity over dexamethasone makes mometasone a proportionally more effective or more dangerous steroid in patients — a translation the label explicitly declines to make',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'mom-a4',
+        category: 'measured',
+        title: 'SPIRO: 11,729 patients, no excess of serious asthma events, 11% fewer exacerbations',
+        laymanSummary:
+          'One of the four safety trials the FDA demanded after the long-acting beta-agonist deaths. Adding formoterol to mometasone in nearly twelve thousand people produced 45 serious asthma events against 36 — all hospitalisations, none fatal — and about a tenth fewer exacerbations.',
+        technicalDetails:
+          'SPIRO was a 26-week randomised, double-blind trial in adolescents and adults aged 12 and over with persistent asthma across 35 countries, with the primary objective of determining whether mometasone furoate-formoterol increases the risk of serious asthma outcomes — adjudicated hospitalisation, intubation or death — compared with mometasone furoate alone. Among 11,729 patients (5,868 on combination, 5,861 on mometasone alone) there were 81 serious asthma outcomes in 71 patients, every one an asthma-related hospitalisation: 45 events in 39 patients on combination against 36 events in 32 patients on mometasone alone. The hazard ratio for the first serious asthma outcome was 1.22 (95% CI 0.76 to 1.94, P=0.411). Asthma exacerbation occurred in 1,487 patients, 708 against 779, hazard ratio 0.89 (95% CI 0.80 to 0.98, P=0.021).',
+        evidenceSource:
+          'Weinstein CLJ, Ryan N, Shekar T, et al. J Allergy Clin Immunol 2019;143:1395-1402 (SPIRO, NCT01471340)',
+        doi: '10.1016/j.jaci.2018.10.065',
+        measuredMetric:
+          'Time to first adjudicated serious asthma outcome and to first asthma exacerbation over 26 weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mom-a5',
+        category: 'conclusion_shift',
+        title: 'The regulator acted on this trial more than a year before it was published',
+        laymanSummary:
+          'The boxed warning came off the combination inhalers in December 2017. The combined analysis of the four trials appeared in June 2018, and this particular trial appeared in a journal in 2019. The decision and the published evidence for it did not arrive in that order.',
+        technicalDetails:
+          'SPIRO was one of the four FDA-mandated long-acting beta-agonist safety trials. The FDA removed the boxed warning from inhaled corticosteroid and long-acting beta-agonist combination products in December 2017. The joint oversight committee’s combined analysis of all four trials in 36,010 patients was published in the New England Journal of Medicine on 28 June 2018, and SPIRO itself was published in the Journal of Allergy and Clinical Immunology in its 2019;143:1395-1402 issue. Regulators see trial data before journals do, and that is normal and correct. It is worth stating plainly because a reader tracing the evidence for the withdrawal through the published literature will find the papers dated after the decision, and may reasonably wonder which came first.',
+        evidenceSource:
+          'Weinstein CLJ et al., J Allergy Clin Immunol 2019;143:1395-1402; Busse WW, Bateman ED, Caplan AL, et al. N Engl J Med 2018;378:2497-2505',
+        doi: '10.1056/NEJMoa1716868',
+        inferredClaim:
+          'That the published literature is the record on which the 2017 boxed-warning withdrawal was based — the constituent trials were published in 2018 and 2019, after the decision',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'mom-a6',
+        category: 'failed',
+        title: 'A negative nasal growth trial does not clear the inhaler',
+        laymanSummary:
+          'The reassuring growth result was for the nasal spray at 100 micrograms once a day. The asthma inhaler delivers more drug into a larger absorbing surface, and its label still carries warnings for growth effects in children, adrenal suppression, glaucoma and cataracts.',
+        technicalDetails:
+          'The ASMANEX inhaled label lists, under Adverse Reactions, systemic and local corticosteroid effects including Candida albicans infection, immunosuppression, hypercorticism and adrenal suppression, growth effects in paediatric patients, and glaucoma and cataracts, each cross-referenced to its own Warnings and Precautions entry. Hypercorticism and adrenal suppression are stated to occur with very high dosages or at regular dosage in susceptible individuals, with instructions to discontinue slowly if they do. Strong CYP3A4 inhibitors such as ritonavir raise systemic corticosteroid effects. The nasal growth trial randomised 98 children to 100 micrograms once daily intranasally; extrapolating it to a twice-daily inhaled product with a different deposition site and a different absorbed fraction is a route change, not a dose comparison, and the label does not make that extrapolation.',
+        evidenceSource:
+          'ASMANEX (mometasone furoate) United States prescribing information, Warnings and Precautions 5.1 to 5.11 and Adverse Reactions 6; Schenkel EJ et al., Pediatrics 2000;105:E22',
+        doi: '10.1542/peds.105.2.e22',
+        measuredMetric:
+          'Labelled systemic corticosteroid warnings for the inhaled product against the route and dose studied in the negative growth trial',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Delivered to one surface and meant to stay there',
+        laymanDesc:
+          'Four products, four surfaces: a dry powder or aerosol into the lung, a spray into the nose, a cream onto skin, an implant into a sinus. The design goal in every case is to treat that surface and go no further.',
+        molecularDetail:
+          'Mometasone furoate as inhalation powder in the Twisthaler, as a pressurised HFA aerosol, as an aqueous nasal suspension of the monohydrate, as topical cream, ointment and lotion, and as a bioabsorbable steroid-eluting sinus implant. Each has a different deposited dose and a different absorbing surface, and the safety data from one do not transfer to another.',
+        iconName: 'Wind',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The furoate ester makes it lipophilic and short-lived in blood',
+        laymanDesc:
+          'A bulky chemical group attached to the steroid makes it stick in tissue and makes the liver destroy it quickly if it reaches the bloodstream. That combination is the whole design.',
+        molecularDetail:
+          'The 17-furoate ester raises lipophilicity and receptor affinity and is a substrate for rapid hepatic metabolism. Systemic bioavailability of the intranasal product is negligible, which is what the one-year paediatric growth and cosyntropin data demonstrate rather than assert.',
+        iconName: 'Lock',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It binds the glucocorticoid receptor very tightly',
+        laymanDesc:
+          'Inside the cell it binds a receptor that normally sits waiting in the cytoplasm. It binds it more tightly than most other steroids — although the label declines to say what that means for a patient.',
+        molecularDetail:
+          'In-vitro binding affinity for the human glucocorticoid receptor of approximately 12 times dexamethasone, 7 times triamcinolone acetonide, 5 times budesonide and 1.5 times fluticasone, with clinical significance stated as unknown.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The receptor carries it into the nucleus and rewrites transcription',
+        laymanDesc:
+          'The pair moves into the nucleus and switches inflammatory genes off. That is why a steroid takes days to work and why it is useless during an attack.',
+        molecularDetail:
+          'Activated receptor dimers bind glucocorticoid response elements to transactivate anti-inflammatory genes and, more importantly here, tether to and repress pro-inflammatory transcription factors. The label states that the precise mechanism of corticosteroid action on asthma is not known and describes inhibitory effects across mast cells, eosinophils, neutrophils, macrophages and lymphocytes.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Inflammation subsides over days',
+        laymanDesc:
+          'The airway lining or the nasal lining becomes less swollen, less twitchy and produces less mucus. Adding a long-acting beta-agonist to it cut exacerbations by about a tenth in nearly twelve thousand people.',
+        molecularDetail:
+          'In SPIRO, asthma exacerbation occurred in 708 of 5,868 on mometasone-formoterol against 779 of 5,861 on mometasone alone, hazard ratio 0.89 (95% CI 0.80 to 0.98, P=0.021), with a serious-asthma-outcome hazard ratio of 1.22 (95% CI 0.76 to 1.94, P=0.411).',
+        iconName: 'Activity',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What escapes is small but not zero',
+        laymanDesc:
+          'A year of the nasal spray did not slow children’s growth. The inhaler is a different exposure, and its label still warns about growth, adrenal suppression, glaucoma and cataracts.',
+        molecularDetail:
+          'The intranasal growth study found 6.95 cm against 6.35 cm at one year with no cosyntropin-detectable adrenal suppression. The inhaled label lists growth effects in paediatric patients, hypercorticism and adrenal suppression, and glaucoma and cataracts as Warnings and Precautions, and flags strong CYP3A4 inhibitors as raising systemic corticosteroid effects.',
+        iconName: 'AlertTriangle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SPIRO (NCT01471340)',
+        phase: 'Phase 4, randomised, double-blind, FDA-mandated safety trial, 26 weeks',
+        sampleSize: 11729,
+        primaryEndpoint:
+          'Risk of adjudicated serious asthma outcome — hospitalisation, intubation or death — with mometasone furoate-formoterol against mometasone furoate alone',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 1.22 (95% CI 0.76 to 1.94, P=0.411) for first serious asthma outcome; 45 events in 39 patients against 36 events in 32 patients, all hospitalisations',
+        unreportedAdverseSignals:
+          'The point estimate is above 1 and the trial is a noninferiority design, so the finding is the absence of a demonstrated excess rather than a demonstrated equivalence. Every serious asthma outcome in the trial was a hospitalisation; there were no intubations and no deaths.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Schenkel 2000 — one-year intranasal growth study in children',
+        phase: 'Randomised, double-blind, placebo-controlled, multicentre, 52 weeks',
+        sampleSize: 98,
+        primaryEndpoint:
+          'Change in standing height over one year in prepubertal children aged 3 to 9 with perennial allergic rhinitis',
+        endpointMet: true,
+        statisticalPValue:
+          'No growth suppression: 6.95 cm against 6.35 cm at one year, growth rate 0.018 cm per day in both groups; no HPA-axis suppression on cosyntropin testing at 26 or 52 weeks',
+        unreportedAdverseSignals:
+          '82 of 98 completed. A negative safety finding in 82 children is only interpretable alongside the matched study of another intranasal steroid, which detected a 0.9 cm difference at a similar size.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Skoner 2000 — the matched intranasal beclometasone growth study',
+        phase: 'Randomised, double-blind, parallel-group, placebo-controlled, 52 weeks',
+        sampleSize: 100,
+        primaryEndpoint:
+          'Rate of change in standing height over one year in prepubertal children aged 6 to 9 with perennial allergic rhinitis',
+        endpointMet: true,
+        statisticalPValue:
+          'Growth rate significantly slower on beclometasone in both intention-to-treat and completer analyses; mean change in standing height 5.0 cm against 5.9 cm at one year',
+        unreportedAdverseSignals:
+          'There was a statistically significant baseline imbalance in standing height, handled by analysis of covariance and a z-score normalisation. No hypothalamic-pituitary-adrenal axis difference was detected, so a normal cortisol test does not exclude a growth effect.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'No growth suppression over one year in 98 randomised children on intranasal mometasone: 6.95 cm against 6.35 cm',
+        'No cosyntropin-detectable adrenal suppression at 26 or 52 weeks in the same trial',
+        'A hazard ratio of 1.22 (95% CI 0.76 to 1.94) for serious asthma outcomes and 0.89 (0.80 to 0.98) for exacerbations in 11,729 patients',
+        'In-vitro glucocorticoid receptor affinity of approximately 12 times dexamethasone and 1.5 times fluticasone',
+        'A 0.9 cm one-year growth difference detected by a matched-design study of a different intranasal steroid',
+      ],
+      unsupportedInferences: [
+        'That the 12-fold receptor affinity over dexamethasone translates into proportionally greater clinical potency — the label states the significance is unknown',
+        'That the negative intranasal growth trial clears the inhaled product, which has a different route, dose and absorbing surface',
+        'That a normal cortisol stimulation test excludes a systemic steroid effect, when the beclometasone study found growth suppression with no HPA-axis difference',
+        'That the published SPIRO paper is the evidence the 2017 boxed-warning withdrawal rested on, when it appeared in 2019',
+      ],
+      whatFailedInitially: [
+        'The serious-asthma-outcome point estimate in SPIRO was 1.22, above unity, in a design that can only show absence of a demonstrated excess',
+        'The inhaled label still carries growth effects, adrenal suppression, glaucoma and cataracts as specific warnings',
+        'Strong CYP3A4 inhibitors defeat the low-systemic-exposure design that the whole safety argument rests on',
+        'Hypothalamic-pituitary-adrenal axis testing failed to detect the growth effect that the matched beclometasone study measured directly',
+      ],
+      realWorldOutcome: [
+        'One molecule across an inhaler, a nasal spray, a skin cream and a bioabsorbable sinus implant, with four different exposure profiles',
+        'The nasal and topical forms are generic across 28 listed presentations; the inhaled and implanted forms are not',
+        'One of the four FDA-mandated long-acting beta-agonist safety trials was run on its combination product',
+        'The paired 2000 growth studies remain the cleanest demonstration in this field that intranasal steroids are not interchangeable',
+      ],
+    },
+    deliverySystem: {
+      type: 'Inhalation powder (Twisthaler) and pressurised HFA aerosol, aqueous nasal spray, topical cream, ointment and lotion, and a bioabsorbable sinus implant',
+      description:
+        'The inhaled products are maintenance treatment only and are explicitly not for relief of acute bronchospasm. The nasal spray is used once daily. The four routes are separate products with separate evidence, and the most common error made about this drug is treating a safety finding from one route as though it applied to another.',
+      safetyProfile:
+        'Not for relief of acute symptoms; rapidly deteriorating asthma requires immediate re-evaluation. Candida albicans infection of the mouth and throat may occur, with periodic monitoring advised and rinsing and spitting after each dose. Immunosuppression with potential worsening of tuberculosis and of fungal, bacterial, viral, parasitic and ocular herpes simplex infection, and a more serious or fatal course of chickenpox or measles in susceptible patients. Risk of impaired adrenal function when transferring from systemic corticosteroids, requiring slow weaning. Hypercorticism and adrenal suppression at very high dosages or at regular dosage in susceptible individuals. Strong CYP3A4 inhibitors such as ritonavir increase systemic corticosteroid effects. Paradoxical bronchospasm requires discontinuation. Growth effects in paediatric patients, and glaucoma and cataracts, are separately labelled. The most common adverse reactions at 3% or more were nasopharyngitis, headache, sinusitis, bronchitis and influenza.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will a steroid nasal spray stunt my child’s growth?',
+        a: 'For mometasone specifically, a one-year randomised trial says no, and the reason that answer is trustworthy is what was published beside it. Ninety-eight children aged 3 to 9 were randomised to mometasone nasal spray or placebo for a year with height measured seven times on a calibrated stadiometer; they grew 6.95 cm against 6.35 cm, and adrenal function testing was normal throughout. In the same issue of the same journal, an almost identically designed study of intranasal beclometasone in 100 children found 5.0 cm against 5.9 cm. A negative result is only as good as the design’s ability to find a positive one, and that design found 0.9 cm.',
+        auditNote:
+          'This does not transfer to the asthma inhaler, which delivers more drug to a larger absorbing surface and still carries a paediatric growth warning on its label.',
+      },
+      {
+        q: 'Is mometasone the strongest inhaled steroid?',
+        a: 'It binds the receptor most tightly of the ones its label compares it against — about 12 times dexamethasone, 7 times triamcinolone, 5 times budesonide and 1.5 times fluticasone. The next sentence of that label says the clinical significance of these findings is unknown, and that sentence is doing real work. Receptor affinity determines potency at the surface where the drug lands. It says nothing about how much lands there, how much crosses into the blood, or how fast the liver removes what does — and those are the things that decide both how well a steroid works and how much harm it does.',
+      },
+      {
+        q: 'Why is the same drug sold as an inhaler, a spray, a cream and an implant?',
+        a: 'Because the molecule suits being kept where it is put: a bulky furoate ester makes it lipophilic enough to stay in tissue, and it is destroyed quickly by the liver if it gets into the bloodstream. That profile is useful anywhere you want a strong local steroid effect without a systemic one — airway, nose, skin, sinus. The important consequence is that these are four different products with four different absorbed doses. Evidence about one of them is not evidence about the others, and this page keeps them apart.',
+      },
+      {
+        q: 'Is adding formoterol to it safe?',
+        a: 'On the largest evidence available, yes, with a caveat about what the trial could show. SPIRO randomised 11,729 people to mometasone with formoterol or mometasone alone for 26 weeks. Serious asthma outcomes — all of them hospitalisations, with no intubations and no deaths — were 45 events in 39 patients against 36 in 32, hazard ratio 1.22 with a confidence interval of 0.76 to 1.94. Exacerbations were 11% less likely on the combination, hazard ratio 0.89 (0.80 to 0.98, p=0.021). A confidence interval that spans 1 with a point estimate above it demonstrates the absence of a proven excess, which is not the same as proving there is none. That is what a noninferiority trial is designed to deliver.',
+      },
+      {
+        q: 'Does a normal cortisol test mean the steroid is not affecting me?',
+        a: 'Not reliably, and the paired 2000 studies are the reason to say so. In the beclometasone trial, children grew measurably more slowly on the drug — 5.0 cm against 5.9 cm over a year — and there was no significant between-group difference in the hypothalamic-pituitary-adrenal axis assessments. Growth velocity turned out to be the more sensitive measure. If a child is on an inhaled or intranasal steroid, having their height recorded properly at each review is worth more than a cortisol test.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Schenkel EJ, Skoner DP, Bronsky EA, et al. Absence of growth retardation in children with perennial allergic rhinitis after one year of treatment with mometasone furoate aqueous nasal spray. Pediatrics 2000;105:E22',
+        identifier: '10.1542/peds.105.2.e22',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Skoner DP, Rachelefsky GS, Meltzer EO, et al. Detection of growth suppression in children during treatment with intranasal beclomethasone dipropionate. Pediatrics 2000;105:E23',
+        identifier: '10.1542/peds.105.2.e23',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Weinstein CLJ, Ryan N, Shekar T, et al. Serious asthma events with mometasone furoate plus formoterol compared with mometasone furoate. J Allergy Clin Immunol 2019;143:1395-1402',
+        identifier: '10.1016/j.jaci.2018.10.065',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Busse WW, Bateman ED, Caplan AL, et al. Combined Analysis of Asthma Safety Trials of Long-Acting beta2-Agonists. N Engl J Med 2018;378:2497-2505',
+        identifier: '10.1056/NEJMoa1716868',
+        kind: 'doi',
+      },
+      {
+        label: 'SPIRO — the FDA-mandated mometasone furoate-formoterol safety trial',
+        identifier: 'NCT01471340',
+        kind: 'nct',
+      },
+      {
+        label:
+          'ASMANEX (mometasone furoate) United States prescribing information — Indications and Limitations of Use, Warnings and Precautions 5.1 to 5.11, Adverse Reactions 6.1, Clinical Pharmacology 12.1',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22ASMANEX%22',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 441335 — mometasone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/441335',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
 ]
