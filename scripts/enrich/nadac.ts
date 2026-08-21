@@ -47,7 +47,9 @@ const cachePath = join(DATA_DIR, 'nadac-prices.json')
  * Downloads the whole year's price file once and caches it. It is ~250,000 rows; paging it on every
  * enrichment run would take twenty minutes to learn something that changes weekly.
  */
-export async function loadNadac(options: { force?: boolean } = {}): Promise<Map<string, NadacPrice>> {
+export async function loadNadac(
+  options: { force?: boolean } = {},
+): Promise<Map<string, NadacPrice>> {
   if (!options.force && existsSync(cachePath)) {
     const cached = JSON.parse(readFileSync(cachePath, 'utf8')) as NadacPrice[]
     console.log(`[nadac] ${cached.length.toLocaleString()} prices from cache`)
@@ -122,7 +124,8 @@ export function formatNadacPrice(price: NadacPrice): string {
  */
 export function nadacNote(price: NadacPrice, ndcCount: number): string {
   const kind = price.classification === 'B' ? 'brand' : 'generic'
-  const basis = ndcCount > 1 ? `median across ${ndcCount} listed products` : 'the one listed product'
+  const basis =
+    ndcCount > 1 ? `median across ${ndcCount} listed products` : 'the one listed product'
   return (
     `What pharmacies pay to buy this drug, ${basis}, from the ${SOURCE_LABELS.nadac} survey ` +
     `effective ${price.effectiveDate} (${kind}). It is not what a patient is charged: US list ` +

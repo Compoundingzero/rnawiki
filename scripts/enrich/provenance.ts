@@ -52,7 +52,11 @@ export function trimToSentence(text: string, max: number): string {
   const clean = text.replace(/\s+/g, ' ').trim()
   if (clean.length <= max) return clean
   const window = clean.slice(0, max)
-  const stop = Math.max(window.lastIndexOf('. '), window.lastIndexOf('? '), window.lastIndexOf('! '))
+  const stop = Math.max(
+    window.lastIndexOf('. '),
+    window.lastIndexOf('? '),
+    window.lastIndexOf('! '),
+  )
   if (stop > max * 0.45) return window.slice(0, stop + 1).trim()
   const space = window.lastIndexOf(' ')
   return `${(space > 0 ? window.slice(0, space) : window).trim()}…`

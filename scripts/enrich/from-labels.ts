@@ -80,20 +80,105 @@ const TARGET_PATTERNS: ReadonlyArray<RegExp> = [
  * pharmacological adjectives, and the handful of capitalised words that survive the shape test.
  */
 const TARGET_STOPWORDS = new Set([
-  'FDA', 'USP', 'NDA', 'ANDA', 'BLA', 'USA', 'AUC', 'CMAX', 'TMAX', 'THE', 'AND', 'FOR', 'NOT',
-  'ITS', 'ONE', 'TWO', 'HAS', 'WAS', 'ARE', 'MAY', 'CAN', 'ALL', 'THIS', 'THAT', 'THESE', 'BOTH',
-  'HUMAN', 'ADULT', 'ORAL', 'EACH', 'MOST', 'SUCH', 'WHEN', 'WITH', 'FROM', 'INTO', 'ONLY',
-  'SAME', 'OTHER', 'ABOVE', 'BELOW', 'THAN', 'THEN', 'THEIR', 'THERE', 'WHICH', 'WHILE',
+  'FDA',
+  'USP',
+  'NDA',
+  'ANDA',
+  'BLA',
+  'USA',
+  'AUC',
+  'CMAX',
+  'TMAX',
+  'THE',
+  'AND',
+  'FOR',
+  'NOT',
+  'ITS',
+  'ONE',
+  'TWO',
+  'HAS',
+  'WAS',
+  'ARE',
+  'MAY',
+  'CAN',
+  'ALL',
+  'THIS',
+  'THAT',
+  'THESE',
+  'BOTH',
+  'HUMAN',
+  'ADULT',
+  'ORAL',
+  'EACH',
+  'MOST',
+  'SUCH',
+  'WHEN',
+  'WITH',
+  'FROM',
+  'INTO',
+  'ONLY',
+  'SAME',
+  'OTHER',
+  'ABOVE',
+  'BELOW',
+  'THAN',
+  'THEN',
+  'THEIR',
+  'THERE',
+  'WHICH',
+  'WHILE',
   // Classes rather than targets.
-  'CORTICOSTEROID', 'ANTIBIOTIC', 'ANTIHISTAMINE', 'ANALGESIC', 'DIURETIC', 'STEROID',
-  'AGONIST', 'ANTAGONIST', 'INHIBITOR', 'BLOCKER', 'HORMONE', 'VITAMIN', 'PROTEIN', 'ENZYME',
-  'DRUG', 'AGENT', 'ACID', 'SALT', 'ESTER', 'ANALOGUE', 'ANALOG', 'DERIVATIVE',
+  'CORTICOSTEROID',
+  'ANTIBIOTIC',
+  'ANTIHISTAMINE',
+  'ANALGESIC',
+  'DIURETIC',
+  'STEROID',
+  'AGONIST',
+  'ANTAGONIST',
+  'INHIBITOR',
+  'BLOCKER',
+  'HORMONE',
+  'VITAMIN',
+  'PROTEIN',
+  'ENZYME',
+  'DRUG',
+  'AGENT',
+  'ACID',
+  'SALT',
+  'ESTER',
+  'ANALOGUE',
+  'ANALOG',
+  'DERIVATIVE',
   // Sentence furniture that survives the shape test because labels capitalise it mid-paragraph.
-  'MOLECULAR', 'MECHANISM', 'STUDIES', 'STUDY', 'CLINICAL', 'ACTION', 'ACTIVITY', 'EFFECTS',
-  'PHARMACOLOGY', 'ABSORPTION', 'DISTRIBUTION', 'METABOLISM', 'EXCRETION', 'PATIENTS',
+  'MOLECULAR',
+  'MECHANISM',
+  'STUDIES',
+  'STUDY',
+  'CLINICAL',
+  'ACTION',
+  'ACTIVITY',
+  'EFFECTS',
+  'PHARMACOLOGY',
+  'ABSORPTION',
+  'DISTRIBUTION',
+  'METABOLISM',
+  'EXCRETION',
+  'PATIENTS',
   // Adjectives that land in the target slot when the label writes "binds to specific receptors".
-  'SPECIFIC', 'CERTAIN', 'VARIOUS', 'SEVERAL', 'MULTIPLE', 'CENTRAL', 'PERIPHERAL', 'NUCLEAR',
-  'CELLULAR', 'SURFACE', 'TARGET', 'RELEVANT', 'APPROPRIATE',
+  'SPECIFIC',
+  'CERTAIN',
+  'VARIOUS',
+  'SEVERAL',
+  'MULTIPLE',
+  'CENTRAL',
+  'PERIPHERAL',
+  'NUCLEAR',
+  'CELLULAR',
+  'SURFACE',
+  'TARGET',
+  'RELEVANT',
+  'APPROPRIATE',
 ])
 
 /**
@@ -105,7 +190,8 @@ const TARGET_STOPWORDS = new Set([
  * Anything negated in the run-up to the match is discarded rather than guessed at.
  */
 const NEGATION_WINDOW = 44
-const NEGATION = /\b(?:not|no|never|without|rather than|unlike|other than|neither|nor|does ?n[o']t|is ?n[o']t|lacks?|absence of|independent of|unrelated to)\b[^.]{0,20}$/i
+const NEGATION =
+  /\b(?:not|no|never|without|rather than|unlike|other than|neither|nor|does ?n[o']t|is ?n[o']t|lacks?|absence of|independent of|unrelated to)\b[^.]{0,20}$/i
 
 /** Labels write "5-HT 3" and "beta 2"; the symbol is written closed up everywhere else. */
 function tidyTarget(raw: string): string {
@@ -173,8 +259,14 @@ export function deliveryFromForms(
   const route = routes[0]
   if (!route && dosageForms.length === 0) return undefined
 
-  const forms = dosageForms.slice(0, 4).map((form) => form.toLowerCase()).join(', ')
-  const routeList = routes.slice(0, 3).map((r) => r.toLowerCase()).join(', ')
+  const forms = dosageForms
+    .slice(0, 4)
+    .map((form) => form.toLowerCase())
+    .join(', ')
+  const routeList = routes
+    .slice(0, 3)
+    .map((r) => r.toLowerCase())
+    .join(', ')
 
   return {
     type: route ? `${route.charAt(0)}${route.slice(1).toLowerCase()}` : 'Not recorded',
@@ -204,7 +296,8 @@ export function enrichFromLabel(
 
   // The manufacturer's own account of what the drug does, quoted and attributed. Not rewritten:
   // a smoother sentence would be this site's claim rather than the label's.
-  const mechanism = label.mechanism_of_action ?? label.clinical_pharmacology ?? label.pharmacodynamics
+  const mechanism =
+    label.mechanism_of_action ?? label.clinical_pharmacology ?? label.pharmacodynamics
   if (mechanism) {
     result.laymanHowItWorks = attributeToLabel(trimToSentence(mechanism, 700))
     sources.push(SOURCE_LABELS.fdaLabel)

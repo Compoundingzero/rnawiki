@@ -8,7 +8,9 @@ import { aggregateOpenFda } from '../ingest/openfda'
 import { enrichFromLabel } from './from-labels'
 import { formatNadacPrice, loadNadac, nadacNote, type NadacPrice } from './nadac'
 import { fetchTrials, flushTrialCache, trialCacheStats } from './trials'
-import { mergeProvenance, SOURCE_LABELS } from './provenance'
+import { mergeProvenance, SOURCE_LABELS, trimToSentence } from './provenance'
+import { botanicalCacheStats, flushBotanicalCache, lookupBotanical } from './botanicals'
+import { botanicalContext } from './botanical-context'
 
 /**
  * Fills every field on every record that has a real public source behind it.
@@ -28,6 +30,7 @@ interface Options {
   dryRun: boolean
   limit: number | null
   skipTrials: boolean
+  skipBotanicals: boolean
   only: string | null
 }
 
@@ -37,6 +40,7 @@ function parseArgs(argv: readonly string[]): Options {
   return {
     dryRun: argv.includes('--dry-run'),
     skipTrials: argv.includes('--skip-trials'),
+    skipBotanicals: argv.includes('--skip-botanicals'),
     limit: limitIndex >= 0 ? Number.parseInt(argv[limitIndex + 1] ?? '0', 10) || null : null,
     only: onlyIndex >= 0 ? (argv[onlyIndex + 1] ?? null) : null,
   }
@@ -108,6 +112,7 @@ async function main(): Promise<void> {
       id: drugs.id,
       slug: drugs.slug,
       name: drugs.name,
+      indication: drugs.indication,
       modality: drugs.modality,
       depth: drugs.dossierDepth,
       targetGene: drugs.targetGene,
@@ -146,6 +151,7 @@ async function main(): Promise<void> {
     context: 0,
     target: 0,
     delivery: 0,
+    botanical: 0,
     price: 0,
     trials: 0,
     verified: 0,
@@ -184,6 +190,29 @@ async function main(): Promise<void> {
         counts.delivery += 1
       }
       provenance = mergeProvenance(provenance, fromLabel.sources)
+    }
+
+    // --- Plants and homeopathic listings -----------------------------------
+    //
+    // Everything above comes back empty for these: no application, no mechanism section, no price
+    // survey. What does exist is which species it is and what the literature actually contains,
+    // and for a reader deciding whether to believe a supplement label those are the two facts that
+    // matter most.
+    if (!options.skipBotanicals && row.modality === 'Nutraceutical / Botanical') {
+      const facts = await lookupBotanical(row.name)
+      // The label purpose keeps its place under "who takes this", where it reads as the claim it
+      // is. It does NOT stay in the explainer: on a homeopathic listing that slot was carrying
+      // "may help temporarily relieve allergy symptoms", which on a reference page reads as the
+      // site saying so. What belongs there is which species this is and what the literature
+      // actually contains.
+      const existing = row.conditionContext as { whoTakesThis?: string } | null
+      const purpose = trimToSentence(existing?.whoTakesThis || row.indication || '', 300)
+      const context = botanicalContext(facts, row.name, purpose)
+      if (context) {
+        patch.conditionContext = context.conditionContext
+        provenance = mergeProvenance(provenance, context.sources)
+        counts.botanical += 1
+      }
     }
 
     // --- Price ------------------------------------------------------------
@@ -255,7 +284,10 @@ async function main(): Promise<void> {
     } else {
       // A record with a sourced mechanism and a real price is no longer a stub. It is not a
       // researched dossier either, and `curated` is the level that says so.
-      if (row.depth === 'stub' && (patch.laymanHowItWorks || patch.pricing || patch.trials)) {
+      if (
+        row.depth === 'stub' &&
+        (patch.laymanHowItWorks || patch.pricing || patch.trials || patch.conditionContext)
+      ) {
         patch.dossierDepth = 'curated'
         counts.promoted += 1
       }
@@ -269,6 +301,7 @@ async function main(): Promise<void> {
 
     if ((index + 1) % 250 === 0) {
       flushTrialCache()
+      flushBotanicalCache()
       console.log(
         `[enrich] ${index + 1}/${work.length} · mechanism ${counts.mechanism} · price ${counts.price} · trials ${counts.trials} · verified ${counts.verified}`,
       )
@@ -276,13 +309,16 @@ async function main(): Promise<void> {
   }
 
   flushTrialCache()
+  flushBotanicalCache()
   const trialStats = trialCacheStats()
+  const botanicalStats = botanicalCacheStats()
 
   console.log('\n[enrich] done')
   console.log(`   mechanism text added   ${counts.mechanism.toLocaleString()}`)
   console.log(`   condition context      ${counts.context.toLocaleString()}`)
   console.log(`   target identified      ${counts.target.toLocaleString()}`)
   console.log(`   how it is given        ${counts.delivery.toLocaleString()}`)
+  console.log(`   species + literature   ${counts.botanical.toLocaleString()}`)
   console.log(`   published price        ${counts.price.toLocaleString()}`)
   console.log(`   real trials attached   ${counts.trials.toLocaleString()}`)
   console.log(`   structures verified    ${counts.verified.toLocaleString()}`)
@@ -290,6 +326,9 @@ async function main(): Promise<void> {
   console.log(`   nothing to add         ${counts.untouched.toLocaleString()}`)
   console.log(
     `   trial lookups cached   ${trialStats.total.toLocaleString()} (${trialStats.withTrials.toLocaleString()} had trials)`,
+  )
+  console.log(
+    `   plants resolved        ${botanicalStats.resolved.toLocaleString()}/${botanicalStats.total.toLocaleString()} (${botanicalStats.withPapers.toLocaleString()} had papers)`,
   )
   process.exit(0)
 }
