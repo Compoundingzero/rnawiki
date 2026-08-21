@@ -250,8 +250,14 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
  * with identical titles: `vitamin-c` carrying six sources and a real indication, and `vitamin-c-2`
  * carrying one source and nothing at all, both called "Vitamin C".
  *
- * Rows with the same display name are now merged. Rows that merely slugify alike keep the suffix
- * and are reported, because those the pipeline genuinely cannot judge.
+ * Rows that produce the same slug are now merged, because a slug is the display name with
+ * separators and punctuation normalised away, and no two genuinely different substances have
+ * turned up sharing one. Merging on the display name alone still left three pairs differing by a
+ * hyphen — "Medium Chain Triglycerides" and "Medium-Chain Triglycerides" — which is the same
+ * failure the original comment mistook for two substances.
+ *
+ * A merge between two spellings is logged with both, since the surviving one becomes the page
+ * title.
  */
 
 /** The row that knows more, and how much more it knows. */
@@ -302,58 +308,44 @@ function cap(value: string, max: number): string {
 }
 
 export function assignUniqueSlugs(rows: DrugInsert[]): DrugInsert[] {
-  // Same display name, same substance. Done first, so the survivor takes the unsuffixed slug.
-  const byName = new Map<string, DrugInsert>()
+  const bySlug = new Map<string, DrugInsert>()
   const merged: string[] = []
+  const renamed: string[] = []
   const kept: DrugInsert[] = []
 
   for (const row of rows) {
-    const key = row.name.trim().toLowerCase()
-    const existing = byName.get(key)
+    const existing = bySlug.get(row.slug)
     if (!existing) {
-      byName.set(key, row)
+      bySlug.set(row.slug, row)
       kept.push(row)
       continue
     }
-    if (informationScore(row) > informationScore(existing)) {
-      // The newcomer knows more: it takes the survivor's place in the output, in position.
-      mergeDuplicate(row, existing)
+    const newcomerWins = informationScore(row) > informationScore(existing)
+    const winner = newcomerWins ? row : existing
+    const loser = newcomerWins ? existing : row
+    if (newcomerWins) {
       kept[kept.indexOf(existing)] = row
-      byName.set(key, row)
-    } else {
-      mergeDuplicate(existing, row)
+      bySlug.set(row.slug, row)
     }
-    merged.push(row.name)
+    mergeDuplicate(winner, loser)
+    merged.push(winner.name)
+    if (winner.name.trim().toLowerCase() !== loser.name.trim().toLowerCase()) {
+      renamed.push(`"${loser.name}" folded into "${winner.name}"`)
+    }
   }
 
   if (merged.length > 0) {
     console.log(
-      `[build] merged ${merged.length} records that shared a display name: ${merged.slice(0, 8).join(', ')}`,
+      `[build] merged ${merged.length} duplicate records: ${merged.slice(0, 8).join(', ')}`,
     )
   }
-
-  const taken = new Set<string>()
-  const collisions: string[] = []
-
-  for (const row of kept) {
-    let candidate = row.slug
-    let suffix = 2
-    while (taken.has(candidate)) {
-      const marker = `-${suffix}`
-      candidate = `${row.slug.slice(0, 92 - marker.length)}${marker}`
-      suffix += 1
-    }
-    if (candidate !== row.slug) collisions.push(`${row.name} (${row.slug} -> ${candidate})`)
-    taken.add(candidate)
-    row.slug = candidate
-    row.id = candidate
+  // Listed in full: the surviving spelling becomes the page title, and that is a choice worth
+  // being able to see rather than a detail buried in a count.
+  if (renamed.length > 0) {
+    console.log(`[build] ${renamed.length} of those merged two different spellings:`)
+    for (const line of renamed) console.log(`   ${line}`)
   }
 
-  // These are different names that slugify alike. Reported in full rather than sampled: each one
-  // is a judgement the pipeline could not make, and there should never be many.
-  if (collisions.length > 0) {
-    console.log(`[build] ${collisions.length} slugs collided between differently-named records:`)
-    for (const line of collisions) console.log(`   ${line}`)
-  }
+  for (const row of kept) row.id = row.slug
   return kept
 }

@@ -171,13 +171,31 @@ describe('assignUniqueSlugs', () => {
     expect(out[0]?.approvalStatus).toBe('FDA Approved')
   })
 
-  it('still suffixes records that slugify alike but are named differently', () => {
-    const a = row({ name: 'Vitamin B-12', slug: 'vitamin-b-12' })
-    const b = row({ name: 'Vitamin B 12', slug: 'vitamin-b-12' })
+  it('merges two spellings of one name, keeping the record that knows more', () => {
+    // The case the original comment called "two different substances". It is one substance, and
+    // suffixing it produced two pages titled Vitamin B12.
+    const spaced = row({ name: 'Vitamin B 12', slug: 'vitamin-b-12' })
+    const hyphenated = row({
+      name: 'Vitamin B-12',
+      slug: 'vitamin-b-12',
+      indication: 'B12 deficiency',
+      sourceProvenance: ['openFDA'],
+    })
+
+    const out = assignUniqueSlugs([spaced, hyphenated])
+
+    expect(out).toHaveLength(1)
+    expect(out[0]?.slug).toBe('vitamin-b-12')
+    expect(out[0]?.name).toBe('Vitamin B-12')
+  })
+
+  it('leaves genuinely distinct slugs alone', () => {
+    const a = row({ name: 'Creatine Monohydrate', slug: 'creatine-monohydrate' })
+    const b = row({ name: 'Creatine Gluconate', slug: 'creatine-gluconate' })
 
     const out = assignUniqueSlugs([a, b])
 
     expect(out).toHaveLength(2)
-    expect(out.map((r) => r.slug)).toEqual(['vitamin-b-12', 'vitamin-b-12-2'])
+    expect(out.map((r) => r.slug)).toEqual(['creatine-monohydrate', 'creatine-gluconate'])
   })
 })
