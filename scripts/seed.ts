@@ -282,6 +282,32 @@ async function main(): Promise<void> {
     console.log('[seed] those pages will render without the Machine-Verified Structure badge.')
   }
 
+  // A flagship row that no dossier writes any more is a page nothing can update: renaming a
+  // dossier's slug moves the content to a new record and leaves the old one behind, still marked
+  // as hand-researched, still served, and now frozen. Daclatasvir and Vitamin D3 each left one.
+  if (!only) {
+    const known = new Set(SEED_DOSSIERS.map((seed) => seed.slug))
+    const flagships = await db.execute(
+      sql`SELECT slug, name FROM drugs WHERE dossier_depth = 'flagship'`,
+    )
+    const orphans = (flagships.rows as Array<{ slug: string; name: string }>).filter(
+      (row) => !known.has(row.slug),
+    )
+    if (orphans.length > 0) {
+      const prune = process.argv.includes('--prune-orphan-flagships')
+      console.log(`\n[seed] ${orphans.length} flagship rows are no longer written by any dossier:`)
+      for (const orphan of orphans) console.log(`   ${orphan.slug} (${orphan.name})`)
+      if (prune) {
+        for (const orphan of orphans) {
+          await db.execute(sql`DELETE FROM drugs WHERE slug = ${orphan.slug}`)
+        }
+        console.log(`[seed] removed ${orphans.length}.`)
+      } else {
+        console.log('[seed] pass --prune-orphan-flagships to remove them.')
+      }
+    }
+  }
+
   const verified = outcomes.filter((outcome) => outcome.passed).length
   console.log(
     `\n[seed] done · ${seeds.length} dossiers · ${verified} machine-verified structures · ${failed.length} rejected`,

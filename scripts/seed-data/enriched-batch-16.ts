@@ -4344,4 +4344,482 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
       COST_OF_PRODUCTION_SOURCE,
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 10. Ergocalciferol (vitamin D2) — the fungal vitamin D, less than a third the potency of the
+  //     human one, and the form used in the two large fracture trials that both came back null.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'vitamin-d2',
+    name: 'Ergocalciferol',
+    tradeName: 'Drisdol / Deltalin / Vitamin D2',
+    sponsor:
+      'No single originator — first characterised in the 1930s and approved in the United States in 1941; made by many manufacturers, and the application holder on this record is Esjay Pharma',
+    targetGene: 'VDR — the vitamin D receptor gene, reached only after two activation steps',
+    targetProtein:
+      'Vitamin D receptor, acted on by the doubly hydroxylated metabolite rather than by the administered molecule',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1941,
+    indication:
+      'Treatment of hypoparathyroidism, refractory rickets — also known as vitamin D resistant rickets — and familial hypophosphataemia. It is also sold in lower strengths as a dietary supplement, which is a nutritional use and not an approved drug indication',
+    patientFriendlyIndication:
+      'Rare inherited or surgical disorders of calcium and phosphate, and, at lower strengths, correcting vitamin D deficiency',
+    anatomicalSite:
+      'Fat stores and circulation as the inactive precursor; the liver and kidney where it is activated; the nucleus of intestinal cells where the activated form acts',
+    conditionContext: {
+      conditionExplainer:
+        'There are two forms of vitamin D. D3, cholecalciferol, is what human skin makes from sunlight and what animal foods contain. D2, ergocalciferol, is what fungi and yeast make when ultraviolet light hits ergosterol. They differ by one double bond and one methyl group in the side chain, and for decades that was assumed not to matter.',
+      whyItMatters:
+        'It matters. Head-to-head measurement puts D2 at less than a third the potency of D3 for raising the storage form in blood, and the two large randomised fracture trials that used ergocalciferol specifically both returned null — one of them with hip fractures significantly more common on treatment.',
+      whoTakesThis:
+        'People with hypoparathyroidism, resistant rickets or familial hypophosphataemia at prescription strength; and, in much lower doses, anyone whose vitamin D is being replaced with a plant-derived or vegan-suitable product.',
+      clinicalGoals:
+        'Raise the storage form 25-hydroxyvitamin D and correct the calcium or phosphate abnormality. Whether raising that number prevents fractures is the question the ergocalciferol trials answered badly.',
+    },
+    oneSentenceVerdict:
+      'The fungal form of vitamin D, whose relative potency against the human form was measured at 9.5 to 1 in favour of D3 by area under the 25-hydroxyvitamin D curve, and which in the two largest randomised trials to use it specifically — 9440 people given 300,000 IU intramuscularly each autumn and 3440 care-home residents given 100,000 IU orally every four months — reduced no fractures at all, with hip fracture significantly more common in the injected group at a hazard ratio of 1.49 (95% CI 1.02 to 2.18).',
+    laymanHowItWorks:
+      'This molecule does nothing by itself. The liver adds one chemical group to it and the kidney adds a second, and only then does it act, by switching on the genes that pull calcium out of food. The fungal version goes through the same two steps as the human version, but the carrier protein in blood holds onto its half-finished form less tightly, so it disappears faster and less of it is left to be activated.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 55,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'Not stated: no verified CMS National Average Drug Acquisition Cost entry for ergocalciferol was held on this record at the time of writing',
+      markupEstimate: '',
+      openPatentNotes:
+        'Characterised in the 1930s and approved in the United States in 1941. There is no patent and no originator to speak of; it is made by irradiating ergosterol from yeast, which is why it is the vitamin D used in vegan and plant-based fortified products. No acquisition price is stated here because none was held on this record, and an estimate would be an invented number.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — checked for this molecule and found to carry no verified entry on this record at the time of writing, which is why no price is stated',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'The direct alternative is cholecalciferol, the D3 form, which is more potent per unit and longer acting and is what almost all the positive vitamin D research used. Ergocalciferol’s remaining advantages are that it is plant-derived, and that it is the form available at the very high 50,000 IU prescription strength in the United States. In kidney failure neither form substitutes for calcitriol, because the activation step the kidney performs is the one that is missing.',
+      conventionalRx: [
+        {
+          name: 'Cholecalciferol (vitamin D3)',
+          class: 'The animal and skin-synthesised form of vitamin D',
+          howItCompares:
+            'More effective at raising serum 25-hydroxyvitamin D. In a direct comparison of single 50,000 IU doses in 20 men, area under the 25-hydroxyvitamin D curve to day 28 was 204.7 for D3 against 60.2 for D2, and the calculated relative potency was 9.5 to 1. A meta-analysis of randomised head-to-head trials found the same direction, significant for bolus dosing and lost with daily dosing.',
+          typicalCost:
+            'Not stated: no verified CMS acquisition price for a comparable cholecalciferol product was held on this record at the time of writing',
+          prosAndCons:
+            'Pros: higher and longer-lasting rise in the storage form; the form used in most of the vitamin D literature. Cons: derived from lanolin, so not suitable for people avoiding animal products; giving it as an infrequent very large dose has caused harm.',
+        },
+        {
+          name: 'Calcitriol',
+          class: 'The fully activated hormone',
+          howItCompares:
+            'Bypasses both activation steps and is the only option when the kidney cannot perform the second one. It is not a substitute for ordinary deficiency, because it also bypasses the regulation that makes native vitamin D self-limiting.',
+          typicalCost:
+            'US$0.1607 per unit at United States pharmacy acquisition cost (CMS NADAC, median across 23 listed generic products, survey effective 17 June 2026)',
+          prosAndCons:
+            'Pros: works where the kidney cannot. Cons: hypercalcaemia is its characteristic hazard, and across 76 randomised trials its class showed no patient-level benefit.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Ultraviolet-exposed mushrooms',
+          activeCompound: 'Ergocalciferol formed from ergosterol',
+          biologicalMechanism:
+            'Fungal ergosterol converts to ergocalciferol under ultraviolet light by exactly the same photochemistry used to manufacture the drug. Mushrooms grown in the dark contain almost none; the same mushrooms exposed to ultraviolet contain a great deal.',
+          evidenceStrength: 'Supportive',
+          dailyUsage:
+            'Not stated: this page carries no intake guidance. The mechanistic point is that this is the only meaningful dietary source of D2 and it is the same molecule as the drug.',
+          monthlyCost: 'Ordinary grocery cost; not separately priced',
+        },
+        {
+          name: 'Sunlight on skin',
+          activeCompound: 'Cholecalciferol from 7-dehydrocholesterol',
+          biologicalMechanism:
+            'Ultraviolet B converts a cholesterol precursor in skin to the D3 form — the other of the two vitamins D, and the more potent one. Skin does not make D2 at all.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated: this page carries no exposure guidance. Cutaneous synthesis is self-limiting because excess previtamin D photoisomerises to inert products, which is why sun exposure does not cause vitamin D toxicity and supplements can.',
+          monthlyCost: 'None',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Ask which vitamin D you have been given',
+          action:
+            'Look for "ergocalciferol" or "D2" against "cholecalciferol" or "D3" on the label.',
+          patientImpact:
+            'A 50,000 IU capsule of D2 and a 50,000 IU capsule of D3 do not produce the same rise in the blood level being monitored, and the difference is large enough to change what a follow-up test shows.',
+          clinicalPrecaution:
+            'Which form is appropriate is a prescriber’s decision. Knowing which one is in the bottle is what makes the blood result interpretable.',
+        },
+        {
+          name: 'Be wary of very large, infrequent doses',
+          action: 'Ask why an annual or four-monthly mega-dose is being used rather than a smaller regular one.',
+          patientImpact:
+            'The two large ergocalciferol trials that used four-monthly and annual mega-doses found no fracture benefit, and an annual 500,000 IU trial of the D3 form found significantly more falls and fractures.',
+          clinicalPrecaution:
+            'Infrequent very high dosing was adopted to solve an adherence problem, not because it was shown to work better. This page carries no dosing guidance; the point is that the schedule is itself a hypothesis that has been tested and failed.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C[C@H](/C=C/[C@H](C)C(C)C)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](CCC3=C)O)C',
+      chemicalFormula: 'C28H44O',
+      molecularWeight: '396.60 g/mol',
+      targetReceptorAffinity:
+        'None as administered — the molecule is a precursor and binds no receptor until it has been 25-hydroxylated in the liver and 1-alpha-hydroxylated in the kidney. It differs from cholecalciferol by a C22-C23 double bond and a C24 methyl group in the side chain, and that difference is enough to lower the affinity of its 25-hydroxy metabolite for vitamin D binding protein, shortening its circulating life. Measured directly against cholecalciferol after single 50,000 IU doses, absorption was equivalent but area under the 25-hydroxyvitamin D curve to day 28 was 60.2 ng·d/mL for D2 against 204.7 for D3, with a calculated relative potency of 9.5 to 1.',
+      structureSource: {
+        label:
+          'PubChem CID 5280793 (ergocalciferol) — canonical SMILES, molecular formula and weight, as held on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5280793',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'erg-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Ergosterol source identity and purity',
+          description:
+            'Confirm the starting sterol before irradiation. Ergosterol from yeast carries other sterols that photoisomerise to their own calciferols, so an impure feedstock does not give an impure product — it gives a mixture of different vitamins D that a total-calciferol assay will not distinguish.',
+          reagentsAndBuffer:
+            'Ergosterol reference standard, reversed-phase HPLC with UV detection at 282 nm, gas chromatography-mass spectrometry for related sterols, amber glassware throughout',
+        },
+        {
+          id: 'erg-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ultraviolet ring opening of ergosterol to previtamin D2',
+          description:
+            'Irradiate ergosterol to break the steroid B ring open, then allow thermal isomerisation to ergocalciferol. Over-irradiation is the characteristic failure: previtamin D photoisomerises onward to tachysterol and lumisterol, which are inert and are the same protective mechanism that stops sun exposure causing vitamin D toxicity in skin.',
+          dependsOnStepId: 'erg-w1',
+          reagentsAndBuffer:
+            'Ergosterol in degassed solvent, medium-pressure mercury lamp with wavelength filtering near 295 nm, inert atmosphere, controlled irradiation time with in-process HPLC monitoring, thermal isomerisation step',
+        },
+        {
+          id: 'erg-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Separation from tachysterol and lumisterol, then oil formulation',
+          description:
+            'Remove the photoisomers and crystallise or formulate into oil. The product is light- and oxygen-sensitive and the therapeutic dose is a fraction of a milligram, so packaging and antioxidant choice do as much work as the chemistry.',
+          dependsOnStepId: 'erg-w2',
+          reagentsAndBuffer:
+            'Preparative chromatography or crystallisation from methyl formate, butylated hydroxyanisole or tocopherol antioxidant in a vegetable oil vehicle, amber capsules under nitrogen, HPLC purity against tachysterol and lumisterol standards',
+        },
+        {
+          id: 'erg-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Hepatic 25-hydroxylation and binding-protein affinity measurement',
+          description:
+            'Measure conversion to 25-hydroxyvitamin D2 in hepatocytes and, separately, the affinity of that metabolite for vitamin D binding protein against the D3 metabolite. The second measurement is the one that explains the clinical difference: equivalent absorption with a shorter circulating life is a binding-protein result, not an absorption result.',
+          dependsOnStepId: 'erg-w3',
+          reagentsAndBuffer:
+            'Primary human hepatocytes or CYP2R1-expressing microsomes, LC-MS/MS quantification of 25-hydroxyvitamin D2 and D3 separately, purified human vitamin D binding protein for competitive affinity determination',
+        },
+        {
+          id: 'erg-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Area under the 25-hydroxyvitamin D curve after a matched single dose',
+          description:
+            'Give matched single doses of D2 and D3 and follow the storage form in blood for at least 28 days. A single early timepoint makes the two look identical — both raise 25-hydroxyvitamin D similarly for the first three days — and only the full curve shows the difference.',
+          dependsOnStepId: 'erg-w4',
+          reagentsAndBuffer:
+            'Serial serum sampling to day 28, LC-MS/MS assay reporting 25-hydroxyvitamin D2 and D3 as separate analytes rather than as a total, matched-lot 50,000 IU dosage forms, crossover or parallel design with baseline correction',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'erg-a1',
+        category: 'failed',
+        title: 'Injected annually to 9440 people, it prevented nothing and hip fractures rose',
+        laymanSummary:
+          'Nearly ten thousand people aged 75 and over were given an injection of it every autumn for three years, or a dummy injection. Fractures overall were no different. Hip fractures were significantly more common in the treated group.',
+        technicalDetails:
+          'Smith and colleagues randomised 9440 people aged 75 and over — 4354 men and 5086 women — from general practice registers in Wessex, England, to 300,000 IU intramuscular ergocalciferol or matching placebo every autumn over three years. 585 subjects had incident non-spine fractures. Hazard ratios in the vitamin D group were 1.09 for any first fracture (95% CI 0.93 to 1.28, P=0.29), 1.49 for hip (95% CI 1.02 to 2.18, P=0.04) and 1.22 for wrist (0.85 to 1.76, P=0.28). There was no effect on falls, hazard ratio 0.98 (0.93 to 1.04). No protective effect appeared in any subgroup when stratified by sex, age, previous fracture or mobility. The authors concluded the strategy is not effective.',
+        evidenceSource: 'Smith H et al., Rheumatology (Oxford) 2007;46:1852-1857',
+        doi: '10.1093/rheumatology/kem240',
+        measuredMetric:
+          'Hip fracture hazard ratio 1.49 (95% CI 1.02 to 2.18, P=0.04); any first fracture 1.09 (0.93 to 1.28)',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'erg-a2',
+        category: 'failed',
+        title: 'Given orally to 3440 care-home residents, it changed nothing either',
+        laymanSummary:
+          'Three and a half thousand people in residential and care homes were given it by mouth every four months for three years. First fractures were 205 on treatment against 218 on placebo. That is no difference.',
+        technicalDetails:
+          'Lyons and colleagues ran a pragmatic double-blind randomised trial in 3440 people — 2624 women and 816 men — living in residential or care homes across 314 sites in South Wales, using four-monthly oral 100,000 IU ergocalciferol over three years. In intention-to-treat analysis, 205 first fractures occurred in the intervention group over 2846 person-years, about 7 per 100 people per year, against 218 first fractures in the control group over 2860 person-years. The hazard ratio was 0.95 (95% CI 0.79 to 1.15), not significant. The authors concluded that four-monthly 100,000 IU oral vitamin D2 is not sufficient to affect fracture incidence in institutional care — a population with a fracture rate high enough that a real effect would have been visible.',
+        evidenceSource: 'Lyons RA et al., Osteoporos Int 2007;18:811-818',
+        doi: '10.1007/s00198-006-0309-5',
+        measuredMetric:
+          'First fracture hazard ratio 0.95 (95% CI 0.79 to 1.15); 205 against 218 fractures over roughly 2850 person-years each',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'erg-a3',
+        category: 'measured',
+        title: 'It is less than a third as potent as the human form, measured directly',
+        laymanSummary:
+          'Twenty men were given a single large dose of each form. Both were absorbed equally well, and both raised the blood level the same for three days. After that the fungal form fell away while the human form kept rising for two weeks.',
+        technicalDetails:
+          'Armas, Hollis and Heaney gave single 50,000 IU doses of ergocalciferol or cholecalciferol to 20 healthy men and followed serum vitamin D and 25-hydroxyvitamin D for 28 days. Both produced similar rises in the administered vitamin, indicating equivalent absorption, and similar initial rises in 25-hydroxyvitamin D over the first three days. Thereafter 25-hydroxyvitamin D continued rising on D3, peaking at day 14, while it fell rapidly on D2 and was no different from baseline by day 14. Area under the curve to day 28 was 60.2 ng·d/mL for D2 against 204.7 for D3 (P<0.002); calculated area to infinity gave a relative potency of 9.5 to 1. The authors state D2 potency is less than one third that of D3 and that physicians using it should be aware of its markedly lower potency and shorter duration of action.',
+        evidenceSource: 'Armas LA, Hollis BW, Heaney RP. J Clin Endocrinol Metab 2004;89:5387-5391',
+        doi: '10.1210/jc.2004-0360',
+        measuredMetric:
+          'Area under the 25-hydroxyvitamin D curve to day 28: 60.2 ng·d/mL for D2 against 204.7 for D3 (P<0.002); relative potency D3:D2 of 9.5 to 1',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'erg-a4',
+        category: 'conclusion_shift',
+        title:
+          'The two forms were treated as interchangeable for decades, and the meta-analysis said otherwise',
+        laymanSummary:
+          'Food labels, supplement charts and prescribing habit treated the two vitamins D as the same thing in international units. When the head-to-head trials were pooled, the human form raised the blood level significantly more — and the difference showed up only with large infrequent doses.',
+        technicalDetails:
+          'Tripkovic and colleagues systematically searched from 1966 to July 2011 for randomised trials directly comparing the two forms in adults, including unpublished trial registries. Meta-analysis found supplementation with vitamin D3 had a significant and positive effect on raising serum 25-hydroxyvitamin D compared with D2 (P=0.001). Stratified by dosing frequency, the advantage was significant for bolus dosing (P=0.0002) and was lost with daily supplementation. That interaction is the useful detail and the one usually dropped: the two forms are close to equivalent when given daily and diverge sharply when given as an infrequent large dose — which is exactly how the two large ergocalciferol fracture trials administered it.',
+        evidenceSource: 'Tripkovic L et al., Am J Clin Nutr 2012;95:1357-1364',
+        doi: '10.3945/ajcn.111.031070',
+        inferredClaim:
+          'That an international unit of D2 and an international unit of D3 are interchangeable — true enough for daily dosing, and false for the bolus dosing the fracture trials used',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'erg-a5',
+        category: 'failed',
+        title: 'Infrequent mega-dosing is a failed strategy in both forms of the vitamin',
+        laymanSummary:
+          'Giving a huge dose once or a few times a year was adopted to get around people forgetting a daily tablet. Tested properly it did not prevent fractures with the fungal form, and with the human form it caused more falls and more fractures.',
+        technicalDetails:
+          'Sanders and colleagues randomised 2256 community-dwelling women aged 70 and over at high fracture risk to a single annual oral 500,000 IU dose of cholecalciferol or placebo for three to five years. Fractures were 171 against 135, incidence rate ratio 1.26 (95% CI 1.00 to 1.59, P=0.047). Falls occurred at 83.4 per 100 person-years on treatment against 72.7 on placebo, incidence rate ratio 1.15 (1.02 to 1.30, P=0.03), and a post hoc analysis found the excess concentrated in the first three months after dosing — rate ratio 1.31 in the first three months against 1.13 over the following nine, test for homogeneity P=0.02. Median baseline 25-hydroxyvitamin D was 49 nmol/L, so this was not a deficient population. Read alongside the two null ergocalciferol bolus trials, the pattern is a dosing schedule adopted for adherence that has never demonstrated benefit in either form and has demonstrated harm in one.',
+        evidenceSource:
+          'Sanders KM et al., JAMA 2010;303:1815-1822 (ACTRN12605000658617)',
+        doi: '10.1001/jama.2010.594',
+        measuredMetric:
+          'Fracture incidence rate ratio 1.26 (95% CI 1.00 to 1.59, P=0.047) and falls 1.15 (1.02 to 1.30, P=0.03) with annual 500,000 IU cholecalciferol',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'erg-a6',
+        category: 'measured',
+        title: 'Its approved indications are three rare disorders, not deficiency',
+        laymanSummary:
+          'What this drug is actually approved for is narrow: absent parathyroid glands, a rickets that does not respond to ordinary vitamin D, and an inherited phosphate-wasting condition. Correcting an ordinary low blood level is a nutritional use, not an approved one.',
+        technicalDetails:
+          'The label indicates ergocalciferol capsules for the treatment of hypoparathyroidism, refractory rickets — also known as vitamin D resistant rickets — and familial hypophosphataemia. Those three conditions are the reason the 50,000 IU strength exists: they require pharmacological rather than nutritional amounts. The very large gap between that indication set and the way the drug is used in practice is the reason the fracture trials on this page were run at all, and the reason their results matter beyond the labelled population.',
+        evidenceSource:
+          'Ergocalciferol capsules United States prescribing information, Indications and Usage, as held on the enriched record',
+        measuredMetric:
+          'Three labelled indications: hypoparathyroidism, refractory rickets and familial hypophosphataemia',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'It is made by shining ultraviolet light on a fungal sterol',
+        laymanDesc:
+          'Yeast and mushrooms contain a cholesterol-like molecule. Ultraviolet light snaps one of its rings open, and the result is this vitamin. Human skin performs the same trick on a different starting molecule and makes the other form.',
+        molecularDetail:
+          'Ultraviolet B opens the B ring of ergosterol to previtamin D2, which thermally isomerises to ergocalciferol. Over-irradiation converts previtamin D onward to tachysterol and lumisterol, both inert — the same photochemical safety valve that prevents sun exposure from causing vitamin D toxicity in skin.',
+        iconName: 'Sun',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Swallowed and absorbed as well as the other form',
+        laymanDesc:
+          'Absorption is not where the two forms differ. The same dose of each gets into the blood equally well.',
+        molecularDetail:
+          'Single 50,000 IU doses of D2 and D3 produced similar rises in serum concentration of the administered vitamin, indicating equivalent absorption, and similar initial rises in 25-hydroxyvitamin D over the first three days. Everything that separates them happens after this point.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'The liver adds the first hydroxyl',
+        laymanDesc:
+          'The liver converts it into the storage form — the one measured by a vitamin D blood test. Both forms go through this step.',
+        molecularDetail:
+          'Hepatic CYP2R1 and related enzymes 25-hydroxylate the molecule to 25-hydroxyvitamin D2. Most laboratory assays report a total 25-hydroxyvitamin D that combines the D2 and D3 species, which is why the difference between the forms is invisible on a routine result and requires an assay that separates the analytes.',
+        iconName: 'Filter',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'The carrier protein holds it less tightly, and it disappears',
+        laymanDesc:
+          'This is where the two forms part company. The blood protein that carries the storage form around grips the fungal version less well, so it is cleared faster and less of it survives to be activated.',
+        molecularDetail:
+          'The C22-C23 double bond and C24 methyl of the D2 side chain lower the affinity of 25-hydroxyvitamin D2 for vitamin D binding protein. Consequently 25-hydroxyvitamin D fell rapidly after a D2 dose and was back to baseline by day 14, while after a D3 dose it kept rising to a day-14 peak. Area under the curve to day 28 was 60.2 against 204.7, with a calculated relative potency of 9.5 to 1.',
+        iconName: 'TrendingDown',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The kidney adds the second hydroxyl, and only then is it a hormone',
+        laymanDesc:
+          'Whatever survives is finished off by the kidney into the active hormone, which switches on the genes that absorb calcium from food.',
+        molecularDetail:
+          'Renal CYP27B1 performs the 1-alpha-hydroxylation to 1,25-dihydroxyvitamin D2, which binds the vitamin D receptor and, with the retinoid X receptor, occupies vitamin D response elements. This step is tightly regulated by parathyroid hormone, FGF23 and calcium — which is why native vitamin D is largely self-limiting and calcitriol, which bypasses it, is not.',
+        iconName: 'Dna',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 6,
+        title: 'The blood number moves; the fractures did not',
+        laymanDesc:
+          'It raises the number a vitamin D test reports, less than the other form does. In the two large trials that used it, fractures did not fall — and in the injected trial, hip fractures rose.',
+        molecularDetail:
+          'Smith 2007, 9440 people, annual 300,000 IU intramuscular: any first fracture hazard ratio 1.09 (95% CI 0.93 to 1.28), hip 1.49 (1.02 to 2.18, P=0.04). Lyons 2007, 3440 care-home residents, four-monthly 100,000 IU oral: first fracture hazard ratio 0.95 (0.79 to 1.15). Both trials used bolus dosing, which is the schedule at which D2 is furthest behind D3.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Smith 2007 — annual intramuscular ergocalciferol in the general population',
+        phase: 'Randomised, double-blind, placebo-controlled, three years',
+        sampleSize: 9440,
+        primaryEndpoint: 'All non-vertebral fracture',
+        endpointMet: false,
+        statisticalPValue:
+          'Any first fracture hazard ratio 1.09 (95% CI 0.93 to 1.28, P=0.29); hip 1.49 (1.02 to 2.18, P=0.04); falls 0.98 (0.93 to 1.04)',
+        unreportedAdverseSignals:
+          'The hip fracture result is a significant increase on treatment. No protective effect appeared in any subgroup by sex, age, previous fracture or mobility.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Lyons 2007 — four-monthly oral ergocalciferol in institutional care',
+        phase: 'Pragmatic randomised, double-blind, placebo-controlled, three years',
+        sampleSize: 3440,
+        primaryEndpoint: 'Incidence of first fracture, intention to treat',
+        endpointMet: false,
+        statisticalPValue:
+          '205 against 218 first fractures; hazard ratio 0.95 (95% CI 0.79 to 1.15) — not significant',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Armas 2004 — single-dose comparison of ergocalciferol and cholecalciferol',
+        phase: 'Pharmacokinetic comparison in healthy male volunteers, 28 days',
+        sampleSize: 20,
+        primaryEndpoint:
+          'Area under the curve of the rise in serum 25-hydroxyvitamin D above baseline',
+        endpointMet: true,
+        statisticalPValue:
+          '60.2 ng·d/mL for D2 against 204.7 for D3 to day 28 (P<0.002); relative potency D3:D2 of 9.5 to 1',
+        unreportedAdverseSignals:
+          'Both forms looked identical for the first three days. A study that sampled only early would have concluded they were equivalent, which is what the field had assumed for decades.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Area under the 25-hydroxyvitamin D curve 60.2 ng·d/mL for D2 against 204.7 for D3 after matched 50,000 IU doses (P<0.002)',
+        'Hip fracture hazard ratio 1.49 (95% CI 1.02 to 2.18) with annual 300,000 IU intramuscular ergocalciferol in 9440 people',
+        'First fracture hazard ratio 0.95 (95% CI 0.79 to 1.15) with four-monthly 100,000 IU oral ergocalciferol in 3440 care-home residents',
+        'A significant meta-analytic advantage for D3 over D2 in raising serum 25-hydroxyvitamin D (P=0.001), present for bolus dosing and absent for daily dosing',
+      ],
+      unsupportedInferences: [
+        'That an international unit of D2 equals an international unit of D3 — true enough daily, and wrong by a wide margin for a bolus',
+        'That raising the storage form in blood prevents fractures, which is what the two large ergocalciferol trials tested and did not find',
+        'That a routine vitamin D blood result distinguishes the two forms — most assays report a combined total',
+        'That mega-dosing solves the adherence problem harmlessly, when the equivalent D3 strategy increased falls and fractures',
+      ],
+      whatFailedInitially: [
+        'The largest ergocalciferol fracture trial found hip fractures significantly more common on treatment, hazard ratio 1.49',
+        'The second largest found no effect at all in a population fracturing at 7 per 100 people per year',
+        'Decades of treating the two forms as interchangeable rested on early-timepoint equivalence that longer sampling contradicted',
+        'The intermittent mega-dose schedule, adopted for adherence, has failed in both forms and caused harm in one',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 1941 for three rare disorders and used far more widely as a nutritional replacement',
+        'It remains the only plant-derived vitamin D, and therefore the form in vegan supplements and many fortified foods',
+        'The 50,000 IU prescription strength keeps it in routine use for deficiency repletion despite the potency data',
+        'The field has largely moved to daily or weekly cholecalciferol, which is the change the pharmacokinetic and meta-analytic evidence supports',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral capsule and oral solution, including a 50,000 IU prescription strength; an intramuscular form has been used in trials',
+      description:
+        'Taken by mouth, usually with food since it is fat-soluble. The very high strengths exist for the labelled rare disorders and are widely used off that label for deficiency repletion, which is where the potency and dosing-schedule questions on this page bite.',
+      safetyProfile:
+        'No boxed warning. As a fat-soluble vitamin given at pharmacological strength the hazard is accumulation and hypercalcaemia, with the same clinical picture described on the calcitriol page — though it resolves far more slowly, because vitamin D stores in fat and its half-life is measured in weeks rather than days. Two large randomised trials of bolus ergocalciferol found no fracture benefit, one of them with a significant increase in hip fracture (hazard ratio 1.49, 95% CI 1.02 to 2.18). An annual 500,000 IU trial of the D3 form found significantly more falls and fractures, concentrated in the three months after dosing.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is D2 as good as D3?',
+        a: 'Not at the same number of international units, and the gap depends on how it is given. Twenty men received matched single 50,000 IU doses of each. Absorption was equivalent and the first three days looked identical. After that the storage form kept climbing on D3, peaking at two weeks, while on D2 it fell back to baseline by day 14. Area under the curve was 60.2 against 204.7, a calculated potency ratio of 9.5 to 1. A meta-analysis of head-to-head randomised trials found the same direction and added the important qualifier: the advantage was significant with bolus dosing and lost with daily dosing.',
+        auditNote:
+          'The early-timepoint equivalence is why the two were treated as interchangeable for so long. It is a good illustration of a measurement that is correct and misleading at the same time.',
+      },
+      {
+        q: 'Does taking it prevent fractures?',
+        a: 'The two large trials that used this specific form say no. In 9440 people aged 75 and over given a 300,000 IU injection each autumn for three years, first fractures were no different and hip fractures were significantly more common on treatment, hazard ratio 1.49 with a confidence interval from 1.02 to 2.18. In 3440 people in residential and care homes given 100,000 IU by mouth every four months, first fractures were 205 against 218, hazard ratio 0.95. Both used infrequent large doses, which is precisely the schedule at which this form is furthest behind D3, so the trials test the strategy as much as the molecule.',
+      },
+      {
+        q: 'Will my blood test tell me which form I am on?',
+        a: 'Usually not. Most laboratories report a total 25-hydroxyvitamin D that combines the D2 and D3 species into one number, so a result of, say, 70 nmol/L does not say which vitamin produced it. Assays that separate the two analytes exist and are used in research. The practical consequence is that the difference in potency between the forms is invisible on a routine result, and the only reliable way to know which one is in play is to read the bottle.',
+      },
+      {
+        q: 'Why is it still used if D3 is better?',
+        a: 'Three reasons. It is the only vitamin D that can be made without an animal source — it comes from irradiating yeast sterol — so it is what goes into vegan supplements and many fortified plant products. In the United States it is the form available at the 50,000 IU prescription strength, which is convenient for weekly repletion. And when given daily rather than as a bolus, the meta-analytic difference between the forms disappears, so for ordinary daily replacement the choice matters much less than the pharmacokinetic headline suggests.',
+      },
+      {
+        q: 'Is this the same as the vitamin D my kidney doctor prescribes?',
+        a: 'No, and the difference matters. This is a precursor that needs two chemical steps, one in the liver and one in the kidney, before it does anything. Calcitriol is the finished molecule after both steps. In kidney failure the second step is the one that has been lost, so giving more precursor achieves nothing, however high the dose. The two are not interchangeable in either direction: calcitriol also bypasses the regulation that makes native vitamin D largely self-limiting, which is why it causes hypercalcaemia far more readily.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Armas LA, Hollis BW, Heaney RP. Vitamin D2 is much less effective than vitamin D3 in humans. J Clin Endocrinol Metab 2004;89:5387-5391',
+        identifier: '10.1210/jc.2004-0360',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Tripkovic L et al. Comparison of vitamin D2 and vitamin D3 supplementation in raising serum 25-hydroxyvitamin D status: a systematic review and meta-analysis. Am J Clin Nutr 2012;95:1357-1364',
+        identifier: '10.3945/ajcn.111.031070',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Smith H et al. Effect of annual intramuscular vitamin D on fracture risk in elderly men and women: a population-based, randomized, double-blind, placebo-controlled trial. Rheumatology (Oxford) 2007;46:1852-1857',
+        identifier: '10.1093/rheumatology/kem240',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lyons RA et al. Preventing fractures among older people living in institutional care: a pragmatic randomised double blind placebo controlled trial of vitamin D supplementation. Osteoporos Int 2007;18:811-818',
+        identifier: '10.1007/s00198-006-0309-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sanders KM et al. Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial. JAMA 2010;303:1815-1822',
+        identifier: '10.1001/jama.2010.594',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Trivedi DP, Doll R, Khaw KT. Effect of four monthly oral vitamin D3 (cholecalciferol) supplementation on fractures and mortality in men and women living in the community. BMJ 2003;326:469 — the positive bolus trial, which used cholecalciferol and not ergocalciferol',
+        identifier: '10.1136/bmj.326.7387.469',
+        kind: 'doi',
+      },
+      COST_OF_PRODUCTION_SOURCE,
+    ],
+  },
 ]

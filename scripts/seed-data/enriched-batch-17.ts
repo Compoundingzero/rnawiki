@@ -3610,4 +3610,504 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Aflibercept — not an antibody but a decoy receptor, which matched monthly ranibizumab at
+  //    half the injections, and whose oncology twin was the first drug a hospital publicly refused
+  //    to stock on price.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'aflibercept',
+    name: 'Aflibercept',
+    tradeName: 'Eylea',
+    sponsor: 'Regeneron Pharmaceuticals (with Bayer outside the United States)',
+    targetGene: 'VEGFA, VEGFB and PGF — the human VEGF-A, VEGF-B and placental growth factor genes',
+    targetProtein:
+      'VEGF-A, VEGF-B and placental growth factor, trapped in the vitreous by a soluble receptor decoy',
+    modality: 'Recombinant Protein / Biologic',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2011,
+    indication:
+      'Neovascular (wet) age-related macular degeneration, macular oedema following retinal vein occlusion, diabetic macular oedema, diabetic retinopathy, and retinopathy of prematurity',
+    patientFriendlyIndication:
+      'Leaking abnormal blood vessels at the back of the eye, in macular degeneration and in diabetes',
+    anatomicalSite:
+      'The vitreous cavity and the retina, reached by a needle through the white of the eye',
+    conditionContext: {
+      conditionExplainer:
+        'Abnormal, leaky blood vessels grow at the back of the eye because a family of growth signals tells them to. VEGF-A is the main one. Aflibercept is not an antibody: it is the business end of the two receptors those signals normally bind to, welded together and released into the eye as a decoy.',
+      whyItMatters:
+        'Ranibizumab required a monthly injection into the eye indefinitely. Aflibercept binds its targets tightly enough that in the pivotal trials it matched monthly ranibizumab while being given every two months, halving the number of needles for the same result.',
+      whoTakesThis:
+        'Adults with wet macular degeneration, diabetic macular oedema, diabetic retinopathy or retinal vein occlusion, and — at a different dose and under a separate part of the label — premature infants with retinopathy of prematurity.',
+      clinicalGoals:
+        'Letters read on a standard chart, and injection interval. Both pivotal programmes were non-inferiority trials: the question was never whether it beat the incumbent, but whether it could match it with fewer injections.',
+    },
+    oneSentenceVerdict:
+      'A soluble decoy built from two different VEGF receptors fused to an antibody tail, which binds VEGF-A, VEGF-B and placental growth factor and, given every two months after three loading doses, matched monthly ranibizumab in 2,419 patients — 95.1% and 95.6% maintaining vision against 94.4% — and beat both bevacizumab and ranibizumab in diabetic macular oedema only in the half of patients whose vision was already worse.',
+    laymanHowItWorks:
+      'The growth signals that drive these vessels work by docking into receptors on the vessel wall. Aflibercept is made from the docking parts of two of those receptors, joined together and floated free in the eye. The signals dock into it instead of into the vessels, and once caught they are held. Nothing reaches the vessel wall, so nothing tells it to grow or leak.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 86,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'Not listed in the CMS pharmacy acquisition-cost survey used elsewhere on this site, because aflibercept is a physician-administered biologic rather than a dispensed product. The nearest published price anchor in this therapeutic area is the CATT trial protocol, which recorded approximately US$2,000 per dose for ranibizumab and US$50 for bevacizumab, the two drugs aflibercept was positioned between.',
+      markupEstimate: '',
+      openPatentNotes:
+        'Eylea was approved 18 November 2011 under BLA 125387 and the 8 mg high-dose formulation on 18 August 2023 under BLA 761355. The same protein under a separate approval and a separate name, ziv-aflibercept, is given intravenously for metastatic colorectal cancer, and its 2012 launch price prompted Memorial Sloan Kettering Cancer Center to say publicly that it would not use the drug, after which Sanofi halved the effective price. Six aflibercept biosimilars have been approved in the United States since 2024, thirteen years after the originator.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label:
+          'No published cost-of-manufacture study exists for aflibercept. The nearest published price analysis in this therapeutic area is the CATT trial, which states per-dose costs directly: CATT Research Group, N Engl J Med 2011;364:1897-1908, Outcome Measures.',
+        identifier: '10.1056/NEJMoa1102673',
+        kind: 'doi',
+      },
+      priceSource: {
+        label:
+          'CATT Research Group. Ranibizumab and bevacizumab for neovascular age-related macular degeneration. N Engl J Med 2011;364:1897-1908 — the comparator price anchor for this drug class',
+        identifier: '10.1056/NEJMoa1102673',
+        kind: 'doi',
+      },
+    },
+    substitutes: {
+      summary:
+        'The comparison that matters for aflibercept is not against placebo but against the two drugs already in the syringe. Against ranibizumab it is non-inferior at half the injection frequency. Against bevacizumab in diabetic macular oedema it is better only where vision is already poor. Against its own 8 mg formulation it is the shorter-interval option. The choice is about interval and baseline severity, not about whether it works.',
+      conventionalRx: [
+        {
+          name: 'Ranibizumab (Lucentis)',
+          class: 'Humanised anti-VEGF-A antibody fragment',
+          howItCompares:
+            'In VIEW 1 and VIEW 2, 2,419 patients, all aflibercept regimens were non-inferior to monthly ranibizumab on the proportion maintaining vision at week 52 and fell within 0.5 letters of it on mean acuity change — with aflibercept given every two months after three loading doses.',
+          typicalCost:
+            'Approximately US$2,000 per dose according to the CATT trial protocol, and US$23,400 for a first year of monthly treatment',
+          prosAndCons:
+            'Pros: the longer randomised safety record, a sham-controlled pivotal trial, and available biosimilars since 2021. Cons: monthly injection in the pivotal programme against every two months for aflibercept.',
+        },
+        {
+          name: 'Bevacizumab (Avastin), used off-label',
+          class: 'Full-length anti-VEGF-A monoclonal antibody',
+          howItCompares:
+            'In Protocol T, 660 patients with diabetic macular oedema, aflibercept gained 13.3 letters against bevacizumab’s 9.7 at one year. But the whole difference came from eyes with worse starting vision: where the initial letter score was 78 to 69, the gains were 8.0 and 7.5 with p>0.50, and where it was below 69, 18.9 against 11.8 with p<0.001.',
+          typicalCost:
+            'Approximately US$50 per dose according to the CATT trial protocol, and US$385 for a first year on an as-needed schedule',
+          prosAndCons:
+            'Pros: a fortieth of the cost, and statistically indistinguishable from aflibercept in the half of diabetic macular oedema patients with milder vision loss. Cons: requires repackaging from oncology vials, and is clearly inferior where vision is already poor.',
+        },
+        {
+          name: 'Aflibercept 8 mg (Eylea HD)',
+          class: 'The same protein at four times the dose',
+          howItCompares:
+            'In PULSAR, 1,009 patients treated, aflibercept 8 mg every 12 or 16 weeks was non-inferior to 2 mg every 8 weeks on acuity change at week 48: +6.7 and +6.2 letters against +7.6, with least squares mean differences of -0.97 and -1.14 letters against a 4-letter non-inferiority margin.',
+          typicalCost:
+            'Not listed in the CMS pharmacy acquisition-cost survey used for the drops on this site — a physician-administered biologic',
+          prosAndCons:
+            'Pros: longer intervals between injections for many patients. Cons: the point estimates run slightly against the higher dose on acuity, ocular adverse events were the same across groups at 38% to 39%, and the trial was funded by the two companies that sell it.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Report pain, redness or sudden vision loss after an injection immediately',
+          action:
+            'Treat new eye pain, light sensitivity, worsening redness or a sudden drop in vision in the days after an injection as urgent.',
+          patientImpact:
+            'Endophthalmitis is the serious complication of intravitreal injection and its outcome depends heavily on how quickly it is recognised. In PULSAR, ocular adverse events in the study eye occurred in 38% to 39% of patients across all three dose groups.',
+          clinicalPrecaution:
+            'The risk is per injection, and the injections continue indefinitely, so a low per-procedure rate becomes a meaningful cumulative exposure over years of treatment.',
+        },
+        {
+          name: 'Ask what your starting vision was, and write it down',
+          action:
+            'Ask for the letter score at your first visit and at each review, rather than only whether things look stable.',
+          patientImpact:
+            'In Protocol T, the choice between drugs mattered only for patients whose vision was already below about 20/50. Above that, three drugs differing forty-fold in price were statistically indistinguishable. Your own baseline letter score is the number that decides which half of that result applies to you.',
+          clinicalPrecaution:
+            'This is a description of what the trial measured, not a rule for choosing treatment. Baseline acuity was one of several factors and the trial randomised patients rather than selecting them.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula:
+        'Recombinant fusion glycoprotein: domain 2 of human VEGFR-1 and domain 3 of human VEGFR-2 fused to the Fc portion of human IgG1, expressed in Chinese hamster ovary cells. It is not an antibody — it has an antibody tail and no antibody binding site.',
+      molecularWeight: 'Approximately 115 kDa',
+      targetReceptorAffinity:
+        'Binds VEGF-A, VEGF-B and placental growth factor and prevents them engaging VEGFR-1 and VEGFR-2 on endothelial cells. The design borrows the highest-affinity binding domain from each of the two receptors rather than copying either whole, which is why it is called a trap: the ligand docks into the decoy and is held rather than merely blocked. The broader target set — VEGF-B and placental growth factor in addition to VEGF-A — is the pharmacological difference from ranibizumab and bevacizumab, and no trial has shown that the extra targets produce a better visual outcome.',
+      structureSource: {
+        label:
+          'EYLEA (aflibercept) injection US prescribing information, Description section (BLA 125387)',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125387',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'afl-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Glycosylation profile and aggregate content of the fusion protein',
+          description:
+            'Characterise the N-linked glycans and quantify aggregate. Aflibercept is heavily glycosylated, and glycosylation is not decorative here: it affects solubility, clearance and the tendency to aggregate. Aggregated protein injected into the vitreous is a plausible cause of sterile intraocular inflammation, which has troubled every drug in this class.',
+          reagentsAndBuffer:
+            'Reference standard, released-glycan analysis by hydrophilic interaction chromatography with fluorescence detection, size-exclusion chromatography with multi-angle light scattering, capillary electrophoresis',
+        },
+        {
+          id: 'afl-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Expression of the receptor-Fc fusion in Chinese hamster ovary cells',
+          description:
+            'Express the VEGFR-1 domain 2 and VEGFR-2 domain 3 fusion joined to human IgG1 Fc in a mammalian cell line. Unlike ranibizumab this molecule must be made in mammalian cells, because the glycosylation is required and bacteria cannot perform it. The Fc drives homodimerisation, so the secreted product is a two-armed trap rather than a single chain.',
+          dependsOnStepId: 'afl-w1',
+          reagentsAndBuffer:
+            'Stable Chinese hamster ovary cell line, chemically defined serum-free medium, fed-batch bioreactor with controlled dissolved oxygen, pH and temperature, harvest by depth filtration',
+        },
+        {
+          id: 'afl-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Protein A capture, viral clearance and formulation for intravitreal use',
+          description:
+            'Capture on Protein A through the Fc, then polish, inactivate and clear virus, and formulate at the concentration and osmolality required for a 50 microlitre intravitreal dose. The volume constraint is the hard one: everything has to fit into a drop of liquid the eye can accept without a pressure spike.',
+          dependsOnStepId: 'afl-w2',
+          reagentsAndBuffer:
+            'Protein A affinity resin, low-pH viral inactivation, ion exchange polishing, nanofiltration, sodium phosphate buffer with sucrose, sodium chloride and polysorbate 20, 0.22 micron sterile filtration',
+        },
+        {
+          id: 'afl-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Vitreous residence time against a Fab comparator',
+          description:
+            'Inject into the vitreous of an excised or animal eye and measure how long free trap persists and how much reaches the retina and choroid. The claim the whole product rests on is duration, not potency: two-monthly dosing was the commercial proposition, and this is the assay that tests whether the molecule supports it.',
+          dependsOnStepId: 'afl-w3',
+          reagentsAndBuffer:
+            'Labelled aflibercept, serial vitreous and retinal sampling, ELISA for free and VEGF-bound trap, ranibizumab Fab as a size and half-life comparator',
+        },
+        {
+          id: 'afl-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Binding across VEGF-A, VEGF-B and placental growth factor with a functional readout',
+          description:
+            'Measure affinity for all three ligands by surface plasmon resonance and confirm neutralisation in a VEGF-driven endothelial proliferation assay. Measuring only VEGF-A misses the entire pharmacological distinction from the antibodies — and measuring only binding leaves the question of whether the extra ligands matter functionally, which the clinical trials have not answered either.',
+          dependsOnStepId: 'afl-w4',
+          reagentsAndBuffer:
+            'Surface plasmon resonance instrument with immobilised VEGF-A, VEGF-B and placental growth factor, human umbilical vein endothelial cells, VEGF-165 stimulus, ranibizumab and bevacizumab as comparators',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'afl-a1',
+        category: 'measured',
+        title: 'VIEW 1 and VIEW 2: matched monthly ranibizumab at half the injections',
+        laymanSummary:
+          'Two identical trials in 2,419 patients compared aflibercept, given monthly or every two months, against ranibizumab given monthly. Every aflibercept schedule matched the monthly comparator, including the two-monthly one.',
+        technicalDetails:
+          'VIEW 1 and VIEW 2 were double-masked, multicentre, parallel-group, active-controlled randomised trials in 2,419 patients with active subfoveal choroidal neovascularisation secondary to age-related macular degeneration, or juxtafoveal lesions with leakage affecting the fovea. Patients were randomised to intravitreal aflibercept 0.5 mg monthly, 2 mg monthly, 2 mg every two months after three initial monthly doses, or ranibizumab 0.5 mg monthly. The primary endpoint was non-inferiority with a 10% margin on the proportion maintaining vision at week 52, defined as losing fewer than 15 ETDRS letters. All aflibercept groups were non-inferior and clinically equivalent: 95.1%, 95.9% and 95.1% in VIEW 1 and 95.6%, 96.3% and 95.6% in VIEW 2, against monthly ranibizumab at 94.4% in both. In a prespecified integrated analysis, all aflibercept regimens were within 0.5 letters of ranibizumab on mean acuity change, with similar anatomic improvement and similar ocular and systemic adverse events.',
+        evidenceSource: 'Heier JS et al., Ophthalmology 2012;119:2537-2548 (VIEW 1 and VIEW 2)',
+        doi: '10.1016/j.ophtha.2012.09.006',
+        measuredMetric:
+          'Proportion maintaining vision at week 52, aflibercept regimens against monthly ranibizumab, 10% non-inferiority margin',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'afl-a2',
+        category: 'measured',
+        title: 'Protocol T: the advantage exists, and only where vision is already poor',
+        laymanSummary:
+          'A publicly funded trial compared all three drugs in diabetic macular oedema. Aflibercept came out ahead overall. But split the patients by how well they saw at the start and the advantage vanishes entirely in the better-seeing half.',
+        technicalDetails:
+          'The Diabetic Retinopathy Clinical Research Network randomised 660 adults with centre-involved diabetic macular oedema at 89 sites to aflibercept 2.0 mg, bevacizumab 1.25 mg or ranibizumab 0.3 mg, given as often as every four weeks by protocol algorithm. From baseline to one year, mean visual-acuity letter score improved by 13.3 with aflibercept, 9.7 with bevacizumab and 11.2 with ranibizumab. Aflibercept was superior to both (P<0.001 against bevacizumab, P=0.03 against ranibizumab), but the paper states the improvement was not clinically meaningful because the difference was driven by eyes with worse baseline acuity (P<0.001 for interaction). Where the initial letter score was 78 to 69, roughly 20/32 to 20/40 and 51% of participants, mean improvement was 8.0, 7.5 and 8.3 with P>0.50 for every pairwise comparison. Where it was below 69, roughly 20/50 or worse, it was 18.9, 11.8 and 14.2, with P<0.001 for aflibercept against bevacizumab, P=0.003 against ranibizumab and P=0.21 for ranibizumab against bevacizumab. There were no significant differences in serious adverse events, hospitalisation, death or major cardiovascular events.',
+        evidenceSource:
+          'Diabetic Retinopathy Clinical Research Network, N Engl J Med 2015;372:1193-1203 (Protocol T, NCT01627249)',
+        doi: '10.1056/NEJMoa1414264',
+        measuredMetric:
+          'Mean change in visual acuity at 1 year, stratified by baseline visual acuity, three drugs head to head',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'afl-a3',
+        category: 'inferred',
+        title: 'Three targets instead of one, and no trial has shown the extra two matter',
+        laymanSummary:
+          'Aflibercept catches two growth signals its competitors miss, and this is the main thing said about it. No trial has demonstrated that catching them produces better vision.',
+        technicalDetails:
+          'Aflibercept binds VEGF-A, VEGF-B and placental growth factor, where ranibizumab and bevacizumab bind VEGF-A alone. The broader target set is the pharmacological rationale for the molecule and is stated on the label. What no trial has established is a visual consequence. In VIEW 1 and VIEW 2 all aflibercept regimens fell within 0.5 letters of monthly ranibizumab — the design was non-inferiority, and the result was equivalence rather than superiority. In Protocol T the superiority over ranibizumab was P=0.03 overall and absent in the 51% of patients with better baseline acuity. The one clinical property the broader binding plausibly supports is duration, and duration is what the two-monthly dosing schedule in VIEW actually demonstrated. Attributing the interval to placental growth factor blockade rather than to affinity and molecular size remains an inference nobody has tested by removing one variable.',
+        evidenceSource:
+          'Heier JS et al., Ophthalmology 2012;119:2537-2548; Diabetic Retinopathy Clinical Research Network, N Engl J Med 2015;372:1193-1203',
+        doi: '10.1016/j.ophtha.2012.09.006',
+        inferredClaim:
+          'That binding VEGF-B and placental growth factor in addition to VEGF-A produces a clinically better drug — a mechanistic distinction with no demonstrated visual consequence in any head-to-head trial',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'afl-a4',
+        category: 'failed',
+        title: 'The high-dose version’s point estimates run against it',
+        laymanSummary:
+          'Four times the dose, given at longer intervals, was declared non-inferior. Both high-dose arms actually recorded slightly less vision gain than the standard dose, and the trial was funded by the two companies that sell it.',
+        technicalDetails:
+          'PULSAR randomised 1,011 patients with neovascular age-related macular degeneration 1:1:1 to aflibercept 8 mg every 12 weeks, 8 mg every 16 weeks, or 2 mg every 8 weeks, after three initial monthly doses in all groups, with dosing interval shortening permitted in the 8 mg groups from week 16 if prespecified disease-activity criteria were met. Mean best corrected visual acuity change from baseline at week 48 was +6.7 letters (SD 12.6) for 8q12 and +6.2 (11.7) for 8q16, against +7.6 (12.2) for 2q8. Least squares mean differences against 2q8 were -0.97 letters (95% CI -2.87 to 0.92) and -1.14 (-2.97 to 0.69), against a 4-letter non-inferiority margin. Ocular adverse events in the study eye were similar across groups at 39%, 38% and 39%. The trial was funded by Bayer AG and Regeneron Pharmaceuticals, and the author list includes employees of both. Non-inferiority was met. Both point estimates favour the older, cheaper, more frequent regimen, and the permitted interval shortening means the 8 mg arms were not held to a fixed schedule.',
+        evidenceSource: 'Lanzetta P et al., Lancet 2024;403:1141-1152 (PULSAR)',
+        doi: '10.1016/S0140-6736(24)00063-1',
+        measuredMetric:
+          'Change from baseline in best corrected visual acuity at week 48, 8 mg extended intervals against 2 mg every 8 weeks',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'afl-a5',
+        category: 'conclusion_shift',
+        title: 'The same protein in oncology was the first drug a hospital refused on price',
+        laymanSummary:
+          'Given into a vein for bowel cancer, this protein extends median survival by about six weeks. When it launched at roughly twice the price of an equivalent drug, Memorial Sloan Kettering announced in a newspaper that it would not stock it. The price was halved.',
+        technicalDetails:
+          'The VELOUR trial randomised 1,226 patients with metastatic colorectal cancer previously treated with oxaliplatin to aflibercept 4 mg/kg intravenously or placebo, every two weeks with FOLFIRI. Overall survival improved with a hazard ratio of 0.817 (95.34% CI 0.713 to 0.937, P=.0032) and median survival of 13.50 against 12.06 months — a difference of 1.44 months. Progression-free survival improved from 4.67 to 6.90 months (HR 0.758, P<.0001) and response rate from 11.1% to 19.8% (P=.0001). Toxicity included the characteristic anti-VEGF effects plus increased incidence of some chemotherapy-related toxicities. The drug was approved in 2012 as ziv-aflibercept under a separate application, at a launch price that led Memorial Sloan Kettering Cancer Center to state publicly that it would not use it, on the grounds that it offered no advantage over a much cheaper alternative. Sanofi subsequently halved the effective price through discounting. The episode is cited as the point at which cost entered formulary decisions as an explicit clinical argument rather than an administrative one.',
+        evidenceSource: 'Van Cutsem E et al., J Clin Oncol 2012;30:3499-3506 (VELOUR)',
+        doi: '10.1200/JCO.2012.42.8201',
+        inferredClaim:
+          'That a statistically significant survival benefit justifies any price — a premise a cancer centre challenged in public over this molecule, and the manufacturer conceded within weeks',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'afl-a6',
+        category: 'inferred',
+        title: 'Every pivotal trial asked whether it could tie, not whether it could win',
+        laymanSummary:
+          'VIEW, PULSAR and the whole registration programme were non-inferiority trials. A non-inferiority result means the new drug is not meaningfully worse. It does not mean it is better, and it is routinely reported as though it did.',
+        technicalDetails:
+          'VIEW 1 and VIEW 2 tested non-inferiority against monthly ranibizumab with a 10% margin on the proportion maintaining vision, and the integrated analysis reported all aflibercept regimens within 0.5 letters of the comparator. PULSAR tested non-inferiority of 8 mg extended intervals against 2 mg every 8 weeks with a 4-letter margin, and both 8 mg point estimates fell below the comparator. The one trial in this dossier that tested superiority head to head was Protocol T, which is independently funded, and its superiority finding was confined to eyes with worse baseline acuity and described by its own authors as not clinically meaningful overall. The commercial proposition for aflibercept — equivalent vision with fewer injections — is genuinely supported. The frequent restatement of that as aflibercept being the more effective drug is not what any of these trials measured.',
+        evidenceSource:
+          'Heier JS et al., Ophthalmology 2012;119:2537-2548; Lanzetta P et al., Lancet 2024;403:1141-1152',
+        doi: '10.1016/S0140-6736(24)00063-1',
+        inferredClaim:
+          'That aflibercept is more effective than ranibizumab — a claim no registration trial was designed to test and none has demonstrated',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A needle into the jelly of the eye',
+        laymanDesc:
+          'The drug is injected directly into the vitreous through the white of the eye. There is no way to get a protein this size to the back of the eye from a tablet or a drop.',
+        molecularDetail:
+          'Intravitreal injection of 2 mg in 50 microlitres through the pars plana. The 50 microlitre volume constraint drives the formulation: the protein must be concentrated enough to deliver the dose in a volume the eye can absorb without a sustained pressure rise. Ocular adverse events in the study eye occurred in 38% to 39% of patients across all groups in PULSAR.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'A decoy made from two different receptors',
+        laymanDesc:
+          'This is not an antibody. It is the docking parts of two receptors, taken from where they sit on the vessel wall, joined together and set loose in the eye.',
+        molecularDetail:
+          'Aflibercept fuses domain 2 of VEGFR-1 and domain 3 of VEGFR-2 to the Fc portion of human IgG1, giving a homodimeric glycoprotein of approximately 115 kDa. Each of the two receptor domains was chosen for its affinity contribution, rather than either receptor being copied whole. The Fc drives dimerisation and gives a two-armed trap.',
+        iconName: 'GitMerge',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Growth signals dock into it and are held',
+        laymanDesc:
+          'The signalling proteins fit into the decoy the way they would fit into a real receptor, and once in they stay. Three different signals are caught, where the competing drugs catch one.',
+        molecularDetail:
+          'Aflibercept binds VEGF-A, VEGF-B and placental growth factor, preventing their engagement with VEGFR-1 and VEGFR-2 on endothelial cells. The high-affinity, slowly dissociating interaction is what the word "trap" refers to and is the pharmacological basis for the extended dosing interval, although no trial has isolated affinity from molecular size as the cause of that duration.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The vessel wall gets no instruction',
+        laymanDesc:
+          'With the signals captured, the receptors on the abnormal vessels never fire. Growth stops and the leak dries up.',
+        molecularDetail:
+          'Blocking VEGFR-1 and VEGFR-2 engagement suppresses the endothelial proliferation, migration and permeability signalling that drives choroidal neovascularisation and macular oedema. Anatomic improvement in the VIEW integrated analysis was similar across all aflibercept regimens and monthly ranibizumab.',
+        iconName: 'ShieldOff',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Vision holds, on half as many injections',
+        laymanDesc:
+          'Nineteen in twenty patients kept their vision at one year on injections every two months, the same as the comparator drug given every month.',
+        molecularDetail:
+          'At week 52, 95.1% and 95.6% of patients on aflibercept 2 mg every two months maintained vision in VIEW 1 and VIEW 2, against 94.4% on monthly ranibizumab in both, meeting non-inferiority at a 10% margin. All aflibercept regimens were within 0.5 letters of ranibizumab on mean acuity change in the prespecified integrated analysis.',
+        iconName: 'TrendingUp',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'And where vision is already poor, the drug choice starts to matter',
+        laymanDesc:
+          'In diabetic swelling of the retina, three drugs that differ forty-fold in price gave the same result in patients who could still see reasonably well. In those who could not, aflibercept was clearly better.',
+        molecularDetail:
+          'In Protocol T, at baseline letter scores of 78 to 69 the one-year gains were 8.0 with aflibercept, 7.5 with bevacizumab and 8.3 with ranibizumab, with P>0.50 for every pairwise comparison. Below 69 letters they were 18.9, 11.8 and 14.2, with P<0.001 for aflibercept against bevacizumab. The interaction with baseline acuity was significant at P<0.001.',
+        iconName: 'Filter',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'VIEW 1 and VIEW 2 (NCT00509795 and companion)',
+        phase: 'Phase 3, double-masked, multicentre, parallel-group, active-controlled',
+        sampleSize: 2419,
+        primaryEndpoint:
+          'Non-inferiority to monthly ranibizumab in the proportion maintaining vision at week 52, 10% margin',
+        endpointMet: true,
+        statisticalPValue:
+          'Aflibercept 2 mg every 2 months 95.1% (VIEW 1) and 95.6% (VIEW 2) against monthly ranibizumab 94.4% in both; all regimens within 0.5 letters on mean acuity change',
+        unreportedAdverseSignals:
+          'A non-inferiority design with a 10% margin. The trial establishes equivalence at a longer interval and cannot establish superiority, which it is frequently quoted as showing.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Protocol T (NCT01627249)',
+        phase: 'Phase 3, randomised, comparative effectiveness, publicly funded',
+        sampleSize: 660,
+        primaryEndpoint: 'Mean change in visual acuity at 1 year, three drugs head to head',
+        endpointMet: true,
+        statisticalPValue:
+          '+13.3 aflibercept, +9.7 bevacizumab, +11.2 ranibizumab; P<0.001 and P=0.03 respectively, with P<0.001 for interaction with baseline acuity',
+        unreportedAdverseSignals:
+          'The overall superiority is entirely attributable to eyes with baseline acuity below 69 letters. In the 51% of patients above that threshold all three drugs were indistinguishable, P>0.50 for every pairwise comparison. The paper states the overall difference was not clinically meaningful.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'PULSAR (aflibercept 8 mg, 96-week trial, 48-week primary)',
+        phase: 'Phase 3, randomised, three-group, double-masked, non-inferiority',
+        sampleSize: 1009,
+        primaryEndpoint: 'Change from baseline in best corrected visual acuity at week 48',
+        endpointMet: true,
+        statisticalPValue:
+          '+6.7 (8q12) and +6.2 (8q16) against +7.6 (2q8) letters; least squares mean differences -0.97 (95% CI -2.87 to 0.92) and -1.14 (-2.97 to 0.69) against a 4-letter margin',
+        unreportedAdverseSignals:
+          'Both high-dose point estimates fall below the standard-dose comparator. Dosing intervals in the 8 mg groups could be shortened from week 16 on prespecified disease-activity criteria, so the arms were not held to fixed schedules. Funded by Bayer AG and Regeneron, with employees of both among the authors.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'VELOUR (ziv-aflibercept in metastatic colorectal cancer)',
+        phase: 'Phase 3, randomised, placebo-controlled, intravenous administration',
+        sampleSize: 1226,
+        primaryEndpoint: 'Overall survival, aflibercept plus FOLFIRI against placebo plus FOLFIRI',
+        endpointMet: true,
+        statisticalPValue:
+          'Hazard ratio 0.817 (95.34% CI 0.713 to 0.937), P = .0032; median survival 13.50 against 12.06 months',
+        unreportedAdverseSignals:
+          'The absolute survival difference is 1.44 months. Toxicity included anti-VEGF class effects plus an increased incidence of some chemotherapy-related toxicities. This is a different route, dose and approval from the ophthalmic product and is included because it is the same protein and the source of the pricing episode on this page.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Non-inferiority to monthly ranibizumab at week 52 in 2,419 patients, with every-two-month dosing: 95.1% and 95.6% against 94.4%',
+        'All aflibercept regimens within 0.5 letters of monthly ranibizumab on mean acuity change in the prespecified integrated VIEW analysis',
+        '+13.3 letters against bevacizumab’s +9.7 and ranibizumab’s +11.2 at one year in 660 diabetic macular oedema patients, with the difference confined to worse-seeing eyes (P<0.001 for interaction)',
+        'Median overall survival of 13.50 against 12.06 months with the intravenous formulation in 1,226 colorectal cancer patients (HR 0.817, P=.0032)',
+      ],
+      unsupportedInferences: [
+        'That aflibercept is more effective than ranibizumab in macular degeneration — every registration trial tested non-inferiority and none tested superiority',
+        'That binding VEGF-B and placental growth factor produces a better visual outcome, which no head-to-head trial has demonstrated',
+        'That the extended dosing interval follows from the broader target set rather than from affinity and molecular size, which nobody has separated',
+        'That the 8 mg formulation is an improvement, when both of its point estimates in PULSAR fall below the standard dose',
+      ],
+      whatFailedInitially: [
+        'The Protocol T advantage disappears in the 51% of diabetic macular oedema patients whose starting vision was better than about 20/50, where three drugs differing forty-fold in price were indistinguishable',
+        'PULSAR’s high-dose arms recorded -0.97 and -1.14 letters relative to the standard dose, and were allowed to shorten their intervals mid-trial',
+        'The intravenous formulation of the same protein extended median survival in colorectal cancer by 1.44 months, and its launch price prompted a cancer centre to refuse to stock it in public',
+        'No biosimilar competition existed for the first thirteen years after approval',
+      ],
+      realWorldOutcome: [
+        'Approved 18 November 2011 under BLA 125387, with the 8 mg formulation following 18 August 2023 under BLA 761355',
+        'Established every-two-month dosing as achievable in wet macular degeneration, halving injection burden against the monthly standard it replaced',
+        'The preferred agent in diabetic macular oedema with worse baseline acuity, on the strength of an independently funded head-to-head trial',
+        'Aflibercept biosimilars began arriving in the United States in 2024, thirteen years after the originator',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravitreal injection of 2 mg in 50 microlitres, or 8 mg in the high-dose formulation',
+      description:
+        'A needle through the pars plana into the vitreous cavity, under topical anaesthetic and antisepsis. In the pivotal programme, three initial monthly doses were followed by injection every two months. The 8 mg formulation extends the interval further, to every 12 or 16 weeks, with shortening permitted if disease activity criteria are met. The same protein is given intravenously under a separate approval and name for metastatic colorectal cancer.',
+      safetyProfile:
+        'Endophthalmitis, retinal detachment, intraocular inflammation, raised intraocular pressure and traumatic cataract are the recognised risks of intravitreal injection, and the risk is per injection in a treatment that continues indefinitely. In PULSAR, ocular adverse events in the study eye occurred in 38% to 39% of patients across all three dose groups. Systemic arterial thromboembolic events are a theoretical class concern; Protocol T found no significant differences among aflibercept, bevacizumab and ranibizumab in serious adverse events, hospitalisation, death or major cardiovascular events. The intravenous oncology formulation carries a different and far heavier toxicity profile, including anti-VEGF class effects and increased chemotherapy-related toxicity, and its safety information does not transfer to the ophthalmic product.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is aflibercept better than ranibizumab?',
+        a: 'It has never been tested for that, which is a different statement from "no". VIEW 1 and VIEW 2 enrolled 2,419 patients and asked a non-inferiority question with a 10% margin: can aflibercept given every two months match ranibizumab given every month? It could — 95.1% and 95.6% maintaining vision against 94.4%, with all aflibercept regimens within half a letter of the comparator on average acuity. That is a genuine and useful result, and what it establishes is equivalence at half the injection frequency. A non-inferiority trial cannot establish superiority even if the numbers happen to fall the right way, and these numbers fall almost exactly on top of each other.',
+        auditNote:
+          'This is the single most common misreading of trials in this therapeutic area. "Non-inferior at a longer interval" is a real advantage and it is not the same claim as "more effective".',
+      },
+      {
+        q: 'Why does it bind three things when the others bind one?',
+        a: 'Because of how it was built. Ranibizumab and bevacizumab are antibodies raised against VEGF-A. Aflibercept is not an antibody at all — it is the docking domains of two VEGF receptors, VEGFR-1 and VEGFR-2, fused to an antibody tail, so it catches everything those receptors would normally catch: VEGF-A, VEGF-B and placental growth factor. That is a real pharmacological difference and it is the main thing said about the drug. What no trial has shown is a visual consequence. In VIEW it was equivalent to ranibizumab. In Protocol T its superiority over ranibizumab was P=0.03 overall and gone in the half of patients with better starting vision. The broader binding may well be why the interval can be stretched. Nobody has tested that by taking one variable away.',
+      },
+      {
+        q: 'I have diabetic macular oedema. Does the drug choice matter?',
+        a: 'It depends on your starting vision, and Protocol T answers this unusually clearly. Six hundred and sixty patients were randomised to aflibercept, bevacizumab or ranibizumab. Overall, aflibercept gained 13.3 letters at one year against 9.7 and 11.2 — but the trialists reported that as not clinically meaningful, because the whole difference came from one subgroup. In patients starting at 20/32 to 20/40, which was 51% of the trial, the gains were 8.0, 7.5 and 8.3 letters with no statistically significant difference between any pair. In patients starting at 20/50 or worse, they were 18.9, 11.8 and 14.2, with aflibercept clearly ahead. So above about 20/40 three drugs differing forty-fold in price are interchangeable on this evidence, and below it they are not.',
+      },
+      {
+        q: 'What about the high-dose version?',
+        a: 'It buys interval, and the trial is worth reading carefully. PULSAR randomised 1,009 treated patients to 8 mg every 12 weeks, 8 mg every 16 weeks, or the standard 2 mg every 8 weeks. Non-inferiority was met against a 4-letter margin. But both 8 mg arms recorded slightly less vision gain than the standard dose — +6.7 and +6.2 letters against +7.6 — with least squares mean differences of -0.97 and -1.14 letters. Ocular adverse events were the same across all three groups, at 38% to 39%. And the 8 mg groups were allowed to shorten their intervals from week 16 if disease activity appeared, so they were not held to a fixed schedule. The trial was funded by the two companies that sell the product. What it supports is longer intervals for many patients at no measurable cost in vision, which is worth having, and not an improvement in the drug.',
+      },
+      {
+        q: 'Is this the same drug as the cancer one?',
+        a: 'The same protein, a different product. Given into a vein at 4 mg per kilogram, under a separate approval and the name ziv-aflibercept, it is used with chemotherapy for metastatic colorectal cancer. The VELOUR trial in 1,226 patients found median overall survival of 13.50 months against 12.06 on placebo, a hazard ratio of 0.817 and a difference of about six weeks. The doses, routes, toxicities and evidence are entirely separate, and nothing from the cancer safety profile transfers to a 2 mg injection into the eye. The reason the oncology drug appears on this page at all is what happened next: it launched at a price that led Memorial Sloan Kettering Cancer Center to announce publicly that it would not stock it, and the manufacturer halved the effective price. It is one of the few documented cases of a hospital refusing a drug on cost and winning.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Heier JS et al. Intravitreal aflibercept (VEGF Trap-Eye) in wet age-related macular degeneration. Ophthalmology 2012;119:2537-2548 (VIEW 1 and VIEW 2)',
+        identifier: '10.1016/j.ophtha.2012.09.006',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Diabetic Retinopathy Clinical Research Network. Aflibercept, bevacizumab, or ranibizumab for diabetic macular edema. N Engl J Med 2015;372:1193-1203 (Protocol T)',
+        identifier: '10.1056/NEJMoa1414264',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Lanzetta P et al. Intravitreal aflibercept 8 mg in neovascular age-related macular degeneration (PULSAR): 48-week results from a randomised, double-masked, non-inferiority, phase 3 trial. Lancet 2024;403:1141-1152',
+        identifier: '10.1016/S0140-6736(24)00063-1',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Van Cutsem E et al. Addition of aflibercept to fluorouracil, leucovorin, and irinotecan improves survival in a phase III randomized trial in patients with metastatic colorectal cancer previously treated with an oxaliplatin-based regimen. J Clin Oncol 2012;30:3499-3506 (VELOUR)',
+        identifier: '10.1200/JCO.2012.42.8201',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CATT Research Group. Ranibizumab and bevacizumab for neovascular age-related macular degeneration. N Engl J Med 2011;364:1897-1908 — the price anchor for this drug class',
+        identifier: '10.1056/NEJMoa1102673',
+        kind: 'doi',
+      },
+      {
+        label:
+          'VIEW 1: VEGF Trap-Eye investigation of efficacy and safety in wet age-related macular degeneration',
+        identifier: 'NCT00509795',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Protocol T: comparative effectiveness of intravitreal aflibercept, bevacizumab and ranibizumab for diabetic macular edema',
+        identifier: 'NCT01627249',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Drugs@FDA: EYLEA (aflibercept) injection, BLA 125387, Regeneron — original approval 18 November 2011; EYLEA HD 8 mg is BLA 761355, approved 18 August 2023',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125387',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]

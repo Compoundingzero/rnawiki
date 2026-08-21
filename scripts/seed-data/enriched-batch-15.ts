@@ -3080,4 +3080,484 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Isosorbide mononitrate — a drug whose own label says it stops working within a day of
+  //    continuous use, tested in 58,050 patients and found not to save lives.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'isosorbide-mononitrate',
+    name: 'Isosorbide Mononitrate',
+    tradeName: 'Imdur / Monoket / Ismo',
+    sponsor: 'Promius Pharma and many generic manufacturers; originated as the active metabolite of isosorbide dinitrate',
+    targetGene: 'GUCY1A1 and GUCY1B1 — the two subunits of soluble guanylate cyclase',
+    targetProtein:
+      'Soluble guanylate cyclase in vascular smooth muscle, activated indirectly by nitric oxide released from the drug',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1991,
+    indication:
+      'Prevention and treatment of angina pectoris due to coronary artery disease. The label states that the onset of action is not sufficiently rapid for the oral product to be useful in aborting an acute anginal episode',
+    patientFriendlyIndication: 'Chest pain from narrowed heart arteries, prevented rather than stopped',
+    anatomicalSite:
+      'Venous capacitance vessels above all, then arterioles and the epicardial coronary arteries — the soluble guanylate cyclase inside their smooth muscle',
+    conditionContext: {
+      conditionExplainer:
+        'Angina happens when the heart demands more oxygen than a narrowed coronary artery can deliver. There are two ways to close that gap: deliver more, or demand less. Nitrates mostly do the second, by widening the veins so less blood returns to the heart, so the heart has less to pump and works less hard.',
+      whyItMatters:
+        'Nitroglycerin has been used for angina since 1879, and this drug is its long-acting descendant. It is one of the oldest classes still in daily use, and the two things most worth knowing about it are both unusual: it stops working if it is present continuously, and the largest trial ever run on it found no effect on survival.',
+      whoTakesThis:
+        'Adults with stable angina from coronary artery disease, to reduce how often the pain comes. Not people taking sildenafil, tadalafil, vardenafil or riociguat, where the combination can cause severe hypotension.',
+      clinicalGoals:
+        'Fewer anginal episodes and more exercise before pain starts. Nothing else has been shown, and the label states outright that benefits in acute myocardial infarction or congestive heart failure have not been established.',
+    },
+    oneSentenceVerdict:
+      'A long-acting nitric oxide donor that widens veins and reduces the work of the heart, whose antianginal effect its own label says disappears within 24 hours of continuous exposure and cannot be recovered by raising the dose — and which, given to 29,000 patients after myocardial infarction in ISIS-4, produced five-week mortality of 7.34% against 7.54% on placebo.',
+    laymanHowItWorks:
+      'The drug releases nitric oxide, the same signalling molecule the lining of your blood vessels makes to tell them to relax. Nitric oxide switches on an enzyme inside vessel muscle that produces a messenger called cyclic GMP, and that messenger makes the muscle let go. Veins respond most, so blood pools in them and less returns to the heart; the heart therefore has less to pump each beat and needs less oxygen. That is what prevents the chest pain. The unusual part is that the effect fades if the drug never leaves the body, so the treatment is deliberately arranged to include a long stretch each day with none of it present.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 60,
+    pricing: {
+      synthesisCostPerDose: '',
+      retailPricePerDoseOrYear:
+        'US$0.0977 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 19 August 2026)',
+      markupEstimate: '',
+      openPatentNotes:
+        'Approved in the United States in 1991 as a purified form of the active metabolite of isosorbide dinitrate, which had itself been in use for decades. Isosorbide dinitrate is on the WHO Model List of Essential Medicines. At about ten United States cents a tablet the drug is cheap enough that its cost has never been the argument about it.',
+      synthesisComplexity: 'Low',
+      costSource: COST_OF_PRODUCTION_SOURCE,
+      priceSource: NADAC_SOURCE,
+    },
+    substitutes: {
+      summary:
+        'Every alternative for stable angina is judged on the same two questions: does it reduce symptoms, and does it reduce events. Nitrates answer yes to the first and have never answered yes to the second. Beta-blockers and the rate-slowing calcium blockers reduce symptoms too, and the beta-blockers carry outcome evidence in the populations where they have been tested. Ranolazine adds symptomatic benefit without touching heart rate or blood pressure, and has also failed to reduce events.',
+      conventionalRx: [
+        {
+          name: 'A beta-blocker such as metoprolol, bisoprolol or atenolol',
+          class: 'Beta-1 adrenergic blocker',
+          howItCompares:
+            'Reduces angina by lowering heart rate and contractility rather than by pooling blood in the veins, and does not develop tolerance. It is the class with mortality evidence after myocardial infarction and in heart failure, which nitrates do not have in any population.',
+          typicalCost: 'Generic; a few United States cents per tablet at pharmacy acquisition cost',
+          prosAndCons:
+            'Pros: no tolerance, no rebound on the nitrate-free interval, outcome data in defined populations. Cons: fatigue, bradycardia, bronchospasm risk, and abrupt withdrawal is itself dangerous.',
+        },
+        {
+          name: 'Diltiazem or verapamil',
+          class: 'Non-dihydropyridine calcium channel blocker',
+          howItCompares:
+            'Reduces oxygen demand and dilates coronary arteries, and is the class of choice where the angina is vasospastic rather than fixed-obstruction. Like nitrates, neither has shown a survival benefit in a randomised trial.',
+          typicalCost:
+            'US$0.3196 per unit for diltiazem and US$0.1803 for verapamil at United States pharmacy acquisition cost (CMS NADAC, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no tolerance; effective against coronary spasm; controls heart rate as well. Cons: heart block and worsening of a weak ventricle; verapamil constipation; CYP3A4 interactions.',
+        },
+        {
+          name: 'Ranolazine (Ranexa)',
+          class: 'Late sodium current inhibitor',
+          howItCompares:
+            'Reduces anginal episodes without lowering heart rate or blood pressure, so it can be added when a patient cannot tolerate more of either. Its outcome trial, MERLIN-TIMI 36 in 6,560 patients, missed its primary endpoint (HR 0.92, p=0.11).',
+          typicalCost:
+            'US$0.1609 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 35 listed generic products, survey effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no haemodynamic effect, so usable at low blood pressure or heart rate. Cons: QT prolongation; CYP3A4 interactions; the effect size on exercise time is modest.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Dietary nitrate — beetroot, rocket, spinach and celery',
+          activeCompound: 'Inorganic nitrate, reduced by oral bacteria to nitrite and then to nitric oxide',
+          biologicalMechanism:
+            'Reaches the same end point as the drug — nitric oxide acting on soluble guanylate cyclase — by an entirely different route that does not require the enzymatic bioactivation an organic nitrate needs, and that does not appear to induce the same tolerance.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale only: randomised trials of dietary nitrate measure blood pressure and exercise performance over days to weeks. None has measured anginal episodes against a nitrate drug, and none has reported a cardiovascular outcome.',
+          monthlyCost: '',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Never combine it with an erectile dysfunction drug',
+          action:
+            'Say if you take or have recently taken sildenafil, tadalafil or vardenafil, or the pulmonary hypertension drug riociguat.',
+          patientImpact:
+            'These are absolute contraindications. Both drug families raise cyclic GMP by different steps in the same pathway, and together they can cause severe hypotension, syncope or myocardial ischaemia. The label notes that the time course and dose dependence of the sildenafil interaction have not been studied.',
+          clinicalPrecaution:
+            'This is one of the interactions people are least likely to volunteer and most likely to be harmed by. Tadalafil in particular has a long duration, so the risk window extends well beyond the day it was taken.',
+        },
+        {
+          name: 'Expect the headache, and expect it to fade',
+          action: 'Report headache but do not treat it as a reason to abandon the drug on day one.',
+          patientImpact:
+            'Headache is the commonest adverse effect and was dose-related in the controlled trials: 6% on placebo, 13% at 10 mg and 35% at 20 mg, with 5% of the highest-dose group discontinuing. The label records that headache decreased in incidence after the first few days of therapy.',
+          clinicalPrecaution:
+            'The headache is the drug dilating cerebral vessels, which is the same effect that is wanted in the coronary circulation. It is a marker that the drug is working, not a marker that something is wrong.',
+        },
+        {
+          name: 'Do not carry it as a rescue tablet',
+          action:
+            'Understand that this is a preventive tablet, not something to take when the pain starts.',
+          patientImpact:
+            'The label states plainly that the onset of action of oral isosorbide mononitrate is not sufficiently rapid for the product to be useful in aborting an acute anginal episode. Sublingual glyceryl trinitrate exists for that.',
+          clinicalPrecaution:
+            'Chest pain that does not settle with the rescue medicine is an emergency, not a dosing question.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1[C@@H]([C@@H]2[C@H](O1)[C@@H](CO2)O[N+](=O)[O-])O',
+      chemicalFormula: 'C6H9NO6',
+      molecularWeight: '191.14 g/mol',
+      targetReceptorAffinity:
+        'Not a receptor ligand at all. Isosorbide mononitrate is a prodrug that must be bioactivated in vascular smooth muscle to release nitric oxide, which then binds the haem group of soluble guanylate cyclase and raises cyclic GMP. It is the major active metabolite of isosorbide dinitrate, and the label states that most of the clinical activity of the dinitrate is attributable to it. Unlike the dinitrate it undergoes essentially no first-pass metabolism, giving near-complete bioavailability, and its clearance is unaffected by hepatic or renal impairment.',
+      structureSource: {
+        label:
+          'PubChem CID 27661 (isosorbide mononitrate) — canonical SMILES, molecular formula and weight, as carried on the enriched record',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/27661',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ismn-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Distinguish the 5-mononitrate from the 2-mononitrate and the dinitrate',
+          description:
+            'Isosorbide has two secondary hydroxyls in different chemical environments, and nitration can give the 2-, the 5-, or the 2,5-dinitrate. Only the 5-mononitrate is this drug. The 2-isomer and residual dinitrate have different potency and different first-pass behaviour, and they are not visible as a problem on a simple assay of total nitrate ester.',
+          reagentsAndBuffer:
+            'Isosorbide 5-mononitrate reference standard, reversed-phase HPLC with ultraviolet detection at 210 nanometres, 13C NMR to assign the substituted position, gas chromatography for residual dinitrate, Karl Fischer titration',
+        },
+        {
+          id: 'ismn-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Controlled mononitration or selective denitration of the dinitrate',
+          description:
+            'Either nitrate isosorbide under conditions that favour the exo 5-position, or make the dinitrate and remove one nitrate group selectively. Both routes handle a nitrate ester in acid, which is an energetic combination, so temperature control at this step is a safety requirement rather than a yield optimisation.',
+          dependsOnStepId: 'ismn-w1',
+          reagentsAndBuffer:
+            'Isosorbide, fuming nitric acid with acetic anhydride or a nitrating mixture at controlled low temperature, or isosorbide dinitrate with hydrazine hydrate for selective denitration, with continuous temperature monitoring and quench capability',
+        },
+        {
+          id: 'ismn-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Crystallise the mononitrate and dilute it for handling',
+          description:
+            'Crystallise to remove the isomer and residual dinitrate. Pure isosorbide mononitrate is handled as a diluted material — typically with lactose or mannitol — because concentrated nitrate esters are shock- and heat-sensitive. That dilution is a manufacturing safety measure that becomes part of the tablet formulation.',
+          dependsOnStepId: 'ismn-w2',
+          reagentsAndBuffer:
+            'Crystallisation from ethanol or ethyl acetate with controlled cooling, blending with lactose monohydrate or mannitol to a specified assay, HPLC release testing against limits for the 2-isomer and the dinitrate',
+        },
+        {
+          id: 'ismn-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Confirm bioactivation in smooth muscle rather than in buffer',
+          description:
+            'An organic nitrate does nothing in a tube. Nitric oxide is released only after enzymatic bioactivation inside vascular smooth muscle, so the assay must use intact tissue or cells, not a chemical decomposition measurement. Testing in buffer reports a rate that has no relation to what the drug does in a vessel.',
+          dependsOnStepId: 'ismn-w3',
+          reagentsAndBuffer:
+            'Cultured vascular smooth muscle cells or intact aortic rings, nitric oxide-selective electrode or DAF-FM fluorescence, cyclic GMP immunoassay, ODQ as a soluble guanylate cyclase inhibitor for the negative control',
+        },
+        {
+          id: 'ismn-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Measure tolerance by repeating the relaxation after continuous exposure',
+          description:
+            'Relax a precontracted vessel ring, then hold the drug on the tissue for hours and repeat the concentration-response curve. The rightward shift is nitrate tolerance, and it is the single most clinically important property of this molecule. A single-exposure potency measurement describes a drug that behaves differently from the one patients take.',
+          dependsOnStepId: 'ismn-w4',
+          reagentsAndBuffer:
+            'Rat or rabbit aortic rings precontracted with phenylephrine, isometric force transducers, continuous drug exposure arms of 0, 6 and 16 hours, washout arm to demonstrate recovery of sensitivity',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ismn-a1',
+        category: 'failed',
+        title: 'ISIS-4: no survival benefit in 58,050 patients, and none in any subgroup',
+        laymanSummary:
+          'One of the largest heart trials ever run gave oral mononitrate or a matching dummy tablet to fifty-eight thousand people after a suspected heart attack. Five-week deaths were 7.34% on the drug and 7.54% on placebo. There was no benefit in any group examined and none later either.',
+        technicalDetails:
+          'ISIS-4 randomised 58,050 patients entering 1,086 hospitals within 24 hours of suspected acute myocardial infarction, median 8 hours, in a two-by-two-by-two factorial design. One comparison was one month of oral controlled-release mononitrate against matching placebo, with about 29,000 patients per arm. There was no significant reduction in five-week mortality either overall — 2,129 (7.34%) mononitrate deaths against 2,190 (7.54%) placebo — or in any subgroup examined, including those already receiving non-study intravenous or oral nitrates at entry. Further follow-up showed no later survival advantage. The only significant side effect was an increase of 15 per 1,000 in hypotension. Patients allocated active treatment had somewhat fewer deaths on days 0 to 1, which the investigators describe as reassuring about the safety of early nitrate use. In the same trial, captopril produced a significant 7% proportional reduction in five-week mortality, so the trial was capable of detecting an effect of that size and did not detect one here.',
+        evidenceSource:
+          'ISIS-4 (Fourth International Study of Infarct Survival) Collaborative Group, Lancet 1995;345:669-685',
+        measuredMetric: 'Five-week all-cause mortality after suspected acute myocardial infarction',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ismn-a2',
+        category: 'failed',
+        title: 'NEAT-HFpEF: patients given the nitrate moved less, not more',
+        laymanSummary:
+          'Nitrates are widely prescribed to help people with stiff-heart failure do more. A trial fitted 110 such patients with activity monitors and gave them the drug or placebo in turn. On the drug they were less active, and the more they took, the less they moved.',
+        technicalDetails:
+          'NEAT-HFpEF was a multicentre, double-blind crossover study in 110 patients with heart failure and preserved ejection fraction, randomised to six weeks of dose-escalating isosorbide mononitrate or placebo and then crossed over. The primary endpoint was daily activity level as average daily accelerometer units during the highest-dose phase. At that dose there was a non-significant trend toward lower activity on the nitrate (-381 accelerometer units, 95% CI -780 to 17, p=0.06) and a significant decrease in hours of activity per day (-0.30 hours, 95% CI -0.55 to -0.05, p=0.02). Across all dose regimens, activity on the nitrate was lower than on placebo (-439 units, 95% CI -792 to -86, p=0.02), and activity fell progressively and significantly with increasing nitrate dose but not with increasing placebo dose. There were no between-group differences in six-minute walk distance, quality-of-life scores or NT-proBNP. The published conclusion is that these patients were less active and did not have better quality of life or submaximal exercise capacity than those receiving placebo.',
+        evidenceSource:
+          'Redfield MM et al. Isosorbide mononitrate in heart failure with preserved ejection fraction. N Engl J Med 2015;373:2314-2324 (NEAT-HFpEF, NCT02053493)',
+        doi: '10.1056/NEJMoa1510774',
+        measuredMetric:
+          'Daily activity in accelerometer units and hours of activity per day, nitrate against placebo in crossover',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ismn-a3',
+        category: 'measured',
+        title: 'The label states the drug stops working within a day of continuous use',
+        laymanSummary:
+          'This is written into the prescribing information rather than buried in a journal. Trials that delivered nitrates continuously found them indistinguishable from a dummy tablet after 24 hours or less, and raising the dose did not fix it.',
+        technicalDetails:
+          'The Clinical Pharmacology section states that the strategy of maintaining plasma concentrations continuously above a minimally effective level, standard for most chronic drugs, is inappropriate for organic nitrates. It records that several well-controlled trials using exercise testing found active agents indistinguishable from placebo after 24 hours or less of continuous therapy, and that attempts to overcome tolerance by dose escalation, even to doses far in excess of those used acutely, have consistently failed. Only after nitrates have been absent from the body for several hours is antianginal efficacy restored. The approved regimen is therefore deliberately asymmetric, leaving a long stretch of each day with the drug absent. The label adds that tolerance still occurs to some extent even on that regimen, and that the duration of antianginal activity beyond fourteen hours has not been studied.',
+        evidenceSource:
+          'Isosorbide mononitrate United States prescribing information, Clinical Pharmacology and Dosage and Administration sections',
+        measuredMetric:
+          'Exercise-test antianginal efficacy after continuous nitrate exposure, from the controlled trials summarised in the label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ismn-a4',
+        category: 'inferred',
+        title: 'The mechanism is described in the label as undefined',
+        laymanSummary:
+          'Nitrates widen veins, widen arteries and widen the coronary vessels. Which of those three actually stops the chest pain has not been settled, and the prescribing information says so.',
+        technicalDetails:
+          'The label describes dilatation of peripheral arteries and veins, especially veins, with venous pooling reducing venous return and therefore left ventricular end-diastolic pressure and pulmonary capillary wedge pressure; arteriolar relaxation reducing systemic vascular resistance and arterial pressure; and dilatation of the coronary arteries. It then states: the relative importance of preload reduction, afterload reduction and coronary dilatation remains undefined. This is unusually candid for a drug in use since the nineteenth century in its parent form, and it matters for the tolerance question, because a mechanism that has not been isolated is a mechanism whose loss cannot be measured directly either.',
+        evidenceSource:
+          'Isosorbide mononitrate United States prescribing information, Clinical Pharmacology section',
+        inferredClaim:
+          'That the antianginal effect is primarily preload reduction — the most commonly taught account, which the label declines to endorse over the alternatives',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ismn-a5',
+        category: 'failed',
+        title: 'Two absolute contraindications built on the same second messenger',
+        laymanSummary:
+          'Erectile dysfunction drugs and this drug both raise the same chemical signal in blood vessel walls, by different steps. Together they can drop blood pressure catastrophically.',
+        technicalDetails:
+          'The label contraindicates concomitant use with phosphodiesterase type 5 inhibitors — sildenafil, tadalafil, vardenafil — and with the soluble guanylate cyclase stimulator riociguat, stating that the combinations can cause severe hypotension, syncope or myocardial ischaemia. Nitrates raise cyclic GMP by donating nitric oxide to activate soluble guanylate cyclase; PDE5 inhibitors raise it by blocking its breakdown; riociguat raises it by stimulating the same cyclase directly. The label notes that the time course and dose dependence of the sildenafil interaction have not been studied, and that appropriate supportive care has not been studied either, suggesting it be treated as a nitrate overdose. Separately, the label states that benefits in acute myocardial infarction or congestive heart failure have not been established and that the drug is not recommended in those settings because its effects are difficult to terminate rapidly.',
+        evidenceSource:
+          'Isosorbide mononitrate United States prescribing information, Contraindications and Warnings sections',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ismn-a6',
+        category: 'measured',
+        title: 'Headache in a third of patients at the higher strength',
+        laymanSummary:
+          'The headache is the drug working on the wrong blood vessels. It affected six percent of people on the dummy tablet and thirty-five percent at the higher strength, and it faded after the first few days.',
+        technicalDetails:
+          'Across six placebo-controlled studies, headache occurred in 6% of 160 placebo patients, 17% of 54 at the lowest strength, 13% of 52 at the intermediate strength and 35% of 159 at the highest studied strength, with 5% of that last group discontinuing for it. Headache was the cause of 2% of all dropouts from the controlled trial programme and decreased in incidence after the first few days of therapy. Other reactions above 1% were fatigue, dizziness and nausea. The label records that extremely rarely, ordinary doses of organic nitrates have caused methaemoglobinaemia.',
+        evidenceSource:
+          'Isosorbide mononitrate United States prescribing information, Adverse Reactions section',
+        measuredMetric:
+          'Headache incidence and discontinuation across six placebo-controlled studies',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Swallowed, and almost none of it is lost',
+        laymanDesc:
+          'Unlike its parent drug, this one is not destroyed on its first pass through the liver, so nearly all of what is swallowed reaches the circulation. Liver or kidney problems do not change that.',
+        molecularDetail:
+          'Isosorbide mononitrate is the major active metabolite of isosorbide dinitrate and undergoes essentially no first-pass metabolism, giving near-complete bioavailability with low variability. The label states that dosage adjustments are not necessary for elderly patients or for altered hepatic or renal function.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Vessel muscle has to activate it first',
+        laymanDesc:
+          'The tablet itself does nothing to a blood vessel. Enzymes inside the vessel wall have to break it down before nitric oxide is released.',
+        molecularDetail:
+          'Organic nitrates are prodrugs requiring enzymatic bioactivation within vascular smooth muscle to liberate nitric oxide. This is why decomposition rate in buffer says nothing useful about potency, and why the tolerance phenomenon is a property of the activating machinery rather than of the molecule.',
+        iconName: 'Scissors',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Nitric oxide switches on the relaxing enzyme',
+        laymanDesc:
+          'Nitric oxide binds an enzyme inside the muscle cell that makes a messenger called cyclic GMP. That messenger tells the muscle to let go.',
+        molecularDetail:
+          'Nitric oxide binds the haem group of soluble guanylate cyclase, raising cyclic GMP, which activates protein kinase G and lowers intracellular calcium. This is the identical end point that phosphodiesterase type 5 inhibitors reach by blocking cyclic GMP breakdown, which is why the two are absolutely contraindicated together.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'Veins widen most, so the heart has less to pump',
+        laymanDesc:
+          'Blood pools in the widened veins and less returns to the heart. With less to move each beat, the heart needs less oxygen, and the mismatch that caused the pain narrows.',
+        molecularDetail:
+          'Venodilatation predominates: pooling reduces venous return, left ventricular end-diastolic pressure and pulmonary capillary wedge pressure. Arteriolar relaxation reduces systemic vascular resistance and arterial pressure, and coronary arteries dilate as well. The label states the relative importance of the three remains undefined.',
+        iconName: 'ArrowDown',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 5,
+        title: 'Keep it there and it stops working',
+        laymanDesc:
+          'If the drug is present around the clock, the effect fades within a day and raising the dose does not bring it back. Only removing it for several hours restores it.',
+        molecularDetail:
+          'The label records that in the large majority of well-controlled exercise-testing trials, continuously delivered nitrates were indistinguishable from placebo after 24 hours or less, that dose escalation far beyond acutely effective doses has consistently failed to overcome tolerance, and that efficacy returns only after several hours of absence.',
+        iconName: 'RotateCcw',
+        visualStage: 'therapeutic_result',
+      },
+      {
+        step: 6,
+        title: 'What the largest trial found',
+        laymanDesc:
+          'Fifty-eight thousand patients after a heart attack were given this drug or a dummy tablet. Deaths at five weeks were 7.34% and 7.54%. Nothing separated them, then or later.',
+        molecularDetail:
+          'ISIS-4 found no significant reduction in five-week mortality overall or in any subgroup examined, including patients already on non-study nitrates, with no later survival advantage. In the same factorial trial captopril produced a significant 7% proportional mortality reduction, so the design could detect an effect of that magnitude.',
+        iconName: 'HelpCircle',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ISIS-4 (Lancet 1995;345:669-685)',
+        phase: 'Phase 4, randomised, placebo-controlled, two-by-two-by-two factorial',
+        sampleSize: 58050,
+        primaryEndpoint:
+          'Five-week all-cause mortality after suspected acute myocardial infarction, oral controlled-release mononitrate against matching placebo',
+        endpointMet: false,
+        statisticalPValue:
+          '2,129 (7.34%) against 2,190 (7.54%) deaths — no significant reduction overall or in any subgroup examined, and no later survival advantage',
+        unreportedAdverseSignals:
+          'The only significant side effect was an increase of 15 per 1,000 in hypotension. Fewer deaths occurred on days 0 to 1 on active treatment, which the investigators read as reassuring about early nitrate safety.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NEAT-HFpEF (NCT02053493)',
+        phase: 'Phase 2, randomised, double-blind, placebo-controlled crossover',
+        sampleSize: 110,
+        primaryEndpoint:
+          'Daily activity level, as average daily accelerometer units during the highest-dose phase',
+        endpointMet: false,
+        statisticalPValue:
+          '-381 accelerometer units (95% CI -780 to 17), p=0.06 at the highest dose; hours of activity per day -0.30 (95% CI -0.55 to -0.05), p=0.02; across all doses -439 units (95% CI -792 to -86), p=0.02',
+        unreportedAdverseSignals:
+          'The direction was against the drug. Activity fell progressively with increasing nitrate dose and not with increasing placebo dose, and there were no differences in six-minute walk, quality of life or NT-proBNP.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Six placebo-controlled antianginal studies in the registration programme',
+        phase: 'Phase 3, randomised, double-blind, placebo-controlled',
+        sampleSize: 425,
+        primaryEndpoint: 'Exercise tolerance in chronic stable angina',
+        endpointMet: true,
+        statisticalPValue:
+          'Antianginal efficacy demonstrated on exercise tolerance, beginning one hour after the first dose; the label states that duration of activity beyond fourteen hours has not been studied',
+        unreportedAdverseSignals:
+          'Headache was dose-related, at 6% on placebo against 35% at the highest strength studied, with 5% of that group discontinuing. The endpoint is exercise time, not events.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Five-week mortality after infarction 7.34% against 7.54% on placebo in 58,050 patients, with no benefit in any subgroup',
+        'Daily activity lower on the nitrate than on placebo across all doses in 110 patients with preserved-ejection-fraction heart failure (p=0.02)',
+        'Antianginal efficacy indistinguishable from placebo after 24 hours or less of continuous exposure, in the trials summarised in the label',
+        'Headache in 35% at the highest studied strength against 6% on placebo, with 5% discontinuing',
+      ],
+      unsupportedInferences: [
+        'That nitrates reduce heart attacks or deaths — the largest trial ever run on the question found nothing',
+        'That the antianginal effect is primarily preload reduction, when the label says the relative importance of the three mechanisms remains undefined',
+        'That nitrates improve exercise capacity in heart failure with preserved ejection fraction, which NEAT-HFpEF measured and found the opposite of',
+        'That raising the dose restores an effect lost to tolerance, which the label says has consistently failed',
+      ],
+      whatFailedInitially: [
+        'ISIS-4 found no mortality benefit in about 29,000 patients given the drug, and none in any subgroup',
+        'NEAT-HFpEF found less daily activity on the nitrate, with the effect growing as the dose rose',
+        'Continuous delivery abolishes the antianginal effect within a day, and dose escalation does not recover it',
+        'The label states that benefits in acute myocardial infarction and congestive heart failure have not been established and that the drug is not recommended there',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 1991 and available in 35 listed generic products at about ten United States cents a tablet',
+        'Still one of the most-prescribed antianginal drugs in the world, on a symptomatic indication its trials support and an outcome claim they do not',
+        'The tolerance phenomenon shaped an entire class of drug regimens built around a deliberate daily absence, which is unusual in pharmacology',
+        'Absolutely contraindicated with phosphodiesterase type 5 inhibitors, an interaction that shaped the safety labelling of both classes',
+      ],
+    },
+    deliverySystem: {
+      type: 'Immediate-release tablet and extended-release tablet, taken orally',
+      description:
+        'The immediate-release and extended-release forms exist to solve the same problem from opposite directions: both are arranged so that the drug is absent from the body for a long stretch of each day, because continuous presence abolishes the effect. Bioavailability is near-complete because, unlike the dinitrate, the mononitrate is not removed on first pass, and the label states no adjustment is needed for age or for hepatic or renal impairment.',
+      safetyProfile:
+        'Absolutely contraindicated with phosphodiesterase type 5 inhibitors and with riociguat, where the combination can cause severe hypotension, syncope or myocardial ischaemia. Headache is dose-related and affected 35% at the highest studied strength. The label states that benefits in acute myocardial infarction or congestive heart failure have not been established, and that the drug is not recommended in those settings because its effects are difficult to terminate rapidly. Extremely rarely, ordinary doses of organic nitrates have caused methaemoglobinaemia.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why do I have to take it at odd times rather than evenly through the day?',
+        a: 'Because this drug stops working if it never leaves your body, and that is one of the strangest facts in pharmacology. The prescribing information puts it bluntly: the usual strategy of keeping a drug level continuously above an effective threshold is inappropriate for nitrates. In controlled trials using exercise testing, continuously delivered nitrates became indistinguishable from placebo within 24 hours, and raising the dose — even far beyond what works acutely — consistently failed to fix it. Only several hours with the drug absent restores the effect. So the schedule is designed around a deliberate daily gap. That gap is the treatment, not an inconvenience in it.',
+      },
+      {
+        q: 'Does it prevent heart attacks?',
+        a: 'No trial has shown that, and one very large trial looked hard. ISIS-4 randomised 58,050 patients within a day of a suspected heart attack; about 29,000 received a month of oral controlled-release mononitrate and about 29,000 a matching placebo. Five-week deaths were 7.34% and 7.54% — no significant difference overall, none in any subgroup examined, and no later survival advantage on further follow-up. The same trial detected a significant 7% mortality reduction from captopril, so it was capable of finding an effect of that size. Nitrates reduce chest pain. That is what they have been shown to do.',
+      },
+      {
+        q: 'I have heart failure. Will this help me do more?',
+        a: 'The trial that asked exactly that question found the opposite. NEAT-HFpEF fitted 110 patients with heart failure and a preserved ejection fraction with activity monitors and gave them isosorbide mononitrate or placebo for six weeks each, in random order. On the nitrate they were less active — 0.3 fewer hours of activity per day at the highest dose, and lower activity across all doses — and the reduction got larger as the dose went up. Six-minute walk distance, quality of life and NT-proBNP were all unchanged. The label separately says that benefits in congestive heart failure have not been established and that the drug is not recommended there.',
+        auditNote:
+          'This is a small crossover trial and the primary endpoint at the top dose was p=0.06, which is not significant. The direction, the dose-response and the significant secondary endpoints all point the same way, which is why the result changed practice rather than being set aside.',
+      },
+      {
+        q: 'Can I take Viagra?',
+        a: 'No, and this is one of the few genuinely absolute interactions in medicine. Nitrates raise a chemical messenger called cyclic GMP inside blood vessel walls by donating nitric oxide. Sildenafil, tadalafil and vardenafil raise the same messenger by blocking its breakdown. Together the effect compounds and blood pressure can fall to the point of fainting, or of causing the very ischaemia the nitrate was prescribed to prevent. The label notes that the time course and dose dependence of the interaction have not been studied, and that even the right treatment for it has not been studied. Tadalafil lasts a long time, so the risk window extends well beyond the day it was taken. The same contraindication applies to riociguat.',
+      },
+      {
+        q: 'The headache is awful. Should I stop?',
+        a: 'Usually not straight away, because it typically settles. Headache is the commonest effect and it is dose-related: 6% of people on placebo reported it, against 13% at the intermediate strength and 35% at the highest studied strength, where 5% stopped the drug because of it. The label records that it decreased in incidence after the first few days of therapy. Mechanistically it is the drug dilating cerebral vessels — the same action being sought in the coronary circulation — so it is a sign the tablet is doing what it does rather than a sign of harm. If it persists beyond the first weeks, that is worth raising, because there are antianginal drugs that do not cause it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'ISIS-4 (Fourth International Study of Infarct Survival) Collaborative Group. ISIS-4: a randomised factorial trial assessing early oral captopril, oral mononitrate, and intravenous magnesium sulphate in 58,050 patients with suspected acute myocardial infarction. Lancet 1995;345:669-685',
+        identifier: '7661937',
+        kind: 'pmid',
+      },
+      {
+        label:
+          'Redfield MM, Anstrom KJ, Levine JA, et al. Isosorbide mononitrate in heart failure with preserved ejection fraction. N Engl J Med 2015;373:2314-2324 (NEAT-HFpEF)',
+        identifier: '10.1056/NEJMoa1510774',
+        kind: 'doi',
+      },
+      {
+        label: 'NEAT-HFpEF: nitrate effect on activity tolerance in heart failure with preserved ejection fraction',
+        identifier: 'NCT02053493',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Isosorbide mononitrate tablets United States prescribing information — Indications, Contraindications, Warnings, Clinical Pharmacology and Adverse Reactions sections',
+        identifier: 'https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22isosorbide+mononitrate%22',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Morrow DA, Scirica BM, Karwatowska-Prokopczuk E, et al. Effects of ranolazine on recurrent cardiovascular events in patients with non-ST-elevation acute coronary syndromes: MERLIN-TIMI 36. JAMA 2007;297:1775-1783',
+        identifier: '10.1001/jama.297.16.1775',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC) survey — isosorbide mononitrate, 35 listed generic products, effective 19 August 2026',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 27661 — isosorbide mononitrate structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/27661',
+        kind: 'url',
+      },
+    ],
+  },
 ]
