@@ -322,8 +322,12 @@ async function main(): Promise<void> {
     }
 
     // --- Suffixed biologics -------------------------------------------------
+    // Refresh-aware like the passes around it. Without this the pass never ran again after the
+    // first fill: a record it had written has a context, so it was skipped, and the substance pass
+    // below then overwrote its answer with a publication count. "Insulin Aspart-Szjj is insulin
+    // aspart, and here is insulin aspart" became "Europe PMC indexes 1 paper".
     const stem = biologicStem(row.name)
-    if (stem && !row.conditionContext && !patch.conditionContext) {
+    if (stem && !patch.conditionContext && (refreshable || !row.conditionContext)) {
       const parentRows = await db
         .select({ name: drugs.name, slug: drugs.slug, indication: drugs.patientFriendlyIndication })
         .from(drugs)

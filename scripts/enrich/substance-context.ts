@@ -74,6 +74,8 @@ const ROUTE_PHRASES: Record<string, string> = {
   DENTAL: 'onto the teeth or gums',
   PERCUTANEOUS: 'through the skin',
   PARENTERAL: 'by injection',
+  INJECTION: 'by injection',
+  INFUSION: 'by infusion',
   INTRAUTERINE: 'into the womb',
   URETHRAL: 'into the urethra',
   INTRALESIONAL: 'into the lesion itself',
@@ -100,8 +102,16 @@ function routePhrase(route: string): string {
  * sentence. Plurality follows the product count, because "in 148 products, as stick" is wrong in a
  * way a reader notices immediately.
  */
+const FORM_NAMES: Record<string, string> = {
+  INJECTABLE: 'injection',
+  'INJECTABLE, LIPOSOMAL': 'injection',
+  'INJECTION, SOLUTION': 'injection',
+  'INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION': 'injection',
+}
+
 function formPhrase(form: string, plural: boolean): string {
-  const head = (form.split(',')[0] ?? form).trim().toLowerCase()
+  const named = FORM_NAMES[form.trim().toUpperCase()]
+  const head = named ?? (form.split(',')[0] ?? form).trim().toLowerCase()
   if (!head) return ''
   if (!plural) return /^[aeiou]/.test(head) ? `an ${head}` : `a ${head}`
   if (/(s|x|z|ch|sh)$/.test(head)) return `${head}es`
