@@ -10,14 +10,13 @@ const freshnessDoc = readFileSync(join(process.cwd(), 'docs/evidence-freshness.m
 const normalizedFreshnessDoc = freshnessDoc.replace(/\s+/g, ' ')
 
 describe('How this works copy contract', () => {
-  it('explains the plain-first reading path without making technical detail hover-only', () => {
+  it('explains the static plain-first reading path while preserving exact detail', () => {
     for (const phrase of [
       'Plain first. Exact when you need it.',
-      'the intended use, the clearest recorded result and the biggest unanswered question',
-      'the explanation is attached to that phrase',
-      'Hover or keyboard focus previews it',
-      'click or tap keeps it open',
-      'starts with everyday meaning',
+      'the intended use, the clearest research result and the biggest unanswered question',
+      'The short answer must make sense without a glossary',
+      'its familiar meaning appears in the same sentence',
+      'Readers do not need to hover or tap to understand the main point',
       'More about this medicine',
       'safety information and how the medicine was given',
       'not mixed into the short evidence conclusion',
@@ -27,6 +26,8 @@ describe('How this works copy contract', () => {
     ]) {
       expect(normalizedSource).toContain(phrase)
     }
+    expect(normalizedSource).not.toContain('Hover or keyboard focus previews it')
+    expect(normalizedSource).not.toContain('click or tap keeps it open')
   })
 
   it('states the material RNA Intelligence 2.0 improvements and the human boundary', () => {

@@ -10,13 +10,13 @@ The dossier uses a short reading path with nested detail:
 
 1. Medicine identity and the plain question this page answers: what the medicine was used or
    studied for, and in whom.
-2. A short answer with the intended use, clearest recorded result, and main uncertainty. Published
+2. A short answer with the intended use, clearest research result, and main uncertainty. Published
    wording for a specific use remains bound to its reviewed revision; general research summaries
    use their stored plain result fields instead of exposing a dense technical verdict as the first
    read.
-3. Unfamiliar terms are explained on the words themselves. Hover or keyboard focus previews a
-   definition; click or tap keeps it open. A secondary **Explain study words** index remains in the
-   expanded evidence view for readers who want to scan every term.
+3. The first screen uses everyday words that stand on their own. If one unfamiliar term is essential,
+   its familiar meaning appears in the same sentence. Readers never need to hover, tap, or open a
+   glossary to understand the short answer.
 4. A collapsed **How does it work?** explanation keeps the simple mechanism close without putting
    molecular details in the first read.
 5. The original longer wording remains available in the general research summary, clearly labelled
@@ -30,22 +30,19 @@ The dossier uses a short reading path with nested detail:
 9. Substantive community commentary, when present, remains separate from both reviewed evidence
    and general medicine background. Empty community sections stay hidden.
 
-Definitions are attached to the unfamiliar phrase rather than making readers search a detached
-dictionary. Each starts with the familiar meaning, retains the exact clinical or scientific term
-for source matching, and opens as a quiet content-width note directly beneath the sentence. It
-never covers the sentence or turns the definition into a competing evidence card, and it works with
-mouse, touch, and keyboard. Only the first occurrence in a
-section is marked; prose with too many unfamiliar terms must be split or simplified rather than
-turned into a wall of controls. Exact study identifiers, percentages,
-comparison groups, endpoint wording, uncertainty ranges, source fingerprints, and professional
-classifications belong in the expanded evidence path unless a value is necessary to understand the
-main result.
+The first screen does not use contextual definition controls. Unfamiliar wording must be replaced
+with familiar wording, defined briefly in the sentence, or moved out of the short answer. Technical
+terms are not discarded: the exact clinical or scientific wording remains available under
+**Read the full research wording** or **See how we know** for readers comparing the page with a study
+or source. Exact study identifiers, percentages, comparison groups, endpoint wording, uncertainty
+ranges, source fingerprints, and professional classifications belong in that expanded evidence
+path unless a value is necessary to understand the main result.
 
 No evidence-bearing copy is defined in a component. A reviewed view for a specific use is assembled
 from database rows. Pages without a published reviewed version keep their medicine-wide research
 visibly separate under **What the research reports** and **General research summary**. The summary
-must say: **This summary combines research from different uses, groups, doses and studies. It is
-useful background, not a reviewed answer to one specific question.** When no reviewed answer has
+must say: **This combines research on different uses and groups. It is background, not a reviewed
+answer for one specific use.** When no reviewed answer has
 been published, the interface says **No reviewed answer yet**; the application does not create a
 verdict to fill a gap.
 
@@ -132,10 +129,10 @@ because commentary is neither evidence nor background from the medicine record.
 ## Accessibility and rendering
 
 - The first layer and advanced content are server rendered.
-- Explained phrases are real buttons. Hover and keyboard focus preview one definition; click or tap
-  pins it; Escape, a second activation, an outside press, or opening another term closes it.
-- No definition depends on hover. The same content remains available by click, touch, keyboard, and
-  a no-JavaScript text fallback.
+- The short answer is ordinary, selectable text. Its meaning does not depend on hover, touch,
+  JavaScript, a glossary, or assistive-technology-only copy.
+- Professional wording and exact evidence use labelled native disclosures that remain operable by
+  touch and keyboard.
 - A direct advanced-section hash opens the disclosure after hydration and moves keyboard focus to
   the linked heading.
 - Focus rings, text labels, and minimum touch sizes do not rely on hover or colour.

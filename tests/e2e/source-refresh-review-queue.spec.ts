@@ -252,9 +252,12 @@ test('creates and submits an exact canonical source-refresh draft without changi
   await expect(
     sourceTaskCard.getByRole('button', { name: 'Submit for two independent reviews' }),
   ).toHaveCount(0)
-  await expect(sourceTaskCard.getByText('This exact refresh is queued for review.')).toBeVisible()
-
-  await expect(sourceTaskCard).toHaveCount(1)
+  const queuedSourceTaskCard = programmeQueueCard(
+    page,
+    canonicalRefreshFixture,
+    'This exact refresh is queued for review.',
+  )
+  await expect(queuedSourceTaskCard).toHaveCount(1)
   await expect(submittedProposalCard).toHaveCount(1)
   await expect(
     submittedProposalCard.getByText('Awaiting first review', { exact: true }),

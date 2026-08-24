@@ -17,7 +17,7 @@ describe('reader-facing medicine vocabulary', () => {
       label: 'General research summary',
       heading: 'What the research reports',
       boundary:
-        'This summary combines research from different uses, groups, doses and studies. It is useful background, not a reviewed answer to one specific question.',
+        'This combines research on different uses and groups. It is background, not a reviewed answer for one specific use.',
       technicalBoundary:
         'These details come from research gathered for the medicine as a whole. They have not been linked to one specific use.',
       findingLabel: 'Research finding',
@@ -128,7 +128,7 @@ describe('reader-facing medicine vocabulary', () => {
     ).toBeUndefined()
   })
 
-  it('assembles a short legacy first read without rewriting the stored finding', () => {
+  it('gives legacy Inclisiran a static purpose, result, and limit without research shorthand', () => {
     const exactText =
       'A GalNAc-tagged siRNA changes PCSK9 messenger RNA and produced 52.3% and 49.9% results against placebo at day 510 in ORION-10 and ORION-11, with further technical qualifications in the exact record.'
     const measuredFinding =
@@ -146,7 +146,16 @@ describe('reader-facing medicine vocabulary', () => {
     })
 
     expect(summary.basis).toBe('older_record')
-    expect(summary.takeaway).toBe(measuredFinding)
+    expect(summary.usedFor).toBe(
+      'Used or studied for people with high LDL (“bad”) cholesterol that stays high despite cholesterol-lowering medicines.',
+    )
+    expect(summary.whatStudiesFound).toBe(
+      'The LDL (“bad”) cholesterol level fell by about half compared with a dummy treatment.',
+    )
+    expect(summary.biggestLimit).toBe(
+      'Studies have not yet shown whether heart attacks are prevented.',
+    )
+    expect(summary.takeaway).toBe(summary.whatStudiesFound)
     expect(summary.exactText).toBe(exactText)
     expect(summary.simplified).toBe(true)
     expect(summary.contextItems).toEqual([
@@ -160,33 +169,168 @@ describe('reader-facing medicine vocabulary', () => {
         text: 'The record does not yet show whether heart attacks are prevented.',
       },
     ])
-    expect(summary.terms.map((term) => term.key)).toEqual(
-      expect.arrayContaining([
-        'percentage-versus-placebo',
-        'ldl-cholesterol',
-        'modality:siRNA (Small Interfering RNA)',
-        'pcsk9',
-        'sirna',
-        'messenger-rna',
-        'galnac',
-        'study-day-510',
-        'study:orion-10',
-        'study:orion-11',
-      ]),
+    const firstRead = [summary.usedFor, summary.whatStudiesFound, summary.biggestLimit].join(' ')
+    expect(firstRead).not.toMatch(
+      /\b(?:audit|endpoint|phase\s*3|placebo|programme|record|ORION-10|ORION-11|NCT\d{8})\b/iu,
     )
-    expect(
-      summary.terms.find((term) => term.key === 'percentage-versus-placebo')?.definition,
-    ).toContain('It does not mean half of the people were cured or helped')
-    expect(summary.terms.find((term) => term.key.startsWith('study:'))).toMatchObject({
-      technicalTerm: 'ORION-10',
-      plainMeaning: 'The name researchers gave one study',
+    expect(summary).not.toHaveProperty('terms')
+  })
+
+  it('turns both day-510 forms into one familiar 17-month timepoint', () => {
+    const shared = {
+      medicineName: 'Inclisiran',
+      modality: 'siRNA (Small Interfering RNA)',
+      trialIdentifiers: ['ORION-10 (NCT03399370)'],
+      selectedUse: 'High LDL cholesterol',
+    }
+    const atDay = buildLegacyReaderSummary({
+      ...shared,
+      measuredFinding:
+        'At day 510, LDL cholesterol was 52.3% lower compared with placebo in ORION-10.',
     })
-    expect(summary.terms.find((term) => term.key.startsWith('modality:'))?.definition).toContain(
-      'GalNAc is a sugar-based tag',
+    const afterDays = buildLegacyReaderSummary({
+      ...shared,
+      measuredFinding:
+        'LDL cholesterol was 49.9% lower compared with placebo after 510 days in ORION-10.',
+    })
+
+    expect(atDay.whatStudiesFound).toBe(
+      'After about 17 months, LDL (“bad”) cholesterol was 52.3% lower compared with a dummy treatment.',
+    )
+    expect(afterDays.whatStudiesFound).toBe(
+      'LDL (“bad”) cholesterol was 49.9% lower compared with a dummy treatment after about 17 months.',
+    )
+    for (const firstRead of [atDay.whatStudiesFound, afterDays.whatStudiesFound]) {
+      expect(firstRead).not.toMatch(
+        /\b(?:at after|day 510|510 days|ORION-10|NCT03399370|phase\s*3|placebo)\b/iu,
+      )
+    }
+  })
+
+  it('keeps dummy-treatment wording grammatical for people, groups, and comparisons', () => {
+    const vutrisiran = buildLegacyReaderSummary({
+      medicineName: 'Vutrisiran',
+      modality: 'siRNA (Small Interfering RNA)',
+      selectedUse: 'Nerve damage caused by hereditary amyloidosis',
+      mainUncertainty:
+        'The neuropathy trial that won the first approval was open-label and compared its results against the placebo patients from a different, earlier trial.',
+    })
+
+    expect(vutrisiran.biggestLimit).toBe(
+      'The neuropathy study that won the first approval let everyone know which treatment was given and used people from a different, earlier study as its dummy-treatment group.',
+    )
+
+    const examples = [
+      [
+        'Treated patients improved more than the placebo group.',
+        'Treated patients improved more than the dummy-treatment group.',
+      ],
+      ['People on placebo did not improve.', 'People given a dummy treatment did not improve.'],
+      [
+        'The medicine reduced pain compared with a placebo.',
+        'The medicine reduced pain compared with a dummy treatment.',
+      ],
+      [
+        'The medicine reduced pain compared with placebo.',
+        'The medicine reduced pain compared with a dummy treatment.',
+      ],
+    ] as const
+
+    for (const [stored, expected] of examples) {
+      const summary = buildLegacyReaderSummary({
+        medicineName: 'Example Medicine',
+        modality: 'Small Molecule',
+        selectedUse: 'One use',
+        measuredFinding: stored,
+      })
+      expect(summary.whatStudiesFound).toBe(expected)
+      expect(summary.whatStudiesFound).not.toMatch(/\bplacebo\b|\ba dummy treatment patients\b/iu)
+    }
+  })
+
+  it('keeps singular study wording natural and removes study-design shorthand', () => {
+    const examples = [
+      ['A placebo-controlled trial found less pain.', 'A study found less pain.'],
+      ['A Phase 3 trial found less pain.', 'A study found less pain.'],
+      ['Two Phase III trials found less pain.', 'Two studies found less pain.'],
+      ['A randomised double-blind trial found less pain.', 'A study found less pain.'],
+      [
+        'A randomized, double-blind, placebo-controlled trial found less pain.',
+        'A study found less pain.',
+      ],
+    ] as const
+
+    for (const [stored, expected] of examples) {
+      const summary = buildLegacyReaderSummary({
+        medicineName: 'Example Medicine',
+        modality: 'Small Molecule',
+        selectedUse: 'Pain relief',
+        measuredFinding: stored,
+      })
+      expect(summary.whatStudiesFound).toBe(expected)
+      expect(summary.whatStudiesFound).not.toMatch(
+        /\b(?:double-blind|phase\s*(?:3|III)|placebo|randomi[sz]ed|trial)\b/iu,
+      )
+    }
+  })
+
+  it('does not label treatment assignment as a result and preserves concurrent comparison timing', () => {
+    const injections = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'One use',
+      measuredFinding: 'People received placebo injections.',
+    })
+    const improvement = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'One use',
+      measuredFinding: 'Symptoms improved on placebo.',
+    })
+
+    expect(injections.whatStudiesFound).toBeUndefined()
+    expect(improvement.whatStudiesFound).toBe('Symptoms improved with a dummy treatment.')
+  })
+
+  it('checks a “That …” uncertainty with the same molecular safety gate', () => {
+    const unsafe = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'siRNA (Small Interfering RNA)',
+      selectedUse: 'One use',
+      mainUncertainty:
+        'That a GalNAc-tagged siRNA can change PCSK9 messenger RNA inside liver cells.',
+    })
+    const safe = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'One use',
+      mainUncertainty: 'That the medicine prevents heart attacks.',
+    })
+
+    expect(unsafe.biggestLimit).toBeUndefined()
+    expect(safe.biggestLimit).toBe(
+      'Studies have not shown that the medicine prevents heart attacks.',
     )
   })
 
-  it('keeps the Creatine verdict in exact wording and carries every local explanation with it', () => {
+  it('prefers the stored main uncertainty over a negative adverse-event sentence', () => {
+    const summary = buildPublishedProgrammeReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'Pain relief',
+      exactText:
+        'The medicine reduced pain. Some people did not finish the study because they felt sick.',
+      bestSupportedFinding: 'The medicine reduced pain in the study.',
+      mainUncertainty: 'Whether the benefit lasts beyond three months remains unknown.',
+    })
+
+    expect(summary.biggestLimit).toBe(
+      'Whether the benefit lasts beyond three months remains unknown.',
+    )
+    expect(summary.biggestLimit).not.toContain('felt sick')
+  })
+
+  it('makes the Creatine first read understandable while preserving the professional verdict', () => {
     const exactText =
       'One of the few supplements whose central claim survives audit — muscle creatine, phosphocreatine resynthesis and short-duration power all rise, replicated across decades — while the neuroprotection claim it is increasingly sold on failed two Phase 3 trials totalling 2,294 patients.'
     const measuredFinding =
@@ -198,24 +342,38 @@ describe('reader-facing medicine vocabulary', () => {
       measuredFinding,
       exactText,
     })
-    const keys = summary.terms.map(({ key }) => key)
 
-    expect(summary.takeaway).toBe(measuredFinding)
-    expect(summary.takeaway).not.toContain('central claim survives audit')
-    expect(summary.exactText).toBe(exactText)
-    expect(keys).toEqual(
-      expect.arrayContaining([
-        'evidence-claim-survives-audit',
-        'muscle-creatine',
-        'phosphocreatine-resynthesis',
-        'exercise-short-duration-power',
-        'evidence-replicated-across-time',
-        'neuroprotection',
-        'evidence-failed-two-phase-3-trials',
-        'study-participant-total-2294',
-      ]),
+    expect(summary.usedFor).toBe('Used for strength and power during short, hard efforts.')
+    expect(summary.whatStudiesFound).toBe(
+      'Tests of small muscle samples taken before and after showed that creatine taken by mouth reaches the muscles, and that people who started with the least had the biggest increase.',
     )
-    expect(keys).not.toContain('study-phase-3')
+    expect(summary.biggestLimit).toBe(
+      'Two large studies found no evidence that creatine slowed Parkinson’s or Huntington’s disease.',
+    )
+    expect(summary.exactText).toBe(exactText)
+    const firstRead = [summary.usedFor, summary.whatStudiesFound, summary.biggestLimit].join(' ')
+    const firstReadWordCount = firstRead.split(/\s+/u).length
+    expect(firstReadWordCount).toBeGreaterThanOrEqual(25)
+    expect(firstReadWordCount).toBeLessThanOrEqual(60)
+    expect(firstRead).not.toMatch(
+      /\b(?:audit|biops(?:y|ies)|neuroprotection|phase\s*3|phosphocreatine|trial)\b/iu,
+    )
+    expect(summary).not.toHaveProperty('terms')
+  })
+
+  it('prefers an explicit plain measured finding over a heuristic reading of a long verdict', () => {
+    const measuredFinding =
+      'Studies found that creatine builds up in muscle and improves performance during short, hard efforts.'
+    const summary = buildLegacyReaderSummary({
+      medicineName: 'Creatine test record',
+      modality: 'Nutraceutical / Botanical',
+      selectedUse: 'Short bursts of strength and power',
+      measuredFinding,
+      exactText:
+        'One of the few supplements whose central claim survives audit — muscle creatine and short-duration power rise — while a brain-protection claim failed later studies.',
+    })
+
+    expect(summary.whatStudiesFound).toBe(measuredFinding)
   })
 
   it('does not leak a dense verdict into the first read when no concise measured finding exists', () => {
@@ -229,6 +387,9 @@ describe('reader-facing medicine vocabulary', () => {
       exactText: denseExactText,
     })
 
+    expect(summary.usedFor).toBe('Used or studied for a recorded condition.')
+    expect(summary.whatStudiesFound).toBeUndefined()
+    expect(summary.biggestLimit).toBeUndefined()
     expect(summary.takeaway).toBe(
       'This page covers one use of Example Medicine: a recorded condition. A measured result is not recorded here.',
     )
@@ -246,9 +407,7 @@ describe('reader-facing medicine vocabulary', () => {
       measuredFinding,
     })
 
-    expect(summary.takeaway).toContain(
-      'A measured result is recorded, but a short plain-language version is not available yet.',
-    )
+    expect(summary.whatStudiesFound).toBeUndefined()
     expect(summary.contextItems).toContainEqual({
       label: 'What was measured',
       text: measuredFinding,
@@ -256,11 +415,11 @@ describe('reader-facing medicine vocabulary', () => {
     expect(summary.takeaway).not.toContain(`${measuredFinding.slice(0, 30)}`)
   })
 
-  it('preserves reviewed programme wording and only structures its authored summary fields', () => {
+  it('structures reviewed fields without exposing internal workflow words', () => {
     const summary = buildPublishedProgrammeReaderSummary({
       medicineName: 'Example Medicine',
       modality: 'ASO (Antisense Oligonucleotide)',
-      selectedUse: 'The selected programme',
+      selectedUse: 'One selected use',
       exactText: 'The reviewed programme answer remains unchanged.',
       plainMechanism: 'The reviewed mechanism summary.',
       bestSupportedFinding: 'The reviewed strongest finding.',
@@ -268,15 +427,154 @@ describe('reader-facing medicine vocabulary', () => {
     })
 
     expect(summary.basis).toBe('published_programme')
-    expect(summary.takeaway).toBe('The reviewed strongest finding.')
+    expect(summary.usedFor).toBe('Used or studied for one selected use.')
+    expect(summary.whatStudiesFound).toBeUndefined()
+    expect(summary.biggestLimit).toBeUndefined()
+    expect(summary.takeaway).toBe(
+      'A reviewed study result is available, but it still needs a short plain-language explanation.',
+    )
     expect(summary.exactText).toBe('The reviewed programme answer remains unchanged.')
     expect(summary.contextItems).toEqual([
-      { label: 'What this page covers', text: 'The selected programme' },
+      { label: 'What this page covers', text: 'One selected use' },
       { label: 'How it is meant to work', text: 'The reviewed mechanism summary.' },
       { label: 'Best-supported finding', text: 'The reviewed strongest finding.' },
       { label: 'What remains uncertain', text: 'The reviewed main uncertainty.' },
     ])
-    expect(summary.simplified).toBe(true)
+    expect(summary.simplified).toBe(false)
+  })
+
+  it('turns the normalized Inclisiran fields into a MedlinePlus-style first read', () => {
+    const summary = buildPublishedProgrammeReaderSummary({
+      medicineName: 'Inclisiran',
+      modality: 'siRNA (Small Interfering RNA)',
+      selectedUse: 'Inclisiran study in adults with artery disease and high LDL cholesterol',
+      exactText:
+        'Inclisiran lowered LDL cholesterol in a reviewed study but did not show fewer heart attacks.',
+      bestSupportedFinding:
+        'After about 17 months, inclisiran lowered LDL (“bad”) cholesterol by about half compared with a dummy treatment.',
+      mainUncertainty:
+        'The study measured LDL cholesterol, not whether people had fewer heart attacks or strokes.',
+    })
+
+    expect(summary).toMatchObject({
+      usedFor: 'Studied in adults with artery disease and high LDL (“bad”) cholesterol.',
+      whatStudiesFound:
+        'After about 17 months, inclisiran lowered LDL (“bad”) cholesterol by about half compared with a dummy treatment.',
+      biggestLimit:
+        'The study measured LDL (“bad”) cholesterol, not whether people had fewer heart attacks or strokes.',
+    })
+    const firstRead = [summary.usedFor, summary.whatStudiesFound, summary.biggestLimit].join(' ')
+    expect(firstRead).not.toMatch(
+      /\b(?:audit|endpoint|phase\s*3|placebo|programme|record|NCT\d{8})\b/iu,
+    )
+  })
+
+  it('separates a practical use note from the main purpose', () => {
+    const summary = buildLegacyReaderSummary({
+      medicineName: 'Inclisiran',
+      modality: 'siRNA (Small Interfering RNA)',
+      selectedUse:
+        'High LDL cholesterol in adults, and inherited high cholesterol from age 12; used alongside diet and exercise',
+      measuredFinding: 'LDL cholesterol fell in the studies.',
+    })
+
+    expect(summary.usedFor).toBe(
+      'Used for adults with high LDL (“bad”) cholesterol and people age 12 or older with inherited high cholesterol.',
+    )
+    expect(summary.practicalNote).toBe('It is used alongside diet and exercise.')
+  })
+
+  it('omits an overlong practical note from the first screen without discarding the stored use', () => {
+    const summary = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: `Pain relief; ${Array.from({ length: 20 }, () => 'additional').join(' ')} detail`,
+      measuredFinding: 'The study measured less pain.',
+    })
+
+    expect(summary.usedFor).toBe('Used or studied for pain relief.')
+    expect(summary.practicalNote).toBeUndefined()
+    expect(summary.contextItems[0]?.text).toContain('additional')
+  })
+
+  it('uses the first genuine result sentence instead of a preceding study-setup sentence', () => {
+    const summary = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'Pain relief',
+      measuredFinding:
+        'The study enrolled 200 people and assigned them by chance. Pain scores fell by four points with the medicine.',
+    })
+
+    expect(summary.whatStudiesFound).toBe('Pain scores fell by four points with the medicine.')
+  })
+
+  it('does not present a positive or procedural inference as the main limitation', () => {
+    const positive = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'Pain relief',
+      mainUncertainty: 'The study reported a positive result in 2023.',
+    })
+    const genuineLimit = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'Pain relief',
+      mainUncertainty: 'Whether the benefit lasts beyond a year remains unknown.',
+    })
+
+    expect(positive.biggestLimit).toBeUndefined()
+    expect(genuineLimit.biggestLimit).toBe(
+      'Whether the benefit lasts beyond a year remains unknown.',
+    )
+  })
+
+  it('keeps ordinary adrenal wording and uppercase medical abbreviations intact', () => {
+    const adrenal = buildLegacyReaderSummary({
+      medicineName: 'Hydrocortisone',
+      modality: 'Small Molecule',
+      trialIdentifiers: ['ADRENAL (NCT00115479)'],
+      selectedUse: 'Replacing the cortisol that the adrenal glands cannot make',
+    })
+    const hiv = buildLegacyReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'HIV-1 treatment',
+    })
+
+    expect(adrenal.usedFor).toContain('adrenal glands')
+    expect(adrenal.usedFor).not.toContain('the study glands')
+    expect(hiv.usedFor).toContain('HIV-1')
+    expect(hiv.usedFor).not.toContain('hIV-1')
+  })
+
+  it('does not turn a semicolon aside into an administration instruction', () => {
+    const summary = buildLegacyReaderSummary({
+      medicineName: 'Example Supplement',
+      modality: 'Nutraceutical / Botanical',
+      selectedUse: 'Stress; legal status differs between countries',
+    })
+
+    expect(summary.usedFor).toBe('Used for stress.')
+    expect(summary.practicalNote).toBeUndefined()
+  })
+
+  it('does not replace an unsafe best finding with an unrelated sentence from the conclusion', () => {
+    const denseFinding = `${Array.from({ length: 40 }, () => 'technical').join(' ')}.`
+    const summary = buildPublishedProgrammeReaderSummary({
+      medicineName: 'Example Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'Pain relief',
+      exactText: 'The medicine reaches the blood. The main study did not reduce pain.',
+      bestSupportedFinding: denseFinding,
+      mainUncertainty: 'Whether it reduces pain remains unknown.',
+    })
+
+    expect(summary.whatStudiesFound).toBeUndefined()
+    expect(summary.takeaway).toBe(
+      'A reviewed study result is available, but it still needs a short plain-language explanation.',
+    )
+    expect(summary.exactText).toContain('reaches the blood')
   })
 
   it('keeps a dense reviewed conclusion in expansion instead of copying it into the first read', () => {
@@ -290,8 +588,9 @@ describe('reader-facing medicine vocabulary', () => {
       mainUncertainty: 'A stored uncertainty.',
     })
 
+    expect(summary.whatStudiesFound).toBeUndefined()
     expect(summary.takeaway).toBe(
-      'This page covers one use of Example Medicine: One reviewed use. A short plain-language result is not available yet.',
+      'A reviewed study result is available, but it still needs a short plain-language explanation.',
     )
     expect(summary.takeaway).not.toContain('technical-1')
     expect(summary.exactText).toBe(dense)
@@ -300,25 +599,6 @@ describe('reader-facing medicine vocabulary', () => {
       text: dense,
     })
     expect(summary.simplified).toBe(false)
-  })
-
-  it('collapses an identical gene and protein name into one target explanation', () => {
-    const summary = buildLegacyReaderSummary({
-      medicineName: 'Example Medicine',
-      modality: 'Small Molecule',
-      targetGene: 'TARGET1',
-      targetProtein: 'TARGET1',
-      measuredFinding: 'The TARGET1 measurement changed in the recorded study.',
-    })
-    const targetTerms = summary.terms.filter((term) => /^(?:gene|protein|target):/u.test(term.key))
-
-    expect(targetTerms).toEqual([
-      expect.objectContaining({
-        key: 'target:target1',
-        technicalTerm: 'TARGET1',
-        plainMeaning: 'Gene and protein named as the medicine’s target',
-      }),
-    ])
   })
 
   it('states the unpublished-programme boundary without borrowing legacy evidence', () => {
@@ -330,6 +610,7 @@ describe('reader-facing medicine vocabulary', () => {
 
     expect(summary).toMatchObject({
       basis: 'unpublished_programme',
+      usedFor: 'Used or studied for one identified use.',
       takeaway: 'No reviewed plain-language answer has been published for this use.',
       simplified: false,
     })

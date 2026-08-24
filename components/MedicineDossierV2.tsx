@@ -17,7 +17,6 @@ import { CommunityCommentary } from '@/components/CommunityCommentary'
 import { DossierContributionActions } from '@/components/DossierContributionActions'
 import { LegacyIdentityCorrectionActions } from '@/components/LegacyIdentityCorrectionActions'
 import { MedicineBackgroundDisclosure } from '@/components/MedicineBackgroundDisclosure'
-import { MedicineContextDisclosure } from '@/components/MedicineContextDisclosure'
 import {
   hasMedicineRecordContext,
   MedicineRecordContextSections,
@@ -41,13 +40,9 @@ import {
 } from '@/lib/public-medicine-language'
 import {
   COMMON_PUBLIC_MEDICINE_CONTEXT,
-  collectPublicMedicineText,
-  dedupePublicMedicineContextItems,
-  detectPublicMedicineContextItems,
   endpointHierarchyContextItem,
   outcomeTypeContextItem,
   publicMedicineStudyDayContextItems,
-  studyReviewContextItem,
   type PublicMedicineContextItem,
 } from '@/lib/public-medicine-context'
 import { medicineTextContextMatches } from '@/lib/annotated-medicine-text'
@@ -196,10 +191,16 @@ function Eyebrow({
   tone = 'muted',
 }: {
   children: React.ReactNode
-  tone?: 'muted' | 'blue' | 'amber'
+  tone?: 'muted' | 'blue' | 'amber' | 'rose'
 }) {
   const color =
-    tone === 'blue' ? 'text-[#0066CC]' : tone === 'amber' ? 'text-amber-700' : 'text-[#6E6E73]'
+    tone === 'blue'
+      ? 'text-[#0066CC]'
+      : tone === 'amber'
+        ? 'text-amber-700'
+        : tone === 'rose'
+          ? 'text-rose-700'
+          : 'text-[#6E6E73]'
   return <p className={`text-[11px] font-bold uppercase tracking-[0.13em] ${color}`}>{children}</p>
 }
 
@@ -522,26 +523,6 @@ function publicStudyNameContextItem(name: string): PublicMedicineContextItem {
     definition:
       'A study name works like a book title: it helps people identify the study, but it does not describe what the study found.',
   }
-}
-
-function publicStudyName(study: StudyView): string | undefined {
-  const storedText = study.title ?? study.id
-  return storedText.match(/\b(?:ORION|VICTORION)(?:-[A-Z0-9]+)+\b/iu)?.[0]
-}
-
-function publicStudyNamesInText(values: readonly string[]): string[] {
-  const seen = new Set<string>()
-  const names: string[] = []
-  for (const value of values) {
-    for (const match of value.matchAll(/\b(?:ORION|VICTORION)(?:-[A-Z0-9]+)+\b/giu)) {
-      const name = match[0]
-      const key = name.toLocaleLowerCase('en-US')
-      if (seen.has(key)) continue
-      seen.add(key)
-      names.push(name)
-    }
-  }
-  return names
 }
 
 function StudyCard({
@@ -1017,76 +998,18 @@ function DevelopmentTimeline({
 export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
   const isPublishedProgramme = dossier.bindingState === 'published_programme'
   const isUnpublishedProgramme = dossier.bindingState === 'programme_unpublished'
+  const tenSecondFinding = dossier.readerSummary.whatStudiesFound
+  const tenSecondLimit = dossier.readerSummary.biggestLimit
   const sourceById = new Map(dossier.sources.map((source) => [source.id, source]))
   const mechanismEntries = [
     ['Where in the body?', dossier.mechanismSummary.where],
     ['What does it tell the body to do?', dossier.mechanismSummary.change],
     ['What did researchers actually measure?', dossier.mechanismSummary.observed],
   ].filter((entry): entry is [string, string] => Boolean(entry[1]))
-  const suppliedFirstReadTerms = medicineTextContextMatches(
-    dossier.readerSummary.takeaway,
-    dossier.readerSummary.terms,
-  ).map(({ context }) => context)
-  const firstReadTerms = dedupePublicMedicineContextItems(
-    [
-      ...detectPublicMedicineContextItems([dossier.readerSummary.takeaway]),
-      ...suppliedFirstReadTerms,
-    ],
-    5,
-  )
-  const firstReadContextMatches = medicineTextContextMatches(
-    dossier.readerSummary.takeaway,
-    firstReadTerms,
-  )
-  const structuredContextTerms = [
-    ...dossier.evidenceNodes.flatMap((node) =>
-      (node.claims ?? []).flatMap((claim) => [
-        claim.endpointHierarchy ? endpointHierarchyContextItem(claim.endpointHierarchy) : undefined,
-        claim.outcomeType ? outcomeTypeContextItem(claim.outcomeType) : undefined,
-      ]),
-    ),
-    ...dossier.studies.flatMap((study) => [
-      study.endpointHierarchy ? endpointHierarchyContextItem(study.endpointHierarchy) : undefined,
-      ...(study.interpretability ?? []).map((assessment) =>
-        studyReviewContextItem(assessment.question, assessment.professionalTerm),
-      ),
-    ]),
-    ...dossier.keyOutcomes.flatMap((outcome) => [
-      outcome.endpointHierarchy
-        ? endpointHierarchyContextItem(outcome.endpointHierarchy)
-        : undefined,
-      outcome.outcomeType ? outcomeTypeContextItem(outcome.outcomeType) : undefined,
-    ]),
-  ]
-  const publicDossierText = collectPublicMedicineText({
-    readerSummary: dossier.readerSummary,
-    mechanismSummary: dossier.mechanismSummary,
-    mainLimitation: dossier.mainLimitation,
-    evidenceNodes: dossier.evidenceNodes,
-    studies: dossier.studies,
-    keyOutcomes: dossier.keyOutcomes,
-    mechanismSteps: dossier.mechanismSteps,
-    timelineEvents: dossier.timelineEvents,
-    conclusion: dossier.conclusion,
-    medicineRecord: dossier.medicineRecord,
-    sources: dossier.sources,
-  })
-  const dossierStudyNameTerms = dedupePublicMedicineContextItems([
-    ...dossier.studies.flatMap((study) => {
-      const name = publicStudyName(study)
-      return name ? [publicStudyNameContextItem(name)] : []
-    }),
-    ...publicStudyNamesInText(publicDossierText).map(publicStudyNameContextItem),
-  ])
-  const advancedContextItems = dedupePublicMedicineContextItems([
-    ...dossier.readerSummary.terms,
-    ...dossierStudyNameTerms,
-    ...structuredContextTerms,
-    ...detectPublicMedicineContextItems(publicDossierText),
-  ])
-  const exactWordingContextMatches = dossier.readerSummary.exactText
-    ? medicineTextContextMatches(dossier.readerSummary.exactText, advancedContextItems)
-    : []
+  // The contextual hover/tap experiment has been retired. Keep this compatibility prop empty
+  // while the detailed evidence components are progressively reduced to ordinary static text.
+  const advancedContextItems: readonly PublicMedicineContextItem[] = []
+  const exactWordingContextMatches: ReturnType<typeof medicineTextContextMatches> = []
   const hasAdvancedEvidence =
     dossier.evidenceNodes.length > 0 ||
     dossier.studies.length > 0 ||
@@ -1143,12 +1066,7 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
   const recordedStudyPhases = [...new Set(dossier.studies.flatMap((study) => study.phase ?? []))]
   const recordedStudyTypes = [...new Set(dossier.studies.flatMap((study) => study.studyType ?? []))]
   const recordedStudyDesignText = [...recordedStudyPhases, ...recordedStudyTypes].join(' · ')
-  const recordedStudyDesignContextItems = dedupePublicMedicineContextItems([
-    ...advancedContextItems,
-    ...detectPublicMedicineContextItems(
-      recordedStudyPhases.map((phase) => `${phase} — testing stage`),
-    ),
-  ])
+  const recordedStudyDesignContextItems: readonly PublicMedicineContextItem[] = []
   const hasMedicineContext = hasMedicineRecordContext(dossier.medicineRecord)
   const statusBadgeText =
     dossier.statusBadge.kind === 'medicine_approval'
@@ -1220,19 +1138,25 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
         >
           <div className="flex min-w-0 flex-col items-start gap-4 sm:flex-row sm:justify-between">
             <div className="min-w-0 space-y-1.5">
-              <Eyebrow>What is this medicine being used or studied for?</Eyebrow>
-              <h2 id="programme-scope-heading" className="sr-only">
-                Use being studied
+              <Eyebrow tone="blue">In 10 seconds</Eyebrow>
+              <h2
+                id="programme-scope-heading"
+                className="pt-1 text-sm font-bold leading-5 text-[#1D1D1F] sm:text-base"
+              >
+                What is it for?
               </h2>
-              <AnnotatedMedicineText
-                className="break-words text-sm font-semibold leading-5 text-[#1D1D1F] sm:text-[15px]"
-                contexts={medicineTextContextMatches(
-                  dossier.selectedProgrammeLabel,
-                  advancedContextItems,
-                )}
-                text={dossier.selectedProgrammeLabel}
-                testId="selected-use-question"
-              />
+              <p
+                className="break-words text-lg font-semibold leading-7 tracking-[-0.012em] text-[#1D1D1F] sm:text-xl"
+                data-testid="ten-second-used-for"
+              >
+                {dossier.readerSummary.usedFor}
+              </p>
+              {dossier.readerSummary.practicalNote && (
+                <p className="border-l-2 border-[#0071E3]/25 pl-3 text-sm leading-6 text-[#424245]">
+                  <span className="font-semibold">How it is used: </span>
+                  {dossier.readerSummary.practicalNote}
+                </p>
+              )}
               <p className="text-sm leading-6 text-[#6E6E73]">
                 {isPublishedProgramme
                   ? 'This answer covers only this use and these people. Other uses can have different answers.'
@@ -1320,47 +1244,34 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
           className="rounded-3xl border border-[#0071E3]/20 bg-gradient-to-br from-[#EAF4FF] via-blue-50 to-white p-5 shadow-[0_3px_18px_rgba(0,113,227,0.07)] sm:p-7"
           data-testid="main-takeaway-card"
         >
-          <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
-            {dossier.bindingState === 'legacy_record'
-              ? GENERAL_RESEARCH_SUMMARY_COPY.heading
-              : dossier.bindingState === 'published_programme'
-                ? 'What researchers found'
-                : 'No reviewed answer yet'}
+          <Eyebrow tone="blue">
+            {isUnpublishedProgramme ? 'No reviewed answer yet' : 'What studies found'}
           </Eyebrow>
           <h2 id="plain-language-summary-heading" className="sr-only">
-            {dossier.bindingState === 'legacy_record'
-              ? GENERAL_RESEARCH_SUMMARY_COPY.heading
-              : 'Plain-language answer'}
+            What studies found
           </h2>
-          {dossier.readerSummary.takeaway ? (
-            <AnnotatedMedicineText
+          {tenSecondFinding ? (
+            <p
               className="mt-3 text-[17px] font-semibold leading-[1.48] tracking-[-0.018em] text-[#1D1D1F] sm:text-xl sm:leading-[1.5]"
-              contexts={firstReadContextMatches}
-              text={dossier.readerSummary.takeaway}
-              testId="first-read-annotated-summary"
-            />
+              data-testid="ten-second-finding"
+            >
+              {tenSecondFinding}
+            </p>
           ) : (
             <p className="mt-3 text-sm leading-6 text-[#6E6E73]">
-              No reviewed plain-language answer has been published.
-            </p>
-          )}
-          {firstReadContextMatches.length > 0 && (
-            <p className="mt-3 text-xs leading-5 text-[#6E6E73]">
-              Dotted phrases have plain explanations. Hover, focus or tap.
+              {isUnpublishedProgramme
+                ? 'No reviewed plain-language answer has been published for this use.'
+                : dossier.readerSummary.exactText
+                  ? 'A study result is available, but it still needs a short plain-language explanation.'
+                  : 'A study result is not available on this page.'}
             </p>
           )}
           {dossier.readerSummary.exactText &&
-            dossier.readerSummary.exactText !== dossier.readerSummary.takeaway && (
+            dossier.readerSummary.exactText !== tenSecondFinding && (
               <details className="group/exact mt-3 border-t border-black/[0.07] pt-2">
                 <summary className="inline-flex min-h-11 cursor-pointer items-center text-sm font-semibold text-[#0066CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3] focus-visible:ring-offset-2">
-                  Read the professional wording
+                  Read the full research wording
                 </summary>
-                {exactWordingContextMatches.length > 0 && (
-                  <p className="pb-1 text-xs leading-5 text-[#6E6E73]">
-                    The original wording is kept below. Dotted phrases have plain explanations.
-                    Hover, focus or tap.
-                  </p>
-                )}
                 <AnnotatedMedicineText
                   className="pb-1 [overflow-wrap:anywhere] text-sm leading-6 text-[#424245]"
                   contexts={exactWordingContextMatches}
@@ -1371,21 +1282,37 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
             )}
         </section>
 
-        {dossier.mainLimitation && (
+        {tenSecondLimit && (
           <section
             aria-labelledby="limitation-heading"
             className="rounded-3xl border border-amber-200/70 bg-amber-50 px-5 py-5 shadow-[0_2px_12px_rgba(180,83,9,0.035)] sm:px-6"
             data-testid="main-limitation-card"
           >
-            <Eyebrow tone="amber">What this does not tell us yet</Eyebrow>
+            <Eyebrow tone="amber">What this does not show</Eyebrow>
             <h2 id="limitation-heading" className="sr-only">
               Main evidence limitation
             </h2>
-            <AnnotatedMedicineText
+            <p
               className="mt-2 text-sm font-semibold leading-[1.55] text-[#1D1D1F] sm:text-base"
-              contexts={medicineTextContextMatches(dossier.mainLimitation, advancedContextItems)}
-              text={dossier.mainLimitation}
-            />
+              data-testid="ten-second-limit"
+            >
+              {tenSecondLimit}
+            </p>
+          </section>
+        )}
+
+        {dossier.readerSummary.criticalSafety && (
+          <section
+            aria-labelledby="critical-safety-heading"
+            className="rounded-3xl border border-rose-200 bg-rose-50 px-5 py-5 shadow-[0_2px_12px_rgba(190,18,60,0.035)] sm:px-6"
+          >
+            <Eyebrow tone="rose">Important safety warning</Eyebrow>
+            <h2 id="critical-safety-heading" className="sr-only">
+              Important safety warning
+            </h2>
+            <p className="mt-2 text-sm font-semibold leading-[1.55] text-[#1D1D1F] sm:text-base">
+              {dossier.readerSummary.criticalSafety}
+            </p>
           </section>
         )}
 
@@ -1448,13 +1375,6 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                 </a>
               ))}
             </nav>
-
-            <MedicineContextDisclosure
-              label="Explain study words"
-              items={advancedContextItems}
-              variant="section"
-              testId="advanced-study-language"
-            />
 
             {dossier.conclusion && (
               <section

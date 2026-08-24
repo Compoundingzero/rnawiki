@@ -487,58 +487,23 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
     `/d/${INCLISIRAN_SLUG}?programme=${encodeURIComponent(fixture.programmeSlug)}`,
   )
   await expect(page.getByRole('heading', { level: 1, name: /^inclisiran$/i })).toBeVisible()
-  await expect(page.getByTestId('selected-use-question')).toContainText(
-    'Inclisiran study in adults with artery disease and high LDL cholesterol',
-  )
+  const usedFor = page.getByTestId('ten-second-used-for')
+  await expect(usedFor).toContainText('Studied in adults with artery disease')
+  await expect(usedFor).toContainText('LDL (“bad”) cholesterol')
   const detailedReasonCopies = page.getByText(
     'This test record shows how one reviewed study result connects to a public conclusion and its source.',
     { exact: true },
   )
   await expect(detailedReasonCopies).toHaveCount(2)
   for (const copy of await detailedReasonCopies.all()) await expect(copy).toBeHidden()
-  const firstRead = page.getByTestId('first-read-annotated-summary')
+  const firstRead = page.getByTestId('ten-second-finding')
   await expect(firstRead).toBeVisible()
   await expect(firstRead).toContainText('After about 17 months')
+  await expect(firstRead).toContainText('LDL (“bad”) cholesterol')
   await expect(firstRead).toContainText('about half')
   await expect(firstRead).toContainText('dummy treatment')
-  const firstReadExplanation = firstRead.locator('[role="tooltip"]')
-  const ldlExplanation = firstRead.getByRole('button', {
-    name: /LDL.*cholesterol.*show a short explanation/i,
-  })
-  await expect(firstReadExplanation).toBeHidden()
-  await ldlExplanation.hover()
-  await expect(firstReadExplanation).toBeVisible()
-  await expect(firstReadExplanation).toContainText('bad cholesterol')
-  await page.getByRole('heading', { level: 1, name: /^inclisiran$/i }).hover()
-  await expect(firstReadExplanation).toBeHidden()
-
-  await ldlExplanation.click()
-  await expect(firstReadExplanation).toBeVisible()
-  await expect(ldlExplanation).toHaveAttribute('aria-expanded', 'true')
-  await page.keyboard.press('Escape')
-  await expect(firstReadExplanation).toBeHidden()
-
-  const comparisonExplanation = firstRead.getByRole('button', {
-    name: /dummy treatment.*show a short explanation/i,
-  })
-  await comparisonExplanation.focus()
-  await expect(firstReadExplanation).toContainText('inactive look-alike treatment')
-  await comparisonExplanation.press('Enter')
-  await expect(comparisonExplanation).toHaveAttribute('aria-expanded', 'true')
-  await comparisonExplanation.press('Enter')
-  await expect(firstReadExplanation).toBeHidden()
-
-  const numberExplanation = firstRead.locator(
-    '[data-context-key="percentage-versus-placebo"] button',
-  )
-  await numberExplanation.click()
-  await expect(firstReadExplanation).toContainText(
-    'It does not mean half of the people were cured or helped.',
-  )
-  await expect(numberExplanation).toHaveAttribute('aria-expanded', 'true')
-
-  await numberExplanation.click()
-  await expect(firstReadExplanation).toBeHidden()
+  await expect(firstRead.getByRole('button')).toHaveCount(0)
+  await expect(firstRead.locator('[role="tooltip"]')).toHaveCount(0)
 
   const mechanismSummary = page.getByTestId('first-read-mechanism')
   const mechanismSummaryControl = mechanismSummary.locator('summary')
@@ -547,20 +512,16 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await mechanismSummaryControl.press('Enter')
   await expect(mechanismSummary).toHaveAttribute('open', '')
   await expect(mechanismSummary).toContainText('This study measured what happened to')
-  await expect(
-    mechanismSummary
-      .getByRole('button', {
-        name: /LDL.*cholesterol.*show a short explanation/i,
-      })
-      .first(),
-  ).toBeVisible()
+  await expect(mechanismSummary).toContainText('LDL cholesterol')
+  await expect(mechanismSummary.getByRole('button')).toHaveCount(0)
+  await expect(mechanismSummary.locator('[role="tooltip"]')).toHaveCount(0)
   await expect(mechanismSummary).toContainText(
     'It did not test the molecular steps inside liver cells.',
   )
   await mechanismSummaryControl.press('Enter')
   await expect(mechanismSummary).not.toHaveAttribute('open', '')
   const limitation = page.locator('#limitation-heading').locator('..')
-  await expect(limitation).toContainText('The study measured LDL cholesterol')
+  await expect(limitation).toContainText('The study measured LDL (“bad”) cholesterol')
   await expect(limitation).toContainText('not whether people had fewer heart attacks or strokes.')
 
   const scopedApiResponse = await page.request.get(
@@ -632,35 +593,13 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   const recordedStudyDesign = content.getByTestId('recorded-study-design')
   await expect(recordedStudyDesign).toBeVisible()
   await expect(recordedStudyDesign).toContainText('Human study')
-  const phaseThreeExplanation = recordedStudyDesign.locator(
-    '[data-context-key="study-phase-3"] button',
-  )
-  await expect(phaseThreeExplanation).toHaveAccessibleName(/Phase 3.*show a short explanation/i)
-  await phaseThreeExplanation.click()
-  await expect(phaseThreeExplanation).toHaveAttribute('aria-expanded', 'true')
-  await expect(recordedStudyDesign.locator('[role="tooltip"]:visible')).toContainText(
-    'Later-stage studies that usually include more people',
-  )
-  await expect(recordedStudyDesign.locator('[role="tooltip"]:visible')).toContainText(
-    'does not mean the result was positive',
-  )
+  await expect(recordedStudyDesign).toContainText('Phase 3')
+  await expect(recordedStudyDesign.locator('[role="tooltip"]')).toHaveCount(0)
   await expect(
     content.getByText(/do not by themselves prove that the medicine is safe or helpful/i),
   ).toBeVisible()
 
-  const advancedLanguageGuide = content.getByTestId('advanced-study-language')
-  const advancedLanguageControl = advancedLanguageGuide.locator('summary')
-  await expect(advancedLanguageGuide).not.toHaveAttribute('open', '')
-  await advancedLanguageControl.focus()
-  await expect(advancedLanguageControl).toBeFocused()
-  await advancedLanguageControl.press('Enter')
-  await expect(advancedLanguageGuide).toHaveAttribute('open', '')
-  await expect(
-    advancedLanguageGuide.getByText('Technical term: Primary endpoint', { exact: true }),
-  ).toBeVisible()
-  await expect(
-    advancedLanguageGuide.getByText('Technical term: ORION-10', { exact: true }),
-  ).toBeVisible()
+  await expect(content.getByTestId('advanced-study-language')).toHaveCount(0)
   await expect(content).toBeVisible()
   const mechanismMap = content.getByTestId('programme-mechanism-map')
   await expect(mechanismMap).toBeVisible()
@@ -674,36 +613,10 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await expect(mechanismMap).toContainText('People received inclisiran or a')
   await expect(mechanismMap).toContainText('Researchers tracked')
   await expect(mechanismMap).toContainText('was lower with inclisiran')
-  await expect(
-    mechanismMap
-      .getByRole('button', { name: /dummy treatment.*show a short explanation/i })
-      .first(),
-  ).toBeVisible()
-  await expect(
-    mechanismMap
-      .getByRole('button', { name: /LDL.*cholesterol.*show a short explanation/i })
-      .first(),
-  ).toBeVisible()
-  const exactComparisonButton = mechanismMap.locator(
-    '[data-context-key="percentage-points-versus-placebo"] button',
-  )
-  await expect(exactComparisonButton).toHaveCount(1)
-  const exactComparisonStage = exactComparisonButton.locator(
-    'xpath=ancestor::*[@data-testid="programme-mechanism-stage"]',
-  )
-  await expect(exactComparisonButton).toHaveAccessibleName(
-    /52\.3 percentage points.*show a short explanation/i,
-  )
-  await expect(
-    exactComparisonStage.locator('[data-context-key="percentage-versus-placebo"]'),
-  ).toHaveCount(0)
-  await exactComparisonButton.click()
-  await expect(exactComparisonStage.locator('[role="tooltip"]:visible')).toContainText(
-    'gap between two percentage values',
-  )
-  await expect(exactComparisonStage.locator('[role="tooltip"]:visible')).toContainText(
-    'It does not mean 50% of people improved.',
-  )
+  await expect(mechanismMap).toContainText('dummy treatment')
+  await expect(mechanismMap).toContainText('LDL cholesterol')
+  await expect(mechanismMap).toContainText('52.3 percentage points')
+  await expect(mechanismMap.locator('[role="tooltip"]')).toHaveCount(0)
   await expect(mechanismMap.getByTestId('mechanism-evidence-basis')).toHaveCount(3)
   await expect(
     mechanismMap.getByText('This step was measured in people', { exact: true }),
@@ -745,14 +658,8 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   const sourcedTimelineEvent = decisionTimeline.locator(
     '[data-testid="programme-timeline-event"][data-provenance="source"]',
   )
-  await expect(
-    sourcedTimelineEvent
-      .locator(':scope > p')
-      .first()
-      .getByRole('button', {
-        name: /ORION-10.*show a short explanation/i,
-      }),
-  ).toBeVisible()
+  await expect(sourcedTimelineEvent.locator(':scope > p').first()).toContainText('ORION-10')
+  await expect(sourcedTimelineEvent.locator('[role="tooltip"]')).toHaveCount(0)
   await expect(decisionTimeline).toContainText('reported lower')
   await expect(decisionTimeline).toContainText('with inclisiran')
   const timelineSourceLink = decisionTimeline
@@ -786,65 +693,28 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
     ),
   ).toBe(true)
   const firstEvidenceDetailContent = firstEvidenceDetail.locator('xpath=..')
-  const exactNumberExplanation = firstEvidenceDetailContent
-    .locator('[data-context-key="percentage-points"] button')
-    .first()
-  await exactNumberExplanation.click()
-  await expect(firstEvidenceDetailContent.locator('[role="tooltip"]:visible')).toContainText(
-    'it does not say how many people improved.',
-  )
-  const exactDayExplanation = firstEvidenceDetailContent
-    .getByText('Time studied', { exact: true })
-    .locator('..')
-    .getByRole('button', { name: /510 days.*show a short explanation/i })
-  await exactDayExplanation.click()
-  await expect(exactDayExplanation).toHaveAttribute('aria-expanded', 'true')
-  await expect(exactNumberExplanation).toHaveAttribute('aria-expanded', 'false')
-  await expect(firstEvidenceDetailContent.locator('[role="tooltip"]:visible')).toContainText(
-    'about 17 months',
-  )
+  await expect(firstEvidenceDetailContent).toContainText('510 days')
+  await expect(firstEvidenceDetailContent).toContainText('-52.3 percentage points')
+  await expect(firstEvidenceDetailContent.locator('[role="tooltip"]')).toHaveCount(0)
 
   await expect(content.getByText('What researchers measured').first()).toBeVisible()
   await expect(content.getByText('Comparison group').first()).toBeVisible()
-  await expect(
-    content.getByRole('button', { name: /Dummy treatment.*show a short explanation/i }).first(),
-  ).toBeVisible()
+  await expect(firstEvidenceDetailContent).toContainText('Dummy treatment')
   await expect(content.getByText('Exact result').first()).toBeVisible()
-  await expect(exactNumberExplanation).toHaveAccessibleName(
-    /-52\.3 percentage points.*show a short explanation/i,
-  )
   await expect(firstEvidenceDetailContent).toContainText(
     'the difference between the two groups’ average',
   )
   await expect(content.getByText('How uncertain is this estimate?').first()).toBeVisible()
   await expect(firstEvidenceDetailContent).toContainText('The difference between groups could be')
-  await expect(
-    firstEvidenceDetailContent.getByRole('button', {
-      name: /48\.8 to 55\.7 percentage points.*show a short explanation/i,
-    }),
-  ).toBeVisible()
+  await expect(firstEvidenceDetailContent).toContainText('48.8 to 55.7 percentage points')
   await expect(
     content.getByText('A measurement from the body, such as a laboratory value').first(),
   ).toBeVisible()
 
   const orionStudyCard = content.locator('#studies article').filter({ hasText: 'ORION-10' })
-  const studyNameExplanation = orionStudyCard
-    .getByRole('heading', { level: 4 })
-    .locator('[data-context-key="study-name:orion-10"] button')
-  await studyNameExplanation.click()
-  await expect(orionStudyCard.locator('[role="tooltip"]:visible')).toContainText(
-    'works like a book title',
-  )
-  await expect(orionStudyCard.locator('[role="tooltip"]:visible')).toContainText(
-    'does not describe what the study found',
-  )
-  const registryNumberExplanation = orionStudyCard.locator(
-    '[data-context-key="study-identifier"] button',
-  )
-  await registryNumberExplanation.click()
-  await expect(orionStudyCard.locator('[role="tooltip"]:visible')).toContainText(
-    'works like a library catalogue number',
-  )
+  await expect(orionStudyCard.getByRole('heading', { level: 4 })).toContainText('ORION-10')
+  await expect(orionStudyCard).toContainText('NCT03399370')
+  await expect(orionStudyCard.locator('[role="tooltip"]')).toHaveCount(0)
 
   await expectOneMainAndOrderedHeadings(page)
   await expectNoSeriousWcagViolations(page, 'Expanded Inclisiran dossier')
@@ -1689,24 +1559,14 @@ for (const viewport of [
 
     await page.goto(normalizedDossierUrl(fixture))
     await expect(page.getByRole('heading', { level: 1, name: /^inclisiran$/i })).toBeVisible()
-    const firstRead = page.getByTestId('first-read-annotated-summary')
-    const comparisonExplanation = firstRead.getByRole('button', {
-      name: /dummy treatment.*show a short explanation/i,
-    })
-    await comparisonExplanation.click()
-    await expect(firstRead.locator('[role="tooltip"]')).toContainText(
-      'inactive look-alike treatment',
-    )
-    await comparisonExplanation.click()
-    await expect(firstRead.locator('[role="tooltip"]')).toBeHidden()
+    const firstRead = page.getByTestId('ten-second-finding')
+    await expect(firstRead).toContainText('dummy treatment')
+    await expect(firstRead.getByRole('button')).toHaveCount(0)
+    await expect(firstRead.locator('[role="tooltip"]')).toHaveCount(0)
     await expectNoHorizontalOverflow(page, `Collapsed dossier at ${viewport.label}`)
 
     const { content } = await openAdvancedEvidence(page)
-    const completeLanguageGuide = content.getByTestId('advanced-study-language')
-    if ((await completeLanguageGuide.count()) > 0) {
-      await completeLanguageGuide.getByText('Explain study words', { exact: true }).click()
-      await expect(completeLanguageGuide).toHaveAttribute('open', '')
-    }
+    await expect(content.getByTestId('advanced-study-language')).toHaveCount(0)
     await expect(content.getByTestId('programme-mechanism-stage')).toHaveCount(3)
     await expect(content.getByTestId('programme-timeline-event')).toHaveCount(2)
 
@@ -1719,7 +1579,7 @@ for (const viewport of [
       expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width + 1)
     }
 
-    const studyIdentifier = content.locator('[data-context-key="study-identifier"]').first()
+    const studyIdentifier = content.getByText('NCT03399370', { exact: true }).first()
     const identifierLines = await studyIdentifier.evaluate((element) =>
       [...element.getClientRects()].filter((rect) => rect.width > 0 && rect.height > 0),
     )
@@ -1744,7 +1604,7 @@ for (const viewport of [
   })
 }
 
-test('opens an inline explanation by touch without covering or widening the page', async ({
+test('keeps the static first read clear and contained in a touch-sized view', async ({
   browser,
 }) => {
   const fixture = requireNormalizedFixture()
@@ -1761,24 +1621,17 @@ test('opens an inline explanation by touch without covering or widening the page
     await requireInclisiranFixture(page)
     await page.goto(normalizedDossierUrl(fixture))
 
-    const firstRead = page.getByTestId('first-read-annotated-summary')
-    const comparisonExplanation = firstRead.getByRole('button', {
-      name: /dummy treatment.*show a short explanation/i,
-    })
-    await comparisonExplanation.tap()
-    await expect(comparisonExplanation).toHaveAttribute('aria-expanded', 'true')
-    const explanation = firstRead.locator('[role="tooltip"]:visible')
-    await expect(explanation).toContainText('inactive look-alike treatment')
+    const firstRead = page.getByTestId('ten-second-finding')
+    await expect(firstRead).toContainText('LDL (“bad”) cholesterol')
+    await expect(firstRead).toContainText('dummy treatment')
+    await expect(firstRead.getByRole('button')).toHaveCount(0)
+    await expect(firstRead.locator('[role="tooltip"]')).toHaveCount(0)
 
-    const explanationBox = await explanation.boundingBox()
-    expect(explanationBox).not.toBeNull()
-    expect(explanationBox!.x).toBeGreaterThanOrEqual(0)
-    expect(explanationBox!.x + explanationBox!.width).toBeLessThanOrEqual(375)
-    await expectNoHorizontalOverflow(page, 'Touch-open inline explanation')
-
-    await page.getByRole('heading', { level: 1, name: /^inclisiran$/i }).tap()
-    await expect(explanation).toBeHidden()
-    await expect(comparisonExplanation).toHaveAttribute('aria-expanded', 'false')
+    const firstReadBox = await firstRead.boundingBox()
+    expect(firstReadBox).not.toBeNull()
+    expect(firstReadBox!.x).toBeGreaterThanOrEqual(0)
+    expect(firstReadBox!.x + firstReadBox!.width).toBeLessThanOrEqual(375)
+    await expectNoHorizontalOverflow(page, 'Static mobile first read')
   } finally {
     await context.close()
   }

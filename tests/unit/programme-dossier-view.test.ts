@@ -450,10 +450,12 @@ describe('published programme dossier mapping', () => {
     expect(view.verdict).toBe('Testing remains underway in this synthetic fixture.')
     expect(view.readerSummary).toMatchObject({
       basis: 'published_programme',
-      takeaway: 'A synthetic measurement was recorded.',
+      takeaway:
+        'A reviewed study result is available, but it still needs a short plain-language explanation.',
       exactText: 'Testing remains underway in this synthetic fixture.',
-      simplified: true,
+      simplified: false,
     })
+    expect(view.readerSummary.whatStudiesFound).toBeUndefined()
     expect(view.readerSummary.contextItems).toEqual([
       { label: 'What this page covers', text: 'Synthetic programme' },
       {

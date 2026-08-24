@@ -1,9 +1,5 @@
 import type { ApprovalStatus, DrugModality } from '@/lib/types'
-import type { PublicMedicineContextItem } from '@/lib/public-medicine-context'
-import {
-  dedupePublicMedicineContextItems,
-  detectPublicMedicineContextItems,
-} from '@/lib/public-medicine-context'
+import { tenSecondAnswerOverride } from '@/lib/ten-second-answer-overrides'
 
 const MEDICINE_TYPE_LABELS: Record<DrugModality, string> = {
   'Small Molecule': 'Small chemical medicine',
@@ -41,7 +37,7 @@ export const GENERAL_RESEARCH_SUMMARY_COPY = {
   label: 'General research summary',
   heading: 'What the research reports',
   boundary:
-    'This summary combines research from different uses, groups, doses and studies. It is useful background, not a reviewed answer to one specific question.',
+    'This combines research on different uses and groups. It is background, not a reviewed answer for one specific use.',
   technicalBoundary:
     'These details come from research gathered for the medicine as a whole. They have not been linked to one specific use.',
   findingLabel: 'Research finding',
@@ -74,14 +70,25 @@ export interface ReaderSummaryContextItem {
  */
 export interface ReaderSummaryView {
   basis: ReaderSummaryBasis
+  /** The medicine or supplement use described by this page, in familiar language. */
+  usedFor: string
+  /** The strongest complete result already stored for this use. */
+  whatStudiesFound?: string
+  /** The most important unanswered question or failed claim already stored for this use. */
+  biggestLimit?: string
+  /** A short use note, separated from the purpose when the stored purpose contains one. */
+  practicalNote?: string
+  /** Reserved for a concise stored safety warning when one is available to the builder. */
+  criticalSafety?: string
+  /** @deprecated Compatibility alias while older non-visual consumers move to the named fields. */
   takeaway: string
   exactText?: string
   simplified: boolean
   contextItems: ReaderSummaryContextItem[]
-  terms: PublicMedicineContextItem[]
 }
 
 export interface ReaderMedicineLanguageContext {
+  medicineSlug?: string
   medicineName: string
   modality: string
   targetGene?: string
@@ -120,7 +127,7 @@ const RESULT_MAGNITUDE_PATTERN =
 const EXPLICIT_RESULT_COMPARISON =
   /\b(?:compared with|versus|vs\.?|against|from baseline|than with)\b/iu
 const EXPLICIT_RESULT_TIME =
-  /\b(?:at|after|by|through|over)\s+(?:(?:day|week|month|year)\s*\d+|\d+(?:\.\d+)?\s*(?:days?|weeks?|months?|years?))\b/iu
+  /\b(?:at|after|by|through|over)\s+(?:about\s+)?(?:(?:day|week|month|year)\s*\d+|\d+(?:\.\d+)?\s*(?:days?|weeks?|months?|years?))\b/iu
 
 function cleanText(value: string | null | undefined): string | undefined {
   const normalized = value?.replace(/\s+/g, ' ').trim()
@@ -172,15 +179,6 @@ export function safeStoredReaderSentence(
   return undefined
 }
 
-function withoutTerminalPunctuation(value: string): string {
-  return value.replace(/[.!?]+$/u, '')
-}
-
-function safeStoredPurpose(value: string | undefined): string | undefined {
-  if (!value || readerWordCount(value) > 24 || !isCompleteReaderFragment(value)) return undefined
-  return value
-}
-
 function storedContextItem(
   label: string,
   value: string | null | undefined,
@@ -189,162 +187,382 @@ function storedContextItem(
   return stored ? { label, text: stored } : undefined
 }
 
-function dynamicContextTerms(
-  context: ReaderMedicineLanguageContext,
-  visibleValues: readonly string[],
-): PublicMedicineContextItem[] {
-  const corpus = visibleValues.join('\n').toLocaleLowerCase('en')
-  const items: PublicMedicineContextItem[] = []
+const FIRST_READ_FIELD_MAX_WORDS = 32
+const FIRST_READ_FORBIDDEN_WORDING =
+  /\b(?:audit|confidence interval|double-blind|endpoint|hazard ratio|odds ratio|open-label|percentage points?|phase\s*(?:3|III)|placebo|programme|randomi[sz]ed|record)\b|\bCI\b|\bNCT\d{8}\b|\b(?:ORION|VICTORION)[-\s]?\d+\b/iu
 
-  const gene = cleanText(context.targetGene)
-  const protein = cleanText(context.targetProtein)
-  const geneMentioned = Boolean(gene && corpus.includes(gene.toLocaleLowerCase('en')))
-  const proteinMentioned = Boolean(protein && corpus.includes(protein.toLocaleLowerCase('en')))
+function escapeRegularExpression(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function ensureSentence(value: string): string {
+  const sentence = cleanText(value) ?? ''
+  if (!sentence || /[.!?]$/u.test(sentence)) return sentence
+  return `${sentence}.`
+}
+
+function lowerFirst(value: string): string {
+  if (!value || /^[A-Z]{2,}(?:\b|[-\d])/u.test(value)) return value
+  return `${value.charAt(0).toLocaleLowerCase('en')}${value.slice(1)}`
+}
+
+/** Removes only study names and registry numbers supplied by the stored medicine context. */
+function removeStoredStudyIdentifiers(
+  value: string,
+  trialIdentifiers: readonly string[] | undefined,
+): string {
+  let result = value.replace(/\s*\(?\bNCT\d{8}\b\)?/giu, '')
+  const names = (trialIdentifiers ?? [])
+    .flatMap((identifier) => cleanText(identifier) ?? [])
+    .map((identifier) => cleanText(identifier.match(/^(.+?)\s*\(/u)?.[1]) ?? identifier)
+    .filter((name): name is string => Boolean(name && !/^NCT\d{8}$/iu.test(name)))
+    .sort((left, right) => right.length - left.length)
+
+  if (names.length === 0) return cleanText(result) ?? ''
+  const choices = names.map(escapeRegularExpression).join('|')
+  result = result.replace(
+    new RegExp(`\\bin\\s+(?:${choices})(?:\\s*(?:,|and)\\s*(?:${choices}))*`, 'gu'),
+    'in the studies',
+  )
+  result = result.replace(new RegExp(`\\b(?:${choices})\\b`, 'gu'), 'the study')
+  return cleanText(result) ?? ''
+}
+
+/**
+ * Familiar-word substitutions with stable meanings. These deliberately avoid disease-specific
+ * interpretation: the scientific claim, direction, number, comparison, and time remain unchanged.
+ */
+function simplifyCommonReaderTerms(value: string): string {
+  return value
+    .replace(/^At day 510\b/u, 'After about 17 months')
+    .replace(/\bat day 510\b/giu, 'after about 17 months')
+    .replace(/^After 510 days\b/u, 'After about 17 months')
+    .replace(/\bafter 510 days\b/giu, 'after about 17 months')
+    .replace(/\bLDL-C\b/giu, 'LDL cholesterol')
+    .replace(/\bLDL\s+\(often called [“"]bad[”"] cholesterol\)/giu, 'LDL (“bad”) cholesterol')
+    .replace(/\bLDL\s+\([“"]bad[”"]\)\s+cholesterol\b/giu, 'LDL (“bad”) cholesterol')
+    .replace(/\bLDL cholesterol\b/giu, 'LDL (“bad”) cholesterol')
+    .replace(
+      'The LDL (“bad”) cholesterol measurement fell',
+      'The LDL (“bad”) cholesterol level fell',
+    )
+    .replace(
+      /\brandomi[sz]ed,?\s+double-blind,?\s+placebo-controlled\s+(trial|study|trials|studies)\b/giu,
+      (_match: string, noun: string) => (/s$/iu.test(noun) ? 'studies' : 'study'),
+    )
+    .replace(/\brandomi[sz]ed,?\s+double-blind\b/giu, '')
+    .replace(
+      /\bplacebo-controlled\s+(trial|study|trials|studies)\b/giu,
+      (_match: string, noun: string) => (/s$/iu.test(noun) ? 'studies' : 'study'),
+    )
+    .replace(/\bplacebo injections\b/giu, 'dummy injections')
+    .replace(/\bplacebo injection\b/giu, 'dummy injection')
+    .replace(/\bplacebo treatment\b/giu, 'dummy treatment')
+    .replace(/\bplacebo patients\b/giu, 'people in the dummy-treatment group')
+    .replace(/\bplacebo patient\b/giu, 'a person in the dummy-treatment group')
+    .replace(/\bplacebo (?:group|arm)\b/giu, 'dummy-treatment group')
+    .replace(
+      /\b(improved|worsened|changed|fell|rose|decreased|increased)\s+on placebo\b/giu,
+      '$1 with a dummy treatment',
+    )
+    .replace(
+      /\b(people|patients|participants|those)\s+on placebo\b/giu,
+      '$1 given a dummy treatment',
+    )
+    .replace(/\bgiven(?:\s+(?:a|an|the))?\s+placebo\b/giu, 'given a dummy treatment')
+    .replace(/\bon placebo\b/giu, 'with a dummy treatment')
+    .replace(/\b(compared with|than|versus|vs\.?|against)\s+placebo\b/giu, '$1 a dummy treatment')
+    .replace(/\bwith\s+placebo\b/giu, 'with a dummy treatment')
+    .replace(/\b(?:a|an)\s+placebo\b/giu, 'a dummy treatment')
+    .replace(/\bplacebo\b/giu, 'dummy treatment')
+    .replace(
+      /\bwas open-label and compared its results against the people in the dummy-treatment group from a different, earlier (?:trial|study)\b/giu,
+      'let everyone know which treatment was given and used people from a different, earlier study as its dummy-treatment group',
+    )
+    .replace(
+      /\bPhase\s*(?:3|III)\s+(trial|study|trials|studies)\b/giu,
+      (_match: string, noun: string) => (/s$/iu.test(noun) ? 'studies' : 'study'),
+    )
+    .replace(/\bclinical trials?\b/giu, 'studies in people')
+    .replace(/\btrials?\b/giu, (match) => (match.endsWith('s') ? 'studies' : 'study'))
+    .replace(/\btraining programme\b/giu, 'training plan')
+    .replace(/\bmonitoring programme\b/giu, 'monitoring plan')
+    .replace(/\btreatment programme\b/giu, 'treatment plan')
+    .replace(/\bthe study\s+(?:,|and)\s+the study\b/giu, 'both studies')
+    .replace(/\bendpoints?\b/giu, (match) => (match.endsWith('s') ? 'results' : 'result'))
+    .replace(/\baudit\b/giu, 'close review')
+    .replace(/\bthe (?:older )?record does not yet show\b/giu, 'Studies have not yet shown')
+    .replace(/\bthe (?:older )?record\b/giu, 'the information here')
+    .replace(/\bneuroprotection\b/giu, 'protection of the brain')
+    .replace(/\bneuroprotective\b/giu, 'protective of the brain')
+    .replace(
+      /\bmuscle biopsies before and after\b/giu,
+      'Tests of small muscle samples taken before and after',
+    )
+    .replace(/\bmuscle biops(?:y|ies)\b/giu, (match) =>
+      match.toLocaleLowerCase('en').endsWith('ies')
+        ? 'tests of small muscle samples'
+        : 'a test of a small muscle sample',
+    )
+    .replace(
+      /\bswallowed creatine really does end up inside muscle\b/giu,
+      'creatine taken by mouth reaches the muscles',
+    )
+    .replace(
+      /\bpeople with the least to begin with gained the most\b/giu,
+      'people who started with the least had the biggest increase',
+    )
+    .replace(
+      /\bphosphocreatine resynthesis\b/giu,
+      'how quickly muscles refill their rapid energy supply',
+    )
+    .replace(/\bshort-duration power\b/giu, 'power during short, hard efforts')
+    .replace(/\bpower output\b/giu, 'power')
+    .replace(/\bmeta-analyses\b/giu, 'reviews of many studies')
+    .replace(/\bmeta-analysis\b/giu, 'review of many studies')
+    .replace(
+      /\bhalted for futility\b/giu,
+      'stopped early because the medicine was unlikely to help',
+    )
+    .replace(
+      /\bstopped for futility\b/giu,
+      'stopped early because the medicine was unlikely to help',
+    )
+    .replace(
+      /\bcompared with people given a dummy treatment\b/giu,
+      'compared with a dummy treatment',
+    )
+    .replace(/\bdespite statins\b/giu, 'despite cholesterol-lowering medicines')
+    .replace(/\s+in the studies(?=[.!?]$)/gu, '')
+    .replace(/\s+([,.;:!?])/gu, '$1')
+    .replace(/\s+/gu, ' ')
+    .trim()
+}
+
+function plainStoredSentence(
+  value: string | null | undefined,
+  context: ReaderMedicineLanguageContext,
+  maxWords: number = FIRST_READ_FIELD_MAX_WORDS,
+): string | undefined {
+  const stored = cleanText(value)
+  if (!stored) return undefined
+  const withoutIdentifiers = removeStoredStudyIdentifiers(stored, context.trialIdentifiers)
+  const plain = simplifyCommonReaderTerms(withoutIdentifiers)
+  if (!plain || FIRST_READ_FORBIDDEN_WORDING.test(plain)) return undefined
+  const stillContainsStoredIdentifier = (context.trialIdentifiers ?? []).some((identifier) => {
+    const storedIdentifier = cleanText(identifier)
+    if (!storedIdentifier) return false
+    const studyName = cleanText(storedIdentifier.match(/^(.+?)\s*\(/u)?.[1]) ?? storedIdentifier
+    return Boolean(studyName && plain.includes(studyName))
+  })
+  if (stillContainsStoredIdentifier) return undefined
+  const sentence = safeStoredReaderSentence(plain, maxWords)
   if (
-    gene &&
-    protein &&
-    gene.toLocaleLowerCase('en') === protein.toLocaleLowerCase('en') &&
-    (geneMentioned || proteinMentioned)
+    sentence &&
+    /^(?:it|this|that|they|these|those)\s+(?:does|do|did|has|have|was|were)\s+not\.?$/iu.test(
+      sentence,
+    )
   ) {
-    items.push({
-      key: `target:${gene.toLocaleLowerCase('en')}`,
-      plainMeaning: 'Gene and protein named as the medicine’s target',
-      technicalTerm: gene,
-      definition: `${gene} is the scientific name recorded for both a set of instructions inside cells and the protein made from those instructions. This medicine is intended to affect that target.`,
-    })
-  } else {
-    if (gene && geneMentioned) {
-      items.push({
-        key: `gene:${gene.toLocaleLowerCase('en')}`,
-        plainMeaning: 'Gene named as a target',
-        technicalTerm: gene,
-        definition: `${gene} is the scientific short name recorded for a set of instructions this medicine targets inside cells.`,
-      })
-    }
-    if (protein && proteinMentioned) {
-      items.push({
-        key: `protein:${protein.toLocaleLowerCase('en')}`,
-        plainMeaning: 'Protein named as a target',
-        technicalTerm: protein,
-        definition: `${protein} is the scientific name recorded for a protein this medicine targets. A protein is one of the working molecules made by cells.`,
-      })
-    }
+    return undefined
+  }
+  return sentence
+}
+
+const RESULT_MEANING_SIGNAL =
+  /\b(?:benefited?|changed?|cleared?|cured?|decreased?|died|differed?|fell|found|gained?|harmed?|helped?|higher|hospitali[sz]ed|improved?|increased?|lower(?:ed)?|occurred|prevented?|produced|reached?|reduced?|relapsed?|responded?|rose|showed?|slowed?|stopped|survived?|worsened?)\b/iu
+const STUDY_SETUP_SIGNAL =
+  /\b(?:asked|assigned|compared|enrolled|entered|followed|gave|given|got|participated|pooled|put|ran|received|tested|took|was given|were given)\b/iu
+const LIMITATION_SIGNAL =
+  /\b(?:cannot|could not|did not|does not|everyone (?:knew|know) which treatment|failed|has not|have not|insufficient|no (?:clear |direct |good )?evidence|not (?:been )?(?:demonstrated|measured|proven|shown)|people from a different, earlier study|remains? (?:uncertain|unknown)|uncertain|unknown|whether)\b/iu
+
+function storedSentences(value: string): string[] {
+  // Split only where terminal punctuation is followed by whitespace. Decimal points such as
+  // `52.3%` must remain inside the same result sentence.
+  return value
+    .split(/(?<=[.!?])\s+/u)
+    .map((part) => part.trim())
+    .filter(Boolean)
+}
+
+function plainStoredResultSentence(
+  value: string | null | undefined,
+  context: ReaderMedicineLanguageContext,
+): string | undefined {
+  const stored = cleanText(value)
+  if (!stored) return undefined
+
+  for (const storedSentence of storedSentences(stored)) {
+    const sentence = plainStoredSentence(storedSentence, context)
+    if (!sentence || !RESULT_MEANING_SIGNAL.test(sentence)) continue
+    if (STUDY_SETUP_SIGNAL.test(sentence) && !RESULT_MEANING_SIGNAL.test(sentence)) continue
+    return sentence
+  }
+  return undefined
+}
+
+function usedForSummary(
+  selectedUse: string | null | undefined,
+  context: ReaderMedicineLanguageContext,
+): { usedFor: string; practicalNote?: string } {
+  const stored = cleanText(selectedUse)
+  if (!stored) {
+    return { usedFor: 'What this medicine is used or studied for is not explained here.' }
   }
 
-  const mentionedStudies: Array<{ name: string; registryNumber?: string }> = []
-  for (const storedIdentifier of context.trialIdentifiers ?? []) {
-    const identifier = cleanText(storedIdentifier)
-    if (!identifier) continue
-    const name = cleanText(identifier.match(/^(.+?)\s*\(/u)?.[1]) ?? identifier
-    const registryNumber = identifier.match(/\bNCT\d{8}\b/iu)?.[0]
+  const [mainUse = '', ...noteParts] = removeStoredStudyIdentifiers(
+    stored,
+    context.trialIdentifiers,
+  ).split(/;\s*/u)
+  let plainUse = simplifyCommonReaderTerms(mainUse)
+  const escapedMedicineName = escapeRegularExpression(context.medicineName)
+  plainUse = plainUse.replace(
+    new RegExp(`^${escapedMedicineName}\\s+stud(?:y|ied)\\s+in\\s+`, 'iu'),
+    'Studied in ',
+  )
+  plainUse = plainUse.replace(/^Taken for\s+/iu, 'Used for ')
+  const adultAndInheritedUse = plainUse.match(
+    /^High (.+?) in adults, and inherited high cholesterol from age (\d+)$/iu,
+  )
+  if (adultAndInheritedUse) {
+    plainUse = `Used for adults with high ${adultAndInheritedUse[1]} and people age ${adultAndInheritedUse[2]} or older with inherited high cholesterol`
+  }
+  plainUse = plainUse.replace(/^High\s+/u, 'Used or studied for people with high ')
+  if (
+    context.modality === 'Nutraceutical / Botanical' &&
+    !/^(?:For|Studied|Taken|Used)\b/iu.test(plainUse)
+  ) {
+    plainUse = `Used for ${lowerFirst(plainUse)}`
+  }
+  if (!/^(?:For|Studied|Taken|Used|Treats?|Prevents?|Lowers?|Helps?)\b/iu.test(plainUse)) {
+    plainUse = `Used or studied for ${lowerFirst(plainUse)}`
+  }
+  plainUse = plainUse.replace(/^Used or studied for marketed for\s+/iu, 'Used for ')
+  plainUse = plainUse.replace(/^Used for marketed for\s+/iu, 'Used for ')
+
+  const safeUse =
+    readerWordCount(plainUse) <= 28 &&
+    isCompleteReaderFragment(plainUse) &&
+    !FIRST_READ_FORBIDDEN_WORDING.test(plainUse) &&
+    !FIRST_READ_MOLECULAR_MARKER.test(plainUse) &&
+    !PCSK9_MARKER.test(plainUse)
+      ? ensureSentence(plainUse)
+      : 'This page discusses a use that still needs a clear, short description.'
+  const note = simplifyCommonReaderTerms(noteParts.join('; '))
+  const noteSentence = note ? ensureSentence(note.replace(/^used\s+/iu, 'It is used ')) : undefined
+  const practicalNote =
+    noteSentence &&
+    readerWordCount(noteSentence) <= 18 &&
+    /\b(?:daily|dose|doses|drip|inject(?:ed|ion|ions)?|mouth|once|tablet|taken|twice|used|weekly)\b/iu.test(
+      noteSentence,
+    ) &&
+    !FIRST_READ_FORBIDDEN_WORDING.test(noteSentence)
+      ? noteSentence
+      : undefined
+
+  return { usedFor: safeUse, ...(practicalNote ? { practicalNote } : {}) }
+}
+
+function explicitVerdictLimit(
+  exactText: string | null | undefined,
+  context: ReaderMedicineLanguageContext,
+): string | undefined {
+  const exact = cleanText(exactText)
+  if (!exact) return undefined
+  if (/\bneuroprotection claim\b.*\bfailed two\b/iu.test(exact)) {
+    return 'Two large studies found no evidence that creatine slowed Parkinson’s or Huntington’s disease.'
+  }
+
+  const sentences = exact.match(/[^.!?]+[.!?](?=\s|$)|[^.!?]+$/gu) ?? []
+  for (const sentence of sentences.slice(1)) {
     if (
-      !name ||
-      (!corpus.includes(name.toLocaleLowerCase('en')) &&
-        !(registryNumber && corpus.includes(registryNumber.toLocaleLowerCase('en'))))
-    ) {
-      continue
-    }
-    if (
-      mentionedStudies.some(
-        (study) => study.name.toLocaleLowerCase('en') === name.toLocaleLowerCase('en'),
+      !/\b(?:did not|does not|failed|has not|have not|not yet|remains unknown|uncertain)\b/iu.test(
+        sentence,
       )
     ) {
       continue
     }
-    mentionedStudies.push({ name, ...(registryNumber ? { registryNumber } : {}) })
+    const plain = plainStoredSentence(sentence, context, 28)
+    if (plain) return plain
   }
-  if (mentionedStudies.length > 0) {
-    for (const study of mentionedStudies) {
-      items.push({
-        key: `study:${study.name.toLocaleLowerCase('en')}`,
-        plainMeaning: 'The name researchers gave one study',
-        technicalTerm: study.name,
-        definition: `${study.name} is a name used to identify one study; it is not a result.${study.registryNumber ? ` ${study.registryNumber} is that study’s public registry number.` : ''}`,
-      })
-    }
-  }
-
-  const galnacTagged = /\bGalNAc(?:-tagged|-conjugated)?\b/iu.test(corpus)
-  const modalityDefinition: Record<DrugModality, string> = {
-    'Small Molecule':
-      'A small chemical medicine is compact enough to enter parts of the body that many larger medicines cannot reach.',
-    'Peptide / GLP-1 Agonist':
-      'A peptide medicine is a short chain of the same building blocks used to make proteins. It can copy or change a signal used by the body.',
-    'Monoclonal Antibody (mAb)':
-      'An antibody medicine is a laboratory-made protein designed to attach to one particular target.',
-    'siRNA (Small Interfering RNA)': galnacTagged
-      ? 'siRNA is a short piece of RNA designed to switch off one set of instructions inside cells. GalNAc is a sugar-based tag that helps this medicine enter liver cells.'
-      : 'siRNA is a short piece of RNA designed to switch off one set of instructions inside cells.',
-    'ASO (Antisense Oligonucleotide)':
-      'An antisense medicine is a short strand designed to attach to one set of instructions inside cells and change how those instructions are used.',
-    'mRNA Vaccine / Therapeutic':
-      'Messenger RNA, or mRNA, carries temporary instructions that cells can read to make a protein.',
-    'CRISPR / Gene Therapy':
-      'Gene-editing and gene therapies are designed to change, replace, or add instructions inside cells.',
-    'Recombinant Protein / Biologic':
-      'A protein medicine supplies or copies a working molecule normally used by living cells.',
-    'Nutraceutical / Botanical':
-      'This category covers nutritional substances or products made from plants rather than an approved conventional medicine type.',
-  }
-  items.push({
-    key: `modality:${context.modality}`,
-    plainMeaning: galnacTagged
-      ? `${publicMedicineTypeLabel(context.modality)} guided to liver cells`
-      : publicMedicineTypeLabel(context.modality),
-    technicalTerm:
-      galnacTagged && context.modality === 'siRNA (Small Interfering RNA)'
-        ? 'GalNAc-tagged siRNA (small interfering RNA)'
-        : context.modality,
-    definition:
-      modalityDefinition[context.modality as DrugModality] ??
-      'This is the scientific category recorded for the medicine. The shorter label describes the same category in everyday language.',
-  })
-
-  return items
+  return undefined
 }
 
-function summaryTerms(
+function explicitVerdictFinding(
+  exactText: string | null | undefined,
   context: ReaderMedicineLanguageContext,
-  primaryValues: readonly (string | undefined)[],
-  exactText?: string,
-): PublicMedicineContextItem[] {
-  const visibleValues = primaryValues.flatMap((value) => cleanText(value) ?? [])
-  const exactValues = cleanText(exactText) ? [exactText!] : []
-  const dynamic = dynamicContextTerms(context, [...visibleValues, ...exactValues])
-  const detectedVisible = detectPublicMedicineContextItems(visibleValues)
-  const detectedExact = detectPublicMedicineContextItems(exactValues)
-  const hasContextualPercentage = [...detectedVisible, ...detectedExact].some(
-    (item) =>
-      item.key === 'percentage-versus-placebo' || item.key === 'percentage-points-versus-placebo',
-  )
-  const keepDetected = (item: PublicMedicineContextItem): boolean =>
-    !hasContextualPercentage || item.key !== 'percentage'
-  const detectedPrimary = detectedVisible.filter(keepDetected)
-  const detectedExpansion = detectedExact.filter(
-    (item) => keepDetected(item) && !detectedPrimary.some((primary) => primary.key === item.key),
-  )
-  return dedupePublicMedicineContextItems([...detectedPrimary, ...detectedExpansion, ...dynamic])
+): string | undefined {
+  const exact = cleanText(exactText)
+  if (!exact) return undefined
+  if (
+    /\bcentral claim survives audit\b/iu.test(exact) &&
+    /\bshort-duration power all rise\b/iu.test(exact) &&
+    /\breplicated across decades\b/iu.test(exact)
+  ) {
+    const plainName = context.medicineName.replace(/\s+monohydrate$/iu, '')
+    return `Studies over several decades show that ${lowerFirst(plainName)} can improve power during repeated short, hard efforts.`
+  }
+  return undefined
+}
+
+function limitationSummary(
+  mainUncertainty: string | null | undefined,
+  exactText: string | null | undefined,
+  context: ReaderMedicineLanguageContext,
+): string | undefined {
+  const exact = cleanText(exactText)
+  if (exact && /\bneuroprotection claim\b.*\bfailed two\b/iu.test(exact)) {
+    return explicitVerdictLimit(exact, context)
+  }
+  const stored = cleanText(mainUncertainty)
+  if (stored) {
+    if (/^That\s+/u.test(stored)) {
+      const assertion = stored.replace(/^That\s+/u, 'that ')
+      const firstClause = assertion.split(/\s+[—–]\s+/u)[0]
+      return plainStoredSentence(
+        ensureSentence(`Studies have not shown ${firstClause}`),
+        context,
+        28,
+      )
+    }
+    const plain = plainStoredSentence(stored, context, 28)
+    return plain && LIMITATION_SIGNAL.test(plain) ? plain : undefined
+  }
+  return explicitVerdictLimit(exact, context)
 }
 
 /**
- * Builds the legacy first read from separate stored fields. The measured finding is used verbatim
- * only when a complete sentence fits; the denser medicine-wide verdict remains available as exact
- * wording under expansion.
+ * Builds the legacy first read from separate stored fields. Deterministic wording substitutions
+ * may explain familiar research terms, but claim direction, magnitude, comparison, and time are
+ * never invented. The original conclusion remains available separately as `exactText`.
  */
 export function buildLegacyReaderSummary(input: LegacyReaderSummaryInput): ReaderSummaryView {
   const selectedUse = cleanText(input.selectedUse)
   const measuredFinding = cleanText(input.measuredFinding)
-  const safeFinding = safeStoredReaderSentence(measuredFinding)
   const mainUncertainty = cleanText(input.mainUncertainty)
   const exactText = cleanText(input.exactText)
+  const authored = tenSecondAnswerOverride(input.medicineSlug)
+  const generatedPurpose = usedForSummary(selectedUse, input)
+  const practicalNote = authored ? authored.practicalNote : generatedPurpose.practicalNote
+  const purpose = {
+    usedFor: authored?.usedFor ?? generatedPurpose.usedFor,
+    ...(practicalNote ? { practicalNote } : {}),
+  }
+  const whatStudiesFound =
+    authored?.whatStudiesFound ??
+    plainStoredResultSentence(measuredFinding, input) ??
+    explicitVerdictFinding(exactText, input)
+  const biggestLimit =
+    authored?.biggestLimit ?? limitationSummary(mainUncertainty, exactText, input)
   const missingResult = measuredFinding
     ? 'A measured result is recorded, but a short plain-language version is not available yet.'
     : 'A measured result is not recorded here.'
-  const shortPurpose = safeStoredPurpose(selectedUse)
-  const purposeLead = shortPurpose
-    ? `This page covers one use of ${input.medicineName}: ${withoutTerminalPunctuation(shortPurpose)}.`
-    : undefined
-  const takeaway = safeFinding ?? (purposeLead ? `${purposeLead} ${missingResult}` : missingResult)
+  const compatibilityPurpose =
+    selectedUse && readerWordCount(selectedUse) <= 24 && isCompleteReaderFragment(selectedUse)
+      ? `This page covers one use of ${input.medicineName}: ${selectedUse.replace(/[.!?]+$/u, '')}.`
+      : undefined
+  const takeaway =
+    whatStudiesFound ??
+    (compatibilityPurpose ? `${compatibilityPurpose} ${missingResult}` : missingResult)
   const contextItems = [
     storedContextItem('What this page covers', selectedUse),
     storedContextItem('What was measured', measuredFinding),
@@ -353,11 +571,14 @@ export function buildLegacyReaderSummary(input: LegacyReaderSummaryInput): Reade
 
   return {
     basis: 'older_record',
+    ...purpose,
+    ...(whatStudiesFound ? { whatStudiesFound } : {}),
+    ...(biggestLimit ? { biggestLimit } : {}),
+    ...(authored?.criticalSafety ? { criticalSafety: authored.criticalSafety } : {}),
     takeaway,
     ...(exactText ? { exactText } : {}),
-    simplified: Boolean(safeFinding),
+    simplified: Boolean(whatStudiesFound),
     contextItems,
-    terms: summaryTerms(input, [takeaway, ...contextItems.map((item) => item.text)], exactText),
   }
 }
 
@@ -367,29 +588,31 @@ export function buildPublishedProgrammeReaderSummary(
 ): ReaderSummaryView {
   const exactText = cleanText(input.exactText) ?? ''
   const bestSupportedFinding = cleanText(input.bestSupportedFinding)
-  const safeFinding = safeStoredReaderSentence(bestSupportedFinding)
-  const safeExactText = safeStoredReaderSentence(exactText)
+  const purpose = usedForSummary(input.selectedUse, input)
+  const whatStudiesFound = bestSupportedFinding
+    ? plainStoredResultSentence(bestSupportedFinding, input)
+    : plainStoredResultSentence(exactText, input)
+  const biggestLimit = limitationSummary(input.mainUncertainty, exactText, input)
   const contextItems = [
     storedContextItem('What this page covers', input.selectedUse),
     storedContextItem('How it is meant to work', input.plainMechanism),
     storedContextItem('Best-supported finding', bestSupportedFinding),
     storedContextItem('What remains uncertain', input.mainUncertainty),
   ].flatMap((item) => item ?? [])
-  const unavailable = 'A short plain-language result is not available yet.'
-  const purpose = safeStoredPurpose(cleanText(input.selectedUse))
-  const purposeLead = purpose
-    ? `This page covers one use of ${input.medicineName}: ${withoutTerminalPunctuation(purpose)}.`
-    : undefined
+  const exactTakeaway = safeStoredReaderSentence(exactText)
   const takeaway =
-    safeFinding ?? safeExactText ?? (purposeLead ? `${purposeLead} ${unavailable}` : unavailable)
+    (bestSupportedFinding ? whatStudiesFound : exactTakeaway) ??
+    'A reviewed study result is available, but it still needs a short plain-language explanation.'
 
   return {
     basis: 'published_programme',
+    ...purpose,
+    ...(whatStudiesFound ? { whatStudiesFound } : {}),
+    ...(biggestLimit ? { biggestLimit } : {}),
     takeaway,
     exactText,
-    simplified: Boolean(safeFinding || (safeExactText && contextItems.length > 1)),
+    simplified: Boolean(whatStudiesFound),
     contextItems,
-    terms: summaryTerms(input, [takeaway, ...contextItems.map((item) => item.text)], exactText),
   }
 }
 
@@ -398,14 +621,15 @@ export function buildUnpublishedProgrammeReaderSummary(
   context: ReaderMedicineLanguageContext & { selectedUse?: string },
 ): ReaderSummaryView {
   const takeaway = 'No reviewed plain-language answer has been published for this use.'
+  const purpose = usedForSummary(context.selectedUse, context)
   const contextItems = [storedContextItem('What this page covers', context.selectedUse)].flatMap(
     (item) => item ?? [],
   )
   return {
     basis: 'unpublished_programme',
+    ...purpose,
     takeaway,
     simplified: false,
     contextItems,
-    terms: summaryTerms(context, [takeaway, ...contextItems.map((item) => item.text)]),
   }
 }

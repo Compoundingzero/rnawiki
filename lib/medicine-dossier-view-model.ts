@@ -391,6 +391,16 @@ export function countPlainWords(value: string): number {
   return value.match(WORD_PATTERN)?.length ?? 0
 }
 
+function countReaderSummaryWords(summary: ReaderSummaryView): number {
+  return [
+    summary.usedFor,
+    summary.whatStudiesFound,
+    summary.biggestLimit,
+    summary.practicalNote,
+    summary.criticalSafety,
+  ].reduce((total, value) => total + (value ? countPlainWords(value) : 0), 0)
+}
+
 function nonEmpty(value: unknown): string | undefined {
   if (typeof value !== 'string') return undefined
   const trimmed = value.trim()
@@ -680,6 +690,7 @@ function readerLanguageContext(
     nonEmpty(trial.trialId) ? [trial.trialId] : [],
   )
   return {
+    medicineSlug: drug.id,
     medicineName: drug.name,
     modality: drug.modality,
     targetGene: nonEmpty(drug.targetGene),
@@ -1006,7 +1017,7 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
     readerSummary,
     mechanismSummary,
     mainLimitation,
-    tenSecondWordCount: countPlainWords(readerSummary.takeaway),
+    tenSecondWordCount: countReaderSummaryWords(readerSummary),
     evidenceNodes: legacyEvidenceNodes(audits),
     studies: legacyStudies(trials),
     keyOutcomes: legacyKeyOutcomes(drug),
@@ -1072,7 +1083,7 @@ export function normalizedMedicineDossierView(
     readerSummary,
     mechanismSummary,
     mainLimitation,
-    tenSecondWordCount: countPlainWords(readerSummary.takeaway),
+    tenSecondWordCount: countReaderSummaryWords(readerSummary),
     evidenceNodes: selected.evidenceNodes,
     studies: selected.studies,
     keyOutcomes: selected.keyOutcomes,

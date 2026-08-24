@@ -158,16 +158,16 @@ export default async function HowItWorksPage() {
           <Card>
             <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
               <p>
-                A medicine page starts with the intended use, the clearest recorded result and the
+                A medicine page starts with the intended use, the clearest research result and the
                 biggest unanswered question. A general research summary can contain longer technical
                 wording. RNAWiki keeps that wording available, but does not make readers decode it
                 before seeing the main point.
               </p>
               <p>
-                When a short answer contains an unfamiliar study word or number, the explanation is
-                attached to that phrase. Hover or keyboard focus previews it; click or tap keeps it
-                open. The explanation starts with everyday meaning, then preserves the professional
-                term for readers comparing it with a study or source.
+                The short answer must make sense without a glossary. If an unfamiliar study word is
+                not essential, it moves out of the first screen. If it is essential, its familiar
+                meaning appears in the same sentence. Readers do not need to hover or tap to
+                understand the main point.
               </p>
               <p>
                 A separate “More about this medicine” section keeps useful general background,

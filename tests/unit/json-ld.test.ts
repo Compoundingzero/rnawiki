@@ -50,13 +50,16 @@ function dossier(bindingState: MedicineDossierViewModel['bindingState']): Medici
     readerSummary: {
       basis:
         bindingState === 'published_programme' ? 'published_programme' : 'unpublished_programme',
+      usedFor: 'Used or studied for one specific use.',
+      ...(bindingState === 'published_programme'
+        ? { whatStudiesFound: 'Reviewed programme conclusion.' }
+        : {}),
       takeaway:
         bindingState === 'published_programme'
           ? 'Reviewed programme conclusion'
           : 'No reviewed plain-language answer has been published for this use.',
       simplified: false,
       contextItems: [],
-      terms: [],
     },
     mechanismSummary: {
       change: bindingState === 'published_programme' ? 'Reviewed programme mechanism' : undefined,

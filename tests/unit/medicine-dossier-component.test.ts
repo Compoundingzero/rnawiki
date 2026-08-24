@@ -5,7 +5,10 @@ import { describe, expect, it } from 'vitest'
 import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
 import { AppProvider } from '@/components/app-context'
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
-import { buildPublishedProgrammeReaderSummary } from '@/lib/public-medicine-language'
+import {
+  buildLegacyReaderSummary,
+  buildPublishedProgrammeReaderSummary,
+} from '@/lib/public-medicine-language'
 
 // Next preserves JSX for its own compiler; Vitest's direct server render uses the classic runtime.
 ;(globalThis as typeof globalThis & { React: typeof React }).React = React
@@ -60,11 +63,12 @@ function view(overrides: Partial<MedicineDossierViewModel> = {}): MedicineDossie
           : bindingState === 'published_programme'
             ? 'published_programme'
             : 'unpublished_programme',
+      usedFor: 'Used or studied for Programme A.',
+      ...(verdict ? { whatStudiesFound: verdict } : {}),
       takeaway: defaultTakeaway,
       ...(verdict ? { exactText: verdict } : {}),
       simplified: false,
       contextItems: [],
-      terms: [],
     },
   }
 }
@@ -333,9 +337,9 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('240 across 1 study')
     expect(html).not.toContain('Reported enrolment total')
     const recordedStudyDesign = markupFromTestId(html, 'recorded-study-design', '</p>')
-    expect(recordedStudyDesign).toContain('data-context-key="study-phase-2"')
     expect(recordedStudyDesign).toContain('Phase 2')
     expect(recordedStudyDesign).toContain('· Human study')
+    expect(recordedStudyDesign).not.toContain('data-context-key=')
     expect(html).toContain('They do not by themselves prove that the medicine is safe or helpful')
     expect(html).toContain('Results changed the programme record')
     expect(html).toContain('The registry posted the result used in the reviewed conclusion.')
@@ -463,7 +467,8 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html.match(/data-testid="programme-mechanism-stage"/g)).toHaveLength(3)
     expect(html.match(/data-testid="mechanism-evidence-basis"/g)).toHaveLength(3)
     expect(html.match(/data-testid="mechanism-stage-source-links"/g)).toHaveLength(3)
-    expect(html).toContain('data-context-key="percentage-points-versus-placebo"')
+    expect(html).toContain('52.3 percentage points lower')
+    expect(html).not.toContain('data-context-key=')
     expect(html).toContain('lg:grid-cols-2')
     expect(html).not.toContain('lg:grid-cols-3')
     expect(html).toContain('This step was measured in people')
@@ -520,23 +525,44 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).not.toContain('Evidence:')
   })
 
-  it('does not promise a ten-second read for an older medicine-wide summary', () => {
+  it('keeps dense research wording out of the static ten-second summary', () => {
     const longLegacySummary = Array.from(
       { length: 90 },
       (_, index) => `recorded-word-${index + 1}`,
     ).join(' ')
     const legacyHtml = renderDossier(
-      view({ bindingState: 'legacy_record', verdict: longLegacySummary }),
+      view({
+        bindingState: 'legacy_record',
+        verdict: longLegacySummary,
+        readerSummary: buildLegacyReaderSummary({
+          medicineName: 'Synthetic Medicine',
+          modality: 'Small Molecule',
+          selectedUse: 'A synthetic use',
+          exactText: longLegacySummary,
+        }),
+      }),
     )
     const reviewedHtml = renderDossier(
-      view({ bindingState: 'published_programme', verdict: 'A reviewed programme answer.' }),
+      view({
+        bindingState: 'published_programme',
+        verdict: 'A reviewed answer.',
+        readerSummary: buildPublishedProgrammeReaderSummary({
+          medicineName: 'Synthetic Medicine',
+          modality: 'Small Molecule',
+          selectedUse: 'A synthetic use',
+          exactText: 'A reviewed answer.',
+          bestSupportedFinding: 'Researchers found a clear synthetic result.',
+        }),
+      }),
     )
 
-    expect(legacyHtml).toContain('What the research reports')
+    expect(legacyHtml).toContain('In 10 seconds')
+    expect(legacyHtml).toContain(
+      'A study result is available, but it still needs a short plain-language explanation.',
+    )
     expect(legacyHtml).toContain(longLegacySummary)
-    expect(legacyHtml).not.toContain('In 10 seconds')
-    expect(reviewedHtml).toContain('What researchers found')
-    expect(reviewedHtml).not.toContain('In 10 seconds')
+    expect(reviewedHtml).toContain('What studies found')
+    expect(reviewedHtml).toContain('Researchers found a clear synthetic result.')
   })
 
   it.each(['legacy_record', 'programme_unpublished', 'published_programme'] as const)(
@@ -604,9 +630,7 @@ describe('MedicineDossierV2 server markup', () => {
       expect(html).toMatch(/<h3[^>]*>Safety and how it is given<\/h3>/)
 
       if (bindingState === 'legacy_record') {
-        expect(html).toContain(
-          'It is useful background, not a reviewed answer to one specific question.',
-        )
+        expect(html).toContain('It is background, not a reviewed answer for one specific use.')
       } else {
         expect(html).toContain('It provides context and is not part of the reviewed answer.')
       }
@@ -633,16 +657,15 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('<details class="group/safety">')
     expect(html).toContain('An exact saved administration schedule.')
     expect(html).toContain('An exact saved serious-risk, common-effect, and ')
-    expect(html).toContain('data-context-key="contraindication"')
     expect(html).toContain('contraindication')
-    expect(html).toContain('A situation in which a medicine should not be used')
+    expect(html).not.toContain('data-context-key=')
     expect(html).toContain('not personal medical advice or dosing instructions')
     expect(html.indexOf('An exact saved administration schedule.')).toBeGreaterThan(
       html.indexOf('aria-controls="medicine-background-content"'),
     )
   })
 
-  it('explains every technical word in an older delivery name where it appears', () => {
+  it('keeps a technical delivery name static inside its closed detail', () => {
     const html = renderDossier(
       view({
         bindingState: 'legacy_record',
@@ -660,9 +683,8 @@ describe('MedicineDossierV2 server markup', () => {
     const end = html.indexOf('</details>', start)
     const delivery = html.slice(start, end)
 
-    expect(delivery).toContain('data-context-key="galnac"')
-    expect(delivery).toContain('data-context-key="sirna"')
-    expect(delivery).toContain('data-context-key="route-subcutaneous"')
+    expect(delivery).toContain('GalNAc-conjugated siRNA, subcutaneous prefilled syringe')
+    expect(delivery).not.toContain('data-context-key=')
   })
 
   it('shows a direct warning when general research pricing has no stored citation', () => {
@@ -900,9 +922,7 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('-12 percentage points')
     expect(html).toContain('How uncertain is this estimate?')
     expect(html).toContain('-18 to -6')
-    expect(html).toContain('data-context-key="placebo"')
-    expect(html).toContain('data-context-key="percentage-points"')
-    expect(html).toContain('data-context-key="confidence-interval"')
+    expect(html).not.toContain('data-context-key=')
     expect(html).toContain('4.2 points')
     expect(html).toContain('1.1 to 7.3')
     expect(html).toContain('A result about how people felt, functioned, or survived')
@@ -994,7 +1014,7 @@ describe('MedicineDossierV2 server markup', () => {
     expect(contradictedHtml).toContain('First step that did not happen as expected')
   })
 
-  it('explains first-read terms on the words themselves while preserving the advanced term guide', () => {
+  it('renders a self-contained static first read and keeps dense wording behind a disclosure', () => {
     const exactText =
       'A GalNAc-tagged siRNA that makes liver cells destroy their own PCSK9 messenger RNA, cutting LDL cholesterol by 52.3% and 49.9% against placebo at day 510 in ORION-10 and ORION-11 — a blood measurement, not yet a demonstrated reduction in heart attacks.'
     const readerSummary = buildPublishedProgrammeReaderSummary({
@@ -1017,86 +1037,47 @@ describe('MedicineDossierV2 server markup', () => {
       }),
     )
 
-    const firstReadStart = html.indexOf('data-testid="first-read-annotated-summary"')
-    const firstReadEnd = html.indexOf('</p>', firstReadStart)
-    const firstRead = html.slice(firstReadStart, firstReadEnd)
-    expect(firstReadStart).toBeGreaterThanOrEqual(0)
-    expect(firstRead).toContain('data-context-key="ldl-cholesterol"')
-    expect(firstRead).toContain('data-context-key="percentage-versus-placebo"')
-    expect(firstRead).toContain('data-context-key="placebo"')
-    expect(firstRead).toContain('data-context-key="study-day-510"')
-    expect(firstRead).toContain('aria-expanded="false"')
-    expect(firstRead).toContain('A blood measurement often called “bad cholesterol”')
-    expect(firstRead).toContain('A comparison with an inactive look-alike treatment')
-    expect(firstRead).toContain('510 days after the study started')
-    expect(firstRead).toContain('about 17 months')
-    expect(firstRead).not.toContain('PCSK9')
-    expect(firstRead).not.toContain('GalNAc')
-    expect(html).not.toContain('data-testid="first-read-context"')
-    expect(html).toContain('Dotted phrases have plain explanations. Hover, focus or tap.')
-    expect(html).toContain('Read the professional wording')
+    expect(html).toContain('data-testid="ten-second-used-for"')
+    expect(html).toContain('Used or studied for people with high LDL (“bad”) cholesterol.')
+    expect(html).toContain('data-testid="ten-second-finding"')
+    expect(html).toContain('LDL (“bad”) cholesterol changed by about half')
+    expect(html).toContain('data-testid="ten-second-limit"')
+    expect(html).toContain('These studies did not show whether inclisiran prevents heart attacks')
+    expect(html).toContain('Read the full research wording')
+    expect(html).not.toContain('data-context-key=')
+    expect(html).not.toContain('Hover, focus or tap')
+    expect(html).not.toContain('Explain study words')
 
     const exactStart = html.indexOf('data-testid="exact-wording-annotated"')
     const exactEnd = html.indexOf('</p>', exactStart)
     const exact = html.slice(exactStart, exactEnd)
-    expect(exactStart).toBeGreaterThan(firstReadStart)
-    for (const key of [
-      'galnac',
-      'sirna',
-      'pcsk9',
-      'messenger-rna',
-      'ldl-cholesterol',
-      'percentage-versus-placebo',
-      'placebo',
-      'study-day-510',
-      'study:orion-10',
-      'study:orion-11',
-    ]) {
-      expect(exact, `exact wording should explain ${key} on the term itself`).toContain(
-        `data-context-key="${key}"`,
-      )
-    }
-    expect(exact).toContain('A short medicine that tells a cell to discard one chosen instruction')
-    expect(exact).toContain('A temporary instruction a cell reads when making a protein')
-
-    const advancedGuideStart = html.indexOf('data-testid="advanced-study-language"')
-    const advancedGuideEnd = html.indexOf('</details>', advancedGuideStart)
-    const advancedGuide = html.slice(advancedGuideStart, advancedGuideEnd)
-    expect(advancedGuideStart).toBeGreaterThan(firstReadStart)
-    expect(advancedGuide).toContain('Technical term: PCSK9')
-    expect(advancedGuide).toContain('Technical term: GalNAc')
-    expect(advancedGuide).toContain('Technical term: RNA')
-    expect(html.match(/Explain study words/g)).toHaveLength(1)
-    expect(html.match(/Understand the study language/g)).toBeNull()
+    expect(exactStart).toBeGreaterThanOrEqual(0)
+    expect(exact).toContain(exactText)
+    expect(exact).not.toContain('button')
   })
 
-  it('shows each local jargon hint only when that wording has an explanation control', () => {
+  it('does not restore hover or tap controls when professional wording contains mapped terms', () => {
     const html = renderDossier(
       view({
         bindingState: 'legacy_record',
         readerSummary: {
           basis: 'older_record',
+          usedFor: 'Used for a synthetic condition.',
+          whatStudiesFound: 'This first sentence contains no mapped phrase.',
           takeaway: 'This first sentence contains no mapped phrase.',
           exactText: 'This different professional sentence also contains no mapped phrase.',
           simplified: false,
           contextItems: [],
-          terms: [
-            {
-              key: 'unused-term',
-              plainMeaning: 'A term that does not appear here',
-              technicalTerm: 'Absent technical term',
-              definition: 'This definition should not create a hint without a matching phrase.',
-            },
-          ],
         },
       }),
     )
 
-    expect(html).toContain('Read the professional wording')
-    expect(html).not.toContain('Dotted phrases have plain explanations')
+    expect(html).toContain('Read the full research wording')
+    expect(html).not.toContain('data-context-key=')
+    expect(html).not.toContain('Hover, focus or tap')
   })
 
-  it('attaches local explanation controls to professional fields across the dossier', () => {
+  it('keeps professional fields reachable as static text without contextual controls', () => {
     const html = renderDossier(
       view({
         bindingState: 'legacy_record',
@@ -1220,54 +1201,49 @@ describe('MedicineDossierV2 server markup', () => {
     )
 
     const legacyTechnical = markupFromTestId(html, 'legacy-technical-evidence', '</dl>')
-    expect(legacyTechnical).toContain('data-context-key="ldl-cholesterol"')
-    expect(legacyTechnical).toContain('data-context-key="placebo-adjusted"')
-    expect(legacyTechnical).toContain('data-context-key="outcome-biomarker"')
-    expect(legacyTechnical).toContain('data-context-key="study-baseline"')
-    expect(legacyTechnical).toContain('data-context-key="outcome-surrogate"')
+    expect(legacyTechnical).toContain('The LDL-C result was placebo-adjusted.')
+    expect(legacyTechnical).toContain('A Biomarker outcome at Baseline')
+    expect(legacyTechnical).toContain('The Surrogate marker predicts a benefit.')
     expect(legacyTechnical).toContain('PROFESSIONAL-SOURCE-ID')
 
     const designMetadata = markupFromTestId(html, 'study-design-metadata', '</dl>')
-    expect(designMetadata).toContain('data-context-key="study-open-label"')
-    expect(designMetadata).toContain('data-context-key="study-phase-3"')
-    expect(designMetadata).toContain('data-context-key="study-randomisation"')
-    expect(designMetadata).toContain('data-context-key="study-blinding"')
+    expect(designMetadata).toContain('Open-label study')
+    expect(designMetadata).toContain('Phase 3')
+    expect(designMetadata).toContain('Randomisation and Blinding')
 
     const replication = markupFromTestId(html, 'study-replication', '</dd>')
-    expect(replication).toContain('data-context-key="placebo"')
+    expect(replication).toContain('A placebo group reported a similar result.')
 
     const technicalResult = markupFromTestId(html, 'study-technical-result', '</p>')
-    expect(technicalResult).toContain('data-context-key="confidence-interval"')
-    expect(technicalResult).toContain('data-context-key="p-value"')
+    expect(technicalResult).toContain('95% confidence interval; P-value 0.01.')
 
     const interpretability = markupFromTestId(html, 'study-interpretability', '</ul>')
-    expect(interpretability).toContain('data-context-key="endpoint-primary"')
-    expect(interpretability).toContain('data-context-key="outcome-biomarker"')
-    expect(interpretability).toContain('data-context-key="outcome-surrogate"')
+    expect(interpretability).toContain('Was the Primary endpoint measured?')
+    expect(interpretability).toContain('The Biomarker outcome was recorded as a Surrogate marker.')
 
     const recordedDesign = markupFromTestId(html, 'recorded-study-design', '</p>')
-    expect(recordedDesign).toContain('data-context-key="study-phase-3"')
-    expect(recordedDesign).toContain('data-context-key="study-randomisation"')
+    expect(recordedDesign).toContain('Phase 3')
+    expect(recordedDesign).toContain('Randomisation and Blinding')
 
     const mechanismTitle = markupFromTestId(html, 'mechanism-step-title', '</h4>')
-    expect(mechanismTitle).toContain('data-context-key="galnac"')
+    expect(mechanismTitle).toContain('GalNAc delivery')
     const mechanismDetail = markupFromTestId(html, 'mechanism-technical-detail', '</p>')
-    expect(mechanismDetail).toContain('data-context-key="sirna"')
-    expect(mechanismDetail).toContain('data-context-key="pcsk9"')
-    expect(mechanismDetail).toContain('data-context-key="messenger-rna"')
+    expect(mechanismDetail).toContain('siRNA lowered PCSK9 Messenger RNA.')
 
     const sourceBinding = markupFromTestId(html, 'source-claim-binding', '</p>')
-    expect(sourceBinding).toContain('data-context-key="adverse-event"')
+    expect(sourceBinding).toContain('An Adverse event report adds context.')
     const timelineDetail = markupFromTestId(html, 'timeline-technical-detail', '</p>')
-    expect(timelineDetail).toContain('data-context-key="pharmacokinetics"')
-    expect(timelineDetail).toContain('data-context-key="half-life"')
+    expect(timelineDetail).toContain('Pharmacokinetics and Half-life were recorded.')
 
     const alternativeName = markupFromTestId(html, 'alternative-name', '</h4>')
-    expect(alternativeName).toContain('data-context-key="mechanism-monoclonal-antibody"')
+    expect(alternativeName).toContain('Monoclonal antibody treatment')
     const commonQuestion = markupFromTestId(html, 'common-question', '</summary>')
-    expect(commonQuestion).toContain('data-context-key="half-life"')
+    expect(commonQuestion).toContain('What does Half-life mean?')
     const molecularFormat = markupFromTestId(html, 'molecular-format', '</p>')
-    expect(molecularFormat).toContain('data-context-key="pharmacokinetics"')
+    expect(molecularFormat).toContain('Pharmacokinetics description')
+
+    expect(html).not.toContain('data-context-key=')
+    expect(html).not.toContain('show a short explanation')
 
     const identifierStart = html.indexOf('DO-NOT-ANNOTATE-THIS-ID')
     const identifierRegion = html.slice(
@@ -1302,7 +1278,6 @@ describe('MedicineDossierV2 server markup', () => {
     const card = html.slice(cardStart, cardEnd)
     expect(card).toContain('No result on this page')
     expect(card).toContain('Statistical test only (size of the change not available)')
-    expect(card).toContain('data-context-key="p-value"')
     expect(card).toContain('P-value')
     expect(card).toContain('&lt; 0.001')
     expect(card).toContain('it is not the size or importance of the effect')
@@ -1311,7 +1286,7 @@ describe('MedicineDossierV2 server markup', () => {
     expect(card).not.toContain('No independent repeat is recorded')
   })
 
-  it('explains full study names even when they first appear outside a study card', () => {
+  it('keeps full study names intact when they first appear outside a study card', () => {
     const html = renderDossier(
       view({
         bindingState: 'legacy_record',
@@ -1329,9 +1304,9 @@ describe('MedicineDossierV2 server markup', () => {
       }),
     )
 
-    expect(html).toContain('data-context-key="study-name:orion-3"')
-    expect(html).toContain('data-context-key="study-name:victorion-2-prevent"')
-    expect(html).not.toContain('data-context-key="study-name:victorion-2"')
+    expect(html).toContain('ORION-3 recorded a follow-up result')
+    expect(html).toContain('VICTORION-2-PREVENT is still running')
+    expect(html).not.toContain('data-context-key=')
   })
 
   it('renders legacy evidence as unconnected notes and recorded context as a neutral state', () => {
@@ -1384,10 +1359,7 @@ describe('MedicineDossierV2 server markup', () => {
     expect(legacyHtml).toContain('-47.9 percentage points')
     expect(legacyHtml).toContain('-53.5 to -42.3; ')
     expect(legacyHtml).toContain('P&lt;0.001')
-    expect(legacyHtml).toContain('data-context-key="percentage-points"')
-    expect(legacyHtml).toContain('data-context-key="confidence-interval"')
-    expect(legacyHtml).toContain('data-context-key="p-value"')
-    expect(legacyHtml).toContain('data-context-key="study-day-510"')
+    expect(legacyHtml).not.toContain('data-context-key=')
     expect(legacyHtml).toContain('That the laboratory result predicts a patient outcome')
     expect(legacyHtml).toContain('Evidence source as stored')
     expect(legacyHtml).toContain('Stored audit flag')

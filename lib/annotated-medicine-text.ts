@@ -379,6 +379,11 @@ export function medicineTextContextMatches(
   text: string,
   contexts: readonly PublicMedicineContextItem[],
 ): MedicineTextContextMatch[] {
+  // Contextual hover/tap explanations are no longer part of the dossier. Most compatibility
+  // callers now pass an empty list while they are being migrated to ordinary text; return before
+  // scanning the large historical term catalogue.
+  if (contexts.length === 0 || text.trim().length === 0) return []
+
   const normalizedText = text.toLocaleLowerCase('en-US')
   const seenKeys = new Set<string>()
   const locallyRelevantContexts = [...detectPublicMedicineContextItems([text]), ...contexts].filter(

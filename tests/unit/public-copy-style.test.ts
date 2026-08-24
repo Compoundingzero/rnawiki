@@ -36,7 +36,6 @@ const ACTIVE_PUBLIC_COPY_FILES = [
   'app/not-found.tsx',
   'components/AdvancedEvidenceDisclosure.tsx',
   'components/MedicineBackgroundDisclosure.tsx',
-  'components/MedicineContextDisclosure.tsx',
   'lib/public-medicine-context.ts',
   'lib/public-medicine-language.ts',
   'docs/dossier-v2-product-spec.md',

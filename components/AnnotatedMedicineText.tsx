@@ -1,34 +1,30 @@
-'use client'
+import type { MedicineTextContextMatch } from '@/lib/annotated-medicine-text'
 
-import { PlainLanguageText, type PlainLanguageTextProps } from '@/components/InlineTermExplanation'
-import { annotateMedicineText, type MedicineTextContextMatch } from '@/lib/annotated-medicine-text'
-
-export interface AnnotatedMedicineTextProps extends Omit<
-  PlainLanguageTextProps,
-  'children' | 'parts'
-> {
+export interface AnnotatedMedicineTextProps {
+  as?: 'p' | 'span'
+  className?: string
   contexts: readonly MedicineTextContextMatch[]
   text: string
+  testId?: string
 }
 
 /**
- * Adds definitions to exact, explicitly supplied phrases while preserving every character of the
- * stored sentence. It does not guess terms and it never rewrites medical wording.
+ * Renders stored medicine wording as ordinary text. The contextual hover/tap experiment was
+ * retired: first-screen language must now be understandable without an interaction.
+ *
+ * `contexts` remains in the temporary compatibility signature while the detailed dossier is
+ * migrated away from its former annotation plumbing. It is deliberately ignored.
  */
 export function AnnotatedMedicineText({
-  contexts,
+  contexts: _contexts,
   text,
-  ...textProps
+  as: Element = 'p',
+  className,
+  testId,
 }: AnnotatedMedicineTextProps) {
-  const parts = annotateMedicineText(text, contexts)
-  if (!parts.some((part) => typeof part !== 'string')) {
-    const { as: Element = 'p', className, testId } = textProps
-    return (
-      <Element className={className} data-testid={testId}>
-        {text}
-      </Element>
-    )
-  }
-
-  return <PlainLanguageText {...textProps} parts={parts} />
+  return (
+    <Element className={className} data-testid={testId}>
+      {text}
+    </Element>
+  )
 }

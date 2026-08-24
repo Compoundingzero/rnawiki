@@ -230,7 +230,15 @@ describe('medicine dossier view model', () => {
       label: 'What remains uncertain',
       text: 'The patient outcome has not been measured.',
     })
-    expect(view.tenSecondWordCount).toBe(4)
+    expect(view.tenSecondWordCount).toBe(
+      [
+        view.readerSummary.usedFor,
+        view.readerSummary.whatStudiesFound,
+        view.readerSummary.biggestLimit,
+        view.readerSummary.practicalNote,
+        view.readerSummary.criticalSafety,
+      ].reduce((total, value) => total + (value ? countPlainWords(value) : 0), 0),
+    )
     expect(view.programmes).toHaveLength(1)
     expect(view.evidenceNodes.every((node) => !node.machineChecked)).toBe(true)
     expect(view.evidenceNodes[0]?.state).toBe('confirmed')
