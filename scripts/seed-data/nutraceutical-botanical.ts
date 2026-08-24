@@ -72,7 +72,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     anatomicalSite: 'Intestinal lumen and hepatocyte mitochondria (liver)',
     substitutes: {
       summary:
-        'Metformin reaches the same AMPK endpoint by a similar route, costs cents a day, and has 60 years of outcome data behind it — berberine has none. The honest comparison is not potency on a glucose reading, it is that one of the two has been shown to change what happens to patients.',
+        'Metformin reaches the same AMPK endpoint by a similar route, costs cents a day, and has 60 years of outcome data behind it — berberine has none. The comparison is not potency on a glucose reading, it is that one of the two has been shown to change what happens to patients.',
       conventionalRx: [
         {
           name: 'Metformin (generic)',
@@ -770,7 +770,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'In knee osteoarthritis the pain score gets better and the scan of the joint stays the same.',
         molecularDetail:
-          'Wang et al. separated these two endpoints deliberately and found the split: improvement on the visual analogue pain scale, no change in MRI effusion-synovitis volume. Symptom relief without structural change is the honest description of the strongest curcumin result to date.',
+          'Wang et al. separated these two endpoints deliberately and found the split: improvement on the visual analogue pain scale, no change in MRI effusion-synovitis volume. The strongest curcumin result to date therefore shows symptom relief without measured structural change.',
         iconName: 'ShieldCheck',
         visualStage: 'therapeutic_result',
       },
@@ -1106,7 +1106,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The most-cited single trial gave 300 mg of root extract twice daily for 60 days and found lower stress scores and lower cortisol than placebo.',
         technicalDetails:
-          'Single-centre, prospective, double-blind, randomised, placebo-controlled trial in 64 adults with a history of chronic stress. The treatment arm received 300 mg of a high-concentration full-spectrum root extract twice daily for 60 days. Scores on all stress-assessment scales fell significantly against placebo (P < 0.0001) and serum cortisol fell substantially (P = 0.0006). Adverse effects were mild and comparable between groups. This is a 64-person single-centre trial, which is the honest scale to hold the result at.',
+          'Single-centre, prospective, double-blind, randomised, placebo-controlled trial in 64 adults with a history of chronic stress. The treatment arm received 300 mg of a high-concentration full-spectrum root extract twice daily for 60 days. Scores on all stress-assessment scales fell significantly against placebo (P < 0.0001) and serum cortisol fell substantially (P = 0.0006). Adverse effects were mild and comparable between groups. The result should be interpreted at the scale of a 64-person, single-centre trial.',
         evidenceSource:
           'Chandrasekhar K, Kapoor J, Anishetty S. Indian J Psychol Med 2012;34:255-262',
         doi: '10.4103/0253-7176.106022',
@@ -1379,7 +1379,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
     anatomicalSite: 'Central nervous system, inferred rather than localised',
     substitutes: {
       summary:
-        'For fatigue under acute stress the honest comparators are sleep and caffeine, both of which have far larger and better-characterised effects. For depression, the trial that compared rhodiola with sertraline found sertraline worked better and caused more side effects, which is a real trade-off rather than a win for either.',
+        'For fatigue under acute stress, the relevant comparators are sleep and caffeine, both of which have larger and better-characterised effects. For depression, the trial that compared rhodiola with sertraline found that sertraline worked better and caused more side effects, a trade-off rather than a clear win for either.',
       conventionalRx: [
         {
           name: 'Sertraline',
@@ -2598,7 +2598,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Quercetin is the most abundant flavonol in the ordinary diet. Two very different claims attach to it. The consumer claim is about allergy, immunity and blood pressure. The research claim is that in combination with the leukaemia drug dasatinib it selectively kills senescent cells — worn-out cells that accumulate with age and secrete inflammatory signals.',
       whyItMatters:
-        'The senolytic story is one of the most closely watched ideas in ageing biology, and quercetin is inside it. Following what that research has and has not shown is a good test of whether a supplement page can report a live scientific programme honestly.',
+        'Senolytic therapy is a closely watched idea in ageing biology, and quercetin is part of that research programme. The distinction between what the programme has measured and what remains hypothetical is especially important here.',
       whoTakesThis:
         'Adults taking it for seasonal allergy or immune support, and separately a small number of trial participants receiving it alongside dasatinib under supervision.',
       clinicalGoals:
@@ -3609,7 +3609,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The trials showing the biggest benefits were disproportionately from one part of the world, and the reviewers said so.',
         technicalDetails:
-          'Linde et al. reported marked heterogeneity among placebo-controlled trials, with smaller trials showing response rate ratios nearly twice those of larger ones (1.87 versus 1.28), and stated that the association of country of origin and precision with effect size complicates interpretation. German-speaking countries, where hypericum is a licensed prescription medicine, contributed a large share of the positive trials, while the two large US trials found nothing. That geographic pattern is the honest reason the pooled estimate sits where it does rather than higher.',
+          'Linde et al. reported marked heterogeneity among placebo-controlled trials, with smaller trials showing response rate ratios nearly twice those of larger ones (1.87 versus 1.28), and stated that the association of country of origin and precision with effect size complicates interpretation. German-speaking countries, where hypericum is a licensed prescription medicine, contributed a large share of the positive trials, while the two large US trials found nothing. This geographic and study-size pattern pulls the pooled estimate downward and limits how broadly it can be applied.',
         evidenceSource: 'Linde K et al. Cochrane Database Syst Rev 2008;(4):CD000448',
         doi: '10.1002/14651858.CD000448.pub3',
         inferredClaim:
@@ -3973,7 +3973,7 @@ export const NUTRACEUTICAL_BOTANICAL_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A wider review of 37 studies found that as trial quality improved, the effect disappeared, and that the newest and best studies found no effect at all.',
         technicalDetails:
-          "Taibi et al. screened 592 articles and reviewed 37 separate studies — 29 controlled trials assessed for efficacy and safety, plus eight open-label trials for safety only. Most studies found no significant difference between valerian and placebo, in healthy individuals or in people with general sleep disturbance or insomnia. The authors wrote that none of the most recent studies, which were also the most methodologically rigorous, found significant effects of valerian on sleep, and concluded that while valerian is a safe herb associated with only rare adverse events, the evidence does not support its clinical efficacy as a sleep aid for insomnia. The paper's title states the finding plainly: safe but not effective.",
+          "Taibi et al. screened 592 articles and reviewed 37 separate studies — 29 controlled trials assessed for efficacy and safety, plus eight open-label trials for safety only. Most studies found no significant difference between valerian and placebo, in healthy individuals or in people with general sleep disturbance or insomnia. The authors wrote that none of the most recent studies, which were also the most methodologically rigorous, found significant effects of valerian on sleep, and concluded that while valerian is a safe herb associated with only rare adverse events, the evidence does not support its clinical efficacy as a sleep aid for insomnia. The paper's title states the finding: safe but not effective.",
         evidenceSource: 'Taibi DM et al. Sleep Med Rev 2007;11:209-230',
         doi: '10.1016/j.smrv.2007.03.002',
         inferredClaim:

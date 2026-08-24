@@ -1,16 +1,11 @@
 // Molecular descriptors — logP, topological polar surface area, hydrogen-bond counts, rotatable
 // bonds, Lipinski's rule of five, and the peptide charge model Layer 2 reports for a backbone.
 //
-// WHY THIS PARSES SMILES A SECOND TIME. `smiles.ts` answers composition questions: how many
-// carbons, how many hydrogens, what the formula weighs. Every descriptor below is instead a
-// function of atom *environments* — which neighbour, at what bond order, inside a ring or not —
-// and that connection table is private to `parseSmiles`. So this module builds its own graph, and
-// takes the molecular weight and the heavy-atom count straight from `parseSmiles` rather than
-// recomputing them. There is exactly one piece of mass arithmetic in this codebase and it lives
-// over there.
+// `smiles.ts` computes composition and molecular weight. Descriptors depend on atom environments,
+// so this module builds a separate connection graph while reusing its parsed mass and heavy-atom
+// count.
 //
-// WHAT IS REAL HERE, AND WHAT IS AN ESTIMATE. Say it plainly, because this product exists to make
-// that distinction:
+// Model basis and limits:
 //
 //   - Hydrogen-bond donors and acceptors, rotatable bonds, heavy atoms and the Lipinski verdict
 //     are counts. They are exact for the structure as written.
@@ -18,23 +13,19 @@
 //     43, 3714-3717), summing the published contribution of every nitrogen and oxygen environment.
 //     Aspirin returns 63.60 A^2 and caffeine 58.44 A^2 — the numbers PubChem prints, because they
 //     are the same table.
-//   - logP is an ESTIMATE. It is the Wildman-Crippen atomic-contribution model (Wildman & Crippen,
+//   - logP is an estimate. It is the Wildman-Crippen atomic-contribution model (Wildman & Crippen,
 //     J. Chem. Inf. Comput. Sci. 1999, 39, 868-873) over a documented subset of that paper's 68
 //     atom types. The hydrocarbon types are exact — benzene returns 1.6866, toluene 1.9950,
 //     decane 4.1470, which are the published model's own values — while the heteroatom types are
 //     reduced, so a heavily functionalised molecule lands in the right lipophilicity band rather
-//     than on the published digit. Never present it as a measurement.
+//     than on the published digit. It must not be presented as a measurement.
 //   - Isoelectric point and net charge use the Bjellqvist pK set (the one ExPASy Compute pI/Mw
 //     uses) and Kyte-Doolittle hydropathy. Both are published scales; the arithmetic is exact.
 //
-// AROMATICITY IS READ, NOT PERCEIVED. Like `parseSmiles`, this module trusts the spelling it was
-// given: lowercase atoms are aromatic, uppercase ones are not, and no ring perception runs. That
-// is a real limitation with a measurable size. Caffeine written with an aromatic imidazole and a
-// Kekule pyrimidinedione — `Cn1cnc2c1C(=O)N(C)C(=O)N2C`, which is the depiction PubChem's value
-// corresponds to — returns 58.44 A^2 exactly. The fully Kekule spelling of the same molecule
-// returns 56.22 A^2, because two nitrogens then type as aliphatic (3.24 + 12.36) instead of
-// aromatic (4.93 + 12.89). Both numbers are correct for the structure submitted. Neither is
-// invented, and the test suite pins both so the limitation stays a measured fact.
+// Aromaticity follows the submitted SMILES notation: lowercase atoms are aromatic, uppercase atoms
+// are not, and no aromaticity perception runs. Caffeine written as
+// `Cn1cnc2c1C(=O)N(C)C(=O)N2C` returns 58.44 A^2; its fully Kekule spelling returns 56.22 A^2
+// because two nitrogens receive aliphatic rather than aromatic types. Tests cover both forms.
 //
 // Everything in this file is a pure function of its input. No clock, no randomness, no I/O.
 
@@ -46,11 +37,9 @@ import { ORGANIC_SUBSET_VALENCES, parseSmiles } from './smiles'
 // ---------------------------------------------------------------------------
 
 /**
- * Wildman-Crippen logP atomic contributions, by that paper's type name. The subset is chosen so
- * that every atom a drug-like SMILES string can present gets a type: aliphatic and aromatic
- * carbon, nitrogen, oxygen, sulfur, phosphorus, the four halogens, and hydrogen by what it hangs
- * off. Types outside this subset (metals, boron, the finer aromatic-carbon splits) fall through to
- * the catch-all values, which under-states a contribution rather than inventing one.
+ * Wildman-Crippen logP atomic contributions, keyed by the paper's type names. The supported subset
+ * covers common drug-like atoms; metals, boron and finer aromatic-carbon types use conservative
+ * catch-all values.
  */
 export const WILDMAN_CRIPPEN_LOGP: Record<string, number> = {
   // Carbon.
@@ -123,11 +112,8 @@ export const WILDMAN_CRIPPEN_LOGP: Record<string, number> = {
 }
 
 /**
- * Ertl topological polar surface area contributions in square angstroms, keyed by the atom
- * environment they describe. Only nitrogen and oxygen appear: the value everybody quotes as "TPSA"
- * — PubChem's, and the one Veber's rule is stated against — is the nitrogen and oxygen sum.
- * Ertl's paper also parameterises sulfur and phosphorus; including them here would silently return
- * a larger number under the same label, so they are deliberately left out.
+ * Ertl topological polar surface area contributions in square angstroms. This is the nitrogen and
+ * oxygen sum used by PubChem and Veber's rule; sulfur and phosphorus are excluded.
  */
 export const ERTL_TPSA_CONTRIBUTIONS = {
   nitrogen: {
@@ -217,8 +203,7 @@ const BOND_ORDER: Record<BondKind, number> = {
   double: 2,
   triple: 3,
   quadruple: 4,
-  // Matches `smiles.ts`: an aromatic bond contributes 1 to the sigma framework and the
-  // delocalised electron is added once per aromatic *atom*, not once per aromatic bond.
+  // Match `smiles.ts`: aromatic bonds contribute 1 to the sigma framework.
   aromatic: 1,
 }
 
@@ -300,11 +285,9 @@ interface BracketAtom {
 }
 
 /**
- * Reads one bracket atom starting at `[`. Same grammar order as `smiles.ts`
- * (isotope, symbol, chirality, hydrogen count, charge, atom class), minus the diagnostics: a
- * string that reaches this module has already been through `parseSmiles`, which is where a
- * malformed bracket is reported. Isotope digits are consumed and discarded, because no descriptor
- * below depends on the nuclide.
+ * Read one bracket atom in the same grammar order as `smiles.ts`. Layer 1 reports malformed
+ * brackets before this parser runs. Isotope digits are ignored because these descriptors do not
+ * depend on the nuclide.
  */
 function readBracketAtom(s: string, start: number): BracketAtom {
   let j = start + 1
@@ -331,8 +314,7 @@ function readBracketAtom(s: string, start: number): BracketAtom {
     }
   } else if (isUpperAlpha(head)) {
     const two = s.slice(j, j + 2)
-    // A lowercase second letter is only part of the symbol when the pair is a real element, so
-    // [Na+] stays sodium and [NH4+] stays nitrogen plus four hydrogens.
+    // Accept a lowercase second letter only when the pair is an element symbol.
     if (two.length === 2 && isLowerAlpha(two.charAt(1)) && TWO_LETTER_ELEMENTS.has(two)) {
       element = two
       j += 2
@@ -397,9 +379,8 @@ function readBracketAtom(s: string, start: number): BracketAtom {
 }
 
 /**
- * Two-letter element symbols this tokenizer will accept inside brackets. Kept as a set rather than
- * reusing `STANDARD_ATOMIC_WEIGHTS` from `smiles.ts` so the descriptor parser cannot start
- * depending on a mass table it never reads.
+ * Two-letter element symbols accepted inside brackets. This parser does not depend on the atomic
+ * weight table in `smiles.ts`.
  */
 const TWO_LETTER_ELEMENTS = new Set([
   'He',
@@ -461,8 +442,7 @@ const TWO_LETTER_ELEMENTS = new Set([
 ])
 
 /**
- * Builds the connection table. Structure only — no masses, no formula, no validity verdict; those
- * are `parseSmiles`'s answers and this module defers to them.
+ * Build the connection table. Mass, formula and validity remain `parseSmiles` responsibilities.
  */
 function buildGraph(smiles: string): MolecularGraph {
   const s = smiles.replace(/\s+/g, '')
@@ -619,8 +599,7 @@ function buildGraph(smiles: string): MolecularGraph {
     i++
   }
 
-  // Implicit hydrogens. Bracket atoms take none: writing brackets is how an author says "this
-  // hydrogen count is exactly what I mean" (OpenSMILES 3.1.5). Same rule as `smiles.ts`.
+  // Bracket atoms take no implicit hydrogens (OpenSMILES 3.1.5), matching `smiles.ts`.
   for (const atom of atoms) {
     if (atom.bracket) continue
     const valences = ORGANIC_SUBSET_VALENCES[atom.element]
@@ -634,8 +613,7 @@ function buildGraph(smiles: string): MolecularGraph {
     }
   }
 
-  // Full adjacency first, hydrogens included, because the folding pass below has to be able to
-  // find the atom a stand-alone [H] hangs off.
+  // Build adjacency with hydrogens before folding stand-alone `[H]` atoms into their hosts.
   const neighbours: number[][] = atoms.map(() => [])
   const neighbourBonds: number[][] = atoms.map(() => [])
   for (let index = 0; index < bonds.length; index++) {
@@ -647,9 +625,7 @@ function buildGraph(smiles: string): MolecularGraph {
     neighbourBonds[bond.b]?.push(index)
   }
 
-  // A stand-alone [H] is a hydrogen the author chose to write as an atom. Folding it onto its
-  // host normalises the two spellings of the same molecule: [OH] and O[H] must not type as a
-  // hydroxyl and an ether respectively.
+  // Folding stand-alone `[H]` normalises equivalent forms such as `[OH]` and `O[H]`.
   for (let index = 0; index < atoms.length; index++) {
     const atom = atoms[index]
     if (atom === undefined || atom.element !== 'H') continue
@@ -707,12 +683,8 @@ function buildGraph(smiles: string): MolecularGraph {
 }
 
 /**
- * Marks every bond that lies on a cycle, by finding the bridges and taking the complement: an edge
- * is a bridge exactly when it is on no cycle. Tarjan's algorithm, written with an explicit stack
- * rather than recursion so a long unbranched chain cannot overflow the call stack.
- *
- * This is what makes `rotatableBonds` a real count rather than a guess. A ring bond cannot rotate,
- * and no amount of counting single bonds in the string will tell you which ones are in rings.
+ * Mark cycle bonds as the complement of graph bridges. This iterative Tarjan traversal avoids
+ * recursion limits on long chains and excludes ring bonds from the rotatable-bond count.
  */
 function findRingBonds(
   atomCount: number,
@@ -745,8 +717,7 @@ function findRingBonds(
         const bondIndex = bondList[frame.slot]
         frame.slot++
         if (other === undefined || bondIndex === undefined) continue
-        // Skip only the exact bond this frame arrived on: two atoms joined by two bonds are a
-        // cycle, and comparing node ids instead of bond ids would call it a bridge.
+        // Skip the incoming bond, not the parent node, so parallel edges remain a cycle.
         if (bondIndex === frame.parentBond) continue
         const seen = discovery[other] ?? -1
         if (seen === -1) {
@@ -757,11 +728,7 @@ function findRingBonds(
         } else {
           const current = low[frame.node] ?? 0
           if (seen < current) low[frame.node] = seen
-          // An undirected depth-first search has only tree edges and back edges, so any edge to an
-          // already-discovered atom closes a cycle and is a ring bond. It has to be marked right
-          // here: the bridge test below fires when a *tree* edge is popped, and the bond that
-          // closes the ring is never a tree edge. Without this line every ring in the molecule is
-          // reported one bond short, and cyclohexane comes back with a rotatable bond.
+          // A non-tree edge to an already discovered atom closes a cycle and is a ring bond.
           inRing[bondIndex] = true
         }
         continue
@@ -773,8 +740,7 @@ function findRingBonds(
       const childLow = low[frame.node] ?? 0
       const parentLow = low[parent.node] ?? 0
       if (childLow < parentLow) low[parent.node] = childLow
-      // Bridge test: the subtree below this edge reaches nothing above it. Anything else closes
-      // a cycle, so the bond is a ring bond.
+      // A tree edge is a ring bond when its subtree reaches an ancestor.
       if (childLow > (discovery[parent.node] ?? 0)) continue
       inRing[frame.parentBond] = true
     }
@@ -855,9 +821,8 @@ function contribution(type: string): number {
 }
 
 /**
- * Wildman-Crippen type for one heavy atom, as a cascade. Order is load-bearing: a nitrile carbon
- * is also "attached to a heteroatom", and a carbonyl carbon is also "tertiary", so the more
- * specific environment has to be tested first.
+ * Wildman-Crippen type cascade for one heavy atom. Specific environments must precede broader
+ * matches, such as nitrile before heteroatom-attached carbon.
  */
 function logPTypeOf(graph: MolecularGraph, index: number): string {
   const atom = graph.atoms[index]
@@ -954,8 +919,7 @@ function logPTypeOf(graph: MolecularGraph, index: number): string {
       return atom.element
 
     default:
-      // Boron, metals, wildcards. Contributing nothing under-states the estimate; inventing a
-      // contribution would over-state it, and one of those is a lie.
+      // Unsupported boron, metals and wildcards contribute zero to this estimate.
       return ''
   }
 }
@@ -978,8 +942,8 @@ function hydrogenTypeOn(graph: MolecularGraph, index: number): string {
 }
 
 /**
- * Ertl contribution for one nitrogen or oxygen, in square angstroms. Every other element returns
- * zero, which is the definition of the N/O topological polar surface area, not an omission.
+ * Ertl contribution for one nitrogen or oxygen in square angstroms. Other elements contribute
+ * zero to the N/O topological polar surface area.
  */
 function tpsaContributionOf(graph: MolecularGraph, index: number): number {
   const atom = graph.atoms[index]
@@ -1076,10 +1040,8 @@ function roundTo(value: number, decimals: number): number {
 /**
  * Computes the descriptor set for a SMILES string.
  *
- * There is no failure channel, by design: Layer 2 only calls this after Layer 1 has run
- * `parseSmiles` and refused anything that did not parse. A string that reaches here and still
- * fails to parse produces zero atoms and therefore zero counts, which is visibly empty rather than
- * quietly wrong.
+ * Layer 2 calls this only after Layer 1 has accepted `parseSmiles`. A direct invalid call produces
+ * zero atoms and zero counts.
  */
 export function computeDescriptors(smiles: string): MolecularDescriptors {
   const parsed = parseSmiles(smiles)
@@ -1115,16 +1077,14 @@ export function computeDescriptors(smiles: string): MolecularDescriptors {
     const second = graph.atoms[bond.b]
     if (first === undefined || second === undefined) continue
     if (!first.heavy || !second.heavy) continue
-    // Terminal bonds do not rotate into a new conformation: spinning a methyl group changes
-    // nothing about the shape of the molecule. Both ends need a second heavy neighbour.
+    // Both ends need another heavy neighbour; terminal-bond rotation does not change conformation.
     if ((graph.neighbours[bond.a] ?? []).length < 2) continue
     if ((graph.neighbours[bond.b] ?? []).length < 2) continue
     rotatableBonds++
   }
 
   const molecularWeight = parsed.molecularWeight
-  // Four decimals is the precision of the published contribution table. Displaying two is the
-  // caller's business; rounding here would throw away digits the model actually has.
+  // Retain the published contribution table's four-decimal precision.
   const roundedLogP = roundTo(logP, 4)
   const roundedTpsa = roundTo(tpsa, 2)
 
@@ -1196,9 +1156,7 @@ function deprotonatedFraction(pka: number, ph: number): number {
 /**
  * Net charge of a peptide backbone at one pH, by Henderson-Hasselbalch over the Bjellqvist pK set.
  *
- * Side-chain modifications are not counted. Layer 1 strips them from the backbone and reports each
- * one as its own diagnostic, so a lipid or a PEG conjugate is visible in the record rather than
- * silently folded into a charge number that would then be wrong.
+ * Side-chain modifications are excluded. Layer 1 strips and reports them separately.
  */
 export function peptideNetCharge(residues: string, ph: number): number {
   if (residues.length === 0) return 0
@@ -1216,15 +1174,8 @@ export function peptideNetCharge(residues: string, ph: number): number {
 /**
  * Descriptors for a peptide backbone.
  *
- * The isoelectric point is found by bisection between pH 0 and pH 14 rather than by a closed form,
- * because the charge curve is a sum of sigmoids with no analytic root. Sixty halvings take the
- * bracket below 1e-16 pH units, far past the two decimals reported, so the answer is exact to the
- * precision it is printed at and identical on every machine.
- *
- * An empty backbone has no ionisable group and no residues, so there is no root to find. Layer 1
- * rejects a backbone shorter than five residues, and Layer 2 only calls this once Layer 1 passed,
- * so the guard below is unreachable from the pipeline; it exists so a direct caller gets zeros
- * rather than a NaN.
+ * Find the isoelectric point by 60 bisections over pH 0–14. Layer 1 rejects short backbones; the
+ * empty-input guard keeps direct calls finite.
  */
 export function computePeptideDescriptors(residues: string): PeptideDescriptors {
   const backbone = residues.toUpperCase().replace(/[^A-Z]/g, '')
@@ -1244,8 +1195,7 @@ export function computePeptideDescriptors(residues: string): PeptideDescriptors 
   let hydrophobic = 0
   for (const residue of backbone) {
     const hydropathy = KYTE_DOOLITTLE_HYDROPATHY[residue]
-    // A residue outside the twenty standard codes stays in the denominator and out of the
-    // numerator: it is a residue whose hydropathy is unknown, not a residue that is polar.
+    // Unknown residues stay in the denominator but do not contribute a hydropathy value.
     if (hydropathy !== undefined && hydropathy > 0) hydrophobic++
   }
 

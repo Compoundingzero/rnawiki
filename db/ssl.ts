@@ -24,12 +24,9 @@ import type { ConnectionOptions } from 'node:tls'
  *    cleartext to a remote host, and `db.localhost.evil.example` did too. The check now parses the
  *    URL and compares the hostname exactly.
  *
- * ESCAPE HATCH, deliberately explicit. Railway's Postgres template serves a self-signed
- * certificate and publishes no CA, so verification against the public host cannot succeed out of
- * the box. `PGSSLROOTCERT` points at the server's certificate (or its CA) and is the right answer.
- * `DATABASE_SSL_NO_VERIFY=true` restores the old unverified behaviour for an operator who
- * knowingly accepts it, and says so on stderr every time the process starts. It is opt-in because
- * a default nobody chose is a default nobody can be said to have accepted.
+ * Railway's public Postgres endpoint may require its certificate (or CA) to be pinned through
+ * `PGSSLROOTCERT`. There is intentionally no switch that disables certificate verification:
+ * scripts using a public database endpoint fail closed until the operator supplies a trusted CA.
  */
 
 const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '::1', '[::1]'])
@@ -52,15 +49,6 @@ export function databaseSslConfig(connectionString: string): ConnectionOptions |
   const caPath = process.env.PGSSLROOTCERT
   if (caPath) {
     return { rejectUnauthorized: true, ca: readFileSync(caPath, 'utf8') }
-  }
-
-  if (process.env.DATABASE_SSL_NO_VERIFY === 'true') {
-    console.warn(
-      '[db] DATABASE_SSL_NO_VERIFY=true — the database TLS certificate is NOT being verified. ' +
-        'The connection is encrypted but not authenticated, so anything able to intercept it can ' +
-        'read the credentials in DATABASE_URL. Set PGSSLROOTCERT to the server certificate instead.',
-    )
-    return { rejectUnauthorized: false }
   }
 
   return { rejectUnauthorized: true }

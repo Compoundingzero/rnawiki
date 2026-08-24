@@ -9,10 +9,15 @@
 // The rate limit is deliberately tight (5 per hour). Nobody has five useful reports an hour.
 
 import { z } from 'zod'
-import { createFeedback, FeedbackError, FEEDBACK_MAX_LENGTH } from '@/lib/queries/feedback'
+import {
+  createFeedback,
+  FeedbackError,
+  FEEDBACK_MAX_LENGTH,
+  listFeedback,
+} from '@/lib/queries/feedback'
 import { requestSessionHash } from '@/lib/session-hash'
-import { getCurrentUser } from '@/lib/session'
-import { FEEDBACK } from '@/lib/rate-limit'
+import { getCurrentUser, requireInternalReviewer } from '@/lib/session'
+import { FEEDBACK, PUBLIC_API } from '@/lib/rate-limit'
 import { ApiError, ok, rateLimited, rateLimitKey, readJson, withHandler } from '@/lib/api-response'
 
 export const runtime = 'nodejs'
@@ -35,6 +40,28 @@ const bodySchema = z.object({
     .max(FEEDBACK_MAX_LENGTH, `Feedback is limited to ${FEEDBACK_MAX_LENGTH} characters.`),
   email: z.preprocess(blankToUndefined, z.string().trim().email().max(320).optional()),
   drugSlug: z.preprocess(blankToUndefined, z.string().trim().max(128).optional()),
+})
+
+const listQuerySchema = z.object({
+  status: z.enum(['open', 'resolved']).default('open'),
+  limit: z.coerce.number().int().min(1).max(100).default(50),
+})
+
+export const GET = withHandler(async (req: Request) => {
+  const actor = await requireInternalReviewer()
+  const limited = rateLimited(PUBLIC_API, rateLimitKey(req, actor.id))
+  if (limited) return limited
+
+  const url = new URL(req.url)
+  const input = listQuerySchema.parse({
+    status: url.searchParams.get('status') ?? undefined,
+    limit: url.searchParams.get('limit') ?? undefined,
+  })
+  const items = await listFeedback({
+    resolved: input.status === 'resolved',
+    limit: input.limit,
+  })
+  return ok({ items })
 })
 
 export const POST = withHandler(async (req: Request) => {

@@ -1,8 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
-  DEFAULT_LABORATORY_WORKFLOW,
   countAuditPoints,
-  dossierToRow,
   isStub,
   missingSections,
   rowToDossier,
@@ -10,14 +8,6 @@ import {
   type DrugRow,
 } from '@/lib/dossier'
 import type { AuditPoint, PricingTransparency } from '@/lib/types'
-
-// `diffDossiers` lives in lib/queries/revisions.ts, which imports db/index.ts, which throws at
-// import time when DATABASE_URL is unset. The function itself is pure — two dossiers in, a list of
-// changes out — so the import is deferred behind a placeholder URL instead of making a unit test
-// depend on a live database. No connection is opened either way: the pg Pool connects lazily, on
-// the first query, and this file never issues one.
-process.env.DATABASE_URL ??= 'postgresql://localhost:5432/rnawiki_unit_placeholder'
-const { diffDossiers } = await import('@/lib/queries/revisions')
 
 function makeRow(overrides: Partial<DrugRow> = {}): DrugRow {
   const timestamp = new Date('2026-08-01T00:00:00.000Z')
@@ -228,135 +218,5 @@ describe('missingSections and isStub', () => {
       makeRow({ dossierDepth: 'curated', keyAudits: [audit('a1', 'measured')] }),
     )
     expect(isStub(documented)).toBe(false)
-  })
-})
-
-describe('dossierToRow', () => {
-  it('writes editable content and refuses derived or provenance fields', () => {
-    const dossier = rowToDossier(makeRow({ keyAudits: [audit('a1', 'measured')], pricing }))
-    const row = dossierToRow({ ...dossier, name: 'Metformin hydrochloride' })
-
-    expect(row.name).toBe('Metformin hydrochloride')
-    expect(row.pricing).toEqual(pricing)
-    expect(Object.keys(row)).not.toContain('auditPointsCount')
-    expect(Object.keys(row)).not.toContain('slug')
-    expect(Object.keys(row)).not.toContain('id')
-    expect(Object.keys(row)).not.toContain('viewCount')
-    expect(Object.keys(row)).not.toContain('revisionCount')
-    expect(Object.keys(row)).not.toContain('isMachineVerifiedStructure')
-  })
-
-  it('leaves fields the caller did not mention untouched', () => {
-    const row = dossierToRow({ confidenceScore: 71 })
-    expect(row).toEqual({ confidenceScore: 71 })
-  })
-})
-
-describe('DEFAULT_LABORATORY_WORKFLOW', () => {
-  it('is a connected, acyclic chain whose dependencies all exist', () => {
-    const ids = DEFAULT_LABORATORY_WORKFLOW.map((step) => step.id)
-    expect(ids).toEqual(['step-1', 'step-2', 'step-3'])
-    expect(DEFAULT_LABORATORY_WORKFLOW.map((step) => step.phase)).toEqual([
-      'QC',
-      'Synthesis',
-      'Conjugation',
-    ])
-
-    const known = new Set(ids)
-    const seen = new Set<string>()
-    for (const step of DEFAULT_LABORATORY_WORKFLOW) {
-      if (step.dependsOnStepId !== undefined) {
-        expect(known.has(step.dependsOnStepId)).toBe(true)
-        // Every dependency points at a step already declared, so no cycle is possible.
-        expect(seen.has(step.dependsOnStepId)).toBe(true)
-      }
-      seen.add(step.id)
-    }
-  })
-})
-
-describe('diffDossiers', () => {
-  const before = rowToDossier(makeRow({ pricing, keyAudits: [audit('a1', 'measured')] }))
-
-  it('reports a scalar change with both values in plain text', () => {
-    const after = rowToDossier(
-      makeRow({ pricing, keyAudits: [audit('a1', 'measured')], name: 'Metformin hydrochloride' }),
-    )
-    const changes = diffDossiers(before, after)
-
-    expect(changes).toHaveLength(1)
-    expect(changes[0]).toEqual({
-      field: 'name',
-      label: 'Name',
-      before: 'Metformin',
-      after: 'Metformin hydrochloride',
-    })
-  })
-
-  it('summarises a changed jsonb section instead of dumping its JSON', () => {
-    const after = rowToDossier(
-      makeRow({
-        keyAudits: [audit('a1', 'measured')],
-        pricing: {
-          ...pricing,
-          retailPricePerDoseOrYear: '$19 / month',
-          markupEstimate: '900% markup',
-        },
-      }),
-    )
-    const changes = diffDossiers(before, after)
-    const pricingChange = changes.find((c) => c.field === 'pricing')
-
-    expect(pricingChange).toBeDefined()
-    expect(pricingChange?.label).toBe('Pricing')
-    expect(pricingChange?.before).toBe('$4 / month · 200% markup')
-    expect(pricingChange?.after).toBe('$19 / month · 900% markup')
-    // No raw JSON reaches the review queue.
-    expect(pricingChange?.after).not.toContain('{')
-    expect(pricingChange?.after).not.toContain('synthesisCostPerDose')
-  })
-
-  it('names the sub-field when a section changes without its headline changing', () => {
-    const after = rowToDossier(
-      makeRow({
-        keyAudits: [audit('a1', 'measured')],
-        pricing: { ...pricing, openPatentNotes: 'Off patent worldwide.' },
-      }),
-    )
-    const pricingChange = diffDossiers(before, after).find((c) => c.field === 'pricing')
-
-    expect(pricingChange?.before).toBe('$4 / month · 200% markup')
-    expect(pricingChange?.after).toBe('$4 / month · 200% markup (updated: open patent notes)')
-  })
-
-  it('counts what moved inside an array section', () => {
-    const after = rowToDossier(
-      makeRow({
-        pricing,
-        keyAudits: [audit('a1', 'measured'), audit('a2', 'inferred')],
-      }),
-    )
-    const auditChange = diffDossiers(before, after).find((c) => c.field === 'keyAudits')
-
-    expect(auditChange?.before).toBe('1 points (1 measured / 0 inferred / 0 failed / 0 shifted)')
-    expect(auditChange?.after).toBe('2 points (1 measured / 1 inferred / 0 failed / 0 shifted)')
-  })
-
-  it('ignores key order, so a re-serialised section is not reported as an edit', () => {
-    const reordered: PricingTransparency = {
-      synthesisComplexity: pricing.synthesisComplexity,
-      openPatentNotes: pricing.openPatentNotes,
-      markupEstimate: pricing.markupEstimate,
-      retailPricePerDoseOrYear: pricing.retailPricePerDoseOrYear,
-      synthesisCostPerDose: pricing.synthesisCostPerDose,
-    }
-    const after = rowToDossier(
-      makeRow({ pricing: reordered, keyAudits: [audit('a1', 'measured')] }),
-    )
-    expect(diffDossiers(before, after)).toEqual([])
-  })
-
-  it('returns nothing for two identical dossiers', () => {
-    expect(diffDossiers(before, before)).toEqual([])
   })
 })

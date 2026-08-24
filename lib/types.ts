@@ -1,8 +1,4 @@
-// Domain types for RNAwiki — the open drug evidence audit layer.
-//
-// Ported verbatim in shape from the master reference wireframe (src/types.ts) so the rendered
-// product matches it exactly. Fields added here are persistence and community concerns the
-// wireframe held in localStorage: ids, slugs, authorship, trust tiers, revision history.
+// Legacy medicine-record types retained during the programme-model rollout.
 
 export type DrugModality =
   | 'Small Molecule'
@@ -15,7 +11,6 @@ export type DrugModality =
   | 'Recombinant Protein / Biologic'
   | 'Nutraceutical / Botanical'
 
-// Alias for compatibility with the reference component props.
 export type RnaModality = DrugModality
 
 export const DRUG_MODALITIES: DrugModality[] = [
@@ -87,6 +82,11 @@ export interface ClinicalTrialRecord {
   phase: string
   sampleSize: number
   primaryEndpoint: string
+  /**
+   * Explicit result state. `endpointMet: false` in the legacy corpus meant both "not met" and
+   * "not reported"; this field removes that scientifically consequential ambiguity.
+   */
+  endpointStatus?: 'met' | 'not_met' | 'not_reported'
   endpointMet: boolean
   statisticalPValue: string
   unreportedAdverseSignals?: string
@@ -115,7 +115,6 @@ export interface CommunityNote {
   date: string
   content: string
   upvotes: number
-  // Persistence additions — the wireframe had no server.
   authorUserId?: string
   hasUpvoted?: boolean
   orcid?: string
@@ -342,39 +341,28 @@ export interface UserAccount {
 // Contribution model — how the open-source community layer works.
 // ---------------------------------------------------------------------------
 
-/**
- * Trust tiers decide whether a machine-passed edit publishes immediately or waits in the public
- * review queue. Promotion is earned by accepted edits, never granted by self-declaration.
- */
+/** Editorial standing retained for attribution and reviewer eligibility. */
 export type TrustTier = 'new' | 'contributor' | 'trusted' | 'steward'
-
-export const TRUST_TIERS: TrustTier[] = ['new', 'contributor', 'trusted', 'steward']
-
-/** Accepted edits required to reach each tier. `new` is the floor and needs nothing. */
-export const TRUST_TIER_THRESHOLDS: Record<TrustTier, number> = {
-  new: 0,
-  contributor: 3,
-  trusted: 15,
-  steward: 60,
-}
-
-/** Tiers whose machine-passed edits publish without waiting for a human reviewer. */
-export const AUTO_PUBLISH_TIERS: TrustTier[] = ['trusted', 'steward']
-
-export function tierForAcceptedEdits(accepted: number): TrustTier {
-  if (accepted >= TRUST_TIER_THRESHOLDS.steward) return 'steward'
-  if (accepted >= TRUST_TIER_THRESHOLDS.trusted) return 'trusted'
-  if (accepted >= TRUST_TIER_THRESHOLDS.contributor) return 'contributor'
-  return 'new'
-}
-
-export function canAutoPublish(tier: TrustTier): boolean {
-  return AUTO_PUBLISH_TIERS.includes(tier)
-}
 
 export type DoctorVerificationState = 'none' | 'pending' | 'verified' | 'rejected'
 
 export type RevisionStatus = 'published' | 'pending_review' | 'rejected' | 'machine_rejected'
+
+export type LegacyIdentityCorrectionField = 'name' | 'tradeName'
+
+export interface LegacyIdentityCorrectionDetail {
+  field: LegacyIdentityCorrectionField
+  previousValue: string | null
+  proposedValue: string | null
+  sourceUrl: string
+  sourceTitle: string
+}
+
+export interface LegacyRevisionQuarantine {
+  reasonCode: 'pre_0011_unsafe_pending'
+  systemReason: string
+  quarantinedAt: string
+}
 
 export interface Revision {
   id: string
@@ -387,10 +375,13 @@ export interface Revision {
   authorTrustTier: TrustTier
   status: RevisionStatus
   summary: string
+  identityCorrection: LegacyIdentityCorrectionDetail | null
+  quarantine: LegacyRevisionQuarantine | null
   /** Field-level diff: what changed, from what, to what. */
   changedFields: RevisionFieldChange[]
-  /** Full deterministic engine report captured at submission time. Immutable. */
+  /** Historical field retained for old broad revisions; identity corrections always store null. */
   engineReport: unknown
+  /** Historical structure-check fields. New identity corrections always store false/null. */
   machineVerified: boolean
   verificationHash: string | null
   createdAt: string

@@ -121,7 +121,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest comparison depends entirely on the timescale. For a single dose after surgery, the Cochrane overview of 39 reviews found no evidence of an analgesic effect for oxycodone 5 mg at all, while ibuprofen 200 mg plus paracetamol 500 mg had a number-needed-to-treat of 1.6 — the best result in the whole table, from two drugs sold without a prescription for a twentieth of the price. For pain lasting months, SPACE compared exactly these options over a year and the non-opioid arm did not lose. That is the comparison that matters and it is not close on cost.',
+        'The comparison depends entirely on the timescale. For a single dose after surgery, the Cochrane overview of 39 reviews found no evidence of an analgesic effect for oxycodone 5 mg at all, while ibuprofen 200 mg plus paracetamol 500 mg had a number-needed-to-treat of 1.6 — the best result in the whole table, from two drugs sold without a prescription for a twentieth of the price. For pain lasting months, SPACE compared exactly these options over a year and the non-opioid arm did not lose. That is the comparison that matters and it is not close on cost.',
       conventionalRx: [
         {
           name: 'Ibuprofen plus paracetamol (acetaminophen), taken together',
@@ -298,7 +298,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'The abuse-deterrent reformulation, in its own label’s numbers',
         laymanSummary:
-          'The 2010 crush-resistant OxyContin is described as abuse-deterrent. In the study on the label, 44% of the recreational users who snorted it liked it exactly as much as ordinary oxycodone powder, and the label states plainly that abuse by mouth is still possible.',
+          'The 2010 crush-resistant OxyContin is described as abuse-deterrent. In the study on the label, 44% of the recreational users who snorted it liked it exactly as much as ordinary oxycodone powder, and the label states that abuse by mouth is still possible.',
         technicalDetails:
           'Section 9.2 of the current OXYCONTIN prescribing information describes a randomised, double-blind, placebo-controlled five-period crossover study in 30 recreational opioid users with a history of intranasal abuse, of whom 27 completed. Against powdered oxycodone hydrochloride, approximately 44% (n=12) had no reduction in drug liking with the reformulated product; 33% (n=9) had a reduction of at least 30% and 22% (n=6) a reduction of at least 50%. The label’s own summary reads: the in vitro data demonstrate physicochemical properties expected to make abuse via injection difficult, and the clinical data indicate properties expected to reduce abuse via the intranasal route, "However, abuse of OXYCONTIN by these routes, as well as by the oral route, is still possible." The population-level consequence was measured independently: Evans, Lieber and Power found that opioid consumption stopped rising in August 2010, heroin deaths began climbing the following month, growth in heroin deaths was greater where pre-reformulation access to heroin and opioids was greater, and the reformulation produced no reduction in combined heroin and opioid mortality — each prevented opioid death was replaced by a heroin death.',
         evidenceSource:
@@ -796,7 +796,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Morphine has been given in acute heart failure for a century. A registry of 147,362 admissions found that the people who received it died four to five times as often after adjustment. It is an observational finding, and the sickest patients are the ones most likely to be given it.',
         technicalDetails:
-          'Peacock and colleagues analysed the ADHERE registry as of December 2004: 147,362 hospitalisations, of which 20,782 (14.1%) received intravenous morphine and 126,580 (85.9%) did not. Baseline age, heart rate, blood pressure, urea, creatinine, haemoglobin, ejection fraction and atrial fibrillation did not differ clinically between the groups, but rest dyspnoea, radiographic congestion, rales and raised troponin were all more prevalent in the morphine group. Morphine recipients received more inotropes and vasodilators, were more likely to require mechanical ventilation (15.4% against 2.8%), had longer median stay (5.6 against 4.2 days), more ICU admissions (38.7% against 14.4%) and higher mortality (13.0% against 2.4%), all p<0.001. After risk adjustment and exclusion of ventilated patients, morphine remained an independent predictor of mortality (OR 4.84, 95% CI 4.52 to 5.18, p<0.001). The honest reading is confounding by indication: the finding is strong, consistent and observational, and no randomised trial of morphine in acute decompensated heart failure of comparable size exists to settle it.',
+          'Peacock and colleagues analysed the ADHERE registry as of December 2004: 147,362 hospitalisations, of which 20,782 (14.1%) received intravenous morphine and 126,580 (85.9%) did not. Baseline age, heart rate, blood pressure, urea, creatinine, haemoglobin, ejection fraction and atrial fibrillation did not differ clinically between the groups, but rest dyspnoea, radiographic congestion, rales and raised troponin were all more prevalent in the morphine group. Morphine recipients received more inotropes and vasodilators, were more likely to require mechanical ventilation (15.4% against 2.8%), had longer median stay (5.6 against 4.2 days), more ICU admissions (38.7% against 14.4%) and higher mortality (13.0% against 2.4%), all p<0.001. After risk adjustment and exclusion of ventilated patients, morphine remained an independent predictor of mortality (OR 4.84, 95% CI 4.52 to 5.18, p<0.001). Confounding by indication is the most likely explanation: the finding is strong, consistent and observational, and no randomised trial of morphine in acute decompensated heart failure of comparable size exists to settle it.',
         evidenceSource:
           'Peacock WF, Hollander JE, Diercks DB, Lopatin M, Fonarow G, Emerman CL. Morphine and outcomes in acute decompensated heart failure: an ADHERE analysis. Emerg Med J 2008;25(4):205-209',
         doi: '10.1136/emj.2007.050419',
@@ -1618,7 +1618,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
           name: 'Morphine, immediate release',
           class: 'Full mu-opioid agonist',
           howItCompares:
-            'The molecule codeine is trying to become. Giving morphine directly removes the conversion step entirely, so the dose delivered is the dose intended regardless of CYP2D6 genotype. Where an opioid is genuinely needed, this is the honest way to give one.',
+            'The molecule codeine is trying to become. Giving morphine directly removes the conversion step entirely, so the dose delivered is the dose intended regardless of CYP2D6 genotype. Where an opioid is genuinely needed, this is the clearest way to give one.',
           typicalCost:
             'US$0.4096 per millilitre of oral solution at United States pharmacy acquisition cost (CMS NADAC, median across 75 listed generic products, survey effective 19 August 2026)',
           prosAndCons:
@@ -1858,7 +1858,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
       },
       {
         step: 4,
-        title: 'A small effect, measured honestly',
+        title: 'A small measured effect',
         laymanDesc:
           'Across every placebo-controlled surgical trial, 26% of people on 60 mg reached at least half pain relief, against 17% on placebo. That gap is the drug.',
         molecularDetail:
@@ -1959,7 +1959,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why is it banned in children?',
-        a: 'Because the opposite genotype killed some of them. People with extra copies of the CYP2D6 gene convert codeine to morphine faster and more completely than expected, and children given ordinary doses after tonsil or adenoid surgery — an operation that already narrows the airway and is often done for sleep apnoea — stopped breathing. The FDA added a boxed warning in 2013 and in April 2017 contraindicated codeine in every child under 12, and in anyone under 18 after those operations. The label states plainly that ultra-rapid metabolisers should not use codeine, while offering no routine way to know who they are before the first dose.',
+        a: 'Because the opposite genotype killed some of them. People with extra copies of the CYP2D6 gene convert codeine to morphine faster and more completely than expected, and children given ordinary doses after tonsil or adenoid surgery — an operation that already narrows the airway and is often done for sleep apnoea — stopped breathing. The FDA added a boxed warning in 2013 and in April 2017 contraindicated codeine in every child under 12, and in anyone under 18 after those operations. The label states that ultra-rapid metabolisers should not use codeine, while offering no routine way to know who they are before the first dose.',
       },
       {
         q: 'Is it safe while breastfeeding?',
@@ -2322,7 +2322,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
         step: 1,
         title: 'The same drug, in fewer milligrams',
         laymanDesc:
-          'Hydromorphone exists so that a large opioid dose can fit into a small injection. That is a packaging advantage, and it is the honest description of what it offers.',
+          'Hydromorphone allows a large opioid dose to fit into a small injection. Its advantage here is concentration and packaging, not a different clinical effect.',
         molecularDetail:
           'Morphine with the 6-hydroxyl oxidised to a ketone and the 7,8-double bond saturated: higher mu-receptor affinity and greater lipophilicity than the parent. Supplied as ordinary injection and as a high-potency concentrate for opioid-tolerant patients.',
         iconName: 'Syringe',
@@ -2564,7 +2564,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Opioid dependence is a state in which the receptor system has adapted to constant occupancy, so that its absence produces severe physical illness and overwhelming craving. Maintenance treatment does not remove the dependence; it replaces a short-acting, illicit, variable-strength opioid with a long-acting, legal, known-strength one, and lets a person’s life reorganise around something other than the next dose.',
       whyItMatters:
-        'Methadone is one of the most consequential drugs in public health and one of the most awkward to describe honestly. The randomised evidence shows it keeps people in treatment and reduces heroin use; it does not show a statistically significant effect on mortality. The mortality case rests on very large cohort studies, which are consistent, enormous and observational. Both halves of that sentence belong on the page.',
+        'Methadone is one of the most consequential drugs in public health, but different study designs support different claims. Randomised evidence shows that it keeps people in treatment and reduces heroin use; it does not show a statistically significant effect on mortality. The mortality case rests on very large cohort studies, which are consistent and observational. Both findings belong on the page.',
       whoTakesThis:
         'People in opioid maintenance or detoxification programmes, dispensed under a specific federal regulatory framework in the United States; and a much smaller number of people with severe chronic pain.',
       clinicalGoals:
@@ -2589,7 +2589,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest comparison is with buprenorphine, and the Sordo cohort meta-analysis measured both in the same framework: all-cause mortality of 11.3 per 1,000 person-years in methadone treatment against 4.3 in buprenorphine treatment, but with a much larger fall relative to being untreated for methadone (out-to-in rate ratio 3.20) than for buprenorphine (2.20). Those populations were not randomised against each other and differ systematically. What the data do show clearly is that the dangerous periods are the first weeks on methadone and the weeks after leaving either drug.',
+        'The comparison is with buprenorphine, and the Sordo cohort meta-analysis measured both in the same framework: all-cause mortality of 11.3 per 1,000 person-years in methadone treatment against 4.3 in buprenorphine treatment, but with a much larger fall relative to being untreated for methadone (out-to-in rate ratio 3.20) than for buprenorphine (2.20). Those populations were not randomised against each other and differ systematically. What the data do show clearly is that the dangerous periods are the first weeks on methadone and the weeks after leaving either drug.',
       conventionalRx: [
         {
           name: 'Buprenorphine, with or without naloxone',
@@ -2615,7 +2615,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
           name: 'Morphine or oxycodone, for pain rather than dependence',
           class: 'Full mu-opioid agonists',
           howItCompares:
-            'Where methadone is being used as an analgesic rather than as maintenance, the comparison is with ordinary long-acting opioids, and the CDC has stated the position plainly: for chronic non-cancer pain, methadone should not be considered a drug of first choice by prescribers or insurers.',
+            'Where methadone is being used as an analgesic rather than as maintenance, the comparison is with ordinary long-acting opioids, and the CDC has stated the position: for chronic non-cancer pain, methadone should not be considered a drug of first choice by prescribers or insurers.',
           typicalCost:
             'US$0.4096 per millilitre of morphine oral solution and US$0.1974 per oxycodone tablet at United States pharmacy acquisition cost (CMS NADAC, medians across 75 and 193 listed generic products, survey effective 19 August 2026)',
           prosAndCons:
@@ -2701,7 +2701,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
           phase: 'Purification',
           name: 'Separate the isomer and form the hydrochloride',
           description:
-            'Isolate methadone from isomethadone by fractional crystallisation of the salts, then form and recrystallise methadone hydrochloride. Because the marketed product is the racemate, no chiral resolution is performed — a fact worth stating explicitly, since one enantiomer carries the analgesia and the other carries most of the cardiac liability.',
+            'Isolate methadone from isomethadone by fractional crystallisation of the salts, then form and recrystallise methadone hydrochloride. Because the marketed product is the racemate, no chiral resolution is performed — this matters because one enantiomer carries the analgesia and the other carries most of the cardiac liability.',
           dependsOnStepId: 'met-w2',
           reagentsAndBuffer:
             'Hydrogen chloride in isopropanol, fractional crystallisation, activated carbon decolourisation, HPLC release assay with a validated isomethadone limit',
@@ -2952,7 +2952,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
         q: 'Does methadone treatment save lives?',
         a: 'The observational evidence says yes, emphatically, and the randomised evidence has never demonstrated it. The Cochrane review of 11 trials in 1,969 people found a mortality relative risk of 0.48 with a confidence interval from 0.10 to 2.39 — a favourable point estimate that does not exclude harm, based on four small trials. The cohort evidence is on a different scale: 19 cohorts following 122,885 people found all-cause mortality of 11.3 per 1,000 person-years during methadone treatment against 36.1 outside it, and overdose mortality of 2.6 against 12.7. Those cohorts are consistent and enormous, and their authors write that further research is needed to account properly for confounding and selection bias. Both facts belong in the answer.',
         auditNote:
-          'When randomised trials are underpowered for a rare outcome and cohorts are huge but non-randomised, the honest report is both, labelled. Reporting only the cohorts is how a page becomes advocacy.',
+          'When randomised trials are underpowered for a rare outcome and cohorts are huge but non-randomised, both results should be reported with their study designs. Reporting only the cohorts would overstate what has been established.',
       },
       {
         q: 'Why is the beginning of treatment the dangerous part?',
@@ -3421,7 +3421,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is tapentadol better than oxycodone?',
-        a: 'On pain, by an amount too small to feel. On side effects, yes, and measurably. The Cochrane review pooled four trials in 4,094 patients: tapentadol reduced pain by 0.24 of a point more than oxycodone on an 11-point scale, and the responder-rate difference was not statistically significant. But half as many patients discontinued tapentadol for adverse effects — a 50% relative reduction with a number-needed-to-treat of 6 over 12 weeks. So the honest summary is that it is an equally effective opioid that more people can keep taking, at about sixty-three times the acquisition cost per tablet.',
+        a: 'On pain, by an amount too small to feel. On side effects, yes, and measurably. The Cochrane review pooled four trials in 4,094 patients: tapentadol reduced pain by 0.24 of a point more than oxycodone on an 11-point scale, and the responder-rate difference was not statistically significant. But half as many patients discontinued tapentadol for adverse effects — a 50% relative reduction with a number-needed-to-treat of 6 over 12 weeks. It is an equally effective opioid that more people can keep taking, at about sixty-three times the acquisition cost per tablet.',
         auditNote:
           'A statistically significant difference of 0.24 on a scale of 10 is a real measurement and a clinically invisible one. Both statements are true and the second is the one a patient needs.',
       },
@@ -4033,7 +4033,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'There is no substitute for naloxone in an overdose, and the honest comparisons are between its formulations rather than against other drugs. Intramuscular naloxone from a vial is by far the cheapest route and requires a syringe and a willing bystander; the nasal spray costs more and requires neither. The higher-dose nasal and injectable products are the ones with the weakest case: a 2024 review concluded that the vast majority of fentanyl overdoses are reversed by two standard intramuscular or intranasal doses, and recommended against high-dose formulations on cost, precipitated withdrawal and limited evidence.',
+        'There is no substitute for naloxone in an overdose, and the comparisons are between its formulations rather than against other drugs. Intramuscular naloxone from a vial is by far the cheapest route and requires a syringe and a willing bystander; the nasal spray costs more and requires neither. The higher-dose nasal and injectable products are the ones with the weakest case: a 2024 review concluded that the vast majority of fentanyl overdoses are reversed by two standard intramuscular or intranasal doses, and recommended against high-dose formulations on cost, precipitated withdrawal and limited evidence.',
       conventionalRx: [
         {
           name: 'Standard-dose intramuscular naloxone from a vial and syringe',
@@ -4255,7 +4255,7 @@ export const ENRICHED_BATCH_22_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For fifty years naloxone needed a prescription. On 29 March 2023 the FDA approved the 4 mg nasal spray for over-the-counter sale, and it can now be bought in a supermarket.',
         technicalDetails:
-          'NARCAN 4 mg nasal spray was approved under NDA 208411 and, on 29 March 2023, became the first naloxone product approved for non-prescription sale in the United States, opening distribution through pharmacies, convenience stores, supermarkets, petrol stations and online retail. A second over-the-counter naloxone nasal spray product was subsequently approved. The reversal is a regulatory one rather than a pharmacological one: nothing about the molecule changed, and the human-factors evidence that more than 90% of untrained people could operate the device had existed since the 2016 pharmacokinetic and usability programme. What changed was the judgement about where the risk lay — for decades the prescription requirement was justified as a control on a drug given to people with opioid dependence, and the conclusion shifted to the view that the barrier itself was the larger harm. It is worth noting alongside the price audit on this page: over-the-counter status removes the prescription barrier and does not remove the cost barrier.',
+          'NARCAN 4 mg nasal spray was approved under NDA 208411 and, on 29 March 2023, became the first naloxone product approved for non-prescription sale in the United States, opening distribution through pharmacies, convenience stores, supermarkets, petrol stations and online retail. A second over-the-counter naloxone nasal spray product was subsequently approved. The reversal is a regulatory one rather than a pharmacological one: nothing about the molecule changed, and the human-factors evidence that more than 90% of untrained people could operate the device had existed since the 2016 pharmacokinetic and usability programme. What changed was the judgement about where the risk lay — for decades the prescription requirement was justified as a control on a drug given to people with opioid dependence, and the conclusion shifted to the view that the barrier itself was the larger harm. The price audit shows the remaining barrier: over-the-counter status removes the prescription requirement, not the cost.',
         evidenceSource:
           'FDA approval of NARCAN (naloxone hydrochloride) nasal spray 4 mg for over-the-counter use, 29 March 2023; FDA Drugs@FDA record for NDA 208411',
         inferredClaim:

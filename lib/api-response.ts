@@ -223,16 +223,7 @@ export interface PublicUser extends CommentUser {
   hasCredentialOnFile: boolean
 }
 
-/**
- * Maps an account row to `PublicUser`.
- *
- * `isDoctor` is `verificationState === 'verified'`, never the `is_doctor` column. That column
- * records only that somebody ticked a box and typed a licence number into a form. If it drove the
- * badge, the badge would be self-service — which is exactly what the reference wireframe did, and
- * exactly what this rebuild refuses to do. lib/session.ts's `toCommentUser` makes the same choice
- * for the same reason; this function exists because `AccountUser` (from lib/queries/users.ts) and
- * the full `users` row are different types, and the rule has to hold for both.
- */
+/** Map an account query result to the client-safe user shape. */
 export function toPublicUser(user: AccountUser): PublicUser {
   const verified = user.verificationState === 'verified'
   return {

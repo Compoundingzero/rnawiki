@@ -25,8 +25,8 @@ import type { SeedDossier } from '@/lib/seed-types'
  *
  * 4. THE AUDIT IS THE PRODUCT, WHICH CUTS BOTH WAYS. Several substances here have genuinely
  *    strong, replicated human evidence — creatine and caffeine are two of the best-supported
- *    ergogenic compounds in existence, and saying so plainly is what makes the sceptical pages
- *    credible. Others carry very large null randomised trials for exactly the outcome people buy
+ *    ergogenic compounds in existence. Others carry very large null randomised trials for exactly
+ *    the outcome people buy
  *    them for: VITAL and D-Health for vitamin D, SELECT for selenium and vitamin E, ATBC for
  *    beta-carotene, STRENGTH for omega-3. Both kinds of finding are recorded the same way.
  *
@@ -223,7 +223,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Pooling a hundred trials, creatine helps — reliably, and by a small amount, and mostly in short laboratory efforts rather than in running or swimming.',
         technicalDetails:
-          'A meta-analysis of 96 peer-reviewed papers comprising 100 randomised, placebo-controlled, blinded studies. Effect sizes were small but significantly greater than zero: body composition 0.17 +/- 0.03 (n = 163), ATP-phosphocreatine-system tasks under 30 seconds 0.24 +/- 0.02 (n = 17), glycolytic tasks of 30 to 150 seconds 0.19 +/- 0.05 (n = 135), oxidative tasks over 150 seconds 0.20 +/- 0.07 (n = 69). The effect was larger for upper-body exercise (0.42 +/- 0.07) than lower (0.21 +/- 0.02) or total body (0.13 +/- 0.04), and larger for laboratory tasks (0.25 +/- 0.02) than field tasks such as running and swimming (0.14 +/- 0.04, P = .014). There was no difference in effect size by sex or by training status. The author concluded plainly that creatine does not appear to improve running and swimming performance.',
+          'A meta-analysis of 96 peer-reviewed papers comprising 100 randomised, placebo-controlled, blinded studies. Effect sizes were small but significantly greater than zero: body composition 0.17 +/- 0.03 (n = 163), ATP-phosphocreatine-system tasks under 30 seconds 0.24 +/- 0.02 (n = 17), glycolytic tasks of 30 to 150 seconds 0.19 +/- 0.05 (n = 135), oxidative tasks over 150 seconds 0.20 +/- 0.07 (n = 69). The effect was larger for upper-body exercise (0.42 +/- 0.07) than lower (0.21 +/- 0.02) or total body (0.13 +/- 0.04), and larger for laboratory tasks (0.25 +/- 0.02) than field tasks such as running and swimming (0.14 +/- 0.04, P = .014). There was no difference in effect size by sex or by training status. The author concluded that creatine does not appear to improve running and swimming performance.',
         evidenceSource: 'Branch JD. Int J Sport Nutr Exerc Metab 2003;13:198-226',
         doi: '10.1123/ijsnem.13.2.198',
         measuredMetric:
@@ -436,7 +436,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'The Huntington disease programme, halted at interim with decline numerically faster on creatine',
       ],
       realWorldOutcome: [
-        'Creatine monohydrate is among the best-evidenced supplements in existence for its core performance claim, and this file says so without hedging',
+        'Creatine monohydrate has one of the strongest evidence bases among performance supplements for repeated high-intensity exercise and training-related gains in strength and lean mass',
         'Roughly three in eight people in the biopsy studies did not load meaningfully and did not get the ergogenic effect',
         'It reliably raises serum creatinine without impairing renal function, which is a diagnostic trap rather than a safety problem',
       ],
@@ -451,7 +451,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does creatine actually work, or is it another supplement myth?',
-        a: 'It works, and this page is not going to hedge that. Muscle biopsies show the creatine gets in, phosphorus spectroscopy and biopsy both show the phosphocreatine pool refills faster, and a meta-analysis of a hundred randomised placebo-controlled studies finds a consistent positive effect. The honest qualifier is the size: effect sizes around 0.2, larger for short upper-body laboratory efforts, and no benefit at all for running or swimming.',
+        a: 'It works. Muscle biopsies show the creatine gets in, phosphorus spectroscopy and biopsy both show the phosphocreatine pool refills faster, and a meta-analysis of a hundred randomised placebo-controlled studies finds a consistent positive effect. The effect is small overall, around 0.2 standard deviations, larger for short upper-body laboratory efforts, and absent for running or swimming.',
         auditNote:
           'Being fair to what works is what makes the sceptical pages elsewhere in this file worth reading.',
       },
@@ -461,7 +461,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What about creatine for the brain and for ageing?',
-        a: 'That is where the claim outruns the data. The two largest neurological trials ever run on creatine — 1,741 patients with Parkinson disease over five years and 553 with Huntington disease — were both stopped early for futility, and in both the treated group did numerically slightly worse. The healthy-cognition literature is six small trials in 281 people, with no change in young adults. Creatine plainly enters the brain, since it treats inherited creatine deficiency. Adding more to a brain that already has enough is a different question, and the randomised answer so far is unimpressive.',
+        a: 'That is where the claim outruns the data. The two largest neurological trials ever run on creatine — 1,741 patients with Parkinson disease over five years and 553 with Huntington disease — were both stopped early for futility, and in both the treated group did numerically slightly worse. The healthy-cognition literature is six small trials in 281 people, with no change in young adults. Creatine enters the brain, since it treats inherited creatine deficiency. Adding more to a brain that already has enough is a different question, and the randomised answer so far is unimpressive.',
         auditNote:
           'This is the largest gap between marketing direction and measured outcome on this page.',
       },
@@ -770,7 +770,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'An Australian trial gave 21,315 older adults monthly vitamin D for five years. Deaths were not reduced. When the first two years were excluded, death from cancer was numerically higher on vitamin D.',
         technicalDetails:
-          'A randomised double-blind placebo-controlled trial of 60,000 IU vitamin D3 monthly in 21,315 Australians aged 60 and over, median follow-up 5.7 years. Serum 25-hydroxyvitamin D reached 115 (SD 30) nmol/L on treatment against 77 (SD 25) on placebo, so the intervention plainly worked biochemically. All-cause mortality: 562 deaths (5.3%) on vitamin D against 538 (5.1%) on placebo, hazard ratio 1.04 (95% CI 0.93 to 1.18), P = 0.47. Cardiovascular mortality 0.96 (0.72 to 1.28). Cancer mortality 1.15 (0.96 to 1.39), P = 0.13. In an exploratory analysis excluding the first two years, cancer mortality was 1.24 (95% CI 1.01 to 1.54), P = 0.05. The authors wrote that the precautionary principle suggests this dosing regimen might not be appropriate in people who are already vitamin D-replete.',
+          'A randomised double-blind placebo-controlled trial of 60,000 IU vitamin D3 monthly in 21,315 Australians aged 60 and over, median follow-up 5.7 years. Serum 25-hydroxyvitamin D reached 115 (SD 30) nmol/L on treatment against 77 (SD 25) on placebo, so the intervention worked biochemically. All-cause mortality: 562 deaths (5.3%) on vitamin D against 538 (5.1%) on placebo, hazard ratio 1.04 (95% CI 0.93 to 1.18), P = 0.47. Cardiovascular mortality 0.96 (0.72 to 1.28). Cancer mortality 1.15 (0.96 to 1.39), P = 0.13. In an exploratory analysis excluding the first two years, cancer mortality was 1.24 (95% CI 1.01 to 1.54), P = 0.05. The authors wrote that the precautionary principle suggests this dosing regimen might not be appropriate in people who are already vitamin D-replete.',
         evidenceSource: 'Neale RE et al. Lancet Diabetes Endocrinol 2022;10:120-128',
         doi: '10.1016/S2213-8587(21)00345-4',
         measuredMetric:
@@ -1013,7 +1013,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Did anything positive survive?',
-        a: 'Two things, and they should be stated as plainly as the failures. Incident autoimmune disease fell 22% over 5.3 years in VITAL, hazard ratio 0.78 with a confidence interval reaching 0.99 — a real but borderline result from an ancillary endpoint. And a meta-analysis of 46 trials in 75,541 people found a small reduction in acute respiratory infections, odds ratio 0.92. Both deserve replication and neither is what most vitamin D is bought for.',
+        a: 'Two positive findings remain. Incident autoimmune disease fell 22% over 5.3 years in VITAL, hazard ratio 0.78 with a confidence interval reaching 0.99 — a real but borderline result from an ancillary endpoint. A meta-analysis of 46 trials in 75,541 people also found a small reduction in acute respiratory infections, odds ratio 0.92. Both deserve replication and neither is what most vitamin D is bought for.',
         auditNote:
           'The respiratory effect showed no subgroup difference by baseline 25(OH)D, which is hard to square with a straightforward repletion mechanism.',
       },
@@ -1562,7 +1562,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does fish oil protect your heart or not?',
-        a: 'The honest answer depends entirely on which product and which amount. At the 1 g/day found in an ordinary capsule, two trials totalling over 41,000 people found no reduction in cardiovascular events, and Cochrane rates the mortality evidence as high-certainty no effect. At 4 g/day of a purified prescription EPA ester, REDUCE-IT found a 25% relative reduction — and its sister trial STRENGTH, using 4 g/day of an EPA and DHA preparation against corn oil, found nothing at all. Buying a supplement on the strength of REDUCE-IT means generalising from a different molecule at four times the amount against a comparator that is still argued about.',
+        a: 'The answer depends entirely on which product and which amount. At the 1 g/day found in an ordinary capsule, two trials totalling over 41,000 people found no reduction in cardiovascular events, and Cochrane rates the mortality evidence as high-certainty no effect. At 4 g/day of a purified prescription EPA ester, REDUCE-IT found a 25% relative reduction — and its sister trial STRENGTH, using 4 g/day of an EPA and DHA preparation against corn oil, found nothing at all. Buying a supplement on the strength of REDUCE-IT means generalising from a different molecule at four times the amount against a comparator that is still argued about.',
         auditNote:
           'The gap between "there is a positive omega-3 outcome trial" and "the tub on the shelf works" is the whole audit on this page.',
       },
@@ -1722,7 +1722,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'Intestinal enterocyte brush border for absorption; thereafter intracellular ATP-magnesium complexes in every tissue, with bone as the reservoir',
     substitutes: {
       summary:
-        'For a documented deficiency, magnesium is not optional and food or a supplement will both work. For everything else the honest comparison is with the interventions that beat it on their own outcome: sleep hygiene and CBT-I for insomnia, and for blood pressure a 2 mmHg mineral effect sits far below what dietary sodium reduction or a first-line antihypertensive achieves.',
+        'For a documented deficiency, magnesium is not optional and food or a supplement will both work. For everything else the comparison is with the interventions that beat it on their own outcome: sleep hygiene and CBT-I for insomnia, and for blood pressure a 2 mmHg mineral effect sits far below what dietary sodium reduction or a first-line antihypertensive achieves.',
       conventionalRx: [
         {
           name: 'Intravenous magnesium sulphate for eclampsia and torsades de pointes',
@@ -1941,7 +1941,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           "The blood test used to call people magnesium-deficient measures less than one percent of the body's magnesium, and the normal range it is judged against was never set from health outcomes.",
         technicalDetails:
-          'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, which is the honest half of the marketing claim. And no ordinary test can confirm the depletion either, which means a supplement sold against it can never be shown to have been unnecessary.',
+          'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, but no ordinary test can confirm chronic latent depletion either. This uncertainty makes it difficult to show whether a supplement was necessary.',
         evidenceSource: 'Costello RB et al. Adv Nutr 2016;7:977-993',
         doi: '10.3945/an.116.012765',
         measuredMetric:
@@ -2096,7 +2096,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is glycinate really better absorbed than the cheap magnesium oxide?',
-        a: 'The honest answer is that the direct comparison has been run once, in twelve patients who had had part of their ileum surgically removed, and it found no difference for the group as a whole: 23.5 percent absorption for the glycinate against 22.8 percent for the oxide. The glycinate was absorbed faster and reached a higher peak, and it did better in the four patients who absorbed the oxide worst. That is a reasonable basis for preferring it in intestinal disease. It is not a basis for the claim printed on the tub.',
+        a: 'The direct comparison has been run once, in twelve patients who had had part of their ileum surgically removed, and it found no difference for the group as a whole: 23.5 percent absorption for the glycinate against 22.8 percent for the oxide. The glycinate was absorbed faster and reached a higher peak, and it did better in the four patients who absorbed the oxide worst. That is a reasonable basis for preferring it in intestinal disease, but it does not justify broad claims that glycinate is better absorbed for everyone.',
         auditNote:
           'The Firoz and Graber bioavailability study that most "oxide is poorly absorbed" copy points to did not test glycinate.',
       },
@@ -2625,7 +2625,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does zinc actually shorten a cold?',
-        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.",
+        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. The evidence therefore depends on the dose and formulation, details that many product labels do not make clear.",
         auditNote:
           'Free ionic zinc is the active species, and citric acid, tartaric acid, sorbitol and mannitol in a lozenge chelate it away.',
       },
@@ -2767,7 +2767,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'Cytosol of every cell via SVCT2, with the highest concentrations in adrenal cortex, pituitary, brain and neutrophils; absorption is SVCT1-mediated in the small intestine',
     substitutes: {
       summary:
-        'For scurvy, vitamin C is not substitutable and works within days. For colds, the honest comparator is nothing, since 8% of a seven-day cold is about half a day. For sepsis the comparator turned out to be placebo, and placebo won.',
+        'For scurvy, vitamin C is not substitutable and works within days. For colds, the relevant comparison is no supplement, since 8% of a seven-day cold is about half a day. For sepsis, placebo performed better in the trial discussed here.',
       conventionalRx: [
         {
           name: 'Ascorbic acid as treatment for scurvy',
@@ -2913,7 +2913,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In marathon runners, skiers and soldiers on subarctic exercises, vitamin C cut the number of colds by half. In everyone else it did nothing.',
         technicalDetails:
-          'Five trials in a total of 598 marathon runners, skiers and soldiers undertaking subarctic exercises pooled to a risk ratio of 0.48 (95% CI 0.35 to 0.64) for developing a cold, against 0.97 (95% CI 0.94 to 1.00) in the 10,708 general-community participants. This is one of the sharpest subgroup separations anywhere in the supplement literature, and it is not a subgroup fished from a single trial: it is a prespecified population category with five independent trials pointing the same way. The interpretation is genuinely unsettled. It may be a repletion effect in people whose intake cannot keep up with turnover under extreme exertion, or a specific effect of oxidative stress at that intensity. Either way, the honest statement is that the population in which vitamin C halves cold incidence is one almost nobody buying it belongs to.',
+          'Five trials in a total of 598 marathon runners, skiers and soldiers undertaking subarctic exercises pooled to a risk ratio of 0.48 (95% CI 0.35 to 0.64) for developing a cold, against 0.97 (95% CI 0.94 to 1.00) in the 10,708 general-community participants. This was a prespecified population category with five independent trials pointing the same way, not a subgroup selected from one trial after the fact. The interpretation remains unsettled. It may be a repletion effect in people whose intake cannot keep up with turnover under extreme exertion, or a specific effect of oxidative stress at that intensity. The result applies to a small, specialised population and did not appear in the general-community trials.',
         evidenceSource: 'Hemila H, Chalker E. Cochrane Database Syst Rev 2013;1:CD000980',
         doi: '10.1002/14651858.CD000980.pub4',
         measuredMetric:
@@ -3411,7 +3411,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Across nineteen randomised trials in 1,683 people, melatonin cut the time to fall asleep by about seven minutes and added about eight minutes of total sleep.',
         technicalDetails:
-          'Ferracioli-Oda and colleagues pooled 19 randomised placebo-controlled trials in 1,683 subjects with primary sleep disorders. Melatonin reduced sleep onset latency by a weighted mean difference of 7.06 minutes (95% CI 4.37 to 9.75, Z = 5.15, P < 0.001) and increased total sleep time by 8.25 minutes (95% CI 1.74 to 14.75, Z = 2.48, P = 0.013). Overall sleep quality improved with a standardised mean difference of 0.22 (95% CI 0.12 to 0.32, P < 0.001). Meta-regression found longer trials and higher doses produced larger effects on latency and total sleep time, but no dose or duration effect on sleep quality. The authors stated plainly that the absolute benefit is smaller than that of other pharmacological treatments for insomnia, while noting the effect did not appear to dissipate with continued use — which is a genuine advantage over hypnotics that lose effect. The earlier Brzezinski meta-analysis of 17 studies in 284 subjects found the same picture at a smaller scale: sleep onset latency down 4.0 minutes (95% CI 2.5 to 5.4), sleep efficiency up 2.2% (95% CI 0.2 to 4.2), total sleep duration up 12.8 minutes (95% CI 2.9 to 22.8).',
+          'Ferracioli-Oda and colleagues pooled 19 randomised placebo-controlled trials in 1,683 subjects with primary sleep disorders. Melatonin reduced sleep onset latency by a weighted mean difference of 7.06 minutes (95% CI 4.37 to 9.75, Z = 5.15, P < 0.001) and increased total sleep time by 8.25 minutes (95% CI 1.74 to 14.75, Z = 2.48, P = 0.013). Overall sleep quality improved with a standardised mean difference of 0.22 (95% CI 0.12 to 0.32, P < 0.001). Meta-regression found longer trials and higher doses produced larger effects on latency and total sleep time, but no dose or duration effect on sleep quality. The authors stated that the absolute benefit is smaller than that of other pharmacological treatments for insomnia, while noting the effect did not appear to dissipate with continued use — which is a genuine advantage over hypnotics that lose effect. The earlier Brzezinski meta-analysis of 17 studies in 284 subjects found the same picture at a smaller scale: sleep onset latency down 4.0 minutes (95% CI 2.5 to 5.4), sleep efficiency up 2.2% (95% CI 0.2 to 4.2), total sleep duration up 12.8 minutes (95% CI 2.9 to 22.8).',
         evidenceSource:
           'Ferracioli-Oda E, Qawasmi A, Bloch MH. PLoS One 2013;8:e63773; Brzezinski A et al. Sleep Med Rev 2005;9:41-50',
         doi: '10.1371/journal.pone.0063773',
@@ -3729,7 +3729,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
   },
   // ---------------------------------------------------------------------------------------------
   // Caffeine — the strongest evidence in this entire file. An umbrella review of 21 meta-analyses,
-  // an FDA-approved neonatal drug that cut cerebral palsy, and one honest catch: withdrawal.
+  // an FDA-approved neonatal drug that cut cerebral palsy, with withdrawal as an important limitation.
   // ---------------------------------------------------------------------------------------------
   {
     slug: 'caffeine',
@@ -3751,14 +3751,14 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Adenosine accumulates in the brain across a waking day and, by acting on its receptors, is one of the signals that produces the feeling of sleepiness. Caffeine occupies those receptors without activating them. It does not add energy; it blocks the message that you are tired, and the adenosine keeps accumulating underneath.',
       whyItMatters:
-        'This is the page in this file where the evidence is strongest, and saying so plainly is what makes the sceptical pages elsewhere worth reading. Caffeine is ergogenic across aerobic endurance, muscular strength, muscular endurance, power, jumping and speed, substantiated by 21 meta-analyses, and it is one of very few substances here that is also a licensed drug with a mortality-adjacent randomised benefit in a real disease.',
+        'Twenty-one meta-analyses support small-to-moderate performance effects of caffeine across aerobic endurance, muscular strength and endurance, power, jumping and speed. Caffeine is also licensed for apnoea of prematurity, where a randomised trial found less death or neurodevelopmental disability.',
       whoTakesThis:
         'Roughly most adults on earth, mostly as coffee and tea. Also athletes taking measured doses before competition, shift workers, students, and — under prescription and by a completely different route — premature infants with apnea.',
       clinicalGoals:
         'Trials measured time-trial completion time, one-repetition maximum, repetitions to failure, peak power, jump height, ratings of perceived exertion, polysomnographic total sleep time, and in the neonatal programme bronchopulmonary dysplasia and neurodevelopmental disability at 18 to 21 months.',
     },
     oneSentenceVerdict:
-      'Caffeine is the best-evidenced performance substance in this file and one of the best-evidenced in existence — ergogenic across six distinct exercise domains in 21 meta-analyses, and a licensed neonatal drug that cut death or neurodevelopmental disability from 46.2% to 40.2% — with the honest caveat that half of habitual users get a withdrawal headache on stopping, so part of the daily lift is the reversal of a deficit the habit created.',
+      'Caffeine is the best-evidenced performance substance in this file and one of the best-evidenced in existence — ergogenic across six distinct exercise domains in 21 meta-analyses, and a licensed neonatal drug that cut death or neurodevelopmental disability from 46.2% to 40.2%. Half of habitual users get a withdrawal headache on stopping, so part of the daily lift reverses a deficit the habit created.',
     laymanHowItWorks:
       'A molecule called adenosine builds up in your brain the longer you are awake, and when it docks onto its receptors you feel tired. Caffeine is shaped enough like adenosine to sit in those receptors without switching them on, so the tiredness signal cannot be delivered. Nothing has been added; a brake has been released. Because the adenosine is still piling up behind the blockade, the tiredness returns when caffeine clears — and if you have been doing this daily, the brain has grown extra receptors to compensate, which is why missing a morning coffee produces a real headache rather than an imagined one.',
     auditConfidence: 'Rigorous Replicated',
@@ -3767,7 +3767,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'Central nervous system, principally striatal and cortical adenosine A1 and A2A receptors; also skeletal muscle, adipose tissue and the renal afferent arteriole',
     substitutes: {
       summary:
-        'For alertness the only intervention that genuinely beats caffeine is sleep, and it beats it decisively because it clears the adenosine rather than masking it. For exercise performance there is no legal, cheap, orally available substance with a comparable evidence base — which is the honest verdict this page exists to record.',
+        'For alertness, sleep addresses the accumulated adenosine rather than masking it. For exercise performance, no other legal, inexpensive oral substance has a comparable evidence base.',
       conventionalRx: [
         {
           name: 'Caffeine citrate (Cafcit) for apnea of prematurity',
@@ -3953,7 +3953,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Caffeine withdrawal is a real, validated syndrome with ten confirmed symptoms. Half of people get a headache, and it can be triggered by a daily habit as small as one cup.',
         technicalDetails:
-          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
+          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
         evidenceSource: 'Juliano LM, Griffiths RR. Psychopharmacology (Berl) 2004;176:1-29',
         doi: '10.1007/s00213-004-2000-x',
         measuredMetric:
@@ -3969,7 +3969,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For years athletes were told to abstain from caffeine before competition so it would work better. A controlled study across low, moderate and heavy habitual users found their daily intake made no difference to the benefit.',
         technicalDetails:
-          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.",
+          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. This study does not support requiring habitual users to abstain before taking caffeine for performance. It also suggests that tolerance to caffeine's alertness effect does not transfer straightforwardly to its effect on exercise performance.",
         evidenceSource: 'Goncalves LS et al. J Appl Physiol (1985) 2017;123:213-220',
         doi: '10.1152/japplphysiol.00260.2017',
         measuredMetric:
@@ -4142,7 +4142,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'The pre-1990s belief that phosphodiesterase inhibition was the mechanism, which requires concentrations no human reaches',
       ],
       realWorldOutcome: [
-        'This is the strongest evidence base in this file and the page says so without hedging',
+        'Twenty-one meta-analyses support performance effects across several exercise domains',
         'The effect is genuine but not universal: half the cyclists in the habituation study did not improve beyond test variation',
         'Withdrawal is a validated syndrome with a 50% headache incidence, triggered by habits as small as 100 mg a day',
       ],
@@ -4167,7 +4167,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the morning coffee doing anything, or just fixing withdrawal?',
-        a: "Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user's pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.",
+        a: "Both. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. A habitual user's pre-coffee state is therefore below their own neutral baseline, and part of what the first cup restores is that deficit. Controlled crossover trials with placebo arms also show a performance effect independent of withdrawal reversal.",
       },
       {
         q: 'How late is too late?',
@@ -4659,7 +4659,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'The high-protein kidney warning, which did not survive 28 randomised trials in healthy adults',
       ],
       realWorldOutcome: [
-        'Whey works, the mechanism is understood down to the amino acid, and this page says so without hedging',
+        'Whey supplies leucine and complete protein; its incremental benefit is small and depends on total protein intake',
         'The effect is small, is conditional on being below a total-intake threshold, and shrinks with age',
         'Protein powder is a convenience product for reaching a number, and above that number its measured incremental effect is zero',
       ],
@@ -4765,7 +4765,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Collagen is the structural protein that makes up most of the dry weight of skin, tendon, ligament and bone matrix. It is built inside fibroblasts from ordinary amino acids, and two of its residues — hydroxyproline and hydroxylysine — are made after the chain is assembled, by enzymes that require vitamin C. Nothing in that process reads dietary collagen as input.',
       whyItMatters:
-        'This is the category where the naming does the persuading. "Collagen" on the tub and "collagen" in the skin are the same word for two things that never meet, because the first is dismantled in the gut. The honest scientific question is narrower and more interesting: whether the small hydroxyproline-containing peptides that do survive digestion act as signals. That question is genuinely open, and it is not the question the marketing asks.',
+        'This is the category where the naming does the persuading. "Collagen" on the tub and "collagen" in the skin are the same word for two things that never meet, because the first is dismantled in the gut. The relevant scientific question is whether the small hydroxyproline-containing peptides that survive digestion act as signals. That question remains open and is narrower than the marketing claim.',
       whoTakesThis:
         'Overwhelmingly women — 95% of participants in the pooled skin-ageing trials were female. Also athletes taking gelatin for tendon and ligament, older adults for joints and bone, and a large market taking it in coffee for no defined endpoint.',
       clinicalGoals:
@@ -4911,7 +4911,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: "The industry's own paper: collagen has no tryptophan and is an incomplete protein",
         laymanSummary:
-          'A paper written by authors at a collagen manufacturer and a collagen research institute states plainly that collagen protein lacks an essential amino acid and is therefore incomplete.',
+          'A paper written by authors at a collagen manufacturer and a collagen research institute states that collagen protein lacks an essential amino acid and is therefore incomplete.',
         technicalDetails:
           'Paul, Leser and Oesser — affiliated with the Collagen Research Institute GmbH in Kiel and GELITA AG, a collagen manufacturer — wrote that "according to the current protein quality evaluation method PDCAAS, collagen protein lacks one indispensable amino acid (tryptophan) and is therefore categorized as an incomplete protein source" and that it "displays a low indispensable amino acid profile." Their iterative PDCAAS calculation concluded that up to 36% of daily dietary protein could be replaced by collagen peptides while still meeting indispensable amino acid requirements, and that the effective doses in the literature, 2.5 to 15 g per day, fall below that ceiling. Read carefully, this is a paper establishing an upper safe substitution limit, published by the people who sell the product, and it concedes the central nutritional fact: collagen is a poor protein. Any consumer counting a collagen scoop toward a daily protein target is substituting an incomplete protein for a complete one.',
         evidenceSource: 'Paul C, Leser S, Oesser S. Nutrients 2019;11:1079',
@@ -5149,7 +5149,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         "The Clark joint-pain trial's randomisation, which did not survive losing a third of its subjects before analysis",
       ],
       realWorldOutcome: [
-        'The pooled skin evidence is positive and this page records that plainly, with its surrogate endpoints and funding concentration stated',
+        'The pooled skin evidence is positive and this page records that, with its surrogate endpoints and funding concentration stated',
         'No trial in this literature has biopsied human skin and shown increased collagen content after oral collagen',
         'The live mechanism is a dipeptide signal, which if true means products differing in molecular weight distribution are not interchangeable',
       ],
@@ -5170,7 +5170,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Then why do the skin trials come out positive?',
-        a: 'They do, and this page records that plainly: nineteen randomised double-blind trials in 1,125 people, pooled, showed favourable hydration, elasticity and wrinkle results against placebo. What to hold alongside it is that these are instrument-measured surrogates rather than clinical outcomes, the trials are short compared with the process they claim to address, 95 percent of participants were women, and the field is unusually concentrated among investigators affiliated with collagen manufacturers. No trial has biopsied skin and shown more collagen in it.',
+        a: 'They do, and this page records that: nineteen randomised double-blind trials in 1,125 people, pooled, showed favourable hydration, elasticity and wrinkle results against placebo. What to hold alongside it is that these are instrument-measured surrogates rather than clinical outcomes, the trials are short compared with the process they claim to address, 95 percent of participants were women, and the field is unusually concentrated among investigators affiliated with collagen manufacturers. No trial has biopsied skin and shown more collagen in it.',
       },
       {
         q: 'Can I count collagen toward my daily protein?',
@@ -5582,7 +5582,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does psyllium really lower cholesterol?',
-        a: 'Yes, and it is one of the few claims in this file a regulator has examined and written into law. Across 28 randomised trials in 1,924 people, about 10 g a day reduced LDL cholesterol by 0.33 mmol/L and non-HDL by 0.39 mmol/L, and an earlier meta-analysis of 8 trials found LDL down 7 percent on top of a low-fat diet. The FDA authorises a coronary heart disease risk-reduction claim at 7 g of psyllium soluble fibre per day. The honest limits: this is a fraction of what a statin does, and no trial has tested psyllium against actual heart attacks.',
+        a: 'Yes, and it is one of the few claims in this file a regulator has examined and written into law. Across 28 randomised trials in 1,924 people, about 10 g a day reduced LDL cholesterol by 0.33 mmol/L and non-HDL by 0.39 mmol/L, and an earlier meta-analysis of 8 trials found LDL down 7 percent on top of a low-fat diet. The FDA authorises a coronary heart disease risk-reduction claim at 7 g of psyllium soluble fibre per day. The LDL reduction is a fraction of what a statin achieves, and no trial has tested psyllium against actual heart attacks.',
       },
       {
         q: 'Is any fibre as good as psyllium?',
@@ -5880,7 +5880,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       {
         id: 'inu-a5',
         category: 'failed',
-        title: 'In dysbiotic mice, inulin caused liver cancer — and the authors said so plainly',
+        title: 'In dysbiotic mice, inulin caused liver cancer — and the authors said so ',
         laymanSummary:
           'A Cell paper found that adding inulin to the diet of mice with a disturbed gut microbiome caused liver cancer. Insoluble fibre did not, and germ-free mice were protected.',
         technicalDetails:
@@ -6222,7 +6222,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           name: 'A warm bath or shower before bed, as the mechanism-matching comparator',
           activeCompound: 'Peripheral vasodilation and subsequent heat loss',
           biologicalMechanism:
-            'Passive body heating raises skin blood flow and accelerates core temperature decline afterwards, which is precisely the physiology Bannai and Kawai proposed for glycine. If the mechanism is thermoregulatory rather than neurochemical, then a non-pharmacological intervention producing the same heat loss is the honest comparator.',
+            'Passive body heating raises skin blood flow and accelerates core temperature decline afterwards, which is precisely the physiology Bannai and Kawai proposed for glycine. If the mechanism is thermoregulatory rather than neurochemical, a non-pharmacological intervention producing the same heat loss is the relevant comparator.',
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Haghayegh et al. pooled 13 studies: water at 40 to 42.5 degrees Celsius, 1 to 2 hours before bed, for as little as 10 minutes, shortened sleep onset latency.',
@@ -6333,7 +6333,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Oral glycine in rats opened skin blood vessels and lowered core body temperature — the same drop that normally happens as you fall asleep. That is the proposed mechanism, and it is not sedation.',
         technicalDetails:
-          'Bannai and Kawai report that oral administration of glycine to rats induced a significant increase in plasma and cerebrospinal fluid glycine concentrations and a significant decrease in core body temperature associated with an increase in cutaneous blood flow. Their stated interpretation is that "the decline in the core body temperature might be a mechanism underlying glycine\'s effect on sleep, as the onset of sleep is known to involve a decrease in the core body temperature," and that a low core temperature is maintained during sleep in humans. This is a coherent and testable hypothesis and it is markedly more honest than the sedative framing used in marketing. Two limits belong with it. The thermoregulatory measurements are in rats, not people. And the authors are associated with Ajinomoto, the amino acid manufacturer that also produced the human sleep trials, so mechanism and outcome come from the same source.',
+          'Bannai and Kawai report that oral administration of glycine to rats induced a significant increase in plasma and cerebrospinal fluid glycine concentrations and a significant decrease in core body temperature associated with an increase in cutaneous blood flow. Their stated interpretation is that "the decline in the core body temperature might be a mechanism underlying glycine\'s effect on sleep, as the onset of sleep is known to involve a decrease in the core body temperature," and that a low core temperature is maintained during sleep in humans. This is a coherent and testable thermoregulatory hypothesis, not evidence that glycine is a sedative. Two limits belong with it. The measurements are in rats, not people, and the authors are associated with Ajinomoto, the amino acid manufacturer that also produced the human sleep trials, so mechanism and outcome come from the same source.',
         evidenceSource: 'Bannai M, Kawai N. J Pharmacol Sci 2012;118:145-148',
         doi: '10.1254/jphs.11r04fm',
         measuredMetric:
@@ -6519,7 +6519,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'The classification of glycine as straightforwardly non-essential, now argued to be conditionally indispensable',
       ],
       realWorldOutcome: [
-        'The glycine sleep hypothesis is more interesting and more honest than its marketing, because it does not claim sedation',
+        'The glycine sleep hypothesis is narrower than its marketing because it proposes thermoregulation rather than sedation',
         'It is also almost entirely single-source, small, and reliant on subjective endpoints',
         'Most people taking magnesium glycinate are taking substantial glycine without counting it',
       ],
@@ -6642,7 +6642,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'Highest concentrations in retina, skeletal and cardiac muscle, leukocytes and brain; conjugated to bile acids in hepatocytes',
     substitutes: {
       summary:
-        'For a genuine deficiency — cats, some infants, long-term parenteral nutrition — taurine is not substitutable. For a healthy adult who synthesises it and eats meat or fish, the honest comparator is nothing, and the endurance effect is small enough that caffeine in the same energy drink is a more plausible explanation for how the drink feels.',
+        'For a genuine deficiency — cats, some infants, long-term parenteral nutrition — taurine is not substitutable. For a healthy adult who synthesises it and eats meat or fish, the relevant comparison is no taurine supplement. The measured endurance effect is small enough that caffeine in the same energy drink is a more plausible explanation for how the drink feels.',
       conventionalRx: [
         {
           name: 'Taurine fortification of infant formula and cat food',
@@ -6748,7 +6748,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           phase: 'Assay_Quantification',
           name: 'Longitudinal taurine against age, in the same people repeatedly',
           description:
-            'This is the step that decided the ageing question and it is worth stating as a method. Cross-sectional sampling compares different people at different ages and confounds age with cohort. Longitudinal sampling measures the same individuals repeatedly. The 2025 Science analysis did both, in three geographically distinct human cohorts plus primates and mice, and found taurine increased or was unchanged with age.',
+            'This is the step that decided the ageing question and the method matters. Cross-sectional sampling compares different people at different ages and confounds age with cohort. Longitudinal sampling measures the same individuals repeatedly. The 2025 Science analysis did both, in three geographically distinct human cohorts plus primates and mice, and found taurine increased or was unchanged with age.',
           dependsOnStepId: 'tau-w4',
           reagentsAndBuffer:
             'Repeat plasma sampling from an established longitudinal ageing cohort; identical assay platform and lot across timepoints; batch-randomised sample ordering with blinded age; parallel cross-sectional cohort for direct comparison; grip strength, gait speed and body composition measured at each visit',
@@ -7587,7 +7587,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           activeCompound:
             'Inorganic nitrate, reduced to nitrite by oral bacteria then to nitric oxide',
           biologicalMechanism:
-            'The nitrate-nitrite-nitric oxide pathway bypasses nitric oxide synthase entirely and does not depend on arginine availability. It is the honest comparator for anything sold on a nitric oxide rationale, and it has a considerably larger and older performance literature.',
+            'The nitrate-nitrite-nitric oxide pathway bypasses nitric oxide synthase entirely and does not depend on arginine availability. Dietary nitrate is therefore the relevant comparator for products sold on a nitric oxide rationale, and it has a considerably larger and older performance literature.',
           evidenceStrength: 'Moderate Evidence',
           dailyUsage:
             'Wylie et al. ran the dose-response with 70, 140 and 280 mL of concentrated juice, carrying 4.2, 8.4 and 16.8 mmol of nitrate. The oxygen cost of exercise fell at 8.4 mmol and no further at 16.8.',
@@ -7611,7 +7611,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           patientImpact:
             'The 2010 trial reported 52.92% more repetitions in its final set. The 2021 meta-analysis of eight trials in 137 participants found an increase of 3 +/- 5 repetitions, 6.4 +/- 7.9%, with a small standardised mean difference of 0.196.',
           clinicalPrecaution:
-            'Both results can be honestly reported. Only one of them should be used to decide anything.',
+            'Both results can be reported, but the pooled estimate is the more appropriate basis for a decision.',
         },
       ],
     },
@@ -7705,7 +7705,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The trial that proved citrulline raises arginine also measured whether blood vessels actually widened more. They did not — not on any treatment.',
         technicalDetails:
-          'Schwedhelm et al. measured flow-mediated vasodilation as a pharmacodynamic endpoint alongside their pharmacokinetic measures, and reported plainly that no treatment improved flow-mediated dilation over baseline. A pooled analysis of all the flow-mediated dilation data did reveal a correlation between the increase in the arginine to ADMA ratio and improvement, which is a post hoc correlational finding rather than a treatment effect. This is the load-bearing negative result for the entire nitric oxide supplement category and it is almost never quoted. The likely explanation is the arginine paradox: intracellular arginine in endothelial cells already sits far above the Km of nitric oxide synthase, so raising plasma arginine has limited capacity to raise nitric oxide output in a healthy endothelium. Raising the substrate concentration for an enzyme that is not substrate-limited is a chemistry result, not a physiology result.',
+          'Schwedhelm et al. measured flow-mediated vasodilation as a pharmacodynamic endpoint alongside their pharmacokinetic measures, and reported that no treatment improved flow-mediated dilation over baseline. A pooled analysis of all the flow-mediated dilation data did reveal a correlation between the increase in the arginine to ADMA ratio and improvement, which is a post hoc correlational finding rather than a treatment effect. This is the load-bearing negative result for the entire nitric oxide supplement category and it is almost never quoted. The likely explanation is the arginine paradox: intracellular arginine in endothelial cells already sits far above the Km of nitric oxide synthase, so raising plasma arginine has limited capacity to raise nitric oxide output in a healthy endothelium. Raising the substrate concentration for an enzyme that is not substrate-limited is a chemistry result, not a physiology result.',
         evidenceSource: 'Schwedhelm E et al. Br J Clin Pharmacol 2008;65:51-59',
         doi: '10.1111/j.1365-2125.2007.02990.x',
         measuredMetric:
@@ -7765,7 +7765,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'When the pooled analysis split upper body from lower body, the lower body result was only a trend rather than a clear effect.',
         technicalDetails:
-          'Varvik and colleagues ran two prespecified subanalyses of their eight-study, 137-participant dataset. The overall result was an increase of 3 +/- 5 repetitions, 6.4 +/- 7.9%, with a standardised mean difference of 0.196 (P = .022). The lower-body subanalysis produced an 8.1 +/- 8.4% improvement that the authors describe as a tendency toward an effect rather than a demonstrated one. Subgroup analyses of a small pooled dataset are underpowered by construction, and the honest reading is that the total-repetition effect is modest, that its distribution across exercise types is not resolved, and that the participant base is 101 strength-trained men, 26 women and 9 untrained men — a sample from which claims about untrained lifters or about women cannot responsibly be drawn.',
+          'Varvik and colleagues ran two prespecified subanalyses of their eight-study, 137-participant dataset. The overall result was an increase of 3 +/- 5 repetitions, 6.4 +/- 7.9%, with a standardised mean difference of 0.196 (P = .022). The lower-body subanalysis produced an 8.1 +/- 8.4% improvement that the authors describe as a tendency toward an effect rather than a demonstrated one. Subgroup analyses of a small pooled dataset are underpowered by construction. The total-repetition effect is modest, its distribution across exercise types is unresolved, and the participants were 101 strength-trained men, 26 women and 9 untrained men. That sample cannot support broad claims about untrained lifters or women.',
         evidenceSource:
           'Varvik FT, Bjornsen T, Gonzalez AM. Int J Sport Nutr Exerc Metab 2021;31:350-358',
         doi: '10.1123/ijsnem.2020-0295',
@@ -7894,7 +7894,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       description:
         'Sold in the United States as a dietary supplement under DSHEA, so no agency reviewed efficacy or safety before sale. The citrulline-to-malate ratio determines the actual citrulline dose and is often undisclosed, which means two products labelled with the same gram figure can differ by around a third in the ingredient with the evidence. Citrulline malate is strongly sour, which makes placebo matching difficult and is a plausible source of unblinding in the trial literature. It is overwhelmingly consumed inside multi-ingredient pre-workout formulas, where any subjective effect is unattributable.',
       safetyProfile:
-        'Gastrointestinal discomfort is the main reported effect and appeared in 14.63% of subjects in the original crossover, plausibly driven by the malate load and the acidity rather than by citrulline itself. Citrulline is well tolerated at the doses studied and has no established toxicity in healthy adults. Because it raises nitric oxide signalling, theoretical interaction with nitrates and phosphodiesterase-5 inhibitors is worth noting even though it has not been demonstrated. Long-term safety data beyond short trial durations do not exist.',
+        'Gastrointestinal discomfort is the main reported effect and appeared in 14.63% of subjects in the original crossover, plausibly driven by the malate load and the acidity rather than by citrulline itself. Citrulline was generally well tolerated at the doses and durations studied. Because it raises nitric oxide signalling, a theoretical interaction with nitrates and phosphodiesterase-5 inhibitors remains possible but has not been demonstrated. Long-term safety data are limited.',
     },
     commonQuestions: [
       {
@@ -7909,7 +7909,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What about the study showing 53 percent more reps?',
-        a: 'It exists, it was double-blind and randomised, and it is not the number to use. In 41 men, citrulline malate increased repetitions from the third evaluated set onward, and the 52.92 percent figure comes from the final set, having grown with set number. When eight trials in 137 participants were pooled in 2021, the effect was an increase of 3 ± 5 repetitions across an entire session, about 6.4 percent, with a small effect size of 0.196. Both results are honestly reported; only the pooled one should decide anything.',
+        a: 'It exists, it was double-blind and randomised, and it is not the number to use. In 41 men, citrulline malate increased repetitions from the third evaluated set onward, and the 52.92 percent figure comes from the final set, having grown with set number. When eight trials in 137 participants were pooled in 2021, the effect was an increase of 3 ± 5 repetitions across an entire session, about 6.4 percent, with a small effect size of 0.196. Both results can be reported, but the pooled estimate is the more appropriate basis for a decision.',
       },
       {
         q: 'Does the malate part do anything?',
@@ -8455,7 +8455,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'Inner mitochondrial membrane in every tissue, with the highest concentrations in heart, kidney and liver',
     substitutes: {
       summary:
-        'For heart failure, the comparator is guideline-directed medical therapy, and Q-SYMBIO tested CoQ10 as an addition to it rather than instead of it. For statin muscle pain the honest options are dose reduction, an alternative statin or a statin holiday under supervision, all of which have more support than CoQ10 does.',
+        'For heart failure, the comparator is guideline-directed medical therapy, and Q-SYMBIO tested CoQ10 as an addition to it rather than instead of it. For statin muscle pain, options include dose reduction, an alternative statin or a statin holiday under supervision, all of which have more support than CoQ10 does.',
       conventionalRx: [
         {
           name: 'Guideline-directed heart failure therapy',
@@ -8789,7 +8789,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'CoQ10 as a neuroprotective agent in Parkinson disease, terminated at a prespecified futility criterion',
       ],
       realWorldOutcome: [
-        'Q-SYMBIO is a real positive randomised mortality trial and this page says so without hedging',
+        'Q-SYMBIO reported lower mortality in a small randomised trial that has not been replicated',
         'It is also small, unreplicated, and its own short-term physiological endpoints were null',
         'The claim that sells the most product is the one that failed its own direct test most clearly',
       ],
@@ -8804,7 +8804,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Should I take CoQ10 with my statin?',
-        a: 'The direct randomised answer is no. Researchers first confirmed statin muscle pain in patients by blinded rechallenge — only 41 of 120 with a prior history actually reproduced it — then gave those patients 600 mg a day of ubiquinol or placebo alongside simvastatin. Serum CoQ10 rose fourfold, so the supplement plainly worked as a supplement. Pain severity and interference did not improve, muscle strength and aerobic capacity did not change, and marginally more people on CoQ10 reported pain than on placebo.',
+        a: 'The direct randomised answer is no. Researchers first confirmed statin muscle pain in patients by blinded rechallenge — only 41 of 120 with a prior history actually reproduced it — then gave those patients 600 mg a day of ubiquinol or placebo alongside simvastatin. Serum CoQ10 rose fourfold, so the supplement worked as a supplement. Pain severity and interference did not improve, muscle strength and aerobic capacity did not change, and marginally more people on CoQ10 reported pain than on placebo.',
         auditNote:
           'This is the reason most CoQ10 is bought, and it is the claim with the clearest negative test.',
       },
@@ -9114,7 +9114,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Short trials showed lipoic acid eases how diabetic nerve damage feels. The long trial designed to show it slows the damage itself did not succeed.',
         technicalDetails:
-          'The sequence is unusually clean. Five-week SYDNEY 2 measured a patient-reported symptom score and found roughly half of symptoms relieved against a third on placebo, with response rates of 50 to 62% against 26%. Four-year NATHAN 1 measured a composite of objective impairment and neurophysiology and did not meet it (P = 0.105), while several impairment secondaries did move. Read together, the honest summary is that alpha-lipoic acid is better supported as a symptomatic agent over weeks than as a disease-modifying one over years, and that its symptomatic evidence rests on subjective endpoints with no dose-response across a threefold dose range. The safety arithmetic changed too: a compound that was well tolerated over five weeks recorded serious adverse events in 38.1% of treated patients against 28.0% on placebo over four years.',
+          'The sequence is unusually clean. Five-week SYDNEY 2 measured a patient-reported symptom score and found roughly half of symptoms relieved against a third on placebo, with response rates of 50 to 62% against 26%. Four-year NATHAN 1 measured a composite of objective impairment and neurophysiology and did not meet it (P = 0.105), while several impairment secondaries did move. Together, the trials support alpha-lipoic acid better as a symptomatic agent over weeks than as a disease-modifying one over years. Its symptomatic evidence rests on subjective endpoints with no dose-response across a threefold dose range. The safety arithmetic changed too: a compound that was well tolerated over five weeks recorded serious adverse events in 38.1% of treated patients against 28.0% on placebo over four years.',
         evidenceSource:
           'Ziegler D et al. Diabetes Care 2006;29:2365-2370; Ziegler D et al. Diabetes Care 2011;34:2054-2060',
         doi: '10.2337/dc11-0503',
@@ -9368,7 +9368,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'The macula lutea of the retina, where lutein, zeaxanthin and meso-zeaxanthin are concentrated in the Henle fibre layer in front of the photoreceptors',
     substitutes: {
       summary:
-        'For the specific population AREDS studied — people with intermediate macular degeneration or advanced disease in one eye — the comparator is the AREDS2 formulation as a whole, not lutein alone. For everyone else, the honest comparator is a diet containing green leafy vegetables and egg yolk, plus not smoking, which dominates every other modifiable risk factor for this disease.',
+        'For the specific population AREDS studied — people with intermediate macular degeneration or advanced disease in one eye — the comparator is the AREDS2 formulation as a whole, not lutein alone. For everyone else, the relevant comparison is a diet containing green leafy vegetables and egg yolk, alongside not smoking, the dominant modifiable risk factor for this disease.',
       conventionalRx: [
         {
           name: 'The complete AREDS2 formulation',
@@ -9419,7 +9419,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
           patientImpact:
             'The primary analysis found no statistically significant reduction in progression to advanced AMD: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12) for lutein plus zeaxanthin. The ten-year follow-up found a hazard ratio of 0.91 (95% CI 0.84 to 0.99, P = .02) — small, and from an epidemiologic follow-up rather than the randomised primary endpoint.',
           clinicalPrecaution:
-            'Both numbers are honest. Only the first is the randomised primary result the trial was designed around.',
+            'Both numbers are reported, but only the first is the randomised primary result the trial was designed around.',
         },
         {
           name: 'If you have ever smoked, the beta-carotene history matters directly',
@@ -9509,7 +9509,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The large trial designed to test whether adding lutein and zeaxanthin helps macular degeneration found no statistically significant benefit in its main analysis.',
         technicalDetails:
-          "AREDS2 tested the addition of lutein 10 mg plus zeaxanthin 2 mg, DHA plus EPA, or both, to the original AREDS formulation, with median follow-up of five years and 1,940 study eyes in 1,608 participants progressing to advanced age-related macular degeneration. Kaplan-Meier probabilities of progression by five years were 31% for placebo, 29% for lutein plus zeaxanthin, 31% for DHA plus EPA and 30% for both. Primary comparisons against placebo showed no statistically significant reduction: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12) for lutein plus zeaxanthin, 0.97 (98.7% CI 0.82 to 1.16, P = .70) for DHA plus EPA, and 0.89 (98.7% CI 0.75 to 1.06, P = .10) for the combination. There was no apparent effect of beta-carotene elimination or of lower-dose zinc. The authors' conclusion states it plainly: addition of lutein plus zeaxanthin, DHA plus EPA, or both, in primary analyses did not further reduce the risk of progression. The recommendation to use lutein and zeaxanthin in the revised formulation was made not because they worked better but because of the lung cancer risk of the ingredient they replaced.",
+          "AREDS2 tested the addition of lutein 10 mg plus zeaxanthin 2 mg, DHA plus EPA, or both, to the original AREDS formulation, with median follow-up of five years and 1,940 study eyes in 1,608 participants progressing to advanced age-related macular degeneration. Kaplan-Meier probabilities of progression by five years were 31% for placebo, 29% for lutein plus zeaxanthin, 31% for DHA plus EPA and 30% for both. Primary comparisons against placebo showed no statistically significant reduction: hazard ratio 0.90 (98.7% CI 0.76 to 1.07, P = .12) for lutein plus zeaxanthin, 0.97 (98.7% CI 0.82 to 1.16, P = .70) for DHA plus EPA, and 0.89 (98.7% CI 0.75 to 1.06, P = .10) for the combination. There was no apparent effect of beta-carotene elimination or of lower-dose zinc. The authors' conclusion states it: addition of lutein plus zeaxanthin, DHA plus EPA, or both, in primary analyses did not further reduce the risk of progression. The recommendation to use lutein and zeaxanthin in the revised formulation was made not because they worked better but because of the lung cancer risk of the ingredient they replaced.",
         evidenceSource:
           'Age-Related Eye Disease Study 2 (AREDS2) Research Group. JAMA 2013;309:2005-2015',
         doi: '10.1001/jama.2013.4997',
@@ -9978,7 +9978,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A trial across seven countries gave folic acid to women who had already had a pregnancy affected by spina bifida or anencephaly. It cut the recurrence by nearly three quarters.',
         technicalDetails:
-          "The Medical Research Council Vitamin Study was a randomised double-blind factorial trial at 33 centres in seven countries, allocating 1,817 women at high risk because of a previous affected pregnancy to folic acid, a mixture of seven other vitamins, both, or neither. Of 1,195 women with a completed pregnancy in which neural tube defect status was known, 27 had a defect: 6 in the folic acid groups and 21 in the other groups — a 72% protective effect, relative risk 0.28 (95% CI 0.12 to 0.71). The other vitamins showed no significant effect (relative risk 0.80, 95% CI 0.32 to 1.72), which is the internal control that makes the folate result specific rather than a general prenatal-vitamin effect. The authors noted no demonstrable harm from folic acid, while stating that the study's ability to detect rare or slight adverse effects was limited. Czeizel and Dudas subsequently showed the same effect for first occurrence rather than recurrence in a separate randomised trial. This is the reference standard against which every other claim in this file is judged, and it is worth stating exactly what it took: a randomised, double-blind, multinational trial with an active-comparator arm and a hard, unambiguous clinical endpoint.",
+          "The Medical Research Council Vitamin Study was a randomised double-blind factorial trial at 33 centres in seven countries, allocating 1,817 women at high risk because of a previous affected pregnancy to folic acid, a mixture of seven other vitamins, both, or neither. Of 1,195 women with a completed pregnancy in which neural tube defect status was known, 27 had a defect: 6 in the folic acid groups and 21 in the other groups — a 72% protective effect, relative risk 0.28 (95% CI 0.12 to 0.71). The other vitamins showed no significant effect (relative risk 0.80, 95% CI 0.32 to 1.72), which is the internal control that makes the folate result specific rather than a general prenatal-vitamin effect. The authors noted no demonstrable harm from folic acid, while stating that the study's ability to detect rare or slight adverse effects was limited. Czeizel and Dudas subsequently showed the same effect for first occurrence rather than recurrence in a separate randomised trial. This is the reference standard against which every other claim in this file is judged, and the result came from: a randomised, double-blind, multinational trial with an active-comparator arm and a hard, unambiguous clinical endpoint.",
         evidenceSource: 'MRC Vitamin Study Research Group. Lancet 1991;338:131-137',
         doi: '10.1016/0140-6736(91)90133-A',
         measuredMetric:
@@ -10209,8 +10209,8 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
     },
     commonQuestions: [
       {
-        q: 'Is the folic acid claim actually proven?',
-        a: 'Yes, and it is the only entry in this file where that sentence can be written without qualification. A randomised double-blind trial at 33 centres in seven countries found a 72 percent reduction in neural tube defects — relative risk 0.28, confidence interval 0.12 to 0.71 — with an active comparator arm of seven other vitamins that showed nothing. A national fortification programme then produced a 19 percent fall in birth prevalence across the United States. Everything else on this site is judged against that.',
+        q: 'What evidence supports folic acid before and during early pregnancy?',
+        a: 'A randomised double-blind trial at 33 centres in seven countries found a 72 percent reduction in recurrent neural tube defects — relative risk 0.28, confidence interval 0.12 to 0.71 — among women at high risk because of a previous affected pregnancy. An active comparator arm of seven other vitamins showed no significant effect. After United States fortification, neural tube defect birth prevalence fell by 19 percent. The trial result applies to the population and dose studied; the fortification result is population-level evidence.',
       },
       {
         q: 'Why is folic acid added to bread rather than just recommended?',
@@ -10546,7 +10546,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Vitamin K2 comes in forms with different tail lengths. They have half-lives differing more than tenfold and separate bodies of evidence, and labels often just say "K2".',
         technicalDetails:
-          'MK-4 carries four isoprene units and is cleared within hours; MK-7 carries seven and has a plasma half-life measured in days, which is why 180 micrograms daily of MK-7 achieves what milligram doses of MK-4 were used for. The Japanese bone literature that supplies much of vitamin K2\'s reputation used MK-4 at 45 mg per day — a dose 250 times the MK-7 trials, in a different population, with a different molecule. The Knapen group explicitly framed their MK-7 work as an extension of earlier high-dose K1 and MK-4 studies "because of the longer half-life and greater potency of the long-chain MK-7," which is an honest statement that these are separate agents. A product labelled only "vitamin K2" may contain either, and neither form\'s evidence transfers to the other. Synthetic MK-7 can also contain the biologically inactive cis isomer, which fermentation-derived material does not.',
+          'MK-4 carries four isoprene units and is cleared within hours; MK-7 carries seven and has a plasma half-life measured in days, which is why 180 micrograms daily of MK-7 achieves what milligram doses of MK-4 were used for. The Japanese bone literature that supplies much of vitamin K2\'s reputation used MK-4 at 45 mg per day — a dose 250 times the MK-7 trials, in a different population, with a different molecule. The Knapen group explicitly framed their MK-7 work as an extension of earlier high-dose K1 and MK-4 studies "because of the longer half-life and greater potency of the long-chain MK-7," which is a clear statement that these are separate agents. A product labelled only "vitamin K2" may contain either, and neither form\'s evidence transfers to the other. Synthetic MK-7 can also contain the biologically inactive cis isomer, which fermentation-derived material does not.',
         evidenceSource: 'Knapen MHJ et al. Osteoporos Int 2013;24:2499-2507',
         doi: '10.1007/s00198-013-2325-6',
         inferredClaim:
@@ -10818,7 +10818,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       'Thyroid follicular cell, where the sodium-iodide symporter concentrates iodide at the basolateral membrane and thyroid peroxidase organifies it at the apical surface',
     substitutes: {
       summary:
-        'For deficiency there is no substitute and iodised salt is the intervention with the best global track record ever assembled for a micronutrient. For a person in an iodine-replete country, the honest comparator is iodised salt and dairy, and for pregnancy the American Thyroid Association specifically recommends potassium iodide rather than kelp because kelp content is unreliable.',
+        'For deficiency there is no substitute and iodised salt is the intervention with the best global track record assembled for a micronutrient. For a person in an iodine-replete country, the relevant comparison is iodine from iodised salt and dairy. For pregnancy, the American Thyroid Association specifically recommends potassium iodide rather than kelp because kelp content is unreliable.',
       conventionalRx: [
         {
           name: 'Potassium iodide for thyroid blockade in a radiological emergency',
@@ -11152,7 +11152,7 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
         'US prenatal supplementation, where half of the products aimed at the population that most needs iodine do not contain it',
       ],
       realWorldOutcome: [
-        'Correcting iodine deficiency is among the highest-value interventions in the history of public health and this page says so plainly',
+        'Correcting iodine deficiency prevents thyroid and neurodevelopmental harm',
         'The intake window between insufficient and more than adequate is narrower than for almost any other nutrient here',
         'The people who need supplemental iodine most — pregnant and preconception women — are the least reliably supplied by the products aimed at them',
       ],

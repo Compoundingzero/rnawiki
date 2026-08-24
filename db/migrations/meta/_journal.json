@@ -22,6 +22,76 @@
       "when": 1787216665830,
       "tag": "0002_controlled_and_withdrawn_statuses",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787373777925,
+      "tag": "0003_programme_evidence_model",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787377490652,
+      "tag": "0004_programme_publication_hardening",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787379486725,
+      "tag": "0005_programme_contribution_proposals",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1787381664650,
+      "tag": "0006_programme_contribution_reviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1787384240606,
+      "tag": "0007_programme_contribution_hardening",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1787415520485,
+      "tag": "0008_programme_publication_bundles",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1787419599186,
+      "tag": "0009_canonical_publication_bridge",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1787425203629,
+      "tag": "0010_programme_presentation_bundle",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1787432322449,
+      "tag": "0011_legacy_identity_corrections",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1787468500070,
+      "tag": "0012_operational_review_and_source_refresh",
+      "breakpoints": true
     }
   ]
 }

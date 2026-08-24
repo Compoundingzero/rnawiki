@@ -1,11 +1,4 @@
-// Layer 1 — mathematical and string sequence validation.
-//
-// Same modality routing as the master reference wireframe (src/utils/rnaIntelligenceEngine.ts),
-// same shape of answer, but every number here is computed rather than estimated. The wireframe
-// guessed a small molecule's mass at `length * 14.2 + 80` and every antibody's at 148 kDa; those
-// are placeholders that read as facts, which is exactly the failure mode this product exists to
-// call out. Where a value cannot be derived from the submitted string, this layer says so in a
-// diagnostic and leaves the field undefined.
+// Layer 1 validates stored structure strings. Values that cannot be derived remain absent.
 
 import type { DrugModality, StructureType } from '@/lib/types'
 import type { BaseCounts, Diagnostic, DiagnosticSeverity, Layer1Result } from './types'
@@ -21,7 +14,7 @@ import {
 } from './genetic-code'
 import { hillFormula, parseSmiles } from './smiles'
 
-/** Shortest sequence Layer 1 will accept as a real oligonucleotide. Matches the reference. */
+/** Shortest sequence Layer 1 accepts as an oligonucleotide. */
 export const MIN_NUCLEOTIDE_LENGTH = 12
 
 /** Shortest sequence Layer 1 will accept as a real peptide backbone. Matches the reference. */
@@ -796,10 +789,7 @@ function validateDescriptor(
     )
   }
 
-  // The reference wireframe printed "~148,000 Da (148 kDa)" for every biologic. That is the
-  // textbook mass of a generic IgG, not a measurement of the molecule in front of us, and a
-  // stated number is read as a fact. An antibody descriptor is a name or an identifier, not a
-  // sequence, so no mass is derivable from it and none is reported.
+  // A descriptor alone cannot establish a biologic's molecular weight.
   diagnostics.push(
     diagnostic(
       'warning',

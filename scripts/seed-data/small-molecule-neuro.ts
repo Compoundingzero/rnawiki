@@ -30,7 +30,7 @@ import type { SeedDossier } from '@/lib/seed-types'
  *
  * 3. THE SEROTONIN QUESTION IS RECORDED FROM BOTH SIDES. Moncrieff et al.'s 2022 umbrella review and
  *    the substantive replies to it (Jauhar et al. 2023) are both cited on the SSRI pages, because
- *    the honest state of the field is that the low-serotonin story is not supported while the drugs
+ *    current evidence does not support the low-serotonin story, while the drugs
  *    still separate from placebo by an amount whose clinical size is genuinely contested. Recording
  *    only one half would be taking a side the evidence does not support.
  *
@@ -1277,7 +1277,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why was a cardiovascular trial stopped early, and does that mean the drug is dangerous?',
-        a: 'It means the question is unanswered, which is a different thing. LIGHT was testing whether the naltrexone-bupropion weight-loss combination was cardiovascularly non-inferior to placebo. Interim results from the first 25% of events were disclosed publicly while the trial was still running; the trial was terminated. The published analysis shows the effect estimate moving from HR 0.59 at 25% of events to HR 0.88 at 50%, and the authors state plainly that non-inferiority to the pre-specified margin of 1.4 could not be assessed and a new trial is needed. No harm signal was demonstrated. No safety was demonstrated either.',
+        a: 'It means the question is unanswered, which is a different thing. LIGHT was testing whether the naltrexone-bupropion weight-loss combination was cardiovascularly non-inferior to placebo. Interim results from the first 25% of events were disclosed publicly while the trial was still running; the trial was terminated. The published analysis shows the effect estimate moving from HR 0.59 at 25% of events to HR 0.88 at 50%, and the authors state that non-inferiority to the pre-specified margin of 1.4 could not be assessed and a new trial is needed. No harm signal was demonstrated. No safety was demonstrated either.',
       },
       {
         q: 'Does it work as well as varenicline for quitting?',
@@ -2402,7 +2402,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The fixed-dose trial and the trial in older adults both failed to reach statistical significance. Approval rested on the third.',
         technicalDetails:
-          'TRANSFORM-1 (Fedgchin et al., NCT02417064, 346 registered): esketamine 84 mg versus placebo gave an LS means difference of -3.2 (95% CI -6.88 to 0.45), two-sided P=0.088 — statistical significance not achieved, and because of the testing hierarchy the 56 mg arm could not be formally tested (nominal difference -4.1, P=0.027). TRANSFORM-3 (Ochs-Ross et al., NCT02422186, 139 elderly patients): median-unbiased treatment difference -3.6 (95% CI -7.20 to 0.07), z=1.89, two-sided P=0.059 — the authors state plainly that the primary endpoint was not achieved. Post-hoc, the effect was larger in patients aged 65 to 74 (-4.9, P=0.017 nominal) than in those 75 and older (-0.4, P=0.930).',
+          'TRANSFORM-1 (Fedgchin et al., NCT02417064, 346 registered): esketamine 84 mg versus placebo gave an LS means difference of -3.2 (95% CI -6.88 to 0.45), two-sided P=0.088 — statistical significance not achieved, and because of the testing hierarchy the 56 mg arm could not be formally tested (nominal difference -4.1, P=0.027). TRANSFORM-3 (Ochs-Ross et al., NCT02422186, 139 elderly patients): median-unbiased treatment difference -3.6 (95% CI -7.20 to 0.07), z=1.89, two-sided P=0.059 — the authors state that the primary endpoint was not achieved. Post-hoc, the effect was larger in patients aged 65 to 74 (-4.9, P=0.017 nominal) than in those 75 and older (-0.4, P=0.930).',
         evidenceSource:
           'Fedgchin M et al., Int J Neuropsychopharmacol 2019;22:616-630; Ochs-Ross R et al., Am J Geriatr Psychiatry 2020;28:121-141',
         doi: '10.1093/ijnp/pyz039',
@@ -2608,7 +2608,7 @@ export const SMALL_MOLECULE_NEURO_DOSSIERS: SeedDossier[] = [
         q: 'It failed two of three trials. How was it approved?',
         a: "The FDA accepted a package consisting of one positive short-term trial (TRANSFORM-2, a 4.0-point MADRS separation) plus a positive randomised-withdrawal maintenance trial (SUSTAIN-1) as substantial evidence of effectiveness, in a population — depression that has failed at least two antidepressants — with no approved options. TRANSFORM-1 missed at P=0.088 and TRANSFORM-3 missed at P=0.059. Turner's Lancet Psychiatry critique lists this as one of seven concerns, in particular the counting of a discontinuation-design study toward efficacy. Both facts are true: the approval was defensible on unmet need, and the efficacy package was thinner than the usual two adequate and well-controlled trials.",
         auditNote:
-          'This is the single most important thing to understand about esketamine, and it is rarely stated plainly in patient-facing material.',
+          'The approval relied on one positive short-term trial plus a randomised-withdrawal maintenance trial; the other two short-term trials missed their primary endpoints.',
       },
       {
         q: 'What does "functional unblinding" mean and why does it matter here?',

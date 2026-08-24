@@ -188,7 +188,7 @@ export const MRNA_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'Six-month follow-up: 91.3%, with the decline already visible inside the trial',
         laymanSummary:
-          'When the same trial was read out at six months, efficacy against any COVID-19 had slipped to 91.3% and the authors said plainly that it was declining.',
+          'When the same trial was read out at six months, efficacy against any COVID-19 had slipped to 91.3% and the authors said that it was declining.',
         technicalDetails:
           '44,165 participants aged 16 and over plus 2,264 aged 12 to 15. Efficacy against COVID-19 from seven days after dose two through six months was 91.3% (95% CI 89.0 to 93.2) among participants without evidence of prior infection. Efficacy against severe disease was 96.7% (95% CI 80.3 to 99.9). In South Africa, where beta predominated, efficacy was 100%.',
         evidenceSource: 'Thomas et al., New England Journal of Medicine, 2021',
@@ -1084,7 +1084,7 @@ export const MRNA_DOSSIERS: SeedDossier[] = [
       {
         id: 'r45-a5',
         category: 'measured',
-        title: 'Reactogenicity is high, and was reported plainly',
+        title: 'Local and systemic reactions were common and documented',
         laymanSummary:
           'Most recipients had a sore arm and roughly half had a systemic reaction such as fatigue or headache, almost all mild and short.',
         technicalDetails:

@@ -227,7 +227,7 @@ export const HPO3_AVERAGE_MASS = 79.9799
  *   fivePrimeTriphosphate  = + H2O + 2xHPO3 = +177.9751 (i.e. +159.9598 over the monophosphate,
  *                                                        the "add ~159" rule of thumb)
  *
- * The default everywhere in this engine is `five-prime-hydroxyl`, because the sequences RNAwiki
+ * The default everywhere in this engine is `five-prime-hydroxyl`, because the sequences RNAWiki
  * stores are synthetic siRNA/ASO strands, which are made 5'-OH. An in-vitro-transcribed mRNA is
  * 5'-triphosphate before capping; pass the terminus explicitly when that is what is meant.
  */
@@ -394,10 +394,8 @@ export interface OpenReadingFrame {
 /**
  * First AUG to the first in-frame stop.
  *
- * The AUG is searched for at any offset, not only in frame 0 — a 5' UTR is normal, and the
- * reference wireframe's own sample sequences are not all triplet-aligned. `null` only when the
- * sequence contains no AUG at all; an AUG with no downstream stop is still a reading frame, just
- * an open one, and saying so is more useful than saying nothing.
+ * The AUG is searched for at any offset because a 5' UTR may precede it. `null` means no AUG was
+ * found; an AUG without a downstream stop is returned as an open reading frame.
  */
 export function findOpenReadingFrame(sequence: string): OpenReadingFrame | null {
   const start = sequence.indexOf(START_CODON)

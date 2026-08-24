@@ -932,7 +932,7 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         q: 'What does it cost to make?',
         a: 'There is no published answer. The cost-of-production literature covers semaglutide, liraglutide, dulaglutide and exenatide, and stops there. That is why this page shows no pricing block, and why a quoted synthesis cost for tirzepatide should be treated as an unsourced claim.',
-        auditNote: 'Absence of a figure is the honest state of the record.',
+        auditNote: 'No verifiable figure is available in the record.',
       },
       {
         q: 'Does it help sleep apnoea because of weight loss, or directly?',

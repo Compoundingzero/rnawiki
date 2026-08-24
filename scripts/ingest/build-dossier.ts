@@ -1,5 +1,6 @@
 import type { MolecularSchema } from '@/lib/types'
 import { slugify } from '@/lib/ids'
+import { cleanSourceLabelText, isPlaceholderMedicineName } from '@/lib/public-data-integrity'
 import type { AggregatedSubstance } from './openfda'
 import type { SupplementIngredient } from './dsld'
 import {
@@ -14,17 +15,8 @@ import {
 } from './normalise'
 
 /**
- * Turns one aggregated substance into a database row.
- *
- * THE RULE THIS FILE EXISTS TO ENFORCE: ingestion fills IDENTITY and REGULATORY facts, and nothing
- * else. Every field below is either copied from a source record, derived from one by a documented
- * rule, or left empty. There is no field here whose value this pipeline composed.
- *
- * That is why oneSentenceVerdict, laymanHowItWorks, pricing, substitutes, conditionContext,
- * mechanismSteps, keyAudits and trials are all empty or null on an ingested row: they are
- * editorial judgements, a contributor makes them, and a plausible-sounding sentence generated here
- * would be indistinguishable on the page from one a pharmacologist wrote. Leaving them blank is
- * what makes the difference visible.
+ * Convert one aggregated substance into a database row. Ingestion fills sourced identity and
+ * regulatory facts only; editorial conclusions and explanatory sections remain empty.
  */
 
 export interface IngestStructure {
@@ -74,9 +66,8 @@ export interface SkipDecision {
 }
 
 /**
- * Names that are chemistry-catalogue entries, packaging artefacts or proprietary blends rather
- * than substances a reader would look up. Filtered explicitly, and every skip is logged with its
- * reason — a silent filter is a lie about coverage.
+ * Explicit exclusions for catalogue entries, packaging artefacts and unnamed blends. Each skip
+ * retains a reason for coverage reporting.
  */
 const NON_SUBSTANCE_PATTERNS: ReadonlyArray<{ pattern: RegExp; reason: string }> = [
   { pattern: /^[\d\W]+$/, reason: 'no letters' },
@@ -84,9 +75,7 @@ const NON_SUBSTANCE_PATTERNS: ReadonlyArray<{ pattern: RegExp; reason: string }>
     pattern: /^(WATER|PURIFIED WATER|STERILE WATER|ALCOHOL|ETHYL ALCOHOL|GLYCERIN|GLYCERINE)$/i,
     reason: 'solvent or vehicle, not an active substance',
   },
-  // Tablet fillers, binders and coatings. They are genuinely listed as ingredients on thousands of
-  // labels, which is exactly why they float to the top of any popularity ordering -- and a wiki
-  // page for "Magnesium Stearate" is a page nobody came for.
+  // Common tablet fillers, binders and coatings listed as inactive ingredients.
   {
     pattern:
       /^(CELLULOSE|MICROCRYSTALLINE CELLULOSE|MAGNESIUM STEARATE|STEARIC ACID|SILICON DIOXIDE|TITANIUM DIOXIDE|CROSCARMELLOSE|SODIUM STARCH GLYCOLATE|HYPROMELLOSE|POVIDONE|POLYSORBATE 80|SHELLAC|CARNAUBA WAX|TALC|DEXTRIN|MALTODEXTRIN|SUCROSE|LACTOSE|CORN STARCH|STARCH|SILICA|COLOR|FLAVOR|NATURAL FLAVOR)$/i,
@@ -106,6 +95,9 @@ export function shouldIngest(input: BuildInput): SkipDecision {
   const { substance, supplement } = input
   const moiety = substance.moiety
 
+  if (isPlaceholderMedicineName(moiety)) {
+    return { keep: false, reason: 'placeholder name, not a substance identity' }
+  }
   if (moiety.length < 3) return { keep: false, reason: 'name shorter than 3 characters' }
   if (moiety.length > MAX_NAME_LENGTH) {
     return {
@@ -123,8 +115,7 @@ export function shouldIngest(input: BuildInput): SkipDecision {
       (substance.applicationKinds.ANDA ?? 0) >
     0
 
-  // A substance with no label, no FDA application, one lone product listing and no supplement
-  // record is almost always a data artefact. Anything with any of those four survives.
+  // Exclude isolated product listings with no supporting label, application or supplement record.
   if (!hasApplication && !substance.label && !supplement && substance.productCount < 2) {
     return {
       keep: false,
@@ -138,9 +129,7 @@ export function shouldIngest(input: BuildInput): SkipDecision {
 export function buildDossierRow(input: BuildInput): DrugInsert {
   const { substance, supplement, structure } = input
 
-  // DSLD group names carry a parenthesised qualifier -- "Vitamin D (Mixed)", "Vitamin D
-  // (Cholecalciferol)". baseMoiety already strips it for keying, so leaving it in the display name
-  // produced a page titled with the parenthetical while a second page held the plain name.
+  // DSLD group qualifiers are already removed for identity matching; remove them from display too.
   const supplementName = supplement?.group
     .replace(/\s*\([^)]*\)\s*/g, ' ')
     .replace(/\s+/g, ' ')
@@ -172,14 +161,13 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
 
   const brands = pickBrandNames(substance.brands, substance.moiety)
 
-  // "Sponsor" is a regulatory role: the party that holds the application. A dietary supplement has
-  // no application and therefore no sponsor, so whatever name the NDC labeler field happens to
-  // carry -- often a contract manufacturer in another country -- would be presented as something
-  // it is not. Only an actual FDA application supplies a sponsor.
+  // Only an FDA application supplies a sponsor; an NDC labeler is not necessarily the sponsor.
   const hasApplicationSponsor = substance.sponsors.some((candidate) => candidate.fromApplication)
   const sponsor = hasApplicationSponsor ? pickSponsor(substance.sponsors) : ''
 
-  const rawIndication = substance.label?.indications_and_usage ?? substance.label?.purpose ?? ''
+  const rawIndication = cleanSourceLabelText(
+    substance.label?.indications_and_usage ?? substance.label?.purpose ?? '',
+  )
   const indication = rawIndication ? trimToSentence(rawIndication, 600) : ''
   const patientFriendlyIndication = extractPatientFriendlyIndication(rawIndication)
   const target = extractTarget(substance.label?.mechanism_of_action)
@@ -188,9 +176,7 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
   if (supplement) provenance.push('NIH Dietary Supplement Label Database')
   if (structure) provenance.push(structure.source)
 
-  // A structure block is written only when PubChem actually returned one. isMachineVerifiedStructure
-  // stays false and no verificationHash is set: ingestion does not run the RNA Intelligence sweep,
-  // and a verification hash that did not come from an actual sweep would be a forged certificate.
+  // Ingested PubChem structures remain unverified until RNA Intelligence runs a sweep.
   const molecularSchema: MolecularSchema | null = structure
     ? {
         structureType: 'small_molecule_smiles',
@@ -205,9 +191,7 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
       }
     : null
 
-  // Every string below is capped to its column width. Postgres raises 22001 and aborts the whole
-  // 500-row batch on a single over-long value, so the cap belongs here rather than in the loader:
-  // one 400-character brand list would otherwise cost 499 unrelated rows.
+  // Cap strings before batching so one overlong value cannot abort the entire insert.
   const slug = cap(slugify(displayName), 92)
 
   return {
@@ -217,8 +201,7 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
     tradeName: brands.length > 0 ? cap(brands.join(' / '), 400) : null,
     sponsor: cap(sponsor, 300),
     targetGene: cap(target, 200),
-    // The label states a target, not a protein name distinct from it. Duplicating the symbol into
-    // targetProtein would be inventing a second fact from one; it stays empty for a contributor.
+    // A label target is not copied into a distinct protein field without separate evidence.
     targetProtein: '',
     modality: modality.modality,
     approvalStatus: approval.status,
@@ -242,25 +225,11 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
 }
 
 /**
- * Slugs must be unique, and two source records can normalise to the same one.
- *
- * The original comment here said that happened because "two different substances" could share a
- * slug, and gave "Vitamin B-12" and "Vitamin B 12" as the example — which is one substance spelled
- * two ways, and describes the bug rather than the case. Suffixing produced eleven pairs of pages
- * with identical titles: `vitamin-c` carrying six sources and a real indication, and `vitamin-c-2`
- * carrying one source and nothing at all, both called "Vitamin C".
- *
- * Rows that produce the same slug are now merged, because a slug is the display name with
- * separators and punctuation normalised away, and no two genuinely different substances have
- * turned up sharing one. Merging on the display name alone still left three pairs differing by a
- * hyphen — "Medium Chain Triglycerides" and "Medium-Chain Triglycerides" — which is the same
- * failure the original comment mistook for two substances.
- *
- * A merge between two spellings is logged with both, since the surviving one becomes the page
- * title.
+ * Merge rows whose display names normalise to the same slug. The merge is logged when spellings
+ * differ because the surviving spelling becomes the page title.
  */
 
-/** The row that knows more, and how much more it knows. */
+/** Score the amount of recorded information when choosing a duplicate survivor. */
 function informationScore(row: DrugInsert): number {
   const filled = [
     row.tradeName,
@@ -274,9 +243,7 @@ function informationScore(row: DrugInsert): number {
 }
 
 /**
- * Folds `other` into `keep`. Every field the survivor left empty is taken from the loser, and the
- * list fields are unioned — the loser is about to stop existing, and anything it alone knew would
- * go with it.
+ * Fill empty fields on `keep` from `other` and union their list fields.
  */
 function mergeDuplicate(keep: DrugInsert, other: DrugInsert): void {
   const preferString = (a: string, b: string): string => (a.trim().length > 0 ? a : b)
@@ -297,8 +264,7 @@ function mergeDuplicate(keep: DrugInsert, other: DrugInsert): void {
   keep.saltForms = [...new Set([...keep.saltForms, ...other.saltForms])]
   keep.brandNames = [...new Set([...keep.brandNames, ...other.brandNames])]
   keep.productCount += other.productCount
-  // An FDA approval outranks a supplement listing: the same substance sold both ways is still an
-  // approved drug, and saying otherwise on the page understates what is known about it.
+  // Preserve an FDA approval when the same substance also appears as a supplement.
   if (other.approvalStatus === 'FDA Approved') keep.approvalStatus = other.approvalStatus
 }
 /** Truncate to a column width without leaving a dangling separator. */
@@ -339,8 +305,7 @@ export function assignUniqueSlugs(rows: DrugInsert[]): DrugInsert[] {
       `[build] merged ${merged.length} duplicate records: ${merged.slice(0, 8).join(', ')}`,
     )
   }
-  // Listed in full: the surviving spelling becomes the page title, and that is a choice worth
-  // being able to see rather than a detail buried in a count.
+  // List spelling merges because they determine the surviving page title.
   if (renamed.length > 0) {
     console.log(`[build] ${renamed.length} of those merged two different spellings:`)
     for (const line of renamed) console.log(`   ${line}`)

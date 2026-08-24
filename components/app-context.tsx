@@ -1,17 +1,15 @@
 'use client'
 
-// The client spine, and the direct descendant of the wireframe's App.tsx.
-//
-// App.tsx held four things in one component: the signed-in user, the drug ledger, which modal is
-// open, and the current view. Next.js takes the last two of those over — routing IS the view, and
-// the server owns the drug data — so what is left here is exactly the state that must be shared
-// across the header, the dossier and every modal: who is signed in, and which modal is open.
-//
-// It deliberately does NOT cache drugs. The wireframe kept the whole ledger in localStorage and
-// mutated it in place, which is why an edit there never reached anyone else. Here an edit is a
-// revision, the server decides whether it publishes, and the page revalidates.
-
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react'
 import type { CommentUser } from '@/lib/types'
 
 export type ModalKey = 'auth' | 'feedback' | 'account' | 'guide' | null
@@ -21,15 +19,30 @@ interface AppContextValue {
   /** True while the initial /api/auth/me round trip is in flight. */
   isLoadingUser: boolean
   setCurrentUser: (user: CommentUser | null) => void
-  refreshUser: () => Promise<void>
+  /** `undefined` means the server session could not be confirmed; last-known identity is kept. */
+  refreshUser: () => Promise<CommentUser | null | undefined>
 
   openModal: ModalKey
   setOpenModal: (key: ModalKey) => void
-  /** Convenience the wireframe called `onOpenDoctorModal`. */
   requireAuth: () => void
 }
 
 const AppContext = createContext<AppContextValue | null>(null)
+
+export function isCurrentUserRefresh(args: {
+  generation: number
+  currentGeneration: number
+  aborted: boolean
+}): boolean {
+  return !args.aborted && args.generation === args.currentGeneration
+}
+
+export function isSessionMutationInteractionLocked(
+  requestPending: boolean,
+  reconciliationRequired: boolean,
+): boolean {
+  return requestPending || reconciliationRequired
+}
 
 export function AppProvider({
   children,
@@ -46,22 +59,78 @@ export function AppProvider({
   const [currentUser, setCurrentUser] = useState<CommentUser | null>(initialUser)
   const [isLoadingUser, setIsLoadingUser] = useState(false)
   const [openModal, setOpenModal] = useState<ModalKey>(null)
+  const refreshRequestRef = useRef<{ generation: number; controller: AbortController | null }>({
+    generation: 0,
+    controller: null,
+  })
+
+  useEffect(
+    () => () => {
+      refreshRequestRef.current.controller?.abort()
+      refreshRequestRef.current.generation += 1
+      refreshRequestRef.current.controller = null
+    },
+    [],
+  )
 
   const refreshUser = useCallback(async () => {
+    refreshRequestRef.current.controller?.abort()
+    const controller = new AbortController()
+    const generation = refreshRequestRef.current.generation + 1
+    refreshRequestRef.current = { generation, controller }
     setIsLoadingUser(true)
     try {
-      const res = await fetch('/api/auth/me', { cache: 'no-store' })
-      if (!res.ok) {
-        setCurrentUser(null)
-        return
+      const res = await fetch('/api/auth/me', { cache: 'no-store', signal: controller.signal })
+      if (
+        !isCurrentUserRefresh({
+          generation,
+          currentGeneration: refreshRequestRef.current.generation,
+          aborted: controller.signal.aborted,
+        })
+      ) {
+        return undefined
       }
-      const data: { user: CommentUser | null } = await res.json()
+      if (!res.ok) {
+        // A 401, 429 or 500 does not prove that the cookie is signed out. Preserve the last-known
+        // account; only a successful `{ user: null }` response may clear it.
+        return undefined
+      }
+      const body: unknown = await res.json()
+      if (
+        typeof body !== 'object' ||
+        body === null ||
+        !('user' in body) ||
+        (body.user !== null && (typeof body.user !== 'object' || body.user === null))
+      ) {
+        throw new Error('The account response did not contain a user value.')
+      }
+      const data = body as { user: CommentUser | null }
+      if (
+        !isCurrentUserRefresh({
+          generation,
+          currentGeneration: refreshRequestRef.current.generation,
+          aborted: controller.signal.aborted,
+        })
+      ) {
+        return undefined
+      }
       setCurrentUser(data.user)
+      return data.user
     } catch {
-      // A failed refresh must never sign the reader out — the cookie is still valid, the network
-      // was not. Leave the last known user in place.
+      // A failed or malformed refresh cannot prove either signed-in state. Leave the last-known
+      // user in place and tell the caller that reconciliation was inconclusive.
+      return undefined
     } finally {
-      setIsLoadingUser(false)
+      if (
+        isCurrentUserRefresh({
+          generation,
+          currentGeneration: refreshRequestRef.current.generation,
+          aborted: controller.signal.aborted,
+        })
+      ) {
+        refreshRequestRef.current.controller = null
+        setIsLoadingUser(false)
+      }
     }
   }, [])
 

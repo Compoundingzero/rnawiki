@@ -119,7 +119,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest comparison is between insulin aspart and ordinary soluble human insulin, which costs a fraction as much and which the pooled randomised evidence separates from it by about a seventh of a percentage point of HbA1c with no difference in severe hypoglycaemia. Aspart competes with insulin lispro and insulin glulisine, which do the same trick with different residues and have never been shown to differ from it. Nothing eaten, brewed or bought over a counter substitutes for insulin in type 1 diabetes, and this page does not pretend otherwise.',
+        'The comparison is between insulin aspart and ordinary soluble human insulin, which costs a fraction as much and which the pooled randomised evidence separates from it by about a seventh of a percentage point of HbA1c with no difference in severe hypoglycaemia. Aspart competes with insulin lispro and insulin glulisine, which do the same trick with different residues and have never been shown to differ from it. Nothing eaten, brewed or bought over a counter substitutes for insulin in type 1 diabetes, and this page does not pretend otherwise.',
       conventionalRx: [
         {
           name: 'Regular human insulin (Humulin R, Novolin R)',
@@ -980,7 +980,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Why does detemir cause less weight gain than other insulins?',
-        a: 'That is the honest question, and the trials do not settle it. Against NPH insulin the difference is clear and randomised: 1.2 kg against 2.8 kg over 24 weeks in 476 people. Against insulin glargine the difference is smaller — 3.0 kg against 3.9 kg in completers — and the trial authors state it was primarily driven by the participants who stayed on one injection a day, who were taking about half the units of the twice-daily group. Mechanisms have been proposed, including preferential action on the liver because albumin-bound drug distributes less into peripheral tissue, but no trial on this page demonstrates one. What is measured is the weight. What is inferred is why.',
+        a: 'The trials do not settle that question. Against NPH insulin the difference is clear and randomised: 1.2 kg against 2.8 kg over 24 weeks in 476 people. Against insulin glargine the difference is smaller — 3.0 kg against 3.9 kg in completers — and the trial authors state it was primarily driven by the participants who stayed on one injection a day, who were taking about half the units of the twice-daily group. Mechanisms have been proposed, including preferential action on the liver because albumin-bound drug distributes less into peripheral tissue, but no trial on this page demonstrates one. What is measured is the weight. What is inferred is why.',
         auditNote:
           'A subgroup effect that tracks dose is the pattern you would expect if the explanation were simply less insulin, not different insulin.',
       },
@@ -1335,7 +1335,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Under the skin the phenol diffuses out within minutes. That uncaps the ends of each cluster, and the clusters snap together end to end into strings thousands of units long. The strings are the depot.',
         molecularDetail:
-          'Loss of the phenolic ligands opens the hexamer end faces. The hexadecanedioic acid side chain on lysine B29 of one hexamer inserts into the neighbouring hexamer, and the process repeats, producing soluble multi-hexamer chains. The FDA label states plainly that TRESIBA forms multi-hexamers on subcutaneous injection, and that the protracted profile is predominantly due to delayed absorption from this depot.',
+          'Loss of the phenolic ligands opens the hexamer end faces. The hexadecanedioic acid side chain on lysine B29 of one hexamer inserts into the neighbouring hexamer, and the process repeats, producing soluble multi-hexamer chains. The FDA label states that TRESIBA forms multi-hexamers on subcutaneous injection, and that the protracted profile is predominantly due to delayed absorption from this depot.',
         iconName: 'Link',
         visualStage: 'cellular_entry',
       },
@@ -1622,7 +1622,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest comparison for glipizide is metformin, and it has been made once, head to head, with hard endpoints: in 304 patients with type 2 diabetes and established coronary disease, metformin produced an adjusted hazard ratio of 0.54 for recurrent cardiovascular events against glipizide over a median five years, at effectively identical HbA1c. Within the sulfonylurea class, glipizide is the one with the lower measured hypoglycaemia rate: a 13,963-person cohort found glyburide users at 1.9 times the risk of serious hypoglycaemia. Nothing in a supermarket replaces a glucose-lowering drug, and the evidence for diet and exercise is a different kind of evidence with a different kind of trial behind it.',
+        'The comparison for glipizide is metformin, and it has been made once, head to head, with hard endpoints: in 304 patients with type 2 diabetes and established coronary disease, metformin produced an adjusted hazard ratio of 0.54 for recurrent cardiovascular events against glipizide over a median five years, at effectively identical HbA1c. Within the sulfonylurea class, glipizide is the one with the lower measured hypoglycaemia rate: a 13,963-person cohort found glyburide users at 1.9 times the risk of serious hypoglycaemia. Nothing in a supermarket replaces a glucose-lowering drug, and the evidence for diet and exercise is a different kind of evidence with a different kind of trial behind it.',
       conventionalRx: [
         {
           name: 'Metformin',
@@ -1803,7 +1803,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The drug has been sold since 1984. Its own FDA-approved label says that how it lowers blood sugar over the long run is not clearly known, and that fasting insulin levels do not go up even after years of treatment.',
         technicalDetails:
-          'The clinical pharmacology section of the glipizide label states that "the mechanism by which glipizide lowers blood glucose during long-term administration has not been clearly established", that fasting insulin levels are not elevated even on long-term administration while the post-prandial insulin response remains enhanced after at least six months, and that "extrapancreatic effects may play a part in the mechanism of action of oral sulfonylurea hypoglycemic drugs". The extended-release label adds that in two randomised double-blind dose-response studies totalling 347 patients, "the relationship between dose and reduction in hemoglobin A1c was not established", although fasting plasma glucose fell more at 20 mg than at 5 mg. A drug in continuous use for four decades whose dose-response relationship for its own registration endpoint is described on its label as not established is a fact worth stating plainly.',
+          'The clinical pharmacology section of the glipizide label states that "the mechanism by which glipizide lowers blood glucose during long-term administration has not been clearly established", that fasting insulin levels are not elevated even on long-term administration while the post-prandial insulin response remains enhanced after at least six months, and that "extrapancreatic effects may play a part in the mechanism of action of oral sulfonylurea hypoglycemic drugs". The extended-release label adds that in two randomised double-blind dose-response studies totalling 347 patients, "the relationship between dose and reduction in hemoglobin A1c was not established", although fasting plasma glucose fell more at 20 mg than at 5 mg. The absence of an established dose-response relationship for the registration endpoint remains notable after four decades of use.',
         evidenceSource:
           'FDA prescribing information for glipizide tablets USP, CLINICAL PHARMACOLOGY; FDA prescribing information for GLUCOTROL XL, sections 12.1 and 12.2',
         inferredClaim:
@@ -1975,7 +1975,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Why does the label say this drug increases cardiovascular deaths?',
-        a: 'Because of a trial that reported in 1970 and did not test glipizide. The University Group Diabetes Program randomised 823 people with type 2 diabetes to four arms, and found that those on a fixed dose of tolbutamide for five to eight years had cardiovascular mortality about two and a half times that of the diet-only group. Total mortality was not significantly increased, and the tolbutamide arm was stopped, which the label concedes limited the trial from detecting a mortality effect either way. The FDA extended the warning to every drug in the class "in view of their close similarities in mode of action and chemical structure". Glipizide was approved in 1984 and has never had its own placebo-controlled cardiovascular outcome trial. Whether the warning is right about glipizide specifically is unknown; the label states plainly that it is applied by analogy.',
+        a: 'Because of a trial that reported in 1970 and did not test glipizide. The University Group Diabetes Program randomised 823 people with type 2 diabetes to four arms, and found that those on a fixed dose of tolbutamide for five to eight years had cardiovascular mortality about two and a half times that of the diet-only group. Total mortality was not significantly increased, and the tolbutamide arm was stopped, which the label concedes limited the trial from detecting a mortality effect either way. The FDA extended the warning to every drug in the class "in view of their close similarities in mode of action and chemical structure". Glipizide was approved in 1984 and has never had its own placebo-controlled cardiovascular outcome trial. Whether the warning is right about glipizide specifically is unknown; the label states that it is applied by analogy.',
         auditNote:
           'A warning extended by chemical similarity is a hypothesis with regulatory force. It is not a measurement of this drug.',
       },
@@ -2277,7 +2277,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The label states no drug in this field has conclusively reduced macrovascular risk',
         laymanSummary:
-          'The precautions section of the glyburide label says plainly that no clinical study has established conclusive evidence that this drug — or any diabetes drug — reduces the risk of heart attacks and strokes. That sentence has been on the label for decades.',
+          'The precautions section of the glyburide label says that no clinical study has established conclusive evidence that this drug — or any diabetes drug — reduces the risk of heart attacks and strokes. That sentence has been on the label for decades.',
         technicalDetails:
           'The PRECAUTIONS section of the glyburide label opens: "Macrovascular Outcomes: There have been no clinical studies establishing conclusive evidence of macrovascular risk reduction with glyburide tablets or any other anti-diabetic drug." The same label carries the class-wide special warning on increased risk of cardiovascular mortality derived from the University Group Diabetes Program, an 823-patient trial of tolbutamide reported in 1970 and extended to the class by chemical analogy. The randomised evidence that exists is neutral rather than reassuring: the Gangji meta-analysis found a cardiovascular event risk ratio of 0.84 (95% CI 0.56 to 1.26) and a death risk ratio of 0.87 (95% CI 0.70 to 1.07) against other secretagogues, both compatible with no difference in either direction, from trials not designed or powered for those endpoints. Glyburide has never had a dedicated cardiovascular outcome trial.',
         evidenceSource:
@@ -4204,7 +4204,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The tablet reaches peak levels within an hour and half of it is cleared within about ninety minutes. That short window is what the drug was built for: cover a meal, then stop.',
         technicalDetails:
-          'The label reports complete gastrointestinal absorption, absolute bioavailability of 56%, peak plasma concentration within one hour, and a half-life of 1.0 to 1.4 hours with an individual range from 0.4 to 8.0 hours. Total body clearance is 38 ± 16 L/hr and volume of distribution at steady state 31 ± 12 L. Clearance does not change across the 0.5 to 4 mg range, indicating linear pharmacokinetics, and the drug does not accumulate in serum on repeated dosing. The individual half-life range reaching 8.0 hours is worth noting alongside the mean: the population value is short, and some individuals are not.',
+          'The label reports complete gastrointestinal absorption, absolute bioavailability of 56%, peak plasma concentration within one hour, and a half-life of 1.0 to 1.4 hours with an individual range from 0.4 to 8.0 hours. Total body clearance is 38 ± 16 L/hr and volume of distribution at steady state 31 ± 12 L. Clearance does not change across the 0.5 to 4 mg range, indicating linear pharmacokinetics, and the drug does not accumulate in serum on repeated dosing. The individual range matters: although the population half-life is short, it reached 8.0 hours in some people.',
         evidenceSource:
           'FDA prescribing information for repaglinide tablets, section 12.3 Pharmacokinetics, Tables 5 and 6',
         measuredMetric:
@@ -4808,7 +4808,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does this page show what the drug costs to make?',
-        a: 'No, because no verifiable per-dose cost-of-production figure for saxagliptin could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$1.14 per tablet, the median across 16 listed products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost. It is worth noting only that this is a generic price for an off-patent molecule, and it is still roughly twelve times what pharmacies pay for glimepiride.',
+        a: 'No, because no verifiable per-dose cost-of-production figure for saxagliptin could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$1.14 per tablet, the median across 16 listed products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost. Even as a generic price for an off-patent molecule, it is still roughly twelve times what pharmacies pay for glimepiride.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -5229,7 +5229,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does alogliptin cause heart failure?',
-        a: 'The honest answer is that the same trial supports two different statements and both are in the public record. The FDA label reports that in EXAMINE, 106 patients on alogliptin (3.9%) and 89 on placebo (3.3%) were hospitalised for congestive heart failure, and on that basis it requires prescribers to weigh risks and benefits before starting the drug in people at risk. The trial investigators then published a dedicated analysis in the Lancet counting heart-failure admission as a first event: 85 (3.1%) against 79 (2.9%), hazard ratio 1.07 with a confidence interval from 0.79 to 1.46, with no difference by baseline BNP and no difference in the composite of cardiovascular death plus heart-failure admission. Their interpretation was that alogliptin did not increase heart-failure risk. The difference between the numbers is a difference in what is being counted, not a disagreement about the data.',
+        a: 'The same trial supports two different statements and both are in the public record. The FDA label reports that in EXAMINE, 106 patients on alogliptin (3.9%) and 89 on placebo (3.3%) were hospitalised for congestive heart failure, and on that basis it requires prescribers to weigh risks and benefits before starting the drug in people at risk. The trial investigators then published a dedicated analysis in the Lancet counting heart-failure admission as a first event: 85 (3.1%) against 79 (2.9%), hazard ratio 1.07 with a confidence interval from 0.79 to 1.46, with no difference by baseline BNP and no difference in the composite of cardiovascular death plus heart-failure admission. Their interpretation was that alogliptin did not increase heart-failure risk. The difference between the numbers is a difference in what is being counted, not a disagreement about the data.',
         auditNote:
           'When a label and a peer-reviewed analysis of the same trial disagree, the disagreement is usually about endpoint definition. Here it demonstrably is.',
       },
@@ -5398,7 +5398,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C19H27NO3',
       molecularWeight: '317.40 g/mol',
       targetReceptorAffinity:
-        'The FDA label describes nateglinide as (-)-N-[(trans-4-isopropylcyclohexane)carbonyl]-D-phenylalanine and states plainly that it is "structurally unrelated to the oral sulfonylurea insulin secretagogues". It interacts with the ATP-sensitive potassium channel on beta cells; the subsequent depolarisation opens the calcium channel, producing calcium influx and insulin secretion. The label adds that the extent of insulin release is glucose-dependent and diminishes at low glucose levels, and that nateglinide is highly tissue selective with low affinity for heart and skeletal muscle. Absolute bioavailability is approximately 73%, peak concentration occurs within one hour when taken before a meal, protein binding is 98%, and the elimination half-life is approximately 1.5 hours. Metabolism is 70% CYP2C9 and 30% CYP3A4; the major metabolites are less potent than the parent, but a minor isoprene metabolite has similar potency.',
+        'The FDA label describes nateglinide as (-)-N-[(trans-4-isopropylcyclohexane)carbonyl]-D-phenylalanine and states that it is "structurally unrelated to the oral sulfonylurea insulin secretagogues". It interacts with the ATP-sensitive potassium channel on beta cells; the subsequent depolarisation opens the calcium channel, producing calcium influx and insulin secretion. The label adds that the extent of insulin release is glucose-dependent and diminishes at low glucose levels, and that nateglinide is highly tissue selective with low affinity for heart and skeletal muscle. Absolute bioavailability is approximately 73%, peak concentration occurs within one hour when taken before a meal, protein binding is 98%, and the elimination half-life is approximately 1.5 hours. Metabolism is 70% CYP2C9 and 30% CYP3A4; the major metabolites are less potent than the parent, but a minor isoprene metabolite has similar potency.',
       structureSource: {
         label:
           'PubChem CID 5311309 (nateglinide) — SMILES, molecular formula and weight, re-checked against the PUG REST property endpoint and matched to the FDA label description section (molecular weight 317.43)',
@@ -5682,7 +5682,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Did it make diabetes more likely?',
-        a: 'The point estimate says slightly more likely and the confidence interval does not exclude no effect. Cumulative incidence was 36% on nateglinide against 34% on placebo, hazard ratio 1.07 with a 95% confidence interval from 1.00 to 1.15. The lower bound touches exactly 1.00, so the honest reading is that the data are compatible with no effect and with a small increase, and are not compatible with the reduction the trial was designed to find. It is worth setting beside the comparators: acarbose reduced conversion in the same kind of population with a relative hazard of 0.75 in one trial and 0.82 in another. Nateglinide is a drug that forces insulin out of beta cells, and a plausible reading — untested — is that five years of doing so in people whose beta cells are already under strain does not help.',
+        a: 'The point estimate says slightly more likely and the confidence interval does not exclude no effect. Cumulative incidence was 36% on nateglinide against 34% on placebo, hazard ratio 1.07 with a 95% confidence interval from 1.00 to 1.15. The lower bound touches exactly 1.00, so the data are compatible with no effect and with a small increase, and are not compatible with the reduction the trial was designed to find. By comparison, acarbose reduced conversion in the same kind of population with a relative hazard of 0.75 in one trial and 0.82 in another. Nateglinide is a drug that forces insulin out of beta cells, and a plausible reading — untested — is that five years of doing so in people whose beta cells are already under strain does not help.',
       },
       {
         q: 'Is nateglinide weaker than repaglinide?',
@@ -5694,7 +5694,7 @@ export const ENRICHED_BATCH_9_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does this page show what the drug costs to make?',
-        a: 'No, because no verifiable per-dose cost-of-production figure for nateglinide could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.2345 per tablet, the median across 18 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost. It is worth noting only that this price is roughly six times what pharmacies pay for glimepiride, and that nateglinide is taken with each meal rather than once a day.',
+        a: 'No, because no verifiable per-dose cost-of-production figure for nateglinide could be found and cited. The figure shown is what United States pharmacies pay to acquire it — US$0.2345 per tablet, the median across 18 listed generic products in the CMS National Average Drug Acquisition Cost survey. That is a price, not a manufacturing cost. This price is roughly six times what pharmacies pay for glimepiride, and nateglinide is taken with each meal rather than once a day.',
       },
     ],
     recentAuditDate: 'August 2026',

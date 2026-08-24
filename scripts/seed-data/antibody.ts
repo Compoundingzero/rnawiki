@@ -59,9 +59,9 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         'Reach low disease activity or remission, and stop radiographic joint erosion progressing on serial X-rays.',
     },
     oneSentenceVerdict:
-      'A fully human antibody that mops up TNF-alpha before it reaches its receptor, raising the 24-week ACR20 response rate from 14.5% on methotrexate alone to 67.2% when added to it.',
+      'A fully human antibody that binds TNF-alpha and reduces its ability to activate TNF receptors, raising the 24-week ACR20 response rate from 14.5% on methotrexate alone to 67.2% when added to it.',
     laymanHowItWorks:
-      'Your immune system uses a messenger protein called TNF-alpha to tell white blood cells where to attack. In rheumatoid arthritis that message is being broadcast into healthy joints. Adalimumab is a sponge shaped to fit TNF-alpha and nothing else, so it soaks the messenger out of the blood and joint fluid before any cell reads it. The attack orders never arrive.',
+      'Your immune system uses a messenger protein called TNF-alpha to activate inflammation. In rheumatoid arthritis, too much of that signal reaches healthy joints. Adalimumab binds TNF-alpha and reduces its ability to activate TNF receptors. This lowers one source of inflammation; it does not switch off every inflammatory pathway.',
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 95,
     pricing: {
@@ -384,7 +384,7 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does adalimumab cause cancer?',
-        a: 'A 2006 pooled analysis of randomised trials reported an odds ratio of 3.3 for malignancy, which is where the boxed warning comes from. A 2011 systematic review of registries and prospective cohorts did not confirm an overall excess, though non-melanoma skin cancer signals persisted. The honest position is that the absolute risk is small and the point estimate has moved down as the data have got larger.',
+        a: 'A 2006 pooled analysis of randomised trials reported an odds ratio of 3.3 for malignancy, which is where the boxed warning comes from. A 2011 systematic review of registries and prospective cohorts did not confirm an overall excess, though non-melanoma skin cancer signals persisted. The absolute risk is small and the point estimate has moved down as the data have got larger.',
         auditNote: 'A live example of the field changing its mind as evidence quality improved.',
       },
       {
@@ -2591,7 +2591,7 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In people whose chronic hives had already failed the anti-IgE antibody omalizumab, dupilumab did not meet its primary endpoint and the effects that were seen were small.',
         technicalDetails:
-          'Study A, in 138 omalizumab-naive patients, met its endpoints with a UAS7 difference of -8.5 (95% CI -13.2 to -3.9). Study B, in 108 omalizumab-intolerant or incomplete responders and tested at alpha 0.043 after an interim analysis, missed its primary endpoint: UAS7 difference -5.8 (95% CI -11.4 to -0.3) with a non-significant numerical trend on itch. The authors state plainly that effects were small in this population. A replicate trial, CUPID-C, was required by the FDA before approval in the anti-IgE-naive population.',
+          'Study A, in 138 omalizumab-naive patients, met its endpoints with a UAS7 difference of -8.5 (95% CI -13.2 to -3.9). Study B, in 108 omalizumab-intolerant or incomplete responders and tested at alpha 0.043 after an interim analysis, missed its primary endpoint: UAS7 difference -5.8 (95% CI -11.4 to -0.3) with a non-significant numerical trend on itch. The authors state that effects were small in this population. A replicate trial, CUPID-C, was required by the FDA before approval in the anti-IgE-naive population.',
         evidenceSource:
           'Maurer et al., Journal of Allergy and Clinical Immunology 2024 (LIBERTY-CSU CUPID Studies A and B)',
         doi: '10.1016/j.jaci.2024.01.028',
@@ -2813,7 +2813,7 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         'Reach PASI 75 or better in skin disease, achieve steroid-free clinical remission in bowel disease, and maintain response on quarterly dosing.',
     },
     oneSentenceVerdict:
-      'A human antibody against the p40 subunit shared by IL-12 and IL-23 that took 67% of psoriasis patients to PASI 75 at 12 weeks against 3% on placebo, and then proved that only the IL-23 half of its target mattered.',
+      'A human antibody against the p40 subunit shared by IL-12 and IL-23 that took 67% of psoriasis patients to PASI 75 at 12 weeks against 3% on placebo; later IL-23-specific trials supported targeting that subunit alone.',
     laymanHowItWorks:
       'Two inflammatory messengers, IL-12 and IL-23, are built from two protein blocks each and they share one block, called p40. Ustekinumab grabs that shared block, so both messengers are neutralised at once. Skin cells stop being told to divide, and the plaques thin out over weeks. One injection lasts three months.',
     auditConfidence: 'Rigorous Replicated',
@@ -3505,7 +3505,7 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is it better than the newer IL-23 drugs?',
-        a: 'It clears skin faster. Cross-trial comparisons suggest IL-23 p19 antibodies reach higher complete clearance rates and dose only every 8 or 12 weeks, and they are safe in inflammatory bowel disease where IL-17 blockade is not. Those comparisons are indirect, so the honest answer depends on which attribute matters to you.',
+        a: 'It clears skin faster. Cross-trial comparisons suggest IL-23 p19 antibodies reach higher complete clearance rates and dose only every 8 or 12 weeks, and they are safe in inflammatory bowel disease where IL-17 blockade is not. Those comparisons are indirect, so the answer depends on which attribute matters to you.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -4883,7 +4883,7 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Unlike every other Alzheimer drug, donanemab has a finish line built into the protocol. Patients whose amyloid scans fell below threshold were switched to placebo, and by 76 weeks most had.',
         technicalDetails:
-          'Patients were eligible to switch to placebo if amyloid was below 11 centiloids on a single PET scan or 11 to under 25 centiloids on two consecutive scans. The proportion eligible to switch was 17% at week 24, 47% at week 52 and 69% at week 76. This design makes the treatment a finite course rather than an indefinite one. The label states plainly that amyloid PET values may rise again after donanemab is stopped, and that there are no data beyond 76 weeks to guide whether further dosing is needed.',
+          'Patients were eligible to switch to placebo if amyloid was below 11 centiloids on a single PET scan or 11 to under 25 centiloids on two consecutive scans. The proportion eligible to switch was 17% at week 24, 47% at week 52 and 69% at week 76. This design makes the treatment a finite course rather than an indefinite one. The label states that amyloid PET values may rise again after donanemab is stopped, and that there are no data beyond 76 weeks to guide whether further dosing is needed.',
         evidenceSource: 'KISUNLA US Prescribing Information, Clinical Studies',
         measuredMetric:
           '17%, 47% and 69% of patients eligible to stop treatment at weeks 24, 52 and 76',

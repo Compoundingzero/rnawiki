@@ -1,14 +1,4 @@
-// 404.
-//
-// Deliberately self-contained: no database read, no `cookies()`, no `AppShell`. Next.js renders
-// this route as `/_not-found` and will try to prerender it at build time, and Railway's build
-// container cannot reach the database — a 404 page that needs a server round trip is a 404 page
-// that can take the whole build down with it. So it carries the reference wireframe's visual
-// language on its own: the same ground, the same logo lockup, the same search box, the same blue.
-//
-// Two ways out, because a reader who lands here wanted a specific medicine: search for it, or
-// browse the corpus. The search box is the site's real one — it needs JavaScript, which is why the
-// link to /browse sits beside it rather than behind it.
+// Keep this route database-free so Next.js can prerender it in the build container.
 
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -27,7 +17,7 @@ export default function NotFound() {
         <Link href="/" className="inline-flex items-center gap-2 select-none">
           <span className="text-base font-bold tracking-tight text-[#1D1D1F]">
             RNA<span className="text-[#0071E3]">wiki</span>
-            <span className="text-[11px] font-normal text-[#86868B]">.com</span>
+            <span className="text-[11px] font-normal text-[#6E6E73]">.com</span>
           </span>
         </Link>
 
@@ -41,8 +31,7 @@ export default function NotFound() {
           </p>
         </div>
 
-        {/* The site's own search. `popular` is empty on purpose — this page reads nothing from the
-            database, and the "Popular:" row simply does not render. */}
+        {/* An empty popular list keeps this page independent of the database. */}
         <HomeSearch popular={[]} />
 
         <div className="pt-2">
@@ -50,7 +39,7 @@ export default function NotFound() {
             href="/browse"
             className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0071E3] hover:text-[#0077ED] transition cursor-pointer group"
           >
-            <span>Browse every medicine</span>
+            <span>Browse medicines</span>
             <ArrowRight
               className="w-4 h-4 group-hover:translate-x-0.5 transition shrink-0"
               aria-hidden="true"

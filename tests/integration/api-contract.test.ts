@@ -28,7 +28,7 @@ vi.mock('next/headers', () => ({
 
 vi.mock('next/cache', () => ({ revalidatePath: vi.fn(), revalidateTag: vi.fn() }))
 
-import { eq, inArray, like } from 'drizzle-orm'
+import { eq, inArray } from 'drizzle-orm'
 import { db } from '@/db'
 import { drugs, feedback, users } from '@/db/schema'
 import { getContributorProfile } from '@/lib/queries/users'
@@ -45,6 +45,7 @@ import { POST as toggleSave } from '@/app/api/drugs/[slug]/save/route'
 import { GET as savedDrugs } from '@/app/api/me/saved/route'
 import { POST as sendFeedback } from '@/app/api/feedback/route'
 import { GET as getDrug } from '@/app/api/drugs/[slug]/route'
+import { GET as listDrugRecords } from '@/app/api/drugs/route'
 
 // ---------------------------------------------------------------------------
 
@@ -137,14 +138,29 @@ beforeAll(async () => {
     name: `Contract Test Drug ${RUN}`,
     modality: 'Small Molecule',
     approvalStatus: 'FDA Approved',
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CCO',
+      isMachineVerified: true,
+      laboratoryWorkflow: [
+        {
+          id: `protocol-${RUN}`,
+          stepNumber: 1,
+          phase: 'Assay_Quantification',
+          name: 'Restricted assay step',
+          description: 'Operational assay detail for the contract boundary.',
+          reagentsAndBuffer: 'Restricted buffer recipe',
+        },
+      ],
+    },
   })
   drugIds.push(drugId)
 })
 
 afterAll(async () => {
-  await db.delete(feedback).where(like(feedback.message, `%${RUN}%`))
+  // Feedback and physician requests are append-only audit rows. The integration harness drops the
+  // whole disposable database, so this file must not punch a cleanup hole through that contract.
   if (drugIds.length > 0) await db.delete(drugs).where(inArray(drugs.id, drugIds))
-  if (accountId) await db.delete(users).where(eq(users.id, accountId))
 })
 
 beforeEach(async () => {
@@ -329,6 +345,12 @@ describe('writes that require an account', () => {
 })
 
 describe('public reads', () => {
+  it('rejects an excessive public-list offset before querying the database', async () => {
+    const res = await listDrugRecords(get('http://localhost/api/drugs?offset=600001'))
+    expect(res.status).toBe(422)
+    expect((await res.json()) as { code: string }).toMatchObject({ code: 'invalid_input' })
+  })
+
   it('returns 404 for a slug that names nothing', async () => {
     const res = await getDrug(
       get(`http://localhost/api/drugs/no-such-drug-${RUN}`),
@@ -336,6 +358,86 @@ describe('public reads', () => {
     )
     expect(res.status).toBe(404)
     expect(((await res.json()) as { error: string }).error).toBe('No dossier with that slug')
+  })
+
+  it('does not fall back to a medicine-wide legacy record for an unknown programme selector', async () => {
+    const res = await getDrug(
+      get(`http://localhost/api/drugs/${drugSlug}?programme=not-a-real-programme`),
+      slugContext(drugSlug),
+    )
+    expect(res.status).toBe(404)
+    expect((await res.json()) as { code: string }).toMatchObject({
+      code: 'programme_not_found',
+    })
+  })
+
+  it('omits laboratory workflow for anonymous and signed-in non-steward readers', async () => {
+    const anonymous = await getDrug(
+      get(`http://localhost/api/drugs/${drugSlug}`),
+      slugContext(drugSlug),
+    )
+    expect(anonymous.status).toBe(200)
+    const anonymousBody = (await anonymous.json()) as {
+      drug: { molecularSchema?: Record<string, unknown> }
+      access: { laboratoryWorkflow: Record<string, unknown> }
+      programmeDossier: { bindingState: string; selectedProgrammeId: string }
+      evidenceAuthority: { scope: string; authoritativeObject: string }
+      legacyMedicineRecord: unknown
+    }
+
+    expect(anonymousBody.drug.molecularSchema).not.toHaveProperty('laboratoryWorkflow')
+    expect(anonymousBody.access.laboratoryWorkflow).toEqual({
+      status: 'restricted',
+      included: false,
+      reason: 'steward_or_admin_required',
+    })
+    expect(JSON.stringify(anonymousBody)).not.toContain('Restricted buffer recipe')
+    expect(anonymousBody.programmeDossier).toMatchObject({
+      bindingState: 'legacy_record',
+      selectedProgrammeId: `legacy:${drugSlug}`,
+    })
+    expect(anonymousBody.evidenceAuthority).toEqual({
+      scope: 'legacy_medicine_record',
+      authoritativeObject: 'drug',
+    })
+    expect(anonymousBody.legacyMedicineRecord).toBeNull()
+
+    await signInThroughRoute()
+    const signedIn = await getDrug(
+      get(`http://localhost/api/drugs/${drugSlug}`),
+      slugContext(drugSlug),
+    )
+    const signedInBody = (await signedIn.json()) as typeof anonymousBody
+
+    expect(signedInBody.drug.molecularSchema).not.toHaveProperty('laboratoryWorkflow')
+    expect(signedInBody.access.laboratoryWorkflow).toMatchObject({
+      status: 'restricted',
+      included: false,
+    })
+  })
+
+  it('returns the recorded workflow to an authenticated steward for editor reload', async () => {
+    await db.update(users).set({ trustTier: 'steward' }).where(eq(users.id, accountId))
+
+    try {
+      await signInThroughRoute()
+      const res = await getDrug(
+        get(`http://localhost/api/drugs/${drugSlug}`),
+        slugContext(drugSlug),
+      )
+      expect(res.status).toBe(200)
+      const body = (await res.json()) as {
+        drug: { molecularSchema?: { laboratoryWorkflow?: Array<{ reagentsAndBuffer: string }> } }
+        access: { laboratoryWorkflow: Record<string, unknown> }
+      }
+
+      expect(body.access.laboratoryWorkflow).toEqual({ status: 'full', included: true })
+      expect(body.drug.molecularSchema?.laboratoryWorkflow).toEqual([
+        expect.objectContaining({ reagentsAndBuffer: 'Restricted buffer recipe' }),
+      ])
+    } finally {
+      await db.update(users).set({ trustTier: 'new' }).where(eq(users.id, accountId))
+    }
   })
 })
 

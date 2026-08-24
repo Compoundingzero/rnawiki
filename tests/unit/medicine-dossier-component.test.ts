@@ -1,0 +1,1427 @@
+import * as React from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
+import { describe, expect, it } from 'vitest'
+
+import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
+import { AppProvider } from '@/components/app-context'
+import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
+import { buildPublishedProgrammeReaderSummary } from '@/lib/public-medicine-language'
+
+// Next preserves JSX for its own compiler; Vitest's direct server render uses the classic runtime.
+;(globalThis as typeof globalThis & { React: typeof React }).React = React
+
+function view(overrides: Partial<MedicineDossierViewModel> = {}): MedicineDossierViewModel {
+  const bindingState = overrides.bindingState ?? 'programme_unpublished'
+  const verdict = overrides.verdict ?? ''
+  const defaultTakeaway =
+    verdict || 'No reviewed plain-language answer has been published for this use.'
+  return {
+    slug: 'synthetic-medicine',
+    name: 'Synthetic Medicine',
+    modality: 'Synthetic modality',
+    approvalStatus: 'Active',
+    programmes: [
+      {
+        id: 'programme-a',
+        label: 'Programme A',
+        status: 'Active',
+        href: '?programme=programme-a',
+        selected: true,
+      },
+    ],
+    selectedProgrammeId: 'programme-a',
+    selectedProgrammeLabel: 'Programme A',
+    selectedProgrammeStatus: 'Active',
+    bindingState: 'programme_unpublished',
+    verdict: '',
+    mechanismSummary: {},
+    tenSecondWordCount: 0,
+    evidenceNodes: [],
+    studies: [],
+    keyOutcomes: [],
+    mechanismSteps: [],
+    timelineEvents: [],
+    sources: [],
+    freshness: 'unknown',
+    freshnessLabel: 'Audit not completed',
+    review: { historyHref: '/d/synthetic-medicine/history' },
+    machineFindingCodes: ['PROGRAMME_VERDICT_NOT_PUBLISHED'],
+    medicineRecord: {
+      conventionalAlternatives: [],
+      commonQuestions: [],
+      communityNotes: [],
+    },
+    ...overrides,
+    statusBadge: overrides.statusBadge ?? { kind: 'programme_status', value: 'Active' },
+    readerSummary: overrides.readerSummary ?? {
+      basis:
+        bindingState === 'legacy_record'
+          ? 'older_record'
+          : bindingState === 'published_programme'
+            ? 'published_programme'
+            : 'unpublished_programme',
+      takeaway: defaultTakeaway,
+      ...(verdict ? { exactText: verdict } : {}),
+      simplified: false,
+      contextItems: [],
+      terms: [],
+    },
+  }
+}
+
+function renderDossier(dossier: MedicineDossierViewModel): string {
+  return renderToStaticMarkup(
+    React.createElement(
+      AppProvider,
+      { initialUser: null } as React.ComponentProps<typeof AppProvider>,
+      React.createElement(MedicineDossierV2, { dossier }),
+    ),
+  )
+}
+
+function markupFromTestId(html: string, testId: string, endMarker: string): string {
+  const start = html.indexOf(`data-testid="${testId}"`)
+  if (start === -1) throw new Error(`Missing data-testid=${testId}`)
+  const end = html.indexOf(endMarker, start)
+  if (end === -1) throw new Error(`Missing ${endMarker} after data-testid=${testId}`)
+  return html.slice(start, end + endMarker.length)
+}
+
+function populatedMedicineRecord(): MedicineDossierViewModel['medicineRecord'] {
+  return {
+    condition: {
+      conditionExplainer:
+        'ThisBackgroundWordIsDeliberatelyLongEnoughToTestNarrowScreenWrapping without changing the stored wording.',
+      whyItMatters: 'The older record explains why the condition matters.',
+      whoWasApprovedOrStudied: 'The older record names the people studied.',
+      studyOrLabelGoal: 'The older record names the result the study or label aimed to change.',
+    },
+    safetyAndAdministration: {
+      deliveryForm: 'A recorded prefilled injection device',
+      administrationAndDosing:
+        'A healthcare professional gives the recorded dose under the skin on the saved schedule.',
+      safetyInformation:
+        'The older record names a serious allergic reaction, common injection-site reactions, and who should not receive another dose.',
+    },
+    pricing: {
+      reportedProductionCost: 'A reported production-cost estimate',
+      reportedRetailOrListPrice:
+        'A very long reported price value that must wrap safely on a narrow screen',
+      recordNote: 'A stored note explains the older price context.',
+      sources: [
+        {
+          label: 'Example public price file',
+          identifier: 'https://example.test/prices',
+          href: 'https://example.test/prices',
+        },
+      ],
+    },
+    alternativesSummary: 'The older record compares approaches used for the same broad goal.',
+    conventionalAlternatives: [
+      {
+        name: 'Recorded conventional approach',
+        className: 'A different treatment class',
+        comparison: 'It was studied in a different setting.',
+        reportedCost: 'A reported older cost',
+        tradeoffs: 'The older record describes different tradeoffs.',
+      },
+    ],
+    commonQuestions: [
+      {
+        question: 'A recorded medicine-wide question?',
+        answer: 'A recorded medicine-wide answer.',
+      },
+    ],
+    molecular: {
+      format: 'Small-molecule structure string (SMILES, a text description of a molecule)',
+      identifiers: [
+        {
+          label: 'Structure string (SMILES, a text description of a molecule)',
+          value: 'VERYLONGMOLECULARIDENTIFIERWITHOUTSPACES012345678901234567890123456789',
+        },
+      ],
+      structureCheck: 'passed',
+      checkedAt: '2026-08-20T00:00:00.000Z',
+    },
+    communityNotes: [
+      {
+        id: 'note-1',
+        author: 'Example Clinician',
+        role: 'Community member',
+        isVerifiedDoctor: true,
+        medicalSpecialty: 'Example specialty',
+        date: '2026-08-20T00:00:00.000Z',
+        content:
+          'ThisCommunityCommentaryContainsAReallyLongUnbrokenTokenForMobileWrapping0123456789.',
+        upvotes: 2,
+      },
+    ],
+  }
+}
+
+describe('MedicineDossierV2 server markup', () => {
+  it('renders one closed disclosure with crawlable advanced content and hides empty modules', () => {
+    const html = renderDossier(view())
+
+    expect(html.match(/See how we know/g)).toHaveLength(1)
+    expect(html).toContain('<details class="group pt-1">')
+    expect(html).toContain('id="advanced-evidence-content"')
+    expect(html).toContain('Behind the answer')
+    expect(html).toContain('No reviewed plain-language answer has been published for this use')
+    expect(html).toContain(
+      'RNAWiki has found a specific use and its studies, but reviewers have not published an answer yet.',
+    )
+    expect(html).not.toContain('a development programme')
+    expect(html).toContain('Missing sections are left blank instead of being filled with claims')
+    expect(html).toContain('Technical check codes')
+    expect(html).not.toContain('Programme-level evidence audit')
+    expect(html).not.toContain('No substitute content is generated')
+    expect(html).not.toContain('Evidence chain</p>')
+    expect(html).not.toContain('Could the study answer this question?')
+    expect(html).not.toContain('Most important results')
+    expect(html).not.toContain('How the medicine works')
+    expect(html).not.toContain('Recorded dates for studies and RNAWiki review')
+    expect(html).not.toContain('What researchers hoped would happen')
+    expect(html).not.toContain('Older medicine record')
+    expect(html).not.toContain('Cost and practical context')
+    expect(html).toContain('Add a community note')
+    expect(html).not.toContain('No community commentary has been posted')
+    expect(html).not.toContain('Notes from readers and clinicians')
+    expect(html).not.toMatch(/laboratory|synthesis instructions|protocol steps/i)
+    expect(html).toContain('Suggest a correction')
+    expect(html).toContain('Save medicine')
+    expect(html).not.toContain('Challenge this answer')
+    expect(html).toContain('What needs changing?')
+    expect(html).toContain('Which use of this medicine does it apply to?')
+    expect(html).toContain('What should the record say?')
+    expect(html).toContain('Where did you find this?')
+    expect(html).toContain('Save draft')
+    expect(html).toContain('Submit for review')
+  })
+
+  it('shows the reviewed narrative and a source-linked decision timeline for a published programme', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        verdict: 'A reviewed programme conclusion.',
+        mechanismSummary: {
+          change: 'Researchers expected the medicine to lower a recorded target.',
+          observed: 'The reviewed study recorded a lower target.',
+        },
+        studies: [
+          {
+            id: 'NCT00000001',
+            title: 'Synthetic dated study',
+            phase: 'Phase 2',
+            status: 'Active not recruiting',
+            studyType: 'Human study',
+            startDate: '2024-02-03',
+            completionDate: '2026-08-09',
+            sampleSize: 240,
+            enrolmentType: 'ACTUAL',
+            result: 'A recorded result for the selected use.',
+            state: 'measured',
+            registrySourceId: 'registry-snapshot-1',
+            sourceIds: ['registry-snapshot-1', 'result-source-1'],
+          },
+        ],
+        timelineEvents: [
+          {
+            id: 'result-posted',
+            date: '2026-08-09',
+            provenance: 'source',
+            eventType: 'IMPORTANT_RESULT',
+            dateBasis: 'ACTUAL',
+            title: 'Results changed the programme record',
+            description: 'The registry posted the result used in the reviewed conclusion.',
+            technicalDetail: 'The stored registry results section changed on this date.',
+            programmeTrialId: 'NCT00000001',
+            claimIds: ['claim-result-1'],
+            sourceIds: ['registry-snapshot-1'],
+          },
+          {
+            id: 'rnawiki-publication-1',
+            date: '2026-08-22T09:30:00.000Z',
+            provenance: 'rnawiki',
+            eventType: 'PUBLICATION',
+            title: 'RNAWiki published reviewed conclusion 1',
+            description: 'This version became the public reviewed record.',
+            claimIds: [],
+            sourceIds: [],
+          },
+        ],
+        sources: [
+          {
+            id: 'registry-snapshot-1',
+            label: 'Exact registry source for the dated study',
+            href: 'https://example.test/registry/NCT00000001',
+            identifier: 'NCT00000001',
+            freshness: 'current',
+          },
+          {
+            id: 'result-source-1',
+            label: 'Exact source for a reported result',
+            href: 'https://example.test/publication/result-1',
+            identifier: 'RESULT-1',
+            freshness: 'current',
+          },
+        ],
+        conclusion: {
+          publicLabel: 'A reviewed programme conclusion',
+          professionalLabel: 'Synthetic clinical classification',
+          reason: 'The linked measurement supports the limited programme conclusion.',
+          scope: {
+            indication: 'Synthetic indication',
+            population: 'Synthetic population',
+            doseExposure: 'Synthetic dose',
+            period: 'Synthetic period',
+            trials: 'NCT00000001',
+            outcome: 'Synthetic outcome',
+          },
+          whatWasDisproven: [],
+          whatWasNotDisproven: [],
+          whatRemainsUnknown: [],
+          confidence: 'Moderate',
+          conditionsThatWouldChangeVerdict: [],
+          authorName: 'Synthetic Author',
+          reviewers: [
+            {
+              id: 'reviewer-1',
+              name: 'Synthetic Reviewer',
+              orcid: '0000-0001-2345-6789',
+              expertiseTags: ['CLINICAL_PHARMACOLOGY', 'BIOSTATISTICS'],
+              decision: 'Approved',
+              reviewedAt: '2026-08-21T00:00:00.000Z',
+              independent: true,
+            },
+          ],
+        },
+      }),
+    )
+
+    expect(html).not.toContain('What researchers hoped would happen')
+    expect(html).toContain('data-testid="first-read-mechanism"')
+    expect(html).toContain('Researchers expected the medicine to lower a recorded target.')
+    expect(html).not.toContain('What the reviewed evidence supports')
+    expect(html).toContain('The reviewed study recorded a lower target.')
+    expect(html).not.toContain('Why the reviewers reached this conclusion')
+    expect(html).toContain('The linked measurement supports the limited programme conclusion.')
+    expect(html).toContain('Relevant review background:')
+    expect(html).toContain(
+      'Synthetic Reviewer approved this conclusion independently on 21 August 2026.',
+    )
+    expect(html).toContain('aria-label="Conclusion review records"')
+    expect(html).not.toContain('aria-label="Independent conclusion reviewers"')
+    expect(html).not.toContain('Synthetic Reviewer</span> · Approved')
+    expect(html).toContain('How medicines work in people (clinical pharmacology)')
+    expect(html).toContain('Medical statistics')
+    expect(html).not.toContain('CLINICAL_PHARMACOLOGY')
+    expect(html).not.toContain('BIOSTATISTICS')
+    expect(html).toContain('Researcher identity record (ORCID) 0000-0001-2345-6789')
+    expect(html).toContain('href="https://orcid.org/0000-0001-2345-6789"')
+    expect(html).toContain('Events that changed what happened next')
+    expect(html).toContain('data-testid="programme-decision-timeline"')
+    expect(html).toContain('data-testid="timeline-event-source-links"')
+    expect(html).toContain('How many studies have results here?')
+    expect(html).toContain('1</dd>')
+    expect(html).toContain('240 participants across 1 study')
+    expect(html).toContain('People enrolled in studies with results')
+    expect(html).toContain('Actual count:')
+    expect(html).toContain('240 across 1 study')
+    expect(html).not.toContain('Reported enrolment total')
+    const recordedStudyDesign = markupFromTestId(html, 'recorded-study-design', '</p>')
+    expect(recordedStudyDesign).toContain('data-context-key="study-phase-2"')
+    expect(recordedStudyDesign).toContain('Phase 2')
+    expect(recordedStudyDesign).toContain('· Human study')
+    expect(html).toContain('They do not by themselves prove that the medicine is safe or helpful')
+    expect(html).toContain('Results changed the programme record')
+    expect(html).toContain('The registry posted the result used in the reviewed conclusion.')
+    expect(html).toContain('Important result')
+    expect(html).toContain('Date occurred')
+    expect(html).toContain('Technical detail')
+    expect(html).toContain('2026-08-09')
+    expect(html).toContain('RNAWiki published reviewed conclusion 1')
+    expect(html).toContain('Page update · not a study result')
+    expect(html).not.toContain('Recorded start date · Synthetic dated study')
+    expect(html).not.toContain('Recorded completion date · Synthetic dated study')
+    const registryHref = 'href="https://example.test/registry/NCT00000001"'
+    const resultHref = 'href="https://example.test/publication/result-1"'
+    const sourceEvent = html.indexOf('Results changed the programme record')
+    const sourceEventEnd = html.indexOf('</li>', sourceEvent)
+    expect(html.slice(sourceEvent, sourceEventEnd)).toContain(registryHref)
+    expect(html.slice(sourceEvent, sourceEventEnd)).not.toContain(resultHref)
+    const publicationEvent = html.indexOf('RNAWiki published reviewed conclusion 1')
+    const publicationEventEnd = html.indexOf('</li>', publicationEvent)
+    expect(html.slice(publicationEvent, publicationEventEnd)).not.toContain('<a ')
+  })
+
+  it('hides the whole timeline, including RNAWiki events, when no source event has an exact link', () => {
+    const html = renderDossier(
+      view({
+        studies: [
+          {
+            id: 'UNSOURCED-STUDY',
+            title: 'An unsourced dated study',
+            startDate: '2024-01-01',
+            completionDate: '2025-01-01',
+            state: 'unknown',
+            registrySourceId: 'missing-source-record',
+            sourceIds: ['missing-source-record'],
+          },
+        ],
+        timelineEvents: [
+          {
+            id: 'unsourced-event',
+            date: '2025-01-01',
+            provenance: 'source',
+            eventType: 'PROGRAMME_MILESTONE',
+            dateBasis: 'ACTUAL',
+            title: 'Unlinked programme event',
+            description: 'This must not be shown without its exact source.',
+            claimIds: ['claim-1'],
+            sourceIds: ['missing-source-record'],
+          },
+          {
+            id: 'administrative-event',
+            date: '2025-01-02',
+            provenance: 'rnawiki',
+            eventType: 'PUBLICATION',
+            title: 'RNAWiki publication without a sourced timeline anchor',
+            description: 'This must remain hidden with the timeline.',
+            claimIds: [],
+            sourceIds: [],
+          },
+        ],
+      }),
+    )
+
+    expect(html).not.toContain('Events that changed what happened next')
+    expect(html).not.toContain('Unlinked programme event')
+    expect(html).not.toContain('RNAWiki publication without a sourced timeline anchor')
+  })
+
+  it('renders a source-linked mechanism as one ordered map with plain evidence-basis labels', () => {
+    const mechanismSource = {
+      id: 'mechanism-snapshot-1',
+      label: 'Exact saved mechanism source',
+      href: 'https://example.test/mechanism/source-1',
+      identifier: 'MECH-1',
+      freshness: 'current' as const,
+    }
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        verdict: 'A reviewed programme conclusion.',
+        mechanismSteps: [
+          {
+            id: 'delivery',
+            order: 1,
+            title: 'The medicine reaches liver cells',
+            plainLanguage: 'The reviewed source recorded uptake into the intended cells.',
+            technicalDetail: 'A stored technical uptake measurement.',
+            evidenceBasis: 'MEASURED_IN_PEOPLE',
+            claimIds: ['claim-delivery'],
+            sourceIds: ['mechanism-snapshot-1'],
+            sourceClaimBindings: [
+              {
+                sourceId: 'mechanism-snapshot-1',
+                claimId: 'claim-delivery',
+                relationship: 'QUALIFIES',
+                statement: 'This saved source adds context to the delivery statement.',
+              },
+            ],
+          },
+          {
+            id: 'target',
+            order: 2,
+            title: 'It changes the intended target',
+            plainLanguage: 'Experiments outside people measured the target change.',
+            evidenceBasis: 'MEASURED_OUTSIDE_PEOPLE',
+            claimIds: ['claim-target'],
+            sourceIds: ['mechanism-snapshot-1'],
+          },
+          {
+            id: 'outcome',
+            order: 3,
+            title: 'A later effect is expected',
+            plainLanguage:
+              'After 510 days, the average percentage change in LDL cholesterol was 52.3 percentage points lower with the medicine than with a dummy treatment.',
+            evidenceBasis: 'PREDICTED',
+            claimIds: ['claim-outcome'],
+            sourceIds: ['mechanism-snapshot-1'],
+          },
+        ],
+        sources: [mechanismSource],
+      }),
+    )
+
+    expect(html).toContain('aria-label="Ordered mechanism stages"')
+    expect(html).toContain('data-testid="programme-mechanism-map"')
+    expect(html.match(/data-testid="programme-mechanism-stage"/g)).toHaveLength(3)
+    expect(html.match(/data-testid="mechanism-evidence-basis"/g)).toHaveLength(3)
+    expect(html.match(/data-testid="mechanism-stage-source-links"/g)).toHaveLength(3)
+    expect(html).toContain('data-context-key="percentage-points-versus-placebo"')
+    expect(html).toContain('lg:grid-cols-3')
+    expect(html).toContain('This step was measured in people')
+    expect(html).toContain('This step was measured only in laboratory or non-human work')
+    expect(html).toContain('This step is still a prediction')
+    expect(html).not.toContain('Evidence: Measured in people')
+    expect(html).toContain(
+      'Each card shows one expected step. Its label says whether people, laboratory work, or neither has shown that step.',
+    )
+    expect(html).toContain('Human reviewers decide what the science means.')
+    expect(html).toContain('Technical detail')
+    expect(html).toContain('A stored technical uptake measurement.')
+    expect(html).toContain('href="https://example.test/mechanism/source-1"')
+    expect(html).toContain(
+      'Adds context: This saved source adds context to the delivery statement.',
+    )
+    expect(html).not.toContain('older steps have not been linked')
+  })
+
+  it('uses a neutral detailed-evidence heading for a stopped programme', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        selectedProgrammeStatus: 'Stopped',
+        verdict: 'A reviewed answer for this stopped programme.',
+      }),
+    )
+
+    expect(html).toContain('What the studies and sources showed before the research stopped')
+    expect(html).not.toContain('What was actually disproven?')
+  })
+
+  it('clearly labels a legacy mechanism map as older and not source-linked', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        mechanismSteps: [
+          {
+            id: 'legacy-step-1',
+            order: 1,
+            title: 'Older recorded step',
+            plainLanguage: 'This wording came from the older medicine-wide record.',
+            claimIds: [],
+            sourceIds: [],
+          },
+        ],
+      }),
+    )
+
+    expect(html).toContain('Older medicine-wide record')
+    expect(html).toContain(
+      'These older steps have not been linked to a specific use, reviewed claim, or saved source version.',
+    )
+    expect(html).not.toContain('Evidence:')
+  })
+
+  it('does not promise a ten-second read for an older medicine-wide summary', () => {
+    const longLegacySummary = Array.from(
+      { length: 90 },
+      (_, index) => `recorded-word-${index + 1}`,
+    ).join(' ')
+    const legacyHtml = renderDossier(
+      view({ bindingState: 'legacy_record', verdict: longLegacySummary }),
+    )
+    const reviewedHtml = renderDossier(
+      view({ bindingState: 'published_programme', verdict: 'A reviewed programme answer.' }),
+    )
+
+    expect(legacyHtml).toContain('What the older record says')
+    expect(legacyHtml).toContain(longLegacySummary)
+    expect(legacyHtml).not.toContain('In 10 seconds')
+    expect(reviewedHtml).toContain('What researchers found')
+    expect(reviewedHtml).not.toContain('In 10 seconds')
+  })
+
+  it.each(['legacy_record', 'programme_unpublished', 'published_programme'] as const)(
+    'keeps medicine-wide context outside the reviewed conclusion for %s dossiers',
+    (bindingState) => {
+      const html = renderDossier(
+        view({
+          bindingState,
+          verdict: bindingState === 'published_programme' ? 'A reviewed programme conclusion.' : '',
+          medicineRecord: populatedMedicineRecord(),
+        }),
+      )
+
+      expect(html).toContain('aria-controls="medicine-background-content"')
+      expect(html).toContain('More about this medicine')
+      expect(html).toContain('Older medicine record')
+      expect(html).toContain('Medicine-wide background and practical details')
+      expect(html).toContain('The health problem')
+      expect(html).toContain('Why this medicine is used or studied')
+      expect(html).toContain('Who this information applies to')
+      expect(html).toContain('What researchers or regulators wanted to find out')
+      expect(html).toContain('Safety and how it is given')
+      expect(html).toContain('See side effects and how it is given')
+      expect(html).toContain('Technical delivery name')
+      expect(html).toContain('not personal medical advice or dosing instructions')
+      expect(html).toContain('A recorded prefilled injection device')
+      expect(html).toContain(
+        'A healthcare professional gives the recorded dose under the skin on the saved schedule.',
+      )
+      expect(
+        html.indexOf(
+          'A healthcare professional gives the recorded dose under the skin on the saved schedule.',
+        ),
+      ).toBeLessThan(html.indexOf('A recorded prefilled injection device'))
+      expect(html).toContain('who should not receive another dose')
+      expect(html).toContain('Other approaches used for the same goal')
+      expect(html).toContain('not necessarily equivalent')
+      expect(html).toContain('not advice to begin, stop, or replace treatment')
+      expect(html).toContain('The alphabetical order is not a ranking')
+      expect(html).toContain('Questions people ask')
+      expect(html).toContain('not instructions for taking or changing treatment')
+      expect(html).toContain('Cost and practical context')
+      expect(html).toContain('Reported in the older medicine record')
+      expect(html).toContain('Example public price file')
+      expect(html).toContain('href="https://example.test/prices"')
+      expect(html).toContain('check the source link and wording before comparing figures')
+      expect(html).toContain('Technical identity')
+      expect(html).toContain('Medicine identity, not proof that it works')
+      expect(html).toContain('Laboratory and manufacturing instructions are not displayed here')
+      expect(html).toContain('Community commentary')
+      expect(html).toContain('These are reader opinions. RNAWiki has not fact-checked them')
+      expect(html).toContain('Post commentary')
+      expect(html).toContain('Helpful · 2')
+      expect(html).toContain('[overflow-wrap:anywhere]')
+      expect(html).toContain('min-w-0')
+      expect(html).not.toMatch(/natural food|home remedy|daily use|synthesis step|reagents/i)
+
+      const advancedIndex = html.indexOf('id="advanced-evidence-content"')
+      const backgroundIndex = html.indexOf('aria-controls="medicine-background-content"')
+      const communityIndex = html.indexOf('id="community-commentary"')
+      expect(advancedIndex).toBeGreaterThanOrEqual(0)
+      expect(backgroundIndex).toBeGreaterThan(advancedIndex)
+      expect(communityIndex).toBeGreaterThan(backgroundIndex)
+      expect(html).toMatch(/<h2[^>]*>Medicine-wide background and practical details<\/h2>/)
+      expect(html).toMatch(/<h3[^>]*>Safety and how it is given<\/h3>/)
+
+      if (bindingState === 'legacy_record') {
+        expect(html).toContain('are not separated into a reviewed conclusion for one use')
+      } else {
+        expect(html).toContain('are not part of its reviewed answer')
+      }
+    },
+  )
+
+  it('keeps a safety-only older record reachable but closed and non-prescriptive', () => {
+    const html = renderDossier(
+      view({
+        medicineRecord: {
+          safetyAndAdministration: {
+            administrationAndDosing: 'An exact saved administration schedule.',
+            safetyInformation:
+              'An exact saved serious-risk, common-effect, and contraindication statement.',
+          },
+          conventionalAlternatives: [],
+          commonQuestions: [],
+          communityNotes: [],
+        },
+      }),
+    )
+
+    expect(html).toContain('More about this medicine')
+    expect(html).toContain('<details class="group/safety">')
+    expect(html).toContain('An exact saved administration schedule.')
+    expect(html).toContain('An exact saved serious-risk, common-effect, and ')
+    expect(html).toContain('data-context-key="contraindication"')
+    expect(html).toContain('contraindication')
+    expect(html).toContain('A situation in which a medicine should not be used')
+    expect(html).toContain('not personal medical advice or dosing instructions')
+    expect(html.indexOf('An exact saved administration schedule.')).toBeGreaterThan(
+      html.indexOf('aria-controls="medicine-background-content"'),
+    )
+  })
+
+  it('explains every technical word in an older delivery name where it appears', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        medicineRecord: {
+          safetyAndAdministration: {
+            deliveryForm: 'GalNAc-conjugated siRNA, subcutaneous prefilled syringe',
+          },
+          conventionalAlternatives: [],
+          commonQuestions: [],
+          communityNotes: [],
+        },
+      }),
+    )
+    const start = html.indexOf('Technical delivery name')
+    const end = html.indexOf('</details>', start)
+    const delivery = html.slice(start, end)
+
+    expect(delivery).toContain('data-context-key="galnac"')
+    expect(delivery).toContain('data-context-key="sirna"')
+    expect(delivery).toContain('data-context-key="route-subcutaneous"')
+  })
+
+  it('shows a direct warning when older pricing has no stored citation', () => {
+    const medicineRecord = populatedMedicineRecord()
+    medicineRecord.pricing = { reportedRetailOrListPrice: 'An older reported figure', sources: [] }
+    const html = renderDossier(view({ medicineRecord }))
+
+    expect(html).toContain('No separate source link is stored with these older figures')
+    expect(html).toContain('cannot be checked from this note alone')
+  })
+
+  it.each([
+    ['legacy_record', true, false],
+    ['programme_unpublished', true, false],
+    ['published_programme', true, true],
+  ] as const)(
+    'renders valid contribution actions for the %s binding state',
+    (bindingState, showsCorrection, showsChallenge) => {
+      const html = renderDossier(
+        view({
+          bindingState,
+          verdict: bindingState === 'published_programme' ? 'A reviewed programme conclusion.' : '',
+        }),
+      )
+
+      expect(html.includes('Suggest a correction')).toBe(showsCorrection)
+      expect(html.includes('Challenge this answer')).toBe(showsChallenge)
+      if (bindingState === 'legacy_record') {
+        expect(html).toContain('Found a name that is wrong?')
+        expect(html).toContain('medicine name or trade/brand name correction')
+        expect(html).toContain('choose the exact use and study')
+        expect(html).toContain('which public answer could change')
+      }
+    },
+  )
+
+  it('shows exact outcome context without inventing a primary endpoint or patient benefit', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        verdict: 'A reviewed programme conclusion.',
+        review: {
+          historyHref: '/d/synthetic-medicine/programme/programme-a/history',
+          publishedAt: '2026-08-22T09:30:00.000Z',
+        },
+        evidenceNodes: [
+          {
+            id: 'node-1',
+            order: 1,
+            label: 'Human evidence',
+            title: 'What did the linked study report?',
+            summary: 'The reviewed record includes one structured result.',
+            state: 'confirmed',
+            claimNature: 'measured',
+            sourceIds: ['publication-1'],
+            machineChecked: true,
+            findingCodes: [],
+            claims: [
+              {
+                id: 'claim-detail-1',
+                nature: 'measured',
+                text: 'The treatment group recorded a lower laboratory measurement.',
+                technicalText: 'A stored technical description.',
+                population: 'Adults in the linked study',
+                intervention: 'Structured treatment',
+                comparator: 'Placebo',
+                dose: 'Stored dose',
+                route: 'Injection',
+                duration: '18 months',
+                endpoint: 'Change in the laboratory measurement',
+                endpointHierarchy: 'SECONDARY',
+                outcomeType: 'SURROGATE',
+                direction: 'DECREASE',
+                timepoint: 'Day 510',
+                exactResult: '-12 percentage points',
+                uncertaintyInterval: '95% interval: -18 to -6',
+                lastVerifiedAt: '2026-08-20T00:00:00.000Z',
+                sourceIds: ['publication-1'],
+              },
+            ],
+          },
+        ],
+        studies: [
+          {
+            id: 'NCT00000002',
+            title: 'Structured outcome study',
+            sampleSize: 120,
+            enrolmentType: 'ESTIMATED',
+            endpoint: 'Change in the laboratory measurement',
+            endpointHierarchy: 'SECONDARY',
+            result: 'The treatment group recorded a lower laboratory measurement.',
+            replication:
+              'The same research programme reported a similar result; an independent repeat is not established.',
+            state: 'measured',
+            registrySourceId: 'registry-2',
+            sourceIds: ['registry-2', 'publication-1'],
+            interpretability: [
+              {
+                id: 'assessment-2',
+                question: 'Was the right outcome measured?',
+                professionalTerm: 'Endpoint validity',
+                state: 'unclear',
+                explanation: 'The linked assessment says this was an indirect measurement.',
+                claimIds: ['claim-detail-1'],
+                sourceIds: ['assessment-source-1'],
+              },
+            ],
+          },
+        ],
+        keyOutcomes: [
+          {
+            id: 'patient-outcome',
+            label: 'People reported how well they could complete daily activities.',
+            state: 'measured',
+            claimNature: 'measured',
+            endpoint: 'Daily activity score',
+            endpointHierarchy: 'SECONDARY',
+            intervention: 'Structured treatment',
+            comparator: 'Placebo',
+            numericValue: '4.2',
+            numericUnit: 'points',
+            uncertaintyInterval: '95% interval: 1.1 to 7.3',
+            direction: 'INCREASE',
+            timepoint: 'Week 24',
+            outcomeType: 'PATIENT_OUTCOME',
+            sourceIds: ['patient-source-1'],
+          },
+          {
+            id: 'surrogate-outcome',
+            label: 'A laboratory measurement decreased.',
+            state: 'measured',
+            outcomeType: 'SURROGATE',
+            sourceIds: ['surrogate-source-1'],
+          },
+          {
+            id: 'biomarker-outcome',
+            label: 'A body measurement changed.',
+            state: 'measured',
+            outcomeType: 'BIOMARKER',
+            sourceIds: ['biomarker-source-1'],
+          },
+        ],
+        sources: [
+          {
+            id: 'registry-2',
+            label: 'Exact registry snapshot',
+            href: 'https://example.test/registry/NCT00000002',
+            identifier: 'NCT00000002',
+            freshness: 'current',
+          },
+          {
+            id: 'publication-1',
+            label: 'Exact result publication',
+            href: 'https://example.test/publication/1',
+            identifier: 'PUB-1',
+            freshness: 'current',
+          },
+          {
+            id: 'assessment-source-1',
+            label: 'Exact interpretability source',
+            href: 'https://example.test/assessment/1',
+            identifier: 'ASSESSMENT-1',
+            freshness: 'current',
+          },
+          {
+            id: 'patient-source-1',
+            label: 'Exact patient-outcome source',
+            href: 'https://example.test/outcome/patient',
+            identifier: 'PATIENT-OUTCOME-1',
+            freshness: 'current',
+          },
+          {
+            id: 'surrogate-source-1',
+            label: 'Exact surrogate source',
+            href: 'https://example.test/outcome/surrogate',
+            identifier: 'SURROGATE-1',
+            freshness: 'current',
+          },
+          {
+            id: 'biomarker-source-1',
+            label: 'Exact biomarker source',
+            href: 'https://example.test/outcome/biomarker',
+            identifier: 'BIOMARKER-1',
+            freshness: 'current',
+          },
+        ],
+        timelineEvents: [
+          {
+            id: 'result-event-2',
+            date: '2026-08-20',
+            provenance: 'source',
+            eventType: 'IMPORTANT_RESULT',
+            dateBasis: 'ACTUAL',
+            title: 'The reviewed result was reported',
+            description: 'A linked source reported the result used by reviewers.',
+            claimIds: ['claim-detail-1'],
+            sourceIds: ['publication-1'],
+          },
+          {
+            id: 'publication-event-2',
+            date: '2026-08-22T09:30:00.000Z',
+            provenance: 'rnawiki',
+            eventType: 'PUBLICATION',
+            title: 'RNAWiki published this reviewed conclusion',
+            description: 'This reviewed version became public on RNAWiki.',
+            claimIds: [],
+            sourceIds: [],
+          },
+        ],
+      }),
+    )
+
+    expect(html).toContain('What was measured')
+    expect(html).not.toContain('Main outcome measured (primary endpoint)')
+    expect(html).toContain('Participants (estimated count)')
+    expect(html).toContain('Did another study find something similar?')
+    expect(html).toContain(
+      'The same research programme reported a similar result; an independent repeat is not established.',
+    )
+    expect(html).not.toContain('<dt class="text-[#6E6E73]">Independent repeat</dt>')
+    expect(html).toContain('Estimated count:')
+    expect(html).toContain('Medicine or treatment group')
+    expect(html).toContain('Structured treatment')
+    expect(html).toContain('Comparison group')
+    expect(html).toContain('Placebo')
+    expect(html).toContain('How it was given')
+    expect(html).toContain('Injection')
+    expect(html).toContain('Time studied')
+    expect(html).toContain('18 months')
+    expect(html).toContain('Was this a main or additional result?')
+    expect(html).toContain('An additional result planned before the study began')
+    expect(html).toContain('Direction of change')
+    expect(html).toContain('Decreased')
+    expect(html).toContain('Exact result')
+    expect(html).toContain('-12 percentage points')
+    expect(html).toContain('How uncertain is this estimate?')
+    expect(html).toContain('-18 to -6')
+    expect(html).toContain('data-context-key="placebo"')
+    expect(html).toContain('data-context-key="percentage-points"')
+    expect(html).toContain('data-context-key="confidence-interval"')
+    expect(html).toContain('4.2 points')
+    expect(html).toContain('1.1 to 7.3')
+    expect(html).toContain('A result about how people felt, functioned, or survived')
+    expect(html).toContain('An indirect measurement used instead of a direct patient result')
+    expect(html).toContain('A measurement from the body, such as a laboratory value')
+    expect(html).toContain('href="https://example.test/outcome/patient"')
+    expect(html).toContain('RNAWiki published this reviewed conclusion')
+    expect(html).toContain('Page update · not a study result')
+    expect(html).toContain('We show events that changed the answer or what researchers did next')
+
+    const assessment = html.indexOf('The linked assessment says this was an indirect measurement.')
+    const studyEnd = html.indexOf('</article>', assessment)
+    expect(html.slice(assessment, studyEnd)).toContain('href="https://example.test/assessment/1"')
+    const publicationEvent = html.indexOf('RNAWiki published this reviewed conclusion')
+    const publicationEventEnd = html.indexOf('</li>', publicationEvent)
+    expect(html.slice(publicationEvent, publicationEventEnd)).not.toContain('<a ')
+    expect(html.toLowerCase()).not.toContain('baseline')
+    expect(html.toLowerCase()).not.toContain('absolute difference')
+  })
+
+  it('renders all programme links and the canonical chain without relying on colour alone', () => {
+    const nodes = [
+      ['human', 1, 'Human exposure', 'Was it given to people?', 'confirmed'],
+      ['useful', 2, 'Useful exposure', 'Did enough reach the right place?', 'unknown'],
+      ['target', 3, 'Target engagement', 'Did it hit the intended target?', 'not_measured'],
+      ['biology', 4, 'Biological response', 'Did the body change as expected?', 'mixed'],
+      ['outcome', 5, 'Clinical outcome', 'Did patients actually benefit?', 'contradicted'],
+    ].map(([id, order, label, title, state]) => ({
+      id: id as string,
+      order: order as number,
+      label: label as string,
+      title: title as string,
+      summary: 'Synthetic evidence detail.',
+      state: state as 'confirmed' | 'contradicted' | 'unknown' | 'not_measured' | 'mixed',
+      claimNature: 'measured' as const,
+      sourceIds: [],
+      machineChecked: true,
+      findingCodes: [],
+    }))
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        verdict: 'A synthetic programme-scoped answer.',
+        evidenceNodes: nodes,
+        programmes: [
+          {
+            id: 'programme-a',
+            label: 'Programme A',
+            status: 'Active',
+            href: '?programme=programme-a',
+            selected: true,
+          },
+          {
+            id: 'programme-b',
+            label: 'Programme B',
+            status: 'Stopped',
+            href: '?programme=programme-b',
+            selected: false,
+          },
+        ],
+      }),
+    )
+
+    expect(html).toContain('?programme=programme-a')
+    expect(html).toContain('?programme=programme-b')
+    expect(html).not.toContain('lg:grid-cols-5')
+    expect(html).toContain('Evidence supports this step')
+    expect(html).toContain('Not enough information')
+    expect(html).toContain('Not measured')
+    expect(html).toContain('Studies point in different directions')
+    expect(html).toContain('Evidence points against this step')
+    expect(html).toContain('Which steps actually happened?')
+    expect(html).toContain('First unanswered step')
+    expect(html).toContain('Useful exposure')
+    expect(html).toContain('The available sources do not answer this step yet.')
+    expect(html).toContain('pointer-events-none absolute -bottom-[11px] left-6')
+    expect(html).toContain('Synthetic evidence detail.')
+    expect(html).not.toContain('Claim-level machine mapping pending')
+
+    const contradictedHtml = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        evidenceNodes: nodes.map((node) => ({
+          ...node,
+          state: node.order < 3 ? 'confirmed' : node.order === 3 ? 'contradicted' : node.state,
+        })),
+      }),
+    )
+    expect(contradictedHtml).toContain('First step that did not happen as expected')
+  })
+
+  it('explains first-read terms on the words themselves while preserving the advanced term guide', () => {
+    const exactText =
+      'A GalNAc-tagged siRNA that makes liver cells destroy their own PCSK9 messenger RNA, cutting LDL cholesterol by 52.3% and 49.9% against placebo at day 510 in ORION-10 and ORION-11 — a blood measurement, not yet a demonstrated reduction in heart attacks.'
+    const readerSummary = buildPublishedProgrammeReaderSummary({
+      medicineName: 'Inclisiran',
+      modality: 'siRNA (Small Interfering RNA)',
+      targetGene: 'PCSK9',
+      targetProtein: 'Proprotein convertase subtilisin/kexin type 9',
+      trialIdentifiers: ['ORION-10 (NCT03399370)', 'ORION-11 (NCT03400800)'],
+      selectedUse: 'High LDL cholesterol',
+      exactText,
+      bestSupportedFinding:
+        'LDL cholesterol changed by about half compared with placebo at day 510 in ORION-10 and ORION-11.',
+      mainUncertainty:
+        'These studies did not show whether inclisiran prevents heart attacks or strokes.',
+    })
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        readerSummary,
+      }),
+    )
+
+    const firstReadStart = html.indexOf('data-testid="first-read-annotated-summary"')
+    const firstReadEnd = html.indexOf('</p>', firstReadStart)
+    const firstRead = html.slice(firstReadStart, firstReadEnd)
+    expect(firstReadStart).toBeGreaterThanOrEqual(0)
+    expect(firstRead).toContain('data-context-key="ldl-cholesterol"')
+    expect(firstRead).toContain('data-context-key="percentage-versus-placebo"')
+    expect(firstRead).toContain('data-context-key="placebo"')
+    expect(firstRead).toContain('data-context-key="study-day-510"')
+    expect(firstRead).toContain('aria-expanded="false"')
+    expect(firstRead).toContain('A blood measurement often called “bad cholesterol”')
+    expect(firstRead).toContain('A comparison with an inactive look-alike treatment')
+    expect(firstRead).toContain('510 days after the study started')
+    expect(firstRead).toContain('about 17 months')
+    expect(firstRead).not.toContain('PCSK9')
+    expect(firstRead).not.toContain('GalNAc')
+    expect(html).not.toContain('data-testid="first-read-context"')
+    expect(html).toContain('Dotted phrases have plain explanations. Hover, focus or tap.')
+    expect(html).toContain('Read the professional wording')
+
+    const exactStart = html.indexOf('data-testid="exact-wording-annotated"')
+    const exactEnd = html.indexOf('</p>', exactStart)
+    const exact = html.slice(exactStart, exactEnd)
+    expect(exactStart).toBeGreaterThan(firstReadStart)
+    for (const key of [
+      'galnac',
+      'sirna',
+      'pcsk9',
+      'messenger-rna',
+      'ldl-cholesterol',
+      'percentage-versus-placebo',
+      'placebo',
+      'study-day-510',
+      'study:orion-10',
+      'study:orion-11',
+    ]) {
+      expect(exact, `exact wording should explain ${key} on the term itself`).toContain(
+        `data-context-key="${key}"`,
+      )
+    }
+    expect(exact).toContain('A short medicine that tells a cell to discard one chosen instruction')
+    expect(exact).toContain('A temporary instruction a cell reads when making a protein')
+
+    const advancedGuideStart = html.indexOf('data-testid="advanced-study-language"')
+    const advancedGuideEnd = html.indexOf('</details>', advancedGuideStart)
+    const advancedGuide = html.slice(advancedGuideStart, advancedGuideEnd)
+    expect(advancedGuideStart).toBeGreaterThan(firstReadStart)
+    expect(advancedGuide).toContain('Technical term: PCSK9')
+    expect(advancedGuide).toContain('Technical term: GalNAc')
+    expect(advancedGuide).toContain('Technical term: RNA')
+    expect(html.match(/Explain study words/g)).toHaveLength(1)
+    expect(html.match(/Understand the study language/g)).toBeNull()
+  })
+
+  it('shows each local jargon hint only when that wording has an explanation control', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        readerSummary: {
+          basis: 'older_record',
+          takeaway: 'This first sentence contains no mapped phrase.',
+          exactText: 'This different professional sentence also contains no mapped phrase.',
+          simplified: false,
+          contextItems: [],
+          terms: [
+            {
+              key: 'unused-term',
+              plainMeaning: 'A term that does not appear here',
+              technicalTerm: 'Absent technical term',
+              definition: 'This definition should not create a hint without a matching phrase.',
+            },
+          ],
+        },
+      }),
+    )
+
+    expect(html).toContain('Read the professional wording')
+    expect(html).not.toContain('Dotted phrases have plain explanations')
+  })
+
+  it('attaches local explanation controls to professional fields across the dossier', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        verdict: 'A plain stored summary.',
+        evidenceNodes: [
+          {
+            id: 'legacy-technical-surface',
+            order: 1,
+            label: 'Older evidence note',
+            title: 'A stored technical note',
+            summary: 'The older record retained the exact technical fields.',
+            state: 'recorded_context',
+            claimNature: 'unknown',
+            sourceIds: ['professional-source'],
+            machineChecked: false,
+            findingCodes: [],
+            technicalDetail: {
+              technicalDetails: 'The LDL-C result was placebo-adjusted.',
+              measuredMetric: 'A Biomarker outcome at Baseline',
+              inferredClaim: 'The Surrogate marker predicts a benefit.',
+              evidenceSource: 'PROFESSIONAL-SOURCE-ID',
+              auditFlag: 'caution',
+            },
+          },
+        ],
+        studies: [
+          {
+            id: 'NCT00000003',
+            title: 'Professional surface study',
+            phase: 'Phase 3',
+            status: 'Open-label study',
+            studyType: 'Randomisation and Blinding',
+            result: 'The study recorded a result.',
+            technicalResult: '95% confidence interval; P-value 0.01.',
+            replication: 'A placebo group reported a similar result.',
+            state: 'measured',
+            registrySourceId: 'professional-source',
+            sourceIds: ['professional-source'],
+            interpretability: [
+              {
+                id: 'professional-assessment',
+                question: 'Was the Primary endpoint measured?',
+                professionalTerm: 'Primary endpoint',
+                state: 'unclear',
+                explanation: 'The Biomarker outcome was recorded as a Surrogate marker.',
+                claimIds: [],
+                sourceIds: ['professional-source'],
+              },
+            ],
+          },
+        ],
+        mechanismSteps: [
+          {
+            id: 'professional-mechanism',
+            order: 1,
+            title: 'GalNAc delivery',
+            plainLanguage: 'The stored record described delivery into cells.',
+            technicalDetail: 'siRNA lowered PCSK9 Messenger RNA.',
+            claimIds: ['professional-claim'],
+            sourceIds: ['professional-source'],
+            sourceClaimBindings: [
+              {
+                sourceId: 'professional-source',
+                claimId: 'professional-claim',
+                relationship: 'QUALIFIES',
+                statement: 'An Adverse event report adds context.',
+              },
+            ],
+          },
+        ],
+        timelineEvents: [
+          {
+            id: 'professional-timeline-event',
+            date: '2026-08-23',
+            provenance: 'source',
+            eventType: 'IMPORTANT_RESULT',
+            dateBasis: 'ACTUAL',
+            title: 'A stored result changed the record',
+            description: 'The linked source recorded the change.',
+            technicalDetail: 'Pharmacokinetics and Half-life were recorded.',
+            claimIds: [],
+            sourceIds: ['professional-source'],
+          },
+        ],
+        sources: [
+          {
+            id: 'professional-source',
+            label: 'A professional evidence source',
+            href: 'https://example.test/professional-source',
+            identifier: 'PROFESSIONAL-SOURCE-ID',
+            freshness: 'current',
+          },
+        ],
+        medicineRecord: {
+          conventionalAlternatives: [
+            {
+              name: 'Monoclonal antibody treatment',
+              comparison: 'The older record compared this approach.',
+            },
+          ],
+          commonQuestions: [
+            {
+              question: 'What does Half-life mean?',
+              answer: 'The older record used this timing term.',
+            },
+          ],
+          molecular: {
+            format: 'Pharmacokinetics description',
+            identifiers: [{ label: 'Stored code', value: 'DO-NOT-ANNOTATE-THIS-ID' }],
+            structureCheck: 'not_passed',
+          },
+          communityNotes: [],
+        },
+      }),
+    )
+
+    const legacyTechnical = markupFromTestId(html, 'legacy-technical-evidence', '</dl>')
+    expect(legacyTechnical).toContain('data-context-key="ldl-cholesterol"')
+    expect(legacyTechnical).toContain('data-context-key="placebo-adjusted"')
+    expect(legacyTechnical).toContain('data-context-key="outcome-biomarker"')
+    expect(legacyTechnical).toContain('data-context-key="study-baseline"')
+    expect(legacyTechnical).toContain('data-context-key="outcome-surrogate"')
+    expect(legacyTechnical).toContain('PROFESSIONAL-SOURCE-ID')
+
+    const designMetadata = markupFromTestId(html, 'study-design-metadata', '</dl>')
+    expect(designMetadata).toContain('data-context-key="study-open-label"')
+    expect(designMetadata).toContain('data-context-key="study-phase-3"')
+    expect(designMetadata).toContain('data-context-key="study-randomisation"')
+    expect(designMetadata).toContain('data-context-key="study-blinding"')
+
+    const replication = markupFromTestId(html, 'study-replication', '</dd>')
+    expect(replication).toContain('data-context-key="placebo"')
+
+    const technicalResult = markupFromTestId(html, 'study-technical-result', '</p>')
+    expect(technicalResult).toContain('data-context-key="confidence-interval"')
+    expect(technicalResult).toContain('data-context-key="p-value"')
+
+    const interpretability = markupFromTestId(html, 'study-interpretability', '</ul>')
+    expect(interpretability).toContain('data-context-key="endpoint-primary"')
+    expect(interpretability).toContain('data-context-key="outcome-biomarker"')
+    expect(interpretability).toContain('data-context-key="outcome-surrogate"')
+
+    const recordedDesign = markupFromTestId(html, 'recorded-study-design', '</p>')
+    expect(recordedDesign).toContain('data-context-key="study-phase-3"')
+    expect(recordedDesign).toContain('data-context-key="study-randomisation"')
+
+    const mechanismTitle = markupFromTestId(html, 'mechanism-step-title', '</h4>')
+    expect(mechanismTitle).toContain('data-context-key="galnac"')
+    const mechanismDetail = markupFromTestId(html, 'mechanism-technical-detail', '</p>')
+    expect(mechanismDetail).toContain('data-context-key="sirna"')
+    expect(mechanismDetail).toContain('data-context-key="pcsk9"')
+    expect(mechanismDetail).toContain('data-context-key="messenger-rna"')
+
+    const sourceBinding = markupFromTestId(html, 'source-claim-binding', '</p>')
+    expect(sourceBinding).toContain('data-context-key="adverse-event"')
+    const timelineDetail = markupFromTestId(html, 'timeline-technical-detail', '</p>')
+    expect(timelineDetail).toContain('data-context-key="pharmacokinetics"')
+    expect(timelineDetail).toContain('data-context-key="half-life"')
+
+    const alternativeName = markupFromTestId(html, 'alternative-name', '</h4>')
+    expect(alternativeName).toContain('data-context-key="mechanism-monoclonal-antibody"')
+    const commonQuestion = markupFromTestId(html, 'common-question', '</summary>')
+    expect(commonQuestion).toContain('data-context-key="half-life"')
+    const molecularFormat = markupFromTestId(html, 'molecular-format', '</p>')
+    expect(molecularFormat).toContain('data-context-key="pharmacokinetics"')
+
+    const identifierStart = html.indexOf('DO-NOT-ANNOTATE-THIS-ID')
+    const identifierRegion = html.slice(
+      html.lastIndexOf('<dd', identifierStart),
+      html.indexOf('</dd>', identifierStart),
+    )
+    expect(identifierStart).toBeGreaterThanOrEqual(0)
+    expect(identifierRegion).not.toContain('data-context-key=')
+  })
+
+  it('keeps p-only study statistics in technical detail and suppresses replication judgement', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        studies: [
+          {
+            id: 'P-ONLY-STUDY',
+            title: 'Study without a recorded effect size',
+            status: 'Completed',
+            technicalResult: 'P-value < 0.001',
+            replication: 'No independent repeat is recorded.',
+            state: 'unknown',
+            registrySourceId: 'missing-registry-source',
+            sourceIds: [],
+          },
+        ],
+      }),
+    )
+
+    const cardStart = html.indexOf('Study without a recorded effect size')
+    const cardEnd = html.indexOf('</article>', cardStart)
+    const card = html.slice(cardStart, cardEnd)
+    expect(card).toContain('No result on this page')
+    expect(card).toContain('Statistical test only (size of the change not recorded)')
+    expect(card).toContain('data-context-key="p-value"')
+    expect(card).toContain('P-value')
+    expect(card).toContain('&lt; 0.001')
+    expect(card).toContain('it is not the size or importance of the effect')
+    expect(card).not.toContain('Reported result')
+    expect(card).not.toContain('Independent repeat')
+    expect(card).not.toContain('No independent repeat is recorded')
+  })
+
+  it('explains full study names even when they first appear outside a study card', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        keyOutcomes: [
+          {
+            id: 'outcome-only-study-names',
+            label:
+              'ORION-3 recorded a follow-up result while VICTORION-2-PREVENT is still running.',
+            state: 'measured',
+            legacyGroup: 'measured_findings',
+            legacyGroupLabel: 'Measured findings',
+            sourceIds: [],
+          },
+        ],
+      }),
+    )
+
+    expect(html).toContain('data-context-key="study-name:orion-3"')
+    expect(html).toContain('data-context-key="study-name:victorion-2-prevent"')
+    expect(html).not.toContain('data-context-key="study-name:victorion-2"')
+  })
+
+  it('renders legacy evidence as unconnected notes and recorded context as a neutral state', () => {
+    const legacyHtml = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        evidenceNodes: [
+          {
+            id: 'legacy-context',
+            order: 1,
+            label: 'Older source section',
+            title: 'A practical event was recorded',
+            summary: 'The older record notes a manufacturing event.',
+            state: 'contradicted',
+            claimNature: 'unknown',
+            sourceIds: ['legacy-audit-source'],
+            machineChecked: false,
+            findingCodes: [],
+            technicalDetail: {
+              technicalDetails:
+                'Exact analysis: difference -47.9 percentage points (95% CI -53.5 to -42.3; P<0.001).',
+              measuredMetric: 'Percentage change at day 510',
+              inferredClaim: 'That the laboratory result predicts a patient outcome',
+              evidenceSource: 'Exact Journal Citation 2026;1:2-3',
+              auditFlag: 'caution',
+            },
+          },
+        ],
+        sources: [
+          {
+            id: 'legacy-audit-source',
+            label: 'Exact Journal Citation 2026;1:2-3',
+            href: 'https://doi.org/10.0000%2Flegacy-source',
+            identifier: '10.0000/legacy-source',
+            freshness: 'unknown',
+          },
+        ],
+      }),
+    )
+    expect(legacyHtml).toContain('Older evidence notes')
+    expect(legacyHtml).toContain(
+      'These are separate notes from the older medicine-wide record. They are not an ordered chain and have not been reviewed for this specific use.',
+    )
+    expect(legacyHtml).not.toContain('Older note · not reviewed for this specific use')
+    expect(legacyHtml).not.toContain('Evidence type: Nature unknown')
+    expect(legacyHtml).not.toContain('Contradicted')
+    expect(legacyHtml).not.toContain('pointer-events-none absolute -bottom-[11px]')
+    expect(legacyHtml).toContain('Technical evidence details')
+    expect(legacyHtml).toContain('Exact analysis: difference')
+    expect(legacyHtml).toContain('-47.9 percentage points')
+    expect(legacyHtml).toContain('-53.5 to -42.3; ')
+    expect(legacyHtml).toContain('P&lt;0.001')
+    expect(legacyHtml).toContain('data-context-key="percentage-points"')
+    expect(legacyHtml).toContain('data-context-key="confidence-interval"')
+    expect(legacyHtml).toContain('data-context-key="p-value"')
+    expect(legacyHtml).toContain('data-context-key="study-day-510"')
+    expect(legacyHtml).toContain('That the laboratory result predicts a patient outcome')
+    expect(legacyHtml).toContain('Evidence source as stored')
+    expect(legacyHtml).toContain('Stored audit flag')
+    expect(legacyHtml).toContain('href="https://doi.org/10.0000%2Flegacy-source"')
+
+    const normalizedHtml = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        evidenceNodes: [
+          {
+            id: 'recorded-context',
+            order: 1,
+            label: 'Practical context',
+            title: 'A practical event was recorded',
+            summary: 'This is context rather than an independently checked scientific result.',
+            state: 'recorded_context',
+            claimNature: 'mixed',
+            sourceIds: [],
+            machineChecked: true,
+            findingCodes: [],
+          },
+        ],
+        keyOutcomes: [
+          {
+            id: 'recorded-context-outcome',
+            label: 'A practical event from the programme record.',
+            state: 'recorded_context',
+            sourceIds: [],
+          },
+        ],
+      }),
+    )
+    expect(normalizedHtml).toContain('Older note · not reviewed for this use')
+    expect(normalizedHtml).toContain(
+      'This is context rather than an independently checked scientific result.',
+    )
+  })
+
+  it.each(['programme_unpublished', 'published_programme'] as const)(
+    'renders the selected programme history URL for %s dossiers',
+    (bindingState) => {
+      const historyHref = '/d/synthetic-medicine/programme/programme-a/history'
+      const html = renderDossier(view({ bindingState, review: { historyHref } }))
+
+      expect(html).toContain(`href="${historyHref}"`)
+      expect(html).toContain('See what changed on this page')
+    },
+  )
+})

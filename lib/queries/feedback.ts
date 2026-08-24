@@ -6,15 +6,22 @@
 // upstream, and the raw IP address it was derived from is never passed to this file and never
 // stored anywhere.
 
-import { desc, eq } from 'drizzle-orm'
+import { desc, eq, inArray } from 'drizzle-orm'
 import { db } from '@/db'
 import { newId } from '@/lib/ids'
-import { feedback } from '@/db/schema'
+import { feedback, users } from '@/db/schema'
+import { canManageInternalReview } from '@/lib/internal-review-policy'
 import type { FeedbackSubmission } from '@/lib/types'
 
 export const FEEDBACK_MAX_LENGTH = 4000
 
-export type FeedbackErrorCode = 'message_empty' | 'message_too_long' | 'not_found'
+export type FeedbackErrorCode =
+  | 'message_empty'
+  | 'message_too_long'
+  | 'not_found'
+  | 'not_authorized'
+  | 'already_resolved'
+  | 'invalid_resolution'
 
 export class FeedbackError extends Error {
   readonly code: FeedbackErrorCode
@@ -40,11 +47,14 @@ export interface CreateFeedbackInput {
   id?: string
 }
 
-/** The admin queue's view: the submission plus who sent it and whether it has been dealt with. */
+/** Private moderation view. The abuse-control session hash is deliberately absent. */
 export interface FeedbackRecord extends FeedbackSubmission {
   userId: string | null
-  sessionHash: string | null
+  account: { name: string; handle: string } | null
   resolved: boolean
+  resolvedAt: string | null
+  resolutionNote: string | null
+  resolvedBy: { name: string; handle: string } | null
 }
 
 const feedbackColumns = {
@@ -54,14 +64,19 @@ const feedbackColumns = {
   email: feedback.email,
   drugSlug: feedback.drugSlug,
   userId: feedback.userId,
-  sessionHash: feedback.sessionHash,
   resolved: feedback.resolved,
+  resolvedAt: feedback.resolvedAt,
+  resolvedByUserId: feedback.resolvedByUserId,
+  resolutionNote: feedback.resolutionNote,
   createdAt: feedback.createdAt,
 }
 
 type FeedbackRow = Pick<typeof feedback.$inferSelect, keyof typeof feedbackColumns>
 
-function toRecord(row: FeedbackRow): FeedbackRecord {
+function toRecord(
+  row: FeedbackRow,
+  accounts: ReadonlyMap<string, { name: string; handle: string }>,
+): FeedbackRecord {
   return {
     id: row.id,
     type: row.type,
@@ -70,9 +85,31 @@ function toRecord(row: FeedbackRow): FeedbackRecord {
     drugSlug: row.drugSlug ?? undefined,
     createdAt: row.createdAt.toISOString(),
     userId: row.userId,
-    sessionHash: row.sessionHash,
+    account: row.userId ? (accounts.get(row.userId) ?? null) : null,
     resolved: row.resolved,
+    resolvedAt: row.resolvedAt?.toISOString() ?? null,
+    resolutionNote: row.resolutionNote,
+    resolvedBy: row.resolvedByUserId ? (accounts.get(row.resolvedByUserId) ?? null) : null,
   }
+}
+
+async function attachFeedbackAccounts(rows: FeedbackRow[]): Promise<FeedbackRecord[]> {
+  const accountIds = Array.from(
+    new Set(
+      rows
+        .flatMap((row) => [row.userId, row.resolvedByUserId])
+        .filter((id): id is string => Boolean(id)),
+    ),
+  )
+  const accountRows =
+    accountIds.length > 0
+      ? await db
+          .select({ id: users.id, name: users.name, handle: users.handle })
+          .from(users)
+          .where(inArray(users.id, accountIds))
+      : []
+  const accounts = new Map(accountRows.map(({ id, ...account }) => [id, account]))
+  return rows.map((row) => toRecord(row, accounts))
 }
 
 export async function createFeedback(input: CreateFeedbackInput): Promise<FeedbackSubmission> {
@@ -109,20 +146,19 @@ export async function createFeedback(input: CreateFeedbackInput): Promise<Feedba
 
   // The public return is the submission only. The reader gets back what they sent, not the
   // moderation state attached to it.
-  const record = toRecord(row)
   return {
-    id: record.id,
-    type: record.type,
-    message: record.message,
-    email: record.email,
-    drugSlug: record.drugSlug,
-    createdAt: record.createdAt,
+    id: row.id,
+    type: row.type,
+    message: row.message,
+    email: row.email ?? undefined,
+    drugSlug: row.drugSlug ?? undefined,
+    createdAt: row.createdAt.toISOString(),
   }
 }
 
 /**
- * The admin queue. Carries the reporter's email address and session hash, so it is an
- * authenticated-admin read only — never a public route.
+ * The steward/admin queue. It may carry a reporter's optional contact address, so it is never a
+ * public route. The stored abuse-control hash is not part of this projection.
  */
 export async function listFeedback(opts: {
   resolved?: boolean
@@ -135,15 +171,66 @@ export async function listFeedback(opts: {
     .orderBy(desc(feedback.createdAt), desc(feedback.id))
     .limit(Math.max(1, Math.trunc(opts.limit)))
 
-  return rows.map(toRecord)
+  return attachFeedbackAccounts(rows)
 }
 
-/** Marks one item handled. Returns false when no such item exists, rather than pretending. */
-export async function markFeedbackResolved(id: string): Promise<boolean> {
-  const updated = await db
-    .update(feedback)
-    .set({ resolved: true })
-    .where(eq(feedback.id, id))
-    .returning({ id: feedback.id })
-  return updated.length > 0
+/**
+ * Resolve one report once. PostgreSQL independently owns the timestamp, verifies the current
+ * steward/admin role and rejects mutation or deletion after resolution.
+ */
+export async function resolveFeedback(input: {
+  id: string
+  actorUserId: string
+  note: string
+}): Promise<FeedbackRecord> {
+  const note = input.note.trim()
+  if (note.length < 8 || note.length > 2000) {
+    throw new FeedbackError(
+      'invalid_resolution',
+      'A resolution note of 8 to 2,000 characters is required.',
+    )
+  }
+
+  const row = await db.transaction(async (tx) => {
+    const actors = await tx
+      .select({ id: users.id, isAdmin: users.isAdmin, trustTier: users.trustTier })
+      .from(users)
+      .where(eq(users.id, input.actorUserId))
+      .limit(1)
+    const actor = actors[0]
+    if (!actor || !canManageInternalReview(actor)) {
+      throw new FeedbackError(
+        'not_authorized',
+        'Only a steward or administrator can resolve feedback.',
+      )
+    }
+
+    const existing = await tx
+      .select({ id: feedback.id, resolved: feedback.resolved })
+      .from(feedback)
+      .where(eq(feedback.id, input.id))
+      .limit(1)
+      .for('update')
+    if (!existing[0]) throw new FeedbackError('not_found', 'No feedback matches this id.')
+    if (existing[0].resolved) {
+      throw new FeedbackError('already_resolved', 'That feedback has already been resolved.')
+    }
+
+    const updated = await tx
+      .update(feedback)
+      .set({
+        resolved: true,
+        resolvedByUserId: actor.id,
+        resolutionNote: note,
+      })
+      .where(eq(feedback.id, input.id))
+      .returning(feedbackColumns)
+    const result = updated[0]
+    if (!result) throw new FeedbackError('not_found', 'No feedback matches this id.')
+    return result
+  })
+
+  const [record] = await attachFeedbackAccounts([row])
+  if (!record) throw new FeedbackError('not_found', 'No feedback matches this id.')
+  return record
 }

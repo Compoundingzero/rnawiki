@@ -1,0 +1,86 @@
+name: Verify RNAWiki
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+      SESSION_SECRET: ci-only-session-secret-0123456789abcdef
+      SITE_URL: http://localhost:3000
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check public copy
+        run: npm run check:copy
+
+      - name: Check formatting
+        run: npm run format
+
+      - name: Check migration metadata
+        run: npx drizzle-kit check
+
+      - name: Ensure schema generation is clean
+        run: |
+          npm run db:generate
+          if [ -n "$(git status --porcelain --untracked-files=all -- db/schema.ts db/migrations/)" ]; then
+            echo "Schema generation changed tracked files or created an uncommitted migration:" >&2
+            git status --short --untracked-files=all -- db/schema.ts db/migrations/
+            exit 1
+          fi
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: PostgreSQL integration tests
+        run: npm run test:integration
+
+      - name: Production build
+        run: npm run build
+
+      - name: Production browser journeys
+        run: npm run test:e2e

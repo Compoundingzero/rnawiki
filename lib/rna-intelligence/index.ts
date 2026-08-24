@@ -12,6 +12,8 @@ import { validateLayer3 } from './layer3-protocol'
 import { verificationHashFor } from './hash'
 
 export * from './types'
+export * from './evidence-types'
+export { runEvidenceIntelligence } from './evidence-engine'
 export { validateLayer1 } from './layer1-sequence'
 export { validateLayer2 } from './layer2-structure'
 export { validateLayer3, CANONICAL_PHASE_ORDER } from './layer3-protocol'
@@ -23,7 +25,7 @@ export { verificationHashFor, fnv1a64 } from './hash'
  * a future revision must not be able to collide, or a record would look verified against rules that
  * no longer exist. Bump this whenever a layer's output changes for unchanged input.
  */
-export const ENGINE_VERSION = 'rna-intelligence/1.0.0+turner2004'
+export const ENGINE_VERSION = 'rna-intelligence/1.1.0+turner2004'
 
 export function runFullDeterministicSweep(input: SweepInput): RnaIntelligenceReport
 export function runFullDeterministicSweep(
@@ -31,15 +33,7 @@ export function runFullDeterministicSweep(
   modality: DrugModality,
   workflow: LaboratoryProtocolStep[],
 ): RnaIntelligenceReport
-/**
- * Runs all three layers and assembles the report.
- *
- * Two call shapes, one implementation. The positional form is the reference wireframe's signature,
- * kept so ported components need no edit; the object form is what new code should use, because it
- * is the only one that can carry `cdnaMode` and the only one that stays readable as input grows.
- * Overload resolution keeps both fully typed — the implementation signature below is deliberately
- * not exported as a callable shape, so no caller can pass a string without a modality.
- */
+/** Run all Group A layers. The object form also carries cDNA mode. */
 export function runFullDeterministicSweep(
   inputOrStructure: SweepInput | string,
   modality?: DrugModality,
@@ -91,18 +85,28 @@ export function runFullDeterministicSweep(
   // make the badge change whenever a diagnostic's wording is improved, silently invalidating every
   // stored badge; deriving it from the timestamp would make it unverifiable by definition.
   //
-  // Step ids and phases go in, in submitted order, because reordering steps changes the protocol.
-  // The step count is included as well as the ids: it pins the field count so a workflow cannot be
-  // confused with a longer one whose ids happen to frame the same way.
+  // Every workflow field validated by Layer 3 goes in, in submitted order. Hashing only ids and
+  // phases would let a dependency, step number, condition, or reagent change while retaining the
+  // old verification badge. `verificationHashFor` length-prefixes each part, so empty optional
+  // fields and neighbouring values cannot be framed ambiguously.
   const stepParts: string[] = []
   for (const step of steps) {
-    stepParts.push(step.id, step.phase)
+    stepParts.push(
+      step.id,
+      String(step.stepNumber),
+      step.phase,
+      step.name,
+      step.description,
+      step.dependsOnStepId ?? '',
+      step.reagentsAndBuffer,
+    )
   }
   const verificationHash = verificationHashFor([
     ENGINE_VERSION,
     layer1.structureType,
     layer1.cleanedInput,
     input.modality,
+    input.cdnaMode ? 'cdna-mode:on' : 'cdna-mode:off',
     String(steps.length),
     ...stepParts,
   ])

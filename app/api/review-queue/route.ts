@@ -1,11 +1,4 @@
-// GET /api/review-queue?limit=&offset= — the edits waiting for a person.
-//
-// Public, and that is the point. A moderation queue nobody outside the moderators can see is a
-// private editorial process wearing an open-source label; anyone can read what has been proposed,
-// what the deterministic engine said about it, and how long it has been waiting.
-//
-// Oldest first, because a queue sorted newest-first is one where the unlucky submission at the
-// bottom is never reached.
+// Public identity-correction queue, oldest first.
 
 import { z } from 'zod'
 import { inArray } from 'drizzle-orm'
@@ -15,7 +8,7 @@ import { countPendingRevisions, listPendingRevisions } from '@/lib/queries/revis
 import { getCurrentUser } from '@/lib/session'
 import { PUBLIC_API } from '@/lib/rate-limit'
 import { ok, rateLimited, rateLimitKey, withHandler } from '@/lib/api-response'
-import type { RevisionFieldChange, TrustTier } from '@/lib/types'
+import type { LegacyIdentityCorrectionDetail, RevisionFieldChange, TrustTier } from '@/lib/types'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -28,7 +21,6 @@ const querySchema = z.object({
   offset: z.coerce.number().int().min(0).optional(),
 })
 
-/** The contract's row. Note what is NOT here: the proposed payload and the full engine report. */
 interface PendingRevision {
   id: string
   drugSlug: string
@@ -37,23 +29,11 @@ interface PendingRevision {
   authorHandle?: string
   authorTrustTier: TrustTier
   summary: string
+  identityCorrection: LegacyIdentityCorrectionDetail
   changedFields: RevisionFieldChange[]
-  machineVerified: boolean
-  verificationHash: string | null
   createdAt: string
 }
 
-/**
- * Handles for the authors on this page, so each row can link to a contributor profile.
- *
- * A second query rather than a join: `revisionListColumns` in lib/queries/revisions.ts is
- * deliberately drug-shaped and does not reach into `users`, and widening it is not this route's
- * file to change. This is one primary-key lookup over at most `limit` ids that are already in
- * hand, and `handle` is a public field — it is the profile URL.
- *
- * Anonymous authors (`authorUserId === null`) simply have no handle, which the optional field in
- * the contract already allows for.
- */
 async function handlesFor(userIds: string[]): Promise<Map<string, string>> {
   const unique = [...new Set(userIds)]
   if (unique.length === 0) return new Map()
@@ -69,7 +49,6 @@ async function handlesFor(userIds: string[]): Promise<Map<string, string>> {
 export const GET = withHandler(async (req: Request) => {
   const url = new URL(req.url)
   const parsed = querySchema.parse({
-    // An absent param is `undefined` so the default applies; an empty one would coerce to 0.
     limit: url.searchParams.get('limit') || undefined,
     offset: url.searchParams.get('offset') || undefined,
   })
@@ -88,19 +67,20 @@ export const GET = withHandler(async (req: Request) => {
   )
 
   const rows: PendingRevision[] = pending.map((revision) => {
+    if (!revision.identityCorrection) {
+      throw new Error('The live legacy queue returned a revision without identity provenance.')
+    }
     const handle = revision.authorUserId ? handles.get(revision.authorUserId) : undefined
     return {
       id: revision.id,
       drugSlug: revision.drugSlug,
       drugName: revision.drugName,
       authorName: revision.authorName,
-      // Omitted rather than sent as null when the author has no account behind them any more.
       ...(handle ? { authorHandle: handle } : {}),
       authorTrustTier: revision.authorTrustTier,
       summary: revision.summary,
+      identityCorrection: revision.identityCorrection,
       changedFields: revision.changedFields,
-      machineVerified: revision.machineVerified,
-      verificationHash: revision.verificationHash,
       createdAt: revision.createdAt,
     }
   })

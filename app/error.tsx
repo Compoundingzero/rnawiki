@@ -33,7 +33,7 @@ export default function Error({
         <Link href="/" className="inline-flex items-center gap-2 select-none">
           <span className="text-base font-bold tracking-tight text-[#1D1D1F]">
             RNA<span className="text-[#0071E3]">wiki</span>
-            <span className="text-[11px] font-normal text-[#86868B]">.com</span>
+            <span className="text-[11px] font-normal text-[#6E6E73]">.com</span>
           </span>
         </Link>
 
@@ -65,7 +65,7 @@ export default function Error({
         </div>
 
         {error.digest && (
-          <p className="text-[11px] text-[#86868B]">
+          <p className="text-[11px] text-[#6E6E73]">
             Reference <code className="font-mono text-[#6E6E73]">{error.digest}</code>
           </p>
         )}

@@ -129,9 +129,25 @@ describe('runFullDeterministicSweep', () => {
       modality: 'mRNA Vaccine / Therapeutic',
       workflow: [step('qc', 1, 'QC')],
     })
+    const changedCondition = runFullDeterministicSweep({
+      structureString: SEQUENCE,
+      modality: 'mRNA Vaccine / Therapeutic',
+      workflow: WORKFLOW.map((item) =>
+        item.id === 'synth' ? { ...item, description: 'A changed documented condition.' } : item,
+      ),
+    })
+    const changedDependency = runFullDeterministicSweep({
+      structureString: SEQUENCE,
+      modality: 'mRNA Vaccine / Therapeutic',
+      workflow: WORKFLOW.map((item) =>
+        item.id === 'purify' ? { ...item, dependsOnStepId: 'synth' } : item,
+      ),
+    })
 
     expect(reordered.verificationHash).not.toBe(base.verificationHash)
     expect(shorter.verificationHash).not.toBe(base.verificationHash)
+    expect(changedCondition.verificationHash).not.toBe(base.verificationHash)
+    expect(changedDependency.verificationHash).not.toBe(base.verificationHash)
   })
 
   it('collects diagnostics from every layer in layer order and splits them by severity', () => {

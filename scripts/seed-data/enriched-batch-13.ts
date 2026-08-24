@@ -557,7 +557,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does it treat the disease or just the symptoms?',
-        a: 'Both, depending on the disease, and the distinction is measurable. In early rheumatoid arthritis a two-year randomised trial measured X-ray damage, not symptoms, and found joint erosion nearly stopped: Larsen scores rose 0.72 units on prednisolone against 5.37 on placebo. That is disease modification. In preschool viral wheeze a trial of 687 children found no difference in anything, including how long they stayed in hospital. In severe alcoholic hepatitis the largest trial run found a 28-day mortality difference that did not reach significance and nothing at all by 90 days. The honest answer is that this drug’s effect ranges from disease-altering to nil depending entirely on the condition, and the label’s long list of indications does not distinguish between them.',
+        a: 'Both, depending on the disease, and the distinction is measurable. In early rheumatoid arthritis a two-year randomised trial measured X-ray damage, not symptoms, and found joint erosion nearly stopped: Larsen scores rose 0.72 units on prednisolone against 5.37 on placebo. That is disease modification. In preschool viral wheeze a trial of 687 children found no difference in anything, including how long they stayed in hospital. In severe alcoholic hepatitis the largest trial run found a 28-day mortality difference that did not reach significance and nothing at all by 90 days. This drug’s effect ranges from disease-altering to nil depending entirely on the condition, and the label’s long list of indications does not distinguish between them.',
       },
       {
         q: 'Why can I not just stop taking it?',
@@ -1459,7 +1459,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
           'Annane D et al., N Engl J Med 2018;378:809-818 (APROCCHSS, NCT00625209); Venkatesh B et al., N Engl J Med 2018;378:797-808 (ADRENAL, NCT01448109)',
         doi: '10.1056/NEJMoa1705716',
         inferredClaim:
-          'That one of the two trials is simply right — the honest reading is that hydrocortisone reliably reverses shock faster and unreliably changes whether people die, and the conditions separating the two results have not been identified',
+          'That one of the two trials is simply right — hydrocortisone reliably reverses shock faster and unreliably changes whether people die, and the conditions separating the two results have not been identified',
         auditFlag: 'contested',
       },
       {
@@ -2044,7 +2044,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'The harm signal in CRASH was not explained, only measured',
         laymanSummary:
-          'The trial that found methylprednisolone increasing deaths after head injury said plainly that it did not know why. That is unusual and it is honest. The excess did not track with how badly injured people were or how quickly they were treated.',
+          'The trial that found methylprednisolone increasing deaths after head injury said that it did not know why. The excess did not track with how badly injured people were or how quickly they were treated, so the cause remains unexplained.',
         technicalDetails:
           'In CRASH the relative increase in death did not differ by injury severity on the Glasgow Coma Scale (P=0.22) or by time from injury to randomisation (P=0.05), so the harm was not concentrated in a subgroup that could be excluded. The authors wrote that the cause of the rise in risk of death within 2 weeks is unclear. Candidate mechanisms discussed in the surrounding literature — infection, hyperglycaemia, gastrointestinal bleeding — were not established by the trial. What the trial establishes is the effect, not the mechanism, and the distinction matters because "we do not know why" is a different statement from "the effect is not real".',
         evidenceSource:
@@ -2768,7 +2768,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         q: 'Does it cause cancer?',
         a: 'The label says chronic immunosuppression with this drug increases the risk of malignancy in humans, and names post-transplant lymphoma and hepatosplenic T-cell lymphoma. The best single measurement is a French cohort of 19,486 people with inflammatory bowel disease: lymphoproliferative disorder occurred at 0.90 per 1,000 patient-years in current thiopurine users against 0.26 in never-users, an adjusted hazard ratio of 5.28. Two things temper that. The absolute numbers are small — 23 cases in the whole cohort — and the diseases the drug treats carry their own cancer risk. What argues for the drug being causal is that people who had stopped taking it had an incidence of 0.20 per 1,000 patient-years, close to never-users. Disease severity does not reverse when a drug is stopped. Non-melanoma skin cancer is the other well-documented risk, and it is the reason sun protection is advised.',
         auditNote:
-          'A hazard ratio of 5 on a base rate of 0.26 per 1,000 patient-years is a large relative increase on a small absolute risk. Both halves of that sentence belong in any honest description.',
+          'A hazard ratio of 5 on a base rate of 0.26 per 1,000 patient-years is a large relative increase on a small absolute risk. Both the relative and absolute risks matter.',
       },
       {
         q: 'Is it as good as the newer drugs for Crohn’s disease?',
@@ -3085,7 +3085,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'ALMS induction: mycophenolate did not beat cyclophosphamide in lupus nephritis',
         laymanSummary:
-          'The largest international trial in lupus kidney disease set out to show mycophenolate was better than the older intravenous chemotherapy drug. Response rates were 56% against 53%. The trial says plainly that it did not meet its objective.',
+          'The largest international trial in lupus kidney disease set out to show mycophenolate was better than the older intravenous chemotherapy drug. Response rates were 56% against 53%. The trial says that it did not meet its objective.',
         technicalDetails:
           'The Aspreva Lupus Management Study randomised 370 patients with class III to V lupus nephritis to open-label mycophenolate mofetil at a target of 3 g per day or intravenous cyclophosphamide 0.5 to 1.0 g/m2 in monthly pulses, both with tapering prednisone, over a 24-week induction phase. The primary endpoint combined a prespecified decrease in urine protein-to-creatinine ratio with stabilisation or improvement in serum creatinine. Response was 104 of 185 (56.2%) on mycophenolate against 98 of 185 (53.0%) on cyclophosphamide. Secondary endpoints were similar. There were nine deaths in the mycophenolate group and five in the cyclophosphamide group. Rates of adverse events, serious adverse events and infections did not differ significantly. The authors state the study did not meet its primary objective of showing superiority.',
         evidenceSource:
@@ -3129,7 +3129,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'A 3.6-fold difference in severe rejection that was not statistically significant',
         laymanSummary:
-          'Among patients who did reject the kidney, severe rejection happened in 2.1% on the enteric-coated version and 9.8% on the comparator. That looks like a large advantage. The trial reported it as not significant, and the honest reading is that the trial was not built to answer that question.',
+          'Among patients who did reject the kidney, severe rejection happened in 2.1% on the enteric-coated version and 9.8% on the comparator. That looks like a large advantage. The trial reported it as not significant, and the trial was not built to answer that question.',
         technicalDetails:
           'In the de novo study, among patients with biopsy-proven acute rejection, severe acute rejection occurred in 2.1% of enteric-coated mycophenolate sodium patients and 9.8% of mycophenolate mofetil patients, reported as not significant. The trial was powered for equivalence on a composite efficacy-failure endpoint in 423 patients, not for a subgroup comparison of rejection severity among the roughly one quarter who rejected. A difference of this size on a small denominator with a non-significant p-value is exactly the kind of finding that gets quoted forward as though it were established. It is a hypothesis the trial generated, not a result the trial demonstrated, and no subsequent adequately powered study has tested it.',
         evidenceSource: 'Salvadori M et al., Am J Transplant 2004;4:231-236',
@@ -3429,7 +3429,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The direct alternative is cyclosporine, the other calcineurin inhibitor, and the honest comparison is a set of trades rather than a winner: tacrolimus gives fewer and less refractory rejections and better kidney function in the head-to-head trials, cyclosporine gives less diabetes and worse lipids. The mTOR inhibitors sirolimus and everolimus and the costimulation blocker belatacept exist largely to avoid calcineurin inhibition altogether, and each buys that with a different problem. Nothing sold as a food or supplement substitutes for transplant immunosuppression, and grapefruit and St John’s wort do the opposite of substituting: they change tacrolimus blood levels enough to cause rejection or toxicity.',
+        'The direct alternative is cyclosporine, the other calcineurin inhibitor, and the comparison is a set of trades rather than a winner: tacrolimus gives fewer and less refractory rejections and better kidney function in the head-to-head trials, cyclosporine gives less diabetes and worse lipids. The mTOR inhibitors sirolimus and everolimus and the costimulation blocker belatacept exist largely to avoid calcineurin inhibition altogether, and each buys that with a different problem. Nothing sold as a food or supplement substitutes for transplant immunosuppression, and grapefruit and St John’s wort do the opposite of substituting: they change tacrolimus blood levels enough to cause rejection or toxicity.',
       conventionalRx: [
         {
           name: 'Cyclosporine',
@@ -4182,7 +4182,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The eye-drop trials measured how much the eye stained with dye and how far a paper strip wetted. Both improved against the vehicle. The things patients actually notice — burning, grittiness, dryness — mostly did not separate, and doubling the concentration did nothing at all.',
         technicalDetails:
-          'Two identical multicentre, randomised, double-masked, vehicle-controlled six-month trials in 877 patients with moderate to severe dry eye compared cyclosporine ophthalmic emulsion 0.05% and 0.1% against vehicle. Both strengths gave significantly greater improvement than vehicle in two objective signs — corneal staining and categorised Schirmer values — at P at or below 0.05. The 0.05% strength additionally improved three subjective measures: blurred vision, need for concomitant artificial tears and the physician’s global response evaluation. The remaining subjective measures, including the Ocular Surface Disease Index and the patient rating scale, are not among the endpoints reported as significant. There was no dose-response effect between 0.05% and 0.1%, which is unusual for a real pharmacological effect and is a finding the paper reports plainly.',
+          'Two identical multicentre, randomised, double-masked, vehicle-controlled six-month trials in 877 patients with moderate to severe dry eye compared cyclosporine ophthalmic emulsion 0.05% and 0.1% against vehicle. Both strengths gave significantly greater improvement than vehicle in two objective signs — corneal staining and categorised Schirmer values — at P at or below 0.05. The 0.05% strength additionally improved three subjective measures: blurred vision, need for concomitant artificial tears and the physician’s global response evaluation. The remaining subjective measures, including the Ocular Surface Disease Index and the patient rating scale, are not among the endpoints reported as significant. There was no dose-response effect between 0.05% and 0.1%, which is unusual for a real pharmacological effect and is a finding the paper reports.',
         evidenceSource: 'Sall K et al., CsA Phase 3 Study Group, Ophthalmology 2000;107:631-639',
         doi: '10.1016/s0161-6420(99)00176-1',
         inferredClaim:
@@ -4413,7 +4413,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Do the dry eye drops work?',
-        a: 'They move the objective measures. In two identical six-month trials in 877 patients, both the 0.05% and 0.1% emulsions produced significantly greater improvement than the vehicle in corneal staining and in categorised Schirmer scores, which measure how much the eye stains with dye and how far a paper strip wets. On the things a patient notices, the picture is thinner: for the 0.05% strength three subjective measures separated from vehicle — blurred vision, need for artificial tears, and the physician’s global assessment — and the rest did not. There was also no dose-response: doubling the concentration produced no additional effect, which is unusual for a straightforward pharmacological action and is reported plainly in the paper. Burning on instillation is the commonest complaint, and the effect takes months rather than days.',
+        a: 'They move the objective measures. In two identical six-month trials in 877 patients, both the 0.05% and 0.1% emulsions produced significantly greater improvement than the vehicle in corneal staining and in categorised Schirmer scores, which measure how much the eye stains with dye and how far a paper strip wets. On the things a patient notices, the picture is thinner: for the 0.05% strength three subjective measures separated from vehicle — blurred vision, need for artificial tears, and the physician’s global assessment — and the rest did not. There was also no dose-response: doubling the concentration produced no additional effect, which is unusual for a straightforward pharmacological action and is reported in the paper. Burning on instillation is the commonest complaint, and the effect takes months rather than days.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -5244,7 +5244,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         id: 'lef-a5',
         category: 'inferred',
         title:
-          'Equivalence to methotrexate is not superiority, and the trial reported both drugs plainly',
+          'Equivalence to methotrexate is not superiority; the trial found similar response rates for both drugs',
         laymanSummary:
           'Leflunomide arrived as the first new conventional drug for rheumatoid arthritis in years, and it was often described that way. What its own registration trial showed was that it performed about the same as the drug already in use, with more liver-enzyme problems.',
         technicalDetails:
@@ -5262,7 +5262,7 @@ export const ENRICHED_BATCH_13_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Leflunomide is inert until the body turns it into teriflunomide. In 2012 teriflunomide itself was approved as a new medicine for multiple sclerosis, under its own patents, more than a decade after leflunomide had gone generic. The molecule doing the work was the same one all along.',
         technicalDetails:
-          'Leflunomide is a prodrug that opens to teriflunomide, the malononitrilamide that inhibits dihydroorotate dehydrogenase. Teriflunomide was developed separately, tested in relapsing multiple sclerosis, and approved in 2012 with its own labelling, its own price and its own patent protection, while leflunomide had been generic in the United States since 2005. Both carry boxed warnings for hepatotoxicity and embryo-fetal toxicity, and both are subject to the same accelerated elimination procedure, because they are the same active species. Developing a known active metabolite for a new indication is a legitimate and reasonably common path, and the resulting situation — a generic drug and a branded drug that a patient’s liver cannot distinguish between — is worth stating plainly.',
+          'Leflunomide is a prodrug that opens to teriflunomide, the malononitrilamide that inhibits dihydroorotate dehydrogenase. Teriflunomide was developed separately, tested in relapsing multiple sclerosis, and approved in 2012 with its own labelling, its own price and its own patent protection, while leflunomide had been generic in the United States since 2005. Both carry boxed warnings for hepatotoxicity and embryo-fetal toxicity, and both are subject to the same accelerated elimination procedure, because they are the same active species. Developing a known active metabolite for a new indication is a legitimate and reasonably common path. In this case, the result is a generic drug and a branded drug that a patient’s liver cannot distinguish between.',
         evidenceSource:
           'ARAVA (leflunomide) United States prescribing information, Clinical Pharmacology (conversion to teriflunomide); Drugs@FDA record for ARAVA, NDA 020905',
         inferredClaim:

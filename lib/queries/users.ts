@@ -6,11 +6,26 @@
 // the query that backs it names its columns one by one — not because a component remembers not to
 // print them.
 
-import { and, desc, eq, sql } from 'drizzle-orm'
+import { and, desc, eq, inArray, sql } from 'drizzle-orm'
 import { db } from '@/db'
 import { newId } from '@/lib/ids'
-import { drugs, revisions, savedDrugs, users } from '@/db/schema'
-import { searchHitColumns, type SearchHit } from './drugs'
+import {
+  developmentProgrammes,
+  drugs,
+  physicianVerificationRequests,
+  programmeContributionProposals,
+  programmeContributionReviewStates,
+  savedDrugs,
+  users,
+} from '@/db/schema'
+import { canManageInternalReview } from '@/lib/internal-review-policy'
+import {
+  cleanPublicSearchHitRows,
+  publicMedicineFilter,
+  publicSearchHitReadColumns,
+  type SearchHit,
+} from './drugs'
+import { bindPublicSearchSummaries } from './public-search-hit-projection'
 import type { CommentUser, TrustTier } from '@/lib/types'
 
 export type UserRow = typeof users.$inferSelect
@@ -23,7 +38,14 @@ export type UserRow = typeof users.$inferSelect
 export type AccountUser = Omit<UserRow, 'passwordHash'>
 
 export type UserErrorCode =
-  'email_taken' | 'handle_taken' | 'not_found' | 'not_admin' | 'not_pending'
+  | 'email_taken'
+  | 'handle_taken'
+  | 'not_found'
+  | 'not_authorized'
+  | 'not_pending'
+  | 'verification_pending'
+  | 'self_review'
+  | 'invalid_decision'
 
 export class UserError extends Error {
   readonly code: UserErrorCode
@@ -98,8 +120,6 @@ export interface CreateUserInput {
   orcid?: string | null
   /** A self-declared claim. It grants nothing on its own; `verificationState` decides the badge. */
   isDoctor?: boolean
-  /** Only the admin bootstrap script passes this. No signup path may. */
-  isAdmin?: boolean
   id?: string
 }
 
@@ -115,7 +135,6 @@ export async function createUser(input: CreateUserInput): Promise<AccountUser> {
         handle: input.handle.trim(),
         orcid: input.orcid ?? null,
         isDoctor: input.isDoctor ?? false,
-        isAdmin: input.isAdmin ?? false,
       })
       .returning(accountColumns)
 
@@ -231,10 +250,9 @@ export interface ContributorProfile {
 const RECENT_CONTRIBUTION_LIMIT = 20
 
 export async function getContributorProfile(handle: string): Promise<ContributorProfile | null> {
-  // The counts are recomputed from the rows rather than read from users.accepted_edit_count and
-  // users.note_count. Those columns exist so the trust tier can be derived without a join, but a
-  // profile page states a fact about a public list, and the honest source of that number is the
-  // list itself.
+  // The accepted counter is maintained by a database transition trigger from normalized
+  // contribution review states. Legacy spelling edits do not enter this metric, and the count has
+  // no effect on trust tier or scientific-review qualification.
   const rows = await db
     .select({
       id: users.id,
@@ -247,17 +265,7 @@ export async function getContributorProfile(handle: string): Promise<Contributor
       medicalSpecialty: users.medicalSpecialty,
       institution: users.institution,
       orcid: users.orcid,
-      // Table and column names are written out instead of interpolated as Drizzle column objects.
-      // Inside a SELECT list Drizzle renders an interpolated column WITHOUT its table qualifier,
-      // so `${revisions.authorUserId} = ${users.id}` comes out as `author_user_id = id`, both
-      // names bind to `revisions` inside the subquery, the correlation is never true and the count
-      // is silently zero on every profile — a wrong number with no error to notice it by. Spelled
-      // out, the correlation to the outer `users` row is explicit. (Elsewhere — WHERE clauses, SET
-      // fragments — Drizzle does qualify; this trap is specific to the select list.)
-      acceptedEditCount: sql<number>`(
-        select count(*) from revisions
-        where revisions.author_user_id = users.id and revisions.status = 'published'
-      )`.mapWith(Number),
+      acceptedEditCount: users.acceptedEditCount,
       noteCount: sql<number>`(
         select count(*) from community_notes
         where community_notes.author_user_id = users.id and community_notes.status = 'published'
@@ -272,16 +280,34 @@ export async function getContributorProfile(handle: string): Promise<Contributor
 
   const contributions = await db
     .select({
-      revisionId: revisions.id,
+      revisionId: programmeContributionProposals.id,
+      proposalType: programmeContributionProposals.proposalType,
       drugName: drugs.name,
       drugSlug: drugs.slug,
-      summary: revisions.summary,
-      createdAt: revisions.createdAt,
+      programmeTitle: developmentProgrammes.title,
+      createdAt: programmeContributionReviewStates.resolvedAt,
     })
-    .from(revisions)
-    .innerJoin(drugs, eq(revisions.drugId, drugs.id))
-    .where(and(eq(revisions.authorUserId, user.id), eq(revisions.status, 'published')))
-    .orderBy(desc(revisions.createdAt), desc(revisions.id))
+    .from(programmeContributionProposals)
+    .innerJoin(
+      programmeContributionReviewStates,
+      eq(programmeContributionReviewStates.proposalId, programmeContributionProposals.id),
+    )
+    .innerJoin(
+      developmentProgrammes,
+      eq(programmeContributionProposals.programmeId, developmentProgrammes.id),
+    )
+    .innerJoin(drugs, eq(developmentProgrammes.drugId, drugs.id))
+    .where(
+      and(
+        eq(programmeContributionProposals.authorUserId, user.id),
+        eq(programmeContributionReviewStates.status, 'ACCEPTED_FOR_IMPLEMENTATION'),
+        publicMedicineFilter,
+      ),
+    )
+    .orderBy(
+      desc(programmeContributionReviewStates.resolvedAt),
+      desc(programmeContributionProposals.id),
+    )
     .limit(RECENT_CONTRIBUTION_LIMIT)
 
   const isVerifiedDoctor = user.isDoctor && user.verificationState === 'verified'
@@ -303,8 +329,13 @@ export async function getContributorProfile(handle: string): Promise<Contributor
       revisionId: c.revisionId,
       drugName: c.drugName,
       drugSlug: c.drugSlug,
-      summary: c.summary,
-      createdAt: c.createdAt.toISOString(),
+      summary:
+        c.proposalType === 'SOURCE_REFRESH'
+          ? `Submitted updated registry facts for ${c.programmeTitle}; reviewers accepted them for implementation.`
+          : c.proposalType === 'VERDICT_CHALLENGE'
+            ? `Challenged the published conclusion for ${c.programmeTitle}; reviewers accepted the challenge for implementation.`
+            : `Proposed a correction to ${c.programmeTitle}; reviewers accepted it for implementation.`,
+      createdAt: c.createdAt?.toISOString() ?? user.createdAt.toISOString(),
     })),
   }
 }
@@ -314,149 +345,270 @@ export async function getContributorProfile(handle: string): Promise<Contributor
 // ---------------------------------------------------------------------------
 
 export interface DoctorVerificationPayload {
+  professionalFullName: string
+  workEmail: string
   medicalLicenseOrNpi: string
   medicalSpecialty: string
-  institution?: string
+  institution: string
+}
+
+export interface DoctorVerificationSubmission {
+  requestId: string
+  submittedAt: string
+  account: AccountUser
 }
 
 /**
- * Files a physician verification claim. The state written here is the literal `'pending'`, there
- * is no parameter that could make it anything else, and the function does not read the current
- * state to decide — so no argument, in any combination, reaches `'verified'` through this path.
- * `approveVerification` is the only function in the codebase that writes that value, and it
- * requires an administrator.
- *
- * Re-filing while already verified drops back to pending and clears `verifiedAt`. That is the safe
- * direction: changed credentials are unreviewed credentials, and the badge should not outlive the
- * claim it was granted for.
+ * File an immutable credential snapshot and remove any earlier badge while the new claim waits.
+ * A second submission cannot overwrite a pending request. A previously decided request remains in
+ * the audit trail when updated credentials are submitted later.
  */
 export async function submitDoctorVerification(
   userId: string,
   payload: DoctorVerificationPayload,
-): Promise<AccountUser> {
-  const updated = await db
-    .update(users)
-    .set({
-      isDoctor: true,
-      medicalLicenseOrNpi: payload.medicalLicenseOrNpi.trim(),
-      medicalSpecialty: payload.medicalSpecialty.trim(),
-      institution: payload.institution?.trim() ?? null,
-      verificationState: 'pending',
-      verifiedAt: null,
-      verificationNote: null,
-    })
-    .where(eq(users.id, userId))
-    .returning(accountColumns)
+): Promise<DoctorVerificationSubmission> {
+  return db.transaction(async (tx) => {
+    const accounts = await tx
+      .select({ id: users.id })
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1)
+      .for('update')
+    if (!accounts[0]) throw new UserError('not_found', 'No account matches this id.')
 
-  const row = updated[0]
-  if (!row) throw new UserError('not_found', 'No account matches this id.')
-  return row
+    const pending = await tx
+      .select({ id: physicianVerificationRequests.id })
+      .from(physicianVerificationRequests)
+      .where(
+        and(
+          eq(physicianVerificationRequests.userId, userId),
+          eq(physicianVerificationRequests.status, 'pending'),
+        ),
+      )
+      .limit(1)
+    if (pending[0]) {
+      throw new UserError(
+        'verification_pending',
+        'Your previous credential submission is still waiting for review.',
+      )
+    }
+
+    const requestId = newId('verify')
+    const inserted = await tx
+      .insert(physicianVerificationRequests)
+      .values({
+        id: requestId,
+        userId,
+        professionalFullName: payload.professionalFullName.trim(),
+        workEmail: payload.workEmail.trim(),
+        medicalLicenseOrNpi: payload.medicalLicenseOrNpi.trim(),
+        medicalSpecialty: payload.medicalSpecialty.trim(),
+        institution: payload.institution.trim(),
+        status: 'pending',
+      })
+      .returning({ submittedAt: physicianVerificationRequests.submittedAt })
+
+    // The database trigger derives the account-facing state from this immutable request. Read the
+    // result back instead of maintaining a second application-owned version of the same state.
+    const updated = await tx.select(accountColumns).from(users).where(eq(users.id, userId)).limit(1)
+
+    const account = updated[0]
+    const request = inserted[0]
+    if (!account || !request) throw new UserError('not_found', 'The request could not be written.')
+    return { requestId, submittedAt: request.submittedAt.toISOString(), account }
+  })
 }
 
-/**
- * The steward's queue. This is the one read in the codebase that returns a licence number, because
- * checking it against a registry is the entire job. It must never reach a public page.
- *
- * Ordered by account age: the schema records no separate "submitted at" timestamp, so there is no
- * honest submission order to sort by, and inventing one from `verified_at` would be backwards.
- */
-export interface PendingVerification {
-  userId: string
-  name: string
-  handle: string
-  email: string
-  medicalLicenseOrNpi: string | null
-  medicalSpecialty: string | null
-  institution: string | null
-  orcid: string | null
-  joinedAt: string
+export type VerificationQueueStatus = 'pending' | 'decided'
+
+export interface PhysicianVerificationQueueItem {
+  id: string
+  professionalFullName: string
+  medicalSpecialty: string
+  institution: string
+  status: 'pending' | 'verified' | 'rejected'
+  submittedAt: string
+  decidedAt: string | null
+  account: { name: string; handle: string }
 }
 
-export async function listPendingVerifications(): Promise<PendingVerification[]> {
+/** Private queue projection: intentionally excludes workplace email, licence and decision note. */
+export async function listPhysicianVerificationRequests(input: {
+  status: VerificationQueueStatus
+  limit: number
+}): Promise<PhysicianVerificationQueueItem[]> {
   const rows = await db
     .select({
-      userId: users.id,
+      id: physicianVerificationRequests.id,
+      professionalFullName: physicianVerificationRequests.professionalFullName,
+      medicalSpecialty: physicianVerificationRequests.medicalSpecialty,
+      institution: physicianVerificationRequests.institution,
+      status: physicianVerificationRequests.status,
+      submittedAt: physicianVerificationRequests.submittedAt,
+      decidedAt: physicianVerificationRequests.decidedAt,
       name: users.name,
       handle: users.handle,
-      email: users.email,
-      medicalLicenseOrNpi: users.medicalLicenseOrNpi,
-      medicalSpecialty: users.medicalSpecialty,
-      institution: users.institution,
-      orcid: users.orcid,
-      createdAt: users.createdAt,
     })
-    .from(users)
-    .where(eq(users.verificationState, 'pending'))
-    .orderBy(users.createdAt, users.id)
+    .from(physicianVerificationRequests)
+    .innerJoin(users, eq(physicianVerificationRequests.userId, users.id))
+    .where(
+      input.status === 'pending'
+        ? eq(physicianVerificationRequests.status, 'pending')
+        : inArray(physicianVerificationRequests.status, ['verified', 'rejected']),
+    )
+    .orderBy(desc(physicianVerificationRequests.submittedAt), physicianVerificationRequests.id)
+    .limit(Math.max(1, Math.min(100, Math.trunc(input.limit))))
 
-  return rows.map(({ createdAt, ...row }) => ({ ...row, joinedAt: createdAt.toISOString() }))
+  return rows.map((row) => ({
+    id: row.id,
+    professionalFullName: row.professionalFullName,
+    medicalSpecialty: row.medicalSpecialty,
+    institution: row.institution,
+    status: row.status as PhysicianVerificationQueueItem['status'],
+    submittedAt: row.submittedAt.toISOString(),
+    decidedAt: row.decidedAt?.toISOString() ?? null,
+    account: { name: row.name, handle: row.handle },
+  }))
 }
 
-/** Confirms the actor is an administrator. Routes check this too; a write this consequential
- *  should not depend on every future caller remembering to. */
-async function assertAdmin(adminId: string): Promise<{ id: string; handle: string }> {
+export interface PhysicianVerificationDetail extends PhysicianVerificationQueueItem {
+  workEmail: string
+  medicalLicenseOrNpi: string
+  decisionReason: string | null
+  account: { name: string; handle: string; orcid: string | null }
+  decidedBy: { name: string; handle: string } | null
+}
+
+export async function getPhysicianVerificationRequest(
+  requestId: string,
+): Promise<PhysicianVerificationDetail | null> {
   const rows = await db
-    .select({ id: users.id, handle: users.handle, isAdmin: users.isAdmin })
-    .from(users)
-    .where(eq(users.id, adminId))
+    .select({
+      id: physicianVerificationRequests.id,
+      userId: physicianVerificationRequests.userId,
+      professionalFullName: physicianVerificationRequests.professionalFullName,
+      workEmail: physicianVerificationRequests.workEmail,
+      medicalLicenseOrNpi: physicianVerificationRequests.medicalLicenseOrNpi,
+      medicalSpecialty: physicianVerificationRequests.medicalSpecialty,
+      institution: physicianVerificationRequests.institution,
+      status: physicianVerificationRequests.status,
+      submittedAt: physicianVerificationRequests.submittedAt,
+      decidedAt: physicianVerificationRequests.decidedAt,
+      decidedByUserId: physicianVerificationRequests.decidedByUserId,
+      decisionReason: physicianVerificationRequests.decisionReason,
+      name: users.name,
+      handle: users.handle,
+      orcid: users.orcid,
+    })
+    .from(physicianVerificationRequests)
+    .innerJoin(users, eq(physicianVerificationRequests.userId, users.id))
+    .where(eq(physicianVerificationRequests.id, requestId))
     .limit(1)
-  const admin = rows[0]
-  if (!admin || !admin.isAdmin) {
-    throw new UserError('not_admin', 'Only an administrator can decide a verification.')
+  const row = rows[0]
+  if (!row) return null
+
+  const deciders = row.decidedByUserId
+    ? await db
+        .select({ name: users.name, handle: users.handle })
+        .from(users)
+        .where(eq(users.id, row.decidedByUserId))
+        .limit(1)
+    : []
+
+  return {
+    id: row.id,
+    professionalFullName: row.professionalFullName,
+    workEmail: row.workEmail,
+    medicalLicenseOrNpi: row.medicalLicenseOrNpi,
+    medicalSpecialty: row.medicalSpecialty,
+    institution: row.institution,
+    status: row.status as PhysicianVerificationDetail['status'],
+    submittedAt: row.submittedAt.toISOString(),
+    decidedAt: row.decidedAt?.toISOString() ?? null,
+    decisionReason: row.decisionReason,
+    account: { name: row.name, handle: row.handle, orcid: row.orcid },
+    decidedBy: deciders[0] ?? null,
   }
-  return { id: admin.id, handle: admin.handle }
 }
 
 /**
- * Grants the physician badge. The only writer of `verificationState: 'verified'` in the codebase.
- *
- * Requires the account to be in `pending`: a badge follows a claim that was filed and checked, so
- * there is no path from `none` straight to verified even for an administrator.
+ * Decide one immutable credential request. The database transition trigger independently checks
+ * the actor's current role, self-review, status transition, reason and server timestamp so direct
+ * SQL and route callers cannot apply different policy.
  */
-export async function approveVerification(userId: string, adminId: string): Promise<AccountUser> {
-  const admin = await assertAdmin(adminId)
-
-  const updated = await db
-    .update(users)
-    .set({
-      verificationState: 'verified',
-      verifiedAt: new Date(),
-      // The schema has no approver column, so the note carries the audit trail. Keep the handle:
-      // an internal id in a review note is a trail nobody can follow.
-      verificationNote: `Approved by @${admin.handle}`,
-    })
-    .where(and(eq(users.id, userId), eq(users.verificationState, 'pending')))
-    .returning(accountColumns)
-
-  const row = updated[0]
-  if (!row) {
-    throw new UserError('not_pending', 'That account has no verification waiting for a decision.')
+export async function decidePhysicianVerification(input: {
+  requestId: string
+  actorUserId: string
+  decision: 'APPROVE' | 'REJECT'
+  reason: string
+}): Promise<PhysicianVerificationDetail> {
+  const reason = input.reason.trim()
+  if (reason.length < 8 || reason.length > 2000) {
+    throw new UserError(
+      'invalid_decision',
+      'A decision reason of 8 to 2,000 characters is required.',
+    )
   }
-  return row
-}
 
-export async function rejectVerification(
-  userId: string,
-  adminId: string,
-  note: string,
-): Promise<AccountUser> {
-  const admin = await assertAdmin(adminId)
+  await db.transaction(async (tx) => {
+    const actors = await tx
+      .select({ id: users.id, trustTier: users.trustTier, isAdmin: users.isAdmin })
+      .from(users)
+      .where(eq(users.id, input.actorUserId))
+      .limit(1)
+    const actor = actors[0]
+    if (!actor || !canManageInternalReview(actor)) {
+      throw new UserError(
+        'not_authorized',
+        'Only a steward or administrator can decide physician credentials.',
+      )
+    }
 
-  const updated = await db
-    .update(users)
-    .set({
-      verificationState: 'rejected',
-      verifiedAt: null,
-      verificationNote: `${note.trim()} — @${admin.handle}`,
-    })
-    .where(and(eq(users.id, userId), eq(users.verificationState, 'pending')))
-    .returning(accountColumns)
+    const requests = await tx
+      .select({ userId: physicianVerificationRequests.userId })
+      .from(physicianVerificationRequests)
+      .where(eq(physicianVerificationRequests.id, input.requestId))
+      .limit(1)
+      .for('update')
+    const request = requests[0]
+    if (!request) throw new UserError('not_found', 'No credential request matches this id.')
+    if (request.userId === actor.id) {
+      throw new UserError('self_review', 'You cannot decide your own credential request.')
+    }
 
-  const row = updated[0]
-  if (!row) {
-    throw new UserError('not_pending', 'That account has no verification waiting for a decision.')
-  }
-  return row
+    const decided = await tx
+      .update(physicianVerificationRequests)
+      .set({
+        status: input.decision === 'APPROVE' ? 'verified' : 'rejected',
+        decidedByUserId: actor.id,
+        decisionReason: reason,
+      })
+      .where(
+        and(
+          eq(physicianVerificationRequests.id, input.requestId),
+          eq(physicianVerificationRequests.status, 'pending'),
+        ),
+      )
+      .returning({
+        userId: physicianVerificationRequests.userId,
+        status: physicianVerificationRequests.status,
+        decidedAt: physicianVerificationRequests.decidedAt,
+        medicalLicenseOrNpi: physicianVerificationRequests.medicalLicenseOrNpi,
+        medicalSpecialty: physicianVerificationRequests.medicalSpecialty,
+        institution: physicianVerificationRequests.institution,
+      })
+    const result = decided[0]
+    if (!result || !result.decidedAt) {
+      throw new UserError('not_pending', 'That credential request already has a decision.')
+    }
+
+    // The request transition trigger synchronizes the account row in the same transaction. Keeping
+    // that derivation in one place prevents route and direct-SQL paths from drifting.
+  })
+
+  const detail = await getPhysicianVerificationRequest(input.requestId)
+  if (!detail) throw new UserError('not_found', 'No credential request matches this id.')
+  return detail
 }
 
 // ---------------------------------------------------------------------------
@@ -481,10 +633,11 @@ export async function toggleSavedDrug(userId: string, drugId: string): Promise<{
 
 /** A reader's bookmarks, most recently saved first. Lean rows — this is a list of links. */
 export async function listSavedDrugs(userId: string): Promise<SearchHit[]> {
-  return db
-    .select(searchHitColumns)
+  const hits = await db
+    .select(publicSearchHitReadColumns)
     .from(savedDrugs)
     .innerJoin(drugs, eq(savedDrugs.drugId, drugs.id))
-    .where(eq(savedDrugs.userId, userId))
+    .where(and(eq(savedDrugs.userId, userId), publicMedicineFilter))
     .orderBy(desc(savedDrugs.createdAt), drugs.name)
+  return bindPublicSearchSummaries(cleanPublicSearchHitRows(hits))
 }

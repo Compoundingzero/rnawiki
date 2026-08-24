@@ -98,14 +98,14 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'Lower fasting and post-meal glucose, and in UKPDS 34 reduce diabetes-related endpoints and all-cause mortality in overweight patients — the one hard-outcome result the drug actually owns.',
     },
     oneSentenceVerdict:
-      "A 1950s biguanide that suppresses the liver's own glucose production, and the only glucose-lowering drug with a randomised all-cause mortality reduction in overweight type 2 diabetes — 36% in 753 patients in UKPDS 34, a result that has never been repeated and is routinely stretched into a longevity claim no trial has tested.",
+      "A 1950s biguanide that suppresses the liver's own glucose production. In UKPDS 34, 753 overweight patients assigned metformin had a 36% relative reduction in all-cause mortality. That specific result has not been directly replicated, and it does not support the broader longevity claims sometimes made for metformin.",
     laymanHowItWorks:
       'Your liver makes sugar and releases it into the blood between meals. Metformin gets carried into liver cells by a specific transporter, mildly slows one step of their energy production, and the cell reads that dip as a signal that it cannot afford to be manufacturing sugar. Output falls. It does not push insulin out of the pancreas, which is why it does not cause low blood sugar on its own.',
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 88,
     substitutes: {
       summary:
-        'Metformin costs about a cent and a half per tablet at United States pharmacy acquisition cost and is the comparator every newer drug is added on top of. The SGLT2 inhibitors and GLP-1 agonists have outcome trials metformin does not, at roughly eight hundred times the price per tablet. Berberine is the supplement most often sold as a substitute; the honest comparison is that it has no cardiovascular outcome trial at all.',
+        'Metformin costs about a cent and a half per tablet at United States pharmacy acquisition cost and is the comparator every newer drug is added on top of. The SGLT2 inhibitors and GLP-1 agonists have outcome trials metformin does not, at roughly eight hundred times the price per tablet. Berberine is the supplement most often sold as a substitute, but it has no cardiovascular outcome trial.',
       conventionalRx: [
         {
           name: 'Empagliflozin (Jardiance)',
@@ -638,7 +638,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Intestinal enterocyte brush border for absorption; thereafter intracellular ATP-magnesium complexes in every tissue, with bone as the reservoir',
     substitutes: {
       summary:
-        'For a documented deficiency, magnesium is not optional and food or a supplement will both work. For everything else the honest comparison is with the interventions that beat it on their own outcome: sleep hygiene and CBT-I for insomnia, and for blood pressure a 2 mmHg mineral effect sits far below what dietary sodium reduction or a first-line antihypertensive achieves.',
+        'For a documented deficiency, magnesium is not optional and food or a supplement will both work. For everything else the comparison is with the interventions that beat it on their own outcome: sleep hygiene and CBT-I for insomnia, and for blood pressure a 2 mmHg mineral effect sits far below what dietary sodium reduction or a first-line antihypertensive achieves.',
       conventionalRx: [
         {
           name: 'Intravenous magnesium sulphate for eclampsia and torsades de pointes',
@@ -857,7 +857,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           "The blood test used to call people magnesium-deficient measures less than one percent of the body's magnesium, and the normal range it is judged against was never set from health outcomes.",
         technicalDetails:
-          'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, which is the honest half of the marketing claim. And no ordinary test can confirm the depletion either, which means a supplement sold against it can never be shown to have been unnecessary.',
+          'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, but no ordinary test can confirm chronic latent depletion either. This uncertainty makes it difficult to show whether a supplement was necessary.',
         evidenceSource: 'Costello RB et al. Adv Nutr 2016;7:977-993',
         doi: '10.3945/an.116.012765',
         measuredMetric:
@@ -1012,7 +1012,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is glycinate really better absorbed than the cheap magnesium oxide?',
-        a: 'The honest answer is that the direct comparison has been run once, in twelve patients who had had part of their ileum surgically removed, and it found no difference for the group as a whole: 23.5 percent absorption for the glycinate against 22.8 percent for the oxide. The glycinate was absorbed faster and reached a higher peak, and it did better in the four patients who absorbed the oxide worst. That is a reasonable basis for preferring it in intestinal disease. It is not a basis for the claim printed on the tub.',
+        a: 'The direct comparison has been run once, in twelve patients who had had part of their ileum surgically removed, and it found no difference for the group as a whole: 23.5 percent absorption for the glycinate against 22.8 percent for the oxide. The glycinate was absorbed faster and reached a higher peak, and it did better in the four patients who absorbed the oxide worst. That is a reasonable basis for preferring it in intestinal disease, but it does not justify broad claims that glycinate is better absorbed for everyone.',
         auditNote:
           'The Firoz and Graber bioavailability study that most "oxide is poorly absorbed" copy points to did not test glycinate.',
       },
@@ -1541,7 +1541,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does zinc actually shorten a cold?',
-        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.",
+        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. The evidence therefore depends on the dose and formulation, details that many product labels do not make clear.",
         auditNote:
           'Free ionic zinc is the active species, and citric acid, tartaric acid, sorbitol and mannitol in a lozenge chelate it away.',
       },
@@ -2249,7 +2249,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Cytosol of every cell via SVCT2, with the highest concentrations in adrenal cortex, pituitary, brain and neutrophils; absorption is SVCT1-mediated in the small intestine',
     substitutes: {
       summary:
-        'For scurvy, vitamin C is not substitutable and works within days. For colds, the honest comparator is nothing, since 8% of a seven-day cold is about half a day. For sepsis the comparator turned out to be placebo, and placebo won.',
+        'For scurvy, vitamin C is not substitutable and works within days. For colds, the relevant comparison is no supplement, since 8% of a seven-day cold is about half a day. For sepsis, placebo performed better in the trial discussed here.',
       conventionalRx: [
         {
           name: 'Ascorbic acid as treatment for scurvy',
@@ -2395,7 +2395,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In marathon runners, skiers and soldiers on subarctic exercises, vitamin C cut the number of colds by half. In everyone else it did nothing.',
         technicalDetails:
-          'Five trials in a total of 598 marathon runners, skiers and soldiers undertaking subarctic exercises pooled to a risk ratio of 0.48 (95% CI 0.35 to 0.64) for developing a cold, against 0.97 (95% CI 0.94 to 1.00) in the 10,708 general-community participants. This is one of the sharpest subgroup separations anywhere in the supplement literature, and it is not a subgroup fished from a single trial: it is a prespecified population category with five independent trials pointing the same way. The interpretation is genuinely unsettled. It may be a repletion effect in people whose intake cannot keep up with turnover under extreme exertion, or a specific effect of oxidative stress at that intensity. Either way, the honest statement is that the population in which vitamin C halves cold incidence is one almost nobody buying it belongs to.',
+          'Five trials in a total of 598 marathon runners, skiers and soldiers undertaking subarctic exercises pooled to a risk ratio of 0.48 (95% CI 0.35 to 0.64) for developing a cold, against 0.97 (95% CI 0.94 to 1.00) in the 10,708 general-community participants. This was a prespecified population category with five independent trials pointing the same way, not a subgroup selected from one trial after the fact. The interpretation remains unsettled. It may be a repletion effect in people whose intake cannot keep up with turnover under extreme exertion, or a specific effect of oxidative stress at that intensity. The result applies to a small, specialised population and did not appear in the general-community trials.',
         evidenceSource: 'Hemila H, Chalker E. Cochrane Database Syst Rev 2013;1:CD000980',
         doi: '10.1002/14651858.CD000980.pub4',
         measuredMetric:
@@ -2762,7 +2762,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     confidenceScore: 86,
     substitutes: {
       summary:
-        'Lisinopril costs between one and five cents a tablet in the United States at pharmacy acquisition cost. Chlorthalidone, the comparator that beat it in ALLHAT on three secondary endpoints, costs about the same. Losartan and the other angiotensin receptor blockers do not cause the cough and have their own outcome trials. The honest summary is that this is a crowded class where the cheapest option won the largest head-to-head trial ever run.',
+        'Lisinopril costs between one and five cents a tablet in the United States at pharmacy acquisition cost. Chlorthalidone, the comparator that beat it in ALLHAT on three secondary endpoints, costs about the same. Losartan and the other angiotensin receptor blockers do not cause the cough and have their own outcome trials. This is a crowded class in which the cheapest option won the largest head-to-head trial ever run.',
       conventionalRx: [
         {
           name: 'Chlorthalidone',
@@ -3823,7 +3823,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Across nineteen randomised trials in 1,683 people, melatonin cut the time to fall asleep by about seven minutes and added about eight minutes of total sleep.',
         technicalDetails:
-          'Ferracioli-Oda and colleagues pooled 19 randomised placebo-controlled trials in 1,683 subjects with primary sleep disorders. Melatonin reduced sleep onset latency by a weighted mean difference of 7.06 minutes (95% CI 4.37 to 9.75, Z = 5.15, P < 0.001) and increased total sleep time by 8.25 minutes (95% CI 1.74 to 14.75, Z = 2.48, P = 0.013). Overall sleep quality improved with a standardised mean difference of 0.22 (95% CI 0.12 to 0.32, P < 0.001). Meta-regression found longer trials and higher doses produced larger effects on latency and total sleep time, but no dose or duration effect on sleep quality. The authors stated plainly that the absolute benefit is smaller than that of other pharmacological treatments for insomnia, while noting the effect did not appear to dissipate with continued use — which is a genuine advantage over hypnotics that lose effect. The earlier Brzezinski meta-analysis of 17 studies in 284 subjects found the same picture at a smaller scale: sleep onset latency down 4.0 minutes (95% CI 2.5 to 5.4), sleep efficiency up 2.2% (95% CI 0.2 to 4.2), total sleep duration up 12.8 minutes (95% CI 2.9 to 22.8).',
+          'Ferracioli-Oda and colleagues pooled 19 randomised placebo-controlled trials in 1,683 subjects with primary sleep disorders. Melatonin reduced sleep onset latency by a weighted mean difference of 7.06 minutes (95% CI 4.37 to 9.75, Z = 5.15, P < 0.001) and increased total sleep time by 8.25 minutes (95% CI 1.74 to 14.75, Z = 2.48, P = 0.013). Overall sleep quality improved with a standardised mean difference of 0.22 (95% CI 0.12 to 0.32, P < 0.001). Meta-regression found longer trials and higher doses produced larger effects on latency and total sleep time, but no dose or duration effect on sleep quality. The authors stated that the absolute benefit is smaller than that of other pharmacological treatments for insomnia, while noting the effect did not appear to dissipate with continued use — which is a genuine advantage over hypnotics that lose effect. The earlier Brzezinski meta-analysis of 17 studies in 284 subjects found the same picture at a smaller scale: sleep onset latency down 4.0 minutes (95% CI 2.5 to 5.4), sleep efficiency up 2.2% (95% CI 0.2 to 4.2), total sleep duration up 12.8 minutes (95% CI 2.9 to 22.8).',
         evidenceSource:
           'Ferracioli-Oda E, Qawasmi A, Bloch MH. PLoS One 2013;8:e63773; Brzezinski A et al. Sleep Med Rev 2005;9:41-50',
         doi: '10.1371/journal.pone.0063773',
@@ -4535,7 +4535,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does it protect my kidneys if I have diabetes?',
-        a: 'RENAAL measured exactly that in 1,513 people with type 2 diabetes and nephropathy over a mean of 3.4 years. Doubling of serum creatinine fell 25%, end-stage renal disease fell 28%, and proteinuria fell 35% against placebo — all statistically significant, all on top of other blood pressure drugs. Two things the trial explicitly did not show: any effect on the rate of death, and any difference in the combined cardiovascular morbidity and mortality endpoint. So the honest statement is that it delays kidney failure, which is a meaningful outcome in its own right, and that it was not shown to make people live longer.',
+        a: 'RENAAL measured exactly that in 1,513 people with type 2 diabetes and nephropathy over a mean of 3.4 years. Doubling of serum creatinine fell 25%, end-stage renal disease fell 28%, and proteinuria fell 35% against placebo — all statistically significant, all on top of other blood pressure drugs. Two things the trial explicitly did not show: any effect on the rate of death, and any difference in the combined cardiovascular morbidity and mortality endpoint. Losartan delays kidney failure, which is a meaningful outcome in its own right, but it was not shown to help people live longer.',
       },
       {
         q: 'I was told losartan is good if I have gout. Is that real?',
@@ -4600,7 +4600,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
   },
   // ---------------------------------------------------------------------------------------------
   // Caffeine — the strongest evidence in this entire file. An umbrella review of 21 meta-analyses,
-  // an FDA-approved neonatal drug that cut cerebral palsy, and one honest catch: withdrawal.
+  // an FDA-approved neonatal drug that cut cerebral palsy, with withdrawal as an important limitation.
   // ---------------------------------------------------------------------------------------------
   {
     slug: 'caffeine',
@@ -4622,14 +4622,14 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Adenosine accumulates in the brain across a waking day and, by acting on its receptors, is one of the signals that produces the feeling of sleepiness. Caffeine occupies those receptors without activating them. It does not add energy; it blocks the message that you are tired, and the adenosine keeps accumulating underneath.',
       whyItMatters:
-        'This is the page in this file where the evidence is strongest, and saying so plainly is what makes the sceptical pages elsewhere worth reading. Caffeine is ergogenic across aerobic endurance, muscular strength, muscular endurance, power, jumping and speed, substantiated by 21 meta-analyses, and it is one of very few substances here that is also a licensed drug with a mortality-adjacent randomised benefit in a real disease.',
+        'Twenty-one meta-analyses support small-to-moderate performance effects of caffeine across aerobic endurance, muscular strength and endurance, power, jumping and speed. Caffeine is also licensed for apnoea of prematurity, where a randomised trial found less death or neurodevelopmental disability.',
       whoTakesThis:
         'Roughly most adults on earth, mostly as coffee and tea. Also athletes taking measured doses before competition, shift workers, students, and — under prescription and by a completely different route — premature infants with apnea.',
       clinicalGoals:
         'Trials measured time-trial completion time, one-repetition maximum, repetitions to failure, peak power, jump height, ratings of perceived exertion, polysomnographic total sleep time, and in the neonatal programme bronchopulmonary dysplasia and neurodevelopmental disability at 18 to 21 months.',
     },
     oneSentenceVerdict:
-      'Caffeine is the best-evidenced performance substance in this file and one of the best-evidenced in existence — ergogenic across six distinct exercise domains in 21 meta-analyses, and a licensed neonatal drug that cut death or neurodevelopmental disability from 46.2% to 40.2% — with the honest caveat that half of habitual users get a withdrawal headache on stopping, so part of the daily lift is the reversal of a deficit the habit created.',
+      'Caffeine is the best-evidenced performance substance in this file and one of the best-evidenced in existence — ergogenic across six distinct exercise domains in 21 meta-analyses, and a licensed neonatal drug that cut death or neurodevelopmental disability from 46.2% to 40.2%. Half of habitual users get a withdrawal headache on stopping, so part of the daily lift reverses a deficit the habit created.',
     laymanHowItWorks:
       'A molecule called adenosine builds up in your brain the longer you are awake, and when it docks onto its receptors you feel tired. Caffeine is shaped enough like adenosine to sit in those receptors without switching them on, so the tiredness signal cannot be delivered. Nothing has been added; a brake has been released. Because the adenosine is still piling up behind the blockade, the tiredness returns when caffeine clears — and if you have been doing this daily, the brain has grown extra receptors to compensate, which is why missing a morning coffee produces a real headache rather than an imagined one.',
     auditConfidence: 'Rigorous Replicated',
@@ -4638,7 +4638,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Central nervous system, principally striatal and cortical adenosine A1 and A2A receptors; also skeletal muscle, adipose tissue and the renal afferent arteriole',
     substitutes: {
       summary:
-        'For alertness the only intervention that genuinely beats caffeine is sleep, and it beats it decisively because it clears the adenosine rather than masking it. For exercise performance there is no legal, cheap, orally available substance with a comparable evidence base — which is the honest verdict this page exists to record.',
+        'For alertness, sleep addresses the accumulated adenosine rather than masking it. For exercise performance, no other legal, inexpensive oral substance has a comparable evidence base.',
       conventionalRx: [
         {
           name: 'Caffeine citrate (Cafcit) for apnea of prematurity',
@@ -4824,7 +4824,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Caffeine withdrawal is a real, validated syndrome with ten confirmed symptoms. Half of people get a headache, and it can be triggered by a daily habit as small as one cup.',
         technicalDetails:
-          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
+          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
         evidenceSource: 'Juliano LM, Griffiths RR. Psychopharmacology (Berl) 2004;176:1-29',
         doi: '10.1007/s00213-004-2000-x',
         measuredMetric:
@@ -4840,7 +4840,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For years athletes were told to abstain from caffeine before competition so it would work better. A controlled study across low, moderate and heavy habitual users found their daily intake made no difference to the benefit.',
         technicalDetails:
-          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.",
+          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. This study does not support requiring habitual users to abstain before taking caffeine for performance. It also suggests that tolerance to caffeine's alertness effect does not transfer straightforwardly to its effect on exercise performance.",
         evidenceSource: 'Goncalves LS et al. J Appl Physiol (1985) 2017;123:213-220',
         doi: '10.1152/japplphysiol.00260.2017',
         measuredMetric:
@@ -5013,7 +5013,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'The pre-1990s belief that phosphodiesterase inhibition was the mechanism, which requires concentrations no human reaches',
       ],
       realWorldOutcome: [
-        'This is the strongest evidence base in this file and the page says so without hedging',
+        'Twenty-one meta-analyses support performance effects across several exercise domains',
         'The effect is genuine but not universal: half the cyclists in the habituation study did not improve beyond test variation',
         'Withdrawal is a validated syndrome with a 50% headache incidence, triggered by habits as small as 100 mg a day',
       ],
@@ -5038,7 +5038,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the morning coffee doing anything, or just fixing withdrawal?',
-        a: "Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user's pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.",
+        a: "Both. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. A habitual user's pre-coffee state is therefore below their own neutral baseline, and part of what the first cup restores is that deficit. Controlled crossover trials with placebo arms also show a performance effect independent of withdrawal reversal.",
       },
       {
         q: 'How late is too late?',
@@ -5525,7 +5525,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why is a drug that met its primary endpoint in surgery not used before surgery?',
-        a: 'POISE is the reason, and it is the best argument on this site for reading past a headline. The trial gave extended-release metoprolol to 8,351 people before non-cardiac surgery and met its composite primary endpoint: 5.8% against 6.9%, hazard ratio 0.84, p=0.0399. Heart attacks fell by a quarter. But deaths rose from 97 to 129 (hazard ratio 1.33) and strokes rose from 19 to 41 (hazard ratio 2.17). A composite endpoint counts each event once; it does not weigh a prevented heart attack against a caused stroke. The authors wrote the conclusion plainly: patients are unlikely to accept those risks.',
+        a: 'POISE is the reason, and it is the best argument on this site for reading past a headline. The trial gave extended-release metoprolol to 8,351 people before non-cardiac surgery and met its composite primary endpoint: 5.8% against 6.9%, hazard ratio 0.84, p=0.0399. Heart attacks fell by a quarter. But deaths rose from 97 to 129 (hazard ratio 1.33) and strokes rose from 19 to 41 (hazard ratio 2.17). A composite endpoint counts each event once; it does not weigh a prevented heart attack against a caused stroke. The authors wrote the conclusion: patients are unlikely to accept those risks.',
         auditNote:
           'This is the clearest case on the site of "primary endpoint met" and "the drug harmed people" being simultaneously true.',
       },
@@ -6004,7 +6004,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'The high-protein kidney warning, which did not survive 28 randomised trials in healthy adults',
       ],
       realWorldOutcome: [
-        'Whey works, the mechanism is understood down to the amino acid, and this page says so without hedging',
+        'Whey supplies leucine and complete protein; its incremental benefit is small and depends on total protein intake',
         'The effect is small, is conditional on being below a total-intake threshold, and shrinks with age',
         'Protein powder is a convenience product for reaching a number, and above that number its measured incremental effect is zero',
       ],
@@ -6618,7 +6618,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Intestinal enterocyte brush border for absorption; thereafter intracellular ATP-magnesium complexes in every tissue, with bone as the reservoir',
     substitutes: {
       summary:
-        'For a documented deficiency, magnesium is not optional and food or a supplement will both work. For everything else the honest comparison is with the interventions that beat it on their own outcome: sleep hygiene and CBT-I for insomnia, and for blood pressure a 2 mmHg mineral effect sits far below what dietary sodium reduction or a first-line antihypertensive achieves.',
+        'For a documented deficiency, magnesium is not optional and food or a supplement will both work. For everything else the comparison is with the interventions that beat it on their own outcome: sleep hygiene and CBT-I for insomnia, and for blood pressure a 2 mmHg mineral effect sits far below what dietary sodium reduction or a first-line antihypertensive achieves.',
       conventionalRx: [
         {
           name: 'Intravenous magnesium sulphate for eclampsia and torsades de pointes',
@@ -6837,7 +6837,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           "The blood test used to call people magnesium-deficient measures less than one percent of the body's magnesium, and the normal range it is judged against was never set from health outcomes.",
         technicalDetails:
-          'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, which is the honest half of the marketing claim. And no ordinary test can confirm the depletion either, which means a supplement sold against it can never be shown to have been unnecessary.',
+          'Costello et al. argue in Advances in Nutrition that the widely used serum magnesium reference interval is not evidence-based: it derives from population distributions rather than from any relationship to clinical outcome, and it is set low enough that people with genuine chronic latent deficiency fall inside it. Serum holds a small, tightly regulated fraction of total body magnesium, buffered by exchange with bone, so it falls late and returns to range quickly. The practical consequence runs both directions. A normal result does not rule out depletion, but no ordinary test can confirm chronic latent depletion either. This uncertainty makes it difficult to show whether a supplement was necessary.',
         evidenceSource: 'Costello RB et al. Adv Nutr 2016;7:977-993',
         doi: '10.3945/an.116.012765',
         measuredMetric:
@@ -6992,7 +6992,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is glycinate really better absorbed than the cheap magnesium oxide?',
-        a: 'The honest answer is that the direct comparison has been run once, in twelve patients who had had part of their ileum surgically removed, and it found no difference for the group as a whole: 23.5 percent absorption for the glycinate against 22.8 percent for the oxide. The glycinate was absorbed faster and reached a higher peak, and it did better in the four patients who absorbed the oxide worst. That is a reasonable basis for preferring it in intestinal disease. It is not a basis for the claim printed on the tub.',
+        a: 'The direct comparison has been run once, in twelve patients who had had part of their ileum surgically removed, and it found no difference for the group as a whole: 23.5 percent absorption for the glycinate against 22.8 percent for the oxide. The glycinate was absorbed faster and reached a higher peak, and it did better in the four patients who absorbed the oxide worst. That is a reasonable basis for preferring it in intestinal disease. It is not a basis for the claim printed on the tub.',
         auditNote:
           'The Firoz and Graber bioavailability study that most "oxide is poorly absorbed" copy points to did not test glycinate.',
       },
@@ -7521,7 +7521,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does zinc actually shorten a cold?',
-        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. So the honest answer is that some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.",
+        a: "Probably, within a narrow window. The 2024 Cochrane review found treatment shortened colds by about 2.4 days but graded that low certainty because the trials disagreed enormously. Hemila's earlier analysis explains why they disagreed: every trial using less than 75 mg of zinc a day found nothing, and the trials using more than that — especially as zinc acetate — found reductions of 20 to 42 percent. Some zinc products plausibly work and many cannot, and the label rarely tells you which you have bought.",
         auditNote:
           'Free ionic zinc is the active species, and citric acid, tartaric acid, sorbitol and mannitol in a lozenge chelate it away.',
       },
@@ -7663,7 +7663,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Cytosol of every cell via SVCT2, with the highest concentrations in adrenal cortex, pituitary, brain and neutrophils; absorption is SVCT1-mediated in the small intestine',
     substitutes: {
       summary:
-        'For scurvy, vitamin C is not substitutable and works within days. For colds, the honest comparator is nothing, since 8% of a seven-day cold is about half a day. For sepsis the comparator turned out to be placebo, and placebo won.',
+        'For scurvy, vitamin C is not substitutable and works within days. For colds, the relevant comparison is no supplement, since 8% of a seven-day cold is about half a day. For sepsis, placebo performed better in the trial discussed here.',
       conventionalRx: [
         {
           name: 'Ascorbic acid as treatment for scurvy',
@@ -7809,7 +7809,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In marathon runners, skiers and soldiers on subarctic exercises, vitamin C cut the number of colds by half. In everyone else it did nothing.',
         technicalDetails:
-          'Five trials in a total of 598 marathon runners, skiers and soldiers undertaking subarctic exercises pooled to a risk ratio of 0.48 (95% CI 0.35 to 0.64) for developing a cold, against 0.97 (95% CI 0.94 to 1.00) in the 10,708 general-community participants. This is one of the sharpest subgroup separations anywhere in the supplement literature, and it is not a subgroup fished from a single trial: it is a prespecified population category with five independent trials pointing the same way. The interpretation is genuinely unsettled. It may be a repletion effect in people whose intake cannot keep up with turnover under extreme exertion, or a specific effect of oxidative stress at that intensity. Either way, the honest statement is that the population in which vitamin C halves cold incidence is one almost nobody buying it belongs to.',
+          'Five trials in a total of 598 marathon runners, skiers and soldiers undertaking subarctic exercises pooled to a risk ratio of 0.48 (95% CI 0.35 to 0.64) for developing a cold, against 0.97 (95% CI 0.94 to 1.00) in the 10,708 general-community participants. This is one of the sharpest subgroup separations anywhere in the supplement literature, and it is not a subgroup fished from a single trial: it is a prespecified population category with five independent trials pointing the same way. The interpretation is genuinely unsettled. It may be a repletion effect in people whose intake cannot keep up with turnover under extreme exertion, or a specific effect of oxidative stress at that intensity. Either way, the population in which vitamin C halves cold incidence is one almost nobody buying it belongs to.',
         evidenceSource: 'Hemila H, Chalker E. Cochrane Database Syst Rev 2013;1:CD000980',
         doi: '10.1002/14651858.CD000980.pub4',
         measuredMetric:
@@ -8307,7 +8307,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Across nineteen randomised trials in 1,683 people, melatonin cut the time to fall asleep by about seven minutes and added about eight minutes of total sleep.',
         technicalDetails:
-          'Ferracioli-Oda and colleagues pooled 19 randomised placebo-controlled trials in 1,683 subjects with primary sleep disorders. Melatonin reduced sleep onset latency by a weighted mean difference of 7.06 minutes (95% CI 4.37 to 9.75, Z = 5.15, P < 0.001) and increased total sleep time by 8.25 minutes (95% CI 1.74 to 14.75, Z = 2.48, P = 0.013). Overall sleep quality improved with a standardised mean difference of 0.22 (95% CI 0.12 to 0.32, P < 0.001). Meta-regression found longer trials and higher doses produced larger effects on latency and total sleep time, but no dose or duration effect on sleep quality. The authors stated plainly that the absolute benefit is smaller than that of other pharmacological treatments for insomnia, while noting the effect did not appear to dissipate with continued use — which is a genuine advantage over hypnotics that lose effect. The earlier Brzezinski meta-analysis of 17 studies in 284 subjects found the same picture at a smaller scale: sleep onset latency down 4.0 minutes (95% CI 2.5 to 5.4), sleep efficiency up 2.2% (95% CI 0.2 to 4.2), total sleep duration up 12.8 minutes (95% CI 2.9 to 22.8).',
+          'Ferracioli-Oda and colleagues pooled 19 randomised placebo-controlled trials in 1,683 subjects with primary sleep disorders. Melatonin reduced sleep onset latency by a weighted mean difference of 7.06 minutes (95% CI 4.37 to 9.75, Z = 5.15, P < 0.001) and increased total sleep time by 8.25 minutes (95% CI 1.74 to 14.75, Z = 2.48, P = 0.013). Overall sleep quality improved with a standardised mean difference of 0.22 (95% CI 0.12 to 0.32, P < 0.001). Meta-regression found longer trials and higher doses produced larger effects on latency and total sleep time, but no dose or duration effect on sleep quality. The authors stated that the absolute benefit is smaller than that of other pharmacological treatments for insomnia, while noting the effect did not appear to dissipate with continued use — which is a genuine advantage over hypnotics that lose effect. The earlier Brzezinski meta-analysis of 17 studies in 284 subjects found the same picture at a smaller scale: sleep onset latency down 4.0 minutes (95% CI 2.5 to 5.4), sleep efficiency up 2.2% (95% CI 0.2 to 4.2), total sleep duration up 12.8 minutes (95% CI 2.9 to 22.8).',
         evidenceSource:
           'Ferracioli-Oda E, Qawasmi A, Bloch MH. PLoS One 2013;8:e63773; Brzezinski A et al. Sleep Med Rev 2005;9:41-50',
         doi: '10.1371/journal.pone.0063773',
@@ -8625,7 +8625,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
   },
   // ---------------------------------------------------------------------------------------------
   // Caffeine — the strongest evidence in this entire file. An umbrella review of 21 meta-analyses,
-  // an FDA-approved neonatal drug that cut cerebral palsy, and one honest catch: withdrawal.
+  // an FDA-approved neonatal drug that cut cerebral palsy, with withdrawal as an important limitation.
   // ---------------------------------------------------------------------------------------------
   {
     slug: 'caffeine',
@@ -8647,14 +8647,14 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Adenosine accumulates in the brain across a waking day and, by acting on its receptors, is one of the signals that produces the feeling of sleepiness. Caffeine occupies those receptors without activating them. It does not add energy; it blocks the message that you are tired, and the adenosine keeps accumulating underneath.',
       whyItMatters:
-        'This is the page in this file where the evidence is strongest, and saying so plainly is what makes the sceptical pages elsewhere worth reading. Caffeine is ergogenic across aerobic endurance, muscular strength, muscular endurance, power, jumping and speed, substantiated by 21 meta-analyses, and it is one of very few substances here that is also a licensed drug with a mortality-adjacent randomised benefit in a real disease.',
+        'Twenty-one meta-analyses support small-to-moderate performance effects of caffeine across aerobic endurance, muscular strength and endurance, power, jumping and speed. Caffeine is also licensed for apnoea of prematurity, where a randomised trial found less death or neurodevelopmental disability.',
       whoTakesThis:
         'Roughly most adults on earth, mostly as coffee and tea. Also athletes taking measured doses before competition, shift workers, students, and — under prescription and by a completely different route — premature infants with apnea.',
       clinicalGoals:
         'Trials measured time-trial completion time, one-repetition maximum, repetitions to failure, peak power, jump height, ratings of perceived exertion, polysomnographic total sleep time, and in the neonatal programme bronchopulmonary dysplasia and neurodevelopmental disability at 18 to 21 months.',
     },
     oneSentenceVerdict:
-      'Caffeine is the best-evidenced performance substance in this file and one of the best-evidenced in existence — ergogenic across six distinct exercise domains in 21 meta-analyses, and a licensed neonatal drug that cut death or neurodevelopmental disability from 46.2% to 40.2% — with the honest caveat that half of habitual users get a withdrawal headache on stopping, so part of the daily lift is the reversal of a deficit the habit created.',
+      'Caffeine is the best-evidenced performance substance in this file and one of the best-evidenced in existence — ergogenic across six distinct exercise domains in 21 meta-analyses, and a licensed neonatal drug that cut death or neurodevelopmental disability from 46.2% to 40.2%. Half of habitual users get a withdrawal headache on stopping, so part of the daily lift reverses a deficit the habit created.',
     laymanHowItWorks:
       'A molecule called adenosine builds up in your brain the longer you are awake, and when it docks onto its receptors you feel tired. Caffeine is shaped enough like adenosine to sit in those receptors without switching them on, so the tiredness signal cannot be delivered. Nothing has been added; a brake has been released. Because the adenosine is still piling up behind the blockade, the tiredness returns when caffeine clears — and if you have been doing this daily, the brain has grown extra receptors to compensate, which is why missing a morning coffee produces a real headache rather than an imagined one.',
     auditConfidence: 'Rigorous Replicated',
@@ -8663,7 +8663,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       'Central nervous system, principally striatal and cortical adenosine A1 and A2A receptors; also skeletal muscle, adipose tissue and the renal afferent arteriole',
     substitutes: {
       summary:
-        'For alertness the only intervention that genuinely beats caffeine is sleep, and it beats it decisively because it clears the adenosine rather than masking it. For exercise performance there is no legal, cheap, orally available substance with a comparable evidence base — which is the honest verdict this page exists to record.',
+        'For alertness, sleep addresses the accumulated adenosine rather than masking it. For exercise performance, no other legal, inexpensive oral substance has a comparable evidence base.',
       conventionalRx: [
         {
           name: 'Caffeine citrate (Cafcit) for apnea of prematurity',
@@ -8849,7 +8849,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Caffeine withdrawal is a real, validated syndrome with ten confirmed symptoms. Half of people get a headache, and it can be triggered by a daily habit as small as one cup.',
         technicalDetails:
-          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it plainly does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
+          "Juliano and Griffiths reviewed 57 experimental and 9 survey studies. Of 49 candidate symptom categories, ten met validity criteria: headache, fatigue, decreased energy or activeness, decreased alertness, drowsiness, decreased contentedness, depressed mood, difficulty concentrating, irritability, and feeling foggy or not clearheaded. Flu-like symptoms, nausea or vomiting and muscle pain or stiffness were judged likely valid. In experimental studies the incidence of headache was 50% and of clinically significant distress or functional impairment 13%. Onset was typically 12 to 24 hours after abstinence, peak intensity at 20 to 51 hours, duration 2 to 9 days. Incidence and severity rose with daily dose, and abstinence from doses as low as 100 mg per day produced symptoms. The authors specifically reviewed and rejected expectancy as a prime determinant, and concluded that avoidance of withdrawal plays a central role in habitual consumption. The audit point is not that caffeine does not work — it does — but that a habitual user's morning baseline is not a neutral one, and the daily subjective lift is partly the repair of a deficit the habit itself produced.",
         evidenceSource: 'Juliano LM, Griffiths RR. Psychopharmacology (Berl) 2004;176:1-29',
         doi: '10.1007/s00213-004-2000-x',
         measuredMetric:
@@ -8865,7 +8865,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For years athletes were told to abstain from caffeine before competition so it would work better. A controlled study across low, moderate and heavy habitual users found their daily intake made no difference to the benefit.',
         technicalDetails:
-          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. The withdrawal-abstinence protocols that dominated sports nutrition advice for two decades were, on this evidence, unnecessary — and worth noting for what it also shows: the tolerance that develops for alertness does not straightforwardly transfer to the ergogenic effect.",
+          "Goncalves and colleagues ran a double-blind, crossover, counterbalanced study in 40 male endurance-trained cyclists, stratified into tertiles by habitual daily caffeine intake: low (58 +/- 29 mg/day), moderate (143 +/- 25) and high (351 +/- 139). Each completed three simulated cycling time trials after caffeine 6 mg/kg, placebo, or no supplement. Time-trial performance improved significantly with caffeine — 29.92 +/- 2.18 minutes against 30.81 +/- 2.67 for placebo and 31.14 +/- 2.71 for control (P = 0.0002). Analysis of covariance found no influence of habitual caffeine intake on the response (P = 0.47), performance did not differ across tertiles (P = 0.75), and there was no correlation between habitual intake and the absolute caffeine-minus-control change (P = 0.524). Individual analysis showed eight, seven and five responders in the low, moderate and high tertiles respectively, with no significant difference between them by Fisher's exact test. This study does not support requiring habitual users to abstain before taking caffeine for performance. It also suggests that tolerance to caffeine's alertness effect does not transfer straightforwardly to its effect on exercise performance.",
         evidenceSource: 'Goncalves LS et al. J Appl Physiol (1985) 2017;123:213-220',
         doi: '10.1152/japplphysiol.00260.2017',
         measuredMetric:
@@ -9038,7 +9038,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'The pre-1990s belief that phosphodiesterase inhibition was the mechanism, which requires concentrations no human reaches',
       ],
       realWorldOutcome: [
-        'This is the strongest evidence base in this file and the page says so without hedging',
+        'Twenty-one meta-analyses support performance effects across several exercise domains',
         'The effect is genuine but not universal: half the cyclists in the habituation study did not improve beyond test variation',
         'Withdrawal is a validated syndrome with a 50% headache incidence, triggered by habits as small as 100 mg a day',
       ],
@@ -9063,7 +9063,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the morning coffee doing anything, or just fixing withdrawal?',
-        a: "Both, and the honest answer separates them. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. So a habitual user's pre-coffee state is below their own neutral baseline, and part of what the first cup restores is that deficit. What that does not do is erase the performance evidence, which comes from controlled crossovers with placebo arms.",
+        a: "Both. Caffeine withdrawal is a validated syndrome with ten confirmed symptoms; headache occurs in half of people and clinically significant impairment in 13%, from habits as small as 100 mg a day, with symptoms starting 12 to 24 hours after the last dose. A habitual user's pre-coffee state is therefore below their own neutral baseline, and part of what the first cup restores is that deficit. Controlled crossover trials with placebo arms also show a performance effect independent of withdrawal reversal.",
       },
       {
         q: 'How late is too late?',
@@ -9555,7 +9555,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         'The high-protein kidney warning, which did not survive 28 randomised trials in healthy adults',
       ],
       realWorldOutcome: [
-        'Whey works, the mechanism is understood down to the amino acid, and this page says so without hedging',
+        'Whey supplies leucine and complete protein; its incremental benefit is small and depends on total protein intake',
         'The effect is small, is conditional on being below a total-intake threshold, and shrinks with age',
         'Protein powder is a convenience product for reaching a number, and above that number its measured incremental effect is zero',
       ],
@@ -11037,13 +11037,13 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Did this drug fail its diabetes trial?',
-        a: 'It missed one of its two primary efficacy endpoints, which is worth stating precisely. DECLARE-TIMI 58 followed 17,160 people with type 2 diabetes for a median of 4.2 years. Major adverse cardiovascular events — cardiovascular death, heart attack, ischaemic stroke — occurred in 8.8% on dapagliflozin against 9.4% on placebo, hazard ratio 0.93, p=0.17. That is a miss. The other primary endpoint, cardiovascular death or hospitalisation for heart failure, did fall: 4.9% against 5.8%, p=0.005, and the fall came from heart failure admissions, not from cardiovascular deaths. Read together, the trial says the drug is not preventing plaque events and is doing something else.',
+        a: 'It missed one of its two primary efficacy endpoints. DECLARE-TIMI 58 followed 17,160 people with type 2 diabetes for a median of 4.2 years. Major adverse cardiovascular events — cardiovascular death, heart attack, ischaemic stroke — occurred in 8.8% on dapagliflozin against 9.4% on placebo, hazard ratio 0.93, p=0.17. That is a miss. The other primary endpoint, cardiovascular death or hospitalisation for heart failure, did fall: 4.9% against 5.8%, p=0.005, and the fall came from heart failure admissions, not from cardiovascular deaths. Read together, the trial says the drug is not preventing plaque events and is doing something else.',
         auditNote:
           'This is the cleanest single piece of evidence on the site that the SGLT2 class is not an anti-atherosclerotic therapy.',
       },
       {
         q: 'What happened in the trial after heart attack?',
-        a: 'DAPA-MI is worth understanding because of how its endpoint was chosen. The trial enrolled 4,017 patients without prior diabetes or heart failure after a heart attack with impaired pumping function. Hard events did not accumulate as expected, so during the trial the analysis was changed to a win ratio on a hierarchical list that includes death and heart failure hospitalisation but also new diabetes diagnoses, symptom class and a 5% body-weight decrease. On that measure dapagliflozin won, 1.34, p<0.001, and the paper states plainly that the result was mainly driven by the added cardiometabolic outcomes. On the conventional measure of cardiovascular death or heart failure hospitalisation, the numbers were 2.5% against 2.6%. Both facts come from the same paper.',
+        a: 'DAPA-MI is worth understanding because of how its endpoint was chosen. The trial enrolled 4,017 patients without prior diabetes or heart failure after a heart attack with impaired pumping function. Hard events did not accumulate as expected, so during the trial the analysis was changed to a win ratio on a hierarchical list that includes death and heart failure hospitalisation but also new diabetes diagnoses, symptom class and a 5% body-weight decrease. On that measure dapagliflozin won, 1.34, p<0.001, and the paper states that the result was mainly driven by the added cardiometabolic outcomes. On the conventional measure of cardiovascular death or heart failure hospitalisation, the numbers were 2.5% against 2.6%. Both facts come from the same paper.',
       },
       {
         q: 'Does it reduce the risk of dying?',
@@ -11128,7 +11128,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'When food reaches the gut, intestinal cells release hormones called incretins that tell the pancreas to release insulin — but only while glucose is high. Those hormones are destroyed within minutes by an enzyme sitting on blood vessel surfaces. Blocking that enzyme leaves the incretins circulating longer, so the insulin response to a meal is larger and lasts longer.',
       whyItMatters:
-        'Because the effect is glucose-dependent, this class barely causes hypoglycaemia, which made it enormously popular. What it has never done, in a trial designed to look, is reduce a cardiovascular event. TECOS was the trial that looked, and its finding of exactly no difference is the honest headline for this page.',
+        'Because the effect is glucose-dependent, this class rarely causes hypoglycaemia, which made it widely used. In TECOS, the trial designed to test cardiovascular outcomes, sitagliptin did not reduce cardiovascular events.',
       whoTakesThis:
         'Widely used as a second-line addition to metformin in type 2 diabetes, particularly where hypoglycaemia or weight gain is a concern. Generic sitagliptin entered the United States market in 2026.',
       clinicalGoals:
@@ -11489,7 +11489,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What about pancreatitis?',
-        a: 'The honest answer is that nobody has excluded it. TECOS reported no significant difference in acute pancreatitis, with a p-value of 0.07, and none in pancreatic cancer, at p=0.32. A p-value of 0.07 is a numerical imbalance that did not reach the conventional threshold, in a trial powered for a cardiovascular composite rather than for a rare pancreatic event. Three years of median follow-up is also short for a solid tumour. So the accurate statement is that no signal was detected in a study with limited ability to detect one, which is different from a clean bill of health. Acute pancreatitis remains a labelled warning for the class.',
+        a: 'Nobody has excluded it. TECOS reported no significant difference in acute pancreatitis, with a p-value of 0.07, and none in pancreatic cancer, at p=0.32. A p-value of 0.07 is a numerical imbalance that did not reach the conventional threshold, in a trial powered for a cardiovascular composite rather than for a rare pancreatic event. Three years of median follow-up is also short for a solid tumour. The study did not establish a signal and had limited ability to exclude one. Acute pancreatitis remains a labelled warning for the class.',
       },
       {
         q: 'Why does it not cause low blood sugar?',
@@ -11958,7 +11958,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Should I switch to one of the newer anticoagulants?',
-        a: 'For most people with atrial fibrillation, the randomised evidence favours it. ARISTOTLE compared apixaban with well-managed warfarin in 18,201 patients: strokes 1.27% against 1.60% per year, major bleeding 2.13% against 3.09%, deaths 3.52% against 3.94% — apixaban better on all three simultaneously, which is unusual. Worth noting where the advantage came from: bleeding into the brain, 0.24% against 0.47% per year, while ischaemic strokes did not significantly differ. But there are settings where warfarin is not replaceable. Mechanical heart valves are one, where a direct oral anticoagulant tested against warfarin did worse. Rheumatic mitral valve disease is another: INVICTUS randomised 4,565 patients and found the vitamin K antagonist superior to rivaroxaban.',
+        a: 'For most people with atrial fibrillation, the randomised evidence favours it. ARISTOTLE compared apixaban with well-managed warfarin in 18,201 patients: strokes 1.27% against 1.60% per year, major bleeding 2.13% against 3.09%, deaths 3.52% against 3.94% — apixaban better on all three simultaneously, which is unusual. The advantage came from fewer brain bleeds, 0.24% against 0.47% per year; ischaemic stroke rates did not differ significantly. But there are settings where warfarin is not replaceable. Mechanical heart valves are one, where a direct oral anticoagulant tested against warfarin did worse. Rheumatic mitral valve disease is another: INVICTUS randomised 4,565 patients and found the vitamin K antagonist superior to rivaroxaban.',
       },
       {
         q: 'Do I have to avoid green vegetables?',
@@ -12420,7 +12420,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is a 2% difference worth taking a tablet for?',
-        a: 'That is the right question and the honest answer depends on your risk. IMPROVE-IT enrolled 18,144 people within ten days of an acute coronary syndrome — about the highest-risk group there is — and over seven years 34.7% of those on a statin alone had a cardiovascular event against 32.7% of those on the statin plus ezetimibe. That is two events prevented per hundred people over seven years, a number needed to treat of about fifty. It is a real, statistically sound benefit at essentially no cost in side effects and about seven cents a tablet. It is also small, and it will be smaller still in someone at lower baseline risk, because relative reductions applied to smaller absolute risks give smaller absolute gains.',
+        a: 'The benefit depends on baseline risk. IMPROVE-IT enrolled 18,144 people within ten days of an acute coronary syndrome — about the highest-risk group there is — and over seven years 34.7% of those on a statin alone had a cardiovascular event against 32.7% of those on the statin plus ezetimibe. That is two events prevented per hundred people over seven years, a number needed to treat of about fifty. It is a statistically sound but small benefit, with essentially no increase in side effects and a price of about seven cents a tablet. The absolute benefit will be smaller in someone at lower baseline risk.',
         auditNote:
           'The relative hazard ratio of 0.936 and the absolute difference of 2.0 percentage points describe the same result. Which one a page leads with changes how large the drug sounds.',
       },
@@ -13839,7 +13839,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Should I take colchicine to reduce my heart risk?',
-        a: 'The evidence changed in 2025 and this page reports both halves of it. COLCOT, in 4,745 patients within a month of a heart attack, found the composite endpoint at 5.5% against 7.1%, hazard ratio 0.77. LoDoCo2, in 5,522 patients with stable coronary disease, found 6.8% against 9.6%, hazard ratio 0.69. On that basis a 0.5 mg product received a United States cardiovascular indication in June 2023. Then CLEAR SYNERGY randomised 7,062 patients after myocardial infarction — more than COLCOT — and followed them a median of three years, longer than either earlier trial, and found 9.1% against 9.3%, hazard ratio 0.99, p=0.93. The drug did lower C-reactive protein in that trial. The honest position is that this is now genuinely unsettled, and it is not a question this page can resolve for you.',
+        a: 'The evidence changed in 2025 and this page reports both halves of it. COLCOT, in 4,745 patients within a month of a heart attack, found the composite endpoint at 5.5% against 7.1%, hazard ratio 0.77. LoDoCo2, in 5,522 patients with stable coronary disease, found 6.8% against 9.6%, hazard ratio 0.69. On that basis a 0.5 mg product received a United States cardiovascular indication in June 2023. Then CLEAR SYNERGY randomised 7,062 patients after myocardial infarction — more than COLCOT — and followed them a median of three years, longer than either earlier trial, and found 9.1% against 9.3%, hazard ratio 0.99, p=0.93. The drug did lower C-reactive protein in that trial. This is now genuinely unsettled, and it is not a question this page can resolve for you.',
         auditNote:
           'A drug approved on two positive trials and then given a null result in a larger, longer trial is the clearest live example on this site of evidence still moving.',
       },
@@ -13861,7 +13861,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does this page show no manufacturing cost?',
-        a: 'Because no verified per-dose production cost for colchicine could be cited. It is worth saying what the production actually is: colchicine is extracted from autumn crocus or gloriosa lily rather than synthesised, so its cost structure is agricultural and extractive rather than chemical, and its critical quality control is separation from the closely related alkaloids that co-occur in the plant and are themselves pharmacologically active. That is a description of the process, not a figure, and this page does not invent one.',
+        a: 'Because no verified per-dose production cost for colchicine could be cited. The production process is documented even without a verified per-dose cost: colchicine is extracted from autumn crocus or gloriosa lily rather than synthesised, so its cost structure is agricultural and extractive rather than chemical, and its critical quality control is separation from the closely related alkaloids that co-occur in the plant and are themselves pharmacologically active. That is a description of the process, not a figure, and this page does not invent one.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -14605,7 +14605,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The dose-response pattern and the absence of any similar signal with other blood pressure drugs make chance and simple confounding unlikely. There is still no trial, and sun exposure was not measured.',
         technicalDetails:
-          "Three features strengthen the case that this is causal: a monotonic dose-response across cumulative exposure categories, biological plausibility from the drug's known photosensitising property and its earlier association with lip cancer, and specificity — no association was seen for other diuretics or antihypertensives, which argues against confounding by indication or by the general characteristics of treated hypertensive patients. Three features limit it: the design is case-control on registry data, sun exposure was not recorded and is the dominant risk factor for both cancers, and no randomised trial has been or realistically could be run at the required duration. Both regulators added labelling. The honest statement is a well-characterised association with a dose-response and no randomised confirmation, and the absolute risk depends on a person's baseline skin cancer risk, which the study cannot supply.",
+          "Three features strengthen the case that this is causal: a monotonic dose-response across cumulative exposure categories, biological plausibility from the drug's known photosensitising property and its earlier association with lip cancer, and specificity — no association was seen for other diuretics or antihypertensives, which argues against confounding by indication or by the general characteristics of treated hypertensive patients. Three features limit it: the design is case-control on registry data, sun exposure was not recorded and is the dominant risk factor for both cancers, and no randomised trial has been or realistically could be run at the required duration. Both regulators added labelling. This is a well-characterised association with a dose-response and no randomised confirmation, and the absolute risk depends on a person's baseline skin cancer risk, which the study cannot supply.",
         evidenceSource: 'Pedersen SA et al., J Am Acad Dermatol 2018;78:673-681',
         doi: '10.1016/j.jaad.2017.11.042',
         inferredClaim:
@@ -15891,7 +15891,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Inside the winning composite, two of the four components did not move. Neither did cardiovascular death or death from any cause.',
         technicalDetails:
-          'The published conclusion states plainly that bempedoic acid had no significant effects on fatal or non-fatal stroke, on death from cardiovascular causes, or on death from any cause. The composite was therefore carried by myocardial infarction (hazard ratio 0.77) and coronary revascularisation (0.81). Coronary revascularisation is a clinician-initiated procedure rather than a spontaneous event, so a composite in which it contributes substantially is partly measuring decisions as well as biology, particularly in an open lipid environment where the treating physician sees the LDL result. The absence of any mortality effect is expected for a lipid intervention of this size over this duration and is not a criticism of the trial. It is a limit on what the trial licenses being said, and it is why the approved indication names myocardial infarction and coronary revascularisation specifically rather than cardiovascular events in general.',
+          'The published conclusion states that bempedoic acid had no significant effects on fatal or non-fatal stroke, on death from cardiovascular causes, or on death from any cause. The composite was therefore carried by myocardial infarction (hazard ratio 0.77) and coronary revascularisation (0.81). Coronary revascularisation is a clinician-initiated procedure rather than a spontaneous event, so a composite in which it contributes substantially is partly measuring decisions as well as biology, particularly in an open lipid environment where the treating physician sees the LDL result. The absence of any mortality effect is expected for a lipid intervention of this size over this duration and is not a criticism of the trial. It is a limit on what the trial licenses being said, and it is why the approved indication names myocardial infarction and coronary revascularisation specifically rather than cardiovascular events in general.',
         evidenceSource: 'Nissen SE et al., CLEAR Outcomes, N Engl J Med 2023;388:1353-1364',
         doi: '10.1056/NEJMoa2215024',
         inferredClaim:
@@ -16074,13 +16074,13 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'I get muscle pain on statins. Is this the answer?',
-        a: 'It is a reasonable option and the honest sequence puts something else first. The two randomised n-of-1 programmes on the atorvastatin page took people who had already abandoned statins over muscle symptoms and gave them alternating months of drug and placebo. SAMSON found symptom scores of 16.3 in statin months against 15.4 in placebo months, statistically indistinguishable, and half those participants were back on a statin six months later. StatinWISE found a mean difference of -0.11 points across 151 similar people. So the first question is whether a blinded rechallenge would settle it, because a statin costs about 2.3 cents a tablet against US$13.81 for this one. For the minority whose symptoms are genuinely pharmacological, bempedoic acid is the only drug with a cardiovascular outcome trial run specifically in this population.',
+        a: 'It is a reasonable option, but a blinded statin rechallenge may be worth considering first. Two randomised n-of-1 programmes took people who had abandoned statins because of muscle symptoms and gave them alternating months of drug and placebo. SAMSON found symptom scores of 16.3 in statin months against 15.4 in placebo months, statistically indistinguishable, and half the participants were back on a statin six months later. StatinWISE found a mean difference of -0.11 points across 151 similar people. A statin costs about 2.3 cents a tablet against US$13.81 for bempedoic acid. For the minority whose symptoms are caused by the statin itself, bempedoic acid is the only drug with a cardiovascular outcome trial run specifically in this population.',
         auditNote:
           'The entry criterion for CLEAR Outcomes was self-reported statin intolerance. That does not weaken the randomised comparison inside the trial; it does affect who the result applies to.',
       },
       {
         q: 'Why would this avoid muscle side effects when statins do not?',
-        a: 'Because it arrives inactive. Bempedoic acid does nothing until an enzyme attaches a coenzyme A group to it, and that enzyme — very-long-chain acyl-CoA synthetase 1 — is present in liver and essentially absent from skeletal muscle. A statin reaches muscle in its active form and relies on being concentrated in the liver by a transporter to spare muscle; bempedoic acid reaches muscle in a form that cannot do anything. That is a genuine and deliberate design feature rather than a marketing claim. What is worth stating precisely is that no trial has randomised anyone between bempedoic acid and a statin and compared muscle symptoms, so the evidence is the activation biochemistry plus placebo-controlled tolerability data, not a head-to-head result.',
+        a: 'Because it arrives inactive. Bempedoic acid does nothing until an enzyme attaches a coenzyme A group to it, and that enzyme — very-long-chain acyl-CoA synthetase 1 — is present in liver and essentially absent from skeletal muscle. A statin reaches muscle in its active form and relies on being concentrated in the liver by a transporter to spare muscle; bempedoic acid reaches muscle in a form that cannot do anything. That is a genuine and deliberate design feature rather than a marketing claim. The evidence does not include this comparison: no trial has randomised anyone between bempedoic acid and a statin and compared muscle symptoms, so the evidence is the activation biochemistry plus placebo-controlled tolerability data, not a head-to-head result.',
       },
       {
         q: 'Does it stop me dying?',
@@ -16645,7 +16645,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
           name: 'Statin therapy for the cardiovascular risk',
           class: 'HMG-CoA reductase inhibitor',
           howItCompares:
-            'Does not treat the liver disease but treats what most of these patients actually die of. Cardiovascular disease, not liver failure, is the leading cause of death in this population, which is worth stating on a page about a liver drug.',
+            'Does not treat the liver disease but treats what most of these patients actually die of. Cardiovascular disease, not liver failure, is the leading cause of death in this population.',
           typicalCost:
             'US$0.023 per 10 mg generic atorvastatin tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
           prosAndCons:
@@ -16952,7 +16952,7 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does this drug stop my liver disease progressing?',
-        a: 'Nobody knows yet, and saying so plainly is the honest position. MAESTRO-NASH measured two things at one year, both read from a liver biopsy: whether the steatohepatitis had resolved and whether the scarring had improved by at least one stage. On the first, 25.9% and 29.9% at the two doses against 9.7% on placebo. On the second, 24.2% and 25.9% against 14.2%. Those are real, statistically solid differences in the first approved treatment for a disease that had none. What the trial did not count is a single case of cirrhosis, liver failure, liver cancer, transplantation or death. The drug has accelerated approval, which exists precisely for this situation: the surrogate is accepted as reasonably likely to predict benefit, and a confirmatory trial is required. That trial has not reported.',
+        a: 'The trial has not yet shown whether this drug stops liver disease progressing. MAESTRO-NASH measured two things at one year, both read from a liver biopsy: whether the steatohepatitis had resolved and whether the scarring had improved by at least one stage. On the first, 25.9% and 29.9% at the two doses against 9.7% on placebo. On the second, 24.2% and 25.9% against 14.2%. Those are real, statistically solid differences in the first approved treatment for a disease that had none. What the trial did not count is a single case of cirrhosis, liver failure, liver cancer, transplantation or death. The drug has accelerated approval, which exists precisely for this situation: the surrogate is accepted as reasonably likely to predict benefit, and a confirmatory trial is required. That trial has not reported.',
         auditNote:
           'This is the most provisional page in this group, and deliberately so. An accelerated approval is a conditional statement and this page reports it as one.',
       },

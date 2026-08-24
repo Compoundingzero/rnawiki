@@ -929,7 +929,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does taking it change what I might catch later?',
-        a: 'Nobody measured that in either trial on this page, and it is the honest answer rather than a hedge. The Moran trial followed household contacts for similar infections through 7 to 9 weeks and found no difference between groups, but that is contact transmission, not resistance selection. Neither trial cultured participants afterwards to see what antibiotic-resistant organisms they were carrying. This gap is not specific to cephalexin: it is the standard shape of antibiotic evidence, where cure in one person over days is measured and resistance in a population over years is not.',
+        a: 'Neither trial on this page measured that outcome. The Moran trial followed household contacts for similar infections through 7 to 9 weeks and found no difference between groups, but that is contact transmission, not resistance selection. Neither trial cultured participants afterwards to see what antibiotic-resistant organisms they were carrying. This gap is not specific to cephalexin: it is the standard shape of antibiotic evidence, where cure in one person over days is measured and resistance in a population over years is not.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -1031,7 +1031,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Ceftriaxone is chosen for a combination of spectrum, brain penetration and once-a-day convenience, and every alternative gives up at least one of those. The narrower agents are better where the organism is known; the carbapenems cover what ceftriaxone has lost to extended-spectrum beta-lactamases; the oral agents avoid a cannula. Nothing sold as a food or a supplement treats meningitis, pneumonia or gonorrhoea, and this is a page where that has to be said plainly.',
+        'Ceftriaxone is chosen for a combination of spectrum, brain penetration and once-a-day convenience, and every alternative gives up at least one of those. The narrower agents are better where the organism is known; the carbapenems cover what ceftriaxone has lost to extended-spectrum beta-lactamases; the oral agents avoid a cannula. Foods and supplements do not treat meningitis, pneumonia or gonorrhoea.',
       conventionalRx: [
         {
           name: 'Cefazolin',
@@ -1947,7 +1947,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest summary is that there is often no substitute, and that is the problem. Piperacillin-tazobactam was the designated carbapenem-sparing option and lost its head-to-head trial in bloodstream infection. Ertapenem is a carbapenem too, so substituting it saves nothing in class terms. Cefepime is narrower against the enzymes that matter. Nothing sold as food or a supplement treats a carbapenem-requiring infection, and this is a page where the alternatives question has an uncomfortable answer.',
+        'There is often no substitute, and that is the problem. Piperacillin-tazobactam was the designated carbapenem-sparing option and lost its head-to-head trial in bloodstream infection. Ertapenem is a carbapenem too, so substituting it saves nothing in class terms. Cefepime is narrower against the enzymes that matter. Nothing sold as food or a supplement treats a carbapenem-requiring infection, and this is a page where the alternatives question has an uncomfortable answer.',
       conventionalRx: [
         {
           name: 'Piperacillin-tazobactam',
@@ -2282,7 +2282,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Should it be given as a continuous drip?',
-        a: 'The pharmacology says yes and the trial says it makes no difference. Beta-lactams kill in proportion to how long the drug concentration stays above the threshold that inhibits the organism, so a continuous infusion should outperform intermittent doses of the same total amount. MERCY tested exactly that in 607 critically ill patients with sepsis, double-blind, with the same daily amount in both arms. The composite of 28-day death and emergence of extensively or pandrug-resistant bacteria occurred in 47% against 49%, relative risk 0.96. None of the four secondary outcomes differed. Ninety-day mortality was 42% in both arms — 127 patients in each. Two larger studies have since pulled the other way without settling it: BLING III, in 7,031 patients receiving piperacillin-tazobactam or meropenem, found 90-day mortality of 24.9% against 26.8% with a P value of .08 and clearly higher clinical cure, and a Bayesian pooling of 18 trials in 9,108 patients estimated a mortality risk ratio of 0.86 (credible interval 0.72 to 0.98) at high certainty. So the honest position is that MERCY found nothing, the largest single trial missed, and the pooled estimate favours the infusion.',
+        a: 'The pharmacology says yes and the trial says it makes no difference. Beta-lactams kill in proportion to how long the drug concentration stays above the threshold that inhibits the organism, so a continuous infusion should outperform intermittent doses of the same total amount. MERCY tested exactly that in 607 critically ill patients with sepsis, double-blind, with the same daily amount in both arms. The composite of 28-day death and emergence of extensively or pandrug-resistant bacteria occurred in 47% against 49%, relative risk 0.96. None of the four secondary outcomes differed. Ninety-day mortality was 42% in both arms — 127 patients in each. Two larger studies have since pulled the other way without settling it: BLING III, in 7,031 patients receiving piperacillin-tazobactam or meropenem, found 90-day mortality of 24.9% against 26.8% with a P value of .08 and clearly higher clinical cure, and a Bayesian pooling of 18 trials in 9,108 patients estimated a mortality risk ratio of 0.86 (credible interval 0.72 to 0.98) at high certainty. MERCY found no difference, the largest single trial missed statistical significance, and the pooled estimate favours the infusion.',
       },
       {
         q: 'Does it cause seizures?',
@@ -2290,7 +2290,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does using it now make resistance worse later?',
-        a: 'Almost certainly, and no trial on this page measured it. That is the honest shape of the evidence. MERINO existed because of this concern — its whole purpose was to find a carbapenem-sparing option — but its endpoint was 30-day mortality, and neither arm was followed for subsequent carbapenem-resistant colonisation. MERCY came closest, building emergence of pandrug-resistant or extensively drug-resistant bacteria into its composite primary outcome, and found no difference between two ways of giving the same drug. What supports restraint is the mechanism, the mobility of carbapenemase genes between species, and worldwide surveillance showing them spreading. That is a strong case. It is not the same kind of evidence as the mortality figures on this page, and this record keeps them apart.',
+        a: 'Almost certainly, but no trial on this page measured it. MERINO existed because of this concern — its whole purpose was to find a carbapenem-sparing option — but its endpoint was 30-day mortality, and neither arm was followed for subsequent carbapenem-resistant colonisation. MERCY came closest, building emergence of pandrug-resistant or extensively drug-resistant bacteria into its composite primary outcome, and found no difference between two ways of giving the same drug. Restraint is supported by the mechanism, the mobility of carbapenemase genes between species, and worldwide surveillance showing them spreading. That is a strong case, but it is not the same kind of evidence as the mortality figures on this page.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -2591,7 +2591,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The claim that this drug plus vancomycin wrecks kidneys came from looking back at records. In those records, the sickest patients got the combination — and the sickest patients get kidney injury. Randomisation removed the confusion and the effect vanished.',
         technicalDetails:
-          'The hypothesis arose from retrospective cohorts and pharmacovigilance disproportionality analyses in which treatment was assigned by clinicians who could see how ill each patient was, a form of confounding by indication that no statistical adjustment fully removes. It changed prescribing at scale. ACORN tested it directly by randomisation, in a population where three-quarters were on vancomycin, and found the primary ordinal outcome unchanged (OR 0.95, 95% CI 0.80 to 1.13) and major adverse kidney events statistically indistinguishable. A second mechanism worth noting is measurement rather than injury: piperacillin-tazobactam interferes with creatinine secretion and some assay methods, so part of the historical signal may be a creatinine rise without a fall in glomerular filtration.',
+          'The hypothesis arose from retrospective cohorts and pharmacovigilance disproportionality analyses in which treatment was assigned by clinicians who could see how ill each patient was, a form of confounding by indication that no statistical adjustment fully removes. It changed prescribing at scale. ACORN tested it directly by randomisation, in a population where three-quarters were on vancomycin, and found the primary ordinal outcome unchanged (OR 0.95, 95% CI 0.80 to 1.13) and major adverse kidney events statistically indistinguishable. Measurement offers a second explanation: piperacillin-tazobactam interferes with creatinine secretion and some assay methods, so part of the historical signal may be a creatinine rise without a fall in glomerular filtration.',
         evidenceSource: 'Qian ET et al., JAMA 2023;330:1557-1567 (ACORN, NCT05094154)',
         doi: '10.1001/jama.2023.20583',
         inferredClaim:
@@ -2711,7 +2711,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'Continuous 24.9% (864 of 3,474) against intermittent 26.8% (939 of 3,507); absolute difference -1.9% (95% CI -4.9 to 1.1), odds ratio 0.91 (95% CI 0.81 to 1.01), P=.08',
         unreportedAdverseSignals:
-          'Clinical cure was higher with continuous infusion, 55.7% against 50.0% (absolute difference 5.7%, 95% CI 2.4 to 9.1), while the mortality primary endpoint missed. The authors state the confidence interval includes both no important effect and a clinically important benefit — an unusually honest way to describe P=.08.',
+          'Clinical cure was higher with continuous infusion, 55.7% against 50.0% (absolute difference 5.7%, 95% CI 2.4 to 9.1), while the mortality primary endpoint missed. The authors state that the confidence interval includes both no important effect and a clinically important benefit — an unusually clear way to describe P=.08.',
         independentReplicationStatus: 'Partially Replicated',
       },
     ],
@@ -2762,7 +2762,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Should it be given as a slow continuous infusion?',
-        a: 'This is the most interesting open question in the file, and the two best papers on it were published in the same issue of the same journal. BLING III randomised 7,031 critically ill adults with sepsis across 104 intensive care units to the same daily amount by continuous or intermittent infusion. Ninety-day mortality was 24.9% against 26.8% — an absolute difference of -1.9%, confidence interval -4.9 to 1.1, P=.08. Not significant. Clinical cure, a secondary outcome, was clearly higher with continuous infusion: 55.7% against 50.0%. A Bayesian pooled analysis of 18 trials in 9,108 patients then estimated a mortality risk ratio of 0.86, credible interval 0.72 to 0.98, rated high certainty, with a 99.1% posterior probability of benefit. Both papers are honest. They just answer slightly different questions about the same data.',
+        a: 'Two papers published in the same journal issue reached different-looking results. BLING III randomised 7,031 critically ill adults with sepsis across 104 intensive care units to the same daily amount by continuous or intermittent infusion. Ninety-day mortality was 24.9% against 26.8% — an absolute difference of -1.9%, confidence interval -4.9 to 1.1, P=.08. Clinical cure, a secondary outcome, was higher with continuous infusion: 55.7% against 50.0%. A Bayesian pooled analysis of 18 trials in 9,108 patients estimated a mortality risk ratio of 0.86, credible interval 0.72 to 0.98, rated high certainty, with a 99.1% posterior probability of benefit. The single-trial frequentist analysis and the pooled Bayesian analysis answer different statistical questions.',
       },
       {
         q: 'What does it cover that cefepime does not?',
@@ -3355,7 +3355,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'The first new antibacterial class in thirty-five years, blocking assembly of the bacterial ribosome before protein synthesis can begin — it achieved clinical success in 57.6% of per-protocol MRSA pneumonia patients against vancomycin’s 46.6% (P=.042) without changing 60-day mortality, and in the Nix-TB study 90% of 109 patients with highly drug-resistant tuberculosis had a favourable outcome while 81% developed peripheral neuropathy and 48% myelosuppression.',
     laymanHowItWorks:
-      'Bacteria build proteins on a two-part machine. Linezolid wedges itself into the larger part at the point where the first amino acid is loaded, so the machine can never start. Nothing else in medicine works at that step, which is why bacteria resistant to everything else are often still susceptible. Human cells have their own version of that machine inside their mitochondria, and it is similar enough that long courses damage nerves, eyes and bone marrow.',
+      'Bacteria build proteins on a two-part machine called a ribosome. Linezolid blocks formation of the bacterial 70S initiation complex, stopping protein production at an early step that differs from the targets of most other antibiotics. It can remain active against some resistant Gram-positive bacteria, although linezolid resistance exists. Human mitochondria contain related machinery, which helps explain why long courses can damage nerves, eyes and bone marrow.',
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 82,
     pricing: {
@@ -3516,7 +3516,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Linezolid won on the endpoint the trial was designed around and did not change the number of people who died. That result is routinely reported as though it settled which drug is better.',
         technicalDetails:
-          'In ZEPHyR, all-cause 60-day mortality was 15.7% with linezolid and 17.0% with vancomycin — similar, and not the primary endpoint. The primary endpoint was investigator-assessed clinical outcome in the per-protocol population, which comprised 348 of the 1,184 patients treated, under 30% of those exposed. A clinical-response endpoint assessed in a subset that excludes protocol deviations is more susceptible to differential dropout than an all-cause mortality endpoint in everyone randomised. The published conclusion states both results plainly; the citation practice that followed generally did not.',
+          'In ZEPHyR, all-cause 60-day mortality was 15.7% with linezolid and 17.0% with vancomycin — similar, and not the primary endpoint. The primary endpoint was investigator-assessed clinical outcome in the per-protocol population, which comprised 348 of the 1,184 patients treated, under 30% of those exposed. A clinical-response endpoint assessed in a subset that excludes protocol deviations is more susceptible to differential dropout than an all-cause mortality endpoint in everyone randomised. The published conclusion states both results; the citation practice that followed generally did not.',
         evidenceSource:
           'Wunderink RG et al., Clin Infect Dis 2012;54:621-629 (ZEPHyR), Results and Conclusions',
         doi: '10.1093/cid/cir895',
@@ -4252,10 +4252,10 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
     approvalStatus: 'FDA Approved',
     approvalYear: 1953,
     indication:
-      'Urinary tract infections when due to susceptible strains of Escherichia coli, enterococci, Staphylococcus aureus and certain susceptible strains of Klebsiella and Enterobacter species. It treats the bladder and nothing else, because it does not distribute into tissue.',
+      'Urinary tract infections caused by susceptible strains of Escherichia coli, enterococci, Staphylococcus aureus and certain susceptible strains of Klebsiella and Enterobacter species. It is used for lower urinary tract infections because it concentrates in urine and does not reach therapeutic concentrations in kidney tissue.',
     patientFriendlyIndication: 'Bladder infections caused by susceptible bacteria',
     anatomicalSite:
-      'The bladder urine. Nitrofurantoin achieves antibacterial concentrations only in urine, and the label states plainly that it lacks the broader tissue distribution of other urinary tract agents.',
+      'Bladder urine. Nitrofurantoin reaches antibacterial concentrations in urine but does not spread through tissues as widely as other urinary tract antibiotics.',
     conditionContext: {
       conditionExplainer:
         'An uncomplicated urinary tract infection is bacteria multiplying in the bladder, usually Escherichia coli from the bowel. It is one of the most common bacterial infections in the world and one of the very few where the drug can be concentrated at the site of infection without going anywhere else.',
@@ -4269,7 +4269,7 @@ export const ENRICHED_BATCH_12_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'A nitrofuran that bacterial enzymes convert into reactive fragments which damage DNA, ribosomes and proteins simultaneously, concentrated in urine and essentially nowhere else — in the only large modern randomised trial it resolved symptoms in 70% of 244 women against single-dose fosfomycin’s 58% (difference 12%, 95% CI 4 to 21%, P=.004), and in a single interstitial lung disease service ten women, mean age 80, developed pulmonary fibrosis a mean of 17 months after being prescribed it.',
     laymanHowItWorks:
-      'Nitrofurantoin is swallowed, absorbed, and then dumped almost immediately into the urine, where it becomes very concentrated. Bacteria in the bladder take it up and their own enzymes chop it into reactive fragments — and those fragments attack everything at once: the bacterium’s genetic material, its protein factory, its enzymes. There is no single target to mutate away from, which is why seventy years of use has produced so little resistance.',
+      'Nitrofurantoin is absorbed after swallowing and then concentrated in the urine. Bacterial nitroreductase enzymes convert it into reactive intermediates that damage DNA, ribosomal proteins and other macromolecules. Because several bacterial systems are affected, resistance has remained relatively uncommon despite decades of use.',
     auditConfidence: 'Moderate / Debated',
     confidenceScore: 76,
     pricing: {

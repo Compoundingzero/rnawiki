@@ -33,7 +33,7 @@ import type { SeedDossier } from '@/lib/seed-types'
  * 2. THE CLASS COMPARISON COMES FROM ONE NETWORK META-ANALYSIS, AND IT IS QUOTED THE SAME WAY ON
  *    EVERY PAGE. Li and colleagues pooled 114 randomised trials in 20,275 participants and ranked
  *    the first-line drops by millimetres of mercury lowered at three months. That single table is
- *    the honest cross-page comparator, and it puts the carbonic anhydrase inhibitors at roughly
+ *    the most relevant cross-page comparator, and it puts the carbonic anhydrase inhibitors at roughly
  *    half the effect of the prostaglandin analogues.
  *
  * 3. NO COST-OF-PRODUCTION FIGURE EXISTS FOR ANY OF THESE. The published retrosynthesis literature
@@ -641,7 +641,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Timolol has been overtaken on efficacy by the prostaglandin analogues and on safety by almost everything. It survives because it is cheap, because it works by a different mechanism from the drainage drugs and therefore adds to them, and because it is the standard comparator every new glaucoma drug is tested against. The honest alternatives divide into stronger drops with local side effects and weaker drops without the cardiopulmonary risk.',
+        'Timolol has been overtaken on efficacy by the prostaglandin analogues and on safety by almost everything. It remains in use because it is cheap, works by a different mechanism from the drainage drugs and therefore adds to them, and is the standard comparator every new glaucoma drug is tested against. The alternatives divide into stronger drops with local side effects and weaker drops without the cardiopulmonary risk.',
       conventionalRx: [
         {
           name: 'Latanoprost (Xalatan)',
@@ -982,7 +982,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       whatFailedInitially: [
         'The registration-era safety claim: two studies totalling 50 patients reported no side effects at all, and the label now carries four absolute contraindications',
         'Nocturnal control: the one time of day the drug does not measurably work is the time nobody was measuring',
-        'The premise that ophthalmic administration is local, which plasma measurement disproved and which the label now states plainly in its first Warnings sentence',
+        'The premise that ophthalmic administration is local, which plasma measurement disproved and which the label now states in its first Warnings sentence',
       ],
       realWorldOutcome: [
         'The drug that made glaucoma manageable with a drop in 1978, displacing pilocarpine and oral carbonic anhydrase inhibitors',
@@ -1001,7 +1001,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'How can an eye drop affect my heart?',
-        a: 'Through your nose. A drop is far larger than the eye can hold, so most of it drains through the duct at the inner corner of your eye into the nasal cavity within minutes. The lining there absorbs drugs directly into the bloodstream, and unlike a swallowed tablet, that route does not pass through the liver first — so none of the dose is broken down before it circulates. Timolol blocks the same receptors in the heart and airways that it blocks in the eye. Published plasma measurements confirm rapid systemic absorption after instillation, and show that levels are lower when people press on the tear duct after putting the drop in. The label opens its Warnings section by stating this plainly.',
+        a: 'Through your nose. A drop is far larger than the eye can hold, so most of it drains through the duct at the inner corner of your eye into the nasal cavity within minutes. The lining there absorbs drugs directly into the bloodstream, and unlike a swallowed tablet, that route does not pass through the liver first — so none of the dose is broken down before it circulates. Timolol blocks the same receptors in the heart and airways that it blocks in the eye. Published plasma measurements confirm rapid systemic absorption after instillation, and show that levels are lower when people press on the tear duct after putting the drop in. The label opens its Warnings section by stating this.',
       },
       {
         q: 'Is it really dangerous, or is that overstated?',
@@ -1523,7 +1523,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Can I use it if I am allergic to sulfa drugs?',
-        a: 'Ask, and say so explicitly, because the connection is not obvious. Dorzolamide is a sulfonamide — the same chemical family as the sulfa antibiotics and several diuretics — and although it goes in the eye, it is absorbed into the bloodstream. The label states plainly that the same types of reactions attributable to sulfonamides may occur, that fatalities have occurred rarely from Stevens-Johnson syndrome, toxic epidermal necrolysis, hepatic necrosis and blood disorders, and that sensitisation may recur when a sulfonamide is given again by any route. These reactions are rare and they are not dose-dependent, which is why a small topical dose does not make them impossible.',
+        a: 'Ask, and say so explicitly, because the connection is not obvious. Dorzolamide is a sulfonamide — the same chemical family as the sulfa antibiotics and several diuretics — and although it goes in the eye, it is absorbed into the bloodstream. The label states that the same types of reactions attributable to sulfonamides may occur, that fatalities have occurred rarely from Stevens-Johnson syndrome, toxic epidermal necrolysis, hepatic necrosis and blood disorders, and that sensitisation may recur when a sulfonamide is given again by any route. These reactions are rare and they are not dose-dependent, which is why a small topical dose does not make them impossible.',
       },
       {
         q: 'Is it weaker than the other drops?',
@@ -3033,7 +3033,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'The label says it works better in black patients. What does that mean?',
-        a: 'It means less than it appears to, and the label says so in the next sentence. The wording is: mean pressure reduction in black patients was up to 1.8 mmHg greater than in non-black patients, and it is not known whether this difference is attributed to race or to heavily pigmented irides. Three things are wrong with treating that as a prescribing fact. It comes from subgroup analyses of trials that were not designed or powered to test it. Race as recorded in a trial is a self-identified social category, not a biological measurement. And the biological explanation the label reaches for — that melanin in the iris binds and releases the drug differently — is measurable in tissue and, judging by the fact that the sentence has not changed since 2001, has not been settled. The honest reading is that a difference was observed, the reason is unknown, and the variable actually recorded is a proxy for something nobody measured.',
+        a: 'It means less than it appears to, and the label says so in the next sentence. The wording is: mean pressure reduction in black patients was up to 1.8 mmHg greater than in non-black patients, and it is not known whether this difference is attributed to race or to heavily pigmented irides. Three things are wrong with treating that as a prescribing fact. It comes from subgroup analyses of trials that were not designed or powered to test it. Race as recorded in a trial is a self-identified social category, not a biological measurement. And the biological explanation the label reaches for — that melanin in the iris binds and releases the drug differently — is measurable in tissue and, judging by the fact that the sentence has not changed since 2001, has not been settled. A difference was observed, the reason is unknown, and the variable actually recorded is a proxy for something nobody measured.',
         auditNote:
           'This is the clearest example in this batch of a subgroup finding surviving on a label for a quarter of a century because nobody was required to resolve it.',
       },
@@ -4322,7 +4322,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
         category: 'failed',
         title: 'The label says it works worse than timolol above 25 mmHg',
         laymanSummary:
-          'The prescribing information states it plainly: in patients whose starting pressure was 25 millimetres of mercury or higher, netarsudil lowered morning pressure less than timolol did, by as much as three millimetres.',
+          'The prescribing information states it: in patients whose starting pressure was 25 millimetres of mercury or higher, netarsudil lowered morning pressure less than timolol did, by as much as three millimetres.',
         technicalDetails:
           'The Clinical Studies section states that across three randomised controlled trials — Study 301 (NCT02207491), Study 302 (NCT02207621) and Study 304 (NCT02558374) — netarsudil 0.02% once daily in the evening produced up to 5 mmHg reductions in pressure. For patients with baseline pressure below 25 mmHg, reductions were similar to timolol 0.5% twice daily. For patients at or above 25 mmHg, netarsudil resulted in smaller mean reductions at the morning time points than timolol at the Day 43 and Day 90 visits, with the difference as high as 3 mmHg favouring timolol. Studies 301 and 302 enrolled patients with baseline pressure below 27 mmHg and Study 304 below 30 mmHg. A drug that underperforms a generic beta-blocker at the pressures where treatment is most urgent has a narrower place than its approval implies.',
         evidenceSource:
@@ -4547,7 +4547,7 @@ export const ENRICHED_BATCH_17_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is it as good as timolol?',
-        a: 'Only within a defined range, and the label draws the line for you. Non-inferiority to twice-daily timolol was demonstrated in the per-protocol population whose maximum baseline pressure was below 25 millimetres of mercury. In ROCKET-2 that was the pre-specified primary population. In ROCKET-1 it was a post hoc analysis, meaning the population was chosen after the results were seen, and ROCKET-1 did not meet non-inferiority across its full enrolled range. The label goes further and states that for patients at or above 25 mmHg, netarsudil gave smaller morning pressure reductions than timolol, by as much as 3 mmHg. So the answer is: comparable below 25 mmHg, worse above it.',
+        a: 'Only within a defined range, and the label draws the line for you. Non-inferiority to twice-daily timolol was demonstrated in the per-protocol population whose maximum baseline pressure was below 25 millimetres of mercury. In ROCKET-2 that was the pre-specified primary population. In ROCKET-1 it was a post hoc analysis, meaning the population was chosen after the results were seen, and ROCKET-1 did not meet non-inferiority across its full enrolled range. The label goes further and states that for patients at or above 25 mmHg, netarsudil gave smaller morning pressure reductions than timolol, by as much as 3 mmHg. It was comparable below 25 mmHg and worse above it.',
         auditNote:
           'A post hoc subgroup in which a drug meets its endpoint is the weakest form of a positive result. It is quoted here as the paper reports it, which is unusually candid — the authors label it post hoc in the abstract.',
       },

@@ -17,3 +17,12 @@ const pool = new Pool({
 
 export const db = drizzle(pool, { schema })
 export type Db = typeof db
+
+/**
+ * Short-lived workers must release the shared pool before exiting. The web process deliberately
+ * never calls this; scheduled scripts call it in a `finally` block so Railway can observe a clean
+ * terminal run instead of leaving the cron deployment active forever.
+ */
+export async function closeDatabasePool(): Promise<void> {
+  await pool.end()
+}

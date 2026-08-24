@@ -1,14 +1,7 @@
 /**
- * Shared rules for machine enrichment.
- *
- * THE LINE THIS FILE EXISTS TO HOLD: enrichment may COPY a fact from a public record, or COMPUTE
- * one from a structure. It may never COMPOSE one. The difference is the whole credibility of the
- * site — a sentence quoted from an FDA label and attributed to it is a fact a reader can check; the
- * same sentence rewritten to read more smoothly is a claim nobody can trace.
- *
- * So every enriched field carries where it came from, and a machine-enriched record never claims
- * the standing of one a person researched. `dossierDepth` stays below 'flagship' and the page says
- * plainly that no human has reviewed it.
+ * Shared provenance rules for machine enrichment. Enrichment may copy a sourced fact or compute a
+ * value from a structure; it does not compose new medical prose. Machine-enriched records retain
+ * their source and do not receive `flagship` status without human review.
  */
 
 export const SOURCE_LABELS = {
@@ -25,10 +18,7 @@ export const SOURCE_LABELS = {
 export type SourceKey = keyof typeof SOURCE_LABELS
 
 /**
- * Prefix that marks a passage as quoted from a regulatory document rather than written for this
- * site. It is deliberately visible in the rendered text: a reader must be able to tell, without
- * clicking anything, that they are reading the manufacturer's words to the regulator and not a
- * plain-English explanation somebody wrote for them.
+ * Visible prefix distinguishing regulatory label text from RNAWiki prose.
  */
 export const LABEL_QUOTE_PREFIX = 'From the FDA-approved label:'
 
@@ -45,8 +35,7 @@ export function mergeProvenance(existing: readonly string[], added: readonly str
 }
 
 /**
- * Trims at a sentence boundary. Cutting a regulatory passage mid-word is how a quotation stops
- * being a quotation.
+ * Trim at a sentence boundary when possible.
  */
 export function trimToSentence(text: string, max: number): string {
   const clean = text.replace(/\s+/g, ' ').trim()
@@ -63,17 +52,9 @@ export function trimToSentence(text: string, max: number): string {
 }
 
 /**
- * The label section as prose, rather than as it sits in the SPL file.
- *
- * Three things arrive with it that do not belong on a page. The section heading is often repeated
- * inside the text ("INDICATIONS For the temporary relief of…"), because the SPL author typed it and
- * the tag already says it. Homeopathic listings carry footnote markers, and 1,181 records were
- * printing an asterisk pointing at a footnote that was never captured — punctuation with no
- * referent. Where the footnote WAS captured it is the most important sentence in the field, and it
- * was arriving in capitals at the end of a sentence it appeared to be part of.
- *
- * An asterisk is only treated as a marker when whitespace or the end of the string follows it.
- * "HLA-A*02:01P" is an allele, not a footnote, and it appears in real oncology labels.
+ * Clean repeated SPL headings and homeopathic footnote markers. An asterisk is a marker only when
+ * followed by whitespace or the end of the string, so allele names such as `HLA-A*02:01P` remain
+ * intact.
  */
 const SECTION_HEADINGS =
   /^\s*(?:indications?(?:\s+and\s+usage)?|uses?|purposes?|indications?\s*&\s*usage)\s*[:.\-—]?\s+/i
@@ -89,17 +70,13 @@ export function cleanLabelProse(text: string): string {
   if (match?.[1]) {
     footnote = match[1].trim()
     out = out.slice(0, match.index).trim()
-    // Labels write this in capitals. Capitals are the label shouting, not the label meaning
-    // something different, and a page of them is unreadable. Done per sentence: a footnote often
-    // shouts its first sentence and then continues in ordinary case, and testing the whole string
-    // leaves the shouting in place.
+    // Normalise all-capital footnotes one sentence at a time.
     footnote = footnote
       .split(/(?<=[.!?])\s+/)
       .map((sentence) => {
         if (sentence !== sentence.toUpperCase() || !/[A-Z]{4}/.test(sentence)) return sentence
         const lowered = sentence.toLowerCase()
-        // Lowercasing a shouted sentence takes the acronyms down with it, and "not fda evaluated"
-        // is not what the label says.
+        // Restore common regulatory acronyms after lowercasing.
         const restored = lowered.replace(/\b(fda|otc|usp|hpus|us|gras)\b/g, (acronym) =>
           acronym.toUpperCase(),
         )
@@ -109,9 +86,7 @@ export function cleanLabelProse(text: string): string {
     if (!/[.!?]$/.test(footnote)) footnote += '.'
   }
 
-  // A marker between two words was separating items in a list the SPL wrote as bullets; dropping
-  // it runs them together ("congestion coughing itchiness"). A marker after punctuation or at the
-  // end is just the marker.
+  // A marker between words separates list items; terminal markers are removed.
   out = out
     .replace(/(\w)\*+(\s+)(?=[A-Za-z])/g, '$1,$2')
     .replace(/\s*\*+(?=\s|$)/g, '')

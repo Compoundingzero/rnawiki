@@ -1,42 +1,31 @@
-// How this works — the one page explaining both editing and the automatic checks.
-//
-// It replaces /how-editing-works and /methodology, which split the same story in two and answered
-// it twice at different reading levels. Both paths redirect here (next.config.mjs).
-//
-// WRITTEN FOR SOMEONE WITH NO SCIENCE BACKGROUND. That is the whole constraint. Every technical
-// word is either cut or explained the first time it appears, in the sentence where it appears, and
-// the explanations use things a reader already knows — a photocopy, a strip of Velcro, a recipe.
-// If a sentence needs a second sentence to decode it, the first sentence is wrong.
-//
-// It is also the product's honesty statement, so every threshold is IMPORTED from the module that
-// enforces it rather than typed out. A page that claims a check the code does not perform is the
-// worst defect this site could ship: every other page asks readers to trust that we separate what
-// was measured from what was assumed, and this is the page where that promise is checkable.
-
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { CheckCircle2, Eye, PenLine, Ruler, ShieldCheck, Shuffle, Users } from 'lucide-react'
-import { AppShell } from '@/components/AppShell'
-import { getCurrentUser } from '@/lib/session'
-import { CANONICAL_PHASE_ORDER } from '@/lib/rna-intelligence'
 import {
-  CODING_FRAME_MIN_LENGTH,
-  MIN_NUCLEOTIDE_LENGTH,
-  MIN_PEPTIDE_LENGTH,
-} from '@/lib/rna-intelligence/layer1-sequence'
-import { MAX_FOLD_LENGTH } from '@/lib/rna-intelligence/layer2-structure'
-import { TIER_LABEL, TIER_SUMMARY } from '@/lib/trust'
-import { AUTO_PUBLISH_TIERS, TRUST_TIERS, TRUST_TIER_THRESHOLDS } from '@/lib/types'
+  ArrowDown,
+  BadgeCheck,
+  CheckCircle2,
+  Clock3,
+  FileSearch,
+  GitBranch,
+  Link2,
+  RefreshCcw,
+  Scale,
+  ShieldCheck,
+} from 'lucide-react'
+import { AppShell } from '@/components/AppShell'
+import { countDrugs, countProgrammeEvidence } from '@/lib/queries/drugs'
+import { EVIDENCE_RULE_CODES } from '@/lib/rna-intelligence/evidence-rule-catalog'
+import { getCurrentUser } from '@/lib/session'
 
 // Reads the signed-in user, so it touches the database and has no dynamic segment in its path.
 // Railway's build container cannot reach the database, so it must not be a prerender candidate.
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'How this works',
+  title: 'How RNAWiki works',
   description:
-    'Anyone can edit a page here. What happens to your edit, what the automatic check actually reads, who looks at it afterwards, and what the marks on a page do and do not mean — in plain words.',
+    'How RNAWiki links medicine statements to sources, checks the record and uses human review before publishing a conclusion.',
   alternates: { canonical: '/how-it-works' },
 }
 
@@ -52,10 +41,10 @@ function Section({
   return (
     <section className="space-y-4">
       <div className="space-y-1 px-1">
-        <span className="text-[11px] font-bold uppercase tracking-widest text-[#86868B] block">
+        <span className="block text-[11px] font-bold uppercase tracking-widest text-[#6E6E73]">
           {eyebrow}
         </span>
-        <h2 className="text-xl sm:text-2xl font-extrabold text-[#1D1D1F] tracking-tight">
+        <h2 className="text-xl font-extrabold tracking-tight text-[#1D1D1F] sm:text-2xl">
           {title}
         </h2>
       </div>
@@ -66,13 +55,13 @@ function Section({
 
 function Card({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-4">
+    <div className="space-y-5 rounded-3xl border border-black/[0.08] bg-white p-6 shadow-[0_2px_16px_rgba(0,0,0,0.03)] sm:p-8">
       {children}
     </div>
   )
 }
 
-function Step({
+function StoryStep({
   number,
   icon,
   title,
@@ -84,611 +73,634 @@ function Step({
   children: ReactNode
 }) {
   return (
-    <div className="bg-white rounded-3xl p-6 sm:p-7 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-3">
-      <div className="flex items-start gap-3">
-        <span
-          className="w-8 h-8 rounded-xl bg-[#0071E3]/10 text-[#0071E3] flex items-center justify-center shrink-0"
-          aria-hidden="true"
-        >
-          {icon}
-        </span>
-        <div className="space-y-1 min-w-0">
-          <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0071E3] block">
-            Step {number}
-          </span>
-          <h3 className="text-lg font-extrabold text-[#1D1D1F] tracking-tight leading-snug">
-            {title}
-          </h3>
+    <li className="grid gap-3 py-6 first:pt-0 last:pb-0 sm:grid-cols-[2.5rem_1fr] sm:gap-4">
+      <span
+        className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#0071E3]/10 text-[#0071E3]"
+        aria-hidden="true"
+      >
+        {icon}
+      </span>
+      <div className="space-y-2">
+        <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#0071E3]">
+          Step {number}
+        </p>
+        <h3 className="text-lg font-extrabold leading-snug tracking-tight text-[#1D1D1F]">
+          {title}
+        </h3>
+        <div className="space-y-2 text-xs leading-relaxed text-[#424245] sm:text-sm">
+          {children}
         </div>
       </div>
-      <div className="space-y-3 text-xs sm:text-sm text-[#424245] leading-relaxed">{children}</div>
+    </li>
+  )
+}
+
+function FlowItem({ children }: { children: ReactNode }) {
+  return (
+    <li className="flex flex-col items-center gap-2 text-center">
+      <span className="w-full rounded-2xl border border-black/[0.08] bg-[#FAFAFC] px-4 py-3 text-xs font-bold text-[#1D1D1F] sm:text-sm">
+        {children}
+      </span>
+      <ArrowDown className="h-4 w-4 text-[#6E6E73]" aria-hidden="true" />
+    </li>
+  )
+}
+
+function BadgeExplanation({ badge, children }: { badge: ReactNode; children: ReactNode }) {
+  return (
+    <div className="space-y-2 border-t border-black/[0.06] py-5 first:border-t-0 first:pt-0 last:pb-0">
+      <div>{badge}</div>
+      <p className="text-xs leading-relaxed text-[#424245] sm:text-sm">{children}</p>
     </div>
   )
 }
 
-function Check({
-  index,
-  icon,
-  title,
-  plain,
-  children,
-}: {
-  index: number
-  icon: ReactNode
-  title: string
-  plain: string
-  children: ReactNode
-}) {
-  return (
-    <div className="bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-4">
-      <div className="flex items-start gap-3">
-        <span
-          className="w-8 h-8 rounded-xl bg-[#0071E3]/10 text-[#0071E3] flex items-center justify-center shrink-0"
-          aria-hidden="true"
-        >
-          {icon}
-        </span>
-        <div className="space-y-1 min-w-0">
-          <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0071E3] block">
-            Check {index}
-          </span>
-          <h3 className="text-lg font-extrabold text-[#1D1D1F] tracking-tight leading-snug">
-            {title}
-          </h3>
-        </div>
-      </div>
-      <p className="text-xs sm:text-sm text-[#1D1D1F] font-medium leading-relaxed">{plain}</p>
-      <div className="pt-3 border-t border-black/[0.05] space-y-3 text-xs text-[#424245] leading-relaxed">
-        {children}
-      </div>
-    </div>
-  )
-}
+const quietBadge =
+  'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold'
 
 export default async function HowItWorksPage() {
-  const user = await getCurrentUser()
-
-  const autoPublishTier = TRUST_TIERS.find((tier) => AUTO_PUBLISH_TIERS.includes(tier)) ?? 'trusted'
-  const autoPublishAt = TRUST_TIER_THRESHOLDS[autoPublishTier]
-  const phaseCount = CANONICAL_PHASE_ORDER.length
+  const [user, medicineCount, programmeCoverage] = await Promise.all([
+    getCurrentUser(),
+    countDrugs(),
+    countProgrammeEvidence(),
+  ])
 
   return (
     <AppShell initialUser={user}>
-      <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-12 sm:space-y-16 animate-fade-in">
+      <div className="mx-auto w-full max-w-2xl space-y-12 px-4 py-8 animate-fade-in sm:space-y-16 sm:px-6 sm:py-12">
         <header className="space-y-4">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#86868B] block">
+          <span className="block text-[11px] font-bold uppercase tracking-widest text-[#6E6E73]">
             How this works
           </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
-            Who writes this, <br />
-            and <span className="text-[#0071E3]">why should you believe it</span>?
+          <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-[#1D1D1F] sm:text-5xl">
+            How RNAWiki checks
+            <br />
+            <span className="text-[#0071E3]">medicine evidence.</span>
           </h1>
-          <p className="text-sm text-[#6E6E73] leading-relaxed">
-            Anyone with an account can change a page here, including you. Nothing goes up just
-            because somebody typed it. Every change is checked twice before you see it: first by a
-            program, then by a person. This page explains both, and assumes you know no science at
-            all.
+          <p className="max-w-xl text-sm leading-relaxed text-[#6E6E73]">
+            On pages for a specific use and group of people, RNAWiki keeps each important statement
+            next to its linked saved source versions. It records whether each source supports the
+            statement, contradicts it, or adds context. It also shows what a study measured, what it
+            did not measure and who reviewed a published conclusion.
+          </p>
+          <p className="max-w-xl text-sm font-medium leading-relaxed text-[#1D1D1F]">
+            RNA Intelligence 2.0 is software made from fixed rules. It can find missing sources,
+            broken links and conflicting records. It does not write medicine facts or decide what
+            the evidence means. Version 2.1 adds checks for the mechanism map and timeline shown on
+            newly reviewed pages for one specific use.
           </p>
         </header>
 
-        <Section eyebrow="First" title="Seven words, so the rest makes sense">
+        <Section
+          eyebrow="Made for different levels of detail"
+          title="Plain first. Exact when you need it."
+        >
           <Card>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              The rest of this page uses these and nothing else. Read them once and you are set.
-            </p>
-            <dl className="space-y-3 text-xs sm:text-sm">
-              {[
-                ['Atom', 'The smallest piece matter comes in. Far too small to see.'],
-                [
-                  'Molecule',
-                  'Atoms joined together. Water is a molecule. So is sugar. So is every drug on this site.',
-                ],
-                [
-                  'Cell',
-                  'Your body is built from tiny closed-off units called cells. You have trillions of them.',
-                ],
-                [
-                  'DNA',
-                  'Inside every cell is a full set of instructions for building you. Think of a reference book that never leaves the library.',
-                ],
-                [
-                  'RNA',
-                  'A working copy of one page of that book, carried out of the library to be used. The site is named after it.',
-                ],
-                [
-                  'Protein',
-                  'What gets built from those copies. Proteins do the actual jobs in your body — digesting food, carrying oxygen, fighting infection.',
-                ],
-                [
-                  'Study',
-                  'When a drug is given to real people under careful conditions to find out what it does. Sometimes called a trial. Nothing to do with courts.',
-                ],
-              ].map(([term, meaning]) => (
-                <div key={term} className="flex flex-col sm:flex-row sm:gap-3">
-                  <dt className="font-bold text-[#1D1D1F] sm:w-24 shrink-0">{term}</dt>
-                  <dd className="text-[#424245] leading-relaxed">{meaning}</dd>
-                </div>
-              ))}
-            </dl>
+            <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
+              <p>
+                A medicine page starts with the intended use, the clearest recorded result and the
+                biggest unanswered question. Older records can contain a long technical summary;
+                RNAWiki keeps that wording available, but does not make readers decode it before
+                seeing the main point.
+              </p>
+              <p>
+                When a short answer contains an unfamiliar study word or number, the explanation is
+                attached to that phrase. Hover or keyboard focus previews it; click or tap keeps it
+                open. The explanation starts with everyday meaning, then preserves the professional
+                term for readers comparing it with a study or source.
+              </p>
+              <p>
+                A separate “More about this medicine” section keeps useful older-record background,
+                including general safety and how the medicine was given. Those details stay
+                expandable and are not mixed into the short evidence conclusion or presented as
+                personal dosing advice.
+              </p>
+              <p className="font-medium text-[#1D1D1F]">
+                “See how we know” keeps the exact study names, measurements, comparison groups,
+                source versions and professional wording for readers who want to inspect them.
+                Simpler wording changes the reading order, not the underlying evidence.
+              </p>
+            </div>
           </Card>
         </Section>
 
-        <Section eyebrow="The short version" title="Four things happen to an edit">
+        <Section eyebrow="The short version" title="Four steps from source to published conclusion">
           <Card>
-            <ol className="space-y-3 text-xs sm:text-sm text-[#424245] leading-relaxed">
-              <li>
-                <strong className="text-[#1D1D1F]">A program checks the drug itself.</strong>{' '}
-                Straight away, while you are still typing. If you have described a molecule that
-                could not be real, it tells you which letter is wrong and the save button stays off.
-              </li>
-              <li>
-                <strong className="text-[#1D1D1F]">A person checks the meaning.</strong> No program
-                can tell whether a sentence about a drug is true. Someone reads it.
-              </li>
-              <li>
-                <strong className="text-[#1D1D1F]">It goes live with your name on it.</strong> Every
-                version is kept and attributed, permanently.
-              </li>
-              <li>
-                <strong className="text-[#1D1D1F]">You earn the right to skip the queue.</strong>{' '}
-                After {autoPublishAt} accepted edits, your changes go up straight away.
-              </li>
+            <ol className="divide-y divide-black/[0.06]">
+              <StoryStep
+                number={1}
+                icon={<Link2 className="h-4 w-4" />}
+                title="Someone adds a fact and its source"
+              >
+                <p>
+                  A contributor records one exact statement from an identifiable source, such as a
+                  trial registry, research paper or regulator. The statement and source are stored
+                  separately. Each link says whether that saved source version supports the
+                  statement, contradicts it, or adds context.
+                </p>
+                <p className="font-medium text-[#1D1D1F]">
+                  A fact without a source cannot support the evidence record.
+                </p>
+              </StoryStep>
+
+              <StoryStep
+                number={2}
+                icon={<GitBranch className="h-4 w-4" />}
+                title="Fixed rules check the record"
+              >
+                <p>
+                  Before a programme conclusion can be reviewed, RNA Intelligence checks that the
+                  medicine, intended use, trial, statement, source and dates belong together. It
+                  looks for missing support, impossible dates, unit errors and records that disagree
+                  with one another.
+                </p>
+                <p>
+                  With the same software version, the same stored record and reference date produce
+                  the same check result. Passing means the record is complete enough for a person to
+                  review. It does not prove that a medical conclusion is correct.
+                </p>
+              </StoryStep>
+
+              <StoryStep
+                number={3}
+                icon={<Scale className="h-4 w-4" />}
+                title="People judge what the evidence means"
+              >
+                <p>
+                  Human reviewers read the sources, consider the study’s limits and check what was
+                  actually measured. Important medical conclusions require two people to review the
+                  same locked version independently before publication. A steward—a trusted editor
+                  responsible for the review process—must have separately confirmed that each person
+                  has the relevant scientific qualification; an account label or self-selected
+                  interest is not enough.
+                </p>
+                <p>
+                  Each conclusion applies only to one development programme: one intended use, group
+                  of people, dose or exposure and set of studies. Dose means the amount given;
+                  exposure means the amount measured as reaching the body or intended target. The
+                  conclusion is never a judgement on the medicine in every possible use. Missing
+                  evidence remains unknown; it is not counted as failure.
+                </p>
+                <p>
+                  Submitted corrections and challenges first use two independent reviewers. If they
+                  accept a change to a public conclusion, RNAWiki builds a complete replacement and
+                  runs all of the evidence checks again. Two scientifically qualified reviewers then
+                  sign that exact replacement.
+                </p>
+                <p>
+                  RNAWiki separately records which scientific areas a steward is qualified to
+                  review. If the two reviewers disagree, a different qualified steward makes the
+                  final decision and explains it. The audit record calls this adjudication.
+                </p>
+                <p>
+                  Accepting a proposal does not by itself rewrite the public page. If both reviewers
+                  ask for changes, both reject it, or the steward decides against it after a
+                  disagreement, that version closes and cannot be published. Any correction is
+                  reviewed as a new version while readers keep the current one.
+                </p>
+              </StoryStep>
+
+              <StoryStep
+                number={4}
+                icon={<RefreshCcw className="h-4 w-4" />}
+                title="New evidence reopens the record"
+              >
+                <p>
+                  The scheduled monitor currently checks ClinicalTrials.gov records that have an NCT
+                  study identifier (the registry number that starts with “NCT”). When one changes,
+                  RNAWiki saves the new version, finds the linked statements and page sections that
+                  may be affected, and opens a review task when the meaning could change. Other
+                  source types are not yet scheduled.
+                </p>
+                <p>
+                  Readers continue to see the current approved version during review. If a
+                  replacement version of the evidence and conclusion is approved, the linked short
+                  answer, evidence steps, registry study details, sources and conclusion change
+                  together, and only the source task covered by that version is closed. The earlier
+                  version remains in the public history.
+                </p>
+                <p>
+                  When RNAWiki finds that only exact registry facts have changed—such as study
+                  status, enrolment, results availability or dates—and they are not being used by a
+                  scientific statement or study-quality assessment, a contributor may submit the
+                  saved before-and-after comparison without writing medical text. Two independent
+                  people review that submission. A steward or administrator can then build a
+                  complete proposed successor, which still needs two independent qualified reviewers
+                  before publication.
+                </p>
+                <p>
+                  If the changed source supports a scientific statement or study-quality assessment,
+                  the small refresh path stops. There is no one-click claim-rewrite form: a steward
+                  or administrator must author a complete replacement evidence record. It includes
+                  the relevant studies, evidence statements, evidence-chain answers, saved sources
+                  and conclusion. When that version uses the reviewed presentation format, its
+                  mechanism content and any sourced timeline events are included too. Two
+                  independent qualified reviewers must approve that exact proposed record before it
+                  can be published. RNAWiki never invents the replacement wording.
+                </p>
+              </StoryStep>
             </ol>
           </Card>
         </Section>
 
-        <Section eyebrow="Editing" title="Your edit, from the button to the page">
-          <div className="space-y-4">
-            <Step number={1} icon={<PenLine className="w-4 h-4" />} title="You write it">
-              <p>
-                Open any medicine and press the edit button. (It is labelled{' '}
-                <em>Edit Wiki Dossier &amp; Scientific Records</em>. A dossier is just this
-                site&rsquo;s word for a medicine&rsquo;s page.)
-              </p>
-              <p>The form splits that page into five parts:</p>
-              <ul className="space-y-1 pl-4 list-disc marker:text-[#86868B]">
-                <li>the plain-English summary of what the drug does</li>
-                <li>other medicines and foods that do a similar job</li>
-                <li>how the drug is built — which atoms it is made of, and how they are joined</li>
-                <li>what it costs to make, and what it sells for</li>
-                <li>the laboratory steps for making or testing it</li>
-              </ul>
-              <p>Change whatever you know something about and leave the rest alone.</p>
-              <p>
-                You have to write one line saying what you changed. It is the first thing a reviewer
-                reads, and an edit that does not explain itself is an edit nobody can check.
-              </p>
-            </Step>
-
-            <Step
-              number={2}
-              icon={<ShieldCheck className="w-4 h-4" />}
-              title="The program checks it, as you type"
-            >
-              <p>
-                It looks for things that are impossible, not things it disagrees with. It runs while
-                you are still typing, so you see a problem before you send the edit rather than
-                after. The next section explains exactly what it reads.
-              </p>
-              <p>
-                Some of what it finds stops the edit dead — a letter that cannot exist, a recipe
-                that loops back on itself. The rest is a warning: something worth a second look that
-                does not make the edit wrong. Warnings do not block anything. They are printed
-                beside the edit so the person reviewing it can see them too.
-              </p>
-              <p className="text-[#1D1D1F] font-medium">
-                Nothing that fails this check reaches a person. It cannot be approved by anyone, at
-                any level, including whoever runs the site.
-              </p>
-            </Step>
-
-            <Step number={3} icon={<Eye className="w-4 h-4" />} title="A person reads it">
-              <p>
-                Passing the program means your edit is <em>possible</em>, not that it is true. The
-                program can agree that a drug is written down correctly while the sentence beside it
-                still gets the science wrong — saying a drug helped people when the study it came
-                from found the opposite. Only a person catches that. So an edit from someone new
-                waits in the{' '}
-                <Link href="/review-queue" className="text-[#0071E3] hover:underline">
-                  review queue
-                </Link>{' '}
-                until an experienced editor reads it.
-              </p>
-              <p>
-                That queue is public. You can watch your own edit sitting in it, see its position,
-                and see everyone else&rsquo;s. There is no private channel and no way to get
-                something approved out of sight.
-              </p>
-              <p>
-                A reviewer either accepts it or sends it back with a reason. Being sent back is not
-                a black mark — most first edits get a note. Fix it and resubmit as often as you
-                like.
-              </p>
-            </Step>
-
-            <Step
-              number={4}
-              icon={<CheckCircle2 className="w-4 h-4" />}
-              title="It goes live and stays on the record"
-            >
-              <p>
-                The page updates and your edit joins that medicine&rsquo;s history: what you
-                changed, from what to what, and when. That record is permanent. Later edits can
-                overwrite the page but cannot erase who wrote what.
-              </p>
-              <p>
-                If you added an ORCID iD to your account — a free identifier researchers use so
-                their work stays attached to their name — your contributions link to it, so you can
-                point at them from outside this site.
-              </p>
-            </Step>
-          </div>
-        </Section>
-
-        <Section eyebrow="The program" title="Why a drug site is named after RNA">
+        <Section
+          eyebrow="New in RNA Intelligence 2.1"
+          title="The mechanism map and timeline are reviewed content"
+        >
           <Card>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              Your DNA is the reference book. RNA is the photocopy someone takes out to the workshop
-              and works from. The copy is what actually gets used to build a protein.
-            </p>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              That is where medicines end up. A few newer drugs are themselves made of RNA and work
-              on those copies directly. Most drugs do something else: they get in the way of a
-              protein, or plug into a socket on the outside of a cell, like a key in a lock. But the
-              protein they are blocking was built from one of those copies in the first place. And
-              blocking it usually changes which copies the cell makes next.
-            </p>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              So RNA is either the target or one step away from it. That is the thread this site
-              follows.
-            </p>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              RNA is written down using only four letters: A, U, C and G. That is the whole
-              alphabet. One length of it is called a strand. When a page here shows you a long line
-              of those four letters, that is the drug, written out.
-            </p>
-          </Card>
-        </Section>
-
-        <Section eyebrow="The program" title="Three checks, in this order">
-          <Card>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              The program is called <strong className="text-[#1D1D1F]">RNA Intelligence</strong>.
-              The name is misleading in one way worth clearing up: there is no AI in it. It does not
-              write anything and it does not have opinions. It does sums, using measurements that
-              scientists have published from laboratory experiments.
-            </p>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              That matters because it means the same edit always gets the same answer. Not usually.
-              Always — today, in ten years, on anybody&rsquo;s computer. Nobody can get a different
-              result by asking again or by asking nicely.
-            </p>
-          </Card>
-
-          <div className="space-y-4">
-            <Check
-              index={1}
-              icon={<Ruler className="w-4 h-4" />}
-              title="Is this written down correctly?"
-              plain="Before asking anything about what a drug does, the program asks whether what you typed describes a real molecule at all."
-            >
+            <div className="space-y-4 text-xs leading-relaxed text-[#424245] sm:text-sm">
               <p>
-                <strong className="text-[#1D1D1F]">The alphabet.</strong> For RNA, only A, U, C and
-                G exist. Any other letter is a typing mistake, and you are told which one and where
-                it is.
+                On programme pages using the new presentation format, the mechanism map contains
+                three to five ordered stages. Each stage has ordinary-language text, optional
+                technical detail, a clear evidence label and links to the exact saved source
+                versions behind its statements.
               </p>
               <p>
-                There is one exception. The letter T belongs to DNA, where it does the same job U
-                does in RNA. People type it out of habit. Rather than reject the edit, the program
-                swaps every T it finds for a U and tells you how many it changed, so you can check
-                that is what you meant.
+                The evidence label says whether a stage was measured in people, measured only in
+                laboratory or non-human work, predicted, or is not yet known. “Measured in people”
+                requires a direct measurement or a regulator’s finding from a human study. A
+                sponsor—the company or organisation running the study—may report a result, but that
+                report alone is not labelled as a direct measurement. “Measured outside people”
+                requires a direct measurement from a linked laboratory or non-human study.
+                “Predicted” is a reviewer’s expectation, not a measurement; the software checks the
+                linked statement and source, but it cannot verify an unstored model or reasoning.
               </p>
               <p>
-                <strong className="text-[#1D1D1F]">Reading three at a time.</strong> Cells read
-                those letters in groups of three. Each group of three names one piece of the protein
-                being built. So the number of letters has to divide by three, or the last group is
-                incomplete.
+                A timeline appears only when reviewers have included real events that could change
+                how the programme is understood. Every such event must point to the saved source
+                version that supports it and say whether its date occurred, is planned, or was
+                reported without clear timing. If there are no reviewed source events, RNAWiki hides
+                the timeline instead of filling it with decorative milestones. Publication dates
+                still appear in version history.
+              </p>
+              <p className="font-medium text-[#1D1D1F]">
+                The map, timeline, sources and conclusion are locked into the same checked version
+                before people review it. RNA Intelligence checks those links and labels; it does not
+                write the map or decide the medical meaning.
               </p>
               <p>
-                Start one letter off and everything after it is wrong.{' '}
-                <span className="font-mono">THE CAT ATE</span> read from the second letter becomes{' '}
-                <span className="font-mono">HEC ATA TE</span>. Same letters, no meaning.
+                This format is being added through reviewed programme versions. Older and
+                source-only records may not have a mechanism map or timeline, and RNAWiki does not
+                invent either one to make coverage look complete.
               </p>
-              <p>
-                <strong className="text-[#1D1D1F]">Start and stop.</strong> Some groups of three
-                mean &ldquo;begin building here&rdquo; and some mean &ldquo;stop here&rdquo;. The
-                program finds them and works out where the instruction actually runs from and to. It
-                also warns you about a stop sign sitting in the middle, which would mean the cell
-                builds half a protein and abandons it.
-              </p>
-              <p>
-                <strong className="text-[#1D1D1F]">Ordinary pills</strong> are not written in
-                letters. A chemist can write a whole drug as one line of text saying which atoms are
-                joined to which — the same thing a diagram of the drug would show, typed out instead
-                of drawn. The program reads that line and counts the atoms itself. It works out what
-                the drug is made of rather than taking anyone&rsquo;s word for it.
-              </p>
-              <p className="text-[11px] text-[#86868B]">
-                It also refuses anything too short to be a real drug: under {MIN_NUCLEOTIDE_LENGTH}{' '}
-                letters of RNA, or under {MIN_PEPTIDE_LENGTH} protein pieces. It only bothers with
-                the divide-by-three rule past {CODING_FRAME_MIN_LENGTH} letters, because below that
-                a strand is usually not an instruction for building anything.
-              </p>
-            </Check>
-
-            <Check
-              index={2}
-              icon={<Shuffle className="w-4 h-4" />}
-              title="Would it hold that shape?"
-              plain="A drug is not a flat line. It folds up, and the shape it settles into decides what it can do."
-            >
-              <p>
-                A long strand of RNA does not lie straight. Parts of it stick to other parts, and it
-                folds back on itself — like a long strip of Velcro dropped on a table.
-              </p>
-              <p>
-                Which parts stick is not random. A sticks to U, and C sticks to G. There is also a
-                weaker third pairing, G with U, which the calculation allows for. So from the
-                letters alone you can work out every fold that is possible.
-              </p>
-              <p>
-                Usually many are possible, and the strand settles into whichever holds together most
-                firmly. The program works out which one that is. It uses a table of laboratory
-                measurements, published by scientists, of how strongly each pairing holds.
-              </p>
-              <p>
-                You get back a number and a small picture. The picture shows which parts ended up
-                stuck to which. The number is always below zero, and the further below, the more
-                firmly the strand holds its shape. A short strand might come back around &minus;10.
-                A tightly folded one, &minus;40 or lower.
-              </p>
-              <p>
-                This is the same method, using the same published measurements, that scientists use
-                in their own software for this job. It is not a guess at what that software would
-                say.
-              </p>
-              <p>
-                It will not always agree with it to the last decimal place. This uses a smaller part
-                of the published measurements than the full research software does, so on some
-                shapes the two differ slightly. On the commonest shape of all, they agree exactly.
-              </p>
-              <p>
-                <strong className="text-[#1D1D1F]">For ordinary pills</strong> the question is
-                different, so the check is too. It works out a few simple things about the drug: how
-                heavy it is, how greasy or watery it is, and how readily it dissolves. The weight is
-                counted exactly from the atoms. The greasiness is an estimate — a well-known way of
-                approximating it, not a measurement, and the page marks it as one. Chemists have a
-                rough rule about which combinations survive the stomach and still reach the blood.
-                The program checks the drug against that rule. Failing it is not a mark against the
-                drug — plenty of real medicines fail it, which is why they are injected instead of
-                swallowed.
-              </p>
-              <p className="text-[11px] text-[#86868B]">
-                Working out the folding gets slower very fast as a strand gets longer, so it stops
-                at {MAX_FOLD_LENGTH.toLocaleString()} letters. Past that, the page simply carries no
-                folding result and says so. That is not a failure. The COVID vaccines are built from
-                strands far longer than this, and their letters are perfectly correct.
-              </p>
-            </Check>
-
-            <Check
-              index={3}
-              icon={<CheckCircle2 className="w-4 h-4" />}
-              title="Could you actually follow the recipe?"
-              plain="A page can carry the laboratory steps for making or testing a substance. This checks the steps are in an order a person could really work through."
-            >
-              <p>
-                Each step can say which earlier step it needs finished first. If no step says so,
-                the program assumes they simply run in the order they are listed, which is what a
-                recipe usually means.
-              </p>
-              <p>Four things go wrong here, and all four are easy to type and hard to see:</p>
-              <p>
-                <strong className="text-[#1D1D1F]">A circle.</strong> Step four says it needs step
-                six finished first. Step six says it needs step four. Nobody could ever start. The
-                program works through the list and reports every step it could not reach — which
-                includes the steps in the circle, and any step waiting behind them.
-              </p>
-              <p>
-                <strong className="text-[#1D1D1F]">Two steps with the same name.</strong> If a step
-                points at &ldquo;step three&rdquo; and there are two of them, nobody can tell which
-                is meant. The program stops there.
-              </p>
-              <p>
-                <strong className="text-[#1D1D1F]">Pointing at a step that is not there.</strong> A
-                step waiting for one that was deleted, or never written.
-              </p>
-              <p>
-                <strong className="text-[#1D1D1F]">Going backwards.</strong> Laboratory work has a
-                natural order, {phaseCount} stages long. You check what you started with. You make
-                the thing. You clean it up. You attach anything that has to be attached to it. You
-                get it into cells. You measure what happened.
-              </p>
-              <p>
-                A step that cleans something up before it has been made is out of order. So is a
-                step that says &ldquo;grow the cells&rdquo; but claims it has to wait for the
-                measurement taken at the end. The program flags both and names the two steps
-                involved.
-              </p>
-              <p>
-                A page with no laboratory steps passes. Most medicines here have none written yet.
-                That is information nobody has added, not a mistake.
-              </p>
-            </Check>
-          </div>
-        </Section>
-
-        <Section eyebrow="Earning trust" title="Why some people skip the queue">
-          <Card>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              Reviewing takes someone&rsquo;s time. Making an editor with a hundred good edits queue
-              behind a stranger wastes it. So the queue is not permanent. Once {autoPublishAt} of
-              your edits have been accepted, your changes go up the moment they pass the program.
-            </p>
-
-            <div className="space-y-2 pt-1">
-              {TRUST_TIERS.map((tier) => {
-                const publishesDirectly = AUTO_PUBLISH_TIERS.includes(tier)
-                return (
-                  <div
-                    key={tier}
-                    className="flex items-start justify-between gap-3 p-3.5 rounded-2xl bg-[#F5F5F7] text-xs"
-                  >
-                    <div className="min-w-0 space-y-0.5">
-                      <span className="font-bold text-[#1D1D1F] block">{TIER_LABEL[tier]}</span>
-                      <span className="text-[#6E6E73] leading-relaxed block">
-                        {TIER_SUMMARY[tier]}
-                      </span>
-                    </div>
-                    <span className="shrink-0 text-right space-y-0.5">
-                      <span className="font-mono font-bold text-[#1D1D1F] block">
-                        {TRUST_TIER_THRESHOLDS[tier] === 0
-                          ? 'from the start'
-                          : `${TRUST_TIER_THRESHOLDS[tier]} edits`}
-                      </span>
-                      <span
-                        className={`text-[10px] font-semibold block ${
-                          publishesDirectly ? 'text-emerald-800' : 'text-[#86868B]'
-                        }`}
-                      >
-                        {publishesDirectly ? 'publishes directly' : 'via the queue'}
-                      </span>
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-
-            <p className="text-[11px] text-[#86868B] leading-relaxed">
-              The program checks every edit at every level. Nobody can put up a drug that is written
-              down wrongly, however many good edits they have made.
-            </p>
-          </Card>
-        </Section>
-
-        <Section eyebrow="The badges" title="What the marks on a page mean">
-          <Card>
-            <div className="space-y-4 text-xs sm:text-sm text-[#424245] leading-relaxed">
-              <div className="space-y-1">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
-                  <ShieldCheck className="w-3 h-3" aria-hidden="true" />
-                  Machine-Verified Structure
-                </span>
-                <p>
-                  This means the drug on the page passed all three checks above. It is written down
-                  correctly, it would hold together, and its recipe is in a workable order.
-                </p>
-                <p>
-                  Next to the badge is a short code. It is worked out from the drug as written and
-                  the steps of its recipe — not from the rest of the page. Run the check again on
-                  the same drug and the same code comes back. If someone quietly changes the drug
-                  afterwards, the code no longer matches, and anyone can see that.
-                </p>
-                <p className="text-[#1D1D1F] font-medium">
-                  It says nothing about whether the medicine works, whether the price is fair, or
-                  whether the writing on the page is right.
-                </p>
-                <p>
-                  It also means much less on some pages than on others, and this is worth knowing.
-                  Antibodies and other large biological drugs are far too big to write down the way
-                  a pill or a strand of RNA can be. There is no line of letters to check. On those
-                  pages the badge confirms only that a description is present. On a small molecule
-                  or an RNA drug, it means the full three checks ran.
-                </p>
-              </div>
-
-              <div className="space-y-1 pt-2 border-t border-black/[0.05]">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0071E3] bg-[#0071E3]/10 px-2.5 py-0.5 rounded-full border border-[#0071E3]/20">
-                  <Users className="w-3 h-3" aria-hidden="true" />
-                  MD &check;
-                </span>
-                <p>
-                  MD means medical doctor. You will see this next to a comment when the person who
-                  wrote it gave us proof they are a doctor and somebody here checked that proof.
-                  Filling in the form does not get you the badge on its own.
-                </p>
-                <p>
-                  If that approval is ever taken away, the badge disappears from every comment that
-                  person ever wrote — not only the ones written afterwards.
-                </p>
-              </div>
-
-              <div className="space-y-1 pt-2 border-t border-black/[0.05]">
-                <span className="text-[11px] font-semibold text-[#86868B]">
-                  &ldquo;Not yet documented&rdquo;
-                </span>
-                <p>
-                  Most medicines here have a name, a maker and a legal status and nothing else,
-                  because nobody has written the rest yet. Those pages say so plainly instead of
-                  filling the gap with something that sounds right. An empty section is an
-                  invitation and it is honest. A confident paragraph nobody can source is neither.
-                </p>
-              </div>
             </div>
           </Card>
         </Section>
 
-        <Section eyebrow="Being straight with you" title="What none of this proves">
+        <Section eyebrow="Current coverage" title="Why some medicine pages have less detail">
           <Card>
-            <ul className="space-y-3 text-xs sm:text-sm text-[#424245] leading-relaxed">
+            <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
+              <p>
+                RNAWiki is moving medicine records to the programme-based evidence model one
+                verified source at a time. It does not guess an intended use, dose, trial result,
+                reviewer or conclusion to make an older page look complete.
+              </p>
+              <p className="font-medium text-[#1D1D1F]">
+                Current coverage: {medicineCount.toLocaleString()} medicine records,{' '}
+                {programmeCoverage.programmes.toLocaleString()} development programmes recorded, and{' '}
+                {programmeCoverage.reviewedProgrammes.toLocaleString()} with a published reviewed
+                conclusion.
+              </p>
+              <p>
+                An older record may therefore show a clearly labelled legacy summary. A programme
+                found in an official registry may show its study and source but say that reviewers
+                have not published a conclusion. Only a programme with a reviewed version of its
+                evidence and conclusion shows a programme conclusion.
+              </p>
+            </div>
+          </Card>
+        </Section>
+
+        <Section
+          eyebrow="Correcting older records"
+          title="Names use a smaller, source-backed review path"
+        >
+          <Card>
+            <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
+              <p>
+                An older medicine record with no identified development programme can accept a
+                correction to one identity field at a time: either the medicine name or its trade or
+                brand name. The contributor must give the exact replacement, the source page’s title
+                and web address, and a plain explanation of why the change is needed.
+              </p>
+              <p>
+                Every identity correction waits for one independent human reviewer—even when the
+                contributor is a trusted editor or administrator. People cannot review their own
+                correction, and an accepted identity correction does not raise a contributor’s
+                scientific-review standing. The reviewer checks the contributor’s source; RNAWiki
+                does not fetch that page or claim that RNA Intelligence proved the name is true.
+              </p>
+              <p>
+                RNAWiki records the source, explanation, before-and-after values, contributor and
+                database-set times together. These details cannot be changed after submission. At
+                approval, the database checks that the old name still matches what the reviewer saw
+                and applies that one change in the same step as the review decision.
+              </p>
+              <p className="font-medium text-[#1D1D1F]">
+                Evidence, safety, effectiveness, trials, mechanisms and conclusions cannot use this
+                small correction path. Those changes need an identified development programme so
+                they can be tied to one use, group of people, dose and set of studies, then checked
+                by RNA Intelligence and reviewed in context.
+              </p>
+              <p>
+                Older pending edits that did not include these safeguards remain visible in the
+                public history but are archived and cannot be reviewed or published. A contributor
+                can submit a new sourced name correction or use the programme-based path instead.
+              </p>
+            </div>
+          </Card>
+        </Section>
+
+        <Section
+          eyebrow="Account and report safeguards"
+          title="Badges, contribution counts and private feedback mean different things"
+        >
+          <Card>
+            <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
+              <p>
+                A physician badge means that a different steward or administrator reviewed one saved
+                credential submission and recorded a decision with a reason. The professional email
+                and licence or US National Provider Identifier (NPI) number stay in the private
+                review record; they are not shown on the public profile. The badge does not qualify
+                someone to review a scientific conclusion. That requires a separate, current
+                qualification for the relevant area.
+              </p>
+              <p>
+                “Accepted contributions” counts programme proposals that reached the final{' '}
+                <strong className="text-[#1D1D1F]">accepted for implementation</strong> review
+                state. It does not count requests for changes as accepted, does not mean every item
+                has been published, and never raises an account’s trust level automatically. A
+                public medicine record changes only after the separate publication review described
+                above.
+              </p>
+              <p>
+                Reader feedback can include an optional contact address. Only a steward or
+                administrator can see that private queue and close a report with a recorded reason.
+                To limit repeated spam, RNAWiki stores a day-specific coded identifier for anonymous
+                submissions. The original internet address is never stored. The coded identifier is
+                not shown in the queue or any public response.
+              </p>
+            </div>
+          </Card>
+        </Section>
+
+        <Section
+          eyebrow="What changed in version 2.0"
+          title="Stronger checks and a safer review path"
+        >
+          <Card>
+            <ul className="space-y-5 text-xs leading-relaxed text-[#424245] sm:text-sm">
               <li>
-                <strong className="text-[#1D1D1F]">
-                  The program has no opinion about medicine.
-                </strong>{' '}
-                It checks that a molecule could exist and that a recipe could be followed. It cannot
-                tell you whether a drug helps anyone, whether a trial was run properly, or whether a
-                price is fair. A verified structure sitting under a wrong conclusion is a wrong
-                conclusion with a correct molecule. Reading that badge as a stamp of medical
-                accuracy is the easiest way to misread this site.
+                <strong className="block text-[#1D1D1F]">
+                  Conclusions are limited to one use.
+                </strong>
+                The same medicine can have different results for different conditions or groups of
+                people. RNAWiki now stores and reviews those development programmes separately.
               </li>
               <li>
-                <strong className="text-[#1D1D1F]">A reviewer can be wrong.</strong> They are people
-                reading quickly. A bad edit can get through and a good one can get bounced. The
-                queue and the history are public precisely so mistakes stay visible and can be
-                argued with instead of buried.
+                <strong className="block text-[#1D1D1F]">
+                  Sources are saved as dated versions.
+                </strong>
+                A statement points to the exact source record checked at that time. A later source
+                change cannot quietly alter the evidence behind an already published conclusion.
               </li>
               <li>
-                <strong className="text-[#1D1D1F]">
-                  A doctor with a badge can still be wrong.
-                </strong>{' '}
-                The badge says we checked that they are a doctor. It does not say we checked what
-                they wrote. Doctors disagree with each other all the time, and a comment with a
-                badge on it is still one person&rsquo;s view.
+                <strong className="block text-[#1D1D1F]">
+                  The full conclusion changes together.
+                </strong>
+                The short summary, evidence steps, linked sources and conclusion are published as
+                one version. On pages using the new presentation format, the mechanism map and
+                sourced timeline are part of that version too. RNAWiki does not update one of those
+                parts while leaving the others behind. When a steward needs to make a broad medical
+                revision, they submit a complete replacement version: its studies, statements, five
+                evidence steps, study-limit checks, source links and conclusion are checked
+                together. If that replacement uses the reviewed presentation format, its mechanism
+                map and any sourced timeline events are checked in the same version. The current
+                approved version stays public until the replacement passes the separate human review
+                and publication steps.
               </li>
               <li>
-                <strong className="text-[#1D1D1F]">Sources beat everything.</strong> The strongest
-                thing on any page is the reference you can go and read yourself. If a sentence has
-                no source you can follow, treat it as unproven, whoever wrote it and whatever badge
-                sits next to it.
+                <strong className="block text-[#1D1D1F]">
+                  Reviews are tied to the exact version.
+                </strong>
+                Two people review the same locked set of content and sources independently. They may
+                both approve it; if they disagree, a different qualified steward makes and explains
+                the final decision. Editing the set invalidates those decisions and requires review
+                again.
+              </li>
+              <li>
+                <strong className="block text-[#1D1D1F]">
+                  New evidence creates follow-up work.
+                </strong>
+                RNAWiki records what changed, which conclusions may depend on it and whether the
+                change is routine, needs interpretation or could affect safety or the conclusion.
               </li>
             </ul>
-            <p className="text-[11px] text-[#86868B] leading-relaxed pt-1">
-              RNAwiki is a public reference work, not medical advice. Nothing here is a
-              recommendation to start, stop or change a treatment.
+          </Card>
+        </Section>
+
+        <Section eyebrow="The evidence path" title="Where a conclusion comes from">
+          <Card>
+            <ol
+              className="mx-auto max-w-sm space-y-2"
+              aria-label="Source to verdict and new-evidence review flow"
+            >
+              <FlowItem>Source</FlowItem>
+              <FlowItem>One statement from that source</FlowItem>
+              <FlowItem>Five evidence questions</FlowItem>
+              <FlowItem>Human-reviewed conclusion</FlowItem>
+              <li className="rounded-2xl border border-[#0071E3]/20 bg-[#0071E3]/[0.06] px-4 py-3 text-center text-xs font-bold text-[#1D1D1F] sm:text-sm">
+                A source change starts another review
+              </li>
+            </ol>
+
+            <div className="space-y-3 border-t border-black/[0.06] pt-5 text-xs leading-relaxed text-[#424245] sm:text-sm">
+              <p>
+                A <strong className="text-[#1D1D1F]">source</strong> is the registry, publication,
+                regulatory record or other identifiable record. A{' '}
+                <strong className="text-[#1D1D1F]">claim</strong> is the precise statement drawn
+                from it. For every source-to-claim link, RNAWiki records whether that saved source
+                version supports the claim, contradicts it, or adds context. Separately, RNAWiki
+                records whether the claim is a direct measurement, a sponsor’s report, a regulator’s
+                finding, a human reviewer’s interpretation, or still uncertain. Those are different
+                kinds of evidence and are not presented as equal.
+              </p>
+              <p>
+                The <strong className="text-[#1D1D1F]">evidence chain</strong> asks five questions:
+                Was the medicine given to people? Did enough reach the right place? Did it affect
+                the intended target? Did the expected change happen in the body? Did patients
+                experience a meaningful result?
+              </p>
+              <p>
+                Each answer can be supported, contradicted, mixed, unknown or not measured.
+                “Unknown” means there is not enough information. “Not measured” means the study did
+                not test that question. Neither means the medicine failed.
+              </p>
+              <p>
+                A <strong className="text-[#1D1D1F]">programme conclusion</strong> is the reviewers’
+                explanation of what those linked statements mean for one intended use. Software can
+                flag a mismatch, but only people can publish the conclusion.
+              </p>
+            </div>
+          </Card>
+        </Section>
+
+        <Section
+          eyebrow="RNA Intelligence 2.0 and 2.1"
+          title="What software checks and what people decide"
+        >
+          <Card>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-[#1D1D1F]">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-700" aria-hidden="true" />
+                  <h3 className="text-sm font-extrabold">It can check</h3>
+                </div>
+                <ul className="list-disc space-y-2 pl-4 text-xs leading-relaxed text-[#424245] marker:text-[#6E6E73] sm:text-sm">
+                  <li>molecular or sequence structure, where applicable</li>
+                  <li>whether the medicine, intended use and trial match</li>
+                  <li>whether each statement has the required source</li>
+                  <li>units, dates and trial details that cannot all be true</li>
+                  <li>whether each evidence answer has support</li>
+                  <li>which summaries, conclusions or exports use changed evidence</li>
+                </ul>
+              </div>
+              <div className="space-y-3 sm:border-l sm:border-black/[0.06] sm:pl-6">
+                <div className="flex items-center gap-2 text-[#1D1D1F]">
+                  <Scale className="h-4 w-4 text-[#0071E3]" aria-hidden="true" />
+                  <h3 className="text-sm font-extrabold">People must decide</h3>
+                </div>
+                <ul className="list-disc space-y-2 pl-4 text-xs leading-relaxed text-[#424245] marker:text-[#6E6E73] sm:text-sm">
+                  <li>whether a source is persuasive in context</li>
+                  <li>whether a study answered the intended question</li>
+                  <li>how much uncertainty or disagreement remains</li>
+                  <li>what the result means for patients</li>
+                  <li>whether a conclusion should be published or changed</li>
+                </ul>
+              </div>
+            </div>
+            <p className="border-t border-black/[0.06] pt-5 text-xs font-medium leading-relaxed text-[#1D1D1F] sm:text-sm">
+              The current rule catalogue has {EVIDENCE_RULE_CODES.length} named checks covering
+              sources, scope, dates, evidence links, conclusion consistency, plain language and
+              source updates. The test suite has one focused case that makes each named check run
+              and verifies the result it produces.
+            </p>
+            <p className="text-xs font-medium leading-relaxed text-[#1D1D1F] sm:text-sm">
+              A failed software check can stop an incomplete or internally inconsistent record from
+              being published. A warning asks a reviewer to look more closely. Neither result proves
+              that a medicine works or does not work.
             </p>
           </Card>
         </Section>
 
-        <Section eyebrow="Start" title="Fixing one thing is the fastest way in">
+        <Section eyebrow="Checks you may see" title="What each check means">
           <Card>
-            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              You do not need to write a whole page. The most useful first edit is usually small: a
-              missing brand name, a trial result stated too loosely, a mechanism that skips a step,
-              a price that is out of date. Find a medicine you know something about and correct one
-              thing.
+            <p className="text-xs leading-relaxed text-[#424245] sm:text-sm">
+              These are narrow check concepts; the exact wording may differ by page state. No one
+              check means that an entire medicine page is correct, complete or current.
             </p>
+
+            <div>
+              <BadgeExplanation
+                badge={
+                  <span
+                    className={`${quietBadge} border-emerald-500/20 bg-emerald-50 text-emerald-800`}
+                  >
+                    <ShieldCheck className="h-3 w-3" aria-hidden="true" />
+                    Structure checked
+                  </span>
+                }
+              >
+                The stored chemical or sequence record passed the technical checks that apply to it.
+                This does not say that the medicine works or is safe. If no technical check applies,
+                RNAWiki says that instead of showing this label.
+              </BadgeExplanation>
+
+              <BadgeExplanation
+                badge={
+                  <span className={`${quietBadge} border-sky-500/20 bg-sky-50 text-sky-800`}>
+                    <Link2 className="h-3 w-3" aria-hidden="true" />
+                    Sources linked
+                  </span>
+                }
+              >
+                The marked statements link to stored sources that readers can inspect. A working
+                link does not guarantee that a source is complete, current or conclusive. For a
+                mechanism stage, the saved source must be recorded as supporting the linked claim; a
+                background source or a source that contradicts it cannot stand in for that support.
+              </BadgeExplanation>
+
+              <BadgeExplanation
+                badge={
+                  <span
+                    className={`${quietBadge} border-violet-500/20 bg-violet-50 text-violet-800`}
+                  >
+                    <BadgeCheck className="h-3 w-3" aria-hidden="true" />
+                    Verdict independently reviewed
+                  </span>
+                }
+              >
+                Two qualified people independently reviewed the same locked conclusion and source
+                set. If they disagreed, a different qualified steward made and explained the final
+                decision; that disagreement remains in the public history. The conclusion still
+                applies only to the intended use shown on the page.
+              </BadgeExplanation>
+
+              <BadgeExplanation
+                badge={
+                  <span className={`${quietBadge} border-black/10 bg-[#F5F5F7] text-[#424245]`}>
+                    <Clock3 className="h-3 w-3" aria-hidden="true" />
+                    Checked on [date]
+                  </span>
+                }
+              >
+                The date shows when RNAWiki last checked that named source. It does not promise that
+                the source has not changed since that date.
+              </BadgeExplanation>
+
+              <BadgeExplanation
+                badge={
+                  <span className={`${quietBadge} border-amber-500/25 bg-amber-50 text-amber-900`}>
+                    <RefreshCcw className="h-3 w-3" aria-hidden="true" />
+                    New evidence under review
+                  </span>
+                }
+              >
+                A checked source changed and may affect the page’s conclusion. The current approved
+                version stays visible while people review the change.
+              </BadgeExplanation>
+            </div>
+          </Card>
+        </Section>
+
+        <Section eyebrow="Read with context" title="What RNAWiki can and cannot tell you">
+          <Card>
+            <div className="flex items-start gap-3">
+              <FileSearch className="mt-0.5 h-4 w-4 shrink-0 text-[#0071E3]" aria-hidden="true" />
+              <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
+                <p>
+                  A useful dossier lets you trace a statement back to its source and review history.
+                  If evidence is missing, conflicting, old or was never measured, RNAWiki should say
+                  so plainly.
+                </p>
+                <p>
+                  RNAWiki is a public reference work, not medical advice. Nothing here is a
+                  recommendation to start, stop or change a treatment.
+                </p>
+              </div>
+            </div>
             <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-bold">
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-[#0071E3] hover:bg-[#0077ED] text-white transition"
+                className="inline-flex items-center gap-1.5 rounded-2xl bg-[#0071E3] px-4 py-2 text-white transition hover:bg-[#0077ED]"
               >
-                Find a medicine
+                Explore medicines
               </Link>
               <Link
                 href="/review-queue"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-white border border-[#0071E3]/30 text-[#0071E3] hover:bg-[#FAFAFC] transition"
+                className="inline-flex items-center gap-1.5 rounded-2xl border border-[#0071E3]/30 bg-white px-4 py-2 text-[#0071E3] transition hover:bg-[#FAFAFC]"
               >
-                See what is waiting for review
+                See the review queue
               </Link>
             </div>
           </Card>

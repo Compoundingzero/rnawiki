@@ -1,14 +1,6 @@
 @import 'tailwindcss';
 
-/*
- * The visual system is the master reference wireframe's, carried over exactly: Apple-grade
- * neutrals (#F5F5F7 ground, #1D1D1F ink, #86868B secondary), a single accent blue (#0071E3),
- * emerald for measured/verified, rose for cost and contested findings. Radii are large
- * (rounded-2xl / rounded-3xl), shadows are near-invisible, borders are black at 5-8% alpha.
- *
- * Tokens live here as CSS variables and are exposed to Tailwind through @theme so utility
- * classes and hand-written CSS cannot drift apart.
- */
+/* Shared colour and type tokens. */
 
 @theme {
   --color-ink: #1d1d1f;
@@ -54,8 +46,7 @@
     font-family: var(--font-mono);
   }
 
-  /* Focus is visible on every interactive element. The wireframe leaned on hover states alone;
-     hover does not exist for keyboard or switch-control users. */
+  /* Keep keyboard focus visible on every interactive element. */
   :focus-visible {
     outline: 2px solid #0071e3;
     outline-offset: 2px;
@@ -101,11 +92,7 @@
   animation: bioPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/*
- * The wireframe used tailwindcss-animate's `animate-in fade-in slide-in-from-top-1` utilities.
- * Tailwind v4 ships without that plugin, so the three entrances the reference actually uses are
- * defined here under the same class names, and honour reduced-motion.
- */
+/* Lightweight entrance effects; reduced-motion rules below disable them. */
 @keyframes rnaFadeIn {
   from {
     opacity: 0;

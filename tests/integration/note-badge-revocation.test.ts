@@ -3,6 +3,7 @@ import { eq, inArray } from 'drizzle-orm'
 import { db } from '@/db'
 import { communityNotes, drugs, users } from '@/db/schema'
 import { createNote, listNotesForDrug } from '@/lib/queries/notes'
+import { decidePhysicianVerification, submitDoctorVerification } from '@/lib/queries/users'
 import { newId } from '@/lib/ids'
 
 /**
@@ -17,13 +18,13 @@ import { newId } from '@/lib/ids'
 describe('the MD badge follows revocation, not the snapshot alone', () => {
   const drugId = `test-drug-${newId('t')}`
   const userId = newId('usr')
+  const stewardId = newId('usr')
   const createdNoteIds: string[] = []
 
   afterAll(async () => {
     if (createdNoteIds.length > 0) {
       await db.delete(communityNotes).where(inArray(communityNotes.id, createdNoteIds))
     }
-    await db.delete(users).where(eq(users.id, userId))
     await db.delete(drugs).where(eq(drugs.id, drugId))
   })
 
@@ -36,17 +37,36 @@ describe('the MD badge follows revocation, not the snapshot alone', () => {
       approvalStatus: 'FDA Approved',
     })
 
-    await db.insert(users).values({
-      id: userId,
-      email: `${userId}@example.test`,
-      passwordHash: 'x',
-      name: 'Dr Test Physician',
-      handle: userId,
-      isDoctor: true,
+    await db.insert(users).values([
+      {
+        id: userId,
+        email: `${userId}@example.test`,
+        passwordHash: 'x',
+        name: 'Dr Test Physician',
+        handle: userId,
+      },
+      {
+        id: stewardId,
+        email: `${stewardId}@example.test`,
+        passwordHash: 'x',
+        name: 'Credential Steward',
+        handle: stewardId,
+        trustTier: 'steward',
+      },
+    ])
+
+    const approvedRequest = await submitDoctorVerification(userId, {
+      professionalFullName: 'Dr Test Physician',
+      workEmail: `${userId}@hospital.example.test`,
+      medicalLicenseOrNpi: 'NPI-TEST-12345',
       medicalSpecialty: 'Cardiologist',
       institution: 'Test Medical Centre',
-      verificationState: 'verified',
-      verifiedAt: new Date(),
+    })
+    await decidePhysicianVerification({
+      requestId: approvedRequest.requestId,
+      actorUserId: stewardId,
+      decision: 'APPROVE',
+      reason: 'The issuing registry confirmed the submitted credential.',
     })
 
     const note = await createNote({
@@ -60,11 +80,21 @@ describe('the MD badge follows revocation, not the snapshot alone', () => {
     expect(whileVerified[0]?.isVerifiedDoctor).toBe(true)
     expect(whileVerified[0]?.medicalSpecialty).toBe('Cardiologist')
 
-    // The steward withdraws verification.
-    await db
-      .update(users)
-      .set({ verificationState: 'rejected', verifiedAt: null })
-      .where(eq(users.id, userId))
+    // A later credential submission receives an independent rejection. The immutable first
+    // decision remains in history, while the account badge follows the latest decided request.
+    const replacementRequest = await submitDoctorVerification(userId, {
+      professionalFullName: 'Dr Test Physician',
+      workEmail: `${userId}@new-hospital.example.test`,
+      medicalLicenseOrNpi: 'NPI-TEST-67890',
+      medicalSpecialty: 'Cardiologist',
+      institution: 'New Test Medical Centre',
+    })
+    await decidePhysicianVerification({
+      requestId: replacementRequest.requestId,
+      actorUserId: stewardId,
+      decision: 'REJECT',
+      reason: 'The replacement credential could not be confirmed in the issuing registry.',
+    })
 
     const afterRevocation = await listNotesForDrug(drugId)
     expect(afterRevocation[0]?.isVerifiedDoctor).toBe(false)

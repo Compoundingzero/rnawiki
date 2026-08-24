@@ -1,66 +1,145 @@
 'use client'
 
-// The two controls a reviewer gets on a queued edit.
-//
-// The only client component on the review queue, and deliberately the smallest one that can do the
-// job: the queue itself is a server component so that anyone — signed in or not, JavaScript or not
-// — can read what is waiting. Deciding is the one part that genuinely needs interactivity, so it
-// is the one part that ships JavaScript.
-//
-// Nothing here decides whether the viewer may review. The page renders this component only for a
-// trusted/steward/admin viewer, and `POST /api/revisions/:id/review` checks the session again on
-// the server. Hiding a button is presentation; the server is the gate.
+// The server rechecks reviewer authorization; hiding these controls is presentation only.
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useApp } from '@/components/app-context'
 import { api } from '@/lib/api-client'
+import {
+  DECLINE_REASON_MAX_LENGTH,
+  DECLINE_REASON_MIN_LENGTH,
+  canReviewLegacyIdentityCorrection,
+  declineReasonValidationError,
+} from '@/lib/legacy-revision-review'
 
 interface ReviewActionsProps {
   revisionId: string
-  /** Only for the assistive-technology labels, so two identical "Approve" buttons on one screen
-   *  are distinguishable from each other. */
+  /** Distinguishes repeated controls for assistive technology. */
   drugName: string
+  /** The account for which the server rendered these role-gated controls. */
+  viewerAccountId: string
 }
 
-export function ReviewActions({ revisionId, drugName }: ReviewActionsProps) {
+export function ReviewActions({ revisionId, drugName, viewerAccountId }: ReviewActionsProps) {
+  const { currentUser } = useApp()
+  const accountId = currentUser?.id ?? null
+  const accountIdRef = useRef(accountId)
+  accountIdRef.current = accountId
+  const canReview = canReviewLegacyIdentityCorrection(currentUser)
+  const canReviewRef = useRef(canReview)
+  canReviewRef.current = canReview
+  // These controls were server-rendered for this account. A different in-tab account must refresh
+  // the queue before it can receive controls derived from its own permissions.
+  const requestRef = useRef<{ generation: number; controller: AbortController | null }>({
+    generation: 0,
+    controller: null,
+  })
   const router = useRouter()
   const [isPending, setIsPending] = useState(false)
   const [isRequestingChanges, setIsRequestingChanges] = useState(false)
   const [note, setNote] = useState('')
   const [error, setError] = useState<string | null>(null)
+  const reasonId = `review-reason-${revisionId}`
+  const errorId = `review-error-${revisionId}`
+  const controlsBelongToCurrentAccount =
+    Boolean(accountId) && viewerAccountId === accountId && canReview
+
+  useEffect(() => {
+    requestRef.current.controller?.abort()
+    requestRef.current.generation += 1
+    requestRef.current.controller = null
+    setIsPending(false)
+    setIsRequestingChanges(false)
+    setNote('')
+    setError(null)
+  }, [accountId, canReview, revisionId])
+
+  const beginRequest = () => {
+    requestRef.current.controller?.abort()
+    const controller = new AbortController()
+    const generation = requestRef.current.generation + 1
+    requestRef.current = { generation, controller }
+    return { accountId, controller, generation }
+  }
+
+  const requestIsCurrent = (request: ReturnType<typeof beginRequest>) =>
+    !request.controller.signal.aborted &&
+    requestRef.current.generation === request.generation &&
+    accountIdRef.current === request.accountId &&
+    canReviewRef.current &&
+    request.accountId === viewerAccountId
 
   const handleApprove = async () => {
+    if (!controlsBelongToCurrentAccount || isPending) return
+    const request = beginRequest()
+    let recorded = false
     setIsPending(true)
     setError(null)
     try {
-      await api.reviewRevision(revisionId, 'approve')
-      // The queue is server-rendered, so the decided row disappears on the next server render
-      // rather than being spliced out of a local array. One source of truth.
+      await api.reviewRevision(revisionId, 'approve', undefined, request.controller.signal)
+      if (!requestIsCurrent(request)) return
+      recorded = true
       router.refresh()
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : 'That decision could not be recorded.')
-      setIsPending(false)
+      if (requestIsCurrent(request)) {
+        setError(caught instanceof Error ? caught.message : 'That decision could not be recorded.')
+      }
+    } finally {
+      if (requestIsCurrent(request)) {
+        requestRef.current.controller = null
+        if (!recorded) setIsPending(false)
+      }
     }
   }
 
   const handleRequestChanges = async () => {
+    if (!controlsBelongToCurrentAccount || isPending) return
     const reason = note.trim()
-    if (reason.length === 0) {
-      // A rejection with no reason is a dead end for the contributor: the note is what tells them
-      // what to fix, so the form refuses rather than sending an empty one.
-      setError('Say what needs to change, so the contributor can act on it.')
+    const validationError = declineReasonValidationError(reason)
+    if (validationError) {
+      setError(validationError)
       return
     }
 
+    const request = beginRequest()
+    let recorded = false
     setIsPending(true)
     setError(null)
     try {
-      await api.reviewRevision(revisionId, 'reject', reason)
+      await api.reviewRevision(revisionId, 'reject', reason, request.controller.signal)
+      if (!requestIsCurrent(request)) return
+      recorded = true
       router.refresh()
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : 'That decision could not be recorded.')
-      setIsPending(false)
+      if (requestIsCurrent(request)) {
+        setError(caught instanceof Error ? caught.message : 'That decision could not be recorded.')
+      }
+    } finally {
+      if (requestIsCurrent(request)) {
+        requestRef.current.controller = null
+        if (!recorded) setIsPending(false)
+      }
     }
+  }
+
+  if (!controlsBelongToCurrentAccount) {
+    return (
+      <div className="space-y-2 border-t border-black/[0.05] pt-3">
+        <p className="text-[11px] leading-5 text-[#6E6E73]">
+          {viewerAccountId === accountId
+            ? 'This account no longer has permission to review medicine-name corrections. Reload the queue to update its controls.'
+            : 'The signed-in account changed. Reload the review queue before making a decision.'}
+        </p>
+        <button
+          type="button"
+          onClick={() => router.refresh()}
+          className="min-h-11 rounded-xl border border-black/[0.1] bg-white px-4 text-xs font-semibold text-[#1D1D1F]"
+        >
+          Reload review controls
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -70,8 +149,8 @@ export function ReviewActions({ revisionId, drugName }: ReviewActionsProps) {
           type="button"
           onClick={handleApprove}
           disabled={isPending}
-          aria-label={`Approve the edit to ${drugName}`}
-          className="px-4 py-2 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] disabled:opacity-50 text-white text-xs font-bold cursor-pointer transition shadow-xs active:scale-95"
+          aria-label={`Approve the identity correction for ${drugName}`}
+          className="min-h-11 px-4 py-2 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] disabled:opacity-50 text-white text-xs font-bold cursor-pointer transition shadow-xs active:scale-95"
         >
           {isPending ? 'Working…' : 'Approve'}
         </button>
@@ -84,42 +163,47 @@ export function ReviewActions({ revisionId, drugName }: ReviewActionsProps) {
           }}
           disabled={isPending}
           aria-expanded={isRequestingChanges}
-          aria-label={`Request changes to the edit to ${drugName}`}
-          className="px-4 py-2 rounded-xl bg-white hover:bg-[#F5F5F7] disabled:opacity-50 text-[#1D1D1F] text-xs font-bold border border-black/[0.08] cursor-pointer transition shadow-xs active:scale-95"
+          aria-controls={reasonId}
+          aria-label={`Decline the identity correction for ${drugName}`}
+          className="min-h-11 px-4 py-2 rounded-xl bg-white hover:bg-[#F5F5F7] disabled:opacity-50 text-[#1D1D1F] text-xs font-bold border border-black/[0.08] cursor-pointer transition shadow-xs active:scale-95"
         >
-          Request changes
+          Decline
         </button>
       </div>
 
       {isRequestingChanges && (
-        <div className="space-y-2">
+        <div id={reasonId} className="space-y-2">
           <label
             htmlFor={`review-note-${revisionId}`}
-            className="text-[10px] font-bold uppercase tracking-wider text-[#86868B] block"
+            className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73] block"
           >
-            What needs to change
+            Why should this correction be declined?
           </label>
           <textarea
             id={`review-note-${revisionId}`}
             value={note}
             onChange={(event) => setNote(event.target.value)}
             rows={3}
-            placeholder="The citation does not support the verdict as written…"
+            required
+            minLength={DECLINE_REASON_MIN_LENGTH}
+            maxLength={DECLINE_REASON_MAX_LENGTH}
+            aria-describedby={error ? errorId : undefined}
+            placeholder="The cited page does not show the proposed medicine or brand name…"
             className="w-full bg-[#F5F5F7] rounded-2xl p-3.5 text-xs text-[#1D1D1F] focus:outline-none focus:ring-2 focus:ring-[#0071E3]/20 font-medium"
           />
           <button
             type="button"
             onClick={handleRequestChanges}
             disabled={isPending}
-            className="px-4 py-2 rounded-xl bg-[#1D1D1F] hover:bg-black disabled:opacity-50 text-white text-xs font-bold cursor-pointer transition shadow-xs active:scale-95"
+            className="min-h-11 px-4 py-2 rounded-xl bg-[#1D1D1F] hover:bg-black disabled:opacity-50 text-white text-xs font-bold cursor-pointer transition shadow-xs active:scale-95"
           >
-            {isPending ? 'Sending…' : 'Send to the contributor'}
+            {isPending ? 'Recording…' : 'Decline with this reason'}
           </button>
         </div>
       )}
 
       {error && (
-        <p role="alert" className="text-[11px] font-semibold text-rose-700">
+        <p id={errorId} role="alert" className="text-[11px] font-semibold text-rose-700">
           {error}
         </p>
       )}

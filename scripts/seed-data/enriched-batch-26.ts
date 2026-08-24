@@ -411,7 +411,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
         laymanDesc:
           'Tendon rupture, nerve damage and aortic tears are all in the label. Nobody has established why a drug that acts on a bacterial enzyme does any of them.',
         molecularDetail:
-          'Section 5.9 states plainly that the cause of the aortic aneurysm risk has not been identified. The tendon and peripheral nerve warnings likewise describe an association and a risk-factor profile without a mechanism. The proposed explanations — chelation of matrix metalloproteinase cofactors, mitochondrial topoisomerase effects, oxidative injury to collagen — are hypotheses in the literature, not statements the label makes.',
+          'Section 5.9 states that the cause of the aortic aneurysm risk has not been identified. The tendon and peripheral nerve warnings likewise describe an association and a risk-factor profile without a mechanism. The proposed explanations — chelation of matrix metalloproteinase cofactors, mitochondrial topoisomerase effects, oxidative injury to collagen — are hypotheses in the literature, not statements the label makes.',
         iconName: 'AlertTriangle',
         visualStage: 'therapeutic_result',
       },
@@ -625,7 +625,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The alternatives depend entirely on which of this drug’s several jobs is in question. For a first uncomplicated bladder infection the label itself points at a single agent, and nitrofurantoin is the one guidelines name. For draining a skin abscess the honest comparator is placebo, because that is what the trial used. For preventing Pneumocystis pneumonia there is no equal: the alternatives exist for people who cannot tolerate this one and are less effective, more expensive, or both.',
+        'The alternatives depend entirely on which of this drug’s several jobs is in question. For a first uncomplicated bladder infection the label itself points at a single agent, and nitrofurantoin is the one guidelines name. For a drained skin abscess the relevant trial comparison is placebo. For preventing Pneumocystis pneumonia there is no equal: the alternatives exist for people who cannot tolerate this one and are less effective, more expensive, or both.',
       conventionalRx: [
         {
           name: 'Nitrofurantoin (Macrobid)',
@@ -793,7 +793,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A 1,247-patient trial gave people whose skin abscess had been drained either this drug or a placebo. Cure was 80.5% with the drug and 73.6% with placebo. Most of the benefit was in stopping new infections elsewhere and in household members.',
         technicalDetails:
-          'A randomised trial at five United States emergency departments enrolled outpatients over 12 with an uncomplicated abscess treated by drainage; 45.3% had wound cultures positive for MRSA. In the modified intention-to-treat population, clinical cure occurred in 507 of 630 (80.5%) on trimethoprim-sulfamethoxazole against 454 of 617 (73.6%) on placebo, a difference of 6.9 percentage points (95% CI 2.1 to 11.7, p=0.005). Per protocol, 92.9% against 85.7% (difference 7.2 points, 95% CI 3.2 to 11.2, p<0.001). Secondary outcomes favoured the drug: subsequent surgical drainage 3.4% against 8.6%, new-site skin infection 3.1% against 10.3%, infection in a household member 1.7% against 4.1%. Invasive infection was identical — 2 of 524 against 2 of 533 at 7 to 14 days. The honest reading is that drainage does most of the work, the antibiotic adds a modest increment to cure and a larger one to preventing spread, and it changes nothing about the rare serious outcome.',
+          'A randomised trial at five United States emergency departments enrolled outpatients over 12 with an uncomplicated abscess treated by drainage; 45.3% had wound cultures positive for MRSA. In the modified intention-to-treat population, clinical cure occurred in 507 of 630 (80.5%) on trimethoprim-sulfamethoxazole against 454 of 617 (73.6%) on placebo, a difference of 6.9 percentage points (95% CI 2.1 to 11.7, p=0.005). Per protocol, 92.9% against 85.7% (difference 7.2 points, 95% CI 3.2 to 11.2, p<0.001). Secondary outcomes favoured the drug: subsequent surgical drainage 3.4% against 8.6%, new-site skin infection 3.1% against 10.3%, infection in a household member 1.7% against 4.1%. Invasive infection was identical — 2 of 524 against 2 of 533 at 7 to 14 days. Drainage does most of the work, the antibiotic adds a modest increment to cure and a larger one to preventing spread, and it changes nothing about the rare serious outcome.',
         evidenceSource:
           'Talan DA, Mower WR, Krishnadasan A, et al. Trimethoprim-sulfamethoxazole versus placebo for uncomplicated skin abscess. N Engl J Med 2016;374:823-832',
         doi: '10.1056/NEJMoa1507476',
@@ -1047,7 +1047,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What is it actually best at?',
-        a: 'Preventing Pneumocystis pneumonia. That is the one use where the evidence is a meta-analysis of randomised trials with a 91% reduction, no heterogeneity between studies, and a number needed to treat of fifteen — figures that almost no preventive intervention in medicine achieves. Even there the audit is worth stating plainly: deaths from Pneumocystis fell significantly and deaths from all causes did not, and the authors set a threshold, recommending prophylaxis when the risk of the infection exceeds about 3.5% in adults rather than for everyone immunosuppressed. A drug this effective still gets a threshold, because the harm side of the ledger is real.',
+        a: 'Preventing Pneumocystis pneumonia. That is the one use where the evidence is a meta-analysis of randomised trials with a 91% reduction, no heterogeneity between studies, and a number needed to treat of fifteen — figures that almost no preventive intervention in medicine achieves. The limitation remains: deaths from Pneumocystis fell significantly and deaths from all causes did not, and the authors set a threshold, recommending prophylaxis when the risk of the infection exceeds about 3.5% in adults rather than for everyone immunosuppressed. A drug this effective still gets a threshold, because the harm side of the ledger is real.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -1770,7 +1770,8 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
         },
         {
           name: 'Alcohol raises the liver risk, and the label says so',
-          action: 'Discuss alcohol intake honestly before starting and while taking it.',
+          action:
+            'Tell the prescriber how much alcohol you drink before starting and while taking it.',
           patientImpact:
             'Section 5.5 states that methotrexate can cause severe and potentially irreversible hepatotoxicity including fibrosis, cirrhosis and fatal liver failure, that the risk is increased with heavy alcohol consumption, and that in psoriasis fibrosis or cirrhosis may occur in the absence of symptoms or abnormal liver tests.',
           clinicalPrecaution:
@@ -1792,7 +1793,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
       chemicalFormula: 'C20H22N8O5',
       molecularWeight: '454.40 g/mol',
       targetReceptorAffinity:
-        'A close structural analogue of folic acid, differing at two positions: a 4-amino group in place of the 4-oxo, and an N10 methyl. Those two changes convert a substrate into a tight-binding inhibitor of dihydrofolate reductase. The label states that dihydrofolates must be reduced to tetrahydrofolates by this enzyme before they can carry one-carbon groups in the synthesis of purine nucleotides and thymidylate, so methotrexate interferes with DNA synthesis, repair and cellular replication, and that actively proliferating tissues are in general more sensitive. It then states plainly that the mechanism of action in rheumatoid arthritis and in psoriasis is unknown. Inside cells the drug is polyglutamated, which traps it and extends its intracellular residence far beyond its plasma half-life.',
+        'A close structural analogue of folic acid, differing at two positions: a 4-amino group in place of the 4-oxo, and an N10 methyl. Those two changes convert a substrate into a tight-binding inhibitor of dihydrofolate reductase. The label states that dihydrofolates must be reduced to tetrahydrofolates by this enzyme before they can carry one-carbon groups in the synthesis of purine nucleotides and thymidylate, so methotrexate interferes with DNA synthesis, repair and cellular replication, and that actively proliferating tissues are in general more sensitive. It then states that the mechanism of action in rheumatoid arthritis and in psoriasis is unknown. Inside cells the drug is polyglutamated, which traps it and extends its intracellular residence far beyond its plasma half-life.',
       structureSource: {
         label:
           'PubChem CID 126941 (methotrexate) — canonical SMILES, molecular formula and weight, as carried on the enriched record; mechanism statements from the methotrexate tablets label, section 12.1',
@@ -2629,7 +2630,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does anyone actually know how it works in lupus?',
-        a: 'No, and the label says so: the mechanisms underlying the anti-inflammatory and immunomodulatory effects in rheumatoid arthritis, discoid lupus and systemic lupus are not fully known. The best current account is that raising the pH of the endosome interferes with Toll-like receptors 7 and 9, the sensors that detect nucleic acids and that, in lupus, are being triggered by the body’s own DNA. It is a good hypothesis with laboratory support. It is worth noticing what that flexibility permitted in 2020: the same lysosomotropic property was the stated rationale for expecting the drug to work against a coronavirus, and a mechanism loose enough to justify that is loose enough to be worth stating as a hypothesis rather than a fact.',
+        a: 'No, and the label says so: the mechanisms underlying the anti-inflammatory and immunomodulatory effects in rheumatoid arthritis, discoid lupus and systemic lupus are not fully known. The best current account is that raising the pH of the endosome interferes with Toll-like receptors 7 and 9, the sensors that detect nucleic acids and that, in lupus, are being triggered by the body’s own DNA. It is a good hypothesis with laboratory support. It is worth noticing what that flexibility permitted in 2020: the same lysosomotropic property was the stated rationale for expecting the drug to work against a coronavirus, and a mechanism loose enough to justify that is loose enough that it must be presented as a hypothesis rather than a fact.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -3242,7 +3243,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Acute otitis media is fluid and infection behind the eardrum, usually following a cold that has blocked the tube draining the middle ear. It is painful, extremely common in small children, and in high-income countries it resolves without antibiotics in most cases — which is what makes the treatment decision genuinely difficult rather than obvious.',
       whyItMatters:
-        'Cefdinir became one of the most prescribed antibiotics in American paediatrics because it is taken twice or once daily, tastes tolerable and covers beta-lactamase-producing organisms. Its label restricts every respiratory indication to penicillin-susceptible pneumococcus, records that it lost a head-to-head trial against amoxicillin-clavulanate, and states plainly that only intramuscular penicillin has been shown to prevent rheumatic fever.',
+        'Cefdinir became one of the most prescribed antibiotics in American paediatrics because it is taken twice or once daily, tastes tolerable and covers beta-lactamase-producing organisms. Its label restricts every respiratory indication to penicillin-susceptible pneumococcus, records that it lost a head-to-head trial against amoxicillin-clavulanate, and states that only intramuscular penicillin has been shown to prevent rheumatic fever.',
       whoTakesThis:
         'Children with acute otitis media or streptococcal pharyngitis, and adults with sinusitis, bronchitis exacerbation, community-acquired pneumonia or uncomplicated skin infection.',
       clinicalGoals:
@@ -3267,7 +3268,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'For the indication that accounts for most cefdinir prescriptions — acute otitis media in a child — the two honest comparators are high-dose amoxicillin and no antibiotic at all. Amoxicillin is a quarter of the price per capsule, is in the WHO Access group rather than the Watch group, and is what the American Academy of Pediatrics guideline names first. Watchful waiting is what the pooled randomised evidence supports for many children, since antibiotics do not reduce pain at 24 hours and increase vomiting, diarrhoea and rash.',
+        'For the indication that accounts for most cefdinir prescriptions — acute otitis media in a child — the relevant comparators are high-dose amoxicillin and watchful waiting without an antibiotic. Amoxicillin is a quarter of the price per capsule, is in the WHO Access group rather than the Watch group, and is what the American Academy of Pediatrics guideline names first. Pooled randomised evidence supports watchful waiting for many children, since antibiotics do not reduce pain at 24 hours and increase vomiting, diarrhoea and rash.',
       conventionalRx: [
         {
           name: 'Amoxicillin, at high dose',
@@ -3748,7 +3749,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest alternatives divide by what the alternative is for. Amoxicillin is the same chemistry with better absorption and once- or twice-daily dosing, which is why it has largely replaced penicillin V for children. Intramuscular benzathine penicillin G is the option with the rheumatic fever evidence, and it is a single injection rather than ten days of tablets. A cephalosporin or a macrolide is what gets used when a penicillin allergy is recorded — which is the situation the allergy-delabelling literature is about.',
+        'The alternatives depend on the treatment goal. Amoxicillin is the same chemistry with better absorption and once- or twice-daily dosing, which is why it has largely replaced penicillin V for children. Intramuscular benzathine penicillin G is the option with rheumatic-fever evidence, and it is a single injection rather than ten days of tablets. A cephalosporin or macrolide is used when a penicillin allergy is recorded — the situation addressed by the allergy-delabelling literature.',
       conventionalRx: [
         {
           name: 'Amoxicillin',
@@ -3962,7 +3963,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Penicillin V has been recommended for decades to prevent heart valve infection before dental work. Its own label states that no controlled clinical efficacy studies have been conducted.',
         technicalDetails:
-          'The Indications and Usage section states: "Although no controlled clinical efficacy studies have been conducted, penicillin V has been suggested by the American Heart Association and the American Dental Association for use as an oral regimen for prophylaxis against bacterial endocarditis in patients who have congenital heart disease or rheumatic or other acquired valvular heart disease when they undergo dental procedures and surgical procedures of the upper respiratory tract." It then narrows the recommendation twice over: oral penicillin should not be used in patients at particularly high risk, such as those with prosthetic valves or surgically constructed systemic pulmonary shunts, and penicillin V should not be used as adjunctive prophylaxis for genitourinary or gastrointestinal procedures. This is a labelled indication whose evidence base is expert recommendation, stated as such in the document that carries it — which is rarer and more honest than it sounds, and it is the reason guideline bodies on both sides of the Atlantic have progressively narrowed endocarditis prophylaxis over the past two decades.',
+          'The Indications and Usage section states: "Although no controlled clinical efficacy studies have been conducted, penicillin V has been suggested by the American Heart Association and the American Dental Association for use as an oral regimen for prophylaxis against bacterial endocarditis in patients who have congenital heart disease or rheumatic or other acquired valvular heart disease when they undergo dental procedures and surgical procedures of the upper respiratory tract." It then narrows the recommendation twice over: oral penicillin should not be used in patients at particularly high risk, such as those with prosthetic valves or surgically constructed systemic pulmonary shunts, and penicillin V should not be used as adjunctive prophylaxis for genitourinary or gastrointestinal procedures. The label states directly that this indication rests on expert recommendation rather than controlled efficacy studies. Guideline bodies on both sides of the Atlantic have progressively narrowed endocarditis prophylaxis over the past two decades.',
         evidenceSource:
           'Penicillin V potassium tablets United States prescribing information, Indications and Usage',
         measuredMetric:
@@ -4146,7 +4147,7 @@ export const ENRICHED_BATCH_26_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why ten days for a sore throat that is better in three?',
-        a: 'Because the target is not the sore throat. The reason strep throat is treated at all is to prevent acute rheumatic fever, and that follows the immune response to an organism that persists, not the symptoms. The label puts it plainly: therapy must be sufficient to eliminate the organism, ten-day minimum, otherwise the sequelae of streptococcal disease may occur. Whether ten days is the right number is a live question. A Swedish randomised trial in 433 patients found five days at a higher dose frequency non-inferior on clinical cure (89.6% against 93.3%) with faster symptom relief and fewer adverse events — but bacteriological eradication was 80.4% against 90.7%, and eradication is the endpoint the whole ten-day rule exists to protect. The trial is a real challenge to the rule and not a resolution of it.',
+        a: 'Because the target is not the sore throat. The reason strep throat is treated at all is to prevent acute rheumatic fever, and that follows the immune response to an organism that persists, not the symptoms. The label requires treatment long enough to eliminate the organism and specifies a ten-day minimum, warning that otherwise the complications of streptococcal disease may occur. Whether ten days is the right number is a live question. A Swedish randomised trial in 433 patients found five days at a higher dose frequency non-inferior on clinical cure (89.6% against 93.3%) with faster symptom relief and fewer adverse events — but bacteriological eradication was 80.4% against 90.7%, and eradication is the endpoint the whole ten-day rule exists to protect. The trial is a real challenge to the rule and not a resolution of it.',
       },
       {
         q: 'Has it stopped working after eighty years?',

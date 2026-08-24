@@ -3,18 +3,8 @@ import { join } from 'node:path'
 import { DATA_DIR } from '../ingest/paths'
 
 /**
- * The records the drug pipelines cannot reach.
- *
- * Three thousand of the corpus are plant preparations and homeopathic listings — "Chenopodium Album
- * Whole", "Sanicula Europaea Top". They have no FDA application, no mechanism section, no price
- * survey and usually no trial, so every source the drug enrichment reads comes back empty and the
- * page stays a name.
- *
- * But real facts about them do exist, and they are the facts a reader actually wants: WHAT PLANT IS
- * THIS, and WHAT DOES THE LITERATURE ACTUALLY CONTAIN. GBIF answers the first from the global
- * taxonomic backbone. Europe PMC answers the second by counting, which is a more honest answer than
- * a paragraph — "thirty years of publication and no controlled trial" is a finding, and it is one
- * this site exists to record.
+ * Enrichment for plant preparations, homeopathic listings and similar records not covered by the
+ * drug pipelines. GBIF supplies taxonomy; Europe PMC supplies literature counts and trial counts.
  */
 
 export interface Taxonomy {
@@ -70,10 +60,8 @@ export function flushBotanicalCache(): void {
 const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms))
 
 /**
- * DSLD and NDC names carry the plant part on the end — "Chenopodium Album Whole", "Achyranthes
- * Japonica Root". GBIF wants the binomial, so the part is stripped before asking and kept for the
- * page, because which part of a plant was used is not a detail: the root and the leaf of the same
- * species can have entirely different chemistry.
+ * DSLD and NDC names may end with a plant part. Strip it for the GBIF lookup and retain it for the
+ * record because different parts can have different chemistry.
  */
 const PLANT_PARTS = [
   'whole',
@@ -117,9 +105,7 @@ const PLANT_PARTS = [
   'stalk',
   'blossom',
   'bud',
-  // Animal-source listings use the same "binomial + part" shape, and the corpus has hundreds:
-  // Capra Hircus Skin, Sus Scrofa Cartilage, Melopsittacus Undulatus Feather. Without these the
-  // part stayed glued to the binomial and the page said the feather WAS the budgerigar.
+  // Animal-source listings use the same `binomial + part` shape.
   'feather',
   'feathers',
   'hair',
@@ -162,10 +148,7 @@ const PLANT_PARTS = [
 ]
 
 /**
- * A binomial is written Genus with a capital, species without. The corpus stores everything
- * title-cased, and both APIs care: "Momordica Charantia" returns nothing from Europe PMC while
- * "Momordica charantia" returns six thousand papers, and GBIF fails to match the title-cased form
- * outright. Every lookup here was silently coming back empty for that reason alone.
+ * Normalise title-cased corpus names to the `Genus species` form expected by GBIF and Europe PMC.
  */
 export function normaliseBinomial(name: string): string {
   const words = name.trim().split(/\s+/)
@@ -208,8 +191,7 @@ async function fetchTaxonomy(binomial: string): Promise<Taxonomy | null> {
         continue
       }
       const body = (await response.json()) as Partial<Taxonomy> & { matchType?: string }
-      // A low-confidence or fuzzy match is a guess, and a guess about which species a supplement
-      // contains is exactly the kind of thing this site must not print.
+      // Do not publish low-confidence or unmatched taxonomy.
       if (!body.canonicalName || (body.confidence ?? 0) < 90) return null
       if (body.matchType === 'NONE') return null
       return {
@@ -244,22 +226,16 @@ async function countPapers(query: string): Promise<number> {
 }
 
 /**
- * Restricted to title, abstract and keywords — deliberately, and at the cost of most of the count.
- *
- * Europe PMC's default search reads the full text of every open-access paper, so a substance named
- * once in a table of reagents counts as a paper about it. Acetophenazine came back with 5,372
- * papers and a most-cited paper about a tetrazolium assay; restricted to where a paper declares
- * its subject, it is 31 papers and the most cited is about antipsychotics. Both numbers are
- * "correct" for some question, but only one of them answers the question this site is asking, and
- * printing the other one next to an unrelated title was telling readers something false.
+ * Restrict searches to titles, abstracts and keywords. Europe PMC's default full-text search also
+ * counts incidental mentions, such as a substance listed only as a reagent.
  */
 function subjectQuery(term: string): string {
   return `(TITLE:"${term}" OR ABSTRACT:"${term}" OR KW:"${term}")`
 }
 
 /**
- * Bumped when the query changes. Cached entries below this are refetched; their taxonomy is kept,
- * because GBIF is unaffected and those lookups are the slow half.
+ * Increment when the literature query changes. Older literature entries are refreshed while their
+ * GBIF taxonomy is retained.
  */
 export const LITERATURE_QUERY_VERSION = 2
 
@@ -294,18 +270,13 @@ async function fetchLiterature(term: string): Promise<Literature | null> {
 
   if (total === 0) return { total: 0, clinicalTrials: 0, reviews: 0 }
 
-  // Counting trials separately is the whole point: a substance with two thousand papers and no
-  // controlled trial in humans is a different thing from one with twenty papers and four trials,
-  // and the difference is invisible from a total.
-  // The two sub-counts are independent of each other and of everything else in flight. They were
-  // separated by fixed sleeps, which paced a caller that no longer exists: the concurrency pool in
-  // warmCache is what bounds the request rate now, and sleeping inside a worker only idles it.
+  // Trial and review counts distinguish evidence types that a total alone cannot show. The two
+  // requests are independent; `warmCache` bounds overall concurrency.
   const [clinicalTrials, reviews] = await Promise.all([
     countPapers(`${phrase} AND PUB_TYPE:"Clinical Trial"`),
     countPapers(`${phrase} AND PUB_TYPE:"Review"`),
   ])
-  // A subset cannot exceed its parent; if the API disagrees, the totals are not comparable and
-  // publishing them side by side would invite a reader to subtract them.
+  // Suppress incomparable sub-counts if either exceeds the parent count.
   if (clinicalTrials > total || reviews > total)
     return { total, clinicalTrials: 0, reviews: 0, topPaper: top }
 
@@ -336,8 +307,7 @@ export async function lookupBotanical(name: string): Promise<BotanicalFacts> {
       ? await fetchTaxonomy(binomial)
       : null
   if (!cached) await sleep(120)
-  // Search the literature under the accepted scientific name where GBIF resolved one, because that
-  // is the name the papers are indexed under; otherwise under the name as written.
+  // Prefer GBIF's accepted scientific name, which is how papers are commonly indexed.
   const literature = await fetchLiterature(taxonomy?.canonicalName ?? binomial)
 
   store[key] = {
@@ -353,12 +323,8 @@ export async function lookupBotanical(name: string): Promise<BotanicalFacts> {
 }
 
 /**
- * The literature alone, searched under the name exactly as the corpus stores it.
- *
- * `lookupBotanical` searches under the binomial it parsed out of the name, which is right for an
- * organism and wrong for a chemical: "Aluminum Zirconium Tetrachlorohydrex Gly" has no binomial to
- * find and must be searched whole. Cached under a separate key so the two searches of the same
- * string cannot overwrite each other.
+ * Literature lookup for a complete corpus term rather than a parsed binomial. A separate cache key
+ * prevents organism and full-term searches from overwriting each other.
  */
 export async function lookupLiterature(term: string): Promise<Literature | null> {
   const store = load()
@@ -381,18 +347,8 @@ export async function lookupLiterature(term: string): Promise<Literature | null>
 }
 
 /**
- * Fills the cache for many names at once, a few requests in flight at a time.
- *
- * The enrichment loop is sequential because it writes rows, and every lookup inside it was a
- * round trip: ninety-eight hundred records at roughly thirty a minute is six hours, most of it
- * spent waiting. The lookups themselves have no order and no shared state, so they are done first,
- * against the same cache the loop reads, and the loop then runs at the speed of Postgres.
- *
- * Ten at a time, and no more. Both APIs are free public infrastructure funded by research budgets,
- * and this is a bulk read of several thousand records that repeats whenever the corpus is rebuilt.
- * Ten concurrent requests against a two-second response is about five a second — the load of a
- * handful of people using the site normally, sustained for half an hour. That is the ceiling this
- * is willing to take.
+ * Warm the shared cache before the sequential enrichment loop. Concurrency is capped at ten to
+ * limit sustained load on the public GBIF and Europe PMC APIs.
  */
 export async function warmCache(
   jobs: ReadonlyArray<{ name: string; kind: 'organism' | 'literature' }>,

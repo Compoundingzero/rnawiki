@@ -8,11 +8,38 @@
 //  - One round trip per page section. Notes come back in the same pass as the drug, totals come
 //    back in the same pass as the page of results.
 
-import { and, asc, count, desc, eq, getTableColumns, ilike, inArray, or, sql } from 'drizzle-orm'
+import {
+  and,
+  asc,
+  count,
+  desc,
+  eq,
+  getTableColumns,
+  ilike,
+  inArray,
+  notInArray,
+  or,
+  sql,
+} from 'drizzle-orm'
 import type { SQL } from 'drizzle-orm'
 import { db, type Db } from '@/db'
-import { drugAliases, drugs } from '@/db/schema'
-import { rowToDossier, dossierToRow, type DrugRow } from '@/lib/dossier'
+import {
+  developmentProgrammes,
+  drugAliases,
+  drugs,
+  programmeCurrentPublications,
+  programmeTrials,
+} from '@/db/schema'
+import { rowToDossier, type DrugRow } from '@/lib/dossier'
+import {
+  cleanPublicLabelFields,
+  PUBLIC_PLACEHOLDER_MEDICINE_NAMES,
+  PUBLIC_PLACEHOLDER_MEDICINE_SLUGS,
+} from '@/lib/public-data-integrity'
+import {
+  bindPublicSearchSummaries,
+  type PublicSearchSummaryBinding,
+} from '@/lib/queries/public-search-hit-projection'
 import type { ApprovalStatus, DrugDossier, DrugModality } from '@/lib/types'
 import { listNotesForDrug } from './notes'
 
@@ -29,6 +56,12 @@ export type Tx = Parameters<Parameters<Db['transaction']>[0]>[0]
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { searchVector, ...drugColumns } = getTableColumns(drugs)
 
+/** Rows with placeholder identities are retained internally for cleanup but never published. */
+export const publicMedicineFilter = and(
+  notInArray(drugs.slug, [...PUBLIC_PLACEHOLDER_MEDICINE_SLUGS]),
+  notInArray(sql<string>`lower(btrim(${drugs.name}))`, [...PUBLIC_PLACEHOLDER_MEDICINE_NAMES]),
+)
+
 export type DossierDepth = DrugRow['dossierDepth']
 
 /**
@@ -44,6 +77,9 @@ export interface SearchHit {
   approvalStatus: ApprovalStatus
   patientFriendlyIndication: string
   dossierDepth: DossierDepth
+  summaryBinding?: PublicSearchSummaryBinding
+  /** Plain scope label for the compact summary, selected by the same public projection. */
+  summaryContext?: string | null
 }
 
 export const searchHitColumns = {
@@ -54,6 +90,24 @@ export const searchHitColumns = {
   approvalStatus: drugs.approvalStatus,
   patientFriendlyIndication: drugs.patientFriendlyIndication,
   dossierDepth: drugs.dossierDepth,
+}
+
+export const publicSearchHitReadColumns = {
+  ...searchHitColumns,
+  sourceLabelIndication: drugs.indication,
+}
+
+export function cleanPublicSearchHitRows(
+  rows: ReadonlyArray<SearchHit & { sourceLabelIndication: string }>,
+): SearchHit[] {
+  return rows.map(({ sourceLabelIndication, ...row }) => ({
+    ...row,
+    patientFriendlyIndication: cleanPublicLabelFields({
+      medicineSlug: row.slug,
+      indication: sourceLabelIndication,
+      patientFriendlyIndication: row.patientFriendlyIndication,
+    }).patientFriendlyIndication,
+  }))
 }
 
 /**
@@ -77,7 +131,11 @@ export async function getDrugBySlug(
   slug: string,
   viewerUserId?: string,
 ): Promise<DrugDossier | null> {
-  const rows = await db.select(drugColumns).from(drugs).where(eq(drugs.slug, slug)).limit(1)
+  const rows = await db
+    .select(drugColumns)
+    .from(drugs)
+    .where(and(publicMedicineFilter, eq(drugs.slug, slug)))
+    .limit(1)
   const row = rows[0]
   if (!row) return null
 
@@ -94,7 +152,11 @@ export async function getDrugById(id: string): Promise<DrugDossier | null> {
 
 /** Resolves a public slug to the internal primary key without loading the record. */
 export async function getDrugIdBySlug(slug: string): Promise<string | null> {
-  const rows = await db.select({ id: drugs.id }).from(drugs).where(eq(drugs.slug, slug)).limit(1)
+  const rows = await db
+    .select({ id: drugs.id })
+    .from(drugs)
+    .where(and(publicMedicineFilter, eq(drugs.slug, slug)))
+    .limit(1)
   return rows[0]?.id ?? null
 }
 
@@ -137,7 +199,7 @@ export async function listDrugs(opts: ListDrugsOptions): Promise<ListDrugsResult
     opts.approvalStatus ? eq(drugs.approvalStatus, opts.approvalStatus) : undefined,
     opts.depth ? eq(drugs.dossierDepth, opts.depth) : undefined,
   ].filter((f) => f !== undefined)
-  const where = filters.length > 0 ? and(...filters) : undefined
+  const where = filters.length > 0 ? and(publicMedicineFilter, ...filters) : publicMedicineFilter
 
   const order =
     opts.sort === 'name'
@@ -178,6 +240,10 @@ function likePrefixPattern(input: string): string {
   return `${input.replace(/[\\%_]/g, (ch) => `\\${ch}`)}%`
 }
 
+function likeContainsPattern(input: string): string {
+  return `%${input.replace(/[\\%_]/g, (ch) => `\\${ch}`)}%`
+}
+
 /**
  * Full-text search with a prefix fallback.
  *
@@ -195,6 +261,7 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
 
   const tsQuery = sql`websearch_to_tsquery('english', ${trimmed})`
   const prefix = likePrefixPattern(trimmed)
+  const contains = likeContainsPattern(trimmed)
   const lowered = trimmed.toLowerCase()
 
   // The alias join is what makes "paracetamol" find acetaminophen and "ozempic" find semaglutide.
@@ -219,16 +286,38 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
     select 1 from ${drugAliases}
     where ${drugAliases.drugId} = ${drugs.id} and lower(${drugAliases.alias}) like ${prefix.toLowerCase()}
   )`
+  const programmeMatch = sql`exists (
+    select 1 from ${developmentProgrammes}
+    where ${developmentProgrammes.drugId} = ${drugs.id}
+      and (
+        ${developmentProgrammes.title} ilike ${contains}
+        or ${developmentProgrammes.indication} ilike ${contains}
+        or ${developmentProgrammes.targetPopulation} ilike ${contains}
+        or ${developmentProgrammes.sponsor} ilike ${contains}
+      )
+  )`
+  const trialMatch = sql`exists (
+    select 1 from ${programmeTrials}
+    inner join ${developmentProgrammes}
+      on ${developmentProgrammes.id} = ${programmeTrials.programmeId}
+    where ${developmentProgrammes.drugId} = ${drugs.id}
+      and ${programmeTrials.trialIdentifier} ilike ${prefix}
+  )`
 
-  return db
-    .select(searchHitColumns)
+  const hits = await db
+    .select(publicSearchHitReadColumns)
     .from(drugs)
     .where(
-      or(
-        sql`${drugs.searchVector} @@ ${tsQuery}`,
-        ilike(drugs.name, prefix),
-        ilike(drugs.tradeName, prefix),
-        aliasPrefix,
+      and(
+        publicMedicineFilter,
+        or(
+          sql`${drugs.searchVector} @@ ${tsQuery}`,
+          ilike(drugs.name, prefix),
+          ilike(drugs.tradeName, prefix),
+          aliasPrefix,
+          programmeMatch,
+          trialMatch,
+        ),
       ),
     )
     .orderBy(
@@ -242,7 +331,9 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
         when ${drugs.name} ilike ${prefix} then 2
         when ${drugs.tradeName} ilike ${prefix} then 3
         when ${aliasPrefix} then 4
-        else 5
+        when ${trialMatch} then 5
+        when ${programmeMatch} then 6
+        else 7
       end`,
       // Among equally-ranked matches, a page with content beats a shorter name. Typing "creatine"
       // was returning Creatine-Leucine and Creatine Gluconate — ingested stubs that happen to be
@@ -258,6 +349,8 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
       asc(drugs.slug),
     )
     .limit(capped)
+
+  return bindPublicSearchSummaries(cleanPublicSearchHitRows(hits))
 }
 
 // ---------------------------------------------------------------------------
@@ -275,7 +368,7 @@ export async function getFeaturedDrug(): Promise<DrugDossier | null> {
   const rows = await db
     .select(drugColumns)
     .from(drugs)
-    .where(inArray(drugs.dossierDepth, ['flagship', 'curated']))
+    .where(and(publicMedicineFilter, inArray(drugs.dossierDepth, ['flagship', 'curated'])))
     .orderBy(curationRank, desc(drugs.viewCount), asc(drugs.name), asc(drugs.slug))
     .limit(1)
 
@@ -286,12 +379,35 @@ export async function getFeaturedDrug(): Promise<DrugDossier | null> {
 /** The "Popular:" row under the search box. Curated records only — a stub is not worth a click. */
 export async function getPopularDrugs(limit: number): Promise<SearchHit[]> {
   const capped = Math.max(1, Math.min(MAX_PAGE_SIZE, Math.trunc(limit)))
-  return db
-    .select(searchHitColumns)
+  const hits = await db
+    .select(publicSearchHitReadColumns)
     .from(drugs)
-    .where(inArray(drugs.dossierDepth, ['flagship', 'curated']))
+    .where(and(publicMedicineFilter, inArray(drugs.dossierDepth, ['flagship', 'curated'])))
     .orderBy(desc(drugs.viewCount), asc(drugs.name), asc(drugs.slug))
     .limit(capped)
+  return bindPublicSearchSummaries(cleanPublicSearchHitRows(hits))
+}
+
+/** Honest programme coverage counts for restrained corpus copy on the home page. */
+export async function countProgrammeEvidence(): Promise<{
+  programmes: number
+  reviewedProgrammes: number
+}> {
+  const rows = await db
+    .select({
+      programmes: count(developmentProgrammes.id),
+      reviewedProgrammes: count(programmeCurrentPublications.programmeId),
+    })
+    .from(developmentProgrammes)
+    .leftJoin(
+      programmeCurrentPublications,
+      eq(programmeCurrentPublications.programmeId, developmentProgrammes.id),
+    )
+
+  return {
+    programmes: rows[0]?.programmes ?? 0,
+    reviewedProgrammes: rows[0]?.reviewedProgrammes ?? 0,
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -319,7 +435,10 @@ export async function incrementViewCount(slug: string): Promise<void> {
 
 /** Real `count(*)`, for the home page's corpus statistics. Nothing here is a stored estimate. */
 export async function countDrugs(where?: SQL): Promise<number> {
-  const rows = await db.select({ value: count() }).from(drugs).where(where)
+  const rows = await db
+    .select({ value: count() })
+    .from(drugs)
+    .where(where ? and(publicMedicineFilter, where) : publicMedicineFilter)
   return rows[0]?.value ?? 0
 }
 
@@ -330,40 +449,10 @@ export async function countByDepth(): Promise<DepthCounts> {
   const rows = await db
     .select({ depth: drugs.dossierDepth, value: count() })
     .from(drugs)
+    .where(publicMedicineFilter)
     .groupBy(drugs.dossierDepth)
 
   const counts: DepthCounts = { stub: 0, curated: 0, flagship: 0 }
   for (const row of rows) counts[row.depth] = row.value
   return counts
-}
-
-// ---------------------------------------------------------------------------
-// Writes
-// ---------------------------------------------------------------------------
-
-/**
- * Applies an accepted revision's payload to the drug. Takes the transaction handle rather than
- * opening its own, because the only correct caller is `approveRevision`, where marking the
- * revision published and changing the record it describes have to succeed or fail together.
- *
- * `dossierToRow` decides what is writable; derived and provenance fields are set here, from the
- * review, not from the payload.
- */
-export async function applyRevisionToDrug(
-  tx: Tx,
-  drugId: string,
-  payload: Partial<DrugDossier>,
-  author: string,
-): Promise<void> {
-  const now = new Date()
-  await tx
-    .update(drugs)
-    .set({
-      ...dossierToRow(payload),
-      revisionCount: sql`${drugs.revisionCount} + 1`,
-      lastEditedAt: now,
-      lastEditedBy: author,
-      updatedAt: now,
-    })
-    .where(eq(drugs.id, drugId))
 }

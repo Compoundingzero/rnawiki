@@ -1,16 +1,17 @@
-# Deploying RNAwiki
+# Deploying RNAWiki
 
-Merge to `main` → Railway builds and deploys. That is the whole flow; everything below is what to
-know when it goes wrong.
+Merging to `main` starts the Railway build and deployment. This page records the service layout,
+source-check schedule, required environment variables and recovery steps.
 
-## The service
+## The services
 
-|             |                                                                |
-| ----------- | -------------------------------------------------------------- |
-| Project     | **RNAwiki** (`328c5ae7-2ccb-4d37-8524-ba7029daddae`)           |
-| App service | **RNAwiki** — capital R-N-A, and the CLI is case-sensitive     |
-| Database    | **Postgres** service, private host `postgres.railway.internal` |
-| Domain      | https://rnawiki.com                                            |
+|                      |                                                                |
+| -------------------- | -------------------------------------------------------------- |
+| Project              | **RNAwiki** (`328c5ae7-2ccb-4d37-8524-ba7029daddae`)           |
+| Web service          | **RNAwiki** — capital R-N-A, and the CLI is case-sensitive     |
+| Source-check service | **RNAwiki source sync** — scheduled worker, not a web server   |
+| Database             | **Postgres** service, private host `postgres.railway.internal` |
+| Domain               | https://rnawiki.com                                            |
 
 ## What a deploy does
 
@@ -22,6 +23,48 @@ The healthcheck is `/healthz`, which returns a bare `200 ok` and deliberately **
 database**. Liveness and readiness are different questions: a transient database blip must not roll
 back an otherwise-good deploy.
 
+## Scheduled ClinicalTrials.gov checks
+
+The separate source-check service uses [`railway.source-sync.toml`](../railway.source-sync.toml).
+Railway starts it every six hours with a bounded batch of 25 records and four concurrent requests:
+
+```text
+npm run sync:clinical-trials -- --limit 25 --concurrency 4
+```
+
+The web service is the normal migration owner. The worker repeats the same migration command as a
+pre-deploy guard because Railway may deploy the two services independently. A worker version never
+starts until the additive migration chain for that version has completed; do not remove this guard
+or replace it with a manually timed deployment assumption.
+
+The worker selects only due ClinicalTrials.gov sources, prints one JSON summary, closes its database
+pool and exits. Exit code `0` means every selected source was checked or safely replayed. A non-zero
+exit means at least one source failed, so Railway records a failed cron run and retries the process
+once. Configure a Railway deployment-failure notification for this service; without that external
+notification, failures are logged but nobody is paged.
+
+This is deliberately narrower than “monitoring every source.” At present, scheduled checks support
+ClinicalTrials.gov records with an NCT identifier. Papers, regulatory records and sponsor pages are
+stored as sources but are not checked by this worker.
+
+After each deployment, confirm both the schedule and a successful worker exit in Railway. The JSON
+summary includes selected, succeeded, replayed and failed counts. A zero selected count is healthy:
+it means no registered source was due. Repeated failures or any record past its stored
+`next_check_due_at` need operator attention.
+
+To add the first real programme/source pair for an existing medicine, always preview before writing:
+
+```bash
+npm run onboard:clinical-trial -- --medicine inclisiran --nct NCT03399370
+npm run onboard:clinical-trial -- --medicine inclisiran --nct NCT03399370 --commit
+```
+
+The command verifies the medicine/intervention match against the official registry response. It
+creates an identified programme, trial, source snapshot and freshness schedule only. It never
+creates a claim, evidence answer, reviewer or conclusion. See
+[`clinical-trial-programme-onboarding.md`](clinical-trial-programme-onboarding.md) for the complete
+safety contract.
+
 ## Environment
 
 | Variable         | Notes                                                                    |
@@ -29,28 +72,56 @@ back an otherwise-good deploy.
 | `DATABASE_URL`   | Set by Railway's service reference. Uses the private host at runtime.    |
 | `SESSION_SECRET` | ≥ 32 characters or `lib/session.ts` throws on the first session request. |
 | `SITE_URL`       | `https://rnawiki.com`. Feeds `metadataBase`, the sitemap and JSON-LD.    |
-| `SITE_NAME`      | `RNAwiki`.                                                               |
+| `SITE_NAME`      | `RNAWiki`.                                                               |
+
+## Creating the first administrator
+
+Registration never accepts an administrator, steward or trust-level flag. Create the intended
+owner's ordinary account through the normal registration flow, verify the email spelling, then run
+the one-time bootstrap command inside the production network:
+
+```bash
+npm run admin:bootstrap -- \
+  --email owner@example.org \
+  --confirm-email owner@example.org \
+  --reason "Initial production administrator"
+```
+
+This command commits immediately; there is no preview mode. It promotes only an existing account,
+requires the address twice plus an 8–500 character reason, and succeeds only while the database has
+zero administrators and no earlier bootstrap event. A database-wide transaction lock makes two
+simultaneous attempts serialize: one may succeed and every later attempt refuses. The immutable
+role event records the target, actor, previous/next state, reason and database-set time.
+
+The application currently has no general role-management route. Later administrator or steward
+changes are therefore unsupported rather than silently performed by an account field or signup
+payload. Do not use ad hoc SQL as an application workflow; add an independently authorized,
+append-only role-change process before such changes are needed. As with all PostgreSQL-enforced
+guards, a database owner or superuser remains an infrastructure trust root and must be access
+controlled separately.
 
 ## Running scripts against production
 
-`postgres.railway.internal` resolves **only inside Railway's network**. From a laptop you need the
-Postgres service's `DATABASE_PUBLIC_URL`, which goes through a TCP proxy:
+`postgres.railway.internal` resolves **only inside Railway's network**. The safest operator path is
+to run ingestion inside that private network. If a public Postgres proxy is unavoidable, pin the
+database certificate and use a purpose-limited account rather than the application owner:
 
 ```bash
-PU=$(railway variables --service Postgres --kv | grep '^DATABASE_PUBLIC_URL=' | cut -d= -f2-)
-DATABASE_URL="$PU" DATABASE_SSL_NO_VERIFY=true npx tsx scripts/ingest/run.ts
+DATABASE_URL="$INGEST_DATABASE_URL" \
+PGSSLROOTCERT=/absolute/path/to/postgres-ca.pem \
+npx tsx scripts/ingest/run.ts
 ```
 
-`DATABASE_SSL_NO_VERIFY=true` is needed because Railway's Postgres template serves a **self-signed
-certificate and publishes no CA**, so verification against the public host cannot succeed out of the
-box. It warns on every start, on purpose. The better answer is `PGSSLROOTCERT` pointing at the
-server certificate; the escape hatch exists because a default nobody chose is a default nobody can
-be said to have accepted.
+RNAWiki has no certificate-verification bypass. If the public endpoint uses a self-signed
+certificate, obtain and verify that certificate out of band, store it securely, and point
+`PGSSLROOTCERT` at it. The scheduled dataset workflow requires the same certificate in the
+`DATABASE_CA_CERT` secret and a read-only connection string in `DATASET_DATABASE_URL`; it fails if
+either is missing.
 
 A full corpus load over the proxy takes a few minutes. It is safe to re-run: every write is an
 upsert keyed on slug, and the loader refuses to overwrite a curated dossier's narrative fields.
 
-## The trap that will cost you an afternoon
+## Build-time database access
 
 **Railway's build container cannot reach the database.** `postgres.railway.internal` resolves at
 runtime only. Any DB-backed route without a dynamic segment must declare:
@@ -65,16 +136,44 @@ Miss one and the production build fails while passing perfectly on your machine.
 ## Rolling back
 
 Railway keeps previous deploys; redeploy one from the dashboard or `railway redeploy`. **A rollback
-does not undo a migration.** Migrations here are additive, so an older image runs against a newer
-schema without complaint — but if you ever write a destructive one, take a backup first:
+does not undo a migration.** Existing audit rows are preserved, but an older image may not understand
+new enum values, tables or publication rules. Read the migration-specific stop conditions below and
+prefer a corrected forward deployment. Take a verified backup before any manual database change:
 
 ```bash
-PGSSLMODE=require psql "$PU" -t -A -c \
+PGSSLMODE=verify-full \
+PGSSLROOTCERT=/absolute/path/to/postgres-ca.pem \
+psql "$BACKUP_DATABASE_URL" -t -A -c \
   "SELECT coalesce(json_agg(row_to_json(d))::text,'[]') FROM drugs d" > backup.json
 ```
 
+`BACKUP_DATABASE_URL` must belong to a purpose-limited account that can read the required tables
+but cannot change them. Obtain and verify the CA file out of band; do not weaken certificate
+verification for a backup.
+
 `pg_dump` will refuse if your client is older than the server (Railway runs Postgres 18); a JSON
 export through `psql` is version-agnostic and this database is small enough for it.
+
+Migration 0010 deserves an extra publication stop even though it preserves legacy rows. It adds
+digest-bound mechanism/timeline tables and replaces the dependency-surface enum and publication
+validator functions. An older image does not understand those rows. If the 0010 application must be
+rolled back, disable canonical presentation authoring, preparation and publication; leave the 0010
+schema and audit rows in place; and deploy a corrected forward migration. Do not delete presentation
+rows to make the older image appear compatible. The exact export list, function/trigger restoration
+order and enum/table downgrade order are in
+[`programme-publication-bundles.md`](programme-publication-bundles.md#migration-0010-rollback-and-forward-restore).
+
+Migration 0012 adds append-only physician-verification, feedback-resolution and first-admin audit
+records; database-derived accepted/rejected contribution counters; and the task-bound
+ClinicalTrials.gov source-refresh workflow. Pre-0012 feedback marked resolved is reopened because
+it has no trustworthy actor, time or reason. Pre-0012 physician badge decisions are returned to
+`none` because the old submission path did not retain the professional name and workplace email
+needed for an auditable review; affected users must resubmit. The migration does not invent those
+missing facts. Export these operational audit tables and contribution review states before any
+rollback. It also replaces the contribution-type enum transactionally to add `SOURCE_REFRESH`; an
+older image does not understand those proposals. Do not delete or rewrite them to make an older
+application image appear compatible; stop private review/source-refresh writes and deploy a
+corrected forward migration.
 
 ## After a deploy
 
@@ -82,4 +181,5 @@ export through `psql` is version-agnostic and this database is small enough for 
 curl -sI https://rnawiki.com/healthz          # 200
 curl -s https://rnawiki.com/api/search?q=metf # returns Metformin
 railway logs --service RNAwiki | tail -20     # migrations ran, server ready
+# In Railway, also inspect the latest `RNAwiki source sync` cron run and its JSON summary.
 ```

@@ -1,20 +1,7 @@
 'use client'
 
-/**
- * The feedback dialog — a port of the master reference wireframe's
- * `src/components/FeedbackModal.tsx`. Layout, the Idea / Data Fix / Request switcher, the
- * per-type placeholders, the optional email field and the success state are the reference's,
- * class for class.
- *
- * The divergence is that it sends. The reference's `handleSubmit` set `isSubmitted` and closed the
- * dialog 1.5 seconds later; nothing left the browser, so every reader who reported a wrong trial
- * figure was thanked for nothing. Here it POSTs to `/api/feedback` and the success screen is drawn
- * only after a 201 comes back. A failure says so and keeps what was typed, because the one thing
- * worse than a dropped correction is a dropped correction the writer thinks was received.
- *
- * `drugSlug` is filled in from the URL when the reader is on a dossier, so a correction arrives
- * attached to the record it is about instead of as a floating sentence.
- */
+/** Feedback is saved through `/api/feedback`. On medicine routes, the route slug is included so a
+ * correction reaches the right record. Failed submissions keep the reader's text in the form. */
 
 import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
@@ -44,12 +31,12 @@ function drugSlugFrom(pathname: string): string | undefined {
 
 function placeholderFor(type: FeedbackType): string {
   if (type === 'correction') {
-    return 'Note any clinical trial stat, price discrepancy, or citation needing adjustment...'
+    return 'Tell us which medicine, number, price, or source looks wrong...'
   }
   if (type === 'request') {
-    return 'Which RNA therapeutic or gene target should we audit next?'
+    return 'Which medicine should RNAWiki add or review next?'
   }
-  return 'How can we make this platform simpler and more useful for you?'
+  return 'How could RNAWiki be clearer or more useful to you?'
 }
 
 const TYPE_TAB_CLASS =
@@ -57,6 +44,10 @@ const TYPE_TAB_CLASS =
 
 export function FeedbackModal() {
   const { openModal, setOpenModal } = useApp()
+  const openModalRef = useRef(openModal)
+  openModalRef.current = openModal
+  const modalGenerationRef = useRef(0)
+  const requestControllerRef = useRef<AbortController | null>(null)
   const pathname = usePathname()
   const isOpen = openModal === 'feedback'
   const headingId = useId()
@@ -95,51 +86,109 @@ export function FeedbackModal() {
     setError(null)
   }
 
+  useEffect(() => {
+    modalGenerationRef.current += 1
+    requestControllerRef.current?.abort()
+    requestControllerRef.current = null
+    clearDismissTimer()
+    if (!isOpen) {
+      setFeedbackType('suggestion')
+      setFeedbackText('')
+      setUserEmail('')
+      setIsSending(false)
+      setIsSubmitted(false)
+      setError(null)
+    }
+  }, [isOpen])
+
   const handleClose = () => {
+    modalGenerationRef.current += 1
+    requestControllerRef.current?.abort()
+    requestControllerRef.current = null
     reset()
-    setOpenModal(null)
+    if (openModalRef.current === 'feedback') setOpenModal(null)
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (isSending) return
+    if (isSending || openModalRef.current !== 'feedback') return
 
     const message = feedbackText.trim()
     if (!message) {
-      setError('Write the note first — an empty message says nothing we can act on.')
+      setError('Please write a message before sending.')
       return
     }
 
     setError(null)
+    requestControllerRef.current?.abort()
+    const controller = new AbortController()
+    requestControllerRef.current = controller
+    const modalGeneration = modalGenerationRef.current
     setIsSending(true)
     try {
       const email = userEmail.trim()
       const drugSlug = drugSlugFrom(pathname)
-      await api.sendFeedback({
-        type: feedbackType,
-        message,
-        ...(email ? { email } : {}),
-        ...(drugSlug ? { drugSlug } : {}),
-      })
+      await api.sendFeedback(
+        {
+          type: feedbackType,
+          message,
+          ...(email ? { email } : {}),
+          ...(drugSlug ? { drugSlug } : {}),
+        },
+        controller.signal,
+      )
+      if (
+        controller.signal.aborted ||
+        modalGenerationRef.current !== modalGeneration ||
+        openModalRef.current !== 'feedback'
+      ) {
+        return
+      }
       setIsSubmitted(true)
-      dismissTimer.current = window.setTimeout(handleClose, SUCCESS_DISMISS_MS)
+      dismissTimer.current = window.setTimeout(() => {
+        if (modalGenerationRef.current !== modalGeneration || openModalRef.current !== 'feedback') {
+          return
+        }
+        modalGenerationRef.current += 1
+        reset()
+        setOpenModal(null)
+      }, SUCCESS_DISMISS_MS)
     } catch (thrown) {
-      if (thrown instanceof ApiError && thrown.status === 429) {
-        setError('You have sent a few already today — try again later.')
-      } else {
-        setError(
-          thrown instanceof Error
-            ? thrown.message
-            : 'That could not be sent. Your note is still here — try again.',
-        )
+      if (
+        !controller.signal.aborted &&
+        modalGenerationRef.current === modalGeneration &&
+        openModalRef.current === 'feedback'
+      ) {
+        if (thrown instanceof ApiError && thrown.status === 429) {
+          setError('You have sent a few already today — try again later.')
+        } else {
+          setError(
+            thrown instanceof Error
+              ? thrown.message
+              : 'That could not be sent. Your note is still here — try again.',
+          )
+        }
       }
     } finally {
-      setIsSending(false)
+      if (
+        !controller.signal.aborted &&
+        modalGenerationRef.current === modalGeneration &&
+        openModalRef.current === 'feedback'
+      ) {
+        requestControllerRef.current = null
+        setIsSending(false)
+      }
     }
   }
 
   return (
-    <ModalShell isOpen={isOpen} onClose={handleClose} labelledBy={headingId} maxWidth="max-w-sm">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleClose}
+      labelledBy={headingId}
+      maxWidth="max-w-sm"
+      closeDisabled={isSending}
+    >
       <div className="p-5 sm:p-6 space-y-4">
         {isSubmitted ? (
           <div className="py-6 text-center space-y-2 animate-zoom-in">
@@ -147,10 +196,10 @@ export function FeedbackModal() {
               <CheckCircle2 className="w-5 h-5" aria-hidden="true" />
             </div>
             <h3 id={headingId} className="text-sm font-bold text-[#1D1D1F]">
-              Feedback Received
+              Feedback received
             </h3>
             <p className="text-xs text-[#6E6E73] max-w-xs mx-auto">
-              Thank you for helping improve open science medicine.
+              Thanks. Your message has been saved for the RNAWiki team.
             </p>
           </div>
         ) : (
@@ -161,10 +210,10 @@ export function FeedbackModal() {
               </div>
               <div>
                 <h3 id={headingId} className="text-sm font-bold text-[#1D1D1F]">
-                  Send Feedback
+                  Send feedback
                 </h3>
-                <p className="text-[11px] text-[#86868B]">
-                  Quick suggestion, correction, or drug request.
+                <p className="text-[11px] text-[#6E6E73]">
+                  Share a suggestion, report a correction, or request a medicine.
                 </p>
               </div>
             </div>
@@ -193,7 +242,7 @@ export function FeedbackModal() {
                     : 'hover:text-[#1D1D1F]'
                 }`}
               >
-                Data Fix
+                Correction
               </button>
               <button
                 type="button"
@@ -256,7 +305,7 @@ export function FeedbackModal() {
               ) : (
                 <>
                   <Send className="w-3 h-3 shrink-0" aria-hidden="true" />
-                  <span>Submit Feedback</span>
+                  <span>Send feedback</span>
                 </>
               )}
             </button>

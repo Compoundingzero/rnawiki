@@ -1,16 +1,5 @@
-// Layer 3 — laboratory protocol workflow validation.
-//
-// A protocol is a directed graph: node = step, edge = "this step cannot start until that one
-// finished". The reference wireframe approximated this by comparing each step's phase with the
-// phase of the step printed above it, which is not a graph check at all — it cannot see a cycle,
-// cannot see a dependency pointing at a step that was deleted, and reports a false violation for
-// two genuinely parallel branches that happen to be listed in an inconvenient order. This module
-// builds the real graph, topologically sorts it with Kahn's algorithm, and checks phase
-// progression along each dependency edge rather than along the printed order.
-//
-// Everything here is a pure function of the steps passed in. No clock, no randomness, no I/O:
-// the same workflow yields the same Layer3Result forever, which is what makes the verification
-// hash in index.ts meaningful.
+// Layer 3 validates the stored laboratory workflow as a directed graph. It detects dangling
+// dependencies, cycles, and invalid phase progression without using clocks or external state.
 
 import type { LaboratoryProtocolStep, ProtocolPhase } from '@/lib/types'
 import type { Diagnostic, Layer3Result, ProtocolGraphEdge } from './types'
@@ -104,7 +93,7 @@ function emptyResult(diagnostics: Diagnostic[]): Layer3Result {
 export function validateLayer3(steps: LaboratoryProtocolStep[]): Layer3Result {
   const diagnostics: Diagnostic[] = []
 
-  // An undocumented protocol is not an invalid protocol. RNAwiki is a wiki: most records start as
+  // An undocumented protocol is not an invalid protocol. RNAWiki is a wiki: most records start as
   // stubs and gain a workflow later, so an empty workflow warns and passes. Failing here would
   // block every edit to every record that has not been curated yet.
   if (steps.length === 0) {

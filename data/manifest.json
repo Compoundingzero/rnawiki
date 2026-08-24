@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-08-22T01:23:08.877Z",
+  "generatedAt": "2026-08-23T09:25:42.842Z",
   "source": "https://rnawiki.com",
   "licence": "CC BY-SA 4.0 — see LICENSE-DATA",
   "counts": {
-    "total": 9859,
+    "total": 9858,
     "flagship": 489,
-    "curated": 9370,
+    "curated": 9369,
     "stub": 0,
     "withStructure": 3204,
-    "withTrials": 6515,
+    "withTrials": 6514,
     "withPrice": 946,
     "machineVerified": 3213,
     "aliases": 16338
@@ -17,68 +17,68 @@
     {
       "path": "data/drugs/drugs-001.ndjson",
       "rows": 1000,
-      "bytes": 1224961,
-      "sha256": "eeef0b1b18e6b27fa69d9ce5694a5316f4909df22ffe97292c39da8a7939f146"
+      "bytes": 1065563,
+      "sha256": "bf54c17f1b3d2b5a1c7b0cac634feca426353459020db131bce04bcf644701a2"
     },
     {
       "path": "data/drugs/drugs-002.ndjson",
       "rows": 1000,
-      "bytes": 1183460,
-      "sha256": "c1f4026cce1c5bcf63512b2d430c528da4e897754cc81463119d3fd245e7612b"
+      "bytes": 1024341,
+      "sha256": "20f26647339bbafe16cdc460d2ac062804e1d0892267ee0e6fd7cc29052b1417"
     },
     {
       "path": "data/drugs/drugs-003.ndjson",
       "rows": 1000,
-      "bytes": 1233703,
-      "sha256": "69a1eecfac2dc6583b1781fff2487f66c9ce088efc6c2c84d1680e772a262912"
+      "bytes": 1071635,
+      "sha256": "c999dea855dc27e9f120db51cd8e60d2c3201df9334887b82370c4dca1f27bb5"
     },
     {
       "path": "data/drugs/drugs-004.ndjson",
       "rows": 1000,
-      "bytes": 1340874,
-      "sha256": "0c415521bbf922323eea153fc98212a5bf3c8f3214ed97a5bdecedfac1c9d176"
+      "bytes": 1165667,
+      "sha256": "c6696c9519234e60dc032ae7315b924446b1c48e1e78727335b77ad5ab7097b0"
     },
     {
       "path": "data/drugs/drugs-005.ndjson",
       "rows": 1000,
-      "bytes": 1191781,
-      "sha256": "c8af130a148b89837fa995cdcc328d07bb47a899943641188db9a8e71d2705f6"
+      "bytes": 1030875,
+      "sha256": "36b3b832df657cebf709d362b7684917b44b8d910de5001f5c5d91eef93707ec"
     },
     {
       "path": "data/drugs/drugs-006.ndjson",
       "rows": 1000,
-      "bytes": 1253661,
-      "sha256": "a97cb3c8d2a6576280866d7009ee14c9c4ffca32051f31e5ed0f6308e9a2011e"
+      "bytes": 1086727,
+      "sha256": "ef803064934fb5606738643ee2f25a7d9243533260757add5c7178dffab7280b"
     },
     {
       "path": "data/drugs/drugs-007.ndjson",
       "rows": 1000,
-      "bytes": 1345739,
-      "sha256": "977bdf3513ddcb7d4cb71ce24805117db06cc16e081dd8abcb87e0493944bd34"
+      "bytes": 1172792,
+      "sha256": "ce41ff84b088d2efd7716337be25954d9da1a442466922d43451ba6d11b593ab"
     },
     {
       "path": "data/drugs/drugs-008.ndjson",
       "rows": 1000,
-      "bytes": 1243189,
-      "sha256": "ddcd2e99519962dae557cfbe6f120b571dee03d7f6d91d9b65655db66e76ccf6"
+      "bytes": 1075695,
+      "sha256": "563f3eafe565b1a7d8dbe39c97ba8ed8aaaac0b94a57084cae2f7a47dd46550d"
     },
     {
       "path": "data/drugs/drugs-009.ndjson",
-      "rows": 1000,
-      "bytes": 1238613,
-      "sha256": "1565a099a873049f177a969de395c29ff53ea10b54cbdfb26e786c65819a4a26"
+      "rows": 999,
+      "bytes": 1076261,
+      "sha256": "2010caef3143e7bb6c348bb912bad3658bf2de6c25e5345026950625b840d499"
     },
     {
       "path": "data/drugs/drugs-010.ndjson",
       "rows": 859,
-      "bytes": 1126967,
-      "sha256": "613f0c8363eb45fec71521e3cc296358fed5236d3a6b8e03a3bbb7368c48ecec"
+      "bytes": 979522,
+      "sha256": "e12e18e01fb73e4a104e4ea80fae681236d76213e33e8262517e00333f90f0da"
     },
     {
       "path": "data/drugs.csv",
-      "rows": 9859,
-      "bytes": 2271995,
-      "sha256": "9bf3fc3e2edf53dba300cbe662b3be26db89128318669a87d3a5611925a33acd"
+      "rows": 9858,
+      "bytes": 2230841,
+      "sha256": "8aa5763320a082434d35a600eb431299397c595365dfc21d1bb3d366591429ad"
     }
   ]
 }

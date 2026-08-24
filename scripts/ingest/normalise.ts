@@ -1,4 +1,9 @@
 import type { ApprovalStatus, DrugModality } from '@/lib/types'
+import {
+  cleanSourceLabelText,
+  isNegatedLabelUseAt,
+  isOnlyNegatedLabelPhrase,
+} from '@/lib/public-data-integrity'
 
 /**
  * The judgement layer of the ingest, and the file most worth getting right: everything downstream
@@ -956,19 +961,21 @@ export function trimToSentence(text: string, max: number): string {
 const INDICATION_PATTERNS: ReadonlyArray<RegExp> = [
   // Most specific first. The order is the whole design: a label often satisfies several of these,
   // and the earlier ones name the CONDITION while the later ones name the setting it is used in.
-  /\bfor\s+the\s+treatment\s+of\s+([^.;:•]{4,140})/i,
-  /\bfor\s+the\s+(?:management|prevention|prophylaxis|relief|reduction|control|maintenance)\s+of\s+([^.;:•]{4,140})/i,
-  /\bindicated\s+to\s+(?:reduce|lower|improve|increase|prevent|treat|control|relieve|slow|delay|maintain)\s+([^.;:•]{4,140})/i,
+  /\bfor\s+the\s+treatment\s+of\s+([^.;:•]+)/i,
+  /\bindicated\s+for\s+prophylaxis\s+to\s+prevent\s+([^.;:•]+)/i,
+  /\b(?:for\s+(?:the\s+)?)?(?:add-on\s+)?maintenance\s+treatment\s+of\s+([^.;:•]+)/i,
+  /\bfor\s+the\s+(?:management|prevention|prophylaxis|relief|reduction|control|maintenance)\s+of\s+([^.;:•]+)/i,
+  /\bindicated\s+to\s+(?:reduce|lower|improve|increase|prevent|treat|control|relieve|slow|delay|maintain)\s+([^.;:•]+)/i,
   // "indicated as an adjunct to diet and exercise to improve glycemic control in adults with
   // type 2 diabetes" -- the purpose clause after the adjunct preamble is the useful part.
-  /\bindicated\s+as\s+an\s+adjunct[^.;:]*?\bto\s+(?:reduce|lower|improve|increase|prevent|treat|control)\s+([^.;:•]{4,140})/i,
-  /\bindicated\s+in\s+(?:adults?|adult\s+patients?|pediatric\s+patients?|patients?|children|women|men)\s+(?:and\s+\w+\s+)?with\s+([^.;:•]{4,140})/i,
-  /\bindicated\s+for\s+(?:use\s+in\s+)?(?:adults?|patients?)?\s*(?:with\s+)?([^.;:•]{4,140})/i,
-  /\bfor\s+the\s+temporary\s+relief\s+of\s+([^.;:•]{4,140})/i,
-  /^(?:uses?|purposes?)[:\s]+([^.;:•]{4,140})/i,
+  /\bindicated\s+as\s+an\s+adjunct[^.;:]*?\bto\s+(?:reduce|lower|improve|increase|prevent|treat|control)\s+([^.;:•]+)/i,
+  /\bindicated\s+in\s+(?:adults?|adult\s+patients?|pediatric\s+patients?|patients?|children|women|men)\s+(?:and\s+\w+\s+)?with\s+([^.;:•]+)/i,
+  /\bindicated\s+for\s+(?:use\s+in\s+)?(?:adults?|patients?)?\s*(?:with\s+)?([^.;:•]+)/i,
+  /\bfor\s+the\s+temporary\s+relief\s+of\s+([^.;:•]+)/i,
+  /^(?:uses?|purposes?)[:\s]+([^.;:•]+)/i,
   // "…is indicated in combination with a reduced calorie diet…: to reduce the risk of major
   // adverse cardiovascular events" — the clause that matters follows the colon, not the verb.
-  /\bindicated\b[^.]{0,120}?:\s*(?:•\s*)?to\s+(?:reduce|lower|improve|increase|prevent|treat|control)\s+([^.;:•]{4,140})/i,
+  /\bindicated\b[^.]{0,120}?:\s*(?:•\s*)?to\s+(?:reduce|lower|improve|increase|prevent|treat|control)\s+([^.;:•]+)/i,
 ]
 
 /**
@@ -977,6 +984,7 @@ const INDICATION_PATTERNS: ReadonlyArray<RegExp> = [
  * these guard against a pattern matching the setting instead of the condition.
  */
 const INDICATION_REJECTS: ReadonlyArray<RegExp> = [
+  /^(?:not|never|no)\b/i,
   /^(?:the\s+)?(?:following|treatment|use|uses|adults?|adult\s+patients?|patients?|pediatric|children|women|men)\s*$/i,
   /^combination\b/i,
   /^(?:an?\s+)?adjunct\b/i,
@@ -995,37 +1003,49 @@ const INDICATION_TAIL =
 
 export function extractPatientFriendlyIndication(labelIndication: string | undefined): string {
   if (!labelIndication) return ''
-  const text = labelIndication.replace(/\s+/g, ' ').trim()
+  const text = cleanSourceLabelText(labelIndication)
 
   for (const pattern of INDICATION_PATTERNS) {
-    const match = pattern.exec(text)
-    const captured = match?.[1]
-    if (!captured) continue
+    // A label can contain the same construction first in a limitation and later as a positive use
+    // (or the reverse). Iterate every match so rejecting the negated one does not hide the valid
+    // source clause. The capture consumes the whole clause; length is checked afterwards, which
+    // means an overlong clause is omitted instead of being sliced through a word at character 140.
+    const matches = text.matchAll(new RegExp(pattern.source, `${pattern.flags.replace('g', '')}g`))
+    for (const match of matches) {
+      const captured = match[1]
+      if (!captured) continue
+      const capturedOffset = match[0].lastIndexOf(captured)
+      const capturedIndex = (match.index ?? 0) + Math.max(0, capturedOffset)
+      if (isNegatedLabelUseAt(text, capturedIndex)) continue
 
-    // Clean in passes, not one chain: a parenthetical in the middle ("spinal muscular atrophy
-    // (SMA) in pediatric and adult patients") hides the tail from a single-pass strip, and
-    // removing the tail then exposes a dangling preposition that needs its own pass.
-    let phrase = captured.trim()
-    for (let pass = 0; pass < 3; pass += 1) {
-      phrase = phrase
-        .replace(INDICATION_TAIL, '')
-        .replace(
-          /^(?:adults?|adult|pediatric|paediatric|patients?|children|infants?)(?:\s+(?:and|or)\s+\w+)*(?:\s+patients?)?\s+with\s+/i,
-          '',
-        )
-        .replace(/\s*\([^)]*\)\s*$/, '')
-        .replace(/\s+(?:in|for|with|as|to|of|and|or|the|a|an)\s*$/i, '')
-        .replace(/[,;:]\s*$/, '')
-        .trim()
+      // Clean in passes, not one chain: a parenthetical in the middle ("spinal muscular atrophy
+      // (SMA) in pediatric and adult patients") hides the tail from a single-pass strip, and
+      // removing the tail then exposes a dangling preposition that needs its own pass.
+      let phrase = captured.trim()
+      for (let pass = 0; pass < 3; pass += 1) {
+        phrase = phrase
+          .replace(INDICATION_TAIL, '')
+          .replace(
+            /^(?:adults?|adult|pediatric|paediatric|patients?|children|infants?)(?:\s+(?:and|or)\s+\w+)*(?:\s+patients?)?(?:\s+aged?\s+\d+(?:\s+years?)?(?:\s+and\s+older)?)?\s+with\s+/i,
+            '',
+          )
+          .replace(/\s+and\s+with\s+/gi, ' with ')
+          .replace(/\s*\[see\s+[^\]]+\]\s*$/i, '')
+          .replace(/\s*\([^)]*\)\s*$/, '')
+          .replace(/\s+(?:in|for|with|as|to|of|and|or|the|a|an)\s*$/i, '')
+          .replace(/[,;:]\s*$/, '')
+          .trim()
+      }
+
+      if (phrase.length < 4 || phrase.length > 140) continue
+      if (!/[a-z]{3}/i.test(phrase)) continue
+      if (INDICATION_REJECTS.some((reject) => reject.test(phrase))) continue
+      if (isOnlyNegatedLabelPhrase(text, phrase)) continue
+      // A capture that is mostly the drug's own brand name is the label restating itself.
+      if (/^[A-Z][A-Z0-9-]{3,}\s*(?:®|™)?\s*$/.test(phrase)) continue
+
+      return phrase.charAt(0).toUpperCase() + phrase.slice(1)
     }
-
-    if (phrase.length < 4 || phrase.length > 140) continue
-    if (!/[a-z]{3}/i.test(phrase)) continue
-    if (INDICATION_REJECTS.some((reject) => reject.test(phrase))) continue
-    // A capture that is mostly the drug's own brand name is the label restating itself.
-    if (/^[A-Z][A-Z0-9-]{3,}\s*(?:®|™)?\s*$/.test(phrase)) continue
-
-    return phrase.charAt(0).toUpperCase() + phrase.slice(1)
   }
 
   return ''

@@ -1024,7 +1024,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why is it used for chemotherapy sickness?',
-        a: 'Because a National Cancer Institute trial tested it and it worked. Three hundred and eighty patients starting cisplatin or cyclophosphamide-doxorubicin received olanzapine or placebo on top of the standard three-drug antiemetic regimen; 37% on olanzapine had no nausea at all over the five days after chemotherapy against 22% on placebo, and complete response was 64% against 41%. Five per cent had severe sedation on day two. Antiemesis is not an approved indication in the United States, so this is a use supported by a large public trial and not by a licence, which is an unusual combination and worth stating plainly.',
+        a: 'Because a National Cancer Institute trial tested it and it worked. Three hundred and eighty patients starting cisplatin or cyclophosphamide-doxorubicin received olanzapine or placebo on top of the standard three-drug antiemetic regimen; 37% on olanzapine had no nausea at all over the five days after chemotherapy against 22% on placebo, and complete response was 64% against 41%. Five per cent had severe sedation on day two. Antiemesis is not an approved indication in the United States, so this is a use supported by a large public trial and not by a licence, which is an unusual combination.',
       },
       {
         q: 'Does it treat anorexia nervosa?',
@@ -1706,7 +1706,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
           action:
             'Tell someone close to you that this drug can cause sudden compulsive urges, and ask them to say something if they notice new gambling, spending, binge eating or sexual behaviour.',
           patientImpact:
-            'The United States label states plainly that patients may not recognise these behaviours as abnormal, which is why it directs prescribers to ask specifically rather than wait for a report. In some but not all cases the urges stopped when the amount was reduced or the drug was discontinued.',
+            'The United States label states that patients may not recognise these behaviours as abnormal, which is why it directs prescribers to ask specifically rather than wait for a report. In some but not all cases the urges stopped when the amount was reduced or the drug was discontinued.',
           clinicalPrecaution:
             'Impulse-control symptoms can also belong to the underlying illness, particularly in mania. That ambiguity is stated in the label and is a reason to raise it with a prescriber rather than to act on it alone.',
         },
@@ -2286,7 +2286,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In 505 patients with the depressed phase of bipolar disorder, six weeks of lurasidone alone improved the depression score by about fifteen points against about eleven on placebo. Both dose ranges tested gave the same result.',
         technicalDetails:
-          'NCT00868699 randomised 505 patients with bipolar I depression to a lower or higher lurasidone dose range or placebo for six weeks. Least-squares mean change from baseline in MADRS total score was -15.4 in both lurasidone arms against -10.7 on placebo, a mean difference of -4.6 for each arm, p<0.001 by mixed-model analysis. The absence of a dose-response gradient between the two ranges is itself worth stating: the higher range bought nothing on the primary endpoint.',
+          'NCT00868699 randomised 505 patients with bipolar I depression to a lower or higher lurasidone dose range or placebo for six weeks. Least-squares mean change from baseline in MADRS total score was -15.4 in both lurasidone arms against -10.7 on placebo, a mean difference of -4.6 for each arm, p<0.001 by mixed-model analysis. The absence of a dose-response gradient between the two ranges is informative: the higher range bought nothing on the primary endpoint.',
         evidenceSource:
           'NCT00868699 — Lurasidone, A 6-week Study of Patients With Bipolar I Depression (Monotherapy), posted results, Sumitomo Pharma America',
         measuredMetric:
@@ -2541,7 +2541,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is it as effective as olanzapine or risperidone?',
-        a: "No, and the pooled evidence says so plainly. Across 212 blinded trials and 43,049 patients, lurasidone's standardised mean difference against placebo for overall symptom change was 0.33, equal-fourteenth of fifteen drugs, against 0.59 for olanzapine and 0.56 for risperidone. It also came below chlorpromazine at 0.38 and haloperidol at 0.45. What lurasidone buys with that is the best QTc signal of the fifteen and a weight and metabolic profile near the favourable end. That is a real trade and it is worth making for some people, but it is a trade.",
+        a: 'A network meta-analysis of 212 blinded trials and 43,049 patients estimated a smaller average symptom effect for lurasidone than for olanzapine or risperidone: its standardised mean difference against placebo was 0.33, compared with 0.59 and 0.56. Lurasidone also had the most favourable QTc estimate of the fifteen drugs and a weight and metabolic profile near the favourable end. These are indirect pooled comparisons and cannot determine which trade-off is best for an individual.',
       },
       {
         q: 'Why is it approved for bipolar depression when most antipsychotics are not?',
@@ -2819,7 +2819,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Pfizer randomised 18,154 patients to ziprasidone or olanzapine and counted deaths over a year. The rates were the same. The authors then wrote that the study was neither powered nor designed to detect the rare arrhythmia that the QT warning is actually about.',
         technicalDetails:
-          'ZODIAC, registered as NCT00418171, was an open-label randomised post-marketing large simple trial in 18,154 patients with schizophrenia across 18 countries, with 9,077 in each arm. The primary outcome, non-suicide mortality within one year of initiating treatment, was 0.91 for ziprasidone and 0.90 for olanzapine, relative risk 1.02 (95% CI 0.76 to 1.39), confirmed across secondary and sensitivity analyses. The authors\' own conclusion states that the study excludes a relative risk larger than 1.39 with high probability, and then states plainly: "However, the study was neither powered nor designed to examine the risk of rare events like torsade de pointes." Torsade de pointes is the event the entire QT warning exists to prevent. A study that rules out a 39% increase in all non-suicide death has genuinely useful information in it, and it is not the same information as an absence of arrhythmia risk. Follow-up was by unblinded treating psychiatrists reporting vital status, and sudden death was a post hoc secondary analysis.',
+          'ZODIAC, registered as NCT00418171, was an open-label randomised post-marketing large simple trial in 18,154 patients with schizophrenia across 18 countries, with 9,077 in each arm. The primary outcome, non-suicide mortality within one year of initiating treatment, was 0.91 for ziprasidone and 0.90 for olanzapine, relative risk 1.02 (95% CI 0.76 to 1.39), confirmed across secondary and sensitivity analyses. The authors\' own conclusion states that the study excludes a relative risk larger than 1.39 with high probability, and then states: "However, the study was neither powered nor designed to examine the risk of rare events like torsade de pointes." Torsade de pointes is the event the entire QT warning exists to prevent. A study that rules out a 39% increase in all non-suicide death has genuinely useful information in it, and it is not the same information as an absence of arrhythmia risk. Follow-up was by unblinded treating psychiatrists reporting vital status, and sudden death was a post hoc secondary analysis.',
         evidenceSource: 'Strom BL et al., Am J Psychiatry 2011;168:193-201; NCT00418171',
         doi: '10.1176/appi.ajp.2010.08040484',
         inferredClaim:
@@ -3039,7 +3039,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is the QT warning something to actually worry about?',
-        a: 'It is measured, and the size of the measurement is known. A direct comparison study found ziprasidone added approximately 9 to 14 milliseconds more to the QTc than risperidone, olanzapine, quetiapine and haloperidol, and about 14 milliseconds less than thioridazine. Placebo-controlled trials showed roughly 10 milliseconds at the top approved daily amount. The label itself states that the link between QT prolongation and torsade de pointes is clearest for increases of 20 milliseconds and greater, and that smaller prolongations may still increase risk in susceptible people. That is the honest state of the evidence: a real and reproducible effect of a size that sits below the threshold where the danger is established, in a drug where combining it with other QT-prolonging medicines is a contraindication.',
+        a: 'It is measured, and the size of the measurement is known. A direct comparison study found ziprasidone added approximately 9 to 14 milliseconds more to the QTc than risperidone, olanzapine, quetiapine and haloperidol, and about 14 milliseconds less than thioridazine. Placebo-controlled trials showed roughly 10 milliseconds at the top approved daily amount. The label states that the link between QT prolongation and torsade de pointes is clearest for increases of 20 milliseconds and greater, while smaller prolongations may still increase risk in susceptible people. Ziprasidone therefore has a reproducible effect below the threshold where danger is established, and combining it with other QT-prolonging medicines is contraindicated.',
         auditNote:
           'The comparative QT statement is in section 1 of the label, not section 5, which is where a manufacturer would normally prefer it.',
       },
@@ -3151,7 +3151,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         "Paliperidone is not a new discovery. It is 9-hydroxyrisperidone, the molecule a person's liver already makes from risperidone, isolated and sold as a product of its own. Its own label states this in the mechanism section: paliperidone is the major active metabolite of risperidone.",
       whyItMatters:
-        "Anyone who has ever taken risperidone has had paliperidone in their bloodstream. That does not make the drug useless, and the long-acting injectable forms genuinely solved a delivery problem that risperidone's injectable did not. It does mean the efficacy question was largely settled before the first paliperidone trial was run, and it makes the fifteen-fold price difference between the two a fact worth stating plainly.",
+        "Anyone who has ever taken risperidone has had paliperidone in their bloodstream. That does not make the drug useless, and the long-acting injectable forms genuinely solved a delivery problem that risperidone's injectable did not. It does mean the efficacy question was largely settled before the first paliperidone trial was run, and it makes the fifteen-fold price difference between the two a relevant comparison.",
       whoTakesThis:
         'Adults and adolescents from age 12 with schizophrenia, and adults with schizoaffective disorder, which is the only drug-specific indication for that diagnosis in the United States. The injectable forms are used most where taking a daily tablet is the step that fails.',
       clinicalGoals:
@@ -3481,7 +3481,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'Superior to placebo on the PANSS at all doses; the label records that mean effects at all doses were fairly similar and higher doses only numerically superior',
         unreportedAdverseSignals:
-          'A five-fold dose range produced an essentially flat response, which the label states plainly and which argues against the intuition that a higher amount does more.',
+          'A five-fold dose range produced an essentially flat response, which the label states and which argues against the intuition that a higher amount does more.',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -3540,7 +3540,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does it cost fifteen times more than risperidone?',
-        a: 'The oral tablet is about a dollar at United States pharmacy acquisition cost against about six and a half cents for risperidone. The two figures come from the same CMS survey on the same date, and the difference is not a manufacturing one: both are moderately simple small molecules made by dozens of generic manufacturers. The honest answer is that the price reflects market position rather than production, and this page cannot tell you what either one costs to make, because no verifiable cost-of-production study for either molecule could be found and cited.',
+        a: 'The oral tablet is about a dollar at United States pharmacy acquisition cost against about six and a half cents for risperidone. The two figures come from the same CMS survey on the same date, and the difference is not a manufacturing one: both are moderately simple small molecules made by dozens of generic manufacturers. The price reflects market position rather than production, and this page cannot tell you what either one costs to make, because no verifiable cost-of-production study for either molecule could be found and cited.',
       },
       {
         q: 'What is the prolactin problem?',
@@ -3872,7 +3872,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Haloperidol carries the same boxed warning about deaths in elderly people with dementia that the newer drugs carry. The seventeen trials behind it were largely trials of those newer drugs, not of haloperidol.',
         technicalDetails:
-          'The boxed warning states that analyses of seventeen placebo-controlled trials with a modal duration of ten weeks, "largely in patients taking atypical antipsychotic drugs," revealed a risk of death 1.6 to 1.7 times that of placebo, with death in about 4.5% of drug-treated patients against about 2.6% on placebo, most deaths cardiovascular or infectious. It then states that observational studies suggest treatment with conventional antipsychotic drugs may increase mortality similarly, and that the extent to which the observational findings can be attributed to the drug rather than to characteristics of the patients is not clear. The warning is therefore honest about its own basis: randomised evidence for the newer drugs, observational evidence with acknowledged confounding for this one. The label states plainly that haloperidol is not approved for the treatment of patients with dementia-related psychosis.',
+          'The boxed warning states that analyses of seventeen placebo-controlled trials with a modal duration of ten weeks, "largely in patients taking atypical antipsychotic drugs," revealed a risk of death 1.6 to 1.7 times that of placebo, with death in about 4.5% of drug-treated patients against about 2.6% on placebo, most deaths cardiovascular or infectious. It then states that observational studies suggest treatment with conventional antipsychotic drugs may increase mortality similarly, and that the extent to which the observational findings can be attributed to the drug rather than to characteristics of the patients is not clear. The warning distinguishes randomised evidence for the newer drugs from observational evidence with acknowledged confounding for haloperidol. The label states that haloperidol is not approved for the treatment of patients with dementia-related psychosis.',
         evidenceSource:
           'United States prescribing information for haloperidol tablets, Boxed Warning, via the openFDA drug label endpoint',
         measuredMetric:
@@ -5551,7 +5551,7 @@ export const ENRICHED_BATCH_6_DOSSIERS: SeedDossier[] = [
       'Synthesised at Rhône-Poulenc in France in 1950 and licensed in the United States to Smith, Kline & French, whose successor company is now GlaxoSmithKline; the molecule has been generic for decades and the current pricing survey lists 89 products',
     targetGene: 'DRD2',
     targetProtein:
-      'Dopamine D2 receptor, blocked alongside a very wide range of other targets. The label describes strong antiadrenergic and weaker peripheral anticholinergic activity, slight ganglionic blocking action, and slight antihistaminic and antiserotonin activity, and states plainly that the precise mechanism by which its therapeutic effects are produced is not known.',
+      'Dopamine D2 receptor, blocked alongside a very wide range of other targets. The label describes strong antiadrenergic and weaker peripheral anticholinergic activity, slight ganglionic blocking action, and slight antihistaminic and antiserotonin activity, and states that the precise mechanism by which its therapeutic effects are produced is not known.',
     modality: 'Small Molecule',
     approvalStatus: 'FDA Approved',
     approvalYear: 1957,

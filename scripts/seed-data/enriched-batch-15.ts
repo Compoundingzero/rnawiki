@@ -113,7 +113,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Every alternative here lowers blood pressure, and the honest comparison between them is not how far the number falls but which pairing has been tested against events. That is where this product is weakest and where benazepril plus amlodipine is strongest: ACCOMPLISH randomised 11,506 high-risk patients and found the calcium-blocker pairing beat the diuretic pairing on hard outcomes. No equivalent trial exists for amlodipine plus valsartan. Diet and sodium restriction lower pressure by amounts that are real and measured, and they are complements to treatment rather than substitutes for it at the pressures that get treated.',
+        'Every alternative here lowers blood pressure, and the comparison between them is not how far the number falls but which pairing has been tested against events. That is where this product is weakest and where benazepril plus amlodipine is strongest: ACCOMPLISH randomised 11,506 high-risk patients and found the calcium-blocker pairing beat the diuretic pairing on hard outcomes. No equivalent trial exists for amlodipine plus valsartan. Diet and sodium restriction lower pressure by amounts that are real and measured, and they are complements to treatment rather than substitutes for it at the pressures that get treated.',
       conventionalRx: [
         {
           name: 'Benazepril plus amlodipine (Lotrel)',
@@ -529,7 +529,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Will this stop me having a stroke?',
-        a: 'The honest answer is that lowering blood pressure prevents strokes, and no trial has shown that this particular tablet does. The label says so in plain language: there are no controlled trials demonstrating risk reduction with amlodipine and valsartan. What exists is class evidence, from trials of amlodipine and of angiotensin receptor blockers separately, and the reasoning that it is the pressure reduction rather than the drug that does the work. The closest thing to direct evidence for a pairing of this shape is ACCOMPLISH, which found a 20% relative reduction in cardiovascular events — and used benazepril rather than valsartan.',
+        a: 'Lowering blood pressure prevents strokes, and no trial has shown that this particular tablet does. The label says so in plain language: there are no controlled trials demonstrating risk reduction with amlodipine and valsartan. What exists is class evidence, from trials of amlodipine and of angiotensin receptor blockers separately, and the reasoning that it is the pressure reduction rather than the drug that does the work. The closest thing to direct evidence for a pairing of this shape is ACCOMPLISH, which found a 20% relative reduction in cardiovascular events — and used benazepril rather than valsartan.',
       },
       {
         q: 'Why do my ankles swell, and does it mean fluid is building up?',
@@ -665,7 +665,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         'US$0.0214 per tablet at United States pharmacy acquisition cost (CMS NADAC, median across 88 listed generic products, survey effective 19 August 2026)',
       markupEstimate: '',
       openPatentNotes:
-        'Approved in the United States on 14 September 1995 under NDA 020297 and generic since 2007. At about two United States cents a tablet it is one of the cheapest life-extending drugs in existence, which is worth stating alongside the fact that the trials establishing it cost hundreds of millions of dollars to run.',
+        'Approved in the United States on 14 September 1995 under NDA 020297 and generic since 2007. At about two United States cents a tablet it is one of the cheapest life-extending drugs in existence; the trials establishing it cost hundreds of millions of dollars to run.',
       synthesisComplexity: 'Moderate',
       costSource: COST_OF_PRODUCTION_SOURCE,
       priceSource: NADAC_SOURCE,
@@ -1201,7 +1201,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'For heart failure the alternatives are the two other beta-blockers with their own mortality trials, and they are genuinely different drugs: carvedilol also blocks alpha-1 receptors and lowers blood pressure more, metoprolol succinate is beta-1 selective like bisoprolol but only in its controlled-release form. For hypertension alone, beta-blockers are no longer first-line in most guidelines, and the honest comparison is against the drug classes that displaced them.',
+        'For heart failure the alternatives are the two other beta-blockers with their own mortality trials, and they are genuinely different drugs: carvedilol also blocks alpha-1 receptors and lowers blood pressure more, metoprolol succinate is beta-1 selective like bisoprolol but only in its controlled-release form. For hypertension alone, beta-blockers are no longer first-line in most guidelines, and the comparison is against the drug classes that displaced them.',
       conventionalRx: [
         {
           name: 'Carvedilol (Coreg)',
@@ -1367,7 +1367,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         title:
           'The perioperative evidence was fabricated, and the surviving trials point the other way',
         laymanSummary:
-          'For a decade, guidelines on two continents told surgeons to start a beta-blocker before an operation, largely on a family of Dutch trials. Those trials were found not to be secure. When the remaining honest trials were pooled, starting a beta-blocker before surgery came out associated with more deaths, not fewer.',
+          'For a decade, guidelines on two continents told surgeons to start a beta-blocker before an operation, largely on a family of Dutch trials. Those trials were found not to be secure. When the remaining trials judged reliable were pooled, starting a beta-blocker before surgery was associated with more deaths, not fewer.',
         technicalDetails:
           'Bouri and colleagues analysed the randomised trials of beta-blocker initiation before non-cardiac surgery, separating the DECREASE family — which they describe as no longer secure — from the rest. Nine secure trials totalling 10,529 patients with 291 deaths met criteria. Initiation of a course of beta-blockers before surgery was associated with a 27% increase in 30-day all-cause mortality (p=0.04). The DECREASE studies substantially contradict the secure meta-analysis on mortality (p=0.05 for divergence). Among the secure trials, beta-blockade reduced non-fatal myocardial infarction (RR 0.73, p=0.001) while increasing stroke (RR 1.73, p=0.05) and hypotension (RR 1.51, p<0.00001); these results were dominated by one large trial. The authors conclusion is unusually direct: guideline bodies should retract their recommendations based on fictitious data without further delay. The original DECREASE report had described 112 randomised vascular surgery patients with cardiac death in 3.4% on bisoprolol against 17% on standard care (p=0.02) and non-fatal infarction in 0% against 17% (p<0.001).',
         evidenceSource:
@@ -1582,7 +1582,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is bisoprolol safe if I have asthma or COPD?',
-        a: 'It is safer than a non-selective beta-blocker and it is not neutral. The label describes bisoprolol as beta-1 selective, then says plainly that cardioselectivity is not absolute and that at 20 mg and above it also blocks the beta-2 receptors in the airways, so the lowest effective dose should be used to keep selectivity. There is no dose below which the selectivity is total. In practice this is a judgement about how bad the airway disease is against how much the heart needs the drug, and it is a judgement that changes if the dose is titrated up.',
+        a: 'It is safer than a non-selective beta-blocker and it is not neutral. The label describes bisoprolol as beta-1 selective, then says that cardioselectivity is not absolute and that at 20 mg and above it also blocks the beta-2 receptors in the airways, so the lowest effective dose should be used to keep selectivity. There is no dose below which the selectivity is total. In practice this is a judgement about how bad the airway disease is against how much the heart needs the drug, and it is a judgement that changes if the dose is titrated up.',
       },
       {
         q: 'The first bisoprolol trial did not work. Why do we believe the second one?',
@@ -1702,7 +1702,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest comparison for nebivolol is not against other beta-blockers on blood pressure — they all lower it — but against the drugs with outcome trials in the indication it is licensed for. Nebivolol has none. Where a beta-blocker is genuinely indicated, in heart failure or after infarction, three other molecules have their own mortality trials and nebivolol has one marginal composite in the elderly.',
+        'The comparison for nebivolol is not against other beta-blockers on blood pressure — they all lower it — but against the drugs with outcome trials in the indication it is licensed for. Nebivolol has none. Where a beta-blocker is genuinely indicated, in heart failure or after infarction, three other molecules have their own mortality trials and nebivolol has one marginal composite in the elderly.',
       conventionalRx: [
         {
           name: 'Bisoprolol (Zebeta)',
@@ -3021,7 +3021,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does verapamil prevent heart attacks?',
-        a: 'It has been tested twice at scale and the answer is not clearly yes. After a heart attack, DAVIT-II gave verapamil to 878 patients from the second week and found eighteen-month deaths of 11.1% against 13.8% on placebo — a difference at p=0.11, which is not statistically convincing. The combined count of death or repeat infarction did reach significance at p=0.03. In INVEST, 22,576 patients with high blood pressure and coronary disease were randomised to a verapamil-based or an atenolol-based strategy, and the rates of death, heart attack and stroke were 9.93% and 10.17% — the same. The trial authors described the verapamil strategy as as clinically effective, which is precisely what it was.',
+        a: 'It has been tested twice at scale and the answer is not clearly yes. After a heart attack, DAVIT-II gave verapamil to 878 patients from the second week and found eighteen-month deaths of 11.1% against 13.8% on placebo — a difference at p=0.11, which is not statistically convincing. The combined count of death or repeat infarction did reach significance at p=0.03. In INVEST, 22,576 patients with high blood pressure and coronary disease were randomised to a verapamil-based or an atenolol-based strategy, and the rates of death, heart attack and stroke were 9.93% and 10.17% — the same. The trial authors described the verapamil strategy as clinically effective, which is precisely what it was.',
       },
       {
         q: 'Why is it dangerous with Wolff-Parkinson-White syndrome?',
@@ -3210,7 +3210,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
           action:
             'Understand that this is a preventive tablet, not something to take when the pain starts.',
           patientImpact:
-            'The label states plainly that the onset of action of oral isosorbide mononitrate is not sufficiently rapid for the product to be useful in aborting an acute anginal episode. Sublingual glyceryl trinitrate exists for that.',
+            'The label states that the onset of action of oral isosorbide mononitrate is not sufficiently rapid for the product to be useful in aborting an acute anginal episode. Sublingual glyceryl trinitrate exists for that.',
           clinicalPrecaution:
             'Chest pain that does not settle with the rescue medicine is an emergency, not a dosing question.',
         },
@@ -4869,7 +4869,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'For children, the licence was granted on the basis that the drug lowers a heart failure blood marker. The label states in plain words that improved outcomes are expected, not shown.',
         technicalDetails:
-          'Section 1.2 reads: ENTRESTO is indicated for the treatment of symptomatic heart failure with systemic left ventricular systolic dysfunction in pediatric patients aged one year and older. ENTRESTO reduces NT-proBNP and is expected to improve cardiovascular outcomes. The word expected is doing the work of an outcome trial. NT-proBNP is a validated prognostic marker and it is not a demonstrated treatment target; a drug can lower it without changing what happens to the child. Extrapolating adult efficacy to children is standard regulatory practice where the disease mechanism is shared, and it is an inference. This label is unusually honest in marking it as one.',
+          'Section 1.2 reads: ENTRESTO is indicated for the treatment of symptomatic heart failure with systemic left ventricular systolic dysfunction in pediatric patients aged one year and older. ENTRESTO reduces NT-proBNP and is expected to improve cardiovascular outcomes. The word expected is doing the work of an outcome trial. NT-proBNP is a validated prognostic marker and it is not a demonstrated treatment target; a drug can lower it without changing what happens to the child. Extrapolating adult efficacy to children is standard regulatory practice where the disease mechanism is shared, and the label marks that conclusion as an expectation rather than a measured outcome.',
         evidenceSource:
           'ENTRESTO United States prescribing information, section 1.2 (NDA 207620 and NDA 218591)',
         inferredClaim:
@@ -5045,7 +5045,7 @@ export const ENRICHED_BATCH_15_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is angioedema likely?',
-        a: 'It is uncommon and it is the reason for most of the rules around this drug. Swelling confined to the face and lips has generally resolved without treatment. Swelling of the tongue, glottis or larynx can obstruct the airway and the label states it may be fatal, requiring adrenaline and airway management. Once it has happened, the drug must never be given again. The label records a higher rate in Black than in non-Black patients, and this is worth stating plainly: the main trial enrolled 5% Black patients against 66% Caucasian, so the group at highest risk of the drug most serious adverse effect is the group its pivotal trial described least well.',
+        a: 'It is uncommon and it is the reason for most of the rules around this drug. Swelling confined to the face and lips has generally resolved without treatment. Swelling of the tongue, glottis or larynx can obstruct the airway and the label states it may be fatal, requiring adrenaline and airway management. Once it has happened, the drug must never be given again. The label records a higher rate in Black than in non-Black patients. However, the main trial enrolled 5% Black patients against 66% Caucasian, so the group at highest risk of the drug’s most serious adverse effect is the group its pivotal trial described least well.',
       },
     ],
     recentAuditDate: 'August 2026',

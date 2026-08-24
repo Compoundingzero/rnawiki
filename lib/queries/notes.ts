@@ -82,8 +82,7 @@ function toCommunityNote(row: NoteRow, hasUpvoted: boolean): CommunityNote {
     isVerifiedDoctor: row.isVerifiedDoctor,
     medicalSpecialty: row.medicalSpecialty ?? undefined,
     institution: row.institution ?? undefined,
-    // A badge only ever follows a stored verification state. There is no "Community Verified"
-    // label for merely being signed in, which is what the wireframe handed out.
+    // A badge follows stored physician verification, never sign-in alone.
     verifiedBadge: row.isVerifiedDoctor ? 'Verified physician' : undefined,
     // ISO 8601, not a pre-formatted "3 days ago": the server does not know the reader's locale or
     // timezone, and a cached page would freeze a relative string at render time.

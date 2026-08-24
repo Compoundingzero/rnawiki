@@ -39,8 +39,8 @@ import type { SeedDossier } from '@/lib/seed-types'
  *
  * 5. DEVICE AND MOLECULE ARE DIFFERENT OBJECTS. Several of these drugs exist only inside a
  *    proprietary inhaler, and the trial that supports the molecule was run in that device. Where
- *    the evidence cannot be separated from the device, the page says so rather than implying the
- *    molecule was tested on its own.
+ *    the evidence cannot be separated from the device, the result is attributed to the combined
+ *    product rather than to a molecule tested on its own.
  */
 
 const NADAC_SOURCE = {
@@ -617,7 +617,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Formoterol competes with salmeterol on speed and with albuterol on duration, and the honest summary is that the three are separated by pharmacology rather than by outcomes. Formoterol is the only long-acting beta-agonist fast enough to be used as a reliever, which is the entire basis of the as-needed budesonide-formoterol regimens. Nothing that is not a beta-2 agonist substitutes for a beta-2 agonist.',
+        'Formoterol competes with salmeterol on speed and with albuterol on duration; the three are separated by pharmacology rather than by outcomes. Formoterol acts quickly enough to be used as a reliever, which is the basis of as-needed budesonide-formoterol regimens. Drugs outside the beta-2 agonist class do not provide the same bronchodilator action.',
       conventionalRx: [
         {
           name: 'Salmeterol (Serevent)',
@@ -1694,7 +1694,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest comparison for tiotropium is other long-acting bronchodilators, and it has been made directly and at scale. Against salmeterol it prevented more exacerbations in 7,376 people. Against ipratropium, the drug it replaced, it produced a higher trough lung function and 24% fewer exacerbations. Against an inhaled steroid it is a different drug for a different part of the problem, not an alternative. Nothing eaten blocks a muscarinic receptor for a day.',
+        'The comparison for tiotropium is other long-acting bronchodilators, and it has been made directly and at scale. Against salmeterol it prevented more exacerbations in 7,376 people. Against ipratropium, the drug it replaced, it produced a higher trough lung function and 24% fewer exacerbations. Against an inhaled steroid it is a different drug for a different part of the problem, not an alternative. Nothing eaten blocks a muscarinic receptor for a day.',
       conventionalRx: [
         {
           name: 'Ipratropium (Atrovent)',
@@ -2245,7 +2245,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Umeclidinium is a member of a class with an older and much better-studied leader. The honest comparison is tiotropium, which has a four-year outcome trial and a 17,135-patient safety trial behind it, against umeclidinium, which has neither. On lung function they are close. On the questions that take years to answer, one of them has been asked and the other has not.',
+        'Umeclidinium is a member of a class with an older and much better-studied leader. The comparison is tiotropium, which has a four-year outcome trial and a 17,135-patient safety trial behind it, against umeclidinium, which has neither. On lung function they are close. On the questions that take years to answer, one of them has been asked and the other has not.',
       conventionalRx: [
         {
           name: 'Tiotropium (Spiriva)',
@@ -3789,7 +3789,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       whoTakesThis:
         'A specific and small group: severe chronic obstructive pulmonary disease, with chronic bronchitis, and a history of exacerbations. It is not for breathlessness, not for emphysema without bronchitis, and not for an attack happening now.',
       clinicalGoals:
-        'Fewer exacerbations. The lung-function gain is real and small — 48 mL — and the label states plainly that this is not a bronchodilator.',
+        'Fewer exacerbations. The lung-function gain is real and small — 48 mL — and the label states that this is not a bronchodilator.',
     },
     oneSentenceVerdict:
       'A phosphodiesterase-4 inhibitor taken as a tablet, which raises cyclic AMP inside airway inflammatory cells; across two 52-week trials in 3,091 people it cut moderate or severe exacerbations by 17% and raised FEV1 by 48 mL, and then missed its primary endpoint in both of the larger trials that followed — REACT at p=0.0529 and RE2SPOND at p=0.163 — while causing 2.17 kg of weight loss and psychiatric adverse reactions in 5.9% against 3.3% on placebo.',
@@ -4194,7 +4194,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does roflumilast actually work?',
-        a: 'It depends which trial you read, and that is the honest answer rather than an evasion. In the two 52-week trials that supported approval, in 3,091 people, exacerbations fell from 1.37 to 1.14 per person per year — a 17% reduction with a confidence interval of 8 to 25 and p<0.0003. In the two later and larger trials, run in people already taking an inhaled corticosteroid and a long-acting beta-agonist, it missed: REACT at p=0.0529 on its primary analysis and RE2SPOND at p=0.163. The difference between those two sets of trials is the background treatment. Whether roflumilast adds anything on top of modern inhaled therapy is the question that has been asked twice and answered negatively twice on the primary endpoint.',
+        a: 'The result depends on which trial and background treatment you consider. In the two 52-week trials that supported approval, in 3,091 people, exacerbations fell from 1.37 to 1.14 per person per year — a 17% reduction with a confidence interval of 8 to 25 and p<0.0003. In the two later and larger trials, run in people already taking an inhaled corticosteroid and a long-acting beta-agonist, it missed: REACT at p=0.0529 on its primary analysis and RE2SPOND at p=0.163. The difference between those two sets of trials is the background treatment. Whether roflumilast adds anything on top of modern inhaled therapy is the question that has been asked twice and answered negatively twice on the primary endpoint.',
         auditNote:
           'REACT is almost always quoted using its negative binomial sensitivity analysis, p=0.0424, rather than its prespecified Poisson primary, p=0.0529. Both were prespecified; only one was primary.',
       },
@@ -4532,7 +4532,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The prescribing information says the mechanisms are not known with certainty. It attributes the airway-opening effect to blocking one enzyme, and then says the anti-inflammatory effect is probably something else entirely that it cannot name — while attributing the side effects to the two mechanisms it can.',
         technicalDetails:
-          'The Mechanism of Action section states that theophylline has two distinct actions in the airways — smooth muscle relaxation and suppression of airway responsiveness — that the mechanisms are not known with certainty, that animal studies suggest bronchodilation is mediated by inhibition of phosphodiesterase III and to a lesser extent IV, and that the non-bronchodilator prophylactic actions are probably mediated through one or more different molecular mechanisms that do not involve PDE III inhibition or adenosine receptor antagonism. It then assigns hypotension, tachycardia, headache and emesis to PDE III inhibition and altered cerebral blood flow to adenosine antagonism. In other words the two mechanisms that are identified are the ones that produce harm, and the mechanism behind the prophylactic benefit is explicitly unnamed. That is a rare and honest statement to find in a mechanism-of-action section, and it is the context in which the histone deacetylase hypothesis was proposed as the missing piece.',
+          'The Mechanism of Action section states that theophylline has two distinct actions in the airways — smooth muscle relaxation and suppression of airway responsiveness — that the mechanisms are not known with certainty, that animal studies suggest bronchodilation is mediated by inhibition of phosphodiesterase III and to a lesser extent IV, and that the non-bronchodilator prophylactic actions are probably mediated through one or more different molecular mechanisms that do not involve PDE III inhibition or adenosine receptor antagonism. It then assigns hypotension, tachycardia, headache and emesis to PDE III inhibition and altered cerebral blood flow to adenosine antagonism. In other words the two mechanisms that are identified are the ones that produce harm, and the mechanism behind the prophylactic benefit is explicitly unnamed. That is a rare and clear statement to find in a mechanism-of-action section, and it is the context in which the histone deacetylase hypothesis was proposed as the missing piece.',
         evidenceSource:
           'Theophylline anhydrous extended-release United States prescribing information, Clinical Pharmacology — Mechanism of Action',
         inferredClaim:
@@ -4686,7 +4686,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does it need blood tests?',
-        a: 'Because the gap between the concentration that helps and the concentration that harms is small, and a great many ordinary things move a person across it. The label lists them: being over sixty, a fever of 102°F lasting a day, heart failure, cirrhosis, hypothyroidism, sepsis — and stopping smoking, because tobacco smoke speeds up the liver enzyme that clears the drug. Adding cimetidine or erythromycin, or stopping carbamazepine or rifampin, does the same thing. The label states plainly that if the dose is not reduced in the presence of these factors, severe and potentially fatal toxicity can occur.',
+        a: 'Because the gap between the concentration that helps and the concentration that harms is small, and a great many ordinary things move a person across it. The label lists them: being over sixty, a fever of 102°F lasting a day, heart failure, cirrhosis, hypothyroidism, sepsis — and stopping smoking, because tobacco smoke speeds up the liver enzyme that clears the drug. Adding cimetidine or erythromycin, or stopping carbamazepine or rifampin, does the same thing. The label states that if the dose is not reduced in the presence of these factors, severe and potentially fatal toxicity can occur.',
         auditNote:
           'The most dangerous property of this drug is not the drug. It is the routine, well-intentioned prescription of something else alongside it.',
       },
@@ -4995,7 +4995,7 @@ export const ENRICHED_BATCH_8_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The boxed warning came off the combination inhalers in December 2017. The combined analysis of the four trials appeared in June 2018, and this particular trial appeared in a journal in 2019. The decision and the published evidence for it did not arrive in that order.',
         technicalDetails:
-          'SPIRO was one of the four FDA-mandated long-acting beta-agonist safety trials. The FDA removed the boxed warning from inhaled corticosteroid and long-acting beta-agonist combination products in December 2017. The joint oversight committee’s combined analysis of all four trials in 36,010 patients was published in the New England Journal of Medicine on 28 June 2018, and SPIRO itself was published in the Journal of Allergy and Clinical Immunology in its 2019;143:1395-1402 issue. Regulators see trial data before journals do, and that is normal and correct. It is worth stating plainly because a reader tracing the evidence for the withdrawal through the published literature will find the papers dated after the decision, and may reasonably wonder which came first.',
+          'SPIRO was one of the four FDA-mandated long-acting beta-agonist safety trials. The FDA removed the boxed warning from inhaled corticosteroid and long-acting beta-agonist combination products in December 2017. The joint oversight committee’s combined analysis of all four trials in 36,010 patients was published in the New England Journal of Medicine on 28 June 2018, and SPIRO itself was published in the Journal of Allergy and Clinical Immunology in its 2019;143:1395-1402 issue. Regulators see trial data before journals do, and that is normal and correct. This timing matters because a reader tracing the evidence for the withdrawal through the published literature will find the papers dated after the decision, and may reasonably wonder which came first.',
         evidenceSource:
           'Weinstein CLJ et al., J Allergy Clin Immunol 2019;143:1395-1402; Busse WW, Bateman ED, Caplan AL, et al. N Engl J Med 2018;378:2497-2505',
         doi: '10.1056/NEJMoa1716868',

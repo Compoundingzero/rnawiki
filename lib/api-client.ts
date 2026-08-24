@@ -5,10 +5,17 @@ import type {
   CommentUser,
   CommunityNote,
   DrugDossier,
-  LaboratoryProtocolStep,
   DrugModality,
+  LegacyIdentityCorrectionField,
+  Revision,
 } from '@/lib/types'
-import type { RnaIntelligenceReport } from '@/lib/rna-intelligence/types'
+import type { PublicSearchSummaryBinding } from '@/lib/queries/public-search-hit-projection'
+import type {
+  DossierAccessMetadata,
+  LegacyMedicineEvidenceBoundary,
+  ProgrammeScopedMedicineIdentity,
+} from '@/lib/dossier-read-serializer'
+import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
 
 export interface SearchHit {
   slug: string
@@ -18,6 +25,16 @@ export interface SearchHit {
   approvalStatus: string
   patientFriendlyIndication: string
   dossierDepth: 'stub' | 'curated' | 'flagship'
+  summaryBinding?: PublicSearchSummaryBinding
+  summaryContext?: string | null
+}
+
+/** Open the programme that supplied a compact summary instead of losing its scope on click. */
+export function searchHitHref(hit: Pick<SearchHit, 'slug' | 'summaryBinding'>): string {
+  const programmeSlug = hit.summaryBinding?.programmeSlug
+  return programmeSlug
+    ? `/d/${encodeURIComponent(hit.slug)}?programme=${encodeURIComponent(programmeSlug)}`
+    : `/d/${encodeURIComponent(hit.slug)}`
 }
 
 export class ApiError extends Error {
@@ -56,95 +73,151 @@ export const api = {
     request<{ results: SearchHit[] }>(`/api/search?q=${encodeURIComponent(q)}&limit=${limit}`),
 
   getDrug: (slug: string) =>
-    request<{ drug: DrugDossier }>(`/api/drugs/${encodeURIComponent(slug)}`),
+    request<{
+      drug: DrugDossier | ProgrammeScopedMedicineIdentity
+      access: DossierAccessMetadata
+      programmeDossier: MedicineDossierViewModel | null
+      evidenceAuthority:
+        | {
+            scope: 'programme'
+            authoritativeObject: 'programmeDossier'
+            selectedProgrammeId: string
+          }
+        | { scope: 'legacy_medicine_record'; authoritativeObject: 'drug' }
+      legacyMedicineRecord: LegacyMedicineEvidenceBoundary | null
+    }>(`/api/drugs/${encodeURIComponent(slug)}`),
 
-  register: (body: {
-    name: string
-    email: string
-    password: string
-    handle?: string
-    orcid?: string
-  }) =>
+  register: (
+    body: {
+      name: string
+      email: string
+      password: string
+      handle?: string
+      orcid?: string
+    },
+    signal?: AbortSignal,
+  ) =>
     request<{ user: CommentUser }>('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify(body),
+      signal,
     }),
 
-  login: (body: { email: string; password: string }) =>
+  login: (body: { email: string; password: string }, signal?: AbortSignal) =>
     request<{ user: CommentUser }>('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify(body),
+      signal,
     }),
 
-  logout: () => request<{ ok: true }>('/api/auth/logout', { method: 'POST' }),
+  logout: (signal?: AbortSignal) =>
+    request<{ ok: true }>('/api/auth/logout', { method: 'POST', signal }),
 
   me: () => request<{ user: CommentUser | null }>('/api/auth/me'),
 
-  submitDoctorVerification: (body: {
-    fullName: string
-    licenseOrNpi: string
-    specialty: string
-    institution: string
-    workEmail: string
-  }) =>
+  submitDoctorVerification: (
+    body: {
+      fullName: string
+      licenseOrNpi: string
+      specialty: string
+      institution: string
+      workEmail: string
+    },
+    signal?: AbortSignal,
+  ) =>
     request<{ user: CommentUser; state: 'pending' }>('/api/auth/doctor-verification', {
       method: 'POST',
       body: JSON.stringify(body),
+      signal,
     }),
 
-  addNote: (slug: string, content: string) =>
+  addNote: (slug: string, content: string, signal?: AbortSignal) =>
     request<{ note: CommunityNote }>(`/api/drugs/${encodeURIComponent(slug)}/notes`, {
       method: 'POST',
       body: JSON.stringify({ content }),
+      signal,
     }),
 
-  toggleUpvote: (noteId: string) =>
+  toggleUpvote: (noteId: string, signal?: AbortSignal) =>
     request<{ upvotes: number; hasUpvoted: boolean }>(
       `/api/notes/${encodeURIComponent(noteId)}/upvote`,
-      { method: 'POST' },
+      { method: 'POST', signal },
     ),
 
-  sweep: (
+  submitRevision: (
     slug: string,
     body: {
-      structureString: string
-      modality: DrugModality
-      workflow: LaboratoryProtocolStep[]
-      cdnaMode?: boolean
+      field: LegacyIdentityCorrectionField
+      proposedValue: string | null
+      sourceUrl: string
+      sourceTitle: string
+      explanation: string
     },
+    signal?: AbortSignal,
   ) =>
-    request<{ report: RnaIntelligenceReport }>(`/api/drugs/${encodeURIComponent(slug)}/sweep`, {
-      method: 'POST',
-      body: JSON.stringify(body),
-    }),
-
-  submitRevision: (slug: string, body: { payload: Partial<DrugDossier>; summary: string }) =>
     request<{
-      outcome: 'published' | 'pending_review'
+      outcome: 'pending_review'
       revisionId: string
-      drug?: DrugDossier
-      report: RnaIntelligenceReport
-      queuePosition?: number
+      itemsWaiting: number
+      revision: Revision
     }>(`/api/drugs/${encodeURIComponent(slug)}/revisions`, {
       method: 'POST',
       body: JSON.stringify(body),
+      signal,
     }),
 
-  sendFeedback: (body: {
-    type: 'suggestion' | 'correction' | 'request'
-    message: string
-    email?: string
-    drugSlug?: string
-  }) => request<{ ok: true }>('/api/feedback', { method: 'POST', body: JSON.stringify(body) }),
+  sendFeedback: (
+    body: {
+      type: 'suggestion' | 'correction' | 'request'
+      message: string
+      email?: string
+      drugSlug?: string
+    },
+    signal?: AbortSignal,
+  ) =>
+    request<{ ok: true }>('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      signal,
+    }),
 
-  toggleSaved: (slug: string) =>
-    request<{ saved: boolean }>(`/api/drugs/${encodeURIComponent(slug)}/save`, { method: 'POST' }),
+  toggleSaved: (slug: string, signal?: AbortSignal) =>
+    request<{ saved: boolean }>(`/api/drugs/${encodeURIComponent(slug)}/save`, {
+      method: 'POST',
+      signal,
+    }),
 
-  savedDrugs: () => request<{ drugs: SearchHit[] }>('/api/me/saved'),
+  savedDrugs: (signal?: AbortSignal) =>
+    request<{ drugs: SearchHit[] }>('/api/me/saved', { signal, cache: 'no-store' }),
 
-  reviewRevision: (id: string, decision: 'approve' | 'reject', note?: string) =>
+  communityNotes: async (slug: string, signal?: AbortSignal) => {
+    const result = await request<{
+      drug: DrugDossier | ProgrammeScopedMedicineIdentity
+      programmeDossier: MedicineDossierViewModel | null
+      legacyMedicineRecord: LegacyMedicineEvidenceBoundary | null
+    }>(`/api/drugs/${encodeURIComponent(slug)}`, { signal, cache: 'no-store' })
+    const identityNotes =
+      'communityNotes' in result.drug && Array.isArray(result.drug.communityNotes)
+        ? result.drug.communityNotes
+        : undefined
+    return {
+      notes:
+        result.programmeDossier?.medicineRecord.communityNotes ??
+        identityNotes ??
+        result.legacyMedicineRecord?.fields.communityNotes ??
+        [],
+    }
+  },
+
+  reviewRevision: (
+    id: string,
+    decision: 'approve' | 'reject',
+    note?: string,
+    signal?: AbortSignal,
+  ) =>
     request<{ revision: unknown }>(`/api/revisions/${encodeURIComponent(id)}/review`, {
       method: 'POST',
       body: JSON.stringify({ decision, note }),
+      signal,
     }),
 }

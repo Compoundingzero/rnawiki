@@ -1,21 +1,12 @@
 'use client'
 
-// The hero search box from the reference wireframe (src/components/HomeView.tsx), plus the shared
-// search behaviour both search boxes on the site need.
-//
-// The wireframe filtered a six-item array held in localStorage, so "search" was a synchronous
-// `.filter()` and needed no state beyond the query string. The corpus here is ~8,000+ records in
-// Postgres, so every keystroke is a network round trip and the box grows the three things a
-// networked combobox cannot do without: debouncing, staleness protection, and keyboard navigation.
-// The markup, classes, copy and icons below are otherwise the reference's, unchanged.
-
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent, RefObject } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Search, X } from 'lucide-react'
-import { api, type SearchHit } from '@/lib/api-client'
+import { api, searchHitHref, type SearchHit } from '@/lib/api-client'
+import { publicMedicineTypeLabel } from '@/lib/public-medicine-language'
 
-/** Milliseconds of quiet typing before a query is sent. Short enough to feel instant. */
 const DEBOUNCE_MS = 180
 
 export interface DrugSearch {
@@ -36,13 +27,7 @@ export interface DrugSearch {
   optionId: (index: number) => string
 }
 
-/**
- * Query state for a server-backed drug search box.
- *
- * Shared by `HomeSearch` and `SiteHeader` rather than written twice: the two boxes look different
- * and sit in different places, but "debounce, discard stale answers, move with the arrow keys" is
- * one behaviour, and two copies of it drift.
- */
+/** Shared server-backed combobox behavior for the home page and site header. */
 export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): DrugSearch {
   const [query, setQueryState] = useState('')
   const [results, setResults] = useState<SearchHit[]>([])
@@ -71,11 +56,7 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
 
     setIsSearching(true)
 
-    // The AbortController is a staleness token, not a transport cancel: `api.search` is a fixed
-    // contract (lib/api-client.ts) and takes no RequestInit, so the in-flight fetch cannot be
-    // cancelled. Aborting on cleanup still buys the guarantee that matters — a slow response for
-    // an older keystroke resolves into an aborted signal and is discarded instead of overwriting
-    // fresher results.
+    // Discard a slow response after the query changes.
     const controller = new AbortController()
     const timer = setTimeout(() => {
       api
@@ -88,8 +69,6 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
         })
         .catch(() => {
           if (controller.signal.aborted) return
-          // A failed search shows the same "no matches" state as an empty one. Inventing results,
-          // or leaving the previous query's results under a new query, would both be worse.
           setResults([])
           setIsSearching(false)
         })
@@ -101,9 +80,6 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
     }
   }, [query, limit])
 
-  // Clicking away closes the dropdown. The wireframe had no such handler because its dropdown was
-  // bound to the query string alone; an absolutely positioned panel that outlives the reader's
-  // attention is a real nuisance on a page with content beneath it.
   useEffect(() => {
     if (!isOpen) return
     const handlePointerDown = (event: PointerEvent) => {
@@ -192,10 +168,6 @@ export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): Dru
 }
 
 export interface HomeSearchProps {
-  /**
-   * The "Popular:" row, resolved on the server. The wireframe used `drugs.slice(0, 4)` of its
-   * local ledger; with a corpus this size there is no local ledger to slice, so the server picks.
-   */
   popular: SearchHit[]
 }
 
@@ -205,7 +177,7 @@ export function HomeSearch({ popular }: HomeSearchProps) {
 
   const search = useDrugSearch((hit) => {
     search.reset()
-    router.push(`/d/${hit.slug}`)
+    router.push(searchHitHref(hit))
   })
 
   const showDropdown = search.isOpen && search.query.trim().length > 0
@@ -219,13 +191,13 @@ export function HomeSearch({ popular }: HomeSearchProps) {
           ref={inputRef}
           type="text"
           autoFocus
-          placeholder="Search any medicine, target, or disease..."
+          placeholder="Search medicine, condition, gene, or protein..."
           value={search.query}
           onChange={(e) => search.setQuery(e.target.value)}
           onFocus={search.open}
           onKeyDown={search.onKeyDown}
-          className="flex-1 min-w-0 bg-transparent text-sm sm:text-base text-[#1D1D1F] py-1.5 focus:outline-none placeholder:text-[#86868B] font-medium"
-          aria-label="Search any medicine, target, or disease"
+          className="flex-1 min-w-0 bg-transparent text-sm sm:text-base text-[#1D1D1F] py-1.5 focus:outline-none placeholder:text-[#6E6E73] font-medium"
+          aria-label="Search by medicine, condition, gene, or protein"
           role="combobox"
           aria-expanded={showDropdown}
           aria-controls={search.listboxId}
@@ -242,7 +214,7 @@ export function HomeSearch({ popular }: HomeSearchProps) {
               search.reset()
               inputRef.current?.focus()
             }}
-            className="text-xs font-semibold text-[#86868B] hover:text-[#1D1D1F] px-2.5 py-1.5 rounded-lg bg-black/[0.05] hover:bg-black/[0.08] transition cursor-pointer shrink-0 ml-1"
+            className="text-xs font-semibold text-[#6E6E73] hover:text-[#1D1D1F] px-2.5 py-1.5 rounded-lg bg-black/[0.05] hover:bg-black/[0.08] transition cursor-pointer shrink-0 ml-1"
             aria-label="Clear search"
           >
             <X className="w-4 h-4" aria-hidden="true" />
@@ -250,8 +222,6 @@ export function HomeSearch({ popular }: HomeSearchProps) {
         ) : (
           <button
             type="button"
-            // The reference reached for `document.querySelector('input')` here, which focuses
-            // whatever input happens to come first in the document. A ref focuses this one.
             onClick={() => inputRef.current?.focus()}
             className="flex items-center gap-1 bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-xl transition cursor-pointer shrink-0 shadow-xs ml-1 active:scale-95"
           >
@@ -261,7 +231,6 @@ export function HomeSearch({ popular }: HomeSearchProps) {
         )}
       </div>
 
-      {/* Search Dropdown Results */}
       {showDropdown && (
         <div
           id={search.listboxId}
@@ -270,11 +239,8 @@ export function HomeSearch({ popular }: HomeSearchProps) {
           className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.14)] overflow-hidden divide-y divide-black/[0.04] max-h-80 overflow-y-auto z-50 text-left animate-fade-in animate-slide-down"
         >
           {search.results.length === 0 ? (
-            <div className="p-6 text-xs sm:text-sm text-[#86868B] text-center">
+            <div className="p-6 text-xs sm:text-sm text-[#6E6E73] text-center">
               {search.isSearching ? (
-                // The wireframe filtered an in-memory array, so there was no interval between
-                // typing and knowing the answer. Over the network there is, and printing "no
-                // matching medicines" during it states something the site does not yet know.
                 <>Searching…</>
               ) : (
                 <>No matching medicines found for &quot;{search.query}&quot;.</>
@@ -291,7 +257,7 @@ export function HomeSearch({ popular }: HomeSearchProps) {
                 onMouseEnter={() => search.setActiveIndex(index)}
                 onClick={() => {
                   search.reset()
-                  router.push(`/d/${drug.slug}`)
+                  router.push(searchHitHref(drug))
                 }}
                 className={`w-full text-left p-4 hover:bg-[#F5F5F7] transition cursor-pointer flex items-center justify-between group gap-2 ${
                   index === search.activeIndex ? 'bg-[#F5F5F7]' : ''
@@ -303,18 +269,23 @@ export function HomeSearch({ popular }: HomeSearchProps) {
                       {drug.name}
                     </span>
                     {drug.tradeName && (
-                      <span className="text-xs text-[#86868B]">({drug.tradeName})</span>
+                      <span className="text-xs text-[#6E6E73]">({drug.tradeName})</span>
                     )}
                     <span className="text-[10px] font-semibold bg-blue-50 text-[#0071E3] px-2 py-0.5 rounded-full shrink-0">
-                      {drug.modality}
+                      {publicMedicineTypeLabel(drug.modality)}
                     </span>
                   </div>
-                  <div className="text-xs text-[#6E6E73] mt-0.5 truncate">
+                  {drug.summaryContext && (
+                    <div className="mt-0.5 truncate text-[9px] font-semibold uppercase tracking-wide text-[#6E6E73]">
+                      {drug.summaryContext}
+                    </div>
+                  )}
+                  <div className="mt-0.5 truncate text-xs text-[#6E6E73]">
                     {drug.patientFriendlyIndication}
                   </div>
                 </div>
                 <ArrowRight
-                  className="w-4 h-4 text-[#86868B] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 ml-2"
+                  className="w-4 h-4 text-[#6E6E73] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 ml-2"
                   aria-hidden="true"
                 />
               </button>
@@ -325,14 +296,14 @@ export function HomeSearch({ popular }: HomeSearchProps) {
 
       {/* Space-Saving Clean Inline Triggers */}
       {popular.length > 0 && (
-        <div className="flex items-center justify-center gap-2 text-xs text-[#86868B] pt-1 flex-wrap">
+        <div className="flex items-center justify-center gap-2 text-xs text-[#6E6E73] pt-1 flex-wrap">
           <span>Popular:</span>
           {popular.slice(0, 4).map((drug, index, shown) => (
             <span key={drug.slug} className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => router.push(`/d/${drug.slug}`)}
-                className="text-[#0071E3] hover:underline font-semibold cursor-pointer transition"
+                onClick={() => router.push(searchHitHref(drug))}
+                className="text-[#0066CC] hover:underline font-semibold cursor-pointer transition"
               >
                 {drug.name}
               </button>

@@ -2,9 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-// Self-hosted at build time by next/font. The reference wireframe linked these from
-// fonts.googleapis.com; serving them from our own origin keeps `font-src 'self'` in the CSP
-// honest and removes a render-blocking third-party round trip.
+// next/font serves these from the application origin.
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -24,25 +22,25 @@ const siteUrl = process.env.SITE_URL ?? 'https://rnawiki.com'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'RNAwiki — Open Drug Evidence Audit Layer',
-    template: '%s — RNAwiki',
+    default: 'RNAWiki — Medicine evidence, explained',
+    template: '%s — RNAWiki',
   },
   description:
-    'The open-access drug wiki: plain-English verdicts on any medicine, the real chemical synthesis cost behind the pharmacy price, and evidence-backed alternatives.',
-  applicationName: 'RNAwiki',
+    'Plain-language medicine records that show what studies measured, which sources support each conclusion, and what remains unknown.',
+  applicationName: 'RNAWiki',
   openGraph: {
     type: 'website',
-    siteName: 'RNAwiki',
-    title: 'RNAwiki — Open Drug Evidence Audit Layer',
+    siteName: 'RNAWiki',
+    title: 'RNAWiki — Medicine evidence, explained',
     description:
-      'Records exactly what was measured, what was inferred, what failed, and how conclusions changed.',
+      'See what human studies measured, where each conclusion applies, and what researchers still do not know.',
     url: siteUrl,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RNAwiki — Open Drug Evidence Audit Layer',
+    title: 'RNAWiki — Medicine evidence, explained',
     description:
-      'Records exactly what was measured, what was inferred, what failed, and how conclusions changed.',
+      'See what human studies measured, where each conclusion applies, and what researchers still do not know.',
   },
   robots: { index: true, follow: true },
 }

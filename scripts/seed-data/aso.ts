@@ -1472,7 +1472,7 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Boys who received no drug at all also showed more dystrophin at 48 weeks than at baseline. That is the size of the noise the treatment effect has to be read against.',
         technicalDetails:
-          'The label records placebo dystrophin rising from 0.54 percent (SD 0.79) at baseline to 0.76 percent (SD 1.15) at week 48, a mean change of 0.22 percent (SD 0.49), p=0.09. The standard deviations exceed the means in both arms. Quantifying a protein at one percent of normal in a needle biopsy of a heterogeneous, fibrotic muscle is a hard measurement, and the placebo drift is the honest measure of that difficulty.',
+          'The label records placebo dystrophin rising from 0.54 percent (SD 0.79) at baseline to 0.76 percent (SD 1.15) at week 48, a mean change of 0.22 percent (SD 0.49), p=0.09. The standard deviations exceed the means in both arms. Quantifying a protein at one percent of normal in a needle biopsy of a heterogeneous, fibrotic muscle is difficult, and the placebo drift shows the scale of that measurement problem.',
         evidenceSource: 'AMONDYS 45 US prescribing information, section 14, Table 2',
         measuredMetric: 'Placebo arm dystrophin change +0.22 percentage points (SD 0.49), p=0.09',
         auditFlag: 'caution',
@@ -1843,7 +1843,7 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The same muscle samples, measured a different way, gave 4.2 percent instead of 5.9 percent, and the median was 1.9 percent rather than 3.8 percent.',
         technicalDetails:
-          'Mass spectrometry normalised to filamin C gave a mean of 0.6 percent (SD 0.2) at baseline and 4.2 percent (SD 3.7) at week 25, change 3.7 percent (SD 3.8), nominal p=0.03 not adjusted for multiple comparisons, median change 1.9 percent. Reporting both is good practice, and the gap between them is the honest measure of how assay-dependent this endpoint is.',
+          'Mass spectrometry normalised to filamin C gave a mean of 0.6 percent (SD 0.2) at baseline and 4.2 percent (SD 3.7) at week 25, change 3.7 percent (SD 3.8), nominal p=0.03 not adjusted for multiple comparisons, median change 1.9 percent. Reporting both shows how strongly the result depends on the assay and summary statistic.',
         evidenceSource: 'VILTEPSO US prescribing information, section 14',
         measuredMetric:
           'Mass spectrometry dystrophin 0.6 percent to 4.2 percent of normal, median change 1.9 percent',
@@ -2235,7 +2235,7 @@ export const ASO_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The trial recorded five deaths among treated patients and zero among those on placebo. The publication attributes most to the underlying disease, and the imbalance is in the record.',
         technicalDetails:
-          'NEURO-TTR reported five deaths in the inotersen group and none in the placebo group across 172 randomised patients over 15 months, with one death associated with grade 4 thrombocytopenia. The trial was not powered for mortality and the randomisation was 2:1, so more treated patients were at risk, but an all-cause imbalance in this direction is the kind of number that should be stated plainly rather than only in a supplementary table.',
+          'NEURO-TTR reported five deaths in the inotersen group and none in the placebo group across 172 randomised patients over 15 months, with one death associated with grade 4 thrombocytopenia. The trial was not powered for mortality and the randomisation was 2:1, so more treated patients were at risk. Those limits qualify the comparison but do not make the five-to-zero imbalance irrelevant.',
         evidenceSource: 'Benson et al., NEJM 2018, results section',
         doi: '10.1056/NEJMoa1716793',
         measuredMetric: 'Deaths: 5 of 112 inotersen versus 0 of 60 placebo',

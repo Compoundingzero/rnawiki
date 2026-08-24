@@ -4,3 +4,9 @@ db/migrations/
 package-lock.json
 test-results/
 playwright-report/
+scripts/seed-data/enriched-batch-19.ts
+scripts/seed-data/enriched-batch-20.ts
+scripts/seed-data/enriched-batch-27.ts
+scripts/seed-data/enriched-batch-28.ts
+scripts/seed-data/enriched-batch-29.ts
+scripts/seed-data/enriched-batch-30.ts

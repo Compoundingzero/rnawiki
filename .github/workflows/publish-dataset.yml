@@ -4,9 +4,10 @@
 # export, and commits only when something actually changed — a run that finds no edits leaves no
 # commit, so the history stays a record of the data moving rather than of the clock ticking.
 #
-# ONE SECRET IS REQUIRED: DATABASE_PUBLIC_URL, the Postgres service's public connection string
-# (Railway → Postgres → Variables → DATABASE_PUBLIC_URL). Without it the job skips rather than
-# fails, so a fork does not get a permanently red workflow it cannot fix.
+# TWO SECRETS ARE REQUIRED. DATASET_DATABASE_URL must belong to a read-only database role, and
+# DATABASE_CA_CERT must contain the certificate (or CA) that authenticates the public Postgres
+# endpoint. Missing trust material is a failed publication, never a silently skipped or
+# certificate-unverified export.
 name: Publish dataset
 
 on:
@@ -33,33 +34,30 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Check the database secret is present
-        id: guard
-        run: |
-          if [ -z "${{ secrets.DATABASE_PUBLIC_URL }}" ]; then
-            echo "DATABASE_PUBLIC_URL is not set; skipping. Add it in Settings → Secrets → Actions."
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Install dependencies
-        if: steps.guard.outputs.ready == 'true'
         run: npm ci
 
-      - name: Export the corpus
-        if: steps.guard.outputs.ready == 'true'
+      - name: Install the pinned database certificate
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_PUBLIC_URL }}
-          # Railway's Postgres serves a self-signed certificate and publishes no CA, so the
-          # connection cannot be verified against the public host. It is encrypted either way, and
-          # this job reads a dataset that is public by design.
-          DATABASE_SSL_NO_VERIFY: 'true'
+          DATASET_DATABASE_URL: ${{ secrets.DATASET_DATABASE_URL }}
+          DATABASE_CA_CERT: ${{ secrets.DATABASE_CA_CERT }}
+        run: |
+          test -n "$DATASET_DATABASE_URL" || { echo "DATASET_DATABASE_URL is required." >&2; exit 1; }
+          test -n "$DATABASE_CA_CERT" || { echo "DATABASE_CA_CERT is required." >&2; exit 1; }
+          printf '%s\n' "$DATABASE_CA_CERT" > "$RUNNER_TEMP/rnawiki-postgres-ca.pem"
+          chmod 600 "$RUNNER_TEMP/rnawiki-postgres-ca.pem"
+
+      - name: Export the corpus
+        env:
+          DATABASE_URL: ${{ secrets.DATASET_DATABASE_URL }}
+          PGSSLROOTCERT: ${{ runner.temp }}/rnawiki-postgres-ca.pem
           SESSION_SECRET: 'unused-by-the-export-but-required-at-import-time-32'
         run: npx tsx scripts/export/dataset.ts
 
+      - name: Check generated reader copy
+        run: npm run check:copy
+
       - name: Commit only if the data moved
-        if: steps.guard.outputs.ready == 'true'
         run: |
           git config user.name 'rnawiki-bot'
           git config user.email 'bot@rnawiki.com'

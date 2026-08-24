@@ -8,26 +8,6 @@
 //   peptide_sequence      Bjellqvist isoelectric point, net charge, Kyte-Doolittle hydropathy
 //   anything else         no model, said out loud
 //
-// WHAT CHANGED FROM THE REFERENCE WIREFRAME. The wireframe's `validateLayer2`
-// (src/utils/rnaIntelligenceEngine.ts) is where this port diverges hardest, and every divergence
-// is a deletion of an invented number:
-//
-//   - Its "MFE" was `-1.2` with a fixed penalty per adjacent doublet, walked left to right. That
-//     is not a fold. It cannot form a hairpin, it has no loop-initiation cost, and it returns a
-//     large negative energy for a sequence that in fact cannot pair with itself at all. This layer
-//     calls `foldRna`, which runs the real Zuker dynamic program over the real parameter set.
-//   - Its `watsonCrickPairs` counted every base that has a complement, so the answer was always
-//     the length of the sequence. Here the pair counts come from the predicted structure, so they
-//     describe pairs that the model says actually form.
-//   - Its `logP` was `input.length * 0.12 - 1.2` and its hydrogen-bond donors were `count of N or
-//     O characters, divided by two`. Those are string-length heuristics wearing chemistry's
-//     clothes. Here they are atom-environment sums over published tables — see `descriptors.ts`,
-//     which is honest about which of them is an estimate.
-//   - For a peptide or an antibody it returned `thermodynamicallyPlausible: true` with the line
-//     "Biological receptor binding conformation and folding energy verified." No folding energy
-//     was computed and nothing was verified. This layer computes what a backbone actually
-//     supports, and for a biologic descriptor it reports that no model applies.
-//
 // `thermodynamicallyPlausible` is only ever true where a thermodynamic model ran and did not
 // object. False means "this layer did not establish plausibility", which for a peptide or an
 // antibody is the truth, not a finding against the molecule. The diagnostics carry that

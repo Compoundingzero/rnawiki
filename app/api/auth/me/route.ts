@@ -1,6 +1,6 @@
 // GET /api/auth/me — who the cookie says you are.
 //
-// Not a 401 when signed out. `{ user: null }` is the honest answer to "who am I", and it is what
+// Not a 401 when signed out. `{ user: null }` is the accurate answer to "who am I", and it is what
 // `components/app-context.tsx`'s `refreshUser` expects: an error there would leave the header
 // showing a stale user rather than a signed-out one.
 //

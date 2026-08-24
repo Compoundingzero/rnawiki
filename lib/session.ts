@@ -10,6 +10,10 @@ import { cookies } from 'next/headers'
 import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { users } from '@/db/schema'
+import {
+  canManageInternalReview,
+  INTERNAL_REVIEW_ROLE_EXPLANATION,
+} from '@/lib/internal-review-policy'
 import type { CommentUser } from '@/lib/types'
 
 export interface SessionData {
@@ -64,30 +68,14 @@ export async function getSession(): Promise<IronSession<SessionData>> {
 
 type UserRow = typeof users.$inferSelect
 
-/**
- * Database row -> the shape the UI renders.
- *
- * THE SINGLE MOST IMPORTANT RULE IN THIS FILE: `isDoctor` is
- * `verificationState === 'verified'`, never `row.isDoctor`.
- *
- * `users.isDoctor` records only that somebody ticked "I am a physician" and submitted a licence
- * number. If that column drove the badge, the blue check would be self-service: fill in a form,
- * get a credential the whole site treats as authority. The reference wireframe did exactly that —
- * DoctorVerificationModal.tsx sets `isDoctor: true` after a 900ms fake delay — and that is the one
- * behaviour of the wireframe this rebuild must NOT copy. Only a human steward writing
- * `verification_state = 'verified'` produces a verified physician here.
- */
+/** Map a database user to the client-safe account shape. */
 export function toCommentUser(row: UserRow): CommentUser {
   return {
     id: row.id,
     name: row.name,
     email: row.email,
     isDoctor: row.verificationState === 'verified',
-    // The licence/NPI number is DELIBERATELY ABSENT. This object is handed to <AppShell> as
-    // `initialUser`, which means React serialises every field of it into the RSC payload of every
-    // page a signed-in physician loads -- and that payload is plain text in the HTML. Nothing in
-    // the UI renders the number; the verification modal only needs to know one is on file. A
-    // credential that is never displayed has no business crossing to the client at all.
+    // Never serialize a licence or NPI into the client payload.
     hasCredentialOnFile: Boolean(row.medicalLicenseOrNpi),
     medicalSpecialty: row.medicalSpecialty ?? undefined,
     institution: row.institution ?? undefined,
@@ -146,6 +134,15 @@ export async function requireAdmin(): Promise<CommentUser> {
   const user = await requireUser()
   if (!user.isAdmin) {
     throw new AuthError('forbidden', 'This action is restricted to administrators.')
+  }
+  return user
+}
+
+/** Private operational queues use one policy everywhere: current steward or administrator. */
+export async function requireInternalReviewer(): Promise<CommentUser> {
+  const user = await requireUser()
+  if (!canManageInternalReview(user)) {
+    throw new AuthError('forbidden', INTERNAL_REVIEW_ROLE_EXPLANATION)
   }
   return user
 }

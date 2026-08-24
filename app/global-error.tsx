@@ -1,15 +1,6 @@
 'use client'
 
-// The last resort: the error boundary for a failure in the root layout itself.
-//
-// When this renders, `app/layout.tsx` did not — so it has to supply its own <html> and <body>, and
-// `app/globals.css` is NOT applied. Every rule here is therefore an inline style rather than a
-// Tailwind class: a class name would resolve to nothing on exactly the one page that cannot afford
-// to look broken. The palette and the shapes are still the reference wireframe's, written out by
-// hand: #F5F5F7 ground, #1D1D1F ink, #86868B secondary, #0071E3 accent, large radii.
-//
-// Same rule as `app/error.tsx`: no stack trace, no server message. Only Next.js's opaque digest,
-// which is the one string that connects a reader's report to a line in the server log.
+// Root-layout failures cannot rely on global CSS, so this fallback uses inline styles.
 
 import type { CSSProperties } from 'react'
 
@@ -66,7 +57,7 @@ const button: CSSProperties = {
 
 const digest: CSSProperties = {
   fontSize: '0.6875rem',
-  color: '#86868B',
+  color: '#6E6E73',
   fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
   margin: 0,
 }
@@ -84,7 +75,7 @@ export default function GlobalError({
         <main style={card}>
           <span style={{ fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
             RNA<span style={{ color: '#0071E3' }}>wiki</span>
-            <span style={{ fontSize: '0.6875rem', fontWeight: 400, color: '#86868B' }}>.com</span>
+            <span style={{ fontSize: '0.6875rem', fontWeight: 400, color: '#6E6E73' }}>.com</span>
           </span>
 
           <h1 style={heading}>The site failed to load.</h1>

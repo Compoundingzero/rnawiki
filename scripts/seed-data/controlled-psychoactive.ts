@@ -814,7 +814,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is psilocybin better than an antidepressant?',
-        a: 'The one trial that asked that question directly did not show it. Psilocybin versus escitalopram in 59 patients gave a two-point QIDS-SR-16 difference at six weeks with a confidence interval crossing zero, P=0.17. Remission favoured psilocybin, 57% against 28%, but that was one of sixteen secondary outcomes and none of them was corrected for multiple comparisons. The honest reading is that the trial was not large enough to detect a difference of the size either drug is likely to produce, and that a 59-patient comparison of two active treatments is underpowered almost by construction.',
+        a: 'The one trial that asked that question directly did not show it. Psilocybin versus escitalopram in 59 patients gave a two-point QIDS-SR-16 difference at six weeks with a confidence interval crossing zero, P=0.17. Remission favoured psilocybin, 57% against 28%, but that was one of sixteen secondary outcomes and none of them was corrected for multiple comparisons. With only 59 patients comparing two active treatments, the trial was too small to detect a difference of the size either drug is likely to produce.',
         auditNote:
           'This trial is cited in both directions more than any other in the field. Its primary endpoint was negative. Its authors said so in the conclusion.',
       },
@@ -1090,7 +1090,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Pooling nine controlled studies, a third of people given 125 mg had blood pressure over 160, and one in five ran a temperature above 38 degrees. Women had more adverse effects than men.',
         technicalDetails:
-          'Vizeli and Liechti pooled nine double-blind, placebo-controlled crossover studies performed in one laboratory, 166 healthy subjects, single 75 mg or 125 mg doses. Subjective effects lasted 4.2 ± 1.3 hours (range 1.4 to 8.2). MDMA raised systolic blood pressure above 160 mmHg in 33%, heart rate above 100 beats per minute in 29% and body temperature above 38 °C in 19% of subjects, each significantly more often at 125 mg than at 75 mg. Acute and subacute adverse effects were dose-dependent and more frequent in women, as were bad subjective drug effects. No effect on liver or kidney function at end of study 29 ± 22 days later, and no serious adverse events. The authors state plainly that risk is likely higher in cardiovascular disease and remains uninvestigated in psychiatric patients.',
+          'Vizeli and Liechti pooled nine double-blind, placebo-controlled crossover studies performed in one laboratory, 166 healthy subjects, single 75 mg or 125 mg doses. Subjective effects lasted 4.2 ± 1.3 hours (range 1.4 to 8.2). MDMA raised systolic blood pressure above 160 mmHg in 33%, heart rate above 100 beats per minute in 29% and body temperature above 38 °C in 19% of subjects, each significantly more often at 125 mg than at 75 mg. Acute and subacute adverse effects were dose-dependent and more frequent in women, as were bad subjective drug effects. No effect on liver or kidney function at end of study 29 ± 22 days later, and no serious adverse events. The authors state that risk is likely higher in cardiovascular disease and remains uninvestigated in psychiatric patients.',
         evidenceSource: 'Vizeli P, Liechti ME. J Psychopharmacol 2017;31:576-588',
         doi: '10.1177/0269881117691569',
         measuredMetric:
@@ -1614,7 +1614,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'd = 1.46 (95% CI 0.91 to 2.01) at 24 hours; d = 0.68 (0.13 to 1.23) at 1 week',
         unreportedAdverseSignals:
-          'Dissociation during infusion makes the double blind unreliable against a saline comparator; the paper reports the design honestly and cannot repair it.',
+          'Dissociation during infusion makes the double blind unreliable against a saline comparator; the paper describes this limitation but cannot repair it.',
         independentReplicationStatus: 'Replicated',
       },
       {
@@ -2525,7 +2525,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'A cannabis constituent with genuine, replicated randomised evidence in three rare epilepsies, no identified mechanism, a real drug-interaction and liver signal, and a consumer market built on indications it has never been tested for.',
     laymanHowItWorks:
-      'Nobody knows. That is the honest answer and it is unusual for an approved drug. Cannabidiol does not switch on the cannabinoid receptor that THC uses, which is why it is not intoxicating. It touches a long list of other targets in the laboratory — a heat-sensing ion channel, an orphan receptor, a serotonin receptor, sodium channels — and none of them has been shown to be the one that stops seizures. What is established is the clinical result: in three specific childhood epilepsies, added to existing medication, seizure counts fall further than on placebo.',
+      'The mechanism is not known, which is unusual for an approved drug. Cannabidiol does not switch on the cannabinoid receptor that THC uses, which is why it is not intoxicating. It affects several other targets in laboratory studies — including a heat-sensing ion channel, an orphan receptor, a serotonin receptor and sodium channels — but none has been shown to be the one that stops seizures. What is established is the clinical result: in three specific childhood epilepsies, adding cannabidiol to existing medication reduces seizure counts more than placebo.',
     auditConfidence: 'High Confidence',
     confidenceScore: 74,
     molecularSchema: {
@@ -2675,7 +2675,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'An approved drug with no identified mechanism',
         laymanSummary:
-          'Cannabidiol works in these epilepsies and nobody can say why. The many receptors it touches in a dish mostly need higher concentrations than the body ever reaches.',
+          'Cannabidiol reduces seizures in these epilepsies, but the mechanism remains unknown. Most receptors it affects in laboratory studies require higher concentrations than the body reaches.',
         technicalDetails:
           "The proposed targets — TRPV1, GPR55, 5-HT1A, PPAR-gamma, adenosine reuptake, voltage-gated sodium channels, negative allosteric modulation of CB1 — are each supported by in-vitro data, and most of the reported effects appear at concentrations above the plasma concentrations achieved at 20 mg/kg/day. No target has been shown to be necessary for the anticonvulsant effect by the kind of antagonist or knockout experiment that established 5-HT2A for LSD. The label's mechanism-of-action section says the mechanism is unknown. This does not weaken the clinical result, which was measured directly in randomised trials; it does mean that mechanistic claims made for consumer CBD are unsupported at the source.",
         evidenceSource:
@@ -3753,7 +3753,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The best result any medicine has produced for methamphetamine use disorder: about 14 people in 100 responded, against 2.5 in 100 on placebo.',
         technicalDetails:
-          "Multisite, double-blind, two-stage, placebo-controlled trial with a sequential parallel comparison design in adults with moderate or severe methamphetamine use disorder, testing extended-release injectable naltrexone plus oral extended-release bupropion. 403 participants entered stage 1 and 225 stage 2. Response was defined as at least three methamphetamine-negative urine samples out of four at the end of a stage. Stage 1: 18 of 109 (16.5%) on naltrexone-bupropion versus 10 of 294 (3.4%) on placebo. Stage 2: 13 of 114 (11.4%) versus 2 of 111 (1.8%). Weighted average across both stages was 13.6% versus 2.5%, treatment effect 11.1 percentage points, Wald z=4.53, P<0.001. Adverse events included gastrointestinal disorders, tremor, malaise, hyperhidrosis and anorexia; serious adverse events in 8 of 223 (3.6%) receiving the combination. The authors' own summary is the honest one: the response was low, and it was higher than placebo.",
+          'Multisite, double-blind, two-stage, placebo-controlled trial with a sequential parallel comparison design in adults with moderate or severe methamphetamine use disorder, testing extended-release injectable naltrexone plus oral extended-release bupropion. 403 participants entered stage 1 and 225 stage 2. Response was defined as at least three methamphetamine-negative urine samples out of four at the end of a stage. Stage 1: 18 of 109 (16.5%) on naltrexone-bupropion versus 10 of 294 (3.4%) on placebo. Stage 2: 13 of 114 (11.4%) versus 2 of 111 (1.8%). Weighted average across both stages was 13.6% versus 2.5%, treatment effect 11.1 percentage points, Wald z=4.53, P<0.001. Adverse events included gastrointestinal disorders, tremor, malaise, hyperhidrosis and anorexia; serious adverse events in 8 of 223 (3.6%) receiving the combination. The authors summarised the result directly: the response was low, and it was higher than placebo.',
         evidenceSource:
           'Trivedi MH et al. Bupropion and Naltrexone in Methamphetamine Use Disorder. N Engl J Med 2021;384:140-153 (ADAPT-2, NCT03078075)',
         doi: '10.1056/NEJMoa2020214',
@@ -4391,7 +4391,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       conditionExplainer:
         'Mescaline is the oldest documented psychedelic in continuous human use and the least studied of the classic four in modern clinical terms. It is a phenethylamine rather than a tryptamine — structurally closer to amphetamine and to the 2C series than to LSD or psilocybin — and it reaches the same receptor by a different structural route.',
       whyItMatters:
-        'The evidence base is survey data and 1950s literature. That is a real gap and it is worth stating plainly rather than filling with the psilocybin data by analogy, because the compounds differ in potency by three orders of magnitude and in duration by a factor of two.',
+        'The evidence base is survey data and 1950s literature. That gap cannot be filled with the psilocybin data by analogy, because the compounds differ in potency by three orders of magnitude and in duration by a factor of two.',
       whoTakesThis:
         'Members of the Native American Church, under a federal regulatory exemption for ceremonial peyote. Otherwise, people using peyote or San Pedro cactus or synthetic mescaline outside any medical or legal framework.',
       clinicalGoals:
@@ -4856,7 +4856,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A Stanford team followed thirty special-operations veterans who had already decided to fly to Mexico for ibogaine. Their trauma, depression and anxiety scores improved enormously. There was no comparison group and no blinding, and the effect sizes are larger than almost any controlled psychiatric trial reports.',
         technicalDetails:
-          'Cherian et al. reported a prospective observational study of the Magnesium-Ibogaine Stanford Traumatic Injury to the CNS protocol in 30 male Special Operations Forces veterans with predominantly mild traumatic brain injury, delivered with complementary treatment modalities at a clinic in Mexico (NCT04313712). WHODAS disability improved immediately after treatment (P corrected < 0.001, d = 0.74) and at one month (d = 2.20); CAPS-5 PTSD improved at one month (d = 2.54), MADRS depression (d = 2.80) and HAM-A anxiety (d = 2.13). No unexpected or serious adverse events occurred. The authors state plainly that controlled trials are needed. The design cannot separate drug effect from the expectancy of a cohort who self-funded international travel for the treatment, from the complementary modalities delivered alongside it, or from regression to the mean in a group enrolled at a personal low point. Several authors hold patent applications on the protocol and three are shareholders in the company that provides the treatment, which the paper discloses.',
+          'Cherian et al. reported a prospective observational study of the Magnesium-Ibogaine Stanford Traumatic Injury to the CNS protocol in 30 male Special Operations Forces veterans with predominantly mild traumatic brain injury, delivered with complementary treatment modalities at a clinic in Mexico (NCT04313712). WHODAS disability improved immediately after treatment (P corrected < 0.001, d = 0.74) and at one month (d = 2.20); CAPS-5 PTSD improved at one month (d = 2.54), MADRS depression (d = 2.80) and HAM-A anxiety (d = 2.13). No unexpected or serious adverse events occurred. The authors state that controlled trials are needed. The design cannot separate drug effect from the expectancy of a cohort who self-funded international travel for the treatment, from the complementary modalities delivered alongside it, or from regression to the mean in a group enrolled at a personal low point. Several authors hold patent applications on the protocol and three are shareholders in the company that provides the treatment, which the paper discloses.',
         evidenceSource: 'Cherian KN et al. Nat Med 2024;30:373-381 (NCT04313712)',
         doi: '10.1038/s41591-023-02705-w',
         inferredClaim:
@@ -5029,7 +5029,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Does it actually stop opioid withdrawal?',
-        a: 'Every published series says the withdrawal score falls sharply within a day or so, and the effect sizes are large. None of those series had a control group. Opioid withdrawal also resolves by itself over three to five days, and the people in these studies had paid to travel for a treatment they expected to work. So the honest statement is: a consistent, large, within-subject reduction has been measured repeatedly, and no study has yet measured it against anything.',
+        a: 'Every published series says the withdrawal score falls sharply within a day or so, and the effect sizes are large. None of those series had a control group. Opioid withdrawal also resolves by itself over three to five days, and the people in these studies had paid to travel for a treatment they expected to work. A consistent, large, within-subject reduction has been measured repeatedly, but no study has yet measured it against a control group.',
         auditNote:
           'The 76.5-hour timepoint in the Brown and Alper series is roughly when untreated withdrawal would also be improving. That is the specific reason a controlled trial is needed rather than another case series.',
       },
@@ -6060,7 +6060,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Gamma-hydroxybutyric acid is Schedule I — the category for drugs with no accepted medical use. A drug product containing the identical molecule, approved by the FDA, is Schedule III. Both entries are in the same regulation.',
         technicalDetails:
-          '21 CFR 1308.11(e)(6) lists "gamma-hydroxybutyric acid (some other names include GHB; gamma-hydroxybutyrate; 4-hydroxybutyrate; 4-hydroxybutanoic acid; sodium oxybate; sodium oxybutyrate)" in Schedule I under DEA code 2010. 21 CFR 1308.13(c)(6) lists "Any drug product containing gamma hydroxybutyric acid, including its salts, isomers, and salts of isomers, for which an application is approved under section 505 of the Federal Food, Drug, and Cosmetic Act" in Schedule III under DEA code 2012. The Schedule I entry names sodium oxybate explicitly; the Schedule III entry captures the same chemical when it arrives as an approved product. GHB was added to Schedule I by DEA rule effective March 2000 (65 FR 13235), which was written to accommodate the then-pending drug application. This is the clearest instance in the schedules of a classification that describes provenance rather than pharmacology, and it is worth stating plainly because the phrase "no currently accepted medical use" is doing no chemical work here at all.',
+          '21 CFR 1308.11(e)(6) lists "gamma-hydroxybutyric acid (some other names include GHB; gamma-hydroxybutyrate; 4-hydroxybutyrate; 4-hydroxybutanoic acid; sodium oxybate; sodium oxybutyrate)" in Schedule I under DEA code 2010. 21 CFR 1308.13(c)(6) lists "Any drug product containing gamma hydroxybutyric acid, including its salts, isomers, and salts of isomers, for which an application is approved under section 505 of the Federal Food, Drug, and Cosmetic Act" in Schedule III under DEA code 2012. The Schedule I entry names sodium oxybate explicitly; the Schedule III entry captures the same chemical when it arrives as an approved product. GHB was added to Schedule I by DEA rule effective March 2000 (65 FR 13235), which was written to accommodate the then-pending drug application. This is the clearest instance in the schedules of a classification that describes provenance rather than pharmacology. In this case, the phrase "no currently accepted medical use" is doing no chemical work here at all.',
         evidenceSource:
           '21 CFR 1308.11(e)(6) and 21 CFR 1308.13(c)(6), current eCFR text; DEA final rule 65 FR 13235 (13 March 2000)',
         measuredMetric:
@@ -6544,7 +6544,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Twenty-four people with severe treatment-resistant depression breathed 25% nitrous oxide, 50% nitrous oxide, or air, an hour each on separate occasions. Both concentrations beat air, neither beat the other, and side effects fell sharply at the lower one.',
         technicalDetails:
-          'Nagele et al. ran a phase 2 crossover trial (NCT03283670) in 24 patients with severe treatment-resistant major depression, each receiving a single one-hour inhalation of 50% nitrous oxide, 25% nitrous oxide, and placebo (air/oxygen), in randomised order. The primary outcome was change on the 21-item Hamilton Depression Rating Scale. Nitrous oxide improved symptoms versus placebo overall (p = 0.01) with no difference between 25% and 50% (p = 0.58). Against placebo, 25% gave -0.75 points at 2 hours (p = 0.73), -1.41 at 24 hours (p = 0.52), -4.35 at week 1 (p = 0.05) and -5.19 at week 2 (p = 0.02); 50% gave -0.87 at 2 hours (p = 0.69), -1.93 at 24 hours (p = 0.37), -2.44 at week 1 (p = 0.25) and -7.00 at week 2 (p = 0.001). Adverse events declined substantially with dose (p < 0.001). The pattern worth noting is that nothing separated at 2 or 24 hours — the separation appears at one and two weeks, long after the gas has gone.',
+          'Nagele et al. ran a phase 2 crossover trial (NCT03283670) in 24 patients with severe treatment-resistant major depression, each receiving a single one-hour inhalation of 50% nitrous oxide, 25% nitrous oxide, and placebo (air/oxygen), in randomised order. The primary outcome was change on the 21-item Hamilton Depression Rating Scale. Nitrous oxide improved symptoms versus placebo overall (p = 0.01) with no difference between 25% and 50% (p = 0.58). Against placebo, 25% gave -0.75 points at 2 hours (p = 0.73), -1.41 at 24 hours (p = 0.52), -4.35 at week 1 (p = 0.05) and -5.19 at week 2 (p = 0.02); 50% gave -0.87 at 2 hours (p = 0.69), -1.93 at 24 hours (p = 0.37), -2.44 at week 1 (p = 0.25) and -7.00 at week 2 (p = 0.001). Adverse events declined substantially with dose (p < 0.001). The timing matters: the groups did not separate at 2 or 24 hours, but did at one and two weeks, long after the gas had gone.',
         evidenceSource: 'Nagele P et al. Sci Transl Med 2021;13:eabe1376 (NCT03283670)',
         doi: '10.1126/scitranslmed.abe1376',
         measuredMetric: 'HDRS-21 change at 2 hours, 24 hours, 1 week and 2 weeks, crossover, n=24',
@@ -7525,7 +7525,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is kratom an opioid?',
-        a: 'The plant is not, in the strict pharmacological sense, and its main alkaloid behaves as an antagonist rather than an agonist in the standard functional assay at the µ-opioid receptor. What acts as an opioid is 7-hydroxymitragynine, the metabolite the liver makes from mitragynine — a partial agonist that produced antinociception in rats and was reversed by naltrexone. So the honest answer is that kratom is a delivery system for an opioid metabolite, and the concentrated products now on sale skip that step and deliver the opioid directly.',
+        a: 'The plant is not, in the strict pharmacological sense, and its main alkaloid behaves as an antagonist rather than an agonist in the standard functional assay at the µ-opioid receptor. What acts as an opioid is 7-hydroxymitragynine, the metabolite the liver makes from mitragynine — a partial agonist that produced antinociception in rats and was reversed by naltrexone. Using kratom exposes the body to this opioid-active metabolite; concentrated 7-hydroxymitragynine products deliver it directly.',
         auditNote:
           "This distinction is why DEA's 2026 proposal targets a concentration of 7-hydroxymitragynine rather than the plant or mitragynine, which is a materially different regulatory object from the 2016 attempt.",
       },
@@ -7806,7 +7806,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The mouse finding of no tolerance or withdrawal does not describe the case series',
         laymanSummary:
-          'In mice, tianeptine produced opioid-like analgesia and reward but not tolerance or withdrawal. In humans it plainly produces both, and half the published case reports are withdrawal presentations.',
+          'In mice, tianeptine produced opioid-like analgesia and reward but not tolerance or withdrawal. In humans it produces both, and half the published case reports are withdrawal presentations.',
         technicalDetails:
           'Samuels et al. reported that while tianeptine produces opiate-like behavioural effects including analgesia and reward in mice, it did not lead to tolerance or withdrawal in their experiments. That finding is often quoted as evidence that tianeptine carries a lower dependence liability than conventional opioids. The human record does not support extending it: 13.3% of US poison-centre exposure calls were specifically withdrawal presentations, and 26 of 52 extractable individual cases in the 2026 systematic review presented in withdrawal. The discrepancy is most plausibly explained by dose and dosing frequency — licensed human use is 12.5 mg three times daily, while the misuse pattern involves far larger and more frequent doses — but that explanation is itself an inference, and the mouse result should not be carried across as a safety claim.',
         evidenceSource:
@@ -8201,7 +8201,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Phenibut cases appear to jump sharply from 2015. That is the year poison centres were first able to record "phenibut" as a term, so part of the increase is the counting, not the drug.',
         technicalDetails:
-          'The MMWR analysis states that the number of cases increased sharply over 2009-2019, particularly since 2015, when regional poison centres became able to use "phenibut" as a relevant term to capture exposures. A surveillance series whose case-ascertainment method changes mid-period cannot separate a real increase from an improvement in detection, and the authors say so. The independent Minnesota series shows the same shape — 48 of 56 calls in the final five years — which is consistent with a genuine rise, but that series covers the same period and is subject to the same coding change. The honest statement is that phenibut exposures rose over the decade and that the size of the rise is not measurable from these data.',
+          'The MMWR analysis states that the number of cases increased sharply over 2009-2019, particularly since 2015, when regional poison centres became able to use "phenibut" as a relevant term to capture exposures. A surveillance series whose case-ascertainment method changes mid-period cannot separate a real increase from an improvement in detection, and the authors say so. The independent Minnesota series shows the same shape — 48 of 56 calls in the final five years — which is consistent with a genuine rise, but that series covers the same period and is subject to the same coding change. Phenibut exposures rose over the decade, but these data cannot measure the size of the rise.',
         evidenceSource:
           'Graves JM et al. MMWR Morb Mortal Wkly Rep 2020;69:1227-1228, methods note',
         doi: '10.15585/mmwr.mm6935a5',
@@ -8705,7 +8705,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           'Top quartile (>17.0 mg/kg) versus lowest (<2.4 mg/kg): severe toxicity OR 3.43 (95% CI 1.44-8.14), prolonged toxicity OR 5.02 (95% CI 2.05-12.29)',
         unreportedAdverseSignals:
-          'ROC areas under the curve of 0.62 to 0.64 are modest, and the proposed 1.7 mg/kg triage cutoff has 98% sensitivity but 28% specificity — a high false-positive rate the authors state plainly.',
+          'ROC areas under the curve of 0.62 to 0.64 are modest, and the proposed 1.7 mg/kg triage cutoff has 98% sensitivity but only 28% specificity, producing many false positives.',
         independentReplicationStatus: 'Unreplicated',
       },
     ],
@@ -9556,7 +9556,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How much stronger than fentanyl are they?',
-        a: 'The honest answer is that it depends which measurement you mean. In the 2024 fifteen-compound panel, all bound the µ receptor with nanomolar affinity and several had functional potency in a β-arrestin recruitment assay comparable to or exceeding fentanyl. That is one assay in one system. It is not the same as a ratio of respiratory-depressant potency or of lethal dose in people, and the multipliers repeated in media coverage generally trace back to animal analgesia experiments from the 1950s and 1960s. What is solid is that active doses are in the microgram range.',
+        a: 'It depends which measurement you mean. In the 2024 fifteen-compound panel, all bound the µ receptor with nanomolar affinity and several had functional potency in a β-arrestin recruitment assay comparable to or exceeding fentanyl. That is one assay in one system. It is not the same as a ratio of respiratory-depressant potency or of lethal dose in people, and the multipliers repeated in media coverage generally trace back to animal analgesia experiments from the 1950s and 1960s. What is solid is that active doses are in the microgram range.',
       },
       {
         q: 'Why did these appear now if they were invented in the 1950s?',
@@ -12082,7 +12082,7 @@ export const CONTROLLED_PSYCHOACTIVE_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Lysergic acid amide appears in no US drug schedule. It is also absent from the list of controlled chemicals that includes the two ergot compounds used to make LSD.',
         technicalDetails:
-          'Lysergic acid amide does not appear in any schedule of 21 CFR part 1308. It also does not appear in the List I chemicals at 21 CFR 1310.02, which does name "Ergonovine and its salts" (DEA code 8675, threshold 10 grams) and "Ergotamine and its salts" (8676, threshold 20 grams) — the two ergot alkaloids controlled as LSD precursors. The distinction is worth stating precisely: the compounds regulated as chemicals are those useful for synthesising LSD, and ergine is not among them, so a psychoactive ergoline sits outside both regimes. The seeds themselves are ordinary agricultural commodities. As with salvinorin A, several US states control the seeds or the compound independently, which produces the same state-line patchwork.',
+          'Lysergic acid amide does not appear in any schedule of 21 CFR part 1308. It also does not appear in the List I chemicals at 21 CFR 1310.02, which does name "Ergonovine and its salts" (DEA code 8675, threshold 10 grams) and "Ergotamine and its salts" (8676, threshold 20 grams) — the two ergot alkaloids controlled as LSD precursors. The distinction matters: the compounds regulated as chemicals are those useful for synthesising LSD, and ergine is not among them, so a psychoactive ergoline sits outside both regimes. The seeds themselves are ordinary agricultural commodities. As with salvinorin A, several US states control the seeds or the compound independently, which produces the same state-line patchwork.',
         evidenceSource:
           '21 CFR part 1308, current eCFR text; 21 CFR 1310.02, List I chemicals, entries (5) and (6)',
         measuredMetric:

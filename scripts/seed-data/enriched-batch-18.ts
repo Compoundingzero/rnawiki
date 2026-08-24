@@ -128,7 +128,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'For acne the honest comparison is with the other topical retinoids and with benzoyl peroxide, and the largest network meta-analysis of the field found that the combinations beat any single agent. For fine wrinkling there is no substitute with comparable randomised evidence, which is a statement about how little the alternatives have been tested rather than a claim that tretinoin is powerful.',
+        'For acne the comparison is with the other topical retinoids and with benzoyl peroxide, and the largest network meta-analysis of the field found that the combinations beat any single agent. For fine wrinkling there is no substitute with comparable randomised evidence, which is a statement about how little the alternatives have been tested rather than a claim that tretinoin is powerful.',
       conventionalRx: [
         {
           name: 'Adapalene',
@@ -303,7 +303,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Death was never meant to be measured in this trial. The monitoring committee stopped the study six months early anyway, because there were too many deaths among people using the cream. The authors adjusted for every difference they could find between the groups, and the gap did not go away.',
         technicalDetails:
-          'The VATTC intervention was terminated six months early because of an excessive number of deaths in the tretinoin-treated group. Death was not contemplated as an endpoint in the original design. Post hoc analysis found minor imbalances in age, comorbidity and smoking status, all important predictors of death; after adjusting for them, the difference in mortality between the randomised groups remained statistically significant. The authors state plainly that they observed an association but do not infer a causal one, and that current evidence suggests causation is unlikely — topical tretinoin has minimal systemic absorption, and no mechanism connects it to all-cause death. The finding has not been reproduced in any subsequent randomised trial, and no subsequent trial of this size has been run.',
+          'The VATTC intervention was terminated six months early because of an excessive number of deaths in the tretinoin-treated group. Death was not contemplated as an endpoint in the original design. Post hoc analysis found minor imbalances in age, comorbidity and smoking status, all important predictors of death; after adjusting for them, the difference in mortality between the randomised groups remained statistically significant. The authors state that they observed an association but do not infer a causal one, and that current evidence suggests causation is unlikely — topical tretinoin has minimal systemic absorption, and no mechanism connects it to all-cause death. The finding has not been reproduced in any subsequent randomised trial, and no subsequent trial of this size has been run.',
         evidenceSource: 'Weinstock MA et al., Arch Dermatol 2009;145:18-24 (PMID 19153339)',
         doi: '10.1001/archdermatol.2008.542',
         measuredMetric:
@@ -506,7 +506,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         q: 'Is it true that a trial of this drug was stopped because people died?',
         a: 'Yes, and the detail matters. Death was not an endpoint anyone had planned to measure in the VATTC trial. The independent monitoring committee stopped the intervention six months early because there were too many deaths in the tretinoin group. The investigators then looked for explanations, found small imbalances in age, comorbidity and smoking, adjusted for all of them, and the difference remained statistically significant. Their own published conclusion is careful: they observed an association and do not infer a causal one, because there is no mechanism by which a cream with minimal systemic absorption would cause deaths, and no other trial has seen this. It has never been reproduced, and no trial that size has been run since.',
         auditNote:
-          'This is what an unexplained finding looks like when it is reported honestly rather than dropped. It is on this page for that reason, not because the drug is thought to be dangerous.',
+          'This unexplained finding was reported rather than omitted. It is included here because it remains unresolved, not because the drug is known to be dangerous.',
       },
       {
         q: 'Why does my skin get worse for the first month?',
@@ -616,7 +616,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Adapalene’s real competition is tretinoin, which a manufacturer-run meta-analysis of 900 patients found it equivalent to on lesion counts, and the fixed combinations, which the largest network meta-analysis in the field ranked above every single agent including this one. The choice between the retinoids is a tolerability and stability choice, not an efficacy one, and the honest version of the comparison says so.',
+        'Adapalene’s real competition is tretinoin, which a manufacturer-run meta-analysis of 900 patients found it equivalent to on lesion counts, and the fixed combinations, which the largest network meta-analysis in the field ranked above every single agent including this one. The choice between the retinoids is therefore about tolerability and stability rather than a demonstrated efficacy difference.',
       conventionalRx: [
         {
           name: 'Tretinoin (topical)',
@@ -1117,7 +1117,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
           name: 'Microencapsulated benzoyl peroxide 5% cream (Epsolay)',
           class: 'The same molecule inside silica microcapsules, on prescription, for rosacea',
           howItCompares:
-            'In two phase 3 vehicle-controlled trials in 733 subjects, IGA clear or almost clear at week 12 was 43.5% against 16.1% in the first study and 50.1% against 25.9% in the second, all P<0.001. The papers state plainly that the encapsulated product was never compared with ordinary unencapsulated benzoyl peroxide.',
+            'In two phase 3 vehicle-controlled trials in 733 subjects, IGA clear or almost clear at week 12 was 43.5% against 16.1% in the first study and 50.1% against 25.9% in the second, all P<0.001. The papers state that the encapsulated product was never compared with ordinary unencapsulated benzoyl peroxide.',
           typicalCost:
             'Priced as a branded prescription cream rather than under the over-the-counter monograph; not comparable to the generic per-gram figure',
           prosAndCons:
@@ -1480,7 +1480,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the benzene story real, and should I stop using it?',
-        a: 'The chemistry is real and published in a peer-reviewed dermatology journal. Benzene was measured at 0.16 to 35.30 parts per million across 111 over-the-counter products held at ordinary room temperature. A prescription encapsulated product formed no apparent benzene at refrigerator temperature and high levels at 50C. Applied product released benzene into the air above a face model, and much more under ultraviolet light below peak sunlight. What is not established is what any of that means for a person’s cancer risk, which depends on absorbed dose over years and has not been measured. Five of the eight authors work for the analytical laboratory that raised the issue, which the paper discloses. The honest position is that a stability problem has been demonstrated and a health consequence has not been quantified either way.',
+        a: 'The chemistry is real and published in a peer-reviewed dermatology journal. Benzene was measured at 0.16 to 35.30 parts per million across 111 over-the-counter products held at ordinary room temperature. A prescription encapsulated product formed no apparent benzene at refrigerator temperature and high levels at 50C. Applied product released benzene into the air above a face model, and much more under ultraviolet light below peak sunlight. What is not established is what any of that means for a person’s cancer risk, which depends on absorbed dose over years and has not been measured. Five of the eight authors work for the analytical laboratory that raised the issue, which the paper discloses. A stability problem has been demonstrated and a health consequence has not been quantified either way.',
         auditNote:
           'This is on the page because it is a documented conclusion shift about a drug that had a reputation for being chemically boring. It is not a recall notice and this site does not give storage or purchasing advice.',
       },
@@ -4249,7 +4249,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         category: 'measured',
         title: 'A target no other antibiotic uses, and a molecule blood destroys in minutes',
         laymanSummary:
-          'Mupirocin blocks an enzyme no other antibiotic class touches, so bacteria resistant to everything else are usually still sensitive to it. It is also broken down almost instantly in blood, which is why it can only ever be a cream.',
+          'Mupirocin blocks bacterial isoleucyl-tRNA synthetase, a target distinct from those of other antibiotic classes, so cross-resistance is uncommon. It is rapidly inactivated in blood, which confines its practical use to topical treatment.',
         technicalDetails:
           'Mupirocin is a structural analogue of isoleucyl-adenylate and reversibly inhibits bacterial isoleucyl-tRNA synthetase, competing with both isoleucine and ATP. No other clinically used antibiotic class targets an aminoacyl-tRNA synthetase in this way, so cross-resistance with other classes does not occur. The eukaryotic enzyme is not inhibited. The ester bond joining the monic acid moiety to 9-hydroxynonanoic acid is hydrolysed rapidly in plasma to inactive monic acid, which precludes systemic administration entirely — an unusual case where a molecule’s metabolic fragility is the reason its indication is confined to a surface.',
         evidenceSource:
@@ -4332,7 +4332,7 @@ export const ENRICHED_BATCH_18_DOSSIERS: SeedDossier[] = [
         statisticalPValue:
           '2.3% on mupirocin against 2.4% on placebo — no significant reduction. In the 891-patient carrier subgroup, nosocomial S. aureus infection 4.0% against 7.7%, odds ratio 0.49 (95% CI 0.25 to 0.92), P=0.02',
         unreportedAdverseSignals:
-          'The result this trial is cited for is a subgroup, and on a different endpoint from the primary one — all nosocomial S. aureus infections rather than surgical-site infections. Both facts are stated plainly in the paper and routinely lost in citation.',
+          'The result this trial is cited for is a subgroup, and on a different endpoint from the primary one — all nosocomial S. aureus infections rather than surgical-site infections. Both facts are stated in the paper and routinely lost in citation.',
         independentReplicationStatus: 'Partially Replicated',
       },
       {

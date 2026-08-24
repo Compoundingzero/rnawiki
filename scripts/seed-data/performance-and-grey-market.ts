@@ -765,7 +765,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'If the phase 2 worked, why did nobody develop it?',
-        a: 'That is the honest question and this page will not invent an answer. The recorded facts are: the trial completed in December 2017, posted a monotonic dose-response on its primary endpoint with all confidence intervals excluding zero, and no phase 3 for VK5211 has been registered since. Sponsors stop programmes for reasons that include financing, portfolio priorities, regulatory feedback about endpoints, and safety findings that never reach a journal. Which of those applied here is not on the public record, so this page records the gap rather than filling it.',
+        a: 'The public record does not explain why development stopped. The trial completed in December 2017, posted a monotonic dose-response on its primary endpoint with all confidence intervals excluding zero, and no phase 3 for VK5211 has been registered since. Sponsors stop programmes for reasons that include financing, portfolio priorities, regulatory feedback about endpoints, and safety findings that never reach a journal. The available documents do not show which reason applied here.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -1121,7 +1121,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How dangerous is it?',
-        a: 'Unquantifiable, and that is the honest answer rather than a hedge. Danger is a rate, and a rate needs a denominator — how many people took it, at what dose, for how long. None of that exists for RAD-140 outside the twenty patients in the phase 1. What does exist is a set of severe events published by independent clinicians who had no connection to each other: cholestatic liver injury needing corticosteroids, severe liver injury requiring hospital care, and myopericarditis in a minor after one dose. Those establish that these events happen. They cannot tell you how often.',
+        a: 'The rate cannot be calculated. A rate needs a denominator — how many people took it, at what dose, and for how long. None of that exists for RAD-140 outside the twenty patients in the phase 1. What does exist is a set of severe events published by independent clinicians who had no connection to each other: cholestatic liver injury needing corticosteroids, severe liver injury requiring hospital care, and myopericarditis in a minor after one dose. Those establish that these events happen. They cannot tell you how often.',
         auditNote:
           'This page does not describe the harms as rare or as common. Neither word is supported, and choosing one would be editorialising past the evidence.',
       },
@@ -1691,7 +1691,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In a two-year randomised trial, ibutamoren raised growth hormone and IGF-1 into the young-adult range and added 1.1 kg of fat-free mass while placebo lost 0.5 kg. It made no difference to strength or function.',
         technicalDetails:
-          'Nass et al. ran a two-year, double-blind, randomised, placebo-controlled, modified-crossover trial in 65 healthy adults aged 60 to 81, at 25 mg orally once daily. Growth hormone and IGF-1 rose into the healthy young-adult range. Fat-free mass changed by +1.1 kg (95% CI 0.7 to 1.5) on drug against -0.5 kg (-1.1 to 0.2) on placebo, P < 0.001; body cell mass by intracellular water followed the same pattern (P = 0.021). Body weight rose 2.7 kg against 0.8 kg (P = 0.003), with the average increase in limb fat greater on drug (1.1 kg versus 0.24 kg, P = 0.001) and no significant difference in abdominal visceral fat or total fat mass. The paper states plainly that the increased fat-free mass did not result in changes in strength or function, and that the two-year exploratory analyses confirmed the one-year results.',
+          'Nass et al. ran a two-year, double-blind, randomised, placebo-controlled, modified-crossover trial in 65 healthy adults aged 60 to 81, at 25 mg orally once daily. Growth hormone and IGF-1 rose into the healthy young-adult range. Fat-free mass changed by +1.1 kg (95% CI 0.7 to 1.5) on drug against -0.5 kg (-1.1 to 0.2) on placebo, P < 0.001; body cell mass by intracellular water followed the same pattern (P = 0.021). Body weight rose 2.7 kg against 0.8 kg (P = 0.003), with the average increase in limb fat greater on drug (1.1 kg versus 0.24 kg, P = 0.001) and no significant difference in abdominal visceral fat or total fat mass. The paper states that the increased fat-free mass did not result in changes in strength or function, and that the two-year exploratory analyses confirmed the one-year results.',
         evidenceSource: 'Nass R et al., Ann Intern Med 2008;149:601-611',
         doi: '10.7326/0003-4819-149-9-200811040-00003',
         measuredMetric: 'Fat-free mass and abdominal visceral fat at 1 year, confirmed at 2 years',
@@ -2513,7 +2513,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The rat work cannot tell you that S-23 will make a man infertile, and it cannot tell you that it will not. Nobody has looked.',
         technicalDetails:
-          'The rat regimen required oestradiol benzoate to maintain sexual behaviour, a species-specific requirement that has no human equivalent, and rat spermatogenesis differs from human spermatogenesis in duration and in gonadotropin dependence. Extrapolating the azoospermia finding to men is therefore not valid — and neither is dismissing it, because the mechanism through which it happened, suppression of LH and FSH by androgen receptor agonism at the hypothalamus and pituitary, is the same mechanism that operates in men and is well documented for every androgen. The honest position is that S-23 has never been assessed for effects on human spermatogenesis at any dose.',
+          'The rat regimen required oestradiol benzoate to maintain sexual behaviour, a species-specific requirement that has no human equivalent, and rat spermatogenesis differs from human spermatogenesis in duration and in gonadotropin dependence. Extrapolating the azoospermia finding to men is therefore not valid — and neither is dismissing it, because the mechanism through which it happened, suppression of LH and FSH by androgen receptor agonism at the hypothalamus and pituitary, is the same mechanism that operates in men and is well documented for every androgen. S-23 has never been assessed for effects on human spermatogenesis at any dose.',
         evidenceSource: 'Jones A et al., Endocrinology 2009;150:385-395',
         doi: '10.1210/en.2008-0674',
         inferredClaim:
@@ -3002,7 +3002,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
       unsupportedInferences: [
         'That trenbolone is prostate-sparing, which held only at the lowest doses in the rat study and reversed at high dose',
         'That the favourable rodent tissue-selectivity profile transfers to human use at multiples of those doses',
-        'That the survey association proves causation — it is cross-sectional and self-reported, and this page says so rather than treating it as a trial',
+        'That the survey association proves causation — the evidence is cross-sectional and self-reported, not a randomised trial',
       ],
       whatFailedInitially: [
         'The 2011 recommendation that trenbolone be studied as an androgen replacement therapy was never taken up; no human trial has been registered in the fifteen years since',
@@ -3227,7 +3227,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In the same pooled analysis, oxandrolone did not reduce deaths, did not reduce infections and did not improve healing of the skin-graft donor sites.',
         technicalDetails:
-          'In the same 14-trial, 2,822-patient meta-analysis: mortality risk ratio 1.04 (95% CI 0.47 to 2.32, P = 0.913); infection risk ratio 0.83 (95% CI 0.67 to 1.02, P = 0.639); donor site healing SMD -1.48 (95% CI -2.18 to 0.77, P = 0.116). The endpoints that moved are process and body-composition endpoints. The endpoints that did not move are the ones a patient would name first. A drug can genuinely shorten a hospital stay without saving a life, and the honest description of oxandrolone in burn care is exactly that.',
+          'In the same 14-trial, 2,822-patient meta-analysis: mortality risk ratio 1.04 (95% CI 0.47 to 2.32, P = 0.913); infection risk ratio 0.83 (95% CI 0.67 to 1.02, P = 0.639); donor site healing SMD -1.48 (95% CI -2.18 to 0.77, P = 0.116). The endpoints that moved are process and body-composition endpoints. The endpoints that did not move are the ones a patient would name first. In burn care, oxandrolone shortened hospital stay without showing a survival benefit.',
         evidenceSource: 'Lou J et al., World J Emerg Surg 2025;20:75',
         doi: '10.1186/s13017-025-00648-w',
         measuredMetric: 'All-cause mortality, infection rate and donor site healing',
@@ -8035,7 +8035,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Helsinn ran ipamorelin in 117 and then 320 patients recovering from bowel surgery. Both trials completed. Neither posted results, and nothing followed.',
         technicalDetails:
-          'NCT00672074 was a phase 2, double-blind, placebo-controlled, multiple-dose study of ipamorelin versus placebo for the management of post-operative ileus, 117 participants, completed December 2009, primary endpoint recovery of gastrointestinal function, no results posted. NCT01280344 was a phase 2 double-blind placebo-controlled dose-finding study of ipamorelin versus placebo for recovery of gastrointestinal function in patients following small or large bowel resection, 320 participants, completed May 2014, same primary endpoint, no results posted. No phase 3 was registered and no product exists. The indication is worth noting: ghrelin-receptor agonism accelerates gastric emptying, so the clinical hypothesis was gut motility, not body composition.',
+          'NCT00672074 was a phase 2, double-blind, placebo-controlled, multiple-dose study of ipamorelin versus placebo for the management of post-operative ileus, 117 participants, completed December 2009, primary endpoint recovery of gastrointestinal function, no results posted. NCT01280344 was a phase 2 double-blind placebo-controlled dose-finding study of ipamorelin versus placebo for recovery of gastrointestinal function in patients following small or large bowel resection, 320 participants, completed May 2014, same primary endpoint, no results posted. No phase 3 was registered and no product exists. Both trials studied gut motility, not body composition, because ghrelin-receptor agonism accelerates gastric emptying.',
         evidenceSource:
           'ClinicalTrials.gov records NCT00672074 (completed December 2009, n=117) and NCT01280344 (completed May 2014, n=320), Helsinn Therapeutics, neither with posted results',
         measuredMetric:
@@ -8439,7 +8439,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Sermorelin was approved to treat growth failure in children and no study ever established what it did to final adult height.',
         technicalDetails:
-          'The efficacy record consists of one-year height velocity data in 86 evaluable children, with sustained effect reported in a small number followed to 36 months. The published review states plainly that the effect of long-term once-daily subcutaneous sermorelin at 30 micrograms per kilogram on final adult height is yet to be determined. Height velocity in the first year of treatment is a surrogate: it is a real measurement and it is not the outcome the treatment exists to change. Both Geref products are now listed as discontinued in Drugs@FDA, so the question will not be answered by the approved product.',
+          'The efficacy record consists of one-year height velocity data in 86 evaluable children, with sustained effect reported in a small number followed to 36 months. The published review states that the effect of long-term once-daily subcutaneous sermorelin at 30 micrograms per kilogram on final adult height is yet to be determined. Height velocity in the first year of treatment is a surrogate: it is a real measurement and it is not the outcome the treatment exists to change. Both Geref products are now listed as discontinued in Drugs@FDA, so the question will not be answered by the approved product.',
         evidenceSource:
           'Prakash A, Goa KL, BioDrugs 1999;12:139-157; Drugs@FDA records NDA 019863 and NDA 020443, both marketing status Discontinued',
         measuredMetric: 'Trials reporting final adult height after sermorelin treatment: none',
@@ -8452,7 +8452,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Sermorelin was approved as a pituitary test, and the label limitation is that a normal growth hormone response does not exclude deficiency caused by a problem in the hypothalamus.',
         technicalDetails:
-          'The approved diagnostic use is a single intravenous 1 microgram per kilogram dose with growth hormone sampled afterwards, used alongside conventional provocative tests. The recognised limitation is structural rather than technical: sermorelin bypasses the hypothalamus and tests the pituitary directly, so a hypothalamic cause of deficiency produces a normal response. A subnormal response to other provocative tests is required to confirm disease in those patients. Adding arginine to intravenous sermorelin was reported to make the test more specific. This is an unusually honest piece of diagnostic labelling and it is worth reading next to the marketing of GHRH peptides as general pituitary stimulants.',
+          'The approved diagnostic use is a single intravenous 1 microgram per kilogram dose with growth hormone sampled afterwards, used alongside conventional provocative tests. The recognised limitation is structural rather than technical: sermorelin bypasses the hypothalamus and tests the pituitary directly, so a hypothalamic cause of deficiency produces a normal response. A subnormal response to other provocative tests is required to confirm disease in those patients. Adding arginine to intravenous sermorelin was reported to make the test more specific. The diagnostic label states this limitation directly, in contrast with marketing that presents GHRH peptides as general pituitary stimulants.',
         evidenceSource: 'Prakash A, Goa KL, BioDrugs 1999;12:139-157',
         doi: '10.2165/00063030-199912020-00007',
         measuredMetric:
@@ -9870,7 +9870,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         q: 'Does modafinil make you smarter?',
         a: 'By a small and narrow amount, in laboratory tasks. A PRISMA meta-analysis of 14 randomised studies in healthy non-sleep-deprived adults found an overall standardised mean difference of 0.12 against placebo, with memory updating the only domain reaching significance on its own at 0.28. Methylphenidate did somewhat better at 0.21 and D-amphetamine showed no effect at all. The authors state directly that there is a user perception these drugs are effective cognitive enhancers and that this is not supported by the evidence so far. A separate systematic review found the answer depends substantially on which test battery is used.',
         auditNote:
-          'An effect size of 0.12 is real and small. Both halves of that sentence belong in any honest account of this drug.',
+          'An effect size of 0.12 is statistically detectable and small; both facts matter when describing this drug.',
       },
       {
         q: 'Is it addictive?',
@@ -11471,7 +11471,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         q: 'What is the evidence in humans?',
         a: 'A comparison against piracetam in patients with mild cognitive disorders of vascular and traumatic origin, published in Russian and in English translation, conducted at the V. V. Zakusov State Research Institute of Pharmacology — the institute that designed the compound. It is not registered on any trial registry, has no placebo arm, has not been independently replicated, and its active comparator is a drug that Cochrane found unsupported in the same indication. There is no placebo-controlled trial of noopept in an indexed English-language journal.',
         auditNote:
-          'The point is not that Russian research is unreliable. It is that this particular evidence cannot be independently checked by a reader, and the page says so rather than rounding it up or down.',
+          'The point is not that Russian research is unreliable. This particular evidence cannot be independently checked from the cited material, so its strength cannot be upgraded or downgraded with confidence.',
       },
       {
         q: 'How much is actually in a capsule?',
@@ -12477,7 +12477,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The compound became internationally known when it turned up in athlete drug tests, and the first English-language report on it was a 1997 Lancet letter titled "Bromontan, a new doping agent".',
         technicalDetails:
-          'Burnat et al. published "Bromontan, a new doping agent" in the Lancet in September 1997. For most laboratories outside the former Soviet Union this was the introduction to the compound: a substance appearing in doping control samples that the existing analytical methods had not been built to find, with a pharmacology described in journals most of those laboratories did not read. It has been prohibited in sport since that period. The sequence is worth stating plainly because it inverts the usual order: normally a drug is characterised, then approved, then abused, then added to a prohibited list. Here the prohibited-list entry and the analytical characterisation arrived in the West before any accessible account of what the drug does.',
+          'Burnat et al. published "Bromontan, a new doping agent" in the Lancet in September 1997. For most laboratories outside the former Soviet Union this was the introduction to the compound: a substance appearing in doping control samples that the existing analytical methods had not been built to find, with a pharmacology described in journals most of those laboratories did not read. It has been prohibited in sport since that period. The sequence is unusual because it inverts the usual order: normally a drug is characterised, then approved, then abused, then added to a prohibited list. Here the prohibited-list entry and the analytical characterisation arrived in the West before any accessible account of what the drug does.',
         evidenceSource: 'Burnat P et al., Lancet 1997;350:963-964',
         doi: '10.1016/s0140-6736(05)63310-7',
         inferredClaim:
@@ -13677,7 +13677,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In two-year feeding studies, the effect that sets boron safe limits is damage to the testes — in a compound sold to raise testosterone.',
         technicalDetails:
-          'Hasegawa et al. re-derived a tolerable daily intake for boron using chemical-specific uncertainty factors. No-observed-adverse-effect levels of 17.5 and 8.8 mg boron per kilogram per day for the critical effect of testicular toxicity were identified in two-year rat and dog feeding studies. The 95% lower confidence limit of the benchmark dose for a 5% reduction in fetal body weight was 44.9 mg/kg/day in mice and 10.3 mg/kg/day in rats. Applying measured interspecies differences in boron clearance and variability in glomerular filtration rate in pregnant women, overall uncertainty factors were 68 for rat testicular toxicity, 40 for dog testicular toxicity, 247 for mouse developmental toxicity and 78 for rat developmental toxicity, and the authors concluded that 0.13 mg boron per kilogram per day is the most appropriate tolerable daily intake, based on rat developmental toxicity. Testicular and developmental toxicity being the endpoints that define the safe boundary is a fact worth stating next to the marketing.',
+          'Hasegawa et al. re-derived a tolerable daily intake for boron using chemical-specific uncertainty factors. No-observed-adverse-effect levels of 17.5 and 8.8 mg boron per kilogram per day for the critical effect of testicular toxicity were identified in two-year rat and dog feeding studies. The 95% lower confidence limit of the benchmark dose for a 5% reduction in fetal body weight was 44.9 mg/kg/day in mice and 10.3 mg/kg/day in rats. Applying measured interspecies differences in boron clearance and variability in glomerular filtration rate in pregnant women, overall uncertainty factors were 68 for rat testicular toxicity, 40 for dog testicular toxicity, 247 for mouse developmental toxicity and 78 for rat developmental toxicity, and the authors concluded that 0.13 mg boron per kilogram per day is the most appropriate tolerable daily intake, based on rat developmental toxicity. Testicular and developmental toxicity being the endpoints that define the safe boundary is a fact that belongs next to the marketing claims.',
         evidenceSource: 'Hasegawa R et al., Regul Toxicol Pharmacol 2013;65:108-114',
         doi: '10.1016/j.yrtph.2012.10.013',
         measuredMetric:
@@ -13691,7 +13691,7 @@ export const PERFORMANCE_AND_GREY_MARKET_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Boron has never been classified as essential for humans, has no Recommended Dietary Allowance, and the European upper limit is 10 mg a day.',
         technicalDetails:
-          'A 2026 review of boron in the diet and as a supplement states plainly that boron is not currently classified as an essential nutrient, while describing it as biologically important and surveying claimed effects on bone, cognition, mineral and hormonal metabolism, antioxidant defence, body weight and inflammation. The European Food Safety Authority tolerable upper intake level for boron is 10 mg per day. There is no Recommended Dietary Allowance and no Adequate Intake, because establishing either requires an identified requirement, and no requirement has been established. Everything about boron supplementation therefore sits on top of an intake with no defined target.',
+          'A 2026 review of boron in the diet and as a supplement states that boron is not currently classified as an essential nutrient, while describing it as biologically important and surveying claimed effects on bone, cognition, mineral and hormonal metabolism, antioxidant defence, body weight and inflammation. The European Food Safety Authority tolerable upper intake level for boron is 10 mg per day. There is no Recommended Dietary Allowance and no Adequate Intake, because establishing either requires an identified requirement, and no requirement has been established. Everything about boron supplementation therefore sits on top of an intake with no defined target.',
         evidenceSource:
           'Kuru-Yasar R, Yarat A. The role of boron in the diet and as a dietary supplement. Handb Exp Pharmacol 2026; EFSA tolerable upper intake level of 10 mg/day as cited in Stubing F et al., Biol Trace Elem Res 2026',
         doi: '10.1007/164_2026_811',

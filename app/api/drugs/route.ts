@@ -5,6 +5,7 @@
 
 import { z } from 'zod'
 import { listDrugs, type SearchHit } from '@/lib/queries/drugs'
+import { bindPublicSearchSummaries } from '@/lib/queries/public-search-hit-projection'
 import { getCurrentUser } from '@/lib/session'
 import { PUBLIC_API } from '@/lib/rate-limit'
 import { ok, rateLimited, rateLimitKey, withHandler } from '@/lib/api-response'
@@ -21,6 +22,7 @@ export const dynamic = 'force-dynamic'
 /** Contract: `limit` max 60. Below `listDrugs`'s own MAX_PAGE_SIZE of 100, deliberately. */
 const DEFAULT_LIMIT = 24
 const MAX_LIMIT = 60
+const MAX_OFFSET = 600_000
 
 /**
  * `z.enum` needs a non-empty tuple and the vocabularies in lib/types.ts are declared as arrays,
@@ -35,13 +37,13 @@ const querySchema = z.object({
   approvalStatus: z.enum(approvalValues).optional(),
   depth: z.enum(['stub', 'curated', 'flagship']).optional(),
   limit: z.coerce.number().int().positive().max(MAX_LIMIT).optional(),
-  offset: z.coerce.number().int().min(0).optional(),
+  offset: z.coerce.number().int().min(0).max(MAX_OFFSET).optional(),
 })
 
 /**
- * The lean row the contract returns. `listDrugs` hands back whole dossiers because the browse
- * CARDS render pricing and audit counts; this endpoint's contract is the lean shape, so the
- * projection happens here rather than by adding a second paginated query to lib/queries/drugs.ts.
+ * The lean row the contract returns. `listDrugs` hands back whole dossiers for the server-rendered
+ * browse page; this endpoint's contract is the lean shape, so the projection happens here rather
+ * than by adding a second paginated query to lib/queries/drugs.ts.
  * One paginated read path is worth more than the bytes saved, and MAX_LIMIT bounds the cost.
  */
 function toSearchHit(drug: Awaited<ReturnType<typeof listDrugs>>['items'][number]): SearchHit {
@@ -52,8 +54,7 @@ function toSearchHit(drug: Awaited<ReturnType<typeof listDrugs>>['items'][number
     modality: drug.modality,
     approvalStatus: drug.approvalStatus,
     patientFriendlyIndication: drug.patientFriendlyIndication,
-    // `dossierDepth` is NOT NULL in the database, so `rowToDossier` always sets it; the fallback
-    // exists only because the DrugDossier type marks it optional for the wireframe's sake.
+    // The fallback keeps older serialized dossier shapes compatible.
     dossierDepth: drug.dossierDepth ?? 'stub',
   }
 }
@@ -87,5 +88,6 @@ export const GET = withHandler(async (req: Request) => {
     depth: parsed.depth,
   })
 
-  return ok({ drugs: result.items.map(toSearchHit), total: result.total, limit, offset })
+  const publicDrugs = await bindPublicSearchSummaries(result.items.map(toSearchHit))
+  return ok({ drugs: publicDrugs, total: result.total, limit, offset })
 })

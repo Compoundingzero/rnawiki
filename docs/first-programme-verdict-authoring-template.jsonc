@@ -1,0 +1,232 @@
+// NON-IMPORTABLE CONTRACT REFERENCE.
+// This file contains placeholders, comments, and the forbidden _templateOnly key. It is not
+// evidence, seed data, or medical content. Copy it outside the repository, replace every
+// placeholder with human-authored/source-verified content, remove comments and _templateOnly,
+// then validate the resulting JSON with the documented dry-run command.
+// Add a fully authored claim object for every claim key referenced elsewhere in the graph.
+{
+  "_templateOnly": true,
+  "schemaVersion": "programme-first-verdict-authoring/v1",
+  "programmeId": "<EXISTING_PROGRAMME_ID>",
+  "proposalAsOfDate": "<CURRENT_UTC_DATE_YYYY-MM-DD>",
+  "conflictsOfInterest": "<HUMAN_AUTHORED_DISCLOSURE>",
+  "programmeTrialIds": ["<EXISTING_NORMALIZED_TRIAL_ID>"],
+  "claims": [
+    {
+      "claimKey": "<stable.lowercase-claim-key>",
+      "programmeTrialId": "<SCOPED_TRIAL_ID_OR_NULL>",
+      "evidenceNodeType": null,
+      // MEASURED | SPONSOR_REPORTED | REGULATORY_FINDING | RNAWIKI_JUDGEMENT | UNKNOWN
+      "nature": "<CLAIM_NATURE>",
+      // INCREASE | DECREASE | NO_CHANGE | MIXED | NOT_APPLICABLE | UNKNOWN
+      "direction": "<CLAIM_DIRECTION>",
+      "plainLanguageText": "<HUMAN_AUTHORED_SOURCE_SUPPORTED_STATEMENT>",
+      "technicalText": null,
+      "population": null,
+      "intervention": null,
+      "comparator": null,
+      "dose": null,
+      "route": null,
+      "duration": null,
+      "endpoint": null,
+      // PRIMARY | SECONDARY | EXPLORATORY | NOT_APPLICABLE | null
+      "endpointHierarchy": null,
+      // PATIENT_OUTCOME | SURROGATE | SAFETY | OPERATIONAL | OTHER | null
+      "outcomeType": null,
+      "numericValue": null,
+      "numericUnitRequired": false,
+      "numericUnit": null,
+      "resultDate": null,
+      "participantOutcome": null,
+      "comparatorValue": null,
+      "comparatorGroup": null,
+      "presentedAsPatientBenefit": null,
+      "exploratoryNatureDisclosed": null,
+      "stoppingReason": false,
+      "conflictsWithClaimKeys": [],
+      "uncertaintyInterval": null,
+      "timepoint": null,
+      "reviewerInterpretation": null,
+      "lastVerifiedAt": null,
+      "sourceSnapshotIds": ["<EXACT_CURRENT_IMMUTABLE_SOURCE_SNAPSHOT_ID>"],
+    },
+  ],
+  "evidenceNodes": [
+    {
+      "nodeType": "HUMAN_EXPOSURE",
+      "state": "<CONFIRMED_OR_CONTRADICTED_OR_UNKNOWN_OR_NOT_MEASURED_OR_MIXED>",
+      "plainSummary": "<HUMAN_AUTHORED_SUMMARY>",
+      "professionalSummary": "<HUMAN_AUTHORED_TECHNICAL_SUMMARY>",
+      "rationale": "<HUMAN_AUTHORED_SOURCE_BACKED_RATIONALE>",
+      "visible": true,
+      "presentedAsPositive": false,
+      "presentedAsNegative": false,
+      "lastVerifiedAt": null,
+      "claimLinks": [{ "claimKey": "<human-exposure-claim-key>", "relationship": "SUPPORTS" }],
+    },
+    {
+      "nodeType": "USEFUL_EXPOSURE",
+      "state": "<CONFIRMED_OR_CONTRADICTED_OR_UNKNOWN_OR_NOT_MEASURED_OR_MIXED>",
+      "plainSummary": "<HUMAN_AUTHORED_SUMMARY>",
+      "professionalSummary": "<HUMAN_AUTHORED_TECHNICAL_SUMMARY>",
+      "rationale": "<HUMAN_AUTHORED_SOURCE_BACKED_RATIONALE>",
+      "visible": true,
+      "presentedAsPositive": false,
+      "presentedAsNegative": false,
+      "lastVerifiedAt": null,
+      "claimLinks": [{ "claimKey": "<useful-exposure-claim-key>", "relationship": "SUPPORTS" }],
+    },
+    {
+      "nodeType": "TARGET_ENGAGEMENT",
+      "state": "<CONFIRMED_OR_CONTRADICTED_OR_UNKNOWN_OR_NOT_MEASURED_OR_MIXED>",
+      "plainSummary": "<HUMAN_AUTHORED_SUMMARY>",
+      "professionalSummary": "<HUMAN_AUTHORED_TECHNICAL_SUMMARY>",
+      "rationale": "<HUMAN_AUTHORED_SOURCE_BACKED_RATIONALE>",
+      "visible": true,
+      "presentedAsPositive": false,
+      "presentedAsNegative": false,
+      "lastVerifiedAt": null,
+      "claimLinks": [{ "claimKey": "<target-engagement-claim-key>", "relationship": "SUPPORTS" }],
+    },
+    {
+      "nodeType": "BIOLOGICAL_RESPONSE",
+      "state": "<CONFIRMED_OR_CONTRADICTED_OR_UNKNOWN_OR_NOT_MEASURED_OR_MIXED>",
+      "plainSummary": "<HUMAN_AUTHORED_SUMMARY>",
+      "professionalSummary": "<HUMAN_AUTHORED_TECHNICAL_SUMMARY>",
+      "rationale": "<HUMAN_AUTHORED_SOURCE_BACKED_RATIONALE>",
+      "visible": true,
+      "presentedAsPositive": false,
+      "presentedAsNegative": false,
+      "lastVerifiedAt": null,
+      "claimLinks": [{ "claimKey": "<biological-response-claim-key>", "relationship": "SUPPORTS" }],
+    },
+    {
+      "nodeType": "PATIENT_OUTCOME",
+      "state": "<CONFIRMED_OR_CONTRADICTED_OR_UNKNOWN_OR_NOT_MEASURED_OR_MIXED>",
+      "plainSummary": "<HUMAN_AUTHORED_SUMMARY>",
+      "professionalSummary": "<HUMAN_AUTHORED_TECHNICAL_SUMMARY>",
+      "rationale": "<HUMAN_AUTHORED_SOURCE_BACKED_RATIONALE>",
+      "visible": true,
+      "presentedAsPositive": false,
+      "presentedAsNegative": false,
+      "lastVerifiedAt": null,
+      "claimLinks": [{ "claimKey": "<patient-outcome-claim-key>", "relationship": "SUPPORTS" }],
+    },
+  ],
+  // Either [], or exactly five rows per assessed trial: STATISTICAL_POWER,
+  // POPULATION_SELECTION, DOSE_EXPOSURE_ADEQUACY, ENDPOINT_VALIDITY, and
+  // DURATION_OPERATIONAL_INTEGRITY. State: YES | NO | UNCLEAR | NOT_REPORTED.
+  "interpretabilityAssessments": [
+    // Object shape shown once for reference. If a trial is assessed, author one such object for
+    // each of the five criteria named above; otherwise use an empty array.
+    {
+      "programmeTrialId": "<SCOPED_TRIAL_ID>",
+      "criterion": "<ONE_OF_THE_FIVE_CRITERIA>",
+      "state": "<YES_OR_NO_OR_UNCLEAR_OR_NOT_REPORTED>",
+      "explanation": "<HUMAN_AUTHORED_SOURCE_BACKED_EXPLANATION>",
+      "lastVerifiedAt": null,
+      "claimLinks": [{ "claimKey": "<interpretability-claim-key>", "relationship": "SUPPORTS" }],
+    },
+  ],
+  "conclusion": {
+    // IDEA_FAILED | MOLECULE_FAILED | TEST_UNANSWERED for stopped/withdrawn programmes; otherwise null.
+    "verdictCode": null,
+    "publicLabel": "<HUMAN_AUTHORED_PUBLIC_CONCLUSION>",
+    "professionalLabel": "<HUMAN_AUTHORED_PROFESSIONAL_CONCLUSION>",
+    "indicationScope": "<INDICATION_SCOPE>",
+    "populationScope": "<POPULATION_SCOPE>",
+    "doseExposureScope": "<DOSE_EXPOSURE_SCOPE>",
+    "periodScope": "<EVIDENCE_PERIOD_SCOPE>",
+    "trialScope": "<TRIAL_SCOPE>",
+    "outcomeScope": "<OUTCOME_SCOPE>",
+    "plainMechanism": "<HUMAN_AUTHORED_PLAIN_MECHANISM>",
+    "bestSupportedFinding": "<BEST_SUPPORTED_FINDING>",
+    "mainLimitation": "<MAIN_LIMITATION>",
+    "oneSentenceReason": "<ONE_SENTENCE_REASON>",
+    "whatWasDisproven": [],
+    "whatWasNotDisproven": [],
+    "whatRemainsUnknown": [],
+    // HIGH | MODERATE | LOW | VERY_LOW | UNKNOWN
+    "confidence": "<CONFIDENCE>",
+    "confidenceExplanation": "<CONFIDENCE_EXPLANATION>",
+    "conditionsThatWouldChangeVerdict": [],
+    "sourceDependent": true,
+    // relationship: SUPPORTING | CONTRADICTORY | CANDIDATE_LIMITATION
+    "claimLinks": [{ "claimKey": "<stable.lowercase-claim-key>", "relationship": "SUPPORTING" }],
+  },
+  "dependencies": {
+    "summary": {
+      "summary.plainMechanism": ["<stable.lowercase-claim-key>"],
+      "summary.bestSupportedFinding": ["<stable.lowercase-claim-key>"],
+      "summary.mainLimitation": ["<stable.lowercase-claim-key>"],
+    },
+    "verdict": {
+      "verdict.publicLabel": ["<stable.lowercase-claim-key>"],
+      "verdict.professionalLabel": ["<stable.lowercase-claim-key>"],
+      "verdict.oneSentenceReason": ["<stable.lowercase-claim-key>"],
+      "verdict.scope.indication": ["<stable.lowercase-claim-key>"],
+      "verdict.scope.population": ["<stable.lowercase-claim-key>"],
+      "verdict.scope.doseExposure": ["<stable.lowercase-claim-key>"],
+      "verdict.scope.period": ["<stable.lowercase-claim-key>"],
+      "verdict.scope.trials": ["<stable.lowercase-claim-key>"],
+      "verdict.scope.outcome": ["<stable.lowercase-claim-key>"],
+      "verdict.whatWasDisproven": ["<stable.lowercase-claim-key>"],
+      "verdict.whatWasNotDisproven": ["<stable.lowercase-claim-key>"],
+      "verdict.whatRemainsUnknown": ["<stable.lowercase-claim-key>"],
+      "verdict.confidence": ["<stable.lowercase-claim-key>"],
+      "verdict.confidenceExplanation": ["<stable.lowercase-claim-key>"],
+      "verdict.conditionsThatWouldChangeVerdict": ["<stable.lowercase-claim-key>"],
+    },
+  },
+  "presentation": {
+    // Three to five contiguous steps. evidenceBasis: MEASURED_IN_PEOPLE |
+    // MEASURED_OUTSIDE_PEOPLE | PREDICTED | UNKNOWN. claim relationship: SUPPORTS | CONTRADICTS | QUALIFIES.
+    "mechanismSteps": [
+      {
+        "stepKey": "stage-one",
+        "stepOrder": 1,
+        "plainTitle": "<HUMAN_AUTHORED_TITLE>",
+        "plainDescription": "<HUMAN_AUTHORED_DESCRIPTION>",
+        "technicalDescription": null,
+        "evidenceBasis": "<MECHANISM_EVIDENCE_BASIS>",
+        "claimLinks": [{ "claimKey": "<stable.lowercase-claim-key>", "relationship": "SUPPORTS" }],
+      },
+      {
+        "stepKey": "stage-two",
+        "stepOrder": 2,
+        "plainTitle": "<HUMAN_AUTHORED_TITLE>",
+        "plainDescription": "<HUMAN_AUTHORED_DESCRIPTION>",
+        "technicalDescription": null,
+        "evidenceBasis": "<MECHANISM_EVIDENCE_BASIS>",
+        "claimLinks": [{ "claimKey": "<stable.lowercase-claim-key>", "relationship": "SUPPORTS" }],
+      },
+      {
+        "stepKey": "stage-three",
+        "stepOrder": 3,
+        "plainTitle": "<HUMAN_AUTHORED_TITLE>",
+        "plainDescription": "<HUMAN_AUTHORED_DESCRIPTION>",
+        "technicalDescription": null,
+        "evidenceBasis": "<MECHANISM_EVIDENCE_BASIS>",
+        "claimLinks": [{ "claimKey": "<stable.lowercase-claim-key>", "relationship": "SUPPORTS" }],
+      },
+    ],
+    // Optional. eventType: PROGRAMME_MILESTONE | FIRST_HUMAN_ADMINISTRATION |
+    // PHASE_PROGRESSION | IMPORTANT_RESULT | SAFETY_SIGNAL | REGULATORY_ACTION |
+    // PAUSE_OR_TERMINATION | LICENSING_OR_ACQUISITION. dateBasis: ACTUAL | PLANNED | REPORTED_UNCLEAR.
+    "timelineEvents": [
+      // Object shape shown once for reference. Remove it for an intentionally empty timeline.
+      {
+        "eventKey": "<stable-event-key>",
+        "eventDate": "<YYYY-MM-DD>",
+        "eventType": "<TIMELINE_EVENT_TYPE>",
+        "dateBasis": "<ACTUAL_OR_PLANNED_OR_REPORTED_UNCLEAR>",
+        "plainTitle": "<HUMAN_AUTHORED_EVENT_TITLE>",
+        "plainDescription": "<HUMAN_AUTHORED_SOURCE_BACKED_EVENT_DESCRIPTION>",
+        "technicalDescription": null,
+        "programmeTrialId": "<SCOPED_TRIAL_ID_OR_NULL>",
+        "sourceSnapshotId": "<EXACT_CURRENT_IMMUTABLE_SOURCE_SNAPSHOT_ID>",
+        "claimLinks": [{ "claimKey": "<timeline-event-claim-key>", "relationship": "SUPPORTS" }],
+      },
+    ],
+  },
+}

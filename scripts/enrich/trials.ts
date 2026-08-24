@@ -12,9 +12,9 @@ import { DATA_DIR } from '../ingest/paths'
  *
  * What it does NOT give, and what this module therefore leaves alone, is whether the trial WORKED.
  * `endpointMet` and `statisticalPValue` are results, they live in the published paper rather than
- * the registry, and a machine has no business filling them. So `endpointMet` is false and the
- * p-value field says the result is not recorded — the dossier shows a trial that exists and states
- * plainly that nobody has entered its outcome. That is the honest shape of the fact.
+ * the registry, and a machine has no business filling them. `endpointStatus: not_reported` keeps
+ * that absence distinct from a negative result; `endpointMet` remains false only for compatibility
+ * with older consumers while they migrate to the explicit state.
  */
 
 const API = 'https://clinicaltrials.gov/api/v2/studies'
@@ -37,14 +37,32 @@ interface Study {
 }
 
 const cachePath = join(DATA_DIR, 'trials-index.json')
-let cache: Record<string, ClinicalTrialRecord[] | null> | null = null
+const TRIAL_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000
 
-function loadCache(): Record<string, ClinicalTrialRecord[] | null> {
+interface TrialCacheEntry {
+  records: ClinicalTrialRecord[] | null
+  fetchedAt: string
+}
+
+type LegacyTrialCacheValue = ClinicalTrialRecord[] | null
+type TrialCacheValue = TrialCacheEntry | LegacyTrialCacheValue
+
+let cache: Record<string, TrialCacheValue> | null = null
+
+function loadCache(): Record<string, TrialCacheValue> {
   if (cache) return cache
   cache = existsSync(cachePath)
-    ? (JSON.parse(readFileSync(cachePath, 'utf8')) as Record<string, ClinicalTrialRecord[] | null>)
+    ? (JSON.parse(readFileSync(cachePath, 'utf8')) as Record<string, TrialCacheValue>)
     : {}
   return cache
+}
+
+function cacheEntry(value: TrialCacheValue | undefined): TrialCacheEntry | null {
+  if (!value || Array.isArray(value)) return null
+  if (typeof value !== 'object' || !('fetchedAt' in value) || !('records' in value)) return null
+  const parsed = Date.parse(value.fetchedAt)
+  if (!Number.isFinite(parsed) || Date.now() - parsed >= TRIAL_CACHE_TTL_MS) return null
+  return value
 }
 
 let dirty = 0
@@ -81,7 +99,8 @@ const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout
 export async function fetchTrials(drugName: string, limit = 6): Promise<ClinicalTrialRecord[]> {
   const store = loadCache()
   const key = drugName.toLowerCase()
-  if (key in store) return store[key] ?? []
+  const fresh = cacheEntry(store[key])
+  if (fresh) return fresh.records ?? []
 
   const url =
     `${API}?query.term=${encodeURIComponent(drugName)}` +
@@ -120,13 +139,17 @@ export async function fetchTrials(drugName: string, limit = 6): Promise<Clinical
       primaryEndpoint: outcome ?? section.identificationModule?.briefTitle ?? 'Not stated',
       // Results are not in the registry. Saying "false" here means "not recorded", and the UI
       // renders it as such rather than as a failed trial.
+      endpointStatus: 'not_reported',
       endpointMet: false,
       statisticalPValue: 'Result not recorded on this page',
       independentReplicationStatus: 'Unreplicated',
     })
   }
 
-  store[key] = records.length > 0 ? records : null
+  store[key] = {
+    records: records.length > 0 ? records : null,
+    fetchedAt: new Date().toISOString(),
+  }
   dirty += 1
   if (dirty >= 40) flushTrialCache()
   return records
@@ -148,7 +171,7 @@ export async function warmTrials(
 ): Promise<void> {
   const CONCURRENCY = 6
   const store = loadCache()
-  const pending = names.filter((name) => !(name.toLowerCase() in store))
+  const pending = names.filter((name) => !cacheEntry(store[name.toLowerCase()]))
 
   let done = 0
   let next = 0
@@ -173,5 +196,12 @@ export async function warmTrials(
 export function trialCacheStats(): { total: number; withTrials: number } {
   const store = loadCache()
   const values = Object.values(store)
-  return { total: values.length, withTrials: values.filter(Boolean).length }
+  return {
+    total: values.length,
+    withTrials: values.filter((value) => {
+      const entry = cacheEntry(value)
+      if (entry) return Boolean(entry.records)
+      return Array.isArray(value) && value.length > 0
+    }).length,
+  }
 }

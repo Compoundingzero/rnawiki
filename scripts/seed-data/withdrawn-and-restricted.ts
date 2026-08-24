@@ -285,7 +285,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The trial report said the danger did not start until a year and a half in. That reassurance came from a statistical test that the journal itself later revisited, and the original paper was corrected.',
         technicalDetails:
-          'The APPROVe report stated that the increased relative risk "became apparent after 18 months of treatment" and that event rates were similar during the first 18 months. PubMed records an erratum to the paper at N Engl J Med 2006;355:221. The journal separately published a methodological Perspective, Lagakos, "Time-to-Event Analyses for Long-Term Treatments — The APPROVe Trial", examining the time-to-event methods behind that delayed-effect claim. The point is narrow and worth stating precisely: the 1.92 relative risk over the whole trial is the robust result, and the reassuring subdivision of it in time is the part that was not.',
+          'The APPROVe report stated that the increased relative risk "became apparent after 18 months of treatment" and that event rates were similar during the first 18 months. PubMed records an erratum to the paper at N Engl J Med 2006;355:221. The journal separately published a methodological Perspective, Lagakos, "Time-to-Event Analyses for Long-Term Treatments — The APPROVe Trial", examining the time-to-event methods behind that delayed-effect claim. The point is narrow: the 1.92 relative risk over the whole trial is the robust result, and the reassuring subdivision of it in time is the part that was not.',
         evidenceSource:
           'Lagakos SW. N Engl J Med 2006;355:113-117; erratum to Bresalier et al., N Engl J Med 2006;355:221',
         doi: '10.1056/NEJMp068137',
@@ -825,13 +825,13 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'If it caused more heart attacks, why did deaths not go up?',
-        a: 'Because SCOUT counted nonfatal events, and those are the ones that rose. Nonfatal myocardial infarction went from 3.2% to 4.1% and nonfatal stroke from 1.9% to 2.6%; cardiovascular death and death from any cause were not increased. That distinction is real and worth stating plainly rather than smoothing over. It does not rescue the drug — a nonfatal stroke is not a minor outcome — but it does mean the harm is best described as more disabling events, not more deaths, over three and a half years.',
+        a: 'Because SCOUT counted nonfatal events, and those are the ones that rose. Nonfatal myocardial infarction went from 3.2% to 4.1% and nonfatal stroke from 1.9% to 2.6%; cardiovascular death and death from any cause were not increased. That distinction is real. It does not rescue the drug — a nonfatal stroke is not a minor outcome — but it does mean the harm is best described as more disabling events, not more deaths, over three and a half years.',
         auditNote:
           'The composite endpoint is what regulators acted on. Reporting only the mortality result would have understated the finding; reporting only the composite would have overstated it.',
       },
       {
         q: 'SCOUT enrolled people who already had heart disease. Does the result apply to healthy people?',
-        a: "Not directly, and that is the honest limitation. SCOUT deliberately recruited a high-risk population — aged 55 or over with existing cardiovascular disease, type 2 diabetes, or both — precisely because that is where events accumulate fast enough to measure. Many of those patients would have been outside the drug's licensed population. The counter-argument regulators made is that a drug for obesity is prescribed overwhelmingly to people accumulating exactly those risk factors, so a population that pure does not exist in practice. No trial of comparable size was ever run in lower-risk patients, so the question stays open on the evidence and closed on the regulation.",
+        a: "Not directly. SCOUT deliberately recruited a high-risk population — aged 55 or over with existing cardiovascular disease, type 2 diabetes, or both — because that is where events accumulate fast enough to measure. Many participants would have been outside the drug's licensed population. Regulators countered that obesity drugs are commonly prescribed to people accumulating those same risk factors, so a completely risk-free population does not exist in practice. No trial of comparable size was run in lower-risk patients, so the evidence does not settle that group even though the regulatory decision applies to it.",
       },
       {
         q: 'Is sibutramine the same thing as fen-phen?',
@@ -1667,7 +1667,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why does this page not show a price?',
-        a: "Because the drug has had no market since March 2000 and Drugs@FDA lists the application as Discontinued. The one price figure that is documented and worth stating is the sales total: over US$2 billion in the United States before withdrawal, recorded in Gale's 2001 Lancet account.",
+        a: "Because the drug has had no market since March 2000 and Drugs@FDA lists the application as Discontinued. The one price figure that is documented is the sales total: over US$2 billion in the United States before withdrawal, recorded in Gale's 2001 Lancet account.",
       },
     ],
     recentAuditDate: 'August 2026',
@@ -2592,7 +2592,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       whoTakesThis:
         'Adults with obesity, as a short-term adjunct. It remains the most prescribed weight-loss drug in the United States by volume, and it is prescribed off-label for far longer than the licensed few weeks.',
       clinicalGoals:
-        'Short-term appetite suppression to support a reduced-calorie diet. There has never been a cardiovascular outcome trial of phentermine, which is the honest limit on what can be said about long-term use.',
+        'Short-term appetite suppression to support a reduced-calorie diet. No cardiovascular outcome trial of phentermine has been conducted, which limits what can be said about long-term use.',
     },
     oneSentenceVerdict:
       'A noradrenaline releasing agent that produced zero cases of idiopathic valvular disease in the population study that condemned its fen-phen partner, and that after sixty-five years on the market still has no cardiovascular outcome trial of its own.',
@@ -2702,7 +2702,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In the population study that established the valve risk of fen-phen, nobody who took phentermine alone developed valve disease. The rate was the same as in people who took no appetite suppressant at all.',
         technicalDetails:
-          'Population-based follow-up with nested case-control analysis: 862 subjects on phentermine, 6,532 on dexfenfluramine, 2,371 on fenfluramine, and 9,281 obese controls matched for age, sex and weight, all free of diagnosed cardiovascular disease at baseline, mean follow-up about four years. Of 11 newly diagnosed idiopathic valvular disorders, none occurred among phentermine-only users and none among untreated controls. Five-year cumulative incidence per 10,000 was 0 for phentermine alone (95% CI 0 to 76.6) and 0 for untreated controls (95% CI 0 to 15.4), against 35.0 (16.4 to 76.2) for four or more months of fenfluramine or dexfenfluramine. The wide confidence interval on the phentermine estimate is the honest caveat: 862 users cannot exclude a small effect, only a large one.',
+          'Population-based follow-up with nested case-control analysis: 862 subjects on phentermine, 6,532 on dexfenfluramine, 2,371 on fenfluramine, and 9,281 obese controls matched for age, sex and weight, all free of diagnosed cardiovascular disease at baseline, mean follow-up about four years. Of 11 newly diagnosed idiopathic valvular disorders, none occurred among phentermine-only users and none among untreated controls. Five-year cumulative incidence per 10,000 was 0 for phentermine alone (95% CI 0 to 76.6) and 0 for untreated controls (95% CI 0 to 15.4), against 35.0 (16.4 to 76.2) for four or more months of fenfluramine or dexfenfluramine. The wide confidence interval matters: 862 phentermine users can exclude a large effect but not a small one.',
         evidenceSource: 'Jick H et al., N Engl J Med 1998;339:719-724',
         doi: '10.1056/NEJM199809103391102',
         measuredMetric:
@@ -2745,7 +2745,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The label says short-term use. Real prescribing runs for months or years. The evidence for that longer use is a database study, not a randomised trial.',
         technicalDetails:
-          'Phentermine has been licensed since 1959 as a short-term adjunct, a limitation dating from an era when obesity was not treated as a chronic disease. Actual practice diverged, which is why the 13,972-patient cohort study exists at all. That study supports effectiveness and safety of longer-term use in low-risk individuals, and its own authors qualify it as observational. What does not exist for phentermine monotherapy, after sixty-five years, is a randomised cardiovascular outcome trial. Given that the drug is a sympathomimetic that raises heart rate and blood pressure, and that sibutramine — a different monoamine drug in the same indication — failed exactly that trial, the absence is worth stating rather than glossing.',
+          'Phentermine has been licensed since 1959 as a short-term adjunct, a limitation dating from an era when obesity was not treated as a chronic disease. Actual practice diverged, which is why the 13,972-patient cohort study exists at all. That study supports effectiveness and safety of longer-term use in low-risk individuals, and its own authors qualify it as observational. What does not exist for phentermine monotherapy, after sixty-five years, is a randomised cardiovascular outcome trial. Given that the drug is a sympathomimetic that raises heart rate and blood pressure, and that sibutramine — a different monoamine drug in the same indication — failed exactly that trial, the absence is an important limitation.',
         evidenceSource:
           'Lewis KH et al., Obesity 2019;27:591-602; ADIPEX-P (phentermine hydrochloride) US Prescribing Information, ANDA 085128',
         doi: '10.1002/oby.22430',
@@ -3116,7 +3116,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Thalidomide was sold as a safe sedative, including for morning sickness. More than ten thousand children were born with severe limb and organ malformations before it was taken off the market.',
         technicalDetails:
-          'Marketed from 1957 and prescribed to pregnant women for nausea. Vargesson\'s review states the scale plainly: "over 10,000 children were born with a range of severe and debilitating malformations", making it the largest man-made medical disaster of its kind. The characteristic phenotype was phocomelia — shortened or absent long bones — accompanied by defects of the ears, eyes, heart, kidneys and gastrointestinal tract, with the malformation pattern depending sharply on the day of gestation at exposure. The drug was withdrawn in 1961 after the independent reports of McBride in Australia and Lenz in Germany. Vargesson also records that a new generation of thalidomide-damaged children has been identified in Brazil, where the drug is used for leprosy.',
+          'Marketed from 1957 and prescribed to pregnant women for nausea. Vargesson\'s review states the scale: "over 10,000 children were born with a range of severe and debilitating malformations", making it the largest man-made medical disaster of its kind. The characteristic phenotype was phocomelia — shortened or absent long bones — accompanied by defects of the ears, eyes, heart, kidneys and gastrointestinal tract, with the malformation pattern depending sharply on the day of gestation at exposure. The drug was withdrawn in 1961 after the independent reports of McBride in Australia and Lenz in Germany. Vargesson also records that a new generation of thalidomide-damaged children has been identified in Brazil, where the drug is used for leprosy.',
         evidenceSource:
           'Vargesson N. Thalidomide-induced teratogenesis: history and mechanisms. Birth Defects Res C Embryo Today 2015;105:140-156',
         doi: '10.1002/bdrc.21096',
@@ -3329,11 +3329,11 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Could you separate the good effect from the birth defects?',
-        a: 'Two ideas were tried, and the honest answer so far is no. The first was chirality: thalidomide has one stereocentre, and it was hoped one mirror image was sedative and the other teratogenic. That failed for a chemical reason — the molecule racemises in plasma within minutes, so administering one enantiomer does not keep it pure. The second is analogue design, made possible by the 2010 identification of cereblon. Ito and colleagues framed it cautiously as work that "may contribute to the development of new thalidomide derivatives without teratogenic activity". Both marketed successors, lenalidomide and pomalidomide, are more potent and better tolerated neurologically and both remain teratogenic and REMS-restricted.',
+        a: 'Two ideas were tried, and the answer so far is no. The first was chirality: thalidomide has one stereocentre, and it was hoped one mirror image was sedative and the other teratogenic. That failed for a chemical reason — the molecule racemises in plasma within minutes, so administering one enantiomer does not keep it pure. The second is analogue design, made possible by the 2010 identification of cereblon. Ito and colleagues framed it cautiously as work that "may contribute to the development of new thalidomide derivatives without teratogenic activity". Both marketed successors, lenalidomide and pomalidomide, are more potent and better tolerated neurologically and both remain teratogenic and REMS-restricted.',
       },
       {
         q: 'Did the myeloma discovery come from understanding the mechanism?',
-        a: 'No, and the sequence is worth stating in order. Thalidomide was tried in myeloma in the late 1990s on the reasoning that bone marrow vascularity predicts poor prognosis and thalidomide is antiangiogenic. It produced a 32% response rate — and the same paper reported that microvascular density did not change significantly in responders. So the drug worked and the stated mechanism did not explain it. Cereblon was not identified until 2010, eleven years later. A clinically correct decision was reached from a hypothesis the trial itself disconfirmed, which is a more common pattern in drug development than the tidy version admits.',
+        a: 'No, and the sequence matters. Thalidomide was tried in myeloma in the late 1990s on the reasoning that bone marrow vascularity predicts poor prognosis and thalidomide is antiangiogenic. It produced a 32% response rate — and the same paper reported that microvascular density did not change significantly in responders. So the drug worked and the stated mechanism did not explain it. Cereblon was not identified until 2010, eleven years later. A clinically correct decision was reached from a hypothesis the trial itself disconfirmed, which is a more common pattern in drug development than the tidy version admits.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -6121,7 +6121,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Is the drug safe now?',
-        a: 'The honest answer is that the question was narrowed rather than answered. In the population the label now covers — women under 65, no history of cardiovascular ischaemic events, at most one risk factor — no major adverse cardiovascular events occurred in the pooled programme. That is a real observation, and it is also an observation about a subgroup within a dataset containing eight adjudicated ischaemic events in total. The restriction exists because the uncertainty was not removed.',
+        a: 'The question was narrowed rather than answered. In the population the label now covers — women under 65, no history of cardiovascular ischaemic events, at most one risk factor — no major adverse cardiovascular events occurred in the pooled programme. That is a real observation, and it is also an observation about a subgroup within a dataset containing eight adjudicated ischaemic events in total. The restriction exists because the uncertainty was not removed.',
       },
       {
         q: 'Why does a federal regulation still list it as withdrawn for safety?',
@@ -7377,7 +7377,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Did the drug work?',
-        a: 'It removed amyloid plaque, reliably and measurably. Whether that helped patients is the question two identically designed trials answered differently: high-dose aducanumab was significant across primary and secondary endpoints in EMERGE and was not significant in ENGAGE, with 1,638 and 1,647 patients respectively. Both trials had already been stopped for futility. The confirmatory trial that was supposed to resolve it was discontinued in 2024. So the honest answer is that the drug reliably does something to the brain that can be photographed, and the question of whether that helps is unresolved for this molecule.',
+        a: 'It removed amyloid plaque, reliably and measurably. Whether that helped patients is the question two identically designed trials answered differently: high-dose aducanumab was significant across primary and secondary endpoints in EMERGE and was not significant in ENGAGE, with 1,638 and 1,647 patients respectively. Both trials had already been stopped for futility. The confirmatory trial that was supposed to resolve it was discontinued in 2024. The drug reliably does something to the brain that can be photographed, and the question of whether that helps is unresolved for this molecule.',
         auditNote:
           'The low-dose arms agreed across both studies and were non-significant in both. The discordance is confined to the high-dose arms.',
       },
@@ -8613,7 +8613,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Did people who took it for years get cancer?',
-        a: 'Cohort studies comparing ranitidine users with users of other H2 antagonists have not found an increase. In the South Korean national cohort, 25,360 propensity-matched patients showed overall cancer incidence of 2.9 versus 3.0 per 1000 person-years and an adjusted hazard ratio of 0.98 with a confidence interval from 0.81 to 1.20. The authors state plainly that the follow-up is not long enough for an endpoint with the latency of chemical carcinogenesis. So the accurate statement is that no excess has been detected at the durations studied so far, which is a narrower claim than safety.',
+        a: 'Cohort studies comparing ranitidine users with users of other H2 antagonists have not found an increase. In the South Korean national cohort, 25,360 propensity-matched patients showed overall cancer incidence of 2.9 versus 3.0 per 1000 person-years and an adjusted hazard ratio of 0.98 with a confidence interval from 0.81 to 1.20. The authors state that the follow-up is not long enough for an endpoint with the latency of chemical carcinogenesis. So the accurate statement is that no excess has been detected at the durations studied so far, which is a narrower claim than safety.',
       },
       {
         q: 'Why is famotidine still on sale?',
@@ -9272,7 +9272,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'A systematic review pooling every trial found 476 cancers among 10,342 treated patients and 438 among 9,429 on placebo — a relative risk of 1.08 whose range includes no effect.',
         technicalDetails:
-          'A systematic review and meta-analysis searched MEDLINE, Embase and CENTRAL for randomised trials comparing lorcaserin with other interventions or no treatment. From 11 trials comprising 21,299 individuals, four reported new cancer cases and were meta-analysed: 476 cases among 10,342 lorcaserin subjects against 438 among 9,429 on placebo, relative risk 1.08 (95% CI 0.96 to 1.23). The result was heavily influenced by CAMELLIA-TIMI 61, in which the lorcaserin group had higher risk of lung and pancreatic but not colon cancer. Overall risk of bias was low and quality of evidence moderate. The authors conclude that current evidence does not confirm an increased cancer risk but suggests a trend in that direction. That is the honest statement, and it is neither a finding of harm nor a clearance.',
+          'A systematic review and meta-analysis searched MEDLINE, Embase and CENTRAL for randomised trials comparing lorcaserin with other interventions or no treatment. From 11 trials comprising 21,299 individuals, four reported new cancer cases and were meta-analysed: 476 cases among 10,342 lorcaserin subjects against 438 among 9,429 on placebo, relative risk 1.08 (95% CI 0.96 to 1.23). The result was heavily influenced by CAMELLIA-TIMI 61, in which the lorcaserin group had higher risk of lung and pancreatic but not colon cancer. Overall risk of bias was low and quality of evidence moderate. The authors conclude that current evidence does not confirm an increased cancer risk but suggests a trend in that direction. This result neither establishes harm nor clears the drug of risk.',
         evidenceSource:
           'de Andrade Mesquita L, Fagundes Piccoli G, Richter da Natividade G, Frison Spiazzi B, Colpani V, Gerchman F. Obes Rev 2021;22:e13170',
         doi: '10.1111/obr.13170',
@@ -10589,7 +10589,7 @@ export const WITHDRAWN_AND_RESTRICTED_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'The drug was banned in 1970 on population evidence alone. The biochemical explanation was still being worked out in the 2020s.',
         technicalDetails:
-          'Reviews published in 2024 note that the underlying mechanisms of clioquinol toxicity had not been fully established, and the thiamine pyrophosphate work appeared in 2026. Related work has examined mitochondrial toxicity in neuroblastoma cells and the protective role of NQO1. So the ban preceded the mechanism by more than half a century. This is the correct order of operations and worth stating plainly: an epidemiological link strong enough to act on does not wait for a molecular explanation, and demanding one before acting would have cost thousands more cases. The mechanism, when it arrived, was consistent with the epidemiology rather than a correction to it.',
+          'Reviews published in 2024 note that the underlying mechanisms of clioquinol toxicity had not been fully established, and the thiamine pyrophosphate work appeared in 2026. Related work has examined mitochondrial toxicity in neuroblastoma cells and the protective role of NQO1. So the ban preceded the mechanism by more than half a century. This is the correct order of operations: an epidemiological link strong enough to act on does not wait for a molecular explanation, and demanding one before acting would have cost thousands more cases. The mechanism, when it arrived, was consistent with the epidemiology rather than a correction to it.',
         evidenceSource:
           'Katsuyama M. Nihon Yakurigaku Zasshi 2024;159:78-82; Fan Z et al. Redox Biol 2026;95:104258',
         doi: '10.1016/j.redox.2026.104258',

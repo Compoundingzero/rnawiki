@@ -74,7 +74,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
     anatomicalSite: 'Bacterial periplasm and cell wall, at the site of infection',
     substitutes: {
       summary:
-        'For the infections amoxicillin treats, the honest alternative is usually not another antibiotic but no antibiotic at all, watched. Where an antibiotic is genuinely indicated, penicillin V, cephalexin and doxycycline cover most of the same ground for a similar few dollars. The comparison that matters is not potency, it is whether a placebo-controlled trial found a benefit in the condition being treated.',
+        'For many conditions in which amoxicillin is prescribed, the relevant alternative is watchful waiting without an antibiotic. Where an antibiotic is indicated, penicillin V, cephalexin and doxycycline cover much of the same ground for a similar few dollars. The key question is not potency but whether a placebo-controlled trial found a benefit in the condition being treated.',
       conventionalRx: [
         {
           name: 'Amoxicillin-clavulanate (Augmentin)',
@@ -918,7 +918,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How can one antibiotic reduce childhood deaths from all causes?',
-        a: 'That is exactly the honest puzzle. MORDOR measured the effect, not the mechanism: 13.5% lower all-cause mortality across 1,533 communities, with the biggest effect in infants aged 1 to 5 months. Plausible explanations include treatment of undiagnosed bacterial infection, malaria co-treatment and effects on the gut microbiome, but the trial did not adjudicate between them, and the country-level results differed enormously.',
+        a: 'MORDOR measured the effect but not the mechanism: all-cause mortality was 13.5% lower across 1,533 communities, with the biggest effect in infants aged 1 to 5 months. Plausible explanations include treatment of undiagnosed bacterial infection, malaria co-treatment and effects on the gut microbiome, but the trial did not distinguish between them, and the country-level results differed greatly.',
       },
       {
         q: 'Is the resistance risk real or theoretical?',
@@ -1383,7 +1383,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Doxy-PEP worked in one trial and not the other. Which is right?',
-        a: 'Both, for the populations they enrolled. DoxyPEP randomised 501 men who have sex with men and transgender women with a recent bacterial sexually transmitted infection and found a relative risk of 0.34. The Kenyan dPEP trial randomised 449 cisgender women and found 0.88, not statistically distinguishable from no effect. Two explanations are on the table and neither is settled: adherence, since doxycycline was detected in only 29% of hair samples in the intervention arm, and biology, since the dominant infection was cervical chlamydia rather than rectal or pharyngeal infection. The honest reading is that the intervention has been shown to work in one setting and not shown to work in the other.',
+        a: 'Both, for the populations they enrolled. DoxyPEP randomised 501 men who have sex with men and transgender women with a recent bacterial sexually transmitted infection and found a relative risk of 0.34. The Kenyan dPEP trial randomised 449 cisgender women and found 0.88, not statistically distinguishable from no effect. Two explanations are on the table and neither is settled: adherence, since doxycycline was detected in only 29% of hair samples in the intervention arm, and biology, since the dominant infection was cervical chlamydia rather than rectal or pharyngeal infection. The intervention has been shown to work in one setting and not shown to work in the other.',
         auditNote:
           'This is the clearest example on this site of why "a randomised trial showed" is an incomplete sentence without "in whom".',
       },
@@ -2212,7 +2212,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is the alcohol warning real?',
-        a: 'The warning is real; the reaction it describes has never been demonstrated. A 2000 review of the published reports found six case reports involving eight patients, none of which provided evidence for the presumed mechanism. A 2002 double-blind study gave 12 volunteers metronidazole for five days and then a measured dose of ethanol, sampling blood acetaldehyde every 20 minutes for four hours, and found no rise and no reaction. Twelve healthy young men is a small study, and the authors said plainly that a reaction in some subgroup by another mechanism is not excluded. This page reports what has and has not been measured; it does not tell anyone to disregard a label instruction.',
+        a: 'The warning is real; the reaction it describes has never been demonstrated. A 2000 review of the published reports found six case reports involving eight patients, none of which provided evidence for the presumed mechanism. A 2002 double-blind study gave 12 volunteers metronidazole for five days and then a measured dose of ethanol, sampling blood acetaldehyde every 20 minutes for four hours, and found no rise and no reaction. Twelve healthy young men is a small study, and the authors said that a reaction in some subgroup by another mechanism is not excluded. This page reports what has and has not been measured; it does not tell anyone to disregard a label instruction.',
         auditNote:
           'This is the clearest example in this file of a claim that is universally repeated, appears on the official label, and rests on case reports that the one controlled experiment failed to confirm.',
       },
@@ -3198,7 +3198,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
     anatomicalSite: 'Respiratory epithelial cell surface, at the budding virion',
     substitutes: {
       summary:
-        'Baloxavir and zanamivir are the pharmacological alternatives; annual vaccination is the intervention with the outcome evidence oseltamivir has struggled to produce. For most healthy adults with influenza, the honest comparison is between a drug that shortens illness by about a day and doing nothing.',
+        'Baloxavir and zanamivir are the pharmacological alternatives; annual vaccination is the intervention with the outcome evidence oseltamivir has struggled to produce. For most healthy adults with influenza, the comparison is between a drug that shortens illness by about a day and doing nothing.',
       conventionalRx: [
         {
           name: 'Zanamivir (Relenza)',
@@ -3659,7 +3659,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
       'Cytoplasm of infected respiratory epithelial cells; hepatic CYP3A4 for ritonavir',
     substitutes: {
       summary:
-        'Remdesivir is the alternative with an outpatient randomised result; molnupiravir is the alternative that failed in the vaccinated population. For most vaccinated adults under 65 without significant immunosuppression, the honest comparison is against no antiviral, because that is what the EPIC-SR trial tested and did not beat on its primary endpoint.',
+        'Remdesivir is the alternative with an outpatient randomised result; molnupiravir is the alternative that failed in the vaccinated population. For most vaccinated adults under 65 without significant immunosuppression, the comparison is against no antiviral, because that is what the EPIC-SR trial tested and did not beat on its primary endpoint.',
       conventionalRx: [
         {
           name: 'Remdesivir (Veklury), three-day outpatient course',
@@ -3812,7 +3812,7 @@ export const SMALL_MOLECULE_INFECTIOUS_ONC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Symptoms and viral load coming back after treatment became a widely reported problem. When the placebo arm of another trial was examined, rebound turned out to be common without any treatment at all.',
         technicalDetails:
-          'A retrospective analysis of the 563 placebo recipients in the ACTIV-2/A5401 platform trial found symptom rebound in 26% at a median of 11 days after symptom onset, viral rebound in 31% and high-level viral rebound in 13%, with 89% of symptom rebound and 95% of viral rebound events occurring at a single time point before improving. The combination of symptom and high-level viral rebound occurred in 3%. A separate prospective cohort found viral rebound in 14.2% of 127 treated participants and 9.3% of 43 untreated controls, and symptom rebound in 18.9% against 7.0%; the untreated comparison group was small. The honest position is that rebound occurs with and without treatment, and that the drug-attributable excess has not been cleanly quantified.',
+          'A retrospective analysis of the 563 placebo recipients in the ACTIV-2/A5401 platform trial found symptom rebound in 26% at a median of 11 days after symptom onset, viral rebound in 31% and high-level viral rebound in 13%, with 89% of symptom rebound and 95% of viral rebound events occurring at a single time point before improving. The combination of symptom and high-level viral rebound occurred in 3%. A separate prospective cohort found viral rebound in 14.2% of 127 treated participants and 9.3% of 43 untreated controls, and symptom rebound in 18.9% against 7.0%; the untreated comparison group was small. Rebound occurs with and without treatment; the excess attributable to the drug has not been measured precisely.',
         evidenceSource:
           'Deo R et al., Ann Intern Med 2023;176:348-354 (NCT04518410); Pandit JA et al., Clin Infect Dis 2023;77:25-31',
         doi: '10.7326/M22-2381',

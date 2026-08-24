@@ -235,7 +235,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'Off-target editing has not been ruled out, and the label says so',
         laymanSummary:
-          "CRISPR was designed to cut one place. Whether it also cut somewhere else in a particular person depends on that person's own genetic variants, and the label states plainly that the risk cannot be excluded.",
+          "CRISPR was designed to cut one place. Whether it also cut somewhere else in a particular person depends on that person's own genetic variants, and the label states that the risk cannot be excluded.",
         technicalDetails:
           'Section 5.4 of the US prescribing information, added in August 2025, reads: "The risk of unintended, off-target editing in CD34+ cells due to genetic variants cannot be ruled out." Off-target assessment for this product is built on in-silico prediction and in-vitro nomination in reference genomes, which cannot enumerate the private variants of an individual patient near the guide site. No trial endpoint measured off-target editing in vivo, and the pivotal studies reported no cancers over a median follow-up under two years — an observation that constrains but does not settle a question whose natural timescale is decades.',
         evidenceSource:
@@ -1249,7 +1249,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is one infusion really enough for life?',
-        a: 'That is the hope, not the finding. The delivered gene sits beside the chromosomes rather than inside them, and such episomes are lost when a cell divides — which is why the strategy works best in motor neurons, which do not divide. Whether expression holds as a child grows into adulthood has not been established, and the label states plainly that repeat administration has never been evaluated. In practice a second dose is also blocked by the antibodies the first dose raises against the viral shell.',
+        a: 'That is the hope, not the finding. The delivered gene sits beside the chromosomes rather than inside them, and such episomes are lost when a cell divides — which is why the strategy works best in motor neurons, which do not divide. Whether expression holds as a child grows into adulthood has not been established, and the label states that repeat administration has never been evaluated. In practice a second dose is also blocked by the antibodies the first dose raises against the viral shell.',
         auditNote:
           'This, and the historical rather than randomised control group, are the two reasons the confidence score here sits below what the effect size alone would justify.',
       },
@@ -1518,7 +1518,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'The primary endpoint was invented for this product, and patented',
         laymanSummary:
-          "The obstacle course used to prove the drug works did not exist before this trial. The sponsor developed it, and the trial's own disclosures record patent applications on it licensed to the sponsor.",
+          "The obstacle course used as the trial's efficacy endpoint did not exist before this study. The sponsor developed it, and the trial's disclosures record patent applications on it licensed to the sponsor.",
         technicalDetails:
           "Multi-luminance mobility testing scores a videotaped navigation course at seven illumination levels from 400 lux to 1 lux, with a score of -1 for failure at 400 lux. The Lancet paper's declaration of interests records that several authors, including sponsor employees, hold a patent pending pertaining to the primary endpoint measure licensed to Spark Therapeutics. A sponsor-developed, sponsor-licensed endpoint is not disqualifying — no pre-existing instrument measured what this therapy was meant to change — but it removes the independence a standard endpoint would carry, and it makes cross-product comparison impossible.",
         evidenceSource: 'Russell 2017, Declaration of interests; LUXTURNA label Section 14',
@@ -2063,7 +2063,7 @@ export const GENE_THERAPY_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'What happens if it stops working?',
-        a: 'You return to factor IX prophylaxis, which is what you were on beforehand and which still works. What you cannot do is take a second dose: the first infusion raises antibodies against the AAV5 capsid that block any repeat administration. That asymmetry — reversible fallback, irreversible one-shot — is the honest way to frame the decision.',
+        a: 'You return to factor IX prophylaxis, which is what you were on beforehand and which still works. What you cannot do is take a second dose: the first infusion raises antibodies against the AAV5 capsid that block any repeat administration. That asymmetry — reversible fallback, irreversible one-shot — is the clearest way to frame the decision.',
       },
       {
         q: 'I have antibodies to the virus. Am I excluded?',

@@ -1,26 +1,13 @@
-// The sitemap, sharded.
-//
-// THE ARITHMETIC, DONE RATHER THAN ASSUMED. The sitemap protocol caps one file at 50,000 URLs, and
-// Next.js enforces the same limit. This corpus is not six records: it is every FDA-registered
-// active moiety plus every NIH-listed supplement ingredient, it is built by a bulk ingest that
-// grows every time it runs, and "8,000 fits comfortably" is a statement with a shelf life. So the
-// shard count is computed from a real `count(*)` on every request and the file is written to shard
-// correctly the first time it needs to, instead of silently truncating the corpus at 50,000 the
-// day it crosses that line.
-//
-// Exporting `generateSitemaps` means the sitemaps are served at `/sitemap/0.xml`,
-// `/sitemap/1.xml`, … rather than at `/sitemap.xml`. `app/robots.ts` lists every shard, which is
-// how a crawler finds them all — see the matching constant there.
+// The sitemap is sharded below the protocol's 50,000-URL limit. `generateSitemaps` serves shards at
+// `/sitemap/<id>.xml`; `app/robots.ts` lists them and carries the matching shard-size constant.
 
 import type { MetadataRoute } from 'next'
 import { asc } from 'drizzle-orm'
 import { db } from '@/db'
 import { drugs } from '@/db/schema'
-import { countDrugs } from '@/lib/queries/drugs'
+import { countDrugs, publicMedicineFilter } from '@/lib/queries/drugs'
 
-// Railway's build container cannot resolve `postgres.railway.internal`. This route has no dynamic
-// segment, so without this it is a prerender candidate and the production build fails here while
-// passing locally.
+// Avoid a database lookup during builds, when Railway's private database hostname is unavailable.
 export const dynamic = 'force-dynamic'
 
 /**
@@ -28,9 +15,8 @@ export const dynamic = 'force-dynamic'
  * static routes that ride along in shard 0 cannot push it over, and so a shard stays a reasonable
  * size to generate inside one request.
  *
- * MUST match `DRUG_URLS_PER_SITEMAP` in `app/robots.ts`. The two files cannot share a constant:
- * both are Next.js metadata routes, and a metadata route that exports anything Next does not
- * recognise fails the build's own export check.
+ * Keep this value equal to `DRUG_URLS_PER_SITEMAP` in `app/robots.ts`. Next.js metadata routes
+ * cannot share it through an extra export without failing route validation.
  */
 const DRUG_URLS_PER_SITEMAP = 45_000
 
@@ -49,9 +35,7 @@ export async function generateSitemaps(): Promise<Array<{ id: number }>> {
   try {
     total = await countDrugs()
   } catch (error) {
-    // If Next.js ever evaluates this during the build rather than at request time, the database is
-    // unreachable and the count throws. A missing sitemap is a bad day for search traffic; a
-    // failed deploy is a bad day for everyone, so this degrades to one shard rather than throwing.
+    // A database outage should degrade sitemap generation to one shard, not fail the deployment.
     console.warn('[sitemap] falling back to a single shard: the corpus count failed', error)
   }
 
@@ -62,13 +46,11 @@ export async function generateSitemaps(): Promise<Array<{ id: number }>> {
 export default async function sitemap({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
   const shard = Number.isFinite(id) && id > 0 ? Math.trunc(id) : 0
 
-  // A lean, explicit projection rather than `listDrugs`: that helper returns whole dossiers and
-  // caps a page at 100 rows, which is the right shape for a browse card and entirely the wrong one
-  // for 45,000 URLs. Ordered by slug so the shard boundaries are stable between requests — an
-  // unordered window would let a record fall between two shards and vanish from the sitemap.
+  // Select only sitemap fields and order by slug so shard boundaries stay stable between requests.
   const rows = await db
     .select({ slug: drugs.slug, updatedAt: drugs.updatedAt })
     .from(drugs)
+    .where(publicMedicineFilter)
     .orderBy(asc(drugs.slug))
     .limit(DRUG_URLS_PER_SITEMAP)
     .offset(shard * DRUG_URLS_PER_SITEMAP)

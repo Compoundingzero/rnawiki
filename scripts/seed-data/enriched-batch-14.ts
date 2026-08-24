@@ -540,7 +540,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'How much does it actually help?',
-        a: 'By about nine-tenths of a point on a five-symptom scale, in the trial that worked. Sneezing, runny nose, itchy nose, blocked nose and itchy eyes are each rated 0 to 3 and summed; untreated patients in that trial scored 8.68 and treated patients scored 7.87. That is a real difference, statistically solid, and roughly a tenth of the symptom burden. A second trial of the same design in 596 people found no difference at all. The honest summary is that this class takes the edge off rather than switching the allergy off, and that placebo response in allergic rhinitis is large enough to swallow the effect in some trials.',
+        a: 'By about nine-tenths of a point on a five-symptom scale, in the trial that worked. Sneezing, runny nose, itchy nose, blocked nose and itchy eyes are each rated 0 to 3 and summed; untreated patients in that trial scored 8.68 and treated patients scored 7.87. That is a real difference, statistically solid, and roughly a tenth of the symptom burden. A second trial of the same design in 596 people found no difference at all. This class takes the edge off rather than switching the allergy off, and the placebo response in allergic rhinitis is large enough to obscure the effect in some trials.',
       },
       {
         q: 'Will it make me sleepy?',
@@ -2062,7 +2062,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
         category: 'inferred',
         title: 'Nobody has shown it works in children, and it is sold for them anyway',
         laymanSummary:
-          'Of the fifteen randomised trials in the systematic review, fourteen enrolled only adults. The reviewers stated plainly that effectiveness and safety in children remain to be determined.',
+          'Of the fifteen randomised trials in the systematic review, fourteen enrolled only adults. The reviewers stated that effectiveness and safety in children remain to be determined.',
         technicalDetails:
           'The Cochrane review reports that fourteen of its fifteen included studies enrolled adults aged 18 and over only, and concludes that the effectiveness and safety of nasal decongestants in children, and the clinical relevance of the small effect seen in adults, are yet to be determined. Separately, the FDA announced in 2011 its intention to take enforcement action against unapproved and misbranded oral prescription-labelled cold, cough and allergy products, noting that many were inappropriately labelled for use in infants and young children (76 FR 11794).',
         evidenceSource:
@@ -2355,7 +2355,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'There is no second expectorant to compare against, because regulation recognises only this one. The honest comparison set is therefore made up of things that address a cough by a different route, plus water — and the Cochrane review that looked at the whole over-the-counter cough shelf concluded there is no good evidence for or against any of it.',
+        'There is no second expectorant to compare against, because regulation recognises only this one. The comparison set is therefore made up of things that address a cough by a different route, plus water — and the Cochrane review that looked at the whole over-the-counter cough shelf concluded there is no good evidence for or against any of it.',
       conventionalRx: [
         {
           name: 'Dextromethorphan',
@@ -4214,7 +4214,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'How was this actually tested?',
-        a: 'By putting allergen in people’s eyes on purpose. The conjunctival allergen challenge model takes people with a confirmed allergic response, titrates a measured amount of pollen or cat extract into both eyes, and has them rate the itch on a scale from 0 to 4 at fixed intervals — three, five and seven minutes afterwards, and again a full day later. In the trial for the strongest version, 345 subjects received a single drop in each eye and the drug lowered the itch rating by 0.9 to 1.5 points against a dummy drop. It is a clean, reproducible experiment. It is also a single controlled exposure in a clinic, and the Cochrane review of this entire class of eye drops states plainly that there is no long-term data on efficacy for any of them.',
+        a: 'By putting allergen in people’s eyes on purpose. The conjunctival allergen challenge model takes people with a confirmed allergic response, titrates a measured amount of pollen or cat extract into both eyes, and has them rate the itch on a scale from 0 to 4 at fixed intervals — three, five and seven minutes afterwards, and again a full day later. In the trial for the strongest version, 345 subjects received a single drop in each eye and the drug lowered the itch rating by 0.9 to 1.5 points against a dummy drop. It is a clean, reproducible experiment. It is also a single controlled exposure in a clinic, and the Cochrane review of this entire class of eye drops states that there is no long-term data on efficacy for any of them.',
       },
       {
         q: 'What does "dual action" mean, and does it matter?',
@@ -4388,7 +4388,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
             'Using it as a rescue treatment and concluding it does not work is the commonest way this drug is misjudged. That said, the Cochrane review found the prophylactic evidence itself insufficient.',
         },
         {
-          name: 'Count the doses per day honestly',
+          name: 'Compare the total daily doses',
           action:
             'Check how many times a day the product requires, and whether that is realistic before starting.',
           patientImpact:
@@ -4963,7 +4963,7 @@ export const ENRICHED_BATCH_14_DOSSIERS: SeedDossier[] = [
         title:
           'The strength is set at the sedation threshold, and the label says what happens above it',
         laymanSummary:
-          'This drug is famous for not making people sleepy. The reason is the number on the box: it is the amount that stays below the point where the molecule starts affecting the brain. The label states plainly that taking more than directed may cause drowsiness.',
+          'This drug is famous for not making people sleepy. The reason is the number on the box: it is the amount that stays below the point where the molecule starts affecting the brain. The label states that taking more than directed may cause drowsiness.',
         technicalDetails:
           'The over-the-counter label carries, under "When using this product", the statement: "do not take more than directed. Taking more than directed may cause drowsiness." No higher strength of loratadine is marketed. The structural basis is the ethyl carbamate cap on the piperidine nitrogen, which lowers basicity and raises polarity enough to limit central nervous system penetration at the marketed exposure — a property that is a function of amount rather than an absolute. The clinical consequence is visible in the comparative data: in the network meta-analysis the point estimate for loratadine was roughly half that of cetirizine, and cetirizine is the drug that carries the sedation warning loratadine does not. What no public dataset establishes is what a higher loratadine strength would have achieved on symptoms, because no such strength was developed for sale.',
         evidenceSource:

@@ -118,7 +118,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Nothing replaces basal insulin in type 1 diabetes: stopping it causes ketoacidosis and death within days. In type 2 diabetes the honest alternatives are human NPH insulin at a fraction of the price, other basal analogues, and non-insulin agents. The dietary entries below act on glucose absorption and are adjuncts to a prescribed regimen, never a substitute for it.',
+        'Nothing replaces basal insulin in type 1 diabetes: stopping it causes ketoacidosis and death within days. In type 2 diabetes, alternatives include human NPH insulin at a fraction of the price, other basal analogues and non-insulin agents. The dietary entries below act on glucose absorption and are adjuncts to a prescribed regimen, never a substitute for it.',
       conventionalRx: [
         {
           name: 'NPH insulin (isophane human insulin)',
@@ -469,7 +469,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Is glargine actually better than the cheap human insulin it replaced?',
-        a: 'For average blood sugar, no: 6.96% versus 6.97% HbA1c in the head-to-head trial. For night-time lows in that trial, yes, modestly. In a 25,489-person real-world cohort the difference disappeared entirely. So the honest answer is that it is more convenient and somewhat gentler on nocturnal hypoglycaemia in a titrated trial setting, and that this is a smaller advantage than its price difference implied.',
+        a: 'For average blood sugar, no: 6.96% versus 6.97% HbA1c in the head-to-head trial. For night-time lows in that trial, yes, modestly. In a 25,489-person real-world cohort the difference disappeared entirely. Glargine is more convenient and may modestly reduce night-time hypoglycaemia in a titrated trial, but that advantage is smaller than the price difference implied.',
         auditNote:
           'Riddle 2003 (doi:10.2337/diacare.26.11.3080) and Lipska 2018 (doi:10.1001/jama.2018.7993) disagree, and the disagreement is the finding.',
       },
@@ -486,8 +486,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'In type 1 diabetes, no. There is no beta-cell reserve to fall back on and stopping basal insulin leads to diabetic ketoacidosis within a day or two. In type 2 diabetes some people do come off insulin after substantial weight loss or metabolic surgery, but that is a decision made with measurements and a clinician, not a general rule.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether glargine differs from NPH insulin on any hard outcome — death, myocardial infarction, retinopathy, nephropathy — in a trial designed to answer that. ORIGIN compared glargine with standard care, not with NPH. A head-to-head hard-outcome trial of basal analogue versus human insulin has never been run.',
+        q: 'Has glargine been compared directly with NPH insulin on long-term health outcomes?',
+        a: 'No trial designed to answer whether glargine differs from NPH insulin on any hard outcome — death, myocardial infarction, retinopathy or nephropathy — has been run. ORIGIN compared glargine with standard care, not with NPH.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -931,7 +931,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Does insulin lispro reduce severe low blood sugar?',
-        a: 'The pooled randomised evidence does not show that. Severe hypoglycaemia odds ratio was 0.89 (95% CI 0.71-1.12) in type 1 diabetes, graded very low quality because none of the trials were blinded. A separate meta-analysis using different inclusion criteria did report a reduction. The honest reading is that the question is unsettled.',
+        a: 'The pooled randomised evidence does not show that. Severe hypoglycaemia odds ratio was 0.89 (95% CI 0.71-1.12) in type 1 diabetes, graded very low quality because none of the trials were blinded. A separate meta-analysis using different inclusion criteria did report a reduction. The question is unsettled.',
       },
       {
         q: 'Why is it identical in weight to human insulin if it is a different drug?',
@@ -942,8 +942,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'Not yet for insulin itself. Insulin is a protein and is digested in the stomach, and decades of oral insulin programmes have failed to achieve reliable bioavailability. Inhaled insulin reached the market twice; the first product was withdrawn commercially in 2007.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether any rapid-acting analogue changes the things patients actually care about over a lifetime — sight, kidney function, feeling in the feet, death. Both Cochrane reviews say plainly that no included trial was designed to look at long-term patient-relevant outcomes. Thirty years after approval, that is still true.',
+        q: 'Do rapid-acting insulin analogues improve long-term health outcomes?',
+        a: 'No trial has established whether any rapid-acting analogue changes the things patients actually care about over a lifetime — sight, kidney function, feeling in the feet or death. Both Cochrane reviews say that no included trial was designed to look at long-term patient-relevant outcomes. Thirty years after approval, that is still true.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -1231,7 +1231,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Much of the case for pushing blood counts higher rested on patients feeling better. When trials measured that directly, the higher target did not deliver it.',
         technicalDetails:
-          'CHOIR reported that improvements in quality of life were similar in the two groups despite a two-gram difference in achieved haemoglobin. CREATE did find significantly better general health and physical function scores in the normalisation arm, but against no cardiovascular benefit and more patients progressing to dialysis. The residual honest claim is that treating severe anaemia to the transfusion-avoidance range improves symptoms; the claim that more haemoglobin means proportionally more benefit is the one that failed.',
+          'CHOIR reported that improvements in quality of life were similar in the two groups despite a two-gram difference in achieved haemoglobin. CREATE did find significantly better general health and physical function scores in the normalisation arm, but against no cardiovascular benefit and more patients progressing to dialysis. Trials support only the narrower claim that treating severe anaemia to the transfusion-avoidance range improves symptoms. The claim that more haemoglobin produces proportionally more benefit failed.',
         evidenceSource:
           'Singh AK et al. N Engl J Med 2006;355:2085-2098; Drueke TB et al. N Engl J Med 2006;355:2071-2084',
         doi: '10.1056/NEJMoa062276',
@@ -1394,8 +1394,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'Because in randomised trials it shortened survival and increased tumour progression in several cancers. The label restricts it to anaemia from myelosuppressive chemotherapy where the anticipated outcome is not cure, and requires stopping it when the chemotherapy course ends.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether there is any haemoglobin target above the transfusion threshold that is safe. The boxed warning says so in as many words: no trial has identified a haemoglobin target level, ESA dose or dosing strategy that does not increase these risks. That is an admission of an unanswered question, printed on the label.',
+        q: 'Has a completely safe haemoglobin target been identified?',
+        a: 'No trial has identified a haemoglobin target above the transfusion threshold that is completely safe. The boxed warning says that no trial has identified a haemoglobin target level, ESA dose or dosing strategy that does not increase these risks.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -1857,8 +1857,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'Because the marrow inside your bones is expanding rapidly inside a container that cannot expand. It is reported by roughly one in five patients, is usually mild to moderate, and is not a sign of anything going wrong. New left upper abdominal or shoulder tip pain is different and should be reported immediately, because splenic rupture is a rare labelled risk.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether the leukaemia signal is caused by G-CSF acting on progenitor cells directly or simply by the extra chemotherapy G-CSF makes possible. Separating those would need a trial randomising dose intensity independently of growth factor support, and it has not been done.',
+        q: 'What causes the leukaemia signal seen with G-CSF?',
+        a: 'It is not known whether the leukaemia signal is caused by G-CSF acting directly on progenitor cells or by the extra chemotherapy that G-CSF makes possible. Separating those explanations would require a trial that randomised dose intensity independently of growth-factor support, and no such trial has been done.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -1941,7 +1941,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     oneSentenceVerdict:
       'Filgrastim with a 20 kDa polyethylene glycol chain on its N-terminal methionine, which makes neutrophils themselves the main route of clearance; one 6 mg injection per cycle matched fourteen days of filgrastim, and against placebo it cut febrile neutropenia from 17% to 1%.',
     laymanHowItWorks:
-      'Pegfilgrastim is the same protein as filgrastim with a long, inert polymer chain attached to one end. The chain makes the molecule too large for the kidney to filter out, so the only thing that removes it from the blood is the neutrophils it creates. While your white count is low, the drug stays. As the count recovers, the new neutrophils mop up the remaining drug. The dose regulates itself.',
+      'Pegfilgrastim is the same protein as filgrastim with a long, inert polymer chain attached to one end. The chain reduces removal by the kidneys, so neutrophil-mediated clearance becomes the main route. While the neutrophil count is low, clearance is slower. As the count recovers, clearance increases, allowing one dose to provide support through a chemotherapy cycle.',
     auditConfidence: 'Rigorous Replicated',
     confidenceScore: 88,
     substitutes: {
@@ -2271,8 +2271,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       {
         q: 'Is the on-body injector as reliable as an injection in clinic?',
         a: 'The label does not claim it is. Section 5.12 exists specifically to tell patients to report a suspected device failure so a replacement dose can be considered. If a device fails silently at the wrong point in the cycle, the patient goes through the nadir unprotected.',
-        auditNote:
-          'A convenience feature that added a documented failure mode is worth stating plainly rather than as a footnote.',
+        auditNote: 'The convenience feature also added a documented failure mode.',
       },
       {
         q: 'Does pegfilgrastim work better than filgrastim?',
@@ -2283,8 +2282,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'Through the FDA Animal Rule, which permits approval on well-controlled animal efficacy studies when human trials would be unethical or infeasible. It is a deliberate, transparent regulatory mechanism. It is also, by design, an indication where the human efficacy evidence is zero.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether once-per-cycle dosing changes any hard outcome relative to daily filgrastim. The registration programme tested equivalence on a laboratory surrogate against an active comparator. Twenty years on, no trial has compared the two on survival.',
+        q: 'Does once-per-cycle pegfilgrastim improve survival compared with daily filgrastim?',
+        a: 'No trial has established whether once-per-cycle dosing changes any hard outcome relative to daily filgrastim. The registration programme tested equivalence on a laboratory surrogate against an active comparator. Twenty years on, no trial has compared the two on survival.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -2371,7 +2370,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
     confidenceScore: 70,
     substitutes: {
       summary:
-        'In genuine growth hormone deficiency there is no substitute: this is hormone replacement and nothing else does it. In idiopathic short stature the honest alternatives are watchful waiting, or an aromatase inhibitor or GnRH analogue to delay growth plate fusion, and both are used off-label with weaker evidence than somatropin has. Nothing dietary increases adult height in a well-nourished child; optimising nutrition matters only where it was inadequate.',
+        'In genuine growth hormone deficiency there is no substitute: this is hormone replacement and nothing else does it. In idiopathic short stature, alternatives include watchful waiting or an aromatase inhibitor or GnRH analogue to delay growth plate fusion; both drugs are used off-label with weaker evidence than somatropin has. Nothing dietary increases adult height in a well-nourished child; optimising nutrition matters only where it was inadequate.',
       conventionalRx: [
         {
           name: 'Recombinant IGF-1 (mecasermin)',
@@ -2754,8 +2753,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'The SAGhE cohort of 24,232 treated children found no increase in all-cause mortality in those treated for isolated deficiency or idiopathic short stature, and no relationship between dose and mortality. Circulatory and haematological cause-specific mortality was raised across risk groups, and the authors call for continued surveillance. The label contraindicates use in active malignancy.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether treating idiopathic short stature changes anything a person cares about as an adult besides height. No randomised trial has followed treated and untreated children into adulthood measuring employment, relationships, mental health or self-esteem. The indication rests on an assumption that has been in place since 2003 and has never been tested.',
+        q: 'Does treating short stature improve adult wellbeing?',
+        a: 'No randomised trial has shown whether treating idiopathic short stature changes anything a person cares about as an adult besides height. Treated and untreated children have not been followed into adulthood to measure employment, relationships, mental health or self-esteem. The indication rests on an assumption that has been in place since 2003 and has never been tested.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -3249,8 +3248,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'Both, and the joint damage part is measured directly. In TEMPO the change in the modified Sharp radiographic score over 52 weeks was -0.54 for etanercept plus methotrexate against +2.80 for methotrexate alone. Negative means the average measured damage was slightly lower after a year than before it.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether etanercept differs from the anti-TNF antibodies on long-term mortality or serious infection in a head-to-head randomised trial. Choices between agents in this class are made on registry data, indication coverage and price, not on randomised comparisons that were never run.',
+        q: 'Have etanercept and anti-TNF antibodies been compared directly on long-term safety?',
+        a: 'No head-to-head randomised trial has established whether etanercept differs from the anti-TNF antibodies in long-term mortality or serious infection. Choices between agents in this class are therefore based on registry data, indication coverage and price.',
       },
     ],
     recentAuditDate: 'August 2026',
@@ -3733,8 +3732,8 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
         a: 'Not because it works better. In a 1,600-patient randomised trial it was non-inferior, with essentially identical haemorrhage and mortality rates. It wins on logistics: a single bolus can be given in a rural hospital and during transfer to a thrombectomy centre, where a one-hour infusion cannot travel with the patient.',
       },
       {
-        q: 'Nobody has measured what?',
-        a: 'Whether alteplase adds anything on top of mechanical thrombectomy in patients with a large-vessel occlusion who can reach a thrombectomy centre directly. Several trials have addressed this and have not produced a consistent answer, so guidelines currently keep both. It is one of the live questions in acute stroke care rather than a settled one.',
+        q: 'Does alteplase add benefit before mechanical thrombectomy?',
+        a: 'Several trials have tested whether alteplase adds benefit before mechanical thrombectomy in patients with a large-vessel occlusion who can reach a thrombectomy centre directly. They have not produced a consistent answer, so guidelines currently keep both. This remains an open question in acute stroke care.',
       },
     ],
     recentAuditDate: 'August 2026',

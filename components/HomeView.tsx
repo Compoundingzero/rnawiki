@@ -1,86 +1,35 @@
-// The home page body, ported from the master reference wireframe (src/components/HomeView.tsx).
-//
-// Layout, spacing, section order, copy, colours and icons are the reference's: the same
-// `max-w-xl` column, the same `space-y-16 sm:space-y-24` rhythm, the same hero, the same
-// "Featured Today" card down to the two-up price panel and the ArrowRight footer row.
-//
-// It is a server component. The reference held the whole ledger in the browser and filtered it on
-// every keystroke; here the featured record, the popular row and the corpus counts are resolved by
-// the page's server component and passed in, so the home page is real HTML before any JavaScript
-// runs. The only interactive part — the search box — is its own client component.
-//
-// Divergences, all sanctioned (CLAUDE.md), none of them visual:
-//
-//  1. The wireframe picked its spotlight with `drugs.find((d) => d.id === 'inclisiran')`. The
-//     server picks it now (`getFeaturedDrug`), and it can legitimately be null on an empty
-//     database — so the featured section is conditional instead of assuming `drugs[0]` exists.
-//  2. The hard-coded price fallbacks are DELETED. The reference printed `'$5.00 / dose'` and
-//     `'$3,250 / dose'` whenever `pricing` was missing, which invents a number under a real
-//     medicine's name. Missing pricing now renders the same panel shape reading
-//     "Not yet documented", with a quiet way in to fix it.
-//  3. The card is a `next/link`, not a `<div onClick>`, so it can be opened in a new tab,
-//     middle-clicked, focused, and announced as a link.
-//  4. One added line of real corpus statistics, counted by `count(*)` — never an estimate.
+// Minimal home page. The server supplies the featured record, popular searches, and exact database
+// counts; the search box is the only client-side part.
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 import { HomeSearch } from './HomeSearch'
 import type { SearchHit } from '@/lib/api-client'
+import {
+  toPublicMedicineCardView,
+  type PublicMedicineProjection,
+} from '@/lib/public-medicine-projection'
+import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
 import type { DrugDossier } from '@/lib/types'
 
 export interface CorpusStats {
-  /** Every record in the corpus, stubs included. */
+  /** Every record in the corpus, including records not yet moved to the programme model. */
   total: number
-  flagship: number
-  curated: number
+  programmes: number
+  reviewedProgrammes: number
 }
 
 export interface HomeViewProps {
   /** Null on an empty database: the hero and search render, the spotlight section does not. */
   featured: DrugDossier | null
+  /** The only source of programme conclusions rendered by the featured card. */
+  featuredProjection: PublicMedicineProjection | null
   popular: SearchHit[]
   corpusStats: CorpusStats
 }
 
-/** Local copies of two one-line helpers that are file-private in DrugDossierView.tsx. */
-function hasText(value: string | null | undefined): boolean {
-  return typeof value === 'string' && value.trim().length > 0
-}
-
-/**
- * "$3,250 / dose (list price)" -> "$3,250 / dose". The reference wrote this inline as
- * `.split('(')[0]?.trim()`; under `noUncheckedIndexedAccess` that element is possibly undefined,
- * so falling back to the whole string is explicit.
- */
-/**
- * The compact price panel has two narrow columns and the reference fills them with short figures —
- * "$18 – $32 per dose", "$3,250 / injection". A curated dossier legitimately records more than
- * that: adalimumab's cost field cites the published cost-of-goods range AND the pen's drug-substance
- * mass, because a bare number nobody can check is worth less than a sourced one.
- *
- * So the panel shows the figure and the dossier page shows the sentence. This pulls the leading
- * monetary figure out; if there is none it falls back to a short clause, and never to a paragraph
- * set in monospace, which is what pushed the card to twice its height.
- */
-const MONEY_FIGURE =
-  /\$[\d,.]+(?:\s*[–—-]\s*\$?[\d,.]+)?(?:\s*(?:per|\/)\s*[a-z-]+(?:\s+[a-z-]+)?)?/i
-
-function priceHeadline(value: string): string {
-  const head = (value.split('(')[0] ?? value).trim()
-  if (head.length <= 34) return head
-
-  const figure = MONEY_FIGURE.exec(head)?.[0]
-  if (figure) return figure.trim()
-
-  const clause = head.split(/[;,]/)[0]?.trim() ?? head
-  return clause.length <= 44 ? clause : `${clause.slice(0, 42).trimEnd()}…`
-}
-
-/**
- * Biosimilars mean a modern biologic can carry a dozen brand names. The reference's heading assumed
- * one short one, and the full list wrapped the medicine's own name onto a second line.
- */
+/** Keep long lists of brand names from overwhelming the featured heading. */
 function tradeNameHeadline(tradeName: string, limit = 2): string {
   const names = tradeName
     .split('/')
@@ -90,65 +39,42 @@ function tradeNameHeadline(tradeName: string, limit = 2): string {
   return `${names.slice(0, limit).join(' / ')} +${names.length - limit} more`
 }
 
-export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
-  // "Full dossier" means curated or flagship. A stub is an ingested name and a regulatory status,
-  // which is not a dossier, and counting it as one would overstate what this site actually holds.
-  const documented = corpusStats.flagship + corpusStats.curated
+export function HomeView({ featured, featuredProjection, popular, corpusStats }: HomeViewProps) {
   const showCorpusLine = corpusStats.total > 0
-
-  const synthesisCost = hasText(featured?.pricing?.synthesisCostPerDose)
-    ? priceHeadline(featured?.pricing?.synthesisCostPerDose ?? '')
-    : null
-  const retailPrice = hasText(featured?.pricing?.retailPricePerDoseOrYear)
-    ? priceHeadline(featured?.pricing?.retailPricePerDoseOrYear ?? '')
-    : null
+  const featuredCard = featuredProjection ? toPublicMedicineCardView(featuredProjection) : null
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-16 sm:space-y-24 animate-fade-in">
-      {/* 1. Spacious, Pure Minimalist Hero & Main Search CTA */}
       <section className="text-center space-y-6 sm:space-y-8">
-        {/* Main Headline */}
         <div className="space-y-3">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#1D1D1F] leading-tight">
-            Understand any medicine <br />
+            Understand any drug <br />
             in <span className="text-[#0071E3]">10 seconds</span>.
           </h1>
 
-          {/* The reference's line was "All drugs operate through RNA", which is not true: a modern
-              class of medicines targets RNA directly, and most drugs work by entirely different
-              mechanisms. What survives is the real premise — RNA carries the instructions the body
-              runs on, so a drug either acts on them or acts on something they built — plus the
-              reason the site exists, which is that the evidence and the cost belong to the person
-              taking the drug rather than to whoever sells it. */}
           <p className="text-sm sm:text-base text-[#6E6E73] max-w-md mx-auto leading-relaxed">
-            Your body runs on RNA, and every medicine works through it — directly, or through what
-            it built. We publish the proof, the real cost, and the gaps, so you decide instead of
-            being told.
+            See what it changes in the body, what human studies found, and what is still unknown.
           </p>
         </div>
 
-        {/* Grand Spotlight Search Bar (Unmissable Main CTA) — the reference's search box, its
-            dropdown and its "Popular:" row, all of which now query the server. */}
         <HomeSearch popular={popular} />
       </section>
 
-      {/* 2. Apple-Clean Featured Medicine Card */}
       {(featured || showCorpusLine) && (
         <section className="space-y-3">
           {featured && (
             <>
               <div className="flex items-center justify-between px-1">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#86868B]">
-                  Featured Today
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#6E6E73]">
+                  Featured medicine
                 </span>
-                <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
-                  {featured.approvalStatus}
+                <span className="rounded-full border border-black/[0.08] bg-white px-2.5 py-0.5 text-xs font-semibold text-[#424245]">
+                  {publicApprovalStatusLabel(featured.approvalStatus)}
                 </span>
               </div>
 
-              {/* `drug.id` IS the public slug — see `rowToDossier` (lib/dossier.ts). */}
               <Link
-                href={`/d/${featured.id}`}
+                href={featuredCard ? featuredCard.href : `/d/${featured.id}`}
                 className="group block bg-white hover:bg-[#FAFAFC] rounded-3xl p-6 sm:p-8 border border-black/[0.08] hover:border-[#0071E3]/40 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,113,227,0.08)] transition-all cursor-pointer space-y-5"
               >
                 <div className="space-y-1.5">
@@ -157,69 +83,32 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
                       {featured.name}{' '}
                       {featured.tradeName && (
                         <span
-                          className="text-lg text-[#86868B] font-normal"
+                          className="text-lg text-[#6E6E73] font-normal"
                           title={featured.tradeName}
                         >
                           ({tradeNameHeadline(featured.tradeName)})
                         </span>
                       )}
                     </h2>
-                    <span className="text-xs font-bold text-[#0071E3] bg-blue-50 px-3 py-1 rounded-full border border-[#0071E3]/20 shrink-0">
-                      {featured.modality}
+                    <span className="text-xs font-bold text-[#0066CC] bg-blue-50 px-3 py-1 rounded-full border border-[#0071E3]/20 shrink-0">
+                      {publicMedicineTypeLabel(featured.modality)}
                     </span>
                   </div>
 
-                  {/* An unwritten verdict renders as nothing rather than as an empty line of
-                      emphasis. Absence is absence. */}
-                  {hasText(featured.oneSentenceVerdict) && (
+                  {featuredCard?.context && (
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73]">
+                      {featuredCard.context}
+                    </p>
+                  )}
+                  {featuredCard?.summary.text && (
                     <p className="text-sm text-[#1D1D1F] font-medium leading-snug">
-                      {featured.oneSentenceVerdict}
+                      {featuredCard.summary.text}
                     </p>
                   )}
                 </div>
 
-                {/* Simple Clean Price Pill. The reference fell back to '$5.00 / dose' and
-                    '$3,250 / dose' here; those are deleted. An undocumented cost says so. */}
-                <div className="flex items-center justify-between bg-[#F5F5F7] group-hover:bg-blue-50/50 p-4 rounded-2xl transition text-xs">
-                  <div>
-                    <span className="text-[10px] uppercase font-bold text-[#86868B] block">
-                      Synthesis Cost
-                    </span>
-                    <span
-                      className={`text-sm font-bold font-mono block ${
-                        synthesisCost ? 'text-emerald-800' : 'text-[#86868B]'
-                      }`}
-                    >
-                      {synthesisCost ?? 'Not yet documented'}
-                    </span>
-                  </div>
-                  <div className="h-6 w-px bg-black/[0.08]" />
-                  <div className="text-right">
-                    <span className="text-[10px] uppercase font-bold text-[#86868B] block">
-                      Retail Price
-                    </span>
-                    <span
-                      className={`text-sm font-bold font-mono block ${
-                        retailPrice ? 'text-[#1D1D1F]' : 'text-[#86868B]'
-                      }`}
-                    >
-                      {retailPrice ?? 'Not yet documented'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* The way in to fix it. A `<span>`, not an `<a>`: this card already is a link to
-                    the dossier where the pricing editor lives, and an anchor inside an anchor is
-                    invalid HTML that browsers resolve unpredictably. */}
-                {(!synthesisCost || !retailPrice) && (
-                  <span className="block text-[11px] font-bold text-[#0071E3] group-hover:underline">
-                    Add it
-                  </span>
-                )}
-
-                {/* Action Link */}
                 <div className="flex items-center justify-between pt-2 border-t border-black/[0.05] text-xs sm:text-sm font-bold text-[#0071E3]">
-                  <span>Read 10-Second Dossier</span>
+                  <span>Open medicine summary</span>
                   <div className="flex items-center gap-1 group-hover:translate-x-1 transition">
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </div>
@@ -228,14 +117,21 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
             </>
           )}
 
-          {/* Real counts from `count(*)`, never an estimate. The last clause is dropped when
-              nothing is left awaiting a contributor, rather than printing a false claim. */}
           {showCorpusLine && (
-            <p className="px-1 text-[11px] text-[#86868B] leading-relaxed">
-              {corpusStats.total.toLocaleString()} medicines indexed &middot;{' '}
-              {documented.toLocaleString()} with a full dossier
-              {documented < corpusStats.total && (
-                <> &middot; everything else awaiting a contributor</>
+            <p className="px-1 text-[11px] text-[#6E6E73] leading-relaxed">
+              {corpusStats.total.toLocaleString()} medicine records
+              {corpusStats.programmes > 0 && (
+                <>
+                  {' '}
+                  &middot; {corpusStats.programmes.toLocaleString()} specific medicine uses recorded
+                </>
+              )}
+              {corpusStats.reviewedProgrammes > 0 && (
+                <>
+                  {' '}
+                  &middot; {corpusStats.reviewedProgrammes.toLocaleString()} with reviewed
+                  conclusions
+                </>
               )}
             </p>
           )}

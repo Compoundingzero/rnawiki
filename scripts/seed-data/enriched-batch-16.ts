@@ -114,7 +114,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'The honest comparison inside this class is not effectiveness but who a drug has been shown to work in, and how long it stays in the body after it is stopped. Alendronate has the largest fracture dataset of the oral bisphosphonates. Zoledronic acid is the same mechanism given once a year into a vein and is the only member of the class with a randomised survival signal. Calcium and vitamin D are not substitutes for it: every one of the trials on this page gave both to the placebo group as well.',
+        'The comparison inside this class is not effectiveness but who a drug has been shown to work in, and how long it stays in the body after it is stopped. Alendronate has the largest fracture dataset of the oral bisphosphonates. Zoledronic acid is the same mechanism given once a year into a vein and is the only member of the class with a randomised survival signal. Calcium and vitamin D are not substitutes for it: every one of the trials on this page gave both to the placebo group as well.',
       conventionalRx: [
         {
           name: 'Risedronate',
@@ -1015,7 +1015,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
         q: 'Does it work if I do not have osteoporosis yet?',
         a: 'That has not been demonstrated, and two Cochrane reviews fourteen years apart say so in the same terms. The 2022 update found only four short trials in 989 lower-risk women, which between them reported zero clinical vertebral fractures and zero hip fractures, making the effect on those outcomes not estimable rather than negative. The wrist-fracture estimate had a confidence interval running from 0.03 to 7.50. In women who do have osteoporosis, the same review found risedronate probably prevents non-vertebral fracture and may reduce hip fracture.',
         auditNote:
-          '"Not estimable" is not the same as "no effect", and neither is the same as "works". The honest statement is that the trials to answer this were never done at the size required.',
+          '"Not estimable" is not the same as "no effect", and neither is the same as "works". Trials large enough to answer this question were never done.',
       },
       {
         q: 'Why does one version get taken after breakfast and the other before?',
@@ -3659,7 +3659,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'Clinical fractures were counted as a planned secondary outcome. Unadjusted, there was no significant difference. Adjusted for baseline differences and repeated fractures it became significant, and adjusted further for how long people actually took the drug it grew larger.',
         technicalDetails:
-          'Clinical fractures occurred in 255 of 1935 placebo patients (13.2%) and 238 of 1948 cinacalcet patients (12.2%). Unadjusted intention-to-treat relative hazard was 0.89 (95% CI 0.75 to 1.07). After adjustment for baseline characteristics and multiple fractures it was 0.83 (0.72 to 0.98). Using the prespecified lag-censoring analysis, a measure of actual drug exposure, it was 0.72 (0.58 to 0.90); censoring at cointerventions such as parathyroidectomy, transplantation or commercial cinacalcet gave 0.71 (0.58 to 0.87). The authors state both halves plainly: in the unadjusted intention-to-treat analysis cinacalcet did not reduce fracture, and after accounting for baseline differences, multiple fractures and discontinuation it reduced fracture by 16% to 29%. Every adjustment moves the estimate the same way, which is either a real effect obscured by crossover and dropout, or the signature of analytical flexibility. The trial cannot distinguish between those.',
+          'Clinical fractures occurred in 255 of 1935 placebo patients (13.2%) and 238 of 1948 cinacalcet patients (12.2%). Unadjusted intention-to-treat relative hazard was 0.89 (95% CI 0.75 to 1.07). After adjustment for baseline characteristics and multiple fractures it was 0.83 (0.72 to 0.98). Using the prespecified lag-censoring analysis, a measure of actual drug exposure, it was 0.72 (0.58 to 0.90); censoring at cointerventions such as parathyroidectomy, transplantation or commercial cinacalcet gave 0.71 (0.58 to 0.87). The authors state both halves: in the unadjusted intention-to-treat analysis cinacalcet did not reduce fracture, and after accounting for baseline differences, multiple fractures and discontinuation it reduced fracture by 16% to 29%. Every adjustment moves the estimate the same way, which is either a real effect obscured by crossover and dropout, or the signature of analytical flexibility. The trial cannot distinguish between those.',
         evidenceSource:
           'Moe SM et al., J Am Soc Nephrol 2015;26:1466-1475 (EVOLVE fracture analysis)',
         doi: '10.1681/ASN.2014040414',
@@ -3836,7 +3836,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
     commonQuestions: [
       {
         q: 'Did the big trial work or not?',
-        a: 'It depends which analysis is quoted, and that is the honest answer rather than an evasion. EVOLVE randomised 3883 dialysis patients and followed them for up to 64 months. In the analysis it had committed to in advance — unadjusted, intention-to-treat — the composite of death and major cardiovascular events was 48.2% against 49.2%, a relative hazard of 0.93 with a P value of 0.11. That is a miss. The trial also had a problem it could not design away: people on placebo who stopped could get the drug commercially, and median exposure was 21.2 months on drug against 17.5 on placebo. Analyses correcting for that move the result toward benefit. Correcting for crossover is reasonable and it is no longer a randomised comparison.',
+        a: 'The result depends on which analysis is used. EVOLVE randomised 3883 dialysis patients and followed them for up to 64 months. In the analysis it had committed to in advance — unadjusted, intention-to-treat — the composite of death and major cardiovascular events was 48.2% against 49.2%, a relative hazard of 0.93 with a P value of 0.11. That is a miss. The trial also had a problem it could not design away: people on placebo who stopped could get the drug commercially, and median exposure was 21.2 months on drug against 17.5 on placebo. Analyses correcting for that move the result toward benefit. Correcting for crossover is reasonable and it is no longer a randomised comparison.',
         auditNote:
           'This is the pattern to watch for anywhere: a declared analysis that is null, a set of adjusted analyses that are positive, and secondary literature that cites only the second kind.',
       },
@@ -3936,7 +3936,7 @@ export const ENRICHED_BATCH_16_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'For heartburn the alternatives are other antacids and the acid-suppressing drugs, which act more slowly and last far longer. For bone, the honest alternative is dietary calcium: the trial evidence for supplements is a small density gain, no significant fracture reduction in healthy postmenopausal women, more kidney stones, and a contested cardiovascular signal — none of which has been shown for calcium eaten as food.',
+        'For heartburn the alternatives are other antacids and the acid-suppressing drugs, which act more slowly and last far longer. For bone health, dietary calcium is the relevant alternative: trial evidence for supplements shows a small density gain, no significant fracture reduction in healthy postmenopausal women, more kidney stones and a contested cardiovascular signal. Those findings have not been shown for calcium eaten as food.',
       conventionalRx: [
         {
           name: 'Calcium citrate',

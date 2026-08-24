@@ -1,39 +1,14 @@
 'use client'
 
-/**
- * Sign in, create an account, and file physician credentials — the port of the master reference
- * wireframe's `src/components/DoctorVerificationModal.tsx`, exported as `AuthModal` because on a
- * real server this one dialog is the whole door.
- *
- * The switcher, the field order, the labels, the placeholders, the classes and the success
- * screen's typography are the reference's. Four things could not be carried over:
- *
- * 1. localStorage became the server. The reference minted a `CommentUser` object with
- *    `id: \`usr-${Date.now()}\`` and handed it to `onSaveUser`. Here the Community side is a real
- *    account — name, email, password, optional ORCID iD, and a sign in / create account toggle —
- *    and it calls `api.register` / `api.login`. Server errors are surfaced inline rather than
- *    swallowed: 422 field issues under their fields, 409 and 401 above the button.
- * 2. THE BADGE IS EARNED. The reference set `isDoctor: true` after a 900 ms `setTimeout` and drew
- *    the blue check. That was the wireframe's one dishonest behaviour. This submits the credential
- *    and lands on a PENDING screen — the reference's layout, with an amber Clock where the emerald
- *    CheckCircle2 was, and a preview card that shows the reader's comment WITHOUT a badge, because
- *    showing one would promise something no steward has done yet.
- * 3. Credentials attach to an account, so with nobody signed in the Doctor tab shows the account
- *    form first and says why.
- * 4. The specialty list gets "Other" plus a free-text input. Seven specialties do not cover
- *    medicine, and a required select whose options exclude the reader forces a false answer.
- *
- * Accessibility the wireframe lacked, with no visual change: the dialog's role, labelling, focus
- * trap and Escape key come from ModalShell; the switcher announces its state with `aria-pressed`;
- * invalid fields carry `aria-invalid` and point at their message with `aria-describedby`; the
- * error line is a live region.
- */
+/** Account access and optional physician verification. Submitting credentials creates a pending
+ * review; only the server can grant the verified badge. */
 
-import { useId, useState, type FormEvent } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { CheckCircle2, Clock, ShieldCheck, Stethoscope, User } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { api, ApiError } from '@/lib/api-client'
 import type { CommentUser } from '@/lib/types'
-import { isVerifiedPhysician, useApp } from './app-context'
+import { isSessionMutationInteractionLocked, isVerifiedPhysician, useApp } from './app-context'
 import { ModalShell } from './ModalShell'
 
 /** The reference's seven, in its order, plus the escape hatch it lacked. */
@@ -48,6 +23,7 @@ const SPECIALTIES = [
 ]
 
 const OTHER_SPECIALTY = 'Other'
+const AUTH_RECONCILIATION_PENDING = 'auth-reconciliation-pending'
 
 const LABEL_CLASS = 'text-xs font-semibold text-[#1D1D1F] block mb-1'
 
@@ -106,6 +82,13 @@ function formatDate(iso: string | undefined): string | null {
   return parsed.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
+export function canCloseAuthModal(args: {
+  openModal: string | null
+  isSubmitting: boolean
+}): boolean {
+  return args.openModal === 'auth' && !args.isSubmitting
+}
+
 /** One inline field message, and the props that tie it to its input. */
 function FieldError({ id, message }: { id: string; message: string | undefined }) {
   if (!message) return null
@@ -146,7 +129,7 @@ function PendingPanel({
 
       <div>
         <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-500/20 inline-block mb-1">
-          Awaiting Steward Review
+          Awaiting review
         </span>
         <h2 id={headingId} className="text-xl font-bold text-[#1D1D1F] tracking-tight">
           {heading}
@@ -157,13 +140,13 @@ function PendingPanel({
       </div>
 
       <p className="text-xs text-[#6E6E73] leading-relaxed text-left">
-        A steward reviews credentials by hand. Your notes post under your name until then — the
-        verified badge appears only after review.
+        A reviewer checks the licence number and workplace you submitted. Until approval, your
+        comments show your account name without a verified physician badge.
       </p>
 
       <div className="bg-[#F5F5F7] p-3.5 rounded-2xl border border-black/[0.04] text-left space-y-1.5">
-        <span className="text-[10px] text-[#86868B] uppercase font-bold tracking-wider block">
-          How your comments appear:
+        <span className="text-[10px] text-[#6E6E73] uppercase font-bold tracking-wider block">
+          How your name appears now
         </span>
         <div className="flex items-center gap-1.5 flex-wrap">
           {/* The account name, not a `Dr.`-prefixed version of it. The reference rewrote the name
@@ -171,17 +154,26 @@ function PendingPanel({
               that shows a different one is a preview of something that will not happen. */}
           <span className="text-xs font-bold text-[#1D1D1F]">{displayName}</span>
         </div>
-        <p className="text-xs text-[#6E6E73] italic">
-          &quot;{specialty ?? 'Clinical'} perspective on therapeutic endpoints...&quot;
-        </p>
+        <p className="text-xs text-[#6E6E73]">No verified physician badge is shown yet.</p>
       </div>
     </div>
   )
 }
 
 export function AuthModal() {
-  const { currentUser, openModal, setOpenModal, setCurrentUser } = useApp()
+  const { currentUser, openModal, refreshUser, setOpenModal, setCurrentUser } = useApp()
+  const accountId = currentUser?.id ?? null
+  const accountIdRef = useRef(accountId)
+  accountIdRef.current = accountId
+  const openModalRef = useRef(openModal)
+  openModalRef.current = openModal
+  const requestRef = useRef<{ generation: number; controller: AbortController | null }>({
+    generation: 0,
+    controller: null,
+  })
+  const acceptedAccountTransitionRef = useRef<string | null>(null)
   const isOpen = openModal === 'auth'
+  const router = useRouter()
   const baseId = useId()
   const headingId = `${baseId}-heading`
 
@@ -207,11 +199,19 @@ export function AuthModal() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   const [justSubmitted, setJustSubmitted] = useState<boolean>(false)
   const [isResubmitting, setIsResubmitting] = useState<boolean>(false)
+  const [formAccountId, setFormAccountId] = useState(accountId)
+  const [reconciliationKind, setReconciliationKind] = useState<'account' | 'credential' | null>(
+    null,
+  )
+  const interactionLocked = isSessionMutationInteractionLocked(
+    isSubmitting,
+    reconciliationKind !== null,
+  )
 
   // Reset on the way out rather than in an effect on the way in: this component stays mounted for
   // the life of the page, so without it a reopened dialog still shows the last error and the last
   // half-typed password.
-  const reset = () => {
+  const reset = useCallback(() => {
     setIsDoctorFlow(false)
     setMode('signup')
     setName('')
@@ -229,9 +229,44 @@ export function AuthModal() {
     setFieldErrors({})
     setJustSubmitted(false)
     setIsResubmitting(false)
-  }
+    setReconciliationKind(null)
+  }, [])
+
+  useEffect(() => {
+    requestRef.current.controller?.abort()
+    requestRef.current.generation += 1
+    requestRef.current.controller = null
+    if (
+      isOpen &&
+      (acceptedAccountTransitionRef.current === accountId ||
+        acceptedAccountTransitionRef.current === AUTH_RECONCILIATION_PENDING)
+    ) {
+      if (acceptedAccountTransitionRef.current === AUTH_RECONCILIATION_PENDING) {
+        setIsSubmitting(true)
+      } else {
+        acceptedAccountTransitionRef.current = null
+        setIsSubmitting(false)
+      }
+      setFormAccountId(accountId)
+      return
+    }
+    acceptedAccountTransitionRef.current = null
+    reset()
+    setFormAccountId(accountId)
+  }, [accountId, isOpen, reset])
+
+  const formScopeIsCurrent = formAccountId === accountId
 
   const handleClose = () => {
+    if (
+      !canCloseAuthModal({
+        openModal: openModalRef.current,
+        isSubmitting: interactionLocked || requestRef.current.controller !== null,
+      })
+    ) {
+      return
+    }
+    requestRef.current.generation += 1
     reset()
     setOpenModal(null)
   }
@@ -264,68 +299,276 @@ export function AuthModal() {
 
   const handleAccountSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (isSubmitting) return
+    if (
+      isSubmitting ||
+      !formScopeIsCurrent ||
+      openModalRef.current !== 'auth' ||
+      accountIdRef.current !== accountId
+    ) {
+      return
+    }
+    requestRef.current.controller?.abort()
+    const controller = new AbortController()
+    const generation = requestRef.current.generation + 1
+    requestRef.current = { generation, controller }
+    const startingAccountId = accountId
     clearErrors()
     setIsSubmitting(true)
     try {
       const trimmedOrcid = orcid.trim()
       const { user } =
         mode === 'signup'
-          ? await api.register({
-              name: name.trim(),
-              email: email.trim(),
-              password,
-              ...(trimmedOrcid ? { orcid: trimmedOrcid } : {}),
-            })
-          : await api.login({ email: email.trim(), password })
+          ? await api.register(
+              {
+                name: name.trim(),
+                email: email.trim(),
+                password,
+                ...(trimmedOrcid ? { orcid: trimmedOrcid } : {}),
+              },
+              controller.signal,
+            )
+          : await api.login({ email: email.trim(), password }, controller.signal)
 
+      if (
+        controller.signal.aborted ||
+        requestRef.current.generation !== generation ||
+        openModalRef.current !== 'auth' ||
+        accountIdRef.current !== startingAccountId
+      ) {
+        return
+      }
+
+      if (isDoctorFlow) acceptedAccountTransitionRef.current = user.id
       setCurrentUser(user)
+      router.refresh()
       setPassword('')
 
       // Someone who came for the credential form is left standing on it, signed in, instead of
       // being dropped back on the page they were trying to get past.
       if (isDoctorFlow) {
+        setFormAccountId(user.id)
         setFullName((value) => value || user.name)
         setWorkEmail((value) => value || user.email)
         return
       }
-      handleClose()
-    } catch (thrown) {
-      showFailure(thrown, 'That did not work. Try again.')
-    } finally {
+      // Closing through `handleClose` is deliberately disabled until this request finishes: the
+      // server has already changed the session cookie and aborting here could leave the header out
+      // of sync. Complete the successful transition explicitly, then close this exact modal.
+      requestRef.current.controller = null
       setIsSubmitting(false)
+      reset()
+      if (openModalRef.current === 'auth') setOpenModal(null)
+    } catch (thrown) {
+      if (
+        !controller.signal.aborted &&
+        requestRef.current.generation === generation &&
+        openModalRef.current === 'auth' &&
+        accountIdRef.current === startingAccountId
+      ) {
+        // A login/register response can be lost after Set-Cookie was committed. Keep the modal
+        // locked until `/me` says which account the cookie now represents.
+        if (isDoctorFlow) acceptedAccountTransitionRef.current = AUTH_RECONCILIATION_PENDING
+        const reconciledUser = await refreshUser()
+        router.refresh()
+        if (reconciledUser) {
+          if (isDoctorFlow) acceptedAccountTransitionRef.current = reconciledUser.id
+          setCurrentUser(reconciledUser)
+          setPassword('')
+          if (isDoctorFlow) {
+            setFormAccountId(reconciledUser.id)
+            setFullName((value) => value || reconciledUser.name)
+            setWorkEmail((value) => value || reconciledUser.email)
+          } else if (openModalRef.current === 'auth') {
+            requestRef.current.controller = null
+            setIsSubmitting(false)
+            reset()
+            setOpenModal(null)
+          }
+          return
+        }
+        acceptedAccountTransitionRef.current = null
+        if (
+          reconciledUser === null &&
+          !controller.signal.aborted &&
+          openModalRef.current === 'auth' &&
+          accountIdRef.current === startingAccountId
+        ) {
+          setReconciliationKind(null)
+          showFailure(thrown, 'That did not work. Try again.')
+        } else if (
+          reconciledUser === undefined &&
+          !controller.signal.aborted &&
+          openModalRef.current === 'auth'
+        ) {
+          setReconciliationKind('account')
+          setError(
+            'RNAWiki could not confirm whether the account session changed. Check your connection and try again.',
+          )
+        }
+      }
+    } finally {
+      if (
+        !controller.signal.aborted &&
+        requestRef.current.generation === generation &&
+        openModalRef.current === 'auth' &&
+        (accountIdRef.current === startingAccountId ||
+          acceptedAccountTransitionRef.current !== null)
+      ) {
+        requestRef.current.controller = null
+        setIsSubmitting(false)
+      }
     }
   }
 
   const handleCredentialSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (isSubmitting) return
+    if (
+      isSubmitting ||
+      !formScopeIsCurrent ||
+      !accountId ||
+      accountIdRef.current !== accountId ||
+      openModalRef.current !== 'auth'
+    ) {
+      return
+    }
 
     const chosenSpecialty = specialty === OTHER_SPECIALTY ? otherSpecialty.trim() : specialty
     if (!chosenSpecialty) {
-      setFieldErrors({ specialty: 'Name the specialty so a steward can check it.' })
+      setFieldErrors({ specialty: 'Enter your specialty so a reviewer can check it.' })
       return
     }
 
     clearErrors()
+    requestRef.current.controller?.abort()
+    const controller = new AbortController()
+    const generation = requestRef.current.generation + 1
+    requestRef.current = { generation, controller }
     setIsSubmitting(true)
     try {
-      const { user } = await api.submitDoctorVerification({
-        fullName: fullName.trim(),
-        licenseOrNpi: licenseOrNpi.trim(),
-        specialty: chosenSpecialty,
-        institution: institution.trim(),
-        workEmail: workEmail.trim(),
-      })
+      const { user } = await api.submitDoctorVerification(
+        {
+          fullName: fullName.trim(),
+          licenseOrNpi: licenseOrNpi.trim(),
+          specialty: chosenSpecialty,
+          institution: institution.trim(),
+          workEmail: workEmail.trim(),
+        },
+        controller.signal,
+      )
+      if (
+        controller.signal.aborted ||
+        requestRef.current.generation !== generation ||
+        openModalRef.current !== 'auth' ||
+        accountIdRef.current !== accountId
+      ) {
+        return
+      }
       // The server answers with `verificationState: 'pending'` and nothing this client sends can
       // make it anything else — see docs/api-contract.md.
       setCurrentUser(user)
+      router.refresh()
       setIsResubmitting(false)
       setJustSubmitted(true)
     } catch (thrown) {
-      showFailure(thrown, 'Those credentials could not be submitted.')
+      if (
+        !controller.signal.aborted &&
+        requestRef.current.generation === generation &&
+        openModalRef.current === 'auth' &&
+        accountIdRef.current === accountId
+      ) {
+        // The credential row may have committed even if parsing the response failed. Re-read the
+        // authenticated account before allowing the dialog to close or offering a retry.
+        const reconciledUser = await refreshUser()
+        router.refresh()
+        if (
+          reconciledUser?.id === accountId &&
+          reconciledUser.verificationState === 'pending' &&
+          openModalRef.current === 'auth'
+        ) {
+          setReconciliationKind(null)
+          setCurrentUser(reconciledUser)
+          setIsResubmitting(false)
+          setJustSubmitted(true)
+          return
+        }
+        if (
+          reconciledUser?.id === accountId &&
+          !controller.signal.aborted &&
+          openModalRef.current === 'auth'
+        ) {
+          setReconciliationKind(null)
+          showFailure(thrown, 'Those credentials could not be submitted.')
+        } else if (reconciledUser === undefined && openModalRef.current === 'auth') {
+          setReconciliationKind('credential')
+          setError(
+            'RNAWiki could not confirm whether the credentials were received. Check your connection before retrying.',
+          )
+        }
+      }
     } finally {
-      setIsSubmitting(false)
+      if (
+        !controller.signal.aborted &&
+        requestRef.current.generation === generation &&
+        openModalRef.current === 'auth' &&
+        accountIdRef.current === accountId
+      ) {
+        requestRef.current.controller = null
+        setIsSubmitting(false)
+      }
+    }
+  }
+
+  const retrySessionReconciliation = async () => {
+    if (!reconciliationKind || isSubmitting || openModalRef.current !== 'auth') return
+    const kind = reconciliationKind
+    if (kind === 'account' && isDoctorFlow) {
+      acceptedAccountTransitionRef.current = AUTH_RECONCILIATION_PENDING
+    }
+    setIsSubmitting(true)
+    setError(null)
+    try {
+      const reconciledUser = await refreshUser()
+      router.refresh()
+      if (reconciledUser === undefined) {
+        acceptedAccountTransitionRef.current = null
+        setError(
+          'RNAWiki still cannot confirm the account session. Check your connection, then retry or reload this page.',
+        )
+        return
+      }
+
+      setReconciliationKind(null)
+      if (kind === 'account') {
+        if (!reconciledUser) {
+          acceptedAccountTransitionRef.current = null
+          setError('No signed-in account was found. You can submit the account form again.')
+          return
+        }
+        if (isDoctorFlow) acceptedAccountTransitionRef.current = reconciledUser.id
+        setCurrentUser(reconciledUser)
+        setPassword('')
+        if (isDoctorFlow) {
+          setFormAccountId(reconciledUser.id)
+          setFullName((value) => value || reconciledUser.name)
+          setWorkEmail((value) => value || reconciledUser.email)
+        } else {
+          reset()
+          if (openModalRef.current === 'auth') setOpenModal(null)
+        }
+        return
+      }
+
+      if (reconciledUser?.id === accountId && reconciledUser.verificationState === 'pending') {
+        setCurrentUser(reconciledUser)
+        setIsResubmitting(false)
+        setJustSubmitted(true)
+      } else if (reconciledUser?.id === accountId) {
+        setError('The credentials are not recorded as pending. Review the form before retrying.')
+      } else if (reconciledUser === null) {
+        setError('The account session ended. Sign in again before submitting credentials.')
+      }
+    } finally {
+      if (openModalRef.current === 'auth') setIsSubmitting(false)
     }
   }
 
@@ -424,7 +667,7 @@ export function AuthModal() {
           />
           <FieldError id={`${baseId}-orcid-error`} message={fieldErrors.orcid} />
           {!fieldErrors.orcid && (
-            <p id={`${baseId}-orcid-hint`} className="text-[11px] text-[#86868B] mt-1">
+            <p id={`${baseId}-orcid-hint`} className="text-[11px] text-[#6E6E73] mt-1">
               Shown beside your edits so a reader can check who made them.
             </p>
           )}
@@ -445,7 +688,7 @@ export function AuthModal() {
         </button>
       </div>
 
-      <p className="text-[11px] text-[#86868B] text-center">
+      <p className="text-[11px] text-[#6E6E73] text-center">
         {mode === 'signup' ? 'Already have an account? ' : 'New here? '}
         <button
           type="button"
@@ -465,7 +708,7 @@ export function AuthModal() {
     <form onSubmit={handleCredentialSubmit} className="space-y-3">
       <div>
         <label className={LABEL_CLASS} htmlFor={`${baseId}-fullname`}>
-          Full Name with Title
+          Full name and professional title
         </label>
         <input
           id={`${baseId}-fullname`}
@@ -484,7 +727,7 @@ export function AuthModal() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
         <div>
           <label className={LABEL_CLASS} htmlFor={`${baseId}-license`}>
-            NPI or License #
+            US NPI or medical licence number
           </label>
           <input
             id={`${baseId}-license`}
@@ -501,7 +744,7 @@ export function AuthModal() {
         </div>
         <div>
           <label className={LABEL_CLASS} htmlFor={`${baseId}-specialty`}>
-            Medical Specialty
+            Medical specialty
           </label>
           <select
             id={`${baseId}-specialty`}
@@ -535,7 +778,7 @@ export function AuthModal() {
 
       <div>
         <label className={LABEL_CLASS} htmlFor={`${baseId}-institution`}>
-          Hospital / Institution
+          Hospital, clinic, or institution
         </label>
         <input
           id={`${baseId}-institution`}
@@ -553,7 +796,7 @@ export function AuthModal() {
 
       <div>
         <label className={LABEL_CLASS} htmlFor={`${baseId}-workemail`}>
-          Work Email
+          Professional email
         </label>
         <input
           id={`${baseId}-workemail`}
@@ -605,7 +848,7 @@ export function AuthModal() {
       </div>
       <div>
         <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-500/20 inline-block mb-1">
-          Physician Verification Complete
+          Physician verification complete
         </span>
         <p className="text-xl font-bold text-[#1D1D1F] tracking-tight">{currentUser.name}</p>
         {[currentUser.medicalSpecialty, currentUser.institution].filter(Boolean).length > 0 && (
@@ -613,12 +856,12 @@ export function AuthModal() {
             {[currentUser.medicalSpecialty, currentUser.institution].filter(Boolean).join(' • ')}
           </p>
         )}
-        {verifiedOn && <p className="text-[11px] text-[#86868B] mt-1">Verified {verifiedOn}</p>}
+        {verifiedOn && <p className="text-[11px] text-[#6E6E73] mt-1">Verified {verifiedOn}</p>}
       </div>
 
       <div className="bg-[#F5F5F7] p-3.5 rounded-2xl border border-black/[0.04] text-left space-y-1.5">
-        <span className="text-[10px] text-[#86868B] uppercase font-bold tracking-wider block">
-          How your comments appear:
+        <span className="text-[10px] text-[#6E6E73] uppercase font-bold tracking-wider block">
+          How your comments appear
         </span>
         <div className="flex items-center gap-1.5 flex-wrap">
           <span className="text-xs font-bold text-[#1D1D1F]">{currentUser.name}</span>
@@ -649,8 +892,8 @@ export function AuthModal() {
       <div className="p-3.5 rounded-2xl bg-rose-500/5 border border-rose-500/15 space-y-1.5">
         <span className="font-bold text-rose-800 text-[11px] block">Credentials not accepted</span>
         <p className="text-xs text-[#1D1D1F] leading-relaxed">
-          A steward read this submission and did not accept it. You can submit again with a licence
-          number and institution that can be checked against a public register.
+          A reviewer checked this submission and could not verify it. You can submit again with a
+          licence number and workplace that can be checked against a public register.
         </p>
         {note && <p className="text-xs text-[#6E6E73] italic">&quot;{note}&quot;</p>}
       </div>
@@ -671,7 +914,7 @@ export function AuthModal() {
   const signedInPanel = currentUser ? (
     <div className="space-y-3">
       <div className="bg-[#F5F5F7] p-3.5 rounded-2xl border border-black/[0.04] space-y-1.5">
-        <span className="text-[10px] text-[#86868B] uppercase font-bold tracking-wider block">
+        <span className="text-[10px] text-[#6E6E73] uppercase font-bold tracking-wider block">
           Signed in as
         </span>
         <div className="flex items-center gap-1.5 flex-wrap">
@@ -683,7 +926,7 @@ export function AuthModal() {
             </span>
           )}
         </div>
-        {currentUser.handle && <p className="text-[11px] text-[#86868B]">@{currentUser.handle}</p>}
+        {currentUser.handle && <p className="text-[11px] text-[#6E6E73]">@{currentUser.handle}</p>}
       </div>
       <button
         type="button"
@@ -701,9 +944,9 @@ export function AuthModal() {
   const doctorBody = !currentUser ? (
     <div className="space-y-3">
       {/* Divergence 3: a credential belongs to an account, or nobody can be told apart later. */}
-      <p className="text-[11px] text-[#86868B] leading-relaxed">
-        Credentials attach to an account, so create one first. Your licence goes to a steward after
-        that.
+      <p className="text-[11px] text-[#6E6E73] leading-relaxed">
+        Physician verification belongs to a named account. Create or sign in to an account first,
+        then submit your licence details for review.
       </p>
       {accountForm}
     </div>
@@ -723,18 +966,62 @@ export function AuthModal() {
   // "Enter your name and email to post clinical questions and notes") because it had one form;
   // this side now has three states, and the heading has to say which one the reader is looking at.
   const heading = currentUser
-    ? { title: 'You are signed in', blurb: 'Notes and edits post under your name.' }
+    ? {
+        title: 'You are signed in',
+        blurb: 'Your notes and submitted edits are attributed to your account name.',
+      }
     : mode === 'signin'
-      ? { title: 'Comment Log-in', blurb: 'Sign in to post clinical questions and notes.' }
+      ? { title: 'Sign in', blurb: 'Sign in to post questions, notes, and corrections.' }
       : {
           title: 'Create your account',
-          blurb: 'Your name, email and a password. Notes and edits post under your name.',
+          blurb: 'Your public contributions will appear under the name you enter.',
         }
 
   return (
-    <ModalShell isOpen={isOpen} onClose={handleClose} labelledBy={headingId} maxWidth="max-w-md">
-      <div className="p-5 sm:p-7 space-y-5">
-        {justSubmitted ? (
+    <ModalShell
+      isOpen={isOpen && (formScopeIsCurrent || reconciliationKind !== null)}
+      onClose={handleClose}
+      closeDisabled={interactionLocked}
+      labelledBy={headingId}
+      maxWidth="max-w-md"
+    >
+      <div
+        className="p-5 sm:p-7 space-y-5"
+        aria-busy={isSubmitting}
+        inert={isSubmitting ? true : undefined}
+      >
+        {reconciliationKind ? (
+          <div className="space-y-4" role="alert">
+            <div className="space-y-2">
+              <h2 id={headingId} className="text-lg font-bold text-[#1D1D1F]">
+                Account status needs to be confirmed
+              </h2>
+              <p className="text-xs leading-5 text-[#424245]">
+                The server may have completed the request, but this browser could not confirm the
+                result. Do not submit it again until the account check succeeds.
+              </p>
+              {error && <p className="text-[11px] font-semibold text-rose-700">{error}</p>}
+            </div>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => void retrySessionReconciliation()}
+                disabled={isSubmitting}
+                className={BLUE_BUTTON_CLASS}
+              >
+                {isSubmitting ? 'Checking account…' : 'Retry account check'}
+              </button>
+              <button
+                type="button"
+                onClick={() => window.location.reload()}
+                disabled={isSubmitting}
+                className={DARK_BUTTON_CLASS}
+              >
+                Reload this page
+              </button>
+            </div>
+          </div>
+        ) : justSubmitted ? (
           <div className="space-y-4">
             <PendingPanel
               heading="Verification submitted"
@@ -744,7 +1031,7 @@ export function AuthModal() {
               institution={institution.trim() || undefined}
             />
             <button type="button" onClick={handleClose} className={DARK_BUTTON_CLASS}>
-              Start Contributing Clinical Notes
+              Continue to RNAWiki
             </button>
           </div>
         ) : (
@@ -766,7 +1053,7 @@ export function AuthModal() {
                   }`}
                 >
                   <User className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                  <span>Community</span>
+                  <span>Account</span>
                 </button>
                 <button
                   type="button"
@@ -779,7 +1066,7 @@ export function AuthModal() {
                   }`}
                 >
                   <Stethoscope className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                  <span>Doctor Verification</span>
+                  <span>Physician verification</span>
                 </button>
               </div>
 
@@ -789,13 +1076,13 @@ export function AuthModal() {
                     id={headingId}
                     className="text-lg font-bold text-[#1D1D1F] tracking-tight flex items-center gap-1.5"
                   >
-                    <span>Physician Verification</span>
+                    <span>Physician verification</span>
                     <ShieldCheck className="w-4 h-4 text-[#0071E3] shrink-0" aria-hidden="true" />
                   </h2>
                   {/* The reference said the form itself granted the checkmark. It does not. */}
                   <p className="text-xs text-[#6E6E73] mt-0.5 leading-relaxed">
-                    A steward checks credentials by hand. The blue checkmark appears only after that
-                    review.
+                    A reviewer checks the submitted licence number and workplace. The blue badge
+                    appears only after approval.
                   </p>
                 </div>
               ) : (

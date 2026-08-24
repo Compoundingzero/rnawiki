@@ -1,7 +1,24 @@
-# Field dictionary
+# Selected field dictionary
 
-Every field in `drugs/*.ndjson`. The site uses these same shapes — the definitions live in
-[`lib/types.ts`](../lib/types.ts).
+This page explains the fields most useful to readers. It is not an exhaustive list of every legacy
+property in `drugs/*.ndjson`; for example, older rows can also contain `auditPointsCount` and
+`deliverySystem`. The application type definitions live in [`lib/types.ts`](../lib/types.ts).
+
+Read `manifest.json.generatedAt` for the checked-in artifact timestamp. The current files are a
+repaired legacy snapshot, not the output of a fresh database export. Its original shallow serializer
+lost properties inside nested objects. Empty `{}` fields and `{}` array elements were removed rather
+than filled with invented values, so nested object detail is unavailable in this checked-in
+snapshot. Fields below that contain nested objects — notably `aliases`, `conditionContext`,
+`mechanismSteps`, `keyAudits`, `measuredVsInferredSummary`, `trials`, `molecularSchema`, `pricing`,
+`substitutes`, and `communityNotes` — describe the authoritative database/export schema, not a
+promise that the repaired files contain those details. A fresh database export is required to
+restore them. Retained manifest counts and flat CSV `trial_count` values can therefore be non-zero
+while the corresponding repaired NDJSON array is empty.
+
+The checked-in snapshot has only the legacy dossier shape. The revised exporter is set to add the
+normalized `programmeEvidence` object on a future successful run against the authoritative
+database. In a snapshot that contains it, `programmeEvidence` is authoritative for a reviewed
+programme conclusion.
 
 ## Identity
 
@@ -33,14 +50,16 @@ Every field in `drugs/*.ndjson`. The site uses these same shapes — the definit
 
 ## What it does
 
-| Field                | Type           | Notes                                                                                                                    |
-| -------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `oneSentenceVerdict` | string         | Editorial. Present on `flagship` records.                                                                                |
-| `laymanHowItWorks`   | string         | On `flagship`, written plainly. On `curated`, the label's own mechanism passage, opening "From the FDA-approved label:". |
-| `targetGene`         | string         | Only where a label states it outright. Deliberately low-recall: a wrong target is worse than none.                       |
-| `targetProtein`      | string         | Editorial. Usually empty outside `flagship`.                                                                             |
-| `mechanismSteps[]`   | array          | The step-by-step carousel: `step`, `title`, `laymanDesc`, `molecularDetail`, `iconName`, `visualStage`. Editorial.       |
-| `anatomicalSite`     | string \| null | Where the drug acts. Editorial.                                                                                          |
+| Field              | Type           | Notes                                                                                                                    |
+| ------------------ | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `laymanHowItWorks` | string         | On `flagship`, written plainly. On `curated`, the label's own mechanism passage, opening "From the FDA-approved label:". |
+| `targetGene`       | string         | Only where a label states it outright. Deliberately low-recall: a wrong target is worse than none.                       |
+| `targetProtein`    | string         | Editorial. Usually empty outside `flagship`.                                                                             |
+| `mechanismSteps[]` | array          | The step-by-step carousel: `step`, `title`, `laymanDesc`, `molecularDetail`, `iconName`, `visualStage`. Editorial.       |
+| `anatomicalSite`   | string \| null | Where the drug acts. Editorial.                                                                                          |
+
+The database still carries a legacy medicine-wide `oneSentenceVerdict` for compatibility with old
+dossier reads. The dataset exporter omits it because it has no safe programme scope.
 
 ## Evidence
 
@@ -52,18 +71,56 @@ Every field in `drugs/*.ndjson`. The site uses these same shapes — the definit
 | `auditConfidence`, `confidenceScore` | enum, 0–100    | Editorial reading of how settled the evidence is. **Not a computed probability.** 0 on anything not hand-researched.                                                                                     |
 | `hasDiscrepancy`                     | boolean        | Set by hand when sources conflict.                                                                                                                                                                       |
 
+## Normalized programme evidence (next-export schema)
+
+These fields are not present in the checked-in repaired snapshot. They describe the output the
+revised exporter will write on a future successful run against the authoritative database.
+
+| Field                                                            | Type           | Notes                                                                                                                                                                                                                                         |
+| ---------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `programmeEvidence.schemaVersion`                                | string         | Currently `public-medicine-projection/v1`.                                                                                                                                                                                                    |
+| `programmeEvidence.selectedSummary.kind`                         | enum           | `reviewed_programme`, `programme_indication`, `medicine_indication`, or `identity_only`. This is the compact summary selected for home/browse cards.                                                                                          |
+| `programmeEvidence.selectedSummary.text`                         | string \| null | Reviewed programme reason, scoped programme indication, legacy identity-layer indication, or null. Read `binding` before displaying it.                                                                                                       |
+| `programmeEvidence.selectedSummary.binding`                      | object         | Explicit source binding. A `programme_publication` binding includes programme id/slug, verdict revision id/number, and input digest; `programme` binds only to an unpublished programme; `medicine_identity` binds only to the medicine slug. |
+| `programmeEvidence.programmes[]`                                 | array          | Every normalized development programme for this medicine, in deterministic display order.                                                                                                                                                     |
+| `programmeEvidence.programmes[].id`, `.slug`, `.title`           | string         | Stable internal programme id, shareable slug, and display title.                                                                                                                                                                              |
+| `programmeEvidence.programmes[].indication`, `.targetPopulation` | string \| null | Programme scope. Null means it has not been recorded.                                                                                                                                                                                         |
+| `programmeEvidence.programmes[].status`                          | enum           | Normalized programme status, such as `RECRUITING`, `COMPLETED`, `STOPPED`, or `UNKNOWN`.                                                                                                                                                      |
+| `programmeEvidence.programmes[].currentPublication`              | object \| null | Null unless the authoritative current-publication pointer resolves to the exact `PUBLISHED` revision.                                                                                                                                         |
+| `currentPublication.verdictRevisionId`, `.revisionNumber`        | string, number | Immutable published verdict revision selected by the authoritative pointer.                                                                                                                                                                   |
+| `currentPublication.inputDigestAlgorithm`, `.inputDigest`        | string         | `sha256` and the deterministic RNA Intelligence input digest signed by review.                                                                                                                                                                |
+| `currentPublication.proposalDigestAlgorithm`, `.proposalDigest`  | string         | `sha256` and the digest of the complete persisted proposal bundle reviewed for publication.                                                                                                                                                   |
+| `currentPublication.sourceSnapshotIds[]`                         | string[]       | Sorted, unique ids of immutable source snapshots in the reviewed verdict, evidence-node, study-check, mechanism, timeline and trial graph.                                                                                                    |
+| `currentPublication.publicLabel`, `.oneSentenceReason`           | string         | Reviewed public wording for this programme only.                                                                                                                                                                                              |
+| `currentPublication.indicationScope`, `.populationScope`         | string         | The indication and population to which the conclusion applies.                                                                                                                                                                                |
+| `currentPublication.trialScope`, `.outcomeScope`, `.confidence`  | string         | Reviewed trial/outcome boundary and confidence label.                                                                                                                                                                                         |
+| `currentPublication.engineVersion`, `.publishedAt`               | string         | Deterministic engine version and ISO 8601 publication time.                                                                                                                                                                                   |
+
+### Additional CSV columns in the next-export schema
+
+These columns are also absent from the checked-in CSV. After regeneration, the CSV represents one
+selected programme binding per medicine; use NDJSON for the complete list.
+
+| Column                                    | Notes                                                                               |
+| ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| `selected_programme_slug`                 | Programme used by the compact public projection, or the first normalized programme. |
+| `current_publication_revision_id`         | Exact current verdict revision for that selected programme.                         |
+| `current_publication_revision_number`     | Human-readable version number of that revision.                                     |
+| `current_publication_input_digest`        | SHA-256 RNA Intelligence input digest for the publication.                          |
+| `current_publication_source_snapshot_ids` | Sorted snapshot ids separated with `;`; blank when there is no current publication. |
+
 ## Chemistry
 
-| Field                                                                        | Type            | Notes                                                                                                                                                                    |
-| ---------------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `molecularSchema.smilesString`                                               | string          | The connection table, from PubChem.                                                                                                                                      |
-| `molecularSchema.sequence5to3`                                               | string          | Nucleotide or amino-acid sequence where one exists.                                                                                                                      |
-| `chemicalFormula`, `molecularWeight`                                         | string          | Computed from the structure, not copied.                                                                                                                                 |
-| `mfeDeltaG`                                                                  | number          | Folding free energy in kcal/mol at 37 °C, from a Zuker-style fold over published Turner 2004 parameters. Negative; more negative is more firmly folded.                  |
-| `gcContentPercent`, `readingFrameValid`, `startCodonFound`, `stopCodonFound` |                 | Computed by the sequence check.                                                                                                                                          |
-| `logP`                                                                       | number          | An **estimate** by atomic contribution, not a measurement.                                                                                                               |
-| `isMachineVerified`, `verificationHash`                                      | boolean, string | Set only by a passing engine sweep. The hash is over the structure and the workflow — re-runnable, and independent of the clock.                                         |
-| `laboratoryWorkflow[]`                                                       | array           | Steps with `phase` and `dependsOnStepId`, validated as a directed acyclic graph in forward phase order. On controlled substances these describe analysis, not synthesis. |
+| Field                                                                        | Type            | Notes                                                                                                                                                   |
+| ---------------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `molecularSchema.smilesString`                                               | string          | The connection table, from PubChem.                                                                                                                     |
+| `molecularSchema.sequence5to3`                                               | string          | Nucleotide or amino-acid sequence where one exists.                                                                                                     |
+| `chemicalFormula`, `molecularWeight`                                         | string          | Computed from the structure, not copied.                                                                                                                |
+| `mfeDeltaG`                                                                  | number          | Folding free energy in kcal/mol at 37 °C, from a Zuker-style fold over published Turner 2004 parameters. Negative; more negative is more firmly folded. |
+| `gcContentPercent`, `readingFrameValid`, `startCodonFound`, `stopCodonFound` |                 | Computed by the sequence check.                                                                                                                         |
+| `logP`                                                                       | number          | An **estimate** by atomic contribution, not a measurement.                                                                                              |
+| `isMachineVerified`, `verificationHash`                                      | boolean, string | Set only by a passing structure check. The hash is reproducible from the stored internal input and does not say the medicine works or is safe.          |
+| `molecularSchema.laboratoryWorkflow`                                         | not exported    | Operational laboratory instructions are withheld from the public dataset. Their absence is deliberate, not evidence that no internal record exists.     |
 
 ## Cost
 

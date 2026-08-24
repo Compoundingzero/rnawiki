@@ -6,17 +6,12 @@
 // is drawn in the query (`lib/queries/users.ts`), not in this component's discipline. If a future
 // page needs one of those columns it needs a different function and a stated reason.
 //
-// The verified-physician badge renders only for `isVerifiedDoctor`, which the query computes as
-// `isDoctor && verificationState === 'verified'`. A self-declared physician gets no badge and no
-// specialty line here — that is sanctioned divergence 2 from the reference wireframe, which handed
-// out the blue check after a 900 ms timer.
-//
-// Not in the reference wireframe, which had no accounts. The card language is the reference's.
+// The verified-physician badge requires stored verification; self-declaration is not enough.
 
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { CheckCircle2, FileText, History } from 'lucide-react'
+import { CheckCircle2, FileText } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
 import { getContributorProfile } from '@/lib/queries/users'
 import { getCurrentUser } from '@/lib/session'
@@ -61,7 +56,7 @@ function StatCard({ value, label }: { value: number; label: string }) {
       <span className="text-2xl font-black text-[#1D1D1F] font-mono block tabular-nums">
         {value.toLocaleString('en-GB')}
       </span>
-      <span className="text-[10px] font-bold uppercase tracking-wider text-[#86868B] block">
+      <span className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73] block">
         {label}
       </span>
     </div>
@@ -78,7 +73,7 @@ export async function generateMetadata({ params }: ProfilePageProps): Promise<Me
 
   return {
     title: `${profile.name} (@${profile.handle})`,
-    description: `${profile.name} contributes to RNAwiki as a ${TIER_LABEL[profile.trustTier].toLowerCase()}. Every accepted edit is timestamped and public.`,
+    description: `${profile.name} contributes to RNAWiki as a ${TIER_LABEL[profile.trustTier].toLowerCase()}. Their medicine-record proposals accepted for implementation are timestamped and public.`,
     alternates: { canonical: `/u/${profile.handle}` },
   }
 }
@@ -94,7 +89,7 @@ export default async function ContributorProfilePage({ params }: ProfilePageProp
       <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 animate-fade-in">
         {/* Identity */}
         <header className="space-y-4">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#86868B] block">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#6E6E73] block">
             Contributor
           </span>
 
@@ -102,7 +97,7 @@ export default async function ContributorProfilePage({ params }: ProfilePageProp
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1D1D1F] tracking-tight">
               {profile.name}
             </h1>
-            <p className="font-mono text-sm text-[#86868B]">@{profile.handle}</p>
+            <p className="font-mono text-sm text-[#6E6E73]">@{profile.handle}</p>
           </div>
 
           <div className="flex items-center gap-2 flex-wrap">
@@ -116,7 +111,7 @@ export default async function ContributorProfilePage({ params }: ProfilePageProp
             <span className="text-xs font-semibold text-[#6E6E73] bg-black/[0.04] px-3 py-1 rounded-full">
               {TIER_LABEL[profile.trustTier]}
             </span>
-            <span className="text-xs text-[#86868B]">Joined {formatMonth(profile.joinedDate)}</span>
+            <span className="text-xs text-[#6E6E73]">Joined {formatMonth(profile.joinedDate)}</span>
           </div>
 
           {/* Credentials appear only beside a verified state — the query already withholds them
@@ -141,43 +136,43 @@ export default async function ContributorProfilePage({ params }: ProfilePageProp
           )}
         </header>
 
-        {/* Standing. The sentence comes from lib/trust.ts, which builds it out of the same
-            thresholds the promotion code uses, so the page cannot describe a rule the site does
-            not enforce. */}
+        {/* Standing copy is shared with the account panel. Scientific review qualification is a
+            separate record and is not inferred from this label. */}
         <section className="bg-white rounded-3xl p-5 sm:p-6 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-4">
           <div className="space-y-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#86868B] block">
-              Standing
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73] block">
+              Contributor level
             </span>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
               {TIER_DESCRIPTION[profile.trustTier]}
             </p>
           </div>
 
-          {/* Both counts are recomputed from the published rows by the query, not read from a
-              cached column — the honest source of "12 accepted edits" is the list of twelve. */}
+          {/* The database derives accepted contributions from normalized terminal review states.
+              Legacy name and trade-name corrections are intentionally a separate metric. */}
           <div className="grid grid-cols-2 gap-3">
-            <StatCard value={profile.acceptedEditCount} label="Accepted edits" />
-            <StatCard value={profile.noteCount} label="Clinical notes" />
+            <StatCard value={profile.acceptedEditCount} label="Accepted contributions" />
+            <StatCard value={profile.noteCount} label="Community notes" />
           </div>
         </section>
 
         {/* Contributions */}
         <section className="space-y-3">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#86868B] px-1 block">
-            Contribution record
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#6E6E73] px-1 block">
+            Accepted for implementation
           </span>
 
           {profile.recentContributions.length === 0 ? (
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-2">
-              <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
-                No edits by this contributor have been published yet.
+              <p className="text-xs sm:text-sm text-[#6E6E73] leading-relaxed">
+                No medicine-record proposals from this contributor have been accepted for
+                implementation yet.
               </p>
               <Link
                 href="/browse"
                 className="text-xs font-bold text-[#0071E3] hover:underline cursor-pointer inline-block"
               >
-                Browse the corpus
+                Browse medicines
               </Link>
             </div>
           ) : (
@@ -196,33 +191,24 @@ export default async function ContributorProfilePage({ params }: ProfilePageProp
                     </Link>
                     <time
                       dateTime={contribution.createdAt}
-                      className="text-[11px] text-[#86868B] tabular-nums shrink-0"
+                      className="text-[11px] text-[#6E6E73] tabular-nums shrink-0"
                     >
                       {formatDate(contribution.createdAt)}
                     </time>
                   </div>
 
                   <p className="text-xs text-[#424245] leading-relaxed">{contribution.summary}</p>
-
-                  <div className="flex items-center gap-3 flex-wrap pt-1">
-                    <Link
-                      href={`/d/${contribution.drugSlug}/history`}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0071E3] hover:underline cursor-pointer"
-                    >
-                      <History className="w-3 h-3 shrink-0" aria-hidden="true" />
-                      <span>See it in the record&rsquo;s history</span>
-                    </Link>
-                  </div>
                 </li>
               ))}
             </ul>
           )}
 
-          <p className="flex items-start gap-1.5 text-[11px] text-[#86868B] leading-relaxed px-1">
+          <p className="flex items-start gap-1.5 text-[11px] text-[#6E6E73] leading-relaxed px-1">
             <FileText className="w-3 h-3 shrink-0 mt-0.5" aria-hidden="true" />
             <span>
-              Every edit is timestamped and immutable. Rejected and pending edits are not listed
-              here; they are on the record they were proposed against.
+              Two independent reviewers assessed it; agreement resolves it, while disagreement needs
+              a separate qualified steward’s recorded decision. Acceptance still does not publish
+              the medical conclusion.
             </span>
           </p>
         </section>

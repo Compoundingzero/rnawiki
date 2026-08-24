@@ -1,24 +1,20 @@
-// The whole corpus, page by page.
-//
-// This route is NOT in the master reference wireframe, and it exists for a reason the wireframe
-// never had to face: the wireframe held six medicines, so a search box reached all of them. This
-// corpus holds every FDA-registered active moiety and every NIH-listed supplement ingredient, and
-// a search box only reaches what the reader already knows to type. Without a browsable index, the
-// other several thousand records are unreachable — by a reader and by a crawler.
-//
-// So it is built to look like it always belonged: the reference's cards, pills, spacing and
-// language throughout, and nothing invented to fill it.
-//
-// Every filter is a querystring parameter, which is the whole design. It keeps this a server
-// component (no client-side filter state), it makes every filtered view a real URL that can be
-// linked, bookmarked and crawled, and it means the page works with JavaScript disabled — the
-// filters are links and the pager is links.
+// Paginated medicine index. Filters live in the URL, so filtered views can be linked, bookmarked,
+// crawled, and used without client-side JavaScript.
 
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
+import { parseBrowsePage } from '@/lib/browse-pagination'
 import { listDrugs, type DossierDepth } from '@/lib/queries/drugs'
+import { getPublicMedicineProjections } from '@/lib/queries/public-medicine-projection'
+import {
+  buildLegacyMedicineProjection,
+  toPublicMedicineCardView,
+  type PublicMedicineProjection,
+} from '@/lib/public-medicine-projection'
+import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
 import { getCurrentUser } from '@/lib/session'
 import {
   APPROVAL_STATUSES,
@@ -40,9 +36,9 @@ const DEPTHS: NonNullable<DossierDepth>[] = ['flagship', 'curated', 'stub']
 /** Plain English for the curation depth. Never a quality score — it is a statement about how much
  *  of the record has been written, and nothing else. */
 const DEPTH_LABEL: Record<NonNullable<DossierDepth>, string> = {
-  flagship: 'Flagship dossier',
-  curated: 'Curated dossier',
-  stub: 'Identity record',
+  flagship: 'Detailed record',
+  curated: 'Expanded record',
+  stub: 'Basic record',
 }
 
 // ---------------------------------------------------------------------------
@@ -65,11 +61,6 @@ function oneOf<T extends string>(raw: string | undefined, allowed: readonly T[])
   return allowed.find((candidate) => candidate === raw)
 }
 
-function pageNumber(raw: string | undefined): number {
-  const parsed = Number.parseInt(raw ?? '1', 10)
-  return Number.isFinite(parsed) && parsed > 1 ? parsed : 1
-}
-
 interface BrowseFilters {
   modality?: DrugModality
   approvalStatus?: ApprovalStatus
@@ -78,7 +69,9 @@ interface BrowseFilters {
 }
 
 function readFilters(params: SearchParams): BrowseFilters {
-  const filters: BrowseFilters = { page: pageNumber(single(params.page)) }
+  const page = parseBrowsePage(single(params.page))
+  if (page === null) notFound()
+  const filters: BrowseFilters = { page }
 
   const modality = oneOf(single(params.modality), DRUG_MODALITIES)
   if (modality) filters.modality = modality
@@ -123,16 +116,18 @@ function FilterRow<T extends string>({
   options,
   active,
   hrefFor,
+  labelFor = (value) => value,
 }: {
   label: string
   options: readonly T[]
   active: T | undefined
   /** `undefined` is the "All" link: it clears this filter and keeps the others. */
   hrefFor: (value: T | undefined) => string
+  labelFor?: (value: T) => string
 }) {
   return (
     <div className="space-y-2">
-      <span className="text-[10px] font-bold uppercase tracking-wider text-[#86868B] block px-1">
+      <span className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73] block px-1">
         {label}
       </span>
       <div className="flex items-center gap-1.5 flex-wrap">
@@ -158,7 +153,7 @@ function FilterRow<T extends string>({
                 : 'text-[#6E6E73] bg-white border-black/[0.06] hover:text-[#1D1D1F]'
             }`}
           >
-            {option}
+            {labelFor(option)}
           </Link>
         ))}
       </div>
@@ -166,44 +161,55 @@ function FilterRow<T extends string>({
   )
 }
 
-function DrugCard({ drug }: { drug: DrugDossier }) {
-  // The verdict when the record has one, the plain-language indication otherwise. A stub with
-  // neither shows no summary line at all rather than a manufactured one.
-  const summary = drug.oneSentenceVerdict.trim() || drug.patientFriendlyIndication.trim()
+function DrugCard({
+  drug,
+  projection,
+}: {
+  drug: DrugDossier
+  projection: PublicMedicineProjection
+}) {
+  const card = toPublicMedicineCardView(projection)
   const depth = drug.dossierDepth ?? 'stub'
 
   return (
     <li>
       <Link
-        href={`/d/${drug.id}`}
+        href={card.href}
         className="group block bg-white hover:bg-[#FAFAFC] rounded-3xl p-5 sm:p-6 border border-black/[0.08] hover:border-[#0071E3]/40 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,113,227,0.08)] transition-all cursor-pointer space-y-3"
       >
         <div className="flex items-start justify-between gap-3">
           <h2 className="text-lg sm:text-xl font-extrabold text-[#1D1D1F] tracking-tight group-hover:text-[#0071E3] transition min-w-0">
             {drug.name}{' '}
             {drug.tradeName && (
-              <span className="text-sm text-[#86868B] font-normal">({drug.tradeName})</span>
+              <span className="text-sm text-[#6E6E73] font-normal">({drug.tradeName})</span>
             )}
           </h2>
           <ArrowRight
-            className="w-4 h-4 text-[#86868B] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 mt-1"
+            className="w-4 h-4 text-[#6E6E73] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 mt-1"
             aria-hidden="true"
           />
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-[11px] font-bold text-[#0071E3] bg-blue-50 px-2.5 py-0.5 rounded-full border border-[#0071E3]/20">
-            {drug.modality}
+            {publicMedicineTypeLabel(drug.modality)}
           </span>
-          <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
-            {drug.approvalStatus}
+          <span className="rounded-full border border-black/[0.08] bg-[#F5F5F7] px-2.5 py-0.5 text-[11px] font-semibold text-[#424245]">
+            {publicApprovalStatusLabel(drug.approvalStatus)}
           </span>
           <span className="text-[11px] font-semibold text-[#6E6E73] bg-black/[0.04] px-2.5 py-0.5 rounded-full">
             {DEPTH_LABEL[depth]}
           </span>
         </div>
 
-        {summary && <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">{summary}</p>}
+        {card.context && (
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73]">
+            {card.context}
+          </p>
+        )}
+        {card.summary.text && (
+          <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">{card.summary.text}</p>
+        )}
       </Link>
     </li>
   )
@@ -221,10 +227,10 @@ export async function generateMetadata({ searchParams }: BrowsePageProps): Promi
   const description = describeFilters(filters)
 
   return {
-    title: description ? `Browse: ${description}` : 'Browse every medicine',
+    title: description ? `Browse: ${description}` : 'Browse medicine records',
     description: description
-      ? `Every medicine on RNAwiki filed under ${description}.`
-      : 'Every medicine RNAwiki holds a record for, from flagship dossiers to identity records built from public regulatory data.',
+      ? `RNAWiki medicine records filed under ${description}.`
+      : 'Browse every medicine record on RNAWiki, from detailed records to basic records that identify the medicine and its regulatory status.',
     alternates: { canonical: browseHref(filters) },
   }
 }
@@ -244,7 +250,9 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   ])
 
   const { items, total } = result
+  const projections = await getPublicMedicineProjections(items.map((drug) => drug.id))
   const lastPage = Math.max(1, Math.ceil(total / PAGE_SIZE))
+  if (filters.page > lastPage) notFound()
   const firstOnPage = total === 0 ? 0 : (filters.page - 1) * PAGE_SIZE + 1
   const lastOnPage = (filters.page - 1) * PAGE_SIZE + items.length
 
@@ -259,15 +267,16 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     <AppShell initialUser={user}>
       <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 animate-fade-in">
         <header className="space-y-3">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#86868B] block">
-            The whole corpus
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#6E6E73] block">
+            Medicine library
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1D1D1F] tracking-tight">
-            Browse every medicine
+            Browse medicines
           </h1>
           <p className="text-xs sm:text-sm text-[#6E6E73] leading-relaxed">
-            Flagship dossiers, curated records, and identity records built from public regulatory
-            data. A record with no verdict yet says so; nothing here is filled in to look complete.
+            Some records contain detailed evidence; others currently contain only basic identity and
+            regulatory information. Reviewed conclusions appear only when they are available for a
+            specific use and group of people.
           </p>
         </header>
 
@@ -275,30 +284,33 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
             JavaScript. Choosing a filter always returns to page 1. */}
         <section className="bg-white rounded-3xl p-5 sm:p-6 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-4">
           <FilterRow
-            label="Modality"
+            label="Medicine type"
             options={DRUG_MODALITIES}
             active={filters.modality}
             hrefFor={(value) => browseHref({ ...filters, page: 1, modality: value })}
+            labelFor={publicMedicineTypeLabel}
           />
           <FilterRow
             label="Approval status"
             options={APPROVAL_STATUSES}
             active={filters.approvalStatus}
             hrefFor={(value) => browseHref({ ...filters, page: 1, approvalStatus: value })}
+            labelFor={publicApprovalStatusLabel}
           />
           <FilterRow
-            label="Record depth"
+            label="Amount of information"
             options={DEPTHS}
             active={filters.depth}
             hrefFor={(value) => browseHref({ ...filters, page: 1, depth: value })}
+            labelFor={(value) => DEPTH_LABEL[value]}
           />
         </section>
 
-        <p className="text-[11px] font-semibold text-[#86868B] px-1 tabular-nums">{countLine}</p>
+        <p className="text-[11px] font-semibold text-[#6E6E73] px-1 tabular-nums">{countLine}</p>
 
         {items.length === 0 ? (
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-2">
-            <p className="text-xs sm:text-sm text-[#86868B] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#6E6E73] leading-relaxed">
               Nothing matches this combination of filters.
             </p>
             <Link
@@ -311,7 +323,18 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
         ) : (
           <ul className="space-y-3">
             {items.map((drug) => (
-              <DrugCard key={drug.id} drug={drug} />
+              <DrugCard
+                key={drug.id}
+                drug={drug}
+                projection={
+                  projections.get(drug.id) ??
+                  buildLegacyMedicineProjection({
+                    medicineSlug: drug.id,
+                    patientFriendlyIndication: drug.patientFriendlyIndication,
+                    indication: drug.indication,
+                  })
+                }
+              />
             ))}
           </ul>
         )}
@@ -319,7 +342,10 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
         {/* Pager. Rendered only when there is more than one page, and each side disappears at the
             end rather than turning into a dead control. */}
         {lastPage > 1 && (
-          <nav aria-label="Corpus pages" className="flex items-center justify-between gap-3 pt-2">
+          <nav
+            aria-label="Medicine list pages"
+            className="flex items-center justify-between gap-3 pt-2"
+          >
             {filters.page > 1 ? (
               <Link
                 href={browseHref({ ...filters, page: filters.page - 1 })}
@@ -333,7 +359,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
               <span />
             )}
 
-            <span className="text-[11px] font-semibold text-[#86868B] tabular-nums">
+            <span className="text-[11px] font-semibold text-[#6E6E73] tabular-nums">
               Page {filters.page.toLocaleString('en-GB')} of {lastPage.toLocaleString('en-GB')}
             </span>
 

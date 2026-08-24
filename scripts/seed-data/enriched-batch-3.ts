@@ -103,7 +103,7 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
     },
     substitutes: {
       summary:
-        'Sofosbuvir is a backbone, not a regimen. The realistic alternatives are other combinations built on it or around it, and the honest comparison between them is genotype coverage and price rather than cure rate, because they all cure above 95% in the populations they were tested in. Nothing sold as a food or a supplement clears hepatitis C, and this is one of the places where that matters most, because the disease is silent for decades while it does its damage.',
+        'Sofosbuvir is a backbone, not a regimen. The realistic alternatives are other combinations built on it or around it, and the comparison between them is genotype coverage and price rather than cure rate, because they all cure above 95% in the populations they were tested in. Nothing sold as a food or a supplement clears hepatitis C, and this is one of the places where that matters most, because the disease is silent for decades while it does its damage.',
       conventionalRx: [
         {
           name: 'Ledipasvir/sofosbuvir (Harvoni)',
@@ -905,7 +905,7 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         step: 5,
         title: 'Undetectable in eight to twelve weeks',
         laymanDesc:
-          'For most people without cirrhosis, eight weeks is enough. Twelve is used when there is cirrhosis, or previous treatment that did not work.',
+          'ION-3 studied eight weeks only in previously untreated people without cirrhosis. Other populations in these trials received twelve weeks.',
         molecularDetail:
           'SVR12 was 94% at 8 weeks and 95% at 12 weeks in ION-3 in non-cirrhotic previously untreated patients, 99% at 12 weeks in ION-1, and 94% at 12 weeks in previously treated patients in ION-2. Almost all failures are post-treatment relapse rather than on-treatment breakthrough.',
         iconName: 'ShieldCheck',
@@ -3434,7 +3434,7 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         laymanSummary:
           'In the standard two-year animal cancer studies, entecavir produced tumours in both species tested. Lung tumours appeared in mice at only three times the human exposure. Nobody knows how much of this applies to people.',
         technicalDetails:
-          'Long-term oral carcinogenicity studies at exposures up to 42 times (mice) and 35 times (rats) those at the highest recommended human dose were positive in both species. Lung adenomas were increased in male and female mice at exposures 3 and 40 times human, and lung carcinomas at 40 times; tumour development was preceded by pneumocyte proliferation not seen in rats, dogs or monkeys, which supports a species-specific mechanism. Hepatocellular carcinomas were increased in male mice at 42 times human exposure, vascular tumours in female mice at 40 times, hepatocellular adenomas in female rats at 24 times, and brain gliomas in rats. The label states plainly that it is not known how predictive the rodent findings are for humans. The temptation to connect this to the observational human hepatocellular carcinoma signal should be resisted: the rodent liver tumours occurred at 42 times human exposure in animals without hepatitis B, and no mechanistic link between the two observations has been established.',
+          'Long-term oral carcinogenicity studies at exposures up to 42 times (mice) and 35 times (rats) those at the highest recommended human dose were positive in both species. Lung adenomas were increased in male and female mice at exposures 3 and 40 times human, and lung carcinomas at 40 times; tumour development was preceded by pneumocyte proliferation not seen in rats, dogs or monkeys, which supports a species-specific mechanism. Hepatocellular carcinomas were increased in male mice at 42 times human exposure, vascular tumours in female mice at 40 times, hepatocellular adenomas in female rats at 24 times, and brain gliomas in rats. The label states that it is not known how predictive the rodent findings are for humans. The temptation to connect this to the observational human hepatocellular carcinoma signal should be resisted: the rodent liver tumours occurred at 42 times human exposure in animals without hepatitis B, and no mechanistic link between the two observations has been established.',
         evidenceSource:
           'BARACLUDE United States prescribing information, Nonclinical Toxicology 13.1, carcinogenesis (NDA 021797)',
         measuredMetric:
@@ -6301,7 +6301,7 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
         'US$21.73 per tablet, median across the two listed products at United States pharmacy acquisition cost (CMS NADAC, generic, effective 19 August 2026)',
       markupEstimate: '',
       openPatentNotes:
-        'What pharmacies pay to acquire the generic tablet, not what a patient is charged: United States list prices are not published and net prices after rebates are confidential by contract. Worth noting against the neighbouring entecavir page, which is surveyed at US$0.2134 per tablet — a hundredfold less for a drug that is better on every measured endpoint. No per-dose cost of production has been published for adefovir dipivoxil, so no markup is stated.',
+        'What pharmacies pay to acquire the generic tablet, not what a patient is charged: United States list prices are not published and net prices after rebates are confidential by contract. The neighbouring entecavir page reports US$0.2134 per tablet — about one hundredth of this price — for a drug that performed better on the endpoints compared here. No per-dose cost of production has been published for adefovir dipivoxil, so no markup is stated.',
       synthesisComplexity: 'Moderate',
       costSource: {
         label:
@@ -7186,11 +7186,11 @@ export const ENRICHED_BATCH_3_DOSSIERS: SeedDossier[] = [
       },
       {
         q: 'Why was the combination trial stopped when it was working best?',
-        a: 'Because it was causing nerve damage. The trial randomised treatment-naive patients to telbivudine with peginterferon alfa-2a, telbivudine alone, or peginterferon alone. The combination was clearly the most effective arm on viral suppression: 71% reached undetectable hepatitis B DNA at 24 weeks against 35% and 7%. It was also producing peripheral neuropathy in 7 of the 50 patients assigned to it, against 1 of 54 on telbivudine alone and none of 54 on peginterferon alone. The trial was terminated at 159 of a planned 300 patients, and the authors wrote plainly that despite the rapid and profound reductions in viral DNA, this combination should not be used. It is an unusually clean illustration that efficacy and benefit are not the same quantity.',
+        a: 'Because it was causing nerve damage. The trial randomised treatment-naive patients to telbivudine with peginterferon alfa-2a, telbivudine alone, or peginterferon alone. The combination was clearly the most effective arm on viral suppression: 71% reached undetectable hepatitis B DNA at 24 weeks against 35% and 7%. It was also producing peripheral neuropathy in 7 of the 50 patients assigned to it, against 1 of 54 on telbivudine alone and none of 54 on peginterferon alone. The trial was terminated at 159 of a planned 300 patients, and the authors wrote that despite the rapid and profound reductions in viral DNA, this combination should not be used. It is an unusually clean illustration that efficacy and benefit are not the same quantity.',
       },
       {
         q: 'Should this drug have been approved?',
-        a: 'It met its endpoint honestly against an approved comparator, which is what the regulatory standard asked for, so the more useful question is what the standard measures. Non-inferiority and superiority trials are run against a licensed active control, and licensed does not mean current. In October 2006 lamivudine was a legitimate comparator by that rule and a poor one by any clinical reading, since its 49% five-year resistance rate had been published two years earlier and a much better drug had been approved sixteen months earlier. Everything that followed — the resistance curve, the creatine kinase, the terminated combination trial, the discontinuation — was consistent with what the comparison choice already implied. The page is kept because the comparator question is the most portable lesson here, and it applies well beyond hepatitis B.',
+        a: 'It met its endpoint against the approved comparator required by the regulatory standard. The more useful question is what that standard measures. Non-inferiority and superiority trials are run against a licensed active control, and licensed does not mean current. In October 2006 lamivudine was a legitimate comparator by that rule and a poor one by any clinical reading, since its 49% five-year resistance rate had been published two years earlier and a much better drug had been approved sixteen months earlier. Everything that followed — the resistance curve, the creatine kinase, the terminated combination trial and the discontinuation — was consistent with what the comparison choice already implied. The comparator question is the most transferable lesson here, and it applies well beyond hepatitis B.',
       },
     ],
     recentAuditDate: 'August 2026',
