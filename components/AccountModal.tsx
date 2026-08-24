@@ -514,11 +514,11 @@ export function AccountModal() {
                 Your RNAWiki account
               </span>
               <h2 id={headingId} className="text-xl font-bold text-[#1D1D1F] tracking-tight">
-                Save medicines and contribute
+                Contribute to RNAWiki
               </h2>
               <p className="text-xs text-[#6E6E73] mt-1 leading-relaxed">
-                Sign in to save medicines, post notes, and suggest corrections. Changes to medical
-                information are reviewed before they can appear publicly.
+                Sign in to post notes and suggest corrections. Changes to medical information are
+                reviewed before they can appear publicly.
               </p>
             </div>
             <button

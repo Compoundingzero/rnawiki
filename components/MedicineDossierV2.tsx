@@ -22,7 +22,6 @@ import {
   hasMedicineRecordContext,
   MedicineRecordContextSections,
 } from '@/components/MedicineRecordContextSections'
-import { SaveMedicineButton } from '@/components/SaveMedicineButton'
 import type {
   DossierFreshnessState,
   EvidenceClaimView,
@@ -36,7 +35,10 @@ import type {
   ProgrammeTimelineEventView,
   StudyView,
 } from '@/lib/medicine-dossier-view-model'
-import { publicApprovalStatusLabel } from '@/lib/public-medicine-language'
+import {
+  GENERAL_RESEARCH_SUMMARY_COPY,
+  publicApprovalStatusLabel,
+} from '@/lib/public-medicine-language'
 import {
   COMMON_PUBLIC_MEDICINE_CONTEXT,
   collectPublicMedicineText,
@@ -58,7 +60,6 @@ import type {
 
 interface MedicineDossierV2Props {
   dossier: MedicineDossierViewModel
-  initialSaved?: boolean
 }
 
 const evidenceStyle: Record<
@@ -91,9 +92,9 @@ const evidenceStyle: Record<
     border: 'border-blue-200/70',
   },
   recorded_context: {
-    label: 'Older note · not reviewed for this use',
-    badge: 'bg-[#F5F5F7] text-[#6E6E73] border-black/[0.08]',
-    border: 'border-black/[0.08]',
+    label: `${GENERAL_RESEARCH_SUMMARY_COPY.label} · not reviewed for one use`,
+    badge: 'bg-blue-50 text-[#0066CC] border-blue-200',
+    border: 'border-blue-200/70',
   },
 }
 
@@ -127,9 +128,9 @@ const evidenceNodeStyle: Record<
     border: 'border-amber-200/70',
   },
   recorded_context: {
-    label: 'Older note · not reviewed for this use',
-    badge: 'bg-[#F5F5F7] text-[#6E6E73] border-black/[0.12]',
-    border: 'border-black/[0.1]',
+    label: `${GENERAL_RESEARCH_SUMMARY_COPY.label} · not reviewed for one use`,
+    badge: 'bg-blue-50 text-[#0066CC] border-blue-200',
+    border: 'border-blue-200/70',
   },
 }
 
@@ -199,7 +200,7 @@ function Eyebrow({
 }) {
   const color =
     tone === 'blue' ? 'text-[#0066CC]' : tone === 'amber' ? 'text-amber-700' : 'text-[#6E6E73]'
-  return <p className={`font-mono text-xs uppercase tracking-[0.1em] ${color}`}>{children}</p>
+  return <p className={`text-[11px] font-bold uppercase tracking-[0.13em] ${color}`}>{children}</p>
 }
 
 function StatusBadge({ state }: { state: EvidenceDisplayState }) {
@@ -355,8 +356,12 @@ function LegacyEvidenceTechnicalDetails({
 }) {
   const fields = [
     { annotate: true, label: 'Full technical wording', value: detail.technicalDetails },
-    { annotate: true, label: 'Measurement named in the record', value: detail.measuredMetric },
-    { annotate: true, label: 'Assumption named in the record', value: detail.inferredClaim },
+    {
+      annotate: true,
+      label: 'Measurement named in the source notes',
+      value: detail.measuredMetric,
+    },
+    { annotate: true, label: 'Assumption named in the source notes', value: detail.inferredClaim },
     { annotate: false, label: 'Evidence source as stored', value: detail.evidenceSource },
     { annotate: false, label: 'Stored audit flag', value: detail.auditFlag },
   ].filter((field): field is { annotate: boolean; label: string; value: string } =>
@@ -372,8 +377,8 @@ function LegacyEvidenceTechnicalDetails({
       </summary>
       <div className="pb-1">
         <p className="text-sm leading-6 text-[#6E6E73]">
-          These fields come from the older medicine-wide audit. They have not been linked to one
-          specific question or passed the newer source-and-record checks.
+          These fields come from research notes collected across the medicine as a whole. They have
+          not been checked against one specific question or linked to its exact sources.
         </p>
         <dl
           className="mt-3 space-y-3 rounded-xl bg-[#F5F5F7] p-4 text-sm leading-6"
@@ -414,7 +419,9 @@ function EmptyEvidence({ children }: { children: React.ReactNode }) {
 }
 
 function advancedEvidenceHeading(dossier: MedicineDossierViewModel): string {
-  if (dossier.bindingState === 'legacy_record') return 'What the older record is based on'
+  if (dossier.bindingState === 'legacy_record') {
+    return `What the ${GENERAL_RESEARCH_SUMMARY_COPY.label.toLowerCase()} is based on`
+  }
 
   const status = dossier.selectedProgrammeStatus.toUpperCase()
   if (status === 'STOPPED' || status === 'WITHDRAWN') {
@@ -504,7 +511,7 @@ function directionLabel(direction: NonNullable<EvidenceClaimView['direction']>):
 function participantCountTypeLabel(type: StudyView['enrolmentType']): string {
   if (type === 'ACTUAL') return 'Actual count'
   if (type === 'ESTIMATED') return 'Estimated count'
-  return 'Count type not recorded'
+  return 'Count type not available'
 }
 
 function publicStudyNameContextItem(name: string): PublicMedicineContextItem {
@@ -553,7 +560,7 @@ function StudyCard({
   const state: EvidenceDisplayState = study.state === 'measured' ? 'measured' : study.state
   const legacyNamedRegistry = study.id.match(/^(.+?)\s*\((NCT\d{8})\)\s*$/iu)
   const nctNumber = study.id.match(/\bNCT\d{8}\b/iu)?.[0]
-  const displayTitle = study.title ?? legacyNamedRegistry?.[1]?.trim() ?? 'Recorded study'
+  const displayTitle = study.title ?? legacyNamedRegistry?.[1]?.trim() ?? 'Research study'
   const studyNameContext = publicStudyNameContextItem(displayTitle)
   const explainStudyName = /\b(?:ORION|VICTORION)[-\s]?\d+\b/iu.test(displayTitle)
   const phaseMeaning = study.phase
@@ -569,10 +576,13 @@ function StudyCard({
     : undefined
 
   return (
-    <article className="min-w-0 rounded-2xl bg-white p-5">
-      <div className="flex min-w-0 flex-col items-start justify-between gap-3 sm:flex-row">
+    <article
+      className="min-w-0 rounded-3xl border border-black/[0.08] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.035)] sm:p-6"
+      data-testid="study-card"
+    >
+      <div className="min-w-0 space-y-3">
         <div className="min-w-0">
-          <h4 className="[overflow-wrap:anywhere] text-base font-bold leading-6 text-[#1D1D1F]">
+          <h4 className="break-words text-base font-bold leading-6 text-[#1D1D1F]">
             <AnnotatedMedicineText
               as="span"
               text={displayTitle}
@@ -582,12 +592,12 @@ function StudyCard({
             />
           </h4>
           <dl
-            className="mt-2 flex min-w-0 flex-wrap gap-x-3 gap-y-1 text-xs leading-5 text-[#6E6E73]"
+            className="mt-3 grid min-w-0 gap-2.5 rounded-2xl bg-[#F5F5F7] p-3.5 text-xs leading-5 text-[#6E6E73] sm:grid-cols-2"
             data-testid="study-design-metadata"
           >
-            <div className="flex min-w-0 gap-1">
-              <dt>{nctNumber ? 'ClinicalTrials.gov study number:' : 'Study record:'}</dt>
-              <dd className="break-all font-semibold text-[#424245]">
+            <div className="min-w-0 sm:col-span-2">
+              <dt>{nctNumber ? 'ClinicalTrials.gov study number' : 'Study reference'}</dt>
+              <dd className="mt-0.5 min-w-0 break-words font-mono font-semibold text-[#424245]">
                 <AnnotatedMedicineText
                   as="span"
                   text={nctNumber ?? study.id}
@@ -600,9 +610,9 @@ function StudyCard({
               </dd>
             </div>
             {study.status && (
-              <div className="flex min-w-0 gap-1">
-                <dt>Study status:</dt>
-                <dd className="break-words font-semibold text-[#424245]">
+              <div className="min-w-0">
+                <dt>Study status</dt>
+                <dd className="mt-0.5 break-words font-semibold text-[#424245]">
                   <AnnotatedMedicineText
                     as="span"
                     contexts={medicineTextContextMatches(study.status, contextItems)}
@@ -612,9 +622,9 @@ function StudyCard({
               </div>
             )}
             {study.phase && (
-              <div className="flex min-w-0 gap-1">
-                <dt>Phase:</dt>
-                <dd className="break-words font-semibold text-[#424245]">
+              <div className="min-w-0">
+                <dt>Testing stage</dt>
+                <dd className="mt-0.5 break-words font-semibold text-[#424245]">
                   <AnnotatedMedicineText
                     as="span"
                     contexts={medicineTextContextMatches(phaseMeaning ?? study.phase, contextItems)}
@@ -624,9 +634,9 @@ function StudyCard({
               </div>
             )}
             {study.studyType && (
-              <div className="flex min-w-0 gap-1">
-                <dt>Study type:</dt>
-                <dd className="break-words font-semibold text-[#424245]">
+              <div className="min-w-0 sm:col-span-2">
+                <dt>How the study was run</dt>
+                <dd className="mt-0.5 break-words font-semibold text-[#424245]">
                   <AnnotatedMedicineText
                     as="span"
                     contexts={medicineTextContextMatches(study.studyType, contextItems)}
@@ -637,26 +647,28 @@ function StudyCard({
             )}
           </dl>
         </div>
-        {hasResult ? (
-          state === 'measured' ? (
-            <span className="inline-flex shrink-0 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold leading-5 text-emerald-800">
-              Result available
-            </span>
+        <div className="flex min-w-0 flex-wrap items-center gap-2">
+          {hasResult ? (
+            state === 'measured' ? (
+              <span className="inline-flex max-w-full rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold leading-5 text-emerald-800">
+                Result available
+              </span>
+            ) : (
+              <StatusBadge state={state} />
+            )
           ) : (
-            <StatusBadge state={state} />
-          )
-        ) : (
-          <span className="inline-flex shrink-0 rounded-full border border-black/[0.08] bg-[#F5F5F7] px-2.5 py-1 text-xs font-semibold leading-5 text-[#6E6E73]">
-            No result on this page
-          </span>
-        )}
+            <span className="inline-flex max-w-full rounded-full border border-black/[0.08] bg-[#F5F5F7] px-2.5 py-1 text-xs font-semibold leading-5 text-[#6E6E73]">
+              No result on this page
+            </span>
+          )}
+        </div>
       </div>
 
       {study.result && (
-        <div className="mt-4 rounded-2xl bg-blue-50 p-4">
-          <p className="text-xs font-semibold text-[#0066CC]">What researchers found</p>
+        <div className="mt-4 rounded-2xl border border-[#0071E3]/15 bg-blue-50 p-4 sm:p-5">
+          <p className="text-xs font-bold text-[#0066CC]">What researchers found</p>
           <AnnotatedMedicineText
-            className="mt-1 [overflow-wrap:anywhere] text-base font-semibold leading-6 text-[#1D1D1F]"
+            className="mt-1 break-words text-base font-semibold leading-6 text-[#1D1D1F]"
             text={study.result}
             contexts={medicineTextContextMatches(study.result, contextItems)}
           />
@@ -709,7 +721,7 @@ function StudyCard({
         <details className="mt-3 border-t border-black/[0.07] pt-2">
           <summary className="inline-flex min-h-11 cursor-pointer items-center text-sm font-semibold text-[#0066CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3] focus-visible:ring-offset-2">
             {isPValueDetail && !hasResult
-              ? 'Statistical test only (size of the change not recorded)'
+              ? 'Statistical test only (size of the change not available)'
               : hasResult
                 ? 'Statistical detail'
                 : 'Result availability detail'}
@@ -812,16 +824,16 @@ function KeyOutcomesSection({
     >
       <div className="space-y-1">
         <Eyebrow tone={isLegacy ? 'amber' : 'blue'}>
-          {isLegacy ? 'From the older medicine record' : 'The results that matter here'}
+          {isLegacy ? 'Findings across the research' : 'The results that matter here'}
         </Eyebrow>
         <h3 id="outcomes-heading" className="text-xl font-bold text-[#1D1D1F]">
           {isLegacy
-            ? 'What the older record reports'
+            ? GENERAL_RESEARCH_SUMMARY_COPY.heading
             : 'What was measured and what is still uncertain'}
         </h3>
         <p className="text-sm leading-6 text-[#6E6E73]">
           {isLegacy
-            ? 'These are older medicine-wide notes. They have not been re-checked for this one use of the medicine.'
+            ? GENERAL_RESEARCH_SUMMARY_COPY.boundary
             : 'Measured means the study recorded it directly. Inferred means the sources point to it, but the study did not measure it directly. Unknown means the available sources do not answer it yet.'}
         </p>
       </div>
@@ -854,11 +866,16 @@ function KeyOutcomesSection({
           ].filter((entry): entry is [string, string] => Boolean(entry[1]))
 
           return (
-            <li key={outcome.id} className="min-w-0 space-y-3 rounded-2xl bg-white p-5">
+            <li
+              key={outcome.id}
+              className="min-w-0 space-y-3 rounded-3xl border border-[#0071E3]/12 bg-white p-5 shadow-[0_2px_14px_rgba(0,0,0,0.03)] sm:p-6"
+            >
               <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold leading-5 text-[#6E6E73]">
-                    {isLegacy ? (outcome.legacyGroupLabel ?? 'Older note') : 'Reported result'}
+                  <p className="text-xs font-bold leading-5 text-[#0066CC]">
+                    {isLegacy
+                      ? (outcome.legacyGroupLabel ?? GENERAL_RESEARCH_SUMMARY_COPY.findingLabel)
+                      : 'Reported result'}
                   </p>
                   <AnnotatedMedicineText
                     className="mt-1 [overflow-wrap:anywhere] text-sm leading-6 text-[#424245]"
@@ -997,7 +1014,7 @@ function DevelopmentTimeline({
   )
 }
 
-export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDossierV2Props) {
+export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
   const isPublishedProgramme = dossier.bindingState === 'published_programme'
   const isUnpublishedProgramme = dossier.bindingState === 'programme_unpublished'
   const sourceById = new Map(dossier.sources.map((source) => [source.id, source]))
@@ -1142,7 +1159,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
     dossier.evidenceNodes.length > 0
       ? [
           dossier.bindingState === 'legacy_record'
-            ? 'Older evidence notes'
+            ? GENERAL_RESEARCH_SUMMARY_COPY.professionalFindingLabel
             : 'How the evidence connects',
           'evidence-chain',
         ]
@@ -1156,8 +1173,8 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
 
   return (
     <div className="min-h-screen min-w-0 bg-[#F5F5F7] px-4 pb-20 pt-8 sm:px-6 sm:pt-12">
-      <article className="mx-auto w-full max-w-[760px] space-y-5">
-        <header className="space-y-2 pb-1">
+      <article className="mx-auto w-full max-w-[880px] space-y-6">
+        <header className="space-y-3 pb-2 sm:pb-3">
           <Eyebrow tone="blue">Medicine summary</Eyebrow>
           <h1 className="break-words text-[34px] font-bold leading-[1.08] tracking-[-0.035em] text-[#1D1D1F] sm:text-[44px]">
             {dossier.name}
@@ -1170,7 +1187,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
             />
           )}
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="max-w-full break-words rounded-full bg-[#F5F5F7] px-2.5 py-1 text-xs font-semibold leading-5 text-[#424245]">
+            <span className="max-w-full break-words rounded-full border border-black/[0.08] bg-white px-3 py-1 text-xs font-semibold leading-5 text-[#424245] shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
               <AnnotatedMedicineText
                 as="span"
                 contexts={medicineTextContextMatches(statusBadgeText, advancedContextItems)}
@@ -1192,15 +1209,14 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                 ? 'Reviewed answer'
                 : isUnpublishedProgramme
                   ? 'Research identified'
-                  : 'Older record'}
+                  : GENERAL_RESEARCH_SUMMARY_COPY.label}
             </span>
           </div>
-          <SaveMedicineButton medicineSlug={dossier.slug} initialSaved={initialSaved} />
         </header>
 
         <section
           aria-labelledby="programme-scope-heading"
-          className="rounded-2xl border border-black/[0.09] bg-white px-4 py-4 sm:px-5"
+          className="rounded-3xl border border-[#0071E3]/20 bg-gradient-to-br from-blue-50 via-[#F3F8FF] to-white p-5 shadow-[0_2px_16px_rgba(0,113,227,0.06)] sm:p-6"
         >
           <div className="flex min-w-0 flex-col items-start gap-4 sm:flex-row sm:justify-between">
             <div className="min-w-0 space-y-1.5">
@@ -1222,7 +1238,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                   ? 'This answer covers only this use and these people. Other uses can have different answers.'
                   : isUnpublishedProgramme
                     ? 'RNAWiki has found a specific use and its studies, but reviewers have not published an answer yet.'
-                    : 'This older record describes the medicine as a whole. It is not separated by the problem being treated, the people, the dose or the studies.'}
+                    : GENERAL_RESEARCH_SUMMARY_COPY.boundary}
               </p>
             </div>
             {dossier.programmes.length > 1 && (
@@ -1301,18 +1317,19 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
 
         <section
           aria-labelledby="plain-language-summary-heading"
-          className="rounded-[22px] bg-white p-5 sm:p-7"
+          className="rounded-3xl border border-[#0071E3]/20 bg-gradient-to-br from-[#EAF4FF] via-blue-50 to-white p-5 shadow-[0_3px_18px_rgba(0,113,227,0.07)] sm:p-7"
+          data-testid="main-takeaway-card"
         >
           <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
             {dossier.bindingState === 'legacy_record'
-              ? 'What the older record says'
+              ? GENERAL_RESEARCH_SUMMARY_COPY.heading
               : dossier.bindingState === 'published_programme'
                 ? 'What researchers found'
                 : 'No reviewed answer yet'}
           </Eyebrow>
           <h2 id="plain-language-summary-heading" className="sr-only">
             {dossier.bindingState === 'legacy_record'
-              ? 'What the older record says'
+              ? GENERAL_RESEARCH_SUMMARY_COPY.heading
               : 'Plain-language answer'}
           </h2>
           {dossier.readerSummary.takeaway ? (
@@ -1357,7 +1374,8 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
         {dossier.mainLimitation && (
           <section
             aria-labelledby="limitation-heading"
-            className="rounded-[20px] bg-amber-50 px-5 py-5 sm:px-6"
+            className="rounded-3xl border border-amber-200/70 bg-amber-50 px-5 py-5 shadow-[0_2px_12px_rgba(180,83,9,0.035)] sm:px-6"
+            data-testid="main-limitation-card"
           >
             <Eyebrow tone="amber">What this does not tell us yet</Eyebrow>
             <h2 id="limitation-heading" className="sr-only">
@@ -1373,7 +1391,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
 
         {mechanismEntries.length > 0 && (
           <details
-            className="group/mechanism overflow-hidden rounded-[20px] border border-black/[0.08] bg-white"
+            className="group/mechanism overflow-hidden rounded-3xl border border-black/[0.08] bg-white shadow-[0_2px_14px_rgba(0,0,0,0.03)]"
             data-testid="first-read-mechanism"
           >
             <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-5 py-3 text-sm font-semibold text-[#1D1D1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0071E3] [&::-webkit-details-marker]:hidden">
@@ -1387,7 +1405,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
             </summary>
             <section
               aria-label="How the medicine is intended to work"
-              className="grid gap-2.5 border-t border-black/[0.07] bg-[#F5F5F7] p-3 lg:grid-cols-3"
+              className="grid gap-2.5 border-t border-black/[0.07] bg-blue-50/45 p-3"
             >
               {mechanismEntries.map(([label, value]) => (
                 <div key={label} className="min-w-0 rounded-2xl bg-white px-4 py-4 sm:px-5">
@@ -1404,14 +1422,14 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
         )}
 
         <AdvancedEvidenceDisclosure>
-          <div className="mt-12 space-y-8 border-t border-black/[0.08] pt-9">
+          <div className="mt-10 space-y-8 border-t border-black/[0.08] pt-8 sm:mt-12 sm:pt-9">
             <header className="space-y-2">
               <Eyebrow tone="blue">Behind the answer</Eyebrow>
-              <h2 className="text-3xl font-bold tracking-[-0.03em] text-[#1D1D1F]">
+              <h2 className="break-words text-2xl font-bold tracking-[-0.03em] text-[#1D1D1F] sm:text-3xl">
                 {advancedEvidenceHeading(dossier)}
               </h2>
               <p className="max-w-2xl text-sm leading-6 text-[#6E6E73]">
-                Start with the result, then open the study details, source links and reviewer record
+                Start with the result, then open the study details, source links and review details
                 only when you need them.
               </p>
             </header>
@@ -1441,7 +1459,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
             {dossier.conclusion && (
               <section
                 aria-labelledby="programme-conclusion-heading"
-                className="space-y-6 rounded-[22px] bg-white p-5 sm:p-7"
+                className="space-y-6 rounded-3xl border border-[#0071E3]/18 bg-gradient-to-br from-blue-50/80 via-white to-white p-5 shadow-[0_2px_16px_rgba(0,113,227,0.055)] sm:p-7"
               >
                 <header className="space-y-2">
                   <Eyebrow tone="blue">Reviewed answer for this use</Eyebrow>
@@ -1620,7 +1638,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                               aria-label={`Open ${reviewer.name}’s ORCID researcher identity record in a new tab`}
                               className="mt-1 inline-flex min-h-11 max-w-full items-center gap-1 break-all text-sm font-semibold text-[#0066CC] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3] focus-visible:ring-offset-2"
                             >
-                              Researcher identity record (ORCID) {reviewer.orcid}
+                              Researcher identity profile (ORCID) {reviewer.orcid}
                               <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
                               <span className="sr-only"> (opens in a new tab)</span>
                             </a>
@@ -1686,16 +1704,16 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                 aria-labelledby="evidence-chain-heading"
                 className="scroll-mt-24 space-y-4"
               >
-                <div className="flex items-end justify-between gap-4">
+                <div className="flex min-w-0 flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                   <div className="space-y-1">
                     <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
                       {dossier.bindingState === 'legacy_record'
-                        ? 'From the older medicine record'
+                        ? 'Across the published research'
                         : 'How the evidence connects'}
                     </Eyebrow>
                     <h3 id="evidence-chain-heading" className="text-xl font-bold text-[#1D1D1F]">
                       {dossier.bindingState === 'legacy_record'
-                        ? 'Older evidence notes'
+                        ? 'General research findings'
                         : 'Which steps actually happened?'}
                     </h3>
                   </div>
@@ -1704,13 +1722,13 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                       ? 'This use only'
                       : isUnpublishedProgramme
                         ? 'No reviewed answer yet'
-                        : 'Older medicine record'}
+                        : 'Background across studies'}
                   </span>
                 </div>
                 {dossier.bindingState === 'legacy_record' && (
                   <p className="max-w-2xl text-sm leading-6 text-[#6E6E73]">
-                    These are separate notes from the older medicine-wide record. They are not an
-                    ordered chain and have not been reviewed for this specific use.
+                    These are separate findings collected across the research. They are not an
+                    ordered chain and have not been reviewed as an answer to this specific question.
                   </p>
                 )}
                 {canonicalEvidenceChain && (
@@ -1753,7 +1771,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                 )}
                 {dossier.evidenceNodes.length > 0 ? (
                   dossier.bindingState === 'legacy_record' ? (
-                    <ul className="grid gap-3 sm:grid-cols-2">
+                    <ul className="grid gap-3 lg:grid-cols-2">
                       {dossier.evidenceNodes.map((node) => (
                         <li key={node.id} className="min-w-0 rounded-2xl bg-white p-5">
                           <h4 className="[overflow-wrap:anywhere] text-base font-semibold leading-6 text-[#1D1D1F]">
@@ -2125,28 +2143,28 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
               <section
                 id="evidence-depth"
                 aria-labelledby="evidence-depth-heading"
-                className="scroll-mt-24 space-y-4 rounded-[22px] bg-white p-5 sm:p-7"
+                className="scroll-mt-24 space-y-4 rounded-3xl border border-[#0071E3]/12 bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.03)] sm:p-7"
               >
                 <div className="space-y-1">
                   <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
                     {dossier.bindingState === 'legacy_record'
-                      ? 'Older study numbers'
+                      ? 'Research at a glance'
                       : 'Study numbers at a glance'}
                   </Eyebrow>
                   <h3 id="evidence-depth-heading" className="text-xl font-bold text-[#1D1D1F]">
                     {dossier.bindingState === 'legacy_record'
-                      ? 'Recorded study details'
+                      ? 'Studies included in this summary'
                       : 'How many studies have results here?'}
                   </h3>
                 </div>
-                <dl className="grid gap-4 text-sm sm:grid-cols-3">
-                  <div className="min-w-0 rounded-2xl bg-[#F5F5F7] p-4">
+                <dl className="grid gap-3 text-sm md:grid-cols-2 lg:grid-cols-3">
+                  <div className="min-w-0 rounded-2xl border border-[#0071E3]/15 bg-blue-50 p-4">
                     <dt className="leading-5 text-[#6E6E73]">Studies with a result on this page</dt>
                     <dd className="mt-1 text-lg font-bold text-[#1D1D1F]">
                       {studiesWithResults.length.toLocaleString()}
                     </dd>
                   </div>
-                  <div className="min-w-0 rounded-2xl bg-[#F5F5F7] p-4">
+                  <div className="min-w-0 rounded-2xl border border-[#0071E3]/10 bg-[#F2F7FD] p-4">
                     <dt className="leading-5 text-[#6E6E73]">
                       People enrolled in studies with results
                     </dt>
@@ -2170,11 +2188,11 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                           </ul>
                         </>
                       ) : (
-                        'No participant count is linked to a recorded result'
+                        'No participant count is linked to an available result'
                       )}
                     </dd>
                   </div>
-                  <div className="min-w-0 rounded-2xl bg-[#F5F5F7] p-4">
+                  <div className="min-w-0 rounded-2xl border border-black/[0.06] bg-[#F5F5F7] p-4 md:col-span-2 lg:col-span-1">
                     <dt className="leading-5 text-[#6E6E73]">
                       Still running or no result on this page
                     </dt>
@@ -2216,12 +2234,12 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                 <div className="space-y-1">
                   <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
                     {dossier.bindingState === 'legacy_record'
-                      ? 'Older study record'
+                      ? 'Study-by-study detail'
                       : 'What each study can tell us'}
                   </Eyebrow>
                   <h3 id="studies-heading" className="text-xl font-bold text-[#1D1D1F]">
                     {dossier.bindingState === 'legacy_record'
-                      ? 'Recorded study details'
+                      ? 'What each study reports'
                       : 'Results, limits and how each study was run'}
                   </h3>
                   <p className="text-sm leading-6 text-[#6E6E73]">
@@ -2234,7 +2252,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                     <h4 className="text-base font-semibold text-[#1D1D1F]">
                       Studies with a result on this page
                     </h4>
-                    <div className="grid gap-3 lg:grid-cols-2">
+                    <div className="grid items-start gap-4 xl:grid-cols-2">
                       {studiesWithResults.map((study) => (
                         <StudyCard
                           key={study.id}
@@ -2257,7 +2275,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                         +
                       </span>
                     </summary>
-                    <div className="grid gap-3 border-t border-black/[0.07] py-4 lg:grid-cols-2">
+                    <div className="grid items-start gap-4 border-t border-black/[0.07] py-4 xl:grid-cols-2">
                       {studiesWithoutResults.map((study) => (
                         <StudyCard
                           key={study.id}
@@ -2282,7 +2300,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                 <div className="space-y-1">
                   <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
                     {dossier.bindingState === 'legacy_record'
-                      ? 'Older medicine-wide record'
+                      ? 'How researchers think it works'
                       : 'Step-by-step explanation'}
                   </Eyebrow>
                   <h3 id="mechanism-heading" className="text-xl font-bold text-[#1D1D1F]">
@@ -2290,27 +2308,21 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                   </h3>
                   <p className="text-sm leading-6 text-[#6E6E73]">
                     {dossier.bindingState === 'legacy_record'
-                      ? 'These older steps have not been linked to a specific use, reviewed claim, or saved source version.'
+                      ? 'These possible steps were collected across studies. They have not been checked against one specific use or linked to the exact source for every statement.'
                       : 'Each card shows one expected step. Its label says whether people, laboratory work, or neither has shown that step. Human reviewers decide what the science means.'}
                   </p>
                 </div>
                 {dossier.mechanismSteps.length > 0 ? (
                   <ol
                     className={`grid min-w-0 gap-3 ${
-                      dossier.mechanismSteps.length === 1
-                        ? 'lg:grid-cols-1'
-                        : dossier.mechanismSteps.length === 2
-                          ? 'lg:grid-cols-2'
-                          : dossier.mechanismSteps.length === 3
-                            ? 'lg:grid-cols-3'
-                            : 'lg:grid-cols-2'
+                      dossier.mechanismSteps.length > 1 ? 'lg:grid-cols-2' : ''
                     }`}
                     aria-label="Ordered mechanism stages"
                   >
                     {dossier.mechanismSteps.map((step, index) => (
                       <li
                         key={step.id}
-                        className="relative flex min-w-0 gap-3 rounded-2xl border border-black/[0.08] bg-white p-4"
+                        className="relative flex min-w-0 gap-3 rounded-2xl border border-[#0071E3]/12 bg-white p-4 shadow-[0_1px_8px_rgba(0,0,0,0.025)]"
                         data-testid="programme-mechanism-stage"
                       >
                         <span
@@ -2413,7 +2425,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                   </h3>
                   <p className="max-w-xl text-sm leading-6 text-[#6E6E73]">
                     “Saved” is when RNAWiki stored a copy. “Last checked” is when someone most
-                    recently confirmed the link. Exact record details are available for professional
+                    recently confirmed the link. Exact source details are available for professional
                     review.
                   </p>
                 </div>
@@ -2457,8 +2469,8 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                       {isPublishedProgramme
                         ? 'Software checked that the question, saved sources, dates, linked statements, and update status fit together. People still decide what the science means.'
                         : isUnpublishedProgramme
-                          ? 'A use has been identified, but no reviewed conclusion is public. Older medicine-wide text is not treated as evidence for this use.'
-                          : 'This older record has not passed the newer source-and-review checks. Those checks require each important statement to be linked to one use, an exact saved source, and a reviewed version.'}
+                          ? 'A use has been identified, but no reviewed conclusion is public. General research text is not treated as proof for this use.'
+                          : 'This general research summary has not passed the source-and-review checks used for question-specific answers. Those checks require each important statement to be linked to one use, an exact saved source, and a reviewed version.'}
                     </p>
                     {dossier.machineFindingCodes.length > 0 && (
                       <details>
@@ -2551,13 +2563,13 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                     <h4 className="text-sm font-semibold">
                       {dossier.bindingState === 'published_programme'
                         ? 'How this version was reviewed'
-                        : 'Record history'}
+                        : 'Page history'}
                     </h4>
                     {dossier.bindingState === 'published_programme' && (
                       <p className="text-sm leading-6 text-white/70">
                         Reviewers connect every important statement to the exact source they read.
-                        They record whether it supports the answer, points against it, or simply
-                        adds context before an updated answer is published.
+                        They note whether it supports the answer, points against it, or simply adds
+                        context before an updated answer is published.
                       </p>
                     )}
                     {(dossier.review.revisionId ||
@@ -2567,7 +2579,7 @@ export function MedicineDossierV2({ dossier, initialSaved = false }: MedicineDos
                       dossier.review.reviewerLabel) && (
                       <details>
                         <summary className="inline-flex min-h-11 cursor-pointer items-center text-sm font-semibold text-white">
-                          Technical record details
+                          Technical publication details
                         </summary>
                         <div className="flex min-w-0 flex-wrap gap-x-3 gap-y-1 font-mono text-xs leading-5 text-white/60">
                           {dossier.review.revisionId && (

@@ -235,7 +235,8 @@ describe('medicine dossier view model', () => {
     expect(view.evidenceNodes.every((node) => !node.machineChecked)).toBe(true)
     expect(view.evidenceNodes[0]?.state).toBe('confirmed')
     expect(view.evidenceNodes[0]?.claimNature).toBe('measured')
-    expect(view.evidenceNodes[0]?.professionalLabel).toBe('Legacy medicine-wide audit entry')
+    expect(view.evidenceNodes[0]?.label).toBe('Research finding')
+    expect(view.evidenceNodes[0]?.professionalLabel).toBe('Medicine-wide research finding')
     expect(view.evidenceNodes[0]?.technicalDetail).toEqual({
       technicalDetails: 'A structured technical note.',
       measuredMetric: 'An exact stored measurement name',
@@ -259,6 +260,7 @@ describe('medicine dossier view model', () => {
     expect(view.studies[0]?.result).toBeUndefined()
     expect(view.sources[0]?.href).toBe('https://doi.org/10.0000%2Fexample')
     expect(view.freshness).toBe('unknown')
+    expect(view.freshnessLabel).toBe('Summary last checked: August 2026')
     expect(view.machineFindingCodes).toContain('LEGACY_PROGRAMME_UNSCOPED')
     expect(view.medicineRecord.condition?.conditionExplainer).toBe(
       'A recorded condition explanation.',
@@ -280,12 +282,62 @@ describe('medicine dossier view model', () => {
       },
     ])
     expect(view.medicineRecord.molecular?.structureCheck).toBe('passed')
+    expect(view.medicineRecord.molecular?.identifiers[0]).toMatchObject({
+      kind: 'smiles',
+      label: 'Structure string (SMILES, a text description of a molecule)',
+    })
     expect(view.medicineRecord.communityNotes[0]?.content).toBe(
       'A substantive published community note.',
     )
     expect(JSON.stringify(view.medicineRecord)).not.toMatch(
       /DO NOT RENDER NATURAL|DO NOT RENDER HOME|DO NOT RENDER SYNTHESIS|DO NOT RENDER PROCEDURE|DO NOT RENDER REAGENTS/,
     )
+  })
+
+  it('distinguishes nucleotide strands from peptide or protein chains', () => {
+    const rna = dossier()
+    rna.molecularSchema = {
+      structureType: 'rna_sequence',
+      sequence5to3: 'AUGGAAUACUCUUGGUUAC',
+      isMachineVerified: false,
+      laboratoryWorkflow: [],
+    }
+    const dna = dossier()
+    dna.molecularSchema = {
+      structureType: 'rna_sequence',
+      sequence5to3: 'TCACTTTCATAATGCTGG',
+      isMachineVerified: false,
+      laboratoryWorkflow: [],
+    }
+    const peptide = dossier()
+    peptide.molecularSchema = {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'HAEGTFTSDVSSYLEGQAAK',
+      isMachineVerified: false,
+      laboratoryWorkflow: [],
+    }
+
+    expect(legacyMedicineDossierView(rna).medicineRecord.molecular?.identifiers[0]).toEqual({
+      kind: 'nucleotide_sequence',
+      label: 'Genetic instruction sequence (RNA letters, 5′ to 3′)',
+      value: 'AUGGAAUACUCUUGGUUAC',
+    })
+    expect(legacyMedicineDossierView(rna).medicineRecord.molecular?.format).toBe(
+      'RNA sequence, written 5′ to 3′',
+    )
+    expect(legacyMedicineDossierView(dna).medicineRecord.molecular?.identifiers[0]).toEqual({
+      kind: 'nucleotide_sequence',
+      label: 'Genetic instruction sequence (DNA letters, 5′ to 3′)',
+      value: 'TCACTTTCATAATGCTGG',
+    })
+    expect(legacyMedicineDossierView(dna).medicineRecord.molecular?.format).toBe(
+      'Genetic instruction sequence, written 5′ to 3′',
+    )
+    expect(legacyMedicineDossierView(peptide).medicineRecord.molecular?.identifiers[0]).toEqual({
+      kind: 'peptide_sequence',
+      label: 'Protein or peptide building-block sequence',
+      value: 'HAEGTFTSDVSSYLEGQAAK',
+    })
   })
 
   it('does not present a p-value, a pending result, or unreplicated status as the outcome', () => {
@@ -358,7 +410,7 @@ describe('medicine dossier view model', () => {
     expect(view.studies.map((study) => study.replication)).toEqual([
       'Not yet — no independent team has repeated this result.',
       'No — an independent attempt did not find the same result.',
-      'Partly — another study found a similar result, but this record does not establish an independent repeat.',
+      'Partly — another study found a similar result, but the information on this page does not show that an independent team repeated it.',
     ])
   })
 
@@ -452,6 +504,21 @@ describe('medicine dossier view model', () => {
       molecular: undefined,
       communityNotes: [],
     })
+  })
+
+  it('describes a missing intended use without showing database vocabulary', () => {
+    const missingUse = dossier()
+    missingUse.patientFriendlyIndication = ''
+    missingUse.indication = ''
+    missingUse.keyAudits = []
+
+    const view = legacyMedicineDossierView(missingUse)
+
+    expect(view.selectedProgrammeLabel).toBe(
+      'What this medicine was used or studied for is not documented',
+    )
+    expect(view.readerSummary.takeaway).toBe('A measured result is not recorded here.')
+    expect(JSON.stringify(view.readerSummary)).not.toContain('Scope not documented')
   })
 
   it('uses only a published programme input for a normalized verdict', () => {
