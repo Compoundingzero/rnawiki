@@ -21,6 +21,7 @@ const ACTIVE_PUBLIC_COPY_FILES = [
   'components/CommunityCommentary.tsx',
   'components/QuickGuideButton.tsx',
   'components/QuickGuideModal.tsx',
+  'components/SaveMedicineButton.tsx',
   'components/AccountModal.tsx',
   'components/DoctorVerificationModal.tsx',
   'components/FeedbackModal.tsx',
@@ -102,7 +103,7 @@ describe('public copy style', () => {
     expect(source).not.toContain('official registry parser')
   })
 
-  it('uses reader-safe history and general-research labels', () => {
+  it('uses reader-safe legacy history and dossier labels', () => {
     const history = readFileSync(join(process.cwd(), 'app/d/[slug]/history/page.tsx'), 'utf8')
     const specification = readFileSync(
       join(process.cwd(), 'docs/dossier-v2-product-spec.md'),
@@ -110,15 +111,9 @@ describe('public copy style', () => {
     )
     expect(history).toContain('introduced stricter source and review safeguards')
     expect(history).not.toContain('safety upgrade')
-    for (const label of [
-      'General research summary',
-      'What the research reports',
-      'No reviewed answer yet',
-    ]) {
+    for (const label of ['Older medicine-wide summary', 'Older record', 'No reviewed answer yet']) {
       expect(specification).toContain(label)
     }
-    expect(specification).not.toContain('What the older record says')
-    expect(specification).not.toContain('Older medicine-wide summary')
     expect(specification).not.toContain('legacy/not-audited')
   })
 

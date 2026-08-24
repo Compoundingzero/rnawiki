@@ -157,8 +157,8 @@ describe('role-aware dossier serialization', () => {
       status: 'legacy_unscoped_not_authoritative',
       authoritativeForSelectedProgramme: false,
     })
-    expect(separated.legacyMedicineRecord.warning).toBe(
-      'These fields belong to a general research summary covering the medicine as a whole. They were not reviewed for this specific use and are kept separate from the reviewed answer for that use.',
+    expect(separated.legacyMedicineRecord.warning).toContain(
+      'must not be combined with programmeDossier',
     )
     expect(payload).toEqual(before)
   })

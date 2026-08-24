@@ -46,7 +46,13 @@ describe('shared-browser account boundaries', () => {
     expect(isCurrentAccountRequest({ ...current, aborted: true })).toBe(false)
   })
 
-  it('reloads note votes for the new account and masks the old state immediately', () => {
+  it('reloads bookmarks and note votes for the new account and masks the old state immediately', () => {
+    const save = source('components/SaveMedicineButton.tsx')
+    expect(save).toContain('stateAccountKey === accountKey')
+    expect(save).toContain('savedDrugs(controller.signal)')
+    expect(save).toContain('accountKeyRef.current !== accountKey')
+    expect(save).toContain('requestControllerRef.current?.abort()')
+
     const commentary = source('components/CommunityCommentary.tsx')
     expect(commentary).toContain('notesAccountKey === accountKey')
     expect(commentary).toContain('communityNotes(medicineSlug, controller.signal)')

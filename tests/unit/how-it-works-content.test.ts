@@ -19,7 +19,7 @@ describe('How this works copy contract', () => {
       'click or tap keeps it open',
       'starts with everyday meaning',
       'More about this medicine',
-      'safety information and how the medicine was given',
+      'general safety and how the medicine was given',
       'not mixed into the short evidence conclusion',
       'personal dosing advice',
       'See how we know',
@@ -124,7 +124,7 @@ describe('How this works copy contract', () => {
 
   it('explains the sourced identity-only path without claiming machine verification', () => {
     for (const phrase of [
-      'Correcting medicine names',
+      'Correcting older records',
       'either the medicine name or its trade or brand name',
       'waits for one independent human reviewer',
       'People cannot review their own correction',
@@ -135,8 +135,6 @@ describe('How this works copy contract', () => {
     ]) {
       expect(normalizedSource).toContain(phrase)
     }
-    expect(normalizedSource).not.toContain('older record')
-    expect(normalizedSource).not.toContain('legacy summary')
   })
 
   it('avoids unexplained system jargon in reader-facing copy', () => {

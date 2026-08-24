@@ -172,7 +172,7 @@ export function LegacyIdentityCorrectionActions({
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-lg">
           <p className="font-mono text-[10px] uppercase tracking-wide text-[#0071E3]">
-            Help correct a medicine name
+            Help correct this older record
           </p>
           <h3 id="legacy-correction-heading" className="mt-1 text-lg font-bold text-[#1D1D1F]">
             Found a name that is wrong?
@@ -258,7 +258,7 @@ export function LegacyIdentityCorrectionActions({
             <form className="space-y-5" onSubmit={submitCorrection}>
               <header>
                 <p className="font-mono text-[10px] uppercase tracking-wide text-[#0071E3]">
-                  Medicine name correction
+                  Older medicine record
                 </p>
                 <h2 id={HEADING_ID} className="mt-1 text-2xl font-bold text-[#1D1D1F]">
                   Suggest a correction

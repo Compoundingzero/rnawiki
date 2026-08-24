@@ -18,7 +18,6 @@ import type {
 import {
   buildLegacyReaderSummary,
   buildPublishedProgrammeReaderSummary,
-  GENERAL_RESEARCH_SUMMARY_COPY,
   type ReaderMedicineLanguageContext,
   type ReaderSummaryView,
 } from '@/lib/public-medicine-language'
@@ -69,7 +68,7 @@ export interface EvidenceSourceView {
   freshness: DossierFreshnessState
 }
 
-/** Exact medicine-wide research fields retained for the optional professional detail view. */
+/** Exact fields retained from an older medicine-wide audit, shown only on request. */
 export interface EvidenceNodeTechnicalDetailView {
   technicalDetails?: string
   measuredMetric?: string
@@ -291,7 +290,6 @@ export interface MedicineCommonQuestionView {
 export interface MedicineMolecularIdentifierView {
   label: string
   value: string
-  kind: 'nucleotide_sequence' | 'peptide_sequence' | 'smiles' | 'formula' | 'measurement'
 }
 
 export interface MedicineMolecularRecordView {
@@ -514,12 +512,10 @@ function conventionalAlternative(
   return Object.values(alternative).slice(1).some(Boolean) ? alternative : undefined
 }
 
-function molecularFormat(value: unknown, recordedSequence?: string): string | undefined {
+function molecularFormat(value: unknown): string | undefined {
   switch (nonEmpty(value)) {
     case 'rna_sequence':
-      return recordedSequence?.includes('U') && !recordedSequence.includes('T')
-        ? 'RNA sequence, written 5′ to 3′'
-        : 'Genetic instruction sequence, written 5′ to 3′'
+      return 'RNA sequence, written 5′ to 3′'
     case 'small_molecule_smiles':
       return 'Small-molecule structure string (SMILES, a text description of a molecule)'
     case 'peptide_sequence':
@@ -536,52 +532,29 @@ function molecularFormat(value: unknown, recordedSequence?: string): string | un
 function molecularRecord(drug: DrugDossier): MedicineMolecularRecordView | undefined {
   const value = objectValue(drug.molecularSchema)
   if (!value) return undefined
-  const structureType = nonEmpty(value.structureType)
-  const recordedSequence = nonEmpty(value.sequence5to3)
-  const sequenceLabel =
-    structureType === 'peptide_sequence'
-      ? 'Protein or peptide building-block sequence'
-      : recordedSequence?.includes('U') && !recordedSequence.includes('T')
-        ? 'Genetic instruction sequence (RNA letters, 5′ to 3′)'
-        : recordedSequence?.includes('T') && !recordedSequence.includes('U')
-          ? 'Genetic instruction sequence (DNA letters, 5′ to 3′)'
-          : 'Genetic instruction sequence (DNA/RNA letters, 5′ to 3′)'
-  const identifierCandidates: Array<{
-    label: string
-    value: string | undefined
-    kind: MedicineMolecularIdentifierView['kind']
-  }> = [
-    {
-      label: sequenceLabel,
-      value: recordedSequence,
-      kind: structureType === 'peptide_sequence' ? 'peptide_sequence' : 'nucleotide_sequence',
-    },
+  const identifiers = [
+    { label: 'RNA sequence (5′ to 3′)', value: nonEmpty(value.sequence5to3) },
     {
       label: 'Structure string (SMILES, a text description of a molecule)',
       value: nonEmpty(value.smilesString),
-      kind: 'smiles',
     },
-    { label: 'Chemical formula', value: nonEmpty(value.chemicalFormula), kind: 'formula' },
-    { label: 'Molecular weight', value: nonEmpty(value.molecularWeight), kind: 'measurement' },
-  ]
-  const sequenceLength = finiteNumber(value.sequenceLengthNt)
-  if (sequenceLength !== undefined) {
-    identifierCandidates.push({
-      label: 'Recorded sequence length',
-      value: `${sequenceLength} bases`,
-      kind: 'measurement',
-    })
-  }
-  const identifiers: MedicineMolecularIdentifierView[] = identifierCandidates.flatMap(
-    (identifier) =>
-      identifier.value
-        ? [{ label: identifier.label, value: identifier.value, kind: identifier.kind }]
-        : [],
+    { label: 'Chemical formula', value: nonEmpty(value.chemicalFormula) },
+    { label: 'Molecular weight', value: nonEmpty(value.molecularWeight) },
+    ...(finiteNumber(value.sequenceLengthNt) !== undefined
+      ? [
+          {
+            label: 'Recorded sequence length',
+            value: `${finiteNumber(value.sequenceLengthNt)} bases`,
+          },
+        ]
+      : []),
+  ].flatMap((identifier) =>
+    identifier.value ? [{ label: identifier.label, value: identifier.value }] : [],
   )
   if (identifiers.length === 0) return undefined
 
   return {
-    format: molecularFormat(value.structureType, recordedSequence),
+    format: molecularFormat(value.structureType),
     identifiers,
     // The top-level flag is written only after the deterministic structure check passes. A JSON
     // field claiming its own verification is not enough.
@@ -762,8 +735,8 @@ function legacyEvidenceNodes(audits: readonly AuditPoint[]): EvidenceNodeView[] 
       {
         id,
         order: index + 1,
-        label: GENERAL_RESEARCH_SUMMARY_COPY.findingLabel,
-        professionalLabel: GENERAL_RESEARCH_SUMMARY_COPY.professionalFindingLabel,
+        label: 'Legacy audit',
+        professionalLabel: 'Legacy medicine-wide audit entry',
         title,
         summary,
         state,
@@ -823,7 +796,7 @@ function replicationDisplayLabel(trial: Partial<ClinicalTrialRecord>): string | 
     return 'Yes — an independent team reported a similar result.'
   }
   if (replication === 'Partially Replicated') {
-    return 'Partly — another study found a similar result, but the information on this page does not show that an independent team repeated it.'
+    return 'Partly — another study found a similar result, but this record does not establish an independent repeat.'
   }
   if (replication === 'Failed to Replicate') {
     return 'No — an independent attempt did not find the same result.'
@@ -965,9 +938,8 @@ function legacyMechanismSteps(steps: readonly MechanismStep[]): MechanismStepVie
  */
 export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierViewModel {
   const programmeId = `legacy:${drug.id}`
-  const selectedUse = nonEmpty(drug.patientFriendlyIndication) ?? nonEmpty(drug.indication)
   const programmeLabel =
-    selectedUse ?? 'What this medicine was used or studied for is not documented'
+    nonEmpty(drug.patientFriendlyIndication) ?? nonEmpty(drug.indication) ?? 'Scope not documented'
   const mechanismSummary = legacyMechanismSummary(drug)
   const mainLimitation = legacyMainLimitation(drug)
   const verdict = nonEmpty(drug.oneSentenceVerdict) ?? ''
@@ -977,7 +949,7 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
   const measuredFinding = audits.find((audit) => audit.category === 'measured')?.laymanSummary
   const readerSummary = buildLegacyReaderSummary({
     ...readerLanguageContext(drug),
-    selectedUse,
+    selectedUse: programmeLabel,
     exactText: verdict,
     measuredFinding,
     mainUncertainty: mainLimitation,
@@ -1015,7 +987,7 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
     sources: legacySources(audits),
     freshness: 'unknown',
     freshnessLabel: nonEmpty(drug.recentAuditDate)
-      ? `Summary last checked: ${drug.recentAuditDate}`
+      ? `Legacy audit date: ${drug.recentAuditDate}`
       : 'Freshness not yet verified',
     review: {
       publishedAt: nonEmpty(drug.lastEditedAt),

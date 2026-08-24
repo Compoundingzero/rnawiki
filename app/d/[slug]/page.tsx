@@ -12,6 +12,7 @@ import {
   getProgrammeEvidenceByMedicineSlug,
   programmeReferenceExists,
 } from '@/lib/queries/programme-evidence'
+import { isMedicineSavedBySlug } from '@/lib/queries/saved-drugs'
 import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-view'
 import { drugJsonLd, serialiseJsonLd } from '@/lib/json-ld'
 import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
@@ -153,6 +154,8 @@ export default async function DossierPage({ params, searchParams }: DossierPageP
       ? `/d/${drug.id}?programme=${encodeURIComponent(dossier.selectedProgrammeId)}`
       : `/d/${drug.id}`
   const jsonLd = drugJsonLd(drug, `${siteUrl}${selectedPath}`, dossier)
+  const initialSaved = viewer ? await isMedicineSavedBySlug(viewer.id, drug.id) : false
+
   return (
     <>
       {/*
@@ -165,7 +168,7 @@ export default async function DossierPage({ params, searchParams }: DossierPageP
         dangerouslySetInnerHTML={{ __html: serialiseJsonLd(jsonLd) }}
       />
       <AppShell initialUser={viewer}>
-        <MedicineDossierV2 dossier={dossier} />
+        <MedicineDossierV2 dossier={dossier} initialSaved={initialSaved} />
       </AppShell>
     </>
   )

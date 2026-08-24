@@ -159,9 +159,9 @@ export default async function HowItWorksPage() {
             <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
               <p>
                 A medicine page starts with the intended use, the clearest recorded result and the
-                biggest unanswered question. A general research summary can contain longer technical
-                wording. RNAWiki keeps that wording available, but does not make readers decode it
-                before seeing the main point.
+                biggest unanswered question. Older records can contain a long technical summary;
+                RNAWiki keeps that wording available, but does not make readers decode it before
+                seeing the main point.
               </p>
               <p>
                 When a short answer contains an unfamiliar study word or number, the explanation is
@@ -170,8 +170,8 @@ export default async function HowItWorksPage() {
                 term for readers comparing it with a study or source.
               </p>
               <p>
-                A separate “More about this medicine” section keeps useful general background,
-                including safety information and how the medicine was given. Those details stay
+                A separate “More about this medicine” section keeps useful older-record background,
+                including general safety and how the medicine was given. Those details stay
                 expandable and are not mixed into the short evidence conclusion or presented as
                 personal dosing advice.
               </p>
@@ -339,9 +339,9 @@ export default async function HowItWorksPage() {
                 write the map or decide the medical meaning.
               </p>
               <p>
-                This format is being added through reviewed versions for specific uses. Pages with
-                only general or source information may not have a mechanism map or timeline, and
-                RNAWiki does not invent either one to make coverage look complete.
+                This format is being added through reviewed programme versions. Older and
+                source-only records may not have a mechanism map or timeline, and RNAWiki does not
+                invent either one to make coverage look complete.
               </p>
             </div>
           </Card>
@@ -351,9 +351,9 @@ export default async function HowItWorksPage() {
           <Card>
             <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
               <p>
-                RNAWiki is separating medicine research by intended use and group, one verified
-                source at a time. It does not guess an intended use, dose, trial result, reviewer or
-                conclusion to make a page look complete.
+                RNAWiki is moving medicine records to the programme-based evidence model one
+                verified source at a time. It does not guess an intended use, dose, trial result,
+                reviewer or conclusion to make an older page look complete.
               </p>
               <p className="font-medium text-[#1D1D1F]">
                 Current coverage: {medicineCount.toLocaleString()} medicine records,{' '}
@@ -362,27 +362,26 @@ export default async function HowItWorksPage() {
                 conclusion.
               </p>
               <p>
-                A medicine page without a reviewed answer for one specific question may therefore
-                show a clearly labelled general research summary. Research found in an official
-                registry may show its study and source but say that reviewers have not published a
-                conclusion. Only evidence and a conclusion reviewed together are shown as a reviewed
-                answer.
+                An older record may therefore show a clearly labelled legacy summary. A programme
+                found in an official registry may show its study and source but say that reviewers
+                have not published a conclusion. Only a programme with a reviewed version of its
+                evidence and conclusion shows a programme conclusion.
               </p>
             </div>
           </Card>
         </Section>
 
         <Section
-          eyebrow="Correcting medicine names"
+          eyebrow="Correcting older records"
           title="Names use a smaller, source-backed review path"
         >
           <Card>
             <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
               <p>
-                When a medicine page does not yet have research separated by its intended use, a
-                reader can suggest a correction to one name at a time: either the medicine name or
-                its trade or brand name. The contributor must give the exact replacement, the source
-                page’s title and web address, and a plain explanation of why the change is needed.
+                An older medicine record with no identified development programme can accept a
+                correction to one identity field at a time: either the medicine name or its trade or
+                brand name. The contributor must give the exact replacement, the source page’s title
+                and web address, and a plain explanation of why the change is needed.
               </p>
               <p>
                 Every identity correction waits for one independent human reviewer—even when the
@@ -399,15 +398,14 @@ export default async function HowItWorksPage() {
               </p>
               <p className="font-medium text-[#1D1D1F]">
                 Evidence, safety, effectiveness, trials, mechanisms and conclusions cannot use this
-                small correction path. Those changes must be tied to one intended use, group of
-                people, dose and set of studies, then checked by RNA Intelligence and reviewed in
-                context.
+                small correction path. Those changes need an identified development programme so
+                they can be tied to one use, group of people, dose and set of studies, then checked
+                by RNA Intelligence and reviewed in context.
               </p>
               <p>
-                Earlier pending edits that did not include these safeguards remain visible in the
+                Older pending edits that did not include these safeguards remain visible in the
                 public history but are archived and cannot be reviewed or published. A contributor
-                can submit a new sourced name correction or use the full evidence-review path
-                instead.
+                can submit a new sourced name correction or use the programme-based path instead.
               </p>
             </div>
           </Card>

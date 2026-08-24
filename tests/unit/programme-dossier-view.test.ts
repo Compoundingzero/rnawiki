@@ -556,7 +556,7 @@ describe('published programme dossier mapping', () => {
       'An older medicine-wide question?',
     )
     expect(view.medicineRecord.molecular?.identifiers).toEqual([
-      { kind: 'formula', label: 'Chemical formula', value: 'C1H1' },
+      { label: 'Chemical formula', value: 'C1H1' },
     ])
   })
 

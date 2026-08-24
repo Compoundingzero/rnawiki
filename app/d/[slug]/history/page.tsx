@@ -216,7 +216,7 @@ function RevisionCard({ revision, handle }: { revision: Revision; handle: string
         <details className="rounded-2xl border border-black/[0.06] p-3 text-[11px] text-[#424245]">
           <summary className="flex min-h-11 cursor-pointer items-center gap-1.5 font-semibold text-emerald-800">
             <ShieldCheck className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-            Earlier structure check
+            Older structure-check record
           </summary>
           <p className="mt-2 leading-5">
             The earlier editor recorded that its narrow structure check passed. This does not say
@@ -248,7 +248,7 @@ export async function generateMetadata({ params }: HistoryPageProps): Promise<Me
 
   return {
     title: `Revision history — ${drug.name}`,
-    description: `Past edits for ${drug.name}, including who submitted each change, what was suggested or published, and what reviewers decided.`,
+    description: `Older medicine-record entries stored for ${drug.name}, including who submitted them, what was proposed or published, and the review outcome.`,
     alternates: { canonical: `/d/${drug.slug}/history` },
   }
 }
@@ -301,10 +301,10 @@ export default async function RevisionHistoryPage({ params, searchParams }: Hist
               )}
             </h1>
             <p className="text-xs sm:text-sm text-[#6E6E73] leading-relaxed">
-              Past proposals and published edits appear here, newest first. Each entry says whether
-              it was published, is waiting for review, was declined, or was archived when RNAWiki
-              introduced stricter source and review safeguards. Earlier entries cannot be changed or
-              removed.
+              Medicine-record proposals and published edits stored in this older log appear here,
+              newest first, whether they were published, are waiting for review, were declined, or
+              were archived when RNAWiki introduced stricter source and review safeguards. Earlier
+              entries cannot be changed or removed.
             </p>
           </div>
         </header>
@@ -313,7 +313,7 @@ export default async function RevisionHistoryPage({ params, searchParams }: Hist
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.03)] space-y-2">
             <p className="text-xs sm:text-sm text-[#6E6E73] leading-relaxed">
               {page === 1
-                ? 'No edits have been suggested for this medicine page yet.'
+                ? 'No edits have been proposed to this record yet.'
                 : 'No edits appear on this page. Use “Newer edits” to return to an earlier page.'}
             </p>
             {page === 1 && (
