@@ -86,9 +86,11 @@ describe('medicine dossier plain-first contract', () => {
 
     expect(specification).toContain('A separate collapsed **More about this medicine** section')
     expect(specification).toContain(
-      'It is a sibling of the evidence disclosure, not part of the proof for the selected programme conclusion.',
+      'It is a sibling of the evidence disclosure, not part of the proof for the selected reviewed answer.',
     )
-    expect(specification).toContain('none is used to construct or support a programme conclusion')
+    expect(specification).toContain(
+      'none is used to construct or support a reviewed answer for one specific use',
+    )
   })
 
   it('keeps direct evidence hashes keyboard-usable after opening the disclosure', () => {

@@ -4,6 +4,7 @@ import {
   buildLegacyReaderSummary,
   buildPublishedProgrammeReaderSummary,
   buildUnpublishedProgrammeReaderSummary,
+  GENERAL_RESEARCH_SUMMARY_COPY,
   publicApprovalStatusLabel,
   publicMedicineTypeLabel,
   safeStoredReaderSentence,
@@ -11,6 +12,22 @@ import {
 import { APPROVAL_STATUSES, DRUG_MODALITIES } from '@/lib/types'
 
 describe('reader-facing medicine vocabulary', () => {
+  it('names medicine-wide research without exposing database migration jargon', () => {
+    expect(GENERAL_RESEARCH_SUMMARY_COPY).toEqual({
+      label: 'General research summary',
+      heading: 'What the research reports',
+      boundary:
+        'This summary combines research from different uses, groups, doses and studies. It is useful background, not a reviewed answer to one specific question.',
+      technicalBoundary:
+        'These details come from research gathered for the medicine as a whole. They have not been linked to one specific use.',
+      findingLabel: 'Research finding',
+      professionalFindingLabel: 'Medicine-wide research finding',
+    })
+    expect(JSON.stringify(GENERAL_RESEARCH_SUMMARY_COPY).toLowerCase()).not.toMatch(
+      /older|legacy|record|programme|scope/,
+    )
+  })
+
   it('gives every stored medicine type a short first-glance label without abbreviations', () => {
     for (const type of DRUG_MODALITIES) {
       expect(publicMedicineTypeLabel(type)).not.toBe(type)

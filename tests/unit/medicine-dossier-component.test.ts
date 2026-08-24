@@ -138,6 +138,7 @@ function populatedMedicineRecord(): MedicineDossierViewModel['medicineRecord'] {
         {
           label: 'Structure string (SMILES, a text description of a molecule)',
           value: 'VERYLONGMOLECULARIDENTIFIERWITHOUTSPACES012345678901234567890123456789',
+          kind: 'smiles',
         },
       ],
       structureCheck: 'passed',
@@ -189,7 +190,9 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).not.toContain('Notes from readers and clinicians')
     expect(html).not.toMatch(/laboratory|synthesis instructions|protocol steps/i)
     expect(html).toContain('Suggest a correction')
-    expect(html).toContain('Save medicine')
+    expect(html).not.toContain('Save medicine')
+    expect(html).toContain('data-testid="main-takeaway-card"')
+    expect(html).toContain('from-[#EAF4FF]')
     expect(html).not.toContain('Challenge this answer')
     expect(html).toContain('What needs changing?')
     expect(html).toContain('Which use of this medicine does it apply to?')
@@ -317,7 +320,7 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('Medical statistics')
     expect(html).not.toContain('CLINICAL_PHARMACOLOGY')
     expect(html).not.toContain('BIOSTATISTICS')
-    expect(html).toContain('Researcher identity record (ORCID) 0000-0001-2345-6789')
+    expect(html).toContain('Researcher identity profile (ORCID) 0000-0001-2345-6789')
     expect(html).toContain('href="https://orcid.org/0000-0001-2345-6789"')
     expect(html).toContain('Events that changed what happened next')
     expect(html).toContain('data-testid="programme-decision-timeline"')
@@ -461,7 +464,8 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html.match(/data-testid="mechanism-evidence-basis"/g)).toHaveLength(3)
     expect(html.match(/data-testid="mechanism-stage-source-links"/g)).toHaveLength(3)
     expect(html).toContain('data-context-key="percentage-points-versus-placebo"')
-    expect(html).toContain('lg:grid-cols-3')
+    expect(html).toContain('lg:grid-cols-2')
+    expect(html).not.toContain('lg:grid-cols-3')
     expect(html).toContain('This step was measured in people')
     expect(html).toContain('This step was measured only in laboratory or non-human work')
     expect(html).toContain('This step is still a prediction')
@@ -492,7 +496,7 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).not.toContain('What was actually disproven?')
   })
 
-  it('clearly labels a legacy mechanism map as older and not source-linked', () => {
+  it('clearly labels a general research mechanism map as not question-specific', () => {
     const html = renderDossier(
       view({
         bindingState: 'legacy_record',
@@ -509,9 +513,9 @@ describe('MedicineDossierV2 server markup', () => {
       }),
     )
 
-    expect(html).toContain('Older medicine-wide record')
+    expect(html).toContain('How researchers think it works')
     expect(html).toContain(
-      'These older steps have not been linked to a specific use, reviewed claim, or saved source version.',
+      'These possible steps were collected across studies. They have not been checked against one specific use or linked to the exact source for every statement.',
     )
     expect(html).not.toContain('Evidence:')
   })
@@ -528,7 +532,7 @@ describe('MedicineDossierV2 server markup', () => {
       view({ bindingState: 'published_programme', verdict: 'A reviewed programme answer.' }),
     )
 
-    expect(legacyHtml).toContain('What the older record says')
+    expect(legacyHtml).toContain('What the research reports')
     expect(legacyHtml).toContain(longLegacySummary)
     expect(legacyHtml).not.toContain('In 10 seconds')
     expect(reviewedHtml).toContain('What researchers found')
@@ -548,8 +552,8 @@ describe('MedicineDossierV2 server markup', () => {
 
       expect(html).toContain('aria-controls="medicine-background-content"')
       expect(html).toContain('More about this medicine')
-      expect(html).toContain('Older medicine record')
-      expect(html).toContain('Medicine-wide background and practical details')
+      expect(html).toContain('General research background')
+      expect(html).toContain('Background and practical details')
       expect(html).toContain('The health problem')
       expect(html).toContain('Why this medicine is used or studied')
       expect(html).toContain('Who this information applies to')
@@ -575,10 +579,10 @@ describe('MedicineDossierV2 server markup', () => {
       expect(html).toContain('Questions people ask')
       expect(html).toContain('not instructions for taking or changing treatment')
       expect(html).toContain('Cost and practical context')
-      expect(html).toContain('Reported in the older medicine record')
+      expect(html).toContain('Cost information from the sources')
       expect(html).toContain('Example public price file')
       expect(html).toContain('href="https://example.test/prices"')
-      expect(html).toContain('check the source link and wording before comparing figures')
+      expect(html).toContain('Check the source wording before comparing figures')
       expect(html).toContain('Technical identity')
       expect(html).toContain('Medicine identity, not proof that it works')
       expect(html).toContain('Laboratory and manufacturing instructions are not displayed here')
@@ -596,13 +600,15 @@ describe('MedicineDossierV2 server markup', () => {
       expect(advancedIndex).toBeGreaterThanOrEqual(0)
       expect(backgroundIndex).toBeGreaterThan(advancedIndex)
       expect(communityIndex).toBeGreaterThan(backgroundIndex)
-      expect(html).toMatch(/<h2[^>]*>Medicine-wide background and practical details<\/h2>/)
+      expect(html).toMatch(/<h2[^>]*>Background and practical details<\/h2>/)
       expect(html).toMatch(/<h3[^>]*>Safety and how it is given<\/h3>/)
 
       if (bindingState === 'legacy_record') {
-        expect(html).toContain('are not separated into a reviewed conclusion for one use')
+        expect(html).toContain(
+          'It is useful background, not a reviewed answer to one specific question.',
+        )
       } else {
-        expect(html).toContain('are not part of its reviewed answer')
+        expect(html).toContain('It provides context and is not part of the reviewed answer.')
       }
     },
   )
@@ -659,12 +665,12 @@ describe('MedicineDossierV2 server markup', () => {
     expect(delivery).toContain('data-context-key="route-subcutaneous"')
   })
 
-  it('shows a direct warning when older pricing has no stored citation', () => {
+  it('shows a direct warning when general research pricing has no stored citation', () => {
     const medicineRecord = populatedMedicineRecord()
     medicineRecord.pricing = { reportedRetailOrListPrice: 'An older reported figure', sources: [] }
     const html = renderDossier(view({ medicineRecord }))
 
-    expect(html).toContain('No separate source link is stored with these older figures')
+    expect(html).toContain('No separate source link is available for these figures')
     expect(html).toContain('cannot be checked from this note alone')
   })
 
@@ -1199,7 +1205,13 @@ describe('MedicineDossierV2 server markup', () => {
           ],
           molecular: {
             format: 'Pharmacokinetics description',
-            identifiers: [{ label: 'Stored code', value: 'DO-NOT-ANNOTATE-THIS-ID' }],
+            identifiers: [
+              {
+                label: 'Stored code',
+                value: 'DO-NOT-ANNOTATE-THIS-ID',
+                kind: 'measurement',
+              },
+            ],
             structureCheck: 'not_passed',
           },
           communityNotes: [],
@@ -1289,7 +1301,7 @@ describe('MedicineDossierV2 server markup', () => {
     const cardEnd = html.indexOf('</article>', cardStart)
     const card = html.slice(cardStart, cardEnd)
     expect(card).toContain('No result on this page')
-    expect(card).toContain('Statistical test only (size of the change not recorded)')
+    expect(card).toContain('Statistical test only (size of the change not available)')
     expect(card).toContain('data-context-key="p-value"')
     expect(card).toContain('P-value')
     expect(card).toContain('&lt; 0.001')
@@ -1359,9 +1371,9 @@ describe('MedicineDossierV2 server markup', () => {
         ],
       }),
     )
-    expect(legacyHtml).toContain('Older evidence notes')
+    expect(legacyHtml).toContain('General research findings')
     expect(legacyHtml).toContain(
-      'These are separate notes from the older medicine-wide record. They are not an ordered chain and have not been reviewed for this specific use.',
+      'These are separate findings collected across the research. They are not an ordered chain and have not been reviewed as an answer to this specific question.',
     )
     expect(legacyHtml).not.toContain('Older note · not reviewed for this specific use')
     expect(legacyHtml).not.toContain('Evidence type: Nature unknown')
@@ -1408,7 +1420,7 @@ describe('MedicineDossierV2 server markup', () => {
         ],
       }),
     )
-    expect(normalizedHtml).toContain('Older note · not reviewed for this use')
+    expect(normalizedHtml).toContain('General research summary · not reviewed for one use')
     expect(normalizedHtml).toContain(
       'This is context rather than an independently checked scientific result.',
     )

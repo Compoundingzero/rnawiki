@@ -203,7 +203,7 @@ export function separateLegacyMedicineEvidence<T extends DossierReadPayload>(
       status: 'legacy_unscoped_not_authoritative',
       authoritativeForSelectedProgramme: false,
       warning:
-        'These fields come from the older medicine-wide record. They were not reviewed for the selected use and must not be combined with programmeDossier.',
+        'These fields belong to a general research summary covering the medicine as a whole. They were not reviewed for this specific use and are kept separate from the reviewed answer for that use.',
       fields: legacyFields as Omit<DrugDossier, keyof ProgrammeScopedMedicineIdentity>,
     },
   }

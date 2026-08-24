@@ -33,6 +33,22 @@ const APPROVAL_STATUS_LABELS: Record<ApprovalStatus, string> = {
 }
 
 /**
+ * Shared wording for medicine-wide research that has not yet been reviewed for one exact
+ * question. The database still calls this the legacy path; readers should not have to understand
+ * that implementation history.
+ */
+export const GENERAL_RESEARCH_SUMMARY_COPY = {
+  label: 'General research summary',
+  heading: 'What the research reports',
+  boundary:
+    'This summary combines research from different uses, groups, doses and studies. It is useful background, not a reviewed answer to one specific question.',
+  technicalBoundary:
+    'These details come from research gathered for the medicine as a whole. They have not been linked to one specific use.',
+  findingLabel: 'Research finding',
+  professionalFindingLabel: 'Medicine-wide research finding',
+} as const
+
+/**
  * Reader-facing medicine type. Unknown future database values stay visible instead of disappearing;
  * the exhaustive record keeps every current vocabulary value intentionally worded.
  */
