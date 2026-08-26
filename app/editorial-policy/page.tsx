@@ -34,6 +34,10 @@ const POLICIES = [
     title: 'Corrections preserve history',
     text: 'A correction or challenge is attributed, source-linked and reviewed. Publishing a successor moves the public pointer to a complete reviewed version while earlier versions remain available in the public history.',
   },
+  {
+    title: 'Analytics require a visitor choice',
+    text: 'Google Analytics loads only after a visitor allows it. RNAWiki excludes medicine searches, form entries, account details and URL query values, and does not enable advertising signals or personalisation. The choice can be changed from the footer.',
+  },
 ] as const
 
 export default async function EditorialPolicyPage() {

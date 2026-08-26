@@ -16,6 +16,17 @@ function robotsHeader(environment: typeof production): string | null {
 }
 
 describe('Next config canonical deployment guard', () => {
+  it('allows only the exact Google Analytics origins required by the consent-gated tag', () => {
+    const csp = responseHeadersForEnvironment(production).find(
+      (header) => header.key === 'Content-Security-Policy',
+    )?.value
+
+    expect(csp).toContain('https://www.googletagmanager.com')
+    expect(csp).toContain('https://www.google-analytics.com')
+    expect(csp).toContain('https://region1.google-analytics.com')
+    expect(csp).not.toContain('https://*.google')
+  })
+
   it('omits the staging crawler header only for the exact canonical production origin', () => {
     expect(robotsHeader(production)).toBeNull()
     expect(robotsHeader({ ...production, SITE_URL: 'https://rnawiki.com/' })).toBeNull()

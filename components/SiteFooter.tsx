@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 
+import { AnalyticsPreferencesButton } from '@/components/GoogleAnalytics'
+
 const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: '/browse', label: 'Browse all medicines' },
   { href: '/how-it-works', label: 'How this works' },
@@ -31,6 +33,7 @@ export function SiteFooter() {
               {link.label}
             </Link>
           ))}
+          <AnalyticsPreferencesButton />
         </nav>
 
         <p className="text-[11px] leading-relaxed text-[#6E6E73]">

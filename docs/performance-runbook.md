@@ -56,10 +56,12 @@ personalised `getDrugBySlug` result.
 
 ## Measurement and diagnosis
 
-Add a consent-appropriate, first-party Web Vitals endpoint or approved production telemetry before
-claiming the goals pass. Record route cohort, device class, metric name/value, navigation type and a
-release identifier; do not record medical searches, dossier text, email addresses, account ids or
-other sensitive values.
+Google Analytics is optional and consent-gated. It receives sanitized path-only page views, scrolls,
+video engagement and downloads after a visitor opts in. Browser-history page views, site-search
+events, form events, outbound-link events, advertising signals and advertising personalisation stay
+disabled. URL query values and email-shaped values are also redacted in the stream configuration.
+Never add medical searches, dossier text, email addresses, account ids or other sensitive values to
+analytics events.
 
 For a slow reviewed dossier, inspect in this order:
 

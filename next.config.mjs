@@ -21,7 +21,7 @@ import { isCanonicalProductionOrigin } from './lib/seo/canonical-production-orig
 // `<`, `>` and `&` before it is written (lib/json-ld.ts).
 const BASE_CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "base-uri 'self'",
   "object-src 'none'",
   "form-action 'self'",
@@ -33,7 +33,7 @@ const BASE_CSP = [
   "style-src 'self' 'unsafe-inline'",
   // next/font self-hosts every face at build time, so no external font origin is needed.
   "font-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com",
   'upgrade-insecure-requests',
 ].join('; ')
 

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { googleAnalyticsMeasurementId } from '@/lib/google-analytics'
 import { configuredPublicUrl, configuredSiteOrigin, rootRobotsMetadata } from '@/lib/seo/deployment'
 import { HOME_METADATA } from '@/lib/seo/metadata'
 import './globals.css'
@@ -20,6 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 const siteOrigin = configuredSiteOrigin()
+const analyticsMeasurementId = googleAnalyticsMeasurementId(
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+)
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
@@ -62,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {children}
+        <GoogleAnalytics measurementId={analyticsMeasurementId} />
       </body>
     </html>
   )
