@@ -27,8 +27,10 @@ import {
   developmentProgrammes,
   drugAliases,
   drugs,
+  medicineSlugRedirects,
   programmeCurrentPublications,
   programmeTrials,
+  programmeVerdictScopeSnapshots,
 } from '@/db/schema'
 import { rowToDossier, type DrugRow } from '@/lib/dossier'
 import {
@@ -60,6 +62,20 @@ const { searchVector, ...drugColumns } = getTableColumns(drugs)
 export const publicMedicineFilter = and(
   notInArray(drugs.slug, [...PUBLIC_PLACEHOLDER_MEDICINE_SLUGS]),
   notInArray(sql<string>`lower(btrim(${drugs.name}))`, [...PUBLIC_PLACEHOLDER_MEDICINE_NAMES]),
+)
+
+/**
+ * Public collection surfaces must not rediscover an identity whose slug now redirects elsewhere.
+ * Keep this separate from `publicMedicineFilter`: direct dossier and resolver lookups deliberately
+ * retain those rows so the owner-curated redirect ledger can win and preserve the audit trail.
+ */
+export const publicMedicineDiscoveryFilter = and(
+  publicMedicineFilter,
+  sql<boolean>`not exists (
+    select 1
+    from ${medicineSlugRedirects}
+    where ${medicineSlugRedirects.oldSlug} = ${drugs.slug}
+  )`,
 )
 
 export type DossierDepth = DrugRow['dossierDepth']
@@ -131,16 +147,153 @@ export async function getDrugBySlug(
   slug: string,
   viewerUserId?: string,
 ): Promise<DrugDossier | null> {
+  const row = await getPublicDrugRowBySlug(slug)
+  if (!row) return null
+
+  const notes = await listNotesForDrug(row.id, viewerUserId)
+  return rowToDossier(row, { notes })
+}
+
+async function getPublicDrugRowBySlug(slug: string): Promise<DrugRow | null> {
   const rows = await db
     .select(drugColumns)
     .from(drugs)
     .where(and(publicMedicineFilter, eq(drugs.slug, slug)))
     .limit(1)
-  const row = rows[0]
-  if (!row) return null
+  return rows[0] ?? null
+}
 
-  const notes = await listNotesForDrug(row.id, viewerUserId)
-  return rowToDossier(row, { notes })
+/**
+ * Anonymous public record read for metadata, social cards and other machine-facing surfaces.
+ * Community-note vote state is viewer-specific, so those surfaces must not load it or vary by a
+ * session cookie.
+ */
+export async function getPublicDrugBySlug(slug: string): Promise<DrugDossier | null> {
+  const row = await getPublicDrugRowBySlug(slug)
+  return row ? rowToDossier(row) : null
+}
+
+/** Lean identity for generated social cards; avoids loading the dossier's JSONB sections. */
+export async function getPublicMedicineNameBySlug(slug: string): Promise<string | null> {
+  const rows = await db
+    .select({ name: drugs.name })
+    .from(drugs)
+    .where(and(publicMedicineFilter, eq(drugs.slug, slug)))
+    .limit(1)
+  return rows[0]?.name ?? null
+}
+
+export interface PublicMedicineRouteResolution {
+  canonicalSlug: string
+  matchedBy: 'canonical' | 'case' | 'alias' | 'historical'
+}
+
+type DirectMedicineRouteResolution =
+  { kind: 'resolved'; resolution: PublicMedicineRouteResolution } | { kind: 'missing' | 'invalid' }
+
+const MAX_ALIAS_OWNER_CANDIDATES = 100
+
+/** Resolve only a stored slug or its owner-curated terminal ledger target; never consult aliases. */
+async function resolveDirectMedicineRoute(
+  normalized: string,
+  requestedSlug: string,
+): Promise<DirectMedicineRouteResolution> {
+  // Ledger existence is authoritative even when its target has since become nonpublic. Query the
+  // mapping first, without a target visibility filter; otherwise a hidden target makes the join
+  // disappear and the retained old row can incorrectly win the direct-slug fallback.
+  const historicalRows = await db
+    .select({ targetDrugId: medicineSlugRedirects.targetDrugId })
+    .from(medicineSlugRedirects)
+    .where(eq(medicineSlugRedirects.oldSlug, normalized))
+    .limit(1)
+  const historicalTargetId = historicalRows[0]?.targetDrugId
+  if (historicalTargetId) {
+    const targetRows = await db
+      .select({ canonicalSlug: drugs.slug })
+      .from(drugs)
+      .where(and(publicMedicineFilter, eq(drugs.id, historicalTargetId)))
+      .limit(1)
+    const historical = targetRows[0]?.canonicalSlug
+    if (!historical) return { kind: 'invalid' }
+    if (historical === normalized) return { kind: 'invalid' }
+    const chainedRows = await db
+      .select({ oldSlug: medicineSlugRedirects.oldSlug })
+      .from(medicineSlugRedirects)
+      .where(eq(medicineSlugRedirects.oldSlug, historical))
+      .limit(1)
+    if (chainedRows[0]) return { kind: 'invalid' }
+    return {
+      kind: 'resolved',
+      resolution: { canonicalSlug: historical, matchedBy: 'historical' },
+    }
+  }
+
+  const directRows = await db
+    .select({ slug: drugs.slug })
+    .from(drugs)
+    .where(and(publicMedicineFilter, sql`lower(${drugs.slug}) = ${normalized}`))
+    .limit(1)
+  const direct = directRows[0]?.slug
+  if (!direct) return { kind: 'missing' }
+  return {
+    kind: 'resolved',
+    resolution: {
+      canonicalSlug: direct,
+      matchedBy: direct === requestedSlug ? 'canonical' : 'case',
+    },
+  }
+}
+
+/**
+ * Resolve one reader-facing medicine identity without exposing the internal primary key.
+ *
+ * An owner-curated historical mapping takes precedence even while an old audit row remains. After
+ * that, exact and case-only slug matches win. A medicine alias is accepted only when every matching
+ * owner resolves to one terminal public record; ambiguous aliases deliberately return null instead
+ * of guessing which medical entity the reader meant.
+ */
+export async function resolvePublicMedicineRoute(
+  requestedSlug: string,
+): Promise<PublicMedicineRouteResolution | null> {
+  const normalized = requestedSlug.trim().toLowerCase()
+  if (!normalized) return null
+
+  // Deliberate URL history wins over a still-retained identity row. This is what lets an owner
+  // merge or rename a public record without deleting its audit data. Reject a target that is also
+  // an old slug: canonical redirects must be one hop, and a bad ledger row must fail closed rather
+  // than create a redirect chain or loop.
+  const direct = await resolveDirectMedicineRoute(normalized, requestedSlug)
+  if (direct.kind === 'resolved') return direct.resolution
+  if (direct.kind === 'invalid') return null
+
+  const aliasRows = await db
+    .selectDistinct({ slug: drugs.slug })
+    .from(drugAliases)
+    .innerJoin(drugs, eq(drugAliases.drugId, drugs.id))
+    .where(
+      and(
+        publicMedicineFilter,
+        sql`trim(both '-' from regexp_replace(lower(${drugAliases.alias}), '[^a-z0-9]+', '-', 'g')) = ${normalized}`,
+      ),
+    )
+    .orderBy(asc(drugs.slug))
+    .limit(MAX_ALIAS_OWNER_CANDIDATES + 1)
+
+  // Resolve every alias owner through the same terminal-ledger contract before deciding whether
+  // the alias is unique. Two retained owners that both merge into one canonical medicine are one
+  // destination; a chain, corrupt owner, oversized candidate set, or two terminal identities
+  // fails closed instead of emitting an alias -> old slug -> target redirect chain.
+  if (aliasRows.length === 0 || aliasRows.length > MAX_ALIAS_OWNER_CANDIDATES) return null
+  const terminalSlugs = new Set<string>()
+  for (const alias of aliasRows) {
+    const terminal = await resolveDirectMedicineRoute(alias.slug.toLowerCase(), alias.slug)
+    if (terminal.kind !== 'resolved') return null
+    terminalSlugs.add(terminal.resolution.canonicalSlug)
+    if (terminalSlugs.size > 1) return null
+  }
+
+  const canonicalSlug = terminalSlugs.values().next().value
+  return typeof canonicalSlug === 'string' ? { canonicalSlug, matchedBy: 'alias' } : null
 }
 
 /** Internal-id lookup, for write paths that already hold a `drugs.id` (revision review). */
@@ -199,7 +352,10 @@ export async function listDrugs(opts: ListDrugsOptions): Promise<ListDrugsResult
     opts.approvalStatus ? eq(drugs.approvalStatus, opts.approvalStatus) : undefined,
     opts.depth ? eq(drugs.dossierDepth, opts.depth) : undefined,
   ].filter((f) => f !== undefined)
-  const where = filters.length > 0 ? and(publicMedicineFilter, ...filters) : publicMedicineFilter
+  const where =
+    filters.length > 0
+      ? and(publicMedicineDiscoveryFilter, ...filters)
+      : publicMedicineDiscoveryFilter
 
   const order =
     opts.sort === 'name'
@@ -309,7 +465,7 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
     .from(drugs)
     .where(
       and(
-        publicMedicineFilter,
+        publicMedicineDiscoveryFilter,
         or(
           sql`${drugs.searchVector} @@ ${tsQuery}`,
           ilike(drugs.name, prefix),
@@ -368,7 +524,7 @@ export async function getFeaturedDrug(): Promise<DrugDossier | null> {
   const rows = await db
     .select(drugColumns)
     .from(drugs)
-    .where(and(publicMedicineFilter, inArray(drugs.dossierDepth, ['flagship', 'curated'])))
+    .where(and(publicMedicineDiscoveryFilter, inArray(drugs.dossierDepth, ['flagship', 'curated'])))
     .orderBy(curationRank, desc(drugs.viewCount), asc(drugs.name), asc(drugs.slug))
     .limit(1)
 
@@ -382,7 +538,7 @@ export async function getPopularDrugs(limit: number): Promise<SearchHit[]> {
   const hits = await db
     .select(publicSearchHitReadColumns)
     .from(drugs)
-    .where(and(publicMedicineFilter, inArray(drugs.dossierDepth, ['flagship', 'curated'])))
+    .where(and(publicMedicineDiscoveryFilter, inArray(drugs.dossierDepth, ['flagship', 'curated'])))
     .orderBy(desc(drugs.viewCount), asc(drugs.name), asc(drugs.slug))
     .limit(capped)
   return bindPublicSearchSummaries(cleanPublicSearchHitRows(hits))
@@ -393,16 +549,36 @@ export async function countProgrammeEvidence(): Promise<{
   programmes: number
   reviewedProgrammes: number
 }> {
+  // Published programmes belong to the medicine captured in their immutable reviewed scope, even
+  // if somebody later moves the live staging row. Unpublished programmes still use their current
+  // live owner. The same discovery predicate then excludes placeholders and redirect sources from
+  // both headline counts.
+  const effectiveMedicineId = sql<string>`coalesce(
+    ${programmeVerdictScopeSnapshots.drugId},
+    ${developmentProgrammes.drugId}
+  )`
   const rows = await db
     .select({
       programmes: count(developmentProgrammes.id),
-      reviewedProgrammes: count(programmeCurrentPublications.programmeId),
+      reviewedProgrammes: count(programmeVerdictScopeSnapshots.verdictRevisionId),
     })
     .from(developmentProgrammes)
     .leftJoin(
       programmeCurrentPublications,
       eq(programmeCurrentPublications.programmeId, developmentProgrammes.id),
     )
+    .leftJoin(
+      programmeVerdictScopeSnapshots,
+      and(
+        eq(
+          programmeVerdictScopeSnapshots.verdictRevisionId,
+          programmeCurrentPublications.verdictRevisionId,
+        ),
+        eq(programmeVerdictScopeSnapshots.programmeId, developmentProgrammes.id),
+      ),
+    )
+    .innerJoin(drugs, eq(drugs.id, effectiveMedicineId))
+    .where(publicMedicineDiscoveryFilter)
 
   return {
     programmes: rows[0]?.programmes ?? 0,
@@ -438,7 +614,7 @@ export async function countDrugs(where?: SQL): Promise<number> {
   const rows = await db
     .select({ value: count() })
     .from(drugs)
-    .where(where ? and(publicMedicineFilter, where) : publicMedicineFilter)
+    .where(where ? and(publicMedicineDiscoveryFilter, where) : publicMedicineDiscoveryFilter)
   return rows[0]?.value ?? 0
 }
 
@@ -449,7 +625,7 @@ export async function countByDepth(): Promise<DepthCounts> {
   const rows = await db
     .select({ depth: drugs.dossierDepth, value: count() })
     .from(drugs)
-    .where(publicMedicineFilter)
+    .where(publicMedicineDiscoveryFilter)
     .groupBy(drugs.dossierDepth)
 
   const counts: DepthCounts = { stub: 0, curated: 0, flagship: 0 }

@@ -1,5 +1,6 @@
 import type { ApprovalStatus, DrugModality } from '@/lib/types'
-import { tenSecondAnswerOverride } from '@/lib/ten-second-answer-overrides'
+import type { ProgrammeSummaryFieldPath } from '@/lib/evidence/types'
+import type { LegacyTenSecondAnswerEvidenceBinding } from '@/lib/ten-second-answer-contract'
 
 const MEDICINE_TYPE_LABELS: Record<DrugModality, string> = {
   'Small Molecule': 'Small chemical medicine',
@@ -59,6 +60,11 @@ export function publicApprovalStatusLabel(value: string): string {
 
 export type ReaderSummaryBasis = 'older_record' | 'published_programme' | 'unpublished_programme'
 
+export type ReaderSummarySourceFieldPath = Extract<
+  ProgrammeSummaryFieldPath,
+  'summary.bestSupportedFinding' | 'summary.mainLimitation'
+>
+
 export interface ReaderSummaryContextItem {
   label: string
   text: string
@@ -74,12 +80,21 @@ export interface ReaderSummaryView {
   usedFor: string
   /** The strongest complete result already stored for this use. */
   whatStudiesFound?: string
+  /** Present only when the displayed finding was derived from this exact reviewed field. */
+  whatStudiesFoundSourceFieldPath?: Extract<
+    ReaderSummarySourceFieldPath,
+    'summary.bestSupportedFinding'
+  >
   /** The most important unanswered question or failed claim already stored for this use. */
   biggestLimit?: string
+  /** Present only when the displayed limitation was derived from this exact reviewed field. */
+  biggestLimitSourceFieldPath?: Extract<ReaderSummarySourceFieldPath, 'summary.mainLimitation'>
   /** A short use note, separated from the purpose when the stored purpose contains one. */
   practicalNote?: string
   /** Reserved for a concise stored safety warning when one is available to the builder. */
   criticalSafety?: string
+  /** Present only for static legacy copy whose complete evidence surface still matches review. */
+  authoredEvidenceBinding?: LegacyTenSecondAnswerEvidenceBinding
   /** @deprecated Compatibility alias while older non-visual consumers move to the named fields. */
   takeaway: string
   exactText?: string
@@ -504,30 +519,40 @@ function explicitVerdictFinding(
   return undefined
 }
 
+interface LimitationSummaryResult {
+  text: string
+  source: 'main_uncertainty' | 'exact_text'
+}
+
 function limitationSummary(
   mainUncertainty: string | null | undefined,
   exactText: string | null | undefined,
   context: ReaderMedicineLanguageContext,
-): string | undefined {
+): LimitationSummaryResult | undefined {
   const exact = cleanText(exactText)
   if (exact && /\bneuroprotection claim\b.*\bfailed two\b/iu.test(exact)) {
-    return explicitVerdictLimit(exact, context)
+    const text = explicitVerdictLimit(exact, context)
+    return text ? { text, source: 'exact_text' } : undefined
   }
   const stored = cleanText(mainUncertainty)
   if (stored) {
     if (/^That\s+/u.test(stored)) {
       const assertion = stored.replace(/^That\s+/u, 'that ')
       const firstClause = assertion.split(/\s+[—–]\s+/u)[0]
-      return plainStoredSentence(
+      const text = plainStoredSentence(
         ensureSentence(`Studies have not shown ${firstClause}`),
         context,
         28,
       )
+      return text ? { text, source: 'main_uncertainty' } : undefined
     }
     const plain = plainStoredSentence(stored, context, 28)
-    return plain && LIMITATION_SIGNAL.test(plain) ? plain : undefined
+    return plain && LIMITATION_SIGNAL.test(plain)
+      ? { text: plain, source: 'main_uncertainty' }
+      : undefined
   }
-  return explicitVerdictLimit(exact, context)
+  const text = explicitVerdictLimit(exact, context)
+  return text ? { text, source: 'exact_text' } : undefined
 }
 
 /**
@@ -540,19 +565,15 @@ export function buildLegacyReaderSummary(input: LegacyReaderSummaryInput): Reade
   const measuredFinding = cleanText(input.measuredFinding)
   const mainUncertainty = cleanText(input.mainUncertainty)
   const exactText = cleanText(input.exactText)
-  const authored = tenSecondAnswerOverride(input.medicineSlug)
   const generatedPurpose = usedForSummary(selectedUse, input)
-  const practicalNote = authored ? authored.practicalNote : generatedPurpose.practicalNote
   const purpose = {
-    usedFor: authored?.usedFor ?? generatedPurpose.usedFor,
-    ...(practicalNote ? { practicalNote } : {}),
+    usedFor: generatedPurpose.usedFor,
+    ...(generatedPurpose.practicalNote ? { practicalNote: generatedPurpose.practicalNote } : {}),
   }
   const whatStudiesFound =
-    authored?.whatStudiesFound ??
-    plainStoredResultSentence(measuredFinding, input) ??
-    explicitVerdictFinding(exactText, input)
-  const biggestLimit =
-    authored?.biggestLimit ?? limitationSummary(mainUncertainty, exactText, input)
+    plainStoredResultSentence(measuredFinding, input) ?? explicitVerdictFinding(exactText, input)
+  const generatedLimit = limitationSummary(mainUncertainty, exactText, input)
+  const biggestLimit = generatedLimit?.text
   const missingResult = measuredFinding
     ? 'A measured result is recorded, but a short plain-language version is not available yet.'
     : 'A measured result is not recorded here.'
@@ -574,7 +595,6 @@ export function buildLegacyReaderSummary(input: LegacyReaderSummaryInput): Reade
     ...purpose,
     ...(whatStudiesFound ? { whatStudiesFound } : {}),
     ...(biggestLimit ? { biggestLimit } : {}),
-    ...(authored?.criticalSafety ? { criticalSafety: authored.criticalSafety } : {}),
     takeaway,
     ...(exactText ? { exactText } : {}),
     simplified: Boolean(whatStudiesFound),
@@ -592,7 +612,8 @@ export function buildPublishedProgrammeReaderSummary(
   const whatStudiesFound = bestSupportedFinding
     ? plainStoredResultSentence(bestSupportedFinding, input)
     : plainStoredResultSentence(exactText, input)
-  const biggestLimit = limitationSummary(input.mainUncertainty, exactText, input)
+  const generatedLimit = limitationSummary(input.mainUncertainty, exactText, input)
+  const biggestLimit = generatedLimit?.text
   const contextItems = [
     storedContextItem('What this page covers', input.selectedUse),
     storedContextItem('How it is meant to work', input.plainMechanism),
@@ -608,7 +629,13 @@ export function buildPublishedProgrammeReaderSummary(
     basis: 'published_programme',
     ...purpose,
     ...(whatStudiesFound ? { whatStudiesFound } : {}),
+    ...(bestSupportedFinding && whatStudiesFound
+      ? { whatStudiesFoundSourceFieldPath: 'summary.bestSupportedFinding' as const }
+      : {}),
     ...(biggestLimit ? { biggestLimit } : {}),
+    ...(biggestLimit && generatedLimit?.source === 'main_uncertainty'
+      ? { biggestLimitSourceFieldPath: 'summary.mainLimitation' as const }
+      : {}),
     takeaway,
     exactText,
     simplified: Boolean(whatStudiesFound),

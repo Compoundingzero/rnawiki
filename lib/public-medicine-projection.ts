@@ -173,8 +173,7 @@ function compareProgrammes(left: PublicProgrammeProjection, right: PublicProgram
   if (leftPublished && !rightPublished) return -1
   if (!leftPublished && rightPublished) return 1
 
-  const byTitle = compareText(left.title, right.title)
-  return byTitle === 0 ? compareText(left.id, right.id) : byTitle
+  return compareText(left.id, right.id)
 }
 
 function publicationFromRow(

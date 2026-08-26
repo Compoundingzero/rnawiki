@@ -1,7 +1,7 @@
 // Server-side public read model for programme evidence. Pages and APIs consume this projection so
 // they never assemble source/claim/node/verdict lineage themselves or inspect draft rows.
 
-import { and, asc, desc, eq, inArray, isNull, or } from 'drizzle-orm'
+import { and, asc, eq, inArray, isNull, or, sql } from 'drizzle-orm'
 import { db } from '@/db'
 import {
   claimSourceLinks,
@@ -26,6 +26,7 @@ import {
   sourceSnapshots,
   trialInterpretabilityAssessments,
   trialInterpretabilityClaims,
+  users,
 } from '@/db/schema'
 import type {
   EvidenceSourceSnapshotReadModel,
@@ -33,13 +34,17 @@ import type {
   ProgrammeEvidenceReadModel,
   ProgrammeFreshnessReadModel,
   ProgrammeSelectorItem,
+  ProgrammeSummaryFieldDependencyReadModel,
+  ProgrammeSummaryFieldPath,
   ProgrammeTrialReadModel,
   ProgrammeVerdictReviewReadModel,
   PublishedClaimReadModel,
   PublishedEvidenceNodeReadModel,
   PublishedProgrammeVerdictReadModel,
 } from '@/lib/evidence/types'
+import { PROGRAMME_SUMMARY_FIELD_PATHS } from '@/lib/evidence/types'
 import { getPublicProgrammePresentationForRevision } from '@/lib/queries/programme-presentation'
+import { countDistinctIndependentReviewers } from '@/lib/seo/indexability'
 
 function iso(value: Date | null): string | null {
   return value?.toISOString() ?? null
@@ -122,9 +127,13 @@ export async function getProgrammeEvidenceByMedicineSlug(
       ),
     )
     .orderBy(
-      desc(programmeCurrentPublications.publishedAt),
-      asc(developmentProgrammes.title),
-      asc(developmentProgrammes.id),
+      // PostgreSQL sorts NULL values first for DESC by default. Without NULLS LAST, adding any
+      // unpublished programme can silently replace a medicine's reviewed default answer and make
+      // the canonical route disagree with the sitemap's eligibility decision.
+      sql`${programmeCurrentPublications.publishedAt} desc nulls last`,
+      // A stable identity is the final tie-break everywhere. Titles are mutable staging content and
+      // database/JavaScript collations can order reviewed Unicode titles differently.
+      sql`${developmentProgrammes.id} collate "C" asc`,
     )
   const programmeRows = rawProgrammeRows.map(({ live, reviewedScope, ...publication }) => ({
     ...live,
@@ -180,7 +189,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
 
   const [verdictRows, freshnessRows] = await Promise.all([
     db
-      .select({ verdict: programmeVerdictRevisions })
+      .select({ verdict: programmeVerdictRevisions, authorHandle: users.handle })
       .from(programmeCurrentPublications)
       .innerJoin(
         programmeVerdictRevisions,
@@ -189,6 +198,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
           eq(programmeVerdictRevisions.programmeId, programmeCurrentPublications.programmeId),
         ),
       )
+      .leftJoin(users, eq(users.id, programmeVerdictRevisions.authorUserId))
       .where(
         and(
           eq(programmeCurrentPublications.programmeId, selected.id),
@@ -208,6 +218,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
       .orderBy(asc(evidenceSources.title), asc(evidenceSources.id)),
   ])
   const verdictRow = verdictRows[0]?.verdict ?? null
+  const verdictAuthorHandle = verdictRows[0]?.authorHandle ?? null
   const publicPresentation = verdictRow
     ? await getPublicProgrammePresentationForRevision(verdictRow.id)
     : null
@@ -218,6 +229,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
     trialBundleRows,
     nodeBundleRows,
     assessmentBundleRows,
+    summaryDependencyRows,
   ] = await Promise.all([
     verdictRow
       ? db
@@ -227,7 +239,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
           })
           .from(programmeVerdictClaims)
           .where(eq(programmeVerdictClaims.verdictRevisionId, verdictRow.id))
-          .orderBy(asc(programmeVerdictClaims.claimId))
+          .orderBy(asc(programmeVerdictClaims.claimId), asc(programmeVerdictClaims.relationship))
       : Promise.resolve([]),
     verdictRow
       ? db
@@ -257,7 +269,51 @@ export async function getProgrammeEvidenceByMedicineSlug(
           .where(eq(programmeVerdictInterpretabilityAssessments.verdictRevisionId, verdictRow.id))
           .orderBy(asc(programmeVerdictInterpretabilityAssessments.assessmentId))
       : Promise.resolve([]),
+    verdictRow
+      ? db
+          .select({
+            id: programmeDependencies.id,
+            programmeId: programmeDependencies.programmeId,
+            claimId: programmeDependencies.claimId,
+            dependentSurfaceType: programmeDependencies.dependentSurfaceType,
+            evidenceNodeId: programmeDependencies.evidenceNodeId,
+            verdictRevisionId: programmeDependencies.verdictRevisionId,
+            fieldPath: programmeDependencies.fieldPath,
+            impactLevel: programmeDependencies.impactLevel,
+          })
+          .from(programmeDependencies)
+          .where(
+            and(
+              eq(programmeDependencies.programmeId, selected.id),
+              eq(programmeDependencies.dependentSurfaceType, 'PROGRAMME_SUMMARY'),
+              eq(programmeDependencies.verdictRevisionId, verdictRow.id),
+            ),
+          )
+          .orderBy(asc(programmeDependencies.fieldPath), asc(programmeDependencies.claimId))
+      : Promise.resolve([]),
   ])
+
+  const isProgrammeSummaryFieldPath = (value: string): value is ProgrammeSummaryFieldPath =>
+    (PROGRAMME_SUMMARY_FIELD_PATHS as readonly string[]).includes(value)
+  const summaryFieldDependencies: ProgrammeSummaryFieldDependencyReadModel[] =
+    summaryDependencyRows.map((row) => {
+      if (
+        !verdictRow ||
+        row.dependentSurfaceType !== 'PROGRAMME_SUMMARY' ||
+        row.evidenceNodeId !== null ||
+        row.verdictRevisionId !== verdictRow.id ||
+        !isProgrammeSummaryFieldPath(row.fieldPath)
+      ) {
+        throw new Error('The current programme summary contains an invalid claim dependency.')
+      }
+      return {
+        ...row,
+        dependentSurfaceType: 'PROGRAMME_SUMMARY',
+        evidenceNodeId: null,
+        verdictRevisionId: verdictRow.id,
+        fieldPath: row.fieldPath,
+      }
+    })
 
   const trialIds = trialBundleRows.map((row) => row.trialId)
   const nodeIds = nodeBundleRows.map((row) => row.nodeId)
@@ -302,6 +358,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
 
   const claimIds = uniqueSorted([
     ...verdictClaimRows.map((row) => row.claimId),
+    ...summaryFieldDependencies.map((row) => row.claimId),
     ...nodeLinkRows.map((row) => row.claimId),
     ...interpretabilityLinkRows.map((row) => row.claimId),
     ...(publicPresentation?.mechanismSteps.flatMap((step) =>
@@ -499,6 +556,8 @@ export async function getProgrammeEvidenceByMedicineSlug(
     outcomeType: row.outcomeType,
     numericValue: row.numericValue,
     numericUnit: row.numericUnit,
+    comparatorValue: row.comparatorValue,
+    comparatorGroup: row.comparatorGroup,
     uncertaintyInterval: row.uncertaintyInterval,
     direction: row.direction,
     timepoint: row.timepoint,
@@ -636,6 +695,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
     reviewNote: row.reviewNote,
     reviewedAt: row.reviewedAt.toISOString(),
   }))
+  const independentReviewCount = countDistinctIndependentReviewers(verdictReviewRows)
 
   const verdict: PublishedProgrammeVerdictReadModel | null = verdictRow
     ? {
@@ -671,6 +731,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
         confidenceExplanation: verdictRow.confidenceExplanation,
         conditionsThatWouldChangeVerdict: verdictRow.conditionsThatWouldChangeVerdict,
         authorName: verdictRow.authorName,
+        ...(verdictAuthorHandle ? { authorHandle: verdictAuthorHandle } : {}),
         conflictsOfInterest: verdictRow.conflictsOfInterest,
         engineVersion: requiredText(
           verdictRow.engineVersion,
@@ -686,7 +747,12 @@ export async function getProgrammeEvidenceByMedicineSlug(
           verdictRow.publishedAt,
           'programme_verdict_revisions.published_at',
         ),
+        independentReviewCount,
         reviewers,
+        claimRelationships: verdictClaimRows.map((row) => ({
+          claimId: row.claimId,
+          relationship: row.relationship,
+        })),
         supportingClaimIds: verdictClaimRows
           .filter((row) => row.relationship === 'SUPPORTING')
           .map((row) => row.claimId),
@@ -735,6 +801,7 @@ export async function getProgrammeEvidenceByMedicineSlug(
       claims: publishedClaims,
       evidenceNodes: publishedNodes,
       verdict,
+      summaryFieldDependencies,
       presentation: publicPresentation
         ? {
             schemaVersion: publicPresentation.schemaVersion,

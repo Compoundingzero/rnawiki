@@ -46,6 +46,53 @@ describe('How this works copy contract', () => {
     }
     expect(normalizedSource).toContain('supports the statement, contradicts it, or adds context')
     expect(normalizedSource).toContain('a human reviewer’s interpretation')
+    expect(normalizedSource).toContain(
+      'does not automatically fetch or verify a web page merely because a contributor entered its address',
+    )
+    expect(normalizedSource).not.toContain('broken links')
+  })
+
+  it('describes one attributed account without inventing direct edit or publication access', () => {
+    for (const phrase of [
+      'RNAWiki has one account type',
+      'Every signed-in account can post a community note',
+      'permissions on the same account, not different kinds of login',
+      'takes the author’s account identity and name from the signed-in session',
+      'A note or edit request cannot supply a different author',
+      'become unchangeable when submitted',
+      'show the contributor in the public review queue or history',
+      'RNA Intelligence does not check or fact-check it',
+      'signing in never gives anyone direct publication access',
+    ]) {
+      expect(normalizedSource).toContain(phrase)
+    }
+    for (const removedClaim of [
+      'physician badge',
+      'verified physician',
+      'medical licence',
+      'National Provider Identifier',
+    ]) {
+      expect(normalizedSource.toLowerCase()).not.toContain(removedClaim.toLowerCase())
+    }
+  })
+
+  it('separates proposal checks, full RNA Intelligence and human materialization', () => {
+    for (const phrase of [
+      'A contributor proposes a sourced change',
+      'Saving or submitting a proposal changes nothing public',
+      'does not add a fact to the medicine record',
+      'A contributor draft first receives smaller checks',
+      'do not run the full evidence engine',
+      'The complete checks run again from locked database rows during publication',
+      'a steward or administrator can ask RNAWiki to build a complete replacement',
+      'Two scientifically qualified reviewers sign that exact replacement before it can be published',
+    ]) {
+      expect(normalizedSource).toContain(phrase)
+    }
+    expect(normalizedSource).not.toContain('Someone adds a fact and its source')
+    expect(normalizedSource).not.toContain(
+      'If they accept a change to a public conclusion, RNAWiki builds a complete replacement',
+    )
   })
 
   it('explains rollout and current monitoring limits instead of presenting target architecture as universal', () => {
@@ -146,7 +193,14 @@ describe('How this works copy contract', () => {
     expect(source).not.toContain('provenance')
     expect(source).not.toContain('canonical graph')
     expect(source).not.toContain('atomic publication')
-    expect(normalizedSource).toContain('US National Provider Identifier (NPI)')
     expect(normalizedSource).toContain('The original internet address is never stored')
+  })
+
+  it('documents stored source checks without claiming remote-link verification', () => {
+    expect(normalizedIntelligenceDoc).toContain('malformed or internally unresolved source records')
+    expect(normalizedIntelligenceDoc).toContain(
+      'entering a web address does not make RNA Intelligence fetch or verify that page',
+    )
+    expect(normalizedIntelligenceDoc).not.toContain('broken source links')
   })
 })

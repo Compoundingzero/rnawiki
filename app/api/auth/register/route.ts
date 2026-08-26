@@ -1,14 +1,12 @@
 // POST /api/auth/register — create an account and sign it in.
 //
 // WHAT AN ACCOUNT IS BORN WITH, and none of it is negotiable by the request body:
-//   verificationState = 'none'   (the physician badge is earned from a steward, never granted)
-//   isDoctor          = false
 //   isAdmin           = false
 //   trustTier         = 'new'    (every first edit waits for a person)
 //   acceptedEditCount = 0
 // `signUpSchema` in lib/auth.ts has no field for any of them, and zod strips what it was not asked
-// for, so a body claiming `{ verificationState: 'verified', isAdmin: true }` is not rejected — it
-// is never read. The database column defaults do the rest.
+// for, so a body claiming `{ isAdmin: true }` is not rejected — it is never read. The database
+// column defaults do the rest.
 
 import { hashPassword, signUpSchema } from '@/lib/auth'
 import { slugify, uniqueSlug } from '@/lib/ids'

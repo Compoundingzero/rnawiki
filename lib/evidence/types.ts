@@ -441,6 +441,10 @@ export interface PublishedClaimReadModel {
   outcomeType: string | null
   numericValue: string | null
   numericUnit: string | null
+  /** Exact comparator result stored on this published claim; never parsed from prose. */
+  comparatorValue: string | null
+  /** Exact group label paired with comparatorValue. */
+  comparatorGroup: string | null
   uncertaintyInterval: string | null
   direction: ClaimDirection
   timepoint: string | null
@@ -463,6 +467,11 @@ export interface PublishedEvidenceNodeReadModel {
   supportingClaimIds: string[]
   contradictingClaimIds: string[]
   qualifyingClaimIds: string[]
+}
+
+export interface ProgrammeVerdictClaimRelationshipReadModel {
+  claimId: string
+  relationship: VerdictClaimRelationship
 }
 
 export interface PublishedProgrammeVerdictReadModel {
@@ -489,13 +498,19 @@ export interface PublishedProgrammeVerdictReadModel {
   confidenceExplanation: string | null
   conditionsThatWouldChangeVerdict: string[]
   authorName: string
+  /** Current public profile handle; omitted when the contributing account no longer exists. */
+  authorHandle?: string
   conflictsOfInterest: string | null
   engineVersion: string
   inputDigestAlgorithm: string
   inputDigest: string
   reviewedAt: string
   publishedAt: string
+  /** Distinct independent reviewer accounts; no account identifiers leave the server query. */
+  independentReviewCount: number
   reviewers: ProgrammeVerdictReviewReadModel[]
+  /** Every immutable claim -> published-verdict edge, including non-supporting relationships. */
+  claimRelationships: ProgrammeVerdictClaimRelationshipReadModel[]
   supportingClaimIds: string[]
   contradictoryClaimIds: string[]
 }
@@ -521,6 +536,21 @@ export interface ProgrammeDependencyReadModel {
   verdictRevisionId: string | null
   fieldPath: string
   impactLevel: ReviewImpactLevel
+}
+
+/**
+ * Exact claim dependency for one field in the current published 10-second programme summary.
+ * Keeping the discriminants narrow prevents callers from treating verdict-wide claims as support
+ * for a specific visible answer.
+ */
+export interface ProgrammeSummaryFieldDependencyReadModel extends Omit<
+  ProgrammeDependencyReadModel,
+  'dependentSurfaceType' | 'evidenceNodeId' | 'verdictRevisionId' | 'fieldPath'
+> {
+  dependentSurfaceType: 'PROGRAMME_SUMMARY'
+  evidenceNodeId: null
+  verdictRevisionId: string
+  fieldPath: ProgrammeSummaryFieldPath
 }
 
 export interface ProgrammeFreshnessReadModel {
@@ -610,6 +640,8 @@ export interface ProgrammeEvidenceReadModel {
     claims: PublishedClaimReadModel[]
     evidenceNodes: PublishedEvidenceNodeReadModel[]
     verdict: PublishedProgrammeVerdictReadModel | null
+    /** Current-verdict, field-specific dependencies only; never a verdict-wide source shortcut. */
+    summaryFieldDependencies: ProgrammeSummaryFieldDependencyReadModel[]
     presentation: ProgrammePresentationReadModel | null
     publicationHistory: ProgrammePresentationPublicationReadModel[]
     freshness: ProgrammeFreshnessReadModel[]

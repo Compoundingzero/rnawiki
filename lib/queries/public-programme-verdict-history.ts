@@ -16,6 +16,7 @@ import {
   programmeVerdictReviews,
   programmeVerdictRevisions,
   programmeVerdictScopeSnapshots,
+  users,
 } from '@/db/schema'
 import type {
   EvidenceReviewStatus,
@@ -94,6 +95,8 @@ export interface PublicProgrammeVerdictHistoryRevision {
   confidence: VerdictConfidence
   confidenceExplanation: string | null
   authorName: string
+  /** Current public profile handle; omitted when only the immutable author-name snapshot remains. */
+  authorHandle?: string
   authorConflictsOfInterest: string | null
   engineVersion: string | null
   inputDigestAlgorithm: string
@@ -226,6 +229,7 @@ export async function getPublicProgrammeVerdictHistory(
       confidence: programmeVerdictRevisions.confidence,
       confidenceExplanation: programmeVerdictRevisions.confidenceExplanation,
       authorName: programmeVerdictRevisions.authorName,
+      authorHandle: users.handle,
       authorConflictsOfInterest: programmeVerdictRevisions.conflictsOfInterest,
       engineVersion: programmeVerdictRevisions.engineVersion,
       inputDigestAlgorithm: programmeVerdictRevisions.inputDigestAlgorithm,
@@ -236,6 +240,7 @@ export async function getPublicProgrammeVerdictHistory(
       supersededAt: programmeVerdictRevisions.supersededAt,
     })
     .from(programmeVerdictRevisions)
+    .leftJoin(users, eq(users.id, programmeVerdictRevisions.authorUserId))
     .where(
       and(
         eq(programmeVerdictRevisions.programmeId, identity.programmeId),
@@ -379,6 +384,7 @@ export async function getPublicProgrammeVerdictHistory(
       confidence: row.confidence,
       confidenceExplanation: row.confidenceExplanation,
       authorName: row.authorName,
+      ...(row.authorHandle ? { authorHandle: row.authorHandle } : {}),
       authorConflictsOfInterest: row.authorConflictsOfInterest,
       engineVersion: row.engineVersion,
       inputDigestAlgorithm: row.inputDigestAlgorithm,

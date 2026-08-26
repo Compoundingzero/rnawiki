@@ -17,6 +17,7 @@ import {
   decidePhysicianVerification,
   getContributorProfile,
   getPhysicianVerificationRequest,
+  listIndexableContributorProfilesForSitemap,
   listPhysicianVerificationRequests,
   submitDoctorVerification,
 } from '@/lib/queries/users'
@@ -401,6 +402,11 @@ describe.skipIf(!runsInDisposableDatabase)('private operational review workflows
       rejected: 0,
       trustTier: 'new',
     })
+    const sitemapProfile = (await listIndexableContributorProfilesForSitemap()).find(
+      (profile) => profile.handle === contributionAuthor.handle,
+    )
+    expect(sitemapProfile).toMatchObject({ handle: contributionAuthor.handle })
+    expect(sitemapProfile?.lastModified).toBeInstanceOf(Date)
     await createReviewedProposal('changes', 'CHANGES_REQUESTED')
     expect(await counterValues(contributionAuthor.id)).toEqual({
       accepted: 1,

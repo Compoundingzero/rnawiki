@@ -10,6 +10,7 @@ import { AppShell } from '@/components/AppShell'
 import { listRevisionsForDrug } from '@/lib/queries/revisions'
 import { getCurrentUser } from '@/lib/session'
 import { resolveSafeSourceLocator } from '@/lib/source-locator'
+import { pageRobotsMetadata } from '@/lib/seo/deployment'
 import { TIER_LABEL } from '@/lib/trust'
 import {
   LEGACY_REVISION_HISTORY_PAGE_SIZE,
@@ -244,12 +245,18 @@ function RevisionCard({ revision, handle }: { revision: Revision; handle: string
 export async function generateMetadata({ params }: HistoryPageProps): Promise<Metadata> {
   const { slug } = await params
   const drug = await loadDrugIdentity(slug)
-  if (!drug) return { title: 'Revision history', robots: { index: false, follow: true } }
+  if (!drug) {
+    return {
+      title: 'Revision history',
+      robots: pageRobotsMetadata({ index: false, follow: true }),
+    }
+  }
 
   return {
     title: `Revision history — ${drug.name}`,
     description: `Past edits for ${drug.name}, including who submitted each change, what was suggested or published, and what reviewers decided.`,
     alternates: { canonical: `/d/${drug.slug}/history` },
+    robots: pageRobotsMetadata({ index: false, follow: true }),
   }
 }
 

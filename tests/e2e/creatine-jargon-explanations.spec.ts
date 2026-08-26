@@ -101,17 +101,17 @@ test('keeps purpose, finding, and the biggest limitation plain while preserving 
   await expect(firstRead.getByRole('button')).toHaveCount(0)
   await expect(firstRead.locator('[role="tooltip"]')).toHaveCount(0)
 
-  const limitation = page.getByTestId('main-limitation-card')
-  await expect(limitation).toContainText('What this does not show')
+  const limitation = page.getByTestId('ten-second-limit')
+  await expect(limitation).toContainText('Main limit')
   await expect(limitation).toContainText(installed.expectedLimit)
   await expect(limitation.getByRole('button')).toHaveCount(0)
 
+  const evidence = await openAdvancedEvidence(page)
   const exactCopy = await openProfessionalWording(page)
   await expect(exactCopy).toHaveText(installed.exactVerdict)
   await expect(exactCopy.getByRole('button')).toHaveCount(0)
   await expect(exactCopy.locator('[role="tooltip"]')).toHaveCount(0)
 
-  const evidence = await openAdvancedEvidence(page)
   await expect(evidence).toContainText('Creatine was measured inside muscle')
   await expect(evidence).toContainText('The brain-protection claim is not established here')
   await expect(evidence).toContainText('Playwright disposable-database fixture')
@@ -130,6 +130,14 @@ test('keeps the static summary and professional detail contained at 375px', asyn
     await expect(firstRead.locator('[role="tooltip"]')).toHaveCount(0)
     await expectNoHorizontalOverflow(mobile.page)
 
+    const advancedControl = mobile.page.locator(
+      'summary[aria-controls="advanced-evidence-content"]',
+    )
+    await advancedControl.tap()
+    await expect(advancedControl).toHaveAttribute('aria-expanded', 'true')
+    const evidence = mobile.page.locator('#advanced-evidence-content')
+    await expect(evidence).toBeVisible()
+
     const professionalSummary = mobile.page.getByText('Read the full research wording', {
       exact: true,
     })
@@ -139,7 +147,6 @@ test('keeps the static summary and professional detail contained at 375px', asyn
     await expect(exactCopy.getByRole('button')).toHaveCount(0)
     await expectNoHorizontalOverflow(mobile.page)
 
-    const evidence = await openAdvancedEvidence(mobile.page)
     await expect(evidence).toContainText('Playwright disposable-database fixture')
     await expectNoHorizontalOverflow(mobile.page)
   } finally {

@@ -2,8 +2,7 @@
 //
 // iron-session stores the whole session inside an encrypted, signed cookie. Only the user id goes
 // in it: name, tier and — above all — verification state are read from the database on every
-// request, so a revoked credential or a demoted account takes effect immediately instead of when
-// the cookie happens to expire.
+// request, so a demoted account takes effect immediately instead of when the cookie expires.
 
 import { getIronSession, type IronSession, type SessionOptions } from 'iron-session'
 import { cookies } from 'next/headers'
@@ -74,16 +73,9 @@ export function toCommentUser(row: UserRow): CommentUser {
     id: row.id,
     name: row.name,
     email: row.email,
-    isDoctor: row.verificationState === 'verified',
-    // Never serialize a licence or NPI into the client payload.
-    hasCredentialOnFile: Boolean(row.medicalLicenseOrNpi),
-    medicalSpecialty: row.medicalSpecialty ?? undefined,
-    institution: row.institution ?? undefined,
-    verifiedAt: row.verifiedAt?.toISOString(),
     handle: row.handle,
     orcid: row.orcid ?? undefined,
     trustTier: row.trustTier,
-    verificationState: row.verificationState,
     acceptedEditCount: row.acceptedEditCount,
     noteCount: row.noteCount,
     isAdmin: row.isAdmin,

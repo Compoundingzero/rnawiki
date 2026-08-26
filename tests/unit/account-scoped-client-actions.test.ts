@@ -24,7 +24,8 @@ describe('shared-browser account boundaries', () => {
     expect(appContext).toContain('refreshRequestRef.current.controller?.abort()')
     expect(appContext).toContain('if (!res.ok)')
     expect(appContext).toContain('return undefined')
-    expect(appContext).toContain('setCurrentUser(data.user)')
+    expect(appContext).toContain('setStoredCurrentUser(data.user)')
+    expect(appContext).toContain('setIsSessionReconciled(false)')
   })
 
   it('rejects a delayed response after the signed-in account or generation changes', () => {
@@ -83,8 +84,8 @@ describe('shared-browser account boundaries', () => {
   })
 
   it('prevents late modal requests and timers from changing a later account or modal', () => {
-    const auth = source('components/DoctorVerificationModal.tsx')
-    expect(auth).toContain('isOpen && (formScopeIsCurrent || reconciliationKind !== null)')
+    const auth = source('components/AuthModal.tsx')
+    expect(auth).toContain('isOpen && (formScopeIsCurrent || reconciliationRequired)')
     expect(auth).toContain("openModalRef.current !== 'auth'")
     expect(auth).toContain('accountIdRef.current !== accountId')
     expect(auth).toContain('requestRef.current.controller?.abort()')
@@ -93,8 +94,8 @@ describe('shared-browser account boundaries', () => {
     expect(auth).toContain('const reconciledUser = await refreshUser()')
     expect(auth).toContain('inert={isSubmitting ? true : undefined}')
     expect(auth).toContain('closeDisabled={interactionLocked}')
-    expect(auth).toContain("setReconciliationKind('account')")
-    expect(auth).toContain('Do not submit it again until the account check succeeds')
+    expect(auth).toContain('setReconciliationRequired(true)')
+    expect(auth).toContain('Account actions stay locked until the check succeeds')
 
     const feedback = source('components/FeedbackModal.tsx')
     expect(feedback).toContain("openModalRef.current !== 'feedback'")
@@ -103,7 +104,7 @@ describe('shared-browser account boundaries', () => {
     expect(feedback).toContain('closeDisabled={isSending}')
 
     const account = source('components/AccountModal.tsx')
-    expect(account).toContain('savedOwnerUserId === userId')
+    expect(account).toContain('scopeGenerationRef.current !== scopeGeneration')
     expect(account).toContain('userIdRef.current !== userId')
     expect(account).toContain("openModalRef.current !== 'account'")
     expect(account).toContain('signOutControllerRef.current?.abort()')
@@ -138,12 +139,7 @@ describe('shared-browser account boundaries', () => {
     )
   })
 
-  it('states the identity-only and programme review paths without overclaiming', () => {
-    const guide = source('components/QuickGuideModal.tsx')
-    expect(guide).toContain('Structured programme corrections and challenges go to two independent')
-    expect(guide).toContain('medicine-name or trade-name correction uses one independent')
-    expect(guide).not.toContain('Two people review a submitted correction independently')
-
+  it('states the profile review path without overclaiming', () => {
     const profile = source('app/u/[handle]/page.tsx')
     const normalizedProfile = profile.replace(/\s+/g, ' ')
     expect(normalizedProfile).toContain('agreement resolves it, while disagreement')

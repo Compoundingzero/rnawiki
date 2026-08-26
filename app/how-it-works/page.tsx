@@ -145,9 +145,11 @@ export default async function HowItWorksPage() {
           </p>
           <p className="max-w-xl text-sm font-medium leading-relaxed text-[#1D1D1F]">
             RNA Intelligence 2.0 is software made from fixed rules. It can find missing sources,
-            broken links and conflicting records. It does not write medicine facts or decide what
-            the evidence means. Version 2.1 adds checks for the mechanism map and timeline shown on
-            newly reviewed pages for one specific use.
+            malformed or unresolved source records and conflicting evidence. It does not
+            automatically fetch or verify a web page merely because a contributor entered its
+            address. It does not write medicine facts or decide what the evidence means. Version 2.1
+            adds checks for the mechanism map and timeline shown on newly reviewed pages for one
+            specific use.
           </p>
         </header>
 
@@ -190,16 +192,18 @@ export default async function HowItWorksPage() {
               <StoryStep
                 number={1}
                 icon={<Link2 className="h-4 w-4" />}
-                title="Someone adds a fact and its source"
+                title="A contributor proposes a sourced change"
               >
                 <p>
-                  A contributor records one exact statement from an identifiable source, such as a
-                  trial registry, research paper or regulator. The statement and source are stored
-                  separately. Each link says whether that saved source version supports the
-                  statement, contradicts it, or adds context.
+                  One RNAWiki account can post community notes and submit the edit proposals that a
+                  page supports. On a page with research for one specific use, a contributor chooses
+                  one exact field, supplies the proposed replacement, identifies a source and
+                  explains the change. On a general medicine page without that research structure,
+                  the smaller edit form accepts only a medicine-name or trade-name correction.
                 </p>
                 <p className="font-medium text-[#1D1D1F]">
-                  A fact without a source cannot support the evidence record.
+                  Saving or submitting a proposal changes nothing public. It creates attributed
+                  review work; it does not add a fact to the medicine record.
                 </p>
               </StoryStep>
 
@@ -209,10 +213,17 @@ export default async function HowItWorksPage() {
                 title="Fixed rules check the record"
               >
                 <p>
-                  Before a programme conclusion can be reviewed, RNA Intelligence checks that the
-                  medicine, intended use, trial, statement, source and dates belong together. It
-                  looks for missing support, impossible dates, unit errors and records that disagree
-                  with one another.
+                  A contributor draft first receives smaller checks for its selected field, source,
+                  intended use, proposed value and conflict-of-interest statement. Those checks do
+                  not run the full evidence engine or decide whether the proposed medical wording is
+                  true.
+                </p>
+                <p>
+                  Before a complete programme conclusion can be reviewed for publication, RNA
+                  Intelligence checks that the medicine, intended use, trial, statement, source and
+                  dates belong together. It looks for missing support, impossible dates, unit errors
+                  and records that disagree with one another. The complete checks run again from
+                  locked database rows during publication.
                 </p>
                 <p>
                   With the same software version, the same stored record and reference date produce
@@ -243,14 +254,17 @@ export default async function HowItWorksPage() {
                 </p>
                 <p>
                   Submitted corrections and challenges first use two independent reviewers. If they
-                  accept a change to a public conclusion, RNAWiki builds a complete replacement and
-                  runs all of the evidence checks again. Two scientifically qualified reviewers then
-                  sign that exact replacement.
+                  accept a change to a public conclusion, a steward or administrator can ask RNAWiki
+                  to build a complete replacement from the accepted proposal and the current public
+                  version. RNAWiki then runs all of the evidence checks again. Two scientifically
+                  qualified reviewers sign that exact replacement before it can be published.
                 </p>
                 <p>
-                  RNAWiki separately records which scientific areas a steward is qualified to
-                  review. If the two reviewers disagree, a different qualified steward makes the
-                  final decision and explains it. The audit record calls this adjudication.
+                  RNAWiki separately records which scientific areas each conclusion reviewer is
+                  qualified to review. A different steward or administrator grants or removes that
+                  qualification; people cannot grant it to themselves. If the two reviewers
+                  disagree, a different qualified steward makes the final decision and explains it.
+                  The audit record calls this adjudication.
                 </p>
                 <p>
                   Accepting a proposal does not by itself rewrite the public page. If both reviewers
@@ -413,19 +427,29 @@ export default async function HowItWorksPage() {
           </Card>
         </Section>
 
-        <Section
-          eyebrow="Account and report safeguards"
-          title="Badges, contribution counts and private feedback mean different things"
-        >
+        <Section eyebrow="One account, permanent attribution" title="Comment and propose edits">
           <Card>
             <div className="space-y-3 text-xs leading-relaxed text-[#424245] sm:text-sm">
               <p>
-                A physician badge means that a different steward or administrator reviewed one saved
-                credential submission and recorded a decision with a reason. The professional email
-                and licence or US National Provider Identifier (NPI) number stay in the private
-                review record; they are not shown on the public profile. The badge does not qualify
-                someone to review a scientific conclusion. That requires a separate, current
-                qualification for the relevant area.
+                RNAWiki has one account type. Every signed-in account can post a community note and
+                submit the sourced correction or challenge available on a medicine page. Editorial
+                standing and scientific-review qualifications control who may take part in review or
+                complete publication later; they are permissions on the same account, not different
+                kinds of login.
+              </p>
+              <p>
+                The server takes the author’s account identity and name from the signed-in session.
+                A note or edit request cannot supply a different author. Community notes save the
+                account attribution with the text. Edit proposals save the account identity, become
+                unchangeable when submitted and show the contributor in the public review queue or
+                history.
+              </p>
+              <p>
+                A community note appears as reader commentary, separate from the evidence record.
+                RNA Intelligence does not check or fact-check it, and posting it cannot change the
+                reviewed answer. An edit proposal follows the source, software-check and
+                human-review paths described above; signing in never gives anyone direct publication
+                access.
               </p>
               <p>
                 “Accepted contributions” counts programme proposals that reached the final{' '}
@@ -559,7 +583,10 @@ export default async function HowItWorksPage() {
                   <h3 className="text-sm font-extrabold">It can check</h3>
                 </div>
                 <ul className="list-disc space-y-2 pl-4 text-xs leading-relaxed text-[#424245] marker:text-[#6E6E73] sm:text-sm">
-                  <li>molecular or sequence structure, where applicable</li>
+                  <li>
+                    during ingestion, a narrower checker can validate recorded molecular or sequence
+                    structure where applicable
+                  </li>
                   <li>whether the medicine, intended use and trial match</li>
                   <li>whether each statement has the required source</li>
                   <li>units, dates and trial details that cannot all be true</li>

@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 
 import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
 import { AppProvider } from '@/components/app-context'
+import type { DossierDynamicModulesView } from '@/lib/dossier-dynamic-modules'
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
 import {
   buildLegacyReaderSummary,
@@ -83,6 +84,20 @@ function renderDossier(dossier: MedicineDossierViewModel): string {
   )
 }
 
+function dynamicModules(overrides: Partial<DossierDynamicModulesView>): DossierDynamicModulesView {
+  const absent = { status: 'absent' as const, reason: 'not_recorded' as const }
+  return {
+    outcomeComparison: absent,
+    safety: absent,
+    pharmacokinetics: absent,
+    programmeFailure: absent,
+    productsAndForms: absent,
+    reportedCosts: absent,
+    bodyMap: absent,
+    ...overrides,
+  }
+}
+
 function markupFromTestId(html: string, testId: string, endMarker: string): string {
   const start = html.indexOf(`data-testid="${testId}"`)
   if (start === -1) throw new Error(`Missing data-testid=${testId}`)
@@ -119,6 +134,26 @@ function populatedMedicineRecord(): MedicineDossierViewModel['medicineRecord'] {
           href: 'https://example.test/prices',
         },
       ],
+      reports: [
+        {
+          kind: 'reported_production_cost',
+          value: 'A reported production-cost estimate',
+          source: {
+            label: 'Example public price file',
+            identifier: 'https://example.test/prices',
+            href: 'https://example.test/prices',
+          },
+        },
+        {
+          kind: 'reported_retail_or_list_price',
+          value: 'A very long reported price value that must wrap safely on a narrow screen',
+          source: {
+            label: 'Example public price file',
+            identifier: 'https://example.test/prices',
+            href: 'https://example.test/prices',
+          },
+        },
+      ],
     },
     alternativesSummary: 'The older record compares approaches used for the same broad goal.',
     conventionalAlternatives: [
@@ -128,6 +163,18 @@ function populatedMedicineRecord(): MedicineDossierViewModel['medicineRecord'] {
         comparison: 'It was studied in a different setting.',
         reportedCost: 'A reported older cost',
         tradeoffs: 'The older record describes different tradeoffs.',
+      },
+    ],
+    foodSupplementContext: [
+      {
+        name: 'Zinc-containing food entry',
+        recordedEvidenceLabel: 'Legacy evidence label B',
+        sourceStatus: 'not_linked',
+      },
+      {
+        name: 'Apple pectin entry',
+        recordedEvidenceLabel: 'Legacy evidence label A',
+        sourceStatus: 'not_linked',
       },
     ],
     commonQuestions: [
@@ -153,8 +200,6 @@ function populatedMedicineRecord(): MedicineDossierViewModel['medicineRecord'] {
         id: 'note-1',
         author: 'Example Clinician',
         role: 'Community member',
-        isVerifiedDoctor: true,
-        medicalSpecialty: 'Example specialty',
         date: '2026-08-20T00:00:00.000Z',
         content:
           'ThisCommunityCommentaryContainsAReallyLongUnbrokenTokenForMobileWrapping0123456789.',
@@ -169,7 +214,7 @@ describe('MedicineDossierV2 server markup', () => {
     const html = renderDossier(view())
 
     expect(html.match(/See how we know/g)).toHaveLength(1)
-    expect(html).toContain('<details class="group pt-1">')
+    expect(html).toContain('<details class="group pt-2">')
     expect(html).toContain('id="advanced-evidence-content"')
     expect(html).toContain('Behind the answer')
     expect(html).toContain('No reviewed plain-language answer has been published for this use')
@@ -195,8 +240,14 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).not.toMatch(/laboratory|synthesis instructions|protocol steps/i)
     expect(html).toContain('Suggest a correction')
     expect(html).not.toContain('Save medicine')
-    expect(html).toContain('data-testid="main-takeaway-card"')
-    expect(html).toContain('from-[#EAF4FF]')
+    expect(html).toContain('data-testid="ten-second-answer"')
+    expect(html.indexOf('data-testid="ten-second-answer"')).toBeLessThan(
+      html.indexOf('See how we know'),
+    )
+    expect(html).not.toContain('data-testid="dossier-local-navigation"')
+    expect(html.indexOf('See how we know')).toBeLessThan(html.indexOf('Behind the answer'))
+    expect(html).not.toContain('data-testid="main-takeaway-card"')
+    expect(html).not.toContain('from-[#EAF4FF]')
     expect(html).not.toContain('Challenge this answer')
     expect(html).toContain('What needs changing?')
     expect(html).toContain('Which use of this medicine does it apply to?')
@@ -204,6 +255,87 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('Where did you find this?')
     expect(html).toContain('Save draft')
     expect(html).toContain('Submit for review')
+  })
+
+  it('keeps source-bound safety and movement-through-body modules reachable on their own', () => {
+    const linkedSource = {
+      id: 'source-1',
+      label: 'Exact reviewed source',
+      href: 'https://example.test/exact-source',
+      freshness: 'current' as const,
+    }
+    const safetyHtml = renderDossier(
+      view({
+        sources: [linkedSource],
+        dynamicModules: dynamicModules({
+          safety: {
+            status: 'ready',
+            data: {
+              scope: 'selected_programme',
+              withheldFindingCount: 0,
+              findings: [
+                {
+                  id: 'safety-claim',
+                  statement: 'A reviewed safety finding.',
+                  claimNature: 'MEASURED',
+                  direction: 'UNKNOWN',
+                  sourceIds: ['source-1'],
+                  sourceClaimBindings: [
+                    {
+                      sourceId: 'source-1',
+                      claimId: 'safety-claim',
+                      relationship: 'SUPPORTS',
+                      statement: 'A reviewed safety finding.',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        }),
+      }),
+    )
+
+    expect(safetyHtml).toContain('id="study-measurements"')
+    expect(safetyHtml).toContain('id="selected-programme-safety"')
+
+    const pharmacokineticsHtml = renderDossier(
+      view({
+        sources: [linkedSource],
+        dynamicModules: dynamicModules({
+          pharmacokinetics: {
+            status: 'ready',
+            data: {
+              scope: 'selected_programme',
+              presentation: 'independent_findings',
+              chronology: 'not_established',
+              withheldFindingCount: 0,
+              findings: [
+                {
+                  id: 'pk-claim',
+                  statement: 'A reviewed movement-through-body finding.',
+                  timepoint: 'Stored time label',
+                  direction: 'UNKNOWN',
+                  sourceIds: ['source-1'],
+                  sourceClaimBindings: [
+                    {
+                      sourceId: 'source-1',
+                      claimId: 'pk-claim',
+                      relationship: 'SUPPORTS',
+                      statement: 'A reviewed movement-through-body finding.',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        }),
+      }),
+    )
+
+    expect(pharmacokineticsHtml).toContain('id="mechanism-map"')
+    expect(pharmacokineticsHtml).toContain('id="pharmacokinetics"')
+    expect(pharmacokineticsHtml).toContain('What happened after it was given?')
   })
 
   it('shows the reviewed narrative and a source-linked decision timeline for a published programme', () => {
@@ -273,6 +405,10 @@ describe('MedicineDossierV2 server markup', () => {
             freshness: 'current',
           },
         ],
+        review: {
+          reviewedAt: '2026-08-22T09:30:00.000Z',
+          historyHref: '/d/synthetic-medicine/programme/programme-a/history',
+        },
         conclusion: {
           publicLabel: 'A reviewed programme conclusion',
           professionalLabel: 'Synthetic clinical classification',
@@ -291,6 +427,9 @@ describe('MedicineDossierV2 server markup', () => {
           confidence: 'Moderate',
           conditionsThatWouldChangeVerdict: [],
           authorName: 'Synthetic Author',
+          authorHandle: 'synthetic-author',
+          conflictsOfInterest: 'A synthetic consultancy relationship was declared.',
+          independentReviewCount: 1,
           reviewers: [
             {
               id: 'reviewer-1',
@@ -307,24 +446,39 @@ describe('MedicineDossierV2 server markup', () => {
     )
 
     expect(html).not.toContain('What researchers hoped would happen')
-    expect(html).toContain('data-testid="first-read-mechanism"')
+    expect(html).not.toContain('data-testid="first-read-mechanism"')
+    expect(html).toContain('id="how-it-works"')
+    expect(html).toContain('id="who-was-studied"')
+    expect(html).toContain('id="review-history"')
+    expect(html).not.toContain('data-testid="published-trust-surface"')
+    const reviewDetails = markupFromTestId(html, 'conclusion-review-details', '</section>')
+    expect(reviewDetails).toContain('Who reviewed this answer?')
+    expect(reviewDetails).toContain('Synthetic Reviewer')
+    expect(reviewDetails).toContain('Synthetic Author')
+    expect(reviewDetails).toContain('@synthetic-author')
+    expect(reviewDetails).toContain('saved author name: Synthetic Author')
+    expect(reviewDetails).toContain('Conflicts of interest')
+    expect(reviewDetails).not.toContain('No conflicts')
+    expect(html).toContain('href="/d/synthetic-medicine/programme/programme-a/history"')
+    expect(html).toContain('See what changed on this page')
     expect(html).toContain('Researchers expected the medicine to lower a recorded target.')
     expect(html).not.toContain('What the reviewed evidence supports')
     expect(html).toContain('The reviewed study recorded a lower target.')
     expect(html).not.toContain('Why the reviewers reached this conclusion')
     expect(html).toContain('The linked measurement supports the limited programme conclusion.')
-    expect(html).toContain('Relevant review background:')
+    expect(html).toContain('RNAWiki review areas recorded for this decision:')
     expect(html).toContain(
-      'Synthetic Reviewer approved this conclusion independently on 21 August 2026.',
+      'Saved reviewer name: Synthetic Reviewer. This reviewer approved this conclusion independently on 21 August 2026.',
     )
     expect(html).toContain('aria-label="Conclusion review records"')
+    expect(html).toContain('href="/u/synthetic-author"')
     expect(html).not.toContain('aria-label="Independent conclusion reviewers"')
     expect(html).not.toContain('Synthetic Reviewer</span> · Approved')
     expect(html).toContain('How medicines work in people (clinical pharmacology)')
     expect(html).toContain('Medical statistics')
     expect(html).not.toContain('CLINICAL_PHARMACOLOGY')
     expect(html).not.toContain('BIOSTATISTICS')
-    expect(html).toContain('Researcher identity profile (ORCID) 0000-0001-2345-6789')
+    expect(html).toContain('ORCID supplied by this account: 0000-0001-2345-6789')
     expect(html).toContain('href="https://orcid.org/0000-0001-2345-6789"')
     expect(html).toContain('Events that changed what happened next')
     expect(html).toContain('data-testid="programme-decision-timeline"')
@@ -360,6 +514,46 @@ describe('MedicineDossierV2 server markup', () => {
     const publicationEvent = html.indexOf('RNAWiki published reviewed conclusion 1')
     const publicationEventEnd = html.indexOf('</li>', publicationEvent)
     expect(html.slice(publicationEvent, publicationEventEnd)).not.toContain('<a ')
+  })
+
+  it('keeps absent published trust facts unknown instead of fabricating reviewers, dates or conflicts', () => {
+    const historyHref = '/d/synthetic-medicine/programme/programme-a/history'
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        review: { historyHref },
+        conclusion: {
+          publicLabel: 'A reviewed programme conclusion',
+          professionalLabel: 'Synthetic clinical classification',
+          reason: 'A recorded reason.',
+          scope: {
+            indication: 'Synthetic indication',
+            population: 'Synthetic population',
+            doseExposure: 'Synthetic dose',
+            period: 'Synthetic period',
+            trials: 'No trial list recorded',
+            outcome: 'Synthetic outcome',
+          },
+          whatWasDisproven: [],
+          whatWasNotDisproven: [],
+          whatRemainsUnknown: [],
+          confidence: 'Unknown',
+          conditionsThatWouldChangeVerdict: [],
+          authorName: 'Recorded Author',
+          independentReviewCount: 0,
+          reviewers: [],
+        },
+      }),
+    )
+
+    const reviewDetails = markupFromTestId(html, 'conclusion-review-details', '</section>')
+    expect(reviewDetails).toContain('Recorded Author')
+    expect(reviewDetails).toContain('No public reviewer record is available on this page.')
+    expect(reviewDetails).not.toContain('Conflicts of interest')
+    expect(reviewDetails).not.toContain('No conflicts declared')
+    expect(reviewDetails).not.toContain('No conflicts of interest')
+    expect(html).toContain(`href="${historyHref}"`)
+    expect(html).not.toContain('data-testid="published-trust-surface"')
   })
 
   it('hides the whole timeline, including RNAWiki events, when no source event has an exact link', () => {
@@ -469,8 +663,8 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html.match(/data-testid="mechanism-stage-source-links"/g)).toHaveLength(3)
     expect(html).toContain('52.3 percentage points lower')
     expect(html).not.toContain('data-context-key=')
-    expect(html).toContain('lg:grid-cols-2')
-    expect(html).not.toContain('lg:grid-cols-3')
+    expect(html).toContain('aria-label="Ordered mechanism stages"')
+    expect(html).not.toMatch(/aria-label="Ordered mechanism stages"[^>]*grid-cols/)
     expect(html).toContain('This step was measured in people')
     expect(html).toContain('This step was measured only in laboratory or non-human work')
     expect(html).toContain('This step is still a prediction')
@@ -482,9 +676,7 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('Technical detail')
     expect(html).toContain('A stored technical uptake measurement.')
     expect(html).toContain('href="https://example.test/mechanism/source-1"')
-    expect(html).toContain(
-      'Adds context: This saved source adds context to the delivery statement.',
-    )
+    expect(html).toContain('Qualifies: This saved source adds context to the delivery statement.')
     expect(html).not.toContain('older steps have not been linked')
   })
 
@@ -578,16 +770,19 @@ describe('MedicineDossierV2 server markup', () => {
 
       expect(html).toContain('aria-controls="medicine-background-content"')
       expect(html).toContain('More about this medicine')
-      expect(html).toContain('General research background')
-      expect(html).toContain('Background and practical details')
-      expect(html).toContain('The health problem')
-      expect(html).toContain('Why this medicine is used or studied')
+      expect(html).toContain('General background about this medicine')
+      expect(html).toContain(
+        'This is general background. It may cover information beyond the selected use and is not part of the reviewed answer above.',
+      )
+      expect(html).toContain('The condition')
       expect(html).toContain('Who this information applies to')
       expect(html).toContain('What researchers or regulators wanted to find out')
       expect(html).toContain('Safety and how it is given')
-      expect(html).toContain('See side effects and how it is given')
+      expect(html).toContain(
+        'How it is given and the important safety information stored with this record.',
+      )
       expect(html).toContain('Technical delivery name')
-      expect(html).toContain('not personal medical advice or dosing instructions')
+      expect(html).toContain('not personal medical advice or new dosing instructions')
       expect(html).toContain('A recorded prefilled injection device')
       expect(html).toContain(
         'A healthcare professional gives the recorded dose under the skin on the saved schedule.',
@@ -598,19 +793,27 @@ describe('MedicineDossierV2 server markup', () => {
         ),
       ).toBeLessThan(html.indexOf('A recorded prefilled injection device'))
       expect(html).toContain('who should not receive another dose')
-      expect(html).toContain('Other approaches used for the same goal')
-      expect(html).toContain('not necessarily equivalent')
-      expect(html).toContain('not advice to begin, stop, or replace treatment')
-      expect(html).toContain('The alphabetical order is not a ranking')
-      expect(html).toContain('Questions people ask')
-      expect(html).toContain('not instructions for taking or changing treatment')
-      expect(html).toContain('Cost and practical context')
-      expect(html).toContain('Cost information from the sources')
+      expect(html).toContain('Other medical treatments for the same goal')
+      expect(html).toContain('does not mean they are equivalent')
+      expect(html).toContain('or that one should replace another')
+      expect(html).toContain('The list is alphabetical, not a ranking')
+      expect(html).toContain('Foods and supplements mentioned in this record')
+      expect(html).toContain('Apple pectin entry')
+      expect(html).toContain('Legacy evidence label A')
+      expect(html).toContain('Source not yet linked')
+      expect(html.indexOf('Apple pectin entry')).toBeLessThan(
+        html.indexOf('Zinc-containing food entry'),
+      )
+      expect(html).toContain('Common questions')
+      expect(html).toContain('not instructions for taking or changing')
+      expect(html).toContain('Cost information')
       expect(html).toContain('Example public price file')
       expect(html).toContain('href="https://example.test/prices"')
-      expect(html).toContain('Check the source wording before comparing figures')
+      expect(html).toContain('Check each source')
+      expect(html).toContain('date, place, exact product, and assumptions')
       expect(html).toContain('Technical identity')
-      expect(html).toContain('Medicine identity, not proof that it works')
+      expect(html).toContain('internally consistent')
+      expect(html).toContain('It does not show whether the medicine works or is safe')
       expect(html).toContain('Laboratory and manufacturing instructions are not displayed here')
       expect(html).toContain('Community commentary')
       expect(html).toContain('These are reader opinions. RNAWiki has not fact-checked them')
@@ -618,22 +821,18 @@ describe('MedicineDossierV2 server markup', () => {
       expect(html).toContain('Helpful · 2')
       expect(html).toContain('[overflow-wrap:anywhere]')
       expect(html).toContain('min-w-0')
-      expect(html).not.toMatch(/natural food|home remedy|daily use|synthesis step|reagents/i)
+      expect(html).not.toMatch(/home remedy|daily use|synthesis step|reagents/i)
+      expect(html).not.toContain('A reported older cost')
 
       const advancedIndex = html.indexOf('id="advanced-evidence-content"')
       const backgroundIndex = html.indexOf('aria-controls="medicine-background-content"')
+      const utilitiesIndex = html.indexOf('id="dossier-utilities-heading"')
       const communityIndex = html.indexOf('id="community-commentary"')
       expect(advancedIndex).toBeGreaterThanOrEqual(0)
       expect(backgroundIndex).toBeGreaterThan(advancedIndex)
-      expect(communityIndex).toBeGreaterThan(backgroundIndex)
-      expect(html).toMatch(/<h2[^>]*>Background and practical details<\/h2>/)
-      expect(html).toMatch(/<h3[^>]*>Safety and how it is given<\/h3>/)
-
-      if (bindingState === 'legacy_record') {
-        expect(html).toContain('It is background, not a reviewed answer for one specific use.')
-      } else {
-        expect(html).toContain('It provides context and is not part of the reviewed answer.')
-      }
+      expect(utilitiesIndex).toBeGreaterThan(backgroundIndex)
+      expect(communityIndex).toBeGreaterThan(utilitiesIndex)
+      expect(html).toMatch(/<h2[^>]*>General background about this medicine<\/h2>/)
     },
   )
 
@@ -654,12 +853,12 @@ describe('MedicineDossierV2 server markup', () => {
     )
 
     expect(html).toContain('More about this medicine')
-    expect(html).toContain('<details class="group/safety">')
+    expect(html).toContain('<details id="safety-and-administration"')
     expect(html).toContain('An exact saved administration schedule.')
     expect(html).toContain('An exact saved serious-risk, common-effect, and ')
     expect(html).toContain('contraindication')
     expect(html).not.toContain('data-context-key=')
-    expect(html).toContain('not personal medical advice or dosing instructions')
+    expect(html).toContain('not personal medical advice or new dosing instructions')
     expect(html.indexOf('An exact saved administration schedule.')).toBeGreaterThan(
       html.indexOf('aria-controls="medicine-background-content"'),
     )
@@ -687,13 +886,17 @@ describe('MedicineDossierV2 server markup', () => {
     expect(delivery).not.toContain('data-context-key=')
   })
 
-  it('shows a direct warning when general research pricing has no stored citation', () => {
+  it('hides general research pricing when no stored citation is available', () => {
     const medicineRecord = populatedMedicineRecord()
-    medicineRecord.pricing = { reportedRetailOrListPrice: 'An older reported figure', sources: [] }
+    medicineRecord.pricing = {
+      reportedRetailOrListPrice: 'An older reported figure',
+      sources: [{ label: 'A nearby but unbound source' }],
+      reports: [],
+    }
     const html = renderDossier(view({ medicineRecord }))
 
-    expect(html).toContain('No separate source link is available for these figures')
-    expect(html).toContain('cannot be checked from this note alone')
+    expect(html).not.toContain('id="cost-context"')
+    expect(html).not.toContain('An older reported figure')
   })
 
   it.each([
@@ -746,6 +949,7 @@ describe('MedicineDossierV2 server markup', () => {
               {
                 id: 'claim-detail-1',
                 nature: 'measured',
+                nodeRelationships: ['SUPPORTS', 'QUALIFIES'],
                 text: 'The treatment group recorded a lower laboratory measurement.',
                 technicalText: 'A stored technical description.',
                 population: 'Adults in the linked study',
@@ -908,6 +1112,8 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('Estimated count:')
     expect(html).toContain('Medicine or treatment group')
     expect(html).toContain('Structured treatment')
+    expect(html).toContain('Relationship to this step:')
+    expect(html).toContain('Supports · Qualifies')
     expect(html).toContain('Comparison group')
     expect(html).toContain('Placebo')
     expect(html).toContain('How it was given')
@@ -1054,6 +1260,178 @@ describe('MedicineDossierV2 server markup', () => {
     expect(exactStart).toBeGreaterThanOrEqual(0)
     expect(exact).toContain(exactText)
     expect(exact).not.toContain('button')
+  })
+
+  it('renders numbered adjacent sources only from exact summary-field bindings', () => {
+    const readerSummary = buildPublishedProgrammeReaderSummary({
+      medicineName: 'Synthetic Medicine',
+      modality: 'Small Molecule',
+      selectedUse: 'A synthetic use',
+      exactText: 'The reviewed answer records one finding and one limitation.',
+      bestSupportedFinding: 'After 12 weeks, symptoms improved by 20% compared with placebo.',
+      mainUncertainty: 'The study did not show whether the improvement lasted beyond 12 weeks.',
+    })
+    const sources: MedicineDossierViewModel['sources'] = [
+      {
+        id: 'snapshot-finding',
+        label: 'Exact finding source',
+        href: 'https://example.test/finding',
+        identifier: 'PMID:111',
+        freshness: 'current',
+      },
+      {
+        id: 'snapshot-limitation',
+        label: 'Exact limitation source',
+        href: 'https://example.test/limitation',
+        identifier: 'NCT00000002',
+        freshness: 'current',
+      },
+      {
+        id: 'snapshot-unrelated',
+        label: 'Verdict-wide source that is not field-linked',
+        href: 'https://example.test/unrelated',
+        freshness: 'current',
+      },
+      {
+        id: 'snapshot-mechanism',
+        label: 'Exact mechanism source',
+        href: 'https://example.test/mechanism',
+        identifier: 'DOI:10.1000/example',
+        freshness: 'current',
+      },
+    ]
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        readerSummary,
+        mechanismSummary: { change: 'The reviewed mechanism changes a recorded pathway.' },
+        sources,
+        summaryEvidence: {
+          'summary.plainMechanism': {
+            fieldPath: 'summary.plainMechanism',
+            claimIds: ['claim-mechanism'],
+            sourceIds: ['snapshot-mechanism'],
+            verdictClaimBindings: [{ claimId: 'claim-mechanism', relationship: 'SUPPORTING' }],
+            sourceClaimBindings: [
+              {
+                sourceId: 'snapshot-mechanism',
+                claimId: 'claim-mechanism',
+                relationship: 'QUALIFIES',
+                statement: 'The exact mechanism claim qualifies the reviewed mechanism.',
+              },
+            ],
+          },
+          'summary.bestSupportedFinding': {
+            fieldPath: 'summary.bestSupportedFinding',
+            claimIds: ['claim-finding'],
+            sourceIds: ['snapshot-finding'],
+            verdictClaimBindings: [{ claimId: 'claim-finding', relationship: 'SUPPORTING' }],
+            sourceClaimBindings: [
+              {
+                sourceId: 'snapshot-finding',
+                claimId: 'claim-finding',
+                relationship: 'SUPPORTS',
+                statement: 'The exact trial result supports the reviewed finding.',
+              },
+            ],
+          },
+          'summary.mainLimitation': {
+            fieldPath: 'summary.mainLimitation',
+            claimIds: ['claim-limitation'],
+            sourceIds: ['snapshot-limitation'],
+            verdictClaimBindings: [
+              { claimId: 'claim-limitation', relationship: 'CANDIDATE_LIMITATION' },
+            ],
+            sourceClaimBindings: [
+              {
+                sourceId: 'snapshot-limitation',
+                claimId: 'claim-limitation',
+                relationship: 'CONTEXT',
+                statement: 'The follow-up duration leaves this limitation unresolved.',
+              },
+            ],
+          },
+        },
+      }),
+    )
+
+    const findingSources = markupFromTestId(html, 'finding-adjacent-sources', '</ul>')
+    expect(findingSources).toContain('data-source-id="snapshot-finding"')
+    expect(findingSources).toContain('data-claim-id="claim-finding"')
+    expect(findingSources).toContain('data-source-relationship="SUPPORTS"')
+    expect(findingSources).toContain(
+      'Supports: The exact trial result supports the reviewed finding.',
+    )
+    expect(findingSources).not.toContain('Exact limitation source')
+    expect(findingSources).not.toContain('Verdict-wide source that is not field-linked')
+
+    const limitationSources = markupFromTestId(html, 'limitation-adjacent-sources', '</ul>')
+    expect(limitationSources).toContain('data-source-id="snapshot-limitation"')
+    expect(limitationSources).toContain('data-claim-id="claim-limitation"')
+    expect(limitationSources).toContain('data-source-relationship="CONTEXT"')
+    expect(limitationSources).toContain(
+      'Adds context: The follow-up duration leaves this limitation unresolved.',
+    )
+    expect(limitationSources).not.toContain('Exact finding source')
+    expect(limitationSources).not.toContain('Verdict-wide source that is not field-linked')
+
+    const mechanismSources = markupFromTestId(html, 'mechanism-adjacent-sources', '</ul>')
+    expect(mechanismSources).toContain('data-source-id="snapshot-mechanism"')
+    expect(mechanismSources).toContain('data-claim-id="claim-mechanism"')
+    expect(mechanismSources).toContain('data-source-relationship="QUALIFIES"')
+    expect(mechanismSources).toContain(
+      'Qualifies: The exact mechanism claim qualifies the reviewed mechanism.',
+    )
+    expect(mechanismSources).not.toContain('Verdict-wide source that is not field-linked')
+
+    const withoutDependencies = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        readerSummary,
+        mechanismSummary: { change: 'The reviewed mechanism changes a recorded pathway.' },
+        sources,
+      }),
+    )
+    expect(withoutDependencies).not.toContain('finding-adjacent-sources')
+    expect(withoutDependencies).not.toContain('limitation-adjacent-sources')
+    expect(withoutDependencies).not.toContain('mechanism-adjacent-sources')
+
+    const withBareSourceIds = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        readerSummary,
+        mechanismSummary: { change: 'The reviewed mechanism changes a recorded pathway.' },
+        sources,
+        summaryEvidence: {
+          'summary.bestSupportedFinding': {
+            fieldPath: 'summary.bestSupportedFinding',
+            claimIds: ['claim-finding'],
+            sourceIds: ['snapshot-finding'],
+            verdictClaimBindings: [{ claimId: 'claim-finding', relationship: 'SUPPORTING' }],
+            sourceClaimBindings: [],
+          },
+          'summary.mainLimitation': {
+            fieldPath: 'summary.mainLimitation',
+            claimIds: ['claim-limitation'],
+            sourceIds: ['snapshot-limitation'],
+            verdictClaimBindings: [
+              { claimId: 'claim-limitation', relationship: 'CANDIDATE_LIMITATION' },
+            ],
+            sourceClaimBindings: [],
+          },
+          'summary.plainMechanism': {
+            fieldPath: 'summary.plainMechanism',
+            claimIds: ['claim-mechanism'],
+            sourceIds: ['snapshot-mechanism'],
+            verdictClaimBindings: [{ claimId: 'claim-mechanism', relationship: 'SUPPORTING' }],
+            sourceClaimBindings: [],
+          },
+        },
+      }),
+    )
+    expect(withBareSourceIds).not.toContain('finding-adjacent-sources')
+    expect(withBareSourceIds).not.toContain('limitation-adjacent-sources')
+    expect(withBareSourceIds).not.toContain('mechanism-adjacent-sources')
   })
 
   it('does not restore hover or tap controls when professional wording contains mapped terms', () => {
@@ -1235,7 +1613,7 @@ describe('MedicineDossierV2 server markup', () => {
     const timelineDetail = markupFromTestId(html, 'timeline-technical-detail', '</p>')
     expect(timelineDetail).toContain('Pharmacokinetics and Half-life were recorded.')
 
-    const alternativeName = markupFromTestId(html, 'alternative-name', '</h4>')
+    const alternativeName = markupFromTestId(html, 'alternative-name', '</h3>')
     expect(alternativeName).toContain('Monoclonal antibody treatment')
     const commonQuestion = markupFromTestId(html, 'common-question', '</summary>')
     expect(commonQuestion).toContain('What does Half-life mean?')

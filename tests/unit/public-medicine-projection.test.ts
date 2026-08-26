@@ -171,13 +171,17 @@ describe('public medicine projection', () => {
     )
   })
 
-  it('is the shared input consumed by home, browse, and the dataset exporter', () => {
+  it('is shared by browse and dataset exports while home uses the exact dossier first read', () => {
     const root = process.cwd()
+    const homePage = readFileSync(join(root, 'app/page.tsx'), 'utf8')
     const home = readFileSync(join(root, 'components/HomeView.tsx'), 'utf8')
     const browse = readFileSync(join(root, 'app/browse/page.tsx'), 'utf8')
     const exporter = readFileSync(join(root, 'scripts/export/dataset.ts'), 'utf8')
 
-    expect(home).toContain('toPublicMedicineCardView')
+    expect(homePage).toContain('homeFeaturedMedicineAnswer')
+    expect(homePage).toContain('getProgrammeEvidenceByMedicineSlug')
+    expect(home).toContain('featuredAnswer.usedFor')
+    expect(home).not.toContain('toPublicMedicineCardView')
     expect(browse).toContain('toPublicMedicineCardView')
     expect(exporter).toContain('toPublicDatasetProgrammeEvidence')
     expect(exporter).toContain("'oneSentenceVerdict'")

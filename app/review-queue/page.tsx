@@ -38,6 +38,7 @@ import {
   type PublicSourceReviewTask,
 } from '@/lib/queries/public-source-review-tasks'
 import { countPendingRevisions, listPendingRevisions } from '@/lib/queries/revisions'
+import { pageRobotsMetadata } from '@/lib/seo/deployment'
 import { getCurrentUser } from '@/lib/session'
 import { resolveSafeSourceLocator } from '@/lib/source-locator'
 import { TIER_LABEL } from '@/lib/trust'
@@ -46,7 +47,6 @@ import { canReviewLegacyIdentityCorrection } from '@/lib/legacy-revision-review'
 import { CanonicalPublicationPanel } from './CanonicalPublicationPanel'
 import { ContributionReviewPanel } from './ContributionReviewPanel'
 import { FeedbackReviewPanel } from './FeedbackReviewPanel'
-import { PhysicianVerificationReviewPanel } from './PhysicianVerificationReviewPanel'
 import { ReviewActions } from './ReviewActions'
 import { ReviewerQualificationPanel } from './ReviewerQualificationPanel'
 import { SourceRefreshAuthoringPanel } from './SourceRefreshAuthoringPanel'
@@ -949,6 +949,7 @@ export const metadata: Metadata = {
   description:
     'Submitted corrections, challenges to published conclusions, and changed sources waiting for human review on RNAWiki.',
   alternates: { canonical: '/review-queue' },
+  robots: pageRobotsMetadata({ index: false, follow: true }),
 }
 
 type ReviewQueuePageProps = { searchParams: Promise<Record<string, string | string[] | undefined>> }
@@ -1126,7 +1127,6 @@ export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageP
         {showQualificationControls && (
           <section className="space-y-3" aria-label="Private steward and administrator work">
             <ReviewerQualificationPanel />
-            <PhysicianVerificationReviewPanel />
             <FeedbackReviewPanel />
           </section>
         )}

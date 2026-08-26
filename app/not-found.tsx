@@ -4,10 +4,11 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowRight } from 'lucide-react'
 import { HomeSearch } from '@/components/HomeSearch'
+import { pageRobotsMetadata } from '@/lib/seo/deployment'
 
 export const metadata: Metadata = {
   title: 'Page not found',
-  robots: { index: false, follow: true },
+  robots: pageRobotsMetadata({ index: false, follow: true }),
 }
 
 export default function NotFound() {

@@ -1,9 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle2, Search, Stethoscope, User, X } from 'lucide-react'
-import { isVerifiedPhysician, useApp } from './app-context'
+import { Search, User, X } from 'lucide-react'
+import { useApp } from './app-context'
 import { useDrugSearch } from './HomeSearch'
 import { searchHitHref } from '@/lib/api-client'
 import { publicMedicineTypeLabel } from '@/lib/public-medicine-language'
@@ -11,7 +12,8 @@ import { publicMedicineTypeLabel } from '@/lib/public-medicine-language'
 export function SiteHeader() {
   const pathname = usePathname()
   const router = useRouter()
-  const { currentUser, setOpenModal } = useApp()
+  const { currentUser, sessionActionLocked, setOpenModal } = useApp()
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
 
   const isDossierView = pathname.startsWith('/d/')
 
@@ -24,38 +26,26 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/90 border-b border-black/[0.06] transition-all">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-14 gap-3">
+      <div
+        className={`${isDossierView ? 'max-w-[1180px] sm:px-8' : 'max-w-4xl sm:px-6'} mx-auto px-4`}
+      >
+        <div className="relative flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-3 shrink-0">
-            {isDossierView ? (
-              <Link
-                href="/"
-                className="flex items-center gap-1.5 text-xs font-semibold text-[#0071E3] hover:text-[#0077ED] transition cursor-pointer group py-1.5 whitespace-nowrap shrink-0"
-              >
-                <ArrowLeft
-                  className="w-4 h-4 group-hover:-translate-x-0.5 transition shrink-0"
-                  aria-hidden="true"
-                />
-                <span className="hidden sm:inline">All medicines</span>
-                <span className="sr-only sm:hidden">All medicines</span>
-              </Link>
-            ) : (
-              <Link
-                href="/"
-                className="flex items-center gap-2 cursor-pointer select-none shrink-0"
-              >
-                <span className="text-base font-bold tracking-tight text-[#1D1D1F]">
-                  RNA<span className="text-[#0071E3]">wiki</span>
-                  <span className="text-[11px] font-normal text-[#6E6E73]">.com</span>
-                </span>
+            <Link href="/" className="flex items-center gap-2 cursor-pointer select-none shrink-0">
+              <span className="text-base font-bold tracking-tight text-[#1D1D1F]">
+                <span className="font-serif text-[#0A66D8]">RNA</span>Wiki
+              </span>
+              {!isDossierView && (
                 <span className="hidden sm:inline text-[10px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-500/20 whitespace-nowrap shrink-0">
                   Public evidence
                 </span>
-              </Link>
-            )}
+              )}
+            </Link>
           </div>
 
-          <div className="flex-1 max-w-md mx-auto relative min-w-0">
+          <div
+            className={`${mobileSearchOpen ? 'absolute inset-x-0 top-[3.75rem] block rounded-2xl border border-black/[0.08] bg-white p-2 shadow-xl' : 'hidden'} z-50 min-w-0 flex-1 sm:relative sm:inset-auto sm:top-auto sm:mx-auto sm:block sm:max-w-md sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none`}
+          >
             {isDossierView && (
               <div className="relative" ref={search.containerRef}>
                 <div className="flex items-center bg-[#F5F5F7] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0071E3]/20 focus-within:border-[#0071E3] rounded-full px-3 py-1.5 border border-black/[0.06] transition-all">
@@ -65,7 +55,7 @@ export function SiteHeader() {
                   />
                   <input
                     type="text"
-                    placeholder="Search medicine, condition, gene, or protein..."
+                    placeholder="Search medicines, conditions, trials..."
                     value={search.query}
                     onChange={(e) => search.setQuery(e.target.value)}
                     onFocus={search.open}
@@ -105,17 +95,14 @@ export function SiteHeader() {
                       </div>
                     ) : (
                       search.results.map((drug, index) => (
-                        <button
+                        <Link
                           key={drug.slug}
-                          type="button"
+                          href={searchHitHref(drug)}
                           id={search.optionId(index)}
                           role="option"
                           aria-selected={index === search.activeIndex}
                           onMouseEnter={() => search.setActiveIndex(index)}
-                          onClick={() => {
-                            search.reset()
-                            router.push(searchHitHref(drug))
-                          }}
+                          onClick={search.reset}
                           className={`w-full text-left p-3 hover:bg-[#F5F5F7] transition cursor-pointer flex items-center justify-between gap-2 ${
                             index === search.activeIndex ? 'bg-[#F5F5F7]' : ''
                           }`}
@@ -141,7 +128,7 @@ export function SiteHeader() {
                               {drug.patientFriendlyIndication}
                             </div>
                           </div>
-                        </button>
+                        </Link>
                       ))
                     )}
                   </div>
@@ -151,17 +138,27 @@ export function SiteHeader() {
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            {isVerifiedPhysician(currentUser) && currentUser ? (
+            {isDossierView && (
               <button
                 type="button"
-                onClick={() => setOpenModal('account')}
-                className="flex items-center gap-1.5 text-xs font-semibold text-[#0071E3] bg-[#0071E3]/10 hover:bg-[#0071E3]/15 px-3 py-1.5 rounded-full border border-[#0071E3]/20 transition cursor-pointer whitespace-nowrap shrink-0"
-                aria-label={`Account for ${currentUser.name}, verified physician`}
+                onClick={() => setMobileSearchOpen((open) => !open)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#424245] hover:bg-black/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8] sm:hidden"
+                aria-label={mobileSearchOpen ? 'Close medicine search' : 'Search medicines'}
+                aria-expanded={mobileSearchOpen}
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#0071E3] shrink-0" aria-hidden="true" />
-                <span className="max-w-[80px] sm:max-w-[120px] truncate">{currentUser.name}</span>
-                <span className="text-[10px] opacity-85 font-bold shrink-0">MD ✓</span>
+                {mobileSearchOpen ? (
+                  <X className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <Search className="h-4 w-4" aria-hidden="true" />
+                )}
               </button>
+            )}
+            {sessionActionLocked ? (
+              <span className="flex items-center gap-1.5 rounded-full border border-black/[0.04] bg-black/[0.03] px-3 py-1.5 text-xs font-semibold text-[#6E6E73]">
+                <User className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                <span className="hidden sm:inline">Checking account…</span>
+                <span className="sm:hidden">Checking…</span>
+              </span>
             ) : currentUser ? (
               <button
                 type="button"
@@ -178,7 +175,7 @@ export function SiteHeader() {
                 onClick={() => setOpenModal('auth')}
                 className="flex items-center gap-1.5 text-xs font-semibold text-[#1D1D1F] hover:text-[#0071E3] bg-black/[0.03] hover:bg-[#0071E3]/10 px-3 py-1.5 rounded-full border border-black/[0.04] hover:border-[#0071E3]/20 transition cursor-pointer whitespace-nowrap shrink-0"
               >
-                <Stethoscope className="w-3.5 h-3.5 text-[#0071E3] shrink-0" aria-hidden="true" />
+                <User className="w-3.5 h-3.5 text-[#0071E3] shrink-0" aria-hidden="true" />
                 <span className="hidden sm:inline">Sign in</span>
                 <span className="sm:hidden">Log in</span>
               </button>

@@ -205,42 +205,18 @@ export function rateLimited(
 // The public shape of a user
 // ---------------------------------------------------------------------------
 
-/**
- * What any route may return about an account.
- *
- * The licence number or NPI never appears here, and no longer appears on `CommentUser` either:
- * that object is serialised into the RSC payload of every page a signed-in physician loads. A
- * real-world identifier that a steward checks against a registry once, and that nothing renders,
- * has no business in someone's browser cache, error tracker and server log. `hasCredentialOnFile`
- * is all the interface ever needed.
- *
- * `email` stays, because every route that returns a `PublicUser` returns it to the account's own
- * owner — register, login, me, doctor-verification. Nothing here backs a public profile page; that
- * is `getContributorProfile` in lib/queries/users.ts, which selects a different set of columns and
- * never selects the email at all.
- */
-export interface PublicUser extends CommentUser {
-  hasCredentialOnFile: boolean
-}
+/** The one account shape returned to its owner by register, login, and `/api/auth/me`. */
+export type PublicUser = CommentUser
 
 /** Map an account query result to the client-safe user shape. */
 export function toPublicUser(user: AccountUser): PublicUser {
-  const verified = user.verificationState === 'verified'
   return {
     id: user.id,
     name: user.name,
     email: user.email,
-    isDoctor: verified,
-    hasCredentialOnFile: Boolean(user.medicalLicenseOrNpi),
-    // Credentials travel with the badge. An unverified claim of a specialty is not a credential,
-    // and shipping it lets any surface render it beside a name as if it were one.
-    medicalSpecialty: verified ? (user.medicalSpecialty ?? undefined) : undefined,
-    institution: verified ? (user.institution ?? undefined) : undefined,
-    verifiedAt: user.verifiedAt?.toISOString(),
     handle: user.handle,
     orcid: user.orcid ?? undefined,
     trustTier: user.trustTier,
-    verificationState: user.verificationState,
     acceptedEditCount: user.acceptedEditCount,
     noteCount: user.noteCount,
     isAdmin: user.isAdmin,
@@ -253,12 +229,16 @@ export function toPublicUser(user: AccountUser): PublicUser {
  * the row. Kept separate rather than converting one into the other, so neither has to be lossy.
  */
 export function commentUserToPublic(user: CommentUser): PublicUser {
-  const verified = user.verificationState === 'verified'
   return {
-    ...user,
-    isDoctor: verified,
-    hasCredentialOnFile: Boolean(user.hasCredentialOnFile),
-    medicalSpecialty: verified ? user.medicalSpecialty : undefined,
-    institution: verified ? user.institution : undefined,
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    handle: user.handle,
+    orcid: user.orcid,
+    trustTier: user.trustTier,
+    acceptedEditCount: user.acceptedEditCount,
+    noteCount: user.noteCount,
+    isAdmin: user.isAdmin,
+    joinedDate: user.joinedDate,
   }
 }

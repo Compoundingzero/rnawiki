@@ -38,6 +38,35 @@ describe('first canonical verdict authoring contract', () => {
     expect(() => programmeFirstVerdictAuthoringBundleSchema.parse(missingNode)).toThrow()
   })
 
+  it.each(['CONTRADICTORY', 'CANDIDATE_LIMITATION'] as const)(
+    'rejects a %s claim as summary.plainMechanism support',
+    (relationship) => {
+      const bundle = structuredClone(fixture())
+      const claimKey = `mechanism.${relationship.toLowerCase()}`
+      bundle.claims.push({
+        ...bundle.claims[0]!,
+        claimKey,
+        plainLanguageText: 'This claim does not support the reviewed mechanism.',
+      })
+      bundle.conclusion.claimLinks.push({ claimKey, relationship })
+      bundle.dependencies.summary['summary.plainMechanism'] = [claimKey]
+
+      const parsed = programmeFirstVerdictAuthoringBundleSchema.safeParse(bundle)
+
+      expect(parsed.success).toBe(false)
+      if (!parsed.success) {
+        expect(parsed.error.issues).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              path: ['dependencies', 'summary', 'summary.plainMechanism', 0],
+              message: expect.stringMatching(/SUPPORTING/),
+            }),
+          ]),
+        )
+      }
+    },
+  )
+
   it('rejects unknown keys, orphan claims, duplicate target relationships and partial trial assessments', () => {
     expect(() =>
       programmeFirstVerdictAuthoringBundleSchema.parse({ ...fixture(), invented: true }),

@@ -95,25 +95,31 @@ describe('medicine dossier plain-first contract', () => {
 
   it('keeps direct evidence hashes keyboard-usable after opening the disclosure', () => {
     const disclosure = source('components/AdvancedEvidenceDisclosure.tsx')
+    const nestedDisclosure = source('components/dossier/disclosure-deep-link.ts')
 
     expect(disclosure).toContain("window.addEventListener('hashchange', openForCurrentHash)")
     expect(disclosure).toContain('details.contains(target)')
     expect(disclosure).toContain('details.open = true')
     expect(disclosure).toContain('window.requestAnimationFrame')
-    expect(disclosure).toContain('focusTarget.tabIndex = -1')
-    expect(disclosure).toContain('focusTarget.focus({ preventScroll: true })')
+    expect(disclosure).toContain('focusDisclosureTarget(details, target)')
     expect(disclosure).toContain("target.scrollIntoView({ block: 'start' })")
+    expect(nestedDisclosure).toContain('while (nested && nested !== outerDetails')
+    expect(nestedDisclosure).toContain('nested.open = true')
+    expect(nestedDisclosure).toContain("':scope > summary'")
+    expect(nestedDisclosure).toContain('focusTarget.focus({ preventScroll: true })')
   })
 
   it('keeps medicine-background hashes keyboard-usable after opening the sibling disclosure', () => {
     const disclosure = source('components/MedicineBackgroundDisclosure.tsx')
+    const nestedDisclosure = source('components/dossier/disclosure-deep-link.ts')
 
     expect(disclosure).toContain("window.addEventListener('hashchange', openForHash)")
     expect(disclosure).toContain('details.contains(target)')
     expect(disclosure).toContain('details.open = true')
     expect(disclosure).toContain('window.requestAnimationFrame')
-    expect(disclosure).toContain('focusTarget.tabIndex = -1')
-    expect(disclosure).toContain('focusTarget.focus({ preventScroll: true })')
+    expect(disclosure).toContain('focusDisclosureTarget(details, target)')
     expect(disclosure).toContain("target.scrollIntoView({ block: 'start' })")
+    expect(nestedDisclosure).toContain('nearestSummary ??= directSummary(nested)')
+    expect(nestedDisclosure).toContain('nested.open = true')
   })
 })

@@ -505,24 +505,33 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await expect(firstRead.getByRole('button')).toHaveCount(0)
   await expect(firstRead.locator('[role="tooltip"]')).toHaveCount(0)
 
-  const mechanismSummary = page.getByTestId('first-read-mechanism')
-  const mechanismSummaryControl = mechanismSummary.locator('summary')
-  await expect(mechanismSummary).not.toHaveAttribute('open', '')
-  await mechanismSummaryControl.focus()
-  await mechanismSummaryControl.press('Enter')
-  await expect(mechanismSummary).toHaveAttribute('open', '')
-  await expect(mechanismSummary).toContainText('This study measured what happened to')
-  await expect(mechanismSummary).toContainText('LDL cholesterol')
-  await expect(mechanismSummary.getByRole('button')).toHaveCount(0)
-  await expect(mechanismSummary.locator('[role="tooltip"]')).toHaveCount(0)
-  await expect(mechanismSummary).toContainText(
-    'It did not test the molecular steps inside liver cells.',
-  )
-  await mechanismSummaryControl.press('Enter')
-  await expect(mechanismSummary).not.toHaveAttribute('open', '')
-  const limitation = page.locator('#limitation-heading').locator('..')
+  const limitation = page.getByTestId('ten-second-limit')
   await expect(limitation).toContainText('The study measured LDL (“bad”) cholesterol')
   await expect(limitation).toContainText('not whether people had fewer heart attacks or strokes.')
+
+  const evidenceControl = page.locator('summary[aria-controls="advanced-evidence-content"]')
+  const evidenceDisclosure = evidenceControl.locator('xpath=..')
+  const backgroundControl = page.locator('summary[aria-controls="medicine-background-content"]')
+  await expect(page.getByText('See how we know', { exact: true })).toHaveCount(1)
+  await expect(evidenceDisclosure).not.toHaveAttribute('open', '')
+  await expect(page.locator('#advanced-evidence-content')).toBeHidden()
+  await expect(backgroundControl).toHaveAttribute('aria-expanded', 'false')
+  await expect(backgroundControl.locator('xpath=..')).not.toHaveAttribute('open', '')
+  await expect(page.locator('#medicine-background-content')).toBeHidden()
+
+  const ctaPosition = await evidenceControl.evaluate((cta) => {
+    const utilities = document.getElementById('dossier-utilities-heading')?.parentElement
+    const community = document.getElementById('community-commentary')
+    return {
+      communityAfter:
+        !community ||
+        Boolean(cta.compareDocumentPosition(community) & Node.DOCUMENT_POSITION_FOLLOWING),
+      utilitiesAfter:
+        !utilities ||
+        Boolean(cta.compareDocumentPosition(utilities) & Node.DOCUMENT_POSITION_FOLLOWING),
+    }
+  })
+  expect(ctaPosition).toEqual({ communityAfter: true, utilitiesAfter: true })
 
   const scopedApiResponse = await page.request.get(
     `/api/drugs/${INCLISIRAN_SLUG}?programme=${encodeURIComponent(fixture.programmeSlug)}`,
@@ -566,16 +575,28 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   )
   await expectCollapsedDossierWordBudget(page)
   await expectOneMainAndOrderedHeadings(page)
+  await expect(page.locator('main')).not.toContainText('Recommended Usage')
+  await expect(page.locator('main')).not.toContainText('laboratoryWorkflow')
+  await expect(page.locator('main')).not.toContainText('anhydrous acetonitrile')
 
   const { content } = await openAdvancedEvidence(page)
   await expect(content.getByRole('heading', { level: 2 })).toBeVisible()
+  const evidenceNavigation = content.getByRole('navigation', {
+    name: 'Medicine dossier sections',
+  })
+  await expect(evidenceNavigation.getByRole('link')).toHaveCount(4)
+  expect(await evidenceNavigation.getByRole('link').allTextContents()).toEqual([
+    'Answer',
+    'Evidence',
+    'How it works',
+    'Sources',
+  ])
+  await expect(content.getByTestId('exact-wording-annotated')).toHaveText(
+    'This test record shows how one reviewed study result connects to a public conclusion and its source.',
+  )
   await expect(
-    content.getByText(
-      'This test record shows how one reviewed study result connects to a public conclusion and its source.',
-      { exact: true },
-    ),
-  ).toBeVisible()
-  await expect(content.getByText('Relevant review background:')).toHaveCount(2)
+    content.getByText('RNAWiki review areas recorded for this decision:', { exact: true }),
+  ).toHaveCount(2)
   await expect(
     content.getByText('How medicines work in people (clinical pharmacology)'),
   ).toBeVisible()
@@ -623,12 +644,15 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   ).toHaveCount(3)
   await expect(mechanismMap.getByTestId('mechanism-stage-source-links')).toHaveCount(3)
   for (const sourceList of await mechanismMap.getByTestId('mechanism-stage-source-links').all()) {
-    const exactSourceLink = sourceList.getByRole('link', { name: fixture.sourceLabel })
+    const exactSourceLink = sourceList.getByRole('link', {
+      name: fixture.sourceLabel,
+      includeHidden: true,
+    })
     await expect(exactSourceLink).toHaveAttribute('href', fixture.sourceHref)
     await expect(exactSourceLink).toHaveAttribute('target', '_blank')
   }
   const mechanismTechnicalSummary = mechanismMap
-    .getByText('Technical detail', {
+    .getByText('Technical detail and sources', {
       exact: true,
     })
     .first()
@@ -680,7 +704,7 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
     await expect(content.getByText(storedCode, { exact: true })).toHaveCount(0)
   }
 
-  const evidenceDetails = content.getByText('View evidence details', { exact: true })
+  const evidenceDetails = content.getByText('Details and sources', { exact: true })
   expect(
     await evidenceDetails.count(),
     'Inclisiran needs at least one normalized public claim detail in its evidence chain.',
@@ -696,6 +720,8 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await expect(firstEvidenceDetailContent).toContainText('510 days')
   await expect(firstEvidenceDetailContent).toContainText('-52.3 percentage points')
   await expect(firstEvidenceDetailContent.locator('[role="tooltip"]')).toHaveCount(0)
+  const linkedClaimSource = firstEvidenceDetailContent.getByTestId('source-claim-binding').first()
+  await expect(linkedClaimSource).toHaveAttribute('data-source-relationship', 'SUPPORTS')
 
   await expect(content.getByText('What researchers measured').first()).toBeVisible()
   await expect(content.getByText('Comparison group').first()).toBeVisible()
@@ -711,8 +737,9 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
     content.getByText('A measurement from the body, such as a laboratory value').first(),
   ).toBeVisible()
 
-  const orionStudyCard = content.locator('#studies article').filter({ hasText: 'ORION-10' })
-  await expect(orionStudyCard.getByRole('heading', { level: 4 })).toContainText('ORION-10')
+  const orionStudyCard = content.getByTestId('study-card').filter({ hasText: 'ORION-10' })
+  await expect(orionStudyCard.locator('summary')).toContainText('ORION-10')
+  await orionStudyCard.locator('summary').click()
   await expect(orionStudyCard).toContainText('NCT03399370')
   await expect(orionStudyCard.locator('[role="tooltip"]')).toHaveCount(0)
 
@@ -795,11 +822,10 @@ test('signed-out readers are asked to authenticate before suggesting a correctio
   const fixture = requireNormalizedFixture()
   await page.goto(normalizedDossierUrl(fixture))
   await expect(page.getByRole('heading', { level: 1, name: /^inclisiran$/i })).toBeVisible()
-  const { content } = await openAdvancedEvidence(page)
 
-  await content.getByRole('button', { name: 'Suggest a correction' }).click()
+  await page.getByRole('button', { name: 'Suggest a correction' }).click()
 
-  await expect(page.getByRole('dialog', { name: 'Create your account' })).toBeVisible()
+  await expect(page.getByRole('dialog', { name: 'Sign in to RNAWiki' })).toBeVisible()
   await expect(page.getByRole('dialog', { name: 'Suggest a correction' })).toHaveCount(0)
   await expect(page.getByLabel('Email')).toBeVisible()
   await expect(page.getByLabel('Password')).toBeVisible()
@@ -827,10 +853,9 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
 
   await page.goto(normalizedDossierUrl(fixture))
   await expect(page.getByRole('heading', { level: 1, name: /^inclisiran$/i })).toBeVisible()
-  const { content } = await openAdvancedEvidence(page)
 
   const correctionContext = waitForContributionContext(page, fixture.programmeSlug)
-  await content.getByRole('button', { name: 'Suggest a correction' }).click()
+  await page.getByRole('button', { name: 'Suggest a correction' }).click()
   expect((await correctionContext).status()).toBe(200)
 
   const correctionDialog = page.getByRole('dialog', { name: 'Suggest a correction' })
@@ -943,7 +968,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
   await expect(correctionDialog).toBeHidden()
 
   const challengeContext = waitForContributionContext(page, fixture.programmeSlug)
-  await content.getByRole('button', { name: 'Challenge this answer' }).click()
+  await page.getByRole('button', { name: 'Challenge this answer' }).click()
   expect((await challengeContext).status()).toBe(200)
 
   const challengeDialog = page.getByRole('dialog', { name: 'Challenge this answer' })
@@ -1284,9 +1309,8 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
   await switchFixtureAccount(page, fixture.contributor)
   await page.goto(normalizedDossierUrl(fixture))
   await expect(page.getByRole('heading', { level: 1, name: /^inclisiran$/i })).toBeVisible()
-  const { content: revisionContent } = await openAdvancedEvidence(page)
   const revisionContext = waitForContributionContext(page, fixture.programmeSlug)
-  await revisionContent.getByRole('button', { name: 'Challenge this answer' }).click()
+  await page.getByRole('button', { name: 'Challenge this answer' }).click()
   expect((await revisionContext).status()).toBe(200)
 
   const revisionDialog = page.getByRole('dialog', { name: 'Challenge this answer' })
@@ -1414,9 +1438,8 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
   await revisionDialog.getByRole('button', { name: 'Close contribution form' }).click()
   await expect(revisionDialog).toBeHidden()
   await page.reload()
-  const { content: restoredRevisionContent } = await openAdvancedEvidence(page)
   const restoredRevisionContext = waitForContributionContext(page, fixture.programmeSlug)
-  await restoredRevisionContent.getByRole('button', { name: 'Challenge this answer' }).click()
+  await page.getByRole('button', { name: 'Challenge this answer' }).click()
   expect((await restoredRevisionContext).status()).toBe(200)
 
   const restoredRevisionDialog = page.getByRole('dialog', {
@@ -1543,11 +1566,53 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
   await expectNoHorizontalOverflow(page, 'Contribution review queue')
 })
 
+test('keeps native disclosures keyboard-operable and opens deep links with focus', async ({
+  page,
+}) => {
+  const fixture = requireNormalizedFixture()
+  await page.goto(normalizedDossierUrl(fixture))
+  await page.waitForLoadState('networkidle')
+
+  const evidenceControl = page.locator('summary[aria-controls="advanced-evidence-content"]')
+  const evidenceDisclosure = evidenceControl.locator('xpath=..')
+  await expect(evidenceControl).toHaveAttribute('aria-expanded', 'false')
+  await evidenceControl.focus()
+  await expect(evidenceControl).toBeFocused()
+  await evidenceControl.press('Enter')
+  await expect(evidenceDisclosure).toHaveAttribute('open', '')
+  await expect(evidenceControl).toHaveAttribute('aria-expanded', 'true')
+  await evidenceControl.press('Space')
+  await expect(evidenceDisclosure).not.toHaveAttribute('open', '')
+  await expect(evidenceControl).toHaveAttribute('aria-expanded', 'false')
+
+  const backgroundControl = page.locator('summary[aria-controls="medicine-background-content"]')
+  await expect(backgroundControl).toHaveAttribute('aria-expanded', 'false')
+  await backgroundControl.focus()
+  await backgroundControl.press('Enter')
+  await expect(backgroundControl.locator('xpath=..')).toHaveAttribute('open', '')
+  await expect(backgroundControl).toHaveAttribute('aria-expanded', 'true')
+
+  for (const target of [
+    { hash: 'evidence-support', focusedHeading: 'evidence-support-heading' },
+    { hash: 'study-measurements', focusedHeading: 'study-measurements-heading' },
+    { hash: 'mechanism-map', focusedHeading: 'mechanism-heading' },
+    { hash: 'sources', focusedHeading: 'sources-heading' },
+  ]) {
+    await page.goto(`${normalizedDossierUrl(fixture)}#${target.hash}`)
+    await page.waitForLoadState('networkidle')
+    await expect(
+      page.locator('summary[aria-controls="advanced-evidence-content"]'),
+    ).toHaveAttribute('aria-expanded', 'true')
+    await expect(page.locator('#advanced-evidence-content')).toBeVisible()
+    await expect(page.locator(`#${target.focusedHeading}`)).toBeFocused()
+  }
+})
+
 for (const viewport of [
   { label: '320px mobile', width: 320, height: 800 },
   { label: '375px mobile', width: 375, height: 812 },
   { label: '768px tablet', width: 768, height: 900 },
-  { label: 'desktop', width: 1280, height: 900 },
+  { label: '1440px desktop', width: 1440, height: 900 },
 ]) {
   test(`has no horizontal overflow at ${viewport.label}`, async ({ page }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height })
@@ -1579,7 +1644,9 @@ for (const viewport of [
       expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width + 1)
     }
 
+    await studyCards.first().locator('summary').click()
     const studyIdentifier = content.getByText('NCT03399370', { exact: true }).first()
+    await expect(studyIdentifier).toBeVisible()
     const identifierLines = await studyIdentifier.evaluate((element) =>
       [...element.getClientRects()].filter((rect) => rect.width > 0 && rect.height > 0),
     )
@@ -1588,12 +1655,27 @@ for (const viewport of [
       `The study number wrapped into ${identifierLines.length} lines at ${viewport.label}.`,
     ).toBeLessThanOrEqual(2)
 
+    const evidencePathAnimations = await content
+      .locator('#evidence-chain *')
+      .evaluateAll((nodes) =>
+        nodes.map((node) => getComputedStyle(node).animationName).filter((name) => name !== 'none'),
+      )
+    expect(evidencePathAnimations, 'Reduced motion must leave the evidence path static.').toEqual(
+      [],
+    )
+
     await expectNoHorizontalOverflow(page, `Expanded dossier at ${viewport.label}`)
 
     const backgroundControl = page.locator('summary[aria-controls="medicine-background-content"]')
     if ((await backgroundControl.count()) > 0) {
       await backgroundControl.click()
       await expect(page.locator('#medicine-background-content')).toBeVisible()
+      await expect(page.locator('#medicine-background-content')).not.toContainText(
+        'Recommended Usage',
+      )
+      await expect(page.locator('#medicine-background-content')).not.toContainText(
+        'anhydrous acetonitrile',
+      )
       await expectNoHorizontalOverflow(page, `Medicine background at ${viewport.label}`)
     }
 
@@ -1632,7 +1714,116 @@ test('keeps the static first read clear and contained in a touch-sized view', as
     expect(firstReadBox!.x).toBeGreaterThanOrEqual(0)
     expect(firstReadBox!.x + firstReadBox!.width).toBeLessThanOrEqual(375)
     await expectNoHorizontalOverflow(page, 'Static mobile first read')
+
+    const evidenceControl = page.locator('summary[aria-controls="advanced-evidence-content"]')
+    await expect(page.getByText('See how we know', { exact: true })).toHaveCount(1)
+    await evidenceControl.tap()
+    await expect(evidenceControl).toHaveAttribute('aria-expanded', 'true')
+    await expect(page.locator('#advanced-evidence-content')).toBeVisible()
+    await expectNoHorizontalOverflow(page, 'Touch-opened evidence')
+
+    const backgroundControl = page.locator('summary[aria-controls="medicine-background-content"]')
+    await expect(backgroundControl).toHaveAttribute('aria-expanded', 'false')
+    await backgroundControl.tap()
+    await expect(backgroundControl).toHaveAttribute('aria-expanded', 'true')
+    await expect(page.locator('#medicine-background-content')).toBeVisible()
+    await expectNoHorizontalOverflow(page, 'Touch-opened medicine background')
   } finally {
     await context.close()
+  }
+})
+
+test('reconciles a refocused tab before accepting attributed work', async ({ page }) => {
+  test.setTimeout(60_000)
+  const fixture = requireNormalizedFixture()
+
+  await loginFixtureAccount(page, fixture.contributor)
+  await page.goto(normalizedDossierUrl(fixture))
+  await page.waitForLoadState('networkidle')
+
+  const commentary = page.getByLabel('Add community commentary')
+  if (!(await commentary.isVisible())) {
+    const communityDisclosure = page.locator('details#community-commentary > summary')
+    await expect(communityDisclosure).toBeVisible()
+    await expect(communityDisclosure).toContainText('Add a community note')
+    await communityDisclosure.click()
+  }
+  await expect(commentary).toBeVisible()
+  await commentary.fill('Private draft owned by contributor A.')
+
+  let releaseAccountCheck!: () => void
+  const heldAccountCheck = new Promise<void>((resolve) => {
+    releaseAccountCheck = resolve
+  })
+  let markAccountCheckStarted!: () => void
+  const accountCheckStarted = new Promise<void>((resolve) => {
+    markAccountCheckStarted = resolve
+  })
+  let shouldHoldAccountCheck = true
+
+  await page.route('**/api/auth/me', async (route) => {
+    if (shouldHoldAccountCheck) {
+      shouldHoldAccountCheck = false
+      markAccountCheckStarted()
+      await heldAccountCheck
+    }
+    await route.continue()
+  })
+
+  const otherTab = await page.context().newPage()
+  try {
+    await otherTab.bringToFront()
+    await switchFixtureAccount(otherTab, fixture.reviewers[0]!)
+
+    // Both tabs share one session cookie. Returning to the stale tab must therefore confirm the
+    // server-side account before any comment, edit, or review control can be used.
+    await page.bringToFront()
+    // Headless Chromium does not consistently emit a window focus event for `bringToFront()`.
+    // Dispatch the same browser event deterministically; the listener itself is covered here.
+    await page.evaluate(() => window.dispatchEvent(new Event('focus')))
+    await accountCheckStarted
+    await expect(
+      page.getByText('Confirming your signed-in account…', { exact: true }),
+    ).toBeVisible()
+    await expect(page.getByText('Checking account…', { exact: true })).toBeVisible()
+    await expect(page.locator('[aria-busy="true"][inert]')).toHaveCount(1)
+    expect(await commentary.evaluate((element) => element.closest('[inert]') !== null)).toBe(true)
+
+    releaseAccountCheck()
+
+    const reviewer = fixture.reviewers[0]!
+    await expect(page.getByRole('button', { name: `Account for ${reviewer.name}` })).toBeVisible()
+    await expect(commentary).toHaveValue('')
+    expect(await commentary.evaluate((element) => element.closest('[inert]') === null)).toBe(true)
+    await expect(
+      page.getByText(
+        'These are reader opinions. RNAWiki has not fact-checked them, and they do not change the reviewed answer above.',
+        { exact: true },
+      ),
+    ).toBeVisible()
+
+    await commentary.fill('A note posted after account reconciliation.')
+    const postButton = page.getByRole('button', { name: 'Post commentary' })
+    await expect(postButton).toBeEnabled()
+    const postResponse = page.waitForResponse(
+      (response) =>
+        new URL(response.url()).pathname === `/api/drugs/${INCLISIRAN_SLUG}/notes` &&
+        response.request().method() === 'POST',
+    )
+    await postButton.click()
+
+    const postedHttp = await postResponse
+    const postedRaw = await postedHttp.text()
+    expect(postedHttp.status(), postedRaw).toBe(201)
+    const posted = JSON.parse(postedRaw) as {
+      note?: { authorUserId?: string; author?: string }
+    }
+    expect(posted.note).toMatchObject({
+      authorUserId: reviewer.id,
+      author: reviewer.name,
+    })
+  } finally {
+    releaseAccountCheck()
+    await otherTab.close()
   }
 })

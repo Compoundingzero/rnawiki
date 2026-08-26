@@ -115,22 +115,6 @@ export const api = {
 
   me: () => request<{ user: CommentUser | null }>('/api/auth/me'),
 
-  submitDoctorVerification: (
-    body: {
-      fullName: string
-      licenseOrNpi: string
-      specialty: string
-      institution: string
-      workEmail: string
-    },
-    signal?: AbortSignal,
-  ) =>
-    request<{ user: CommentUser; state: 'pending' }>('/api/auth/doctor-verification', {
-      method: 'POST',
-      body: JSON.stringify(body),
-      signal,
-    }),
-
   addNote: (slug: string, content: string, signal?: AbortSignal) =>
     request<{ note: CommunityNote }>(`/api/drugs/${encodeURIComponent(slug)}/notes`, {
       method: 'POST',
@@ -180,15 +164,6 @@ export const api = {
       body: JSON.stringify(body),
       signal,
     }),
-
-  toggleSaved: (slug: string, signal?: AbortSignal) =>
-    request<{ saved: boolean }>(`/api/drugs/${encodeURIComponent(slug)}/save`, {
-      method: 'POST',
-      signal,
-    }),
-
-  savedDrugs: (signal?: AbortSignal) =>
-    request<{ drugs: SearchHit[] }>('/api/me/saved', { signal, cache: 'no-store' }),
 
   communityNotes: async (slug: string, signal?: AbortSignal) => {
     const result = await request<{

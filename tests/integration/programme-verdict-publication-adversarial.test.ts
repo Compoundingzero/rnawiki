@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import { eq, inArray, sql } from 'drizzle-orm'
 import { db } from '@/db'
 import {
@@ -50,6 +50,7 @@ import {
 } from '@/lib/queries/programme-verdict-workflow'
 import { createProgrammeVerdictDraftFromCurrentPublication } from '@/lib/queries/programme-verdict-drafts'
 import { getProgrammeEvidenceByMedicineSlug } from '@/lib/queries/programme-evidence'
+import { countProgrammeEvidence } from '@/lib/queries/drugs'
 import { getPublicMedicineProjections } from '@/lib/queries/public-medicine-projection'
 import {
   getPublicProgrammePresentationForRevision,
@@ -62,6 +63,7 @@ import {
   EVIDENCE_PRESENTATION_ENGINE_VERSION,
 } from '@/lib/rna-intelligence'
 import { listCanonicalQueueCandidates } from '@/lib/queries/programme-verdict-queue'
+import { loadMedicinePublicationIndexabilityReports } from '@/lib/seo/publication-indexability'
 
 interface PreparedProposal {
   revisionId: string
@@ -246,14 +248,18 @@ async function insertCandidate(
   return revisionId
 }
 
-async function createFixture(label: string, options: CandidateOptions = {}): Promise<Fixture> {
+async function createFixture(
+  label: string,
+  options: CandidateOptions = {},
+  medicineId = drugId,
+): Promise<Fixture> {
   const programmeId = fixtureId(`programme-${label}`)
   const trialId = fixtureId(`trial-${label}`)
   const claimId = fixtureId(`claim-${label}`)
 
   await db.insert(developmentProgrammes).values({
     id: programmeId,
-    drugId,
+    drugId: medicineId,
     slug: programmeId,
     title: `${label} programme`,
     indication: 'Condition alpha',
@@ -625,6 +631,79 @@ afterAll(async () => {
 })
 
 describe('adversarial programme verdict publication', () => {
+  it('keeps the canonical default aligned to stable programme identity when live titles change', async () => {
+    const tieMedicineId = fixtureId('immutable-title-tie-medicine')
+    const equalPublishedAt = new Date('2026-08-25T08:00:00.000Z')
+
+    await db.insert(drugs).values({
+      id: tieMedicineId,
+      slug: tieMedicineId,
+      name: 'Immutable title tie-break medicine',
+      modality: 'Small Molecule',
+      approvalStatus: 'Phase 2 Investigational',
+    })
+
+    try {
+      const alphabeticallyFirst = await createFixture('aaa-immutable-title', {}, tieMedicineId)
+      const alphabeticallySecond = await createFixture('zzz-immutable-title', {}, tieMedicineId)
+
+      vi.useFakeTimers({ toFake: ['Date'] })
+      vi.setSystemTime(equalPublishedAt)
+      try {
+        await prepareApproveAndPublish(alphabeticallyFirst)
+        await prepareApproveAndPublish(alphabeticallySecond)
+      } finally {
+        vi.useRealTimers()
+      }
+
+      const tiedPublications = await db
+        .select({ publishedAt: programmeCurrentPublications.publishedAt })
+        .from(programmeCurrentPublications)
+        .where(
+          inArray(programmeCurrentPublications.programmeId, [
+            alphabeticallyFirst.programmeId,
+            alphabeticallySecond.programmeId,
+          ]),
+        )
+      expect(tiedPublications).toHaveLength(2)
+      expect(new Set(tiedPublications.map((row) => row.publishedAt.toISOString()))).toEqual(
+        new Set([equalPublishedAt.toISOString()]),
+      )
+
+      await db.transaction(async (tx) => {
+        await tx
+          .update(developmentProgrammes)
+          .set({ title: 'ZZZ staged live title' })
+          .where(eq(developmentProgrammes.id, alphabeticallyFirst.programmeId))
+        await tx
+          .update(developmentProgrammes)
+          .set({ title: 'AAA staged live title' })
+          .where(eq(developmentProgrammes.id, alphabeticallySecond.programmeId))
+      })
+
+      const [dossier, projection, indexingReports] = await Promise.all([
+        getProgrammeEvidenceByMedicineSlug(tieMedicineId),
+        getPublicMedicineProjections([tieMedicineId]),
+        loadMedicinePublicationIndexabilityReports(equalPublishedAt),
+      ])
+
+      expect(dossier?.selectedProgramme).toMatchObject({
+        id: alphabeticallyFirst.programmeId,
+        title: 'aaa-immutable-title programme',
+      })
+      expect(projection.get(tieMedicineId)?.programmes[0]).toMatchObject({
+        id: alphabeticallyFirst.programmeId,
+        title: 'aaa-immutable-title programme',
+      })
+      expect(
+        indexingReports.find((report) => report.medicineId === tieMedicineId)?.selectedProgrammeId,
+      ).toBe(alphabeticallyFirst.programmeId)
+    } finally {
+      vi.useRealTimers()
+      await db.delete(drugs).where(eq(drugs.id, tieMedicineId))
+    }
+  })
+
   it('publishes and reads an exact presentation/v1 mechanism and sourced timeline bundle', async () => {
     const fixture = await createFixture('presentation-v1-publication')
     await citeCurrentSource(fixture, false)
@@ -851,6 +930,34 @@ describe('adversarial programme verdict publication', () => {
     const evidence = await getProgrammeEvidenceByMedicineSlug(drugId, fixture.programmeId)
     expect(evidence?.selectedProgramme?.claims.map((claim) => claim.id)).toContain(
       contradictingClaimId,
+    )
+    expect(evidence?.selectedProgramme?.verdict?.claimRelationships).toEqual(
+      expect.arrayContaining([{ claimId: fixture.claimId, relationship: 'SUPPORTING' }]),
+    )
+    expect(
+      evidence?.selectedProgramme?.summaryFieldDependencies.map((dependency) => ({
+        fieldPath: dependency.fieldPath,
+        claimId: dependency.claimId,
+        verdictRevisionId: dependency.verdictRevisionId,
+      })),
+    ).toEqual(
+      expect.arrayContaining([
+        {
+          fieldPath: 'summary.plainMechanism',
+          claimId: fixture.claimId,
+          verdictRevisionId: fixture.revisionId,
+        },
+        {
+          fieldPath: 'summary.bestSupportedFinding',
+          claimId: fixture.claimId,
+          verdictRevisionId: fixture.revisionId,
+        },
+        {
+          fieldPath: 'summary.mainLimitation',
+          claimId: fixture.claimId,
+          verdictRevisionId: fixture.revisionId,
+        },
+      ]),
     )
     expect(
       (await getPublicMedicineProjections([drugId]))
@@ -1918,6 +2025,7 @@ describe('adversarial programme verdict publication', () => {
       })
       .where(eq(programmeTrials.id, fixture.trialId))
     await prepareApproveAndPublish(fixture)
+    const corpusCountsBeforeStagingMove = await countProgrammeEvidence()
 
     await db
       .update(developmentProgrammes)
@@ -1994,6 +2102,31 @@ describe('adversarial programme verdict publication', () => {
         updatedAt: new Date(),
       })
       .where(eq(evidenceSources.id, sourceId))
+
+    // A live programme is staging state. Moving it to a hidden placeholder medicine must not move
+    // or suppress the already-published programme in the sitemap/editor projection: both the
+    // publication and its freshness belong to the immutable reviewed scope snapshot.
+    await db.update(drugs).set({ name: 'Unknown' }).where(eq(drugs.id, secondDrugId))
+    const [indexingReportsWhileStagingMoved, corpusCountsWhileStagingMoved] = await Promise.all([
+      loadMedicinePublicationIndexabilityReports(new Date('2026-08-23T00:00:00.000Z')),
+      countProgrammeEvidence(),
+    ])
+    await db
+      .update(drugs)
+      .set({ name: 'Scope mutation target medicine' })
+      .where(eq(drugs.id, secondDrugId))
+
+    expect(
+      indexingReportsWhileStagingMoved.find((report) => report.medicineId === drugId),
+    ).toMatchObject({
+      selectedProgrammeId: fixture.programmeId,
+      freshness: 'current',
+      decision: {
+        index: true,
+        canonicalSlug: drugId,
+      },
+    })
+    expect(corpusCountsWhileStagingMoved).toEqual(corpusCountsBeforeStagingMove)
 
     const beforeReplacement = await getProgrammeEvidenceByMedicineSlug(drugId, fixture.programmeId)
     expect(beforeReplacement?.selectedProgramme).toMatchObject({

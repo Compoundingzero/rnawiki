@@ -8,9 +8,10 @@ programme verdict revisions: submission creates review work, never public medica
 
 The legacy `POST /api/drugs/:slug/revisions` route is not a second way to edit programme evidence.
 For a medicine with no identified programme, it accepts exactly one medicine-name or trade-name
-correction with a public HTTP(S) source and a short explanation. Every account enters one-person
-independent review; the author cannot review their own correction, and trust standing never
-publishes it automatically. The source is stored but never fetched.
+correction with a public HTTP(S) source and a short explanation. Every signed-in account may submit
+one, and every submitted correction enters one-person independent review. The author cannot review
+their own correction, and trust standing never publishes it automatically. The source is stored but
+never fetched.
 
 Trials, mechanisms, sponsors, pricing, safety, effectiveness, evidence and conclusions are rejected
 at that boundary. They require an identified programme and this proposal workflow so the intended
@@ -49,6 +50,11 @@ identity/source contract stay in history but are quarantined from the live queue
 There is no runtime AI step. The machine checks validate source completeness, field/proposal type,
 programme/node scope, current-verdict availability, stopped-verdict applicability, reasoning, and
 COI attestation. They do not decide whether a medical claim is true.
+
+There is also no separate contributor or professional account type. The authenticated account id is
+written as the proposal author and cannot be replaced through the draft payload. Trust standing and
+scientific-review qualifications control later review permissions on that same account; they do not
+change who authored the proposal.
 
 ## Presentation is not a contribution edit target
 

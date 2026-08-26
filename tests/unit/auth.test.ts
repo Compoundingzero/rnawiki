@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
   canonicalOrcid,
-  doctorVerificationSchema,
   hashPassword,
   normaliseEmail,
   PASSWORD_MIN_LENGTH,
@@ -176,36 +175,6 @@ describe('zod schemas', () => {
     const parsed = signInSchema.parse({ email: 'F@Example.com', password: 'password123' })
     expect(parsed.email).toBe('f@example.com')
     expect(parsed.password).toBe('password123')
-  })
-
-  it('validates a doctor verification submission without granting anything', () => {
-    const parsed = doctorVerificationSchema.parse({
-      fullName: 'Ada Okafor',
-      licenseOrNpi: '1234567890',
-      specialty: 'Cardiology',
-      institution: 'Singapore General Hospital',
-      workEmail: 'A.Okafor@SGH.example ',
-    })
-    expect(parsed.workEmail).toBe('a.okafor@sgh.example')
-    // The schema returns data only. There is no `verified` field to set here, by design.
-    expect(Object.keys(parsed).sort()).toEqual([
-      'fullName',
-      'institution',
-      'licenseOrNpi',
-      'specialty',
-      'workEmail',
-    ])
-  })
-
-  it('rejects a licence number shorter than four characters', () => {
-    const result = doctorVerificationSchema.safeParse({
-      fullName: 'Ada Okafor',
-      licenseOrNpi: '123',
-      specialty: 'Cardiology',
-      institution: 'Singapore General Hospital',
-      workEmail: 'a@sgh.example',
-    })
-    expect(result.success).toBe(false)
   })
 })
 

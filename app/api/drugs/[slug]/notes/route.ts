@@ -1,9 +1,8 @@
 // POST /api/drugs/:slug/notes — add a community note to a dossier.
 //
-// Nothing about the author comes from this request. The name, the role line and — above all —
-// whether the note carries a verified-physician badge are read from the `users` row inside
-// `createNote`'s transaction. A body claiming `isVerifiedDoctor: true` is not rejected here; it is
-// simply never looked at, which is the stronger guarantee.
+// Nothing about the author comes from this request. The session supplies one account id, and
+// `createNote` resolves its saved public identity in the same transaction as the insert. Extra JSON
+// fields that claim a different name, handle, role, or credential are never passed to the query.
 
 import { z } from 'zod'
 import { createNote, NoteError, NOTE_MAX_LENGTH } from '@/lib/queries/notes'
@@ -63,7 +62,7 @@ export const POST = withHandler(async (req: Request, ctx: SlugContext) => {
   if (!drugId) throw new ApiError(404, 'No dossier with that slug', 'not_found')
 
   try {
-    const note = await createNote({ drugId, author: user.id, content })
+    const note = await createNote({ drugId, authorUserId: user.id, content })
     return ok({ note }, 201)
   } catch (error) {
     if (error instanceof NoteError) {

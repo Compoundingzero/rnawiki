@@ -98,7 +98,6 @@ describe('ContributionReviewPanel', () => {
       id: 'reviewer-1',
       name: 'Reviewer One',
       email: 'reviewer@example.test',
-      isDoctor: false,
       trustTier: 'trusted',
     })
 

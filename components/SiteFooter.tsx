@@ -1,12 +1,12 @@
 // Site-wide navigation and medical disclaimer. This is static server-rendered markup.
 
 import Link from 'next/link'
-import { QuickGuideButton } from '@/components/QuickGuideButton'
 
 const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: '/browse', label: 'Browse all medicines' },
-  { href: '/review-queue', label: 'Review queue' },
   { href: '/how-it-works', label: 'How this works' },
+  { href: '/editorial-policy', label: 'Editorial policy' },
+  { href: '/review-queue', label: 'Review queue' },
 ]
 
 export function SiteFooter() {
@@ -31,7 +31,6 @@ export function SiteFooter() {
               {link.label}
             </Link>
           ))}
-          <QuickGuideButton />
         </nav>
 
         <p className="text-[11px] leading-relaxed text-[#6E6E73]">

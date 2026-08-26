@@ -64,7 +64,7 @@ test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' })
 })
 
-test('a sourced legacy name correction stays hidden in the simple view, queues, and publishes only after independent review', async ({
+test('a sourced legacy name correction stays in the bottom utilities, queues, and publishes only after independent review', async ({
   page,
 }) => {
   const correctedName = `Reviewed identity ${fixture.slug.slice(-12)}`
@@ -73,11 +73,19 @@ test('a sourced legacy name correction stays hidden in the simple view, queues, 
   await login(page, fixture.author)
   await page.goto(`/d/${fixture.slug}`)
   await expect(page.getByRole('heading', { name: fixture.originalName })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Suggest a correction' })).toBeHidden()
-
-  await page.getByText('See how we know', { exact: true }).click()
-  await expect(page.getByRole('button', { name: 'Suggest a correction' })).toBeVisible()
-  await page.getByRole('button', { name: 'Suggest a correction' }).click()
+  const evidenceControl = page.locator('summary[aria-controls="advanced-evidence-content"]')
+  const correctionControl = page.getByRole('button', { name: 'Suggest a correction' })
+  await expect(evidenceControl).toBeVisible()
+  await expect(correctionControl).toBeVisible()
+  expect(
+    await correctionControl.evaluate((correction) => {
+      const evidence = document.querySelector('summary[aria-controls="advanced-evidence-content"]')
+      return Boolean(
+        evidence && evidence.compareDocumentPosition(correction) & Node.DOCUMENT_POSITION_FOLLOWING,
+      )
+    }),
+  ).toBe(true)
+  await correctionControl.click()
 
   const dialog = page.getByRole('dialog', { name: 'Suggest a correction' })
   await expect(dialog).toBeVisible()

@@ -430,7 +430,10 @@ export const programmeFirstVerdictAuthoringBundleSchema = z
         message: 'The conclusion requires at least one supporting claim.',
       })
     }
-    const conclusionClaimKeys = new Set(bundle.conclusion.claimLinks.map((link) => link.claimKey))
+    const conclusionRelationshipByClaimKey = new Map(
+      bundle.conclusion.claimLinks.map((link) => [link.claimKey, link.relationship]),
+    )
+    const conclusionClaimKeys = new Set(conclusionRelationshipByClaimKey.keys())
 
     for (const fieldPath of PROGRAMME_SUMMARY_FIELD_PATHS) {
       if (
@@ -451,6 +454,17 @@ export const programmeFirstVerdictAuthoringBundleSchema = z
             path: ['dependencies', 'summary', fieldPath, index],
             message:
               'A summary dependency must use a claim linked directly to this conclusion revision.',
+          })
+        }
+        if (
+          fieldPath === 'summary.plainMechanism' &&
+          conclusionRelationshipByClaimKey.get(claimKey) !== 'SUPPORTING'
+        ) {
+          context.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ['dependencies', 'summary', fieldPath, index],
+            message:
+              'The plain-language mechanism may depend only on a claim with a SUPPORTING relationship to this conclusion revision.',
           })
         }
       })

@@ -78,9 +78,11 @@ classification is allowed only for a stopped or withdrawn programme.
 
 ### C — sources for the statements being made
 
-Stops measured statements without a stored source snapshot, broken source links, unexplained
-numeric units and conclusions with no supporting claims. It warns when primary results are missing,
-sources conflict, or a source has been corrected or retracted.
+Stops measured statements without a stored source snapshot, malformed or internally unresolved
+source records, unexplained numeric units and conclusions with no supporting claims. It warns when
+primary results are missing, sources conflict, or a source has been corrected or retracted. These
+rules inspect stored source state; entering a web address does not make RNA Intelligence fetch or
+verify that page.
 
 ### D — dates and study structure
 
@@ -167,8 +169,21 @@ Other boundaries use narrower checks that match their job:
 - ingestion and enrichment run the narrower Group A checks when a stored molecule or sequence has
   the required input. There is no public molecular editor.
 
+Community notes do not enter any RNA Intelligence check. They publish as a separate commentary
+layer and cannot change the evidence record or a reviewed conclusion.
+
 Calling these narrower checks “the full evidence engine” would be misleading, so the runtime map is
 kept in [`lib/rna-intelligence/EVIDENCE_INTEGRATION.md`](../lib/rna-intelligence/EVIDENCE_INTEGRATION.md).
+
+## Account and attribution boundary
+
+RNAWiki has one account type. Trust standing, internal-review access and scientific-review
+qualifications are permissions on that account; they are not different login types. Every note,
+identity correction and programme proposal takes its author from the authenticated server session.
+The request cannot choose another author. Notes store an author snapshot, identity corrections store
+the contributor with the immutable before-and-after record, and programme proposals store a
+non-null account reference that appears in the public queue and review history. Draft proposals are
+private to their author and become immutable when submitted.
 
 ## Publication and review boundary
 

@@ -11,6 +11,12 @@ export interface TenSecondAnswerCopy {
   criticalSafety?: string
 }
 
+export interface LegacyTenSecondAnswerEvidenceBinding {
+  kind: 'legacy_answer_and_evidence_fingerprint'
+  version: 'legacy-ten-second-answer/v2'
+  fingerprint: string
+}
+
 export const TEN_SECOND_FIELD_WORD_LIMITS = {
   usedFor: 24,
   whatStudiesFound: 30,

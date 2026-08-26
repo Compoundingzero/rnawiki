@@ -39,7 +39,6 @@ import { POST as register } from '@/app/api/auth/register/route'
 import { POST as login } from '@/app/api/auth/login/route'
 import { POST as logout } from '@/app/api/auth/logout/route'
 import { GET as me } from '@/app/api/auth/me/route'
-import { POST as doctorVerification } from '@/app/api/auth/doctor-verification/route'
 import { POST as addNote } from '@/app/api/drugs/[slug]/notes/route'
 import { POST as toggleSave } from '@/app/api/drugs/[slug]/save/route'
 import { GET as savedDrugs } from '@/app/api/me/saved/route'
@@ -85,14 +84,9 @@ interface PublicUserBody {
   name: string
   email: string
   handle?: string
-  isDoctor: boolean
-  hasCredentialOnFile: boolean
-  verificationState?: string
   trustTier?: string
   acceptedEditCount?: number
   isAdmin?: boolean
-  medicalSpecialty?: string
-  institution?: string
 }
 
 async function signInThroughRoute(): Promise<void> {
@@ -158,8 +152,8 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
-  // Feedback and physician requests are append-only audit rows. The integration harness drops the
-  // whole disposable database, so this file must not punch a cleanup hole through that contract.
+  // Feedback records are append-only audit rows. The integration harness drops the whole
+  // disposable database, so this file must not punch a cleanup hole through that contract.
   if (drugIds.length > 0) await db.delete(drugs).where(inArray(drugs.id, drugIds))
 })
 
@@ -244,9 +238,10 @@ describe('POST /api/auth/login', () => {
     const body = (await whoami.json()) as { user: PublicUserBody | null }
     expect(body.user?.handle).toBe(ACCOUNT_HANDLE)
     expect(body.user?.email).toBe(ACCOUNT_EMAIL)
-    // No badge, and no licence number in the payload — only whether one is on file.
-    expect(body.user?.isDoctor).toBe(false)
-    expect(body.user?.hasCredentialOnFile).toBe(false)
+    // The one-account payload contains no retired physician state or credential metadata.
+    expect(body.user).not.toHaveProperty('isDoctor')
+    expect(body.user).not.toHaveProperty('verificationState')
+    expect(body.user).not.toHaveProperty('hasCredentialOnFile')
     expect(body.user).not.toHaveProperty('medicalLicenseOrNpi')
 
     const out = await logout(postJson('http://localhost/api/auth/logout'))
@@ -254,48 +249,6 @@ describe('POST /api/auth/login', () => {
 
     const after = await me(get('http://localhost/api/auth/me'))
     expect(((await after.json()) as { user: unknown }).user).toBeNull()
-  })
-})
-
-describe('POST /api/auth/doctor-verification', () => {
-  it('files the claim as pending and grants nothing', async () => {
-    await signInThroughRoute()
-
-    const res = await doctorVerification(
-      postJson('http://localhost/api/auth/doctor-verification', {
-        fullName: 'Reader Example',
-        licenseOrNpi: '1234567893',
-        specialty: 'Cardiology',
-        institution: 'Example General Hospital',
-        workEmail: `reader-${RUN}@hospital.test`,
-      }),
-    )
-
-    expect(res.status).toBe(202)
-    const body = (await res.json()) as { user: PublicUserBody; state: string }
-    expect(body.state).toBe('pending')
-    // The response a client renders from carries no badge and no credentials.
-    expect(body.user.isDoctor).toBe(false)
-    expect(body.user.verificationState).toBe('pending')
-    expect(body.user.medicalSpecialty).toBeUndefined()
-    expect(body.user.institution).toBeUndefined()
-    expect(body.user.hasCredentialOnFile).toBe(true)
-
-    const rows = await db
-      .select({
-        verificationState: users.verificationState,
-        verifiedAt: users.verifiedAt,
-        isDoctor: users.isDoctor,
-      })
-      .from(users)
-      .where(eq(users.id, accountId))
-
-    // The stored state is 'pending' and nothing else. Only a steward, through
-    // `approveVerification`, ever writes 'verified'.
-    expect(rows[0]?.verificationState).toBe('pending')
-    expect(rows[0]?.verifiedAt).toBeNull()
-    // `is_doctor` records only that a claim was made; it is never what renders the badge.
-    expect(rows[0]?.isDoctor).toBe(true)
   })
 })
 
@@ -308,6 +261,9 @@ describe('the public contributor profile', () => {
     // cannot arrive through a nested field either.
     expect(JSON.stringify(profile)).not.toContain(ACCOUNT_EMAIL)
     expect(profile).not.toHaveProperty('medicalLicenseOrNpi')
+    expect(profile).not.toHaveProperty('medicalSpecialty')
+    expect(profile).not.toHaveProperty('institution')
+    expect(profile).not.toHaveProperty('isVerifiedDoctor')
     expect(profile).not.toHaveProperty('verificationNote')
   })
 })

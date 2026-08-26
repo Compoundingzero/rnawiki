@@ -1,10 +1,9 @@
 // Community notes: the reader-visible discussion attached to a dossier.
 //
-// The rule that shapes this file is that a note's credentials are a snapshot, taken from the user
-// row at the moment of writing and never again. A physician who later loses verification does not
-// retroactively un-sign the note they wrote while verified, and — far more importantly — a client
-// that posts `isVerifiedDoctor: true` in its JSON body cannot mint an MD badge. The flag is read
-// from `users.verificationState === 'verified'` inside the same transaction as the insert.
+// The rule that shapes this file is that authorship comes from the authenticated account, never
+// from note content supplied by the browser. The saved name and ORCID remain as an audit snapshot;
+// the current public handle is joined when that account still exists. Legacy physician columns stay
+// in the table for migration compatibility but are deliberately absent from this public projection.
 
 import { and, desc, eq, sql } from 'drizzle-orm'
 import { db } from '@/db'
@@ -61,10 +60,6 @@ const noteColumns = {
   id: communityNotes.id,
   authorUserId: communityNotes.authorUserId,
   authorName: communityNotes.authorName,
-  role: communityNotes.role,
-  isVerifiedDoctor: communityNotes.isVerifiedDoctor,
-  medicalSpecialty: communityNotes.medicalSpecialty,
-  institution: communityNotes.institution,
   orcid: communityNotes.orcid,
   content: communityNotes.content,
   upvotes: communityNotes.upvotes,
@@ -74,22 +69,22 @@ const noteColumns = {
 /** Exactly the columns `noteColumns` selects, with the table's own nullability. */
 type NoteRow = Pick<typeof communityNotes.$inferSelect, keyof typeof noteColumns>
 
-function toCommunityNote(row: NoteRow, hasUpvoted: boolean): CommunityNote {
+function toCommunityNote(
+  row: NoteRow,
+  hasUpvoted: boolean,
+  authorHandle?: string | null,
+): CommunityNote {
   return {
     id: row.id,
     author: row.authorName,
-    role: row.role,
-    isVerifiedDoctor: row.isVerifiedDoctor,
-    medicalSpecialty: row.medicalSpecialty ?? undefined,
-    institution: row.institution ?? undefined,
-    // A badge follows stored physician verification, never sign-in alone.
-    verifiedBadge: row.isVerifiedDoctor ? 'Verified physician' : undefined,
+    ...(authorHandle ? { authorHandle } : {}),
+    role: 'Community contributor',
     // ISO 8601, not a pre-formatted "3 days ago": the server does not know the reader's locale or
     // timezone, and a cached page would freeze a relative string at render time.
     date: row.createdAt.toISOString(),
     content: row.content,
     upvotes: row.upvotes,
-    authorUserId: row.authorUserId ?? undefined,
+    ...(row.authorUserId ? { authorUserId: row.authorUserId } : {}),
     hasUpvoted,
     orcid: row.orcid ?? undefined,
   }
@@ -118,19 +113,7 @@ export async function listNotesForDrug(
     .select({
       ...noteColumns,
       viewerUpvoteUserId: noteUpvotes.userId,
-      // The author's CURRENT verification state, joined live.
-      //
-      // The snapshot columns on the note are the right default: a note keeps the credentials it
-      // was signed with, so an author who later changes specialty does not silently rewrite what
-      // hundreds of old notes claim. But revocation is different. If a steward withdraws
-      // verification -- because the licence lapsed, or because it was never real -- every note that
-      // account ever posted would otherwise keep displaying "MD ✓" for ever, and those are exactly
-      // the notes the revocation was meant to stop vouching for.
-      //
-      // So the badge needs BOTH: the snapshot says this note was signed as a physician, and the
-      // live column says the account still is one. A null author (deleted account) fails the
-      // second test, which is the right answer too.
-      authorVerificationState: users.verificationState,
+      authorHandle: users.handle,
     })
     .from(communityNotes)
     .leftJoin(
@@ -141,24 +124,22 @@ export async function listNotesForDrug(
     .where(and(eq(communityNotes.drugId, drugId), eq(communityNotes.status, 'published')))
     .orderBy(desc(communityNotes.createdAt), desc(communityNotes.id))
 
-  return rows.map(({ viewerUpvoteUserId, authorVerificationState, ...row }) =>
-    toCommunityNote(
-      { ...row, isVerifiedDoctor: row.isVerifiedDoctor && authorVerificationState === 'verified' },
-      viewerUpvoteUserId !== null,
-    ),
+  return rows.map(({ viewerUpvoteUserId, authorHandle, ...row }) =>
+    toCommunityNote(row, viewerUpvoteUserId !== null, authorHandle),
   )
 }
 
 /** Notes written by one contributor, newest first. Backs the public profile page. */
 export async function listNotesByUser(userId: string, limit: number): Promise<CommunityNote[]> {
   const rows = await db
-    .select(noteColumns)
+    .select({ ...noteColumns, authorHandle: users.handle })
     .from(communityNotes)
+    .leftJoin(users, eq(users.id, communityNotes.authorUserId))
     .where(and(eq(communityNotes.authorUserId, userId), eq(communityNotes.status, 'published')))
     .orderBy(desc(communityNotes.createdAt), desc(communityNotes.id))
     .limit(Math.max(1, Math.trunc(limit)))
 
-  return rows.map((row) => toCommunityNote(row, false))
+  return rows.map(({ authorHandle, ...row }) => toCommunityNote(row, false, authorHandle))
 }
 
 // ---------------------------------------------------------------------------
@@ -168,14 +149,11 @@ export async function listNotesByUser(userId: string, limit: number): Promise<Co
 export interface CreateNoteInput {
   drugId: string
   /**
-   * The signed-in user's id. Named `author` because that is what it is, but note that it is an
-   * id and not a display name: every credential on the resulting note is copied from this row,
-   * so there is nothing a caller can pass that would forge one.
+   * The signed-in user's id, supplied by the route from the server session rather than request
+   * JSON. The resulting public identity is resolved from that account row.
    */
-  author: string
+  authorUserId: string
   content: string
-  /** Optional role label from the form. Ignored in favour of the specialty for verified doctors. */
-  role?: string
   /** Explicit id, for a deterministic seed. Otherwise generated. */
   id?: string
 }
@@ -197,27 +175,17 @@ export async function createNote(input: CreateNoteInput): Promise<CommunityNote>
       .select({
         id: users.id,
         name: users.name,
-        isDoctor: users.isDoctor,
-        verificationState: users.verificationState,
-        medicalSpecialty: users.medicalSpecialty,
-        institution: users.institution,
+        handle: users.handle,
         orcid: users.orcid,
       })
       .from(users)
-      .where(eq(users.id, input.author))
+      .where(eq(users.id, input.authorUserId))
       .limit(1)
 
     const author = authorRows[0]
     if (!author) {
       throw new NoteError('author_not_found', 'No account matches this note author.')
     }
-
-    // The one place the MD badge is decided. `isDoctor` alone is a self-declaration; only a
-    // steward-approved verification state counts.
-    const isVerifiedDoctor = author.isDoctor && author.verificationState === 'verified'
-    const role = isVerifiedDoctor
-      ? (author.medicalSpecialty ?? 'Physician')
-      : input.role?.trim() || 'Community Contributor'
 
     let inserted: NoteRow | undefined
     try {
@@ -228,11 +196,10 @@ export async function createNote(input: CreateNoteInput): Promise<CommunityNote>
           drugId: input.drugId,
           authorUserId: author.id,
           authorName: author.name,
-          role,
-          isVerifiedDoctor,
-          // The snapshot carries the credentials only when they were verified at write time.
-          medicalSpecialty: isVerifiedDoctor ? author.medicalSpecialty : null,
-          institution: isVerifiedDoctor ? author.institution : null,
+          role: 'Community contributor',
+          isVerifiedDoctor: false,
+          medicalSpecialty: null,
+          institution: null,
           orcid: author.orcid,
           content,
         })
@@ -254,7 +221,7 @@ export async function createNote(input: CreateNoteInput): Promise<CommunityNote>
       .set({ noteCount: sql`${users.noteCount} + 1` })
       .where(eq(users.id, author.id))
 
-    return toCommunityNote(inserted, false)
+    return toCommunityNote(inserted, false, author.handle)
   })
 }
 

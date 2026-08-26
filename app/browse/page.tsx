@@ -15,6 +15,7 @@ import {
   type PublicMedicineProjection,
 } from '@/lib/public-medicine-projection'
 import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
+import { pageRobotsMetadata } from '@/lib/seo/deployment'
 import { getCurrentUser } from '@/lib/session'
 import {
   APPROVAL_STATUSES,
@@ -47,18 +48,29 @@ const DEPTH_LABEL: Record<NonNullable<DossierDepth>, string> = {
 
 type SearchParams = Record<string, string | string[] | undefined>
 
-/** `?modality=a&modality=b` arrives as an array. One filter, one value: take the first. */
-function single(value: string | string[] | undefined): string | undefined {
-  return Array.isArray(value) ? value[0] : value
+const ALLOWED_BROWSE_PARAMS = new Set(['modality', 'approvalStatus', 'depth', 'page'])
+
+function hasParam(params: SearchParams, name: string): boolean {
+  return Object.prototype.hasOwnProperty.call(params, name)
 }
 
-/**
- * A value is accepted only if it is a member of the vocabulary. An unknown string is dropped
- * rather than passed to the query: `?modality=<script>` must produce the unfiltered list, not an
- * error page and not an echo of whatever was typed.
- */
-function oneOf<T extends string>(raw: string | undefined, allowed: readonly T[]): T | undefined {
-  return allowed.find((candidate) => candidate === raw)
+/** Duplicate query keys create multiple crawlable spellings and are never a valid filter. */
+function strictSingle(params: SearchParams, name: string): string | undefined {
+  const value = params[name]
+  if (Array.isArray(value)) notFound()
+  return value
+}
+
+function strictOneOf<T extends string>(
+  params: SearchParams,
+  name: string,
+  allowed: readonly T[],
+): T | undefined {
+  if (!hasParam(params, name)) return undefined
+  const raw = strictSingle(params, name)
+  const match = allowed.find((candidate) => candidate === raw)
+  if (!match) notFound()
+  return match
 }
 
 interface BrowseFilters {
@@ -66,23 +78,35 @@ interface BrowseFilters {
   approvalStatus?: ApprovalStatus
   depth?: NonNullable<DossierDepth>
   page: number
+  hasExplicitPage: boolean
 }
 
 function readFilters(params: SearchParams): BrowseFilters {
-  const page = parseBrowsePage(single(params.page))
-  if (page === null) notFound()
-  const filters: BrowseFilters = { page }
+  for (const name of Object.keys(params)) {
+    if (!ALLOWED_BROWSE_PARAMS.has(name)) notFound()
+  }
 
-  const modality = oneOf(single(params.modality), DRUG_MODALITIES)
+  const hasExplicitPage = hasParam(params, 'page')
+  const rawPage = strictSingle(params, 'page')
+  if (hasExplicitPage && rawPage === '') notFound()
+  const page = parseBrowsePage(rawPage)
+  if (page === null) notFound()
+  const filters: BrowseFilters = { page, hasExplicitPage }
+
+  const modality = strictOneOf(params, 'modality', DRUG_MODALITIES)
   if (modality) filters.modality = modality
 
-  const approvalStatus = oneOf(single(params.approvalStatus), APPROVAL_STATUSES)
+  const approvalStatus = strictOneOf(params, 'approvalStatus', APPROVAL_STATUSES)
   if (approvalStatus) filters.approvalStatus = approvalStatus
 
-  const depth = oneOf(single(params.depth), DEPTHS)
+  const depth = strictOneOf(params, 'depth', DEPTHS)
   if (depth) filters.depth = depth
 
   return filters
+}
+
+function hasBrowseFilter(filters: BrowseFilters): boolean {
+  return Boolean(filters.modality || filters.approvalStatus || filters.depth)
 }
 
 /** Rebuilds `/browse?...` from a filter set. Page 1 is left implicit so the canonical view of a
@@ -225,13 +249,20 @@ export async function generateMetadata({ searchParams }: BrowsePageProps): Promi
   // Next.js 15: `searchParams` is a Promise, exactly like `params`.
   const filters = readFilters(await searchParams)
   const description = describeFilters(filters)
+  const isCanonicalIndexPage =
+    !hasBrowseFilter(filters) && filters.page === 1 && !filters.hasExplicitPage
 
   return {
-    title: description ? `Browse: ${description}` : 'Browse medicine records',
+    title: description
+      ? `Browse: ${description}`
+      : filters.page > 1
+        ? `Browse medicine records — page ${filters.page}`
+        : 'Browse medicine records',
     description: description
       ? `RNAWiki medicine records filed under ${description}.`
       : 'Browse every medicine record on RNAWiki, from detailed records to basic records that identify the medicine and its regulatory status.',
-    alternates: { canonical: browseHref(filters) },
+    alternates: { canonical: '/browse' },
+    robots: pageRobotsMetadata({ index: isCanonicalIndexPage, follow: true }),
   }
 }
 
@@ -250,9 +281,11 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   ])
 
   const { items, total } = result
-  const projections = await getPublicMedicineProjections(items.map((drug) => drug.id))
   const lastPage = Math.max(1, Math.ceil(total / PAGE_SIZE))
   if (filters.page > lastPage) notFound()
+  if (total === 0 && hasBrowseFilter(filters)) notFound()
+
+  const projections = await getPublicMedicineProjections(items.map((drug) => drug.id))
   const firstOnPage = total === 0 ? 0 : (filters.page - 1) * PAGE_SIZE + 1
   const lastOnPage = (filters.page - 1) * PAGE_SIZE + items.length
 

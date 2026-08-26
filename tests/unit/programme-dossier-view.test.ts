@@ -1,8 +1,25 @@
+import * as React from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
+import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
+import { AppProvider } from '@/components/app-context'
 import type { ProgrammeEvidenceReadModel } from '@/lib/evidence/types'
 import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-view'
 import type { DrugDossier } from '@/lib/types'
+
+// Next preserves JSX for its own compiler; Vitest's direct server render uses the classic runtime.
+;(globalThis as typeof globalThis & { React: typeof React }).React = React
+
+function renderDossier(dossier: ReturnType<typeof programmeEvidenceMedicineDossierView>): string {
+  return renderToStaticMarkup(
+    React.createElement(
+      AppProvider,
+      { initialUser: null } as React.ComponentProps<typeof AppProvider>,
+      React.createElement(MedicineDossierV2, { dossier }),
+    ),
+  )
+}
 
 function drug(): DrugDossier {
   return {
@@ -61,7 +78,11 @@ function drug(): DrugDossier {
       whatFailedInitially: [],
       realWorldOutcome: [],
     },
-    deliverySystem: { type: '', description: '', safetyProfile: '' },
+    deliverySystem: {
+      type: 'Legacy delivery form',
+      description: 'Legacy exact dosing schedule.',
+      safetyProfile: 'Legacy safety context.',
+    },
     commonQuestions: [
       {
         q: 'An older medicine-wide question?',
@@ -223,6 +244,8 @@ function model(withVerdict: boolean): ProgrammeEvidenceReadModel {
           outcomeType: 'BIOMARKER',
           numericValue: '10.0000000000',
           numericUnit: 'synthetic units',
+          comparatorValue: null,
+          comparatorGroup: null,
           uncertaintyInterval: '95% interval: 8 to 12',
           direction: 'INCREASE',
           timepoint: 'Synthetic timepoint',
@@ -273,12 +296,14 @@ function model(withVerdict: boolean): ProgrammeEvidenceReadModel {
             confidenceExplanation: 'The synthetic record is incomplete.',
             conditionsThatWouldChangeVerdict: ['A reviewed final outcome would change it.'],
             authorName: 'Synthetic Author',
+            authorHandle: 'synthetic-author',
             conflictsOfInterest: null,
             engineVersion: 'rna-intelligence/2.0.0',
             inputDigestAlgorithm: 'sha256',
             inputDigest: 'b'.repeat(64),
             reviewedAt: '2026-08-21T00:00:00.000Z',
             publishedAt: '2026-08-22T00:00:00.000Z',
+            independentReviewCount: 1,
             reviewers: [
               {
                 id: 'review-1',
@@ -292,10 +317,45 @@ function model(withVerdict: boolean): ProgrammeEvidenceReadModel {
                 reviewedAt: '2026-08-21T00:00:00.000Z',
               },
             ],
+            claimRelationships: [{ claimId: 'claim-1', relationship: 'SUPPORTING' }],
             supportingClaimIds: ['claim-1'],
             contradictoryClaimIds: [],
           }
         : null,
+      summaryFieldDependencies: withVerdict
+        ? [
+            {
+              id: 'summary-dependency-mechanism',
+              programmeId: 'programme-internal-1',
+              claimId: 'claim-1',
+              dependentSurfaceType: 'PROGRAMME_SUMMARY',
+              evidenceNodeId: null,
+              verdictRevisionId: 'verdict-1',
+              fieldPath: 'summary.plainMechanism',
+              impactLevel: 'INTERPRETIVE_REVIEW_REQUIRED',
+            },
+            {
+              id: 'summary-dependency-finding',
+              programmeId: 'programme-internal-1',
+              claimId: 'claim-1',
+              dependentSurfaceType: 'PROGRAMME_SUMMARY',
+              evidenceNodeId: null,
+              verdictRevisionId: 'verdict-1',
+              fieldPath: 'summary.bestSupportedFinding',
+              impactLevel: 'POSSIBLE_VERDICT_IMPACT',
+            },
+            {
+              id: 'summary-dependency-limitation',
+              programmeId: 'programme-internal-1',
+              claimId: 'claim-1',
+              dependentSurfaceType: 'PROGRAMME_SUMMARY',
+              evidenceNodeId: null,
+              verdictRevisionId: 'verdict-1',
+              fieldPath: 'summary.mainLimitation',
+              impactLevel: 'POSSIBLE_VERDICT_IMPACT',
+            },
+          ]
+        : [],
       presentation: withVerdict
         ? {
             schemaVersion: 'programme-presentation/v1',
@@ -456,6 +516,19 @@ describe('published programme dossier mapping', () => {
       simplified: false,
     })
     expect(view.readerSummary.whatStudiesFound).toBeUndefined()
+    expect(view.summaryEvidence?.['summary.bestSupportedFinding']).toMatchObject({
+      fieldPath: 'summary.bestSupportedFinding',
+      claimIds: ['claim-1'],
+      sourceIds: ['snapshot-1'],
+      sourceClaimBindings: [
+        {
+          sourceId: 'snapshot-1',
+          claimId: 'claim-1',
+          relationship: 'SUPPORTS',
+          statement: 'A synthetic measurement was recorded.',
+        },
+      ],
+    })
     expect(view.readerSummary.contextItems).toEqual([
       { label: 'What this page covers', text: 'Synthetic programme' },
       {
@@ -514,6 +587,7 @@ describe('published programme dossier mapping', () => {
       outcomeType: 'BIOMARKER',
       sourceIds: ['snapshot-1'],
     })
+    expect(view.evidenceNodes[0]?.claims?.[0]?.nodeRelationships).toEqual(['SUPPORTS'])
     expect(view.mechanismSteps).toEqual([
       expect.objectContaining({
         id: 'delivery',
@@ -553,13 +627,174 @@ describe('published programme dossier mapping', () => {
     expect(view.review.historyHref).toBe(
       '/d/synthetic-medicine/programme/synthetic-programme/history',
     )
-    expect(view.medicineRecord.conventionalAlternatives[0]?.name).toBe('Another recorded approach')
-    expect(view.medicineRecord.commonQuestions[0]?.question).toBe(
-      'An older medicine-wide question?',
+    expect(view.conclusion?.scope.doseExposure).toBe('Synthetic exposure scope')
+    expect(view.medicineRecord.condition?.conditionExplainer).toBe(
+      'Legacy medicine-wide condition background.',
     )
-    expect(view.medicineRecord.molecular?.identifiers).toEqual([
-      { kind: 'formula', label: 'Chemical formula', value: 'C1H1' },
+    expect(view.medicineRecord.safetyAndAdministration).toEqual({
+      deliveryForm: 'Legacy delivery form',
+      safetyInformation: 'Legacy safety context.',
+    })
+    expect(view.medicineRecord.pricing).toBeUndefined()
+    expect(view.medicineRecord.conventionalAlternatives).toEqual([])
+    expect(view.medicineRecord.commonQuestions).toEqual([])
+    expect(view.medicineRecord.molecular).toMatchObject({
+      format: 'Chemical formula',
+      identifiers: [{ label: 'Chemical formula', value: 'C1H1', kind: 'formula' }],
+      structureCheck: 'not_passed',
+    })
+    expect(view.medicineRecord.communityNotes).toEqual([])
+  })
+
+  it('binds each reviewed summary answer only to its exact dependent claims and snapshots', () => {
+    const exact = model(true)
+    const programme = exact.selectedProgramme!
+    const findingClaim = programme.claims[0]!
+    const findingSource = findingClaim.sources[0]!
+    findingClaim.plainLanguageText =
+      'After 12 weeks, symptoms improved by 20% compared with placebo.'
+    programme.verdict!.bestSupportedFinding = findingClaim.plainLanguageText
+    programme.verdict!.mainLimitation =
+      'The study did not show whether the improvement lasted beyond 12 weeks.'
+
+    const limitationClaim = {
+      ...findingClaim,
+      id: 'claim-2',
+      claimKey: 'synthetic.claim.2',
+      plainLanguageText: programme.verdict!.mainLimitation,
+      sources: [
+        {
+          ...findingSource,
+          id: 'snapshot-2',
+          sourceId: 'source-2',
+          externalIdentifier: '10.0000/limitation',
+          canonicalLocator: 'https://doi.org/10.0000/limitation',
+          title: 'Exact limitation source',
+          contentHash: 'c'.repeat(64),
+          relationship: 'CONTEXT' as const,
+        },
+      ],
+    }
+    programme.claims.push(limitationClaim)
+    programme.verdict!.claimRelationships.push({
+      claimId: limitationClaim.id,
+      relationship: 'CANDIDATE_LIMITATION',
+    })
+    programme.summaryFieldDependencies = programme.summaryFieldDependencies.map((dependency) =>
+      dependency.fieldPath === 'summary.mainLimitation'
+        ? { ...dependency, claimId: limitationClaim.id }
+        : dependency,
+    )
+
+    const view = programmeEvidenceMedicineDossierView(
+      drug(),
+      exact,
+      new Date('2026-08-22T12:00:00.000Z'),
+    )
+
+    expect(view.readerSummary.whatStudiesFoundSourceFieldPath).toBe('summary.bestSupportedFinding')
+    expect(view.readerSummary.biggestLimitSourceFieldPath).toBe('summary.mainLimitation')
+    expect(view.summaryEvidence?.['summary.bestSupportedFinding']).toMatchObject({
+      claimIds: ['claim-1'],
+      sourceIds: ['snapshot-1'],
+    })
+    expect(view.summaryEvidence?.['summary.mainLimitation']).toEqual({
+      fieldPath: 'summary.mainLimitation',
+      claimIds: ['claim-2'],
+      sourceIds: ['snapshot-2'],
+      verdictClaimBindings: [
+        {
+          claimId: 'claim-2',
+          relationship: 'CANDIDATE_LIMITATION',
+        },
+      ],
+      sourceClaimBindings: [
+        {
+          sourceId: 'snapshot-2',
+          claimId: 'claim-2',
+          relationship: 'CONTEXT',
+          statement: 'The study did not show whether the improvement lasted beyond 12 weeks.',
+        },
+      ],
+    })
+  })
+
+  it('preserves each summary claim relationship to the published verdict', () => {
+    const supporting = programmeEvidenceMedicineDossierView(
+      drug(),
+      model(true),
+      new Date('2026-08-22T12:00:00.000Z'),
+    )
+    expect(supporting.summaryEvidence?.['summary.plainMechanism']?.verdictClaimBindings).toEqual([
+      { claimId: 'claim-1', relationship: 'SUPPORTING' },
     ])
+
+    const contradictoryModel = model(true)
+    contradictoryModel.selectedProgramme!.verdict!.claimRelationships = [
+      { claimId: 'claim-1', relationship: 'CONTRADICTORY' },
+    ]
+    contradictoryModel.selectedProgramme!.verdict!.supportingClaimIds = []
+    contradictoryModel.selectedProgramme!.verdict!.contradictoryClaimIds = ['claim-1']
+
+    const contradictory = programmeEvidenceMedicineDossierView(
+      drug(),
+      contradictoryModel,
+      new Date('2026-08-22T12:00:00.000Z'),
+    )
+    expect(contradictory.summaryEvidence?.['summary.plainMechanism']?.verdictClaimBindings).toEqual(
+      [{ claimId: 'claim-1', relationship: 'CONTRADICTORY' }],
+    )
+  })
+
+  it('keeps reviewed exposure scope in server HTML while omitting actionable legacy fields', () => {
+    const html = renderDossier(
+      programmeEvidenceMedicineDossierView(
+        drug(),
+        model(true),
+        new Date('2026-08-22T12:00:00.000Z'),
+      ),
+    )
+
+    expect(html).toContain('Synthetic exposure scope')
+    expect(html).toContain('Legacy medicine-wide condition background.')
+    expect(html).toContain('Legacy safety context.')
+    expect(html).not.toContain('Legacy exact dosing schedule.')
+    expect(html).not.toContain('An older reported price.')
+    expect(html).not.toContain('An older pricing note.')
+    expect(html).not.toContain('Another recorded approach')
+    expect(html).not.toContain('An older medicine-wide question?')
+    expect(html).toContain('C1H1')
+    expect(html).not.toContain('A published community comment.')
+  })
+
+  it('never substitutes verdict-wide or partial sources for a missing field dependency', () => {
+    const withoutFindingDependency = model(true)
+    withoutFindingDependency.selectedProgramme!.verdict!.bestSupportedFinding =
+      'After 12 weeks, symptoms improved by 20% compared with placebo.'
+    withoutFindingDependency.selectedProgramme!.summaryFieldDependencies =
+      withoutFindingDependency.selectedProgramme!.summaryFieldDependencies.filter(
+        (dependency) => dependency.fieldPath !== 'summary.bestSupportedFinding',
+      )
+
+    const withoutDependency = programmeEvidenceMedicineDossierView(
+      drug(),
+      withoutFindingDependency,
+      new Date('2026-08-22T12:00:00.000Z'),
+    )
+    expect(withoutDependency.readerSummary.whatStudiesFoundSourceFieldPath).toBe(
+      'summary.bestSupportedFinding',
+    )
+    expect(withoutDependency.summaryEvidence?.['summary.bestSupportedFinding']).toBeUndefined()
+
+    const withoutExactSource = model(true)
+    withoutExactSource.selectedProgramme!.claims[0]!.sources = []
+    const incomplete = programmeEvidenceMedicineDossierView(
+      drug(),
+      withoutExactSource,
+      new Date('2026-08-22T12:00:00.000Z'),
+    )
+    expect(incomplete.summaryEvidence?.['summary.bestSupportedFinding']).toBeUndefined()
+    expect(incomplete.summaryEvidence?.['summary.mainLimitation']).toBeUndefined()
   })
 
   it('limits the reviewed outcome list to five stored claims', () => {

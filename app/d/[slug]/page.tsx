@@ -4,29 +4,34 @@
 
 import { cache } from 'react'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { AppShell } from '@/components/AppShell'
 import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
-import { getDrugBySlug, incrementViewCount } from '@/lib/queries/drugs'
+import {
+  getDrugBySlug,
+  getPublicDrugBySlug,
+  incrementViewCount,
+  resolvePublicMedicineRoute,
+} from '@/lib/queries/drugs'
 import {
   getProgrammeEvidenceByMedicineSlug,
   programmeReferenceExists,
 } from '@/lib/queries/programme-evidence'
 import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-view'
-import { drugJsonLd, serialiseJsonLd } from '@/lib/json-ld'
-import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
+import { dossierJsonLdGraph, serialiseJsonLd } from '@/lib/json-ld'
+import { configuredPublicUrl, configuredSiteOrigin, pageRobotsMetadata } from '@/lib/seo/deployment'
+import { decideDossierIndexability } from '@/lib/seo/dossier-indexability'
+import { dossierMetadataDescription, dossierMetadataTitle } from '@/lib/seo/metadata'
 import { getCurrentUser } from '@/lib/session'
 
-const siteUrl = process.env.SITE_URL ?? 'https://rnawiki.com'
+const siteOrigin = configuredSiteOrigin()
 
-/**
- * `generateMetadata` and the page body both need the reader and the record, and Next.js calls them
- * as two separate renders of the same request. `cache` collapses that: identical arguments inside
- * one request resolve to one database round trip instead of two. The viewer id is part of the key
- * because `getDrugBySlug` resolves each note's `hasUpvoted` for that viewer, so a cached copy
- * belonging to somebody else would be wrong rather than merely stale.
+/** Request-local caches deduplicate the public route/evidence reads shared by metadata and body.
+ * The viewer id remains part of the personalised dossier key because note votes are viewer-specific.
  */
 const loadViewer = cache(getCurrentUser)
+const loadCanonicalRoute = cache(resolvePublicMedicineRoute)
+const loadPublicDossier = cache(getPublicDrugBySlug)
 
 const loadDossier = cache((slug: string, viewerUserId: string | undefined) =>
   getDrugBySlug(slug, viewerUserId),
@@ -53,15 +58,25 @@ export async function generateMetadata({
 }: DossierPageProps): Promise<Metadata> {
   const [{ slug }, query] = await Promise.all([params, searchParams])
   const programmeRef = selectedProgramme(query.programme)
-  const viewer = await loadViewer()
+  const route = await loadCanonicalRoute(slug)
+  if (!route) {
+    return {
+      title: 'Medicine not found',
+      robots: pageRobotsMetadata({ index: false, follow: true }),
+    }
+  }
+
   const [drug, programmeEvidence] = await Promise.all([
-    loadDossier(slug, viewer?.id),
-    loadProgrammeEvidence(slug, programmeRef),
+    loadPublicDossier(route.canonicalSlug),
+    loadProgrammeEvidence(route.canonicalSlug, programmeRef),
   ])
 
   if (!drug) {
     // A 404 must not be indexable, and it has no record to describe.
-    return { title: 'Medicine not found', robots: { index: false, follow: true } }
+    return {
+      title: 'Medicine not found',
+      robots: pageRobotsMetadata({ index: false, follow: true }),
+    }
   }
 
   if (
@@ -69,45 +84,43 @@ export async function generateMetadata({
     programmeEvidence &&
     !programmeReferenceExists(programmeEvidence, programmeRef)
   ) {
-    return { title: 'Development programme not found', robots: { index: false, follow: true } }
+    return {
+      title: 'Development programme not found',
+      robots: pageRobotsMetadata({ index: false, follow: true }),
+    }
   }
 
   const dossier = programmeEvidence
     ? programmeEvidenceMedicineDossierView(drug, programmeEvidence)
     : null
-  const title = drug.tradeName ? `${drug.name} (${drug.tradeName})` : drug.name
-
-  // The verdict is the sentence the record exists to deliver, so it is the description whenever
-  // there is one. A stub has no verdict yet; the recorded indication is then the accurate summary,
-  // and nothing is composed out of thin air to fill the tag.
-  const description =
-    dossier?.verdict.trim() ||
-    (dossier?.bindingState === 'programme_unpublished'
-      ? `${drug.name}: RNAWiki has not published a reviewed conclusion for ${dossier.selectedProgrammeLabel} yet.`
-      : '') ||
-    drug.oneSentenceVerdict.trim() ||
-    drug.patientFriendlyIndication.trim() ||
-    drug.indication.trim() ||
-    `${drug.name}: ${publicMedicineTypeLabel(drug.modality)}, ${publicApprovalStatusLabel(drug.approvalStatus)}.`
-
-  const publishedProgramme = programmeEvidence?.selectedProgramme?.slug
-  const path = publishedProgramme
-    ? `/d/${drug.id}?programme=${encodeURIComponent(publishedProgramme)}`
-    : `/d/${drug.id}`
+  const decision = dossier ? decideDossierIndexability(drug, dossier) : null
+  const title = dossierMetadataTitle(drug.name)
+  const description = dossierMetadataDescription({
+    name: drug.name,
+    reviewed: decision?.reason === 'indexable_reviewed_publication',
+    provenanceBoundLegacy: decision?.reason === 'indexable_provenance_bound_legacy_flagship',
+    usedFor: dossier?.readerSummary.usedFor,
+    finding: dossier?.readerSummary.whatStudiesFound,
+    limitation: dossier?.readerSummary.biggestLimit ?? dossier?.mainLimitation,
+  })
+  const path = `/d/${route.canonicalSlug}`
+  // Programme query parameters are a shareable UI state, not a separate search landing page.
+  const mayIndex = decision?.index === true && programmeRef === null
 
   return {
     title,
     description,
     alternates: { canonical: path },
+    robots: pageRobotsMetadata({ index: mayIndex, follow: true }),
     openGraph: {
       type: 'article',
-      title: `${title} — RNAWiki`,
+      title: `${title} | RNAWiki`,
       description,
       url: path,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} — RNAWiki`,
+      title: `${title} | RNAWiki`,
       description,
     },
   }
@@ -116,10 +129,16 @@ export async function generateMetadata({
 export default async function DossierPage({ params, searchParams }: DossierPageProps) {
   const [{ slug }, query] = await Promise.all([params, searchParams])
   const programmeRef = selectedProgramme(query.programme)
-  const viewer = await loadViewer()
+  const [viewer, route] = await Promise.all([loadViewer(), loadCanonicalRoute(slug)])
+  if (!route) notFound()
+  if (route.canonicalSlug !== slug) {
+    const queryString = programmeRef ? `?programme=${encodeURIComponent(programmeRef)}` : ''
+    permanentRedirect(`/d/${encodeURIComponent(route.canonicalSlug)}${queryString}`)
+  }
+
   const [drug, programmeEvidence] = await Promise.all([
-    loadDossier(slug, viewer?.id),
-    loadProgrammeEvidence(slug, programmeRef),
+    loadDossier(route.canonicalSlug, viewer?.id),
+    loadProgrammeEvidence(route.canonicalSlug, programmeRef),
   ])
 
   if (!drug) notFound()
@@ -148,11 +167,13 @@ export default async function DossierPage({ params, searchParams }: DossierPageP
         programmes: [],
         selectedProgramme: null,
       })
-  const selectedPath =
-    dossier.bindingState !== 'legacy_record' && dossier.selectedProgrammeId
-      ? `/d/${drug.id}?programme=${encodeURIComponent(dossier.selectedProgrammeId)}`
-      : `/d/${drug.id}`
-  const jsonLd = drugJsonLd(drug, `${siteUrl}${selectedPath}`, dossier)
+  const selectedPath: `/${string}` = `/d/${route.canonicalSlug}`
+  const decision = decideDossierIndexability(drug, dossier)
+  const jsonLd = dossierJsonLdGraph(drug, dossier, {
+    eligible: decision.index && programmeRef === null,
+    siteUrl: siteOrigin,
+    url: configuredPublicUrl(selectedPath),
+  })
   return (
     <>
       {/*
@@ -160,10 +181,12 @@ export default async function DossierPage({ params, searchParams }: DossierPageP
         and `&` first — see the header of lib/json-ld.ts for why that escaping, and not the CSP,
         is what stops a drug name in the database from closing this script tag.
       */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serialiseJsonLd(jsonLd) }}
-      />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serialiseJsonLd(jsonLd) }}
+        />
+      )}
       <AppShell initialUser={viewer}>
         <MedicineDossierV2 dossier={dossier} />
       </AppShell>

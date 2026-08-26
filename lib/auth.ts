@@ -1,9 +1,4 @@
-// Credentials: password hashing, input validation, and the ORCID check digit.
-//
-// Nothing in this file grants status. `doctorVerificationSchema` validates the SHAPE of a
-// physician's claim about themselves; whether that claim is believed is decided by a human steward
-// writing `verificationState = 'verified'`, and only lib/session.ts reads that. A file that
-// validates a licence number is not a file that verifies a licence.
+// Account credentials: password hashing, input validation, and the ORCID check digit.
 
 import { z } from 'zod'
 import bcrypt from 'bcryptjs'
@@ -241,28 +236,5 @@ export const signInSchema = z.object({
   password: z.string().min(1, 'Enter your password.').max(PASSWORD_MAX_LENGTH),
 })
 
-export const doctorVerificationSchema = z.object({
-  fullName: nameSchema,
-  licenseOrNpi: z
-    .string()
-    .trim()
-    .min(4, 'Enter your licence number or NPI.')
-    .max(64, 'Licence numbers are at most 64 characters.'),
-  specialty: z
-    .string()
-    .trim()
-    .min(2, 'Enter your specialty.')
-    .max(120, 'Specialties are at most 120 characters.'),
-  institution: z
-    .string()
-    .trim()
-    .min(2, 'Enter your institution.')
-    .max(200, 'Institution names are at most 200 characters.'),
-  // A separate field from the account email on purpose: a reviewer checks the institutional
-  // domain against the institution named above. It is evidence for a human, not an auto-approval.
-  workEmail: emailSchema,
-})
-
 export type SignUpInput = z.infer<typeof signUpSchema>
 export type SignInInput = z.infer<typeof signInSchema>
-export type DoctorVerificationInput = z.infer<typeof doctorVerificationSchema>

@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+import { isCanonicalProductionOrigin } from './lib/seo/canonical-production-origin.mjs'
+
 // Security headers.
 //
 // WHY `script-src` CARRIES `'unsafe-inline'`, WHICH IS NOT AN OVERSIGHT.
@@ -52,6 +54,14 @@ const SECURITY_HEADERS = [
   },
 ]
 
+export function responseHeadersForEnvironment(environment = process.env) {
+  return isCanonicalProductionOrigin(environment)
+    ? SECURITY_HEADERS
+    : [...SECURITY_HEADERS, { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }]
+}
+
+const RESPONSE_HEADERS = responseHeadersForEnvironment()
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -63,13 +73,10 @@ const nextConfig = {
     largePageDataBytes: 512 * 1024,
   },
   async headers() {
-    return [{ source: '/(.*)', headers: SECURITY_HEADERS }]
+    return [{ source: '/(.*)', headers: RESPONSE_HEADERS }]
   },
   async redirects() {
     return [
-      // The previous product addressed records at /r/[slug]. Those URLs are indexed; send them to
-      // the dossier that replaced them rather than dropping the traffic on a 404.
-      { source: '/r/:slug', destination: '/d/:slug', permanent: true },
       { source: '/compounds', destination: '/browse', permanent: true },
       { source: '/evidence', destination: '/how-it-works', permanent: true },
       // /methodology and /how-editing-works split one explanation in two and answered it twice at

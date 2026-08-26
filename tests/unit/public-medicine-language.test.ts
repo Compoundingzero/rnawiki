@@ -327,7 +327,24 @@ describe('reader-facing medicine vocabulary', () => {
     expect(summary.biggestLimit).toBe(
       'Whether the benefit lasts beyond three months remains unknown.',
     )
+    expect(summary.biggestLimitSourceFieldPath).toBe('summary.mainLimitation')
     expect(summary.biggestLimit).not.toContain('felt sick')
+  })
+
+  it('does not label an exact-verdict fallback as evidence for the stored limitation field', () => {
+    const summary = buildPublishedProgrammeReaderSummary({
+      medicineName: 'Creatine monohydrate',
+      modality: 'Nutraceutical / Botanical',
+      selectedUse: 'Strength and power',
+      exactText: 'The neuroprotection claim failed two large studies and remains unsupported.',
+      bestSupportedFinding: 'Studies found improved power during short, hard efforts.',
+      mainUncertainty: 'Whether a different outcome changes remains unknown.',
+    })
+
+    expect(summary.biggestLimit).toBe(
+      'Two large studies found no evidence that creatine slowed Parkinson’s or Huntington’s disease.',
+    )
+    expect(summary.biggestLimitSourceFieldPath).toBeUndefined()
   })
 
   it('makes the Creatine first read understandable while preserving the professional verdict', () => {
@@ -460,8 +477,10 @@ describe('reader-facing medicine vocabulary', () => {
       usedFor: 'Studied in adults with artery disease and high LDL (“bad”) cholesterol.',
       whatStudiesFound:
         'After about 17 months, inclisiran lowered LDL (“bad”) cholesterol by about half compared with a dummy treatment.',
+      whatStudiesFoundSourceFieldPath: 'summary.bestSupportedFinding',
       biggestLimit:
         'The study measured LDL (“bad”) cholesterol, not whether people had fewer heart attacks or strokes.',
+      biggestLimitSourceFieldPath: 'summary.mainLimitation',
     })
     const firstRead = [summary.usedFor, summary.whatStudiesFound, summary.biggestLimit].join(' ')
     expect(firstRead).not.toMatch(
@@ -571,6 +590,7 @@ describe('reader-facing medicine vocabulary', () => {
     })
 
     expect(summary.whatStudiesFound).toBeUndefined()
+    expect(summary.whatStudiesFoundSourceFieldPath).toBeUndefined()
     expect(summary.takeaway).toBe(
       'A reviewed study result is available, but it still needs a short plain-language explanation.',
     )

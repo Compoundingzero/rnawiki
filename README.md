@@ -37,10 +37,12 @@ exact locked version. Both may approve it. If they disagree, a different qualifi
 make and explain the final decision. Changing that record makes the earlier decisions unusable.
 Contributor rank does not bypass this gate.
 
-**The physician badge is earned.** Submitting credentials sets `pending`. A different steward or
-administrator checks the private credential record and records an approval or rejection with a
-reason. Nothing in the application can write `verified` on a user's own behalf, and the badge does
-not grant scientific-review qualifications.
+**One account, attributed work.** RNAWiki has one signup and sign-in path. Every signed-in account
+can post community notes and submit the sourced changes supported by a medicine page. The server
+derives the author from the authenticated account instead of accepting an author from the request.
+Notes remain separate from evidence; edit drafts remain private until submission and never publish
+themselves. Trust standing and scientific-review qualifications are additional permissions on the
+same account, not separate account types.
 
 ---
 
@@ -93,10 +95,11 @@ Field-by-field notes: [`data/dictionary.md`](data/dictionary.md).
 
 ## Contributing
 
-1. Sign in on a programme-based dossier and choose **Suggest a correction** or **Challenge this
-   conclusion**.
+1. Create or sign in to the same RNAWiki account used for community notes. On a programme-based
+   dossier, choose **Suggest a correction** or **Challenge this conclusion**.
 2. Add the exact field, proposed value, source and explanation. The server checks the submission
-   against the current stored programme and saves a locked copy for review.
+   against the current stored programme, attributes it to the signed-in account and saves a locked
+   copy for review.
 3. Two eligible people review that same copy independently. If they disagree, an independent
    steward records a final decision and explains it.
 4. An accepted proposal is accepted for implementation; it does not silently rewrite a public

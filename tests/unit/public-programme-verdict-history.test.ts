@@ -71,6 +71,7 @@ function publishedRevision(): PublicProgrammeVerdictHistoryRevision {
     confidence: 'MODERATE',
     confidenceExplanation: 'Two qualified reviewers checked the same evidence record.',
     authorName: 'Conclusion Author',
+    authorHandle: 'conclusion-author',
     authorConflictsOfInterest: 'None declared',
     engineVersion: 'rna-intelligence/2.0.0',
     inputDigestAlgorithm: 'sha256',

@@ -7,21 +7,28 @@ import type {
   MechanismStep,
 } from '@/lib/types'
 import type {
+  ClaimSourceRelationship,
   ClaimDirection,
   EvidenceNodeClaimRelationship,
   MechanismEvidenceBasis,
+  ProgrammeSummaryFieldPath,
   ProgrammeTimelineDateBasis,
   ProgrammeTimelineEventType,
   TrialEnrolmentType,
+  VerdictClaimRelationship,
   VerdictReviewerExpertiseTag,
 } from '@/lib/evidence/types'
 import {
-  buildLegacyReaderSummary,
   buildPublishedProgrammeReaderSummary,
   GENERAL_RESEARCH_SUMMARY_COPY,
   type ReaderMedicineLanguageContext,
   type ReaderSummaryView,
 } from '@/lib/public-medicine-language'
+import { buildLegacyDossierReaderSummary } from '@/lib/legacy-ten-second-reader-summary'
+import {
+  legacyDossierDynamicModules,
+  type DossierDynamicModulesView,
+} from '@/lib/dossier-dynamic-modules'
 
 export type EvidenceDisplayState =
   'measured' | 'inferred' | 'unknown' | 'failed' | 'conclusion_shift' | 'recorded_context'
@@ -97,6 +104,8 @@ export interface EvidenceNodeView {
 export interface EvidenceClaimView {
   id: string
   nature: EvidenceClaimNature
+  /** Exact stored role(s) this claim has in its evidence step. */
+  nodeRelationships?: EvidenceNodeClaimRelationship[]
   text: string
   technicalText?: string
   population?: string
@@ -114,6 +123,7 @@ export interface EvidenceClaimView {
   uncertaintyInterval?: string
   lastVerifiedAt?: string
   sourceIds: string[]
+  sourceClaimBindings?: ProgrammeSourceClaimBindingView[]
 }
 
 export interface StudyInterpretabilityView {
@@ -124,6 +134,7 @@ export interface StudyInterpretabilityView {
   explanation?: string
   claimIds: string[]
   sourceIds: string[]
+  sourceClaimBindings?: ProgrammeSourceClaimBindingView[]
 }
 
 export interface StudyView {
@@ -172,6 +183,7 @@ export interface KeyOutcomeView {
     | 'practical_observations'
   legacyGroupLabel?: string
   sourceIds: string[]
+  sourceClaimBindings?: ProgrammeSourceClaimBindingView[]
 }
 
 export interface MechanismStepView {
@@ -189,9 +201,27 @@ export interface MechanismStepView {
 export interface ProgrammeSourceClaimBindingView {
   sourceId: string
   claimId: string
-  relationship: EvidenceNodeClaimRelationship
+  relationship: EvidenceNodeClaimRelationship | ClaimSourceRelationship
   statement: string
 }
+
+export interface ProgrammeVerdictClaimBindingView {
+  claimId: string
+  relationship: VerdictClaimRelationship
+}
+
+/** Exact field -> claim -> saved-source bindings for one reviewed programme summary answer. */
+export interface ProgrammeSummaryEvidenceView {
+  fieldPath: ProgrammeSummaryFieldPath
+  claimIds: string[]
+  sourceIds: string[]
+  verdictClaimBindings: ProgrammeVerdictClaimBindingView[]
+  sourceClaimBindings: ProgrammeSourceClaimBindingView[]
+}
+
+export type ProgrammeSummaryEvidenceByFieldView = Partial<
+  Record<ProgrammeSummaryFieldPath, ProgrammeSummaryEvidenceView>
+>
 
 export interface ProgrammeTimelineEventView {
   id: string
@@ -249,7 +279,10 @@ export interface ProgrammeConclusionView {
   confidenceExplanation?: string
   conditionsThatWouldChangeVerdict: string[]
   authorName: string
+  authorHandle?: string
   conflictsOfInterest?: string
+  /** Distinct independent accounts counted server-side; account identifiers are not exposed. */
+  independentReviewCount: number
   reviewers: ProgrammeReviewerView[]
 }
 
@@ -273,6 +306,14 @@ export interface MedicinePricingContextView {
   manufacturingComplexity?: string
   recordNote?: string
   sources: MedicineRecordSourceView[]
+  /** Exact field-specific reports. Unbound legacy price strings never enter this array. */
+  reports?: MedicinePricingReportView[]
+}
+
+export interface MedicinePricingReportView {
+  kind: 'reported_production_cost' | 'reported_retail_or_list_price'
+  value: string
+  source: MedicineRecordSourceView
 }
 
 export interface MedicineAlternativeContextView {
@@ -281,6 +322,17 @@ export interface MedicineAlternativeContextView {
   comparison?: string
   reportedCost?: string
   tradeoffs?: string
+}
+
+/**
+ * Non-actionable fields from the legacy natural-food/supplement bucket. The stored item schema has
+ * no item-level source field, so this projection cannot claim that a source is linked. In
+ * particular, it intentionally omits active compounds, mechanism prose, use amounts and costs.
+ */
+export interface MedicineFoodSupplementContextView {
+  name: string
+  recordedEvidenceLabel?: string
+  sourceStatus: 'not_linked'
 }
 
 export interface MedicineCommonQuestionView {
@@ -318,6 +370,7 @@ export interface MedicineRecordContextView {
   pricing?: MedicinePricingContextView
   alternativesSummary?: string
   conventionalAlternatives: MedicineAlternativeContextView[]
+  foodSupplementContext?: MedicineFoodSupplementContextView[]
   commonQuestions: MedicineCommonQuestionView[]
   molecular?: MedicineMolecularRecordView
   communityNotes: CommunityNote[]
@@ -341,6 +394,7 @@ export interface MedicineDossierViewModel {
   bindingState: DossierBindingState
   verdict: string
   readerSummary: ReaderSummaryView
+  summaryEvidence?: ProgrammeSummaryEvidenceByFieldView
   mechanismSummary: MechanismSummaryView
   mainLimitation?: string
   tenSecondWordCount: number
@@ -356,6 +410,8 @@ export interface MedicineDossierViewModel {
   conclusion?: ProgrammeConclusionView
   machineFindingCodes: string[]
   medicineRecord: MedicineRecordContextView
+  /** Always populated by production mappers; optional only for older hand-built test fixtures. */
+  dynamicModules?: DossierDynamicModulesView
 }
 
 export interface PublishedProgrammeViewInput {
@@ -365,6 +421,7 @@ export interface PublishedProgrammeViewInput {
   statusBadge?: DossierStatusBadgeView
   href?: string
   verdict: string
+  summaryEvidence?: ProgrammeSummaryEvidenceByFieldView
   mechanismSummary: MechanismSummaryView
   mainLimitation?: string
   evidenceNodes: EvidenceNodeView[]
@@ -378,6 +435,7 @@ export interface PublishedProgrammeViewInput {
   review: Omit<ReviewLineageView, 'historyHref'> & { historyHref?: string }
   conclusion?: ProgrammeConclusionView
   machineFindingCodes: string[]
+  dynamicModules?: DossierDynamicModulesView
 }
 
 export interface NormalizedDossierInput {
@@ -487,8 +545,30 @@ function pricingContext(drug: DrugDossier): MedicinePricingContextView | undefin
     return undefined
   }
 
-  const sources = [value.costSource, value.priceSource]
-    .flatMap((source) => medicineRecordSource(source) ?? [])
+  const costSource = medicineRecordSource(value.costSource)
+  const priceSource = medicineRecordSource(value.priceSource)
+  const reports: MedicinePricingReportView[] = [
+    ...(reportedProductionCost && costSource
+      ? [
+          {
+            kind: 'reported_production_cost' as const,
+            value: reportedProductionCost,
+            source: costSource,
+          },
+        ]
+      : []),
+    ...(reportedRetailOrListPrice && priceSource
+      ? [
+          {
+            kind: 'reported_retail_or_list_price' as const,
+            value: reportedRetailOrListPrice,
+            source: priceSource,
+          },
+        ]
+      : []),
+  ]
+  const sources = [costSource, priceSource]
+    .flatMap((source) => source ?? [])
     .filter(
       (source, index, all) =>
         all.findIndex(
@@ -504,6 +584,7 @@ function pricingContext(drug: DrugDossier): MedicinePricingContextView | undefin
     manufacturingComplexity,
     recordNote,
     sources,
+    reports,
   }
 }
 
@@ -522,6 +603,22 @@ function conventionalAlternative(
     tradeoffs: nonEmpty(item.prosAndCons),
   }
   return Object.values(alternative).slice(1).some(Boolean) ? alternative : undefined
+}
+
+function foodSupplementContextItem(value: unknown): MedicineFoodSupplementContextView | undefined {
+  const item = objectValue(value)
+  if (!item) return undefined
+  const name = nonEmpty(item.name)
+  if (!name) return undefined
+  const recordedEvidenceLabel = nonEmpty(item.evidenceStrength)
+
+  return {
+    name,
+    ...(recordedEvidenceLabel ? { recordedEvidenceLabel } : {}),
+    // No item-level source exists in the stored natural-food/supplement schema. Do not infer one
+    // from prose, nearby medicine sources or similarly named evidence elsewhere in the dossier.
+    sourceStatus: 'not_linked',
+  }
 }
 
 function molecularFormat(value: unknown, recordedSequence?: string): string | undefined {
@@ -621,6 +718,9 @@ export function medicineRecordContext(drug: DrugDossier): MedicineRecordContextV
   const alternatives = listOf<ConventionalSubstitute>(substitutes?.conventionalRx)
     .flatMap((item) => conventionalAlternative(item) ?? [])
     .sort((left, right) => left.name.localeCompare(right.name))
+  const foodSupplementContext = listOf<unknown>(substitutes?.naturalFoods).flatMap(
+    (item) => foodSupplementContextItem(item) ?? [],
+  )
 
   const commonQuestions = listOf<unknown>(drug.commonQuestions).flatMap((entry) => {
     const question = objectValue(entry)
@@ -653,9 +753,72 @@ export function medicineRecordContext(drug: DrugDossier): MedicineRecordContextV
     pricing: pricingContext(drug),
     alternativesSummary: nonEmpty(substitutes?.summary),
     conventionalAlternatives: alternatives,
+    foodSupplementContext,
     commonQuestions,
     molecular: molecularRecord(drug),
     communityNotes,
+  }
+}
+
+/**
+ * Published, potentially indexable programme pages must not inherit unreviewed actionable
+ * medicine-wide fields. The reviewed programme exposure scope remains in the conclusion model;
+ * this boundary removes only older protocol, treatment-selection, acquisition and synthesis data.
+ */
+function publishedProgrammeMedicineRecordContext(drug: DrugDossier): MedicineRecordContextView {
+  const recorded = medicineRecordContext(drug)
+  const recordedSafety = recorded.safetyAndAdministration
+  const safetyAndAdministration = recordedSafety
+    ? {
+        deliveryForm: recordedSafety.deliveryForm,
+        safetyInformation: recordedSafety.safetyInformation,
+      }
+    : undefined
+  const sourcedPriceReports = recorded.pricing?.reports ?? []
+  const pricing: MedicinePricingContextView | undefined =
+    sourcedPriceReports.length > 0
+      ? {
+          reportedProductionCost: sourcedPriceReports.find(
+            (report) => report.kind === 'reported_production_cost',
+          )?.value,
+          reportedRetailOrListPrice: sourcedPriceReports.find(
+            (report) => report.kind === 'reported_retail_or_list_price',
+          )?.value,
+          // The current legacy schema has no field-specific source for these values. They remain
+          // withheld from a published programme background rather than borrowing a nearby source.
+          reportedComparison: undefined,
+          manufacturingComplexity: undefined,
+          recordNote: undefined,
+          sources: sourcedPriceReports
+            .map((report) => report.source)
+            .filter(
+              (source, index, all) =>
+                all.findIndex(
+                  (candidate) =>
+                    candidate.identifier === source.identifier && candidate.label === source.label,
+                ) === index,
+            ),
+          reports: sourcedPriceReports,
+        }
+      : undefined
+
+  return {
+    condition: recorded.condition,
+    safetyAndAdministration:
+      safetyAndAdministration && Object.values(safetyAndAdministration).some(Boolean)
+        ? safetyAndAdministration
+        : undefined,
+    pricing,
+    alternativesSummary: undefined,
+    conventionalAlternatives: [],
+    // These projections contain only a name, the exact legacy evidence label when present, and an
+    // explicit `Source not yet linked` state. They never expose use amounts, mechanisms or costs.
+    foodSupplementContext: recorded.foodSupplementContext,
+    commonQuestions: [],
+    // Sequences, SMILES and formulae are identity detail, not benefit or safety evidence. The
+    // mapper already excludes `laboratoryWorkflow` and keeps the structure-check boundary exact.
+    molecular: recorded.molecular,
+    communityNotes: [],
   }
 }
 
@@ -986,7 +1149,7 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
   const trials = listOf<ClinicalTrialRecord>(drug.trials)
   const mechanismSteps = listOf<MechanismStep>(drug.mechanismSteps)
   const measuredFinding = audits.find((audit) => audit.category === 'measured')?.laymanSummary
-  const readerSummary = buildLegacyReaderSummary({
+  const readerSummary = buildLegacyDossierReaderSummary(drug, {
     ...readerLanguageContext(drug),
     selectedUse,
     exactText: verdict,
@@ -1035,6 +1198,7 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
     },
     machineFindingCodes: ['LEGACY_PROGRAMME_UNSCOPED', 'LEGACY_FRESHNESS_UNKNOWN'],
     medicineRecord: medicineRecordContext(drug),
+    dynamicModules: legacyDossierDynamicModules(drug),
   }
 }
 
@@ -1081,6 +1245,7 @@ export function normalizedMedicineDossierView(
     bindingState: 'published_programme',
     verdict,
     readerSummary,
+    summaryEvidence: selected.summaryEvidence,
     mechanismSummary,
     mainLimitation,
     tenSecondWordCount: countReaderSummaryWords(readerSummary),
@@ -1098,6 +1263,7 @@ export function normalizedMedicineDossierView(
     },
     conclusion: selected.conclusion,
     machineFindingCodes: selected.machineFindingCodes,
-    medicineRecord: medicineRecordContext(drug),
+    medicineRecord: publishedProgrammeMedicineRecordContext(drug),
+    dynamicModules: selected.dynamicModules ?? legacyDossierDynamicModules(drug),
   }
 }

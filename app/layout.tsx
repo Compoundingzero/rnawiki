@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
+import { configuredPublicUrl, configuredSiteOrigin, rootRobotsMetadata } from '@/lib/seo/deployment'
+import { HOME_METADATA } from '@/lib/seo/metadata'
 import './globals.css'
 
 // next/font serves these from the application origin.
@@ -17,32 +19,30 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
-const siteUrl = process.env.SITE_URL ?? 'https://rnawiki.com'
+const siteOrigin = configuredSiteOrigin()
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteOrigin),
   title: {
-    default: 'RNAWiki — Medicine evidence, explained',
-    template: '%s — RNAWiki',
+    default: `${HOME_METADATA.title} | RNAWiki`,
+    template: '%s | RNAWiki',
   },
-  description:
-    'Plain-language medicine records that show what studies measured, which sources support each conclusion, and what remains unknown.',
+  description: HOME_METADATA.description,
   applicationName: 'RNAWiki',
+  manifest: '/manifest.webmanifest',
   openGraph: {
     type: 'website',
     siteName: 'RNAWiki',
-    title: 'RNAWiki — Medicine evidence, explained',
-    description:
-      'See what human studies measured, where each conclusion applies, and what researchers still do not know.',
-    url: siteUrl,
+    title: `${HOME_METADATA.title} | RNAWiki`,
+    description: HOME_METADATA.description,
+    url: configuredPublicUrl('/'),
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RNAWiki — Medicine evidence, explained',
-    description:
-      'See what human studies measured, where each conclusion applies, and what researchers still do not know.',
+    title: `${HOME_METADATA.title} | RNAWiki`,
+    description: HOME_METADATA.description,
   },
-  robots: { index: true, follow: true },
+  robots: rootRobotsMetadata(),
 }
 
 export const viewport: Viewport = {

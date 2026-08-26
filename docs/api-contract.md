@@ -13,8 +13,9 @@ Rate limits come from `lib/rate-limit.ts`. A limited request returns 429 with
 
 - A drug is addressed by its **slug** everywhere. The slug is the public id.
 - Authentication is the `rnawiki_session` iron-session cookie. Absent or invalid → 401.
-- Any write that needs a verified physician checks `verificationState === 'verified'` server-side.
-  A client-supplied `isVerifiedDoctor` is ignored on every path.
+- RNAWiki has one account type. Every authenticated write takes its actor from the server session;
+  a request body cannot choose another author. Trust standing and scientific-review
+  qualifications control later review permissions on that same account.
 - Timestamps are ISO 8601 UTC strings.
 
 ---
@@ -149,56 +150,35 @@ email and a wrong password.
 
 ### `GET /api/auth/me` → `200 { user: PublicUser | null }`
 
-`PublicUser` is `CommentUser` from `lib/types.ts` minus anything sensitive: no password hash, no
-raw licence number (send `hasCredentialOnFile: boolean` instead), no email for anyone but the
-account owner.
+`PublicUser` is the client-safe account shape: no password hash or private operational fields, and
+no email for anyone but the account owner. Reviewer standing and scientific qualifications are not
+alternative account or login payloads.
 
-### `POST /api/auth/doctor-verification`
+### `GET /api/me/contributor-settings`
 
-Authenticated. Body `{ fullName, licenseOrNpi, specialty, institution, workEmail }`.
-Sets `verificationState = 'pending'`. **It can never set `'verified'`.**
-
-```
-202 { user: PublicUser, requestId, submittedAt, state: 'pending' }
-```
-
-The server stores the submitted professional name, workplace email, licence/NPI, specialty and
-institution as one immutable private request. PostgreSQL supplies `submittedAt` and derives the
-account's pending state from that request. The client must render “Submitted for review”, not a
-verified badge.
-
-### `GET /api/physician-verifications?status=pending|decided&limit=1..100`
-
-Authenticated steward or administrator only. Returns the private work queue, but deliberately
-omits workplace email and licence/NPI so the list does not spread credentials across the screen:
+Authenticated. Rate limit PUBLIC_API. Returns the signed-in account's homepage spotlight controls;
+it never returns another account's settings.
 
 ```
-200 { requests: [{ id, professionalFullName, medicalSpecialty, institution,
-                   status, submittedAt, decidedAt, account: { name, handle } }] }
+200 {
+  settings: {
+    appearInWeeklySpotlight: boolean,
+    showSocialLinksInSpotlight: boolean,
+    socialLinks: Array<{ platform: 'x' | 'linkedin' | 'github' | 'bluesky', url: string }>
+  }
+}
 ```
 
-### `GET /api/physician-verifications/:id`
+### `PATCH /api/me/contributor-settings`
 
-Authenticated steward or administrator only. Returns one protected request with `workEmail`,
-`medicalLicenseOrNpi`, account identity and, after a decision, the reason and attributed decider.
-Responses use `Cache-Control: no-store`; none of these private fields appears in a public profile or
-public API projection.
+Authenticated. Rate limit WRITE. Replaces the same settings object. Social URLs must be canonical
+HTTPS profile links on the allowlisted platform host, with at most one per platform. Saving a link
+does not make it public: `showSocialLinksInSpotlight` must also be true. The public spotlight labels
+these links as supplied by the account and does not treat them as verified identity.
 
-### `POST /api/physician-verifications/:id/decision`
-
-Authenticated steward or administrator only. Body
-`{ decision: 'APPROVE' | 'REJECT', reason }`, with an 8–2,000 character reason. The applicant cannot
-decide their own request. A pending request can be decided once; PostgreSQL supplies the decision
-time and synchronizes the account badge. Route and database policy both use the exact same
-steward-or-administrator boundary. Approval grants only the physician badge, never scientific
-review qualification.
-
-```
-200 { request: PhysicianVerificationDetail }
-403 { error, code: 'forbidden' | 'self_review' }
-409 { error, code: 'not_pending' }
-422 { error, code: 'invalid_input' | 'invalid_decision' }
-```
+The weekly handle list itself uses current published medicine-answer changes only. A handle already
+present in public attribution is eligible by default; `appearInWeeklySpotlight: false` removes it
+from the homepage list without removing factual attribution from history.
 
 ---
 
@@ -690,8 +670,8 @@ body = { reviewerUserId, expertiseTag, action: 'GRANT' | 'REVOKE', reason }
 201 { event }
 ```
 
-An authorizer cannot change their own qualification. Account profile interests or a physician badge
-do not substitute for this separate qualification record.
+An authorizer cannot change their own qualification. Account profile interests or a self-selected
+expertise label do not substitute for this separate qualification record.
 
 ---
 

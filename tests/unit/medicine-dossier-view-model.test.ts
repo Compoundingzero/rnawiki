@@ -67,8 +67,16 @@ function dossier(): DrugDossier {
       ],
       naturalFoods: [
         {
-          name: 'DO NOT RENDER NATURAL FOOD',
+          name: 'Recorded related context',
+          activeCompound: 'DO NOT RENDER ACTIVE COMPOUND',
+          biologicalMechanism: 'DO NOT RENDER UNSOURCED MECHANISM OR 900 mg DAILY',
+          evidenceStrength: 'Moderate Evidence',
           dailyUsage: 'DO NOT RENDER DAILY USE',
+          monthlyCost: 'DO NOT RENDER MONTHLY COST',
+        },
+        {
+          name: 'Related context without an evidence label',
+          dailyUsage: '',
           monthlyCost: '',
         },
       ],
@@ -283,6 +291,17 @@ describe('medicine dossier view model', () => {
     expect(view.medicineRecord.conventionalAlternatives[0]?.name).toBe(
       'Recorded conventional approach',
     )
+    expect(view.medicineRecord.foodSupplementContext).toEqual([
+      {
+        name: 'Recorded related context',
+        recordedEvidenceLabel: 'Moderate Evidence',
+        sourceStatus: 'not_linked',
+      },
+      {
+        name: 'Related context without an evidence label',
+        sourceStatus: 'not_linked',
+      },
+    ])
     expect(view.medicineRecord.commonQuestions).toEqual([
       {
         question: 'A recorded medicine-wide question?',
@@ -298,8 +317,43 @@ describe('medicine dossier view model', () => {
       'A substantive published community note.',
     )
     expect(JSON.stringify(view.medicineRecord)).not.toMatch(
-      /DO NOT RENDER NATURAL|DO NOT RENDER HOME|DO NOT RENDER SYNTHESIS|DO NOT RENDER PROCEDURE|DO NOT RENDER REAGENTS/,
+      /DO NOT RENDER ACTIVE|DO NOT RENDER UNSOURCED|DO NOT RENDER DAILY|DO NOT RENDER MONTHLY|DO NOT RENDER HOME|DO NOT RENDER SYNTHESIS|DO NOT RENDER PROCEDURE|DO NOT RENDER REAGENTS/,
     )
+  })
+
+  it('does not invent a source for legacy food or supplement context', () => {
+    const testDossier = dossier()
+    ;(testDossier.substitutes!.naturalFoods[0] as unknown as Record<string, unknown>).source = {
+      label: 'DO NOT INFER AN UNTYPED SOURCE',
+      identifier: 'https://example.test/untyped-natural-source',
+    }
+
+    const view = legacyMedicineDossierView(testDossier)
+
+    expect(view.medicineRecord.foodSupplementContext?.[0]).toEqual({
+      name: 'Recorded related context',
+      recordedEvidenceLabel: 'Moderate Evidence',
+      sourceStatus: 'not_linked',
+    })
+    expect(JSON.stringify(view.medicineRecord.foodSupplementContext)).not.toContain(
+      'DO NOT INFER AN UNTYPED SOURCE',
+    )
+    expect(JSON.stringify(view.medicineRecord.foodSupplementContext)).not.toContain(
+      'untyped-natural-source',
+    )
+  })
+
+  it('uses an empty legacy food or supplement projection when no stored items exist', () => {
+    const testDossier = dossier()
+    testDossier.substitutes!.naturalFoods = []
+
+    expect(legacyMedicineDossierView(testDossier).medicineRecord.foodSupplementContext).toEqual([])
+
+    const withoutStoredArray = dossier()
+    delete (withoutStoredArray.substitutes as unknown as { naturalFoods?: unknown[] }).naturalFoods
+    expect(
+      legacyMedicineDossierView(withoutStoredArray).medicineRecord.foodSupplementContext,
+    ).toEqual([])
   })
 
   it('distinguishes nucleotide strands from peptide or protein chains', () => {
@@ -508,6 +562,7 @@ describe('medicine dossier view model', () => {
       pricing: undefined,
       alternativesSummary: undefined,
       conventionalAlternatives: [],
+      foodSupplementContext: [],
       commonQuestions: [],
       molecular: undefined,
       communityNotes: [],
@@ -596,7 +651,41 @@ describe('medicine dossier view model', () => {
     expect(view.medicineRecord.condition?.whyItMatters).toBe(
       'A recorded explanation of why the condition matters.',
     )
-    expect(view.medicineRecord.conventionalAlternatives).toHaveLength(1)
-    expect(view.medicineRecord.communityNotes).toHaveLength(1)
+    expect(view.medicineRecord.safetyAndAdministration).toEqual({
+      deliveryForm: 'A recorded injection device',
+      safetyInformation:
+        'The older record names common effects, a serious risk, and who should not receive it.',
+    })
+    expect(view.medicineRecord.pricing).toMatchObject({
+      reportedRetailOrListPrice: 'Reported price: 20 units in Exampleland in 2025',
+      reports: [
+        {
+          kind: 'reported_retail_or_list_price',
+          source: { identifier: 'https://example.test/prices' },
+        },
+      ],
+    })
+    expect(view.medicineRecord.pricing?.reportedProductionCost).toBeUndefined()
+    expect(view.medicineRecord.alternativesSummary).toBeUndefined()
+    expect(view.medicineRecord.conventionalAlternatives).toEqual([])
+    expect(view.medicineRecord.foodSupplementContext).toEqual([
+      {
+        name: 'Recorded related context',
+        recordedEvidenceLabel: 'Moderate Evidence',
+        sourceStatus: 'not_linked',
+      },
+      {
+        name: 'Related context without an evidence label',
+        sourceStatus: 'not_linked',
+      },
+    ])
+    expect(view.medicineRecord.commonQuestions).toEqual([])
+    expect(view.medicineRecord.molecular?.identifiers).toContainEqual(
+      expect.objectContaining({ kind: 'smiles', value: 'CC(=O)OC1=CC=CC=C1C(=O)O' }),
+    )
+    expect(JSON.stringify(view.medicineRecord)).not.toMatch(
+      /DO NOT RENDER DAILY|DO NOT RENDER MONTHLY|DO NOT RENDER SYNTHESIS|DO NOT RENDER PROCEDURE|DO NOT RENDER REAGENTS/,
+    )
+    expect(view.medicineRecord.communityNotes).toEqual([])
   })
 })

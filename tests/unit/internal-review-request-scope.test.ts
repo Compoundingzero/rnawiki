@@ -9,10 +9,6 @@ import {
   isCurrentInternalReviewRequest,
 } from '@/lib/internal-review-request-scope'
 
-const physicianPanel = readFileSync(
-  join(process.cwd(), 'app/review-queue/PhysicianVerificationReviewPanel.tsx'),
-  'utf8',
-)
 const feedbackPanel = readFileSync(
   join(process.cwd(), 'app/review-queue/FeedbackReviewPanel.tsx'),
   'utf8',
@@ -33,36 +29,6 @@ describe('private internal-review browser request scopes', () => {
     expect(internalReviewCapabilityScopeKey(regranted)).toBe(
       internalReviewCapabilityScopeKey(steward),
     )
-  })
-
-  it('rejects physician detail A after B was selected and a physician POST after account switch', () => {
-    expect(
-      isCurrentInternalReviewRequest({
-        accountId: 'steward-a',
-        currentAccountId: 'steward-a',
-        requestId: 'physician-a',
-        currentRequestId: 'physician-b',
-        requestGeneration: 3,
-        currentRequestGeneration: 4,
-        scopeGeneration: 8,
-        currentScopeGeneration: 8,
-      }),
-    ).toBe(false)
-    expect(
-      isCurrentInternalReviewRequest({
-        accountId: 'steward-a',
-        currentAccountId: 'steward-b',
-        requestId: 'physician-a',
-        currentRequestId: 'physician-a',
-        requestGeneration: 5,
-        currentRequestGeneration: 5,
-        scopeGeneration: 8,
-        currentScopeGeneration: 9,
-      }),
-    ).toBe(false)
-    expect(physicianPanel).toContain('result.request.id === id')
-    expect(physicianPanel).toContain('detailRequestRef.current.controller?.abort()')
-    expect(physicianPanel).toContain('actionRequestRef.current.controller?.abort()')
   })
 
   it('rejects a delayed feedback resolution after either the report or account changes', () => {
@@ -91,23 +57,7 @@ describe('private internal-review browser request scopes', () => {
     expect(feedbackPanel).toContain('signal: controller.signal')
   })
 
-  it('clears and masks private state on account change or same-account role revocation', () => {
-    for (const fragment of [
-      'setItems([])',
-      'setSelectedId(null)',
-      "setReason('')",
-      'setDetail(null)',
-      'setIsLoadingDetail(false)',
-      'setIsSaving(false)',
-      'setError(null)',
-      'setNotice(null)',
-      'setStateCapabilityScopeKey(capabilityScopeKey)',
-      'stateCapabilityScopeKey === capabilityScopeKey',
-      'capabilityScopeRef.current === capabilityScopeKey',
-      '}, [canManage, capabilityScopeKey])',
-    ]) {
-      expect(physicianPanel).toContain(fragment)
-    }
+  it('clears and masks feedback-review state on account change or role revocation', () => {
     for (const fragment of [
       'setItems([])',
       'setSelectedId(null)',

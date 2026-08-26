@@ -1,0 +1,270 @@
+{
+  "id": "inclisiran",
+  "name": "Inclisiran",
+  "tradeName": "Leqvio",
+  "sponsor": "Novartis (licensed from Alnylam Pharmaceuticals)",
+  "targetGene": "PCSK9",
+  "targetProtein": "Proprotein convertase subtilisin/kexin type 9",
+  "modality": "siRNA (Small Interfering RNA)",
+  "approvalStatus": "FDA Approved",
+  "approvalYear": 2021,
+  "indication": "Adjunct to diet and exercise to reduce LDL cholesterol in adults with hypercholesterolemia, and in patients aged 12 and older with heterozygous or homozygous familial hypercholesterolemia",
+  "patientFriendlyIndication": "High LDL cholesterol that stays high despite statins",
+  "conditionContext": {
+    "whoTakesThis": "Adults with hypercholesterolemia or heterozygous familial hypercholesterolemia who are already on the highest statin dose they tolerate, and patients aged 12 and older with familial hypercholesterolemia.",
+    "whyItMatters": "Lifetime LDL exposure is the best-established causal driver of atherosclerosis, and people with familial hypercholesterolemia inherit high LDL from birth. The open question inclisiran does not yet answer is whether lowering the number this way lowers the events.",
+    "clinicalGoals": "A roughly 50% LDL-C reduction sustained on two injections a year, given in a clinic so that adherence is observed rather than assumed.",
+    "conditionExplainer": "LDL particles carry cholesterol through the blood, and the liver clears them by catching them on LDL receptors. A liver protein called PCSK9 binds those receptors and sends them to be destroyed instead of reused, so the more PCSK9 a person makes, the fewer receptors survive and the higher their LDL cholesterol runs."
+  },
+  "oneSentenceVerdict": "A GalNAc-tagged siRNA that makes liver cells destroy their own PCSK9 messenger RNA, cutting LDL cholesterol by 52.3% and 49.9% against placebo at day 510 in ORION-10 and ORION-11 — a blood measurement, not yet a demonstrated reduction in heart attacks.",
+  "laymanHowItWorks": "Your liver pulls cholesterol out of the blood using catchers on its surface called LDL receptors. A protein named PCSK9 grabs those catchers and drags them off to be destroyed, so you end up with fewer of them. Inclisiran is a short piece of RNA with a sugar tag that only liver cells recognise; once inside, it hands the liver a template for shredding its own PCSK9 instructions. The catchers survive and get reused, and LDL in the blood falls for about six months per injection.",
+  "auditConfidence": "Rigorous Replicated",
+  "confidenceScore": 84,
+  "keyAudits": [
+    {
+      "id": "inc-a1",
+      "doi": "10.1056/NEJMoa1912387",
+      "title": "ORION-10 and ORION-11: 52.3% and 49.9% placebo-adjusted LDL-C reduction at day 510",
+      "category": "measured",
+      "auditFlag": "verified",
+      "laymanSummary": "Two trials, 3,178 patients between them, both showed LDL cholesterol about half of what the placebo group reached, held there for 17 months on two injections a year.",
+      "evidenceSource": "Ray KK et al., N Engl J Med 2020;382:1507-1519",
+      "measuredMetric": "Percentage change in serum LDL-C at day 510 versus placebo",
+      "technicalDetails": "Randomised, double-blind, placebo-controlled. Baseline LDL-C 104.7 mg/dL (ORION-10, n=1561) and 105.5 mg/dL (ORION-11, n=1617). Day-510 reduction 52.3% (95% CI 48.8 to 55.7) and 49.9% (95% CI 46.6 to 53.1); time-adjusted reductions 53.8% and 49.2%; P<0.001 for all comparisons against placebo."
+    },
+    {
+      "id": "inc-a2",
+      "doi": "10.1093/eurheartj/ehac594",
+      "title": "Cardiovascular benefit is inferred from LDL biology, not measured for this drug",
+      "category": "inferred",
+      "auditFlag": "caution",
+      "inferredClaim": "That a 50% LDL-C reduction with inclisiran translates into the event reduction seen with statins and PCSK9 antibodies",
+      "laymanSummary": "No completed trial has shown that inclisiran prevents heart attacks or strokes. The argument that it does is borrowed from statins, where lowering LDL did reduce events.",
+      "evidenceSource": "Ray KK et al., Eur Heart J 2023;44:129-138; commentary in Drug Ther Bull 2023;61:86",
+      "technicalDetails": "ORION-4 (NCT03705234, 16,124 participants) is active but not recruiting with a primary completion date of October 2026, and VICTORION-2-PREVENT (NCT05030428, 17,004 participants) runs to October 2027. Neither has reported. The only cardiovascular signal is a post-hoc patient-level pooling of the phase 3 lipid trials, in which composite MACE fell (OR 0.74, 95% CI 0.58 to 0.94) while the individual components did not reach significance: myocardial infarction OR 0.80 (0.50 to 1.27) and stroke OR 0.86 (0.41 to 1.81). Drug and Therapeutics Bulletin reviewed that analysis under the headline \"No meaningful cardiovascular outcome data for inclisiran\"."
+    },
+    {
+      "id": "inc-a3",
+      "doi": "10.1161/CIRCULATIONAHA.122.063460",
+      "title": "ORION-5: no LDL-C reduction in adults with homozygous familial hypercholesterolemia",
+      "category": "failed",
+      "auditFlag": "verified",
+      "laymanSummary": "In the most severe inherited form of high cholesterol, inclisiran wiped out PCSK9 exactly as designed and LDL cholesterol did not move.",
+      "evidenceSource": "Raal F et al., Circulation 2024;149:354-362",
+      "measuredMetric": "Placebo-corrected percentage change in LDL-C at day 150",
+      "technicalDetails": "Phase 3, 56 patients, randomised 2:1. Placebo-corrected change in LDL-C from baseline to day 150 was -1.68% (95% CI -29.19 to 25.83; P=0.90), while PCSK9 fell 60.6% (P<0.0001). Apolipoprotein B, total cholesterol and non-HDL-C were likewise unchanged. The mechanism needs a working LDL receptor to act on, and in HoFH there is little or none."
+    },
+    {
+      "id": "inc-a4",
+      "doi": "10.1161/CIRCULATIONAHA.124.073233",
+      "title": "Adolescent HoFH was later approved on 13 patients, after the adult HoFH trial failed",
+      "category": "conclusion_shift",
+      "auditFlag": "caution",
+      "laymanSummary": "The adult trial in homozygous familial hypercholesterolemia found nothing. A 13-patient adolescent trial found a 33% reduction, and the label now covers 12-year-olds with the same condition.",
+      "evidenceSource": "Wiegman A et al., Circulation 2025 (ORION-13)",
+      "technicalDetails": "ORION-13 randomised 13 adolescents aged 12 to under 18 with genetically confirmed HoFH, explicitly excluding LDLR null/null genotypes. Placebo-adjusted LDL-C change to day 330 was -33.3% (95% CI -59.2 to -7.3). The exclusion is the whole story: patients with some residual receptor function respond, and the adult ORION-5 population included those with none. The current FDA label carries the pediatric HoFH indication."
+    },
+    {
+      "id": "inc-a5",
+      "title": "The first FDA submission was refused in December 2020 over a manufacturing inspection",
+      "category": "failed",
+      "auditFlag": "verified",
+      "laymanSummary": "The FDA turned inclisiran down a year before approving it, and not because of the science.",
+      "evidenceSource": "Novartis media release, 18 December 2020",
+      "technicalDetails": "Novartis received a complete response letter on 18 December 2020 citing unresolved facility inspection-related conditions at a third-party manufacturing site that the agency had been unable to inspect during COVID-19 travel restrictions. The letter raised no efficacy or safety concerns. The European Commission had granted marketing authorisation one week earlier, on 11 December 2020; the FDA approved on 22 December 2021."
+    },
+    {
+      "id": "inc-a6",
+      "doi": "10.1056/NEJMoa1913805",
+      "title": "ORION-9: 47.9 percentage-point separation from placebo in heterozygous FH",
+      "category": "measured",
+      "auditFlag": "verified",
+      "laymanSummary": "In inherited high cholesterol with one bad copy of the gene, LDL fell 39.7% on inclisiran and rose 8.2% on placebo.",
+      "evidenceSource": "Raal FJ et al., N Engl J Med 2020;382:1520-1530",
+      "measuredMetric": "Percentage change in LDL-C at day 510 versus placebo",
+      "technicalDetails": "Phase 3, 482 patients with HeFH, baseline LDL-C 153 mg/dL. Day-510 change was -39.7% (95% CI -43.7 to -35.7) with inclisiran and +8.2% (95% CI 4.3 to 12.2) with placebo, a between-group difference of -47.9 percentage points (95% CI -53.5 to -42.3; P<0.001). Reductions held across FH genotypes."
+    },
+    {
+      "id": "inc-a7",
+      "doi": "10.1016/S2213-8587(22)00353-9",
+      "title": "ORION-3: LDL-C lowering held for four years of open-label dosing",
+      "category": "measured",
+      "auditFlag": "verified",
+      "laymanSummary": "Patients who stayed on inclisiran for four years kept the reduction. The trial was open-label, so this shows durability, not a fresh comparison against placebo.",
+      "evidenceSource": "Ray KK et al., Lancet Diabetes Endocrinol 2023;11:109-119",
+      "technicalDetails": "Four-year open-label extension of the phase 2 ORION-1 trial across 52 sites in five countries (NCT03060577). The inclisiran-only arm continued twice-yearly 300 mg inclisiran sodium; the switching arm received evolocumab to day 360 before transitioning. Endpoints ran to day 1440. No placebo control existed after ORION-1 ended."
+    }
+  ],
+  "mechanismSteps": [
+    {
+      "step": 1,
+      "title": "Subcutaneous dose, then a sugar tag finds the liver",
+      "iconName": "Target",
+      "laymanDesc": "The injection goes under the skin. Three sugar molecules on the end of the drug act as a postcode that only liver cells read, so almost all of it ends up where it is meant to be.",
+      "visualStage": "delivery",
+      "molecularDetail": "The triantennary N-acetylgalactosamine ligand (L96) is attached to the 3' terminus of the 21-mer sense strand and binds the asialoglycoprotein receptor, which is expressed at roughly a million copies per hepatocyte and recycles every 15 minutes."
+    },
+    {
+      "step": 2,
+      "title": "Pulled inside and slowly released",
+      "iconName": "ArrowDownToLine",
+      "laymanDesc": "The liver cell swallows the drug in a bubble. Most of it is broken down, but a small fraction leaks into the cell body and is held there for months, which is why one injection lasts half a year.",
+      "visualStage": "cellular_entry",
+      "molecularDetail": "Clathrin-mediated endocytosis delivers the duplex to the endosome. A small proportion escapes into the cytoplasm; the rest forms a slowly released intracellular depot, which is what decouples the plasma half-life of hours from the pharmacodynamic duration of months."
+    },
+    {
+      "step": 3,
+      "title": "The guide strand is loaded into the cell's own cutting machine",
+      "iconName": "Cpu",
+      "laymanDesc": "The two strands separate. One is discarded; the other is loaded into a protein complex the cell already uses to silence its own genes.",
+      "visualStage": "target_binding",
+      "molecularDetail": "The 23-nucleotide antisense strand is loaded into Argonaute 2 within the RNA-induced silencing complex. The sense strand is cleaved and discarded. The 2'-F and 2'-OMe ribose modifications and the six terminal phosphorothioate linkages are what let the strand survive nuclease attack long enough to be loaded."
+    },
+    {
+      "step": 4,
+      "title": "PCSK9 messenger RNA is cut, and the complex moves on",
+      "iconName": "Scissors",
+      "laymanDesc": "The loaded complex hunts down the instructions for PCSK9 and cuts them. It then releases the pieces and goes looking for the next copy, which is why so little drug does so much.",
+      "visualStage": "catalytic_action",
+      "molecularDetail": "The guide strand base-pairs with a conserved site in the 3' untranslated region of PCSK9 mRNA with full complementarity, and Argonaute 2 catalyses endonucleolytic cleavage between the nucleotides paired to guide positions 10 and 11. The cleaved transcript is degraded by cellular exonucleases and the complex is recycled — a catalytic, not stoichiometric, mechanism."
+    },
+    {
+      "step": 5,
+      "title": "LDL receptors survive, and LDL cholesterol falls",
+      "iconName": "ShieldCheck",
+      "laymanDesc": "With less PCSK9 around, the liver keeps its cholesterol catchers instead of destroying them. More catchers means more LDL cleared from the blood.",
+      "visualStage": "therapeutic_result",
+      "molecularDetail": "Reduced PCSK9 secretion means fewer LDL receptors are routed to lysosomal degradation after endocytosis, so surface receptor density rises and hepatic LDL particle clearance increases. In ORION-10 and ORION-11 this produced a 52.3% and 49.9% placebo-adjusted LDL-C reduction at day 510."
+    }
+  ],
+  "trials": [
+    {
+      "phase": "Phase 3",
+      "trialId": "ORION-9 (NCT03397121)",
+      "sampleSize": 482,
+      "endpointMet": true,
+      "primaryEndpoint": "Percentage change in LDL-C from baseline to day 510 in heterozygous FH",
+      "statisticalPValue": "P < 0.001",
+      "independentReplicationStatus": "Replicated"
+    },
+    {
+      "phase": "Phase 3",
+      "trialId": "ORION-10 (NCT03399370)",
+      "sampleSize": 1561,
+      "endpointMet": true,
+      "primaryEndpoint": "Percentage change in LDL-C from baseline to day 510",
+      "statisticalPValue": "P < 0.001",
+      "independentReplicationStatus": "Replicated"
+    },
+    {
+      "phase": "Phase 3",
+      "trialId": "ORION-11 (NCT03400800)",
+      "sampleSize": 1617,
+      "endpointMet": true,
+      "primaryEndpoint": "Percentage change in LDL-C from baseline to day 510",
+      "statisticalPValue": "P < 0.001",
+      "independentReplicationStatus": "Replicated"
+    },
+    {
+      "phase": "Phase 3",
+      "trialId": "ORION-5 (homozygous FH)",
+      "sampleSize": 56,
+      "endpointMet": false,
+      "primaryEndpoint": "Percentage change in LDL-C from baseline to day 150",
+      "statisticalPValue": "P = 0.90",
+      "unreportedAdverseSignals": "None specific to this trial; adverse events did not differ from placebo. The failure was of efficacy, not safety.",
+      "independentReplicationStatus": "Unreplicated"
+    },
+    {
+      "phase": "Phase 3 cardiovascular outcome trial",
+      "trialId": "ORION-4 (NCT03705234)",
+      "sampleSize": 16124,
+      "endpointMet": false,
+      "primaryEndpoint": "Number of participants with a major adverse cardiovascular event",
+      "statisticalPValue": "Not reported — primary completion date October 2026",
+      "unreportedAdverseSignals": "The trial has not reported. `endpointMet: false` here means \"no result exists yet\", not \"the endpoint was missed\".",
+      "independentReplicationStatus": "Unreplicated"
+    },
+    {
+      "phase": "Phase 3 cardiovascular outcome trial",
+      "trialId": "VICTORION-2-PREVENT (NCT05030428)",
+      "sampleSize": 17004,
+      "endpointMet": false,
+      "primaryEndpoint": "Time to first occurrence of 3-point major adverse cardiovascular events",
+      "statisticalPValue": "Not reported — primary completion date 13 October 2027",
+      "unreportedAdverseSignals": "The trial has not reported. `endpointMet: false` here means \"no result exists yet\", not \"the endpoint was missed\".",
+      "independentReplicationStatus": "Unreplicated"
+    }
+  ],
+  "measuredVsInferredSummary": {
+    "realWorldOutcome": [
+      "Twice-yearly clinic administration converts adherence from a patient behaviour into a scheduling problem, which is the practical argument for the drug",
+      "The LDL-C effect held through four years of open-label dosing in ORION-3, without a concurrent placebo group"
+    ],
+    "strictlyMeasured": [
+      "52.3% and 49.9% placebo-adjusted LDL-C reduction at day 510 across 3,178 randomised patients",
+      "47.9 percentage-point separation from placebo in 482 patients with heterozygous familial hypercholesterolemia",
+      "Injection-site adverse events in 2.6% and 4.7% of inclisiran patients versus 0.9% and 0.5% on placebo, all mild and none persistent",
+      "PCSK9 protein reduction of about 60% even in patients whose LDL-C did not change"
+    ],
+    "whatFailedInitially": [
+      "ORION-5: no LDL-C change in adults with homozygous familial hypercholesterolemia despite a 60.6% PCSK9 reduction",
+      "The December 2020 FDA complete response letter, caused by an uninspected third-party manufacturing site rather than by the data"
+    ],
+    "unsupportedInferences": [
+      "That inclisiran reduces heart attacks, strokes or cardiovascular death — no completed trial has measured this",
+      "That two injections a year is equivalent to a daily statin on outcomes, when only one of the two has outcome data",
+      "That the exploratory pooled MACE signal (OR 0.74) is an outcome result; it is a post-hoc analysis of trials designed and powered for a lipid endpoint"
+    ]
+  },
+  "deliverySystem": {
+    "type": "GalNAc-conjugated siRNA, subcutaneous prefilled syringe",
+    "description": "A single-dose prefilled syringe containing 284 mg of inclisiran in 1.5 mL, given by a healthcare professional at day 1, month 3, and every 6 months thereafter. No lipid nanoparticle and no premedication: the triantennary GalNAc ligand does the targeting on its own.",
+    "safetyProfile": "The FDA label carries one warning, hypersensitivity reactions including anaphylaxis and angioedema, and contraindicates the drug after a prior serious reaction. Adverse reactions at 3% or more in trials were injection-site reaction, arthralgia and bronchitis. No hepatic or renal toxicity signal was identified in the phase 3 programme."
+  },
+  "commonQuestions": [
+    {
+      "a": "Nobody knows yet. It has been shown to lower LDL cholesterol by about half and to keep it there for six months at a time. The two trials designed to answer the heart-attack question — ORION-4 with 16,124 participants and VICTORION-2-PREVENT with 17,004 — are still running, with primary completion dates of October 2026 and October 2027. Until one of them reports, any statement that inclisiran prevents events is an extrapolation from what LDL lowering did for other drug classes.",
+      "q": "Does inclisiran prevent heart attacks?",
+      "auditNote": "This is the single largest gap on this page, and it is the reason the confidence score sits below the LDL evidence would otherwise justify."
+    },
+    {
+      "a": "Because no peer-reviewed cost-of-production estimate exists for a GalNAc-conjugated siRNA. The nearest published figure is from 1999 and covers unconjugated phosphorothioate oligonucleotides at \"less than US$300 per gram\", which is a different molecule made by a different process. Converting that into a per-dose cost for inclisiran would mean this page inventing a number, so it does not. The list price is quoted where a peer-reviewed source states it.",
+      "q": "Why does this page not show a manufacturing cost or a markup?"
+    },
+    {
+      "a": "The two populations are not the same. ORION-5 enrolled 56 adults with HoFH including patients with no functional LDL receptor at all, and found nothing — a 1.68% placebo-corrected change with P=0.90. ORION-13 enrolled 13 adolescents and explicitly excluded LDLR null/null genotypes, and found a 33.3% placebo-adjusted reduction. Inclisiran works by preserving LDL receptors, so a patient with no receptors has nothing to preserve.",
+      "q": "It failed in homozygous familial hypercholesterolemia but is approved for it in teenagers. How?",
+      "auditNote": "A 13-patient randomised trial supporting a label indication is a small evidence base, and the confidence interval (-59.2% to -7.3%) is correspondingly wide."
+    },
+    {
+      "a": "For adherence, plainly yes — a dose given in a clinic cannot be forgotten. For outcomes, the comparison has never been made. Every ORION trial gave inclisiran on top of the maximum tolerated statin dose, so the drug has been tested as an addition, not as a replacement, and no trial has randomised inclisiran against a statin on any clinical endpoint.",
+      "q": "Is twice a year better than a daily statin?"
+    },
+    {
+      "a": "Because the two things are not connected. Inclisiran leaves the bloodstream within hours, but the fraction taken up by liver cells forms an intracellular depot that releases slowly into the cytoplasm, and the loaded silencing complex acts catalytically — one complex cuts many messenger RNAs. The plasma half-life describes disappearance from blood; the six-month effect describes what is still happening inside the hepatocyte.",
+      "q": "How can one injection last six months when the drug clears from blood in hours?"
+    }
+  ],
+  "hasDiscrepancy": true,
+  "dossierDepth": "flagship",
+  "sourceProvenance": [
+    "Ray KK et al. Two Phase 3 Trials of Inclisiran in Patients with Elevated LDL Cholesterol. N Engl J Med 2020;382:1507-1519 (10.1056/NEJMoa1912387)",
+    "Raal FJ et al. Inclisiran for the Treatment of Heterozygous Familial Hypercholesterolemia. N Engl J Med 2020;382:1520-1530 (10.1056/NEJMoa1913805)",
+    "Raal F et al. Efficacy, Safety, and Tolerability of Inclisiran in Patients With Homozygous Familial Hypercholesterolemia: ORION-5. Circulation 2024 (10.1161/CIRCULATIONAHA.122.063460)",
+    "Wiegman A et al. Efficacy and Safety of Inclisiran in Adolescents With Homozygous Familial Hypercholesterolemia: ORION-13. Circulation 2025 (10.1161/CIRCULATIONAHA.124.073233)",
+    "Ray KK et al. Inclisiran and cardiovascular events: a patient-level analysis of phase III trials. Eur Heart J 2023;44:129-138 (10.1093/eurheartj/ehac594)",
+    "No meaningful cardiovascular outcome data for inclisiran. Drug Ther Bull 2023;61:86 (10.1136/dtb.2023.000024)",
+    "Ray KK et al. Long-term efficacy and safety of inclisiran (ORION-3). Lancet Diabetes Endocrinol 2023;11:109-119 (10.1016/S2213-8587(22)00353-9)",
+    "ORION-4: A Randomized Trial Assessing the Effects of Inclisiran on Clinical Outcomes (NCT03705234)",
+    "VICTORION-2-PREVENT: Inclisiran to Prevent CV Events in Established CV Disease (NCT05030428)",
+    "LEQVIO (inclisiran) injection, US prescribing information — DailyMed (https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6fc0afca-4513-4c35-b594-6544aee29a44)",
+    "Novartis receives complete response letter from U.S. FDA for inclisiran, 18 December 2020 (https://www.globenewswire.com/news-release/2020/12/18/2148121/0/en/Novartis-receives-complete-response-letter-from-U-S-FDA-for-inclisiran)",
+    "The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024 — Table 1 sequences from the FDA inserts (10.1124/molpharm.124.000895)",
+    "Sehgal I, Eells K, Hudson I. A Comparison of Currently Approved siRNA Medications to Alternative Treatments by Costs, Indications, and Medicaid Coverage. Pharmacy 2024;12:58 (10.3390/pharmacy12020058)",
+    "CMS National Average Drug Acquisition Cost (NADAC), 2026 file, prices effective 17 December 2025 (https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704)",
+    "Dose-dependent LDL-cholesterol lowering effect by plant stanol ester consumption. Lipids Health Dis 2012;11:140 (10.1186/1476-511X-11-140)",
+    "Psyllium supplementation and lipid profiles: systematic review and dose-response meta-analysis. Genes Nutr 2025 (10.1186/s12263-025-00786-5)"
+  ],
+  "anatomicalSite": "Hepatocyte cytoplasm (liver)"
+}

@@ -350,6 +350,39 @@ describe.skipIf(!runsInDisposableDatabase)('legacy identity correction pipeline'
     expect(rows).toHaveLength(1)
   })
 
+  it('keeps the submitting account and saved author name immutable after that account is renamed', async () => {
+    const snapshotAuthor = await makeUser('snapshot-author')
+    const drug = await makeDrug('author-snapshot')
+    await signIn(snapshotAuthor.id)
+
+    const submitted = await submit(drug.slug, {
+      field: 'name',
+      proposedValue: 'Author-attributed medicine name',
+    })
+    expect(submitted.status).toBe(202)
+    const revisionId = submitted.body.revisionId as string
+
+    await db
+      .update(users)
+      .set({ name: 'Later account display name' })
+      .where(eq(users.id, snapshotAuthor.id))
+
+    const rows = await db
+      .select({ authorUserId: revisions.authorUserId, authorName: revisions.authorName })
+      .from(revisions)
+      .where(eq(revisions.id, revisionId))
+    expect(rows[0]).toEqual({
+      authorUserId: snapshotAuthor.id,
+      authorName: snapshotAuthor.name,
+    })
+    await expect(
+      db
+        .update(revisions)
+        .set({ authorUserId: author.id, authorName: author.name })
+        .where(eq(revisions.id, revisionId)),
+    ).rejects.toThrow()
+  })
+
   it('requires an independent qualified reviewer and publishes atomically exactly once', async () => {
     const drug = await makeDrug('review-boundary')
     await signIn(trustedAuthor.id)

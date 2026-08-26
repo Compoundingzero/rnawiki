@@ -89,7 +89,6 @@ describe('SourceRefreshAuthoringPanel', () => {
       id: 'author-1',
       name: 'Author One',
       email: 'author@example.test',
-      isDoctor: false,
       trustTier: 'contributor',
     })
 

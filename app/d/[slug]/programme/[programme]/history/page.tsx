@@ -21,6 +21,7 @@ import {
   type PublicProgrammeVerdictPresentation,
 } from '@/lib/queries/public-programme-verdict-history'
 import { getCurrentUser } from '@/lib/session'
+import { pageRobotsMetadata } from '@/lib/seo/deployment'
 import { resolveSafeSourceLocator } from '@/lib/source-locator'
 
 type ProgrammeVerdictHistoryPageProps = {
@@ -462,7 +463,17 @@ function VerdictHistoryCard({
         </div>
 
         <p className="mt-3 break-words text-xs leading-relaxed text-[#424245]">
-          Written by <span className="font-bold text-[#1D1D1F]">{revision.authorName}</span>
+          Written by{' '}
+          {revision.authorHandle ? (
+            <Link
+              href={`/u/${encodeURIComponent(revision.authorHandle)}`}
+              className="font-bold text-[#0066CC] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3] focus-visible:ring-offset-2"
+            >
+              {revision.authorName}
+            </Link>
+          ) : (
+            <span className="font-bold text-[#1D1D1F]">{revision.authorName}</span>
+          )}
         </p>
         {revision.authorConflictsOfInterest?.trim() && (
           <p className="mt-1 break-words text-[11px] leading-relaxed text-[#6E6E73]">
@@ -668,7 +679,10 @@ export async function generateMetadata({
   const { slug, programme } = await params
   const history = await loadHistory(slug, programme)
   if (!history) {
-    return { title: 'Conclusion history', robots: { index: false, follow: true } }
+    return {
+      title: 'Conclusion history',
+      robots: pageRobotsMetadata({ index: false, follow: true }),
+    }
   }
 
   return {
@@ -677,6 +691,7 @@ export async function generateMetadata({
     alternates: {
       canonical: `/d/${history.medicine.slug}/programme/${history.programme.slug}/history`,
     },
+    robots: pageRobotsMetadata({ index: false, follow: true }),
   }
 }
 

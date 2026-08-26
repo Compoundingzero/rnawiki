@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowUp } from 'lucide-react'
+import Link from 'next/link'
 
 import { useApp } from '@/components/app-context'
 import { accountScopeKey, isCurrentAccountRequest } from '@/lib/account-request-scope'
@@ -348,10 +349,10 @@ export function CommunityCommentary({ medicineSlug, initialNotes }: CommunityCom
     >
       <header className="space-y-1">
         <p className="font-mono text-xs uppercase tracking-[0.12em] text-[#0066CC]">
-          Community commentary
+          Community notes
         </p>
         <h2 id="community-commentary-heading" className="text-xl font-bold text-[#1D1D1F]">
-          Notes from readers and healthcare professionals
+          Notes from signed-in contributors
         </h2>
         <p className="max-w-2xl text-sm leading-6 text-[#6E6E73]">
           These are reader opinions. RNAWiki has not fact-checked them, and they do not change the
@@ -370,21 +371,21 @@ export function CommunityCommentary({ medicineSlug, initialNotes }: CommunityCom
             <li key={note.id} className="min-w-0 rounded-2xl bg-[#F5F5F7] p-4">
               <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                 <div className="min-w-0">
-                  <div className="flex min-w-0 flex-wrap items-center gap-2">
+                  {note.authorHandle ? (
+                    <Link
+                      href={`/u/${encodeURIComponent(note.authorHandle)}`}
+                      className="break-words text-sm font-bold text-[#1D1D1F] hover:text-[#0066CC] hover:underline"
+                    >
+                      {note.author}
+                    </Link>
+                  ) : (
                     <span className="break-words text-sm font-bold text-[#1D1D1F]">
                       {note.author}
                     </span>
-                    {note.isVerifiedDoctor && (
-                      <span className="rounded-md border border-blue-200 bg-blue-50 px-2 py-0.5 text-xs font-semibold text-[#0066CC]">
-                        Physician identity checked
-                      </span>
-                    )}
-                  </div>
-                  {(note.medicalSpecialty || note.institution || note.role) && (
+                  )}
+                  {note.authorHandle && (
                     <p className="mt-0.5 break-words text-xs leading-5 text-[#6E6E73]">
-                      {[note.medicalSpecialty, note.institution, note.role]
-                        .filter(Boolean)
-                        .join(' · ')}
+                      @{note.authorHandle}
                     </p>
                   )}
                 </div>

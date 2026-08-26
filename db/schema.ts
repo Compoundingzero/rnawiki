@@ -303,6 +303,40 @@ export const users = pgTable(
 )
 
 /**
+ * Self-managed public settings for the homepage's weekly contributor spotlight.
+ *
+ * The spotlight can recognise the handle already attached to a published contribution without a
+ * settings row. External profile links are different: they remain private until this account has
+ * both supplied them and explicitly enabled their display. Public reads validate the JSON again,
+ * so an invalid value written outside the application is omitted instead of becoming a link.
+ */
+export const contributorPublicSettings = pgTable(
+  'contributor_public_settings',
+  {
+    userId: varchar('user_id', { length: 64 })
+      .primaryKey()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    appearInWeeklySpotlight: boolean('appear_in_weekly_spotlight').notNull().default(true),
+    showSocialLinksInSpotlight: boolean('show_social_links_in_spotlight').notNull().default(false),
+    socialLinks: jsonb('social_links')
+      .$type<Array<{ platform: 'x' | 'linkedin' | 'github' | 'bluesky'; url: string }>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    check(
+      'contributor_public_settings_social_links_array',
+      sql`jsonb_typeof(${table.socialLinks}) = 'array' and jsonb_array_length(${table.socialLinks}) <= 4`,
+    ),
+    check(
+      'contributor_public_settings_social_opt_in',
+      sql`not ${table.showSocialLinksInSpotlight} or jsonb_array_length(${table.socialLinks}) > 0`,
+    ),
+  ],
+)
+
+/**
  * One immutable snapshot for each physician-credential submission. The account row carries only
  * the currently reviewed public badge state; private workplace identity and the exact decision
  * trail live here and are never selected by public profile queries.
@@ -588,6 +622,40 @@ export const drugAliases = pgTable(
     uniqueIndex('drug_aliases_unique').on(table.drugId, sql`lower(${table.alias})`),
     index('drug_aliases_alias_idx').on(sql`lower(${table.alias})`),
     index('drug_aliases_drug_idx').on(table.drugId),
+  ],
+)
+
+// ---------------------------------------------------------------------------
+// medicine_slug_redirects — deliberate public URL history
+//
+// A search alias is not evidence that an old URL represented the same public record. Redirects
+// therefore live in a separate, owner-curated ledger with an explicit reason and rationale. The
+// table starts empty: migration must never guess that two medical identities should be merged.
+// ---------------------------------------------------------------------------
+
+export const medicineSlugRedirectReasonEnum = pgEnum('medicine_slug_redirect_reason', [
+  'RENAMED',
+  'MERGED',
+])
+
+export const medicineSlugRedirects = pgTable(
+  'medicine_slug_redirects',
+  {
+    oldSlug: varchar('old_slug', { length: 128 }).primaryKey(),
+    targetDrugId: varchar('target_drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    reason: medicineSlugRedirectReasonEnum('reason').notNull(),
+    rationale: text('rationale').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('medicine_slug_redirects_target_idx').on(table.targetDrugId),
+    check('medicine_slug_redirects_slug_shape', sql`${table.oldSlug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$'`),
+    check(
+      'medicine_slug_redirects_rationale_nonempty',
+      sql`nullif(btrim(${table.rationale}), '') is not null`,
+    ),
   ],
 )
 

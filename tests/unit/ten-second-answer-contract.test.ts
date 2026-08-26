@@ -1,19 +1,50 @@
 import { describe, expect, it } from 'vitest'
 
 import { legacyMedicineDossierView } from '@/lib/medicine-dossier-view-model'
+import { legacyTenSecondAnswerFingerprint } from '@/lib/legacy-ten-second-provenance'
 import { SEED_DOSSIERS } from '@/scripts/seed-data'
+import productionInclisiranSurface from '@/tests/fixtures/public-production-inclisiran-v2-surface.json'
 import {
   TEN_SECOND_FIELD_WORD_LIMITS,
   TEN_SECOND_FORBIDDEN_FIRST_READ,
   TEN_SECOND_NORMAL_FIELDS_WORD_LIMIT,
   tenSecondWordCount,
+  type TenSecondAnswerCopy,
 } from '@/lib/ten-second-answer-contract'
-import { TEN_SECOND_ANSWER_OVERRIDES } from '@/lib/ten-second-answer-overrides'
+import {
+  TEN_SECOND_ANSWER_OVERRIDES,
+  tenSecondAnswerOverride,
+} from '@/lib/ten-second-answer-overrides'
 import { TEN_SECOND_ANSWER_OVERRIDES_A } from '@/lib/ten-second-answer-overrides-a'
 import { TEN_SECOND_ANSWER_OVERRIDES_B } from '@/lib/ten-second-answer-overrides-b'
+import {
+  LEGACY_TEN_SECOND_APPROVED_FINGERPRINTS,
+  LEGACY_TEN_SECOND_APPROVED_PRODUCTION_FINGERPRINTS,
+} from '@/lib/ten-second-answer-evidence-fingerprints'
+import type { SeedDossier } from '@/lib/seed-types'
+import type { DrugDossier } from '@/lib/types'
 
 const INTERNAL_OR_PLACEHOLDER_COPY =
   /\b(?:legacy|older (?:medicine|record)|plain-language version is not available|programme|recorded|the study, the study)\b/iu
+
+function runtimeSeedDossier(seed: SeedDossier): DrugDossier {
+  return {
+    ...seed,
+    id: seed.slug,
+    molecularSchema: undefined,
+    dossierDepth: 'flagship',
+    sourceProvenance: seed.sources.map((source) =>
+      `${source.label} (${source.identifier})`.slice(0, 300),
+    ),
+    auditPointsCount: {
+      measured: seed.keyAudits.filter((audit) => audit.category === 'measured').length,
+      inferred: seed.keyAudits.filter((audit) => audit.category === 'inferred').length,
+      failed: seed.keyAudits.filter((audit) => audit.category === 'failed').length,
+      conclusionShift: seed.keyAudits.filter((audit) => audit.category === 'conclusion_shift')
+        .length,
+    },
+  }
+}
 
 describe('curated 10-second answer contract', () => {
   it('has exactly one authored answer for every unique curated seed dossier', () => {
@@ -26,6 +57,74 @@ describe('curated 10-second answer contract', () => {
     expect(overlap).toEqual([])
     expect([...authoredSlugs].filter((slug) => !seedSlugs.has(slug))).toEqual([])
     expect([...seedSlugs].filter((slug) => !authoredSlugs.has(slug))).toEqual([])
+  })
+
+  it('binds every authored answer and its evidence to exactly one approved fingerprint', () => {
+    const stale: string[] = []
+    const fingerprints = new Set<string>()
+
+    for (const seed of SEED_DOSSIERS) {
+      const copy = TEN_SECOND_ANSWER_OVERRIDES[seed.slug]
+      expect(copy, seed.slug).toBeDefined()
+      const fingerprint = legacyTenSecondAnswerFingerprint(runtimeSeedDossier(seed), copy!)
+      fingerprints.add(fingerprint)
+      if (!LEGACY_TEN_SECOND_APPROVED_FINGERPRINTS.has(fingerprint)) stale.push(seed.slug)
+    }
+
+    expect(stale).toEqual([])
+    expect(fingerprints.size).toBe(SEED_DOSSIERS.length)
+    expect(LEGACY_TEN_SECOND_APPROVED_FINGERPRINTS.size).toBe(
+      SEED_DOSSIERS.length + Object.keys(LEGACY_TEN_SECOND_APPROVED_PRODUCTION_FINGERPRINTS).length,
+    )
+    expect(
+      Object.values(TEN_SECOND_ANSWER_OVERRIDES).filter((answer) => answer.criticalSafety),
+    ).toHaveLength(153)
+  })
+
+  it('keeps the reviewed production Inclisiran snapshot bound to its exact approved purpose', () => {
+    const productionRecord = productionInclisiranSurface as DrugDossier
+    const approvedCopy = TEN_SECOND_ANSWER_OVERRIDES.inclisiran
+    expect(approvedCopy).toBeDefined()
+    expect(legacyTenSecondAnswerFingerprint(productionRecord, approvedCopy!)).toBe(
+      LEGACY_TEN_SECOND_APPROVED_PRODUCTION_FINGERPRINTS.inclisiran,
+    )
+    expect(LEGACY_TEN_SECOND_APPROVED_PRODUCTION_FINGERPRINTS).toEqual({
+      inclisiran: 'sha256:84fca31e4c9b10b1e1c6a62374e1c21e39ef6f4a638d3ae1880668b4a2e24e76',
+    })
+    expect(
+      LEGACY_TEN_SECOND_APPROVED_FINGERPRINTS.has(
+        LEGACY_TEN_SECOND_APPROVED_PRODUCTION_FINGERPRINTS.inclisiran,
+      ),
+    ).toBe(true)
+    expect(tenSecondAnswerOverride(productionRecord)).toMatchObject({
+      evidenceBinding: {
+        kind: 'legacy_answer_and_evidence_fingerprint',
+        version: 'legacy-ten-second-answer/v2',
+        fingerprint: LEGACY_TEN_SECOND_APPROVED_PRODUCTION_FINGERPRINTS.inclisiran,
+      },
+      copy: {
+        usedFor: 'Used with diet and exercise to lower LDL, often called “bad” cholesterol.',
+      },
+    })
+    expect(approvedCopy).toMatchObject({
+      usedFor: 'Used with diet and exercise to lower LDL, often called “bad” cholesterol.',
+      biggestLimit:
+        'Completed studies have not yet shown whether inclisiran prevents heart attacks or strokes.',
+    })
+    expect(legacyMedicineDossierView(productionRecord).readerSummary).toMatchObject({
+      basis: 'older_record',
+      usedFor: 'Used with diet and exercise to lower LDL, often called “bad” cholesterol.',
+      authoredEvidenceBinding: {
+        fingerprint: LEGACY_TEN_SECOND_APPROVED_PRODUCTION_FINGERPRINTS.inclisiran,
+      },
+    })
+
+    expect(
+      tenSecondAnswerOverride({
+        ...productionRecord,
+        patientFriendlyIndication: 'A different use and population',
+      }),
+    ).toBeUndefined()
   })
 
   it('keeps every authored field short, static, and free of first-screen research jargon', () => {
@@ -137,25 +236,110 @@ describe('curated 10-second answer contract', () => {
   it('renders the authored fields instead of re-synthesizing curated legacy headlines', () => {
     for (const dossier of SEED_DOSSIERS) {
       const authored = TEN_SECOND_ANSWER_OVERRIDES[dossier.slug]
-      const rendered = legacyMedicineDossierView({
-        ...dossier,
-        id: dossier.slug,
-        molecularSchema: undefined,
-        auditPointsCount: {
-          measured: dossier.keyAudits.filter((audit) => audit.category === 'measured').length,
-          inferred: dossier.keyAudits.filter((audit) => audit.category === 'inferred').length,
-          failed: dossier.keyAudits.filter((audit) => audit.category === 'failed').length,
-          conclusionShift: dossier.keyAudits.filter(
-            (audit) => audit.category === 'conclusion_shift',
-          ).length,
-        },
-      }).readerSummary
+      const rendered = legacyMedicineDossierView(runtimeSeedDossier(dossier)).readerSummary
 
       expect(rendered.usedFor, dossier.slug).toBe(authored?.usedFor)
       expect(rendered.whatStudiesFound, dossier.slug).toBe(authored?.whatStudiesFound)
       expect(rendered.biggestLimit, dossier.slug).toBe(authored?.biggestLimit)
       expect(rendered.practicalNote, dossier.slug).toBe(authored?.practicalNote)
       expect(rendered.criticalSafety, dossier.slug).toBe(authored?.criticalSafety)
+      expect(rendered.authoredEvidenceBinding, dossier.slug).toMatchObject({
+        kind: 'legacy_answer_and_evidence_fingerprint',
+        version: 'legacy-ten-second-answer/v2',
+      })
     }
+  })
+
+  it('fails closed when evidence or its stored source list changes or becomes empty', () => {
+    const seed = SEED_DOSSIERS.find((candidate) => candidate.slug === 'xylazine')
+    expect(seed).toBeDefined()
+    const current = runtimeSeedDossier(seed!)
+    const authored = TEN_SECOND_ANSWER_OVERRIDES.xylazine
+    expect(authored?.criticalSafety).toBeTruthy()
+    expect(tenSecondAnswerOverride(current)).toBeDefined()
+    expect(tenSecondAnswerOverride({ ...current, id: 'fentanyl' })).toBeUndefined()
+    // @ts-expect-error A slug alone is deliberately no longer a valid provenance contract.
+    expect(tenSecondAnswerOverride('xylazine')).toBeUndefined()
+
+    const changedRecords: DrugDossier[] = [
+      { ...current, keyAudits: [] },
+      { ...current, trials: [] },
+      { ...current, sourceProvenance: [] },
+      {
+        ...current,
+        oneSentenceVerdict: '',
+        keyAudits: [],
+        trials: [],
+        mechanismSteps: [],
+        sourceProvenance: [],
+      },
+    ]
+
+    for (const changed of changedRecords) {
+      const summary = legacyMedicineDossierView(changed).readerSummary
+      expect(summary.authoredEvidenceBinding).toBeUndefined()
+      expect(summary.criticalSafety).toBeUndefined()
+      expect(summary.whatStudiesFound).not.toBe(authored?.whatStudiesFound)
+    }
+  })
+
+  it('fails closed when any authored wording changes, including an urgent safety warning', () => {
+    const seed = SEED_DOSSIERS.find((candidate) => candidate.slug === 'xylazine')
+    expect(seed).toBeDefined()
+    const current = runtimeSeedDossier(seed!)
+    const original = TEN_SECOND_ANSWER_OVERRIDES.xylazine
+    expect(original?.criticalSafety).toBeTruthy()
+
+    const mutableOverrides = TEN_SECOND_ANSWER_OVERRIDES as Record<string, TenSecondAnswerCopy>
+    const changedCopies: TenSecondAnswerCopy[] = [
+      { ...original!, whatStudiesFound: `${original!.whatStudiesFound} ` },
+      { ...original!, criticalSafety: `${original!.criticalSafety} Altered.` },
+    ]
+
+    for (const changed of changedCopies) {
+      mutableOverrides.xylazine = changed
+      try {
+        expect(
+          LEGACY_TEN_SECOND_APPROVED_FINGERPRINTS.has(
+            legacyTenSecondAnswerFingerprint(current, changed),
+          ),
+        ).toBe(false)
+        expect(tenSecondAnswerOverride(current)).toBeUndefined()
+
+        const summary = legacyMedicineDossierView(current).readerSummary
+        expect(summary.authoredEvidenceBinding).toBeUndefined()
+        expect(summary.criticalSafety).toBeUndefined()
+      } finally {
+        mutableOverrides.xylazine = original!
+      }
+    }
+
+    expect(tenSecondAnswerOverride(current)?.copy).toBe(original)
+  })
+
+  it('does not invalidate reviewed copy for mutable counters or community activity', () => {
+    const seed = SEED_DOSSIERS.find((candidate) => candidate.slug === 'xylazine')
+    expect(seed).toBeDefined()
+    const changedOnlyOperationally: DrugDossier = {
+      ...runtimeSeedDossier(seed!),
+      viewCount: 999_999,
+      revisionCount: 42,
+      lastEditedAt: '2099-01-01T00:00:00.000Z',
+      lastEditedBy: 'another-contributor',
+      communityNotes: [
+        {
+          id: 'new-note',
+          author: 'Reader',
+          role: 'Community member',
+          date: '2099-01-01T00:00:00.000Z',
+          content: 'A new community note.',
+          upvotes: 500,
+        },
+      ],
+    }
+
+    const rendered = legacyMedicineDossierView(changedOnlyOperationally).readerSummary
+    expect(rendered.criticalSafety).toBe(TEN_SECOND_ANSWER_OVERRIDES.xylazine?.criticalSafety)
+    expect(rendered.authoredEvidenceBinding).toBeDefined()
   })
 })

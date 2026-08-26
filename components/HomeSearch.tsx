@@ -2,10 +2,12 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent, RefObject } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, Search, X } from 'lucide-react'
 import { api, searchHitHref, type SearchHit } from '@/lib/api-client'
 import { publicMedicineTypeLabel } from '@/lib/public-medicine-language'
+import { useOptionalApp } from './app-context'
 
 const DEBOUNCE_MS = 180
 
@@ -174,6 +176,8 @@ export interface HomeSearchProps {
 export function HomeSearch({ popular }: HomeSearchProps) {
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
+  const restoredInitialFocusRef = useRef(false)
+  const sessionActionLocked = useOptionalApp()?.sessionActionLocked ?? false
 
   const search = useDrugSearch((hit) => {
     search.reset()
@@ -181,6 +185,29 @@ export function HomeSearch({ popular }: HomeSearchProps) {
   })
 
   const showDropdown = search.isOpen && search.query.trim().length > 0
+
+  useEffect(() => {
+    if (sessionActionLocked || restoredInitialFocusRef.current) return
+
+    const input = inputRef.current
+    if (!input) return
+    if (document.activeElement === input) {
+      restoredInitialFocusRef.current = true
+      return
+    }
+
+    // The initial account check temporarily makes the application tree inert, which prevents the
+    // native `autoFocus` from taking effect. Restore the established search-first experience only
+    // when focus is still on the document itself; never steal it from something the reader chose.
+    if (
+      document.activeElement === null ||
+      document.activeElement === document.body ||
+      document.activeElement === document.documentElement
+    ) {
+      input.focus()
+      restoredInitialFocusRef.current = true
+    }
+  }, [sessionActionLocked])
 
   return (
     <div className="relative pt-2 space-y-3" ref={search.containerRef}>
@@ -248,17 +275,14 @@ export function HomeSearch({ popular }: HomeSearchProps) {
             </div>
           ) : (
             search.results.map((drug, index) => (
-              <button
+              <Link
                 key={drug.slug}
-                type="button"
+                href={searchHitHref(drug)}
                 id={search.optionId(index)}
                 role="option"
                 aria-selected={index === search.activeIndex}
                 onMouseEnter={() => search.setActiveIndex(index)}
-                onClick={() => {
-                  search.reset()
-                  router.push(searchHitHref(drug))
-                }}
+                onClick={search.reset}
                 className={`w-full text-left p-4 hover:bg-[#F5F5F7] transition cursor-pointer flex items-center justify-between group gap-2 ${
                   index === search.activeIndex ? 'bg-[#F5F5F7]' : ''
                 }`}
@@ -288,7 +312,7 @@ export function HomeSearch({ popular }: HomeSearchProps) {
                   className="w-4 h-4 text-[#6E6E73] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 ml-2"
                   aria-hidden="true"
                 />
-              </button>
+              </Link>
             ))
           )}
         </div>
@@ -300,13 +324,12 @@ export function HomeSearch({ popular }: HomeSearchProps) {
           <span>Popular:</span>
           {popular.slice(0, 4).map((drug, index, shown) => (
             <span key={drug.slug} className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => router.push(searchHitHref(drug))}
+              <Link
+                href={searchHitHref(drug)}
                 className="text-[#0066CC] hover:underline font-semibold cursor-pointer transition"
               >
                 {drug.name}
-              </button>
+              </Link>
               {/* The reference hard-coded `index < 3`, which leaves a trailing bullet whenever the
                   ledger holds fewer than four. Server data can be short, so it counts the row. */}
               {index < shown.length - 1 && <span className="text-black/20">&bull;</span>}

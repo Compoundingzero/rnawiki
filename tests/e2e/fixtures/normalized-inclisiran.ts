@@ -133,6 +133,14 @@ export async function installNormalizedInclisiranFixture(
       modality: 'siRNA (Small Interfering RNA)',
       approvalStatus: 'FDA Approved',
       dossierDepth: 'stub',
+      conditionContext: {
+        conditionExplainer:
+          'This disposable test record covers adults with artery disease and high LDL cholesterol.',
+        whyItMatters:
+          'The saved study record measures LDL cholesterol and keeps that result separate from outcomes it did not test.',
+        whoTakesThis: 'Adults with artery disease and high LDL cholesterol in the saved study.',
+        clinicalGoals: 'The saved study measured change in LDL cholesterol.',
+      },
     })
     medicineRows = [{ id: createdMedicineId }]
   }

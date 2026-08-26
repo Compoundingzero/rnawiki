@@ -24,10 +24,9 @@ export const dynamic = 'force-dynamic'
  * WHY IT EXISTS: bcrypt at cost 12 takes roughly a quarter of a second. If an unknown email
  * short-circuited straight to the 401, that request would return in single-digit milliseconds
  * while a wrong password for a REAL account took 250 ms. Anyone with a stopwatch and a word list
- * could then enumerate which addresses have accounts here — which, on a site where an account can
- * carry a physician credential, is a list worth having. Comparing against this decoy makes both
- * paths do the same work and take the same time, so the two failures are indistinguishable from
- * outside.
+ * could then enumerate which addresses have accounts here. Comparing against this decoy makes
+ * both paths do the same work and take the same time, so the two failures are indistinguishable
+ * from outside.
  *
  * A hard-coded constant rather than a hash computed at module load: it is not a secret (nothing is
  * protected by it), and hashing at import would block startup for a quarter of a second on every

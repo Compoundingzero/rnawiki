@@ -107,11 +107,9 @@ export interface MechanismStep {
 export interface CommunityNote {
   id: string
   author: string
+  /** Current public profile handle. Omitted after the account is deleted. */
+  authorHandle?: string
   role: string
-  isVerifiedDoctor?: boolean
-  medicalSpecialty?: string
-  institution?: string
-  verifiedBadge?: string
   date: string
   content: string
   upvotes: number
@@ -277,6 +275,7 @@ export interface DrugDossier {
   commonQuestions: CommonQuestion[]
   communityNotes?: CommunityNote[]
   recentAuditDate: string
+  /** A scientific, regulatory, or source-record discrepancy documented by the dossier. */
   hasDiscrepancy: boolean
 
   // Persistence and provenance additions.
@@ -301,40 +300,13 @@ export interface CommentUser {
   id: string
   name: string
   email: string
-  isDoctor: boolean
-  /**
-   * Never the number itself. See the comment in lib/session.ts's toCommentUser: this object is
-   * serialised into the RSC payload of every page, and a licence number that nothing renders has
-   * no reason to be there.
-   */
-  hasCredentialOnFile?: boolean
-  medicalSpecialty?: string
-  institution?: string
-  verifiedAt?: string
-  // Persistence additions.
   handle?: string
   orcid?: string
   trustTier?: TrustTier
-  verificationState?: DoctorVerificationState
   acceptedEditCount?: number
   noteCount?: number
   isAdmin?: boolean
   joinedDate?: string
-}
-
-export interface UserAccount {
-  id: string
-  name: string
-  email: string
-  role:
-    | 'Patient / Family'
-    | 'Biochemist / Researcher'
-    | 'Physician / Clinician'
-    | 'Open-Source Bio Advocate'
-    | 'Curious Citizen'
-  savedDrugIds: string[]
-  notesContributed: number
-  joinedDate: string
 }
 
 // ---------------------------------------------------------------------------

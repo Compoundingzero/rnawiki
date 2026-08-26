@@ -5,8 +5,8 @@
 // showing a stale user rather than a signed-out one.
 //
 // The identity is re-read from the `users` row on every call (lib/session.ts), never from the
-// cookie's contents, so a revoked credential or a demoted account takes effect on the next
-// request instead of when the cookie happens to expire.
+// cookie's contents, so changed permissions or a demoted account take effect on the next request
+// instead of when the cookie happens to expire.
 //
 // Rate limited despite being a read: it hits the database on every call and is reachable without
 // credentials, so an unlimited handler is a free amplification point. PUBLIC_API rather than AUTH,

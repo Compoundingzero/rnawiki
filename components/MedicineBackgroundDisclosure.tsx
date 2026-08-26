@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 
+import { focusDisclosureTarget } from '@/components/dossier/disclosure-deep-link'
+
 interface MedicineBackgroundDisclosureProps {
   children: ReactNode
 }
@@ -19,14 +21,6 @@ function nestedHashTarget(details: HTMLDetailsElement): HTMLElement | null {
   return target && details.contains(target) ? target : null
 }
 
-function focusSection(target: HTMLElement): void {
-  const focusTarget = target.querySelector<HTMLElement>('h1, h2, h3, h4, h5, h6') ?? target
-  if (!focusTarget.matches('a, button, input, select, textarea, summary, [tabindex]')) {
-    focusTarget.tabIndex = -1
-  }
-  focusTarget.focus({ preventScroll: true })
-}
-
 /** Native closed-by-default background with deep-link opening as a hydration enhancement. */
 export function MedicineBackgroundDisclosure({ children }: MedicineBackgroundDisclosureProps) {
   const detailsRef = useRef<HTMLDetailsElement>(null)
@@ -41,7 +35,7 @@ export function MedicineBackgroundDisclosure({ children }: MedicineBackgroundDis
       details.open = true
       setIsOpen(true)
       window.requestAnimationFrame(() => {
-        focusSection(target)
+        focusDisclosureTarget(details, target)
         target.scrollIntoView({ block: 'start' })
       })
     }
@@ -63,7 +57,12 @@ export function MedicineBackgroundDisclosure({ children }: MedicineBackgroundDis
         aria-expanded={isOpen}
         className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-base font-semibold text-[#1D1D1F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0071E3] sm:px-6 [&::-webkit-details-marker]:hidden"
       >
-        More about this medicine
+        <span className="min-w-0 text-left">
+          <span className="block">More about this medicine</span>
+          <span className="mt-0.5 block text-sm font-normal leading-5 text-[#6E6E73]">
+            Safety, how it is given, other treatments, cost, and technical identity
+          </span>
+        </span>
         <span
           className={`shrink-0 text-xl font-normal text-[#0066CC] transition-transform motion-reduce:transition-none ${
             isOpen ? 'rotate-45' : ''

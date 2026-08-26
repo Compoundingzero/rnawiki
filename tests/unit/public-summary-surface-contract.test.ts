@@ -11,7 +11,6 @@ describe('compact public medicine summary surfaces', () => {
   it.each([
     ['search results', 'lib/queries/drugs.ts', 'export async function searchDrugs'],
     ['popular medicines', 'lib/queries/drugs.ts', 'export async function getPopularDrugs'],
-    ['saved medicines', 'lib/queries/users.ts', 'export async function listSavedDrugs'],
     ['the paginated drugs API', 'app/api/drugs/route.ts', 'export const GET'],
   ])('%s binds summaries through the shared programme projection', (_surface, file, anchor) => {
     const fileSource = source(file)
@@ -26,7 +25,6 @@ describe('compact public medicine summary surfaces', () => {
   it.each([
     ['home and dossier search', 'components/HomeSearch.tsx'],
     ['header search', 'components/SiteHeader.tsx'],
-    ['saved medicines', 'components/AccountModal.tsx'],
   ])('%s opens the programme that supplied the visible summary', (_surface, file) => {
     const fileSource = source(file)
     expect(fileSource).toContain('searchHitHref')

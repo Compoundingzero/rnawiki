@@ -6,7 +6,7 @@
 // the query that backs it names its columns one by one — not because a component remembers not to
 // print them.
 
-import { and, desc, eq, inArray, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, gt, inArray, max, sql } from 'drizzle-orm'
 import { db } from '@/db'
 import { newId } from '@/lib/ids'
 import {
@@ -118,8 +118,6 @@ export interface CreateUserInput {
   name: string
   handle: string
   orcid?: string | null
-  /** A self-declared claim. It grants nothing on its own; `verificationState` decides the badge. */
-  isDoctor?: boolean
   id?: string
 }
 
@@ -134,7 +132,6 @@ export async function createUser(input: CreateUserInput): Promise<AccountUser> {
         name: input.name.trim(),
         handle: input.handle.trim(),
         orcid: input.orcid ?? null,
-        isDoctor: input.isDoctor ?? false,
       })
       .returning(accountColumns)
 
@@ -192,19 +189,9 @@ export function toCommentUser(user: AccountUser): CommentUser {
     id: user.id,
     name: user.name,
     email: user.email,
-    // `verificationState === 'verified'`, NEVER `user.isDoctor`. The is_doctor column records
-    // only that somebody ticked a box and typed a licence number; if it drove the badge, the blue
-    // check would be self-service. lib/session.ts makes the same choice for the same reason, and
-    // this mapper had it wrong -- an unused export today is an accidental caller tomorrow.
-    isDoctor: user.verificationState === 'verified',
-    hasCredentialOnFile: Boolean(user.medicalLicenseOrNpi),
-    medicalSpecialty: user.medicalSpecialty ?? undefined,
-    institution: user.institution ?? undefined,
-    verifiedAt: user.verifiedAt?.toISOString(),
     handle: user.handle,
     orcid: user.orcid ?? undefined,
     trustTier: user.trustTier,
-    verificationState: user.verificationState,
     acceptedEditCount: user.acceptedEditCount,
     noteCount: user.noteCount,
     isAdmin: user.isAdmin,
@@ -228,23 +215,59 @@ export interface ContributorContribution {
  * Everything /u/[handle] may show, and nothing else.
  *
  * Absent on purpose, permanently: `email`, `passwordHash`, `medicalLicenseOrNpi`,
- * `verificationNote`, `rejectedEditCount`. The first three are private data belonging to the
- * account holder; the verification note is a steward's internal remark; the rejected count is a
- * public scoreboard of someone's failures that serves no reader. If a future page needs one of
- * these, it needs a different function and a reason.
+ * credential fields and state, `verificationNote`, `rejectedEditCount`. These are private or
+ * historical data and do not belong on the one-account public contributor profile.
  */
 export interface ContributorProfile {
   handle: string
   name: string
   joinedDate: string
   trustTier: TrustTier
-  isVerifiedDoctor: boolean
-  medicalSpecialty?: string
-  institution?: string
   orcid?: string
   acceptedEditCount: number
   noteCount: number
   recentContributions: ContributorContribution[]
+}
+
+export interface IndexableContributorProfileSitemapEntry {
+  handle: string
+  /** Latest public acceptance event shown by the profile, never an account-login/update time. */
+  lastModified: Date
+}
+
+/**
+ * Lean sitemap projection for the same accepted-contribution boundary used by profile metadata.
+ * Account creation, login and private credential changes cannot move this public date.
+ */
+export async function listIndexableContributorProfilesForSitemap(): Promise<
+  IndexableContributorProfileSitemapEntry[]
+> {
+  const rows = await db
+    .select({
+      handle: users.handle,
+      lastModified: max(programmeContributionReviewStates.resolvedAt),
+    })
+    .from(users)
+    .innerJoin(
+      programmeContributionProposals,
+      eq(programmeContributionProposals.authorUserId, users.id),
+    )
+    .innerJoin(
+      programmeContributionReviewStates,
+      eq(programmeContributionReviewStates.proposalId, programmeContributionProposals.id),
+    )
+    .where(
+      and(
+        gt(users.acceptedEditCount, 0),
+        eq(programmeContributionReviewStates.status, 'ACCEPTED_FOR_IMPLEMENTATION'),
+      ),
+    )
+    .groupBy(users.id, users.handle)
+    .orderBy(asc(users.handle))
+
+  return rows.flatMap((row) =>
+    row.lastModified ? [{ handle: row.handle, lastModified: row.lastModified }] : [],
+  )
 }
 
 const RECENT_CONTRIBUTION_LIMIT = 20
@@ -260,10 +283,6 @@ export async function getContributorProfile(handle: string): Promise<Contributor
       name: users.name,
       createdAt: users.createdAt,
       trustTier: users.trustTier,
-      isDoctor: users.isDoctor,
-      verificationState: users.verificationState,
-      medicalSpecialty: users.medicalSpecialty,
-      institution: users.institution,
       orcid: users.orcid,
       acceptedEditCount: users.acceptedEditCount,
       noteCount: sql<number>`(
@@ -310,18 +329,11 @@ export async function getContributorProfile(handle: string): Promise<Contributor
     )
     .limit(RECENT_CONTRIBUTION_LIMIT)
 
-  const isVerifiedDoctor = user.isDoctor && user.verificationState === 'verified'
-
   return {
     handle: user.handle,
     name: user.name,
     joinedDate: user.createdAt.toISOString(),
     trustTier: user.trustTier,
-    isVerifiedDoctor,
-    // Credentials are shown only alongside a verified state. An unverified claim of a specialty
-    // is not a credential, and printing it next to a name is how a reader mistakes one for one.
-    medicalSpecialty: isVerifiedDoctor ? (user.medicalSpecialty ?? undefined) : undefined,
-    institution: isVerifiedDoctor ? (user.institution ?? undefined) : undefined,
     orcid: user.orcid ?? undefined,
     acceptedEditCount: user.acceptedEditCount,
     noteCount: user.noteCount,
@@ -341,8 +353,14 @@ export async function getContributorProfile(handle: string): Promise<Contributor
 }
 
 // ---------------------------------------------------------------------------
-// Physician verification
+// Retired physician-verification history
 // ---------------------------------------------------------------------------
+
+/**
+ * These helpers remain solely so historical credential decisions can be inspected and preserved
+ * during database maintenance. RNAWiki exposes no submission, queue, detail, or decision route and
+ * no client calls them. Do not wire this legacy workflow back into a public account surface.
+ */
 
 export interface DoctorVerificationPayload {
   professionalFullName: string

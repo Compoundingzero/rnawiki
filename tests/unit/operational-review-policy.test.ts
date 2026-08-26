@@ -5,10 +5,7 @@ import {
   canManageInternalReview,
   INTERNAL_REVIEW_ROLE_EXPLANATION,
 } from '@/lib/internal-review-policy'
-import {
-  feedbackResolutionSchema,
-  physicianVerificationDecisionSchema,
-} from '@/lib/internal-review-validation'
+import { feedbackResolutionSchema } from '@/lib/internal-review-validation'
 
 describe('private operational review policy', () => {
   it('uses the same steward-or-administrator boundary for every private queue', () => {
@@ -47,19 +44,7 @@ describe('private operational review policy', () => {
     expect(() => parseAdminBootstrapArgs(['--is-admin', 'true'])).toThrow(ADMIN_BOOTSTRAP_USAGE)
   })
 
-  it('accepts only explicit decisions and explanatory reasons', () => {
-    expect(
-      physicianVerificationDecisionSchema.parse({
-        decision: 'APPROVE',
-        reason: 'Licence confirmed in the issuing registry.',
-      }),
-    ).toEqual({
-      decision: 'APPROVE',
-      reason: 'Licence confirmed in the issuing registry.',
-    })
-    expect(() =>
-      physicianVerificationDecisionSchema.parse({ decision: 'MAYBE', reason: 'Long enough.' }),
-    ).toThrow()
+  it('requires a bounded explanatory feedback-resolution note', () => {
     expect(() => feedbackResolutionSchema.parse({ note: 'short' })).toThrow()
     expect(() =>
       feedbackResolutionSchema.parse({

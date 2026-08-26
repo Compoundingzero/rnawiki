@@ -5,11 +5,10 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 import { HomeSearch } from './HomeSearch'
+import { HomepageContributorSpotlight } from './home/HomepageContributorSpotlight'
 import type { SearchHit } from '@/lib/api-client'
-import {
-  toPublicMedicineCardView,
-  type PublicMedicineProjection,
-} from '@/lib/public-medicine-projection'
+import type { HomeFeaturedMedicineAnswer } from '@/lib/home-featured-medicine'
+import type { HomepageContributorSpotlightView } from '@/lib/homepage-contributor-spotlight'
 import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
 import type { DrugDossier } from '@/lib/types'
 
@@ -23,8 +22,9 @@ export interface CorpusStats {
 export interface HomeViewProps {
   /** Null on an empty database: the hero and search render, the spotlight section does not. */
   featured: DrugDossier | null
-  /** The only source of programme conclusions rendered by the featured card. */
-  featuredProjection: PublicMedicineProjection | null
+  /** Exact first-read purpose built by the canonical dossier mapper for the default programme. */
+  featuredAnswer: HomeFeaturedMedicineAnswer | null
+  contributorSpotlight: HomepageContributorSpotlightView
   popular: SearchHit[]
   corpusStats: CorpusStats
 }
@@ -39,9 +39,14 @@ function tradeNameHeadline(tradeName: string, limit = 2): string {
   return `${names.slice(0, limit).join(' / ')} +${names.length - limit} more`
 }
 
-export function HomeView({ featured, featuredProjection, popular, corpusStats }: HomeViewProps) {
+export function HomeView({
+  featured,
+  featuredAnswer,
+  contributorSpotlight,
+  popular,
+  corpusStats,
+}: HomeViewProps) {
   const showCorpusLine = corpusStats.total > 0
-  const featuredCard = featuredProjection ? toPublicMedicineCardView(featuredProjection) : null
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-16 sm:space-y-24 animate-fade-in">
@@ -74,7 +79,7 @@ export function HomeView({ featured, featuredProjection, popular, corpusStats }:
               </div>
 
               <Link
-                href={featuredCard ? featuredCard.href : `/d/${featured.id}`}
+                href={featuredAnswer?.href ?? `/d/${featured.id}`}
                 className="group block bg-white hover:bg-[#FAFAFC] rounded-3xl p-6 sm:p-8 border border-black/[0.08] hover:border-[#0071E3]/40 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,113,227,0.08)] transition-all cursor-pointer space-y-5"
               >
                 <div className="space-y-1.5">
@@ -95,15 +100,23 @@ export function HomeView({ featured, featuredProjection, popular, corpusStats }:
                     </span>
                   </div>
 
-                  {featuredCard?.context && (
+                  {featuredAnswer?.answerFor && (
                     <p className="text-[10px] font-bold uppercase tracking-wider text-[#6E6E73]">
-                      {featuredCard.context}
+                      Answer for: {featuredAnswer.answerFor}
                     </p>
                   )}
-                  {featuredCard?.summary.text && (
-                    <p className="text-sm text-[#1D1D1F] font-medium leading-snug">
-                      {featuredCard.summary.text}
-                    </p>
+                  {featuredAnswer && (
+                    <div className="space-y-2 border-t border-black/[0.05] pt-4">
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-[#0071E3]">
+                        In 10 seconds
+                      </p>
+                      <div className="space-y-1">
+                        <p className="text-xs font-bold text-[#424245]">What is it for?</p>
+                        <p className="text-sm font-medium leading-relaxed text-[#1D1D1F]">
+                          {featuredAnswer.usedFor}
+                        </p>
+                      </div>
+                    </div>
                   )}
                 </div>
 
@@ -137,6 +150,8 @@ export function HomeView({ featured, featuredProjection, popular, corpusStats }:
           )}
         </section>
       )}
+
+      <HomepageContributorSpotlight spotlight={contributorSpotlight} />
     </div>
   )
 }

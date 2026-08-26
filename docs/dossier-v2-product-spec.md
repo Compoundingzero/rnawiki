@@ -119,8 +119,9 @@ because commentary is neither evidence nor background from the medicine record.
   wording, inference, audit flag, and audit-specific source remain available under **Technical
   evidence details** so professional information is not discarded by simplification.
 - Community notes render only when at least one published note has substantive text. Posting and
-  helpful-mark controls use the existing authenticated server routes. Commentary is not evidence,
-  is not checked by RNA Intelligence, and does not affect a reviewed conclusion.
+  helpful-mark controls use the existing authenticated server routes. The server attributes a note
+  to the signed-in account rather than accepting an author from the request. Commentary is not
+  evidence, is not checked by RNA Intelligence, and does not affect a reviewed conclusion.
 - The collapsed molecular record may show the recorded sequence or structure string, formula,
   weight, and deterministic check status. It never receives `laboratoryWorkflow`, reagents,
   synthesis, purification, or quality-control steps.

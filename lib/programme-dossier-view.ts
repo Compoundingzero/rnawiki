@@ -1,14 +1,16 @@
 import type {
   ClaimNature,
+  EvidenceNodeClaimRelationship,
   EvidenceNodeType,
   ProgrammeEvidenceReadModel,
   ProgrammeFreshnessReadModel,
   ProgrammePresentationReadModel,
   ProgrammePresentationPublicationReadModel,
+  ProgrammeSummaryFieldPath,
   PublishedClaimReadModel,
-  SourceFreshnessStatus,
   StudyInterpretabilityCriterion,
 } from '@/lib/evidence/types'
+import { programmeDossierDynamicModules } from '@/lib/dossier-dynamic-modules'
 import {
   legacyMedicineDossierView,
   normalizedMedicineDossierView,
@@ -19,10 +21,17 @@ import {
   type EvidenceSourceView,
   type MedicineDossierViewModel,
   type MechanismStepView,
+  type ProgrammeSourceClaimBindingView,
+  type ProgrammeSummaryEvidenceByFieldView,
+  type ProgrammeVerdictClaimBindingView,
   type ProgrammeTimelineEventView,
   type StudyInterpretabilityView,
 } from '@/lib/medicine-dossier-view-model'
 import { buildUnpublishedProgrammeReaderSummary } from '@/lib/public-medicine-language'
+import {
+  aggregatePublicContentFreshness,
+  effectivePublicContentFreshness,
+} from '@/lib/seo/freshness'
 import { resolveSafeSourceLocator } from '@/lib/source-locator'
 import type { DrugDossier } from '@/lib/types'
 
@@ -183,45 +192,6 @@ function keyOutcomeDisplayState(claim: PublishedClaimReadModel): EvidenceDisplay
   return 'recorded_context'
 }
 
-function freshnessState(status: SourceFreshnessStatus): DossierFreshnessState {
-  if (status === 'CURRENT') return 'current'
-  if (status === 'NEW_EVIDENCE' || status === 'REVIEW_IN_PROGRESS') return 'review_required'
-  if (
-    status === 'DUE' ||
-    status === 'STALE' ||
-    status === 'SOURCE_UNAVAILABLE' ||
-    status === 'CHECK_FAILED'
-  ) {
-    return 'stale'
-  }
-  return 'unknown'
-}
-
-function effectiveFreshnessState(
-  state: ProgrammeFreshnessReadModel,
-  now: Date,
-): DossierFreshnessState {
-  if (
-    state.freshnessStatus === 'CURRENT' &&
-    state.nextCheckDueAt !== null &&
-    Date.parse(state.nextCheckDueAt) <= now.getTime()
-  ) {
-    return 'stale'
-  }
-  return freshnessState(state.freshnessStatus)
-}
-
-function aggregateFreshness(
-  states: readonly ProgrammeFreshnessReadModel[],
-  now: Date,
-): DossierFreshnessState {
-  const mapped = states.map((state) => effectiveFreshnessState(state, now))
-  if (mapped.includes('review_required')) return 'review_required'
-  if (mapped.includes('stale')) return 'stale'
-  if (mapped.length > 0 && mapped.every((state) => state === 'current')) return 'current'
-  return 'unknown'
-}
-
 function newestDate(values: Array<string | null>): string | undefined {
   return values
     .flatMap((value) => (value ? [value] : []))
@@ -252,6 +222,15 @@ function exactResult(claim: PublishedClaimReadModel): string | undefined {
   return unit ? `${value} ${unit}` : value
 }
 
+function claimSourceBindings(claim: PublishedClaimReadModel): ProgrammeSourceClaimBindingView[] {
+  return claim.sources.map((source) => ({
+    sourceId: source.id,
+    claimId: claim.id,
+    relationship: source.relationship,
+    statement: claim.plainLanguageText,
+  }))
+}
+
 function sourceViews(
   evidence: NonNullable<ProgrammeEvidenceReadModel['selectedProgramme']>,
   now: Date,
@@ -272,7 +251,9 @@ function sourceViews(
         snapshotHash: source.contentHash,
         retrievedAt: source.retrievedAt,
         verifiedAt: source.lastVerifiedAt ?? sourceFreshness?.lastVerifiedAt ?? undefined,
-        freshness: sourceFreshness ? effectiveFreshnessState(sourceFreshness, now) : 'unknown',
+        freshness: sourceFreshness
+          ? effectivePublicContentFreshness(sourceFreshness, now)
+          : 'unknown',
       })
     }
   }
@@ -290,7 +271,9 @@ function sourceViews(
       snapshotHash: source.contentHash,
       retrievedAt: source.retrievedAt,
       verifiedAt: source.lastVerifiedAt ?? sourceFreshness?.lastVerifiedAt ?? undefined,
-      freshness: sourceFreshness ? effectiveFreshnessState(sourceFreshness, now) : 'unknown',
+      freshness: sourceFreshness
+        ? effectivePublicContentFreshness(sourceFreshness, now)
+        : 'unknown',
     })
   }
 
@@ -312,11 +295,96 @@ function sourceViews(
       snapshotHash: source.contentHash,
       retrievedAt: source.retrievedAt,
       verifiedAt: sourceFreshness?.lastVerifiedAt ?? undefined,
-      freshness: sourceFreshness ? effectiveFreshnessState(sourceFreshness, now) : 'unknown',
+      freshness: sourceFreshness
+        ? effectivePublicContentFreshness(sourceFreshness, now)
+        : 'unknown',
     })
   }
 
   return [...bySnapshot.values()]
+}
+
+const SUMMARY_FIELD_PATHS = [
+  'summary.plainMechanism',
+  'summary.bestSupportedFinding',
+  'summary.mainLimitation',
+] as const satisfies readonly ProgrammeSummaryFieldPath[]
+
+/**
+ * Builds citations only from the exact dependency rows for one current summary field. If any
+ * dependent claim or its immutable source binding is unavailable, the whole field citation is
+ * withheld instead of silently falling back to every source in the verdict.
+ */
+function programmeSummaryEvidence(
+  evidence: NonNullable<ProgrammeEvidenceReadModel['selectedProgramme']>,
+): ProgrammeSummaryEvidenceByFieldView {
+  const verdict = evidence.verdict
+  if (!verdict) return {}
+
+  const claimById = new Map(evidence.claims.map((claim) => [claim.id, claim]))
+  const byField: ProgrammeSummaryEvidenceByFieldView = {}
+
+  for (const fieldPath of SUMMARY_FIELD_PATHS) {
+    const dependencies = evidence.summaryFieldDependencies.filter(
+      (dependency) =>
+        dependency.verdictRevisionId === verdict.id && dependency.fieldPath === fieldPath,
+    )
+    if (dependencies.length === 0) continue
+
+    const claimIds = uniqueSorted(dependencies.map((dependency) => dependency.claimId))
+    const dependentClaims = claimIds.flatMap((claimId) => {
+      const claim = claimById.get(claimId)
+      return claim ? [claim] : []
+    })
+    if (
+      dependentClaims.length !== claimIds.length ||
+      dependentClaims.some((claim) => !text(claim.plainLanguageText) || claim.sources.length === 0)
+    ) {
+      continue
+    }
+
+    const bindingByKey = new Map<string, ProgrammeSourceClaimBindingView>()
+    for (const claim of dependentClaims) {
+      for (const source of claim.sources) {
+        const binding: ProgrammeSourceClaimBindingView = {
+          sourceId: source.id,
+          claimId: claim.id,
+          relationship: source.relationship,
+          statement: claim.plainLanguageText,
+        }
+        bindingByKey.set(`${binding.sourceId}:${binding.claimId}:${binding.relationship}`, binding)
+      }
+    }
+    const sourceClaimBindings = [...bindingByKey.values()].sort(
+      (left, right) =>
+        left.sourceId.localeCompare(right.sourceId) ||
+        left.claimId.localeCompare(right.claimId) ||
+        left.relationship.localeCompare(right.relationship),
+    )
+    if (sourceClaimBindings.length === 0) continue
+
+    const verdictClaimBindings = verdict.claimRelationships
+      .filter((binding) => claimIds.includes(binding.claimId))
+      .map((binding): ProgrammeVerdictClaimBindingView => ({
+        claimId: binding.claimId,
+        relationship: binding.relationship,
+      }))
+      .sort(
+        (left, right) =>
+          left.claimId.localeCompare(right.claimId) ||
+          left.relationship.localeCompare(right.relationship),
+      )
+
+    byField[fieldPath] = {
+      fieldPath,
+      claimIds,
+      sourceIds: uniqueSorted(sourceClaimBindings.map((binding) => binding.sourceId)),
+      verdictClaimBindings,
+      sourceClaimBindings,
+    }
+  }
+
+  return byField
 }
 
 function evidenceNodes(
@@ -327,10 +395,24 @@ function evidenceNodes(
   return evidence.evidenceNodes
     .map((node): EvidenceNodeView => {
       const presentation = NODE_PRESENTATION[node.nodeType]
+      const claimRelationships = new Map<string, EvidenceNodeClaimRelationship[]>()
+      for (const [relationship, ids] of [
+        ['SUPPORTS', node.supportingClaimIds],
+        ['CONTRADICTS', node.contradictingClaimIds],
+        ['QUALIFIES', node.qualifyingClaimIds],
+      ] as const) {
+        for (const id of ids) {
+          const relationships = claimRelationships.get(id) ?? []
+          if (!relationships.includes(relationship)) relationships.push(relationship)
+          claimRelationships.set(id, relationships)
+        }
+      }
       const claimIds = [
-        ...node.supportingClaimIds,
-        ...node.contradictingClaimIds,
-        ...node.qualifyingClaimIds,
+        ...new Set([
+          ...node.supportingClaimIds,
+          ...node.contradictingClaimIds,
+          ...node.qualifyingClaimIds,
+        ]),
       ]
       const linkedClaims = claimIds.flatMap((id) => {
         const claim = claimById.get(id)
@@ -369,6 +451,7 @@ function evidenceNodes(
         claims: linkedClaims.map((claim) => ({
           id: claim.id,
           nature: claimNature(claim.nature),
+          nodeRelationships: claimRelationships.get(claim.id) ?? [],
           text: claim.plainLanguageText,
           technicalText: text(claim.technicalText),
           population: text(claim.population),
@@ -386,6 +469,7 @@ function evidenceNodes(
           uncertaintyInterval: text(claim.uncertaintyInterval),
           lastVerifiedAt: claim.lastVerifiedAt ?? undefined,
           sourceIds: [...new Set(claim.sources.map((source) => source.id))],
+          sourceClaimBindings: claimSourceBindings(claim),
         })),
       }
     })
@@ -403,20 +487,20 @@ function interpretability(
       ...assessment.contradictingClaimIds,
       ...assessment.qualifyingClaimIds,
     ]
+    const linkedClaimIds = [...new Set(claimIds)]
+    const sourceClaimBindings = linkedClaimIds.flatMap((claimId) => {
+      const claim = claimById.get(claimId)
+      return claim ? claimSourceBindings(claim) : []
+    })
     return {
       id: assessment.id,
       question: presentation.question,
       professionalTerm: presentation.professionalTerm,
       state: assessment.state.toLowerCase() as StudyInterpretabilityView['state'],
       explanation: text(assessment.explanation),
-      claimIds: [...new Set(claimIds)],
-      sourceIds: [
-        ...new Set(
-          claimIds.flatMap(
-            (claimId) => claimById.get(claimId)?.sources.map((source) => source.id) ?? [],
-          ),
-        ),
-      ],
+      claimIds: linkedClaimIds,
+      sourceIds: [...new Set(sourceClaimBindings.map((binding) => binding.sourceId))],
+      sourceClaimBindings,
     }
   })
 }
@@ -592,7 +676,7 @@ export function programmeEvidenceMedicineDossierView(
   if (!selected) return legacyMedicineDossierView(drug)
 
   const programmes = programmeOptions(model)
-  const aggregate = aggregateFreshness(selected.freshness, now)
+  const aggregate = aggregatePublicContentFreshness(selected.freshness, now)
   const aggregateLabel = freshnessLabel(selected.freshness, aggregate)
   const claimById = new Map(selected.claims.map((claim) => [claim.id, claim]))
 
@@ -649,10 +733,12 @@ export function programmeEvidenceMedicineDossierView(
       },
       conclusion: undefined,
       machineFindingCodes: ['PROGRAMME_VERDICT_NOT_PUBLISHED'],
+      dynamicModules: programmeDossierDynamicModules(drug, selected),
     }
   }
 
   const verdict = selected.verdict
+  const summaryEvidence = programmeSummaryEvidence(selected)
   const claimByTrial = new Map<string, PublishedClaimReadModel[]>()
   for (const claim of selected.claims) {
     if (!claim.programmeTrialId) continue
@@ -707,6 +793,7 @@ export function programmeEvidenceMedicineDossierView(
       statusBadge: { kind: 'programme_status', value: selected.status },
       href: `?programme=${encodeURIComponent(selected.slug)}`,
       verdict: verdict.oneSentenceReason,
+      summaryEvidence,
       mechanismSummary: {
         change: verdict.plainMechanism,
         observed: verdict.bestSupportedFinding,
@@ -730,6 +817,7 @@ export function programmeEvidenceMedicineDossierView(
         timepoint: text(claim.timepoint),
         outcomeType: text(claim.outcomeType),
         sourceIds: [...new Set(claim.sources.map((source) => source.id))],
+        sourceClaimBindings: claimSourceBindings(claim),
       })),
       mechanismSteps: presentationMechanismSteps(selected.presentation),
       timelineEvents: presentationTimelineEvents(
@@ -772,7 +860,9 @@ export function programmeEvidenceMedicineDossierView(
         confidenceExplanation: text(verdict.confidenceExplanation),
         conditionsThatWouldChangeVerdict: verdict.conditionsThatWouldChangeVerdict,
         authorName: verdict.authorName,
+        authorHandle: verdict.authorHandle ?? undefined,
         conflictsOfInterest: text(verdict.conflictsOfInterest),
+        independentReviewCount: verdict.independentReviewCount,
         reviewers: verdict.reviewers.map((reviewer) => ({
           id: reviewer.id,
           name: reviewer.reviewerName,
@@ -785,6 +875,7 @@ export function programmeEvidenceMedicineDossierView(
         })),
       },
       machineFindingCodes: [],
+      dynamicModules: programmeDossierDynamicModules(drug, selected),
     },
     programmes,
   })

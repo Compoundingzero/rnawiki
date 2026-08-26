@@ -1,15 +1,15 @@
 'use client'
 
-/** Account details, contribution totals, physician-verification status, and saved medicines. All
- * values come from authenticated server endpoints; the modal does not invent profile data. */
+/** Account identity, contribution record, public profile, and resilient sign out. */
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
-import { ArrowRight, CheckCircle2, Clock, ShieldAlert, Stethoscope } from 'lucide-react'
-import { api, searchHitHref, type SearchHit } from '@/lib/api-client'
+import { ArrowRight } from 'lucide-react'
+
+import { api } from '@/lib/api-client'
 import { TIER_DESCRIPTION, TIER_LABEL } from '@/lib/trust'
-import { isSessionMutationInteractionLocked, isVerifiedPhysician, useApp } from './app-context'
+import { isSessionMutationInteractionLocked, useApp } from './app-context'
 import { ModalShell } from './ModalShell'
 
 function formatDate(iso: string | undefined): string | null {
@@ -19,12 +19,6 @@ function formatDate(iso: string | undefined): string | null {
   return parsed.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
-/**
- * A counter the server sent, or an em dash.
- *
- * Not `?? 0`: a missing count and a count of zero are different claims, and "0 accepted edits" is a
- * statement about someone's record that this component would have no basis for.
- */
 function countOrDash(value: number | undefined): string {
   return typeof value === 'number' ? String(value) : '—'
 }
@@ -37,93 +31,31 @@ export function canCloseAccountModal(args: {
 }
 
 export function AccountModal() {
-  const { currentUser, openModal, refreshUser, setOpenModal, setCurrentUser } = useApp()
+  const { currentUser, openModal, refreshUser, setCurrentUser, setOpenModal } = useApp()
   const isOpen = openModal === 'account'
   const headingId = useId()
   const router = useRouter()
-
-  const [savedDrugs, setSavedDrugs] = useState<SearchHit[]>([])
-  const [isLoadingSaved, setIsLoadingSaved] = useState<boolean>(false)
-  const [savedError, setSavedError] = useState<string | null>(null)
-  const [isSigningOut, setIsSigningOut] = useState<boolean>(false)
-  const [signOutError, setSignOutError] = useState<string | null>(null)
-  const [sessionReconciliationRequired, setSessionReconciliationRequired] = useState(false)
-
-  // Only the id is read inside the effect, so a `setCurrentUser` that returns an equal-but-new
-  // object cannot re-trigger the fetch.
   const userId = currentUser?.id ?? null
   const userIdRef = useRef(userId)
   userIdRef.current = userId
   const openModalRef = useRef(openModal)
   openModalRef.current = openModal
   const scopeGenerationRef = useRef(0)
-  const savedControllerRef = useRef<AbortController | null>(null)
   const signOutControllerRef = useRef<AbortController | null>(null)
-  const [savedOwnerUserId, setSavedOwnerUserId] = useState<string | null>(userId)
+
+  const [isSigningOut, setIsSigningOut] = useState(false)
+  const [signOutError, setSignOutError] = useState<string | null>(null)
+  const [sessionReconciliationRequired, setSessionReconciliationRequired] = useState(false)
 
   useEffect(() => {
     scopeGenerationRef.current += 1
-    const scopeGeneration = scopeGenerationRef.current
-    savedControllerRef.current?.abort()
     signOutControllerRef.current?.abort()
-    savedControllerRef.current = null
     signOutControllerRef.current = null
-    setSavedDrugs([])
-    setSavedOwnerUserId(null)
-    setIsLoadingSaved(Boolean(isOpen && userId))
-    setSavedError(null)
     setIsSigningOut(false)
     setSignOutError(null)
     setSessionReconciliationRequired(false)
-    if (!isOpen || !userId) return
-
-    const controller = new AbortController()
-    savedControllerRef.current = controller
-    setIsLoadingSaved(true)
-
-    api
-      .savedDrugs(controller.signal)
-      .then(({ drugs }) => {
-        if (
-          !controller.signal.aborted &&
-          scopeGenerationRef.current === scopeGeneration &&
-          userIdRef.current === userId &&
-          openModalRef.current === 'account'
-        ) {
-          setSavedDrugs(drugs)
-          setSavedOwnerUserId(userId)
-        }
-      })
-      .catch(() => {
-        if (
-          !controller.signal.aborted &&
-          scopeGenerationRef.current === scopeGeneration &&
-          userIdRef.current === userId &&
-          openModalRef.current === 'account'
-        ) {
-          setSavedOwnerUserId(userId)
-          setSavedError('Your saved medicines could not be loaded just now.')
-        }
-      })
-      .finally(() => {
-        if (
-          !controller.signal.aborted &&
-          scopeGenerationRef.current === scopeGeneration &&
-          userIdRef.current === userId &&
-          openModalRef.current === 'account'
-        ) {
-          savedControllerRef.current = null
-          setIsLoadingSaved(false)
-        }
-      })
-
-    return () => controller.abort()
   }, [isOpen, userId])
 
-  const savedScopeIsCurrent = savedOwnerUserId === userId
-  const visibleSavedDrugs = savedScopeIsCurrent ? savedDrugs : []
-  const visibleSavedError = savedScopeIsCurrent ? savedError : null
-  const visibleIsLoadingSaved = !savedScopeIsCurrent || isLoadingSaved
   const interactionLocked = isSessionMutationInteractionLocked(
     isSigningOut,
     sessionReconciliationRequired,
@@ -139,7 +71,6 @@ export function AccountModal() {
       return
     }
     scopeGenerationRef.current += 1
-    savedControllerRef.current?.abort()
     setSignOutError(null)
     setOpenModal(null)
   }
@@ -150,8 +81,10 @@ export function AccountModal() {
       !userId ||
       userIdRef.current !== userId ||
       openModalRef.current !== 'account'
-    )
+    ) {
       return
+    }
+
     signOutControllerRef.current?.abort()
     const controller = new AbortController()
     signOutControllerRef.current = controller
@@ -159,6 +92,7 @@ export function AccountModal() {
     setIsSigningOut(true)
     setSessionReconciliationRequired(false)
     setSignOutError(null)
+
     try {
       await api.logout(controller.signal)
       if (
@@ -169,14 +103,13 @@ export function AccountModal() {
       ) {
         return
       }
+
       setCurrentUser(null)
-      setSavedDrugs([])
-      setSavedOwnerUserId(null)
       setOpenModal(null)
       router.refresh()
     } catch {
-      // A logout response can be lost after Set-Cookie cleared the session. Keep the dialog locked
-      // while `/me` determines whether this account is still authoritative.
+      // The response can be lost after the server clears the cookie. Confirm the session before
+      // offering another sign-out request so the browser never displays the wrong account.
       if (
         !controller.signal.aborted &&
         scopeGenerationRef.current === scopeGeneration &&
@@ -188,8 +121,6 @@ export function AccountModal() {
         if (reconciledUser === null) {
           setSessionReconciliationRequired(false)
           setCurrentUser(null)
-          setSavedDrugs([])
-          setSavedOwnerUserId(null)
           if (openModalRef.current === 'account') setOpenModal(null)
           return
         }
@@ -240,8 +171,6 @@ export function AccountModal() {
       setSessionReconciliationRequired(false)
       if (reconciledUser === null) {
         setCurrentUser(null)
-        setSavedDrugs([])
-        setSavedOwnerUserId(null)
         if (openModalRef.current === 'account') setOpenModal(null)
       } else if (reconciledUser.id !== userId) {
         if (openModalRef.current === 'account') setOpenModal(null)
@@ -254,81 +183,7 @@ export function AccountModal() {
   }
 
   const joinedOn = formatDate(currentUser?.joinedDate)
-  const verifiedOn = formatDate(currentUser?.verifiedAt)
   const tier = currentUser?.trustTier ?? null
-
-  const verificationRow = (() => {
-    if (!currentUser) return null
-
-    if (isVerifiedPhysician(currentUser)) {
-      return (
-        <div className="bg-[#0071E3]/[0.06] border border-[#0071E3]/15 p-3.5 rounded-2xl space-y-1.5">
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#0071E3] shrink-0" aria-hidden="true" />
-            <span className="text-xs font-bold text-[#0071E3]">Verified Physician ✓</span>
-          </div>
-          <p className="text-[11px] text-[#6E6E73] leading-relaxed">
-            {[
-              verifiedOn ? `Verified ${verifiedOn}` : null,
-              currentUser.medicalSpecialty,
-              currentUser.institution,
-            ]
-              .filter(Boolean)
-              .join(' • ')}
-          </p>
-        </div>
-      )
-    }
-
-    if (currentUser.verificationState === 'pending') {
-      return (
-        <div className="bg-amber-500/5 border border-amber-500/15 p-3.5 rounded-2xl space-y-1.5">
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-amber-700 shrink-0" aria-hidden="true" />
-            <span className="text-xs font-bold text-amber-800">Credentials under review</span>
-          </div>
-          <p className="text-[11px] text-[#6E6E73] leading-relaxed">
-            A reviewer checks every submission. Your notes post under your account name until then,
-            without a verified physician badge.
-          </p>
-        </div>
-      )
-    }
-
-    if (currentUser.verificationState === 'rejected') {
-      return (
-        <div className="bg-rose-500/5 border border-rose-500/15 p-3.5 rounded-2xl space-y-1.5">
-          <div className="flex items-center gap-1.5">
-            <ShieldAlert className="w-3.5 h-3.5 text-rose-700 shrink-0" aria-hidden="true" />
-            <span className="text-xs font-bold text-rose-800">Credentials not accepted</span>
-          </div>
-          <button
-            type="button"
-            onClick={() => setOpenModal('auth')}
-            className="text-xs font-bold text-[#0071E3] hover:underline cursor-pointer"
-          >
-            Submit them again
-          </button>
-        </div>
-      )
-    }
-
-    return (
-      <div className="bg-[#F5F5F7] p-3.5 rounded-2xl border border-black/[0.04] space-y-1.5">
-        <div className="flex items-center gap-1.5">
-          <Stethoscope className="w-3.5 h-3.5 text-[#6E6E73] shrink-0" aria-hidden="true" />
-          <span className="text-xs font-bold text-[#1D1D1F]">No physician credentials on file</span>
-        </div>
-        <button
-          type="button"
-          onClick={() => setOpenModal('auth')}
-          className="text-xs font-bold text-[#0071E3] hover:underline cursor-pointer"
-        >
-          Verify your credentials
-        </button>
-      </div>
-    )
-  })()
 
   return (
     <ModalShell
@@ -341,7 +196,7 @@ export function AccountModal() {
       closeDisabled={interactionLocked}
     >
       <div
-        className="p-6 sm:p-7 space-y-5"
+        className="space-y-5 p-6 sm:p-7"
         aria-busy={isSigningOut}
         inert={isSigningOut ? true : undefined}
       >
@@ -381,10 +236,10 @@ export function AccountModal() {
         ) : currentUser ? (
           <div className="space-y-5">
             <div>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-500/10 px-2.5 py-0.5 rounded-full inline-block mb-1.5">
+              <span className="mb-1.5 inline-block rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-800">
                 RNAWiki account
               </span>
-              <h2 id={headingId} className="text-xl font-bold text-[#1D1D1F] tracking-tight">
+              <h2 id={headingId} className="text-xl font-bold tracking-tight text-[#1D1D1F]">
                 {currentUser.name}
               </h2>
               <p className="text-xs text-[#6E6E73]">
@@ -396,89 +251,57 @@ export function AccountModal() {
                   .join(' • ')}
               </p>
               {currentUser.orcid && (
-                <p className="text-[11px] text-[#6E6E73] mt-0.5">ORCID {currentUser.orcid}</p>
+                <p className="mt-0.5 text-[11px] text-[#6E6E73]">ORCID {currentUser.orcid}</p>
               )}
             </div>
 
-            {verificationRow}
+            <div className="rounded-2xl border border-[#0071E3]/15 bg-[#0071E3]/[0.06] p-3.5">
+              <p className="text-xs font-bold text-[#0066CC]">One account for every contributor</p>
+              <p className="mt-1 text-[11px] leading-relaxed text-[#424245]">
+                You can post community notes and propose edits. Each submission is stored with your
+                account, and accepted edits remain attributed to you in the public history.
+              </p>
+            </div>
 
-            {/* Quick Metrics — the server's counters, not a length the browser can change. */}
             <div className="space-y-2.5">
-              <span className="text-xs font-semibold text-[#1D1D1F] block">
+              <span className="block text-xs font-semibold text-[#1D1D1F]">
                 Your contribution record
               </span>
               <div className="grid grid-cols-2 gap-2.5">
-                <div className="bg-[#F5F5F7] p-3 rounded-2xl text-center">
-                  <span className="text-lg font-bold text-[#0071E3] block">
+                <div className="rounded-2xl bg-[#F5F5F7] p-3 text-center">
+                  <span className="block text-lg font-bold text-[#0071E3]">
                     {countOrDash(currentUser.acceptedEditCount)}
                   </span>
                   <span className="text-[11px] text-[#6E6E73]">Accepted contributions</span>
                 </div>
-                <div className="bg-[#F5F5F7] p-3 rounded-2xl text-center">
-                  <span className="text-lg font-bold text-emerald-700 block">
+                <div className="rounded-2xl bg-[#F5F5F7] p-3 text-center">
+                  <span className="block text-lg font-bold text-emerald-700">
                     {countOrDash(currentUser.noteCount)}
                   </span>
                   <span className="text-[11px] text-[#6E6E73]">Notes posted</span>
                 </div>
               </div>
 
-              {/* The shared description explains editorial standing without implying scientific
-                  qualification or automatic publication. */}
               {tier && (
-                <div className="bg-[#F5F5F7] p-3.5 rounded-2xl space-y-1">
-                  <span className="text-xs font-bold text-[#1D1D1F] block">{TIER_LABEL[tier]}</span>
-                  <p className="text-[11px] text-[#6E6E73] leading-relaxed">
+                <div className="space-y-1 rounded-2xl bg-[#F5F5F7] p-3.5">
+                  <span className="block text-xs font-bold text-[#1D1D1F]">{TIER_LABEL[tier]}</span>
+                  <p className="text-[11px] leading-relaxed text-[#6E6E73]">
                     {TIER_DESCRIPTION[tier]}
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Saved Watchlist */}
-            <div className="space-y-2">
-              <span className="text-xs font-semibold text-[#1D1D1F] block">Saved medicines</span>
-              {visibleIsLoadingSaved ? (
-                <p className="text-xs text-[#6E6E73] py-2">Loading your saved medicines…</p>
-              ) : visibleSavedError ? (
-                <p role="alert" className="text-xs font-semibold text-rose-700 py-2">
-                  {visibleSavedError}
-                </p>
-              ) : visibleSavedDrugs.length === 0 ? (
-                <p className="text-xs text-[#6E6E73] italic py-2">
-                  No medicines saved yet. Choose &quot;Save&quot; on any medicine page.
-                </p>
-              ) : (
-                <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1">
-                  {visibleSavedDrugs.map((drug) => (
-                    <Link
-                      key={drug.slug}
-                      href={searchHitHref(drug)}
-                      onClick={handleClose}
-                      className="p-2.5 rounded-xl bg-[#F5F5F7] hover:bg-black/[0.04] flex items-center justify-between gap-2 cursor-pointer transition"
-                    >
-                      <div className="min-w-0">
-                        <span className="text-xs font-semibold text-[#1D1D1F]">
-                          {drug.name}
-                          {drug.tradeName ? ` (${drug.tradeName})` : ''}
-                        </span>
-                        {drug.summaryContext && (
-                          <span className="mt-0.5 block truncate text-[9px] font-semibold uppercase tracking-wide text-[#6E6E73]">
-                            {drug.summaryContext}
-                          </span>
-                        )}
-                        <span className="mt-0.5 block truncate text-[11px] text-[#6E6E73]">
-                          {drug.patientFriendlyIndication}
-                        </span>
-                      </div>
-                      <ArrowRight
-                        className="w-3.5 h-3.5 text-[#6E6E73] shrink-0"
-                        aria-hidden="true"
-                      />
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            {currentUser.handle && (
+              <Link
+                href={`/u/${encodeURIComponent(currentUser.handle)}`}
+                onClick={handleClose}
+                className="flex items-center justify-between gap-3 rounded-2xl border border-black/[0.06] bg-white p-3.5 text-xs font-semibold text-[#1D1D1F] transition hover:bg-[#F5F5F7]"
+              >
+                View your public contribution profile
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#6E6E73]" aria-hidden="true" />
+              </Link>
+            )}
 
             {signOutError && (
               <p role="alert" className="text-[11px] font-semibold text-rose-700">
@@ -486,14 +309,12 @@ export function AccountModal() {
               </p>
             )}
 
-            <div className="pt-2 border-t border-black/[0.06] flex items-center justify-between">
-              {/* The reference's "Reset" renamed the account to "Guest" locally. Signing out is the
-                  real version of that control: it ends the session on the server first. */}
+            <div className="flex items-center justify-between border-t border-black/[0.06] pt-4">
               <button
                 type="button"
-                onClick={handleSignOut}
+                onClick={() => void handleSignOut()}
                 disabled={isSigningOut}
-                className="text-xs text-rose-700 hover:underline disabled:opacity-50 cursor-pointer"
+                className="cursor-pointer text-xs text-rose-700 hover:underline disabled:opacity-50"
               >
                 {isSigningOut ? 'Signing out…' : 'Sign out'}
               </button>
@@ -501,7 +322,7 @@ export function AccountModal() {
                 type="button"
                 onClick={handleClose}
                 disabled={isSigningOut}
-                className="px-4 py-1.5 rounded-full bg-[#1D1D1F] text-white text-xs font-semibold hover:bg-black cursor-pointer shadow-xs active:scale-95"
+                className="cursor-pointer rounded-full bg-[#1D1D1F] px-4 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-black active:scale-95"
               >
                 Done
               </button>
@@ -510,21 +331,21 @@ export function AccountModal() {
         ) : (
           <div className="space-y-4">
             <div>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071E3] block mb-1">
+              <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wider text-[#0071E3]">
                 Your RNAWiki account
               </span>
-              <h2 id={headingId} className="text-xl font-bold text-[#1D1D1F] tracking-tight">
+              <h2 id={headingId} className="text-xl font-bold tracking-tight text-[#1D1D1F]">
                 Contribute to RNAWiki
               </h2>
-              <p className="text-xs text-[#6E6E73] mt-1 leading-relaxed">
-                Sign in to post notes and suggest corrections. Changes to medical information are
-                reviewed before they can appear publicly.
+              <p className="mt-1 text-xs leading-relaxed text-[#6E6E73]">
+                Sign in to post notes and propose edits. Medical-information changes are reviewed
+                before they can appear publicly, and every submission is attributed to its author.
               </p>
             </div>
             <button
               type="button"
               onClick={() => setOpenModal('auth')}
-              className="w-full py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-semibold transition cursor-pointer shadow-xs active:scale-95"
+              className="w-full cursor-pointer rounded-full bg-[#0071E3] py-2.5 text-xs font-semibold text-white shadow-xs transition hover:bg-[#0077ED] active:scale-95"
             >
               Sign in or create an account
             </button>

@@ -61,6 +61,7 @@ import {
 } from '@/lib/queries/programme-verdict-workflow'
 import { publishProgrammeVerdictRevision } from '@/lib/queries/programme-verdict-publication'
 import { getPublicProgrammeVerdictHistory } from '@/lib/queries/public-programme-verdict-history'
+import { getProgrammeEvidenceByMedicineSlug } from '@/lib/queries/programme-evidence'
 import type { ContributionReviewDecisionInput } from '@/lib/contributions/review-validation'
 
 const key = randomUUID().replaceAll('-', '').slice(0, 10)
@@ -1845,6 +1846,18 @@ describe('programme contribution proposals', () => {
       throw new Error('Expected a canonical candidate for the published-programme correction.')
     }
     const candidateId = implementation.revisionId
+    const candidateAuthorship = await db
+      .select({
+        authorUserId: programmeVerdictRevisions.authorUserId,
+        authorName: programmeVerdictRevisions.authorName,
+      })
+      .from(programmeVerdictRevisions)
+      .where(eq(programmeVerdictRevisions.id, candidateId))
+    expect(candidateAuthorship[0]).toEqual({
+      // The contributor remains the author; the steward who materialized it is not substituted.
+      authorUserId: authorId,
+      authorName: 'Contribution author',
+    })
     const reusedImplementation = await materializeAcceptedContributionCandidate({
       proposalId: submitted.id,
       implementedByUserId: stewardId,
@@ -2081,14 +2094,27 @@ describe('programme contribution proposals', () => {
         .delete(programmeContributionImplementations)
         .where(eq(programmeContributionImplementations.proposalId, submitted.id)),
     ).rejects.toMatchObject({ cause: expect.objectContaining({ code: '55000' }) })
+    const renamedHandle = `renamed-contributor-${key}`
+    await db
+      .update(users)
+      .set({ name: 'Later contributor display name', handle: renamedHandle })
+      .where(eq(users.id, authorId))
     const publicHistory = await getPublicProgrammeVerdictHistory(medicineSlug, programmeSlug)
     expect(publicHistory?.revisions[0]).toMatchObject({
       id: candidateId,
       isCurrent: true,
+      authorName: 'Contribution author',
+      authorHandle: renamedHandle,
       adjudication: {
         adjudicatorName: 'Contribution steward',
         decision: 'APPROVE',
       },
+    })
+    const canonicalDossier = await getProgrammeEvidenceByMedicineSlug(medicineSlug, programmeSlug)
+    expect(canonicalDossier?.selectedProgramme?.verdict).toMatchObject({
+      id: candidateId,
+      authorName: 'Contribution author',
+      authorHandle: renamedHandle,
     })
   })
 })
