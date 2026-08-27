@@ -511,6 +511,10 @@ function programmeOptions(model: ProgrammeEvidenceReadModel) {
     label: programme.title,
     status: humanize(programme.status),
     href: `?programme=${encodeURIComponent(programme.slug)}`,
+    ...(programme.publishedBestSupportedFinding
+      ? { oneSentenceResult: programme.publishedBestSupportedFinding }
+      : {}),
+    ...(programme.publishedPublicLabel ? { publishedLabel: programme.publishedPublicLabel } : {}),
   }))
 }
 

@@ -69,9 +69,10 @@ must have an executable focused case. See `docs/rna-intelligence-v2.md` and
   trade-name correction with a public HTTP(S) source and explanation. RNAWiki stores but does not
   fetch that submitted URL. One different trusted person decides it. No role auto-publishes.
 - **Programme correction or challenge:** the server freezes the selected field, current value,
-  source, checks, dependencies and contributor conflict statement. Two independent eligible people
-  review the same digest; disagreement requires an independent steward decision. Acceptance does
-  not directly mutate the public record.
+  source, checks, dependencies and contributor conflict statement. Three independent eligible
+  people review the same digest (review states opened before migration 0015 keep their frozen
+  two-review policy); disagreement among the recorded decisions requires an independent steward
+  decision. Acceptance does not directly mutate the public record.
 - **Canonical implementation and publication:** accepted work is materialized into a complete
   candidate, checked, reviewed by two currently qualified people and published atomically. A source
   task closes only with the exact replacement that resolves it.
@@ -88,7 +89,7 @@ must have an executable focused case. See `docs/rna-intelligence-v2.md` and
 - **ClinicalTrials.gov onboarding:** `scripts/onboard-clinical-trial-programme.ts` defaults to dry
   run and creates registry facts only. It creates no claim, evidence node, reviewer or conclusion.
   Scheduled monitoring currently covers supported ClinicalTrials.gov NCT records, not every source
-  type. A parser-exact, non-interpretive registry delta can enter the ordinary two-person review
+  type. A parser-exact, non-interpretive registry delta can enter the ordinary contribution review
   path. A change that touches scientific meaning stops and requires a complete successor bundle;
   the monitor never writes replacement medical prose.
 

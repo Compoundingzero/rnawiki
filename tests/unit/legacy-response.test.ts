@@ -81,6 +81,36 @@ describe('legacy compound HTTP behavior', () => {
     expect(response.headers.get('location')).toBe('https://rnawiki.com/d/terminal-medicine')
   })
 
+  it('performs no outbound search-engine notification from a request-time 410 or redirect', async () => {
+    // Deliberate policy (docs/seo-indexing-policy.md): a request proves nothing changed, the 410
+    // branch's URL is caller-mintable, and the eligibility policy cannot filter legacy-family
+    // URLs. Even with IndexNow fully enabled, request handling must stay free of submissions.
+    vi.stubEnv('NODE_ENV', 'production')
+    vi.stubEnv('SEO_DEPLOYMENT_ENV', 'production')
+    vi.stubEnv('INDEXNOW_ENABLED', 'true')
+    vi.stubEnv('INDEXNOW_KEY', 'legacy-test-key-0001')
+    const fetchSpy = vi.spyOn(globalThis, 'fetch')
+    vi.spyOn(console, 'info').mockImplementation(() => undefined)
+
+    resolvePublicMedicineRoute.mockResolvedValueOnce(null)
+    const gone = await resolveLegacyRecordRequest(
+      new NextRequest('https://rnawiki.com/r/url-a-caller-just-minted'),
+      'url-a-caller-just-minted',
+    )
+    resolvePublicMedicineRoute.mockResolvedValueOnce({
+      canonicalSlug: 'canonical-medicine',
+      matchedBy: 'historical',
+    })
+    const moved = await resolveLegacyCompoundRequest(
+      new NextRequest('https://rnawiki.com/c/old-medicine'),
+      'old-medicine',
+    )
+
+    expect(gone.status).toBe(410)
+    expect(moved.status).toBe(301)
+    expect(fetchSpy).not.toHaveBeenCalled()
+  })
+
   it('returns a privacy-minimal 410 when a former record has no terminal identity', async () => {
     resolvePublicMedicineRoute.mockResolvedValue(null)
     const log = vi.spyOn(console, 'info').mockImplementation(() => undefined)

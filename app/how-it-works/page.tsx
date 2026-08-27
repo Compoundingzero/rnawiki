@@ -253,11 +253,12 @@ export default async function HowItWorksPage() {
                   evidence remains unknown; it is not counted as failure.
                 </p>
                 <p>
-                  Submitted corrections and challenges first use two independent reviewers. If they
-                  accept a change to a public conclusion, a steward or administrator can ask RNAWiki
-                  to build a complete replacement from the accepted proposal and the current public
-                  version. RNAWiki then runs all of the evidence checks again. Two scientifically
-                  qualified reviewers sign that exact replacement before it can be published.
+                  Submitted corrections and challenges first use three independent reviewers. If
+                  they accept a change to a public conclusion, a steward or administrator can ask
+                  RNAWiki to build a complete replacement from the accepted proposal and the current
+                  public version. RNAWiki then runs all of the evidence checks again. Two
+                  scientifically qualified reviewers sign that exact replacement before it can be
+                  published.
                 </p>
                 <p>
                   RNAWiki separately records which scientific areas each conclusion reviewer is

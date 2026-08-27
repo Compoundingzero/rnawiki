@@ -399,6 +399,10 @@ export interface ProgrammeSelectorItem {
   status: ProgrammeStatus
   updateStatus: ProgrammeUpdateStatus
   hasPublishedVerdict: boolean
+  /** The published conclusion's own best-supported finding, scoped to that programme only. */
+  publishedBestSupportedFinding: string | null
+  /** The published conclusion's public label, scoped to that programme only. */
+  publishedPublicLabel: string | null
 }
 
 export interface EvidenceSourceSnapshotReadModel {

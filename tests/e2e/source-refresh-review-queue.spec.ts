@@ -230,7 +230,7 @@ test('creates and submits an exact canonical source-refresh draft without changi
     sourceTaskCard.getByText('all required checks passed', { exact: false }),
   ).toBeVisible()
   await expect(
-    sourceTaskCard.getByRole('button', { name: 'Submit for two independent reviews' }),
+    sourceTaskCard.getByRole('button', { name: 'Submit for three independent reviews' }),
   ).toBeVisible()
   await expect(sourceTaskCard).toHaveCount(1)
   await expect(submittedProposalCard).toHaveCount(0)
@@ -240,17 +240,17 @@ test('creates and submits an exact canonical source-refresh draft without changi
       response.request().method() === 'POST' &&
       /^\/api\/contributions\/[^/]+\/submit$/.test(new URL(response.url()).pathname),
   )
-  await sourceTaskCard.getByRole('button', { name: 'Submit for two independent reviews' }).click()
+  await sourceTaskCard.getByRole('button', { name: 'Submit for three independent reviews' }).click()
   const submitted = await submitResponse
   expect(submitted.status(), await submitted.text()).toBe(200)
   await expect(
     sourceTaskCard.getByText(
-      'Submitted for two independent reviews. The public conclusion has not changed.',
+      'Submitted for three independent reviews. The public conclusion has not changed.',
       { exact: true },
     ),
   ).toBeVisible()
   await expect(
-    sourceTaskCard.getByRole('button', { name: 'Submit for two independent reviews' }),
+    sourceTaskCard.getByRole('button', { name: 'Submit for three independent reviews' }),
   ).toHaveCount(0)
   const queuedSourceTaskCard = programmeQueueCard(
     page,

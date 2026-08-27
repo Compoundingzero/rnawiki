@@ -1786,4 +1786,181 @@ describe('MedicineDossierV2 server markup', () => {
       expect(html).toContain('See what changed on this page')
     },
   )
+
+  it('lists other studied uses with only their own published findings', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        verdict: 'A synthetic programme-scoped answer.',
+        programmes: [
+          {
+            id: 'programme-a',
+            label: 'Programme A',
+            status: 'Active',
+            href: '?programme=programme-a',
+            selected: true,
+            oneSentenceResult: 'Symptoms improved by 20% compared with placebo at 12 weeks.',
+            publishedLabel: 'Helped in the studied group',
+          },
+          {
+            id: 'programme-b',
+            label: 'Programme B',
+            status: 'Stopped',
+            href: '?programme=programme-b',
+            selected: false,
+          },
+        ],
+      }),
+    )
+
+    expect(html).toContain('data-testid="dossier-other-programmes"')
+    expect(html).toContain('The same medicine has been tested for other questions')
+    expect(html).toContain('Symptoms improved by 20% compared with placebo at 12 weeks.')
+    expect(html).toContain('Helped in the studied group')
+    expect(html).toContain('No reviewed conclusion has been published for this use yet.')
+    expect(html).toContain('Selected answer')
+    expect(html).toContain('View this answer')
+  })
+
+  it('hides the other-uses list when only one programme exists', () => {
+    const html = renderDossier(view({ bindingState: 'published_programme' }))
+    expect(html).not.toContain('data-testid="dossier-other-programmes"')
+  })
+
+  it('repeats the five reviewed step states inside the stopped-research card', () => {
+    const nodes = [
+      ['human', 1, 'Human exposure', 'confirmed'],
+      ['useful', 2, 'Useful exposure', 'confirmed'],
+      ['target', 3, 'Target engagement', 'confirmed'],
+      ['biology', 4, 'Biological response', 'mixed'],
+      ['outcome', 5, 'Clinical outcome', 'contradicted'],
+    ].map(([id, order, label, state]) => ({
+      id: id as string,
+      order: order as number,
+      label: label as string,
+      title: `${label as string} question`,
+      summary: 'Synthetic evidence detail.',
+      state: state as 'confirmed' | 'contradicted' | 'mixed',
+      claimNature: 'measured' as const,
+      sourceIds: [],
+      machineChecked: true,
+      findingCodes: [],
+    }))
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        verdict: 'A synthetic stopped-programme answer.',
+        evidenceNodes: nodes,
+        dynamicModules: dynamicModules({
+          programmeFailure: {
+            status: 'ready',
+            data: {
+              scope: 'selected_programme',
+              code: 'IDEA_FAILED',
+              readerLabel: 'The research question was answered: the idea did not hold.',
+              professionalLabel: 'IDEA_FAILED',
+              reason: 'The measured patient outcome did not improve against the comparator.',
+              sourceIds: [],
+              sourceClaimBindings: [],
+            },
+          },
+        }),
+      }),
+    )
+
+    const failureCard = markupFromTestId(html, 'programme-failure-classification', '</section>')
+    expect(failureCard).toContain('Where the evidence chain held')
+    expect(failureCard).toContain('Human exposure')
+    expect(failureCard).toContain('Evidence points against it')
+    expect(failureCard).toContain('Mixed findings')
+  })
+
+  it('links the first-read safety line to the fuller safety section only when it exists', () => {
+    const withSafety = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        readerSummary: {
+          basis: 'published_programme',
+          usedFor: 'Used or studied for Programme A.',
+          takeaway: 'A synthetic answer.',
+          criticalSafety: 'A recorded regulator warning applies to this group.',
+          simplified: false,
+          contextItems: [],
+        },
+        dynamicModules: dynamicModules({
+          safety: {
+            status: 'ready',
+            data: { scope: 'selected_programme', findings: [], withheldFindingCount: 0 },
+          },
+        }),
+      }),
+    )
+    expect(withSafety).toContain('href="#selected-programme-safety"')
+    expect(withSafety).toContain('View safety')
+
+    const withoutSafetySection = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        readerSummary: {
+          basis: 'published_programme',
+          usedFor: 'Used or studied for Programme A.',
+          takeaway: 'A synthetic answer.',
+          criticalSafety: 'A recorded regulator warning applies to this group.',
+          simplified: false,
+          contextItems: [],
+        },
+      }),
+    )
+    expect(withoutSafetySection).not.toContain('View safety')
+  })
+
+  it('offers the recorded source list for export without inventing citation fields', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        sources: [
+          {
+            id: 'snapshot-1',
+            label: 'Exact saved source',
+            href: 'https://example.test/source',
+            identifier: 'PMID:111',
+            retrievedAt: 'March 2026',
+            verifiedAt: 'August 2026',
+            freshness: 'current',
+          },
+        ],
+      }),
+    )
+
+    expect(html).toContain('Export the recorded source list')
+    expect(html).toContain('Exact saved source')
+    expect(html).toContain('Saved copy from March 2026.')
+    expect(html).not.toContain('et al')
+  })
+
+  it('renders raw source ids as DOM anchors so structured-data fragments resolve', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'published_programme',
+        sources: [
+          {
+            id: 'doi:10.1056/nejmoa0000000',
+            label: 'A DOI-identified source',
+            href: 'https://doi.org/10.1056/NEJMoa0000000',
+            freshness: 'current',
+          },
+        ],
+      }),
+    )
+    expect(html).toContain('id="source-doi:10.1056/nejmoa0000000"')
+  })
+
+  it('ends with plain links to the related RNAWiki pages', () => {
+    const html = renderDossier(view())
+    const nav = html.indexOf('aria-label="Related RNAWiki pages"')
+    expect(nav).toBeGreaterThanOrEqual(0)
+    expect(html.slice(nav)).toContain('href="/browse"')
+    expect(html.slice(nav)).toContain('href="/review-queue"')
+    expect(html.slice(nav)).toContain('href="/how-it-works"')
+  })
 })

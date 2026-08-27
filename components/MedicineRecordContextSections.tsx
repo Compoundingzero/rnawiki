@@ -20,24 +20,40 @@ interface BackgroundRowProps {
   id: string
   preview?: string
   title: string
+  /** Topic marker colour so the background rows can be told apart at a glance. */
+  tone?: 'blue' | 'amber' | 'emerald' | 'violet' | 'stone'
 }
 
 const BACKGROUND_BOUNDARY =
   'This is general background. It may cover information beyond the selected use and is not part of the reviewed answer above.'
 
-function BackgroundRow({ children, id, preview, title }: BackgroundRowProps) {
+const backgroundRowDot: Record<NonNullable<BackgroundRowProps['tone']>, string> = {
+  blue: 'bg-[#0066CC]',
+  amber: 'bg-amber-500',
+  emerald: 'bg-emerald-500',
+  violet: 'bg-violet-500',
+  stone: 'bg-stone-400',
+}
+
+function BackgroundRow({ children, id, preview, title, tone = 'stone' }: BackgroundRowProps) {
   return (
     <details id={id} className="group/record-row scroll-mt-24">
       <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0071E3] sm:px-7 [&::-webkit-details-marker]:hidden">
-        <span className="min-w-0">
-          <span className="block [overflow-wrap:anywhere] text-base font-semibold leading-6 text-[#1D1D1F]">
-            {title}
-          </span>
-          {preview && (
-            <span className="mt-0.5 block [overflow-wrap:anywhere] text-sm leading-5 text-[#515154]">
-              {preview}
+        <span className="flex min-w-0 items-baseline gap-2.5">
+          <span
+            aria-hidden="true"
+            className={`h-2 w-2 shrink-0 self-center rounded-full ${backgroundRowDot[tone]}`}
+          />
+          <span className="min-w-0">
+            <span className="block [overflow-wrap:anywhere] text-base font-semibold leading-6 text-[#1D1D1F]">
+              {title}
             </span>
-          )}
+            {preview && (
+              <span className="mt-0.5 block [overflow-wrap:anywhere] text-sm leading-5 text-[#515154]">
+                {preview}
+              </span>
+            )}
+          </span>
         </span>
         <ChevronDown
           className="h-4 w-4 shrink-0 text-[#0066CC] transition-transform group-open/record-row:rotate-180 motion-reduce:transition-none"
@@ -137,6 +153,7 @@ export function MedicineRecordContextSections({
         {context.condition && (
           <BackgroundRow
             id="why-developed"
+            tone="blue"
             title="The condition"
             preview="What the condition is, why it matters, and who this information applies to."
           >
@@ -185,6 +202,7 @@ export function MedicineRecordContextSections({
         {context.safetyAndAdministration && (
           <BackgroundRow
             id="safety-and-administration"
+            tone="amber"
             title="Safety and how it is given"
             preview={safetyPreview(context.safetyAndAdministration)}
           >
@@ -254,6 +272,7 @@ export function MedicineRecordContextSections({
         {context.conventionalAlternatives.length > 0 && (
           <BackgroundRow
             id="other-approaches"
+            tone="stone"
             title="Other medical treatments for the same goal"
             preview="Other treatments mentioned in the medicine-wide record, without ranking them."
           >
@@ -320,6 +339,7 @@ export function MedicineRecordContextSections({
         {foodSupplementContext.length > 0 && (
           <BackgroundRow
             id="food-and-supplement-context"
+            tone="emerald"
             title="Foods and supplements mentioned in this record"
             preview="General background entries whose exact sources have not yet been linked."
           >
@@ -359,6 +379,7 @@ export function MedicineRecordContextSections({
         {hasSourcedPricing(context) && context.pricing && (
           <BackgroundRow
             id="cost-context"
+            tone="blue"
             title="Cost information"
             preview="Stored price or cost context, with its source status when available."
           >
@@ -403,6 +424,7 @@ export function MedicineRecordContextSections({
         {context.commonQuestions.length > 0 && (
           <BackgroundRow
             id="common-questions"
+            tone="stone"
             title="Common questions"
             preview="General answers stored with this medicine-wide record."
           >
@@ -442,6 +464,7 @@ export function MedicineRecordContextSections({
         {context.molecular && (
           <BackgroundRow
             id="molecular-record"
+            tone="violet"
             title="Technical identity"
             preview="Molecular identifiers, sequences, structures, and the record’s consistency check."
           >

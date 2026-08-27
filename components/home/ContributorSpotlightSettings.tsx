@@ -196,16 +196,16 @@ export function ContributorSpotlightSettings() {
 
   return (
     <details
-      className="group rounded-2xl border border-black/[0.07] bg-white"
+      className="group rounded-2xl border border-black/[0.08] bg-white shadow-xs"
       onToggle={(event) => {
         if (event.currentTarget.open) void loadSettings()
       }}
     >
-      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-xs font-semibold text-[#424245] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0071E3] [&::-webkit-details-marker]:hidden">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-xs font-semibold text-[#1D1D1F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0A66D8] [&::-webkit-details-marker]:hidden">
         Manage your contributor spotlight settings
         <span
           aria-hidden="true"
-          className="text-base font-normal text-[#0071E3] group-open:rotate-45"
+          className="text-base font-normal text-[#0A66D8] group-open:rotate-45"
         >
           +
         </span>
@@ -227,7 +227,7 @@ export function ContributorSpotlightSettings() {
                   setAppearInWeeklySpotlight(event.target.checked)
                   setSaved(false)
                 }}
-                className="mt-0.5 h-4 w-4 accent-[#0071E3]"
+                className="mt-0.5 h-4 w-4 accent-[#0A66D8]"
               />
               <span>
                 <span className="block text-xs font-semibold text-[#1D1D1F]">
@@ -256,7 +256,7 @@ export function ContributorSpotlightSettings() {
                     setShowSocialLinksInSpotlight(event.target.checked)
                     setSaved(false)
                   }}
-                  className="h-4 w-4 accent-[#0071E3]"
+                  className="h-4 w-4 accent-[#0A66D8]"
                 />
                 <span className="text-xs font-medium text-[#424245]">
                   Show my saved social links if I appear
@@ -292,7 +292,7 @@ export function ContributorSpotlightSettings() {
                               ? 'https://github.com/handle'
                               : 'https://bsky.app/profile/handle.bsky.social'
                       }
-                      className="min-h-11 w-full rounded-xl border border-black/[0.1] bg-white px-3 text-xs text-[#1D1D1F] outline-none focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/15"
+                      className="min-h-11 w-full rounded-xl border border-black/[0.1] bg-white px-3 text-xs text-[#1D1D1F] outline-none focus:border-[#0A66D8] focus:ring-2 focus:ring-[#0A66D8]/15"
                     />
                   </label>
                 ))}
@@ -315,7 +315,7 @@ export function ContributorSpotlightSettings() {
         )}
 
         {error && (
-          <p role="alert" className="text-[11px] font-semibold leading-4 text-rose-700">
+          <p role="alert" className="text-[11px] font-semibold leading-4 text-[#B42318]">
             {error}
           </p>
         )}

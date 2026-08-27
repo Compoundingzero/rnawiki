@@ -21,7 +21,11 @@ import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-vi
 import { dossierJsonLdGraph, serialiseJsonLd } from '@/lib/json-ld'
 import { configuredPublicUrl, configuredSiteOrigin, pageRobotsMetadata } from '@/lib/seo/deployment'
 import { decideDossierIndexability } from '@/lib/seo/dossier-indexability'
-import { dossierMetadataDescription, dossierMetadataTitle } from '@/lib/seo/metadata'
+import {
+  dossierDiscoveryProjection,
+  dossierMetadataDescription,
+  dossierMetadataTitle,
+} from '@/lib/seo/metadata'
 import { getCurrentUser } from '@/lib/session'
 
 const siteOrigin = configuredSiteOrigin()
@@ -93,16 +97,12 @@ export async function generateMetadata({
   const dossier = programmeEvidence
     ? programmeEvidenceMedicineDossierView(drug, programmeEvidence)
     : null
-  const decision = dossier ? decideDossierIndexability(drug, dossier) : null
+  // The same shared projection feeds this description and the generated social-card image
+  // (opengraph-image.tsx), so the two discovery surfaces cannot drift onto different review
+  // gates or different stored answer fields.
+  const { decision, input } = dossierDiscoveryProjection(drug, dossier)
   const title = dossierMetadataTitle(drug.name)
-  const description = dossierMetadataDescription({
-    name: drug.name,
-    reviewed: decision?.reason === 'indexable_reviewed_publication',
-    provenanceBoundLegacy: decision?.reason === 'indexable_provenance_bound_legacy_flagship',
-    usedFor: dossier?.readerSummary.usedFor,
-    finding: dossier?.readerSummary.whatStudiesFound,
-    limitation: dossier?.readerSummary.biggestLimit ?? dossier?.mainLimitation,
-  })
+  const description = dossierMetadataDescription(input)
   const path = `/d/${route.canonicalSlug}`
   // Programme query parameters are a shareable UI state, not a separate search landing page.
   const mayIndex = decision?.index === true && programmeRef === null

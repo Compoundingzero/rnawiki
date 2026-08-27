@@ -11,7 +11,8 @@ export interface ContributionPublicAttribution {
 export interface ContributionReviewStateView {
   status: ContributionReviewStatus
   reviewCount: number
-  requiredReviewCount: 2
+  /** Review policy frozen when the proposal entered review: 2 before migration 0015, 3 after. */
+  requiredReviewCount: number
   consensus: VerdictReviewDecision | null
   updatedAt: string
   resolvedAt: string | null
@@ -78,7 +79,7 @@ export interface ContributionReviewReadResponse {
   adjudication: ContributionAdjudicationView | null
 }
 
-/** Public queue audit. Decisions remain blind until the second review creates a resolution. */
+/** Public queue audit. Decisions remain blind until agreement resolves or disagreement is public. */
 export interface PublicContributionReviewAudit {
   reviewState: ContributionReviewStateView
   reviews: ContributionReviewView[]

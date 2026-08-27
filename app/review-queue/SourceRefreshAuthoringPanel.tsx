@@ -269,7 +269,7 @@ function ScopedSourceRefreshAuthoringPanel({
       setSubmitted(enteredReview)
       setNotice(
         enteredReview
-          ? 'Submitted for two independent reviews. The public conclusion has not changed.'
+          ? 'Submitted for three independent reviews. The public conclusion has not changed.'
           : 'The draft did not enter review.',
       )
       router.refresh()
@@ -352,7 +352,7 @@ function ScopedSourceRefreshAuthoringPanel({
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#1D1D1F] px-4 py-2 text-xs font-semibold text-white transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Send className="h-3.5 w-3.5" aria-hidden="true" />
-              {busy ? 'Submitting…' : 'Submit for two independent reviews'}
+              {busy ? 'Submitting…' : 'Submit for three independent reviews'}
             </button>
           )}
         </div>

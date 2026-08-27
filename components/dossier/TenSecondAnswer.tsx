@@ -10,6 +10,8 @@ export interface TenSecondAnswerProps {
   mechanismPreviewAllowed?: boolean
   /** Optional exact two-arm visual. The caller may supply it only from a ready, source-bound module. */
   comparison?: ReactNode
+  /** Anchor of the fuller safety section; the link renders only when that section exists. */
+  safetyHref?: string
 }
 
 type MechanismPreviewDossier = Pick<
@@ -80,6 +82,7 @@ export function TenSecondAnswer({
   dossier,
   mechanismPreviewAllowed = false,
   comparison,
+  safetyHref,
 }: TenSecondAnswerProps) {
   const finding = dossier.readerSummary.whatStudiesFound ?? missingFinding(dossier)
   const limit = dossier.readerSummary.biggestLimit ?? missingLimit(dossier)
@@ -163,17 +166,27 @@ export function TenSecondAnswer({
         {dossier.readerSummary.criticalSafety && (
           <aside
             aria-labelledby="ten-second-safety-heading"
-            className="mt-3 flex min-w-0 items-start gap-3 border-t border-[#0A66D8]/12 pt-4"
+            className="mt-3 flex min-w-0 items-start justify-between gap-3 border-t border-[#0A66D8]/12 pt-4"
           >
-            <CircleAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-800" aria-hidden="true" />
-            <div className="min-w-0 text-sm leading-6 text-[#424245]">
-              <h3 id="ten-second-safety-heading" className="inline font-semibold text-[#1D1D1F]">
-                Safety at a glance:{' '}
-              </h3>
-              <p className="inline [overflow-wrap:anywhere]">
-                {dossier.readerSummary.criticalSafety}
-              </p>
+            <div className="flex min-w-0 items-start gap-3">
+              <CircleAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-800" aria-hidden="true" />
+              <div className="min-w-0 text-sm leading-6 text-[#424245]">
+                <h3 id="ten-second-safety-heading" className="inline font-semibold text-[#1D1D1F]">
+                  Safety at a glance:{' '}
+                </h3>
+                <p className="inline [overflow-wrap:anywhere]">
+                  {dossier.readerSummary.criticalSafety}
+                </p>
+              </div>
             </div>
+            {safetyHref && (
+              <a
+                href={safetyHref}
+                className="inline-flex min-h-11 shrink-0 items-center self-start text-xs font-semibold text-[#0A66D8] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8]"
+              >
+                View safety →
+              </a>
+            )}
           </aside>
         )}
 

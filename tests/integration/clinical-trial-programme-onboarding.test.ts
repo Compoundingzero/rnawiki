@@ -787,10 +787,16 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
       reviewerUserId: reviewerAId,
       input: approveReview,
     })
-    const accepted = await submitContributionReview({
+    const awaitingThird = await submitContributionReview({
       proposalId: submitted.id,
       reviewerUserId: reviewerBId,
       input: approveReview,
+    })
+    expect(awaitingThird.reviewState.status).toBe('AWAITING_THIRD_REVIEW')
+    const accepted = await submitContributionReview({
+      proposalId: submitted.id,
+      reviewerUserId: stewardId,
+      input: { ...approveReview, expertiseTags: ['REGULATORY_SCIENCE'] },
     })
     expect(accepted.reviewState.status).toBe('ACCEPTED_FOR_IMPLEMENTATION')
 

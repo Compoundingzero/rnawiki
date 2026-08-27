@@ -48,6 +48,8 @@ describe('homepage contributor spotlight contract', () => {
     expect(query).not.toContain('users.orcid')
     expect(query).not.toContain('users.trustTier')
     expect(component).not.toMatch(/doctor|physician|certificate|doi|award|gold|silver|bronze/i)
+    expect(component).toContain('Top contributors this week')
+    expect(component).toContain('They do not measure medical expertise.')
     expect(component).toContain('@{entry.handle}')
     expect(component).toContain('publishedChangeLabel(entry.publishedChangeCount)')
   })

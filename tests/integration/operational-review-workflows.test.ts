@@ -370,7 +370,9 @@ describe.skipIf(!runsInDisposableDatabase)('private operational review workflows
         WHERE id = ${proposalId}
       `)
     })
-    await db.insert(programmeContributionReviewStates).values({ proposalId })
+    // A frozen pre-0015 review policy: two agreeing decisions still resolve these rows, which
+    // keeps this counter test focused while covering the legacy-policy derivation at the database.
+    await db.insert(programmeContributionReviewStates).values({ proposalId, requiredApprovals: 2 })
 
     for (const [index, reviewer] of [reviewerOne, reviewerTwo].entries()) {
       await db.insert(programmeContributionReviews).values({
@@ -397,6 +399,22 @@ describe.skipIf(!runsInDisposableDatabase)('private operational review workflows
       trustTier: 'new',
     })
     await createReviewedProposal('accepted', 'APPROVE')
+    // The frozen two-review policy resolved this row, so a third decision must be refused.
+    await expect(
+      db.insert(programmeContributionReviews).values({
+        id: `review_ops_${RUN}_accepted_extra`,
+        proposalId: `proposal_ops_${RUN}_accepted`,
+        reviewerUserId: selfReviewingSteward.id,
+        reviewerNameSnapshot: selfReviewingSteward.name,
+        expertiseTags: ['CLINICAL_DEVELOPMENT'],
+        decision: 'APPROVE',
+        independenceAttested: true,
+        conflictsOfInterest: 'None',
+        conflictsOfInterestAttested: true,
+        reviewNote: null,
+        contentDigest: '0'.repeat(64),
+      }),
+    ).rejects.toBeDefined()
     expect(await counterValues(contributionAuthor.id)).toEqual({
       accepted: 1,
       rejected: 0,

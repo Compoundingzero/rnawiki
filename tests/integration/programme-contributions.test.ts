@@ -816,6 +816,16 @@ describe('programme contribution proposals', () => {
         reviewNote: 'State the measured population explicitly before this can be accepted.',
       },
     })
+    await submitContributionReview({
+      proposalId: submittedProposalId,
+      reviewerUserId: reviewerCId,
+      input: {
+        ...APPROVE_REVIEW,
+        decision: 'CHANGES_REQUESTED',
+        expertiseTags: ['TOXICOLOGY'],
+        reviewNote: 'The revised wording must stay within the population the source measured.',
+      },
+    })
 
     const ownerRows = await listAuthorProgrammeContributions({
       medicineSlug,
@@ -823,7 +833,7 @@ describe('programme contribution proposals', () => {
       authorUserId: authorId,
     })
     expect(ownerRows?.find((row) => row.id === submittedProposalId)?.review).toMatchObject({
-      reviewState: { status: 'CHANGES_REQUESTED', reviewCount: 2 },
+      reviewState: { status: 'CHANGES_REQUESTED', reviewCount: 3 },
       reviews: [
         {
           reviewer: { name: 'Contribution reviewer A', handle: `clinical-reviewer-${key}` },
@@ -831,6 +841,10 @@ describe('programme contribution proposals', () => {
         },
         {
           reviewer: { name: 'Contribution reviewer B', handle: `statistics-reviewer-${key}` },
+          decision: 'CHANGES_REQUESTED',
+        },
+        {
+          reviewer: { name: 'Contribution reviewer C', handle: `third-reviewer-${key}` },
           decision: 'CHANGES_REQUESTED',
         },
       ],
@@ -898,7 +912,7 @@ describe('programme contribution proposals', () => {
     ).toBe(true)
   })
 
-  it('serializes a terminal second review with revision creation on one lineage lock', async () => {
+  it('serializes a terminal third review with revision creation on one lineage lock', async () => {
     const proposal = await createSubmittedCorrection({
       suffix: 'lineage-lock',
       selectedField: 'programme.route',
@@ -912,22 +926,32 @@ describe('programme contribution proposals', () => {
         reviewNote: 'The route needs a more precise formulation.',
       },
     })
+    await submitContributionReview({
+      proposalId: proposal.id,
+      reviewerUserId: reviewerBId,
+      input: {
+        ...APPROVE_REVIEW,
+        decision: 'CHANGES_REQUESTED',
+        expertiseTags: ['BIOSTATISTICS'],
+        reviewNote: 'The proposed route should match the cited record exactly.',
+      },
+    })
 
-    const [secondReview, concurrentRevision] = await Promise.allSettled([
+    const [terminalReview, concurrentRevision] = await Promise.allSettled([
       submitContributionReview({
         proposalId: proposal.id,
-        reviewerUserId: reviewerBId,
+        reviewerUserId: reviewerCId,
         input: {
           ...APPROVE_REVIEW,
           decision: 'CHANGES_REQUESTED',
-          expertiseTags: ['BIOSTATISTICS'],
-          reviewNote: 'The proposed route should match the cited record exactly.',
+          expertiseTags: ['TOXICOLOGY'],
+          reviewNote: 'The route wording still needs to match the frozen source.',
         },
       }),
       reviseSubmittedContribution({ proposalId: proposal.id, authorUserId: authorId }),
     ])
 
-    expect(secondReview.status).toBe('fulfilled')
+    expect(terminalReview.status).toBe('fulfilled')
     let revision: Awaited<ReturnType<typeof reviseSubmittedContribution>>
     if (concurrentRevision.status === 'fulfilled') {
       revision = concurrentRevision.value
@@ -1238,17 +1262,41 @@ describe('programme contribution proposals', () => {
       reviews: [],
     })
 
-    const resolved = await submitContributionReview({
+    const agreeing = await submitContributionReview({
       proposalId: proposal.id,
       reviewerUserId: reviewerBId,
       input: { ...APPROVE_REVIEW, expertiseTags: ['BIOSTATISTICS'] },
     })
+    expect(agreeing.reviewState).toMatchObject({
+      status: 'AWAITING_THIRD_REVIEW',
+      reviewCount: 2,
+      consensus: null,
+    })
+    // A reviewer sees the earlier decisions only after committing their own.
+    expect(agreeing.reviews).toHaveLength(2)
+
+    const blindThird = await getContributionReviewState({
+      proposalId: proposal.id,
+      viewerUserId: reviewerCId,
+    })
+    expect(blindThird).toMatchObject({
+      reviewState: { status: 'AWAITING_THIRD_REVIEW', reviewCount: 2 },
+      eligibility: { canReview: true },
+      myReview: null,
+      reviews: [],
+    })
+
+    const resolved = await submitContributionReview({
+      proposalId: proposal.id,
+      reviewerUserId: reviewerCId,
+      input: { ...APPROVE_REVIEW, expertiseTags: ['TOXICOLOGY'] },
+    })
     expect(resolved.reviewState).toMatchObject({
       status: 'ACCEPTED_FOR_IMPLEMENTATION',
-      reviewCount: 2,
+      reviewCount: 3,
       consensus: 'APPROVE',
     })
-    expect(resolved.reviews).toHaveLength(2)
+    expect(resolved.reviews).toHaveLength(3)
 
     const queueAfter = await listPublicPendingContributionProposals({ limit: 100, offset: 0 })
     expect(queueAfter.proposals.some((row) => row.id === proposal.id)).toBe(false)
@@ -1262,9 +1310,9 @@ describe('programme contribution proposals', () => {
     const publicAudit = acceptedAudit.proposals.find((row) => row.id === proposal.id)
     expect(publicAudit).toMatchObject({
       author: { name: 'Contribution author', handle: `contributor-${key}` },
-      reviewState: { status: 'ACCEPTED_FOR_IMPLEMENTATION', reviewCount: 2 },
+      reviewState: { status: 'ACCEPTED_FOR_IMPLEMENTATION', reviewCount: 3 },
     })
-    expect(publicAudit?.reviews).toHaveLength(2)
+    expect(publicAudit?.reviews).toHaveLength(3)
     expect(JSON.stringify(publicAudit)).not.toContain('"reviewerUserId"')
     expect(JSON.stringify(publicAudit)).not.toContain('"authorUserId"')
     expect(JSON.stringify(publicAudit)).not.toContain('"email"')
@@ -1282,10 +1330,10 @@ describe('programme contribution proposals', () => {
     ).rejects.toBeDefined()
     await expect(
       db.insert(programmeContributionReviews).values({
-        id: id('third-review'),
+        id: id('fourth-review'),
         proposalId: proposal.id,
-        reviewerUserId: reviewerCId,
-        reviewerNameSnapshot: 'Contribution reviewer C',
+        reviewerUserId: stewardId,
+        reviewerNameSnapshot: 'Contribution steward',
         reviewerOrcidSnapshot: null,
         expertiseTags: ['TOXICOLOGY'],
         decision: 'APPROVE',
@@ -1820,10 +1868,16 @@ describe('programme contribution proposals', () => {
       reviewerUserId: reviewerAId,
       input: APPROVE_REVIEW,
     })
-    const accepted = await submitContributionReview({
+    const awaitingThird = await submitContributionReview({
       proposalId: submitted.id,
       reviewerUserId: reviewerBId,
       input: { ...APPROVE_REVIEW, expertiseTags: ['BIOSTATISTICS'] },
+    })
+    expect(awaitingThird.reviewState.status).toBe('AWAITING_THIRD_REVIEW')
+    const accepted = await submitContributionReview({
+      proposalId: submitted.id,
+      reviewerUserId: reviewerCId,
+      input: { ...APPROVE_REVIEW, expertiseTags: ['TOXICOLOGY'] },
     })
     expect(accepted.reviewState.status).toBe('ACCEPTED_FOR_IMPLEMENTATION')
 

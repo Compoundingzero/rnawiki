@@ -101,6 +101,8 @@ export async function getProgrammeEvidenceByMedicineSlug(
       live: developmentProgrammes,
       reviewedScope: programmeVerdictScopeSnapshots,
       currentVerdictRevisionId: programmeCurrentPublications.verdictRevisionId,
+      publishedBestSupportedFinding: programmeVerdictRevisions.bestSupportedFinding,
+      publishedPublicLabel: programmeVerdictRevisions.publicLabel,
     })
     .from(developmentProgrammes)
     .leftJoin(
@@ -116,6 +118,10 @@ export async function getProgrammeEvidenceByMedicineSlug(
         ),
         eq(programmeVerdictScopeSnapshots.programmeId, developmentProgrammes.id),
       ),
+    )
+    .leftJoin(
+      programmeVerdictRevisions,
+      eq(programmeVerdictRevisions.id, programmeCurrentPublications.verdictRevisionId),
     )
     .where(
       or(
@@ -169,6 +175,9 @@ export async function getProgrammeEvidenceByMedicineSlug(
     status: row.status,
     updateStatus: row.updateStatus,
     hasPublishedVerdict: row.currentVerdictRevisionId !== null,
+    publishedBestSupportedFinding:
+      row.currentVerdictRevisionId !== null ? row.publishedBestSupportedFinding : null,
+    publishedPublicLabel: row.currentVerdictRevisionId !== null ? row.publishedPublicLabel : null,
   }))
 
   const selected = programmeRef

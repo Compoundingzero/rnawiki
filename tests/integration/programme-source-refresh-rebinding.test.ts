@@ -714,6 +714,11 @@ async function acceptStatusCorrection(fixture: SourceRefreshFixture): Promise<st
     reviewerUserId: reviewerBId,
     input: { ...contributionApproval, expertiseTags: ['BIOSTATISTICS'] },
   })
+  await submitContributionReview({
+    proposalId: submitted.id,
+    reviewerUserId: stewardId,
+    input: { ...contributionApproval, expertiseTags: ['REGULATORY_SCIENCE'] },
+  })
   return submitted.id
 }
 
@@ -820,6 +825,11 @@ async function acceptCanonicalSourceRefresh(fixture: SourceRefreshFixture): Prom
     proposalId: submitted.id,
     reviewerUserId: reviewerBId,
     input: { ...contributionApproval, expertiseTags: ['BIOSTATISTICS'] },
+  })
+  await submitContributionReview({
+    proposalId: submitted.id,
+    reviewerUserId: stewardId,
+    input: { ...contributionApproval, expertiseTags: ['REGULATORY_SCIENCE'] },
   })
   return submitted.id
 }

@@ -1542,7 +1542,8 @@ export async function reviseSubmittedContribution(args: {
     }
     if (
       reviewState.status === 'AWAITING_REVIEWS' ||
-      reviewState.status === 'AWAITING_SECOND_REVIEW'
+      reviewState.status === 'AWAITING_SECOND_REVIEW' ||
+      reviewState.status === 'AWAITING_THIRD_REVIEW'
     ) {
       throw new ContributionProposalError(
         409,
@@ -1646,6 +1647,7 @@ export async function listPublicPendingContributionProposals(args: {
       : inArray(programmeContributionReviewStates.status, [
           'AWAITING_REVIEWS',
           'AWAITING_SECOND_REVIEW',
+          'AWAITING_THIRD_REVIEW',
           'DISAGREEMENT',
         ]),
     args.reviewStatus

@@ -32,6 +32,32 @@ describe('sitemap discovery contract', () => {
   })
 })
 
+describe('dossier discovery surface contract', () => {
+  // The behavioral gate lives in tests/unit/seo-metadata.test.ts. This contract pins the wiring:
+  // both the meta description and the social-card image must derive from the one shared
+  // projection over the same canonical route and default-programme dossier view, instead of the
+  // card rebuilding its own answer from a second projection that can drift.
+  it('derives the social card from the same projection as the meta description', () => {
+    const pageSource = readFileSync(join(process.cwd(), 'app/d/[slug]/page.tsx'), 'utf8')
+    const imageSource = readFileSync(
+      join(process.cwd(), 'app/d/[slug]/opengraph-image.tsx'),
+      'utf8',
+    )
+
+    expect(pageSource).toContain('dossierDiscoveryProjection')
+    expect(pageSource).toContain('dossierMetadataDescription(input)')
+
+    expect(imageSource).toContain('dossierDiscoveryProjection')
+    expect(imageSource).toContain('dossierSocialPreview')
+    expect(imageSource).toContain('resolvePublicMedicineRoute')
+    expect(imageSource).toContain('getProgrammeEvidenceByMedicineSlug')
+    expect(imageSource).toContain('programmeEvidenceMedicineDossierView')
+    // The card must not rebuild its answer from the browse/home card projection.
+    expect(imageSource).not.toContain('getPublicMedicineProjections')
+    expect(imageSource).not.toContain('cardSummary')
+  })
+})
+
 describe('browse search metadata', () => {
   beforeEach(() => {
     vi.stubEnv('NODE_ENV', 'production')

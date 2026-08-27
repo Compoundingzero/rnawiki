@@ -490,11 +490,13 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   const usedFor = page.getByTestId('ten-second-used-for')
   await expect(usedFor).toContainText('Studied in adults with artery disease')
   await expect(usedFor).toContainText('LDL (“bad”) cholesterol')
+  // Conclusion card, evidence disclosure, and the question universe's self-contained bottom-line
+  // passage each repeat the exact reviewed reason — all behind disclosures, none on the first read.
   const detailedReasonCopies = page.getByText(
     'This test record shows how one reviewed study result connects to a public conclusion and its source.',
     { exact: true },
   )
-  await expect(detailedReasonCopies).toHaveCount(2)
+  await expect(detailedReasonCopies).toHaveCount(3)
   for (const copy of await detailedReasonCopies.all()) await expect(copy).toBeHidden()
   const firstRead = page.getByTestId('ten-second-finding')
   await expect(firstRead).toBeVisible()
@@ -1096,7 +1098,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
     correctionCard.getByText('What else may need updating', { exact: true }),
   ).toBeVisible()
   await expect(
-    correctionCard.getByText('Awaiting two independent reviews. No public record has changed.'),
+    correctionCard.getByText('Awaiting three independent reviews. No public record has changed.'),
   ).toBeVisible()
 
   const challengeCard = page.locator('article').filter({ hasText: challengeText })
@@ -1112,7 +1114,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
     challengeCard.getByText('What else may need updating', { exact: true }),
   ).toBeVisible()
   await expect(
-    challengeCard.getByText('Awaiting two independent reviews. No public record has changed.'),
+    challengeCard.getByText('Awaiting three independent reviews. No public record has changed.'),
   ).toBeVisible()
 
   // Reviewer A sees no other decision, records an immutable approval, and leaves the proposal
@@ -1152,7 +1154,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
     reviewState: {
       status: 'AWAITING_SECOND_REVIEW',
       reviewCount: 1,
-      requiredReviewCount: 2,
+      requiredReviewCount: 3,
       consensus: null,
     },
     myReview: { decision: 'APPROVE' },
@@ -1210,7 +1212,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
   expect(secondReview.reviewState).toMatchObject({
     status: 'DISAGREEMENT',
     reviewCount: 2,
-    requiredReviewCount: 2,
+    requiredReviewCount: 3,
     consensus: null,
   })
   expect(secondReview.reviews).toHaveLength(2)
@@ -1219,7 +1221,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
   )
   await expect(
     challengeCard.getByText(
-      'The two independent reviews disagree. A qualified RNAWiki steward must make the final decision; this step is called adjudication.',
+      'The independent reviews disagree. A qualified RNAWiki steward must make the final decision; this step is called adjudication.',
     ),
   ).toBeVisible()
   await expect(challengeCard.getByText(fixture.reviewers[0]!.name)).toBeVisible()
@@ -1261,7 +1263,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
   expect(adjudicated.reviewState).toMatchObject({
     status: 'CHANGES_REQUESTED',
     reviewCount: 2,
-    requiredReviewCount: 2,
+    requiredReviewCount: 3,
     consensus: 'CHANGES_REQUESTED',
   })
   expect(adjudicated.reviewState?.resolvedAt).toBeTruthy()
@@ -1518,7 +1520,7 @@ test('a signed-in contributor saves private evidence work, submits it, and canno
     reviewState: {
       status: 'AWAITING_REVIEWS',
       reviewCount: 0,
-      requiredReviewCount: 2,
+      requiredReviewCount: 3,
     },
   })
   expect(

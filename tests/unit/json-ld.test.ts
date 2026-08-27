@@ -184,6 +184,58 @@ function publishedDossier(): MedicineDossierViewModel {
   }
 }
 
+function eligibleLegacyDrug(): DrugDossier {
+  return {
+    ...drug,
+    dossierDepth: 'flagship',
+    sourceProvenance: ['Exact stored legacy source (PMID 12345678)'],
+    recentAuditDate: 'August 2026',
+  }
+}
+
+function eligibleLegacyDossier(): MedicineDossierViewModel {
+  return {
+    ...dossier('legacy_record'),
+    readerSummary: {
+      ...dossier('legacy_record').readerSummary,
+      usedFor: 'Used for one recorded purpose.',
+      whatStudiesFound: 'The stored research reported one measured result.',
+      biggestLimit: 'The main unanswered question remains recorded.',
+      authoredEvidenceBinding: {
+        kind: 'legacy_answer_and_evidence_fingerprint',
+        version: 'legacy-ten-second-answer/v2',
+        fingerprint: `sha256:${'a'.repeat(64)}`,
+      },
+    },
+    sources: [
+      {
+        id: 'legacy-audit-source',
+        label: 'Exact stored audit source',
+        identifier: '10.1000/example',
+        freshness: 'unknown',
+      },
+    ],
+  }
+}
+
+/** The recorded "Technical identity" source exactly as the view model passes it to the page. */
+function withMolecularSource(
+  base: MedicineDossierViewModel,
+  source: { label: string; identifier: string; href?: string },
+): MedicineDossierViewModel {
+  return {
+    ...base,
+    medicineRecord: {
+      ...base.medicineRecord,
+      molecular: {
+        identifiers: [{ label: 'Chemical formula', value: 'C21H18F3N3O5', kind: 'formula' }],
+        structureCheck: 'not_passed',
+        source,
+      },
+    },
+  }
+}
+
 describe('programme-aware dossier JSON-LD', () => {
   it('suppresses reviewed claim fields when exact summary dependencies are absent', () => {
     const result = drugJsonLd(
@@ -499,6 +551,209 @@ describe('connected public JSON-LD graphs', () => {
     expect(nodes.find((node) => node['@type'] === 'CreativeWork')).toMatchObject({
       '@id': 'https://rnawiki.com/d/example-medicine/programme/programme-1#source-snapshot-1',
     })
+  })
+
+  it('keeps CreativeWork fragments byte-identical to the page source anchors', () => {
+    // components/MedicineDossierV2.tsx renders `<li id={`source-${source.id}`}>` with the raw
+    // stored id. Legacy audit sources use ids such as `doi:10.1056/nejmoa1912387`; the graph must
+    // not percent-encode what the page leaves raw, or the fragment stops naming the anchor.
+    const legacyDrug = eligibleLegacyDrug()
+    const legacyDossier = eligibleLegacyDossier()
+    legacyDossier.sources = [
+      {
+        id: 'doi:10.1056/nejmoa1912387',
+        label: 'Exact stored audit source',
+        identifier: '10.1056/NEJMoa1912387',
+        freshness: 'unknown',
+      },
+    ]
+
+    const graph = dossierJsonLdGraph(legacyDrug, legacyDossier, {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+
+    const nodes = graph?.['@graph'] ?? []
+    const citation = nodes.find(
+      (node) => node['@type'] === 'CreativeWork' && node.name === 'Exact stored audit source',
+    )
+    expect(citation).toMatchObject({
+      '@id': 'https://rnawiki.com/d/example-medicine#source-doi:10.1056/nejmoa1912387',
+    })
+    expect(serialiseJsonLd(graph)).not.toContain('source-doi%3A')
+  })
+
+  it('links a recorded PubChem compound URL as a medicine identifier on the legacy graph', () => {
+    const legacyDossier = withMolecularSource(eligibleLegacyDossier(), {
+      label: 'PubChem CID 90311989 (example medicine) — SMILES, molecular formula and weight',
+      identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/90311989',
+      href: 'https://pubchem.ncbi.nlm.nih.gov/compound/90311989',
+    })
+
+    const graph = dossierJsonLdGraph(eligibleLegacyDrug(), legacyDossier, {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+
+    const medicine = graph?.['@graph'].find((node) => node['@type'] === 'Drug')
+    expect(medicine).toMatchObject({
+      identifier: [{ '@type': 'PropertyValue', propertyID: 'PubChem CID', value: '90311989' }],
+      sameAs: ['https://pubchem.ncbi.nlm.nih.gov/compound/90311989'],
+    })
+  })
+
+  it('matches the recorded label against the medicine name without its trailing parenthetical', () => {
+    const thcDrug = { ...eligibleLegacyDrug(), name: 'Delta-9-Tetrahydrocannabinol (THC)' }
+    const legacyDossier = withMolecularSource(
+      { ...eligibleLegacyDossier(), name: thcDrug.name },
+      {
+        label:
+          'PubChem CID 16078 (dronabinol, delta-9-tetrahydrocannabinol) — SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16078',
+      },
+    )
+
+    const graph = dossierJsonLdGraph(thcDrug, legacyDossier, {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+
+    expect(graph?.['@graph'].find((node) => node['@type'] === 'Drug')).toMatchObject({
+      sameAs: ['https://pubchem.ncbi.nlm.nih.gov/compound/16078'],
+    })
+  })
+
+  it('never promotes a recorded constituent CID into an identifier for a differently named medicine', () => {
+    // The corpus really contains this shape: the "Cannabis (Plant Preparation)" record stores the
+    // dronabinol compound page as its structure source. The whole preparation is not that molecule.
+    const cannabisDrug = { ...eligibleLegacyDrug(), name: 'Cannabis (Plant Preparation)' }
+    const cannabisDossier = withMolecularSource(
+      { ...eligibleLegacyDossier(), name: cannabisDrug.name },
+      {
+        label:
+          'PubChem CID 16078 (dronabinol, delta-9-tetrahydrocannabinol) — SMILES, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/16078',
+      },
+    )
+    const cannabisGraph = dossierJsonLdGraph(cannabisDrug, cannabisDossier, {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+    expect(serialiseJsonLd(cannabisGraph)).not.toContain('sameAs')
+    expect(serialiseJsonLd(cannabisGraph)).not.toContain('PubChem CID')
+
+    // A name that is only a substring inside a longer molecule name is not a match either.
+    const morphineDrug = { ...eligibleLegacyDrug(), name: 'Morphine' }
+    const morphineDossier = withMolecularSource(
+      { ...eligibleLegacyDossier(), name: morphineDrug.name },
+      {
+        label: 'PubChem CID 5284570 (hydromorphone) — SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5284570',
+      },
+    )
+    const morphineGraph = dossierJsonLdGraph(morphineDrug, morphineDossier, {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+    expect(serialiseJsonLd(morphineGraph)).not.toContain('sameAs')
+  })
+
+  it('omits identifier linkage for every recorded shape that is not exactly a compound URL', () => {
+    const rejectedIdentifiers = [
+      '10.1124/molpharm.124.000895',
+      'http://pubchem.ncbi.nlm.nih.gov/compound/90311989',
+      'https://pubchem.ncbi.nlm.nih.gov/compound/90311989?from=search',
+      'https://pubchem.ncbi.nlm.nih.gov/compound/90311989#section',
+      'https://pubchem.ncbi.nlm.nih.gov/substance/90311989',
+      'https://pubchem.ncbi.nlm.nih.gov/compound/90311989/section',
+      'https://pubchem.ncbi.nlm.nih.gov.evil.example/compound/90311989',
+      'https://pubchem.ncbi.nlm.nih.gov/compound/0123',
+      'not a url',
+    ]
+
+    for (const identifier of rejectedIdentifiers) {
+      const legacyDossier = withMolecularSource(eligibleLegacyDossier(), {
+        label: 'PubChem CID 90311989 (example medicine) — SMILES, molecular formula and weight',
+        identifier,
+      })
+      const graph = dossierJsonLdGraph(eligibleLegacyDrug(), legacyDossier, {
+        eligible: true,
+        siteUrl: 'https://rnawiki.com',
+        url: 'https://rnawiki.com/d/example-medicine',
+      })
+      expect(graph, identifier).not.toBeNull()
+      expect(serialiseJsonLd(graph), identifier).not.toContain('sameAs')
+    }
+
+    // No recorded molecular source at all: the eligible graph is unchanged and claims nothing.
+    const withoutSource = dossierJsonLdGraph(eligibleLegacyDrug(), eligibleLegacyDossier(), {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+    expect(withoutSource).not.toBeNull()
+    expect(serialiseJsonLd(withoutSource)).not.toContain('sameAs')
+  })
+
+  it('keeps the recorded-identifier linkage off the published-programme graph', () => {
+    // The published graph describes a programme-scoped reviewed conclusion; the medicine-wide
+    // molecular record only feeds the legacy compatibility graph today. Widening that is an
+    // owner decision, not a side effect.
+    const published = withMolecularSource(publishedDossier(), {
+      label: 'PubChem CID 90311989 (example medicine) — SMILES, molecular formula and weight',
+      identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/90311989',
+    })
+
+    const graph = dossierJsonLdGraph(drug, published, {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+
+    expect(graph).not.toBeNull()
+    expect(serialiseJsonLd(graph)).not.toContain('sameAs')
+    expect(serialiseJsonLd(graph)).not.toContain('PubChem CID')
+  })
+
+  it('emits no question, product, offer, rating or how-to markup on any dossier graph', () => {
+    const legacyGraph = dossierJsonLdGraph(
+      eligibleLegacyDrug(),
+      withMolecularSource(eligibleLegacyDossier(), {
+        label: 'PubChem CID 90311989 (example medicine) — SMILES, molecular formula and weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/90311989',
+      }),
+      {
+        eligible: true,
+        siteUrl: 'https://rnawiki.com',
+        url: 'https://rnawiki.com/d/example-medicine',
+      },
+    )
+    const publishedGraph = dossierJsonLdGraph(drug, publishedDossier(), {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine/programme/programme-1',
+    })
+
+    for (const graph of [legacyGraph, publishedGraph]) {
+      const serialised = serialiseJsonLd(graph)
+      for (const forbidden of [
+        'FAQPage',
+        'QAPage',
+        'Question',
+        'Product',
+        'Offer',
+        'Review',
+        'AggregateRating',
+        'HowTo',
+      ]) {
+        expect(serialised).not.toContain(`"${forbidden}"`)
+      }
+    }
   })
 
   it('builds a public ProfilePage graph from the same facts shown on the profile', () => {

@@ -91,6 +91,9 @@ export interface DrugJsonLd {
 export interface MedicineEntityJsonLd extends Omit<DrugJsonLd, '@context'> {
   '@id': string
   mainEntityOfPage: JsonLdReference
+  /** Recorded external registry identifiers only — never looked up, resolved or inferred. */
+  identifier?: PropertyValueJsonLd[]
+  sameAs?: string[]
 }
 
 export interface DossierPageJsonLd {
@@ -303,6 +306,75 @@ function exactPublishedMechanism(dossier: MedicineDossierViewModel): string | un
   return text(dossier.mechanismSummary.change)
 }
 
+/**
+ * True only when the recorded source label itself names this medicine — ignoring letter case and
+ * a trailing parenthetical such as "(THC)" — on a non-letter boundary. This keeps a recorded
+ * constituent CID from being promoted into an identifier for the whole medicine: a
+ * plant-preparation record whose structure source cites one molecule ("Cannabis (Plant
+ * Preparation)" citing dronabinol's CID) stays unlinked, and a substring inside a longer
+ * molecule name ("Morphine" inside "hydromorphone") does not count as a match.
+ */
+function labelNamesMedicine(label: string, medicineName: string): boolean {
+  const haystack = label.toLowerCase()
+  const full = medicineName.trim().toLowerCase()
+  const withoutTrailingParenthetical = full.replace(/\s*\(.*$/, '').trim()
+  const candidates = [...new Set([full, withoutTrailingParenthetical])].filter(
+    (candidate) => candidate.length >= 3,
+  )
+  const isLetter = (character: string | undefined) =>
+    character !== undefined && /[a-z]/.test(character)
+  return candidates.some((candidate) => {
+    for (
+      let start = haystack.indexOf(candidate);
+      start !== -1;
+      start = haystack.indexOf(candidate, start + 1)
+    ) {
+      if (!isLetter(haystack[start - 1]) && !isLetter(haystack[start + candidate.length])) {
+        return true
+      }
+    }
+    return false
+  })
+}
+
+/**
+ * The exact recorded molecular identity source, accepted only when it is already a PubChem
+ * compound URL and its recorded label names this medicine. The CID is extracted mechanically
+ * from the recorded URL — nothing is looked up, resolved or inferred — and every other recorded
+ * shape (a DOI, a paper, another registry, a URL with extra path/query, a constituent recorded
+ * under a different name) is omitted rather than approximated.
+ */
+function recordedPubChemCompound(
+  source: { label?: string; identifier?: string } | undefined,
+  medicineName: string | null | undefined,
+): { cid: string; url: string } | undefined {
+  const identifier = text(source?.identifier)
+  const label = text(source?.label)
+  const name = text(medicineName)
+  if (!identifier || !label || !name) return undefined
+
+  let parsed: URL
+  try {
+    parsed = new URL(identifier)
+  } catch {
+    return undefined
+  }
+  if (
+    parsed.protocol !== 'https:' ||
+    parsed.hostname !== 'pubchem.ncbi.nlm.nih.gov' ||
+    parsed.username !== '' ||
+    parsed.password !== '' ||
+    parsed.port !== '' ||
+    parsed.search !== '' ||
+    parsed.hash !== ''
+  ) {
+    return undefined
+  }
+  const cid = /^\/compound\/([1-9][0-9]{0,15})\/?$/.exec(parsed.pathname)?.[1]
+  if (!cid || !labelNamesMedicine(label, name)) return undefined
+  return { cid, url: `https://pubchem.ncbi.nlm.nih.gov/compound/${cid}` }
+}
+
 function hasExactLegacyAnswerBinding(
   drug: DrugDossier,
   dossier: MedicineDossierViewModel,
@@ -429,10 +501,11 @@ function sourceCreativeWorks(
   return dossier.sources.flatMap((source, index) => {
     const name = text(source.label)
     if (!name) return []
-    const id = fragmentUrl(
-      pageUrl,
-      `source-${encodeURIComponent(text(source.id) ?? String(index + 1))}`,
-    )
+    // The dossier page renders `<li id="source-{id}">` with the exact stored snapshot id
+    // (components/MedicineDossierV2.tsx), so this fragment must use the same characters.
+    // Percent-encoding here broke parity for legacy ids such as `doi:10.1056/...`; the URL hash
+    // setter still escapes the few characters URL syntax cannot carry raw.
+    const id = fragmentUrl(pageUrl, `source-${text(source.id) ?? String(index + 1)}`)
     const externalUrl = httpUrl(source.href) ?? httpUrl(source.canonicalLocator)
     const identifiers: Array<string | PropertyValueJsonLd> = []
     const identifier = text(source.identifier)
@@ -506,6 +579,16 @@ function legacyDossierJsonLdGraph(
   if (legacyEntity.alternateName) medicine.alternateName = legacyEntity.alternateName
   if (legacyEntity.description) medicine.description = legacyEntity.description
   if (legacyEntity.activeIngredient) medicine.activeIngredient = legacyEntity.activeIngredient
+
+  // The "Technical identity" section already shows this recorded identity source on the page;
+  // the graph repeats the same recorded fact and nothing more.
+  const pubChem = recordedPubChemCompound(dossier.medicineRecord.molecular?.source, drug.name)
+  if (pubChem) {
+    medicine.identifier = [
+      { '@type': 'PropertyValue', propertyID: 'PubChem CID', value: pubChem.cid },
+    ]
+    medicine.sameAs = [pubChem.url]
+  }
 
   const lastReviewed = resolveLegacyPublicContentDate(null, drug.recentAuditDate)?.toISOString()
   const page: DossierPageJsonLd = {

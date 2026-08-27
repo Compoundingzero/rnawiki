@@ -1,12 +1,51 @@
 import { ImageResponse } from 'next/og'
 
-import { getPublicMedicineNameBySlug } from '@/lib/queries/drugs'
-import { getPublicMedicineProjections } from '@/lib/queries/public-medicine-projection'
+import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-view'
+import { getPublicDrugBySlug, resolvePublicMedicineRoute } from '@/lib/queries/drugs'
+import { getProgrammeEvidenceByMedicineSlug } from '@/lib/queries/programme-evidence'
+import {
+  dossierDiscoveryProjection,
+  dossierSocialPreview,
+  type DossierSocialPreview,
+} from '@/lib/seo/metadata'
 
 export const alt = 'RNAWiki medicine evidence record'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 export const dynamic = 'force-dynamic'
+
+const FALLBACK_PREVIEW: DossierSocialPreview = {
+  reviewedAnswer: false,
+  badgeLabel: 'Medicine evidence record',
+  finding: null,
+}
+
+/**
+ * The card derives from the exact discovery projection behind the route's meta description: the
+ * same canonical route resolution, the same default-programme dossier view and the same shared
+ * fail-closed indexability policy. The image therefore cannot claim a reviewed answer, or quote a
+ * finding, that the page's own description would refuse for the same URL.
+ */
+async function loadSocialPreview(
+  slug: string,
+): Promise<{ name: string | null; preview: DossierSocialPreview }> {
+  const route = await resolvePublicMedicineRoute(slug)
+  if (!route) return { name: null, preview: FALLBACK_PREVIEW }
+
+  const [drug, programmeEvidence] = await Promise.all([
+    getPublicDrugBySlug(route.canonicalSlug),
+    getProgrammeEvidenceByMedicineSlug(route.canonicalSlug, null),
+  ])
+  if (!drug) return { name: null, preview: FALLBACK_PREVIEW }
+
+  const dossier = programmeEvidence
+    ? programmeEvidenceMedicineDossierView(drug, programmeEvidence)
+    : null
+  return {
+    name: drug.name,
+    preview: dossierSocialPreview(dossierDiscoveryProjection(drug, dossier).input),
+  }
+}
 
 export default async function DossierOpenGraphImage({
   params,
@@ -14,13 +53,7 @@ export default async function DossierOpenGraphImage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const [medicineName, projections] = await Promise.all([
-    getPublicMedicineNameBySlug(slug),
-    getPublicMedicineProjections([slug]),
-  ])
-  const summary = projections.get(slug)?.cardSummary
-  const reviewed = summary?.kind === 'reviewed_programme'
-  const finding = reviewed ? summary.text : undefined
+  const { name, preview } = await loadSocialPreview(slug)
 
   return new ImageResponse(
     <div
@@ -43,21 +76,21 @@ export default async function DossierOpenGraphImage({
             border: '1px solid rgba(0,113,227,.25)',
             borderRadius: 999,
             background: 'rgba(255,255,255,.8)',
-            color: reviewed ? '#067647' : '#6e6e73',
+            color: preview.reviewedAnswer ? '#067647' : '#6e6e73',
             padding: '10px 18px',
             fontSize: 20,
             fontWeight: 700,
           }}
         >
-          {reviewed ? 'Reviewed evidence answer' : 'Medicine evidence record'}
+          {preview.badgeLabel}
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 1040 }}>
         <div style={{ fontSize: 70, lineHeight: 1.05, fontWeight: 800, letterSpacing: '-2.5px' }}>
-          {medicineName ?? 'Medicine evidence'}
+          {name ?? 'Medicine evidence'}
         </div>
         <div style={{ color: '#424245', fontSize: 29, lineHeight: 1.35 }}>
-          {finding ?? 'What the evidence shows — and what it does not yet prove.'}
+          {preview.finding ?? 'What the evidence shows — and what it does not yet prove.'}
         </div>
       </div>
       <div style={{ color: '#6e6e73', fontSize: 22 }}>

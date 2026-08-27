@@ -59,6 +59,7 @@ const REVIEW_STATUS_FILTERS: Array<{ value: ContributionReviewStatus | null; lab
   { value: null, label: 'Open work' },
   { value: 'AWAITING_REVIEWS', label: 'Awaiting first review' },
   { value: 'AWAITING_SECOND_REVIEW', label: 'Awaiting second review' },
+  { value: 'AWAITING_THIRD_REVIEW', label: 'Awaiting third review' },
   { value: 'DISAGREEMENT', label: 'Reviewers disagree' },
   { value: 'ACCEPTED_FOR_IMPLEMENTATION', label: 'Ready to prepare' },
   { value: 'CHANGES_REQUESTED', label: 'Changes requested' },

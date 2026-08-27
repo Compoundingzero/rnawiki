@@ -2470,6 +2470,9 @@ export const programmeContributionReviewStates = pgTable(
       .references(() => programmeContributionProposals.id, { onDelete: 'cascade' }),
     status: contributionReviewStatusEnum('status').notNull().default('AWAITING_REVIEWS'),
     reviewCount: integer('review_count').notNull().default(0),
+    // Review policy frozen at row creation. Rows opened before migration 0015 resolve at two
+    // agreeing reviews; rows opened afterwards require three.
+    requiredApprovals: integer('required_approvals').notNull().default(3),
     updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
     resolvedAt: timestamp('resolved_at', { withTimezone: true }),
   },
@@ -2477,7 +2480,11 @@ export const programmeContributionReviewStates = pgTable(
     index('programme_contribution_review_states_queue_idx').on(table.status, table.updatedAt),
     check(
       'programme_contribution_review_states_count',
-      sql`${table.reviewCount} >= 0 and ${table.reviewCount} <= 2`,
+      sql`${table.reviewCount} >= 0 and ${table.reviewCount} <= ${table.requiredApprovals}`,
+    ),
+    check(
+      'programme_contribution_review_states_required_approvals',
+      sql`${table.requiredApprovals} in (2, 3)`,
     ),
     check(
       'programme_contribution_review_states_resolution',

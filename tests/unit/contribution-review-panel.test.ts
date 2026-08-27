@@ -26,11 +26,12 @@ import type { CommentUser } from '@/lib/types'
 function state(
   status: ContributionReviewStateView['status'],
   reviewCount: number,
+  requiredReviewCount = 3,
 ): ContributionReviewStateView {
   return {
     status,
     reviewCount,
-    requiredReviewCount: 2,
+    requiredReviewCount,
     consensus:
       status === 'ACCEPTED_FOR_IMPLEMENTATION'
         ? 'APPROVE'
@@ -87,10 +88,26 @@ describe('ContributionReviewPanel', () => {
   it('server-renders a real sign-in action for a signed-out pending review', () => {
     const html = renderPanel(state('AWAITING_REVIEWS', 0))
 
-    expect(html).toContain('Awaiting two independent reviews')
-    expect(html).toContain('0 of 2 independent reviews recorded')
+    expect(html).toContain('Awaiting three independent reviews')
+    expect(html).toContain('0 of 3 independent reviews recorded')
     expect(html).toContain('Sign in to review')
     expect(html).not.toContain('Submit independent review')
+  })
+
+  it('describes the frozen two-review policy for a state opened before migration 0015', () => {
+    expect(contributionReviewStatusMessage(state('AWAITING_REVIEWS', 0, 2))).toBe(
+      'Awaiting two independent reviews. No public record has changed.',
+    )
+  })
+
+  it('explains the pending third decision without exposing the recorded agreement direction', () => {
+    const html = renderPanel(state('AWAITING_THIRD_REVIEW', 2))
+
+    expect(html).toContain(
+      'Two agreeing independent reviews are recorded; the third decision remains pending.',
+    )
+    expect(html).toContain('2 of 3 independent reviews recorded')
+    expect(html).toContain('Sign in to review')
   })
 
   it('server-renders the eligibility gate label for a signed-in reviewer', () => {

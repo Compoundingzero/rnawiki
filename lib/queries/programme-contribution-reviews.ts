@@ -108,7 +108,7 @@ function serializeState(row: StateRow): ContributionReviewStateView {
   return {
     status: row.status,
     reviewCount: row.reviewCount,
-    requiredReviewCount: 2,
+    requiredReviewCount: row.requiredApprovals,
     consensus: consensusForStatus(row.status),
     updatedAt: row.updatedAt.toISOString(),
     resolvedAt: row.resolvedAt?.toISOString() ?? null,
@@ -235,7 +235,11 @@ function reviewEligibility(args: {
   if (args.state.status === 'DISAGREEMENT') {
     return { canReview: false, reason: 'ADJUDICATION_REQUIRED' }
   }
-  if (args.state.status !== 'AWAITING_REVIEWS' && args.state.status !== 'AWAITING_SECOND_REVIEW') {
+  if (
+    args.state.status !== 'AWAITING_REVIEWS' &&
+    args.state.status !== 'AWAITING_SECOND_REVIEW' &&
+    args.state.status !== 'AWAITING_THIRD_REVIEW'
+  ) {
     return { canReview: false, reason: 'REVIEW_COMPLETE' }
   }
   return { canReview: true, reason: 'ELIGIBLE' }
@@ -386,9 +390,10 @@ export async function getContributionReviewState(args: {
 }
 
 /**
- * Batch projection for the signed-out public queue. The first decision stays hidden so it cannot
- * anchor the second reviewer. Once two decisions produce agreement or visible disagreement, the
- * safe attributed audit is public; raw account ids and private account fields never leave here.
+ * Batch projection for the signed-out public queue. Decisions stay hidden while reviews are still
+ * being collected so an earlier decision cannot anchor a later reviewer. Once the recorded
+ * decisions produce a resolution or visible disagreement, the safe attributed audit is public; raw
+ * account ids and private account fields never leave here.
  */
 export async function listPublicContributionReviewAudits(
   proposalIds: readonly string[],
@@ -499,7 +504,7 @@ function throwReviewEligibility(reason: ContributionReviewEligibilityReason): ne
     case 'ADJUDICATION_REQUIRED':
       throw new ContributionReviewError(
         409,
-        'The two independent reviews disagree; a steward adjudication is required.',
+        'The independent reviews disagree; a steward adjudication is required.',
         'adjudication_required',
       )
     case 'REVIEW_COMPLETE':
@@ -602,7 +607,7 @@ function throwAdjudicationEligibility(reason: ContributionAdjudicationEligibilit
     case 'NOT_IN_DISAGREEMENT':
       throw new ContributionReviewError(
         409,
-        'Adjudication is available only after two independent reviews disagree.',
+        'Adjudication is available only after independent reviews disagree.',
         'not_in_disagreement',
       )
     case 'ELIGIBLE':

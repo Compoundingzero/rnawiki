@@ -161,6 +161,10 @@ function model(withVerdict: boolean): ProgrammeEvidenceReadModel {
         status: 'ACTIVE',
         updateStatus: 'CURRENT',
         hasPublishedVerdict: withVerdict,
+        publishedBestSupportedFinding: withVerdict
+          ? 'The reviewed conclusion reports the best-supported finding.'
+          : null,
+        publishedPublicLabel: withVerdict ? 'Synthetic public label' : null,
       },
     ],
     selectedProgramme: {

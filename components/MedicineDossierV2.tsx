@@ -22,9 +22,11 @@ import {
   DossierProgrammeFailure,
   DossierSafetyEvidence,
 } from '@/components/dossier/DossierDynamicEvidenceModules'
+import { CitationExportPanel } from '@/components/dossier/CitationExportPanel'
 import { DossierEvidenceIntroduction } from '@/components/dossier/DossierEvidenceIntroduction'
 import { DossierAccountActionsGuard } from '@/components/dossier/DossierAccountActionsGuard'
 import { DossierEvidencePath, evidenceNodeAnchorId } from '@/components/dossier/DossierEvidencePath'
+import { DossierOtherProgrammes } from '@/components/dossier/DossierOtherProgrammes'
 import { DossierHeader } from '@/components/dossier/DossierHeader'
 import { DossierNavigation } from '@/components/dossier/DossierNavigation'
 import { DossierOutcomeComparison } from '@/components/dossier/DossierOutcomeComparison'
@@ -205,7 +207,7 @@ function Eyebrow({
   tone = 'muted',
 }: {
   children: React.ReactNode
-  tone?: 'muted' | 'blue' | 'amber' | 'rose'
+  tone?: 'muted' | 'blue' | 'amber' | 'rose' | 'emerald' | 'violet'
 }) {
   const color =
     tone === 'blue'
@@ -214,8 +216,48 @@ function Eyebrow({
         ? 'text-amber-700'
         : tone === 'rose'
           ? 'text-rose-700'
-          : 'text-[#6E6E73]'
+          : tone === 'emerald'
+            ? 'text-emerald-700'
+            : tone === 'violet'
+              ? 'text-violet-700'
+              : 'text-[#6E6E73]'
   return <p className={`text-[11px] font-bold uppercase tracking-[0.13em] ${color}`}>{children}</p>
+}
+
+/**
+ * One shared heading scale for the top-level dossier sections. Each section keeps its own eyebrow
+ * colour and wording so a reader scrolling quickly can tell the sections apart at a glance.
+ */
+function SectionHeader({
+  eyebrow,
+  tone = 'blue',
+  headingId,
+  title,
+  children,
+  meta,
+}: {
+  eyebrow: React.ReactNode
+  tone?: 'muted' | 'blue' | 'amber' | 'rose' | 'emerald' | 'violet'
+  headingId: string
+  title: React.ReactNode
+  children?: React.ReactNode
+  meta?: React.ReactNode
+}) {
+  return (
+    <header className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+      <div className="max-w-3xl space-y-1.5">
+        <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
+        <h3
+          id={headingId}
+          className="text-2xl font-[650] leading-tight tracking-[-0.02em] text-[#1D1D1F] sm:text-[32px]"
+        >
+          {title}
+        </h3>
+        {children && <p className="text-base leading-7 text-[#515154]">{children}</p>}
+      </div>
+      {meta && <div className="shrink-0 pb-1">{meta}</div>}
+    </header>
+  )
 }
 
 function StatusBadge({ state }: { state: EvidenceDisplayState }) {
@@ -1333,6 +1375,7 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
             <TenSecondAnswer
               dossier={dossier}
               mechanismPreviewAllowed={mechanismPreviewAllowed}
+              safetyHref={safetyHref}
               comparison={
                 dossier.dynamicModules?.outcomeComparison.status === 'ready' ? (
                   <DossierOutcomeComparison
@@ -1366,16 +1409,15 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                 aria-labelledby="evidence-support-heading"
                 className="scroll-mt-24 space-y-5 border-t border-black/[0.08] pt-8"
               >
-                <header className="max-w-2xl space-y-1.5">
-                  <Eyebrow tone="blue">What the evidence supports</Eyebrow>
-                  <h3 id="evidence-support-heading" className="text-2xl font-bold text-[#1D1D1F]">
-                    How far does the evidence reach?
-                  </h3>
-                  <p className="text-base leading-7 text-[#515154]">
-                    Start with the reviewed answer, then follow each recorded step to the point
-                    where the evidence stops or becomes uncertain.
-                  </p>
-                </header>
+                <SectionHeader
+                  eyebrow="What the evidence supports"
+                  tone="blue"
+                  headingId="evidence-support-heading"
+                  title="How far does the evidence reach?"
+                >
+                  Start with the reviewed answer, then follow each recorded step to the point where
+                  the evidence stops or becomes uncertain.
+                </SectionHeader>
 
                 {dossier.readerSummary.exactText && (
                   <details className="rounded-2xl border border-black/[0.08] bg-white px-4 sm:px-5">
@@ -1593,6 +1635,7 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
 
                 <DossierProgrammeFailure
                   module={dossier.dynamicModules?.programmeFailure}
+                  nodes={canonicalEvidenceChain ? dossier.evidenceNodes : []}
                   sources={sourceById}
                 />
 
@@ -1602,30 +1645,29 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                     aria-labelledby="evidence-chain-heading"
                     className="scroll-mt-24 space-y-4"
                   >
-                    <div className="flex min-w-0 flex-col items-start gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
-                      <div className="space-y-1">
-                        <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
-                          {dossier.bindingState === 'legacy_record'
-                            ? 'Across the published research'
-                            : 'How the evidence connects'}
-                        </Eyebrow>
-                        <h3
-                          id="evidence-chain-heading"
-                          className="text-xl font-bold text-[#1D1D1F]"
-                        >
-                          {dossier.bindingState === 'legacy_record'
-                            ? 'General research findings'
-                            : 'Which steps actually happened?'}
-                        </h3>
-                      </div>
-                      <span className="font-mono text-xs uppercase tracking-wide text-[#6E6E73]">
-                        {dossier.bindingState === 'published_programme'
-                          ? 'This use only'
-                          : isUnpublishedProgramme
-                            ? 'No reviewed answer yet'
-                            : 'Background across studies'}
-                      </span>
-                    </div>
+                    <SectionHeader
+                      eyebrow={
+                        dossier.bindingState === 'legacy_record'
+                          ? 'Across the published research'
+                          : 'How the evidence connects'
+                      }
+                      tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}
+                      headingId="evidence-chain-heading"
+                      title={
+                        dossier.bindingState === 'legacy_record'
+                          ? 'General research findings'
+                          : 'Which steps actually happened?'
+                      }
+                      meta={
+                        <span className="font-mono text-xs uppercase tracking-wide text-[#6E6E73]">
+                          {dossier.bindingState === 'published_programme'
+                            ? 'This use only'
+                            : isUnpublishedProgramme
+                              ? 'No reviewed answer yet'
+                              : 'Background across studies'}
+                        </span>
+                      }
+                    />
                     {dossier.bindingState === 'legacy_record' && (
                       <p className="max-w-2xl text-sm leading-6 text-[#6E6E73]">
                         These are separate findings collected across the research. They are not an
@@ -1770,7 +1812,10 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                                     {((node.claims?.length ?? 0) > 0 ||
                                       node.sourceIds.length > 0 ||
                                       node.technicalDetail) && (
-                                      <details className="pt-1">
+                                      /* One step open at a time: the native exclusive-accordion
+                                         name keeps every step's detail in the server HTML while
+                                         reading one step closes the previous one. */
+                                      <details className="pt-1" name="evidence-chain-step">
                                         <summary className="inline-flex min-h-11 cursor-pointer items-center text-sm font-semibold text-[#0066CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3] focus-visible:ring-offset-2">
                                           Details and sources
                                         </summary>
@@ -2084,16 +2129,15 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                 aria-labelledby="study-measurements-heading"
                 className="scroll-mt-24 space-y-6 border-t border-black/[0.08] pt-8"
               >
-                <header className="max-w-2xl space-y-1.5">
-                  <Eyebrow tone="blue">What studies measured</Eyebrow>
-                  <h3 id="study-measurements-heading" className="text-2xl font-bold text-[#1D1D1F]">
-                    What did the studies measure?
-                  </h3>
-                  <p className="text-base leading-7 text-[#515154]">
-                    Results are shown in the record’s stored order. Open a study for its design,
-                    statistical detail, limits, and linked sources.
-                  </p>
-                </header>
+                <SectionHeader
+                  eyebrow="Studies and measurements"
+                  tone="blue"
+                  headingId="study-measurements-heading"
+                  title="What did the studies measure?"
+                >
+                  Results are shown in the record’s stored order. Open a study for its design,
+                  statistical detail, limits, and linked sources.
+                </SectionHeader>
 
                 <KeyOutcomesSection
                   contextItems={advancedContextItems}
@@ -2207,11 +2251,17 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                           ? 'Study-by-study detail'
                           : 'What each study can tell us'}
                       </Eyebrow>
-                      <h3 id="studies-heading" className="text-xl font-bold text-[#1D1D1F]">
-                        {dossier.bindingState === 'legacy_record'
-                          ? 'What each study reports'
-                          : 'Results, limits and how each study was run'}
-                      </h3>
+                      <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                        <h3 id="studies-heading" className="text-xl font-bold text-[#1D1D1F]">
+                          {dossier.bindingState === 'legacy_record'
+                            ? 'What each study reports'
+                            : 'Results, limits and how each study was run'}
+                        </h3>
+                        <p className="shrink-0 font-mono text-xs leading-5 text-[#6E6E73]">
+                          {studiesWithResults.length} with a reported result ·{' '}
+                          {dossier.studies.length} recorded
+                        </p>
+                      </div>
                       <p className="text-sm leading-6 text-[#6E6E73]">
                         Studies with a reported result are separated from ongoing studies and
                         records where no result is available.
@@ -2267,26 +2317,29 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                 id="mechanism-map"
                 data-testid="programme-mechanism-map"
                 aria-labelledby="mechanism-heading"
-                className="scroll-mt-24 space-y-4"
+                className="scroll-mt-24 space-y-5 border-t border-black/[0.08] pt-8"
               >
-                <div id="how-it-works" className="scroll-mt-24 space-y-1">
-                  <Eyebrow tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'blue'}>
-                    {dossier.bindingState === 'legacy_record'
-                      ? 'How researchers think it works'
-                      : 'Step-by-step explanation'}
-                  </Eyebrow>
-                  <h3 id="mechanism-heading" className="text-xl font-bold text-[#1D1D1F]">
-                    {hasMechanismExplanation
-                      ? 'How the medicine is expected to work'
-                      : 'What happened after it was given?'}
-                  </h3>
-                  <p className="text-base leading-7 text-[#515154]">
+                <div id="how-it-works" className="scroll-mt-24">
+                  <SectionHeader
+                    eyebrow={
+                      dossier.bindingState === 'legacy_record'
+                        ? 'How researchers think it works'
+                        : 'Inside the body'
+                    }
+                    tone={dossier.bindingState === 'legacy_record' ? 'amber' : 'violet'}
+                    headingId="mechanism-heading"
+                    title={
+                      hasMechanismExplanation
+                        ? 'How the medicine is expected to work'
+                        : 'What happened after it was given?'
+                    }
+                  >
                     {!hasMechanismExplanation
                       ? 'This section shows reviewed measurements of how the medicine moved through the body. The stored time labels are not treated as a complete chronological sequence.'
                       : dossier.bindingState === 'legacy_record'
                         ? 'These possible steps were collected across studies. They have not been checked against one specific use or linked to the exact source for every statement.'
                         : 'Each card shows one expected step. Its label says whether people, laboratory work, or neither has shown that step. Human reviewers decide what the science means.'}
-                  </p>
+                  </SectionHeader>
                 </div>
                 {mechanismEntries.length > 0 && (
                   <section
@@ -2420,25 +2473,29 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
               </section>
             )}
 
+            {dossier.programmes.length > 1 && (
+              <DossierOtherProgrammes programmes={dossier.programmes} />
+            )}
+
+            <DossierQuestionCoverage dossier={dossier} />
+
             <section
               id="sources"
               aria-labelledby="sources-heading"
               className="scroll-mt-24 space-y-4"
             >
               <span id="sources-review" className="block scroll-mt-24" aria-hidden="true" />
-              <header
-                id="review-history"
-                className="max-w-2xl scroll-mt-24 space-y-1.5 border-t border-black/[0.08] pt-8"
-              >
-                <Eyebrow tone="blue">Sources, review and changes</Eyebrow>
-                <h3 id="sources-heading" className="text-2xl font-bold text-[#1D1D1F]">
-                  Where did this answer come from?
-                </h3>
-                <p className="text-base leading-7 text-[#515154]">
+              <div id="review-history" className="scroll-mt-24 border-t border-black/[0.08] pt-8">
+                <SectionHeader
+                  eyebrow="Sources, review and changes"
+                  tone="blue"
+                  headingId="sources-heading"
+                  title="Where did this answer come from?"
+                >
                   See who reviewed the answer, the exact sources they used, and what changed between
                   published versions.
-                </p>
-              </header>
+                </SectionHeader>
+              </div>
 
               {dossier.conclusion && <ConclusionReviewDetails conclusion={dossier.conclusion} />}
 
@@ -2551,7 +2608,21 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
                 </ul>
               ) : null}
 
-              <DossierQuestionCoverage dossier={dossier} />
+              {dossier.sources.length > 0 && (
+                <CitationExportPanel
+                  medicineName={dossier.name}
+                  programmeLabel={dossier.selectedProgrammeLabel}
+                  pagePath={`/d/${dossier.slug}`}
+                  sources={dossier.sources.map((source) => ({
+                    id: source.id,
+                    label: source.label,
+                    href: source.href,
+                    identifier: source.identifier,
+                    retrievedAt: source.retrievedAt,
+                    verifiedAt: source.verifiedAt,
+                  }))}
+                />
+              )}
 
               <DevelopmentTimeline
                 contextItems={advancedContextItems}
@@ -2708,6 +2779,30 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
             />
           </div>
         </DossierAccountActionsGuard>
+
+        <nav
+          aria-label="Related RNAWiki pages"
+          className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/[0.08] pt-6 text-xs font-medium text-[#6E6E73]"
+        >
+          <Link
+            href="/browse"
+            className="inline-flex min-h-11 items-center hover:text-[#0A66D8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8]"
+          >
+            Browse all medicines
+          </Link>
+          <Link
+            href="/review-queue"
+            className="inline-flex min-h-11 items-center hover:text-[#0A66D8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8]"
+          >
+            Review queue
+          </Link>
+          <Link
+            href="/how-it-works"
+            className="inline-flex min-h-11 items-center hover:text-[#0A66D8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8]"
+          >
+            How this works
+          </Link>
+        </nav>
       </article>
     </div>
   )

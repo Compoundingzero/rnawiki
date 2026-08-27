@@ -1,4 +1,11 @@
-import { ExternalLink } from 'lucide-react'
+import {
+  CheckCircle2,
+  CircleAlert,
+  CircleHelp,
+  CircleMinus,
+  CircleX,
+  ExternalLink,
+} from 'lucide-react'
 
 import type {
   DossierClaimSourceBindingView,
@@ -6,7 +13,11 @@ import type {
   DossierFailureSourceBindingView,
 } from '@/lib/dossier-dynamic-modules'
 import type { ClaimNature } from '@/lib/evidence/types'
-import type { EvidenceSourceView } from '@/lib/medicine-dossier-view-model'
+import type {
+  EvidenceNodeState,
+  EvidenceNodeView,
+  EvidenceSourceView,
+} from '@/lib/medicine-dossier-view-model'
 
 type ModuleBindings = readonly (DossierClaimSourceBindingView | DossierFailureSourceBindingView)[]
 
@@ -138,11 +149,92 @@ function FactList({ facts }: { facts: Array<[string, string | undefined]> }) {
   )
 }
 
+const failureNodeStatePresentation: Record<
+  EvidenceNodeState,
+  { label: string; className: string; icon: typeof CheckCircle2 }
+> = {
+  confirmed: {
+    label: 'Supported',
+    className: 'text-emerald-800',
+    icon: CheckCircle2,
+  },
+  contradicted: {
+    label: 'Evidence points against it',
+    className: 'text-rose-800',
+    icon: CircleX,
+  },
+  mixed: {
+    label: 'Mixed findings',
+    className: 'text-amber-800',
+    icon: CircleAlert,
+  },
+  unknown: {
+    label: 'Not enough information',
+    className: 'text-[#515154]',
+    icon: CircleHelp,
+  },
+  not_measured: {
+    label: 'Not measured',
+    className: 'text-[#515154]',
+    icon: CircleMinus,
+  },
+  recorded_context: {
+    label: 'General background',
+    className: 'text-blue-800',
+    icon: CircleHelp,
+  },
+}
+
+/**
+ * Repeats the five reviewed step states inside the stopped-research card so a reader can see
+ * which steps held before the one that failed. The states come from the published evidence
+ * nodes unchanged — this strip classifies nothing on its own.
+ */
+function FailureEvidenceStepStrip({ nodes }: { nodes: readonly EvidenceNodeView[] }) {
+  if (nodes.length !== 5) return null
+
+  return (
+    <div className="mt-4">
+      <p className="font-mono text-[11px] font-semibold uppercase tracking-wide text-amber-900">
+        Where the evidence chain held
+      </p>
+      <ul
+        className="mt-2 grid gap-2 sm:grid-cols-5"
+        aria-label="Reviewed state of each evidence step"
+      >
+        {nodes.map((node) => {
+          const presentation = failureNodeStatePresentation[node.state]
+          const Icon = presentation.icon
+          return (
+            <li
+              key={node.id}
+              className="flex min-w-0 items-center gap-2 rounded-xl border border-amber-200/80 bg-white px-2.5 py-2"
+            >
+              <Icon className={`h-4 w-4 shrink-0 ${presentation.className}`} aria-hidden="true" />
+              <span className="min-w-0">
+                <span className="block truncate text-[11px] font-semibold leading-4 text-[#424245]">
+                  {node.label}
+                </span>
+                <span className={`block text-[11px] leading-4 ${presentation.className}`}>
+                  {presentation.label}
+                </span>
+              </span>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
 export function DossierProgrammeFailure({
   module,
+  nodes = [],
   sources,
 }: {
   module?: DossierDynamicModulesView['programmeFailure']
+  /** The published five-step chain; the strip renders only when all five exist. */
+  nodes?: readonly EvidenceNodeView[]
   sources: ReadonlyMap<string, EvidenceSourceView>
 }) {
   if (module?.status !== 'ready') return null
@@ -154,8 +246,13 @@ export function DossierProgrammeFailure({
       className="rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-6"
       data-testid="programme-failure-classification"
     >
-      <p className="text-sm font-semibold leading-5 text-amber-900">Stopped research</p>
-      <h4 id="programme-failure-heading" className="mt-1 text-xl font-bold text-[#1D1D1F]">
+      <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-amber-800">
+        Stopped research, classified
+      </p>
+      <h4
+        id="programme-failure-heading"
+        className="mt-1.5 text-2xl font-[650] leading-tight tracking-[-0.02em] text-[#1D1D1F] sm:text-[28px]"
+      >
         Why did this research stop?
       </h4>
       <p className="mt-3 break-words text-lg font-semibold leading-7 text-[#1D1D1F]">
@@ -164,6 +261,7 @@ export function DossierProgrammeFailure({
       <p className="mt-2 max-w-3xl break-words text-base leading-7 text-[#424245]">
         {failure.reason}
       </p>
+      <FailureEvidenceStepStrip nodes={nodes} />
       <details className="mt-3">
         <summary className="inline-flex min-h-11 cursor-pointer items-center text-sm font-semibold text-[#0066CC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3] focus-visible:ring-offset-2">
           Professional classification and sources
@@ -201,14 +299,17 @@ export function DossierSafetyEvidence({
       className="space-y-4"
       data-testid="selected-programme-safety"
     >
-      <header className="max-w-3xl space-y-1">
-        <p className="text-sm font-semibold leading-5 text-[#0066CC]">
-          Safety in the selected studies
+      <header className="max-w-3xl space-y-1.5 border-t-2 border-amber-200 pt-5">
+        <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-amber-700">
+          Risk and tolerability
         </p>
-        <h4 id="selected-programme-safety-heading" className="text-xl font-bold text-[#1D1D1F]">
+        <h4
+          id="selected-programme-safety-heading"
+          className="text-2xl font-[650] leading-tight tracking-[-0.02em] text-[#1D1D1F] sm:text-[28px]"
+        >
           What safety findings were recorded?
         </h4>
-        <p className="text-sm leading-6 text-[#6E6E73]">
+        <p className="text-base leading-7 text-[#515154]">
           This is not a complete safety guide. It shows only reviewed safety findings with an exact
           supporting source for this use.
         </p>
@@ -276,12 +377,17 @@ export function DossierPharmacokinetics({
       className="space-y-4"
       data-testid="pharmacokinetics-findings"
     >
-      <header className="max-w-3xl space-y-1">
-        <p className="text-sm font-semibold leading-5 text-[#0066CC]">Movement through the body</p>
-        <h4 id="pharmacokinetics-heading" className="text-xl font-bold text-[#1D1D1F]">
+      <header className="max-w-3xl space-y-1.5 border-t-2 border-violet-200 pt-5">
+        <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-violet-700">
+          Movement through the body
+        </p>
+        <h4
+          id="pharmacokinetics-heading"
+          className="text-2xl font-[650] leading-tight tracking-[-0.02em] text-[#1D1D1F] sm:text-[28px]"
+        >
           What happened after it was given?
         </h4>
-        <p className="text-sm leading-6 text-[#6E6E73]">
+        <p className="text-base leading-7 text-[#515154]">
           These are separate findings, not a timeline. Time labels are shown as recorded, so the
           cards are not arranged from earliest to latest.
         </p>

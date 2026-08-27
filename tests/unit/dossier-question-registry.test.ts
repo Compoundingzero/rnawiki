@@ -240,52 +240,102 @@ function dossier(overrides: Partial<MedicineDossierViewModel> = {}): MedicineDos
   }
 }
 
+const UNIVERSE_IDS = [
+  'q-identity',
+  'q-purpose',
+  'q-regulatory-status',
+  'q-bottom-line',
+  'q-evidence-scope',
+  'q-measurement',
+  'q-results-magnitude',
+  'q-meaning-limitations',
+  'q-applicability',
+  'q-harms',
+  'q-mechanism',
+  'q-evidence-certainty',
+  'q-programme-history',
+  'q-failure-analysis',
+  'q-unknowns',
+  'q-sources',
+  'q-review-provenance',
+  'q-freshness',
+  'q-corrections',
+]
+
 describe('controlled dossier question registry', () => {
-  it('builds only applicable, reviewed, source-bound question passages', () => {
+  it('asks the same fixed question universe of every record, with unique anchors', () => {
     const questions = buildDossierQuestionRegistry(dossier())
 
-    expect(questions.map((question) => question.id)).toEqual([
-      'what-did-the-studies-measure',
-      'could-the-studies-answer-the-question',
-      'how-does-it-work-in-the-body',
-      'where-does-the-evidence-stop',
-    ])
-    expect(questions.flatMap((question) => question.items)).not.toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ heading: 'An outcome whose source is not on the page' }),
-      ]),
-    )
-    expect(
-      questions
-        .flatMap((question) => question.items)
-        .every((item) =>
-          item.sourceBindings.some((binding) => binding.relationship === 'SUPPORTS'),
-        ),
-    ).toBe(true)
+    expect(questions.map((question) => question.id)).toEqual(UNIVERSE_IDS)
+    expect(new Set(questions.map((question) => question.id)).size).toBe(UNIVERSE_IDS.length)
+    const itemIds = questions.flatMap((question) => question.items.map((item) => item.id))
+    expect(new Set(itemIds).size).toBe(itemIds.length)
   })
 
-  it.each([
-    ['legacy_record', 'legacy record'],
-    ['programme_unpublished', 'unpublished programme'],
-  ] as const)('emits no questions for a %s (%s)', (bindingState, _description) => {
+  it('answers evidence questions only from source-bound reviewed fields', () => {
+    const questions = buildDossierQuestionRegistry(dossier())
+    const byId = new Map(questions.map((question) => [question.id, question]))
+
+    const measurement = byId.get('q-measurement')
+    expect(measurement?.coverage).toBe('answered')
+    expect(measurement?.items[0]?.heading).toBe('Recorded blood measurement')
     expect(
-      buildDossierQuestionRegistry(
-        dossier({
-          bindingState,
-          conclusion: undefined,
-        }),
+      measurement?.items.every((item) =>
+        item.sourceBindings.some((binding) => binding.relationship === 'SUPPORTS'),
       ),
-    ).toEqual([])
-  })
+    ).toBe(true)
 
-  it('emits no question wall when review or exact sources are absent', () => {
-    expect(buildDossierQuestionRegistry(dossier({ review: { historyHref: '/history' } }))).toEqual(
-      [],
+    const magnitude = byId.get('q-results-magnitude')
+    expect(magnitude?.coverage).toBe('answered')
+    expect(magnitude?.items[0]?.facts).toEqual(
+      expect.arrayContaining([{ label: 'Exact result', value: '12.4 percentage points' }]),
     )
-    expect(buildDossierQuestionRegistry(dossier({ sources: [] }))).toEqual([])
+
+    // The orphan outcome's source is not on the page, so it may not appear anywhere.
+    expect(
+      questions.flatMap((question) => question.items.map((item) => item.heading)),
+    ).not.toContain('An outcome whose source is not on the page')
   })
 
-  it('withholds every answer item that has no source binding which supports its claim', () => {
+  it('resolves every evidence question to an honest state for a legacy record', () => {
+    const questions = buildDossierQuestionRegistry(
+      dossier({ bindingState: 'legacy_record', conclusion: undefined }),
+    )
+    const byId = new Map(questions.map((question) => [question.id, question]))
+
+    expect(questions.map((question) => question.id)).toEqual(UNIVERSE_IDS)
+    expect(byId.get('q-bottom-line')?.coverage).toBe('not_yet_documented')
+    expect(byId.get('q-bottom-line')?.coverageNote).toContain('has not been reviewed')
+    expect(byId.get('q-bottom-line')?.items).toEqual([])
+    // Identity and the corrections process are recorded facts on every record.
+    expect(byId.get('q-identity')?.coverage).toBe('answered')
+    expect(byId.get('q-corrections')?.coverage).toBe('answered')
+    // A legacy mechanism answer mirrors the page and names its medicine-wide basis.
+    expect(byId.get('q-mechanism')?.coverage).toBe('answered')
+    expect(byId.get('q-mechanism')?.answerLead).toContain('medicine-wide research record')
+  })
+
+  it('marks evidence questions as awaiting review for an unpublished programme', () => {
+    const questions = buildDossierQuestionRegistry(
+      dossier({ bindingState: 'programme_unpublished', conclusion: undefined }),
+    )
+    const byId = new Map(questions.map((question) => [question.id, question]))
+
+    expect(byId.get('q-bottom-line')?.coverage).toBe('awaiting_review')
+    expect(byId.get('q-measurement')?.coverage).toBe('awaiting_review')
+    expect(byId.get('q-measurement')?.items).toEqual([])
+  })
+
+  it('never answers an evidence question without a completed independent review', () => {
+    const questions = buildDossierQuestionRegistry(dossier({ review: { historyHref: '/history' } }))
+    const byId = new Map(questions.map((question) => [question.id, question]))
+
+    expect(byId.get('q-bottom-line')?.coverage).toBe('awaiting_review')
+    expect(byId.get('q-measurement')?.coverage).toBe('awaiting_review')
+    expect(byId.get('q-review-provenance')?.coverage).toBe('awaiting_review')
+  })
+
+  it('downgrades honestly when no source binding supports a recorded claim', () => {
     const unsupported = dossier()
     unsupported.keyOutcomes[0]!.sourceClaimBindings = [
       {
@@ -320,24 +370,41 @@ describe('controlled dossier question registry', () => {
       },
     ]
 
-    expect(buildDossierQuestionRegistry(unsupported)).toEqual([])
+    const byId = new Map(
+      buildDossierQuestionRegistry(unsupported).map((question) => [question.id, question]),
+    )
+    expect(byId.get('q-measurement')?.coverage).toBe('not_yet_documented')
+    expect(byId.get('q-measurement')?.coverageNote).toContain(
+      'not yet linked to an exact saved source',
+    )
+    expect(byId.get('q-measurement')?.items).toEqual([])
+    expect(byId.get('q-mechanism')?.coverage).toBe('not_yet_documented')
+    expect(byId.get('q-mechanism')?.items).toEqual([])
   })
 
-  it('server-renders a small native disclosure list without special SEO schema or fake answers', () => {
+  it('keeps corpus-wide honesty for questions no record can answer yet', () => {
+    const byId = new Map(
+      buildDossierQuestionRegistry(dossier()).map((question) => [question.id, question]),
+    )
+    expect(byId.get('q-applicability')?.coverage).toBe('not_yet_documented')
+    expect(byId.get('q-applicability')?.coverageNote).toContain('who was excluded')
+  })
+
+  it('server-renders the universe with honest state badges and no special SEO schema', () => {
     const html = renderToStaticMarkup(
       React.createElement(DossierQuestionCoverage, { dossier: dossier() }),
     )
 
-    expect(html).toContain('Questions this evidence can answer')
-    expect(html.match(/<details/gu)).toHaveLength(4)
-    expect(html).toContain('Only questions with reviewed information and an exact source link')
-    expect(html).toContain('12.4')
-    expect(html).toContain('percentage points')
+    expect(html).toContain('Questions this record can answer')
+    expect(html.match(/<details/gu)).toHaveLength(UNIVERSE_IDS.length)
+    expect(html).toContain('says so plainly instead of being filled in')
+    expect(html).toContain('Answered')
+    expect(html).toContain('Not yet documented')
+    expect(html).toContain('12.4 percentage points')
     expect(html).toContain('Source 1: Outcome source')
     expect(html).toContain('Supports:')
-    expect(html).toContain('Qualifies:')
-    expect(html).toContain('Adds context:')
-    expect(html).toContain('Contradicts:')
+    expect(html).toContain('id="q-measurement"')
+    expect(html).toContain('Link to this question: #q-measurement')
     expect(html).not.toMatch(/Universal Clinical Question Universe|Q-20|FAQPage|QAPage/iu)
     expect(html).not.toContain('An outcome whose source is not on the page')
   })

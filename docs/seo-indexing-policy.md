@@ -1,6 +1,6 @@
 # Search indexing and crawler policy
 
-Last reviewed: 2026-08-26
+Last reviewed: 2026-08-27
 
 RNAWiki treats discovery as a publication decision, not as a side effect of a row existing in the
 database. Search engines and answer engines should discover a smaller set of trustworthy pages
@@ -103,6 +103,24 @@ Requests contain at most 10,000 validated, deduplicated same-origin HTTPS URLs, 
 timeout, and log status/counts without logging the key. Network, timeout and eligibility-query
 failures never alter the publication response. `notifyExplicitIndexNowChange` is available for a
 future verified redirect/removal/deletion transaction, but no speculative lifecycle hook exists.
+
+Wiring `notifyExplicitIndexNowChange` into the legacy request handlers (`lib/seo/legacy-response.ts`
+serving `/c/{slug}`, `/t/compound/{slug}` and `/r/{slug}`) was evaluated on 2026-08-27 and rejected.
+Three recorded facts decide it:
+
+1. The URL a redirect/410 notification must announce is the legacy URL itself, and the shared
+   eligibility policy has no representation of legacy-family URLs — it evaluates only canonical
+   `/d/{slug}` candidates, and a redirect source is exactly the state it fails closed. No
+   fail-closed filter therefore exists for the URL that would be submitted, which is the
+   precondition for any IndexNow caller.
+2. The 410 branch's input is caller-controlled: any request to `/r/{anything}` produces a 410, so a
+   notifier there would submit unbounded, undeduplicated, attacker-mintable URL sets under the
+   site's IndexNow key. Same-origin URL syntax validation is not an eligibility decision.
+3. A request proves nothing changed. The correct integration point is the transaction that writes a
+   `medicine_slug_redirects` ledger row, and no application code path writes that table — the
+   ledger is owner-curated. When such a verified merge/rename/removal transaction exists, it can
+   call `notifyExplicitIndexNowChange` with the exact old URL it just retired, after the same
+   deployment guard, and only then.
 
 ## Browse URL policy
 

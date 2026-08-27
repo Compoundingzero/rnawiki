@@ -134,7 +134,7 @@ describe('SourceRefreshAuthoringPanel', () => {
     expect(html).toContain('This exact refresh is queued for review.')
     expect(html).toContain('View its public review status')
     expect(html).not.toContain('Build checked review draft')
-    expect(html).not.toContain('Submit for two independent reviews')
+    expect(html).not.toContain('Submit for three independent reviews')
   })
 
   it('resets private state by task/account scope and rejects delayed shared-browser responses', () => {

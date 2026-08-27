@@ -34,10 +34,14 @@ identity/source contract stay in history but are quarantined from the live queue
    superseded.
 6. Migration `0006` creates an `AWAITING_REVIEWS` state atomically with submission. It also
    backfills that state for submitted `0005` rows that existed before the review migration.
-7. Two eligible, non-author reviewers append independent digest-bound decisions. The second
-   reviewer cannot see the first decision until their own decision is committed.
-8. Agreement resolves deterministically. Disagreement is public and requires one independent
-   steward/administrator adjudication with rationale; an author or either reviewer cannot
+7. Eligible, non-author reviewers append independent digest-bound decisions. Each review state
+   row freezes its own `required_approvals` policy at creation: rows opened before migration
+   `0015` resolve at two agreeing reviews, and rows opened afterwards require three. A reviewer
+   cannot see any earlier decision until their own decision is committed.
+8. Unanimous agreement across the row's required number of reviews resolves deterministically;
+   under the three-review policy, two agreeing decisions wait in `AWAITING_THIRD_REVIEW`. Any
+   disagreement once at least two decisions exist is public and requires one independent
+   steward/administrator adjudication with rationale; an author or any of the reviewers cannot
    adjudicate.
 9. `APPROVE` means `ACCEPTED_FOR_IMPLEMENTATION`. It never edits or publishes a programme, claim,
    node, dossier sentence, verdict revision, or current-publication pointer.
@@ -95,12 +99,13 @@ Before rollback, export submitted proposals because they are audit records. Then
 and guard function, drop the table, and finally drop the four contribution enums. No existing
 programme, claim, source, evidence-node, or verdict data needs rewriting.
 
-Migration `0006_programme_contribution_reviews.sql` is additive. PostgreSQL serializes the two
+Migration `0006_programme_contribution_reviews.sql` is additive. PostgreSQL serializes the
 reviewer slots, checks reviewer trust and author exclusion, binds each decision to the exact
 submitted SHA-256 digest, and derives the review status from immutable review/adjudication rows.
-Directly forging `ACCEPTED_FOR_IMPLEMENTATION`, changing/deleting a review, adding a third review,
-or adjudicating without a two-review disagreement fails at the database boundary. The only delete
-exception is the same sanctioned whole-programme aggregate cascade used by `0005`.
+Directly forging `ACCEPTED_FOR_IMPLEMENTATION`, changing/deleting a review, exceeding the row's
+required number of reviews, or adjudicating without a recorded disagreement fails at the database
+boundary. The only delete exception is the same sanctioned whole-programme aggregate cascade used
+by `0005`.
 
 Before rolling back `0006`, export review state, decisions, and adjudications. Then drop its
 triggers/functions, three tables, and review-status enum. Rollback does not require changing any
@@ -120,6 +125,19 @@ Rollback of `0007` means restoring the `0006` guard function definitions and rem
 additional proposal triggers/functions. Export immutable proposal/review audit rows first. The
 trust boundary assumes normal application/database roles cannot alter functions or disable
 triggers; a PostgreSQL superuser remains an infrastructure trust root.
+
+Migration `0015_three_review_consensus.sql` raises the consensus requirement from two agreeing
+reviews to three for newly opened review states, with the policy versioned per row. Every review
+state row carries an immutable `required_approvals` value (2 or 3) frozen at creation; the
+migration backfills all pre-existing rows to 2 so decisions reached under the two-review policy
+stay valid without reinterpretation. The derived-state function, the state guard, the review
+guard, and the adjudication guard all read the row's own policy: a legacy row still resolves at
+two agreeing reviews, a new row waits in `AWAITING_THIRD_REVIEW` after two agreeing decisions,
+and any disagreement among at least two recorded decisions still requires one independent steward
+adjudication. Rollback of `0015` means restoring the `0007` function definitions, dropping
+`required_approvals`, and restoring the fixed two-review count check after exporting any rows
+resolved under the three-review policy; the `AWAITING_THIRD_REVIEW` enum value cannot be removed
+in place while any row still holds it.
 
 ## Accepted work and canonical publication
 

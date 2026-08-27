@@ -55,6 +55,10 @@ export interface ProgrammeOptionView {
   status: string
   href?: string
   selected: boolean
+  /** That programme's own published finding; absent until its conclusion is published. */
+  oneSentenceResult?: string
+  /** That programme's own published public label; absent until its conclusion is published. */
+  publishedLabel?: string
 }
 
 export interface MechanismSummaryView {

@@ -76,11 +76,15 @@ async function reviewRequest<T>(path: string, init?: RequestInit): Promise<T> {
 export function contributionReviewStatusMessage(state: ContributionReviewStateView): string {
   switch (state.status) {
     case 'AWAITING_REVIEWS':
-      return 'Awaiting two independent reviews. No public record has changed.'
+      return state.requiredReviewCount === 2
+        ? 'Awaiting two independent reviews. No public record has changed.'
+        : 'Awaiting three independent reviews. No public record has changed.'
     case 'AWAITING_SECOND_REVIEW':
       return 'One independent review is recorded; the second decision remains pending.'
+    case 'AWAITING_THIRD_REVIEW':
+      return 'Two agreeing independent reviews are recorded; the third decision remains pending.'
     case 'DISAGREEMENT':
-      return 'The two independent reviews disagree. A qualified RNAWiki steward must make the final decision; this step is called adjudication.'
+      return 'The independent reviews disagree. A qualified RNAWiki steward must make the final decision; this step is called adjudication.'
     case 'ACCEPTED_FOR_IMPLEMENTATION':
       return 'Reviewers accepted this proposal for RNAWiki staff to apply. It has not changed the public record.'
     case 'CHANGES_REQUESTED':
@@ -653,6 +657,7 @@ export function ContributionReviewPanel({
   const workflowCanAcceptAction =
     state.status === 'AWAITING_REVIEWS' ||
     state.status === 'AWAITING_SECOND_REVIEW' ||
+    state.status === 'AWAITING_THIRD_REVIEW' ||
     state.status === 'DISAGREEMENT'
 
   return (
