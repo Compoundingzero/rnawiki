@@ -190,13 +190,15 @@ async function build(
       ...(molecularIdentity ? { molecularIdentity } : {}),
       ...(interactionSignals.length > 0 ? { interactionSignals } : {}),
     }
-    for (const module of [
+    for (const moduleName of [
       'mechanism',
       'pharmacokinetics',
       'molecularIdentity',
       'interactionSignals',
     ] as const) {
-      if (substance[module]) moduleCounts.set(module, (moduleCounts.get(module) ?? 0) + 1)
+      if (substance[moduleName]) {
+        moduleCounts.set(moduleName, (moduleCounts.get(moduleName) ?? 0) + 1)
+      }
     }
     registry[key] = substance
   }
