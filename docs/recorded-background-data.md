@@ -80,12 +80,28 @@ schedule beside the ClinicalTrials source-sync worker and page the operator the 
 what keeps the dataset self-updating without generated prose: sources move, the loop detects the
 exact entry that moved, and a person re-records it.
 
-## Diagram-readiness
+## Diagram projections
 
-Rendered visuals draw only from typed fields, never from prose: anatomy targets carry vocabulary
-coordinates; pharmacokinetic values carry `numeric` + `unit`; titration steps are ordered
-records; cost entries carry numeric ranges with dated FX normalization. Any future chart or
-diagram reads those numbers directly, so a visual can never say more than the recorded value.
+`lib/background/diagram-projections.ts` turns the corpus into typed, renderer-agnostic views.
+Three rules keep a drawn chart as honest as the record behind it: a point exists only when the
+underlying value carries a machine-readable number, code or ordered step; every point carries the
+source that was fetched for it, so a tooltip can show the exact excerpt; and a record missing the
+typed field is absent from the projection rather than estimated onto it, with coverage reported
+so a chart can state how much of the corpus it draws.
+
+| Projection              | What it draws                                                                                | Anchored on                                            |
+| ----------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `durationOfActionScale` | Every recorded half-life on one logarithmic hour axis, with deterministic bands              | `pharmacokinetics.halfLife.numeric`                    |
+| `bodyRegionAtlas`       | The corpus inverted into body regions — which medicines act where, and what each source says | `anatomyTargets[].regionCode` + vocabulary coordinates |
+| `exposureTimeline`      | One medicine's peak, half-life and derived steady-state marks on an hour axis                | numeric half-life, with `derived` flagged per marker   |
+| `titrationLadder`       | The recorded escalation schedule as ordered rungs                                            | `titration.steps`                                      |
+| `completenessMatrix`    | Which modules each record actually holds, and corpus-wide shares                             | module presence                                        |
+| `sourceComposition`     | The dataset's provenance profile by source kind                                              | every recorded `source`                                |
+
+The comparative projections are what a normalized corpus makes possible and a per-medicine scrape
+does not: one schema, one unit, one controlled anatomy vocabulary across every record. A medicine
+whose half-life was published only in days never appears on the hour axis, because the dataset
+does not convert a value its source did not state.
 
 ## Authoring a new batch
 
