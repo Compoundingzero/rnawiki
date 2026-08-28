@@ -403,6 +403,7 @@ export type SubstanceSpecificModule = (typeof SUBSTANCE_SPECIFIC_MODULES)[number
  * the combination, which is exactly the thing a reader of that page is taking.
  */
 export const PRODUCT_LEVEL_MODULES = [
+  'recordedUses',
   'productVariants',
   'safety',
   'populationStatements',
@@ -578,6 +579,7 @@ export interface MedicineRecordedBackground {
   safety?: RecordedSafetyStatements
   populationStatements?: RecordedPopulationStatement[]
   commonAdverseReactions?: RecordedCommonAdverseReactions
+  recordedUses?: RecordedUses
   attribution?: RecordedAttribution
   sourceConsensus?: RecordedSourceConsensus
   composition?: RecordedComposition

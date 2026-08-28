@@ -5,6 +5,7 @@ import { join } from 'node:path'
 
 import {
   extractCommonAdverseReactions,
+  extractRecordedUses,
   extractPopulationStatements,
   extractProductVariant,
   extractSafetyStatements,
@@ -264,6 +265,9 @@ async function build(
     const safety = extractSafetyStatements(artifact, options)
     const populationStatements = extractPopulationStatements(artifact, options)
     const commonAdverseReactions = extractCommonAdverseReactions(artifact, options)
+    // What the combination's own label says it is for. Product-level by nature: the indications on
+    // a combination label describe the combination, which is the thing in the box.
+    const recordedUses = extractRecordedUses(artifact, options)
 
     const background: MedicineRecordedBackground = {
       version: 'medicine-background/v1',
@@ -271,6 +275,7 @@ async function build(
       provenanceTier: 'extracted',
       // The composition is what this record is; the product-level modules describe it.
       composition,
+      ...(recordedUses ? { recordedUses } : {}),
       ...(productVariant ? { productVariants: [productVariant] } : {}),
       ...(safety ? { safety } : {}),
       ...(populationStatements.length > 0 ? { populationStatements } : {}),

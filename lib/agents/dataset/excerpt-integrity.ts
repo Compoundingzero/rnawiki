@@ -103,6 +103,14 @@ export const INTEGRITY_STATES = [
   'VERIFIED',
   'NUMBER_ABSENT',
   'NO_EXCERPT',
+  /**
+   * Transcribed from a structured record, which has no sentence to quote.
+   *
+   * Counting these as missing an excerpt would report a design as a defect and would drag the pass
+   * rate down with records that were never in scope for this check. They are checkable a different
+   * way — by the record identifier — and the engine enforces that separately.
+   */
+  'TRANSCRIBED_NOT_EXCERPT_BOUND',
   'NOT_APPLICABLE',
 ] as const
 export type IntegrityState = (typeof INTEGRITY_STATES)[number]
@@ -207,6 +215,10 @@ function numericValues(
 function checkValue(value: RecordedValue): { state: IntegrityState; missing: string[] } {
   const numerals = displayNumerals(value.display)
   if (numerals.length === 0) return { state: 'NOT_APPLICABLE', missing: [] }
+  // A transcribed value is out of scope for an excerpt check by construction, not by omission.
+  if (value.provenanceTier === 'transcribed') {
+    return { state: 'TRANSCRIBED_NOT_EXCERPT_BOUND', missing: [] }
+  }
   const excerpt = value.source.excerpt
   if (!excerpt) return { state: 'NO_EXCERPT', missing: [] }
   const haystack = withExpandedExponents(normaliseNumerals(excerpt))
@@ -320,7 +332,10 @@ export const excerptIntegrityAgent: DatasetAgent<ExcerptIntegrityDataset> = {
     const modules = [...new Set(entries.map((entry) => entry.module))].sort()
     const byModule: ModuleRollUp[] = modules.map((module) => {
       const scoped = entries.filter((entry) => entry.module === module)
-      const checkable = scoped.filter((entry) => entry.state !== 'NOT_APPLICABLE')
+      const checkable = scoped.filter(
+        (entry) =>
+          entry.state !== 'NOT_APPLICABLE' && entry.state !== 'TRANSCRIBED_NOT_EXCERPT_BOUND',
+      )
       const verified = scoped.filter((entry) => entry.state === 'VERIFIED').length
       return {
         module,
@@ -332,7 +347,10 @@ export const excerptIntegrityAgent: DatasetAgent<ExcerptIntegrityDataset> = {
       }
     })
 
-    const totalChecked = entries.filter((entry) => entry.state !== 'NOT_APPLICABLE').length
+    const totalChecked = entries.filter(
+      (entry) =>
+        entry.state !== 'NOT_APPLICABLE' && entry.state !== 'TRANSCRIBED_NOT_EXCERPT_BOUND',
+    ).length
     const totalVerified = entries.filter((entry) => entry.state === 'VERIFIED').length
 
     const queue: ReviewCandidate[] = entries
@@ -387,6 +405,7 @@ export const excerptIntegrityAgent: DatasetAgent<ExcerptIntegrityDataset> = {
       caveats: [
         'A verified binding proves transcription fidelity and nothing else. It does not say the source is correct, current, or applicable to any person; it says the number displayed here is the number that document prints.',
         'A value that fails this check is a question about this corpus, never a statement that the source is wrong.',
+        `${entries.filter((entry) => entry.state === 'TRANSCRIBED_NOT_EXCERPT_BOUND').length} value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.`,
         'Only numerals are checked this way. A value whose display carries no number cannot be verified by this method and is counted apart rather than counted as passing.',
         'Consensus readings are verified when any one of the sources cited for them prints the reading. Excerpts stored for other contributing sources may be trimmed around a different part of the sentence, and requiring all of them would report a storage detail as a failure.',
         `The ${NUMERAL_NORMALISATION_RULES.length} normalisation rules are listed in the output so a third party can reproduce this check exactly. Loosening them would raise the pass rate without improving the corpus, which is why they are published rather than described.`,

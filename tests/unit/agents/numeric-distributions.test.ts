@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { BACKGROUND_PROVENANCE_TIERS } from '@/lib/background/types'
+
 import type { MedicineRecordedBackground, RecordedValue } from '@/lib/background/types'
 import { findForbiddenPhrases, type AgentCorpusEntry } from '@/lib/agents/core/types'
 import {
@@ -313,7 +315,10 @@ describe('stratification', () => {
     expect(tiered.length).toBeGreaterThan(0)
     for (const distribution of tiered) {
       const keys = distribution.byProvenanceTier.strata.map((stratum) => stratum.key).sort()
-      expect(keys).toEqual(['curated', 'extracted'])
+      // The corpus now has three tiers. Which of them appear depends on what the sources hold, so
+      // the assertion is that every tier present is a declared one rather than a fixed list.
+      for (const key of keys) expect(BACKGROUND_PROVENANCE_TIERS).toContain(key)
+      expect(keys.length).toBeGreaterThan(0)
     }
     // The note has to state that a difference is a fact about how the corpus was built.
     for (const distribution of ALL_DISTRIBUTIONS) {

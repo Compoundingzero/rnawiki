@@ -30,25 +30,35 @@ describe('recorded-background corpus merge', () => {
     }
   })
 
-  it('adds only cross-source consensus to a curated record, never anything else', () => {
+  it('adds only corroborating modules to a curated record, never anything else', () => {
+    // Two modules may attach to a curated record because neither replaces curated judgement:
+    // cross-source consensus says what every published label states for a field, and supplement
+    // market data says how many marketed products list the substance. Anything else appearing here
+    // would mean a generated source had reached inside a record a person authored.
+    const allowed = new Set(['sourceConsensus', 'supplementMarket'])
     for (const slug of Object.keys(RECORDED_BACKGROUND)) {
       const curatedKeys = new Set(Object.keys(RECORDED_BACKGROUND[slug]!))
       const added = Object.keys(ALL_RECORDED_BACKGROUND[slug]!).filter(
         (key) => !curatedKeys.has(key),
       )
       expect(
-        added.filter((key) => key !== 'sourceConsensus'),
+        added.filter((key) => !allowed.has(key)),
         slug,
       ).toEqual([])
     }
   })
 
-  it('covers every slug from both tiers exactly once', () => {
-    const expected = new Set([
+  it('covers every curated and extracted slug, and only adds to them', () => {
+    // The corpus is no longer two sources. Records also arrive from the substance registry, the
+    // supplement label database and the compound database, each reaching rows the label pipeline
+    // structurally cannot. What must still hold is that nothing from the original two goes missing.
+    const required = new Set([
       ...Object.keys(RECORDED_BACKGROUND),
       ...Object.keys(EXTRACTED_BACKGROUND),
     ])
-    expect(Object.keys(ALL_RECORDED_BACKGROUND).sort()).toEqual([...expected].sort())
+    const present = new Set(Object.keys(ALL_RECORDED_BACKGROUND))
+    for (const slug of required) expect(present.has(slug), slug).toBe(true)
+    expect(present.size).toBeGreaterThanOrEqual(required.size)
   })
 
   it('reaches far beyond what hand-authoring covered', () => {
