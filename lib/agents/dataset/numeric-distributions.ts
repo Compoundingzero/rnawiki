@@ -544,6 +544,7 @@ const AGENT_VERSION = '1.0.0'
 const TIER_LABELS: Readonly<Record<BackgroundProvenanceTier, string>> = {
   curated: 'read and structured by a person or agent',
   extracted: 'matched by the deterministic label parser',
+  transcribed: 'transcribed from a structured record',
 }
 
 export const numericDistributionsAgent: DatasetAgent<RecordedNumericDistributions> = {

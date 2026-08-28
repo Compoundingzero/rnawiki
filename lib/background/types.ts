@@ -34,7 +34,17 @@ export const MEDICINE_BACKGROUND_VERSION = 'medicine-background/v1' as const
  *
  * An `extracted` value is never allowed to overwrite a `curated` one.
  */
-export const BACKGROUND_PROVENANCE_TIERS = ['curated', 'extracted'] as const
+/**
+ * How a record came to exist.
+ *
+ * `curated` was assembled by a person. `extracted` was read out of a source sentence by the
+ * deterministic parser, which is why its numbers satisfy the excerpt guarantee. `transcribed` was
+ * copied from a structured field that has no sentence behind it — the supplement label database
+ * returns ingredient rows and counts as JSON, and there is no prose to quote. A transcribed value
+ * is checkable a different way: by the record identifier and field path it came from, which is
+ * recorded instead of an excerpt.
+ */
+export const BACKGROUND_PROVENANCE_TIERS = ['curated', 'extracted', 'transcribed'] as const
 export type BackgroundProvenanceTier = (typeof BACKGROUND_PROVENANCE_TIERS)[number]
 
 export const BACKGROUND_SOURCE_KINDS = [
@@ -48,6 +58,7 @@ export const BACKGROUND_SOURCE_KINDS = [
   'NADAC',
   'NICE_BNF',
   'PUBLISHED_ANALYSIS',
+  'DSLD',
 ] as const
 export type BackgroundSourceKind = (typeof BACKGROUND_SOURCE_KINDS)[number]
 
@@ -419,6 +430,53 @@ export type SubstanceDataState = (typeof SUBSTANCE_DATA_STATES)[number]
  * it, keyed by `substanceKey`, so a correction to one substance's mechanism reaches every product
  * built on it rather than being re-authored per product.
  */
+/**
+ * What a source says a substance is used for, in the source's own words.
+ *
+ * Nearly every published label carries an indications section — 99.8% of the single-substance
+ * labels in this corpus — and for a great many substances it is the only section there is. A
+ * homeopathic ingredient, a botanical extract or a mineral has no clinical-pharmacology text to
+ * read a mechanism out of, so a record built only from mechanism and pharmacokinetics leaves those
+ * substances blank when their label plainly states something a reader wants.
+ *
+ * This is a statement about the SOURCE, not an endorsement. That a label says a preparation is used
+ * for a complaint is a fact about the label; whether it works is not something the label settles
+ * and not something recorded here.
+ */
+/**
+ * What the supplement label database records about an ingredient across the products containing it.
+ *
+ * Supplements are most of this corpus by row count and almost none of it by evidence, because they
+ * are absent from the drug-label archive entirely: a dietary supplement carries no
+ * clinical-pharmacology section, no pharmacokinetics and no mechanism, and inventing an equivalent
+ * would be the one thing this project must never do.
+ *
+ * What CAN be recorded honestly is what the database itself holds — how many marketed labels list
+ * the ingredient, what categories those products are, what kinds of claim they carry, and which
+ * labels they are so any of it can be checked. Every number here is a count the database returned,
+ * not a measurement of anything in a person.
+ */
+export interface RecordedSupplementMarket {
+  /** Labels currently marketed that list this ingredient. */
+  labelCount: number
+  /** Ingredient categories the database assigns, e.g. botanical, vitamin, mineral. */
+  categoriesAsRecorded: string[]
+  /**
+   * Claim types the containing labels carry, as the database classifies them. A structure/function
+   * claim is made unilaterally by the manufacturer and is not evaluated by any regulator; recording
+   * that a claim type is present is not recording that the claim is true.
+   */
+  claimTypesAsRecorded: string[]
+  exampleBrands: string[]
+  /** Label identifiers, so every count above can be checked against the database. */
+  sampleLabelIds: string[]
+  source: BackgroundSource
+}
+
+export interface RecordedUses {
+  statements: RecordedStatement[]
+}
+
 export interface RecordedIngredient {
   /** The substance name as this product's own label prints it, including its salt form. */
   nameAsRecorded: string
@@ -428,6 +486,8 @@ export interface RecordedIngredient {
   /** Strength as the label prints it, when it states one for this ingredient. */
   strengthAsRecorded?: string
   substanceDataState: SubstanceDataState
+  supplementMarket?: RecordedSupplementMarket
+  recordedUses?: RecordedUses
   mechanism?: RecordedMechanism
   pharmacokinetics?: RecordedPharmacokinetics
   molecularIdentity?: RecordedMolecularIdentity
@@ -521,4 +581,5 @@ export interface MedicineRecordedBackground {
   attribution?: RecordedAttribution
   sourceConsensus?: RecordedSourceConsensus
   composition?: RecordedComposition
+  supplementMarket?: RecordedSupplementMarket
 }

@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-2.0.0`.
+ * `rna-intelligence/background-2.1.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -37,7 +37,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.0.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.1.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -89,6 +89,8 @@ export const BACKGROUND_RULE_CODES = [
   'I_INGREDIENT_STATE_UNKNOWN',
   'I_INGREDIENT_KEY_MISSING',
   'I_INGREDIENT_DUPLICATED',
+  'I_SUPPLEMENT_COUNT_UNCHECKABLE',
+  'I_SUPPLEMENT_TIER_MISMATCH',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -120,6 +122,8 @@ const SOURCE_IDENTIFIER_PATTERNS: Record<string, RegExp> = {
   NADAC: /^\d{4}-\d{2}-\d{2}$/u,
   NICE_BNF: /^(?:TA\d{2,5}|BNF:[a-z0-9-]{2,80})$/u,
   PUBLISHED_ANALYSIS: /^10\.\d{4,9}\/\S{2,200}$/u,
+  // A supplement label database record id, which is what makes a transcribed count checkable.
+  DSLD: /^[0-9]{1,9}$/u,
 }
 
 /**
@@ -850,6 +854,42 @@ export function runBackgroundIntelligence(
         }
       })
     })
+  }
+
+  /**
+   * Supplement market counts, which are transcribed rather than read out of a sentence.
+   *
+   * The excerpt guarantee cannot apply here: the label database returns structured fields and there
+   * is no prose to quote. What replaces it is reproducibility — a count is only admissible if the
+   * record identifiers behind it are stored, so a reader can put the same question to the same
+   * public API and get the same number. A count with no identifiers is an assertion.
+   */
+  const supplement = background.supplementMarket
+  if (supplement) {
+    checkSource('supplementMarket', supplement.source)
+    if (supplement.labelCount < 1 || supplement.sampleLabelIds.length === 0) {
+      flag(
+        'I_SUPPLEMENT_COUNT_UNCHECKABLE',
+        'supplementMarket',
+        `Reports ${supplement.labelCount} label(s) with ${supplement.sampleLabelIds.length} identifier(s); a transcribed count needs at least one identifier to be checkable.`,
+      )
+    }
+    if (supplement.source.kind !== 'DSLD') {
+      flag(
+        'I_SUPPLEMENT_COUNT_UNCHECKABLE',
+        'supplementMarket.source',
+        `Supplement market data must cite the label database it was transcribed from, not "${supplement.source.kind}".`,
+      )
+    }
+    // Transcribed data must say so. Presented as extracted it would imply an excerpt that cannot
+    // exist, and presented as curated it would imply a person checked it.
+    if ((background.provenanceTier ?? 'curated') !== 'transcribed') {
+      flag(
+        'I_SUPPLEMENT_TIER_MISMATCH',
+        'provenanceTier',
+        `A record carrying transcribed market data is tier "${background.provenanceTier ?? 'curated'}"; it must be "transcribed".`,
+      )
+    }
   }
 
   return {

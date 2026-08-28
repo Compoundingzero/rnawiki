@@ -502,6 +502,43 @@ const ruleCases = {
       delete background.interactionSignals![0]!.polarity
     },
   },
+  I_SUPPLEMENT_COUNT_UNCHECKABLE: {
+    mutate: (background) => {
+      background.provenanceTier = 'transcribed'
+      background.supplementMarket = {
+        labelCount: 42,
+        categoriesAsRecorded: ['botanical'],
+        claimTypesAsRecorded: ['Structure/Function'],
+        exampleBrands: ['Synthetic Brand'],
+        // No identifiers, so the count cannot be reproduced by anyone.
+        sampleLabelIds: [],
+        source: {
+          kind: 'DSLD',
+          identifier: '270355',
+          label: 'Synthetic supplement label records',
+          retrievedAt: '2026-08-29',
+        },
+      }
+    },
+  },
+  I_SUPPLEMENT_TIER_MISMATCH: {
+    mutate: (background) => {
+      background.supplementMarket = {
+        labelCount: 42,
+        categoriesAsRecorded: ['botanical'],
+        claimTypesAsRecorded: ['Structure/Function'],
+        exampleBrands: ['Synthetic Brand'],
+        sampleLabelIds: ['270355'],
+        source: {
+          kind: 'DSLD',
+          identifier: '270355',
+          label: 'Synthetic supplement label records',
+          retrievedAt: '2026-08-29',
+        },
+      }
+      // Left at its default tier, which would imply an excerpt that cannot exist.
+    },
+  },
   I_COMPOSITION_COUNT_MISMATCH: {
     mutate: (background) => {
       background.composition!.declaredIngredientCount = 5

@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { eq, inArray } from 'drizzle-orm'
 
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
-import { COMBINATION_PRODUCTS } from './seed-data/background/combination-products.generated'
+import { COMBINATION_PRODUCTS } from './seed-data/background/registries'
 
 /**
  * Creates the medicine rows for combination products, and the aliases that reach them.

@@ -34,6 +34,7 @@ import type {
   RecordedProductVariant,
   RecordedSafetyStatements,
   RecordedStatement,
+  RecordedUses,
   RecordedValue,
   StudiedPopulation,
 } from './types'
@@ -612,6 +613,35 @@ export function extractInteractionSignals(
   return [...seen.values()]
     .sort((left, right) => left.counterpartyAsRecorded.localeCompare(right.counterpartyAsRecorded))
     .slice(0, MAX_INTERACTION_SIGNALS)
+}
+
+/** Headings labels put in front of an indications section. */
+const USES_HEADING = /(?:indications?\s+and\s+usage|indications?|uses)/u
+
+/** Statements kept. Enough to say what a source is for, short enough to stay readable. */
+const MAX_USE_STATEMENTS = 3
+
+/**
+ * What the source says this is used for.
+ *
+ * Read from the indications section, which nearly every published label carries and which for many
+ * substances — homeopathic preparations, botanical extracts, minerals — is the only section that
+ * says anything at all. Recording it is what stops those records being blank when their label is
+ * not.
+ *
+ * The text is quoted, never summarised, and the record says only that the source states this use.
+ */
+export function extractRecordedUses(
+  artifact: LabelArtifact,
+  options: ExtractionOptions,
+): RecordedUses | null {
+  const statements = statementSentences(
+    artifact.sections.indications_and_usage,
+    USES_HEADING,
+  ).slice(0, MAX_USE_STATEMENTS)
+  if (statements.length === 0) return null
+  const source = labelSource(artifact, options)
+  return { statements: statements.map((sentence) => toStatement(sentence, source)) }
 }
 
 export function extractSafetyStatements(

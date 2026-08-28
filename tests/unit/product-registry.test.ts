@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { PRODUCT_REGISTRY } from '@/scripts/seed-data/background/product-registry.generated'
-import { SUBSTANCE_REGISTRY } from '@/scripts/seed-data/background/substance-registry.generated'
+import { PRODUCT_REGISTRY, SUBSTANCE_REGISTRY } from '@/scripts/seed-data/background/registries'
 
 /**
  * A page is a product, and a product is identified by what it contains. These tests pin the two

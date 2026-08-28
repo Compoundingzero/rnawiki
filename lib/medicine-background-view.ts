@@ -143,6 +143,7 @@ const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
   NADAC: 'NADAC price dataset',
   NICE_BNF: 'NICE / BNF record',
   PUBLISHED_ANALYSIS: 'Published analysis',
+  DSLD: 'Supplement label database record',
 }
 
 const CONCORDANCE_LABELS = {

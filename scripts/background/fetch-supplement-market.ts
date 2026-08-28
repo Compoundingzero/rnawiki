@@ -1,0 +1,232 @@
+import 'dotenv/config'
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+
+import { normalizeContentName } from '@/lib/background/name-normalization'
+
+/**
+ * Records what the supplement label database holds for each supplement ingredient in the corpus.
+ *
+ * Most rows in this corpus are supplements — 6,148 of 9,858 — and almost none of them had anything
+ * recorded, because supplements are absent from the drug-label archive entirely. A dietary
+ * supplement carries no clinical-pharmacology section, no pharmacokinetics and no mechanism, so the
+ * drug pipeline reaches them and finds nothing, which is exactly what a reader saw.
+ *
+ * There is no honest way to manufacture the missing pharmacology, and this does not try. What it
+ * records is what the database itself holds and can be checked against: how many marketed labels
+ * list the ingredient, what categories those products fall into, what kinds of claim they carry,
+ * which brands, and the label identifiers behind every count.
+ *
+ * A structure/function claim is made unilaterally by a manufacturer under FFDCA 403(r)(6) and is
+ * evaluated by nobody. Recording that a claim type is present on a label is a fact about the label.
+ * It is not evidence the claim is true, and nothing here presents it as any.
+ *
+ * These values are `transcribed` rather than `extracted`: the database returns structured fields
+ * with no sentence behind them, so there is no excerpt to quote. The record identifiers stand in
+ * for one — every count here can be reproduced against the same public API.
+ *
+ * Usage:
+ *   tsx scripts/background/fetch-supplement-market.ts [--limit=N]
+ */
+
+const DSLD = 'https://api.ods.od.nih.gov/dsld/v9/search-filter'
+
+/** Concurrent lookups. The database is a public NIH service and this stays modest on purpose. */
+const CONCURRENCY = 5
+const RETRY_LIMIT = 3
+/** Brands and label ids kept per ingredient: enough to check a count, not a directory. */
+const MAX_SAMPLES = 8
+
+interface DsldHit {
+  _id?: string
+  _source?: {
+    fullName?: string
+    brandName?: string
+    productType?: { langualCodeDescription?: string }
+    claims?: Array<{ langualCodeDescription?: string }>
+    allIngredients?: Array<{ ingredientGroup?: string; name?: string; category?: string }>
+  }
+}
+
+export interface SupplementMarketEntry {
+  /** The corpus name that was looked up. */
+  queriedName: string
+  labelCount: number
+  categoriesAsRecorded: string[]
+  claimTypesAsRecorded: string[]
+  exampleBrands: string[]
+  sampleLabelIds: string[]
+  /** Distinguishes "the database holds nothing" from "the lookup never ran". */
+  state: 'RECORDED' | 'NO_MARKETED_LABEL' | 'LOOKUP_FAILED'
+}
+
+type Cache = Record<string, SupplementMarketEntry>
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function getJson(url: string): Promise<unknown | null> {
+  for (let attempt = 0; attempt < RETRY_LIMIT; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: { accept: 'application/json' },
+        signal: AbortSignal.timeout(45_000),
+      })
+      if (!response.ok) {
+        await sleep(1000 * (attempt + 1))
+        continue
+      }
+      return (await response.json()) as unknown
+    } catch {
+      await sleep(1000 * (attempt + 1))
+    }
+  }
+  return null
+}
+
+/**
+ * Looks one ingredient up.
+ *
+ * `status=1` restricts to labels currently on the market. Nearly half the database is historical
+ * packaging that was discontinued years ago and is never withdrawn, and counting those would report
+ * a shelf that does not exist.
+ */
+async function lookup(name: string): Promise<SupplementMarketEntry> {
+  const query = encodeURIComponent(name)
+  const payload = (await getJson(
+    `${DSLD}?method=by_keyword&q=${query}&size=${MAX_SAMPLES}&from=0&status=1`,
+  )) as { hits?: DsldHit[]; stats?: { count?: number } } | null
+  if (!payload) {
+    return {
+      queriedName: name,
+      labelCount: 0,
+      categoriesAsRecorded: [],
+      claimTypesAsRecorded: [],
+      exampleBrands: [],
+      sampleLabelIds: [],
+      state: 'LOOKUP_FAILED',
+    }
+  }
+  const count = payload.stats?.count ?? 0
+  const hits = payload.hits ?? []
+  if (count === 0 || hits.length === 0) {
+    return {
+      queriedName: name,
+      labelCount: 0,
+      categoriesAsRecorded: [],
+      claimTypesAsRecorded: [],
+      exampleBrands: [],
+      sampleLabelIds: [],
+      state: 'NO_MARKETED_LABEL',
+    }
+  }
+
+  const wanted = normalizeContentName(name)
+  const categories = new Set<string>()
+  const claims = new Set<string>()
+  const brands = new Set<string>()
+  const ids = new Set<string>()
+  for (const hit of hits) {
+    const source = hit._source ?? {}
+    if (hit._id) ids.add(hit._id)
+    if (source.brandName) brands.add(source.brandName)
+    const productType = source.productType?.langualCodeDescription
+    if (productType) categories.add(productType)
+    for (const claim of source.claims ?? []) {
+      if (claim.langualCodeDescription) claims.add(claim.langualCodeDescription)
+    }
+    // Only the matching ingredient's own category is recorded; a multivitamin's other rows describe
+    // other substances and attributing them here would be the same mis-attribution the drug side
+    // spent a rebuild eliminating.
+    for (const ingredient of source.allIngredients ?? []) {
+      const group = ingredient.ingredientGroup ?? ingredient.name ?? ''
+      if (!group) continue
+      if (normalizeContentName(group) === wanted && ingredient.category) {
+        categories.add(ingredient.category)
+      }
+    }
+  }
+
+  return {
+    queriedName: name,
+    labelCount: count,
+    categoriesAsRecorded: [...categories].sort(),
+    claimTypesAsRecorded: [...claims].sort(),
+    exampleBrands: [...brands].slice(0, MAX_SAMPLES).sort(),
+    sampleLabelIds: [...ids].slice(0, MAX_SAMPLES).sort(),
+    state: 'RECORDED',
+  }
+}
+
+/** Corpus rows that have no recorded background, which is what this exists to fill. */
+function namesNeedingCoverage(): string[] {
+  const dir = join(process.cwd(), 'data', 'drugs')
+  const names: string[] = []
+  for (const file of readdirSync(dir)
+    .filter((name) => name.endsWith('.ndjson'))
+    .sort()) {
+    for (const line of readFileSync(join(dir, file), 'utf8').split('\n')) {
+      if (!line.trim()) continue
+      const record = JSON.parse(line) as { name?: string }
+      const name = record.name?.trim()
+      // A trailing bracket is a scraping artefact on a handful of rows and would never match.
+      if (name && name.length >= 3 && !/^\d/u.test(name)) names.push(name.replace(/\)+$/u, ''))
+    }
+  }
+  return [...new Set(names)]
+}
+
+async function main() {
+  const limitFlag = process.argv.find((value) => value.startsWith('--limit='))
+  const limit = limitFlag ? Number(limitFlag.split('=')[1]) : Infinity
+
+  const cachePath =
+    process.env.RNAWIKI_DSLD_CACHE ??
+    '/private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/dsld-market.json'
+  mkdirSync(dirname(cachePath), { recursive: true })
+  const cache: Cache = existsSync(cachePath)
+    ? (JSON.parse(readFileSync(cachePath, 'utf8')) as Cache)
+    : {}
+
+  const names = namesNeedingCoverage()
+  // A failed lookup is retried on the next run; a recorded answer is never paid for twice.
+  const outstanding = names.filter((name) => !cache[name] || cache[name]!.state === 'LOOKUP_FAILED')
+  console.log(
+    `[dsld] ${names.length} corpus name(s) · ${Object.keys(cache).length} cached · ${outstanding.length} outstanding`,
+  )
+
+  const queue = outstanding.slice(0, Math.min(outstanding.length, limit))
+  let next = 0
+  let done = 0
+  let lastSave = Date.now()
+  const worker = async (): Promise<void> => {
+    for (;;) {
+      const index = next
+      next += 1
+      const name = queue[index]
+      if (name === undefined) return
+      cache[name] = await lookup(name)
+      done += 1
+      if (Date.now() - lastSave > 20_000) {
+        writeFileSync(cachePath, JSON.stringify(cache))
+        lastSave = Date.now()
+      }
+      if (done % 250 === 0) console.log(`[dsld] ${done}/${queue.length}`)
+    }
+  }
+  await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
+  writeFileSync(cachePath, JSON.stringify(cache))
+
+  const states = new Map<string, number>()
+  for (const entry of Object.values(cache)) {
+    states.set(entry.state, (states.get(entry.state) ?? 0) + 1)
+  }
+  console.log(`[dsld] ${JSON.stringify(Object.fromEntries(states))}`)
+  console.log(`[dsld] cache written to ${cachePath}`)
+}
+
+void main().catch((error) => {
+  console.error(error)
+  process.exit(1)
+})
