@@ -11,12 +11,20 @@ The corpus has two tiers, and they are never presented as the same thing:
 
 - **Curated** (155 medicines) — hand-authored TypeScript batches under
   `scripts/seed-data/background/`, where a person selected and checked each value.
-- **Extracted** (5,881 medicines) — `extracted-background.generated.ts`, produced by the
+- **Extracted** (3,274 medicines) — `extracted-background.generated.ts`, produced by the
   deterministic parser in `lib/background/label-extraction.ts`. Nobody has checked these, and the
   dossier says so on the page.
 
-Curated always wins on a shared slug. `ALL_RECORDED_BACKGROUND` is the merged corpus; the merge
-and its precedence are pinned by `tests/unit/background-corpus-merge.test.ts`.
+Records also arrive from sources that reach rows the label pipeline structurally cannot: the
+substance registry, the NIH supplement label database, a compound database, the CMS pricing file and
+NCBI Taxonomy. Curated always wins on a shared slug, and a module that corroborates rather than
+replaces judgement — cross-source consensus, supplement market counts, archive presence, acquisition
+cost, biological identity — may attach to a curated record. `ALL_RECORDED_BACKGROUND` is the merged
+corpus; the merge and its precedence are pinned by `tests/unit/background-corpus-merge.test.ts`.
+
+The merged corpus covers **8,582 of 9,858 rows**. The four registries the corpus reads at runtime are
+version-controlled, because three of them were once gitignored and the deployed site served a third
+of the records this repository could produce while every local check passed.
 
 ## Why this dataset is hard to reproduce
 
@@ -53,7 +61,7 @@ The values themselves are public. The discipline around them is the product:
 ## Engine
 
 `runBackgroundIntelligence` (`lib/rna-intelligence/background-rules.ts`, version
-`rna-intelligence/background-1.4.0`) checks structure only: envelope version, source-identifier
+`rna-intelligence/background-2.3.0`) checks structure only: envelope version, source-identifier
 shapes per kind, ISO dates, excerpt length, number-in-excerpt, measurement context, plausibility
 ranges by value type, contiguous schedule steps, controlled vocabularies (jurisdictions,
 currencies, price types, anatomy regions), derivation equality, concordance/alternate pairing,
@@ -220,6 +228,109 @@ behind them, so there is no excerpt to quote and the identifiers stand in its pl
 
 The unfiltered stream this reads is produced by the same indexer, via `--presence=<file>`, because
 the filtered stream drops precisely the labels it needs.
+
+## Numbers a label printed, whole
+
+Elacestrant's label reads "the estimated apparent volume of distribution is 5,800 L". RNAWiki
+recorded 800 L. Every quantity pattern matched `\d+(?:\.\d+)?`, which cannot cross a thousands
+separator and so began matching after one, and the engine's excerpt check passed it because "800" is
+a substring of "5800". The molecular-weight pattern failed the other way: its
+`\d{1,3}(?:,\d{3})*` branch matches happily with no comma groups at all, so an unseparated
+"1355.38" yielded 135 and vitamin B12 was recorded as weighing 135 g/mol.
+
+**107 records carried a number an order of magnitude wrong, each under a correct sentence that
+appeared to prove it.** Three changes, at both ends:
+
+- One `PRINTED_NUMBER` definition, used by every quantity pattern. The separated branch requires at
+  least one comma group, so it cannot half-match an unseparated number.
+- The engine compares displayed numbers to excerpt numbers **by value**, not by substring. "800" no
+  longer matches inside "5,800"; "0.5" still matches "0.50".
+- `normalizeForMatch` strips separators from a whole separated number rather than from any comma
+  followed by three digits. The loose form corrupted comma-delimited data: on a pricing row ending
+  ",43386028001,221.72208" it deleted the field separator and glued a product code onto the price.
+
+Two plausibility floors were wrong rather than protective. Volume of distribution was floored at
+0.1 L/kg; alirocumab's label states 0.04 to 0.05 and imiglucerase's 0.09 to 0.15, because antibodies
+stay in plasma. The molecular-formula shape had no room for a hydrate separator, so bosutinib's
+"C 26 H 29 Cl 2 N 5 O 3 .2H 2 O" de-spaced into "O3.2H2O" where "3.2" reads as a decimal.
+
+## Choosing which label describes a substance
+
+Extraction ranked candidate labels by how many readable sections each carried, so on a tie the first
+one won. "Actaea Spicata Root" had one label declaring five substances and one declaring one, both
+scoring 1, and the five-substance one arrived first — and since every substance-specific module is
+refused on a multi-substance source, the record came out empty with the right label sitting in the
+index beside it. **987 rows held a label naming them alone and carried no substance content.**
+
+A document about one substance now wins over a richer document about several: the attribution rule
+applied at selection rather than only at validation.
+
+The other half of those 987 was a length floor. Forty characters kept section headings out of
+statements, and a homeopathic label states a use in fewer — "INDICATIONS Late growth, fracture
+consolidation." is a whole published section, 35 characters once the heading comes off. Lowering the
+floor everywhere was worse than leaving it: "See Boxed WARNING." and "Pregnancy Category C." became
+statements, and "First, wet your skin." and "SHAKE WELL BEFORE USE." arrived under what the label
+says the medicine is for, which would make RNAWiki the thing telling a reader to do it. The short
+floor is a property of the call, granted only to recorded uses, with named guards for directions,
+frequencies, carton text, split headings and fragments closing a bracket they never opened.
+
+## Cost, from the file that surveys it
+
+`costContext` was in the model from the start and no source filled it, because most published prices
+are list prices nobody pays. NADAC is what CMS observes retail pharmacies actually paying to buy a
+product, published weekly in the public domain — one CSV, no API, nothing to rate-limit.
+
+What the module refuses is as much of the design as what it records. No monthly cost, because that
+needs a dose and choosing one is a medical judgement. No mixing of pricing units, because averaging
+per-each with per-millilitre produces a number meaning nothing. Only the most recent weekly
+snapshot, because a range spanning two weeks never existed on any one day. The excerpt is the
+pricing file's own rows for the two products that set the range, verbatim, so a reader sees which
+products those are; a composed sentence would not be a quotation.
+
+## What organism a row is
+
+A large part of this corpus is not a molecule. NCBI Taxonomy states the accepted scientific name,
+the rank, the ranked lineage and the other names an organism is known by — facts about biological
+nomenclature, nothing about medicine. One public-domain bulk file, checksum-verified, rebuilt daily.
+`images.dmp` carries its own per-row licence and is not read.
+
+The difficulty is collisions, and they are not spread evenly:
+
+- A name is matched only where it resolves to **exactly one taxon**; 43 ambiguous names refused.
+- A trailing part word is separated and recorded on its own, so "Curcuma Longa Leaf" is the leaf of
+  a plant rather than being the plant.
+- A genus match is refused where a compound database already resolved the same name, or where a
+  person curated the row as a medicine.
+- **A bare one-word row matched to a genus is admitted only for plants, fungi, bacteria, archaea and
+  algae.** Checked against all 245 such matches, every wrong one sat in the animals or protists:
+  _Lithium_ and _Trachea_ are genera of moths, _Manna_ and _Galanga_ arthropods, _Palmyra_ a worm,
+  _Castor_ the beaver, _Ammonia_ a foraminiferan. The 223 inside plants and fungi were right without
+  exception. The rule refuses six correct rows along with the seven wrong ones, and that trade is
+  the right way round: a page missing a lineage is a smaller failure than a page saying lithium is a
+  moth.
+
+## Sources considered and not used
+
+Investigated against this corpus's actual gaps, with their licences read rather than assumed:
+
+- **Kew Medicinal Plant Names Services** holds plant part alongside 283,636 herbal and common names
+  — the single best fit for the botanical rows — and has no published licence, blocks `ClaudeBot` in
+  `robots.txt`, and reserves rights under EU DSM Article 4. Unlicensed and copyrighted is worse than
+  a stated restrictive licence, because there is nothing to comply with. Only a negotiated agreement
+  with Kew opens it.
+- **DailyMed** carries SPLs that openFDA's endpoint drops — 75 of 90 allergenic SPLs — and is the
+  only source of structured homeopathic potency. Its licence is contested: data.gov states ODbL 1.0
+  for this service, NLM's policy states public domain with a carve-out for content submitted by
+  companies, and an SPL is authored by a labeler. Not resolvable from published documentation, so it
+  is not ingested.
+- **ChEBI** ships a CC BY 4.0 licence file whose neighbouring README says CC BY-SA. Not ingested
+  until EBI answers which governs.
+- **PubChem sections sourced from DrugBank (CC BY-NC), T3DB, KNApSAcK and NPASS** are dropped at
+  parse time rather than filtered later.
+
+Six of the seventeen investigating agents failed to return structured output, so GBIF, ChEMBL,
+Wikidata/ATC, MeSH and USDA FoodData were **not** investigated. They remain open questions rather
+than rejected options.
 
 ## Every stored module reaches a reader
 
