@@ -9,8 +9,8 @@
     "independentOfEngine": true
   },
   "coverage": {
-    "considered": 7915,
-    "used": 3396,
+    "considered": 7918,
+    "used": 3420,
     "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
   },
   "output": {
@@ -257,6 +257,18 @@
       },
       {
         "slug": "aceclidine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "acetic-acid",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "acetic-acid-glacial",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -515,6 +527,24 @@
       },
       {
         "slug": "adalimumab-ryvk",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "adapalene",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "adapalene",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "adapalene",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -1162,6 +1192,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "amiloride",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "amiloride",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "amiloride",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "aminocaproic-acid",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -1258,6 +1306,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "amphetamine",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "amphetamine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "amphotericin-b",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -1271,6 +1331,18 @@
       },
       {
         "slug": "amphotericin-b",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ampicillin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ampicillin-ampicillin",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -1828,6 +1900,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "atezolizumab",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "atezolizumab",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "atogepant",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -2296,6 +2380,42 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "azilsartan-kamedoxomil",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "azilsartan-kamedoxomil",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "azilsartan-kamedoxomil",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "azilsartan-kamedoxomil",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "azilsartan-kamedoxomil",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "azilsartan-kamedoxomil",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "azilsartan-medoxomil",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -2656,6 +2776,30 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "benazepril",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "benazepril",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "benazepril",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "benazepril",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "bendamustine",
         "path": "pharmacokinetics.proteinBinding",
         "module": "pharmacokinetics",
@@ -2777,6 +2921,12 @@
       },
       {
         "slug": "benzonatate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "benzoyl-peroxide",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -3172,6 +3322,30 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "bisoprolol",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bisoprolol",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bisoprolol",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bisoprolol",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "bivalirudin",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -3394,6 +3568,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "brimonidine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "brincidofovir",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -3545,6 +3725,18 @@
       },
       {
         "slug": "bumetanide",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bupivacaine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bupivacaine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -3808,6 +4000,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "canagliflozin",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "canagliflozin",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "canagliflozin",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "canakinumab",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -4021,6 +4231,36 @@
         "slug": "captopril",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "carbachol",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "carbidopa",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "carbidopa",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "carbidopa-hydrate",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "carbidopa-hydrate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -4330,6 +4570,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "ceftazidime",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ceftazidime",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ceftazidime",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "ceftobiprole-medocaril",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -4609,6 +4867,12 @@
         "slug": "chlorothiazide",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "chlorthalidone",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
         "state": "VERIFIED"
       },
       {
@@ -5140,9 +5404,45 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "clotrimazole",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "clotrimazole",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "clozapine",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "cobicistat",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "cobicistat",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "cobicistat",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "cobicistat",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -5584,6 +5884,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "cytarabine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "dabigatran-etexilate",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -5837,6 +6143,30 @@
       },
       {
         "slug": "dapagliflozin-2-3-butanediol",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dapagliflozin-propanediol",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dapagliflozin-propanediol",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dapagliflozin-propanediol",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dapagliflozin-propanediol",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -6156,6 +6486,12 @@
       {
         "slug": "datopotamab-deruxtecan-dlnk",
         "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "daunorubicin",
+        "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
         "state": "VERIFIED"
       },
@@ -6874,6 +7210,30 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "dextroamphetamine",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dextroamphetamine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dextroamphetamine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dextroamphetamine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "diazepam",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -7168,6 +7528,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "dipyridamole",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dipyridamole",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dipyridamole",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "diroximel",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -7294,6 +7672,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "dolutegravir",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dolutegravir",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "dolutegravir",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "donanemab",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -7373,6 +7769,30 @@
       },
       {
         "slug": "dopamine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "doravirine",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "doravirine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "doravirine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "doravirine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -7590,6 +8010,18 @@
       {
         "slug": "dronedarone",
         "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "drospirenone",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "drospirenone",
+        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -7834,6 +8266,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "efavirenz",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "efavirenz",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "efavirenz",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "efbemalenograstim-alfa",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -8332,6 +8782,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "emtricitabine",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "emtricitabine",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "emtricitabine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "emtricitabine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "emtricitabine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "enalapril",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -8598,6 +9078,36 @@
       {
         "slug": "ensitrelvir",
         "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "entacapone",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "entacapone",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "entacapone",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "entacapone",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "entacapone",
+        "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -8719,6 +9229,12 @@
         "slug": "epinastine",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "epinephrine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -9407,6 +9923,24 @@
       },
       {
         "slug": "etodolac",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "etonogestrel",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "etonogestrel",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "etonogestrel",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -10654,6 +11188,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "formoterol",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "formoterol",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "fosamprenavir",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -11566,6 +12112,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "glyburide",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "glycerol-phenylbutyrate",
         "path": "pharmacokinetics.proteinBinding",
         "module": "pharmacokinetics",
@@ -11782,6 +12334,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "heparin",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "heparin",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "hexaminolevulinate",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -11827,6 +12391,12 @@
         "slug": "human-vaccinia-virus-immune-globulin",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "hyaluronidase",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -11898,6 +12468,18 @@
       {
         "slug": "hydromorphone",
         "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "hydroquinone",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "hydroquinone",
+        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -12424,6 +13006,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "indapamide",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "indapamide",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "indigotindisulfonate",
         "path": "pharmacokinetics.proteinBinding",
         "module": "pharmacokinetics",
@@ -12570,6 +13164,24 @@
       {
         "slug": "insulin-aspart-szjj",
         "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "insulin-degludec",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "insulin-degludec",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "insulin-degludec",
+        "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -12886,6 +13498,42 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "irbesartan",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "irbesartan",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "irbesartan",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "irbesartan",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "irbesartan",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "irbesartan",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "irinotecan",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -13037,6 +13685,30 @@
       },
       {
         "slug": "isosorbide",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "isosorbide-dinitrate",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "isosorbide-dinitrate",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "isosorbide-dinitrate",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "isosorbide-dinitrate",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -14014,6 +14686,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "levodopa",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "levodopa",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "levodopa",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "levodopa",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "levodopa",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "levofloxacin",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -14128,6 +14830,30 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "levonorgestrel",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "levonorgestrel",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "levonorgestrel",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "levonorgestrel",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "levorphanol",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -14177,6 +14903,42 @@
       },
       {
         "slug": "linaclotide",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "linagliptin",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "linagliptin",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "linagliptin",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "linagliptin",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "linagliptin",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "linagliptin",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -16180,6 +16942,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "misoprostol",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "mitapivat",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -17290,6 +18058,30 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "niraparib",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "niraparib",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "niraparib",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "niraparib",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "nirmatrelvir",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -17494,6 +18286,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "ocrelizumab",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ocrelizumab",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "octreotide",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -17633,6 +18437,72 @@
       },
       {
         "slug": "olipudase-alfa-rpcp",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olmesartan-medoxomil",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olmesartan-medoxomil",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olmesartan-medoxomil",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olmesartan-medoxomil",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olmesartan-medoxomil",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olmesartan-medoxomil",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olmesartan-medoxomil",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olodaterol",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olodaterol",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olodaterol",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olodaterol",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -19048,6 +19918,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "pertuzumab",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pertuzumab",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "pexidartinib",
         "path": "pharmacokinetics.proteinBinding",
         "module": "pharmacokinetics",
@@ -19924,6 +20806,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "promethazine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "promethazine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "propafenone",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -20075,6 +20969,18 @@
       },
       {
         "slug": "pyrazinamide",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pyridoxine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pyridoxine-hcl",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
         "state": "VERIFIED"
@@ -20124,6 +21030,36 @@
       {
         "slug": "quinapril",
         "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "quinidine",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "quinidine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "quinidine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "quinidine",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "quinidine",
+        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -20554,6 +21490,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "relugolix",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "relugolix",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "relugolix",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "relugolix",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "relugolix",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "remdesivir",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -20860,6 +21826,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "rifabutin",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "rifabutin",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "rifabutin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "rifampin",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -20927,6 +21911,30 @@
       },
       {
         "slug": "rilonacept",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "rilpivirine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "rilpivirine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "rilpivirine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "rilpivirine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -21844,6 +22852,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "saxagliptin",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "saxagliptin",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "saxagliptin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "scopolamine",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -21977,6 +23003,12 @@
       },
       {
         "slug": "selegiline",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "selenious-acid",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -22486,6 +23518,18 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "sofosbuvir",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sofosbuvir",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "sofpironium",
         "path": "pharmacokinetics.proteinBinding",
         "module": "pharmacokinetics",
@@ -22961,6 +24005,42 @@
       },
       {
         "slug": "sulindac",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sumatriptan",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sumatriptan",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sumatriptan",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sumatriptan",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sumatriptan",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sumatriptan",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -23836,6 +24916,42 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "tenofovir-alafenamide",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tenofovir-alafenamide",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tenofovir-disoproxil",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tenofovir-disoproxil",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tenofovir-disoproxil",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tenofovir-disoproxil",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "teplizumab",
         "path": "pharmacokinetics.volumeOfDistribution",
         "module": "pharmacokinetics",
@@ -24053,6 +25169,18 @@
       },
       {
         "slug": "tetrabenazine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tetracaine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tetracaine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -24307,6 +25435,18 @@
         "slug": "tildrakizumab-asmn",
         "path": "pharmacokinetics.volumeOfDistribution",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "timolol",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "timolol",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -25168,6 +26308,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "treprostinil",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "treprostinil",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "treprostinil",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "treprostinil",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "treprostinil",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "treprostinil-diolamine",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -25224,6 +26394,12 @@
       {
         "slug": "triamcinolone-acetonide",
         "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "triamterene",
+        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -25355,6 +26531,24 @@
       },
       {
         "slug": "trimethobenzamide",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "trimethoprim",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "trimethoprim",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "trimethoprim",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -25817,6 +27011,48 @@
       },
       {
         "slug": "valrubicin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valsartan",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valsartan",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valsartan",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valsartan",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valsartan",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valsartan",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valsartan",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -26915,6 +28151,24 @@
       },
       {
         "slug": "zidesamtinib",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "zidovudine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "zidovudine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "zidovudine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -31996,18 +33250,6 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
-        "slug": "avobenzone",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "avobenzone",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
         "slug": "azatadine",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -32279,18 +33521,6 @@
       },
       {
         "slug": "beryllium-oxyacetate",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "beryllium-sulfate",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "beryllium-sulfate",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -33227,18 +34457,6 @@
       },
       {
         "slug": "calcium-phytate",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "calcium-picrate",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "calcium-picrate",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -38051,18 +39269,6 @@
       },
       {
         "slug": "fluprednisolone",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "formaldehyde",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "formaldehyde",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -44524,18 +45730,6 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
-        "slug": "ozone",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "ozone",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
         "slug": "paba",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -45820,18 +47014,6 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
-        "slug": "potassium-hydroxide",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "NOT_APPLICABLE"
-      },
-      {
-        "slug": "potassium-hydroxide",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
         "slug": "potassium-oxalate",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -46115,6 +47297,18 @@
       },
       {
         "slug": "propane",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "propanediol",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "propanediol",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -49967,18 +51161,6 @@
       },
       {
         "slug": "trioxsalen",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "tripelennamine",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "tripelennamine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -63763,16 +64945,16 @@
     "byModule": [
       {
         "module": "molecularIdentity",
-        "checked": 1934,
-        "verified": 1934,
+        "checked": 2032,
+        "verified": 2032,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
       },
       {
         "module": "pharmacokinetics",
-        "checked": 3128,
-        "verified": 3128,
+        "checked": 3239,
+        "verified": 3239,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
@@ -63786,12 +64968,12 @@
         "verifiedShare": 1
       }
     ],
-    "statementsChecked": 15611,
-    "statementsVerbatim": 15611,
-    "adverseTermsChecked": 5838,
-    "adverseTermsFound": 5838,
-    "totalChecked": 7146,
-    "totalVerified": 7146,
+    "statementsChecked": 16494,
+    "statementsVerbatim": 16494,
+    "adverseTermsChecked": 6009,
+    "adverseTermsFound": 6009,
+    "totalChecked": 7355,
+    "totalVerified": 7355,
     "overallVerifiedShare": 1,
     "normalisationRules": [
       {
@@ -63825,7 +65007,7 @@
     ],
     "engineComparison": {
       "disagreements": [],
-      "recordsCompared": 7915,
+      "recordsCompared": 7918,
       "agreementRate": 1,
       "note": "This check is written independently of the background engine so that agreement means something. Where they differ, neither is assumed correct: either may be the stricter, and the difference is the finding."
     }
@@ -63834,7 +65016,7 @@
   "caveats": [
     "A verified binding proves transcription fidelity and nothing else. It does not say the source is correct, current, or applicable to any person; it says the number displayed here is the number that document prints.",
     "A value that fails this check is a question about this corpus, never a statement that the source is wrong.",
-    "3316 value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.",
+    "3305 value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.",
     "Only numerals are checked this way. A value whose display carries no number cannot be verified by this method and is counted apart rather than counted as passing.",
     "Consensus readings are verified when any one of the sources cited for them prints the reading. Excerpts stored for other contributing sources may be trimmed around a different part of the sentence, and requiring all of them would report a storage detail as a failure.",
     "The 7 normalisation rules are listed in the output so a third party can reproduce this check exactly. Loosening them would raise the pass rate without improving the corpus, which is why they are published rather than described.",

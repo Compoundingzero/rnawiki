@@ -378,6 +378,90 @@ export function extractProductVariant(
 const MIN_STATEMENT_CHARS = 40
 const MAX_STATEMENT_CHARS = 400
 
+/**
+ * The floor for a short statement, allowed only where a label legitimately states one.
+ *
+ * Forty characters was set to keep section headings out, and it also threw away real indications.
+ * Homeopathic and botanical labels state a use in a few words — "INDICATIONS Late growth, fracture
+ * consolidation." is a whole published indications section, 35 characters once the heading comes
+ * off. 579 rows held a label naming the substance alone and carried nothing, largely for this
+ * reason.
+ *
+ * Lowering the floor everywhere was worse than leaving it. Every other statement module is prose,
+ * and a short fragment inside prose is a cross-reference or a category label rather than a
+ * statement: "See Boxed WARNING.", "Pregnancy Category C.", "TPOXX Capsules: None." all appeared
+ * the moment the floor came down, and "SHAKE WELL BEFORE USE." and "First, wet your skin." are
+ * directions, which is the one kind of sentence this project must never present as its own. The
+ * short floor is therefore a property of the call, granted only to recorded uses.
+ */
+const MIN_SHORT_STATEMENT_CHARS = 15
+const MIN_SHORT_STATEMENT_WORDS = 3
+
+/**
+ * Sentences that are about the label rather than about the medicine.
+ *
+ * These survive every structural guard — they have punctuation, several words and no heading shape
+ * — so they are named. A cross-reference points at a section this record does not hold; a
+ * disclaimer describes the regulatory status of the claim rather than the use; an instruction tells
+ * a reader what to do, which is the line this project does not cross.
+ */
+const NOT_A_STATEMENT_ABOUT_THE_MEDICINE =
+  /^\s*(?:see\b|refer to\b|for (?:external|topical|rectal|oral) use only\b|shake well\b|keep out of reach\b|store\b|do not use if\b)|\bnot (?:been )?evaluated by the food and drug administration\b|^\s*not fda evaluated\.?\s*$|^\s*pregnancy category\b/iu
+
+/**
+ * A short sentence that is not a use, in the shapes this corpus actually produces.
+ *
+ * Named rather than derived, because the failures are specific and the harm from each is different.
+ * A direction — "First, wet your skin.", "No rinsing required.", "After changing diapers." — is an
+ * instruction to a reader, and printing one under "what the label says it is for" would make
+ * RNAWiki the thing telling them to do it. A fragment closing a bracket it never opened
+ * ("Morquio A syndrome).") is the tail of a sentence the splitter cut. A pack size
+ * ("HAIR GROWTH 60ml/2 fl oz") is carton text. A leading conjunction is a heading the splitter
+ * halved ("& USAGE IMMUNE SUPPORT" from "INDICATIONS & USAGE").
+ *
+ * These matter only at short lengths: a forty-character sentence has room to be a real statement
+ * that merely begins with one of these words.
+ */
+const SHORT_STATEMENT_IS_NOT_A_USE = [
+  /^\s*[&/,;-]/u,
+  /^\s*(?:first|then|next|apply|wet|rinse|wash|shake|store|keep|spray|remove|replace|discard|dispense|clean|dry|hold|press|insert|place|repeat|massage|cover|open|close|squeeze|swallow|chew|dissolve)\b/iu,
+  /^\s*(?:after|before|while|during|directions?)\b/iu,
+  // A frequency is a direction however it is phrased: "Use 2-3 times a week" says when to use the
+  // product, not what it is for.
+  /\btimes?\s+(?:a|per)\s+(?:day|week|month)\b/iu,
+  /\b(?:once|twice|thrice)\s+(?:a|per|daily)\b/iu,
+  /\bevery\s+\d+\s*(?:hours?|days?|weeks?)\b/iu,
+  /\bno rinsing\b/iu,
+  /\d\s*(?:ml|mg|g|gm|oz|fl\s*oz|lb|kg|mcg|count|ct)\b/iu,
+] as const
+
+function closesABracketItNeverOpened(sentence: string): boolean {
+  let depth = 0
+  for (const char of sentence) {
+    if (char === '(') depth += 1
+    else if (char === ')') {
+      depth -= 1
+      if (depth < 0) return true
+    }
+  }
+  return false
+}
+
+function isAdmissibleStatement(sentence: string, allowShort = false): boolean {
+  if (sentence.length > MAX_STATEMENT_CHARS) return false
+  if (SECTION_HEADING.test(sentence)) return false
+  if (UNFILLED_TEMPLATE.test(sentence)) return false
+  if (NOT_A_STATEMENT_ABOUT_THE_MEDICINE.test(sentence)) return false
+  if (sentence.length >= MIN_STATEMENT_CHARS) return true
+  if (!allowShort || sentence.length < MIN_SHORT_STATEMENT_CHARS) return false
+  if (closesABracketItNeverOpened(sentence)) return false
+  if (SHORT_STATEMENT_IS_NOT_A_USE.some((pattern) => pattern.test(sentence))) return false
+  return (
+    sentence.split(/\s+/u).filter((word) => /[A-Za-z]/u.test(word)).length >=
+    MIN_SHORT_STATEMENT_WORDS
+  )
+}
+
 /** How many statements one module keeps. Enough to be complete; short enough to stay readable. */
 const MAX_MECHANISM_STATEMENTS = 4
 const MAX_CONTRAINDICATION_STATEMENTS = 4
@@ -415,17 +499,15 @@ function stripSectionHeading(sentence: string, heading: RegExp | undefined): str
 const UNFILLED_TEMPLATE =
   /\[\s*insert\b|\[\s*(?:drug|product|company|sponsor|trade)\s*name\s*\]|\bto be completed by\b/iu
 
-function statementSentences(text: string | undefined, heading?: RegExp): string[] {
+function statementSentences(
+  text: string | undefined,
+  heading?: RegExp,
+  options: { allowShort?: boolean } = {},
+): string[] {
   if (!text) return []
   return sentences(text)
     .map((sentence, index) => (index === 0 ? stripSectionHeading(sentence, heading) : sentence))
-    .filter(
-      (sentence) =>
-        sentence.length >= MIN_STATEMENT_CHARS &&
-        sentence.length <= MAX_STATEMENT_CHARS &&
-        !SECTION_HEADING.test(sentence) &&
-        !UNFILLED_TEMPLATE.test(sentence),
-    )
+    .filter((sentence) => isAdmissibleStatement(sentence, options.allowShort ?? false))
 }
 
 const MECHANISM_HEADING = /mechanism of action/u
@@ -676,10 +758,12 @@ export function extractRecordedUses(
   artifact: LabelArtifact,
   options: ExtractionOptions,
 ): RecordedUses | null {
-  const statements = statementSentences(
-    artifact.sections.indications_and_usage,
-    USES_HEADING,
-  ).slice(0, MAX_USE_STATEMENTS)
+  // Uses is the one module where a terse statement is the label's own voice rather than a fragment
+  // of prose: "Loss of appetite", "Painful dry cough" is what a homeopathic indications section
+  // says, in full.
+  const statements = statementSentences(artifact.sections.indications_and_usage, USES_HEADING, {
+    allowShort: true,
+  }).slice(0, MAX_USE_STATEMENTS)
   if (statements.length === 0) return null
   const source = labelSource(artifact, options)
   return { statements: statements.map((sentence) => toStatement(sentence, source)) }

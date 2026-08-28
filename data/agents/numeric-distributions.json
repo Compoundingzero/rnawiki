@@ -15,18 +15,18 @@
     "binEdgeBasis": "edges computed once per distribution and shared by all of its strata"
   },
   "coverage": {
-    "considered": 7915,
-    "used": 3291,
-    "reason": "3291 of 7915 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
+    "considered": 7918,
+    "used": 3356,
+    "reason": "3356 of 7918 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
   },
   "output": {
     "fields": [
       {
         "field": "halfLife",
         "label": "Recorded elimination half-life",
-        "recordedValues": 1031,
-        "numericValues": 795,
-        "displayOnlyValues": 236,
+        "recordedValues": 1077,
+        "numericValues": 835,
+        "displayOnlyValues": 242,
         "offUnitValues": [],
         "offUnitValueCount": 0,
         "distributions": [
@@ -35,7 +35,7 @@
             "unit": "hours",
             "label": "Recorded elimination half-life, in hours",
             "scale": "log10",
-            "scaleReason": "Recorded values run from 0.400 to 561 hours, a span of about 3.1 orders of magnitude. Split into 12 equal-width linear bins, 90.8 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "scaleReason": "Recorded values run from 0.400 to 561 hours, a span of about 3.1 orders of magnitude. Split into 12 equal-width linear bins, 90.9 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
             "binEdges": [
               0.4,
               0.7316475070429229,
@@ -56,10 +56,10 @@
               "key": "overall",
               "label": "all recorded values in hours",
               "summary": {
-                "count": 795,
+                "count": 835,
                 "min": 0.4,
-                "p25": 3.4,
-                "median": 8.5,
+                "p25": 3.5,
+                "median": 9,
                 "p75": 20,
                 "max": 561,
                 "robustScale": 9.636899999999999
@@ -69,61 +69,61 @@
                   "lowerBound": 0.4,
                   "upperBound": 0.7316475070429229,
                   "upperInclusive": false,
-                  "count": 14
+                  "count": 15
                 },
                 {
                   "lowerBound": 0.7316475070429229,
                   "upperBound": 1.3382701864053101,
                   "upperInclusive": false,
-                  "count": 40
+                  "count": 42
                 },
                 {
                   "lowerBound": 1.3382701864053101,
                   "upperBound": 2.447855114083283,
                   "upperInclusive": false,
-                  "count": 82
+                  "count": 84
                 },
                 {
                   "lowerBound": 2.447855114083283,
                   "upperBound": 4.47741772955326,
                   "upperInclusive": false,
-                  "count": 114
+                  "count": 117
                 },
                 {
                   "lowerBound": 4.47741772955326,
                   "upperBound": 8.189728799543563,
                   "upperInclusive": false,
-                  "count": 135
+                  "count": 143
                 },
                 {
                   "lowerBound": 8.189728799543563,
                   "upperBound": 14.979986648859201,
                   "upperInclusive": false,
-                  "count": 130
+                  "count": 142
                 },
                 {
                   "lowerBound": 14.979986648859201,
                   "upperBound": 27.40017471793527,
                   "upperInclusive": false,
-                  "count": 128
+                  "count": 136
                 },
                 {
                   "lowerBound": 27.40017471793527,
                   "upperBound": 50.11817381229467,
                   "upperInclusive": false,
-                  "count": 93
+                  "count": 95
                 },
                 {
                   "lowerBound": 50.11817381229467,
                   "upperBound": 91.67209231827317,
                   "upperInclusive": false,
-                  "count": 32
+                  "count": 33
                 },
                 {
                   "lowerBound": 91.67209231827317,
                   "upperBound": 167.67914452518318,
                   "upperInclusive": false,
-                  "count": 16
+                  "count": 17
                 },
                 {
                   "lowerBound": 167.67914452518318,
@@ -139,8 +139,8 @@
                 }
               ],
               "logSpread": {
-                "medianAbsoluteDeviationLog10": 0.5823658271084983,
-                "spreadFactor": 3.822661363928927
+                "medianAbsoluteDeviationLog10": 0.5755159220922598,
+                "spreadFactor": 3.76284147333868
               }
             },
             "byRoute": {
@@ -151,13 +151,13 @@
                   "key": "oral",
                   "label": "recorded route: oral",
                   "summary": {
-                    "count": 473,
+                    "count": 501,
                     "min": 0.4,
                     "p25": 4,
                     "median": 10,
                     "p75": 21,
                     "max": 561,
-                    "robustScale": 10.526459999999998
+                    "robustScale": 10.3782
                   },
                   "histogram": [
                     {
@@ -170,7 +170,7 @@
                       "lowerBound": 0.7316475070429229,
                       "upperBound": 1.3382701864053101,
                       "upperInclusive": false,
-                      "count": 21
+                      "count": 22
                     },
                     {
                       "lowerBound": 1.3382701864053101,
@@ -182,43 +182,43 @@
                       "lowerBound": 2.447855114083283,
                       "upperBound": 4.47741772955326,
                       "upperInclusive": false,
-                      "count": 57
+                      "count": 60
                     },
                     {
                       "lowerBound": 4.47741772955326,
                       "upperBound": 8.189728799543563,
                       "upperInclusive": false,
-                      "count": 75
+                      "count": 80
                     },
                     {
                       "lowerBound": 8.189728799543563,
                       "upperBound": 14.979986648859201,
                       "upperInclusive": false,
-                      "count": 90
+                      "count": 102
                     },
                     {
                       "lowerBound": 14.979986648859201,
                       "upperBound": 27.40017471793527,
                       "upperInclusive": false,
-                      "count": 88
+                      "count": 91
                     },
                     {
                       "lowerBound": 27.40017471793527,
                       "upperBound": 50.11817381229467,
                       "upperInclusive": false,
-                      "count": 56
+                      "count": 58
                     },
                     {
                       "lowerBound": 50.11817381229467,
                       "upperBound": 91.67209231827317,
                       "upperInclusive": false,
-                      "count": 22
+                      "count": 23
                     },
                     {
                       "lowerBound": 91.67209231827317,
                       "upperBound": 167.67914452518318,
                       "upperInclusive": false,
-                      "count": 9
+                      "count": 10
                     },
                     {
                       "lowerBound": 167.67914452518318,
@@ -234,8 +234,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.5637011869616269,
-                    "spreadFactor": 3.6618553675835104
+                    "medianAbsoluteDeviationLog10": 0.5141471270766753,
+                    "spreadFactor": 3.2669848992863773
                   }
                 },
                 {
@@ -243,20 +243,20 @@
                   "key": "intravenous",
                   "label": "recorded route: intravenous",
                   "summary": {
-                    "count": 142,
+                    "count": 145,
                     "min": 0.5,
-                    "p25": 2.5,
-                    "median": 5.15,
-                    "p75": 23,
+                    "p25": 2.3,
+                    "median": 5.1,
+                    "p75": 20,
                     "max": 245,
-                    "robustScale": 5.48562
+                    "robustScale": 5.485619999999999
                   },
                   "histogram": [
                     {
                       "lowerBound": 0.4,
                       "upperBound": 0.7316475070429229,
                       "upperInclusive": false,
-                      "count": 1
+                      "count": 2
                     },
                     {
                       "lowerBound": 0.7316475070429229,
@@ -268,7 +268,7 @@
                       "lowerBound": 1.3382701864053101,
                       "upperBound": 2.447855114083283,
                       "upperInclusive": false,
-                      "count": 22
+                      "count": 23
                     },
                     {
                       "lowerBound": 2.447855114083283,
@@ -292,7 +292,7 @@
                       "lowerBound": 14.979986648859201,
                       "upperBound": 27.40017471793527,
                       "upperInclusive": false,
-                      "count": 10
+                      "count": 11
                     },
                     {
                       "lowerBound": 27.40017471793527,
@@ -326,8 +326,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.6089879786064585,
-                    "spreadFactor": 4.064320788551275
+                    "medianAbsoluteDeviationLog10": 0.6027364715113819,
+                    "spreadFactor": 4.006235467831607
                   }
                 },
                 {
@@ -335,13 +335,13 @@
                   "key": "subcutaneous",
                   "label": "recorded route: subcutaneous",
                   "summary": {
-                    "count": 44,
+                    "count": 46,
                     "min": 1,
-                    "p25": 4.475,
+                    "p25": 4.625,
                     "median": 15,
-                    "p75": 34.4,
+                    "p75": 34,
                     "max": 332,
-                    "robustScale": 16.45686
+                    "robustScale": 16.01208
                   },
                   "histogram": [
                     {
@@ -384,7 +384,7 @@
                       "lowerBound": 14.979986648859201,
                       "upperBound": 27.40017471793527,
                       "upperInclusive": false,
-                      "count": 12
+                      "count": 14
                     },
                     {
                       "lowerBound": 27.40017471793527,
@@ -418,8 +418,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.5916983209981591,
-                    "spreadFactor": 3.905694957317439
+                    "medianAbsoluteDeviationLog10": 0.5899858568571631,
+                    "spreadFactor": 3.890324756381359
                   }
                 },
                 {
@@ -699,8 +699,8 @@
                   }
                 }
               ],
-              "valuesBelowMinimum": 94,
-              "groupsBelowMinimum": 51,
+              "valuesBelowMinimum": 101,
+              "groupsBelowMinimum": 52,
               "valuesWithoutKey": 0,
               "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
             },
@@ -712,74 +712,74 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 708,
+                    "count": 748,
                     "min": 0.4,
-                    "p25": 3,
-                    "median": 8.649999999999999,
-                    "p75": 21,
+                    "p25": 3.2,
+                    "median": 9,
+                    "p75": 20,
                     "max": 561,
-                    "robustScale": 9.414510000000002
+                    "robustScale": 9.71103
                   },
                   "histogram": [
                     {
                       "lowerBound": 0.4,
                       "upperBound": 0.7316475070429229,
                       "upperInclusive": false,
-                      "count": 13
+                      "count": 14
                     },
                     {
                       "lowerBound": 0.7316475070429229,
                       "upperBound": 1.3382701864053101,
                       "upperInclusive": false,
-                      "count": 38
+                      "count": 40
                     },
                     {
                       "lowerBound": 1.3382701864053101,
                       "upperBound": 2.447855114083283,
                       "upperInclusive": false,
-                      "count": 76
+                      "count": 78
                     },
                     {
                       "lowerBound": 2.447855114083283,
                       "upperBound": 4.47741772955326,
                       "upperInclusive": false,
-                      "count": 105
+                      "count": 108
                     },
                     {
                       "lowerBound": 4.47741772955326,
                       "upperBound": 8.189728799543563,
                       "upperInclusive": false,
-                      "count": 109
+                      "count": 117
                     },
                     {
                       "lowerBound": 8.189728799543563,
                       "upperBound": 14.979986648859201,
                       "upperInclusive": false,
-                      "count": 113
+                      "count": 125
                     },
                     {
                       "lowerBound": 14.979986648859201,
                       "upperBound": 27.40017471793527,
                       "upperInclusive": false,
-                      "count": 117
+                      "count": 125
                     },
                     {
                       "lowerBound": 27.40017471793527,
                       "upperBound": 50.11817381229467,
                       "upperInclusive": false,
-                      "count": 81
+                      "count": 83
                     },
                     {
                       "lowerBound": 50.11817381229467,
                       "upperBound": 91.67209231827317,
                       "upperInclusive": false,
-                      "count": 30
+                      "count": 31
                     },
                     {
                       "lowerBound": 91.67209231827317,
                       "upperBound": 167.67914452518318,
                       "upperInclusive": false,
-                      "count": 15
+                      "count": 16
                     },
                     {
                       "lowerBound": 167.67914452518318,
@@ -795,8 +795,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.6010665427139642,
-                    "spreadFactor": 3.990860457459988
+                    "medianAbsoluteDeviationLog10": 0.6081246619410243,
+                    "spreadFactor": 4.056249512427353
                   }
                 },
                 {
@@ -903,8 +903,8 @@
       {
         "field": "tMax",
         "label": "Recorded time to maximum concentration",
-        "recordedValues": 413,
-        "numericValues": 406,
+        "recordedValues": 432,
+        "numericValues": 425,
         "displayOnlyValues": 7,
         "offUnitValues": [
           {
@@ -923,7 +923,7 @@
             "unit": "hours",
             "label": "Recorded time to maximum concentration, in hours",
             "scale": "log10",
-            "scaleReason": "Recorded values run from 0.150 to 168 hours, a span of about 3.0 orders of magnitude. Split into 12 equal-width linear bins, 93.3 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "scaleReason": "Recorded values run from 0.150 to 168 hours, a span of about 3.0 orders of magnitude. Split into 12 equal-width linear bins, 93.6 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
             "binEdges": [
               0.15,
               0.26927297027109215,
@@ -944,11 +944,11 @@
               "key": "overall",
               "label": "all recorded values in hours",
               "summary": {
-                "count": 404,
+                "count": 423,
                 "min": 0.15,
                 "p25": 1,
                 "median": 2,
-                "p75": 4,
+                "p75": 3.85,
                 "max": 168,
                 "robustScale": 1.4826
               },
@@ -969,31 +969,31 @@
                   "lowerBound": 0.4833862167907766,
                   "upperBound": 0.8677522825557233,
                   "upperInclusive": false,
-                  "count": 20
+                  "count": 22
                 },
                 {
                   "lowerBound": 0.8677522825557233,
                   "upperBound": 1.557748230555331,
                   "upperInclusive": false,
-                  "count": 122
+                  "count": 130
                 },
                 {
                   "lowerBound": 1.557748230555331,
                   "upperBound": 2.796396619841148,
                   "upperInclusive": false,
-                  "count": 103
+                  "count": 108
                 },
                 {
                   "lowerBound": 2.796396619841148,
                   "upperBound": 5.0199601592044525,
                   "upperInclusive": false,
-                  "count": 88
+                  "count": 91
                 },
                 {
                   "lowerBound": 5.0199601592044525,
                   "upperBound": 9.011597218076849,
                   "upperInclusive": false,
-                  "count": 22
+                  "count": 23
                 },
                 {
                   "lowerBound": 9.011597218076849,
@@ -1039,7 +1039,7 @@
                   "key": "oral",
                   "label": "recorded route: oral",
                   "summary": {
-                    "count": 304,
+                    "count": 321,
                     "min": 0.25,
                     "p25": 1,
                     "median": 2,
@@ -1064,25 +1064,25 @@
                       "lowerBound": 0.4833862167907766,
                       "upperBound": 0.8677522825557233,
                       "upperInclusive": false,
-                      "count": 16
+                      "count": 17
                     },
                     {
                       "lowerBound": 0.8677522825557233,
                       "upperBound": 1.557748230555331,
                       "upperInclusive": false,
-                      "count": 103
+                      "count": 111
                     },
                     {
                       "lowerBound": 1.557748230555331,
                       "upperBound": 2.796396619841148,
                       "upperInclusive": false,
-                      "count": 83
+                      "count": 88
                     },
                     {
                       "lowerBound": 2.796396619841148,
                       "upperBound": 5.0199601592044525,
                       "upperInclusive": false,
-                      "count": 66
+                      "count": 69
                     },
                     {
                       "lowerBound": 5.0199601592044525,
@@ -1122,8 +1122,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.3668323210714537,
-                    "spreadFactor": 2.3271925667690954
+                    "medianAbsoluteDeviationLog10": 0.36032821098230017,
+                    "spreadFactor": 2.292599593050435
                   }
                 },
                 {
@@ -1219,7 +1219,7 @@
                   }
                 }
               ],
-              "valuesBelowMinimum": 81,
+              "valuesBelowMinimum": 83,
               "groupsBelowMinimum": 41,
               "valuesWithoutKey": 0,
               "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
@@ -1232,7 +1232,7 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 321,
+                    "count": 340,
                     "min": 0.15,
                     "p25": 1,
                     "median": 2,
@@ -1257,31 +1257,31 @@
                       "lowerBound": 0.4833862167907766,
                       "upperBound": 0.8677522825557233,
                       "upperInclusive": false,
-                      "count": 18
+                      "count": 20
                     },
                     {
                       "lowerBound": 0.8677522825557233,
                       "upperBound": 1.557748230555331,
                       "upperInclusive": false,
-                      "count": 103
+                      "count": 111
                     },
                     {
                       "lowerBound": 1.557748230555331,
                       "upperBound": 2.796396619841148,
                       "upperInclusive": false,
-                      "count": 82
+                      "count": 87
                     },
                     {
                       "lowerBound": 2.796396619841148,
                       "upperBound": 5.0199601592044525,
                       "upperInclusive": false,
-                      "count": 69
+                      "count": 72
                     },
                     {
                       "lowerBound": 5.0199601592044525,
                       "upperBound": 9.011597218076849,
                       "upperInclusive": false,
-                      "count": 14
+                      "count": 15
                     },
                     {
                       "lowerBound": 9.011597218076849,
@@ -1423,8 +1423,8 @@
       {
         "field": "bioavailability",
         "label": "Recorded bioavailability",
-        "recordedValues": 415,
-        "numericValues": 408,
+        "recordedValues": 432,
+        "numericValues": 425,
         "displayOnlyValues": 7,
         "offUnitValues": [],
         "offUnitValueCount": 0,
@@ -1453,13 +1453,13 @@
               "key": "overall",
               "label": "all recorded values in percent",
               "summary": {
-                "count": 408,
+                "count": 425,
                 "min": 0.002,
-                "p25": 37.75,
+                "p25": 37,
                 "median": 60,
                 "p75": 80,
                 "max": 100,
-                "robustScale": 31.1346
+                "robustScale": 29.651999999999997
               },
               "histogram": [
                 {
@@ -1472,25 +1472,25 @@
                   "lowerBound": 10,
                   "upperBound": 20,
                   "upperInclusive": false,
-                  "count": 24
+                  "count": 27
                 },
                 {
                   "lowerBound": 20,
                   "upperBound": 30,
                   "upperInclusive": false,
-                  "count": 19
+                  "count": 21
                 },
                 {
                   "lowerBound": 30,
                   "upperBound": 40,
                   "upperInclusive": false,
-                  "count": 27
+                  "count": 29
                 },
                 {
                   "lowerBound": 40,
                   "upperBound": 50,
                   "upperInclusive": false,
-                  "count": 40
+                  "count": 41
                 },
                 {
                   "lowerBound": 50,
@@ -1502,19 +1502,19 @@
                   "lowerBound": 60,
                   "upperBound": 70,
                   "upperInclusive": false,
-                  "count": 55
+                  "count": 59
                 },
                 {
                   "lowerBound": 70,
                   "upperBound": 80,
                   "upperInclusive": false,
-                  "count": 56
+                  "count": 59
                 },
                 {
                   "lowerBound": 80,
                   "upperBound": 90,
                   "upperInclusive": false,
-                  "count": 49
+                  "count": 51
                 },
                 {
                   "lowerBound": 90,
@@ -1532,9 +1532,9 @@
                   "key": "oral",
                   "label": "recorded route: oral",
                   "summary": {
-                    "count": 241,
+                    "count": 257,
                     "min": 0.002,
-                    "p25": 30,
+                    "p25": 29,
                     "median": 55,
                     "p75": 80,
                     "max": 100,
@@ -1551,25 +1551,25 @@
                       "lowerBound": 10,
                       "upperBound": 20,
                       "upperInclusive": false,
-                      "count": 21
+                      "count": 24
                     },
                     {
                       "lowerBound": 20,
                       "upperBound": 30,
                       "upperInclusive": false,
-                      "count": 15
+                      "count": 17
                     },
                     {
                       "lowerBound": 30,
                       "upperBound": 40,
                       "upperInclusive": false,
-                      "count": 18
+                      "count": 20
                     },
                     {
                       "lowerBound": 40,
                       "upperBound": 50,
                       "upperInclusive": false,
-                      "count": 29
+                      "count": 30
                     },
                     {
                       "lowerBound": 50,
@@ -1581,19 +1581,19 @@
                       "lowerBound": 60,
                       "upperBound": 70,
                       "upperInclusive": false,
-                      "count": 24
+                      "count": 28
                     },
                     {
                       "lowerBound": 70,
                       "upperBound": 80,
                       "upperInclusive": false,
-                      "count": 27
+                      "count": 29
                     },
                     {
                       "lowerBound": 80,
                       "upperBound": 90,
                       "upperInclusive": false,
-                      "count": 24
+                      "count": 26
                     },
                     {
                       "lowerBound": 90,
@@ -1756,7 +1756,7 @@
                   ]
                 }
               ],
-              "valuesBelowMinimum": 75,
+              "valuesBelowMinimum": 76,
               "groupsBelowMinimum": 34,
               "valuesWithoutKey": 0,
               "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
@@ -1769,13 +1769,13 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 348,
+                    "count": 365,
                     "min": 0.002,
-                    "p25": 36,
-                    "median": 61,
-                    "p75": 80.25,
+                    "p25": 35,
+                    "median": 60,
+                    "p75": 80,
                     "max": 100,
-                    "robustScale": 31.1346
+                    "robustScale": 32.6172
                   },
                   "histogram": [
                     {
@@ -1788,25 +1788,25 @@
                       "lowerBound": 10,
                       "upperBound": 20,
                       "upperInclusive": false,
-                      "count": 22
+                      "count": 25
                     },
                     {
                       "lowerBound": 20,
                       "upperBound": 30,
                       "upperInclusive": false,
-                      "count": 15
+                      "count": 17
                     },
                     {
                       "lowerBound": 30,
                       "upperBound": 40,
                       "upperInclusive": false,
-                      "count": 23
+                      "count": 25
                     },
                     {
                       "lowerBound": 40,
                       "upperBound": 50,
                       "upperInclusive": false,
-                      "count": 33
+                      "count": 34
                     },
                     {
                       "lowerBound": 50,
@@ -1818,19 +1818,19 @@
                       "lowerBound": 60,
                       "upperBound": 70,
                       "upperInclusive": false,
-                      "count": 45
+                      "count": 49
                     },
                     {
                       "lowerBound": 70,
                       "upperBound": 80,
                       "upperInclusive": false,
-                      "count": 49
+                      "count": 52
                     },
                     {
                       "lowerBound": 80,
                       "upperBound": 90,
                       "upperInclusive": false,
-                      "count": 43
+                      "count": 45
                     },
                     {
                       "lowerBound": 90,
@@ -1928,8 +1928,8 @@
       {
         "field": "proteinBinding",
         "label": "Recorded plasma protein binding",
-        "recordedValues": 465,
-        "numericValues": 461,
+        "recordedValues": 479,
+        "numericValues": 475,
         "displayOnlyValues": 4,
         "offUnitValues": [],
         "offUnitValueCount": 0,
@@ -1958,7 +1958,7 @@
               "key": "overall",
               "label": "all recorded values in percent",
               "summary": {
-                "count": 461,
+                "count": 475,
                 "min": 1,
                 "p25": 50,
                 "median": 88,
@@ -2007,25 +2007,25 @@
                   "lowerBound": 60,
                   "upperBound": 70,
                   "upperInclusive": false,
-                  "count": 21
+                  "count": 22
                 },
                 {
                   "lowerBound": 70,
                   "upperBound": 80,
                   "upperInclusive": false,
-                  "count": 28
+                  "count": 29
                 },
                 {
                   "lowerBound": 80,
                   "upperBound": 90,
                   "upperInclusive": false,
-                  "count": 52
+                  "count": 54
                 },
                 {
                   "lowerBound": 90,
                   "upperBound": 100,
                   "upperInclusive": true,
-                  "count": 222
+                  "count": 232
                 }
               ]
             },
@@ -2037,13 +2037,13 @@
                   "key": "oral",
                   "label": "recorded route: oral",
                   "summary": {
-                    "count": 282,
+                    "count": 294,
                     "min": 1,
-                    "p25": 55,
-                    "median": 90.8,
+                    "p25": 57,
+                    "median": 91,
                     "p75": 98,
                     "max": 99.92,
-                    "robustScale": 12.157320000000004
+                    "robustScale": 11.8608
                   },
                   "histogram": [
                     {
@@ -2086,25 +2086,25 @@
                       "lowerBound": 60,
                       "upperBound": 70,
                       "upperInclusive": false,
-                      "count": 9
+                      "count": 10
                     },
                     {
                       "lowerBound": 70,
                       "upperBound": 80,
                       "upperInclusive": false,
-                      "count": 19
+                      "count": 20
                     },
                     {
                       "lowerBound": 80,
                       "upperBound": 90,
                       "upperInclusive": false,
-                      "count": 32
+                      "count": 34
                     },
                     {
                       "lowerBound": 90,
                       "upperBound": 100,
                       "upperInclusive": true,
-                      "count": 148
+                      "count": 156
                     }
                   ]
                 },
@@ -2189,13 +2189,13 @@
                   "key": "subcutaneous",
                   "label": "recorded route: subcutaneous",
                   "summary": {
-                    "count": 17,
+                    "count": 18,
                     "min": 27.3,
-                    "p25": 80,
-                    "median": 86,
+                    "p25": 80.475,
+                    "median": 87,
                     "p75": 98,
                     "max": 99,
-                    "robustScale": 15.715559999999991
+                    "robustScale": 15.270779999999995
                   },
                   "histogram": [
                     {
@@ -2256,7 +2256,7 @@
                       "lowerBound": 90,
                       "upperBound": 100,
                       "upperInclusive": true,
-                      "count": 7
+                      "count": 8
                     }
                   ]
                 },
@@ -2337,8 +2337,8 @@
                   ]
                 }
               ],
-              "valuesBelowMinimum": 82,
-              "groupsBelowMinimum": 41,
+              "valuesBelowMinimum": 83,
+              "groupsBelowMinimum": 42,
               "valuesWithoutKey": 0,
               "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
             },
@@ -2350,13 +2350,13 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 376,
+                    "count": 390,
                     "min": 1,
-                    "p25": 50,
-                    "median": 88,
+                    "p25": 51.25,
+                    "median": 88.55,
                     "p75": 98,
                     "max": 99.92,
-                    "robustScale": 16.3086
+                    "robustScale": 15.493170000000003
                   },
                   "histogram": [
                     {
@@ -2399,25 +2399,25 @@
                       "lowerBound": 60,
                       "upperBound": 70,
                       "upperInclusive": false,
-                      "count": 18
+                      "count": 19
                     },
                     {
                       "lowerBound": 70,
                       "upperBound": 80,
                       "upperInclusive": false,
-                      "count": 24
+                      "count": 25
                     },
                     {
                       "lowerBound": 80,
                       "upperBound": 90,
                       "upperInclusive": false,
-                      "count": 42
+                      "count": 44
                     },
                     {
                       "lowerBound": 90,
                       "upperBound": 100,
                       "upperInclusive": true,
-                      "count": 182
+                      "count": 192
                     }
                   ]
                 },
@@ -2509,8 +2509,8 @@
       {
         "field": "volumeOfDistribution",
         "label": "Recorded volume of distribution",
-        "recordedValues": 692,
-        "numericValues": 690,
+        "recordedValues": 707,
+        "numericValues": 705,
         "displayOnlyValues": 2,
         "offUnitValues": [],
         "offUnitValueCount": 0,
@@ -2541,13 +2541,13 @@
               "key": "overall",
               "label": "all recorded values in litres",
               "summary": {
-                "count": 559,
+                "count": 569,
                 "min": 0.56,
-                "p25": 6.18,
-                "median": 43,
-                "p75": 227.75,
+                "p25": 6.3,
+                "median": 42.5,
+                "p75": 220,
                 "max": 92800,
-                "robustScale": 59.007479999999994
+                "robustScale": 58.26617999999999
               },
               "histogram": [
                 {
@@ -2560,31 +2560,31 @@
                   "lowerBound": 1.5245254875202987,
                   "upperBound": 4.150317789462508,
                   "upperInclusive": false,
-                  "count": 67
+                  "count": 68
                 },
                 {
                   "lowerBound": 4.150317789462508,
                   "upperBound": 11.298687948829457,
                   "upperInclusive": false,
-                  "count": 132
+                  "count": 133
                 },
                 {
                   "lowerBound": 11.298687948829457,
                   "upperBound": 30.75917455987313,
                   "upperInclusive": false,
-                  "count": 59
+                  "count": 63
                 },
                 {
                   "lowerBound": 30.75917455987313,
                   "upperBound": 83.73775998502234,
                   "upperInclusive": false,
-                  "count": 61
+                  "count": 62
                 },
                 {
                   "lowerBound": 83.73775998502234,
                   "upperBound": 227.96490958040013,
                   "upperInclusive": false,
-                  "count": 93
+                  "count": 95
                 },
                 {
                   "lowerBound": 227.96490958040013,
@@ -2596,7 +2596,7 @@
                   "lowerBound": 620.6041337778217,
                   "upperBound": 1689.5121778656178,
                   "upperInclusive": false,
-                  "count": 38
+                  "count": 39
                 },
                 {
                   "lowerBound": 1689.5121778656178,
@@ -2624,8 +2624,8 @@
                 }
               ],
               "logSpread": {
-                "medianAbsoluteDeviationLog10": 1.1947743196304526,
-                "spreadFactor": 15.659371221506499
+                "medianAbsoluteDeviationLog10": 1.1705717657655372,
+                "spreadFactor": 14.810569749463234
               }
             },
             "byRoute": {
@@ -2636,13 +2636,13 @@
                   "key": "oral",
                   "label": "recorded route: oral",
                   "summary": {
-                    "count": 262,
+                    "count": 267,
                     "min": 0.56,
-                    "p25": 67,
-                    "median": 164.5,
-                    "p75": 549,
+                    "p25": 61.2,
+                    "median": 163,
+                    "p75": 521.5,
                     "max": 92800,
-                    "robustScale": 197.1858
+                    "robustScale": 195.70319999999998
                   },
                   "histogram": [
                     {
@@ -2667,13 +2667,13 @@
                       "lowerBound": 11.298687948829457,
                       "upperBound": 30.75917455987313,
                       "upperInclusive": false,
-                      "count": 23
+                      "count": 27
                     },
                     {
                       "lowerBound": 30.75917455987313,
                       "upperBound": 83.73775998502234,
                       "upperInclusive": false,
-                      "count": 47
+                      "count": 48
                     },
                     {
                       "lowerBound": 83.73775998502234,
@@ -2719,8 +2719,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.6666732089973456,
-                    "spreadFactor": 4.641658756301228
+                    "medianAbsoluteDeviationLog10": 0.6954189162437379,
+                    "spreadFactor": 4.959283278180937
                   }
                 },
                 {
@@ -2728,11 +2728,11 @@
                   "key": "intravenous",
                   "label": "recorded route: intravenous",
                   "summary": {
-                    "count": 153,
+                    "count": 155,
                     "min": 0.56,
-                    "p25": 4.5,
+                    "p25": 4.2,
                     "median": 6.4,
-                    "p75": 26,
+                    "p75": 24.2,
                     "max": 5000,
                     "robustScale": 4.848102000000001
                   },
@@ -2747,13 +2747,13 @@
                       "lowerBound": 1.5245254875202987,
                       "upperBound": 4.150317789462508,
                       "upperInclusive": false,
-                      "count": 37
+                      "count": 38
                     },
                     {
                       "lowerBound": 4.150317789462508,
                       "upperBound": 11.298687948829457,
                       "upperInclusive": false,
-                      "count": 63
+                      "count": 64
                     },
                     {
                       "lowerBound": 11.298687948829457,
@@ -2820,13 +2820,13 @@
                   "key": "subcutaneous",
                   "label": "recorded route: subcutaneous",
                   "summary": {
-                    "count": 93,
+                    "count": 94,
                     "min": 1.44,
-                    "p25": 4,
-                    "median": 5.63,
+                    "p25": 4.05,
+                    "median": 5.8149999999999995,
                     "p75": 10.8,
                     "max": 481,
-                    "robustScale": 3.1579379999999997
+                    "robustScale": 3.2394810000000005
                   },
                   "histogram": [
                     {
@@ -2863,7 +2863,7 @@
                       "lowerBound": 83.73775998502234,
                       "upperBound": 227.96490958040013,
                       "upperInclusive": false,
-                      "count": 3
+                      "count": 4
                     },
                     {
                       "lowerBound": 227.96490958040013,
@@ -2903,12 +2903,12 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.23639135982911819,
-                    "spreadFactor": 1.7234209177765454
+                    "medianAbsoluteDeviationLog10": 0.25688300863521024,
+                    "spreadFactor": 1.8066873703604613
                   }
                 }
               ],
-              "valuesBelowMinimum": 51,
+              "valuesBelowMinimum": 53,
               "groupsBelowMinimum": 30,
               "valuesWithoutKey": 0,
               "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
@@ -2921,13 +2921,13 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 519,
+                    "count": 529,
                     "min": 0.56,
                     "p25": 6,
-                    "median": 44,
-                    "p75": 230.5,
+                    "median": 43,
+                    "p75": 226.5,
                     "max": 92800,
-                    "robustScale": 60.49007999999999
+                    "robustScale": 59.007479999999994
                   },
                   "histogram": [
                     {
@@ -2940,31 +2940,31 @@
                       "lowerBound": 1.5245254875202987,
                       "upperBound": 4.150317789462508,
                       "upperInclusive": false,
-                      "count": 64
+                      "count": 65
                     },
                     {
                       "lowerBound": 4.150317789462508,
                       "upperBound": 11.298687948829457,
                       "upperInclusive": false,
-                      "count": 121
+                      "count": 122
                     },
                     {
                       "lowerBound": 11.298687948829457,
                       "upperBound": 30.75917455987313,
                       "upperInclusive": false,
-                      "count": 53
+                      "count": 57
                     },
                     {
                       "lowerBound": 30.75917455987313,
                       "upperBound": 83.73775998502234,
                       "upperInclusive": false,
-                      "count": 55
+                      "count": 56
                     },
                     {
                       "lowerBound": 83.73775998502234,
                       "upperBound": 227.96490958040013,
                       "upperInclusive": false,
-                      "count": 88
+                      "count": 90
                     },
                     {
                       "lowerBound": 227.96490958040013,
@@ -2976,7 +2976,7 @@
                       "lowerBound": 620.6041337778217,
                       "upperBound": 1689.5121778656178,
                       "upperInclusive": false,
-                      "count": 34
+                      "count": 35
                     },
                     {
                       "lowerBound": 1689.5121778656178,
@@ -3004,8 +3004,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 1.221527099324047,
-                    "spreadFactor": 16.65432745047293
+                    "medianAbsoluteDeviationLog10": 1.2067244934079207,
+                    "spreadFactor": 16.09624202054379
                   }
                 },
                 {
@@ -3112,7 +3112,7 @@
             "unit": "L/kg",
             "label": "Recorded volume of distribution, in litres per kilogram",
             "scale": "log10",
-            "scaleReason": "Recorded values run from 0.040 to 84 litres per kilogram, a span of about 3.3 orders of magnitude. Split into 12 equal-width linear bins, 83.2 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "scaleReason": "Recorded values run from 0.040 to 84 litres per kilogram, a span of about 3.3 orders of magnitude. Split into 12 equal-width linear bins, 83.8 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
             "binEdges": [
               0.04,
               0.07566788571263826,
@@ -3133,20 +3133,20 @@
               "key": "overall",
               "label": "all recorded values in litres per kilogram",
               "summary": {
-                "count": 131,
+                "count": 136,
                 "min": 0.04,
-                "p25": 0.42500000000000004,
-                "median": 1.1,
-                "p75": 4,
+                "p25": 0.4375,
+                "median": 1.1675,
+                "p75": 3.7375,
                 "max": 84,
-                "robustScale": 1.3343399999999999
+                "robustScale": 1.3973505
               },
               "histogram": [
                 {
                   "lowerBound": 0.04,
                   "upperBound": 0.07566788571263826,
                   "upperInclusive": false,
-                  "count": 1
+                  "count": 2
                 },
                 {
                   "lowerBound": 0.07566788571263826,
@@ -3176,13 +3176,13 @@
                   "lowerBound": 0.9689871790225943,
                   "upperBound": 1.8330302779823362,
                   "upperInclusive": false,
-                  "count": 17
+                  "count": 18
                 },
                 {
                   "lowerBound": 1.8330302779823362,
                   "upperBound": 3.467538139554323,
                   "upperInclusive": false,
-                  "count": 17
+                  "count": 20
                 },
                 {
                   "lowerBound": 3.467538139554323,
@@ -3216,8 +3216,8 @@
                 }
               ],
               "logSpread": {
-                "medianAbsoluteDeviationLog10": 0.7103133941724151,
-                "spreadFactor": 5.132316069197612
+                "medianAbsoluteDeviationLog10": 0.6976022250864945,
+                "spreadFactor": 4.984277630679356
               }
             },
             "byRoute": {
@@ -3228,13 +3228,13 @@
                   "key": "oral",
                   "label": "recorded route: oral",
                   "summary": {
-                    "count": 68,
+                    "count": 71,
                     "min": 0.12,
-                    "p25": 0.6749999999999999,
-                    "median": 1.7999999999999998,
-                    "p75": 5.25,
+                    "p25": 0.7,
+                    "median": 2,
+                    "p75": 5,
                     "max": 25,
-                    "robustScale": 2.1423569999999996
+                    "robustScale": 2.37216
                   },
                   "histogram": [
                     {
@@ -3277,7 +3277,7 @@
                       "lowerBound": 1.8330302779823362,
                       "upperBound": 3.467538139554323,
                       "upperInclusive": false,
-                      "count": 12
+                      "count": 15
                     },
                     {
                       "lowerBound": 3.467538139554323,
@@ -3311,8 +3311,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.6826029423048957,
-                    "spreadFactor": 4.815073738124827
+                    "medianAbsoluteDeviationLog10": 0.6759647174462813,
+                    "spreadFactor": 4.742034588931037
                   }
                 },
                 {
@@ -3320,11 +3320,11 @@
                   "key": "intravenous",
                   "label": "recorded route: intravenous",
                   "summary": {
-                    "count": 19,
-                    "min": 0.09,
-                    "p25": 0.385,
+                    "count": 20,
+                    "min": 0.07,
+                    "p25": 0.345,
                     "median": 0.5,
-                    "p75": 2.6799999999999997,
+                    "p75": 1.72,
                     "max": 60,
                     "robustScale": 0.385476
                   },
@@ -3333,7 +3333,7 @@
                       "lowerBound": 0.04,
                       "upperBound": 0.07566788571263826,
                       "upperInclusive": false,
-                      "count": 0
+                      "count": 1
                     },
                     {
                       "lowerBound": 0.07566788571263826,
@@ -3403,13 +3403,13 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.2696013034869198,
-                    "spreadFactor": 1.860378464307154
+                    "medianAbsoluteDeviationLog10": 0.3710965224769371,
+                    "spreadFactor": 2.3501550876362143
                   }
                 }
               ],
-              "valuesBelowMinimum": 44,
-              "groupsBelowMinimum": 22,
+              "valuesBelowMinimum": 45,
+              "groupsBelowMinimum": 23,
               "valuesWithoutKey": 0,
               "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
             },
@@ -3421,20 +3421,20 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 112,
+                    "count": 117,
                     "min": 0.04,
                     "p25": 0.4,
-                    "median": 1.05,
-                    "p75": 3.7375,
+                    "median": 1.1,
+                    "p75": 3.5,
                     "max": 84,
-                    "robustScale": 1.297275
+                    "robustScale": 1.3343399999999999
                   },
                   "histogram": [
                     {
                       "lowerBound": 0.04,
                       "upperBound": 0.07566788571263826,
                       "upperInclusive": false,
-                      "count": 1
+                      "count": 2
                     },
                     {
                       "lowerBound": 0.07566788571263826,
@@ -3464,13 +3464,13 @@
                       "lowerBound": 0.9689871790225943,
                       "upperBound": 1.8330302779823362,
                       "upperInclusive": false,
-                      "count": 14
+                      "count": 15
                     },
                     {
                       "lowerBound": 1.8330302779823362,
                       "upperBound": 3.467538139554323,
                       "upperInclusive": false,
-                      "count": 15
+                      "count": 18
                     },
                     {
                       "lowerBound": 3.467538139554323,
@@ -3504,8 +3504,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.6826029423048956,
-                    "spreadFactor": 4.815073738124826
+                    "medianAbsoluteDeviationLog10": 0.6676564086380967,
+                    "spreadFactor": 4.652178915246231
                   }
                 },
                 {
@@ -3612,8 +3612,8 @@
       {
         "field": "molecularWeight",
         "label": "Recorded molecular weight",
-        "recordedValues": 2941,
-        "numericValues": 2941,
+        "recordedValues": 2991,
+        "numericValues": 2991,
         "displayOnlyValues": 0,
         "offUnitValues": [],
         "offUnitValueCount": 0,
@@ -3644,13 +3644,13 @@
               "key": "overall",
               "label": "all recorded values in grams per mole",
               "summary": {
-                "count": 2941,
+                "count": 2991,
                 "min": 12.011,
-                "p25": 185.598,
-                "median": 320.32,
-                "p75": 492.6,
+                "p25": 187.535,
+                "median": 322,
+                "p75": 492.56,
                 "max": 150000,
-                "robustScale": 219.513756
+                "robustScale": 219.12828000000002
               },
               "histogram": [
                 {
@@ -3663,31 +3663,31 @@
                   "lowerBound": 26.360592930413645,
                   "upperBound": 57.85370573998617,
                   "upperInclusive": false,
-                  "count": 52
+                  "count": 49
                 },
                 {
                   "lowerBound": 57.85370573998617,
                   "upperBound": 126.97177475045457,
                   "upperInclusive": false,
-                  "count": 182
+                  "count": 186
                 },
                 {
                   "lowerBound": 126.97177475045457,
                   "upperBound": 278.6654956164273,
                   "upperInclusive": false,
-                  "count": 935
+                  "count": 947
                 },
                 {
                   "lowerBound": 278.6654956164273,
                   "upperBound": 611.5883518188824,
                   "upperInclusive": false,
-                  "count": 1299
+                  "count": 1329
                 },
                 {
                   "lowerBound": 611.5883518188824,
                   "upperBound": 1342.2555643393698,
                   "upperInclusive": false,
-                  "count": 315
+                  "count": 322
                 },
                 {
                   "lowerBound": 1342.2555643393698,
@@ -3727,8 +3727,8 @@
                 }
               ],
               "logSpread": {
-                "medianAbsoluteDeviationLog10": 0.3026132101304935,
-                "spreadFactor": 2.007304277791307
+                "medianAbsoluteDeviationLog10": 0.2992450158821852,
+                "spreadFactor": 1.991796733864343
               }
             },
             "byRoute": {
@@ -3736,7 +3736,7 @@
               "strata": [],
               "valuesBelowMinimum": 0,
               "groupsBelowMinimum": 0,
-              "valuesWithoutKey": 2941,
+              "valuesWithoutKey": 2991,
               "note": "Recorded molecular weight is recorded on the molecular identity module, which carries no route. There is nothing to stratify on, so no route strata are published rather than a route being attached from elsewhere in the record."
             },
             "byProvenanceTier": {
@@ -3747,13 +3747,13 @@
                   "key": "transcribed",
                   "label": "transcribed: transcribed from a structured record",
                   "summary": {
-                    "count": 1692,
+                    "count": 1686,
                     "min": 12.011,
-                    "p25": 188.18625,
-                    "median": 299.4,
-                    "p75": 439.2,
+                    "p25": 189.435,
+                    "median": 299.45,
+                    "p75": 440,
                     "max": 7165,
-                    "robustScale": 179.54286000000002
+                    "robustScale": 179.40201299999998
                   },
                   "histogram": [
                     {
@@ -3766,7 +3766,7 @@
                       "lowerBound": 26.360592930413645,
                       "upperBound": 57.85370573998617,
                       "upperInclusive": false,
-                      "count": 32
+                      "count": 29
                     },
                     {
                       "lowerBound": 57.85370573998617,
@@ -3778,13 +3778,13 @@
                       "lowerBound": 126.97177475045457,
                       "upperBound": 278.6654956164273,
                       "upperInclusive": false,
-                      "count": 573
+                      "count": 572
                     },
                     {
                       "lowerBound": 278.6654956164273,
                       "upperBound": 611.5883518188824,
                       "upperInclusive": false,
-                      "count": 732
+                      "count": 730
                     },
                     {
                       "lowerBound": 611.5883518188824,
@@ -3830,8 +3830,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.27455121035399777,
-                    "spreadFactor": 1.881703576468031
+                    "medianAbsoluteDeviationLog10": 0.27437349027198943,
+                    "spreadFactor": 1.880933711519337
                   }
                 },
                 {
@@ -3839,13 +3839,13 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 1249,
+                    "count": 1305,
                     "min": 31,
-                    "p25": 178.27,
-                    "median": 378.9,
-                    "p75": 547.06,
+                    "p25": 183.2,
+                    "median": 378.43,
+                    "p75": 545.63,
                     "max": 150000,
-                    "robustScale": 271.627146
+                    "robustScale": 266.43804599999993
                   },
                   "histogram": [
                     {
@@ -3864,25 +3864,25 @@
                       "lowerBound": 57.85370573998617,
                       "upperBound": 126.97177475045457,
                       "upperInclusive": false,
-                      "count": 56
+                      "count": 60
                     },
                     {
                       "lowerBound": 126.97177475045457,
                       "upperBound": 278.6654956164273,
                       "upperInclusive": false,
-                      "count": 362
+                      "count": 375
                     },
                     {
                       "lowerBound": 278.6654956164273,
                       "upperBound": 611.5883518188824,
                       "upperInclusive": false,
-                      "count": 567
+                      "count": 599
                     },
                     {
                       "lowerBound": 611.5883518188824,
                       "upperBound": 1342.2555643393698,
                       "upperInclusive": false,
-                      "count": 146
+                      "count": 153
                     },
                     {
                       "lowerBound": 1342.2555643393698,
@@ -3922,8 +3922,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.3015212600726087,
-                    "spreadFactor": 2.0022636362545594
+                    "medianAbsoluteDeviationLog10": 0.29817567295220737,
+                    "spreadFactor": 1.9868984590728482
                   }
                 }
               ],
@@ -3945,14 +3945,14 @@
       "subcutaneous"
     ],
     "minimumStratumSize": 12,
-    "recordsWithAnyNumericValue": 3291
+    "recordsWithAnyNumericValue": 3356
   },
   "caveats": [
     "Every number here describes recorded values. It does not describe medicines, and it does not describe the people a value was measured in. A median recorded half-life is a fact about what source documents state, shaped first of all by which medicines happen to have a document with a pharmacokinetics section structured into this corpus.",
     "No percentile in this output is typical, normal or expected for any medicine. A value at the 5th or the 95th percentile of a stratum is an unremarkable recorded value that sits near the edge of the recorded values around it, and nothing follows from where it sits.",
-    "Of 5957 recorded values across these fields, 256 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
+    "Of 6118 recorded values across these fields, 262 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
     "A further 2 numeric values are recorded in a unit no distribution here accepts. They are named with their units beside each field and left out, because rescaling a recorded number would replace what the source printed with a number no source stated.",
-    "Volume of distribution is published as two separate distributions and never as one: 559 values recorded in litres and 131 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
+    "Volume of distribution is published as two separate distributions and never as one: 569 values recorded in litres and 136 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
     "The route strata are the route text the source printed, lower-cased. They are not a controlled vocabulary, so a medicine given by more than one route appears under whichever single route its record states, and near-identical route wordings are separate strata.",
     "A route stratum is a group of recorded values, not a group of medicines and not a group of doses. Differences between route strata reflect which medicines have a structured record for that route as much as anything about the routes.",
     "The two provenance tiers are two different kinds of work on differently-selected documents, not two samples of one population. A distributional difference between them is a fact about how the corpus was built, and it does not indicate that values in either tier are wrong.",

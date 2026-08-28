@@ -14,9 +14,9 @@
     "counterionCationTermCount": 18
   },
   "coverage": {
-    "considered": 7915,
+    "considered": 7918,
     "used": 2021,
-    "reason": "2021 of 7915 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 376 records ended up in a candidate group."
+    "reason": "2021 of 7918 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 386 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [
@@ -191,9 +191,11 @@
             "slug": "strychnos-nux-vomica-seed",
             "name": "strychnos nux vomica seed",
             "modulesHeld": [
-              "registryIdentifiers"
+              "registryIdentifiers",
+              "safety"
             ],
             "sourceIdentifiers": [
+              "FDA_LABEL:38e1f158-1878-3b86-e063-6294a90a396f",
               "FDA_LABEL:865a27ab-6ba6-aef5-e053-2a91aa0a1f72"
             ]
           }
@@ -467,11 +469,16 @@
             "slug": "levodopa",
             "name": "levodopa",
             "modulesHeld": [
+              "pharmacokinetics",
               "productVariants",
-              "registryIdentifiers"
+              "registryIdentifiers",
+              "mechanism",
+              "molecularIdentity",
+              "safety",
+              "populationStatements",
+              "commonAdverseReactions"
             ],
             "sourceIdentifiers": [
-              "FDA_LABEL:4ce99f65-5857-448c-b22a-9b3b64de69e2",
               "FDA_LABEL:a906f8e1-6e1c-480a-8276-c01bc65dd3be"
             ]
           }
@@ -1251,12 +1258,10 @@
             "slug": "tryptophan",
             "name": "tryptophan",
             "modulesHeld": [
-              "productVariants",
               "registryIdentifiers"
             ],
             "sourceIdentifiers": [
-              "FDA_LABEL:70685fd1-9336-44d3-b270-3b3afd7635ca",
-              "FDA_LABEL:afeb4837-a759-4484-a76e-e04611c459e7"
+              "FDA_LABEL:70685fd1-9336-44d3-b270-3b3afd7635ca"
             ]
           }
         ],
@@ -1802,10 +1807,12 @@
             "slug": "lycopodium-clavatum-spore",
             "name": "lycopodium clavatum spore",
             "modulesHeld": [
-              "registryIdentifiers"
+              "registryIdentifiers",
+              "safety"
             ],
             "sourceIdentifiers": [
-              "FDA_LABEL:16443b5b-4610-4df2-bc32-8a5446ccd95d"
+              "FDA_LABEL:16443b5b-4610-4df2-bc32-8a5446ccd95d",
+              "FDA_LABEL:38e1867d-f3dc-a55c-e063-6294a90a82f2"
             ]
           }
         ],
@@ -2629,12 +2636,10 @@
             "slug": "pulsatilla-vulgaris",
             "name": "pulsatilla vulgaris",
             "modulesHeld": [
-              "productVariants",
               "registryIdentifiers"
             ],
             "sourceIdentifiers": [
-              "FDA_LABEL:3dead232-3110-e085-e063-6294a90a0926",
-              "FDA_LABEL:5abb1868-2539-4078-8e86-11879fafa633"
+              "FDA_LABEL:3dead232-3110-e085-e063-6294a90a0926"
             ]
           }
         ],
@@ -2718,7 +2723,7 @@
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:66ff9726-20da-688a-e053-2a91aa0a59ac",
-              "FDA_LABEL:ffea2e97-777f-434b-e053-6394a90a3a63"
+              "FDA_LABEL:ce392c4f-cc43-484d-9c49-18fa25e4e5e9"
             ]
           }
         ],
@@ -3192,9 +3197,11 @@
             "slug": "bryonia-alba-root",
             "name": "bryonia alba root",
             "modulesHeld": [
-              "registryIdentifiers"
+              "registryIdentifiers",
+              "safety"
             ],
             "sourceIdentifiers": [
+              "FDA_LABEL:38cd7cef-6030-c01e-e063-6294a90a8746",
               "FDA_LABEL:8502566a-3451-f2bb-e053-2991aa0a13a4"
             ]
           }
@@ -3621,6 +3628,99 @@
     "sharedDocumentGroups": [
       {
         "evidence": "SHARED_SOURCE_DOCUMENT",
+        "sharedKey": "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d",
+        "sharedKeyLabel": "FDA label document c1c28375-9b03-4590-9d39-ab28403da93d",
+        "members": [
+          {
+            "slug": "acetic-acid",
+            "name": "acetic acid",
+            "modulesHeld": [
+              "productVariants",
+              "costContext",
+              "registryIdentifiers",
+              "molecularIdentity",
+              "safety",
+              "populationStatements"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d",
+              "NADAC:2026-08-26"
+            ]
+          },
+          {
+            "slug": "acetic-acid-glacial",
+            "name": "acetic acid glacial",
+            "modulesHeld": [
+              "productVariants",
+              "molecularIdentity",
+              "safety",
+              "populationStatements"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d"
+            ]
+          }
+        ],
+        "comparisons": [
+          {
+            "field": "molecularIdentity.molecularWeight",
+            "state": "agree",
+            "readings": [
+              {
+                "slug": "acetic-acid",
+                "display": "60.05",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d"
+              },
+              {
+                "slug": "acetic-acid-glacial",
+                "display": "60.05",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d"
+              }
+            ],
+            "note": "Every member records the same number in the same unit."
+          }
+        ],
+        "agreeingFields": 1,
+        "differingFields": 0,
+        "notComparableFields": 0
+      },
+      {
+        "evidence": "SHARED_SOURCE_DOCUMENT",
+        "sharedKey": "FDA_LABEL:38c9693d-63a3-e991-e063-6294a90afb03",
+        "sharedKeyLabel": "FDA label document 38c9693d-63a3-e991-e063-6294a90afb03",
+        "members": [
+          {
+            "slug": "aconitum-napellus",
+            "name": "aconitum napellus",
+            "modulesHeld": [
+              "safety"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:38c9693d-63a3-e991-e063-6294a90afb03"
+            ]
+          },
+          {
+            "slug": "aconitum-napellus-whole",
+            "name": "aconitum napellus whole",
+            "modulesHeld": [
+              "safety"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:38c9693d-63a3-e991-e063-6294a90afb03"
+            ]
+          }
+        ],
+        "comparisons": [],
+        "agreeingFields": 0,
+        "differingFields": 0,
+        "notComparableFields": 0
+      },
+      {
+        "evidence": "SHARED_SOURCE_DOCUMENT",
         "sharedKey": "FDA_LABEL:23f3c1f4-0fc8-4804-a9e3-04cf25dd302e",
         "sharedKeyLabel": "FDA label document 23f3c1f4-0fc8-4804-a9e3-04cf25dd302e",
         "members": [
@@ -3935,6 +4035,69 @@
           }
         ],
         "agreeingFields": 3,
+        "differingFields": 0,
+        "notComparableFields": 0
+      },
+      {
+        "evidence": "SHARED_SOURCE_DOCUMENT",
+        "sharedKey": "FDA_LABEL:4134cd79-c895-4e6e-b1d5-8e01c38bf2d1",
+        "sharedKeyLabel": "FDA label document 4134cd79-c895-4e6e-b1d5-8e01c38bf2d1",
+        "members": [
+          {
+            "slug": "ampicillin",
+            "name": "ampicillin",
+            "modulesHeld": [
+              "productVariants",
+              "costContext",
+              "mechanism",
+              "molecularIdentity",
+              "safety",
+              "populationStatements"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:4134cd79-c895-4e6e-b1d5-8e01c38bf2d1",
+              "NADAC:2026-08-26"
+            ]
+          },
+          {
+            "slug": "ampicillin-ampicillin",
+            "name": "ampicillin ampicillin",
+            "modulesHeld": [
+              "productVariants",
+              "mechanism",
+              "molecularIdentity",
+              "safety",
+              "populationStatements"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:4134cd79-c895-4e6e-b1d5-8e01c38bf2d1"
+            ]
+          }
+        ],
+        "comparisons": [
+          {
+            "field": "molecularIdentity.molecularWeight",
+            "state": "agree",
+            "readings": [
+              {
+                "slug": "ampicillin",
+                "display": "403.5",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:4134cd79-c895-4e6e-b1d5-8e01c38bf2d1"
+              },
+              {
+                "slug": "ampicillin-ampicillin",
+                "display": "403.5",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:4134cd79-c895-4e6e-b1d5-8e01c38bf2d1"
+              }
+            ],
+            "note": "Every member records the same number in the same unit."
+          }
+        ],
+        "agreeingFields": 1,
         "differingFields": 0,
         "notComparableFields": 0
       },
@@ -4374,6 +4537,39 @@
           }
         ],
         "agreeingFields": 4,
+        "differingFields": 0,
+        "notComparableFields": 0
+      },
+      {
+        "evidence": "SHARED_SOURCE_DOCUMENT",
+        "sharedKey": "FDA_LABEL:38dbc663-828c-9a31-e063-6394a90a3d53",
+        "sharedKeyLabel": "FDA label document 38dbc663-828c-9a31-e063-6394a90a3d53",
+        "members": [
+          {
+            "slug": "atropa-belladonna",
+            "name": "atropa belladonna",
+            "modulesHeld": [
+              "registryIdentifiers",
+              "safety"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:38dbc663-828c-9a31-e063-6394a90a3d53",
+              "FDA_LABEL:b6b5863c-4d65-40a1-93f2-2ccb6ebc0252"
+            ]
+          },
+          {
+            "slug": "belladonna",
+            "name": "belladonna",
+            "modulesHeld": [
+              "safety"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:38dbc663-828c-9a31-e063-6394a90a3d53"
+            ]
+          }
+        ],
+        "comparisons": [],
+        "agreeingFields": 0,
         "differingFields": 0,
         "notComparableFields": 0
       },
@@ -8766,6 +8962,67 @@
           }
         ],
         "agreeingFields": 4,
+        "differingFields": 0,
+        "notComparableFields": 0
+      },
+      {
+        "evidence": "SHARED_SOURCE_DOCUMENT",
+        "sharedKey": "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658",
+        "sharedKeyLabel": "FDA label document 3023cc56-ed4b-4e87-b3a1-81b20943f658",
+        "members": [
+          {
+            "slug": "hyaluronidase",
+            "name": "hyaluronidase",
+            "modulesHeld": [
+              "productVariants",
+              "mechanism",
+              "molecularIdentity",
+              "safety",
+              "populationStatements"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658"
+            ]
+          },
+          {
+            "slug": "hyaluronidase-recombinant-human",
+            "name": "hyaluronidase recombinant human",
+            "modulesHeld": [
+              "productVariants",
+              "mechanism",
+              "molecularIdentity",
+              "safety",
+              "populationStatements"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658"
+            ]
+          }
+        ],
+        "comparisons": [
+          {
+            "field": "molecularIdentity.molecularWeight",
+            "state": "agree",
+            "readings": [
+              {
+                "slug": "hyaluronidase",
+                "display": "61",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658"
+              },
+              {
+                "slug": "hyaluronidase-recombinant-human",
+                "display": "61",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658"
+              }
+            ],
+            "note": "Every member records the same number in the same unit."
+          }
+        ],
+        "agreeingFields": 1,
         "differingFields": 0,
         "notComparableFields": 0
       },
@@ -16185,12 +16442,12 @@
       "uniiValuesSharedByMoreThanOneRecord": 71,
       "uniiValuesRejectedAsTooManyRecords": 7,
       "saltFormPairsExcluded": 3,
-      "sharedDocumentsConsidered": 332,
-      "documentPairsRejectedForMultipleDeclaredSubstances": 470,
-      "documentPairsRejectedForSaltForm": 56,
+      "sharedDocumentsConsidered": 305,
+      "documentPairsRejectedForMultipleDeclaredSubstances": 266,
+      "documentPairsRejectedForSaltForm": 105,
       "documentPairsRejectedForCombinationProduct": 3,
-      "documentPairsRejectedForUnrelatedNames": 20,
-      "documentPairsAlreadyCarriedByIdentifier": 12
+      "documentPairsRejectedForUnrelatedNames": 27,
+      "documentPairsAlreadyCarriedByIdentifier": 14
     }
   },
   "queue": [
@@ -16638,8 +16895,8 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 1 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:66ff9726-20da-688a-e053-2a91aa0a59ac",
-        "FDA_LABEL:f9f0e853-6997-a49b-e053-6294a90aa4b8",
-        "FDA_LABEL:ffea2e97-777f-434b-e053-6394a90a3a63"
+        "FDA_LABEL:ce392c4f-cc43-484d-9c49-18fa25e4e5e9",
+        "FDA_LABEL:f9f0e853-6997-a49b-e053-6294a90aa4b8"
       ]
     },
     {
@@ -16676,8 +16933,8 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 1 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:66ff9726-20da-688a-e053-2a91aa0a59ac",
-        "FDA_LABEL:f9f0e853-6997-a49b-e053-6294a90aa4b8",
-        "FDA_LABEL:ffea2e97-777f-434b-e053-6394a90a3a63"
+        "FDA_LABEL:ce392c4f-cc43-484d-9c49-18fa25e4e5e9",
+        "FDA_LABEL:f9f0e853-6997-a49b-e053-6294a90aa4b8"
       ]
     },
     {
@@ -16861,7 +17118,6 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:3dead232-3110-e085-e063-6294a90a0926",
-        "FDA_LABEL:5abb1868-2539-4078-8e86-11879fafa633",
         "FDA_LABEL:86a81564-7874-6012-e053-2991aa0a846c"
       ]
     },
@@ -16927,6 +17183,7 @@
       "priority": 1000,
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
+        "FDA_LABEL:38cd7cef-6030-c01e-e063-6294a90a8746",
         "FDA_LABEL:8502566a-3451-f2bb-e053-2991aa0a13a4",
         "FDA_LABEL:ac34fb4b-54f3-460a-b907-fd89db68235b"
       ]
@@ -16938,6 +17195,7 @@
       "priority": 1000,
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
+        "FDA_LABEL:38cd7cef-6030-c01e-e063-6294a90a8746",
         "FDA_LABEL:8502566a-3451-f2bb-e053-2991aa0a13a4",
         "FDA_LABEL:ac34fb4b-54f3-460a-b907-fd89db68235b"
       ]
@@ -17229,7 +17487,6 @@
       "priority": 1000,
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
-        "FDA_LABEL:4ce99f65-5857-448c-b22a-9b3b64de69e2",
         "FDA_LABEL:a906f8e1-6e1c-480a-8276-c01bc65dd3be",
         "FDA_LABEL:ded984ce-b8d1-40a0-b5ef-a5f528955332"
       ]
@@ -17242,8 +17499,7 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:080c91ec-4800-427c-8a44-33cb0d4c15d8",
-        "FDA_LABEL:70685fd1-9336-44d3-b270-3b3afd7635ca",
-        "FDA_LABEL:afeb4837-a759-4484-a76e-e04611c459e7"
+        "FDA_LABEL:70685fd1-9336-44d3-b270-3b3afd7635ca"
       ]
     },
     {
@@ -17286,7 +17542,6 @@
       "priority": 1000,
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
-        "FDA_LABEL:4ce99f65-5857-448c-b22a-9b3b64de69e2",
         "FDA_LABEL:a906f8e1-6e1c-480a-8276-c01bc65dd3be",
         "FDA_LABEL:ded984ce-b8d1-40a0-b5ef-a5f528955332"
       ]
@@ -17498,7 +17753,6 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:3dead232-3110-e085-e063-6294a90a0926",
-        "FDA_LABEL:5abb1868-2539-4078-8e86-11879fafa633",
         "FDA_LABEL:86a81564-7874-6012-e053-2991aa0a846c"
       ]
     },
@@ -17655,8 +17909,7 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:080c91ec-4800-427c-8a44-33cb0d4c15d8",
-        "FDA_LABEL:70685fd1-9336-44d3-b270-3b3afd7635ca",
-        "FDA_LABEL:afeb4837-a759-4484-a76e-e04611c459e7"
+        "FDA_LABEL:70685fd1-9336-44d3-b270-3b3afd7635ca"
       ]
     },
     {
@@ -19581,6 +19834,50 @@
       ]
     },
     {
+      "slug": "acetic-acid",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as acetic acid glacial? Both records were structured from the same FDA label document c1c28375-9b03-4590-9d39-ab28403da93d, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d",
+        "NADAC:2026-08-26"
+      ]
+    },
+    {
+      "slug": "acetic-acid-glacial",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as acetic acid? Both records were structured from the same FDA label document c1c28375-9b03-4590-9d39-ab28403da93d, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d",
+        "NADAC:2026-08-26"
+      ]
+    },
+    {
+      "slug": "ampicillin",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as ampicillin ampicillin? Both records were structured from the same FDA label document 4134cd79-c895-4e6e-b1d5-8e01c38bf2d1, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:4134cd79-c895-4e6e-b1d5-8e01c38bf2d1",
+        "NADAC:2026-08-26"
+      ]
+    },
+    {
+      "slug": "ampicillin-ampicillin",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as ampicillin? Both records were structured from the same FDA label document 4134cd79-c895-4e6e-b1d5-8e01c38bf2d1, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:4134cd79-c895-4e6e-b1d5-8e01c38bf2d1",
+        "NADAC:2026-08-26"
+      ]
+    },
+    {
       "slug": "ansuvimab",
       "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
       "question": "Does this record name the same registered substance as ansuvimab zykl? Both records were structured from the same FDA label document de220c8f-ffcb-4522-a6a2-c7d6ce5de1b5, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
@@ -19660,6 +19957,26 @@
       "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:b2b7f8b4-fe9a-4a86-8129-9e43f99a20c6"
+      ]
+    },
+    {
+      "slug": "hyaluronidase",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as hyaluronidase recombinant human? Both records were structured from the same FDA label document 3023cc56-ed4b-4e87-b3a1-81b20943f658, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658"
+      ]
+    },
+    {
+      "slug": "hyaluronidase-recombinant-human",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as hyaluronidase? Both records were structured from the same FDA label document 3023cc56-ed4b-4e87-b3a1-81b20943f658, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658"
       ]
     },
     {
@@ -19867,6 +20184,26 @@
       ]
     },
     {
+      "slug": "aconitum-napellus",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as aconitum napellus whole? Both records were structured from the same FDA label document 38c9693d-63a3-e991-e063-6294a90afb03, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 0,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:38c9693d-63a3-e991-e063-6294a90afb03"
+      ]
+    },
+    {
+      "slug": "aconitum-napellus-whole",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as aconitum napellus? Both records were structured from the same FDA label document 38c9693d-63a3-e991-e063-6294a90afb03, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 0,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:38c9693d-63a3-e991-e063-6294a90afb03"
+      ]
+    },
+    {
       "slug": "ambrosia-artemisiifolia",
       "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
       "question": "Does this record name the same registered substance as ambrosia artemisiifolia pollen? Both records were structured from the same FDA label document 1482f8a2-c2c0-45a1-8e90-b427227f0b28, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
@@ -19884,6 +20221,28 @@
       "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:1482f8a2-c2c0-45a1-8e90-b427227f0b28"
+      ]
+    },
+    {
+      "slug": "atropa-belladonna",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as belladonna? Both records were structured from the same FDA label document 38dbc663-828c-9a31-e063-6394a90a3d53, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 0,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:38dbc663-828c-9a31-e063-6394a90a3d53",
+        "FDA_LABEL:b6b5863c-4d65-40a1-93f2-2ccb6ebc0252"
+      ]
+    },
+    {
+      "slug": "belladonna",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as atropa belladonna? Both records were structured from the same FDA label document 38dbc663-828c-9a31-e063-6394a90a3d53, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 0,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:38dbc663-828c-9a31-e063-6394a90a3d53",
+        "FDA_LABEL:b6b5863c-4d65-40a1-93f2-2ccb6ebc0252"
       ]
     },
     {

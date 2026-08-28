@@ -9,6 +9,7 @@ import {
   extractMolecularIdentity,
   extractPharmacokinetics,
   extractPopulationStatements,
+  extractRecordedUses,
   extractProductVariant,
   extractSafetyStatements,
   type LabelArtifact,
@@ -627,5 +628,69 @@ describe('the engine compares displayed numbers as numbers', () => {
     expect(
       runBackgroundIntelligence(withWeight('0.5', 'The value is 0.50 units.')).findings,
     ).toEqual([])
+  })
+})
+
+/**
+ * Short statements, and the line between a use and a direction.
+ *
+ * A homeopathic or botanical label states a use in a few words: "INDICATIONS Late growth, fracture
+ * consolidation." is a whole published indications section, 35 characters once the heading comes
+ * off, and a forty-character floor threw every one of them away. Lowering the floor everywhere was
+ * worse — "See Boxed WARNING." and "Pregnancy Category C." arrived as statements, and
+ * "First, wet your skin." arrived under what the label says the medicine is for, which would make
+ * RNAWiki the thing telling a reader to do it.
+ */
+describe('label extraction: short statements', () => {
+  const uses = (text: string) =>
+    extractRecordedUses(artifact({ sections: { indications_and_usage: text } }), OPTIONS)
+
+  it('records a terse indication that is the whole section', () => {
+    const recorded = uses('INDICATIONS Late growth, fracture consolidation.')
+    expect(recorded?.statements[0]?.textAsRecorded).toBe('Late growth, fracture consolidation.')
+  })
+
+  it('refuses a direction, however it is phrased', () => {
+    for (const direction of [
+      'Uses First, wet your skin.',
+      'Uses Shake well before use.',
+      'Uses After changing diapers.',
+      'Uses Directions: FOR ORAL USE.',
+      'Uses Use 2-3 times a week',
+      'Uses Apply to affected area.',
+    ]) {
+      expect(uses(direction)?.statements ?? [], direction).toEqual([])
+    }
+  })
+
+  it('refuses carton text and split headings', () => {
+    expect(uses('Uses HAIR GROWTH 60ml/2 fl oz')?.statements ?? []).toEqual([])
+    expect(uses('Uses & USAGE IMMUNE SUPPORT')?.statements ?? []).toEqual([])
+  })
+
+  it('refuses a fragment that closes a bracket it never opened', () => {
+    expect(uses('Uses Morquio A syndrome).')?.statements ?? []).toEqual([])
+  })
+
+  it('keeps the short floor away from prose modules', () => {
+    // A short sentence inside a prose section is a cross-reference or a category label, never a
+    // statement, and these are the ones that appeared the moment the floor came down everywhere.
+    const safety = extractSafetyStatements(
+      artifact({ sections: { boxed_warning: 'BOXED WARNING See Boxed WARNING.' } }),
+      OPTIONS,
+    )
+    expect(safety).toBeNull()
+    const populations = extractPopulationStatements(
+      artifact({ sections: { pregnancy: 'Pregnancy Category C.' } }),
+      OPTIONS,
+    )
+    expect(populations).toEqual([])
+  })
+
+  it('still records a full sentence that merely opens with a guarded word', () => {
+    const recorded = uses(
+      'Uses After a single oral dose the preparation relieves occasional joint discomfort in adults.',
+    )
+    expect(recorded?.statements.length).toBe(1)
   })
 })

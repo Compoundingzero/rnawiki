@@ -75,9 +75,28 @@ interface SubstanceIdentity {
 type IdentityIndex = Map<string, SubstanceIdentity>
 
 /**
+ * Which of two labels answering to the same name should supply this medicine's record.
+ *
+ * A document about one substance wins over a richer document about several, and that ordering
+ * matters more than it looks. Every substance-specific module is refused on a multi-substance
+ * source, so when a name resolved to a combination label the record came out empty even though a
+ * single-substance label for the same name sat in the index beside it. Ranking by section count
+ * alone let that happen on every tie: "Actaea Spicata Root" had one label declaring five substances
+ * and one declaring one, both scoring 1, and the five-substance one arrived first.
+ *
+ * 987 rows held a label naming them alone and carried no substance content at all.
+ */
+function preferred(candidate: IndexedLabel, held: IndexedLabel): boolean {
+  const candidateIsSole = candidate.declaredSubstanceCount === 1
+  const heldIsSole = held.declaredSubstanceCount === 1
+  if (candidateIsSole !== heldIsSole) return candidateIsSole
+  return candidate.score > held.score
+}
+
+/**
  * Builds the name index by streaming the reduced NDJSON. A medicine is reachable by its generic
- * name and by any brand name on the label; when several labels answer to one name, the one
- * carrying the most extractable sections wins.
+ * name and by any brand name on the label; when several labels answer to one name, `preferred`
+ * decides between them.
  */
 async function buildIndex(
   indexPath: string,
@@ -104,7 +123,7 @@ async function buildIndex(
       const key = normalizeName(candidate)
       if (key.length < 3) continue
       const existing = index.get(key)
-      if (!existing || entry.score > existing.score) index.set(key, entry)
+      if (!existing || preferred(entry, existing)) index.set(key, entry)
     }
 
     // Identity is learned only from documents about a single substance, where the document-level
