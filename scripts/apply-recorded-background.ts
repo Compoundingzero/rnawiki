@@ -2,7 +2,7 @@ import 'dotenv/config'
 import { eq } from 'drizzle-orm'
 
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
-import { RECORDED_BACKGROUND } from './seed-data/background'
+import { ALL_RECORDED_BACKGROUND } from './seed-data/background'
 
 /**
  * Validates every recorded-background envelope with the deterministic background engine, then —
@@ -15,7 +15,7 @@ import { RECORDED_BACKGROUND } from './seed-data/background'
  */
 async function main() {
   const checkOnly = process.argv.includes('--check')
-  const entries = Object.entries(RECORDED_BACKGROUND)
+  const entries = Object.entries(ALL_RECORDED_BACKGROUND)
   let failures = 0
 
   for (const [slug, background] of entries) {

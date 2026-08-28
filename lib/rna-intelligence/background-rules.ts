@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-1.0.0`.
+ * `rna-intelligence/background-1.1.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -12,13 +12,19 @@
 import {
   BACKGROUND_CONCORDANCE_STATES,
   BACKGROUND_SOURCE_KINDS,
+  INTERACTION_COUNTERPARTY_KINDS,
+  INTERACTION_ROLES,
+  POPULATION_EVIDENCE_STATES,
+  STUDIED_POPULATIONS,
   COST_CURRENCIES,
   COST_JURISDICTIONS,
   COST_PRICE_TYPES,
   MEDICINE_BACKGROUND_VERSION,
+  MOLECULAR_FORMULA_SHAPE,
   PRODUCT_JURISDICTIONS,
   type BackgroundSource,
   type MedicineRecordedBackground,
+  type RecordedStatement,
   type RecordedValue,
 } from '@/lib/background/types'
 import { isAnatomyRegionCode } from '@/lib/background/anatomy-regions'
@@ -27,7 +33,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.0.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.1.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -55,6 +61,19 @@ export const BACKGROUND_RULE_CODES = [
   'I_CONCORDANCE_ALTERNATE_MISMATCH',
   'I_FORBIDDEN_GUIDANCE_LANGUAGE',
   'I_REGISTRY_IDENTIFIER_INVALID',
+  'I_STATEMENT_NOT_VERBATIM',
+  'I_STATEMENT_EMPTY',
+  'I_MECHANISM_TARGET_NOT_IN_TEXT',
+  'I_MOLECULAR_FORMULA_INVALID',
+  'I_MOLECULAR_WEIGHT_IMPLAUSIBLE',
+  'I_INTERACTION_KIND_UNKNOWN',
+  'I_INTERACTION_ROLE_UNKNOWN',
+  'I_INTERACTION_COUNTERPARTY_NOT_IN_EXCERPT',
+  'I_POPULATION_UNKNOWN',
+  'I_POPULATION_STATE_UNKNOWN',
+  'I_POPULATION_DUPLICATE',
+  'I_ADVERSE_THRESHOLD_NOT_IN_EXCERPT',
+  'I_ADVERSE_EVENT_NOT_IN_EXCERPT',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -471,6 +490,158 @@ export function runBackgroundIntelligence(
         )
       }
     }
+  }
+
+  /**
+   * A quoted statement carries no summary and no authored voice: its text must be exactly the
+   * excerpt fetched from the source. That equality is what lets these modules hold sentences the
+   * advice filter would otherwise reject — a label's own "patients should be monitored" is the
+   * source speaking, provably character for character, not RNAWiki giving guidance.
+   */
+  const checkStatement = (path: string, statement: RecordedStatement) => {
+    checkSource(path, statement.source)
+    const text = normalizeForMatch(statement.textAsRecorded).trim()
+    const excerpt = normalizeForMatch(statement.source.excerpt ?? '').trim()
+    if (text.length === 0) {
+      flag('I_STATEMENT_EMPTY', path, 'Recorded statement text is empty.')
+      return
+    }
+    if (text !== excerpt) {
+      flag(
+        'I_STATEMENT_NOT_VERBATIM',
+        path,
+        'Recorded statement text is not identical to the source excerpt it quotes.',
+      )
+    }
+  }
+
+  const mechanism = background.mechanism
+  if (mechanism) {
+    if (mechanism.statements.length === 0) {
+      flag('I_STATEMENT_EMPTY', 'mechanism.statements', 'Mechanism module has no statements.')
+    }
+    mechanism.statements.forEach((statement, index) => {
+      checkStatement(`mechanism.statements[${index}]`, statement)
+    })
+    const haystack = normalizeForMatch(
+      mechanism.statements.map((statement) => statement.textAsRecorded).join(' '),
+    ).toLowerCase()
+    for (const target of mechanism.namedTargetsAsRecorded ?? []) {
+      // A named target is an index into the recorded text, never an addition to it.
+      if (!haystack.includes(normalizeForMatch(target).toLowerCase())) {
+        flag(
+          'I_MECHANISM_TARGET_NOT_IN_TEXT',
+          'mechanism.namedTargetsAsRecorded',
+          `Named target "${target}" does not appear in any recorded mechanism statement.`,
+        )
+      }
+    }
+  }
+
+  const molecular = background.molecularIdentity
+  if (molecular) {
+    if (molecular.molecularFormula) {
+      checkRecordedValue('molecularIdentity.molecularFormula', molecular.molecularFormula)
+      if (!MOLECULAR_FORMULA_SHAPE.test(molecular.molecularFormula.display)) {
+        flag(
+          'I_MOLECULAR_FORMULA_INVALID',
+          'molecularIdentity.molecularFormula',
+          `"${molecular.molecularFormula.display}" is not a molecular formula.`,
+        )
+      }
+    }
+    if (molecular.molecularWeight) {
+      checkRecordedValue('molecularIdentity.molecularWeight', molecular.molecularWeight)
+      const weight = molecular.molecularWeight.numeric
+      if (weight !== undefined && (weight < 30 || weight > 200000)) {
+        flag(
+          'I_MOLECULAR_WEIGHT_IMPLAUSIBLE',
+          'molecularIdentity.molecularWeight',
+          `${weight} g/mol is outside the plausible range for a recorded medicine.`,
+        )
+      }
+    }
+  }
+
+  background.interactionSignals?.forEach((signal, index) => {
+    const path = `interactionSignals[${index}]`
+    checkSource(path, signal.source)
+    if (!INTERACTION_COUNTERPARTY_KINDS.includes(signal.kind)) {
+      flag('I_INTERACTION_KIND_UNKNOWN', path, `Unknown counterparty kind "${signal.kind}".`)
+    }
+    if (signal.roleAsRecorded && !INTERACTION_ROLES.includes(signal.roleAsRecorded)) {
+      flag('I_INTERACTION_ROLE_UNKNOWN', path, `Unknown role "${signal.roleAsRecorded}".`)
+    }
+    // The counterparty must be a token the source printed, on the same terms as every number.
+    const excerpt = normalizeForMatch(signal.source.excerpt ?? '')
+      .toLowerCase()
+      .replace(/[\s-]/gu, '')
+    const counterparty = signal.counterpartyAsRecorded.toLowerCase().replace(/[\s-]/gu, '')
+    if (!excerpt.includes(counterparty)) {
+      flag(
+        'I_INTERACTION_COUNTERPARTY_NOT_IN_EXCERPT',
+        path,
+        `"${signal.counterpartyAsRecorded}" does not appear in the recorded excerpt.`,
+      )
+    }
+  })
+
+  const safety = background.safety
+  if (safety) {
+    if (safety.boxedWarning) checkStatement('safety.boxedWarning', safety.boxedWarning)
+    safety.contraindications?.forEach((statement, index) => {
+      checkStatement(`safety.contraindications[${index}]`, statement)
+    })
+  }
+
+  const seenPopulations = new Set<string>()
+  background.populationStatements?.forEach((statement, index) => {
+    const path = `populationStatements[${index}]`
+    checkSource(path, statement.source)
+    if (!STUDIED_POPULATIONS.includes(statement.population)) {
+      flag('I_POPULATION_UNKNOWN', path, `Unknown population "${statement.population}".`)
+    }
+    if (!POPULATION_EVIDENCE_STATES.includes(statement.state)) {
+      flag('I_POPULATION_STATE_UNKNOWN', path, `Unknown evidence state "${statement.state}".`)
+    }
+    if (seenPopulations.has(statement.population)) {
+      flag(
+        'I_POPULATION_DUPLICATE',
+        path,
+        `Population "${statement.population}" already has a recorded statement.`,
+      )
+    }
+    seenPopulations.add(statement.population)
+    checkStatement(path, {
+      textAsRecorded: statement.textAsRecorded,
+      source: statement.source,
+    })
+  })
+
+  const adverse = background.commonAdverseReactions
+  if (adverse) {
+    checkSource('commonAdverseReactions', adverse.source)
+    const excerpt = normalizeForMatch(adverse.source.excerpt ?? '').toLowerCase()
+    const thresholdNumbers = numberTokens(adverse.thresholdAsRecorded)
+    for (const token of thresholdNumbers) {
+      if (!excerpt.includes(token)) {
+        flag(
+          'I_ADVERSE_THRESHOLD_NOT_IN_EXCERPT',
+          'commonAdverseReactions.thresholdAsRecorded',
+          `Threshold number ${token} does not appear in the recorded excerpt.`,
+        )
+      }
+    }
+    // Every listed reaction must be a phrase the source printed in the same sentence.
+    adverse.eventsAsRecorded.forEach((event, index) => {
+      if (!excerpt.includes(normalizeForMatch(event).toLowerCase())) {
+        flag(
+          'I_ADVERSE_EVENT_NOT_IN_EXCERPT',
+          `commonAdverseReactions.eventsAsRecorded[${index}]`,
+          `"${event}" does not appear in the recorded excerpt.`,
+        )
+      }
+    })
   }
 
   return {

@@ -31,6 +31,7 @@ import { BACKGROUND_BATCH_14 } from './batch-14'
 import { BACKGROUND_BATCH_15 } from './batch-15'
 import { BACKGROUND_BATCH_16 } from './batch-16'
 import { BACKGROUND_BATCH_17 } from './batch-17'
+import { EXTRACTED_BACKGROUND } from './extracted-background.generated'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -63,6 +64,22 @@ export const RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
       }
       merged[slug] = background
     }
+  }
+  return merged
+})()
+
+/**
+ * The curated corpus plus every deterministically extracted record.
+ *
+ * Curated work always wins: a slug the hand-authored corpus covers keeps its curated envelope, and
+ * an extracted record can only fill a slug that has none. The two tiers stay distinguishable on
+ * every value through `provenanceTier`, because a value a person judged and a value a parser
+ * matched are different kinds of evidence and are never presented as the same thing.
+ */
+export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
+  const merged: RecordedBackgroundBySlug = { ...EXTRACTED_BACKGROUND }
+  for (const [slug, background] of Object.entries(RECORDED_BACKGROUND)) {
+    merged[slug] = background
   }
   return merged
 })()

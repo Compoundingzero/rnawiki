@@ -62,6 +62,11 @@ function RecordedValueCard({ value }: { value: RecordedValueView }) {
       <p className="mt-1 text-sm leading-6 text-[#515154]">
         Measured in: {value.populationContext}
       </p>
+      {value.provenanceLabel && (
+        <p className="mt-2 text-[11px] font-semibold leading-4 text-[#6E6E73]">
+          {value.provenanceLabel}
+        </p>
+      )}
       {value.concordanceLabel && (
         <p
           className={`mt-2 inline-flex max-w-full rounded-full border px-2 py-0.5 text-[11px] font-semibold leading-4 ${
@@ -393,6 +398,214 @@ export function RegistryIdentifierList({
         ))}
       </dl>
       <SourceLine source={identifiers.source} />
+    </div>
+  )
+}
+
+/**
+ * A statement quoted from a source. It is rendered as a quotation because that is what it is: the
+ * recorded text and the fetched excerpt are the same characters, and nothing was rewritten.
+ */
+function QuotedStatement({ text, source }: { text: string; source: RecordedSourceView }) {
+  return (
+    <li className="min-w-0 space-y-2 rounded-2xl border border-black/[0.08] bg-white p-4">
+      <blockquote className="border-l-2 border-black/[0.12] pl-3 text-[15px] leading-7 text-[#1D1D1F]">
+        “{text}”
+      </blockquote>
+      <SourceLine source={source} />
+    </li>
+  )
+}
+
+export function BackgroundMechanismBody({
+  mechanism,
+}: {
+  mechanism: NonNullable<MedicineBackgroundContextView['mechanism']>
+}) {
+  return (
+    <div className="space-y-4">
+      <ul className="grid min-w-0 gap-3">
+        {mechanism.statements.map((statement, index) => (
+          <QuotedStatement key={index} text={statement.text} source={statement.source} />
+        ))}
+      </ul>
+      {mechanism.namedTargets && (
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+            Named in the wording above
+          </p>
+          <ul className="mt-2 flex flex-wrap gap-2">
+            {mechanism.namedTargets.map((target) => (
+              <li
+                key={target}
+                className="rounded-full border border-black/[0.1] bg-[#F5F5F7] px-2.5 py-1 font-mono text-[11px] font-semibold leading-4 text-[#515154]"
+              >
+                {target}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <p className="text-sm leading-6 text-[#6E6E73]">{ROW_BOUNDARY}</p>
+    </div>
+  )
+}
+
+export function BackgroundMolecularIdentityBody({
+  identity,
+}: {
+  identity: NonNullable<MedicineBackgroundContextView['molecularIdentity']>
+}) {
+  return (
+    <div className="space-y-4">
+      <ul className="grid min-w-0 gap-3 sm:grid-cols-2">
+        {identity.values.map((value) => (
+          <RecordedValueCard key={value.label} value={value} />
+        ))}
+      </ul>
+      <p className="text-sm leading-6 text-[#6E6E73]">{ROW_BOUNDARY}</p>
+    </div>
+  )
+}
+
+export function BackgroundInteractionSignalsBody({
+  signals,
+}: {
+  signals: NonNullable<MedicineBackgroundContextView['interactionSignals']>
+}) {
+  return (
+    <div className="space-y-5">
+      {signals.groups.map((group) => (
+        <section key={group.kindLabel} className="min-w-0 space-y-3">
+          <h4 className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+            {group.kindLabel}
+          </h4>
+          <ul className="grid min-w-0 gap-3">
+            {group.entries.map((entry) => (
+              <li
+                key={entry.counterparty}
+                className="min-w-0 space-y-2 rounded-2xl border border-black/[0.08] bg-white p-4"
+              >
+                <p className="font-mono text-base font-semibold text-[#1D1D1F]">
+                  {entry.counterparty}
+                </p>
+                <p className="text-sm leading-6 text-[#515154]">
+                  {entry.roleLabel ?? 'The source names it without stating a single role'}
+                </p>
+                <SourceLine source={entry.source} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <p className="text-sm leading-6 text-[#6E6E73]">{ROW_BOUNDARY}</p>
+    </div>
+  )
+}
+
+export function BackgroundSafetyBody({
+  safety,
+}: {
+  safety: NonNullable<MedicineBackgroundContextView['safety']>
+}) {
+  return (
+    <div className="space-y-5">
+      {safety.boxedWarning && (
+        <section aria-labelledby="background-boxed-warning-heading" className="min-w-0 space-y-3">
+          <h4
+            id="background-boxed-warning-heading"
+            className="text-xs font-semibold uppercase tracking-wide text-[#8A4B00]"
+          >
+            The strongest warning on this source
+          </h4>
+          <ul className="grid min-w-0 gap-3">
+            <QuotedStatement
+              text={safety.boxedWarning.text}
+              source={safety.boxedWarning.source}
+            />
+          </ul>
+        </section>
+      )}
+      {safety.contraindications && (
+        <section aria-labelledby="background-contraindications-heading" className="min-w-0 space-y-3">
+          <h4
+            id="background-contraindications-heading"
+            className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]"
+          >
+            Situations the source says it must not be used in
+          </h4>
+          <ul className="grid min-w-0 gap-3">
+            {safety.contraindications.map((statement, index) => (
+              <QuotedStatement key={index} text={statement.text} source={statement.source} />
+            ))}
+          </ul>
+        </section>
+      )}
+      <p className="text-sm leading-6 text-[#6E6E73]">{ROW_BOUNDARY}</p>
+    </div>
+  )
+}
+
+export function BackgroundPopulationStatementsBody({
+  statements,
+}: {
+  statements: NonNullable<MedicineBackgroundContextView['populationStatements']>
+}) {
+  return (
+    <div className="space-y-4">
+      <ul className="grid min-w-0 gap-3">
+        {statements.map((statement) => (
+          <li
+            key={statement.populationLabel}
+            className="min-w-0 space-y-2 rounded-2xl border border-black/[0.08] bg-white p-4"
+          >
+            <div className="flex min-w-0 flex-wrap items-center gap-2">
+              <p className="text-base font-semibold text-[#1D1D1F]">{statement.populationLabel}</p>
+              <span
+                className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold leading-4 ${
+                  statement.unresolved
+                    ? 'border-[#F0D89A] bg-[#FFF8E7] text-[#8A4B00]'
+                    : 'border-black/[0.1] bg-[#F5F5F7] text-[#515154]'
+                }`}
+              >
+                {statement.stateLabel}
+              </span>
+            </div>
+            <blockquote className="border-l-2 border-black/[0.12] pl-3 text-[15px] leading-7 text-[#1D1D1F]">
+              “{statement.text}”
+            </blockquote>
+            <SourceLine source={statement.source} />
+          </li>
+        ))}
+      </ul>
+      <p className="text-sm leading-6 text-[#6E6E73]">{ROW_BOUNDARY}</p>
+    </div>
+  )
+}
+
+export function BackgroundCommonAdverseReactionsBody({
+  reactions,
+}: {
+  reactions: NonNullable<MedicineBackgroundContextView['commonAdverseReactions']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-sm leading-6 text-[#515154]">
+        Reported at or above the rate the source printed:{' '}
+        <span className="font-mono font-semibold text-[#1D1D1F]">{reactions.threshold}</span>
+      </p>
+      <ul className="flex flex-wrap gap-2">
+        {reactions.events.map((event) => (
+          <li
+            key={event}
+            className="rounded-full border border-black/[0.1] bg-[#F5F5F7] px-3 py-1 text-sm font-semibold leading-5 text-[#1D1D1F]"
+          >
+            {event}
+          </li>
+        ))}
+      </ul>
+      <SourceLine source={reactions.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">{ROW_BOUNDARY}</p>
     </div>
   )
 }

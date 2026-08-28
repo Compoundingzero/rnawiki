@@ -20,6 +20,17 @@ import {
  * real functions in `lib/background/derivations.ts`, so the engine's recomputation matches by
  * construction. No value is a real medical claim.
  */
+const MECHANISM_TEXT =
+  'The synthetic medicine binds the synthetic receptor and reduces synthetic signalling in the model.'
+const BOXED_TEXT =
+  'Synthetic boxed warning: patients should be monitored for the synthetic adverse outcome.'
+const CONTRAINDICATION_TEXT =
+  'This synthetic medicine is contraindicated in the synthetic hypersensitivity population.'
+const PEDIATRIC_TEXT =
+  'Safety and effectiveness in synthetic pediatric patients have not been established.'
+const ADVERSE_TEXT =
+  'The most common adverse reactions (≥ 5 %) were synthetic headache and synthetic nausea.'
+
 function validBackground(): MedicineRecordedBackground {
   const labelSource = {
     kind: 'FDA_LABEL' as const,
@@ -28,6 +39,11 @@ function validBackground(): MedicineRecordedBackground {
     retrievedAt: '2026-08-27',
     excerpt: 'Synthetic label wording: absolute bioavailability is approximately 89% in adults.',
   }
+  // A quoted statement is its own excerpt, which is exactly what the engine requires of it.
+  const statement = (text: string) => ({
+    textAsRecorded: text,
+    source: { ...labelSource, excerpt: text },
+  })
   return {
     version: 'medicine-background/v1',
     authoredAt: '2026-08-27',
@@ -163,6 +179,52 @@ function validBackground(): MedicineRecordedBackground {
         label: 'Synthetic compound record',
         retrievedAt: '2026-08-27',
       },
+    },
+    mechanism: {
+      statements: [statement(MECHANISM_TEXT)],
+      namedTargetsAsRecorded: ['synthetic receptor'],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C16H19N3O5S',
+        populationContext: 'as stated in the synthetic label sentence recorded below',
+        source: { ...labelSource, excerpt: 'The molecular formula is C16H19N3O5S.' },
+      },
+      molecularWeight: {
+        display: '396.44',
+        numeric: 396.44,
+        unit: 'g/mol',
+        populationContext: 'as stated in the synthetic label sentence recorded below',
+        source: { ...labelSource, excerpt: 'The molecular weight is 396.44 g/mol.' },
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        roleAsRecorded: 'SUBSTRATE',
+        source: {
+          ...labelSource,
+          excerpt: 'This synthetic medicine is a substrate of CYP3A4 in the synthetic model.',
+        },
+      },
+    ],
+    safety: {
+      boxedWarning: statement(BOXED_TEXT),
+      contraindications: [statement(CONTRAINDICATION_TEXT)],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded: PEDIATRIC_TEXT,
+        source: { ...labelSource, excerpt: PEDIATRIC_TEXT },
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: '≥ 5 %',
+      eventsAsRecorded: ['synthetic headache', 'synthetic nausea'],
+      source: { ...labelSource, excerpt: ADVERSE_TEXT },
     },
   }
 }
@@ -301,6 +363,78 @@ const ruleCases = {
   I_REGISTRY_IDENTIFIER_INVALID: {
     mutate: (background) => {
       background.registryIdentifiers!.casNumber = 'not-a-cas'
+    },
+  },
+  I_STATEMENT_NOT_VERBATIM: {
+    mutate: (background) => {
+      background.mechanism!.statements[0]!.textAsRecorded = 'A summary the source never printed.'
+    },
+  },
+  I_STATEMENT_EMPTY: {
+    mutate: (background) => {
+      background.mechanism!.statements = []
+    },
+  },
+  I_MECHANISM_TARGET_NOT_IN_TEXT: {
+    mutate: (background) => {
+      background.mechanism!.namedTargetsAsRecorded = ['synthetic transporter never named']
+    },
+  },
+  I_MOLECULAR_FORMULA_INVALID: {
+    mutate: (background) => {
+      background.molecularIdentity!.molecularFormula!.display = 'not a formula'
+      background.molecularIdentity!.molecularFormula!.source.excerpt = 'not a formula'
+    },
+  },
+  I_MOLECULAR_WEIGHT_IMPLAUSIBLE: {
+    mutate: (background) => {
+      background.molecularIdentity!.molecularWeight!.numeric = 4
+      background.molecularIdentity!.molecularWeight!.display = '4'
+      background.molecularIdentity!.molecularWeight!.source.excerpt = 'The molecular weight is 4.'
+    },
+  },
+  I_INTERACTION_KIND_UNKNOWN: {
+    mutate: (background) => {
+      // @ts-expect-error deliberately outside the vocabulary
+      background.interactionSignals![0]!.kind = 'ORGANELLE'
+    },
+  },
+  I_INTERACTION_ROLE_UNKNOWN: {
+    mutate: (background) => {
+      // @ts-expect-error deliberately outside the vocabulary
+      background.interactionSignals![0]!.roleAsRecorded = 'ACCELERATOR'
+    },
+  },
+  I_INTERACTION_COUNTERPARTY_NOT_IN_EXCERPT: {
+    mutate: (background) => {
+      background.interactionSignals![0]!.counterpartyAsRecorded = 'CYP2D6'
+    },
+  },
+  I_POPULATION_UNKNOWN: {
+    mutate: (background) => {
+      // @ts-expect-error deliberately outside the vocabulary
+      background.populationStatements![0]!.population = 'ASTRONAUTS'
+    },
+  },
+  I_POPULATION_STATE_UNKNOWN: {
+    mutate: (background) => {
+      // @ts-expect-error deliberately outside the vocabulary
+      background.populationStatements![0]!.state = 'PROBABLY_FINE'
+    },
+  },
+  I_POPULATION_DUPLICATE: {
+    mutate: (background) => {
+      background.populationStatements!.push({ ...background.populationStatements![0]! })
+    },
+  },
+  I_ADVERSE_THRESHOLD_NOT_IN_EXCERPT: {
+    mutate: (background) => {
+      background.commonAdverseReactions!.thresholdAsRecorded = '≥ 12 %'
+    },
+  },
+  I_ADVERSE_EVENT_NOT_IN_EXCERPT: {
+    mutate: (background) => {
+      background.commonAdverseReactions!.eventsAsRecorded = ['synthetic dizziness']
     },
   },
 } satisfies Record<BackgroundRuleCode, RuleCase>

@@ -4,10 +4,16 @@ import { AnnotatedMedicineText } from '@/components/AnnotatedMedicineText'
 import {
   BackgroundAnatomyBody,
   BackgroundApplicabilityBody,
+  BackgroundCommonAdverseReactionsBody,
   BackgroundCostEntriesBody,
+  BackgroundInteractionSignalsBody,
+  BackgroundMechanismBody,
+  BackgroundMolecularIdentityBody,
   BackgroundPharmacokineticsBody,
+  BackgroundPopulationStatementsBody,
   BackgroundPivotalResultsBody,
   BackgroundProductsBody,
+  BackgroundSafetyBody,
   BackgroundTitrationBody,
   RegistryIdentifierList,
 } from '@/components/dossier/RecordedBackgroundRows'
@@ -158,6 +164,11 @@ export function MedicineRecordContextSections({
           General background about this medicine
         </h2>
         <p className="max-w-2xl text-base leading-7 text-[#515154]">{BACKGROUND_BOUNDARY}</p>
+        {context.background?.provenanceNote && (
+          <p className="max-w-2xl rounded-2xl border border-black/[0.08] bg-[#F5F5F7] px-4 py-3 text-sm leading-6 text-[#515154]">
+            {context.background.provenanceNote}
+          </p>
+        )}
       </header>
 
       <div className="divide-y divide-black/[0.07] overflow-hidden rounded-[22px] border border-black/[0.08] bg-white">
@@ -291,6 +302,54 @@ export function MedicineRecordContextSections({
           </BackgroundRow>
         )}
 
+        {context.background?.mechanism && (
+          <BackgroundRow
+            id="how-it-works"
+            tone="emerald"
+            title="How it works, in the source's own words"
+            preview="The exact sentences the source uses to describe what this medicine does in the body."
+          >
+            <BackgroundMechanismBody mechanism={context.background.mechanism} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.safety && (
+          <BackgroundRow
+            id="recorded-harms"
+            tone="amber"
+            title="What the source warns about"
+            preview="The strongest warning printed on the source, and the situations it says the medicine must not be used in."
+          >
+            <BackgroundSafetyBody safety={context.background.safety} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.commonAdverseReactions && (
+          <BackgroundRow
+            id="commonly-reported"
+            tone="amber"
+            title="What was reported most often"
+            preview="The reactions the source lists as most common, with the reporting rate it printed alongside them."
+          >
+            <BackgroundCommonAdverseReactionsBody
+              reactions={context.background.commonAdverseReactions}
+            />
+          </BackgroundRow>
+        )}
+
+        {(context.background?.populationStatements?.length ?? 0) > 0 && (
+          <BackgroundRow
+            id="who-was-studied"
+            tone="emerald"
+            title="Groups the source does and does not answer for"
+            preview="What the source says about children, older adults, pregnancy and breastfeeding — including where it says nothing was established."
+          >
+            <BackgroundPopulationStatementsBody
+              statements={context.background!.populationStatements!}
+            />
+          </BackgroundRow>
+        )}
+
         {context.background?.pharmacokinetics && (
           <BackgroundRow
             id="after-a-dose"
@@ -323,6 +382,28 @@ export function MedicineRecordContextSections({
             preview="Recorded brands, forms, strengths and approved uses by place."
           >
             <BackgroundProductsBody products={context.background!.productVariants!} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.interactionSignals && (
+          <BackgroundRow
+            id="handled-by"
+            tone="violet"
+            title="What handles it in the body"
+            preview="Enzymes and transporters the source names, each with the sentence that named it."
+          >
+            <BackgroundInteractionSignalsBody signals={context.background.interactionSignals} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.molecularIdentity && (
+          <BackgroundRow
+            id="chemical-identity"
+            tone="stone"
+            title="What the molecule is"
+            preview="Molecular formula and weight exactly as the source prints them."
+          >
+            <BackgroundMolecularIdentityBody identity={context.background.molecularIdentity} />
           </BackgroundRow>
         )}
 

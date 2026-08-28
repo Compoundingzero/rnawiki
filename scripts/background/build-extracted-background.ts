@@ -1,0 +1,255 @@
+import 'dotenv/config'
+import { createReadStream, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { createInterface } from 'node:readline'
+import { join } from 'node:path'
+
+import {
+  extractBackgroundFromLabel,
+  type LabelArtifact,
+} from '@/lib/background/label-extraction'
+import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
+import type { MedicineRecordedBackground } from '@/lib/background/types'
+import { RECORDED_BACKGROUND } from '../seed-data/background'
+
+/**
+ * Builds `extracted`-tier recorded background for the whole medicine corpus from openFDA's bulk
+ * label archive.
+ *
+ * Hand-authoring reached 155 medicines. This reaches every medicine whose name matches a published
+ * FDA label, because the parser satisfies the dataset's evidence guarantee by construction: it
+ * reads each value out of a label sentence and stores that sentence as the excerpt.
+ *
+ * Two boundaries are absolute. A curated record is never overwritten — the hand-authored corpus
+ * always wins on a slug it already covers. And every extracted envelope must pass the background
+ * engine before it is written, so an extraction that produced something structurally wrong is
+ * dropped rather than published.
+ *
+ * Usage:
+ *   tsx scripts/background/build-extracted-background.ts <labelIndex.ndjson> [--limit=N]
+ *
+ * The index is produced by scripts/background/index-openfda-labels.py from openFDA's bulk
+ * `drug-label-*.json.zip` partitions (https://api.fda.gov/download.json) — one download and one
+ * reduction pass, rather than thousands of API calls. The reduction runs in Python because a
+ * decompressed partition exceeds the maximum string length a Node process can hold.
+ */
+
+interface MedicineRow {
+  slug: string
+  name: string
+  tradeName?: string
+}
+
+interface IndexedLabel {
+  setId: string
+  effectiveTime?: string
+  brandNames: string[]
+  genericNames: string[]
+  /** Active-substance names, which reach salt-form and combination rows the generic name misses. */
+  substanceNames?: string[]
+  routes: string[]
+  unii?: string
+  rxcui?: string
+  sections: Record<string, string>
+  /** Higher is better when several labels share a name. */
+  score: number
+}
+
+function normalizeName(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\([^)]*\)/gu, ' ')
+    .replace(
+      /\b(hydrochloride|hcl|sodium|potassium|calcium|sulfate|sulphate|tartrate|maleate|mesylate|besylate|fumarate|succinate|citrate|acetate|phosphate|bitartrate|dihydrate|monohydrate|anhydrous|micronized|usp|injection|tablets?|capsules?|oral|solution|suspension|cream|ointment|gel|spray)\b/gu,
+      ' ',
+    )
+    .replace(/[^a-z0-9]+/gu, ' ')
+    .trim()
+}
+
+/**
+ * Builds the name index by streaming the reduced NDJSON. A medicine is reachable by its generic
+ * name and by any brand name on the label; when several labels answer to one name, the one
+ * carrying the most extractable sections wins.
+ */
+async function buildIndex(indexPath: string): Promise<Map<string, IndexedLabel>> {
+  const index = new Map<string, IndexedLabel>()
+  let lineCount = 0
+  // The reduced index is larger than the maximum string a Node process can hold, so it is read a
+  // line at a time rather than loaded whole.
+  const reader = createInterface({
+    input: createReadStream(indexPath, { encoding: 'utf8' }),
+    crlfDelay: Infinity,
+  })
+  for await (const line of reader) {
+    if (!line.trim()) continue
+    lineCount += 1
+    const entry = JSON.parse(line) as IndexedLabel
+    if (!entry.setId) continue
+    for (const candidate of [
+      ...entry.genericNames,
+      ...entry.brandNames,
+      ...(entry.substanceNames ?? []),
+    ]) {
+      const key = normalizeName(candidate)
+      if (key.length < 3) continue
+      const existing = index.get(key)
+      if (!existing || entry.score > existing.score) index.set(key, entry)
+    }
+  }
+  console.log(`[extract] read ${lineCount} indexed labels · ${index.size} distinct names`)
+  return index
+}
+
+function loadMedicineRows(): MedicineRow[] {
+  const dir = join(process.cwd(), 'data', 'drugs')
+  const rows: MedicineRow[] = []
+  for (const file of readdirSync(dir).filter((name) => name.endsWith('.ndjson')).sort()) {
+    for (const line of readFileSync(join(dir, file), 'utf8').split('\n')) {
+      if (!line.trim()) continue
+      const record = JSON.parse(line) as { id?: string; name?: string; tradeName?: string }
+      if (record.id && record.name) {
+        rows.push({
+          slug: record.id,
+          name: record.name,
+          ...(record.tradeName ? { tradeName: record.tradeName } : {}),
+        })
+      }
+    }
+  }
+  return rows
+}
+
+function serialize(dataset: Record<string, MedicineRecordedBackground>): string {
+  const slugs = Object.keys(dataset).sort()
+  const entries = slugs
+    .map(
+      (slug) =>
+        `  ${JSON.stringify(slug)}: ${JSON.stringify(dataset[slug], null, 2).replace(/\n/gu, '\n  ')},`,
+    )
+    .join('\n')
+  return `// Generated by scripts/background/build-extracted-background.ts — do not edit by hand.
+//
+// Every value here was read out of an FDA label sentence by a deterministic parser, which stores
+// that sentence as the excerpt; the number is therefore always present in its own excerpt. These
+// records are 'extracted' tier: no judgement was applied, and they never overwrite a curated
+// record. Re-run the script to refresh, and let \`git diff\` report what changed.
+
+import type { MedicineRecordedBackground } from '@/lib/background/types'
+
+export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = {
+${entries}
+}
+`
+}
+
+async function main() {
+  const [indexPath] = process.argv.slice(2).filter((value) => !value.startsWith('--'))
+  if (!indexPath || !existsSync(indexPath)) {
+    console.error(
+      'Usage: tsx scripts/background/build-extracted-background.ts <labelIndex.ndjson> [--limit=N]',
+    )
+    process.exit(1)
+  }
+  const limitFlag = process.argv.find((value) => value.startsWith('--limit='))
+  const limit = limitFlag ? Number(limitFlag.split('=')[1]) : Infinity
+
+  const retrievedAt = new Date().toISOString().slice(0, 10)
+  const index = await buildIndex(indexPath)
+  const rows = loadMedicineRows()
+  console.log(`[extract] ${rows.length} medicine rows · ${index.size} indexed label names`)
+
+  const dataset: Record<string, MedicineRecordedBackground> = {}
+  const stats = {
+    considered: 0,
+    curatedSkipped: 0,
+    noLabelMatch: 0,
+    nothingExtractable: 0,
+    engineRejected: 0,
+    written: 0,
+  }
+  const moduleCounts = new Map<string, number>()
+
+  for (const row of rows) {
+    if (stats.written >= limit) break
+    stats.considered += 1
+
+    // The hand-authored corpus always wins: extraction never overwrites curated work.
+    if (RECORDED_BACKGROUND[row.slug]) {
+      stats.curatedSkipped += 1
+      continue
+    }
+
+    const candidates = [row.name, ...(row.tradeName ? row.tradeName.split(/\s*[/,]\s*/u) : [])]
+    let label: IndexedLabel | undefined
+    for (const candidate of candidates) {
+      label = index.get(normalizeName(candidate))
+      if (label) break
+    }
+    if (!label) {
+      stats.noLabelMatch += 1
+      continue
+    }
+
+    const artifact: LabelArtifact = {
+      setId: label.setId,
+      effectiveTime: label.effectiveTime,
+      brandNames: label.brandNames,
+      genericNames: label.genericNames,
+      routes: label.routes,
+      unii: label.unii,
+      rxcui: label.rxcui,
+      sections: label.sections,
+    }
+    const identifiers =
+      label.unii || label.rxcui
+        ? {
+            ...(label.unii ? { unii: label.unii } : {}),
+            ...(label.rxcui ? { rxcui: label.rxcui } : {}),
+            source: {
+              kind: 'FDA_LABEL' as const,
+              identifier: label.setId,
+              label: `${row.name} label`,
+              retrievedAt,
+            },
+          }
+        : undefined
+
+    const { background, modules } = extractBackgroundFromLabel({
+      artifact,
+      options: { retrievedAt, sourceLabel: `${row.name} label` },
+      registryIdentifiers: identifiers,
+    })
+    if (!background) {
+      stats.nothingExtractable += 1
+      continue
+    }
+
+    // Nothing reaches the dataset without passing the same engine the curated corpus passes.
+    const report = runBackgroundIntelligence(background)
+    if (!report.passed) {
+      stats.engineRejected += 1
+      continue
+    }
+
+    dataset[row.slug] = background
+    stats.written += 1
+    for (const name of modules) moduleCounts.set(name, (moduleCounts.get(name) ?? 0) + 1)
+  }
+
+  const outPath = join(
+    process.cwd(),
+    'scripts',
+    'seed-data',
+    'background',
+    'extracted-background.generated.ts',
+  )
+  writeFileSync(outPath, serialize(dataset))
+  console.log(`[extract] ${JSON.stringify(stats)}`)
+  console.log(`[extract] modules: ${JSON.stringify(Object.fromEntries(moduleCounts))}`)
+  console.log(`[extract] wrote ${stats.written} record(s) to ${outPath}`)
+}
+
+void main().catch((error) => {
+  console.error(error)
+  process.exit(1)
+})

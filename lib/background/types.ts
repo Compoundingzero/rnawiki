@@ -21,6 +21,22 @@ import type { AnatomyRegionCode } from './anatomy-regions'
 
 export const MEDICINE_BACKGROUND_VERSION = 'medicine-background/v1' as const
 
+/**
+ * How a value came to be recorded. Both tiers carry the same evidence guarantee — the verbatim
+ * excerpt containing every number — but they are different kinds of work and are never presented
+ * as the same thing.
+ *
+ * - `curated`: a person or agent read the fetched artifact, chose the value, wrote its measurement
+ *   context, and judged what the source does and does not support.
+ * - `extracted`: a deterministic parser matched a pattern in the fetched artifact and stored the
+ *   number together with the sentence it was read out of. No judgement was applied, so the
+ *   measurement context is the sentence itself rather than an interpretation of it.
+ *
+ * An `extracted` value is never allowed to overwrite a `curated` one.
+ */
+export const BACKGROUND_PROVENANCE_TIERS = ['curated', 'extracted'] as const
+export type BackgroundProvenanceTier = (typeof BACKGROUND_PROVENANCE_TIERS)[number]
+
 export const BACKGROUND_SOURCE_KINDS = [
   'FDA_LABEL',
   'DAILYMED',
@@ -68,6 +84,8 @@ export interface RecordedValue {
   concordance?: BackgroundConcordance
   /** Present exactly when concordance is 'discrepant': the other reading and its source. */
   alternateValue?: { display: string; source: BackgroundSource }
+  /** Defaults to 'curated' when absent, which is what every hand-authored value is. */
+  provenanceTier?: BackgroundProvenanceTier
 }
 
 export interface RecordedPharmacokinetics {
@@ -191,10 +209,128 @@ export interface RecordedRegistryIdentifiers {
   source: BackgroundSource
 }
 
+/**
+ * A statement copied verbatim from a named source section. Nothing is paraphrased, summarized or
+ * re-ordered: the text is what the source prints, and the excerpt on the source is the same text,
+ * so a reader can always check the record against the sentence it came from.
+ */
+export interface RecordedStatement {
+  textAsRecorded: string
+  source: BackgroundSource
+  provenanceTier?: BackgroundProvenanceTier
+}
+
+/**
+ * How the medicine acts, as the source states it. `namedTargetsAsRecorded` holds only tokens that
+ * literally appear in the recorded statements — it is an index into the text, never a claim added
+ * on top of it.
+ */
+export interface RecordedMechanism {
+  statements: RecordedStatement[]
+  namedTargetsAsRecorded?: string[]
+}
+
+/**
+ * Chemical identity as printed in the source's description section. These are the two facts a
+ * chemist checks first and the two a label states unambiguously.
+ */
+/**
+ * A molecular formula as labels print it once whitespace is removed: element symbols with optional
+ * counts, plus an optional salt or hydrate after a middle dot (`C4H11N5∙HCl`, `C16H19N3O5S·3H2O`).
+ * The extractor and the engine share this one definition so a written formula and a validated
+ * formula can never disagree.
+ */
+export const MOLECULAR_FORMULA_SHAPE =
+  /^(?:[A-Z][a-z]?\d{0,3})+(?:[·∙•.](?:\d)?(?:[A-Z][a-z]?\d{0,3})+)?$/u
+
+export interface RecordedMolecularIdentity {
+  molecularFormula?: RecordedValue
+  molecularWeight?: RecordedValue
+}
+
+export const INTERACTION_COUNTERPARTY_KINDS = ['ENZYME', 'TRANSPORTER'] as const
+export type InteractionCounterpartyKind = (typeof INTERACTION_COUNTERPARTY_KINDS)[number]
+
+export const INTERACTION_ROLES = ['SUBSTRATE', 'INHIBITOR', 'INDUCER'] as const
+export type InteractionRole = (typeof INTERACTION_ROLES)[number]
+
+/**
+ * One metabolic or transport counterparty the source names, with the sentence naming it.
+ *
+ * `roleAsRecorded` is present only when the recorded sentence states exactly one role. A sentence
+ * that names several roles carries no role here: the sentence is kept and the reader decides,
+ * because guessing which role attaches to which counterparty would be interpretation.
+ */
+export interface RecordedInteractionSignal {
+  counterpartyAsRecorded: string
+  kind: InteractionCounterpartyKind
+  roleAsRecorded?: InteractionRole
+  source: BackgroundSource
+  provenanceTier?: BackgroundProvenanceTier
+}
+
+/**
+ * Harms and hard limits the source states. These are recorded because a record that shows only
+ * benefit is not a transparent record; they are statements from the source, never advice.
+ */
+export interface RecordedSafetyStatements {
+  boxedWarning?: RecordedStatement
+  contraindications?: RecordedStatement[]
+}
+
+export const STUDIED_POPULATIONS = [
+  'PEDIATRIC',
+  'GERIATRIC',
+  'PREGNANCY',
+  'LACTATION',
+  'HEPATIC_IMPAIRMENT',
+  'RENAL_IMPAIRMENT',
+] as const
+export type StudiedPopulation = (typeof STUDIED_POPULATIONS)[number]
+
+export const POPULATION_EVIDENCE_STATES = [
+  'STUDIED',
+  'NOT_ESTABLISHED',
+  'STATEMENT_ONLY',
+] as const
+/**
+ * `NOT_ESTABLISHED` is used only when the source itself says effectiveness or safety has not been
+ * established. `STATEMENT_ONLY` means the source discusses the group without settling that
+ * question — it is deliberately distinct from both a positive finding and a silence.
+ */
+export type PopulationEvidenceState = (typeof POPULATION_EVIDENCE_STATES)[number]
+
+export interface RecordedPopulationStatement {
+  population: StudiedPopulation
+  state: PopulationEvidenceState
+  textAsRecorded: string
+  source: BackgroundSource
+  provenanceTier?: BackgroundProvenanceTier
+}
+
+/**
+ * The source's own "most common adverse reactions" sentence, kept whole.
+ *
+ * Only the threshold and the list the source prints together are recorded. Per-event percentages
+ * are deliberately not parsed out of label tables: pairing a number to an event across table text
+ * is exactly the kind of guess that would put a wrong frequency on a real harm.
+ */
+export interface RecordedCommonAdverseReactions {
+  thresholdAsRecorded: string
+  eventsAsRecorded: string[]
+  source: BackgroundSource
+  provenanceTier?: BackgroundProvenanceTier
+}
+
 export interface MedicineRecordedBackground {
   version: typeof MEDICINE_BACKGROUND_VERSION
   /** ISO date this record was authored from fetched artifacts. */
   authoredAt: string
+  /**
+   * The tier of the record as a whole. A `curated` record was assembled by a person or agent; an
+   * `extracted` record was produced by the deterministic label parser. Absent means `curated`.
+   */
+  provenanceTier?: BackgroundProvenanceTier
   pharmacokinetics?: RecordedPharmacokinetics
   titration?: RecordedTitration
   productVariants?: RecordedProductVariant[]
@@ -203,4 +339,10 @@ export interface MedicineRecordedBackground {
   applicability?: RecordedApplicability
   pivotalResults?: RecordedPivotalResult[]
   registryIdentifiers?: RecordedRegistryIdentifiers
+  mechanism?: RecordedMechanism
+  molecularIdentity?: RecordedMolecularIdentity
+  interactionSignals?: RecordedInteractionSignal[]
+  safety?: RecordedSafetyStatements
+  populationStatements?: RecordedPopulationStatement[]
+  commonAdverseReactions?: RecordedCommonAdverseReactions
 }

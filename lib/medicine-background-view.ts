@@ -7,6 +7,7 @@
 
 import { ANATOMY_REGIONS, isAnatomyRegionCode } from '@/lib/background/anatomy-regions'
 import type {
+  BackgroundProvenanceTier,
   BackgroundSource,
   MedicineRecordedBackground,
   RecordedValue,
@@ -25,6 +26,8 @@ export interface RecordedValueView {
   label: string
   display: string
   populationContext: string
+  /** Present only when this single value was read automatically inside an otherwise curated record. */
+  provenanceLabel?: string
   concordanceLabel?: string
   discrepantAlternate?: { display: string; source: RecordedSourceView }
   source: RecordedSourceView
@@ -32,6 +35,12 @@ export interface RecordedValueView {
 
 export interface MedicineBackgroundContextView {
   authoredAt: string
+  /**
+   * Present only when the whole record was read automatically. Readers are told which kind of
+   * record they are looking at, because a value a person checked and a value a parser matched
+   * out of a label sentence carry different weight even when both quote the same source.
+   */
+  provenanceNote?: string
   pharmacokinetics?: {
     routeAsRecorded: string
     values: RecordedValueView[]
@@ -90,6 +99,37 @@ export interface MedicineBackgroundContextView {
     rows: Array<{ label: string; value: string }>
     source: RecordedSourceView
   }
+  mechanism?: {
+    statements: Array<{ text: string; source: RecordedSourceView }>
+    namedTargets?: string[]
+  }
+  molecularIdentity?: {
+    values: RecordedValueView[]
+  }
+  interactionSignals?: {
+    /** Grouped so a reader sees the enzymes together and the transporters together. */
+    groups: Array<{
+      kindLabel: string
+      entries: Array<{ counterparty: string; roleLabel?: string; source: RecordedSourceView }>
+    }>
+  }
+  safety?: {
+    boxedWarning?: { text: string; source: RecordedSourceView }
+    contraindications?: Array<{ text: string; source: RecordedSourceView }>
+  }
+  populationStatements?: Array<{
+    populationLabel: string
+    stateLabel: string
+    /** True when the source did not settle the question, so the row can be marked as open. */
+    unresolved: boolean
+    text: string
+    source: RecordedSourceView
+  }>
+  commonAdverseReactions?: {
+    threshold: string
+    events: string[]
+    source: RecordedSourceView
+  }
 }
 
 const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
@@ -134,6 +174,32 @@ function sourceHref(source: BackgroundSource): string | undefined {
   }
 }
 
+const INTERACTION_KIND_LABELS = {
+  ENZYME: 'Enzymes the source names',
+  TRANSPORTER: 'Transporters the source names',
+} as const
+
+const INTERACTION_ROLE_LABELS = {
+  SUBSTRATE: 'the source calls this medicine a substrate',
+  INHIBITOR: 'the source describes inhibition',
+  INDUCER: 'the source describes induction',
+} as const
+
+const POPULATION_LABELS = {
+  PEDIATRIC: 'Children',
+  GERIATRIC: 'Older adults',
+  PREGNANCY: 'Pregnancy',
+  LACTATION: 'Breastfeeding',
+  HEPATIC_IMPAIRMENT: 'Reduced liver function',
+  RENAL_IMPAIRMENT: 'Reduced kidney function',
+} as const
+
+const POPULATION_STATE_LABELS = {
+  STUDIED: 'The source says this group was studied',
+  NOT_ESTABLISHED: 'The source says this was not established',
+  STATEMENT_ONLY: 'The source discusses this group without settling the question',
+} as const
+
 function sourceView(source: BackgroundSource): RecordedSourceView {
   return {
     kindLabel: SOURCE_KIND_LABELS[source.kind] ?? source.kind,
@@ -145,13 +211,30 @@ function sourceView(source: BackgroundSource): RecordedSourceView {
   }
 }
 
-function valueView(label: string, value: RecordedValue | undefined): RecordedValueView[] {
+const EXTRACTED_RECORD_NOTE =
+  'Every value in this background was read automatically out of the source sentence shown beside ' +
+  'it, and no person has checked it. Open “Exact fetched wording” under any value to read the ' +
+  'sentence it came from.'
+
+const EXTRACTED_VALUE_NOTE = 'Read automatically from the sentence below; not checked by a person'
+
+function valueView(
+  label: string,
+  value: RecordedValue | undefined,
+  recordTier: BackgroundProvenanceTier,
+): RecordedValueView[] {
   if (!value) return []
+  const valueTier = value.provenanceTier ?? 'curated'
   return [
     {
       label,
       display: value.display,
       populationContext: value.populationContext,
+      // A whole-record note already covers an extracted record; label the value only when it is
+      // the odd one out inside a record a person otherwise authored.
+      ...(valueTier === 'extracted' && recordTier !== 'extracted'
+        ? { provenanceLabel: EXTRACTED_VALUE_NOTE }
+        : {}),
       concordanceLabel: value.concordance ? CONCORDANCE_LABELS[value.concordance] : undefined,
       discrepantAlternate: value.alternateValue
         ? {
@@ -199,18 +282,20 @@ export function medicineBackgroundContext(
 ): MedicineBackgroundContextView | undefined {
   if (!background || background.version !== 'medicine-background/v1') return undefined
 
+  const recordTier: BackgroundProvenanceTier = background.provenanceTier ?? 'curated'
+
   const pk = background.pharmacokinetics
   const pharmacokinetics = pk
     ? {
         routeAsRecorded: pk.routeAsRecorded,
         values: [
-          ...valueView('How much reaches the bloodstream', pk.bioavailability),
-          ...valueView('Time to peak level', pk.tMax),
-          ...valueView('Half-life', pk.halfLife),
-          ...valueView('Bound to blood proteins', pk.proteinBinding),
-          ...valueView('Distribution volume', pk.volumeOfDistribution),
-          ...valueView('How it is broken down', pk.metabolismAsRecorded),
-          ...valueView('How it leaves the body', pk.eliminationAsRecorded),
+          ...valueView('How much reaches the bloodstream', pk.bioavailability, recordTier),
+          ...valueView('Time to peak level', pk.tMax, recordTier),
+          ...valueView('Half-life', pk.halfLife, recordTier),
+          ...valueView('Bound to blood proteins', pk.proteinBinding, recordTier),
+          ...valueView('Distribution volume', pk.volumeOfDistribution, recordTier),
+          ...valueView('How it is broken down', pk.metabolismAsRecorded, recordTier),
+          ...valueView('How it leaves the body', pk.eliminationAsRecorded, recordTier),
         ],
         steadyStateNote: pk.steadyStateNote,
       }
@@ -316,8 +401,91 @@ export function medicineBackgroundContext(
       }
     : undefined
 
+  const mechanism = background.mechanism
+    ? {
+        statements: background.mechanism.statements.map((statement) => ({
+          text: statement.textAsRecorded,
+          source: sourceView(statement.source),
+        })),
+        ...(background.mechanism.namedTargetsAsRecorded?.length
+          ? { namedTargets: background.mechanism.namedTargetsAsRecorded }
+          : {}),
+      }
+    : undefined
+
+  const molecularValues = background.molecularIdentity
+    ? [
+        ...valueView('Molecular formula', background.molecularIdentity.molecularFormula, recordTier),
+        ...valueView('Molecular weight', background.molecularIdentity.molecularWeight, recordTier),
+      ]
+    : []
+  const molecularIdentity = molecularValues.length > 0 ? { values: molecularValues } : undefined
+
+  const signalGroups = (['ENZYME', 'TRANSPORTER'] as const)
+    .map((kind) => ({
+      kindLabel: INTERACTION_KIND_LABELS[kind],
+      entries: (background.interactionSignals ?? [])
+        .filter((signal) => signal.kind === kind)
+        .map((signal) => ({
+          counterparty: signal.counterpartyAsRecorded,
+          ...(signal.roleAsRecorded
+            ? { roleLabel: INTERACTION_ROLE_LABELS[signal.roleAsRecorded] }
+            : {}),
+          source: sourceView(signal.source),
+        })),
+    }))
+    .filter((group) => group.entries.length > 0)
+  const interactionSignals = signalGroups.length > 0 ? { groups: signalGroups } : undefined
+
+  const safetyView = background.safety
+    ? {
+        ...(background.safety.boxedWarning
+          ? {
+              boxedWarning: {
+                text: background.safety.boxedWarning.textAsRecorded,
+                source: sourceView(background.safety.boxedWarning.source),
+              },
+            }
+          : {}),
+        ...(background.safety.contraindications?.length
+          ? {
+              contraindications: background.safety.contraindications.map((statement) => ({
+                text: statement.textAsRecorded,
+                source: sourceView(statement.source),
+              })),
+            }
+          : {}),
+      }
+    : undefined
+  const safety = safetyView && Object.keys(safetyView).length > 0 ? safetyView : undefined
+
+  const populationStatements = background.populationStatements?.length
+    ? background.populationStatements.map((statement) => ({
+        populationLabel: POPULATION_LABELS[statement.population] ?? statement.population,
+        stateLabel: POPULATION_STATE_LABELS[statement.state] ?? statement.state,
+        unresolved: statement.state !== 'STUDIED',
+        text: statement.textAsRecorded,
+        source: sourceView(statement.source),
+      }))
+    : undefined
+
+  const commonAdverseReactions = background.commonAdverseReactions
+    ? {
+        threshold: background.commonAdverseReactions.thresholdAsRecorded,
+        events: background.commonAdverseReactions.eventsAsRecorded,
+        source: sourceView(background.commonAdverseReactions.source),
+      }
+    : undefined
+
   const view: MedicineBackgroundContextView = {
     authoredAt: background.authoredAt,
+    ...(mechanism ? { mechanism } : {}),
+    ...(molecularIdentity ? { molecularIdentity } : {}),
+    ...(interactionSignals ? { interactionSignals } : {}),
+    ...(safety ? { safety } : {}),
+    ...(populationStatements ? { populationStatements } : {}),
+    ...(commonAdverseReactions ? { commonAdverseReactions } : {}),
+    ...(recordTier === 'extracted' ? { provenanceNote: EXTRACTED_RECORD_NOTE } : {}),
     pharmacokinetics,
     titration,
     productVariants,
