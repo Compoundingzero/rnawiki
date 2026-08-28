@@ -4,6 +4,10 @@ db/migrations/
 # Agent run output. Generated data, not source: it is written by scripts/agents/run-agents.ts and
 # read as a diff, and reformatting it would only add noise to that diff.
 data/agents/
+# Generated registries, written wholesale by scripts/background/build-*.ts. The four the corpus
+# reads are version-controlled so they ship with the code; reformatting eighteen megabytes of
+# generated JSON would rewrite every line of every rebuild and tell a reviewer nothing.
+data/registries/
 package-lock.json
 test-results/
 playwright-report/

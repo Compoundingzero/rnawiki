@@ -1,7 +1,7 @@
 {
   "agent": "adverse-reaction-term-structure",
   "version": "1.0.0",
-  "runDate": "2026-08-28",
+  "runDate": "2026-08-29",
   "seed": 20260828,
   "parameters": {
     "termNormalisation": "trimmed and case-folded only; no synonym or stemming table",
@@ -2891,9 +2891,9 @@
             "thresholdAsRecorded": "incidence >5% and greater than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "249e27ac-e1e7-42dc-84f6-cd32fd1d9dee",
+            "sourceIdentifier": "52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e",
             "retrievedAt": "2026-08-28",
-            "excerpt": "2 ) ] Liver Dysfunction [see Warnings and Precautions ( 5.3 ) ] Laboratory Abnormalities [see Warnings and Precautions ( 5.4 ) ] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
+            "excerpt": ")] • Liver Dysfunction [see Warnings and Precautions ( 5.3 )] • Laboratory Abnormalities [see Warnings and Precautions ( 5.4 )] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
           },
           {
             "slug": "nimodipine",
@@ -9809,9 +9809,9 @@
             "thresholdAsRecorded": "incidence >5% and greater than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "249e27ac-e1e7-42dc-84f6-cd32fd1d9dee",
+            "sourceIdentifier": "52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e",
             "retrievedAt": "2026-08-28",
-            "excerpt": "2 ) ] Liver Dysfunction [see Warnings and Precautions ( 5.3 ) ] Laboratory Abnormalities [see Warnings and Precautions ( 5.4 ) ] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
+            "excerpt": ")] • Liver Dysfunction [see Warnings and Precautions ( 5.3 )] • Laboratory Abnormalities [see Warnings and Precautions ( 5.4 )] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
           },
           {
             "slug": "nirmatrelvir",
@@ -12516,9 +12516,9 @@
             "thresholdAsRecorded": "incidence >5% and greater than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "249e27ac-e1e7-42dc-84f6-cd32fd1d9dee",
+            "sourceIdentifier": "52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e",
             "retrievedAt": "2026-08-28",
-            "excerpt": "2 ) ] Liver Dysfunction [see Warnings and Precautions ( 5.3 ) ] Laboratory Abnormalities [see Warnings and Precautions ( 5.4 ) ] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
+            "excerpt": ")] • Liver Dysfunction [see Warnings and Precautions ( 5.3 )] • Laboratory Abnormalities [see Warnings and Precautions ( 5.4 )] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
           },
           {
             "slug": "octreotide",
@@ -19578,9 +19578,9 @@
             "thresholdAsRecorded": "≥10% and ≥1.5 times higher than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "0aa4ff2a-ce8e-46cd-830f-a264cc582be2",
+            "sourceIdentifier": "707a64ef-964e-44a3-8a0f-fcc2eb5b1af2",
             "retrievedAt": "2026-08-28",
-            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of glatiramer acetate injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of glatiramer acetate injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
+            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of Glatiramer Acetate Injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of Glatiramer Acetate Injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
           },
           {
             "slug": "hydroxocobalamin",
@@ -27670,9 +27670,9 @@
             "thresholdAsRecorded": "incidence >5% and greater than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "249e27ac-e1e7-42dc-84f6-cd32fd1d9dee",
+            "sourceIdentifier": "52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e",
             "retrievedAt": "2026-08-28",
-            "excerpt": "2 ) ] Liver Dysfunction [see Warnings and Precautions ( 5.3 ) ] Laboratory Abnormalities [see Warnings and Precautions ( 5.4 ) ] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
+            "excerpt": ")] • Liver Dysfunction [see Warnings and Precautions ( 5.3 )] • Laboratory Abnormalities [see Warnings and Precautions ( 5.4 )] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
           },
           {
             "slug": "nitisinone",
@@ -29469,9 +29469,9 @@
             "thresholdAsRecorded": "≥10% and ≥1.5 times higher than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "0aa4ff2a-ce8e-46cd-830f-a264cc582be2",
+            "sourceIdentifier": "707a64ef-964e-44a3-8a0f-fcc2eb5b1af2",
             "retrievedAt": "2026-08-28",
-            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of glatiramer acetate injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of glatiramer acetate injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
+            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of Glatiramer Acetate Injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of Glatiramer Acetate Injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
           },
           {
             "slug": "mannitol",
@@ -34889,9 +34889,9 @@
             "thresholdAsRecorded": "≥10% and ≥1.5 times higher than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "0aa4ff2a-ce8e-46cd-830f-a264cc582be2",
+            "sourceIdentifier": "707a64ef-964e-44a3-8a0f-fcc2eb5b1af2",
             "retrievedAt": "2026-08-28",
-            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of glatiramer acetate injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of glatiramer acetate injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
+            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of Glatiramer Acetate Injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of Glatiramer Acetate Injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
           },
           {
             "slug": "iron-sucrose",
@@ -39635,9 +39635,9 @@
             "thresholdAsRecorded": "incidence >5% and greater than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "249e27ac-e1e7-42dc-84f6-cd32fd1d9dee",
+            "sourceIdentifier": "52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e",
             "retrievedAt": "2026-08-28",
-            "excerpt": "2 ) ] Liver Dysfunction [see Warnings and Precautions ( 5.3 ) ] Laboratory Abnormalities [see Warnings and Precautions ( 5.4 ) ] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
+            "excerpt": ")] • Liver Dysfunction [see Warnings and Precautions ( 5.3 )] • Laboratory Abnormalities [see Warnings and Precautions ( 5.4 )] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
           },
           {
             "slug": "pafolacianine",
@@ -57679,9 +57679,9 @@
             "thresholdAsRecorded": "incidence >5% and greater than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "249e27ac-e1e7-42dc-84f6-cd32fd1d9dee",
+            "sourceIdentifier": "52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e",
             "retrievedAt": "2026-08-28",
-            "excerpt": "2 ) ] Liver Dysfunction [see Warnings and Precautions ( 5.3 ) ] Laboratory Abnormalities [see Warnings and Precautions ( 5.4 ) ] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
+            "excerpt": ")] • Liver Dysfunction [see Warnings and Precautions ( 5.3 )] • Laboratory Abnormalities [see Warnings and Precautions ( 5.4 )] Most common adverse reactions (incidence >5% and greater than placebo) are flushing, diarrhea, nausea, vomiting, increased cough, and pruritus."
           },
           {
             "slug": "tobramycin",
@@ -63246,9 +63246,9 @@
             "thresholdAsRecorded": "≥10% and ≥1.5 times higher than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "0aa4ff2a-ce8e-46cd-830f-a264cc582be2",
+            "sourceIdentifier": "707a64ef-964e-44a3-8a0f-fcc2eb5b1af2",
             "retrievedAt": "2026-08-28",
-            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of glatiramer acetate injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of glatiramer acetate injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
+            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of Glatiramer Acetate Injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of Glatiramer Acetate Injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
           }
         ]
       },
@@ -81149,9 +81149,9 @@
             "thresholdAsRecorded": "≥10% and ≥1.5 times higher than placebo",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "0aa4ff2a-ce8e-46cd-830f-a264cc582be2",
+            "sourceIdentifier": "707a64ef-964e-44a3-8a0f-fcc2eb5b1af2",
             "retrievedAt": "2026-08-28",
-            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of glatiramer acetate injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of glatiramer acetate injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
+            "excerpt": "5 )] Hepatic Injury [see Warnings and Precautions ( 5.6 )] In controlled studies of Glatiramer Acetate Injection 20 mg/mL, most common adverse reactions (≥10% and ≥1.5 times higher than placebo) were: injection site reactions, vasodilatation, rash, dyspnea, and chest pain ( 6.1 ) In a controlled study of Glatiramer Acetate Injection 40 mg/mL, most common adverse reactions (≥10% and ≥1.5 times high"
           }
         ]
       },
@@ -83216,9 +83216,9 @@
       "medianValidatedPairs": 0,
       "maximumValidatedPairs": 0
     },
-    "recordsConsidered": 3012,
+    "recordsConsidered": 7906,
     "labelsWithAMostCommonList": 668,
-    "recordsWithoutAMostCommonList": 2344,
+    "recordsWithoutAMostCommonList": 7238,
     "distinctTermsRecorded": 1066,
     "termsEnteringPairTesting": 127,
     "pairsTested": 8001,
@@ -83232,9 +83232,9 @@
     "listingsFromExtractedRecords": 4738
   },
   "coverage": {
-    "considered": 3012,
+    "considered": 7906,
     "used": 668,
-    "reason": "2344 of 3012 records have no most-common adverse reaction sentence in their recorded sources, so no term can be read from them. Of the 668 that do, 668 contributed at least one admitted term; 0 term listings were withheld (0 absent from the sentence they were read from, 0 from a sentence that reads as advice) and are in the review queue rather than deleted."
+    "reason": "7238 of 7906 records have no most-common adverse reaction sentence in their recorded sources, so no term can be read from them. Of the 668 that do, 668 contributed at least one admitted term; 0 term listings were withheld (0 absent from the sentence they were read from, 0 from a sentence that reads as advice) and are in the review queue rather than deleted."
   },
   "queue": [
     {
@@ -84534,7 +84534,7 @@
       "priority": 10,
       "basis": "Labels printing the shorter term on its own: 10. The two are counted as separate terms and are never merged by this agent.",
       "sources": [
-        "FDA_LABEL:0aa4ff2a-ce8e-46cd-830f-a264cc582be2"
+        "FDA_LABEL:707a64ef-964e-44a3-8a0f-fcc2eb5b1af2"
       ]
     },
     {
@@ -86594,7 +86594,7 @@
     "Each label keeps the threshold it printed. A term listed at 1% or more on one label and at 20% or more on another has not been measured the same way twice, so those labels are never pooled into a rate; the thresholds are reported as the exact strings the labels used and are never parsed into numbers or averaged.",
     "A validated pair is a statement about how a body of labels is worded: two terms are printed in the same list more often than each term’s own frequency accounts for. It is not a statement about two events occurring together in a person, and it is not a rate.",
     "This dataset holds no relation between one medicine and another. Structure is computed over reaction terms; the labels printing a term are listed individually with their own thresholds and sentences, and are never paired, ranked against each other or compared.",
-    "2344 of 3012 records have no most-common adverse reaction sentence in their recorded sources at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+    "7238 of 7906 records have no most-common adverse reaction sentence in their recorded sources at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
     "Raw co-occurrence is mostly a restatement of how common each term is: of the 10 leading pairs by raw count, 8 survive the frequency-preserving test. The validated set is the one to read; the raw leaders are shown only so the difference is visible.",
     "8001 pairs were tested and 93 validated at a false discovery rate of 0.01, so roughly 0.93 of them are expected to be false. A single pair is not evidence on its own.",
     "The analytic null holds each term’s frequency fixed but treats every label list as the same size. The seeded reference preserves both each term’s frequency and each label’s list length and reruns the whole procedure 25 times, validating a median of 0 pairs and at most 0, against 93 in the recorded corpus.",

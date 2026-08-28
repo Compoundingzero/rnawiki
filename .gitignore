@@ -19,6 +19,21 @@ playwright-report/
 test-results/
 coverage/
 
-# Generated registries. Large JSON produced by scripts/background/build-*.ts and rebuilt from the
-# label archive; the builders and their inputs are versioned, the output is not.
-data/registries/
+# Generated registries produced by scripts/background/build-*.ts from the label archive.
+#
+# Build inputs stay out of version control: they are large, they are consumed only by other build
+# scripts and tests, and the builders that produce them are versioned instead.
+#
+# The four registries the published corpus itself reads are the exception, and they are tracked
+# below. `scripts/seed-data/background/index.ts` loads them at runtime, so a deploy without them
+# publishes a corpus missing every record they carry — which is what happened: three of these were
+# ignored, and the live site held a third of the records this repository could produce while every
+# local check passed. A file the application reads ships with the application.
+#
+# Written as `data/registries/*` rather than `data/registries/`: git does not descend into an
+# excluded directory, so a negation under one never takes effect.
+data/registries/*
+!data/registries/substance-backed-background.json
+!data/registries/compound-identity-background.json
+!data/registries/supplement-background.json
+!data/registries/label-presence.json

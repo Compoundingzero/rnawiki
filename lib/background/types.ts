@@ -480,6 +480,42 @@ export interface RecordedUses {
   statements: RecordedStatement[]
 }
 
+/**
+ * Where a substance appears in the published drug-label archive.
+ *
+ * The extraction pipeline reads prose, so it keeps only labels that have some. That is right for
+ * extraction and wrong as a measure of what is knowable: roughly half of this corpus is botanicals,
+ * homeopathic preparations, allergenic extracts and animal-derived materials whose labels carry no
+ * clinical pharmacology whatsoever. Those rows came out blank, and a blank page implied nothing was
+ * known — when in fact the archive recorded the substance as a declared active ingredient of
+ * marketed products, in stated forms, by stated routes.
+ *
+ * Recording that is not a claim about the substance and not an endorsement of anything on those
+ * labels. A count of labels is a fact about the archive. `singleSubstanceLabelCount` is the part of
+ * it that matters most for reading the rest of a record, because a substance that appears only ever
+ * alongside thirty others has no source about it alone, and that is why its other modules are
+ * empty.
+ *
+ * Marketing status is not read from these counts. A label existing does not mean the product was
+ * approved, evaluated or found effective — unapproved homeopathic and marketed-unapproved drugs are
+ * published in the same archive as approved ones — and nothing here should be read as saying it was.
+ */
+export interface RecordedLabelPresence {
+  /** Published labels declaring this substance as an active ingredient. */
+  labelCount: number
+  /** Those labels that declare this substance and no other, which is where its own data can come from. */
+  singleSubstanceLabelCount: number
+  /** Product types as the archive classifies them, e.g. human prescription, human OTC. */
+  productTypesAsRecorded: string[]
+  /** Routes of administration those labels state. */
+  routesAsRecorded: string[]
+  /** The most recent effective date among the counted labels, as the archive states it. */
+  mostRecentEffectiveTime?: string
+  /** Label set identifiers, so every count above can be checked against the same public archive. */
+  sampleLabelIds: string[]
+  source: BackgroundSource
+}
+
 export interface RecordedIngredient {
   /** The substance name as this product's own label prints it, including its salt form. */
   nameAsRecorded: string
@@ -490,6 +526,7 @@ export interface RecordedIngredient {
   strengthAsRecorded?: string
   substanceDataState: SubstanceDataState
   supplementMarket?: RecordedSupplementMarket
+  labelPresence?: RecordedLabelPresence
   recordedUses?: RecordedUses
   mechanism?: RecordedMechanism
   pharmacokinetics?: RecordedPharmacokinetics
@@ -586,4 +623,5 @@ export interface MedicineRecordedBackground {
   sourceConsensus?: RecordedSourceConsensus
   composition?: RecordedComposition
   supplementMarket?: RecordedSupplementMarket
+  labelPresence?: RecordedLabelPresence
 }

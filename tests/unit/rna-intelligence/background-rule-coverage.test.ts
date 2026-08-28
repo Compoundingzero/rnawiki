@@ -272,6 +272,20 @@ function validBackground(): MedicineRecordedBackground {
       eventsAsRecorded: ['synthetic headache', 'synthetic nausea'],
       source: { ...labelSource, excerpt: ADVERSE_TEXT },
     },
+    labelPresence: {
+      labelCount: 12,
+      singleSubstanceLabelCount: 4,
+      productTypesAsRecorded: ['HUMAN PRESCRIPTION DRUG LABEL'],
+      routesAsRecorded: ['ORAL'],
+      mostRecentEffectiveTime: '20260101',
+      sampleLabelIds: ['00000000-0000-4000-8000-000000000000'],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '00000000-0000-4000-8000-000000000000',
+        label: 'Synthetic archive presence count',
+        retrievedAt: '2026-08-29',
+      },
+    },
   }
 }
 
@@ -434,9 +448,11 @@ const ruleCases = {
   },
   I_MOLECULAR_WEIGHT_IMPLAUSIBLE: {
     mutate: (background) => {
-      background.molecularIdentity!.molecularWeight!.numeric = 4
-      background.molecularIdentity!.molecularWeight!.display = '4'
-      background.molecularIdentity!.molecularWeight!.source.excerpt = 'The molecular weight is 4.'
+      // Below one atomic mass unit, which nothing weighs. The old case used 4 and stopped firing
+      // when the floor came down to admit carbon, carbon monoxide and lithium.
+      background.molecularIdentity!.molecularWeight!.numeric = 0.4
+      background.molecularIdentity!.molecularWeight!.display = '0.4'
+      background.molecularIdentity!.molecularWeight!.source.excerpt = 'The molecular weight is 0.4.'
     },
   },
   I_INTERACTION_KIND_UNKNOWN: {
@@ -598,6 +614,20 @@ const ruleCases = {
       // An extracted record whose source named several substances cannot own a mechanism statement.
       background.provenanceTier = 'extracted'
       background.attribution = { declaredSubstanceCount: 12 }
+    },
+  },
+  I_LABEL_PRESENCE_COUNT_UNCHECKABLE: {
+    mutate: (background) => {
+      // A count of labels with no label identifier behind it cannot be put to the archive again,
+      // which is the only check this kind of value can have.
+      background.labelPresence!.sampleLabelIds = []
+    },
+  },
+  I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL: {
+    mutate: (background) => {
+      // The single-substance labels are a subset of all of them; a subset larger than its set means
+      // the two counts were taken over different things.
+      background.labelPresence!.singleSubstanceLabelCount = 99
     },
   },
 } satisfies Record<BackgroundRuleCode, RuleCase>

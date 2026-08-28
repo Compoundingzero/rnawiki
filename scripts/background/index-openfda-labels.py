@@ -11,6 +11,13 @@ makes it affordable to keep the wider set of sections the extractors read.
 
 Usage: python3 scripts/background/index-openfda-labels.py <archiveDir> <outFile.ndjson>
                                                           [medicineRows.json]
+                                                          [--presence=<file.ndjson>]
+
+`--presence` writes a second, unfiltered stream carrying only structured identity for every label:
+names, declared substance count, product types and routes. It exists because the filtered stream
+drops labels with no readable prose, which is most botanical, homeopathic and allergenic labelling
+— and those labels still record that a substance is a declared active ingredient of a marketed
+product, which is the only honest thing many rows in this corpus have.
 """
 
 import json
@@ -125,18 +132,65 @@ def score(sections):
     return sum(points for key, points in SECTION_SCORES.items() if sections.get(key))
 
 
+def presence_record(result, openfda, set_id):
+    """The structured facts about a label that hold whether or not it has readable prose.
+
+    The extraction stream keeps only labels carrying a section an extractor reads, which is right
+    for extraction and wrong for counting. Roughly half the corpus is botanicals, homeopathic
+    preparations and allergenic extracts whose labels carry no pharmacology at all, so they scored
+    zero and left those rows blank — while the same labels plainly record that the substance is a
+    declared active ingredient of a marketed product, in stated forms, by stated routes.
+
+    That is a fact about the archive, it is checkable against the set ids kept here, and it is not
+    a claim about the substance. This stream carries it for every label, unfiltered.
+    """
+    names = sorted(
+        {
+            key
+            for key in (
+                normalize_name(value)
+                for value in list(openfda.get("generic_name") or [])
+                + list(openfda.get("substance_name") or [])
+            )
+            if len(key) >= 3
+        }
+    )
+    if not names:
+        return None
+    return {
+        "setId": set_id,
+        "names": names,
+        # How many distinct active substances the document declares, so a count of labels can be
+        # split into those about the substance alone and those where it is one ingredient of many.
+        "declared": len(names),
+        "productTypes": sorted(set(openfda.get("product_type") or [])),
+        "routes": sorted(set(openfda.get("route") or [])),
+        "effectiveTime": result.get("effective_time"),
+    }
+
+
 def main():
-    if len(sys.argv) not in (3, 4):
+    if len(sys.argv) not in (3, 4, 5):
         print(__doc__)
         sys.exit(1)
     archive_dir, out_path = sys.argv[1], sys.argv[2]
-    wanted = load_wanted_names(sys.argv[3]) if len(sys.argv) == 4 else None
+    wanted = None
+    presence_path = None
+    for argument in sys.argv[3:]:
+        if argument.startswith("--presence="):
+            presence_path = argument[len("--presence=") :]
+        else:
+            wanted = load_wanted_names(argument)
     if wanted is not None:
         print("[index] filtering to %d wanted medicine names" % len(wanted), flush=True)
+    if presence_path:
+        print("[index] also writing unfiltered presence stream to %s" % presence_path, flush=True)
 
     zips = sorted(f for f in os.listdir(archive_dir) if f.endswith(".json.zip"))
     written = 0
     skipped = 0
+    presence_written = 0
+    presence_out = open(presence_path, "w", encoding="utf-8") if presence_path else None
 
     with open(out_path, "w", encoding="utf-8") as out:
         for position, name in enumerate(zips, start=1):
@@ -149,6 +203,17 @@ def main():
                 openfda = result.get("openfda") or {}
                 generic_names = openfda.get("generic_name") or []
                 set_id = result.get("set_id")
+
+                # Written before every filter below, because a label that carries no readable prose
+                # still records that the substance is on the market — and that is precisely the
+                # label the extraction stream is right to drop and wrong to forget.
+                if presence_out is not None and set_id:
+                    entry = presence_record(result, openfda, set_id)
+                    if entry is not None:
+                        presence_out.write(json.dumps(entry, ensure_ascii=False))
+                        presence_out.write("\n")
+                        presence_written += 1
+
                 if not generic_names or not set_id:
                     skipped += 1
                     continue
@@ -218,6 +283,9 @@ def main():
                 flush=True,
             )
 
+    if presence_out is not None:
+        presence_out.close()
+        print("[index] presence stream: %d label(s)" % presence_written)
     print("[index] wrote %d labels, skipped %d" % (written, skipped))
 
 

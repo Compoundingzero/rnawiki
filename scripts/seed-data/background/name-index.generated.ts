@@ -5648,7 +5648,7 @@ export const MEDICINE_NAME_INDEX: Record<string, NameIndexEntry[]> = {
   glatiramer: [
     { alias: 'Copaxone', kind: 'brand' },
     { alias: 'Glatopa', kind: 'brand' },
-    { alias: 'GLATIRAMER ACETATE', kind: 'brand' },
+    { alias: 'Glatiramer Acetate', kind: 'brand' },
     { alias: 'GLATIRAMER ACETATE INJECTION', kind: 'salt_form' },
   ],
   glimepiride: [{ alias: 'Glimepiride 3 mg', kind: 'brand' }],
@@ -9743,7 +9743,7 @@ export const MEDICINE_NAME_INDEX: Record<string, NameIndexEntry[]> = {
     { alias: 'ACTIFED', kind: 'brand' },
     { alias: 'Biorphen', kind: 'brand' },
     { alias: 'IMMPHENTIV', kind: 'brand' },
-    { alias: 'nasal', kind: 'brand' },
+    { alias: 'NASAL', kind: 'brand' },
     { alias: 'Publix', kind: 'brand' },
     { alias: 'ReVIVOL-XR', kind: 'brand' },
     { alias: 'Better Living', kind: 'brand' },
@@ -9756,7 +9756,6 @@ export const MEDICINE_NAME_INDEX: Record<string, NameIndexEntry[]> = {
     { alias: 'Neo-Synephrine Mild', kind: 'brand' },
     { alias: 'Neo-Synephrine Regular', kind: 'brand' },
     { alias: 'Neo-Synephrine Severe', kind: 'brand' },
-    { alias: 'Phenylephrine Hydrochloride', kind: 'brand' },
     { alias: 'PREPARATION H', kind: 'brand' },
     { alias: 'QUALITY CHOICE', kind: 'brand' },
     { alias: 'Sinus Congestion', kind: 'brand' },
@@ -9803,6 +9802,7 @@ export const MEDICINE_NAME_INDEX: Record<string, NameIndexEntry[]> = {
     { alias: 'SU PHEDRINE PE Non-Drowsy, Maximum Strength', kind: 'brand' },
     { alias: 'Sinus Pressure and Congestion Relief PE Maximum Strength', kind: 'brand' },
     { alias: 'PHENYLEPHRINE HCL', kind: 'salt_form' },
+    { alias: 'PHENYLEPHRINE HYDROCHLORIDE', kind: 'salt_form' },
     { alias: 'Green Guard Allergy 2 Relief', kind: 'brand' },
   ],
   phenytoin: [

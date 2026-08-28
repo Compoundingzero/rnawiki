@@ -1,7 +1,7 @@
 {
   "agent": "numeric-distributions",
   "version": "1.0.0",
-  "runDate": "2026-08-28",
+  "runDate": "2026-08-29",
   "seed": 20260828,
   "parameters": {
     "fields": 6,
@@ -15,9 +15,9 @@
     "binEdgeBasis": "edges computed once per distribution and shared by all of its strata"
   },
   "coverage": {
-    "considered": 3012,
-    "used": 1343,
-    "reason": "1343 of 3012 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
+    "considered": 7906,
+    "used": 3104,
+    "reason": "3104 of 7906 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
   },
   "output": {
     "fields": [
@@ -3320,11 +3320,11 @@
                   "key": "intravenous",
                   "label": "recorded route: intravenous",
                   "summary": {
-                    "count": 18,
-                    "min": 0.11,
-                    "p25": 0.3825,
+                    "count": 17,
+                    "min": 0.17,
+                    "p25": 0.39,
                     "median": 0.5,
-                    "p75": 3.6399999999999997,
+                    "p75": 4.6,
                     "max": 60,
                     "robustScale": 0.385476
                   },
@@ -3333,7 +3333,7 @@
                       "lowerBound": 0.1,
                       "upperBound": 0.1752628786130861,
                       "upperInclusive": false,
-                      "count": 2
+                      "count": 1
                     },
                     {
                       "lowerBound": 0.1752628786130861,
@@ -3403,12 +3403,12 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.3710965224769371,
-                    "spreadFactor": 2.3501550876362143
+                    "medianAbsoluteDeviationLog10": 0.2696013034869198,
+                    "spreadFactor": 1.860378464307154
                   }
                 }
               ],
-              "valuesBelowMinimum": 41,
+              "valuesBelowMinimum": 42,
               "groupsBelowMinimum": 22,
               "valuesWithoutKey": 0,
               "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
@@ -3612,8 +3612,8 @@
       {
         "field": "molecularWeight",
         "label": "Recorded molecular weight",
-        "recordedValues": 1039,
-        "numericValues": 1039,
+        "recordedValues": 2800,
+        "numericValues": 2800,
         "displayOnlyValues": 0,
         "offUnitValues": [],
         "offUnitValueCount": 0,
@@ -3623,20 +3623,20 @@
             "unit": "g/mol",
             "label": "Recorded molecular weight, in grams per mole",
             "scale": "log10",
-            "scaleReason": "Recorded values run from 31 to 1.50e+5 grams per mole, a span of about 3.7 orders of magnitude. Split into 12 equal-width linear bins, 97.8 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "scaleReason": "Recorded values run from 12.01 to 1.50e+5 grams per mole, a span of about 4.1 orders of magnitude. Split into 12 equal-width linear bins, 99.2 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
             "binEdges": [
-              31,
-              62.86696446698172,
-              127.49210391266912,
-              258.5497279515649,
-              524.3302116154465,
-              1063.3241542772016,
-              2156.385865284784,
-              4373.078502256774,
-              8868.457122990278,
-              17984.934800902585,
-              36472.84700223636,
-              73965.71537094377,
+              12.011,
+              26.360592930413645,
+              57.85370573998617,
+              126.97177475045457,
+              278.6654956164273,
+              611.5883518188824,
+              1342.2555643393698,
+              2945.854012166577,
+              6465.278365427439,
+              14189.374004899044,
+              31141.479650365254,
+              68346.33821613847,
               150000
             ],
             "overall": {
@@ -3644,91 +3644,91 @@
               "key": "overall",
               "label": "all recorded values in grams per mole",
               "summary": {
-                "count": 1039,
-                "min": 31,
-                "p25": 207.14999999999998,
-                "median": 371.42,
-                "p75": 499.54,
+                "count": 2800,
+                "min": 12.011,
+                "p25": 189.1575,
+                "median": 315.29999999999995,
+                "p75": 466.3625,
                 "max": 150000,
-                "robustScale": 208.92799200000002
+                "robustScale": 202.11544500000002
               },
               "histogram": [
                 {
-                  "lowerBound": 31,
-                  "upperBound": 62.86696446698172,
+                  "lowerBound": 12.011,
+                  "upperBound": 26.360592930413645,
                   "upperInclusive": false,
-                  "count": 17
+                  "count": 13
                 },
                 {
-                  "lowerBound": 62.86696446698172,
-                  "upperBound": 127.49210391266912,
+                  "lowerBound": 26.360592930413645,
+                  "upperBound": 57.85370573998617,
                   "upperInclusive": false,
-                  "count": 55
+                  "count": 49
                 },
                 {
-                  "lowerBound": 127.49210391266912,
-                  "upperBound": 258.5497279515649,
+                  "lowerBound": 57.85370573998617,
+                  "upperBound": 126.97177475045457,
                   "upperInclusive": false,
-                  "count": 256
+                  "count": 197
                 },
                 {
-                  "lowerBound": 258.5497279515649,
-                  "upperBound": 524.3302116154465,
+                  "lowerBound": 126.97177475045457,
+                  "upperBound": 278.6654956164273,
                   "upperInclusive": false,
-                  "count": 484
+                  "count": 880
                 },
                 {
-                  "lowerBound": 524.3302116154465,
-                  "upperBound": 1063.3241542772016,
+                  "lowerBound": 278.6654956164273,
+                  "upperBound": 611.5883518188824,
                   "upperInclusive": false,
-                  "count": 200
+                  "count": 1295
                 },
                 {
-                  "lowerBound": 1063.3241542772016,
-                  "upperBound": 2156.385865284784,
+                  "lowerBound": 611.5883518188824,
+                  "upperBound": 1342.2555643393698,
                   "upperInclusive": false,
-                  "count": 1
+                  "count": 286
                 },
                 {
-                  "lowerBound": 2156.385865284784,
-                  "upperBound": 4373.078502256774,
+                  "lowerBound": 1342.2555643393698,
+                  "upperBound": 2945.854012166577,
                   "upperInclusive": false,
-                  "count": 1
+                  "count": 23
                 },
                 {
-                  "lowerBound": 4373.078502256774,
-                  "upperBound": 8868.457122990278,
+                  "lowerBound": 2945.854012166577,
+                  "upperBound": 6465.278365427439,
                   "upperInclusive": false,
-                  "count": 2
+                  "count": 27
                 },
                 {
-                  "lowerBound": 8868.457122990278,
-                  "upperBound": 17984.934800902585,
+                  "lowerBound": 6465.278365427439,
+                  "upperBound": 14189.374004899044,
                   "upperInclusive": false,
-                  "count": 6
+                  "count": 7
                 },
                 {
-                  "lowerBound": 17984.934800902585,
-                  "upperBound": 36472.84700223636,
+                  "lowerBound": 14189.374004899044,
+                  "upperBound": 31141.479650365254,
                   "upperInclusive": false,
-                  "count": 5
+                  "count": 10
                 },
                 {
-                  "lowerBound": 36472.84700223636,
-                  "upperBound": 73965.71537094377,
+                  "lowerBound": 31141.479650365254,
+                  "upperBound": 68346.33821613847,
                   "upperInclusive": false,
-                  "count": 8
+                  "count": 9
                 },
                 {
-                  "lowerBound": 73965.71537094377,
+                  "lowerBound": 68346.33821613847,
                   "upperBound": 150000,
                   "upperInclusive": true,
                   "count": 4
                 }
               ],
               "logSpread": {
-                "medianAbsoluteDeviationLog10": 0.2499636228259337,
-                "spreadFactor": 1.7781304648572713
+                "medianAbsoluteDeviationLog10": 0.2840866737753773,
+                "spreadFactor": 1.9234755658255043
               }
             },
             "byRoute": {
@@ -3736,12 +3736,104 @@
               "strata": [],
               "valuesBelowMinimum": 0,
               "groupsBelowMinimum": 0,
-              "valuesWithoutKey": 1039,
+              "valuesWithoutKey": 2800,
               "note": "Recorded molecular weight is recorded on the molecular identity module, which carries no route. There is nothing to stratify on, so no route strata are published rather than a route being attached from elsewhere in the record."
             },
             "byProvenanceTier": {
               "dimension": "provenanceTier",
               "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "transcribed",
+                  "label": "transcribed: transcribed from a structured record",
+                  "summary": {
+                    "count": 1761,
+                    "min": 12.011,
+                    "p25": 184.15,
+                    "median": 297.3,
+                    "p75": 437.6,
+                    "max": 7165,
+                    "robustScale": 179.83938
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 12.011,
+                      "upperBound": 26.360592930413645,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 26.360592930413645,
+                      "upperBound": 57.85370573998617,
+                      "upperInclusive": false,
+                      "count": 35
+                    },
+                    {
+                      "lowerBound": 57.85370573998617,
+                      "upperBound": 126.97177475045457,
+                      "upperInclusive": false,
+                      "count": 139
+                    },
+                    {
+                      "lowerBound": 126.97177475045457,
+                      "upperBound": 278.6654956164273,
+                      "upperInclusive": false,
+                      "count": 595
+                    },
+                    {
+                      "lowerBound": 278.6654956164273,
+                      "upperBound": 611.5883518188824,
+                      "upperInclusive": false,
+                      "count": 754
+                    },
+                    {
+                      "lowerBound": 611.5883518188824,
+                      "upperBound": 1342.2555643393698,
+                      "upperInclusive": false,
+                      "count": 172
+                    },
+                    {
+                      "lowerBound": 1342.2555643393698,
+                      "upperBound": 2945.854012166577,
+                      "upperInclusive": false,
+                      "count": 21
+                    },
+                    {
+                      "lowerBound": 2945.854012166577,
+                      "upperBound": 6465.278365427439,
+                      "upperInclusive": false,
+                      "count": 25
+                    },
+                    {
+                      "lowerBound": 6465.278365427439,
+                      "upperBound": 14189.374004899044,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 14189.374004899044,
+                      "upperBound": 31141.479650365254,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 31141.479650365254,
+                      "upperBound": 68346.33821613847,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 68346.33821613847,
+                      "upperBound": 150000,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.278802484855867,
+                    "spreadFactor": 1.900213874794781
+                  }
+                },
                 {
                   "dimension": "provenanceTier",
                   "key": "extracted",
@@ -3757,73 +3849,73 @@
                   },
                   "histogram": [
                     {
-                      "lowerBound": 31,
-                      "upperBound": 62.86696446698172,
+                      "lowerBound": 12.011,
+                      "upperBound": 26.360592930413645,
                       "upperInclusive": false,
-                      "count": 17
+                      "count": 0
                     },
                     {
-                      "lowerBound": 62.86696446698172,
-                      "upperBound": 127.49210391266912,
+                      "lowerBound": 26.360592930413645,
+                      "upperBound": 57.85370573998617,
                       "upperInclusive": false,
-                      "count": 55
+                      "count": 14
                     },
                     {
-                      "lowerBound": 127.49210391266912,
-                      "upperBound": 258.5497279515649,
+                      "lowerBound": 57.85370573998617,
+                      "upperBound": 126.97177475045457,
                       "upperInclusive": false,
-                      "count": 256
+                      "count": 58
                     },
                     {
-                      "lowerBound": 258.5497279515649,
-                      "upperBound": 524.3302116154465,
+                      "lowerBound": 126.97177475045457,
+                      "upperBound": 278.6654956164273,
                       "upperInclusive": false,
-                      "count": 484
+                      "count": 285
                     },
                     {
-                      "lowerBound": 524.3302116154465,
-                      "upperBound": 1063.3241542772016,
+                      "lowerBound": 278.6654956164273,
+                      "upperBound": 611.5883518188824,
                       "upperInclusive": false,
-                      "count": 200
+                      "count": 541
                     },
                     {
-                      "lowerBound": 1063.3241542772016,
-                      "upperBound": 2156.385865284784,
+                      "lowerBound": 611.5883518188824,
+                      "upperBound": 1342.2555643393698,
                       "upperInclusive": false,
-                      "count": 1
+                      "count": 114
                     },
                     {
-                      "lowerBound": 2156.385865284784,
-                      "upperBound": 4373.078502256774,
-                      "upperInclusive": false,
-                      "count": 1
-                    },
-                    {
-                      "lowerBound": 4373.078502256774,
-                      "upperBound": 8868.457122990278,
+                      "lowerBound": 1342.2555643393698,
+                      "upperBound": 2945.854012166577,
                       "upperInclusive": false,
                       "count": 2
                     },
                     {
-                      "lowerBound": 8868.457122990278,
-                      "upperBound": 17984.934800902585,
+                      "lowerBound": 2945.854012166577,
+                      "upperBound": 6465.278365427439,
                       "upperInclusive": false,
-                      "count": 6
+                      "count": 2
                     },
                     {
-                      "lowerBound": 17984.934800902585,
-                      "upperBound": 36472.84700223636,
+                      "lowerBound": 6465.278365427439,
+                      "upperBound": 14189.374004899044,
                       "upperInclusive": false,
-                      "count": 5
+                      "count": 0
                     },
                     {
-                      "lowerBound": 36472.84700223636,
-                      "upperBound": 73965.71537094377,
+                      "lowerBound": 14189.374004899044,
+                      "upperBound": 31141.479650365254,
                       "upperInclusive": false,
-                      "count": 8
+                      "count": 10
                     },
                     {
-                      "lowerBound": 73965.71537094377,
+                      "lowerBound": 31141.479650365254,
+                      "upperBound": 68346.33821613847,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 68346.33821613847,
                       "upperBound": 150000,
                       "upperInclusive": true,
                       "count": 4
@@ -3853,12 +3945,12 @@
       "subcutaneous"
     ],
     "minimumStratumSize": 12,
-    "recordsWithAnyNumericValue": 1343
+    "recordsWithAnyNumericValue": 3104
   },
   "caveats": [
     "Every number here describes recorded values. It does not describe medicines, and it does not describe the people a value was measured in. A median recorded half-life is a fact about what source documents state, shaped first of all by which medicines happen to have a document with a pharmacokinetics section structured into this corpus.",
     "No percentile in this output is typical, normal or expected for any medicine. A value at the 5th or the 95th percentile of a stratum is an unremarkable recorded value that sits near the edge of the recorded values around it, and nothing follows from where it sits.",
-    "Of 3597 recorded values across these fields, 165 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
+    "Of 5358 recorded values across these fields, 165 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
     "A further 2 numeric values are recorded in a unit no distribution here accepts. They are named with their units beside each field and left out, because rescaling a recorded number would replace what the source printed with a number no source stated.",
     "Volume of distribution is published as two separate distributions and never as one: 424 values recorded in litres and 123 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
     "The route strata are the route text the source printed, lower-cased. They are not a controlled vocabulary, so a medicine given by more than one route appears under whichever single route its record states, and near-identical route wordings are separate strata.",

@@ -31,11 +31,14 @@ describe('recorded-background corpus merge', () => {
   })
 
   it('adds only corroborating modules to a curated record, never anything else', () => {
-    // Two modules may attach to a curated record because neither replaces curated judgement:
-    // cross-source consensus says what every published label states for a field, and supplement
-    // market data says how many marketed products list the substance. Anything else appearing here
-    // would mean a generated source had reached inside a record a person authored.
-    const allowed = new Set(['sourceConsensus', 'supplementMarket'])
+    // Three modules may attach to a curated record because none of them replaces curated
+    // judgement. Cross-source consensus says what every published label states for a field;
+    // supplement market data says how many marketed products list the substance; archive presence
+    // says how many published labels name it as an active ingredient. Each is a count over sources
+    // rather than a statement about the medicine, so none can contradict what a person wrote.
+    // Anything else appearing here would mean a generated source had reached inside a record a
+    // person authored.
+    const allowed = new Set(['sourceConsensus', 'supplementMarket', 'labelPresence'])
     for (const slug of Object.keys(RECORDED_BACKGROUND)) {
       const curatedKeys = new Set(Object.keys(RECORDED_BACKGROUND[slug]!))
       const added = Object.keys(ALL_RECORDED_BACKGROUND[slug]!).filter(

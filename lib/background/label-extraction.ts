@@ -873,6 +873,24 @@ export function extractBackgroundFromLabel(args: {
     modules.push('productVariants')
   }
 
+  /**
+   * What the label says the medicine is for.
+   *
+   * Nearly every published label carries an indications section, and for a great many substances it
+   * is the only section there is: a botanical, a mineral or a homeopathic preparation has no
+   * clinical-pharmacology text to read a mechanism out of. Leaving this out is why records built
+   * from such labels came out empty while the label plainly stated something a reader wants.
+   *
+   * Gated on a single-substance source even though the indications belong to the product, because
+   * these rows are usually substances rather than products: a thirty-ingredient homeopathic label
+   * states what the combination is for, and that is not what any one of its ingredients is for.
+   */
+  const uses = isSubstanceSpecificSource ? extractRecordedUses(artifact, options) : null
+  if (uses) {
+    background.recordedUses = uses
+    modules.push('recordedUses')
+  }
+
   const mechanism = isSubstanceSpecificSource ? extractMechanism(artifact, options) : null
   if (mechanism) {
     background.mechanism = mechanism

@@ -1,7 +1,7 @@
 {
   "agent": "enzyme-and-transporter-documentation",
   "version": "1.0.0",
-  "runDate": "2026-08-28",
+  "runDate": "2026-08-29",
   "seed": 20260828,
   "parameters": {
     "counterpartyMatch": "case-insensitive substring of the recorded excerpt",
@@ -17,7 +17,7 @@
           "transporter": 0
         },
         "medicinesRecording": 421,
-        "shareOfRecordsConsidered": 0.139774,
+        "shareOfRecordsConsidered": 0.053251,
         "shareOfDocumentedRecords": 0.702838,
         "roles": {
           "substrate": 23,
@@ -3896,7 +3896,7 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
             "excerpt": "The metabolism of tofacitinib is primarily mediated by CYP3A4 with minor contribution from CYP2C19."
           },
@@ -4360,7 +4360,7 @@
           "transporter": 0
         },
         "medicinesRecording": 355,
-        "shareOfRecordsConsidered": 0.117862,
+        "shareOfRecordsConsidered": 0.044903,
         "shareOfDocumentedRecords": 0.592654,
         "roles": {
           "substrate": 22,
@@ -7712,9 +7712,9 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
-            "excerpt": "Drug Interaction Studies Potential for Tofacitinib Extended-Release Tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
+            "excerpt": "Drug Interaction Studies Potential for tofacitinib tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
           },
           {
             "slug": "tolterodine",
@@ -8111,7 +8111,7 @@
           "transporter": 0
         },
         "medicinesRecording": 326,
-        "shareOfRecordsConsidered": 0.108234,
+        "shareOfRecordsConsidered": 0.041235,
         "shareOfDocumentedRecords": 0.54424,
         "roles": {
           "substrate": 24,
@@ -11162,9 +11162,9 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
-            "excerpt": "Drug Interaction Studies Potential for Tofacitinib Extended-Release Tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
+            "excerpt": "Drug Interaction Studies Potential for tofacitinib tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
           },
           {
             "slug": "torsemide",
@@ -11536,7 +11536,7 @@
           "transporter": 0
         },
         "medicinesRecording": 322,
-        "shareOfRecordsConsidered": 0.106906,
+        "shareOfRecordsConsidered": 0.040729,
         "shareOfDocumentedRecords": 0.537563,
         "roles": {
           "substrate": 30,
@@ -14613,9 +14613,9 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
-            "excerpt": "Drug Interaction Studies Potential for Tofacitinib Extended-Release Tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
+            "excerpt": "Drug Interaction Studies Potential for tofacitinib tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
           },
           {
             "slug": "tolterodine",
@@ -14928,7 +14928,7 @@
           "transporter": 0
         },
         "medicinesRecording": 303,
-        "shareOfRecordsConsidered": 0.100598,
+        "shareOfRecordsConsidered": 0.038325,
         "shareOfDocumentedRecords": 0.505843,
         "roles": {
           "substrate": 21,
@@ -17820,7 +17820,7 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
             "excerpt": "The metabolism of tofacitinib is primarily mediated by CYP3A4 with minor contribution from CYP2C19."
           },
@@ -18113,7 +18113,7 @@
           "transporter": 292
         },
         "medicinesRecording": 292,
-        "shareOfRecordsConsidered": 0.096946,
+        "shareOfRecordsConsidered": 0.036934,
         "shareOfDocumentedRecords": 0.487479,
         "roles": {
           "substrate": 117,
@@ -21246,7 +21246,7 @@
           "transporter": 0
         },
         "medicinesRecording": 250,
-        "shareOfRecordsConsidered": 0.083001,
+        "shareOfRecordsConsidered": 0.031622,
         "shareOfDocumentedRecords": 0.417362,
         "roles": {
           "substrate": 21,
@@ -23566,9 +23566,9 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
-            "excerpt": "Drug Interaction Studies Potential for Tofacitinib Extended-Release Tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
+            "excerpt": "Drug Interaction Studies Potential for tofacitinib tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
           },
           {
             "slug": "topotecan",
@@ -23894,7 +23894,7 @@
           "transporter": 0
         },
         "medicinesRecording": 243,
-        "shareOfRecordsConsidered": 0.080677,
+        "shareOfRecordsConsidered": 0.030736,
         "shareOfDocumentedRecords": 0.405676,
         "roles": {
           "substrate": 12,
@@ -26199,9 +26199,9 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
-            "excerpt": "Drug Interaction Studies Potential for Tofacitinib Extended-Release Tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
+            "excerpt": "Drug Interaction Studies Potential for tofacitinib tablets to Influence the PK of Other Drugs In vitro studies indicate that tofacitinib does not significantly inhibit or induce the activity of the major human drug-metabolizing CYPs (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4) at concentrations corresponding to the steady state C max of a 10 mg twice daily dose."
           },
           {
             "slug": "tovorafenib",
@@ -26475,7 +26475,7 @@
           "transporter": 182
         },
         "medicinesRecording": 182,
-        "shareOfRecordsConsidered": 0.060425,
+        "shareOfRecordsConsidered": 0.02302,
         "shareOfDocumentedRecords": 0.30384,
         "roles": {
           "substrate": 37,
@@ -28448,7 +28448,7 @@
           "transporter": 170
         },
         "medicinesRecording": 170,
-        "shareOfRecordsConsidered": 0.056441,
+        "shareOfRecordsConsidered": 0.021503,
         "shareOfDocumentedRecords": 0.283806,
         "roles": {
           "substrate": 34,
@@ -30289,7 +30289,7 @@
           "transporter": 169
         },
         "medicinesRecording": 169,
-        "shareOfRecordsConsidered": 0.056109,
+        "shareOfRecordsConsidered": 0.021376,
         "shareOfDocumentedRecords": 0.282137,
         "roles": {
           "substrate": 65,
@@ -32110,7 +32110,7 @@
           "transporter": 166
         },
         "medicinesRecording": 166,
-        "shareOfRecordsConsidered": 0.055113,
+        "shareOfRecordsConsidered": 0.020997,
         "shareOfDocumentedRecords": 0.277129,
         "roles": {
           "substrate": 31,
@@ -33908,7 +33908,7 @@
           "transporter": 150
         },
         "medicinesRecording": 150,
-        "shareOfRecordsConsidered": 0.049801,
+        "shareOfRecordsConsidered": 0.018973,
         "shareOfDocumentedRecords": 0.250417,
         "roles": {
           "substrate": 51,
@@ -35540,7 +35540,7 @@
           "transporter": 124
         },
         "medicinesRecording": 124,
-        "shareOfRecordsConsidered": 0.041169,
+        "shareOfRecordsConsidered": 0.015684,
         "shareOfDocumentedRecords": 0.207012,
         "roles": {
           "substrate": 43,
@@ -36896,7 +36896,7 @@
           "transporter": 122
         },
         "medicinesRecording": 122,
-        "shareOfRecordsConsidered": 0.040505,
+        "shareOfRecordsConsidered": 0.015431,
         "shareOfDocumentedRecords": 0.203673,
         "roles": {
           "substrate": 26,
@@ -38222,7 +38222,7 @@
           "transporter": 116
         },
         "medicinesRecording": 116,
-        "shareOfRecordsConsidered": 0.038513,
+        "shareOfRecordsConsidered": 0.014672,
         "shareOfDocumentedRecords": 0.193656,
         "roles": {
           "substrate": 52,
@@ -39358,7 +39358,7 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": false,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro data indicate that the potential for tofacitinib to inhibit transporters such as P-glycoprotein, organic anionic or cationic transporters at therapeutic concentrations is low."
           },
@@ -39475,7 +39475,7 @@
           "transporter": 110
         },
         "medicinesRecording": 110,
-        "shareOfRecordsConsidered": 0.036521,
+        "shareOfRecordsConsidered": 0.013913,
         "shareOfDocumentedRecords": 0.183639,
         "roles": {
           "substrate": 13,
@@ -40671,7 +40671,7 @@
           "transporter": 0
         },
         "medicinesRecording": 96,
-        "shareOfRecordsConsidered": 0.031873,
+        "shareOfRecordsConsidered": 0.012143,
         "shareOfDocumentedRecords": 0.160267,
         "roles": {
           "substrate": 7,
@@ -41709,7 +41709,7 @@
           "transporter": 86
         },
         "medicinesRecording": 86,
-        "shareOfRecordsConsidered": 0.028552,
+        "shareOfRecordsConsidered": 0.010878,
         "shareOfDocumentedRecords": 0.143573,
         "roles": {
           "substrate": 17,
@@ -42654,7 +42654,7 @@
           "transporter": 0
         },
         "medicinesRecording": 80,
-        "shareOfRecordsConsidered": 0.02656,
+        "shareOfRecordsConsidered": 0.010119,
         "shareOfDocumentedRecords": 0.133556,
         "roles": {
           "substrate": 6,
@@ -43524,7 +43524,7 @@
           "transporter": 60
         },
         "medicinesRecording": 60,
-        "shareOfRecordsConsidered": 0.01992,
+        "shareOfRecordsConsidered": 0.007589,
         "shareOfDocumentedRecords": 0.100167,
         "roles": {
           "substrate": 15,
@@ -44189,7 +44189,7 @@
           "transporter": 40
         },
         "medicinesRecording": 40,
-        "shareOfRecordsConsidered": 0.01328,
+        "shareOfRecordsConsidered": 0.005059,
         "shareOfDocumentedRecords": 0.066778,
         "roles": {
           "substrate": 11,
@@ -44644,7 +44644,7 @@
           "transporter": 0
         },
         "medicinesRecording": 34,
-        "shareOfRecordsConsidered": 0.011288,
+        "shareOfRecordsConsidered": 0.004301,
         "shareOfDocumentedRecords": 0.056761,
         "roles": {
           "substrate": 2,
@@ -45016,7 +45016,7 @@
           "transporter": 0
         },
         "medicinesRecording": 23,
-        "shareOfRecordsConsidered": 0.007636,
+        "shareOfRecordsConsidered": 0.002909,
         "shareOfDocumentedRecords": 0.038397,
         "roles": {
           "substrate": 4,
@@ -45280,7 +45280,7 @@
           "transporter": 21
         },
         "medicinesRecording": 21,
-        "shareOfRecordsConsidered": 0.006972,
+        "shareOfRecordsConsidered": 0.002656,
         "shareOfDocumentedRecords": 0.035058,
         "roles": {
           "substrate": 4,
@@ -45510,7 +45510,7 @@
             "labelSection": "pharmacokinetics",
             "matchesSourceCasing": true,
             "sourceKind": "FDA_LABEL",
-            "sourceIdentifier": "58b94979-55ad-839a-e063-6294a90ad812",
+            "sourceIdentifier": "253635c8-1ea7-41ba-b216-dea5e3305c47",
             "retrievedAt": "2026-08-28",
             "excerpt": "MATE = Multidrug and Toxic Compound Extrusion."
           },
@@ -45534,7 +45534,7 @@
           "transporter": 9
         },
         "medicinesRecording": 9,
-        "shareOfRecordsConsidered": 0.002988,
+        "shareOfRecordsConsidered": 0.001138,
         "shareOfDocumentedRecords": 0.015025,
         "roles": {
           "substrate": 4,
@@ -45657,7 +45657,7 @@
           "transporter": 0
         },
         "medicinesRecording": 8,
-        "shareOfRecordsConsidered": 0.002656,
+        "shareOfRecordsConsidered": 0.001012,
         "shareOfDocumentedRecords": 0.013356,
         "roles": {
           "substrate": 0,
@@ -45763,7 +45763,7 @@
           "transporter": 0
         },
         "medicinesRecording": 6,
-        "shareOfRecordsConsidered": 0.001992,
+        "shareOfRecordsConsidered": 0.000759,
         "shareOfDocumentedRecords": 0.010017,
         "roles": {
           "substrate": 0,
@@ -45850,7 +45850,7 @@
           "transporter": 0
         },
         "medicinesRecording": 4,
-        "shareOfRecordsConsidered": 0.001328,
+        "shareOfRecordsConsidered": 0.000506,
         "shareOfDocumentedRecords": 0.006678,
         "roles": {
           "substrate": 0,
@@ -45916,7 +45916,7 @@
           "transporter": 4
         },
         "medicinesRecording": 4,
-        "shareOfRecordsConsidered": 0.001328,
+        "shareOfRecordsConsidered": 0.000506,
         "shareOfDocumentedRecords": 0.006678,
         "roles": {
           "substrate": 0,
@@ -45987,7 +45987,7 @@
           "transporter": 0
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000996,
+        "shareOfRecordsConsidered": 0.000379,
         "shareOfDocumentedRecords": 0.005008,
         "roles": {
           "substrate": 0,
@@ -46043,7 +46043,7 @@
           "transporter": 0
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000996,
+        "shareOfRecordsConsidered": 0.000379,
         "shareOfDocumentedRecords": 0.005008,
         "roles": {
           "substrate": 0,
@@ -46101,7 +46101,7 @@
           "transporter": 0
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000996,
+        "shareOfRecordsConsidered": 0.000379,
         "shareOfDocumentedRecords": 0.005008,
         "roles": {
           "substrate": 0,
@@ -46159,7 +46159,7 @@
           "transporter": 3
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000996,
+        "shareOfRecordsConsidered": 0.000379,
         "shareOfDocumentedRecords": 0.005008,
         "roles": {
           "substrate": 0,
@@ -46216,7 +46216,7 @@
           "transporter": 0
         },
         "medicinesRecording": 1,
-        "shareOfRecordsConsidered": 0.000332,
+        "shareOfRecordsConsidered": 0.000126,
         "shareOfDocumentedRecords": 0.001669,
         "roles": {
           "substrate": 0,
@@ -46252,7 +46252,7 @@
           "transporter": 0
         },
         "medicinesRecording": 1,
-        "shareOfRecordsConsidered": 0.000332,
+        "shareOfRecordsConsidered": 0.000126,
         "shareOfDocumentedRecords": 0.001669,
         "roles": {
           "substrate": 0,
@@ -46295,9 +46295,9 @@
       "uniformReferenceDrawsAtOrAboveObserved": 0,
       "uniformReferenceDraws": 200
     },
-    "recordsConsidered": 3012,
+    "recordsConsidered": 7906,
     "recordsNamingAnyCounterparty": 599,
-    "recordsNamingNone": 2413,
+    "recordsNamingNone": 7307,
     "mentionsAdmitted": 4306,
     "mentionsWithheldCounterpartyNotInExcerpt": 37,
     "mentionsWithheldExcerptFailedScreen": 0,
@@ -46305,9 +46305,9 @@
     "mentionsFromExtractedRecords": 4306
   },
   "coverage": {
-    "considered": 3012,
+    "considered": 7906,
     "used": 599,
-    "reason": "2413 records name no enzyme or transporter in their recorded sources, so they cannot enter a counterparty profile. Of the mentions in the remaining records, 37 were withheld: 37 because the recorded counterparty is not present in the sentence it was read from, 0 because the sentence reads as advice rather than description. Withheld mentions are in the review queue, not deleted."
+    "reason": "7307 records name no enzyme or transporter in their recorded sources, so they cannot enter a counterparty profile. Of the mentions in the remaining records, 37 were withheld: 37 because the recorded counterparty is not present in the sentence it was read from, 0 because the sentence reads as advice rather than description. Withheld mentions are in the review queue, not deleted."
   },
   "queue": [
     {
@@ -46907,7 +46907,7 @@
       "priority": 21,
       "basis": "Records carrying the shorter recorded spelling: 21. The two spellings are not assumed to name the same counterparty.",
       "sources": [
-        "FDA_LABEL:58b94979-55ad-839a-e063-6294a90ad812"
+        "FDA_LABEL:253635c8-1ea7-41ba-b216-dea5e3305c47"
       ]
     },
     {
@@ -47339,7 +47339,7 @@
     "47.4% of admitted mentions carry no role. The sentence named more than one role and the parser left the question open rather than attaching a guess, so a role tally is a count of sentences that settled the question, not of medicines for which it is settled.",
     "Recorded spellings are counted separately and never merged. P-GP, PGP and P-GLYCOPROTEIN are three entries in this dataset because they are three strings in the corpus; whether they name one thing is a question for a person, and prefix relationships are reported as questions rather than resolved.",
     "A mention is admitted only when its excerpt contains the recorded counterparty, tolerating letter case alone. Every other reading of the corpus, including the mentions withheld for that reason, is in the review queue and is not represented in any count above.",
-    "2413 of 3012 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+    "7307 of 7906 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
     "4306 of 4306 admitted mentions come from records the deterministic label parser produced, where no person chose the value or wrote its measurement context. The sentence is stored with each one so a reader can check it.",
     "The uniform reference for concentration allocates the same 4306 mentions over the same 36 counterparties by chance. Labels are not written that way, so the reference shows only that the observed spread is not a consequence of how many mentions there are."
   ]

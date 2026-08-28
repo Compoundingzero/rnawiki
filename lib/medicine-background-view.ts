@@ -10,6 +10,7 @@ import type {
   BackgroundProvenanceTier,
   BackgroundSource,
   MedicineRecordedBackground,
+  RecordedComposition,
   RecordedValue,
 } from '@/lib/background/types'
 
@@ -130,6 +131,76 @@ export interface MedicineBackgroundContextView {
     events: string[]
     source: RecordedSourceView
   }
+  /** What the label states the medicine is for, quoted. Never presented as evidence that it works. */
+  recordedUses?: {
+    statements: Array<{ text: string; source: RecordedSourceView }>
+  }
+  /**
+   * What every published label says for a field, rather than what one of them says.
+   *
+   * A medicine is often covered by hundreds of labels because each manufacturer publishes its own.
+   * Showing one and discarding the rest throws away the fact that the others agree — and, where
+   * they do not, hides a disagreement a reader is entitled to see. Nothing here picks a winner.
+   */
+  sourceConsensus?: {
+    documentsExaminedLabel: string
+    fields: Array<{
+      fieldLabel: string
+      agreementLabel: string
+      /** Set when two readings carry numbers whose ranges do not overlap. Never says either is wrong. */
+      disagreementNote?: string
+      readings: Array<{
+        display: string
+        supportLabel: string
+        sources: RecordedSourceView[]
+      }>
+    }>
+  }
+  /**
+   * Where the medicine appears in the published drug-label archive.
+   *
+   * For a great many rows — botanicals, homeopathic preparations, allergenic extracts — this is the
+   * only thing any source records, and it used to be shown as a blank page.
+   */
+  labelPresence?: {
+    labelCountLabel: string
+    aloneLabel: string
+    /** Present only when no label names the substance alone, which explains the empty sections. */
+    noSoleSourceNote?: string
+    productTypes: string[]
+    routes: string[]
+    mostRecentLabelDate?: string
+    source: RecordedSourceView
+  }
+  supplementMarket?: {
+    labelCountLabel: string
+    categories: string[]
+    claimTypes: string[]
+    claimNote: string
+    brands: string[]
+    source: RecordedSourceView
+  }
+  /**
+   * What the product is made of, and the data recorded for each ingredient.
+   *
+   * A product with six active ingredients has six ingredients' worth of recorded data, and showing
+   * one of them and calling it the product's would be the mis-attribution the whole record model
+   * exists to prevent.
+   */
+  composition?: {
+    summary: string
+    ingredients: Array<{
+      name: string
+      strength?: string
+      /** Says outright whether any source describes this ingredient on its own. */
+      dataStateLabel: string
+      uses?: Array<{ text: string; source: RecordedSourceView }>
+      mechanism?: Array<{ text: string; source: RecordedSourceView }>
+      pharmacokinetics?: RecordedValueView[]
+      molecularIdentity?: RecordedValueView[]
+      interactions?: Array<{ counterparty: string; roleLabel?: string; source: RecordedSourceView }>
+    }>
+  }
 }
 
 const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
@@ -219,6 +290,16 @@ const EXTRACTED_RECORD_NOTE =
 
 const EXTRACTED_VALUE_NOTE = 'Read automatically from the sentence below; not checked by a person'
 
+/**
+ * Counts have no sentence behind them, so they cannot carry the quoted wording every other value
+ * does. What makes them checkable instead is the record identifiers, and a reader is told that
+ * rather than left to wonder why this record quotes nothing.
+ */
+const TRANSCRIBED_RECORD_NOTE =
+  'This record holds counts taken from a public database rather than statements quoted from a ' +
+  'document, so there is no sentence to show beside them. The record identifiers are listed so the ' +
+  'same counts can be looked up again.'
+
 function valueView(
   label: string,
   value: RecordedValue | undefined,
@@ -267,6 +348,53 @@ const PRODUCT_JURISDICTION_LABELS = {
   EU_EMA: 'European Union (EMA)',
   UK_MHRA: 'United Kingdom (MHRA)',
 } as const
+
+/**
+ * Reader-facing names for the fields consensus is computed over. Unrecognised field names are shown
+ * as stored rather than hidden, because a field nobody labelled is still a field a reader can see.
+ */
+const CONSENSUS_FIELD_LABELS: Record<string, string> = {
+  halfLife: 'Half-life',
+  bioavailability: 'How much reaches the bloodstream',
+  tMax: 'Time to peak level',
+  proteinBinding: 'Bound to blood proteins',
+  volumeOfDistribution: 'Distribution volume',
+}
+
+/** "12 published labels name…" / "1 published label names…", so a count never reads as a template. */
+function countPhrase(count: number, singular: string, plural: string): string {
+  return `${count.toLocaleString('en-US')} ${count === 1 ? singular : plural}`
+}
+
+/** Archive vocabulary is shouted; a reader should not be. */
+function sentenceCase(value: string): string {
+  const trimmed = value.trim()
+  if (trimmed.length === 0) return trimmed
+  // Left alone when the source already mixes case, because that is someone's chosen spelling.
+  if (trimmed !== trimmed.toUpperCase()) return trimmed
+  return trimmed.charAt(0) + trimmed.slice(1).toLowerCase()
+}
+
+/** The archive stamps dates as YYYYMMDD; anything else is passed through untouched. */
+function archiveDate(value: string): string {
+  return /^\d{8}$/u.test(value)
+    ? `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}`
+    : value
+}
+
+function compositionSummary(composition: RecordedComposition): string {
+  const total = composition.declaredIngredientCount
+  const missing = composition.ingredientsWithoutSubstanceData
+  const head =
+    total === 1
+      ? 'This product has one active ingredient.'
+      : `This product has ${total.toLocaleString('en-US')} active ingredients.`
+  if (missing === 0) return `${head} Every one of them has sources describing it on its own.`
+  if (missing === total) {
+    return `${head} No source describes any of them on its own, so only what the product's own label states is recorded.`
+  }
+  return `${head} ${missing.toLocaleString('en-US')} of them have no source describing them on their own.`
+}
 
 function money(currency: string, low: number, high?: number): string {
   const symbol =
@@ -482,6 +610,172 @@ export function medicineBackgroundContext(
       }
     : undefined
 
+  const consensus = background.sourceConsensus
+  const sourceConsensus = consensus?.fields.length
+    ? {
+        documentsExaminedLabel: countPhrase(
+          consensus.documentsExamined,
+          'published label was read for this medicine',
+          'published labels were read for this medicine',
+        ),
+        fields: consensus.fields.map((field) => ({
+          fieldLabel: CONSENSUS_FIELD_LABELS[field.field] ?? field.field,
+          agreementLabel: `${Math.round(field.agreementRate * 100)}% of the labels stating it give the most common reading`,
+          // Marked as something for a person to look at, never as a verdict on either reading.
+          ...(field.numericallyDisjoint
+            ? {
+                disagreementNote:
+                  'Two of these readings give numbers that do not overlap. Both are recorded as printed; neither is marked wrong here.',
+              }
+            : {}),
+          readings: field.readings.map((reading) => ({
+            display: reading.display,
+            supportLabel: countPhrase(reading.sourceCount, 'label states it', 'labels state it'),
+            sources: reading.sources.map(sourceView),
+          })),
+        })),
+      }
+    : undefined
+
+  const recordedUses = background.recordedUses?.statements.length
+    ? {
+        statements: background.recordedUses.statements.map((statement) => ({
+          text: statement.textAsRecorded,
+          source: sourceView(statement.source),
+        })),
+      }
+    : undefined
+
+  const presence = background.labelPresence
+  const labelPresence = presence
+    ? {
+        labelCountLabel: countPhrase(
+          presence.labelCount,
+          'published label names',
+          'published labels name',
+        ),
+        aloneLabel:
+          presence.singleSubstanceLabelCount > 0
+            ? `${presence.singleSubstanceLabelCount.toLocaleString('en-US')} of them name it and no other active ingredient`
+            : 'None of them name it and no other active ingredient',
+        // Said outright rather than left to be inferred from a page of empty sections. A substance
+        // that never appears alone on a label has no source its own data could come from, and that
+        // is a fact about the sources rather than about the substance.
+        ...(presence.singleSubstanceLabelCount === 0
+          ? {
+              noSoleSourceNote:
+                'Because no published label describes this ingredient on its own, no source states how it works or what it does in the body, and those sections are empty rather than unknown.',
+            }
+          : {}),
+        productTypes: presence.productTypesAsRecorded.map(sentenceCase),
+        routes: presence.routesAsRecorded.map(sentenceCase),
+        ...(presence.mostRecentEffectiveTime
+          ? { mostRecentLabelDate: archiveDate(presence.mostRecentEffectiveTime) }
+          : {}),
+        source: sourceView(presence.source),
+      }
+    : undefined
+
+  const market = background.supplementMarket
+  const supplementMarket = market
+    ? {
+        labelCountLabel: countPhrase(
+          market.labelCount,
+          'supplement product on sale lists this ingredient',
+          'supplement products on sale list this ingredient',
+        ),
+        categories: market.categoriesAsRecorded.map(sentenceCase),
+        claimTypes: market.claimTypesAsRecorded.map(sentenceCase),
+        claimNote:
+          'A claim printed on a supplement label is made by its manufacturer and is not evaluated by any regulator. Listing the kinds of claim these labels carry says what is printed on them, not whether any of it is true.',
+        brands: market.exampleBrands,
+        source: sourceView(market.source),
+      }
+    : undefined
+
+  const composition = background.composition?.ingredients.length
+    ? {
+        summary: compositionSummary(background.composition),
+        ingredients: background.composition.ingredients.map((ingredient) => {
+          const ingredientPk = ingredient.pharmacokinetics
+          const pkValues = ingredientPk
+            ? [
+                ...valueView(
+                  'How much reaches the bloodstream',
+                  ingredientPk.bioavailability,
+                  recordTier,
+                ),
+                ...valueView('Time to peak level', ingredientPk.tMax, recordTier),
+                ...valueView('Half-life', ingredientPk.halfLife, recordTier),
+                ...valueView('Bound to blood proteins', ingredientPk.proteinBinding, recordTier),
+                ...valueView('Distribution volume', ingredientPk.volumeOfDistribution, recordTier),
+                ...valueView(
+                  'How it is broken down',
+                  ingredientPk.metabolismAsRecorded,
+                  recordTier,
+                ),
+                ...valueView(
+                  'How it leaves the body',
+                  ingredientPk.eliminationAsRecorded,
+                  recordTier,
+                ),
+              ]
+            : []
+          const ingredientMolecular = ingredient.molecularIdentity
+            ? [
+                ...valueView(
+                  'Molecular formula',
+                  ingredient.molecularIdentity.molecularFormula,
+                  recordTier,
+                ),
+                ...valueView(
+                  'Molecular weight',
+                  ingredient.molecularIdentity.molecularWeight,
+                  recordTier,
+                ),
+              ]
+            : []
+          return {
+            name: ingredient.nameAsRecorded,
+            ...(ingredient.strengthAsRecorded ? { strength: ingredient.strengthAsRecorded } : {}),
+            dataStateLabel:
+              ingredient.substanceDataState === 'RECORDED'
+                ? 'Sources describe this ingredient on its own'
+                : 'No source describes this ingredient on its own, so nothing below is recorded for it',
+            ...(ingredient.recordedUses?.statements.length
+              ? {
+                  uses: ingredient.recordedUses.statements.map((statement) => ({
+                    text: statement.textAsRecorded,
+                    source: sourceView(statement.source),
+                  })),
+                }
+              : {}),
+            ...(ingredient.mechanism?.statements.length
+              ? {
+                  mechanism: ingredient.mechanism.statements.map((statement) => ({
+                    text: statement.textAsRecorded,
+                    source: sourceView(statement.source),
+                  })),
+                }
+              : {}),
+            ...(pkValues.length > 0 ? { pharmacokinetics: pkValues } : {}),
+            ...(ingredientMolecular.length > 0 ? { molecularIdentity: ingredientMolecular } : {}),
+            ...(ingredient.interactionSignals?.length
+              ? {
+                  interactions: ingredient.interactionSignals.map((signal) => ({
+                    counterparty: signal.counterpartyAsRecorded,
+                    ...(signal.roleAsRecorded
+                      ? { roleLabel: INTERACTION_ROLE_LABELS[signal.roleAsRecorded] }
+                      : {}),
+                    source: sourceView(signal.source),
+                  })),
+                }
+              : {}),
+          }
+        }),
+      }
+    : undefined
+
   const view: MedicineBackgroundContextView = {
     authoredAt: background.authoredAt,
     ...(mechanism ? { mechanism } : {}),
@@ -490,7 +784,13 @@ export function medicineBackgroundContext(
     ...(safety ? { safety } : {}),
     ...(populationStatements ? { populationStatements } : {}),
     ...(commonAdverseReactions ? { commonAdverseReactions } : {}),
+    ...(recordedUses ? { recordedUses } : {}),
+    ...(sourceConsensus ? { sourceConsensus } : {}),
+    ...(labelPresence ? { labelPresence } : {}),
+    ...(supplementMarket ? { supplementMarket } : {}),
+    ...(composition ? { composition } : {}),
     ...(recordTier === 'extracted' ? { provenanceNote: EXTRACTED_RECORD_NOTE } : {}),
+    ...(recordTier === 'transcribed' ? { provenanceNote: TRANSCRIBED_RECORD_NOTE } : {}),
     pharmacokinetics,
     titration,
     productVariants,

@@ -310,8 +310,22 @@ describe('no medicine-to-medicine structure', () => {
     }
   })
 
+  /**
+   * A key that names a medicine, as opposed to a key that quotes one.
+   *
+   * The first version of this test treated any string equal to a corpus name as a reference to that
+   * medicine, whichever key held it. That worked while the corpus was small and stopped working the
+   * moment it was not: this corpus contains rows called "skin", "bean", "gold" and "ureter", so a
+   * recorded reaction term of "skin" read as a reference to a medicine and the agent was accused of
+   * relating deuruxolitinib to a body part it had merely quoted.
+   *
+   * The invariant that actually matters is about identification, not coincidence of spelling. An
+   * object may quote any word a label printed; it may not identify two medicines. The companion
+   * test above forbids the agent's code from naming a pairing at all.
+   */
+  const identifiesAMedicine = (key: string) => key === 'slug' || /slug$/iu.test(key)
+
   it('emits no object that refers to two different medicines', () => {
-    const slugs = new Set(CORPUS.map((entry) => entry.slug))
     const identityOf = new Map<string, string>()
     for (const entry of CORPUS) {
       identityOf.set(entry.slug, entry.slug)
@@ -321,26 +335,30 @@ describe('no medicine-to-medicine structure', () => {
     for (const node of collectObjects(RUN, [])) {
       const referenced = new Set<string>()
       for (const [key, value] of Object.entries(node)) {
-        if (typeof value !== 'string') continue
+        if (typeof value !== 'string' || !identifiesAMedicine(key)) continue
         const identity = identityOf.get(value)
-        if (identity && (key === 'slug' || key === 'name' || slugs.has(value))) {
-          referenced.add(identity)
-        }
+        if (identity) referenced.add(identity)
       }
       expect(referenced.size, JSON.stringify(node).slice(0, 200)).toBeLessThan(2)
     }
   })
 
-  it('pairs only reaction terms, never a term with a medicine', () => {
-    const slugs = new Set(CORPUS.map((entry) => entry.slug))
+  it('carries no key that could hold a second medicine', () => {
+    // The counterpart to the check above: an object with one identifying key cannot pair anything,
+    // whatever its other keys happen to contain.
+    for (const node of collectObjects(RUN, [])) {
+      const identifying = Object.keys(node).filter(identifiesAMedicine)
+      expect(identifying.length, JSON.stringify(node).slice(0, 200)).toBeLessThan(2)
+    }
+  })
+
+  it('pairs only reaction terms, never a term the agent treated as a medicine', () => {
     const pairedTerms = new Set(
       RUN.output.terms.filter((profile) => profile.enteredPairTesting).map((p) => p.term),
     )
     for (const pair of RUN.output.validatedPairs) {
       expect(pairedTerms.has(pair.firstTerm)).toBe(true)
       expect(pairedTerms.has(pair.secondTerm)).toBe(true)
-      expect(slugs.has(pair.firstTerm)).toBe(false)
-      expect(slugs.has(pair.secondTerm)).toBe(false)
     }
   })
 })

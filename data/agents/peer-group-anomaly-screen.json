@@ -1,7 +1,7 @@
 {
   "agent": "peer-group-anomaly-screen",
   "version": "1.0.0",
-  "runDate": "2026-08-28",
+  "runDate": "2026-08-29",
   "seed": 20260828,
   "parameters": {
     "alpha": 0.05,
@@ -11,9 +11,9 @@
     "minimumGroupSizeForAFlag": 20
   },
   "coverage": {
-    "considered": 3012,
+    "considered": 7906,
     "used": 1042,
-    "reason": "A medicine enters the screen once it records at least one of 5 pharmacokinetic quantities with both a parsed number and a unit. 1931 records carry no pharmacokinetics module at all, and a record with the module may still record none of these five quantities numerically."
+    "reason": "A medicine enters the screen once it records at least one of 5 pharmacokinetic quantities with both a parsed number and a unit. 6825 records carry no pharmacokinetics module at all, and a record with the module may still record none of these five quantities numerically."
   },
   "output": {
     "groupingBasis": "A peer group is the recorded route of administration, lower-cased with any parenthetical or clause-level detail dropped. A mechanism-class grouping exists in the tree only as a clustering agent that has to be run to produce one, so taking it would make every p-value here depend on the seed, cluster count and version of another agent, and would narrow the screen to records carrying mechanism text as well as a number.",
@@ -1480,7 +1480,7 @@
             "field": "bioavailability",
             "fieldLabel": "bioavailability",
             "unit": "%",
-            "display": "2-3%",
+            "display": "2 to 3%",
             "numeric": 2,
             "populationContext": "as stated in the label sentence recorded below",
             "group": "oral",
@@ -1493,9 +1493,9 @@
             "positionRelativeToGroupMedian": "below",
             "source": {
               "kind": "FDA_LABEL",
-              "identifier": "249e27ac-e1e7-42dc-84f6-cd32fd1d9dee",
+              "identifier": "52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e",
               "retrievedAt": "2026-08-28",
-              "excerpt": "Lovastatin reduced niacin extended-release tablets bioavailability by 2-3% [see Drug Interactions ( 7.1 )] ."
+              "excerpt": "Lovastatin reduced niacin extended-release tablets bioavailability by 2 to 3% [see Drug Interactions ( 7.1 )]."
             },
             "note": "This recorded bioavailability sits far from the other 258 recorded bioavailability values in the oral peer group and is worth a human look. A value at the edge of a group is often precisely what its source states."
           },
@@ -3639,13 +3639,13 @@
           },
           {
             "group": "intravenous",
-            "size": 18,
-            "calibrationSize": 17,
-            "resolutionLimit": 0.05555555555555555,
+            "size": 17,
+            "calibrationSize": 16,
+            "resolutionLimit": 0.058823529411764705,
             "underpowered": true,
             "medianOfRecordedValues": 0.5,
-            "p25OfRecordedValues": 0.3825,
-            "p75OfRecordedValues": 3.6399999999999997
+            "p25OfRecordedValues": 0.39,
+            "p75OfRecordedValues": 4.6
           },
           {
             "group": "intravenous infusion",
@@ -3699,13 +3699,13 @@
           },
           {
             "group": "subcutaneous",
-            "size": 5,
-            "calibrationSize": 4,
-            "resolutionLimit": 0.2,
+            "size": 6,
+            "calibrationSize": 5,
+            "resolutionLimit": 0.16666666666666666,
             "underpowered": true,
-            "medianOfRecordedValues": 0.12,
-            "p25OfRecordedValues": 0.1,
-            "p75OfRecordedValues": 0.3
+            "medianOfRecordedValues": 0.11499999999999999,
+            "p25OfRecordedValues": 0.10250000000000001,
+            "p75OfRecordedValues": 0.255
           },
           {
             "group": "subcutaneous injection",
@@ -3771,8 +3771,8 @@
           },
           {
             "group": "intravenous",
-            "size": 18,
-            "resolutionLimit": 0.05555555555555555
+            "size": 17,
+            "resolutionLimit": 0.058823529411764705
           },
           {
             "group": "intravenous infusion",
@@ -3796,8 +3796,8 @@
           },
           {
             "group": "subcutaneous",
-            "size": 5,
-            "resolutionLimit": 0.2
+            "size": 6,
+            "resolutionLimit": 0.16666666666666666
           },
           {
             "group": "subcutaneous injection",
@@ -3907,7 +3907,7 @@
       "underpoweredGroupCount": 78
     },
     "excluded": {
-      "medicinesWithoutPharmacokinetics": 1931,
+      "medicinesWithoutPharmacokinetics": 6825,
       "displayOnlyValues": 165,
       "valuesWithoutRecordedUnit": 0
     }
@@ -4496,11 +4496,11 @@
     {
       "slug": "niacin",
       "reason": "UNUSUAL_FOR_PEER_GROUP",
-      "question": "Recorded bioavailability for niacin is \"2-3%\", with the population context recorded as \"as stated in the label sentence recorded below\". It sits below the median of the 258 recorded bioavailability values in the oral peer group. Does the fetched excerpt on this record state this figure, in this unit, for this population, and is the oral group the right set of recorded values to read it beside?",
+      "question": "Recorded bioavailability for niacin is \"2 to 3%\", with the population context recorded as \"as stated in the label sentence recorded below\". It sits below the median of the 258 recorded bioavailability values in the oral peer group. Does the fetched excerpt on this record state this figure, in this unit, for this population, and is the oral group the right set of recorded values to read it beside?",
       "priority": 0.9689922480620154,
       "basis": "Group-conditional split-conformal p-value 0.0310 within the oral peer group, from 257 calibration values whose smallest reachable p-value is 0.0039. The recorded value is 2.0 % against a group median of 59.0 %. About 17.1 flags in this screen are expected to look this unusual by chance alone.",
       "sources": [
-        "FDA_LABEL 249e27ac-e1e7-42dc-84f6-cd32fd1d9dee"
+        "FDA_LABEL 52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e"
       ]
     },
     {

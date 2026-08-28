@@ -36,6 +36,7 @@ import { SOURCE_CONSENSUS } from './source-consensus.generated'
 import { COMPOUND_IDENTITY_BACKGROUND } from './compound-identity-background'
 import { SUBSTANCE_BACKED_BACKGROUND } from './substance-backed-background'
 import { SUPPLEMENT_BACKGROUND } from './supplement-background'
+import { LABEL_PRESENCE_BACKGROUND } from './label-presence'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -108,6 +109,16 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     merged[slug] = existing
       ? { ...existing, supplementMarket: supplement.supplementMarket }
       : supplement
+  }
+
+  // Archive presence attaches the same way, and for the same reason. A record with a mechanism
+  // gains the fact that eleven published labels name the substance; a record with nothing else is
+  // that fact, which is the whole point — half this corpus is botanicals, homeopathic preparations
+  // and allergenic extracts whose labels carry no prose to extract but do record that the substance
+  // is a declared active ingredient of a marketed product.
+  for (const [slug, presence] of Object.entries(LABEL_PRESENCE_BACKGROUND)) {
+    const existing = merged[slug]
+    merged[slug] = existing ? { ...existing, labelPresence: presence.labelPresence } : presence
   }
 
   // Cross-source consensus attaches to whichever record exists, curated or extracted. It says what

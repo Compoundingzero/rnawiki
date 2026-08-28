@@ -5,15 +5,20 @@ import {
   BackgroundAnatomyBody,
   BackgroundApplicabilityBody,
   BackgroundCommonAdverseReactionsBody,
+  BackgroundCompositionBody,
   BackgroundCostEntriesBody,
   BackgroundInteractionSignalsBody,
+  BackgroundLabelPresenceBody,
   BackgroundMechanismBody,
   BackgroundMolecularIdentityBody,
   BackgroundPharmacokineticsBody,
   BackgroundPopulationStatementsBody,
   BackgroundPivotalResultsBody,
   BackgroundProductsBody,
+  BackgroundRecordedUsesBody,
   BackgroundSafetyBody,
+  BackgroundSourceConsensusBody,
+  BackgroundSupplementMarketBody,
   BackgroundTitrationBody,
   RegistryIdentifierList,
 } from '@/components/dossier/RecordedBackgroundRows'
@@ -302,6 +307,28 @@ export function MedicineRecordContextSections({
           </BackgroundRow>
         )}
 
+        {context.background?.recordedUses && (
+          <BackgroundRow
+            id="recorded-uses"
+            tone="emerald"
+            title="What the label says it is for"
+            preview="The exact sentences the label uses to state what the medicine is used for."
+          >
+            <BackgroundRecordedUsesBody uses={context.background.recordedUses} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.composition && (
+          <BackgroundRow
+            id="what-is-in-it"
+            tone="stone"
+            title="What is in it, ingredient by ingredient"
+            preview="Every active ingredient, with the data recorded for that ingredient on its own."
+          >
+            <BackgroundCompositionBody composition={context.background.composition} />
+          </BackgroundRow>
+        )}
+
         {context.background?.mechanism && (
           <BackgroundRow
             id="recorded-mechanism"
@@ -415,6 +442,39 @@ export function MedicineRecordContextSections({
             preview="Recorded body regions on a fixed map — every dot has a source."
           >
             <BackgroundAnatomyBody targets={context.background!.anatomyTargets!} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.sourceConsensus && (
+          <BackgroundRow
+            id="what-every-label-says"
+            tone="violet"
+            title="What every published label says, not just one"
+            preview="Each reading of a value, how many labels state it, and where the labels disagree."
+          >
+            <BackgroundSourceConsensusBody consensus={context.background.sourceConsensus} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.labelPresence && (
+          <BackgroundRow
+            id="label-archive-presence"
+            tone="stone"
+            title="Where it appears in the published label archive"
+            preview="How many published labels name this as an active ingredient, and how many name it on its own."
+          >
+            <BackgroundLabelPresenceBody presence={context.background.labelPresence} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.supplementMarket && (
+          <BackgroundRow
+            id="supplement-market"
+            tone="stone"
+            title="Supplement products that list this ingredient"
+            preview="How many supplement products on sale list it, how they are classified, and what kinds of claim their labels carry."
+          >
+            <BackgroundSupplementMarketBody market={context.background.supplementMarket} />
           </BackgroundRow>
         )}
 

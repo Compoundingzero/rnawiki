@@ -609,3 +609,287 @@ export function BackgroundCommonAdverseReactionsBody({
     </div>
   )
 }
+
+/**
+ * What the label says the medicine is for, quoted.
+ *
+ * A label stating a use is a fact about the label. It is not evidence the medicine works, and the
+ * closing line says so rather than leaving a reader to assume otherwise from a list of indications.
+ */
+export function BackgroundRecordedUsesBody({
+  uses,
+}: {
+  uses: NonNullable<MedicineBackgroundContextView['recordedUses']>
+}) {
+  return (
+    <div className="space-y-4">
+      <ul className="grid min-w-0 gap-3">
+        {uses.statements.map((statement, index) => (
+          <QuotedStatement key={index} text={statement.text} source={statement.source} />
+        ))}
+      </ul>
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        This is what the label states the medicine is for. Whether it works for that is not
+        something a label settles and is not recorded here. {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
+/**
+ * What every published label says for a field, side by side.
+ *
+ * The point of this row is the thing a single-source record throws away: that fifty-nine labels
+ * agree, or that two of them do not. Readings are shown in the order the record stores them, which
+ * is most-supported first, and no reading is marked correct.
+ */
+export function BackgroundSourceConsensusBody({
+  consensus,
+}: {
+  consensus: NonNullable<MedicineBackgroundContextView['sourceConsensus']>
+}) {
+  return (
+    <div className="space-y-5">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">{consensus.documentsExaminedLabel}.</p>
+      {consensus.fields.map((field) => (
+        <section key={field.fieldLabel} className="min-w-0 space-y-3">
+          <div className="min-w-0">
+            <h4 className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+              {field.fieldLabel}
+            </h4>
+            <p className="mt-1 text-sm leading-6 text-[#515154]">{field.agreementLabel}</p>
+          </div>
+          {field.disagreementNote && (
+            <p className="rounded-2xl border border-[#F0D89A] bg-[#FFF8E7] px-4 py-3 text-sm leading-6 text-[#8A4B00]">
+              {field.disagreementNote}
+            </p>
+          )}
+          <ul className="grid min-w-0 gap-3">
+            {field.readings.map((reading) => (
+              <li
+                key={reading.display}
+                className="min-w-0 space-y-2 rounded-2xl border border-black/[0.08] bg-white p-4"
+              >
+                <p className="break-words font-mono text-base font-semibold text-[#1D1D1F]">
+                  {reading.display}
+                </p>
+                <p className="text-sm leading-6 text-[#515154]">{reading.supportLabel}</p>
+                <ul className="space-y-2">
+                  {reading.sources.map((source, index) => (
+                    <li key={`${source.identifier}-${index}`}>
+                      <SourceLine source={source} />
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        Agreement between labels is not proof that a number is right — manufacturers often copy the
+        same originator wording. It is a record of what the published labels say. {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
+/** A short list of values the archive states, rendered as chips rather than prose. */
+function ChipList({ label, values }: { label: string; values: string[] }) {
+  if (values.length === 0) return null
+  return (
+    <div className="min-w-0">
+      <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">{label}</p>
+      <ul className="mt-2 flex flex-wrap gap-2">
+        {values.map((value) => (
+          <li
+            key={value}
+            className="rounded-full border border-black/[0.1] bg-[#F5F5F7] px-3 py-1 text-sm font-semibold leading-5 text-[#1D1D1F]"
+          >
+            {value}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export function BackgroundLabelPresenceBody({
+  presence,
+}: {
+  presence: NonNullable<MedicineBackgroundContextView['labelPresence']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">
+        <span className="font-semibold">{presence.labelCountLabel}</span> this as an active
+        ingredient. {presence.aloneLabel}.
+      </p>
+      {presence.noSoleSourceNote && (
+        <p className="rounded-2xl bg-[#F5F5F7] px-4 py-3 text-sm leading-6 text-[#424245]">
+          {presence.noSoleSourceNote}
+        </p>
+      )}
+      <ChipList label="Kinds of product" values={presence.productTypes} />
+      <ChipList label="Routes those labels state" values={presence.routes} />
+      {presence.mostRecentLabelDate && (
+        <p className="text-sm leading-6 text-[#515154]">
+          Most recent label among them: {presence.mostRecentLabelDate}
+        </p>
+      )}
+      <SourceLine source={presence.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        A label existing in the archive does not mean the product was approved or found effective —
+        unapproved and homeopathic products are published there alongside approved medicines.{' '}
+        {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
+export function BackgroundSupplementMarketBody({
+  market,
+}: {
+  market: NonNullable<MedicineBackgroundContextView['supplementMarket']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">
+        <span className="font-semibold">{market.labelCountLabel}</span>.
+      </p>
+      <ChipList label="How the database classifies it" values={market.categories} />
+      <ChipList label="Kinds of claim those labels carry" values={market.claimTypes} />
+      <ChipList label="Some of the brands" values={market.brands} />
+      <p className="rounded-2xl bg-[#F5F5F7] px-4 py-3 text-sm leading-6 text-[#424245]">
+        {market.claimNote}
+      </p>
+      <SourceLine source={market.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">{ROW_BOUNDARY}</p>
+    </div>
+  )
+}
+
+/**
+ * Every active ingredient, with the data recorded for each one.
+ *
+ * A product with six ingredients gets six entries. An ingredient no source describes on its own
+ * says so in its own words rather than appearing as an empty heading, because an absent section
+ * cannot tell a reader whether anybody looked.
+ */
+export function BackgroundCompositionBody({
+  composition,
+}: {
+  composition: NonNullable<MedicineBackgroundContextView['composition']>
+}) {
+  return (
+    <div className="space-y-5">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">{composition.summary}</p>
+      <ol className="grid min-w-0 gap-4">
+        {composition.ingredients.map((ingredient, index) => (
+          <li
+            key={`${ingredient.name}-${index}`}
+            className="min-w-0 space-y-3 rounded-2xl border border-black/[0.08] bg-white p-4"
+          >
+            <div className="min-w-0">
+              <p className="break-words text-base font-semibold text-[#1D1D1F]">
+                {ingredient.name}
+              </p>
+              {ingredient.strength && (
+                <p className="mt-1 font-mono text-sm text-[#515154]">{ingredient.strength}</p>
+              )}
+              <p className="mt-1 text-sm leading-6 text-[#6E6E73]">{ingredient.dataStateLabel}</p>
+            </div>
+
+            {ingredient.uses && (
+              <div className="min-w-0 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+                  What its own label says it is for
+                </p>
+                <ul className="grid min-w-0 gap-3">
+                  {ingredient.uses.map((statement, statementIndex) => (
+                    <QuotedStatement
+                      key={statementIndex}
+                      text={statement.text}
+                      source={statement.source}
+                    />
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {ingredient.mechanism && (
+              <div className="min-w-0 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+                  How a source describes it working
+                </p>
+                <ul className="grid min-w-0 gap-3">
+                  {ingredient.mechanism.map((statement, statementIndex) => (
+                    <QuotedStatement
+                      key={statementIndex}
+                      text={statement.text}
+                      source={statement.source}
+                    />
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {ingredient.pharmacokinetics && (
+              <div className="min-w-0 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+                  What the body does with it
+                </p>
+                <ul className="grid min-w-0 gap-3 sm:grid-cols-2">
+                  {ingredient.pharmacokinetics.map((value) => (
+                    <RecordedValueCard key={value.label} value={value} />
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {ingredient.molecularIdentity && (
+              <div className="min-w-0 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+                  Recorded chemical identity
+                </p>
+                <ul className="grid min-w-0 gap-3 sm:grid-cols-2">
+                  {ingredient.molecularIdentity.map((value) => (
+                    <RecordedValueCard key={value.label} value={value} />
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {ingredient.interactions && (
+              <div className="min-w-0 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+                  Enzymes and transporters the source names
+                </p>
+                <ul className="grid min-w-0 gap-3">
+                  {ingredient.interactions.map((entry, entryIndex) => (
+                    <li
+                      key={`${entry.counterparty}-${entryIndex}`}
+                      className="min-w-0 space-y-2 rounded-2xl border border-black/[0.08] bg-[#FBFBFD] p-3"
+                    >
+                      <p className="font-mono text-sm font-semibold text-[#1D1D1F]">
+                        {entry.counterparty}
+                      </p>
+                      <p className="text-sm leading-6 text-[#515154]">
+                        {entry.roleLabel ?? 'The source names it without stating a single role'}
+                      </p>
+                      <SourceLine source={entry.source} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        Each ingredient&rsquo;s data comes from sources about that ingredient, not from the combined
+        product&rsquo;s label. {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}

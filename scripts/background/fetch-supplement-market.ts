@@ -39,10 +39,20 @@ const DSLD = 'https://api.ods.od.nih.gov/dsld/v9/search-filter'
  * down. Two concurrent requests with a pause between them, and a long back-off that grows when the
  * service says 429, finishes later and finishes.
  */
-const CONCURRENCY = 2
-const PAUSE_BETWEEN_REQUESTS_MS = 250
+const CONCURRENCY = 1
+const PAUSE_BETWEEN_REQUESTS_MS = 1_000
 const RATE_LIMIT_BACKOFF_MS = 30_000
 const RETRY_LIMIT = 5
+/**
+ * Consecutive rate-limited lookups after which the run stops.
+ *
+ * Two concurrent requests a second apart still exhausted this service's quota, and once it starts
+ * refusing it refuses everything from this address for hours. Grinding on through that turns every
+ * remaining name into a failed lookup and spends hours proving the service meant it. Stopping is
+ * the correct response to being refused; the cache is complete as far as it got, and the next run
+ * resumes from there.
+ */
+const RATE_LIMIT_GIVE_UP_AFTER = 8
 /** Brands and label ids kept per ingredient: enough to check a count, not a directory. */
 const MAX_SAMPLES = 8
 
@@ -75,7 +85,11 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
+/** Set when a lookup ended in rate limiting rather than in an answer, so the run can stop. */
+let lastLookupWasRateLimited = false
+
 async function getJson(url: string): Promise<unknown | null> {
+  lastLookupWasRateLimited = false
   for (let attempt = 0; attempt < RETRY_LIMIT; attempt += 1) {
     try {
       const response = await fetch(url, {
@@ -84,6 +98,7 @@ async function getJson(url: string): Promise<unknown | null> {
       })
       if (response.status === 429) {
         // Being told to slow down is not a failure to retry quickly; it is a failure to wait.
+        lastLookupWasRateLimited = true
         await sleep(RATE_LIMIT_BACKOFF_MS * (attempt + 1))
         continue
       }
@@ -213,14 +228,29 @@ async function main() {
   const queue = outstanding.slice(0, Math.min(outstanding.length, limit))
   let next = 0
   let done = 0
+  let consecutiveRateLimited = 0
+  let stopped = false
   let lastSave = Date.now()
   const worker = async (): Promise<void> => {
     for (;;) {
+      if (stopped) return
       const index = next
       next += 1
       const name = queue[index]
       if (name === undefined) return
-      cache[name] = await lookup(name)
+      const entry = await lookup(name)
+      if (lastLookupWasRateLimited && entry.state === 'LOOKUP_FAILED') {
+        consecutiveRateLimited += 1
+        // Not cached: a name refused by the quota has not been answered, and recording it as a
+        // failure would be recording something about the ingredient rather than about the service.
+        if (consecutiveRateLimited >= RATE_LIMIT_GIVE_UP_AFTER) {
+          stopped = true
+          return
+        }
+        continue
+      }
+      consecutiveRateLimited = 0
+      cache[name] = entry
       done += 1
       await sleep(PAUSE_BETWEEN_REQUESTS_MS)
       if (Date.now() - lastSave > 20_000) {
@@ -232,6 +262,11 @@ async function main() {
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
   writeFileSync(cachePath, JSON.stringify(cache))
+  if (stopped) {
+    console.log(
+      `[dsld] stopped after ${RATE_LIMIT_GIVE_UP_AFTER} consecutive rate-limited lookups; ${done} answered this run. Re-run later to continue from the cache.`,
+    )
+  }
 
   const states = new Map<string, number>()
   for (const entry of Object.values(cache)) {

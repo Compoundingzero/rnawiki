@@ -1,7 +1,7 @@
 {
   "agent": "mechanism-text-grouping",
   "version": "1.0.0",
-  "runDate": "2026-08-28",
+  "runDate": "2026-08-29",
   "seed": 20260828,
   "parameters": {
     "vectoriser": "tf-idf sublinear, l2-normalised",
@@ -18,9 +18,9 @@
     "seed": 20260828
   },
   "coverage": {
-    "considered": 3012,
+    "considered": 7906,
     "used": 1258,
-    "reason": "Of 3012 records, 1261 carry recorded mechanism text and 1258 of those contain at least one term shared by 3 or more recorded statements. The rest have no mechanism statement on file or no wording the corpus vocabulary covers."
+    "reason": "Of 7906 records, 1261 carry recorded mechanism text and 1258 of those contain at least one term shared by 3 or more recorded statements. The rest have no mechanism statement on file or no wording the corpus vocabulary covers."
   },
   "output": {
     "groups": [

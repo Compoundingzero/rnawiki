@@ -16,6 +16,7 @@ import { evidenceDensityAgent } from '@/lib/agents/dataset/evidence-density'
 import { numericDistributionsAgent } from '@/lib/agents/dataset/numeric-distributions'
 import { reactionCooccurrenceAgent } from '@/lib/agents/dataset/reaction-cooccurrence'
 import { excerptIntegrityAgent } from '@/lib/agents/dataset/excerpt-integrity'
+import { coverageLedgerAgent } from '@/lib/agents/dataset/coverage-ledger'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- agents differ only in output type
 export const DATASET_AGENTS: ReadonlyArray<DatasetAgent<any>> = [
@@ -28,6 +29,7 @@ export const DATASET_AGENTS: ReadonlyArray<DatasetAgent<any>> = [
   numericDistributionsAgent,
   reactionCooccurrenceAgent,
   excerptIntegrityAgent,
+  coverageLedgerAgent,
 ]
 
 /**

@@ -37,7 +37,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.2.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.3.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -92,6 +92,8 @@ export const BACKGROUND_RULE_CODES = [
   'I_SUPPLEMENT_COUNT_UNCHECKABLE',
   'I_SUPPLEMENT_TIER_MISMATCH',
   'I_TRANSCRIBED_VALUE_UNCHECKABLE',
+  'I_LABEL_PRESENCE_COUNT_UNCHECKABLE',
+  'I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -915,6 +917,9 @@ export function runBackgroundIntelligence(
       'provenanceTier',
       'attribution',
       'supplementMarket',
+      // Archive presence is transcribed too, so a record holding only these two is still a
+      // transcribed record rather than one that has quietly acquired a richer tier.
+      'labelPresence',
     ])
     const otherModules = Object.entries(background).some(([key, value]) => {
       if (ENVELOPE_FIELDS.has(key)) return false
@@ -925,6 +930,52 @@ export function runBackgroundIntelligence(
         'I_SUPPLEMENT_TIER_MISMATCH',
         'provenanceTier',
         `A record holding only transcribed market data is tier "${background.provenanceTier ?? 'curated'}"; it must be "transcribed".`,
+      )
+    }
+  }
+
+  /**
+   * Archive presence counts, held to the same reproducibility standard as market counts.
+   *
+   * There is no sentence behind a count of labels, so there is no excerpt to check it against. What
+   * stands in its place is the set of label identifiers: a reader can put the same question to the
+   * same public archive and get the same number. A count with no identifier behind it is an
+   * assertion, and this record type exists precisely to avoid making assertions about rows that had
+   * nothing else.
+   */
+  const presence = background.labelPresence
+  if (presence) {
+    checkSource('labelPresence', presence.source)
+    if (presence.labelCount < 1 || presence.sampleLabelIds.length === 0) {
+      flag(
+        'I_LABEL_PRESENCE_COUNT_UNCHECKABLE',
+        'labelPresence',
+        `Reports ${presence.labelCount} label(s) with ${presence.sampleLabelIds.length} identifier(s); a transcribed count needs at least one identifier to be checkable.`,
+      )
+    }
+    if (presence.source.kind !== 'FDA_LABEL') {
+      flag(
+        'I_LABEL_PRESENCE_COUNT_UNCHECKABLE',
+        'labelPresence.source',
+        `Archive presence must cite the label archive it was counted from, not "${presence.source.kind}".`,
+      )
+    }
+    // The single-substance count is the subset of the total that names this substance alone. A
+    // subset larger than its set means the two were counted over different things, which would make
+    // "no source about this substance alone" — the sentence the rest of a thin record depends on —
+    // unsupportable.
+    if (presence.singleSubstanceLabelCount > presence.labelCount) {
+      flag(
+        'I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL',
+        'labelPresence.singleSubstanceLabelCount',
+        `${presence.singleSubstanceLabelCount} single-substance label(s) cannot exceed ${presence.labelCount} label(s) in total.`,
+      )
+    }
+    if (presence.singleSubstanceLabelCount < 0) {
+      flag(
+        'I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL',
+        'labelPresence.singleSubstanceLabelCount',
+        'A count of labels cannot be negative.',
       )
     }
   }

@@ -16599,7 +16599,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             display: '18 hours',
             numeric: 18,
             unit: 'hours',
-            sourceCount: 50,
+            sourceCount: 49,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -16675,19 +16675,35 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
             ],
           },
+          {
+            display: '36 hours',
+            numeric: 36,
+            unit: 'hours',
+            sourceCount: 1,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '6fa59588-ce9b-48cf-8c5f-725a448f8571',
+                label: 'Cyclobenzaprine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Elimination TONMYA has a single dose elimination half-life of approximately 36 hours (range 28-59 hours; n=16).',
+              },
+            ],
+          },
         ],
-        agreementRate: 0.8333333333333334,
+        agreementRate: 0.8166666666666667,
         numericallyDisjoint: true,
       },
       {
         field: 'bioavailability',
-        sourceCount: 50,
+        sourceCount: 49,
         readings: [
           {
             display: '33%',
             numeric: 33,
             unit: '%',
-            sourceCount: 50,
+            sourceCount: 49,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -16729,7 +16745,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'tMax',
-        sourceCount: 10,
+        sourceCount: 11,
         readings: [
           {
             display: '7 to 8 hours',
@@ -16771,9 +16787,25 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
             ],
           },
+          {
+            display: '4.3 hours',
+            numeric: 4.3,
+            unit: 'hours',
+            sourceCount: 1,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '6fa59588-ce9b-48cf-8c5f-725a448f8571',
+                label: 'Cyclobenzaprine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption The median time to peak plasma cyclobenzaprine concentration (T max ) was approximately 4.3 hours for the 2.8 mg and 5.6 mg once daily TONMYA dosages.',
+              },
+            ],
+          },
         ],
-        agreementRate: 1,
-        numericallyDisjoint: false,
+        agreementRate: 0.9090909090909091,
+        numericallyDisjoint: true,
       },
     ],
   },
@@ -19071,7 +19103,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '4bf239bb-c467-4add-b7cf-ea666e4fc693',
+                identifier: 'b9e32bf7-d70a-4083-8577-c15751c7f769',
                 label: 'Denosumab label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -19079,7 +19111,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'b9e32bf7-d70a-4083-8577-c15751c7f769',
+                identifier: '4bf239bb-c467-4add-b7cf-ea666e4fc693',
                 label: 'Denosumab label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -19201,7 +19233,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '4bf239bb-c467-4add-b7cf-ea666e4fc693',
+                identifier: 'b9e32bf7-d70a-4083-8577-c15751c7f769',
                 label: 'Denosumab label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -19209,7 +19241,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'b9e32bf7-d70a-4083-8577-c15751c7f769',
+                identifier: '4bf239bb-c467-4add-b7cf-ea666e4fc693',
                 label: 'Denosumab label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -30038,7 +30070,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '32266029-c710-44dd-943f-7e31d0afa622',
+                identifier: '61e6cbb8-ddd2-4e07-b182-6348f216858b',
                 label: 'Finasteride label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -30126,7 +30158,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '32266029-c710-44dd-943f-7e31d0afa622',
+                identifier: '61e6cbb8-ddd2-4e07-b182-6348f216858b',
                 label: 'Finasteride label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -30214,11 +30246,11 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '32266029-c710-44dd-943f-7e31d0afa622',
+                identifier: '6f904709-65aa-44ce-b144-b4c8a0416e36',
                 label: 'Finasteride label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Distribution Mean steady-state volume of distribution was 76 liters (range, 44 to 96 liters).',
+                  'Distribution Mean steady-state volume of distribution was 76 liters (range, 44-96 liters; n=15).',
               },
             ],
           },
@@ -48460,14 +48492,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '22d5fa47-b5b9-4fd9-980c-4eb88e95ae5d',
+                identifier: '18024571-4505-6d51-e063-6294a90a1972',
                 label: 'Methylphenidate label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The mean half-life was about 3.6 hours.',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'b07150db-fd99-4400-bb83-b3a7544a917a',
+                identifier: '22d5fa47-b5b9-4fd9-980c-4eb88e95ae5d',
                 label: 'Methylphenidate label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The mean half-life was about 3.6 hours.',
@@ -49222,6 +49254,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             sources: [
               {
                 kind: 'FDA_LABEL',
+                identifier: '485f1fdb-6543-4f47-e063-6394a90a2459',
+                label: 'Metoprolol label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Stroke volume, diastolic blood pressure and pulmonary artery end diastolic pressure remained unchanged. 12.3 Pharmacokinetics Absorption: The estimated oral bioavailability of immediate release metoprolol is about 50% because of pre- systemic metabolism which is saturable leading to non-proportionate increase in the exposure with increased dose.',
+              },
+              {
+                kind: 'FDA_LABEL',
                 identifier: '5476c4fc-ab09-ee1a-e063-6394a90a7a1b',
                 label: 'Metoprolol label',
                 retrievedAt: '2026-08-28',
@@ -49244,14 +49284,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 excerpt:
                   'Stroke volume, diastolic blood pressure and pulmonary artery end diastolic pressure remained unchanged. 12.3 Pharmacokinetics Absorption: The estimated oral bioavailability of immediate release metoprolol is about 50% because of pre- systemic metabolism which is saturable leading to non-proportionate increase in the exposure with increased dose.',
               },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'c97e7527-b44e-48ca-b6be-53999bf5554b',
-                label: 'Metoprolol label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  '12.3 Pharmacokinetics Absorption: The estimated oral bioavailability of immediate release metoprolol is about 50% because of pre-systemic metabolism which is saturable leading to non-proportionate increase in the exposure with increased dose.',
-              },
             ],
           },
         ],
@@ -49268,6 +49300,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             unit: 'L/kg',
             sourceCount: 31,
             sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '485f1fdb-6543-4f47-e063-6394a90a2459',
+                label: 'Metoprolol label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution : Metoprolol is extensively distributed with a reported volume of distribution of 3.2 to 5.6 L/kg.',
+              },
               {
                 kind: 'FDA_LABEL',
                 identifier: '5476c4fc-ab09-ee1a-e063-6394a90a7a1b',
@@ -49291,14 +49331,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Distribution : Metoprolol is extensively distributed with a reported volume of distribution of 3.2 to 5.6 L/kg.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'c97e7527-b44e-48ca-b6be-53999bf5554b',
-                label: 'Metoprolol label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Distribution: Metoprolol is extensively distributed with a reported volume of distribution of 3.2 to 5.6 L/kg.',
               },
             ],
           },
@@ -54051,19 +54083,11 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
         sourceCount: 11,
         readings: [
           {
-            display: '2-3%',
+            display: '2 to 3%',
             numeric: 2,
             unit: '%',
             sourceCount: 8,
             sources: [
-              {
-                kind: 'FDA_LABEL',
-                identifier: '249e27ac-e1e7-42dc-84f6-cd32fd1d9dee',
-                label: 'Niacin label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Lovastatin reduced niacin extended-release tablets bioavailability by 2-3% [see Drug Interactions ( 7.1 )] .',
-              },
               {
                 kind: 'FDA_LABEL',
                 identifier: '52ad4a6a-81cc-4b03-b8b1-3bd9a1d4064e',
@@ -54071,6 +54095,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Lovastatin reduced niacin extended-release tablets bioavailability by 2 to 3% [see Drug Interactions ( 7.1 )].',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '249e27ac-e1e7-42dc-84f6-cd32fd1d9dee',
+                label: 'Niacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Lovastatin reduced niacin extended-release tablets bioavailability by 2-3% [see Drug Interactions ( 7.1 )] .',
               },
               {
                 kind: 'FDA_LABEL',
@@ -63288,14 +63320,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'd818af31-2535-4595-82fe-fd7abf66fd6c',
-                label: 'Propafenone label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'In over 90% of patients, the drug is rapidly and extensively metabolized with an elimination half-life from 2 to 10 hours.',
-              },
-              {
-                kind: 'FDA_LABEL',
                 identifier: 'c65253ab-937f-4982-b841-69c2b9f9ccdb',
                 label: 'Propafenone label',
                 retrievedAt: '2026-08-28',
@@ -63305,6 +63329,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: '617faff7-d9e4-477d-ab2c-aded5c129a86',
+                label: 'Propafenone label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In over 90% of patients, the drug is rapidly and extensively metabolized with an elimination half-life from 2 to 10 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd818af31-2535-4595-82fe-fd7abf66fd6c',
                 label: 'Propafenone label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -63368,19 +63400,19 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'd818af31-2535-4595-82fe-fd7abf66fd6c',
-                label: 'Propafenone label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Absorption from a 300 mg solution dose was rapid, with an absolute bioavailability of 21.4%.',
-              },
-              {
-                kind: 'FDA_LABEL',
                 identifier: 'c65253ab-937f-4982-b841-69c2b9f9ccdb',
                 label: 'Propafenone label',
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'A 300 mg solution which was rapidly absorbed had absolute bioavailability of 21.4%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '617faff7-d9e4-477d-ab2c-aded5c129a86',
+                label: 'Propafenone label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'A 300-mg solution which was rapidly absorbed had absolute bioavailability of 21.4%.',
               },
             ],
           },
@@ -63416,7 +63448,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'd818af31-2535-4595-82fe-fd7abf66fd6c',
+                identifier: 'c65253ab-937f-4982-b841-69c2b9f9ccdb',
                 label: 'Propafenone label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -63424,7 +63456,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'c65253ab-937f-4982-b841-69c2b9f9ccdb',
+                identifier: '617faff7-d9e4-477d-ab2c-aded5c129a86',
                 label: 'Propafenone label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -63464,7 +63496,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'd818af31-2535-4595-82fe-fd7abf66fd6c',
+                identifier: 'c65253ab-937f-4982-b841-69c2b9f9ccdb',
                 label: 'Propafenone label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -63472,7 +63504,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'c65253ab-937f-4982-b841-69c2b9f9ccdb',
+                identifier: '617faff7-d9e4-477d-ab2c-aded5c129a86',
                 label: 'Propafenone label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -63523,7 +63555,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'fee3bd4a-ade3-41fa-839a-48e9af69bcf4',
+                identifier: '28d7ba00-f824-4e55-139a-03f509c099db',
                 label: 'Propofol label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -63571,7 +63603,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'fee3bd4a-ade3-41fa-839a-48e9af69bcf4',
+                identifier: '28d7ba00-f824-4e55-139a-03f509c099db',
                 label: 'Propofol label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -63590,7 +63622,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 48,
+        sourceCount: 47,
         readings: [
           {
             display: '3 to 6 hours',
@@ -63632,7 +63664,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             display: '10 hours',
             numeric: 10,
             unit: 'hours',
-            sourceCount: 11,
+            sourceCount: 10,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -63713,7 +63745,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
         ],
-        agreementRate: 0.6875,
+        agreementRate: 0.7021276595744681,
         numericallyDisjoint: true,
       },
       {
@@ -63826,13 +63858,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'volumeOfDistribution',
-        sourceCount: 48,
+        sourceCount: 47,
         readings: [
           {
             display: '4 liters/kg',
             numeric: 4,
             unit: 'L/kg',
-            sourceCount: 44,
+            sourceCount: 43,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -63912,7 +63944,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
         ],
-        agreementRate: 0.9166666666666666,
+        agreementRate: 0.9148936170212766,
         numericallyDisjoint: false,
       },
     ],
@@ -70356,6 +70388,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
+                identifier: '58e23b30-451c-f451-e063-6394a90a35a7',
+                label: 'Sitagliptin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Following a single oral 100-mg dose to healthy volunteers, mean plasma AUC of sitagliptin was 8.52 mcM•hr, C max was 950 nM, and apparent terminal half-life (t 1/2 ) was 12.4 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
                 identifier: '194c3718-5eb5-4cf5-85d0-2bb1ed8293b8',
                 label: 'Sitagliptin label',
                 retrievedAt: '2026-08-28',
@@ -70369,14 +70409,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Following a single oral 100 mg dose to healthy volunteers, mean plasma AUC of sitagliptin was 8.52 µM•hr, C max was 950 nM, and apparent terminal half-life (t 1/2 ) was 12.4 hours.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'f85a48d0-0407-4c50-b0fa-7673a160bf01',
-                label: 'Sitagliptin label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Following a single oral 100-mg dose to healthy volunteers, mean plasma AUC of sitagliptin was 8.52 μM•hr, C max was 950 nM, and apparent terminal half-life (t 1/2 ) was 12.4 hours.',
               },
             ],
           },
@@ -70403,6 +70435,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
+                identifier: '58e23b30-451c-f451-e063-6394a90a35a7',
+                label: 'Sitagliptin label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The absolute bioavailability of sitagliptin is approximately 87%.',
+              },
+              {
+                kind: 'FDA_LABEL',
                 identifier: '194c3718-5eb5-4cf5-85d0-2bb1ed8293b8',
                 label: 'Sitagliptin label',
                 retrievedAt: '2026-08-28',
@@ -70411,13 +70450,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: '5fa5aa67-455e-4ac6-864d-268a91286432',
-                label: 'Sitagliptin label',
-                retrievedAt: '2026-08-28',
-                excerpt: 'The absolute bioavailability of sitagliptin is approximately 87%.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'f85a48d0-0407-4c50-b0fa-7673a160bf01',
                 label: 'Sitagliptin label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The absolute bioavailability of sitagliptin is approximately 87%.',
@@ -70448,6 +70480,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
+                identifier: '58e23b30-451c-f451-e063-6394a90a35a7',
+                label: 'Sitagliptin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The fraction of sitagliptin reversibly bound to plasma proteins is low (38%).',
+              },
+              {
+                kind: 'FDA_LABEL',
                 identifier: '194c3718-5eb5-4cf5-85d0-2bb1ed8293b8',
                 label: 'Sitagliptin label',
                 retrievedAt: '2026-08-28',
@@ -70457,14 +70497,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: '5fa5aa67-455e-4ac6-864d-268a91286432',
-                label: 'Sitagliptin label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'The fraction of sitagliptin reversibly bound to plasma proteins is low (38%).',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'f85a48d0-0407-4c50-b0fa-7673a160bf01',
                 label: 'Sitagliptin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -70982,14 +71014,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '56326224-fc80-4b89-8ba3-70cb873173b4',
+                identifier: '8e2772cb-7dea-42d1-ba31-d479ba7cb09a',
                 label: 'Sotalol label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The mean elimination half-life of sotalol is 12 hours.',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '8e2772cb-7dea-42d1-ba31-d479ba7cb09a',
+                identifier: '56326224-fc80-4b89-8ba3-70cb873173b4',
                 label: 'Sotalol label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The mean elimination half-life of sotalol is 12 hours.',
@@ -76534,19 +76566,19 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
-                label: 'Tofacitinib label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  '12.3 Pharmacokinetics Following oral administration of tofacitinib tablets, peak plasma concentrations were reached within 0.5 hour to 1 hour, elimination half-life was about 3 hours and a dose-proportional increase in systemic exposure was observed in the therapeutic dosage range.',
-              },
-              {
-                kind: 'FDA_LABEL',
                 identifier: '253635c8-1ea7-41ba-b216-dea5e3305c47',
                 label: 'Tofacitinib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
                   '12.3 Pharmacokinetics Following oral administration of tofacitinib tablets, peak plasma concentrations were reached within 0.5 hour -1 hour, elimination half-life was about 3 hours and a dose-proportional increase in systemic exposure was observed in the therapeutic dosage range.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
+                label: 'Tofacitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  '12.3 Pharmacokinetics Following oral administration of tofacitinib tablets, peak plasma concentrations were reached within 0.5 hour to 1 hour, elimination half-life was about 3 hours and a dose-proportional increase in systemic exposure was observed in the therapeutic dosage range.',
               },
               {
                 kind: 'FDA_LABEL',
@@ -76638,19 +76670,19 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
-                label: 'Tofacitinib label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  '41 (40) 3.10 (54) 1.07 (69) 3.11 (43) T max (hours) 1.0 (0.5 to 14.0 b ) 0.8 (0.5 to 14.0 b ) 4.0 (3.0 to 4.0) 4.0 (2.0 to 4.0) Absorption Tofacitinib Tablets The absolute oral bioavailability of tofacitinib tablets is 74%.',
-              },
-              {
-                kind: 'FDA_LABEL',
                 identifier: '253635c8-1ea7-41ba-b216-dea5e3305c47',
                 label: 'Tofacitinib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Absorption Tofacitinib tablets The absolute oral bioavailability of tofacitinib tablets is 74%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
+                label: 'Tofacitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  '41 (40) 3.10 (54) 1.07 (69) 3.11 (43) T max (hours) 1.0 (0.5 to 14.0 b ) 0.8 (0.5 to 14.0 b ) 4.0 (3.0 to 4.0) 4.0 (2.0 to 4.0) Absorption Tofacitinib Tablets The absolute oral bioavailability of tofacitinib tablets is 74%.',
               },
               {
                 kind: 'FDA_LABEL',
@@ -76686,19 +76718,19 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
-                label: 'Tofacitinib label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  '12.3 Pharmacokinetics Following oral administration of tofacitinib tablets, peak plasma concentrations were reached within 0.5 hour to 1 hour, elimination half-life was about 3 hours and a dose-proportional increase in systemic exposure was observed in the therapeutic dosage range.',
-              },
-              {
-                kind: 'FDA_LABEL',
                 identifier: '253635c8-1ea7-41ba-b216-dea5e3305c47',
                 label: 'Tofacitinib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
                   '12.3 Pharmacokinetics Following oral administration of tofacitinib tablets, peak plasma concentrations were reached within 0.5 hour -1 hour, elimination half-life was about 3 hours and a dose-proportional increase in systemic exposure was observed in the therapeutic dosage range.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
+                label: 'Tofacitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  '12.3 Pharmacokinetics Following oral administration of tofacitinib tablets, peak plasma concentrations were reached within 0.5 hour to 1 hour, elimination half-life was about 3 hours and a dose-proportional increase in systemic exposure was observed in the therapeutic dosage range.',
               },
               {
                 kind: 'FDA_LABEL',
@@ -76790,14 +76822,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
+                identifier: '253635c8-1ea7-41ba-b216-dea5e3305c47',
                 label: 'Tofacitinib label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The protein binding of tofacitinib is approximately 40%.',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '253635c8-1ea7-41ba-b216-dea5e3305c47',
+                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
                 label: 'Tofacitinib label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The protein binding of tofacitinib is approximately 40%.',
@@ -76834,7 +76866,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
+                identifier: '253635c8-1ea7-41ba-b216-dea5e3305c47',
                 label: 'Tofacitinib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -76842,7 +76874,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '253635c8-1ea7-41ba-b216-dea5e3305c47',
+                identifier: '58b94979-55ad-839a-e063-6294a90ad812',
                 label: 'Tofacitinib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -77163,7 +77195,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'd9fd11d0-4269-12fb-95cf-b3c11d75e479',
+                identifier: '82ef58ef-ce46-434e-bf99-89fce51094f1',
                 label: 'Tolvaptan label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The oxobutyric acid metabolite shows a plasma half-life of ~180 h.',
@@ -77210,7 +77242,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'd9fd11d0-4269-12fb-95cf-b3c11d75e479',
+                identifier: '82ef58ef-ce46-434e-bf99-89fce51094f1',
                 label: 'Tolvaptan label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -77319,7 +77351,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'd9fd11d0-4269-12fb-95cf-b3c11d75e479',
+                identifier: '82ef58ef-ce46-434e-bf99-89fce51094f1',
                 label: 'Tolvaptan label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The volume of distribution of tolvaptan is about 3 L/kg.',
@@ -78585,7 +78617,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'a3468b9f-a1c1-43ca-afc0-5b32c8f58b83',
+                identifier: 'a93d6ef3-e160-db0d-142f-9b91af8d8428',
                 label: 'Tranexamic Acid label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -78633,7 +78665,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'a3468b9f-a1c1-43ca-afc0-5b32c8f58b83',
+                identifier: 'a93d6ef3-e160-db0d-142f-9b91af8d8428',
                 label: 'Tranexamic Acid label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -83276,7 +83308,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '8b4e77de-3185-4d1e-946a-96b785b76da0',
+                identifier: '05a40502-149d-41bd-966e-771e937a955b',
                 label: 'Zolmitriptan label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -83284,7 +83316,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '05a40502-149d-41bd-966e-771e937a955b',
+                identifier: '8b4e77de-3185-4d1e-946a-96b785b76da0',
                 label: 'Zolmitriptan label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -83492,7 +83524,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '8b4e77de-3185-4d1e-946a-96b785b76da0',
+                identifier: '05a40502-149d-41bd-966e-771e937a955b',
                 label: 'Zolmitriptan label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -83500,7 +83532,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '05a40502-149d-41bd-966e-771e937a955b',
+                identifier: '8b4e77de-3185-4d1e-946a-96b785b76da0',
                 label: 'Zolmitriptan label',
                 retrievedAt: '2026-08-28',
                 excerpt:

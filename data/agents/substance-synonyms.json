@@ -1,7 +1,7 @@
 {
   "agent": "substance-synonyms",
   "version": "1.0.0",
-  "runDate": "2026-08-28",
+  "runDate": "2026-08-29",
   "seed": 20260828,
   "parameters": {
     "identifierField": "registryIdentifiers.unii",
@@ -14,9 +14,9 @@
     "counterionCationTermCount": 18
   },
   "coverage": {
-    "considered": 3012,
-    "used": 1872,
-    "reason": "1872 of 3012 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 171 records ended up in a candidate group."
+    "considered": 7906,
+    "used": 1871,
+    "reason": "1871 of 7906 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 170 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [
@@ -481,10 +481,29 @@
               }
             ],
             "note": "The recorded wordings are not identical. At least one member recorded no parsed number, so this is a difference in wording that may or may not be a difference in value."
+          },
+          {
+            "field": "registryIdentifiers.rxcui",
+            "state": "differ",
+            "readings": [
+              {
+                "slug": "infliximab",
+                "display": "213361",
+                "populationContext": "registry identifier as recorded",
+                "sourceIdentifier": "FDA_LABEL:a0a046c1-056d-45a9-bfd9-13b47c24f257"
+              },
+              {
+                "slug": "infliximab-dyyb",
+                "display": "797544",
+                "populationContext": "registry identifier as recorded",
+                "sourceIdentifier": "FDA_LABEL:93a193ab-9f96-4da6-aa7c-31212e81879a"
+              }
+            ],
+            "note": "The recorded wordings are not identical. At least one member recorded no parsed number, so this is a difference in wording that may or may not be a difference in value."
           }
         ],
         "agreeingFields": 0,
-        "differingFields": 3,
+        "differingFields": 4,
         "notComparableFields": 0
       },
       {
@@ -2561,6 +2580,7 @@
               "commonAdverseReactions"
             ],
             "sourceIdentifiers": [
+              "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
               "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
             ]
           },
@@ -2666,6 +2686,112 @@
         ],
         "agreeingFields": 4,
         "differingFields": 0,
+        "notComparableFields": 0
+      },
+      {
+        "evidence": "SHARED_SOURCE_DOCUMENT",
+        "sharedKey": "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
+        "sharedKeyLabel": "FDA label document b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
+        "members": [
+          {
+            "slug": "denosumab",
+            "name": "denosumab",
+            "modulesHeld": [
+              "pharmacokinetics",
+              "productVariants",
+              "registryIdentifiers",
+              "mechanism",
+              "molecularIdentity",
+              "interactionSignals",
+              "safety",
+              "populationStatements",
+              "commonAdverseReactions"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
+              "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
+            ]
+          },
+          {
+            "slug": "denosumab-nxxp",
+            "name": "denosumab nxxp",
+            "modulesHeld": [
+              "pharmacokinetics",
+              "productVariants",
+              "mechanism",
+              "molecularIdentity",
+              "safety",
+              "populationStatements",
+              "commonAdverseReactions"
+            ],
+            "sourceIdentifiers": [
+              "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54"
+            ]
+          }
+        ],
+        "comparisons": [
+          {
+            "field": "pharmacokinetics.halfLife",
+            "state": "differ",
+            "readings": [
+              {
+                "slug": "denosumab",
+                "display": "25.4 days",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
+              },
+              {
+                "slug": "denosumab-nxxp",
+                "display": "28 days",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54"
+              }
+            ],
+            "note": "The recorded wordings are not identical. At least one member recorded no parsed number, so this is a difference in wording that may or may not be a difference in value."
+          },
+          {
+            "field": "molecularIdentity.molecularWeight",
+            "state": "agree",
+            "readings": [
+              {
+                "slug": "denosumab",
+                "display": "147",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
+              },
+              {
+                "slug": "denosumab-nxxp",
+                "display": "147",
+                "unit": "g/mol",
+                "populationContext": "as stated in the label sentence recorded below",
+                "sourceIdentifier": "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54"
+              }
+            ],
+            "note": "Every member records the same number in the same unit."
+          },
+          {
+            "field": "pharmacokinetics.routeAsRecorded",
+            "state": "agree",
+            "readings": [
+              {
+                "slug": "denosumab",
+                "display": "subcutaneous",
+                "populationContext": "route as the source states it",
+                "sourceIdentifier": "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
+              },
+              {
+                "slug": "denosumab-nxxp",
+                "display": "subcutaneous",
+                "populationContext": "route as the source states it",
+                "sourceIdentifier": "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54"
+              }
+            ],
+            "note": "Every member records the same wording."
+          }
+        ],
+        "agreeingFields": 2,
+        "differingFields": 1,
         "notComparableFields": 0
       },
       {
@@ -3036,68 +3162,6 @@
         ],
         "comparisons": [],
         "agreeingFields": 0,
-        "differingFields": 0,
-        "notComparableFields": 0
-      },
-      {
-        "evidence": "SHARED_SOURCE_DOCUMENT",
-        "sharedKey": "FDA_LABEL:907ac4a4-a088-4826-ab50-cfc31985c9d4",
-        "sharedKeyLabel": "FDA label document 907ac4a4-a088-4826-ab50-cfc31985c9d4",
-        "members": [
-          {
-            "slug": "flotufolastat-f-18",
-            "name": "flotufolastat f 18",
-            "modulesHeld": [
-              "productVariants",
-              "registryIdentifiers",
-              "mechanism",
-              "molecularIdentity",
-              "populationStatements",
-              "commonAdverseReactions"
-            ],
-            "sourceIdentifiers": [
-              "FDA_LABEL:907ac4a4-a088-4826-ab50-cfc31985c9d4"
-            ]
-          },
-          {
-            "slug": "flotufolastat-f-18-gallium",
-            "name": "flotufolastat f 18 gallium",
-            "modulesHeld": [
-              "productVariants",
-              "mechanism",
-              "molecularIdentity",
-              "populationStatements",
-              "commonAdverseReactions"
-            ],
-            "sourceIdentifiers": [
-              "FDA_LABEL:907ac4a4-a088-4826-ab50-cfc31985c9d4"
-            ]
-          }
-        ],
-        "comparisons": [
-          {
-            "field": "molecularIdentity.molecularWeight",
-            "state": "agree",
-            "readings": [
-              {
-                "slug": "flotufolastat-f-18",
-                "display": "153",
-                "unit": "g/mol",
-                "populationContext": "as stated in the label sentence recorded below",
-                "sourceIdentifier": "FDA_LABEL:907ac4a4-a088-4826-ab50-cfc31985c9d4"
-              },
-              {
-                "slug": "flotufolastat-f-18-gallium",
-                "display": "153",
-                "unit": "g/mol",
-                "populationContext": "as stated in the label sentence recorded below",
-                "sourceIdentifier": "FDA_LABEL:907ac4a4-a088-4826-ab50-cfc31985c9d4"
-              }
-            ],
-            "note": "Every member records the same number in the same unit."
-          }
-        ],
-        "agreeingFields": 1,
         "differingFields": 0,
         "notComparableFields": 0
       },
@@ -6867,19 +6931,41 @@
       }
     ],
     "signalCounts": {
-      "recordsCarryingUnii": 1872,
+      "recordsCarryingUnii": 1871,
       "recordsCarryingMalformedUnii": 0,
       "uniiValuesSharedByMoreThanOneRecord": 28,
       "saltFormPairsExcluded": 3,
-      "sharedDocumentsConsidered": 261,
-      "documentPairsRejectedForMultipleDeclaredSubstances": 496,
+      "sharedDocumentsConsidered": 334,
+      "documentPairsRejectedForMultipleDeclaredSubstances": 585,
       "documentPairsRejectedForSaltForm": 35,
-      "documentPairsRejectedForCombinationProduct": 1,
+      "documentPairsRejectedForCombinationProduct": 2,
       "documentPairsRejectedForUnrelatedNames": 7,
       "documentPairsAlreadyCarriedByIdentifier": 2
     }
   },
   "queue": [
+    {
+      "slug": "infliximab",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as infliximab dyyb? Both records carry UNII B72HH48FLU. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1004,
+      "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 4 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:93a193ab-9f96-4da6-aa7c-31212e81879a",
+        "FDA_LABEL:a0a046c1-056d-45a9-bfd9-13b47c24f257"
+      ]
+    },
+    {
+      "slug": "infliximab-dyyb",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as infliximab? Both records carry UNII B72HH48FLU. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 1004,
+      "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 4 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:93a193ab-9f96-4da6-aa7c-31212e81879a",
+        "FDA_LABEL:a0a046c1-056d-45a9-bfd9-13b47c24f257"
+      ]
+    },
     {
       "slug": "ustekinumab-aekn",
       "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
@@ -6900,28 +6986,6 @@
       "sources": [
         "FDA_LABEL:2539a6cf-0fe5-1565-e063-6294a90a3618",
         "FDA_LABEL:87f75b59-e48b-47c7-a4c0-5fe5965660e7"
-      ]
-    },
-    {
-      "slug": "infliximab",
-      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
-      "question": "Does this record name the same registered substance as infliximab dyyb? Both records carry UNII B72HH48FLU. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
-      "priority": 1003,
-      "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 3 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
-      "sources": [
-        "FDA_LABEL:93a193ab-9f96-4da6-aa7c-31212e81879a",
-        "FDA_LABEL:a0a046c1-056d-45a9-bfd9-13b47c24f257"
-      ]
-    },
-    {
-      "slug": "infliximab-dyyb",
-      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
-      "question": "Does this record name the same registered substance as infliximab? Both records carry UNII B72HH48FLU. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
-      "priority": 1003,
-      "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 3 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
-      "sources": [
-        "FDA_LABEL:93a193ab-9f96-4da6-aa7c-31212e81879a",
-        "FDA_LABEL:a0a046c1-056d-45a9-bfd9-13b47c24f257"
       ]
     },
     {
@@ -7585,6 +7649,7 @@
       "priority": 4,
       "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 4 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
+        "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
         "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
       ]
     },
@@ -7595,6 +7660,7 @@
       "priority": 4,
       "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 4 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
+        "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
         "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
       ]
     },
@@ -7979,6 +8045,28 @@
       ]
     },
     {
+      "slug": "denosumab",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as denosumab nxxp? Both records were structured from the same FDA label document b1f0590e-f5bb-44ac-99a0-4aa4596c7e54, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 3,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 2 recorded fields match, 1 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
+        "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
+      ]
+    },
+    {
+      "slug": "denosumab-nxxp",
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "question": "Does this record name the same registered substance as denosumab? Both records were structured from the same FDA label document b1f0590e-f5bb-44ac-99a0-4aa4596c7e54, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
+      "priority": 3,
+      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 2 recorded fields match, 1 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
+      "sources": [
+        "FDA_LABEL:b1f0590e-f5bb-44ac-99a0-4aa4596c7e54",
+        "FDA_LABEL:e1d80a82-de52-4a34-9df3-609e50667ffb"
+      ]
+    },
+    {
       "slug": "depemokimab",
       "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
       "question": "Does this record name the same registered substance as depemokimab ulaa? Both records were structured from the same FDA label document 30332b20-2ac0-42ad-a775-d3ca7f5fe29f, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
@@ -8318,26 +8406,6 @@
       "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:b2b7f8b4-fe9a-4a86-8129-9e43f99a20c6"
-      ]
-    },
-    {
-      "slug": "flotufolastat-f-18",
-      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
-      "question": "Does this record name the same registered substance as flotufolastat f 18 gallium? Both records were structured from the same FDA label document 907ac4a4-a088-4826-ab50-cfc31985c9d4, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
-      "priority": 1,
-      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
-      "sources": [
-        "FDA_LABEL:907ac4a4-a088-4826-ab50-cfc31985c9d4"
-      ]
-    },
-    {
-      "slug": "flotufolastat-f-18-gallium",
-      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
-      "question": "Does this record name the same registered substance as flotufolastat f 18? Both records were structured from the same FDA label document 907ac4a4-a088-4826-ab50-cfc31985c9d4, which is weaker evidence of identity than a shared substance identifier. Someone needs to decide whether these records should be merged, cross-linked as alternative names for one substance, or left separate. Nothing here decides that, and no record has been changed.",
-      "priority": 1,
-      "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
-      "sources": [
-        "FDA_LABEL:907ac4a4-a088-4826-ab50-cfc31985c9d4"
       ]
     },
     {
