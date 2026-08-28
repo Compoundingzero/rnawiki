@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-2.1.0`.
+ * `rna-intelligence/background-2.2.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -37,7 +37,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.1.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.2.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -91,6 +91,7 @@ export const BACKGROUND_RULE_CODES = [
   'I_INGREDIENT_DUPLICATED',
   'I_SUPPLEMENT_COUNT_UNCHECKABLE',
   'I_SUPPLEMENT_TIER_MISMATCH',
+  'I_TRANSCRIBED_VALUE_UNCHECKABLE',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -222,7 +223,27 @@ export function runBackgroundIntelligence(
       flag('I_CONTEXT_MISSING', path, 'A recorded value must name who and what it was measured in.')
     }
     const displayTokens = numberTokens(normalizeForMatch(value.display))
-    if (typeof value.numeric === 'number' || displayTokens.length > 0) {
+    /**
+     * A transcribed value is checked differently, because it cannot be checked the same way.
+     *
+     * The excerpt guarantee assumes a sentence: a value read out of prose can be shown to appear in
+     * that prose. A structured database returns a molecular weight as a field, and there is no
+     * sentence anywhere to quote — demanding one would not make the value more trustworthy, it
+     * would make it unrecordable. What stands in its place is the record identifier, which lets
+     * anyone put the same question to the same database and get the same number.
+     *
+     * The exemption is narrow on purpose: it applies to the value's own tier, so a transcribed
+     * value cannot smuggle in a number beside extracted ones without declaring what it is.
+     */
+    const isTranscribed = value.provenanceTier === 'transcribed'
+    if (isTranscribed && !value.source?.identifier?.trim()) {
+      flag(
+        'I_TRANSCRIBED_VALUE_UNCHECKABLE',
+        path,
+        'A transcribed value must cite the record identifier it was copied from, since it has no excerpt to quote.',
+      )
+    }
+    if (!isTranscribed && (typeof value.numeric === 'number' || displayTokens.length > 0)) {
       const excerpt = value.source?.excerpt
       if (!excerpt) {
         flag(
@@ -881,13 +902,27 @@ export function runBackgroundIntelligence(
         `Supplement market data must cite the label database it was transcribed from, not "${supplement.source.kind}".`,
       )
     }
-    // Transcribed data must say so. Presented as extracted it would imply an excerpt that cannot
-    // exist, and presented as curated it would imply a person checked it.
-    if ((background.provenanceTier ?? 'curated') !== 'transcribed') {
+    // Transcribed data must say so, but only when it is all the record holds. A record that also
+    // carries extracted or curated modules is described by those; the tier names how the record as
+    // a whole came to exist, and market counts riding alongside a mechanism do not change that.
+    // Enumerated by exclusion rather than by listing every module, so a module added later cannot
+    // silently make this check wrong — which is exactly how it went wrong the first time.
+    const ENVELOPE_FIELDS = new Set([
+      'version',
+      'authoredAt',
+      'provenanceTier',
+      'attribution',
+      'supplementMarket',
+    ])
+    const otherModules = Object.entries(background).some(([key, value]) => {
+      if (ENVELOPE_FIELDS.has(key)) return false
+      return Array.isArray(value) ? value.length > 0 : value !== undefined
+    })
+    if (!otherModules && (background.provenanceTier ?? 'curated') !== 'transcribed') {
       flag(
         'I_SUPPLEMENT_TIER_MISMATCH',
         'provenanceTier',
-        `A record carrying transcribed market data is tier "${background.provenanceTier ?? 'curated'}"; it must be "transcribed".`,
+        `A record holding only transcribed market data is tier "${background.provenanceTier ?? 'curated'}"; it must be "transcribed".`,
       )
     }
   }

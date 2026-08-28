@@ -502,6 +502,15 @@ const ruleCases = {
       delete background.interactionSignals![0]!.polarity
     },
   },
+  I_TRANSCRIBED_VALUE_UNCHECKABLE: {
+    mutate: (background) => {
+      // A transcribed value has no excerpt by nature; its identifier is the only thing that makes
+      // it reproducible, so a transcribed value without one asserts a number nobody can check.
+      const weight = background.molecularIdentity!.molecularWeight!
+      weight.provenanceTier = 'transcribed'
+      weight.source.identifier = ''
+    },
+  },
   I_SUPPLEMENT_COUNT_UNCHECKABLE: {
     mutate: (background) => {
       background.provenanceTier = 'transcribed'
@@ -535,6 +544,13 @@ const ruleCases = {
           label: 'Synthetic supplement label records',
           retrievedAt: '2026-08-29',
         },
+      }
+      // Stripped to market data alone, which is the only shape the rule governs: a record that
+      // also carries extracted or curated modules is described by those instead.
+      for (const key of Object.keys(background)) {
+        if (!['version', 'authoredAt', 'supplementMarket'].includes(key)) {
+          delete (background as unknown as Record<string, unknown>)[key]
+        }
       }
       // Left at its default tier, which would imply an excerpt that cannot exist.
     },

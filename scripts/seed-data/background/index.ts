@@ -33,6 +33,9 @@ import { BACKGROUND_BATCH_16 } from './batch-16'
 import { BACKGROUND_BATCH_17 } from './batch-17'
 import { EXTRACTED_BACKGROUND } from './extracted-background.generated'
 import { SOURCE_CONSENSUS } from './source-consensus.generated'
+import { COMPOUND_IDENTITY_BACKGROUND } from './compound-identity-background'
+import { SUBSTANCE_BACKED_BACKGROUND } from './substance-backed-background'
+import { SUPPLEMENT_BACKGROUND } from './supplement-background'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -82,6 +85,31 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
   for (const [slug, background] of Object.entries(RECORDED_BACKGROUND)) {
     merged[slug] = background
   }
+  // Records built from the substance registry fill rows the extraction pipeline left empty. They
+  // never overwrite: extraction ran against a specific label, and a registry entry assembled from
+  // the best available label for a substance is the weaker claim of the two.
+  for (const [slug, background] of Object.entries(SUBSTANCE_BACKED_BACKGROUND)) {
+    if (!merged[slug]) merged[slug] = background
+  }
+
+  // Chemical identity is the last resort, and fills only what nothing else reached. A formula is
+  // thin next to a pharmacology section; it is also true, and better than the blank page these rows
+  // showed before.
+  for (const [slug, background] of Object.entries(COMPOUND_IDENTITY_BACKGROUND)) {
+    if (!merged[slug]) merged[slug] = background
+  }
+
+  // Supplement market data is merged before anything else, so a record that also has extracted or
+  // curated content keeps that content and simply gains the market counts. Where a supplement row
+  // has nothing else — which is most of them, because supplements are absent from the drug-label
+  // archive — this is the whole record.
+  for (const [slug, supplement] of Object.entries(SUPPLEMENT_BACKGROUND)) {
+    const existing = merged[slug]
+    merged[slug] = existing
+      ? { ...existing, supplementMarket: supplement.supplementMarket }
+      : supplement
+  }
+
   // Cross-source consensus attaches to whichever record exists, curated or extracted. It says what
   // every published label states for a field rather than what one of them states, and it applies
   // equally either way: a curated record benefits from knowing fifty-nine labels agree with it.

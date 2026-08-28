@@ -31,9 +31,18 @@ import { normalizeContentName } from '@/lib/background/name-normalization'
 
 const DSLD = 'https://api.ods.od.nih.gov/dsld/v9/search-filter'
 
-/** Concurrent lookups. The database is a public NIH service and this stays modest on purpose. */
-const CONCURRENCY = 5
-const RETRY_LIMIT = 3
+/**
+ * Concurrent lookups, and how the service's rate limit is respected.
+ *
+ * The first run at five concurrent requests earned HTTP 429 partway through and started losing
+ * lookups to failure rather than slowing down, which is the wrong response to being asked to slow
+ * down. Two concurrent requests with a pause between them, and a long back-off that grows when the
+ * service says 429, finishes later and finishes.
+ */
+const CONCURRENCY = 2
+const PAUSE_BETWEEN_REQUESTS_MS = 250
+const RATE_LIMIT_BACKOFF_MS = 30_000
+const RETRY_LIMIT = 5
 /** Brands and label ids kept per ingredient: enough to check a count, not a directory. */
 const MAX_SAMPLES = 8
 
@@ -73,8 +82,13 @@ async function getJson(url: string): Promise<unknown | null> {
         headers: { accept: 'application/json' },
         signal: AbortSignal.timeout(45_000),
       })
+      if (response.status === 429) {
+        // Being told to slow down is not a failure to retry quickly; it is a failure to wait.
+        await sleep(RATE_LIMIT_BACKOFF_MS * (attempt + 1))
+        continue
+      }
       if (!response.ok) {
-        await sleep(1000 * (attempt + 1))
+        await sleep(2000 * (attempt + 1))
         continue
       }
       return (await response.json()) as unknown
@@ -208,6 +222,7 @@ async function main() {
       if (name === undefined) return
       cache[name] = await lookup(name)
       done += 1
+      await sleep(PAUSE_BETWEEN_REQUESTS_MS)
       if (Date.now() - lastSave > 20_000) {
         writeFileSync(cachePath, JSON.stringify(cache))
         lastSave = Date.now()
