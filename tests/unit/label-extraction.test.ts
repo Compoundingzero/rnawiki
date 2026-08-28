@@ -335,14 +335,15 @@ describe('label extraction: harms and populations', () => {
       artifact({
         sections: {
           boxed_warning:
-            'WARNING: SYNTHETIC RISK The synthetic medicine has caused the synthetic outcome in the model.',
+            'BOXED WARNING WARNING: SYNTHETIC RISK The synthetic medicine has caused the synthetic outcome in the model.',
           contraindications:
             '4 CONTRAINDICATIONS The synthetic medicine is contraindicated in the synthetic hypersensitivity population.',
         },
       }),
       OPTIONS,
     )
-    expect(safety!.boxedWarning!.textAsRecorded).toContain('SYNTHETIC RISK')
+    // The section label is dropped; the warning's own title survives.
+    expect(safety!.boxedWarning!.textAsRecorded).toMatch(/^WARNING: SYNTHETIC RISK/u)
     expect(safety!.contraindications![0]!.textAsRecorded).toMatch(/^The synthetic medicine/u)
   })
 

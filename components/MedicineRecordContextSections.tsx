@@ -304,7 +304,7 @@ export function MedicineRecordContextSections({
 
         {context.background?.mechanism && (
           <BackgroundRow
-            id="how-it-works"
+            id="recorded-mechanism"
             tone="emerald"
             title="How it works, in the source's own words"
             preview="The exact sentences the source uses to describe what this medicine does in the body."
@@ -339,7 +339,7 @@ export function MedicineRecordContextSections({
 
         {(context.background?.populationStatements?.length ?? 0) > 0 && (
           <BackgroundRow
-            id="who-was-studied"
+            id="recorded-populations"
             tone="emerald"
             title="Groups the source does and does not answer for"
             preview="What the source says about children, older adults, pregnancy and breastfeeding — including where it says nothing was established."

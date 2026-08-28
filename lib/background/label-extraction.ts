@@ -563,7 +563,9 @@ export function extractSafetyStatements(
   const source = labelSource(artifact, options)
   const safety: RecordedSafetyStatements = {}
 
-  const [boxed] = statementSentences(artifact.sections.boxed_warning)
+  // "BOXED WARNING" is the section label; the "WARNING: <TITLE>" that follows it is meaningful and
+  // is kept, so a reader sees what the warning is called.
+  const [boxed] = statementSentences(artifact.sections.boxed_warning, /boxed warning/u)
   if (boxed) safety.boxedWarning = toStatement(boxed, source)
 
   const contraindications = statementSentences(
