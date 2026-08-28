@@ -15,6 +15,7 @@
     "check:medicine-content": "tsx scripts/apply-recorded-background.ts --check",
     "apply:background": "tsx scripts/apply-recorded-background.ts",
     "verify:background": "tsx scripts/background/verify-recorded-background.ts",
+    "build:molecular": "tsx scripts/background/build-molecular-properties.ts",
     "check:seo": "vitest run tests/unit/seo-indexability.test.ts tests/unit/dossier-indexability.test.ts tests/unit/seo-freshness.test.ts tests/unit/seo-publication-indexability.test.ts tests/unit/seo-sitemap.test.ts tests/unit/seo-deployment.test.ts tests/unit/seo-route-metadata.test.ts tests/unit/seo-metadata.test.ts tests/unit/next-config-seo.test.ts tests/unit/indexnow.test.ts tests/unit/indexnow-key-route.test.ts tests/unit/programme-publication-indexnow-route.test.ts tests/unit/public-medicine-discovery.test.ts tests/unit/public-search-audit.test.ts tests/unit/json-ld.test.ts tests/unit/legacy-search-routes.test.ts tests/unit/legacy-response.test.ts tests/unit/legacy-record-route.test.ts tests/unit/root-site-url-fallback.test.ts tests/unit/dossier-presentation-components.test.ts",
     "audit:search": "node --import tsx scripts/quality/audit-public-search.ts",
     "format": "prettier --check .",
