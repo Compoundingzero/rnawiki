@@ -395,6 +395,100 @@ function moduleRecorded(background: MedicineRecordedBackground, key: BackgroundM
   return value !== undefined && value !== null
 }
 
+/* ------------------------------------------------------------------------------------------- */
+/* Metabolic-pathway index                                                                      */
+/* ------------------------------------------------------------------------------------------- */
+
+export interface PathwayMedicineRef {
+  slug: string
+  name: string
+  /** The recorded metabolism value, exactly as the source states it. */
+  metabolismAsRecorded: string
+  populationContext: string
+  source: DiagramSourceRef
+}
+
+export interface MetabolicPathwayEntry {
+  /** Enzyme name exactly as it appears in the verified source text, e.g. "CYP3A4". */
+  enzyme: string
+  medicines: PathwayMedicineRef[]
+}
+
+export interface MetabolicPathwayIndexProjection {
+  pathways: MetabolicPathwayEntry[]
+  coverage: {
+    medicinesWithRecordedMetabolism: number
+    medicinesNamingAnEnzyme: number
+    considered: number
+  }
+}
+
+/** Cytochrome P450 names have a strict shape: family digit, subfamily letter, subfamily digits. */
+const CYP_PATTERN = /\bCYP\s?([1-9][A-Z]\d{1,2})\b/giu
+
+/**
+ * Indexes which named metabolic enzymes appear in each medicine's recorded metabolism value —
+ * inverted so a reader can ask "which recorded medicines does the label route through CYP3A4?".
+ *
+ * Three properties keep this honest. It derives from values that already passed the background
+ * engine and the live-source verifier, so no new source of truth is introduced. An enzyme counts
+ * only when its name appears in the *fetched excerpt*, not merely in the summarizing display, so
+ * the token is one a source actually printed. And it reports strictly what labels name: sharing a
+ * pathway is a recorded fact about metabolism, never a statement about interactions, safety or
+ * what anyone should do — that judgement belongs to a clinician, and this index never implies it.
+ */
+export function metabolicPathwayIndex(
+  corpus: readonly CorpusEntry[],
+): MetabolicPathwayIndexProjection {
+  const byEnzyme = new Map<string, PathwayMedicineRef[]>()
+  let medicinesWithRecordedMetabolism = 0
+  let medicinesNamingAnEnzyme = 0
+
+  for (const entry of corpus) {
+    const metabolism = entry.background.pharmacokinetics?.metabolismAsRecorded
+    if (!metabolism) continue
+    medicinesWithRecordedMetabolism += 1
+
+    // Only the verified excerpt is searched: an enzyme must be a token the source printed.
+    const excerpt = metabolism.source.excerpt
+    if (!excerpt) continue
+    const enzymes = new Set(
+      [...excerpt.matchAll(CYP_PATTERN)].map((match) => `CYP${match[1]!.toUpperCase()}`),
+    )
+    if (enzymes.size === 0) continue
+    medicinesNamingAnEnzyme += 1
+
+    for (const enzyme of enzymes) {
+      const list = byEnzyme.get(enzyme) ?? []
+      list.push({
+        slug: entry.slug,
+        name: entry.name,
+        metabolismAsRecorded: metabolism.display,
+        populationContext: metabolism.populationContext,
+        source: sourceRef(metabolism.source),
+      })
+      byEnzyme.set(enzyme, list)
+    }
+  }
+
+  return {
+    pathways: [...byEnzyme.entries()]
+      .map(([enzyme, medicines]) => ({
+        enzyme,
+        medicines: [...medicines].sort((left, right) => left.name.localeCompare(right.name)),
+      }))
+      .sort(
+        (left, right) =>
+          right.medicines.length - left.medicines.length || left.enzyme.localeCompare(right.enzyme),
+      ),
+    coverage: {
+      medicinesWithRecordedMetabolism,
+      medicinesNamingAnEnzyme,
+      considered: corpus.length,
+    },
+  }
+}
+
 /**
  * The honest coverage map: which modules each record actually holds. Publishing where the corpus
  * is thin is part of the record's credibility, so this projection is designed to be shown, not

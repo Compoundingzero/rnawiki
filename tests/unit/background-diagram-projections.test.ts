@@ -7,6 +7,7 @@ import {
   durationBandForHours,
   durationOfActionScale,
   exposureTimeline,
+  metabolicPathwayIndex,
   sourceComposition,
   titrationLadder,
   type CorpusEntry,
@@ -281,5 +282,74 @@ describe('completeness matrix and source composition', () => {
     expect(composition.totalRecordedValues).toBe(4)
     // Three values cite one label artifact; the PubChem entry is a second distinct source.
     expect(composition.distinctSources).toBe(2)
+  })
+})
+
+describe('metabolic pathway index', () => {
+  function withMetabolism(slug: string, display: string, excerpt: string | undefined): CorpusEntry {
+    return entry(slug, {
+      pharmacokinetics: {
+        routeAsRecorded: 'oral tablet',
+        metabolismAsRecorded: {
+          display,
+          populationContext: 'healthy adults',
+          source: { ...labelSource, excerpt },
+        },
+      },
+    })
+  }
+
+  it('inverts recorded metabolism into an enzyme index with provenance', () => {
+    const index = metabolicPathwayIndex([
+      withMetabolism(
+        'medicine-a',
+        'metabolized by CYP3A4 and CYP2D6',
+        'Synthetic wording: the medicine is metabolized by CYP3A4 and CYP2D6.',
+      ),
+      withMetabolism(
+        'medicine-b',
+        'metabolized by CYP3A4',
+        'Synthetic wording: metabolism proceeds via CYP 3A4.',
+      ),
+    ])
+
+    const cyp3a4 = index.pathways.find((pathway) => pathway.enzyme === 'CYP3A4')
+    expect(cyp3a4!.medicines.map((medicine) => medicine.slug)).toEqual(['medicine-a', 'medicine-b'])
+    expect(cyp3a4!.medicines[0]!.source.identifier).toBe(labelSource.identifier)
+    // Most-shared pathway first, so a network renderer can weight without re-sorting.
+    expect(index.pathways[0]!.enzyme).toBe('CYP3A4')
+    expect(index.coverage).toEqual({
+      medicinesWithRecordedMetabolism: 2,
+      medicinesNamingAnEnzyme: 2,
+      considered: 2,
+    })
+  })
+
+  it('counts an enzyme only when the fetched excerpt names it', () => {
+    // The display claims an enzyme the verified source text never printed: it must not be indexed.
+    const index = metabolicPathwayIndex([
+      withMetabolism(
+        'display-only',
+        'metabolized by CYP3A4',
+        'Synthetic wording: the medicine is extensively metabolized by the liver.',
+      ),
+      withMetabolism('no-excerpt', 'metabolized by CYP2D6', undefined),
+    ])
+    expect(index.pathways).toEqual([])
+    expect(index.coverage).toMatchObject({
+      medicinesWithRecordedMetabolism: 2,
+      medicinesNamingAnEnzyme: 0,
+    })
+  })
+
+  it('ignores tokens that are not shaped like a cytochrome name', () => {
+    const index = metabolicPathwayIndex([
+      withMetabolism(
+        'not-an-enzyme',
+        'hydrolysed in plasma',
+        'Synthetic wording: CYP is mentioned generically and CYPRESS is not an enzyme.',
+      ),
+    ])
+    expect(index.pathways).toEqual([])
   })
 })
