@@ -89,14 +89,20 @@ source that was fetched for it, so a tooltip can show the exact excerpt; and a r
 typed field is absent from the projection rather than estimated onto it, with coverage reported
 so a chart can state how much of the corpus it draws.
 
-| Projection              | What it draws                                                                                | Anchored on                                            |
-| ----------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| `durationOfActionScale` | Every recorded half-life on one logarithmic hour axis, with deterministic bands              | `pharmacokinetics.halfLife.numeric`                    |
-| `bodyRegionAtlas`       | The corpus inverted into body regions — which medicines act where, and what each source says | `anatomyTargets[].regionCode` + vocabulary coordinates |
-| `exposureTimeline`      | One medicine's peak, half-life and derived steady-state marks on an hour axis                | numeric half-life, with `derived` flagged per marker   |
-| `titrationLadder`       | The recorded escalation schedule as ordered rungs                                            | `titration.steps`                                      |
-| `completenessMatrix`    | Which modules each record actually holds, and corpus-wide shares                             | module presence                                        |
-| `sourceComposition`     | The dataset's provenance profile by source kind                                              | every recorded `source`                                |
+| Projection              | What it draws                                                                                | Anchored on                                                                         |
+| ----------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `durationOfActionScale` | Every recorded half-life on one logarithmic hour axis, with deterministic bands              | `pharmacokinetics.halfLife.numeric`                                                 |
+| `bodyRegionAtlas`       | The corpus inverted into body regions — which medicines act where, and what each source says | `anatomyTargets[].regionCode` + vocabulary coordinates                              |
+| `exposureTimeline`      | One medicine's peak, half-life and derived steady-state marks on an hour axis                | numeric half-life, with `derived` flagged per marker                                |
+| `titrationLadder`       | The recorded escalation schedule as ordered rungs                                            | `titration.steps`                                                                   |
+| `completenessMatrix`    | Which modules each record actually holds, and corpus-wide shares                             | module presence                                                                     |
+| `sourceComposition`     | The dataset's provenance profile by source kind                                              | every recorded `source`                                                             |
+| `metabolicPathwayIndex` | Which recorded medicines each named enzyme appears in, inverted for a network view           | enzyme names inside the verified excerpt of `pharmacokinetics.metabolismAsRecorded` |
+
+The pathway index reports strictly what labels name. Sharing a metabolic route is a recorded fact
+about metabolism, never a statement about interactions, safety, or what anyone should do — an
+enzyme is indexed only when its name appears in the fetched excerpt, so the token is one a source
+actually printed rather than a summary's paraphrase.
 
 The comparative projections are what a normalized corpus makes possible and a per-medicine scrape
 does not: one schema, one unit, one controlled anatomy vocabulary across every record. A medicine
