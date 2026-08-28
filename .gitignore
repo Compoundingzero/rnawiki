@@ -37,3 +37,4 @@ data/registries/*
 !data/registries/compound-identity-background.json
 !data/registries/supplement-background.json
 !data/registries/label-presence.json
+!data/registries/combination-row-composition.json

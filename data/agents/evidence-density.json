@@ -17,9 +17,9 @@
     "documentIdentity": "source kind plus source identifier"
   },
   "coverage": {
-    "considered": 7908,
+    "considered": 7913,
     "used": 4755,
-    "reason": "3153 records hold none of the 14 recordable modules. They are scored at zero and kept in the index, because a record the corpus holds nothing for is the finding, not a row to drop."
+    "reason": "3158 records hold none of the 14 recordable modules. They are scored at zero and kept in the index, because a record the corpus holds nothing for is the finding, not a row to drop."
   },
   "output": {
     "perMedicine": [
@@ -144062,6 +144062,26 @@
         "score": 0
       },
       {
+        "slug": "darunavir-and-ritonavir",
+        "name": "darunavir and ritonavir",
+        "modulesPresent": [],
+        "moduleCount": 0,
+        "distinctSourceDocuments": 0,
+        "sourceAttachments": 0,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": null,
+        "newestRetrievedAt": null,
+        "components": {
+          "moduleBreadth": 0,
+          "sourceCorroboration": 0,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0
+      },
+      {
         "slug": "datura-metel-flower",
         "name": "datura metel flower",
         "modulesPresent": [],
@@ -144742,6 +144762,26 @@
         "score": 0
       },
       {
+        "slug": "dolutegravir-emtricitabine-and-tenofovir-alafenamide",
+        "name": "dolutegravir emtricitabine and tenofovir alafenamide",
+        "modulesPresent": [],
+        "moduleCount": 0,
+        "distinctSourceDocuments": 0,
+        "sourceAttachments": 0,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": null,
+        "newestRetrievedAt": null,
+        "components": {
+          "moduleBreadth": 0,
+          "sourceCorroboration": 0,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0
+      },
+      {
         "slug": "draba-verna-whole",
         "name": "draba verna whole",
         "modulesPresent": [],
@@ -145144,6 +145184,26 @@
       {
         "slug": "edible-rock-crab",
         "name": "edible rock crab",
+        "modulesPresent": [],
+        "moduleCount": 0,
+        "distinctSourceDocuments": 0,
+        "sourceAttachments": 0,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": null,
+        "newestRetrievedAt": null,
+        "components": {
+          "moduleBreadth": 0,
+          "sourceCorroboration": 0,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0
+      },
+      {
+        "slug": "efavirenz-emtricitabine-and-tenofovir-alafenamide",
+        "name": "efavirenz emtricitabine and tenofovir alafenamide",
         "modulesPresent": [],
         "moduleCount": 0,
         "distinctSourceDocuments": 0,
@@ -157544,6 +157604,26 @@
       {
         "slug": "mesocricetus-auratus-skin",
         "name": "mesocricetus auratus skin",
+        "modulesPresent": [],
+        "moduleCount": 0,
+        "distinctSourceDocuments": 0,
+        "sourceAttachments": 0,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": null,
+        "newestRetrievedAt": null,
+        "components": {
+          "moduleBreadth": 0,
+          "sourceCorroboration": 0,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0
+      },
+      {
+        "slug": "metformin-hydrochloride-sitagliptin",
+        "name": "metformin hydrochloride sitagliptin",
         "modulesPresent": [],
         "moduleCount": 0,
         "distinctSourceDocuments": 0,
@@ -170242,6 +170322,26 @@
         "score": 0
       },
       {
+        "slug": "sitagliptin-phosphate-anhydrous-metformin",
+        "name": "sitagliptin phosphate anhydrous metformin",
+        "modulesPresent": [],
+        "moduleCount": 0,
+        "distinctSourceDocuments": 0,
+        "sourceAttachments": 0,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": null,
+        "newestRetrievedAt": null,
+        "components": {
+          "moduleBreadth": 0,
+          "sourceCorroboration": 0,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0
+      },
+      {
         "slug": "sloe",
         "name": "sloe",
         "modulesPresent": [],
@@ -177963,7 +178063,7 @@
       }
     ],
     "scoreDistribution": {
-      "count": 7908,
+      "count": 7913,
       "min": 0,
       "p25": 0,
       "median": 0.09464285714285714,
@@ -177974,7 +178074,7 @@
     "moduleCountHistogram": [
       {
         "moduleCount": 0,
-        "medicines": 3153
+        "medicines": 3158
       },
       {
         "moduleCount": 1,
@@ -178166,7 +178266,7 @@
     "sourceConcentration": {
       "distinctDocuments": 4811,
       "medicinesOnOneDocument": 4217,
-      "medicinesWithNoDocument": 3153,
+      "medicinesWithNoDocument": 3158,
       "reachSummary": {
         "count": 4811,
         "min": 1,

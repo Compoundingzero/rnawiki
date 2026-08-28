@@ -18,9 +18,9 @@
     "seed": 20260828
   },
   "coverage": {
-    "considered": 7908,
+    "considered": 7913,
     "used": 1547,
-    "reason": "Of 7908 records, 1550 carry recorded mechanism text and 1547 of those contain at least one term shared by 3 or more recorded statements. The rest have no mechanism statement on file or no wording the corpus vocabulary covers."
+    "reason": "Of 7913 records, 1550 carry recorded mechanism text and 1547 of those contain at least one term shared by 3 or more recorded statements. The rest have no mechanism statement on file or no wording the corpus vocabulary covers."
   },
   "output": {
     "groups": [

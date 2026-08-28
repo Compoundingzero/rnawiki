@@ -15,9 +15,9 @@
     "binEdgeBasis": "edges computed once per distribution and shared by all of its strata"
   },
   "coverage": {
-    "considered": 7908,
+    "considered": 7913,
     "used": 3291,
-    "reason": "3291 of 7908 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
+    "reason": "3291 of 7913 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
   },
   "output": {
     "fields": [

@@ -37,6 +37,7 @@ import { COMPOUND_IDENTITY_BACKGROUND } from './compound-identity-background'
 import { SUBSTANCE_BACKED_BACKGROUND } from './substance-backed-background'
 import { SUPPLEMENT_BACKGROUND } from './supplement-background'
 import { LABEL_PRESENCE_BACKGROUND } from './label-presence'
+import { COMBINATION_ROW_COMPOSITION } from './combination-row-composition'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -109,6 +110,18 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     merged[slug] = existing
       ? { ...existing, supplementMarket: supplement.supplementMarket }
       : supplement
+  }
+
+  // A combination row gains its ingredient breakdown, attached to whatever record it already has.
+  // "Carbidopa, Levodopa" is one row naming two substances, and its page showed a product variant
+  // and a count of labels while the registry held both ingredients separately. Each ingredient's
+  // data comes from labels about that substance alone, never from the combination's own label, so
+  // nothing here attributes a combination's sentence to one of its parts. A record that already
+  // carries a composition keeps it.
+  for (const [slug, composed] of Object.entries(COMBINATION_ROW_COMPOSITION)) {
+    const existing = merged[slug]
+    if (existing?.composition) continue
+    merged[slug] = existing ? { ...existing, composition: composed.composition } : composed
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism
