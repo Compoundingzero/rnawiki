@@ -386,12 +386,6 @@ function statementSentences(text: string | undefined, heading?: RegExp): string[
 
 const MECHANISM_HEADING = /mechanism of action/u
 const CONTRAINDICATIONS_HEADING = /contraindications?/u
-const POPULATION_HEADINGS: Record<string, RegExp> = {
-  pediatric_use: /pediatric use/u,
-  geriatric_use: /geriatric use/u,
-  pregnancy: /pregnancy(?:\s+category\s+[A-DX])?/u,
-  nursing_mothers: /(?:nursing mothers|lactation)/u,
-}
 
 function toStatement(sentence: string, source: BackgroundSource): RecordedStatement {
   // The excerpt is the statement: the record and the quote can never drift apart.

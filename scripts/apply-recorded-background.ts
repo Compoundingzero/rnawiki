@@ -42,18 +42,40 @@ async function main() {
   const [{ db }, { drugs }] = await Promise.all([import('@/db'), import('@/db/schema')])
   let applied = 0
   let missing = 0
-  for (const [slug, background] of entries) {
-    const rows = await db
-      .update(drugs)
-      .set({ recordedBackground: background })
-      .where(eq(drugs.slug, slug))
-      .returning({ slug: drugs.slug })
-    if (rows.length === 0) {
-      missing += 1
-      console.warn(`[background] no medicine row for slug "${slug}" — skipped`)
-    } else {
-      applied += 1
+  const missingSlugs: string[] = []
+
+  // Written in concurrent chunks rather than one statement at a time. This runs inside Railway's
+  // pre-deploy step, where thousands of sequential round-trips would hold the deploy open long
+  // enough to look like a hang. Each write is still its own statement keyed by slug, so a slug
+  // with no row is reported exactly as before.
+  const CHUNK_SIZE = 50
+  for (let start = 0; start < entries.length; start += CHUNK_SIZE) {
+    const chunk = entries.slice(start, start + CHUNK_SIZE)
+    const results = await Promise.all(
+      chunk.map(async ([slug, background]) => {
+        const rows = await db
+          .update(drugs)
+          .set({ recordedBackground: background })
+          .where(eq(drugs.slug, slug))
+          .returning({ slug: drugs.slug })
+        return { slug, found: rows.length > 0 }
+      }),
+    )
+    for (const result of results) {
+      if (result.found) {
+        applied += 1
+      } else {
+        missing += 1
+        missingSlugs.push(result.slug)
+      }
     }
+  }
+
+  // Reported as a count plus a bounded sample: one warning per slug would bury the deploy log.
+  if (missing > 0) {
+    console.warn(
+      `[background] ${missing} slug(s) had no medicine row, e.g. ${missingSlugs.slice(0, 10).join(', ')}`,
+    )
   }
   console.log(`[background] applied ${applied} envelope(s) · ${missing} slug(s) had no row`)
   process.exit(0)
