@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-1.1.0`.
+ * `rna-intelligence/background-1.2.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -11,6 +11,7 @@
 
 import {
   BACKGROUND_CONCORDANCE_STATES,
+  DESCRIPTIVE_LABEL_SECTIONS,
   BACKGROUND_SOURCE_KINDS,
   INTERACTION_COUNTERPARTY_KINDS,
   INTERACTION_ROLES,
@@ -22,6 +23,7 @@ import {
   MEDICINE_BACKGROUND_VERSION,
   MOLECULAR_FORMULA_SHAPE,
   PRODUCT_JURISDICTIONS,
+  SUBSTANCE_SPECIFIC_MODULES,
   type BackgroundSource,
   type MedicineRecordedBackground,
   type RecordedStatement,
@@ -33,7 +35,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.1.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.2.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -74,6 +76,8 @@ export const BACKGROUND_RULE_CODES = [
   'I_POPULATION_DUPLICATE',
   'I_ADVERSE_THRESHOLD_NOT_IN_EXCERPT',
   'I_ADVERSE_EVENT_NOT_IN_EXCERPT',
+  'I_ATTRIBUTION_TOO_BROAD',
+  'I_INTERACTION_SECTION_NOT_DESCRIPTIVE',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -576,6 +580,17 @@ export function runBackgroundIntelligence(
     if (signal.roleAsRecorded && !INTERACTION_ROLES.includes(signal.roleAsRecorded)) {
       flag('I_INTERACTION_ROLE_UNKNOWN', path, `Unknown role "${signal.roleAsRecorded}".`)
     }
+    // A structural role may only come from a descriptive section. Section 7 of a US label is,
+    // by 21 CFR 201.57(c)(8), the section for clinically significant interactions and the
+    // instructions for preventing them; turning that into structured data would convert
+    // regulated advice into a property claim the section never made.
+    if (signal.labelSection && !DESCRIPTIVE_LABEL_SECTIONS.includes(signal.labelSection)) {
+      flag(
+        'I_INTERACTION_SECTION_NOT_DESCRIPTIVE',
+        path,
+        `Role recorded from "${signal.labelSection}", which is not a descriptive label section.`,
+      )
+    }
     // The counterparty must be a token the source printed, on the same terms as every number.
     const excerpt = normalizeForMatch(signal.source.excerpt ?? '')
       .toLowerCase()
@@ -646,6 +661,35 @@ export function runBackgroundIntelligence(
         )
       }
     })
+  }
+
+  /**
+   * The attribution guarantee, and the companion to number-in-excerpt.
+   *
+   * An excerpt proves a sentence was printed. It cannot prove the sentence was about this medicine.
+   * A multi-ingredient document — an allergenic extract naming ninety-one pollens, a homeopathic
+   * combination naming gold among thirty-five others — prints sentences belonging to none of its
+   * substances individually. An extracted record may therefore carry a substance-specific module
+   * only from a document about exactly one substance.
+   *
+   * Curated records are exempt: a person chose the source and checked that it was about the
+   * medicine, which is the judgement the count stands in for everywhere else.
+   */
+  if ((background.provenanceTier ?? 'curated') === 'extracted') {
+    const carried = SUBSTANCE_SPECIFIC_MODULES.filter((module) => {
+      const value = background[module]
+      return Array.isArray(value) ? value.length > 0 : value !== undefined
+    })
+    if (carried.length > 0) {
+      const declared = background.attribution?.declaredSubstanceCount
+      if (declared !== 1) {
+        flag(
+          'I_ATTRIBUTION_TOO_BROAD',
+          'attribution.declaredSubstanceCount',
+          `${carried.join(', ')} recorded from a source declaring ${declared ?? 'an unknown number of'} active substance(s); a substance-specific module requires a source about exactly one.`,
+        )
+      }
+    }
   }
 
   return {

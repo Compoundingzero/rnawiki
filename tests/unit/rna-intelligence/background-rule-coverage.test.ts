@@ -437,6 +437,20 @@ const ruleCases = {
       background.commonAdverseReactions!.eventsAsRecorded = ['synthetic dizziness']
     },
   },
+  I_INTERACTION_SECTION_NOT_DESCRIPTIVE: {
+    mutate: (background) => {
+      // Section 7 is the regulated advice section; a role may never be read out of it.
+      // @ts-expect-error deliberately outside the descriptive-section vocabulary
+      background.interactionSignals![0]!.labelSection = 'drug_interactions'
+    },
+  },
+  I_ATTRIBUTION_TOO_BROAD: {
+    mutate: (background) => {
+      // An extracted record whose source named several substances cannot own a mechanism statement.
+      background.provenanceTier = 'extracted'
+      background.attribution = { declaredSubstanceCount: 12 }
+    },
+  },
 } satisfies Record<BackgroundRuleCode, RuleCase>
 
 describe('RNA Intelligence Group I stable rule-code coverage', () => {

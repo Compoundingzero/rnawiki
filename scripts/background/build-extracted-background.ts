@@ -39,6 +39,8 @@ interface MedicineRow {
 
 interface IndexedLabel {
   setId: string
+  /** Distinct active substances the document declares, after salt forms collapse. */
+  declaredSubstanceCount?: number
   effectiveTime?: string
   brandNames: string[]
   genericNames: string[]
@@ -50,6 +52,22 @@ interface IndexedLabel {
   sections: Record<string, string>
   /** Higher is better when several labels share a name. */
   score: number
+}
+
+/**
+ * Identity normalization, which deliberately keeps salt and form words.
+ *
+ * Content matching strips them so "metformin hydrochloride" can find a "metformin" label. Identity
+ * must not: barium sulfate is an insoluble radiocontrast agent and barium acetate is a soluble
+ * salt, and collapsing them to "barium" hands both the same substance identifier. A looser rule is
+ * right for finding a document and wrong for saying what something is.
+ */
+function normalizeIdentityName(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\([^)]*\)/gu, ' ')
+    .replace(/[^a-z0-9]+/gu, ' ')
+    .trim()
 }
 
 function normalizeName(value: string): string {
@@ -65,12 +83,31 @@ function normalizeName(value: string): string {
 }
 
 /**
+ * An identity index built exclusively from documents that declare exactly one active substance.
+ *
+ * On such a document the identifier can only refer to that substance, so the mapping is sound
+ * without any positional assumption. A name that resolves to more than one identifier across the
+ * corpus is dropped rather than guessed: an ambiguous identity is not an identity.
+ */
+interface SubstanceIdentity {
+  unii?: string
+  rxcui?: string
+  /** The single-substance label that established this identity, cited as the source. */
+  setId: string
+}
+
+type IdentityIndex = Map<string, SubstanceIdentity>
+
+/**
  * Builds the name index by streaming the reduced NDJSON. A medicine is reachable by its generic
  * name and by any brand name on the label; when several labels answer to one name, the one
  * carrying the most extractable sections wins.
  */
-async function buildIndex(indexPath: string): Promise<Map<string, IndexedLabel>> {
+async function buildIndex(
+  indexPath: string,
+): Promise<{ names: Map<string, IndexedLabel>; identity: IdentityIndex }> {
   const index = new Map<string, IndexedLabel>()
+  const candidates = new Map<string, Map<string, SubstanceIdentity>>()
   let lineCount = 0
   // The reduced index is larger than the maximum string a Node process can hold, so it is read a
   // line at a time rather than loaded whole.
@@ -93,9 +130,36 @@ async function buildIndex(indexPath: string): Promise<Map<string, IndexedLabel>>
       const existing = index.get(key)
       if (!existing || entry.score > existing.score) index.set(key, entry)
     }
+
+    // Identity is learned only from documents about a single substance, where the document-level
+    // identifier can refer to nothing else. Candidates are keyed by the identifier itself so a
+    // name claimed by two different substances can be detected and dropped.
+    if (entry.declaredSubstanceCount === 1 && entry.unii) {
+      for (const name of entry.genericNames) {
+        const key = normalizeIdentityName(name)
+        if (key.length < 3) continue
+        const byUnii = candidates.get(key) ?? new Map<string, SubstanceIdentity>()
+        if (!byUnii.has(entry.unii)) {
+          byUnii.set(entry.unii, {
+            unii: entry.unii,
+            ...(entry.rxcui ? { rxcui: entry.rxcui } : {}),
+            setId: entry.setId,
+          })
+        }
+        candidates.set(key, byUnii)
+      }
+    }
   }
-  console.log(`[extract] read ${lineCount} indexed labels · ${index.size} distinct names`)
-  return index
+
+  // A name that resolves to more than one substance is dropped: an ambiguous identity is not one.
+  const identity: IdentityIndex = new Map()
+  for (const [key, byUnii] of candidates) {
+    if (byUnii.size === 1) identity.set(key, [...byUnii.values()][0]!)
+  }
+  console.log(
+    `[extract] read ${lineCount} indexed labels · ${index.size} distinct names · ${identity.size} unambiguous substance identities`,
+  )
+  return { names: index, identity }
 }
 
 function loadMedicineRows(): MedicineRow[] {
@@ -154,7 +218,7 @@ async function main() {
   const limit = limitFlag ? Number(limitFlag.split('=')[1]) : Infinity
 
   const retrievedAt = new Date().toISOString().slice(0, 10)
-  const index = await buildIndex(indexPath)
+  const { names: index, identity } = await buildIndex(indexPath)
   const rows = loadMedicineRows()
   console.log(`[extract] ${rows.length} medicine rows · ${index.size} indexed label names`)
 
@@ -168,6 +232,7 @@ async function main() {
     written: 0,
   }
   const moduleCounts = new Map<string, number>()
+  let multiSubstanceSources = 0
 
   for (const row of rows) {
     if (stats.written >= limit) break
@@ -192,6 +257,7 @@ async function main() {
 
     const artifact: LabelArtifact = {
       setId: label.setId,
+      declaredSubstanceCount: label.declaredSubstanceCount,
       effectiveTime: label.effectiveTime,
       brandNames: label.brandNames,
       genericNames: label.genericNames,
@@ -200,15 +266,25 @@ async function main() {
       rxcui: label.rxcui,
       sections: label.sections,
     }
+    // This medicine's identifiers come from the identity index, which is built only from documents
+    // declaring a single substance — the one situation where a document-level identifier can only
+    // belong to one thing. The content label may well be a combination product; its identifiers
+    // are never split between its substances, because openFDA's name and identifier arrays are not
+    // positionally aligned and doing so assigns one substance's identifier to another.
+    const resolved = identity.get(normalizeIdentityName(row.name))
+    const ownUnii = resolved?.unii
+    const ownRxcui = resolved?.rxcui
     const identifiers =
-      label.unii || label.rxcui
+      ownUnii || ownRxcui
         ? {
-            ...(label.unii ? { unii: label.unii } : {}),
-            ...(label.rxcui ? { rxcui: label.rxcui } : {}),
+            ...(ownUnii ? { unii: ownUnii } : {}),
+            ...(ownRxcui ? { rxcui: ownRxcui } : {}),
             source: {
+              // The document cited is the one that established the identity: a label naming this
+              // substance and nothing else.
               kind: 'FDA_LABEL' as const,
-              identifier: label.setId,
-              label: `${row.name} label`,
+              identifier: resolved!.setId,
+              label: `${row.name} label naming this substance alone`,
               retrievedAt,
             },
           }
@@ -231,6 +307,7 @@ async function main() {
       continue
     }
 
+    if (label.declaredSubstanceCount !== 1) multiSubstanceSources += 1
     dataset[row.slug] = background
     stats.written += 1
     for (const name of modules) moduleCounts.set(name, (moduleCounts.get(name) ?? 0) + 1)
@@ -249,6 +326,11 @@ async function main() {
   execFileSync('npx', ['prettier', '--write', outPath], { stdio: 'ignore' })
   console.log(`[extract] ${JSON.stringify(stats)}`)
   console.log(`[extract] modules: ${JSON.stringify(Object.fromEntries(moduleCounts))}`)
+  // Reported rather than hidden: these records kept only product identity, because their source
+  // was a multi-ingredient document that says nothing substance-specific about any one substance.
+  console.log(
+    `[extract] ${multiSubstanceSources} record(s) came from a multi-substance source and carry product context only`,
+  )
   console.log(`[extract] wrote ${stats.written} record(s) to ${outPath}`)
 }
 

@@ -286,7 +286,7 @@ describe('label extraction: interaction counterparties', () => {
     const signals = extractInteractionSignals(
       artifact({
         sections: {
-          drug_interactions:
+          clinical_pharmacology:
             'The synthetic medicine is a substrate of CYP3A4 under the synthetic conditions described.',
         },
       }),
@@ -305,7 +305,7 @@ describe('label extraction: interaction counterparties', () => {
     const signals = extractInteractionSignals(
       artifact({
         sections: {
-          drug_interactions:
+          clinical_pharmacology:
             'Inhibitors of CYP3A4 increase exposure to the synthetic medicine, which is a substrate of that synthetic pathway.',
         },
       }),
@@ -315,11 +315,43 @@ describe('label extraction: interaction counterparties', () => {
     expect(signals[0]!.roleAsRecorded).toBeUndefined()
   })
 
-  it('records transporters alongside enzymes', () => {
+  it('reads no role from the drug-interactions section, which carries regulated advice', () => {
+    // 21 CFR 201.57(c)(8) makes Section 7 the place for clinically significant interactions and the
+    // instructions for preventing them. A role taken from there would be inferred from advice, and
+    // the medicine's own descriptive section is the only place the property is stated outright.
     const signals = extractInteractionSignals(
       artifact({
         sections: {
           drug_interactions:
+            'Coadministration with strong CYP3A4 inhibitors increases exposure to the synthetic medicine and requires synthetic caution.',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(signals).toEqual([])
+  })
+
+  it('records which descriptive section named the counterparty', () => {
+    const signals = extractInteractionSignals(
+      artifact({
+        sections: {
+          pharmacokinetics:
+            'The synthetic medicine is metabolized primarily by CYP2C9 in the synthetic model.',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(signals[0]).toMatchObject({
+      counterpartyAsRecorded: 'CYP2C9',
+      labelSection: 'pharmacokinetics',
+    })
+  })
+
+  it('records transporters alongside enzymes', () => {
+    const signals = extractInteractionSignals(
+      artifact({
+        sections: {
+          clinical_pharmacology:
             'The synthetic medicine is a substrate of P-gp in the synthetic model.',
         },
       }),

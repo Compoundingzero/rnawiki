@@ -19,6 +19,7 @@
 
 import type {
   BackgroundSource,
+  DescriptiveLabelSection,
   InteractionCounterpartyKind,
   InteractionRole,
   MedicineRecordedBackground,
@@ -40,6 +41,11 @@ import { MEDICINE_BACKGROUND_VERSION, MOLECULAR_FORMULA_SHAPE } from './types'
 /** The label fields the extractors read. Mirrors the openFDA drug/label record shape. */
 export interface LabelArtifact {
   setId: string
+  /**
+   * Distinct active substances the document declares, after salt forms collapse. Absent is treated
+   * as unknown, which is refused for substance-specific modules the same way a count above one is.
+   */
+  declaredSubstanceCount?: number
   effectiveTime?: string
   brandNames: string[]
   genericNames: string[]
@@ -514,40 +520,50 @@ export function extractInteractionSignals(
   artifact: LabelArtifact,
   options: ExtractionOptions,
 ): RecordedInteractionSignal[] {
-  const text = [artifact.sections.drug_interactions, artifact.sections.clinical_pharmacology]
-    .filter(Boolean)
-    .join(' ')
-  if (!text) return []
+  // Section 7 (Drug Interactions) is deliberately not read. 21 CFR 201.57(c)(8) makes it the
+  // section carrying clinically significant interactions and practical instructions for preventing
+  // them — regulated advice. A sentence there such as "coadministration with strong CYP3A4
+  // inhibitors increases exposure to this medicine" yields a role only by inference, which is the
+  // step this parser refuses everywhere else. Section 12 states the property outright.
+  const sections: Array<[DescriptiveLabelSection, string | undefined]> = [
+    ['pharmacokinetics', artifact.sections.pharmacokinetics],
+    ['clinical_pharmacology', artifact.sections.clinical_pharmacology],
+  ]
+  if (!sections.some(([, sectionText]) => sectionText)) return []
   const source = labelSource(artifact, options)
   const seen = new Map<string, RecordedInteractionSignal>()
 
-  for (const sentence of sentences(text)) {
-    if (sentence.length > MAX_STATEMENT_CHARS) continue
-    const roles = ROLE_PATTERNS.filter(([, pattern]) => pattern.test(sentence))
-    const role = roles.length === 1 ? roles[0]![0] : undefined
-    const excerpt = normalizeWhitespace(sentence)
+  for (const [labelSection, sectionText] of sections) {
+    if (!sectionText) continue
+    for (const sentence of sentences(sectionText)) {
+      if (sentence.length > MAX_STATEMENT_CHARS) continue
+      const roles = ROLE_PATTERNS.filter(([, pattern]) => pattern.test(sentence))
+      const role = roles.length === 1 ? roles[0]![0] : undefined
+      const excerpt = normalizeWhitespace(sentence)
 
-    const found: Array<[string, InteractionCounterpartyKind]> = [
-      ...[...sentence.matchAll(ENZYME_PATTERN)].map(
-        (match) =>
-          [`CYP${match[1]!.toUpperCase()}`, 'ENZYME'] as [string, InteractionCounterpartyKind],
-      ),
-      ...[...sentence.matchAll(TRANSPORTER_PATTERN)].map(
-        (match) =>
-          [match[1]!.toUpperCase(), 'TRANSPORTER'] as [string, InteractionCounterpartyKind],
-      ),
-    ]
+      const found: Array<[string, InteractionCounterpartyKind]> = [
+        ...[...sentence.matchAll(ENZYME_PATTERN)].map(
+          (match) =>
+            [`CYP${match[1]!.toUpperCase()}`, 'ENZYME'] as [string, InteractionCounterpartyKind],
+        ),
+        ...[...sentence.matchAll(TRANSPORTER_PATTERN)].map(
+          (match) =>
+            [match[1]!.toUpperCase(), 'TRANSPORTER'] as [string, InteractionCounterpartyKind],
+        ),
+      ]
 
-    for (const [counterparty, kind] of found) {
-      // First mention wins, so the recorded sentence is the one that introduced the counterparty.
-      if (seen.has(counterparty)) continue
-      seen.set(counterparty, {
-        counterpartyAsRecorded: counterparty,
-        kind,
-        ...(role ? { roleAsRecorded: role } : {}),
-        source: { ...source, excerpt },
-        provenanceTier: 'extracted',
-      })
+      for (const [counterparty, kind] of found) {
+        // First mention wins, so the recorded sentence is the one that introduced the counterparty.
+        if (seen.has(counterparty)) continue
+        seen.set(counterparty, {
+          counterpartyAsRecorded: counterparty,
+          kind,
+          ...(role ? { roleAsRecorded: role } : {}),
+          labelSection,
+          source: { ...source, excerpt },
+          provenanceTier: 'extracted',
+        })
+      }
     }
   }
 
@@ -751,9 +767,25 @@ export function extractBackgroundFromLabel(args: {
     version: MEDICINE_BACKGROUND_VERSION,
     authoredAt: options.retrievedAt,
     provenanceTier: 'extracted',
+    ...(artifact.declaredSubstanceCount !== undefined
+      ? { attribution: { declaredSubstanceCount: artifact.declaredSubstanceCount } }
+      : {}),
   }
 
-  const pharmacokinetics = extractPharmacokinetics(artifact, options)
+  /**
+   * Whether the source is about this medicine alone.
+   *
+   * The excerpt guarantee proves a sentence was printed; it cannot prove the sentence was about
+   * this substance. An allergenic extract naming ninety-one pollens, or a homeopathic combination
+   * naming gold alongside thirty-five other things, prints sentences that belong to none of them
+   * individually. Substance-specific modules are refused unless the document is about one
+   * substance, because coverage bought by mis-attribution is worse than no coverage.
+   */
+  const isSubstanceSpecificSource = artifact.declaredSubstanceCount === 1
+
+  const pharmacokinetics = isSubstanceSpecificSource
+    ? extractPharmacokinetics(artifact, options)
+    : null
   if (pharmacokinetics) {
     const gated = pharmacokineticsWithinPlausibleRange(pharmacokinetics)
     const hasValue = Object.keys(gated).some((key) => key !== 'routeAsRecorded')
@@ -769,37 +801,45 @@ export function extractBackgroundFromLabel(args: {
     modules.push('productVariants')
   }
 
-  const mechanism = extractMechanism(artifact, options)
+  const mechanism = isSubstanceSpecificSource ? extractMechanism(artifact, options) : null
   if (mechanism) {
     background.mechanism = mechanism
     modules.push('mechanism')
   }
 
-  const molecularIdentity = extractMolecularIdentity(artifact, options)
+  const molecularIdentity = isSubstanceSpecificSource
+    ? extractMolecularIdentity(artifact, options)
+    : null
   if (molecularIdentity) {
     background.molecularIdentity = molecularIdentity
     modules.push('molecularIdentity')
   }
 
-  const interactionSignals = extractInteractionSignals(artifact, options)
+  const interactionSignals = isSubstanceSpecificSource
+    ? extractInteractionSignals(artifact, options)
+    : []
   if (interactionSignals.length > 0) {
     background.interactionSignals = interactionSignals
     modules.push('interactionSignals')
   }
 
-  const safety = extractSafetyStatements(artifact, options)
+  const safety = isSubstanceSpecificSource ? extractSafetyStatements(artifact, options) : null
   if (safety) {
     background.safety = safety
     modules.push('safety')
   }
 
-  const populationStatements = extractPopulationStatements(artifact, options)
+  const populationStatements = isSubstanceSpecificSource
+    ? extractPopulationStatements(artifact, options)
+    : []
   if (populationStatements.length > 0) {
     background.populationStatements = populationStatements
     modules.push('populationStatements')
   }
 
-  const commonAdverseReactions = extractCommonAdverseReactions(artifact, options)
+  const commonAdverseReactions = isSubstanceSpecificSource
+    ? extractCommonAdverseReactions(artifact, options)
+    : null
   if (commonAdverseReactions) {
     background.commonAdverseReactions = commonAdverseReactions
     modules.push('commonAdverseReactions')

@@ -163,8 +163,29 @@ def main():
                     skipped += 1
                     continue
 
+                # How many distinct active substances this document is about, after the same
+                # normalization the matcher uses so salt forms collapse. A multi-ingredient
+                # product (allergenic extract, homeopathic combination, multivitamin) declares
+                # many, and nothing substance-specific on it belongs to any one of them.
+                normalized_substances = {
+                    key
+                    for key in (
+                        normalize_name(name)
+                        for name in list(generic_names) + list(openfda.get("substance_name") or [])
+                    )
+                    if key
+                }
+
+                # openFDA's substance_name and unii arrays are NOT positionally aligned. They are
+                # the same length often enough to look parallel, but checking pairs against
+                # single-substance labels shows 15% disagree, and one combination label pairs
+                # guaifenesin and phenylephrine each with the other's identifier. Nothing here
+                # therefore tries to split a combination label's identifiers between its
+                # substances; the identifier is emitted only as the document-level value, and the
+                # build step uses it solely when the document declares a single substance.
                 record = {
                     "setId": set_id,
+                    "declaredSubstanceCount": len(normalized_substances),
                     "effectiveTime": result.get("effective_time"),
                     "brandNames": openfda.get("brand_name") or [],
                     "genericNames": generic_names,

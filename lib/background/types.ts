@@ -261,10 +261,25 @@ export type InteractionRole = (typeof INTERACTION_ROLES)[number]
  * that names several roles carries no role here: the sentence is kept and the reader decides,
  * because guessing which role attaches to which counterparty would be interpretation.
  */
+/**
+ * Label sections a structural enzyme or transporter role may be read from.
+ *
+ * US labelling splits these deliberately. Section 12 (Clinical Pharmacology, including 12.3
+ * Pharmacokinetics) is descriptive: it states what the medicine is. Section 7 (Drug Interactions)
+ * is required by 21 CFR 201.57(c)(8) to carry clinically significant interactions and practical
+ * instructions for preventing them — it is the advice section. Reading a role out of Section 7
+ * would turn regulated clinical guidance into structured data and infer a property the section
+ * never stated, so only descriptive sections are admitted here.
+ */
+export const DESCRIPTIVE_LABEL_SECTIONS = ['clinical_pharmacology', 'pharmacokinetics'] as const
+export type DescriptiveLabelSection = (typeof DESCRIPTIVE_LABEL_SECTIONS)[number]
+
 export interface RecordedInteractionSignal {
   counterpartyAsRecorded: string
   kind: InteractionCounterpartyKind
   roleAsRecorded?: InteractionRole
+  /** Which descriptive label section the naming sentence came from. */
+  labelSection?: DescriptiveLabelSection
   source: BackgroundSource
   provenanceTier?: BackgroundProvenanceTier
 }
@@ -318,6 +333,36 @@ export interface RecordedCommonAdverseReactions {
   provenanceTier?: BackgroundProvenanceTier
 }
 
+/**
+ * How specifically the source document is about the medicine the record belongs to.
+ *
+ * The excerpt guarantee proves a value appears in its source sentence. It does not prove the
+ * source was about this medicine — and a multi-ingredient document (an allergenic extract, a
+ * homeopathic combination, a multivitamin) names dozens of substances while saying nothing
+ * substance-specific about any one of them. `declaredSubstanceCount` is how many distinct active
+ * substances the source declared, after salt forms are collapsed; 1 means the source is about this
+ * medicine alone, which is the only basis on which a substance-specific claim may be recorded.
+ */
+export interface RecordedAttribution {
+  declaredSubstanceCount: number
+}
+
+/**
+ * Modules that state something about a substance itself, and therefore may only be recorded from a
+ * source that is about that substance alone. Product identity is deliberately not in this list: a
+ * combination product genuinely is a product containing the medicine.
+ */
+export const SUBSTANCE_SPECIFIC_MODULES = [
+  'pharmacokinetics',
+  'mechanism',
+  'molecularIdentity',
+  'interactionSignals',
+  'safety',
+  'populationStatements',
+  'commonAdverseReactions',
+] as const
+export type SubstanceSpecificModule = (typeof SUBSTANCE_SPECIFIC_MODULES)[number]
+
 export interface MedicineRecordedBackground {
   version: typeof MEDICINE_BACKGROUND_VERSION
   /** ISO date this record was authored from fetched artifacts. */
@@ -341,4 +386,5 @@ export interface MedicineRecordedBackground {
   safety?: RecordedSafetyStatements
   populationStatements?: RecordedPopulationStatement[]
   commonAdverseReactions?: RecordedCommonAdverseReactions
+  attribution?: RecordedAttribution
 }
