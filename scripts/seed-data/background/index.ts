@@ -26,6 +26,9 @@ import { BACKGROUND_BATCH_9 } from './batch-9'
 import { BACKGROUND_BATCH_10 } from './batch-10'
 import { BACKGROUND_BATCH_11 } from './batch-11'
 import { BACKGROUND_BATCH_12 } from './batch-12'
+import { BACKGROUND_BATCH_13 } from './batch-13'
+import { BACKGROUND_BATCH_14 } from './batch-14'
+import { BACKGROUND_BATCH_15 } from './batch-15'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -42,6 +45,9 @@ const ALL_BATCHES: RecordedBackgroundBySlug[] = [
   BACKGROUND_BATCH_10,
   BACKGROUND_BATCH_11,
   BACKGROUND_BATCH_12,
+  BACKGROUND_BATCH_13,
+  BACKGROUND_BATCH_14,
+  BACKGROUND_BATCH_15,
 ]
 
 export const RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
