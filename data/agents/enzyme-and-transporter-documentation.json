@@ -13,25 +13,25 @@
       {
         "counterparty": "CYP3A4",
         "kinds": {
-          "enzyme": 463,
+          "enzyme": 466,
           "transporter": 0
         },
-        "medicinesRecording": 463,
-        "shareOfRecordsConsidered": 0.058548,
-        "shareOfDocumentedRecords": 0.698341,
+        "medicinesRecording": 466,
+        "shareOfRecordsConsidered": 0.058928,
+        "shareOfDocumentedRecords": 0.6997,
         "roles": {
           "substrate": 27,
           "inhibitor": 66,
           "inducer": 22,
-          "roleNotStated": 348
+          "roleNotStated": 351
         },
-        "roleNotStatedShare": 0.75162,
+        "roleNotStatedShare": 0.753219,
         "sections": {
           "clinicalPharmacology": 10,
-          "pharmacokinetics": 453,
+          "pharmacokinetics": 456,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 463,
+        "mentionsMatchingSourceCasing": 466,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -168,6 +168,16 @@
             "sourceIdentifier": "43675e9d-a361-4109-9ae1-54d80580fbbd",
             "retrievedAt": "2026-08-28",
             "excerpt": "CYP3A4 is the principal hepatic enzyme isoform involved in its metabolism."
+          },
+          {
+            "slug": "alirocumab",
+            "name": "alirocumab",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "In clinical studies where alirocumab was administered in combination with atorvastatin or rosuvastatin, no relevant changes in statin concentrations were observed in the presence of repeated administration of alirocumab, indicating that cytochrome P450 enzymes (mainly CYP3A4 and CYP2C9) and transporter proteins such as P-gp and OATP were not affected by alirocumab."
           },
           {
             "slug": "aliskiren",
@@ -585,6 +595,16 @@
             "sourceIdentifier": "854be921-5fd9-482a-8432-a0c0241625f8",
             "retrievedAt": "2026-08-28",
             "excerpt": "Drug Interaction Studies Clinical Studies No clinically significant differences in bortezomib pharmacokinetics were observed when coadministered with dexamethasone (weak CYP3A4 inducer), omeprazole (strong CYP2C19 inhibitor), or melphalan in combination with prednisone."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Metabolism Bosutinib is primarily metabolized by CYP3A4."
           },
           {
             "slug": "brensocatib",
@@ -1446,6 +1466,16 @@
             "sourceIdentifier": "922d4d25-c530-11e1-9b21-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In in vitro studies using human liver microsomes, efinaconazole did not inhibit CYP1A2, CYP2A6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2PE1 and CYP3A4 enzyme activities at expected clinical systemic concentrations."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Metabolism Elacestrant is primarily metabolized by CYP3A4 and to a lesser extent by CYP2A6 and CYP2C9."
           },
           {
             "slug": "elafibranor",
@@ -4784,25 +4814,25 @@
       {
         "counterparty": "CYP1A2",
         "kinds": {
-          "enzyme": 396,
+          "enzyme": 397,
           "transporter": 0
         },
-        "medicinesRecording": 396,
-        "shareOfRecordsConsidered": 0.050076,
-        "shareOfDocumentedRecords": 0.597285,
+        "medicinesRecording": 397,
+        "shareOfRecordsConsidered": 0.050202,
+        "shareOfDocumentedRecords": 0.596096,
         "roles": {
           "substrate": 26,
           "inhibitor": 132,
-          "inducer": 32,
+          "inducer": 33,
           "roleNotStated": 206
         },
-        "roleNotStatedShare": 0.520202,
+        "roleNotStatedShare": 0.518892,
         "sections": {
           "clinicalPharmacology": 3,
-          "pharmacokinetics": 393,
+          "pharmacokinetics": 394,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 396,
+        "mentionsMatchingSourceCasing": 397,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -5982,6 +6012,17 @@
             "sourceIdentifier": "922d4d25-c530-11e1-9b21-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In in vitro studies using human liver microsomes, efinaconazole did not inhibit CYP1A2, CYP2A6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2PE1 and CYP3A4 enzyme activities at expected clinical systemic concentrations."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INDUCER",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inducer of CYP1A2, CYP2A6, CYP2B6, CYP2C9, CYP2C19, or CYP3A."
           },
           {
             "slug": "elafibranor",
@@ -8960,25 +9001,25 @@
       {
         "counterparty": "CYP2C9",
         "kinds": {
-          "enzyme": 362,
+          "enzyme": 364,
           "transporter": 0
         },
-        "medicinesRecording": 362,
-        "shareOfRecordsConsidered": 0.045776,
-        "shareOfDocumentedRecords": 0.546003,
+        "medicinesRecording": 364,
+        "shareOfRecordsConsidered": 0.046029,
+        "shareOfDocumentedRecords": 0.546547,
         "roles": {
           "substrate": 26,
           "inhibitor": 112,
           "inducer": 11,
-          "roleNotStated": 213
+          "roleNotStated": 215
         },
-        "roleNotStatedShare": 0.588398,
+        "roleNotStatedShare": 0.590659,
         "sections": {
           "clinicalPharmacology": 7,
-          "pharmacokinetics": 355,
+          "pharmacokinetics": 357,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 362,
+        "mentionsMatchingSourceCasing": 364,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -9075,6 +9116,16 @@
             "sourceIdentifier": "fd778507-1274-4d1a-a659-5431d55c543a",
             "retrievedAt": "2026-08-28",
             "excerpt": "Metabolism Aficamten is extensively metabolized in humans, primarily through CYP2C9 with contributions by CYP3A, CYP2D6, and CYP2C19."
+          },
+          {
+            "slug": "alirocumab",
+            "name": "alirocumab",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "In clinical studies where alirocumab was administered in combination with atorvastatin or rosuvastatin, no relevant changes in statin concentrations were observed in the presence of repeated administration of alirocumab, indicating that cytochrome P450 enzymes (mainly CYP3A4 and CYP2C9) and transporter proteins such as P-gp and OATP were not affected by alirocumab."
           },
           {
             "slug": "alitretinoin",
@@ -10038,6 +10089,16 @@
             "sourceIdentifier": "922d4d25-c530-11e1-9b21-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In in vitro studies using human liver microsomes, efinaconazole did not inhibit CYP1A2, CYP2A6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2PE1 and CYP3A4 enzyme activities at expected clinical systemic concentrations."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Metabolism Elacestrant is primarily metabolized by CYP3A4 and to a lesser extent by CYP2A6 and CYP2C9."
           },
           {
             "slug": "elafibranor",
@@ -12760,7 +12821,7 @@
         },
         "medicinesRecording": 362,
         "shareOfRecordsConsidered": 0.045776,
-        "shareOfDocumentedRecords": 0.546003,
+        "shareOfDocumentedRecords": 0.543544,
         "roles": {
           "substrate": 37,
           "inhibitor": 125,
@@ -16565,25 +16626,25 @@
       {
         "counterparty": "CYP2C19",
         "kinds": {
-          "enzyme": 338,
+          "enzyme": 339,
           "transporter": 0
         },
-        "medicinesRecording": 338,
-        "shareOfRecordsConsidered": 0.042742,
-        "shareOfDocumentedRecords": 0.509804,
+        "medicinesRecording": 339,
+        "shareOfRecordsConsidered": 0.042868,
+        "shareOfDocumentedRecords": 0.509009,
         "roles": {
           "substrate": 23,
           "inhibitor": 103,
-          "inducer": 11,
+          "inducer": 12,
           "roleNotStated": 201
         },
-        "roleNotStatedShare": 0.594675,
+        "roleNotStatedShare": 0.59292,
         "sections": {
           "clinicalPharmacology": 6,
-          "pharmacokinetics": 332,
+          "pharmacokinetics": 333,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 338,
+        "mentionsMatchingSourceCasing": 339,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -17586,6 +17647,17 @@
             "sourceIdentifier": "922d4d25-c530-11e1-9b21-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In in vitro studies using human liver microsomes, efinaconazole did not inhibit CYP1A2, CYP2A6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2PE1 and CYP3A4 enzyme activities at expected clinical systemic concentrations."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INDUCER",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inducer of CYP1A2, CYP2A6, CYP2B6, CYP2C9, CYP2C19, or CYP3A."
           },
           {
             "slug": "elafibranor",
@@ -20109,24 +20181,24 @@
         "counterparty": "BCRP",
         "kinds": {
           "enzyme": 0,
-          "transporter": 318
+          "transporter": 319
         },
-        "medicinesRecording": 318,
-        "shareOfRecordsConsidered": 0.040212,
-        "shareOfDocumentedRecords": 0.479638,
+        "medicinesRecording": 319,
+        "shareOfRecordsConsidered": 0.040339,
+        "shareOfDocumentedRecords": 0.478979,
         "roles": {
           "substrate": 126,
           "inhibitor": 76,
           "inducer": 0,
-          "roleNotStated": 116
+          "roleNotStated": 117
         },
-        "roleNotStatedShare": 0.36478,
+        "roleNotStatedShare": 0.366771,
         "sections": {
           "clinicalPharmacology": 5,
-          "pharmacokinetics": 313,
+          "pharmacokinetics": 314,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 318,
+        "mentionsMatchingSourceCasing": 319,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -20468,6 +20540,16 @@
             "sourceIdentifier": "6c3408ac-d401-4925-8a03-26591afbc240",
             "retrievedAt": "2026-08-28",
             "excerpt": "Effect of Transporters on Binimetinib: Binimetinib is a substrate of P-glycoprotein (P-gp) and breast cancer resistance protein (BCRP)."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
           },
           {
             "slug": "brensocatib",
@@ -23521,7 +23603,7 @@
         },
         "medicinesRecording": 276,
         "shareOfRecordsConsidered": 0.034901,
-        "shareOfDocumentedRecords": 0.41629,
+        "shareOfDocumentedRecords": 0.414414,
         "roles": {
           "substrate": 23,
           "inhibitor": 95,
@@ -26428,25 +26510,25 @@
       {
         "counterparty": "CYP2B6",
         "kinds": {
-          "enzyme": 261,
+          "enzyme": 262,
           "transporter": 0
         },
-        "medicinesRecording": 261,
-        "shareOfRecordsConsidered": 0.033005,
-        "shareOfDocumentedRecords": 0.393665,
+        "medicinesRecording": 262,
+        "shareOfRecordsConsidered": 0.033131,
+        "shareOfDocumentedRecords": 0.393393,
         "roles": {
           "substrate": 13,
           "inhibitor": 85,
-          "inducer": 32,
+          "inducer": 33,
           "roleNotStated": 131
         },
-        "roleNotStatedShare": 0.501916,
+        "roleNotStatedShare": 0.5,
         "sections": {
           "clinicalPharmacology": 4,
-          "pharmacokinetics": 257,
+          "pharmacokinetics": 258,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 261,
+        "mentionsMatchingSourceCasing": 262,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -27132,6 +27214,17 @@
             "sourceIdentifier": "46452eb5-db17-400d-b25b-11844a11e711",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro studies demonstrated that, at the recommended dosage, edaravone and its metabolites are not expected to significantly inhibit CYP enzymes (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A), conjugating enzymes UGT1A1 and UGT2B7, or other transporters (P-gp, OATP1B1, OATP1B3, OAT1, OCT2, MATE1, and MATE2-K) in humans."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INDUCER",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inducer of CYP1A2, CYP2A6, CYP2B6, CYP2C9, CYP2C19, or CYP3A."
           },
           {
             "slug": "elafibranor",
@@ -29195,24 +29288,24 @@
         "counterparty": "OAT1",
         "kinds": {
           "enzyme": 0,
-          "transporter": 198
+          "transporter": 199
         },
-        "medicinesRecording": 198,
-        "shareOfRecordsConsidered": 0.025038,
-        "shareOfDocumentedRecords": 0.298643,
+        "medicinesRecording": 199,
+        "shareOfRecordsConsidered": 0.025164,
+        "shareOfDocumentedRecords": 0.298799,
         "roles": {
           "substrate": 39,
-          "inhibitor": 100,
+          "inhibitor": 101,
           "inducer": 0,
           "roleNotStated": 59
         },
-        "roleNotStatedShare": 0.29798,
+        "roleNotStatedShare": 0.296482,
         "sections": {
           "clinicalPharmacology": 5,
-          "pharmacokinetics": 193,
+          "pharmacokinetics": 194,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 198,
+        "mentionsMatchingSourceCasing": 199,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -29823,6 +29916,17 @@
             "sourceIdentifier": "e77d3400-56ad-11e3-949a-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro data also indicate that edoxaban does not inhibit the following transporters at clinically relevant concentrations: P-gp, the organic anion transporters OAT1 or OAT3; the organic cation transporters OCT1 or OCT2; or the organic ion transporting polypeptides OATP1B1 or OATP1B3."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INHIBITOR",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
           },
           {
             "slug": "elamipretide",
@@ -31340,21 +31444,21 @@
         "counterparty": "P-GP",
         "kinds": {
           "enzyme": 0,
-          "transporter": 189
+          "transporter": 191
         },
-        "medicinesRecording": 189,
-        "shareOfRecordsConsidered": 0.0239,
-        "shareOfDocumentedRecords": 0.285068,
+        "medicinesRecording": 191,
+        "shareOfRecordsConsidered": 0.024153,
+        "shareOfDocumentedRecords": 0.286787,
         "roles": {
           "substrate": 72,
           "inhibitor": 40,
           "inducer": 3,
-          "roleNotStated": 74
+          "roleNotStated": 76
         },
-        "roleNotStatedShare": 0.391534,
+        "roleNotStatedShare": 0.397906,
         "sections": {
           "clinicalPharmacology": 1,
-          "pharmacokinetics": 188,
+          "pharmacokinetics": 190,
           "sectionNotStated": 0
         },
         "mentionsMatchingSourceCasing": 0,
@@ -31400,6 +31504,16 @@
             "sourceIdentifier": "42c49deb-713b-427a-9670-08af08adcffb",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro studies suggest that alectinib is not a substrate of P-glycoprotein (P-gp), but M4 is a substrate of P-gp."
+          },
+          {
+            "slug": "alirocumab",
+            "name": "alirocumab",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": false,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "In clinical studies where alirocumab was administered in combination with atorvastatin or rosuvastatin, no relevant changes in statin concentrations were observed in the presence of repeated administration of alirocumab, indicating that cytochrome P450 enzymes (mainly CYP3A4 and CYP2C9) and transporter proteins such as P-gp and OATP were not affected by alirocumab."
           },
           {
             "slug": "alogliptin",
@@ -31517,6 +31631,16 @@
             "sourceIdentifier": "6c3408ac-d401-4925-8a03-26591afbc240",
             "retrievedAt": "2026-08-28",
             "excerpt": "Effect of Transporters on Binimetinib: Binimetinib is a substrate of P-glycoprotein (P-gp) and breast cancer resistance protein (BCRP)."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": false,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "P-gp Substrates: No clinically significant differences in bosutinib pharmacokinetics were observed when used concomitantly with dabigatran etexilate mesylate (a P-glycoprotein (P-gp) substrate)."
           },
           {
             "slug": "brentuximab-vedotin",
@@ -33371,24 +33495,24 @@
         "counterparty": "OAT3",
         "kinds": {
           "enzyme": 0,
-          "transporter": 183
+          "transporter": 185
         },
-        "medicinesRecording": 183,
-        "shareOfRecordsConsidered": 0.023141,
-        "shareOfDocumentedRecords": 0.276018,
+        "medicinesRecording": 185,
+        "shareOfRecordsConsidered": 0.023394,
+        "shareOfDocumentedRecords": 0.277778,
         "roles": {
           "substrate": 39,
-          "inhibitor": 84,
+          "inhibitor": 85,
           "inducer": 0,
-          "roleNotStated": 60
+          "roleNotStated": 61
         },
-        "roleNotStatedShare": 0.327869,
+        "roleNotStatedShare": 0.32973,
         "sections": {
           "clinicalPharmacology": 5,
-          "pharmacokinetics": 178,
+          "pharmacokinetics": 180,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 183,
+        "mentionsMatchingSourceCasing": 185,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -33627,6 +33751,16 @@
             "sourceIdentifier": "7f0ad5d2-3509-4057-904c-d27993de7408",
             "retrievedAt": "2026-08-28",
             "excerpt": "Bexagliflozin is not expected to inhibit drug transporters including breast cancer resistance protein (BRCP), bile salt export pump (BSEP), organic anion transporting polypeptides (OATP1B1, OATP1B3), anion transporters (OAT1, OAT3), organic cation transporters (OCT1, OCT2), and multidrug and toxin extrusion transporters (MATE1, MATE2-K) at clinically relevant plasma concentrations."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
           },
           {
             "slug": "brensocatib",
@@ -33975,6 +34109,17 @@
             "sourceIdentifier": "e77d3400-56ad-11e3-949a-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro data also indicate that edoxaban does not inhibit the following transporters at clinically relevant concentrations: P-gp, the organic anion transporters OAT1 or OAT3; the organic cation transporters OCT1 or OCT2; or the organic ion transporting polypeptides OATP1B1 or OATP1B3."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INHIBITOR",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
           },
           {
             "slug": "elexacaftor-ivacaftor-tezacaftor",
@@ -35350,24 +35495,24 @@
         "counterparty": "MATE1",
         "kinds": {
           "enzyme": 0,
-          "transporter": 180
+          "transporter": 181
         },
-        "medicinesRecording": 180,
-        "shareOfRecordsConsidered": 0.022762,
-        "shareOfDocumentedRecords": 0.271493,
+        "medicinesRecording": 181,
+        "shareOfRecordsConsidered": 0.022888,
+        "shareOfDocumentedRecords": 0.271772,
         "roles": {
           "substrate": 36,
-          "inhibitor": 87,
+          "inhibitor": 88,
           "inducer": 0,
           "roleNotStated": 57
         },
-        "roleNotStatedShare": 0.316667,
+        "roleNotStatedShare": 0.314917,
         "sections": {
           "clinicalPharmacology": 5,
-          "pharmacokinetics": 175,
+          "pharmacokinetics": 176,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 180,
+        "mentionsMatchingSourceCasing": 181,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -35878,6 +36023,17 @@
             "sourceIdentifier": "46452eb5-db17-400d-b25b-11844a11e711",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro studies demonstrated that, at the recommended dosage, edaravone and its metabolites are not expected to significantly inhibit CYP enzymes (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A), conjugating enzymes UGT1A1 and UGT2B7, or other transporters (P-gp, OATP1B1, OATP1B3, OAT1, OCT2, MATE1, and MATE2-K) in humans."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INHIBITOR",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
           },
           {
             "slug": "elafibranor",
@@ -37299,24 +37455,24 @@
         "counterparty": "OATP1B1",
         "kinds": {
           "enzyme": 0,
-          "transporter": 168
+          "transporter": 169
         },
-        "medicinesRecording": 168,
-        "shareOfRecordsConsidered": 0.021244,
-        "shareOfDocumentedRecords": 0.253394,
+        "medicinesRecording": 169,
+        "shareOfRecordsConsidered": 0.021371,
+        "shareOfDocumentedRecords": 0.253754,
         "roles": {
           "substrate": 57,
-          "inhibitor": 60,
+          "inhibitor": 61,
           "inducer": 0,
           "roleNotStated": 51
         },
-        "roleNotStatedShare": 0.303571,
+        "roleNotStatedShare": 0.301775,
         "sections": {
           "clinicalPharmacology": 5,
-          "pharmacokinetics": 163,
+          "pharmacokinetics": 164,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 168,
+        "mentionsMatchingSourceCasing": 169,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -37779,6 +37935,17 @@
             "sourceIdentifier": "e77d3400-56ad-11e3-949a-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro data also indicate that edoxaban does not inhibit the following transporters at clinically relevant concentrations: P-gp, the organic anion transporters OAT1 or OAT3; the organic cation transporters OCT1 or OCT2; or the organic ion transporting polypeptides OATP1B1 or OATP1B3."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INHIBITOR",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
           },
           {
             "slug": "elagolix",
@@ -39122,24 +39289,24 @@
         "counterparty": "OATP1B3",
         "kinds": {
           "enzyme": 0,
-          "transporter": 133
+          "transporter": 135
         },
-        "medicinesRecording": 133,
-        "shareOfRecordsConsidered": 0.016818,
-        "shareOfDocumentedRecords": 0.200603,
+        "medicinesRecording": 135,
+        "shareOfRecordsConsidered": 0.017071,
+        "shareOfDocumentedRecords": 0.202703,
         "roles": {
           "substrate": 47,
-          "inhibitor": 49,
+          "inhibitor": 50,
           "inducer": 0,
-          "roleNotStated": 37
+          "roleNotStated": 38
         },
-        "roleNotStatedShare": 0.278195,
+        "roleNotStatedShare": 0.281481,
         "sections": {
           "clinicalPharmacology": 4,
-          "pharmacokinetics": 129,
+          "pharmacokinetics": 131,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 133,
+        "mentionsMatchingSourceCasing": 135,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -39326,6 +39493,16 @@
             "sourceIdentifier": "6c3408ac-d401-4925-8a03-26591afbc240",
             "retrievedAt": "2026-08-28",
             "excerpt": "Binimetinib is not a substrate of organic anion transporting polypeptide (OATP1B1, OATP1B3, OATP2B1) or organic cation transporter 1 (OCT1)."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
           },
           {
             "slug": "brigatinib",
@@ -39581,6 +39758,17 @@
             "sourceIdentifier": "e77d3400-56ad-11e3-949a-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro data also indicate that edoxaban does not inhibit the following transporters at clinically relevant concentrations: P-gp, the organic anion transporters OAT1 or OAT3; the organic cation transporters OCT1 or OCT2; or the organic ion transporting polypeptides OATP1B1 or OATP1B3."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INHIBITOR",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
           },
           {
             "slug": "elexacaftor-ivacaftor-tezacaftor",
@@ -40574,24 +40762,24 @@
         "counterparty": "MATE2",
         "kinds": {
           "enzyme": 0,
-          "transporter": 131
+          "transporter": 132
         },
-        "medicinesRecording": 131,
-        "shareOfRecordsConsidered": 0.016566,
-        "shareOfDocumentedRecords": 0.197587,
+        "medicinesRecording": 132,
+        "shareOfRecordsConsidered": 0.016692,
+        "shareOfDocumentedRecords": 0.198198,
         "roles": {
           "substrate": 27,
-          "inhibitor": 58,
+          "inhibitor": 59,
           "inducer": 0,
           "roleNotStated": 46
         },
-        "roleNotStatedShare": 0.351145,
+        "roleNotStatedShare": 0.348485,
         "sections": {
           "clinicalPharmacology": 3,
-          "pharmacokinetics": 128,
+          "pharmacokinetics": 129,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 131,
+        "mentionsMatchingSourceCasing": 132,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -40973,6 +41161,17 @@
             "sourceIdentifier": "46452eb5-db17-400d-b25b-11844a11e711",
             "retrievedAt": "2026-08-28",
             "excerpt": "In vitro studies demonstrated that, at the recommended dosage, edaravone and its metabolites are not expected to significantly inhibit CYP enzymes (CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A), conjugating enzymes UGT1A1 and UGT2B7, or other transporters (P-gp, OATP1B1, OATP1B3, OAT1, OCT2, MATE1, and MATE2-K) in humans."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "role": "INHIBITOR",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
           },
           {
             "slug": "elafibranor",
@@ -41995,21 +42194,21 @@
         "counterparty": "P-GLYCOPROTEIN",
         "kinds": {
           "enzyme": 0,
-          "transporter": 129
+          "transporter": 130
         },
-        "medicinesRecording": 129,
-        "shareOfRecordsConsidered": 0.016313,
-        "shareOfDocumentedRecords": 0.19457,
+        "medicinesRecording": 130,
+        "shareOfRecordsConsidered": 0.016439,
+        "shareOfDocumentedRecords": 0.195195,
         "roles": {
           "substrate": 57,
           "inhibitor": 19,
           "inducer": 0,
-          "roleNotStated": 53
+          "roleNotStated": 54
         },
-        "roleNotStatedShare": 0.410853,
+        "roleNotStatedShare": 0.415385,
         "sections": {
           "clinicalPharmacology": 3,
-          "pharmacokinetics": 126,
+          "pharmacokinetics": 127,
           "sectionNotStated": 0
         },
         "mentionsMatchingSourceCasing": 0,
@@ -42165,6 +42364,16 @@
             "sourceIdentifier": "6c3408ac-d401-4925-8a03-26591afbc240",
             "retrievedAt": "2026-08-28",
             "excerpt": "Effect of Transporters on Binimetinib: Binimetinib is a substrate of P-glycoprotein (P-gp) and breast cancer resistance protein (BCRP)."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": false,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "P-gp Substrates: No clinically significant differences in bosutinib pharmacokinetics were observed when used concomitantly with dabigatran etexilate mesylate (a P-glycoprotein (P-gp) substrate)."
           },
           {
             "slug": "carfilzomib",
@@ -43391,7 +43600,7 @@
         },
         "medicinesRecording": 118,
         "shareOfRecordsConsidered": 0.014922,
-        "shareOfDocumentedRecords": 0.177979,
+        "shareOfDocumentedRecords": 0.177177,
         "roles": {
           "substrate": 16,
           "inhibitor": 60,
@@ -44673,7 +44882,7 @@
         },
         "medicinesRecording": 102,
         "shareOfRecordsConsidered": 0.012898,
-        "shareOfDocumentedRecords": 0.153846,
+        "shareOfDocumentedRecords": 0.153153,
         "roles": {
           "substrate": 7,
           "inhibitor": 48,
@@ -45772,24 +45981,24 @@
         "counterparty": "OCT2",
         "kinds": {
           "enzyme": 0,
-          "transporter": 91
+          "transporter": 92
         },
-        "medicinesRecording": 91,
-        "shareOfRecordsConsidered": 0.011507,
-        "shareOfDocumentedRecords": 0.137255,
+        "medicinesRecording": 92,
+        "shareOfRecordsConsidered": 0.011634,
+        "shareOfDocumentedRecords": 0.138138,
         "roles": {
           "substrate": 17,
           "inhibitor": 45,
           "inducer": 0,
-          "roleNotStated": 29
+          "roleNotStated": 30
         },
-        "roleNotStatedShare": 0.318681,
+        "roleNotStatedShare": 0.326087,
         "sections": {
           "clinicalPharmacology": 2,
-          "pharmacokinetics": 89,
+          "pharmacokinetics": 90,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 91,
+        "mentionsMatchingSourceCasing": 92,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -45855,6 +46064,16 @@
             "sourceIdentifier": "7f0ad5d2-3509-4057-904c-d27993de7408",
             "retrievedAt": "2026-08-28",
             "excerpt": "Bexagliflozin is not expected to inhibit drug transporters including breast cancer resistance protein (BRCP), bile salt export pump (BSEP), organic anion transporting polypeptides (OATP1B1, OATP1B3), anion transporters (OAT1, OAT3), organic cation transporters (OCT1, OCT2), and multidrug and toxin extrusion transporters (MATE1, MATE2-K) at clinically relevant plasma concentrations."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
           },
           {
             "slug": "brigatinib",
@@ -46769,25 +46988,25 @@
       {
         "counterparty": "CYP2A6",
         "kinds": {
-          "enzyme": 86,
+          "enzyme": 87,
           "transporter": 0
         },
-        "medicinesRecording": 86,
-        "shareOfRecordsConsidered": 0.010875,
-        "shareOfDocumentedRecords": 0.129713,
+        "medicinesRecording": 87,
+        "shareOfRecordsConsidered": 0.011002,
+        "shareOfDocumentedRecords": 0.130631,
         "roles": {
           "substrate": 6,
           "inhibitor": 40,
           "inducer": 1,
-          "roleNotStated": 39
+          "roleNotStated": 40
         },
-        "roleNotStatedShare": 0.453488,
+        "roleNotStatedShare": 0.45977,
         "sections": {
           "clinicalPharmacology": 0,
-          "pharmacokinetics": 86,
+          "pharmacokinetics": 87,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 86,
+        "mentionsMatchingSourceCasing": 87,
         "longerRecordedSpellings": [],
         "mentions": [
           {
@@ -47120,6 +47339,16 @@
             "sourceIdentifier": "922d4d25-c530-11e1-9b21-0800200c9a66",
             "retrievedAt": "2026-08-28",
             "excerpt": "In in vitro studies using human liver microsomes, efinaconazole did not inhibit CYP1A2, CYP2A6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2PE1 and CYP3A4 enzyme activities at expected clinical systemic concentrations."
+          },
+          {
+            "slug": "elacestrant",
+            "name": "elacestrant",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "Metabolism Elacestrant is primarily metabolized by CYP3A4 and to a lesser extent by CYP2A6 and CYP2C9."
           },
           {
             "slug": "eluxadoline",
@@ -47707,7 +47936,7 @@
         },
         "medicinesRecording": 66,
         "shareOfRecordsConsidered": 0.008346,
-        "shareOfDocumentedRecords": 0.099548,
+        "shareOfDocumentedRecords": 0.099099,
         "roles": {
           "substrate": 16,
           "inhibitor": 26,
@@ -48431,24 +48660,24 @@
         "counterparty": "OATP",
         "kinds": {
           "enzyme": 0,
-          "transporter": 45
+          "transporter": 47
         },
-        "medicinesRecording": 45,
-        "shareOfRecordsConsidered": 0.00569,
-        "shareOfDocumentedRecords": 0.067873,
+        "medicinesRecording": 47,
+        "shareOfRecordsConsidered": 0.005943,
+        "shareOfDocumentedRecords": 0.070571,
         "roles": {
           "substrate": 11,
           "inhibitor": 20,
           "inducer": 0,
-          "roleNotStated": 14
+          "roleNotStated": 16
         },
-        "roleNotStatedShare": 0.311111,
+        "roleNotStatedShare": 0.340426,
         "sections": {
           "clinicalPharmacology": 2,
-          "pharmacokinetics": 43,
+          "pharmacokinetics": 45,
           "sectionNotStated": 0
         },
-        "mentionsMatchingSourceCasing": 45,
+        "mentionsMatchingSourceCasing": 47,
         "longerRecordedSpellings": [
           "OATP1B1",
           "OATP1B3"
@@ -48495,6 +48724,16 @@
             "sourceIdentifier": "42c49deb-713b-427a-9670-08af08adcffb",
             "retrievedAt": "2026-08-28",
             "excerpt": "Alectinib and M4 are not substrates of breast cancer resistance protein (BCRP), organic anion-transporting polypeptide (OATP) 1B1, or OATP1B3."
+          },
+          {
+            "slug": "alirocumab",
+            "name": "alirocumab",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "In clinical studies where alirocumab was administered in combination with atorvastatin or rosuvastatin, no relevant changes in statin concentrations were observed in the presence of repeated administration of alirocumab, indicating that cytochrome P450 enzymes (mainly CYP3A4 and CYP2C9) and transporter proteins such as P-gp and OATP were not affected by alirocumab."
           },
           {
             "slug": "apremilast",
@@ -48582,6 +48821,16 @@
             "sourceIdentifier": "aef7c34c-fef8-407c-99c0-a68aded53c60",
             "retrievedAt": "2026-08-28",
             "excerpt": "Transporter Systems: Cys‑mcMMAF is a substrate of organic anion transporting polypeptide (OATP)1B1 and OATP1B3, multidrug resistance‑associated protein (MRP)1, MRP2, and MRP3, bile salt export pump (BSEP), and a possible substrate of P‑glycoprotein (P‑gp)."
+          },
+          {
+            "slug": "bosutinib",
+            "name": "bosutinib",
+            "labelSection": "pharmacokinetics",
+            "matchesSourceCasing": true,
+            "sourceKind": "FDA_LABEL",
+            "sourceIdentifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+            "retrievedAt": "2026-08-28",
+            "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
           },
           {
             "slug": "cabotegravir",
@@ -48945,7 +49194,7 @@
         },
         "medicinesRecording": 35,
         "shareOfRecordsConsidered": 0.004426,
-        "shareOfDocumentedRecords": 0.05279,
+        "shareOfDocumentedRecords": 0.052553,
         "roles": {
           "substrate": 2,
           "inhibitor": 1,
@@ -49327,7 +49576,7 @@
         },
         "medicinesRecording": 25,
         "shareOfRecordsConsidered": 0.003161,
-        "shareOfDocumentedRecords": 0.037707,
+        "shareOfDocumentedRecords": 0.037538,
         "roles": {
           "substrate": 4,
           "inhibitor": 3,
@@ -49613,7 +49862,7 @@
         },
         "medicinesRecording": 22,
         "shareOfRecordsConsidered": 0.002782,
-        "shareOfDocumentedRecords": 0.033183,
+        "shareOfDocumentedRecords": 0.033033,
         "roles": {
           "substrate": 4,
           "inhibitor": 9,
@@ -49877,7 +50126,7 @@
         },
         "medicinesRecording": 9,
         "shareOfRecordsConsidered": 0.001138,
-        "shareOfDocumentedRecords": 0.013575,
+        "shareOfDocumentedRecords": 0.013514,
         "roles": {
           "substrate": 0,
           "inhibitor": 0,
@@ -49993,7 +50242,7 @@
         },
         "medicinesRecording": 9,
         "shareOfRecordsConsidered": 0.001138,
-        "shareOfDocumentedRecords": 0.013575,
+        "shareOfDocumentedRecords": 0.013514,
         "roles": {
           "substrate": 4,
           "inhibitor": 3,
@@ -50116,7 +50365,7 @@
         },
         "medicinesRecording": 6,
         "shareOfRecordsConsidered": 0.000759,
-        "shareOfDocumentedRecords": 0.00905,
+        "shareOfDocumentedRecords": 0.009009,
         "roles": {
           "substrate": 0,
           "inhibitor": 1,
@@ -50203,7 +50452,7 @@
         },
         "medicinesRecording": 5,
         "shareOfRecordsConsidered": 0.000632,
-        "shareOfDocumentedRecords": 0.007541,
+        "shareOfDocumentedRecords": 0.007508,
         "roles": {
           "substrate": 1,
           "inhibitor": 3,
@@ -50285,7 +50534,7 @@
         },
         "medicinesRecording": 4,
         "shareOfRecordsConsidered": 0.000506,
-        "shareOfDocumentedRecords": 0.006033,
+        "shareOfDocumentedRecords": 0.006006,
         "roles": {
           "substrate": 0,
           "inhibitor": 0,
@@ -50351,7 +50600,7 @@
         },
         "medicinesRecording": 3,
         "shareOfRecordsConsidered": 0.000379,
-        "shareOfDocumentedRecords": 0.004525,
+        "shareOfDocumentedRecords": 0.004505,
         "roles": {
           "substrate": 0,
           "inhibitor": 0,
@@ -50407,7 +50656,7 @@
         },
         "medicinesRecording": 3,
         "shareOfRecordsConsidered": 0.000379,
-        "shareOfDocumentedRecords": 0.004525,
+        "shareOfDocumentedRecords": 0.004505,
         "roles": {
           "substrate": 0,
           "inhibitor": 2,
@@ -50465,7 +50714,7 @@
         },
         "medicinesRecording": 3,
         "shareOfRecordsConsidered": 0.000379,
-        "shareOfDocumentedRecords": 0.004525,
+        "shareOfDocumentedRecords": 0.004505,
         "roles": {
           "substrate": 0,
           "inhibitor": 0,
@@ -50523,7 +50772,7 @@
         },
         "medicinesRecording": 3,
         "shareOfRecordsConsidered": 0.000379,
-        "shareOfDocumentedRecords": 0.004525,
+        "shareOfDocumentedRecords": 0.004505,
         "roles": {
           "substrate": 0,
           "inhibitor": 1,
@@ -50580,7 +50829,7 @@
         },
         "medicinesRecording": 1,
         "shareOfRecordsConsidered": 0.000126,
-        "shareOfDocumentedRecords": 0.001508,
+        "shareOfDocumentedRecords": 0.001502,
         "roles": {
           "substrate": 0,
           "inhibitor": 0,
@@ -50616,7 +50865,7 @@
         },
         "medicinesRecording": 1,
         "shareOfRecordsConsidered": 0.000126,
-        "shareOfDocumentedRecords": 0.001508,
+        "shareOfDocumentedRecords": 0.001502,
         "roles": {
           "substrate": 0,
           "inhibitor": 0,
@@ -50647,38 +50896,38 @@
     ],
     "concentration": {
       "counterpartiesDocumented": 36,
-      "mentionsAdmitted": 4724,
+      "mentionsAdmitted": 4748,
       "topCounterparty": "CYP3A4",
-      "topCounterpartyShare": 0.09801,
-      "topFiveShare": 0.406647,
-      "herfindahlIndex": 0.056572,
-      "normalizedHerfindahlIndex": 0.029617,
-      "giniCoefficient": 0.553603,
-      "uniformReferenceGiniMedian": 0.047641,
+      "topCounterpartyShare": 0.098147,
+      "topFiveShare": 0.406066,
+      "herfindahlIndex": 0.056492,
+      "normalizedHerfindahlIndex": 0.029534,
+      "giniCoefficient": 0.553098,
+      "uniformReferenceGiniMedian": 0.047646,
       "uniformReferenceDrawsAtOrAboveObserved": 0,
       "uniformReferenceDraws": 200
     },
     "recordsConsidered": 7908,
-    "recordsNamingAnyCounterparty": 663,
-    "recordsNamingNone": 7245,
-    "mentionsAdmitted": 4724,
+    "recordsNamingAnyCounterparty": 666,
+    "recordsNamingNone": 7242,
+    "mentionsAdmitted": 4748,
     "mentionsWithheldCounterpartyNotInExcerpt": 38,
     "mentionsWithheldExcerptFailedScreen": 0,
-    "roleNotStatedShare": 0.481795,
-    "mentionsFromExtractedRecords": 4724
+    "roleNotStatedShare": 0.482519,
+    "mentionsFromExtractedRecords": 4748
   },
   "coverage": {
     "considered": 7908,
-    "used": 663,
-    "reason": "7245 records name no enzyme or transporter in their recorded sources, so they cannot enter a counterparty profile. Of the mentions in the remaining records, 38 were withheld: 38 because the recorded counterparty is not present in the sentence it was read from, 0 because the sentence reads as advice rather than description. Withheld mentions are in the review queue, not deleted."
+    "used": 666,
+    "reason": "7242 records name no enzyme or transporter in their recorded sources, so they cannot enter a counterparty profile. Of the mentions in the remaining records, 38 were withheld: 38 because the recorded counterparty is not present in the sentence it was read from, 0 because the sentence reads as advice rather than description. Withheld mentions are in the review queue, not deleted."
   },
   "queue": [
     {
       "slug": "abacavir",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:5676d391-f9a4-44be-9604-954b3d8d0e2b"
       ]
@@ -50687,8 +50936,8 @@
       "slug": "abrocitinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:16c12a56-4550-414b-ac9d-b785b41fea6b"
       ]
@@ -50697,8 +50946,8 @@
       "slug": "adagrasib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:0b8bf078-34c2-4f45-9012-38a8ac082b01"
       ]
@@ -50707,18 +50956,28 @@
       "slug": "alectinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:42c49deb-713b-427a-9670-08af08adcffb"
+      ]
+    },
+    {
+      "slug": "alirocumab",
+      "reason": "COVERAGE_GAP",
+      "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
+      "sources": [
+        "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
       ]
     },
     {
       "slug": "apremilast",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:f6b1f516-4972-4d82-bced-113e47b41cc5"
       ]
@@ -50727,8 +50986,8 @@
       "slug": "atogepant",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:8c8ab8f4-32bd-497a-befa-70c8a51d8d52"
       ]
@@ -50737,8 +50996,8 @@
       "slug": "avatrombopag",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:e2d5960d-6c18-46cc-86bd-089222b09852"
       ]
@@ -50747,8 +51006,8 @@
       "slug": "azacitidine",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:2d15b3ec-ed08-48c6-a400-34e55974afad"
       ]
@@ -50757,8 +51016,8 @@
       "slug": "baloxavir-marboxil",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:e49e1a61-1b7c-4be5-ac84-af6240b511e7"
       ]
@@ -50767,8 +51026,8 @@
       "slug": "baricitinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:866e9f35-9035-4581-a4b1-75a621ab55cf"
       ]
@@ -50777,8 +51036,8 @@
       "slug": "belantamab-mafodotin",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:aef7c34c-fef8-407c-99c0-a68aded53c60"
       ]
@@ -50787,18 +51046,28 @@
       "slug": "belantamab-mafodotin-blmf",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:aef7c34c-fef8-407c-99c0-a68aded53c60"
+      ]
+    },
+    {
+      "slug": "bosutinib",
+      "reason": "COVERAGE_GAP",
+      "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
+      "sources": [
+        "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
       ]
     },
     {
       "slug": "cabotegravir",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:4338428e-43d4-4e02-ac9d-bd98e738a7da"
       ]
@@ -50807,8 +51076,8 @@
       "slug": "crizotinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:2a51b0de-47d6-455e-a94c-d2c737b04ff7"
       ]
@@ -50817,8 +51086,8 @@
       "slug": "dacomitinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:4ab27d2f-e385-4e9c-b324-fa69c10b855a"
       ]
@@ -50827,8 +51096,8 @@
       "slug": "delgocitinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:a59bf36e-6f04-4b47-b385-8040c95f040c"
       ]
@@ -50837,8 +51106,8 @@
       "slug": "elagolix",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:a86757b3-09c5-fd3b-1223-244e94f50a66"
       ]
@@ -50847,8 +51116,8 @@
       "slug": "eltrombopag",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:ed51e463-7a03-4858-bbd2-882ce4753d5a"
       ]
@@ -50857,8 +51126,8 @@
       "slug": "eltrombopag-choline",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:ed51e463-7a03-4858-bbd2-882ce4753d5a"
       ]
@@ -50867,8 +51136,8 @@
       "slug": "esketamine",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:d81a6a79-a74a-44b7-822c-0dfa3036eaed"
       ]
@@ -50877,8 +51146,8 @@
       "slug": "etelcalcetide",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:cd270093-c6a8-4596-a4ab-e6aa0a2c8a0c"
       ]
@@ -50887,8 +51156,8 @@
       "slug": "fedratinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:f0f55a2a-4e0c-4cba-8571-03e1424486d7"
       ]
@@ -50897,8 +51166,8 @@
       "slug": "finerenone",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:fc726765-5d5a-4d6e-b037-b847bda9fb7c"
       ]
@@ -50907,8 +51176,8 @@
       "slug": "fingolimod",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:1171df44-48b4-6ef2-e063-6294a90aa121"
       ]
@@ -50917,8 +51186,8 @@
       "slug": "fingolimod-lauryl",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:bf8e7f89-ea09-43c7-a7eb-e44724350721"
       ]
@@ -50927,8 +51196,8 @@
       "slug": "fruquintinib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:186d786e-dc8a-45f2-b5e1-01ac0201879f"
       ]
@@ -50937,8 +51206,8 @@
       "slug": "glasdegib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:204a6f7e-c9a4-472b-abd2-9527bda64d17"
       ]
@@ -50947,8 +51216,8 @@
       "slug": "iptacopan",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:a76b5845-6e21-4d3b-ad07-cd8df1b60bee"
       ]
@@ -50957,8 +51226,8 @@
       "slug": "lapatinib-ditosylate",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:302a4346-a68d-af3e-e063-6294a90a4a6f"
       ]
@@ -50967,8 +51236,8 @@
       "slug": "lenacapavir",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:1c241af1-ce62-4b0a-9eb7-f6b626174f01"
       ]
@@ -50977,8 +51246,8 @@
       "slug": "levacetylleucine",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:0f248e55-d1bb-13f9-e063-6294a90a05ce"
       ]
@@ -50987,8 +51256,8 @@
       "slug": "nintedanib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:da1c9f37-779e-4682-816f-93d0faa4cfc9"
       ]
@@ -50997,8 +51266,8 @@
       "slug": "nintedanib-esylate",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:da1c9f37-779e-4682-816f-93d0faa4cfc9"
       ]
@@ -51007,8 +51276,8 @@
       "slug": "omadacycline",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:51591524-4703-44c6-8bde-dce3e6a463d1"
       ]
@@ -51017,8 +51286,8 @@
       "slug": "palbociclib",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:fecbdd7d-b729-41b5-9872-231b8fe104ce"
       ]
@@ -51027,8 +51296,8 @@
       "slug": "pasireotide",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:a0aad470-3f38-af97-e053-2995a90a383a"
       ]
@@ -51037,8 +51306,8 @@
       "slug": "pasireotide-diaspartate",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:a09a25fc-a5a3-0c82-e053-2995a90a5d74"
       ]
@@ -51047,8 +51316,8 @@
       "slug": "resmetirom",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:e67ea09f-a840-439c-86c8-f98585f978b2"
       ]
@@ -51057,8 +51326,8 @@
       "slug": "rifaximin",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:c5e8e2fd-7087-4b78-9181-cc259c0be2f1"
       ]
@@ -51067,8 +51336,8 @@
       "slug": "risdiplam",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:eceb9a99-7191-4be5-87c3-0102707cf98e"
       ]
@@ -51077,8 +51346,8 @@
       "slug": "seladelpar-lysine",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:89f79d98-135c-40b2-a585-6996c04e599c"
       ]
@@ -51087,8 +51356,8 @@
       "slug": "sotagliflozin",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:1a46614e-05f6-421a-b6f4-d6f8760d643a"
       ]
@@ -51097,8 +51366,8 @@
       "slug": "trifarotene",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:62d910db-85a6-4696-b69b-4bd2f3080cfc"
       ]
@@ -51107,8 +51376,8 @@
       "slug": "vadadustat",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:ac9da724-5a62-4ab6-a89c-376a25f6195b"
       ]
@@ -51117,8 +51386,8 @@
       "slug": "zavegepant",
       "reason": "COVERAGE_GAP",
       "question": "This record's counterparty is recorded as OATP. Other records write longer spellings beginning with it (OATP1B1, OATP1B3). Is OATP the complete name in this record's sentence?",
-      "priority": 45,
-      "basis": "Records carrying the shorter recorded spelling: 45. The two spellings are not assumed to name the same counterparty.",
+      "priority": 47,
+      "basis": "Records carrying the shorter recorded spelling: 47. The two spellings are not assumed to name the same counterparty.",
       "sources": [
         "FDA_LABEL:9c4a7aec-daef-4961-ba77-92f4b58be780"
       ]
@@ -51779,11 +52048,11 @@
     "This dataset holds no relation between one medicine and another. Counts are per counterparty; the medicines naming a counterparty are listed with their sentences and are never paired, ranked against each other or compared.",
     "ICH M12 states that no potency classification system exists for transporters or for non-CYP enzymes, so no strong, moderate or weak vocabulary is applied to any counterparty here. The tallies count records, not strength.",
     "A counterparty with a high count is one that labels document often. Documentation frequency is not importance: US labelling asks for some enzymes to be characterised far more routinely than others, and that requirement is part of what these counts measure.",
-    "48.2% of admitted mentions carry no role. The sentence named more than one role and the parser left the question open rather than attaching a guess, so a role tally is a count of sentences that settled the question, not of medicines for which it is settled.",
+    "48.3% of admitted mentions carry no role. The sentence named more than one role and the parser left the question open rather than attaching a guess, so a role tally is a count of sentences that settled the question, not of medicines for which it is settled.",
     "Recorded spellings are counted separately and never merged. P-GP, PGP and P-GLYCOPROTEIN are three entries in this dataset because they are three strings in the corpus; whether they name one thing is a question for a person, and prefix relationships are reported as questions rather than resolved.",
     "A mention is admitted only when its excerpt contains the recorded counterparty, tolerating letter case alone. Every other reading of the corpus, including the mentions withheld for that reason, is in the review queue and is not represented in any count above.",
-    "7245 of 7908 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
-    "4724 of 4724 admitted mentions come from records the deterministic label parser produced, where no person chose the value or wrote its measurement context. The sentence is stored with each one so a reader can check it.",
-    "The uniform reference for concentration allocates the same 4724 mentions over the same 36 counterparties by chance. Labels are not written that way, so the reference shows only that the observed spread is not a consequence of how many mentions there are."
+    "7242 of 7908 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+    "4748 of 4748 admitted mentions come from records the deterministic label parser produced, where no person chose the value or wrote its measurement context. The sentence is stored with each one so a reader can check it.",
+    "The uniform reference for concentration allocates the same 4748 mentions over the same 36 counterparties by chance. Labels are not written that way, so the reference shows only that the observed spread is not a consequence of how many mentions there are."
   ]
 }

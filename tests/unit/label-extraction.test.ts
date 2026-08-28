@@ -505,3 +505,127 @@ describe('label extraction: harms and populations', () => {
     ).toBeNull()
   })
 })
+
+/**
+ * Numbers a label prints with a thousands separator, and the pattern that quietly lost them.
+ *
+ * Every quantity pattern matched `\d+(?:\.\d+)?`, which cannot cross a comma, so it began matching
+ * after one: elacestrant's "the estimated apparent volume of distribution is 5,800 L" was recorded
+ * as 800 L. The molecular-weight pattern failed the other way — its `\d{1,3}(?:,\d{3})*` branch
+ * matched happily with no comma groups at all, taking the first three digits of an unseparated
+ * "1355.38" and recording vitamin B12 as weighing 135 g/mol.
+ *
+ * Both passed the engine, because "800" is a substring of "5800" and "135" of "1355". 107 records
+ * in the corpus carried a number an order of magnitude wrong under a faithful excerpt. These tests
+ * pin both halves of the fix: the patterns read the whole number, and the engine compares numbers
+ * as numbers.
+ */
+describe('label extraction: numbers printed with separators', () => {
+  it('reads the whole volume of distribution, not the part after the comma', () => {
+    const pk = extractPharmacokinetics(
+      artifact({
+        sections: {
+          clinical_pharmacology:
+            'Distribution The estimated apparent volume of distribution is 5,800 L.',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(pk?.volumeOfDistribution?.numeric).toBe(5800)
+    expect(pk?.volumeOfDistribution?.display).toContain('5,800')
+  })
+
+  it('reads a four-digit molecular weight whether or not a separator is printed', () => {
+    for (const printed of ['1,355.38', '1355.38']) {
+      const identity = extractMolecularIdentity(
+        artifact({
+          sections: { description: `The molecular weight is ${printed} g/mol.` },
+        }),
+        OPTIONS,
+      )
+      expect(identity?.molecularWeight?.numeric, printed).toBe(1355.38)
+    }
+  })
+
+  it('reads a half-life printed in the thousands', () => {
+    const pk = extractPharmacokinetics(
+      artifact({
+        sections: {
+          clinical_pharmacology: 'The terminal elimination half-life is 1,200 hours.',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(pk?.halfLife?.numeric).toBe(1200)
+  })
+
+  it('keeps the hydrate separator a middle dot, so it never reads as a decimal', () => {
+    const identity = extractMolecularIdentity(
+      artifact({
+        sections: {
+          description: 'Its chemical formula is C 26 H 29 Cl 2 N 5 O 3 .2H 2 O and it is a powder.',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(identity?.molecularFormula?.display).toBe('C26H29Cl2N5O3·2H2O')
+    expect(MOLECULAR_FORMULA_SHAPE.test(identity!.molecularFormula!.display)).toBe(true)
+    expect(
+      runBackgroundIntelligence({
+        version: 'medicine-background/v1',
+        authoredAt: '2026-08-29',
+        provenanceTier: 'extracted',
+        attribution: { declaredSubstanceCount: 1 },
+        molecularIdentity: identity!,
+      }).findings,
+    ).toEqual([])
+  })
+})
+
+describe('the engine compares displayed numbers as numbers', () => {
+  const withWeight = (display: string, excerpt: string) => ({
+    version: 'medicine-background/v1' as const,
+    authoredAt: '2026-08-29',
+    provenanceTier: 'extracted' as const,
+    attribution: { declaredSubstanceCount: 1 },
+    molecularIdentity: {
+      molecularWeight: {
+        display,
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL' as const,
+          identifier: '00afce9b-48c9-487a-a738-e359c005c707',
+          label: 'Synthetic medicine label',
+          retrievedAt: '2026-08-29',
+          excerpt,
+        },
+        provenanceTier: 'extracted' as const,
+      },
+    },
+  })
+
+  it('refuses a number that only appears inside a longer one', () => {
+    const report = runBackgroundIntelligence(withWeight('800', 'The volume is 5,800 L.'))
+    expect(report.findings.map((finding) => finding.code)).toContain('I_VALUE_NOT_IN_EXCERPT')
+  })
+
+  it('refuses a truncated weight even though its digits open the printed number', () => {
+    const report = runBackgroundIntelligence(withWeight('135', 'The molecular weight is 1355.38.'))
+    expect(report.findings.map((finding) => finding.code)).toContain('I_VALUE_NOT_IN_EXCERPT')
+  })
+
+  it('accepts the same number written with a separator or without one', () => {
+    expect(
+      runBackgroundIntelligence(withWeight('5800', 'The weight is 5,800 g/mol.')).findings,
+    ).toEqual([])
+    expect(
+      runBackgroundIntelligence(withWeight('5,800', 'The weight is 5800 g/mol.')).findings,
+    ).toEqual([])
+  })
+
+  it('accepts the same number written with trailing zeros', () => {
+    expect(
+      runBackgroundIntelligence(withWeight('0.5', 'The value is 0.50 units.')).findings,
+    ).toEqual([])
+  })
+})

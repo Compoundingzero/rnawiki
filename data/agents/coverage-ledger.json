@@ -1615,6 +1615,28 @@
         "provenanceTier": "extracted"
       },
       {
+        "slug": "alirocumab",
+        "name": "alirocumab",
+        "route": "LABEL_PHARMACOLOGY",
+        "modulesPresent": [
+          "recordedUses",
+          "mechanism",
+          "pharmacokinetics",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "productVariants",
+          "sourceConsensus",
+          "labelPresence",
+          "registryIdentifiers"
+        ],
+        "moduleCount": 11,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "extracted"
+      },
+      {
         "slug": "aliskiren",
         "name": "aliskiren",
         "route": "LABEL_PHARMACOLOGY",
@@ -7034,6 +7056,28 @@
           "sourceConsensus",
           "labelPresence",
           "registryIdentifiers"
+        ],
+        "moduleCount": 11,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "extracted"
+      },
+      {
+        "slug": "bosutinib",
+        "name": "bosutinib",
+        "route": "LABEL_PHARMACOLOGY",
+        "modulesPresent": [
+          "recordedUses",
+          "mechanism",
+          "pharmacokinetics",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions",
+          "productVariants",
+          "sourceConsensus",
+          "labelPresence"
         ],
         "moduleCount": 11,
         "ingredientCount": 0,
@@ -16811,6 +16855,26 @@
         "provenanceTier": "extracted"
       },
       {
+        "slug": "elacestrant",
+        "name": "elacestrant",
+        "route": "LABEL_PHARMACOLOGY",
+        "modulesPresent": [
+          "recordedUses",
+          "mechanism",
+          "pharmacokinetics",
+          "molecularIdentity",
+          "interactionSignals",
+          "populationStatements",
+          "productVariants",
+          "labelPresence",
+          "registryIdentifiers"
+        ],
+        "moduleCount": 9,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "extracted"
+      },
+      {
         "slug": "eladocagene-exuparvovec",
         "name": "eladocagene exuparvovec",
         "route": "LABEL_PHARMACOLOGY",
@@ -24594,6 +24658,25 @@
         "provenanceTier": "extracted"
       },
       {
+        "slug": "imiglucerase",
+        "name": "imiglucerase",
+        "route": "LABEL_PHARMACOLOGY",
+        "modulesPresent": [
+          "recordedUses",
+          "mechanism",
+          "pharmacokinetics",
+          "safety",
+          "populationStatements",
+          "productVariants",
+          "labelPresence",
+          "registryIdentifiers"
+        ],
+        "moduleCount": 8,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "extracted"
+      },
+      {
         "slug": "imipenem",
         "name": "imipenem",
         "route": "LABEL_PRODUCT_ONLY",
@@ -32034,6 +32117,7 @@
         "modulesPresent": [
           "recordedUses",
           "mechanism",
+          "pharmacokinetics",
           "safety",
           "populationStatements",
           "productVariants",
@@ -32041,7 +32125,7 @@
           "labelPresence",
           "registryIdentifiers"
         ],
-        "moduleCount": 8,
+        "moduleCount": 9,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -55034,20 +55118,6 @@
         "provenanceTier": "extracted"
       },
       {
-        "slug": "alirocumab",
-        "name": "alirocumab",
-        "route": "LABEL_PHARMACOLOGY",
-        "modulesPresent": [
-          "composition",
-          "sourceConsensus",
-          "labelPresence"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 1,
-        "ingredientsDocumented": 1,
-        "provenanceTier": "extracted"
-      },
-      {
         "slug": "allantoin",
         "name": "allantoin",
         "route": "LABEL_PRODUCT_ONLY",
@@ -56091,19 +56161,6 @@
         "slug": "ilex-aquifolium-flowering-top",
         "name": "ilex aquifolium flowering top",
         "route": "LABEL_PRODUCT_ONLY",
-        "modulesPresent": [
-          "composition",
-          "labelPresence"
-        ],
-        "moduleCount": 2,
-        "ingredientCount": 1,
-        "ingredientsDocumented": 1,
-        "provenanceTier": "extracted"
-      },
-      {
-        "slug": "imiglucerase",
-        "name": "imiglucerase",
-        "route": "LABEL_PHARMACOLOGY",
         "modulesPresent": [
           "composition",
           "labelPresence"
@@ -58987,20 +59044,6 @@
         "modulesPresent": [
           "molecularIdentity",
           "supplementMarket",
-          "labelPresence"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "bosutinib",
-        "name": "bosutinib",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "molecularIdentity",
-          "sourceConsensus",
           "labelPresence"
         ],
         "moduleCount": 3,
@@ -63469,19 +63512,6 @@
           "molecularIdentity"
         ],
         "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "elacestrant",
-        "name": "elacestrant",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "molecularIdentity",
-          "labelPresence"
-        ],
-        "moduleCount": 2,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -112524,7 +112554,7 @@
       },
       {
         "route": "LABEL_PHARMACOLOGY",
-        "records": 1613,
+        "records": 1615,
         "medianModuleCount": 9,
         "cannotSupply": "Prescription labelling covers pharmacology but states no price and no supplement context."
       },
@@ -112542,7 +112572,7 @@
       },
       {
         "route": "LABEL_ARCHIVE_PRESENCE",
-        "records": 2718,
+        "records": 2716,
         "medianModuleCount": 1,
         "cannotSupply": "The archive records that published labels name this substance as an active ingredient, and how many of them name it alone. It does not say the product was approved or evaluated, and where no label names the substance alone there is no source its own data could come from."
       },
@@ -112562,53 +112592,53 @@
     "byModule": [
       {
         "module": "recordedUses",
-        "records": 2031,
-        "shareOfCorpus": 0.2568285280728376
+        "records": 2035,
+        "shareOfCorpus": 0.2573343449671219
       },
       {
         "module": "mechanism",
-        "records": 1546,
-        "shareOfCorpus": 0.19549822964087
+        "records": 1550,
+        "shareOfCorpus": 0.19600404653515427
       },
       {
         "module": "pharmacokinetics",
-        "records": 1307,
-        "shareOfCorpus": 0.16527567020738493
+        "records": 1312,
+        "shareOfCorpus": 0.16590794132524025
       },
       {
         "module": "molecularIdentity",
-        "records": 3004,
-        "shareOfCorpus": 0.3798684876074861
+        "records": 3005,
+        "shareOfCorpus": 0.37999494183105714
       },
       {
         "module": "interactionSignals",
-        "records": 663,
-        "shareOfCorpus": 0.0838391502276176
+        "records": 666,
+        "shareOfCorpus": 0.08421851289833081
       },
       {
         "module": "safety",
-        "records": 1371,
-        "shareOfCorpus": 0.17336874051593323
+        "records": 1374,
+        "shareOfCorpus": 0.17374810318664644
       },
       {
         "module": "populationStatements",
-        "records": 1744,
-        "shareOfCorpus": 0.2205361659079413
+        "records": 1748,
+        "shareOfCorpus": 0.2210419828022256
       },
       {
         "module": "commonAdverseReactions",
-        "records": 828,
-        "shareOfCorpus": 0.1047040971168437
+        "records": 829,
+        "shareOfCorpus": 0.10483055134041477
       },
       {
         "module": "productVariants",
-        "records": 2328,
-        "shareOfCorpus": 0.2943854324734446
+        "records": 2332,
+        "shareOfCorpus": 0.29489124936772887
       },
       {
         "module": "composition",
-        "records": 165,
-        "shareOfCorpus": 0.0208649468892261
+        "records": 163,
+        "shareOfCorpus": 0.020612038442083966
       },
       {
         "module": "sourceConsensus",
@@ -112627,8 +112657,8 @@
       },
       {
         "module": "registryIdentifiers",
-        "records": 2046,
-        "shareOfCorpus": 0.25872534142640363
+        "records": 2049,
+        "shareOfCorpus": 0.25910470409711683
       },
       {
         "module": "anatomyTargets",
@@ -112657,8 +112687,8 @@
       }
     ],
     "recordsConsidered": 7908,
-    "ingredientSlots": 165,
-    "ingredientSlotsDocumented": 165
+    "ingredientSlots": 163,
+    "ingredientSlotsDocumented": 163
   },
   "queue": [
     {
@@ -112682,26 +112712,6 @@
       ]
     },
     {
-      "slug": "efgartigimod-alfa-and-hyaluronidase-qvfc",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "productVariants"
-      ]
-    },
-    {
-      "slug": "stannous",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "productVariants"
-      ]
-    },
-    {
       "slug": "metaproterenol",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
@@ -112712,27 +112722,27 @@
       ]
     },
     {
+      "slug": "sulfur-hexafluoride-lipid-type-a-microspheres",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants"
+      ]
+    },
+    {
+      "slug": "vitamin-b2",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants"
+      ]
+    },
+    {
       "slug": "sitagliptin-metformin",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "productVariants"
-      ]
-    },
-    {
-      "slug": "relatlimab-rmbw",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "productVariants"
-      ]
-    },
-    {
-      "slug": "tromethamine",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112762,17 +112772,17 @@
       ]
     },
     {
-      "slug": "methylsulfonylmethane",
+      "slug": "potassium-sulfate",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
       "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
       "sources": [
-        "composition"
+        "safety"
       ]
     },
     {
-      "slug": "darunavir-and-cobicistat",
+      "slug": "tromethamine",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112782,7 +112792,27 @@
       ]
     },
     {
-      "slug": "andrographis-paniculata",
+      "slug": "potassium-citrate",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants"
+      ]
+    },
+    {
+      "slug": "dapagliflozin-metformin",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants"
+      ]
+    },
+    {
+      "slug": "babassu",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112792,7 +112822,7 @@
       ]
     },
     {
-      "slug": "bergamot-orange",
+      "slug": "burning-bush",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112802,7 +112832,7 @@
       ]
     },
     {
-      "slug": "asian-bayberry",
+      "slug": "chilean-wildnut",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112812,7 +112842,7 @@
       ]
     },
     {
-      "slug": "algas-calcareas",
+      "slug": "cassia-nomame",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112822,7 +112852,7 @@
       ]
     },
     {
-      "slug": "button-mushroom",
+      "slug": "agmatine-silicate",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112832,7 +112862,7 @@
       ]
     },
     {
-      "slug": "bacillus",
+      "slug": "blend",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112842,7 +112872,7 @@
       ]
     },
     {
-      "slug": "chinese-cabbage",
+      "slug": "chia",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112852,7 +112882,7 @@
       ]
     },
     {
-      "slug": "blood-vessels",
+      "slug": "browns-lily",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112862,7 +112892,7 @@
       ]
     },
     {
-      "slug": "black-mustard",
+      "slug": "avocado",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112872,7 +112902,7 @@
       ]
     },
     {
-      "slug": "arisaema-erubescens",
+      "slug": "agarikon",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement market. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112882,7 +112912,7 @@
       ]
     },
     {
-      "slug": "glechoma-hederacea",
+      "slug": "gleditsia-sinensis-fruit",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112892,7 +112922,7 @@
       ]
     },
     {
-      "slug": "lilium-pumilum-bulb",
+      "slug": "limulus-polyphemus",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112902,7 +112932,7 @@
       ]
     },
     {
-      "slug": "cimicifuga-racemosa-root",
+      "slug": "cinchona-pubescens-bark",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112912,7 +112942,7 @@
       ]
     },
     {
-      "slug": "lepidium-meyenii-root",
+      "slug": "leptospira-interrogans",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112922,7 +112952,7 @@
       ]
     },
     {
-      "slug": "sus-scrofa-cerebellum",
+      "slug": "sus-scrofa-collagen",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112932,7 +112962,7 @@
       ]
     },
     {
-      "slug": "orange",
+      "slug": "oregano-flowering-top",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112942,7 +112972,7 @@
       ]
     },
     {
-      "slug": "convallaria-majalis-flowering-top",
+      "slug": "conyza-canadensis",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112952,7 +112982,7 @@
       ]
     },
     {
-      "slug": "apc-356434",
+      "slug": "ascaris-lumbricoides",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112962,7 +112992,7 @@
       ]
     },
     {
-      "slug": "sus-scrofa-rectum",
+      "slug": "sus-scrofa-skin",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -112972,7 +113002,7 @@
       ]
     },
     {
-      "slug": "sage",
+      "slug": "salix-nigra-bark",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -113193,17 +113223,6 @@
       ]
     },
     {
-      "slug": "equine-thymocyte-immune-globulin",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 2 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.3333333333333333,
-      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "composition",
-        "labelPresence"
-      ]
-    },
-    {
       "slug": "rubidium",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
@@ -113215,38 +113234,13 @@
       ]
     },
     {
-      "slug": "imiglucerase",
+      "slug": "equine-thymocyte-immune-globulin",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
       "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
       "sources": [
         "composition",
-        "labelPresence"
-      ]
-    },
-    {
-      "slug": "alirocumab",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 3 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.25,
-      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "composition",
-        "sourceConsensus",
-        "labelPresence"
-      ]
-    },
-    {
-      "slug": "rose-bengal",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 4 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.2,
-      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "recordedUses",
-        "mechanism",
-        "productVariants",
         "labelPresence"
       ]
     },
@@ -113261,6 +113255,45 @@
         "pharmacokinetics",
         "productVariants",
         "labelPresence"
+      ]
+    },
+    {
+      "slug": "technetium-tc-99m-tetrofosmin-kit",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 4 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.2,
+      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "recordedUses",
+        "mechanism",
+        "populationStatements",
+        "productVariants"
+      ]
+    },
+    {
+      "slug": "technetium-tc-99m-sulfur-colloid",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 4 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.2,
+      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "recordedUses",
+        "mechanism",
+        "populationStatements",
+        "labelPresence"
+      ]
+    },
+    {
+      "slug": "albumin-iodinated-i-131-serum",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 4 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.2,
+      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "recordedUses",
+        "pharmacokinetics",
+        "productVariants",
+        "supplementMarket"
       ]
     },
     {

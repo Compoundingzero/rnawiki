@@ -161,20 +161,41 @@ function toValue(
 /* Pharmacokinetic patterns                                                                     */
 /* ------------------------------------------------------------------------------------------- */
 
+/**
+ * A number as a label prints it, thousands separators included.
+ *
+ * Every quantity pattern below used `\d+(?:\.\d+)?`, which cannot match a separator and therefore
+ * starts matching *after* one. On "the estimated apparent volume of distribution is 5,800 L" it
+ * matched "800 L", and the engine's excerpt check passed it because "800" is a substring of "5800".
+ * A reader would have been shown a number seven times too small with the correct sentence beside
+ * it. Written once here so no pattern can drift back.
+ */
+const PRINTED_NUMBER = String.raw`\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?`
+
 /** "half-life ... of 14 hours", "elimination half-life is approximately 3 to 5 hours". */
-const HALF_LIFE_HOURS =
-  /half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:\d+(?:\.\d+)?)(?:\s*(?:to|-|–)\s*\d+(?:\.\d+)?)?\s*(?:hours?|hrs?|h)\b)/iu
-const HALF_LIFE_DAYS =
-  /half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:\d+(?:\.\d+)?)(?:\s*(?:to|-|–)\s*\d+(?:\.\d+)?)?\s*days?\b)/iu
+const HALF_LIFE_HOURS = new RegExp(
+  String.raw`half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*(?:hours?|hrs?|h)\b)`,
+  'iu',
+)
+const HALF_LIFE_DAYS = new RegExp(
+  String.raw`half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*days?\b)`,
+  'iu',
+)
 /** "bioavailability is approximately 89%", "absolute bioavailability of 40%". */
-const BIOAVAILABILITY =
-  /bioavailability[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:\d+(?:\.\d+)?)(?:\s*(?:to|-|–)\s*\d+(?:\.\d+)?)?\s*%)/iu
+const BIOAVAILABILITY = new RegExp(
+  String.raw`bioavailability[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*%)`,
+  'iu',
+)
 /** "peak plasma concentrations ... within 1 to 2 hours"; Tmax phrasing varies widely. */
-const TMAX_HOURS =
-  /(?:peak\s+(?:plasma\s+)?concentrations?|Tmax|T\s?max)[^.;]{0,80}?\b(?:is|was|of|at|within|after|occur(?:s|red)?(?:\s+at)?|reached(?:\s+(?:in|at|within))?|approximately|about|~)\s*((?:\d+(?:\.\d+)?)(?:\s*(?:to|-|–)\s*\d+(?:\.\d+)?)?\s*(?:hours?|hrs?|h)\b)/iu
+const TMAX_HOURS = new RegExp(
+  String.raw`(?:peak\s+(?:plasma\s+)?concentrations?|Tmax|T\s?max)[^.;]{0,80}?\b(?:is|was|of|at|within|after|occur(?:s|red)?(?:\s+at)?|reached(?:\s+(?:in|at|within))?|approximately|about|~)\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*(?:hours?|hrs?|h)\b)`,
+  'iu',
+)
 /** "is 87% bound to plasma proteins", "protein binding is greater than 99%". */
-const PROTEIN_BINDING =
-  /(?:protein[- ]bind\w*|bound to (?:human )?(?:plasma|serum) proteins?)[^.;]{0,60}?\b(?:is|was|of|approximately|about|~|>|greater than)?\s*((?:>\s*)?(?:\d+(?:\.\d+)?)(?:\s*(?:to|-|–)\s*\d+(?:\.\d+)?)?\s*%)/iu
+const PROTEIN_BINDING = new RegExp(
+  String.raw`(?:protein[- ]bind\w*|bound to (?:human )?(?:plasma|serum) proteins?)[^.;]{0,60}?\b(?:is|was|of|approximately|about|~|>|greater than)?\s*((?:>\s*)?(?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*%)`,
+  'iu',
+)
 /**
  * Labels often state the complement instead: "highly bound to plasma proteins, with plasma free
  * fractions of 1.3%". The bound-protein pattern would happily capture that 1.3% and record a
@@ -187,8 +208,10 @@ const FREE_FRACTION_SENTENCE = /\b(?:un-?bound|free fraction|free fractions)\b/i
  * weight-normalised form "0.14 L/kg". The per-kilogram suffix is part of the capture: dropping it
  * would turn 0.14 L/kg into "0.14 L" and silently mis-state the value by orders of magnitude.
  */
-const VOLUME_OF_DISTRIBUTION =
-  /volume of distribution[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:\d+(?:\.\d+)?)(?:\s*(?:to|-|–)\s*\d+(?:\.\d+)?)?\s*(?:L|liters?|litres?)(?:\s*\/\s*kg)?)\b/iu
+const VOLUME_OF_DISTRIBUTION = new RegExp(
+  String.raw`volume of distribution[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*(?:L|liters?|litres?)(?:\s*\/\s*kg)?)\b`,
+  'iu',
+)
 
 const HOURS_PER_DAY = 24
 
@@ -470,9 +493,18 @@ export function extractMechanism(
 const MOLECULAR_FORMULA =
   /(?:molecular|empirical|chemical)\s+formula\s*(?:of|is|:|=)?\s*((?:[A-Z][a-z]?\s?\d{0,3}\s?){2,}(?:\s*[·∙•.]\s*(?:\d\s*)?(?:[A-Z][a-z]?\s?\d{0,3}\s?)+)?)/u
 
-/** "molecular weight of 396.44" and "molecular weight is 396.44 g/mol". */
-const MOLECULAR_WEIGHT =
-  /molecular weight[^.;:]{0,30}?(?:is|of|[:=])\s*(?:approximately\s*|about\s*|~)?((?:\d{1,3}(?:,\d{3})*|\d+)(?:\.\d+)?(?:\s*(?:g\s*\/\s*mol|daltons?|Da))?)/iu
+/**
+ * "molecular weight of 396.44" and "molecular weight is 396.44 g/mol".
+ *
+ * The number comes from `PRINTED_NUMBER` rather than from a local alternation. The local one was
+ * `(?:\d{1,3}(?:,\d{3})*|\d+)`, whose first branch matches happily with zero comma groups — so on
+ * an unseparated "1355.38" it took the first three digits, stopped, and recorded vitamin B12 as
+ * weighing 135 g/mol. 107 records across the corpus carried a number truncated this way.
+ */
+const MOLECULAR_WEIGHT = new RegExp(
+  String.raw`molecular weight[^.;:]{0,30}?(?:is|of|[:=])\s*(?:approximately\s*|about\s*|~)?((?:${PRINTED_NUMBER})(?:\s*(?:g\s*\/\s*mol|daltons?|Da))?)`,
+  'iu',
+)
 
 /** Below this a "formula" match is an abbreviation; above it the pattern ran past the formula. */
 const MIN_MOLECULAR_WEIGHT = 30
@@ -490,7 +522,16 @@ export function extractMolecularIdentity(
   const formulaHit = findPattern(description, MOLECULAR_FORMULA)
   if (formulaHit) {
     // A formula must contain at least one element followed by a count, else the pattern caught prose.
-    const formula = formulaHit.display.replace(/\s+/gu, '').replace(/[.,;]+$/u, '')
+    //
+    // The salt or hydrate separator is written back as a middle dot. Labels print it as a full
+    // stop — "C 26 H 29 Cl 2 N 5 O 3 .2H 2 O" for bosutinib monohydrate — and de-spacing turned
+    // that into "O3.2H2O", where "3.2" reads as a decimal. The excerpt check then refused the
+    // record for a number the label never printed, and bosutinib and elacestrant lost their
+    // chemical identity to a punctuation mark.
+    const formula = formulaHit.display
+      .replace(/\s+/gu, '')
+      .replace(/[.,;]+$/u, '')
+      .replace(/(?<=[A-Za-z0-9])\.(?=\d*[A-Z])/gu, '·')
     if (MOLECULAR_FORMULA_SHAPE.test(formula) && /\d/u.test(formula)) {
       const value = toValue({ ...formulaHit, display: formula }, source)
       if (value) identity.molecularFormula = value

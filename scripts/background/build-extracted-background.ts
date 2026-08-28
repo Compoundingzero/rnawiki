@@ -280,6 +280,13 @@ async function main() {
     const report = runBackgroundIntelligence(background)
     if (!report.passed) {
       stats.engineRejected += 1
+      // Reported rather than counted. A rejection is the engine catching an extractor that
+      // produced something structurally wrong, and a silent tally of them is a bug nobody reads.
+      console.error(
+        `[extract] rejected ${row.slug}: ${report.findings
+          .map((finding) => `${finding.code} at ${finding.path} — ${finding.message}`)
+          .join(' · ')}`,
+      )
       continue
     }
 

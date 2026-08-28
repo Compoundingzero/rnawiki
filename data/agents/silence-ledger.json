@@ -9757,6 +9757,131 @@
         "silent": 9
       },
       {
+        "slug": "alirocumab",
+        "name": "alirocumab",
+        "entries": [
+          {
+            "questionId": "half_life",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "bioavailability",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "t_max",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "protein_binding",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "volume_of_distribution",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "mechanism_of_action",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "molecular_identity",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "metabolic_handling",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "boxed_warning",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "contraindications",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "most_common_adverse_reactions",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "population_pediatric",
+            "state": "NOT_ESTABLISHED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ]
+          },
+          {
+            "questionId": "population_geriatric",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_pregnancy",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_lactation",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_hepatic_impairment",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_renal_impairment",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:446f6b5c-0dd4-44ff-9bc2-c2b41f2806b4"
+            ],
+            "mentionedWithoutFinding": true
+          }
+        ],
+        "recorded": 12,
+        "notEstablished": 1,
+        "silent": 4
+      },
+      {
         "slug": "aliskiren",
         "name": "aliskiren",
         "entries": [
@@ -43259,6 +43384,132 @@
         "recorded": 14,
         "notEstablished": 0,
         "silent": 3
+      },
+      {
+        "slug": "bosutinib",
+        "name": "bosutinib",
+        "entries": [
+          {
+            "questionId": "half_life",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "bioavailability",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ]
+          },
+          {
+            "questionId": "t_max",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "protein_binding",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ]
+          },
+          {
+            "questionId": "volume_of_distribution",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "mechanism_of_action",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ]
+          },
+          {
+            "questionId": "molecular_identity",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ]
+          },
+          {
+            "questionId": "metabolic_handling",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ]
+          },
+          {
+            "questionId": "boxed_warning",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "contraindications",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ]
+          },
+          {
+            "questionId": "most_common_adverse_reactions",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ]
+          },
+          {
+            "questionId": "population_pediatric",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_geriatric",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_pregnancy",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_lactation",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_hepatic_impairment",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_renal_impairment",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:cb7a8d1d-07c0-462d-960f-214d44705e76"
+            ],
+            "mentionedWithoutFinding": true
+          }
+        ],
+        "recorded": 13,
+        "notEstablished": 0,
+        "silent": 4
       },
       {
         "slug": "botulinum-toxin-type-a",
@@ -103967,6 +104218,128 @@
         "silent": 8
       },
       {
+        "slug": "elacestrant",
+        "name": "elacestrant",
+        "entries": [
+          {
+            "questionId": "half_life",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "bioavailability",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "t_max",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "protein_binding",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "volume_of_distribution",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "mechanism_of_action",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "molecular_identity",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "metabolic_handling",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "boxed_warning",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "contraindications",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "most_common_adverse_reactions",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "population_pediatric",
+            "state": "NOT_ESTABLISHED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ]
+          },
+          {
+            "questionId": "population_geriatric",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_pregnancy",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_lactation",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_hepatic_impairment",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:aa66ae5c-2bd2-4444-8178-b55651e054ef"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_renal_impairment",
+            "state": "SILENT",
+            "sources": []
+          }
+        ],
+        "recorded": 11,
+        "notEstablished": 1,
+        "silent": 5
+      },
+      {
         "slug": "eladocagene-exuparvovec",
         "name": "eladocagene exuparvovec",
         "entries": [
@@ -152606,6 +152979,117 @@
         "silent": 7
       },
       {
+        "slug": "imiglucerase",
+        "name": "imiglucerase",
+        "entries": [
+          {
+            "questionId": "half_life",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "bioavailability",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "t_max",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "protein_binding",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "volume_of_distribution",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:df60f030-866b-4374-a31f-8ae3f6b45c38"
+            ]
+          },
+          {
+            "questionId": "mechanism_of_action",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:df60f030-866b-4374-a31f-8ae3f6b45c38"
+            ]
+          },
+          {
+            "questionId": "molecular_identity",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "metabolic_handling",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "boxed_warning",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:df60f030-866b-4374-a31f-8ae3f6b45c38"
+            ]
+          },
+          {
+            "questionId": "contraindications",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "most_common_adverse_reactions",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "population_pediatric",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:df60f030-866b-4374-a31f-8ae3f6b45c38"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_geriatric",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:df60f030-866b-4374-a31f-8ae3f6b45c38"
+            ]
+          },
+          {
+            "questionId": "population_pregnancy",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:df60f030-866b-4374-a31f-8ae3f6b45c38"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_lactation",
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:df60f030-866b-4374-a31f-8ae3f6b45c38"
+            ],
+            "mentionedWithoutFinding": true
+          },
+          {
+            "questionId": "population_hepatic_impairment",
+            "state": "SILENT",
+            "sources": []
+          },
+          {
+            "questionId": "population_renal_impairment",
+            "state": "SILENT",
+            "sources": []
+          }
+        ],
+        "recorded": 7,
+        "notEstablished": 0,
+        "silent": 10
+      },
+      {
         "slug": "imipenem",
         "name": "imipenem",
         "entries": [
@@ -199505,8 +199989,10 @@
           },
           {
             "questionId": "volume_of_distribution",
-            "state": "SILENT",
-            "sources": []
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:1634528a-30c5-4309-acc8-4c0293ae14ae"
+            ]
           },
           {
             "questionId": "mechanism_of_action",
@@ -199578,9 +200064,9 @@
             "sources": []
           }
         ],
-        "recorded": 4,
+        "recorded": 5,
         "notEstablished": 0,
-        "silent": 13
+        "silent": 12
       },
       {
         "slug": "moexipril",
@@ -302828,8 +303314,10 @@
           },
           {
             "questionId": "volume_of_distribution",
-            "state": "SILENT",
-            "sources": []
+            "state": "RECORDED",
+            "sources": [
+              "FDA_LABEL:c1d50f5c-4202-27f3-4798-a9708114ddea"
+            ]
           },
           {
             "questionId": "mechanism_of_action",
@@ -302918,9 +303406,9 @@
             "mentionedWithoutFinding": true
           }
         ],
-        "recorded": 11,
+        "recorded": 12,
         "notEstablished": 1,
-        "silent": 5
+        "silent": 4
       },
       {
         "slug": "tradipitant",
@@ -343543,100 +344031,6 @@
         "silent": 17
       },
       {
-        "slug": "alirocumab",
-        "name": "alirocumab",
-        "entries": [
-          {
-            "questionId": "half_life",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "bioavailability",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "t_max",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "protein_binding",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "volume_of_distribution",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "mechanism_of_action",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "molecular_identity",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "metabolic_handling",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "boxed_warning",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "contraindications",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "most_common_adverse_reactions",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pediatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_geriatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pregnancy",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_lactation",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_hepatic_impairment",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_renal_impairment",
-            "state": "SILENT",
-            "sources": []
-          }
-        ],
-        "recorded": 0,
-        "notEstablished": 0,
-        "silent": 17
-      },
-      {
         "slug": "allantoin",
         "name": "allantoin",
         "entries": [
@@ -350877,100 +351271,6 @@
       {
         "slug": "ilex-aquifolium-flowering-top",
         "name": "ilex aquifolium flowering top",
-        "entries": [
-          {
-            "questionId": "half_life",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "bioavailability",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "t_max",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "protein_binding",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "volume_of_distribution",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "mechanism_of_action",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "molecular_identity",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "metabolic_handling",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "boxed_warning",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "contraindications",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "most_common_adverse_reactions",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pediatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_geriatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pregnancy",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_lactation",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_hepatic_impairment",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_renal_impairment",
-            "state": "SILENT",
-            "sources": []
-          }
-        ],
-        "recorded": 0,
-        "notEstablished": 0,
-        "silent": 17
-      },
-      {
-        "slug": "imiglucerase",
-        "name": "imiglucerase",
         "entries": [
           {
             "questionId": "half_life",
@@ -372637,102 +372937,6 @@
             "state": "RECORDED",
             "sources": [
               "PUBCHEM:11073337"
-            ]
-          },
-          {
-            "questionId": "metabolic_handling",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "boxed_warning",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "contraindications",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "most_common_adverse_reactions",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pediatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_geriatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pregnancy",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_lactation",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_hepatic_impairment",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_renal_impairment",
-            "state": "SILENT",
-            "sources": []
-          }
-        ],
-        "recorded": 1,
-        "notEstablished": 0,
-        "silent": 16
-      },
-      {
-        "slug": "bosutinib",
-        "name": "bosutinib",
-        "entries": [
-          {
-            "questionId": "half_life",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "bioavailability",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "t_max",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "protein_binding",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "volume_of_distribution",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "mechanism_of_action",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "molecular_identity",
-            "state": "RECORDED",
-            "sources": [
-              "PUBCHEM:5328940"
             ]
           },
           {
@@ -406717,102 +406921,6 @@
             "state": "RECORDED",
             "sources": [
               "PUBCHEM:5312529"
-            ]
-          },
-          {
-            "questionId": "metabolic_handling",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "boxed_warning",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "contraindications",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "most_common_adverse_reactions",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pediatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_geriatric",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_pregnancy",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_lactation",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_hepatic_impairment",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "population_renal_impairment",
-            "state": "SILENT",
-            "sources": []
-          }
-        ],
-        "recorded": 1,
-        "notEstablished": 0,
-        "silent": 16
-      },
-      {
-        "slug": "elacestrant",
-        "name": "elacestrant",
-        "entries": [
-          {
-            "questionId": "half_life",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "bioavailability",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "t_max",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "protein_binding",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "volume_of_distribution",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "mechanism_of_action",
-            "state": "SILENT",
-            "sources": []
-          },
-          {
-            "questionId": "molecular_identity",
-            "state": "RECORDED",
-            "sources": [
-              "PUBCHEM:23642301"
             ]
           },
           {
@@ -786103,301 +786211,321 @@
       {
         "questionId": "molecular_identity",
         "prompt": "Do the recorded documents state a molecular formula or molecular weight?",
-        "recorded": 3004,
+        "recorded": 3005,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 4904,
+        "silent": 4903,
         "medicines": 7908,
-        "addressedShare": 0.3798684876074861,
-        "silentShare": 0.620131512392514,
-        "gapScore": 1862.8750632271117,
+        "addressedShare": 0.37999494183105714,
+        "silentShare": 0.6200050581689428,
+        "gapScore": 1863.115199797673,
         "recordedByTier": {
-          "curated": 1694,
-          "extracted": 1310
+          "curated": 1692,
+          "extracted": 1313
         },
         "silentByTier": {
           "curated": 2973,
-          "extracted": 1931
+          "extracted": 1930
         }
       },
       {
         "questionId": "population_pregnancy",
         "prompt": "Do the recorded documents address use during pregnancy?",
-        "recorded": 1681,
-        "recordedMentionOnly": 1629,
+        "recorded": 1685,
+        "recordedMentionOnly": 1633,
         "notEstablished": 21,
-        "silent": 6206,
+        "silent": 6202,
         "medicines": 7908,
-        "addressedShare": 0.2152250885179565,
-        "silentShare": 0.7847749114820435,
-        "gapScore": 1335.686899342438,
+        "addressedShare": 0.21573090541224077,
+        "silentShare": 0.7842690945877593,
+        "gapScore": 1337.9630753667172,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 1681
+          "extracted": 1685
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 1539
+          "curated": 4665,
+          "extracted": 1537
         }
       },
       {
         "questionId": "population_pediatric",
         "prompt": "Do the recorded documents address a pediatric population?",
-        "recorded": 473,
-        "recordedMentionOnly": 383,
-        "notEstablished": 1228,
-        "silent": 6207,
+        "recorded": 475,
+        "recordedMentionOnly": 385,
+        "notEstablished": 1230,
+        "silent": 6203,
         "medicines": 7908,
-        "addressedShare": 0.21509863429438544,
-        "silentShare": 0.7849013657056145,
-        "gapScore": 1335.1172230652505,
+        "addressedShare": 0.2156044511886697,
+        "silentShare": 0.7843955488113303,
+        "gapScore": 1337.394410723318,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 473
+          "extracted": 475
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 1540
+          "curated": 4665,
+          "extracted": 1538
         }
       },
       {
         "questionId": "population_lactation",
         "prompt": "Do the recorded documents address use during lactation?",
-        "recorded": 1662,
-        "recordedMentionOnly": 1656,
+        "recorded": 1666,
+        "recordedMentionOnly": 1660,
         "notEstablished": 14,
-        "silent": 6232,
+        "silent": 6228,
         "medicines": 7908,
-        "addressedShare": 0.21193727870510876,
-        "silentShare": 0.7880627212948913,
-        "gapScore": 1320.7931208902378,
+        "addressedShare": 0.212443095599393,
+        "silentShare": 0.787556904400607,
+        "gapScore": 1323.0955993930197,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 1662
+          "extracted": 1666
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 1565
+          "curated": 4665,
+          "extracted": 1563
         }
       },
       {
         "questionId": "population_geriatric",
         "prompt": "Do the recorded documents address a geriatric population?",
-        "recorded": 1532,
-        "recordedMentionOnly": 943,
+        "recorded": 1536,
+        "recordedMentionOnly": 946,
         "notEstablished": 20,
-        "silent": 6356,
+        "silent": 6352,
         "medicines": 7908,
-        "addressedShare": 0.19625695498229642,
-        "silentShare": 0.8037430450177036,
-        "gapScore": 1247.409205867476,
+        "addressedShare": 0.19676277187658067,
+        "silentShare": 0.8032372281234194,
+        "gapScore": 1249.8371269600405,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 1532
+          "extracted": 1536
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 1689
+          "curated": 4665,
+          "extracted": 1687
         }
       },
       {
         "questionId": "mechanism_of_action",
         "prompt": "Do the recorded documents describe how the medicine acts?",
-        "recorded": 1546,
+        "recorded": 1550,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 6362,
+        "silent": 6358,
         "medicines": 7908,
-        "addressedShare": 0.19549822964087,
-        "silentShare": 0.80450177035913,
-        "gapScore": 1243.759736975215,
+        "addressedShare": 0.19600404653515427,
+        "silentShare": 0.8039959534648458,
+        "gapScore": 1246.1937278705109,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 1546
+          "extracted": 1550
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 1695
+          "curated": 4665,
+          "extracted": 1693
         }
       },
       {
         "questionId": "contraindications",
         "prompt": "Do the recorded documents list contraindications?",
-        "recorded": 1190,
+        "recorded": 1192,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 6718,
+        "silent": 6716,
         "medicines": 7908,
-        "addressedShare": 0.15048052604957005,
-        "silentShare": 0.8495194739504299,
-        "gapScore": 1010.9281740010116,
+        "addressedShare": 0.1507334344967122,
+        "silentShare": 0.8492665655032878,
+        "gapScore": 1012.3257460799191,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 1190
+          "extracted": 1192
         },
         "silentByTier": {
-          "curated": 4667,
+          "curated": 4665,
           "extracted": 2051
         }
       },
       {
         "questionId": "half_life",
         "prompt": "Do the recorded documents state an elimination half-life?",
-        "recorded": 1029,
+        "recorded": 1031,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 6879,
+        "silent": 6877,
         "medicines": 7908,
-        "addressedShare": 0.13012139605462822,
-        "silentShare": 0.8698786039453718,
-        "gapScore": 895.1050834597875,
+        "addressedShare": 0.13037430450177037,
+        "silentShare": 0.8696256954982297,
+        "gapScore": 896.5840920586749,
         "recordedByTier": {
           "curated": 106,
-          "extracted": 923
+          "extracted": 925
         },
         "silentByTier": {
-          "curated": 4561,
+          "curated": 4559,
           "extracted": 2318
         }
       },
       {
         "questionId": "most_common_adverse_reactions",
         "prompt": "Do the recorded documents list the most common adverse reactions?",
-        "recorded": 828,
+        "recorded": 829,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 7080,
+        "silent": 7079,
         "medicines": 7908,
-        "addressedShare": 0.1047040971168437,
-        "silentShare": 0.8952959028831563,
-        "gapScore": 741.3050075872534,
+        "addressedShare": 0.10483055134041477,
+        "silentShare": 0.8951694486595853,
+        "gapScore": 742.0954729387962,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 828
+          "extracted": 829
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 2413
+          "curated": 4665,
+          "extracted": 2414
         }
       },
       {
         "questionId": "volume_of_distribution",
         "prompt": "Do the recorded documents state a volume of distribution?",
-        "recorded": 687,
+        "recorded": 692,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 7221,
+        "silent": 7216,
         "medicines": 7908,
-        "addressedShare": 0.08687405159332322,
-        "silentShare": 0.9131259484066768,
-        "gapScore": 627.317526555387,
+        "addressedShare": 0.08750632271117856,
+        "silentShare": 0.9124936772888215,
+        "gapScore": 631.4456246838645,
         "recordedByTier": {
           "curated": 61,
-          "extracted": 626
+          "extracted": 631
         },
         "silentByTier": {
-          "curated": 4606,
-          "extracted": 2615
+          "curated": 4604,
+          "extracted": 2612
         }
       },
       {
         "questionId": "metabolic_handling",
         "prompt": "Do the recorded documents name an enzyme or transporter that handles the medicine?",
-        "recorded": 663,
+        "recorded": 666,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 7245,
+        "silent": 7242,
         "medicines": 7908,
-        "addressedShare": 0.0838391502276176,
-        "silentShare": 0.9161608497723824,
-        "gapScore": 607.4146433990895,
+        "addressedShare": 0.08421851289833081,
+        "silentShare": 0.9157814871016692,
+        "gapScore": 609.9104704097117,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 663
+          "extracted": 666
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 2578
+          "curated": 4665,
+          "extracted": 2577
         }
       },
       {
         "questionId": "boxed_warning",
         "prompt": "Do the recorded documents carry a boxed warning?",
-        "recorded": 578,
+        "recorded": 579,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 7330,
+        "silent": 7329,
         "medicines": 7908,
-        "addressedShare": 0.07309054122407689,
-        "silentShare": 0.9269094587759231,
-        "gapScore": 535.7536671724836,
+        "addressedShare": 0.07321699544764795,
+        "silentShare": 0.9267830045523521,
+        "gapScore": 536.6073596358118,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 578
+          "extracted": 579
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 2663
+          "curated": 4665,
+          "extracted": 2664
         }
       },
       {
         "questionId": "population_renal_impairment",
         "prompt": "Do the recorded documents address renal impairment?",
-        "recorded": 525,
-        "recordedMentionOnly": 513,
+        "recorded": 527,
+        "recordedMentionOnly": 515,
         "notEstablished": 3,
-        "silent": 7380,
+        "silent": 7378,
         "medicines": 7908,
-        "addressedShare": 0.06676783004552352,
-        "silentShare": 0.9332321699544764,
-        "gapScore": 492.74658573596355,
+        "addressedShare": 0.06702073849266565,
+        "silentShare": 0.9329792615073343,
+        "gapScore": 494.4790085988872,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 525
+          "extracted": 527
         },
         "silentByTier": {
-          "curated": 4667,
+          "curated": 4665,
           "extracted": 2713
         }
       },
       {
         "questionId": "population_hepatic_impairment",
         "prompt": "Do the recorded documents address hepatic impairment?",
-        "recorded": 518,
-        "recordedMentionOnly": 509,
+        "recorded": 521,
+        "recordedMentionOnly": 512,
         "notEstablished": 6,
-        "silent": 7384,
+        "silent": 7381,
         "medicines": 7908,
-        "addressedShare": 0.06626201315123925,
-        "silentShare": 0.9337379868487607,
-        "gapScore": 489.2787051087506,
+        "addressedShare": 0.06664137582195245,
+        "silentShare": 0.9333586241780476,
+        "gapScore": 491.87999494183106,
         "recordedByTier": {
           "curated": 0,
-          "extracted": 518
+          "extracted": 521
         },
         "silentByTier": {
-          "curated": 4667,
-          "extracted": 2717
+          "curated": 4665,
+          "extracted": 2716
         }
       },
       {
         "questionId": "protein_binding",
         "prompt": "Do the recorded documents state plasma protein binding?",
-        "recorded": 463,
+        "recorded": 465,
         "recordedMentionOnly": 0,
         "notEstablished": 0,
-        "silent": 7445,
+        "silent": 7443,
         "medicines": 7908,
-        "addressedShare": 0.05854830551340415,
-        "silentShare": 0.9414516944865958,
-        "gapScore": 435.8921345472939,
+        "addressedShare": 0.05880121396054628,
+        "silentShare": 0.9411987860394537,
+        "gapScore": 437.65743550834594,
         "recordedByTier": {
           "curated": 89,
-          "extracted": 374
+          "extracted": 376
         },
         "silentByTier": {
-          "curated": 4578,
+          "curated": 4576,
           "extracted": 2867
+        }
+      },
+      {
+        "questionId": "bioavailability",
+        "prompt": "Do the recorded documents state a bioavailability?",
+        "recorded": 415,
+        "recordedMentionOnly": 0,
+        "notEstablished": 0,
+        "silent": 7493,
+        "medicines": 7908,
+        "addressedShare": 0.05247850278199292,
+        "silentShare": 0.947521497218007,
+        "gapScore": 393.22142134547295,
+        "recordedByTier": {
+          "curated": 67,
+          "extracted": 348
+        },
+        "silentByTier": {
+          "curated": 4598,
+          "extracted": 2895
         }
       },
       {
@@ -786416,28 +786544,8 @@
           "extracted": 321
         },
         "silentByTier": {
-          "curated": 4575,
-          "extracted": 2920
-        }
-      },
-      {
-        "questionId": "bioavailability",
-        "prompt": "Do the recorded documents state a bioavailability?",
-        "recorded": 412,
-        "recordedMentionOnly": 0,
-        "notEstablished": 0,
-        "silent": 7496,
-        "medicines": 7908,
-        "addressedShare": 0.05209914011127972,
-        "silentShare": 0.9479008598887203,
-        "gapScore": 390.5351542741528,
-        "recordedByTier": {
-          "curated": 67,
-          "extracted": 345
-        },
-        "silentByTier": {
-          "curated": 4600,
-          "extracted": 2896
+          "curated": 4573,
+          "extracted": 2922
         }
       }
     ],
@@ -786445,19 +786553,29 @@
       "medicines": 7908,
       "questions": 17,
       "pairs": 134436,
-      "recorded": 17204,
-      "notEstablished": 1292,
-      "silent": 115940,
-      "extractedRecords": 3241,
+      "recorded": 17247,
+      "notEstablished": 1294,
+      "silent": 115895,
+      "extractedRecords": 3243,
       "mixedRecordedStates": 0
     }
   },
   "queue": [
     {
+      "slug": "osilodrostat",
+      "reason": "COVERAGE_GAP",
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.332495574102175,
+      "basis": "Silent on a question 38.0% of records answer, in a record that answers 14 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "sources": [
+        "FDA_LABEL:f3a5ec24-63c3-4d83-b1c0-6c550fbe7ae2"
+      ]
+    },
+    {
       "slug": "tinidazole",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.33238492665655034,
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.332495574102175,
       "basis": "Silent on a question 38.0% of records answer, in a record that answers 14 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:95ab57b2-5d7e-4986-abcd-65edf1728383"
@@ -786466,8 +786584,8 @@
     {
       "slug": "vardenafil",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.33238492665655034,
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.332495574102175,
       "basis": "Silent on a question 38.0% of records answer, in a record that answers 14 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:31be68b0-ac7e-42d0-9435-1f0a329b63d8"
@@ -786476,28 +786594,18 @@
     {
       "slug": "levoketoconazole",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.33238492665655034,
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.332495574102175,
       "basis": "Silent on a question 38.0% of records answer, in a record that answers 14 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:d4c5fead-bc4a-fb02-e053-2a95a90ae4fc"
       ]
     },
     {
-      "slug": "osilodrostat",
-      "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.33238492665655034,
-      "basis": "Silent on a question 38.0% of records answer, in a record that answers 14 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
-      "sources": [
-        "FDA_LABEL:f3a5ec24-63c3-4d83-b1c0-6c550fbe7ae2"
-      ]
-    },
-    {
       "slug": "daprodustat",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.33238492665655034,
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.332495574102175,
       "basis": "Silent on a question 38.0% of records answer, in a record that answers 14 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:d82aa06e-5a33-4844-99b7-4701313455a4"
@@ -786506,58 +786614,58 @@
     {
       "slug": "zuranolone",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.30864314618108246,
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.3087458902377339,
       "basis": "Silent on a question 38.0% of records answer, in a record that answers 13 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:f18e53b0-d0bb-422d-8de7-ab64b7292b29"
       ]
     },
     {
-      "slug": "nilotinib",
-      "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.30864314618108246,
-      "basis": "Silent on a question 38.0% of records answer, in a record that answers 13 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
-      "sources": [
-        "FDA_LABEL:13b46e09-62d2-4ce9-b3c0-deafcb1f1842"
-      ]
-    },
-    {
       "slug": "fenfluramine",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3004 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.30864314618108246,
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.3087458902377339,
       "basis": "Silent on a question 38.0% of records answer, in a record that answers 13 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:e88f360e-33ad-4cd6-b2de-5ef885857c5d"
       ]
     },
     {
-      "slug": "silodosin",
+      "slug": "nilotinib",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.17219903894790087,
-      "basis": "Silent on a question 21.2% of records answer, in a record that answers 13 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents state a molecular formula or molecular weight? This record holds no answer, while 3005 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.3087458902377339,
+      "basis": "Silent on a question 38.0% of records answer, in a record that answers 13 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
-        "FDA_LABEL:322ce16e-485f-4fd2-bb30-6b4776bc9e85"
+        "FDA_LABEL:13b46e09-62d2-4ce9-b3c0-deafcb1f1842"
       ]
     },
     {
       "slug": "deferasirox",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.17219903894790087,
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1726100151745068,
       "basis": "Silent on a question 21.2% of records answer, in a record that answers 13 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:e365e748-4b61-94f2-fb7a-f81919eaccaa"
       ]
     },
     {
+      "slug": "silodosin",
+      "reason": "COVERAGE_GAP",
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1726100151745068,
+      "basis": "Silent on a question 21.2% of records answer, in a record that answers 13 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "sources": [
+        "FDA_LABEL:322ce16e-485f-4fd2-bb30-6b4776bc9e85"
+      ]
+    },
+    {
       "slug": "perampanel",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.15895295902883155,
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.15933232169954475,
       "basis": "Silent on a question 21.2% of records answer, in a record that answers 12 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:71cf3309-e182-473c-8b0b-280cabd0e122"
@@ -786566,9 +786674,9 @@
     {
       "slug": "benznidazole",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.1471927162367223,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 12 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1475720789074355,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 12 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:8983d6a0-f63f-4f8e-bba4-38223f39e29b"
       ]
@@ -786576,109 +786684,109 @@
     {
       "slug": "tovorafenib",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.1471927162367223,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 12 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1475720789074355,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 12 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:ea3a9631-3a66-6a7c-e053-2995a90ae2ad"
       ]
     },
     {
-      "slug": "nifurtimox",
-      "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.1349266565503288,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
-      "sources": [
-        "FDA_LABEL:90d09714-a8b1-4696-8ada-f99dc54d0721"
-      ]
-    },
-    {
-      "slug": "sotalol",
-      "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.1349266565503288,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
-      "sources": [
-        "FDA_LABEL:6f3145d7-f3c9-4456-a77d-d04c54f24668"
-      ]
-    },
-    {
       "slug": "elagolix-sodium-estradiol-norethindrone",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.1349266565503288,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1352744056651492,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:99f6eee7-7e52-6999-7eb8-488d06dd1710"
       ]
     },
     {
-      "slug": "candesartan-cilexetil",
+      "slug": "sotalol",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.1349266565503288,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1352744056651492,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
-        "FDA_LABEL:880f685f-be01-42f4-9e76-ebd1fcfb1f77"
+        "FDA_LABEL:6f3145d7-f3c9-4456-a77d-d04c54f24668"
       ]
     },
     {
       "slug": "exemestane",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.1349266565503288,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1352744056651492,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:1841ec12-3f4f-4b87-b719-fd0b4d9eaffb"
       ]
     },
     {
-      "slug": "imetelstat",
+      "slug": "candesartan-cilexetil",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.13246079919069298,
-      "basis": "Silent on a question 21.2% of records answer, in a record that answers 10 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1352744056651492,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
-        "FDA_LABEL:b0fab7ca-e578-43c5-9df6-bdaff4182257"
+        "FDA_LABEL:880f685f-be01-42f4-9e76-ebd1fcfb1f77"
+      ]
+    },
+    {
+      "slug": "nifurtimox",
+      "reason": "COVERAGE_GAP",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1352744056651492,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 11 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "sources": [
+        "FDA_LABEL:90d09714-a8b1-4696-8ada-f99dc54d0721"
       ]
     },
     {
       "slug": "levorphanol",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.13246079919069298,
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.13277693474962063,
       "basis": "Silent on a question 21.2% of records answer, in a record that answers 10 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:6e7ca993-c8b9-4510-a2b0-5bcc678d2571"
       ]
     },
     {
+      "slug": "imetelstat",
+      "reason": "COVERAGE_GAP",
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.13277693474962063,
+      "basis": "Silent on a question 21.2% of records answer, in a record that answers 10 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "sources": [
+        "FDA_LABEL:b0fab7ca-e578-43c5-9df6-bdaff4182257"
+      ]
+    },
+    {
       "slug": "ceritinib",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.13246079919069298,
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.13277693474962063,
       "basis": "Silent on a question 21.2% of records answer, in a record that answers 10 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:fff5d805-4ffd-4e8e-8e63-6f129697563e"
       ]
     },
     {
-      "slug": "elagolix",
+      "slug": "lonafarnib",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1552 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.12266059686393527,
-      "basis": "Silent on a question 19.6% of records answer, in a record that answers 10 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a geriatric population? This record holds no answer, while 1556 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.12297673242286292,
+      "basis": "Silent on a question 19.7% of records answer, in a record that answers 10 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
-        "FDA_LABEL:a86757b3-09c5-fd3b-1223-244e94f50a66"
+        "FDA_LABEL:97391d0c-943e-4c5a-8423-68e163aa7f50"
       ]
     },
     {
       "slug": "bleomycin",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.12106411229135053,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 9 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.12134863429438543,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 9 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:640602f9-a7df-46f0-a9b1-19c471008bee"
       ]
@@ -786686,9 +786794,9 @@
     {
       "slug": "mefloquine",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.12106411229135053,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 9 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.12134863429438543,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 9 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:9cbe26c7-7313-4cd6-9514-9190af1de763"
       ]
@@ -786696,9 +786804,9 @@
     {
       "slug": "trandolapril",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.12099298179059181,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 9 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1212775037936267,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 9 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:8143a6cf-dadc-4ef7-a8db-d16d7150ad34"
       ]
@@ -786706,8 +786814,8 @@
     {
       "slug": "trandolapril",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.11921471927162368,
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.11949924127465857,
       "basis": "Silent on a question 21.2% of records answer, in a record that answers 9 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:8143a6cf-dadc-4ef7-a8db-d16d7150ad34"
@@ -786716,29 +786824,19 @@
     {
       "slug": "quinapril",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.10761254425897825,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.10786545270612038,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:f33dbbb1-1a4a-42b0-a5c5-3ac905823206"
       ]
     },
     {
-      "slug": "pentostatin",
-      "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.10761254425897825,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
-      "sources": [
-        "FDA_LABEL:674e0e6d-46ed-4868-9196-04019d667716"
-      ]
-    },
-    {
       "slug": "fosinopril",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.10761254425897825,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.10786545270612038,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:0a66f606-5e6f-473d-8a1e-9ef316adb2e2"
       ]
@@ -786746,49 +786844,59 @@
     {
       "slug": "acitretin",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.10761254425897825,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.10786545270612038,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:a5be620f-d721-40c1-a062-d21c70bfcbed"
       ]
     },
     {
-      "slug": "fruquintinib",
+      "slug": "pentostatin",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1676 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.10596863935255438,
-      "basis": "Silent on a question 21.2% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.10786545270612038,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
-        "FDA_LABEL:186d786e-dc8a-45f2-b5e1-01ac0201879f"
+        "FDA_LABEL:674e0e6d-46ed-4868-9196-04019d667716"
       ]
     },
     {
-      "slug": "nabilone",
+      "slug": "ustekinumab-stba",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.09416097622660596,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during lactation? This record holds no answer, while 1680 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.1062215477996965,
+      "basis": "Silent on a question 21.2% of records answer, in a record that answers 8 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
-        "FDA_LABEL:83c7ac15-ece9-47de-b83c-d575544fa449"
+        "FDA_LABEL:66085e17-e3f2-4196-8c81-87448e804b0c"
       ]
     },
     {
       "slug": "basiliximab",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1702 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.09416097622660596,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.09438227111785534,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:1af01887-b69d-444b-91ed-ebfe12784440"
       ]
     },
     {
+      "slug": "nabilone",
+      "reason": "COVERAGE_GAP",
+      "question": "Do the recorded documents address use during pregnancy? This record holds no answer, while 1706 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.09438227111785534,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "sources": [
+        "FDA_LABEL:83c7ac15-ece9-47de-b83c-d575544fa449"
+      ]
+    },
+    {
       "slug": "acarbose",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.09410565250379363,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.09432694739504299,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:656769ee-e292-4950-83df-a38e6b1a9d6e"
       ]
@@ -786796,61 +786904,61 @@
     {
       "slug": "cholic-acid",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.09410565250379363,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.09432694739504299,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 7 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:5c6e4c9d-b85e-493f-9420-ab2fd0ff3723"
       ]
     },
     {
-      "slug": "danazol",
+      "slug": "estradiol-cypionate",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.08066198786039454,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.08085166919575114,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
-        "FDA_LABEL:f2c9b713-aafc-49ca-866e-334d9b5c2e2d"
+        "FDA_LABEL:9a4229fd-fecd-4ac1-9c4f-6d442533457f"
       ]
     },
     {
       "slug": "afamelanotide",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.08066198786039454,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.08085166919575114,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:94f53286-11dd-7fbb-e053-2a95a90a7c48"
       ]
     },
     {
+      "slug": "ganirelix",
+      "reason": "COVERAGE_GAP",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.08085166919575114,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "sources": [
+        "FDA_LABEL:9c286f64-8039-44ec-8fdd-d1a2f52b4c3c"
+      ]
+    },
+    {
+      "slug": "danazol",
+      "reason": "COVERAGE_GAP",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.08085166919575114,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "sources": [
+        "FDA_LABEL:f2c9b713-aafc-49ca-866e-334d9b5c2e2d"
+      ]
+    },
+    {
       "slug": "cetrorelix",
       "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.08066198786039454,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
+      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1705 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
+      "priority": 0.08085166919575114,
+      "basis": "Silent on a question 21.6% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
       "sources": [
         "FDA_LABEL:9b3057ac-6cac-4509-a355-df76247b992c"
-      ]
-    },
-    {
-      "slug": "perphenazine",
-      "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.08066198786039454,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
-      "sources": [
-        "FDA_LABEL:0dc77ea9-32ee-4b6d-b69d-8c712bcf5fe4"
-      ]
-    },
-    {
-      "slug": "estradiol-cypionate",
-      "reason": "COVERAGE_GAP",
-      "question": "Do the recorded documents address a pediatric population? This record holds no answer, while 1701 of 7908 records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.",
-      "priority": 0.08066198786039454,
-      "basis": "Silent on a question 21.5% of records answer, in a record that answers 6 of the other 16 questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.",
-      "sources": [
-        "FDA_LABEL:9a4229fd-fecd-4ac1-9c4f-6d442533457f"
       ]
     }
   ],
@@ -786858,9 +786966,9 @@
     "SILENT means no source in this corpus, in the sections that were read, states an answer. It is a fact about the documents recorded here and never a fact about the medicine.",
     "A record silent on a question is not evidence that no answer exists, and it is not evidence of safety or of danger in either direction. A label that never states a pediatric half-life is a label that never states one, nothing more.",
     "Section scoping is a real limit. A fact can sit in a section the extractor does not read, so every silence count should be read as \"not recorded from the sections read\" rather than \"not stated anywhere\".",
-    "Silence on the boxed-warning question is the clearest case of this: 7330 of 7908 records hold no boxed-warning statement, which means no recorded document contributed one, not that no boxed warning exists.",
+    "Silence on the boxed-warning question is the clearest case of this: 7329 of 7908 records hold no boxed-warning statement, which means no recorded document contributed one, not that no boxed warning exists.",
     "Only the 6 population questions can show NOT_ESTABLISHED, because only population statements carry a source-stated evidence state. On the other 11 questions a source sentence saying something was never determined, if one was printed, arrives here as a plain absence and is counted as SILENT.",
-    "3241 of 7908 records were produced by the deterministic label parser rather than assembled by a person. The parser reads a fixed set of sections, so its silences are more often a limit of the parser than of the source; the roll-up splits recorded and silent counts by tier so the two are never added together blindly.",
+    "3243 of 7908 records were produced by the deterministic label parser rather than assembled by a person. The parser reads a fixed set of sections, so its silences are more often a limit of the parser than of the source; the roll-up splits recorded and silent counts by tier so the two are never added together blindly.",
     "RECORDED on a population question merges two different answers: a source reporting a finding in the group, and a source that only raises the group without settling safety or effectiveness for it. 88% of recorded population answers here are the second kind, so a high recorded share on those questions is not a high share of settled answers. Entries of the second kind carry mentionedWithoutFinding and the roll-up counts them in recordedMentionOnly.",
     "Where the recorded statements for one population disagree, one saying a group was studied and another saying the question was not established, the entry counts as RECORDED and is marked as holding mixed states. The disagreement is recorded and is not settled here.",
     "Counts are over the records this corpus holds, which is neither every medicine nor every revision of every document. The recorded share of a question is a property of this corpus on this run date.",

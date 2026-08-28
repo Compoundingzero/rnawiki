@@ -15,8 +15,8 @@
   },
   "coverage": {
     "considered": 7908,
-    "used": 2018,
-    "reason": "2018 of 7908 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 376 records ended up in a candidate group."
+    "used": 2021,
+    "reason": "2021 of 7908 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 376 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [
@@ -5005,14 +5005,14 @@
             "readings": [
               {
                 "slug": "bulevirtide",
-                "display": "539",
+                "display": "5398.9 Da",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:12391cc2-38c2-4cf5-86d3-2be9370127fc"
               },
               {
                 "slug": "bulevirtide-gmod",
-                "display": "539",
+                "display": "5398.9 Da",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:12391cc2-38c2-4cf5-86d3-2be9370127fc"
@@ -9267,14 +9267,14 @@
             "readings": [
               {
                 "slug": "insulin-human",
-                "display": "580",
+                "display": "5808",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:29f4637b-e204-425b-b89c-7238008d8c10"
               },
               {
                 "slug": "insulin-recombinant-human",
-                "display": "580",
+                "display": "5808",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:29f4637b-e204-425b-b89c-7238008d8c10"
@@ -10218,14 +10218,14 @@
             "readings": [
               {
                 "slug": "mecasermin",
-                "display": "764",
+                "display": "7649 Da",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:d5b2b0e1-c523-468d-9a0b-4ae4e4a8dbce"
               },
               {
                 "slug": "mecasermin-recombinant",
-                "display": "764",
+                "display": "7649 Da",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:d5b2b0e1-c523-468d-9a0b-4ae4e4a8dbce"
@@ -13169,14 +13169,14 @@
             "readings": [
               {
                 "slug": "somapacitan",
-                "display": "233",
+                "display": "23305.10 g/mol",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:eadd03b4-adc3-4b88-8a24-9d205c5b85aa"
               },
               {
                 "slug": "somapacitan-beco",
-                "display": "233",
+                "display": "23305.10 g/mol",
                 "unit": "g/mol",
                 "populationContext": "as stated in the label sentence recorded below",
                 "sourceIdentifier": "FDA_LABEL:eadd03b4-adc3-4b88-8a24-9d205c5b85aa"
@@ -16162,7 +16162,7 @@
       }
     ],
     "signalCounts": {
-      "recordsCarryingUnii": 2018,
+      "recordsCarryingUnii": 2021,
       "recordsCarryingMalformedUnii": 0,
       "uniiValuesSharedByMoreThanOneRecord": 71,
       "uniiValuesRejectedAsTooManyRecords": 7,

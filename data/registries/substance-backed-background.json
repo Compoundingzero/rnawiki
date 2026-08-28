@@ -441,8 +441,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "396",
-       "numeric": 396,
+       "display": "3961 daltons",
+       "numeric": 3961,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -1159,8 +1159,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "358 L",
-       "numeric": 358,
+       "display": "13,358 L",
+       "numeric": 13358,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -5379,8 +5379,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "164",
-       "numeric": 164,
+       "display": "1646.85",
+       "numeric": 1646.85,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -7373,8 +7373,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "016 L",
-       "numeric": 16,
+       "display": "4,016 L",
+       "numeric": 4016,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -14628,8 +14628,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "104",
-       "numeric": 104,
+       "display": "1046.2",
+       "numeric": 1046.2,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -21401,8 +21401,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "123",
-       "numeric": 123,
+       "display": "1231.46 g/mol",
+       "numeric": 1231.46,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -21578,8 +21578,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "123",
-       "numeric": 123,
+       "display": "1231.46 g/mol",
+       "numeric": 1231.46,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -21813,8 +21813,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "124",
-       "numeric": 124,
+       "display": "1243.49",
+       "numeric": 1243.49,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -24705,7 +24705,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C8H12N4O5.Th",
+       "display": "C8H12N4O5·Th",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -35288,8 +35288,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "218",
-       "numeric": 218,
+       "display": "2180 daltons",
+       "numeric": 2180,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -36642,6 +36642,262 @@
    "ingredientsWithoutSubstanceData": 0
   }
  },
+ "bosutinib": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-28",
+  "provenanceTier": "extracted",
+  "composition": {
+   "ingredients": [
+    {
+     "nameAsRecorded": "BOSUTINIB",
+     "substanceKey": "1307619",
+     "unii": "5018V4AEZ0",
+     "substanceDataState": "RECORDED",
+     "recordedUses": {
+      "statements": [
+       {
+        "textAsRecorded": "Bosutinib tablets are indicated for the treatment of: Adult patients with chronic phase (CP) Philadelphia chromosome-positive chronic myelogenous leukemia (Ph+ CML), newly-diagnosed or resistant or intolerant to prior therapy [see Clinical Studies ( 14.1 , 14.2 )] .",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+         "label": "BOSUTINIB label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Bosutinib tablets are indicated for the treatment of: Adult patients with chronic phase (CP) Philadelphia chromosome-positive chronic myelogenous leukemia (Ph+ CML), newly-diagnosed or resistant or intolerant to prior therapy [see Clinical Studies ( 14.1 , 14.2 )] ."
+        },
+        "provenanceTier": "extracted"
+       },
+       {
+        "textAsRecorded": "Adult patients with accelerated phase (AP), or blast phase (BP) Ph+ CML with resistance or intolerance to prior therapy [see Clinical Studies (14.2 )].",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+         "label": "BOSUTINIB label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Adult patients with accelerated phase (AP), or blast phase (BP) Ph+ CML with resistance or intolerance to prior therapy [see Clinical Studies (14.2 )]."
+        },
+        "provenanceTier": "extracted"
+       },
+       {
+        "textAsRecorded": "Pediatric use information is approved for PF PRISM CV’s BOSULIF ® (bosutinib) tablets.",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+         "label": "BOSUTINIB label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Pediatric use information is approved for PF PRISM CV’s BOSULIF ® (bosutinib) tablets."
+        },
+        "provenanceTier": "extracted"
+       }
+      ]
+     },
+     "mechanism": {
+      "statements": [
+       {
+        "textAsRecorded": "Bosutinib inhibits the BCR-ABL kinase that promotes CML; it is also an inhibitor of Src-family kinases including Src, Lyn, and Hck.",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+         "label": "BOSUTINIB label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Bosutinib inhibits the BCR-ABL kinase that promotes CML; it is also an inhibitor of Src-family kinases including Src, Lyn, and Hck."
+        },
+        "provenanceTier": "extracted"
+       },
+       {
+        "textAsRecorded": "Bosutinib inhibited 16 of 18 imatinib-resistant forms of BCR-ABL kinase expressed in murine myeloid cell lines.",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+         "label": "BOSUTINIB label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Bosutinib inhibited 16 of 18 imatinib-resistant forms of BCR-ABL kinase expressed in murine myeloid cell lines."
+        },
+        "provenanceTier": "extracted"
+       },
+       {
+        "textAsRecorded": "Bosutinib did not inhibit the T315I and V299L mutant cells.",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+         "label": "BOSUTINIB label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Bosutinib did not inhibit the T315I and V299L mutant cells."
+        },
+        "provenanceTier": "extracted"
+       }
+      ]
+     },
+     "pharmacokinetics": {
+      "routeAsRecorded": "oral",
+      "bioavailability": {
+       "display": "34%",
+       "numeric": 34,
+       "unit": "%",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "The absolute bioavailability was 34% in healthy subjects."
+       },
+       "provenanceTier": "extracted"
+      },
+      "proteinBinding": {
+       "display": "94%",
+       "numeric": 94,
+       "unit": "%",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Bosutinib protein binding is 94% in vitro and 96% ex vivo, and is independent of concentration."
+       },
+       "provenanceTier": "extracted"
+      }
+     },
+     "molecularIdentity": {
+      "molecularFormula": {
+       "display": "C26H29Cl2N5O3·2H2O",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Its chemical formula is C 26 H 29 Cl 2 N 5 O 3 .2H 2 O; its molecular weight is 566.48 Bosutinib has the following chemical structure: Bosutinib is a white to yellowish-tan powder."
+       },
+       "provenanceTier": "extracted"
+      },
+      "molecularWeight": {
+       "display": "566.48",
+       "numeric": 566.48,
+       "unit": "g/mol",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Its chemical formula is C 26 H 29 Cl 2 N 5 O 3 .2H 2 O; its molecular weight is 566.48 Bosutinib has the following chemical structure: Bosutinib is a white to yellowish-tan powder."
+       },
+       "provenanceTier": "extracted"
+      }
+     },
+     "interactionSignals": [
+      {
+       "counterpartyAsRecorded": "BCRP",
+       "kind": "TRANSPORTER",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "CYP3A4",
+       "kind": "ENZYME",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Metabolism Bosutinib is primarily metabolized by CYP3A4."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OAT3",
+       "kind": "TRANSPORTER",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OATP",
+       "kind": "TRANSPORTER",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OATP1B3",
+       "kind": "TRANSPORTER",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OCT2",
+       "kind": "TRANSPORTER",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "I n Vitro Studies Transporters Systems: Bosutinib inhibits breast cancer resistance protein (BCRP)but, does not inhibit organic anion transporting polypeptide (OATP)1B1, OATP1B3, organic anion transporter (OAT)1, OAT3, organic cation transporter (OCT)1, and OCT2."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "P-GLYCOPROTEIN",
+       "kind": "TRANSPORTER",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "P-gp Substrates: No clinically significant differences in bosutinib pharmacokinetics were observed when used concomitantly with dabigatran etexilate mesylate (a P-glycoprotein (P-gp) substrate)."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "P-GP",
+       "kind": "TRANSPORTER",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "cb7a8d1d-07c0-462d-960f-214d44705e76",
+        "label": "BOSUTINIB label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "P-gp Substrates: No clinically significant differences in bosutinib pharmacokinetics were observed when used concomitantly with dabigatran etexilate mesylate (a P-glycoprotein (P-gp) substrate)."
+       },
+       "provenanceTier": "extracted"
+      }
+     ]
+    }
+   ],
+   "declaredIngredientCount": 1,
+   "ingredientsWithoutSubstanceData": 0
+  }
+ },
  "botulinum-toxin-type-a": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-28",
@@ -36948,8 +37204,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "102",
-       "numeric": 102,
+       "display": "1025.2",
+       "numeric": 1025.2,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -39775,8 +40031,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "539",
-       "numeric": 539,
+       "display": "5398.9 Da",
+       "numeric": 5398.9,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -45896,8 +46152,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "847 L",
-       "numeric": 847,
+       "display": "1,847 L",
+       "numeric": 1847,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -49092,8 +49348,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "758",
-       "numeric": 758,
+       "display": "7584.5 daltons",
+       "numeric": 7584.5,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -50172,8 +50428,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "304",
-       "numeric": 304,
+       "display": "3043.50",
+       "numeric": 3043.5,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -51082,7 +51338,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C22H21N8O8PS4.C2H4O2",
+       "display": "C22H21N8O8PS4·C2H4O2",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -53659,7 +53915,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C10H17NOS.HCl",
+       "display": "C10H17NOS·HCl",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -62970,8 +63226,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "175",
-       "numeric": 175,
+       "display": "1750",
+       "numeric": 1750,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -63069,8 +63325,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "175",
-       "numeric": 175,
+       "display": "1750",
+       "numeric": 1750,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -64023,8 +64279,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "149",
-       "numeric": 149,
+       "display": "1497.2 Daltons",
+       "numeric": 1497.2,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -64497,8 +64753,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "293",
-       "numeric": 293,
+       "display": "2933 g/mol",
+       "numeric": 2933,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -67053,7 +67309,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C34H41N7O5.CH3SO3H",
+       "display": "C34H41N7O5·CH3SO3H",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -70423,8 +70679,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "162",
-       "numeric": 162,
+       "display": "1620.67",
+       "numeric": 1620.67,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -75611,8 +75867,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "112",
-       "numeric": 112,
+       "display": "1129.30 g/mol",
+       "numeric": 1129.3,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -84321,8 +84577,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "911",
-       "numeric": 911,
+       "display": "9112.27 daltons",
+       "numeric": 9112.27,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -89449,8 +89705,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "148",
-       "numeric": 148,
+       "display": "1489.65 g/mol",
+       "numeric": 1489.65,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -90581,6 +90837,339 @@
        "provenanceTier": "extracted"
       }
      }
+    }
+   ],
+   "declaredIngredientCount": 1,
+   "ingredientsWithoutSubstanceData": 0
+  }
+ },
+ "elacestrant": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-28",
+  "provenanceTier": "extracted",
+  "composition": {
+   "ingredients": [
+    {
+     "nameAsRecorded": "ELACESTRANT",
+     "substanceKey": "2628469",
+     "unii": "FM6A2627A8",
+     "substanceDataState": "RECORDED",
+     "recordedUses": {
+      "statements": [
+       {
+        "textAsRecorded": "ORSERDU is indicated for the treatment of postmenopausal women or adult men with estrogen receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)‑negative, ESR1 -mutated advanced or metastatic breast cancer, as detected by an FDA-authorized test [see Dosage and Administration ( 2.1 )] , with disease progression following at least one line of endocrine therapy.",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+         "label": "ELACESTRANT label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "ORSERDU is indicated for the treatment of postmenopausal women or adult men with estrogen receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)‑negative, ESR1 -mutated advanced or metastatic breast cancer, as detected by an FDA-authorized test [see Dosage and Administration ( 2.1 )] , with disease progression following at least one line of endocrine therapy."
+        },
+        "provenanceTier": "extracted"
+       },
+       {
+        "textAsRecorded": "ORSERDU is an estrogen receptor antagonist indicated for: treatment of postmenopausal women or adult men, with ER-positive, HER2-negative, ESR1 -mutated advanced or metastatic breast cancer, as detected by an FDA-authorized test, with disease progression following at least one line of endocrine therapy ( 1 )",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+         "label": "ELACESTRANT label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "ORSERDU is an estrogen receptor antagonist indicated for: treatment of postmenopausal women or adult men, with ER-positive, HER2-negative, ESR1 -mutated advanced or metastatic breast cancer, as detected by an FDA-authorized test, with disease progression following at least one line of endocrine therapy ( 1 )"
+        },
+        "provenanceTier": "extracted"
+       }
+      ]
+     },
+     "mechanism": {
+      "statements": [
+       {
+        "textAsRecorded": "Elacestrant is an estrogen receptor antagonist that binds to estrogen receptor-alpha (ERα).",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+         "label": "ELACESTRANT label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Elacestrant is an estrogen receptor antagonist that binds to estrogen receptor-alpha (ERα)."
+        },
+        "provenanceTier": "extracted"
+       },
+       {
+        "textAsRecorded": "In ER-positive (ER+) HER2-negative (HER2-) breast cancer cells, elacestrant inhibited 17β-estradiol mediated cell proliferation at concentrations inducing degradation of ERα protein mediated through proteasomal pathway.",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+         "label": "ELACESTRANT label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "In ER-positive (ER+) HER2-negative (HER2-) breast cancer cells, elacestrant inhibited 17β-estradiol mediated cell proliferation at concentrations inducing degradation of ERα protein mediated through proteasomal pathway."
+        },
+        "provenanceTier": "extracted"
+       },
+       {
+        "textAsRecorded": "Elacestrant demonstrated in vitro and in vivo antitumor activity including in ER+ HER2- breast cancer models resistant to fulvestrant and cyclin-dependent kinase 4/6 inhibitors and those harboring estrogen receptor 1 gene ( ESR1 ) mutations.",
+        "source": {
+         "kind": "FDA_LABEL",
+         "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+         "label": "ELACESTRANT label",
+         "retrievedAt": "2026-08-28",
+         "excerpt": "Elacestrant demonstrated in vitro and in vivo antitumor activity including in ER+ HER2- breast cancer models resistant to fulvestrant and cyclin-dependent kinase 4/6 inhibitors and those harboring estrogen receptor 1 gene ( ESR1 ) mutations."
+        },
+        "provenanceTier": "extracted"
+       }
+      ],
+      "namedTargetsAsRecorded": [
+       "HER2",
+       "estrogen receptor"
+      ]
+     },
+     "pharmacokinetics": {
+      "routeAsRecorded": "oral",
+      "halfLife": {
+       "display": "30 to 50 hours",
+       "numeric": 30,
+       "unit": "hours",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elimination The elimination half-life of elacestrant is 30 to 50 hours."
+       },
+       "provenanceTier": "extracted"
+      },
+      "bioavailability": {
+       "display": "10%",
+       "numeric": 10,
+       "unit": "%",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "The elacestrant oral bioavailability is approximately 10%."
+       },
+       "provenanceTier": "extracted"
+      },
+      "proteinBinding": {
+       "display": ">99%",
+       "numeric": 99,
+       "unit": "%",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Plasma protein binding of elacestrant is >99% and independent of concentration."
+       },
+       "provenanceTier": "extracted"
+      },
+      "volumeOfDistribution": {
+       "display": "5,800 L",
+       "numeric": 5800,
+       "unit": "L",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Distribution The estimated apparent volume of distribution is 5,800 L."
+       },
+       "provenanceTier": "extracted"
+      }
+     },
+     "molecularIdentity": {
+      "molecularFormula": {
+       "display": "C30H38N2O2·2HCL",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant hydrochloride is the dihydrochloride salt and the molecular formula is C 30 H 38 N 2 O 2 .2HCL."
+       },
+       "provenanceTier": "extracted"
+      }
+     },
+     "interactionSignals": [
+      {
+       "counterpartyAsRecorded": "CYP1A2",
+       "kind": "ENZYME",
+       "roleAsRecorded": "INDUCER",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inducer of CYP1A2, CYP2A6, CYP2B6, CYP2C9, CYP2C19, or CYP3A."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "CYP2A6",
+       "kind": "ENZYME",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Metabolism Elacestrant is primarily metabolized by CYP3A4 and to a lesser extent by CYP2A6 and CYP2C9."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "CYP2B6",
+       "kind": "ENZYME",
+       "roleAsRecorded": "INDUCER",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inducer of CYP1A2, CYP2A6, CYP2B6, CYP2C9, CYP2C19, or CYP3A."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "CYP2C19",
+       "kind": "ENZYME",
+       "roleAsRecorded": "INDUCER",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inducer of CYP1A2, CYP2A6, CYP2B6, CYP2C9, CYP2C19, or CYP3A."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "CYP2C9",
+       "kind": "ENZYME",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Metabolism Elacestrant is primarily metabolized by CYP3A4 and to a lesser extent by CYP2A6 and CYP2C9."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "CYP3A4",
+       "kind": "ENZYME",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Metabolism Elacestrant is primarily metabolized by CYP3A4 and to a lesser extent by CYP2A6 and CYP2C9."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "MATE1",
+       "kind": "TRANSPORTER",
+       "roleAsRecorded": "INHIBITOR",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "MATE2",
+       "kind": "TRANSPORTER",
+       "roleAsRecorded": "INHIBITOR",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OAT1",
+       "kind": "TRANSPORTER",
+       "roleAsRecorded": "INHIBITOR",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OAT3",
+       "kind": "TRANSPORTER",
+       "roleAsRecorded": "INHIBITOR",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OATP1B1",
+       "kind": "TRANSPORTER",
+       "roleAsRecorded": "INHIBITOR",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
+       },
+       "provenanceTier": "extracted"
+      },
+      {
+       "counterpartyAsRecorded": "OATP1B3",
+       "kind": "TRANSPORTER",
+       "roleAsRecorded": "INHIBITOR",
+       "polarity": "NEGATED",
+       "labelSection": "pharmacokinetics",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "aa66ae5c-2bd2-4444-8178-b55651e054ef",
+        "label": "ELACESTRANT label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Elacestrant is not an inhibitor of OAT1, OAT3, OCT2, MATE1, MATE2-K, OCT1, OATP1B1, OATP1B3 or OATP2B1."
+       },
+       "provenanceTier": "extracted"
+      }
+     ]
     }
    ],
    "declaredIngredientCount": 1,
@@ -95653,8 +96242,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "450",
-       "numeric": 450,
+       "display": "4500 daltons",
+       "numeric": 4500,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -95768,8 +96357,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "720 L",
-       "numeric": 720,
+       "display": "1,720 L",
+       "numeric": 1720,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -98427,8 +99016,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "904",
-       "numeric": 904,
+       "display": "9046.1 daltons",
+       "numeric": 9046.1,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -100311,7 +100900,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C22H23N3O4.HCl",
+       "display": "C22H23N3O4·HCl",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -101771,7 +102360,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C13H16ClNO.HCl",
+       "display": "C13H16ClNO·HCl",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -103648,8 +104237,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "104",
-       "numeric": 104,
+       "display": "1047.5 g/mol",
+       "numeric": 1047.5,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -103927,8 +104516,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "103",
-       "numeric": 103,
+       "display": "10305.7 daltons",
+       "numeric": 10305.7,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -106739,8 +107328,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "418",
-       "numeric": 418,
+       "display": "4186.6 Daltons",
+       "numeric": 4186.6,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -109841,8 +110430,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "100",
-       "numeric": 100,
+       "display": "1000 Da",
+       "numeric": 1000,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -113796,8 +114385,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "153",
-       "numeric": 153,
+       "display": "1537.3 g/mol",
+       "numeric": 1537.3,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -117199,8 +117788,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "172",
-       "numeric": 172,
+       "display": "1728",
+       "numeric": 1728,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -117891,8 +118480,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "100",
-       "numeric": 100,
+       "display": "1004.83",
+       "numeric": 1004.83,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -117900,7 +118489,7 @@
         "identifier": "d624667d-ee3b-3501-53fe-da453352042d",
         "label": "FOSAPREPITANT DIMEGLUMINE label",
         "retrievedAt": "2026-08-28",
-        "excerpt": "phosphonate(2:1) (salt).Its empirical formula is C 23 H 22 F 7 N 4 O 6 P • 2(C 7 H 17 NO 5 ) and its structural formula is: Fosaprepitant dimeglumine is a white to off-white powder with a molecular weight of 1004.83."
+        "excerpt": "osphonate(2:1) (salt).Its empirical formula is C 23 H 22 F 7 N 4 O 6 P • 2(C 7 H 17 NO 5 ) and its structural formula is: Fosaprepitant dimeglumine is a white to off-white powder with a molecular weight of 1004.83."
        },
        "provenanceTier": "extracted"
       }
@@ -119699,7 +120288,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C18H23N3O5.H2O",
+       "display": "C18H23N3O5·H2O",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -121200,8 +121789,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "105",
-       "numeric": 105,
+       "display": "1058.2",
+       "numeric": 1058.2,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -122429,8 +123018,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "101",
-       "numeric": 101,
+       "display": "1011.91 g/mol",
+       "numeric": 1011.91,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -123231,8 +123820,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "157",
-       "numeric": 157,
+       "display": "1570.4",
+       "numeric": 1570.4,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -125059,8 +125648,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "122",
-       "numeric": 122,
+       "display": "1221.50",
+       "numeric": 1221.5,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -126492,8 +127081,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "348",
-       "numeric": 348,
+       "display": "3483",
+       "numeric": 3483,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -127549,8 +128138,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "864",
-       "numeric": 864,
+       "display": "8647.28 daltons",
+       "numeric": 8647.28,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -127834,8 +128423,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "126",
-       "numeric": 126,
+       "display": "1269 Daltons",
+       "numeric": 1269,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -127893,8 +128482,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "101",
-       "numeric": 101,
+       "display": "1011.91 g/mol",
+       "numeric": 1011.91,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -130160,8 +130749,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "144",
-       "numeric": 144,
+       "display": "1443.70",
+       "numeric": 1443.7,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -132319,8 +132908,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "134",
-       "numeric": 134,
+       "display": "1346.36",
+       "numeric": 1346.36,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -134568,8 +135157,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "189",
-       "numeric": 189,
+       "display": "1898.17",
+       "numeric": 1898.17,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -136907,8 +137496,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "120 L",
-       "numeric": 120,
+       "display": "8,120 L",
+       "numeric": 8120,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -136923,7 +137512,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C29H24F4N2O3.C7H8O3S",
+       "display": "C29H24F4N2O3·C7H8O3S",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -139049,8 +139638,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "582",
-       "numeric": 582,
+       "display": "5825.8 Da",
+       "numeric": 5825.8,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -139453,8 +140042,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "606",
-       "numeric": 606,
+       "display": "6063 Da",
+       "numeric": 6063,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -139658,8 +140247,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "580",
-       "numeric": 580,
+       "display": "5808",
+       "numeric": 5808,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -147747,8 +148336,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "109",
-       "numeric": 109,
+       "display": "1096.34",
+       "numeric": 1096.34,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -155473,8 +156062,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "152",
-       "numeric": 152,
+       "display": "1526.8",
+       "numeric": 1526.8,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -156626,8 +157215,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "375",
-       "numeric": 375,
+       "display": "3751.2 Daltons",
+       "numeric": 3751.2,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -162451,8 +163040,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "160",
-       "numeric": 160,
+       "display": "1609.6 Daltons",
+       "numeric": 1609.6,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -166322,8 +166911,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "764",
-       "numeric": 764,
+       "display": "7649 Da",
+       "numeric": 7649,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -173302,8 +173891,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "129",
-       "numeric": 129,
+       "display": "1292.3",
+       "numeric": 1292.3,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -176149,8 +176738,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "670 L",
-       "numeric": 670,
+       "display": "1,670 L",
+       "numeric": 1670,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -177225,8 +177814,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "105",
-       "numeric": 105,
+       "display": "1053.23",
+       "numeric": 1053.23,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -177653,6 +178242,23 @@
        "TNF",
        "topoisomerase II"
       ]
+     },
+     "pharmacokinetics": {
+      "routeAsRecorded": "intravenous",
+      "volumeOfDistribution": {
+       "display": "1,000 L",
+       "numeric": 1000,
+       "unit": "L",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "1634528a-30c5-4309-acc8-4c0293ae14ae",
+        "label": "MITOXANTRONE HYDROCHLORIDE label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Distribution to tissues is extensive: steady-state volume of distribution exceeds 1,000 L/m 2 ."
+       },
+       "provenanceTier": "extracted"
+      }
      }
     }
    ],
@@ -179620,8 +180226,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "215",
-       "numeric": 215,
+       "display": "2159.6 g/mol",
+       "numeric": 2159.6,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -180116,8 +180722,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "107",
-       "numeric": 107,
+       "display": "1075.3",
+       "numeric": 1075.3,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -189695,8 +190301,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "750",
-       "numeric": 750,
+       "display": "7501.0 daltons",
+       "numeric": 7501,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -190384,8 +190990,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "101",
-       "numeric": 101,
+       "display": "1019.3",
+       "numeric": 1019.3,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -191449,8 +192055,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "912",
-       "numeric": 912,
+       "display": "9124.48 daltons",
+       "numeric": 9124.48,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -192290,8 +192896,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "110 L",
-       "numeric": 110,
+       "display": "1,110 L",
+       "numeric": 1110,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -195146,8 +195752,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "198",
-       "numeric": 198,
+       "display": "1989.09",
+       "numeric": 1989.09,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -200747,8 +201353,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "411",
-       "numeric": 411,
+       "display": "4117.8 daltons",
+       "numeric": 4117.8,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -202650,8 +203256,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "143",
-       "numeric": 143,
+       "display": "1435.58 g/mol",
+       "numeric": 1435.58,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -202909,8 +203515,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "143",
-       "numeric": 143,
+       "display": "14304 Da",
+       "numeric": 14304,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -206332,8 +206938,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "400",
-       "numeric": 400,
+       "display": "4000",
+       "numeric": 4000,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -209491,8 +210097,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "100",
-       "numeric": 100,
+       "display": "1005.20",
+       "numeric": 1005.2,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -212290,8 +212896,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "168",
-       "numeric": 168,
+       "display": "1682 Daltons",
+       "numeric": 1682,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -213825,8 +214431,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "223 liters",
-       "numeric": 223,
+       "display": "1,223 liters",
+       "numeric": 1223,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -217142,8 +217748,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "394",
-       "numeric": 394,
+       "display": "3949.4",
+       "numeric": 3949.4,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -220395,7 +221001,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C18H26ClN3O3.C4H6O4",
+       "display": "C18H26ClN3O3·C4H6O4",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -235924,8 +236530,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "100",
-       "numeric": 100,
+       "display": "1001.14",
+       "numeric": 1001.14,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -239048,7 +239654,7 @@
      },
      "molecularIdentity": {
       "molecularFormula": {
-       "display": "C24H29N3O8.HCl",
+       "display": "C24H29N3O8·HCl",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
         "kind": "FDA_LABEL",
@@ -242926,8 +243532,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "411",
-       "numeric": 411,
+       "display": "4113.58 g/mol",
+       "numeric": 4113.58,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -245901,8 +246507,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "114",
-       "numeric": 114,
+       "display": "1149.29 g/mol",
+       "numeric": 1149.29,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -249828,8 +250434,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "233",
-       "numeric": 233,
+       "display": "23305.10 g/mol",
+       "numeric": 23305.1,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -250153,8 +250759,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "166 L",
-       "numeric": 166,
+       "display": "9,166 L",
+       "numeric": 9166,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -252691,8 +253297,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "145",
-       "numeric": 145,
+       "display": "1457.41",
+       "numeric": 1457.41,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -253403,8 +254009,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "217",
-       "numeric": 217,
+       "display": "2178.01",
+       "numeric": 2178.01,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -257405,8 +258011,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "820 L",
-       "numeric": 820,
+       "display": "9,820 L",
+       "numeric": 9820,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -261254,8 +261860,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "375",
-       "numeric": 375,
+       "display": "3752 Daltons",
+       "numeric": 3752,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -261351,8 +261957,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "175",
-       "numeric": 175,
+       "display": "1755.6",
+       "numeric": 1755.6,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -262454,8 +263060,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "121",
-       "numeric": 121,
+       "display": "1218 Daltons",
+       "numeric": 1218,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -263272,8 +263878,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "038 L",
-       "numeric": 38,
+       "display": "1,038 L",
+       "numeric": 1038,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -264454,8 +265060,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "411",
-       "numeric": 411,
+       "display": "4117.8 daltons",
+       "numeric": 4117.8,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -264592,8 +265198,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "122",
-       "numeric": 122,
+       "display": "1227.38",
+       "numeric": 1227.38,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -269461,8 +270067,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "481",
-       "numeric": 481,
+       "display": "4813.53 Da",
+       "numeric": 4813.53,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -271429,8 +272035,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "712",
-       "numeric": 712,
+       "display": "7127.86",
+       "numeric": 7127.86,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -273611,6 +274217,20 @@
         "label": "TRABECTEDIN label",
         "retrievedAt": "2026-08-28",
         "excerpt": "Elimination The estimated mean (% coefficient of variation) clearance of trabectedin is 31.5 L/hr (50%) and the terminal elimination half-life is approximately 175 hours."
+       },
+       "provenanceTier": "extracted"
+      },
+      "volumeOfDistribution": {
+       "display": "5,000 L",
+       "numeric": 5000,
+       "unit": "L",
+       "populationContext": "as stated in the label sentence recorded below",
+       "source": {
+        "kind": "FDA_LABEL",
+        "identifier": "c1d50f5c-4202-27f3-4798-a9708114ddea",
+        "label": "TRABECTEDIN label",
+        "retrievedAt": "2026-08-28",
+        "excerpt": "Steady state volume of distribution of trabectedin exceeds 5,000 L."
        },
        "provenanceTier": "extracted"
       }
@@ -284045,8 +284665,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "148",
-       "numeric": 148,
+       "display": "1485.71 g/mol",
+       "numeric": 1485.71,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -284667,8 +285287,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "108",
-       "numeric": 108,
+       "display": "1084.24",
+       "numeric": 1084.24,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -284752,8 +285372,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "108",
-       "numeric": 108,
+       "display": "1084.24",
+       "numeric": 1084.24,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -288483,8 +289103,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "692",
-       "numeric": 692,
+       "display": "6924.82 daltons",
+       "numeric": 6924.82,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -289286,8 +289906,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "107",
-       "numeric": 107,
+       "display": "1079.11",
+       "numeric": 1079.11,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -289896,8 +290516,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "135",
-       "numeric": 135,
+       "display": "1355.38",
+       "numeric": 1355.38,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -290267,8 +290887,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "154 L",
-       "numeric": 154,
+       "display": "2,154 L",
+       "numeric": 2154,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -290295,8 +290915,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "121",
-       "numeric": 121,
+       "display": "1214.6 g/mol",
+       "numeric": 1214.6,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -290766,8 +291386,8 @@
        "provenanceTier": "extracted"
       },
       "volumeOfDistribution": {
-       "display": "930 L",
-       "numeric": 930,
+       "display": "3,930 L",
+       "numeric": 3930,
        "unit": "L",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -294237,8 +294857,8 @@
        "provenanceTier": "extracted"
       },
       "molecularWeight": {
-       "display": "263",
-       "numeric": 263,
+       "display": "2639 daltons",
+       "numeric": 2639,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {
@@ -295007,8 +295627,8 @@
      },
      "molecularIdentity": {
       "molecularWeight": {
-       "display": "356",
-       "numeric": 356,
+       "display": "3562.23 Daltons",
+       "numeric": 3562.23,
        "unit": "g/mol",
        "populationContext": "as stated in the label sentence recorded below",
        "source": {

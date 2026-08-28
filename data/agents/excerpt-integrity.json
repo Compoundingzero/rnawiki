@@ -10,7 +10,7 @@
   },
   "coverage": {
     "considered": 7908,
-    "used": 3395,
+    "used": 3396,
     "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
   },
   "output": {
@@ -817,6 +817,30 @@
         "slug": "alglucosidase-alfa",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "alirocumab",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "alirocumab",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "alirocumab",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "alirocumab",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -3227,6 +3251,30 @@
       },
       {
         "slug": "bosentan",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bosutinib",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bosutinib",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bosutinib",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bosutinib",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -7912,6 +7960,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "elacestrant",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "elacestrant",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "elacestrant",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "elacestrant",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "elacestrant",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "elafibranor",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -12256,6 +12334,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "imiglucerase",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "imiquimod",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -16141,6 +16225,12 @@
         "slug": "mitotane",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "mitoxantrone",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
         "state": "VERIFIED"
       },
       {
@@ -24809,6 +24899,12 @@
       },
       {
         "slug": "trabectedin",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "trabectedin",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -32620,18 +32716,6 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
-        "slug": "bosutinib",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "bosutinib",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
         "slug": "boswellic-acid",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -36875,18 +36959,6 @@
       },
       {
         "slug": "eicosatrienoic-acid",
-        "path": "molecularIdentity.molecularWeight",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "elacestrant",
-        "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
-      },
-      {
-        "slug": "elacestrant",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -51436,6 +51508,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "alirocumab",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "alirocumab",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "alirocumab",
+        "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "allopurinol",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -52319,6 +52409,24 @@
       },
       {
         "slug": "bosentan",
+        "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bosutinib",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bosutinib",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "bosutinib",
         "path": "sourceConsensus.fields[2].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
@@ -63650,57 +63758,21 @@
         "path": "sourceConsensus.fields[1].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
-      },
-      {
-        "slug": "alirocumab",
-        "path": "sourceConsensus.fields[0].readings[0]",
-        "module": "sourceConsensus",
-        "state": "VERIFIED"
-      },
-      {
-        "slug": "alirocumab",
-        "path": "sourceConsensus.fields[1].readings[0]",
-        "module": "sourceConsensus",
-        "state": "VERIFIED"
-      },
-      {
-        "slug": "alirocumab",
-        "path": "sourceConsensus.fields[2].readings[0]",
-        "module": "sourceConsensus",
-        "state": "VERIFIED"
-      },
-      {
-        "slug": "bosutinib",
-        "path": "sourceConsensus.fields[0].readings[0]",
-        "module": "sourceConsensus",
-        "state": "VERIFIED"
-      },
-      {
-        "slug": "bosutinib",
-        "path": "sourceConsensus.fields[1].readings[0]",
-        "module": "sourceConsensus",
-        "state": "VERIFIED"
-      },
-      {
-        "slug": "bosutinib",
-        "path": "sourceConsensus.fields[2].readings[0]",
-        "module": "sourceConsensus",
-        "state": "VERIFIED"
       }
     ],
     "byModule": [
       {
         "module": "molecularIdentity",
-        "checked": 1930,
-        "verified": 1930,
+        "checked": 1934,
+        "verified": 1934,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
       },
       {
         "module": "pharmacokinetics",
-        "checked": 3116,
-        "verified": 3116,
+        "checked": 3128,
+        "verified": 3128,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
@@ -63714,12 +63786,12 @@
         "verifiedShare": 1
       }
     ],
-    "statementsChecked": 15572,
-    "statementsVerbatim": 15572,
-    "adverseTermsChecked": 5828,
-    "adverseTermsFound": 5828,
-    "totalChecked": 7130,
-    "totalVerified": 7130,
+    "statementsChecked": 15611,
+    "statementsVerbatim": 15611,
+    "adverseTermsChecked": 5838,
+    "adverseTermsFound": 5838,
+    "totalChecked": 7146,
+    "totalVerified": 7146,
     "overallVerifiedShare": 1,
     "normalisationRules": [
       {
@@ -63762,7 +63834,7 @@
   "caveats": [
     "A verified binding proves transcription fidelity and nothing else. It does not say the source is correct, current, or applicable to any person; it says the number displayed here is the number that document prints.",
     "A value that fails this check is a question about this corpus, never a statement that the source is wrong.",
-    "3320 value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.",
+    "3316 value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.",
     "Only numerals are checked this way. A value whose display carries no number cannot be verified by this method and is counted apart rather than counted as passing.",
     "Consensus readings are verified when any one of the sources cited for them prints the reading. Excerpts stored for other contributing sources may be trimmed around a different part of the sentence, and requiring all of them would report a storage detail as a failure.",
     "The 7 normalisation rules are listed in the output so a third party can reproduce this check exactly. Loosening them would raise the pass rate without improving the corpus, which is why they are published rather than described.",

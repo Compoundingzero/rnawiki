@@ -18,8 +18,8 @@
   },
   "coverage": {
     "considered": 7908,
-    "used": 4753,
-    "reason": "3155 records hold none of the 14 recordable modules. They are scored at zero and kept in the index, because a record the corpus holds nothing for is the finding, not a row to drop."
+    "used": 4755,
+    "reason": "3153 records hold none of the 14 recordable modules. They are scored at zero and kept in the index, because a record the corpus holds nothing for is the finding, not a row to drop."
   },
   "output": {
     "perMedicine": [
@@ -9802,6 +9802,36 @@
         "score": 0.5976190476190476
       },
       {
+        "slug": "trabectedin",
+        "name": "trabectedin",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 9,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 18,
+        "sourceAttachmentsWithExcerpt": 16,
+        "numericValues": 3,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.6428571428571429,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.75,
+          "excerptCoverage": 0.8888888888888888
+        },
+        "score": 0.5976190476190476
+      },
+      {
         "slug": "efbemalenograstim-alfa-vuxw",
         "name": "efbemalenograstim alfa vuxw",
         "modulesPresent": [
@@ -12514,36 +12544,6 @@
           "excerptCoverage": 0.9642857142857143
         },
         "score": 0.5842857142857143
-      },
-      {
-        "slug": "trabectedin",
-        "name": "trabectedin",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "registryIdentifiers",
-          "mechanism",
-          "molecularIdentity",
-          "interactionSignals",
-          "safety",
-          "populationStatements",
-          "commonAdverseReactions"
-        ],
-        "moduleCount": 9,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 17,
-        "sourceAttachmentsWithExcerpt": 15,
-        "numericValues": 2,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.6428571428571429,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0.6666666666666666,
-          "excerptCoverage": 0.8823529411764706
-        },
-        "score": 0.5841386554621849
       },
       {
         "slug": "ertugliflozin-pidolate",
@@ -15367,6 +15367,35 @@
         "score": 0.5763888888888888
       },
       {
+        "slug": "bosutinib",
+        "name": "bosutinib",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 25,
+        "sourceAttachmentsWithExcerpt": 24,
+        "numericValues": 3,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.75,
+          "excerptCoverage": 0.96
+        },
+        "score": 0.5761428571428571
+      },
+      {
         "slug": "relacorilant",
         "name": "relacorilant",
         "modulesPresent": [
@@ -17756,6 +17785,35 @@
           "excerptCoverage": 0.875
         },
         "score": 0.56875
+      },
+      {
+        "slug": "alirocumab",
+        "name": "alirocumab",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 22,
+        "sourceAttachmentsWithExcerpt": 20,
+        "numericValues": 3,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.75,
+          "excerptCoverage": 0.9090909090909091
+        },
+        "score": 0.5685064935064934
       },
       {
         "slug": "bempedoic-acid",
@@ -23813,6 +23871,34 @@
         "score": 0.5465336134453782
       },
       {
+        "slug": "elacestrant",
+        "name": "elacestrant",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "populationStatements"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 27,
+        "sourceAttachmentsWithExcerpt": 25,
+        "numericValues": 4,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.8,
+          "excerptCoverage": 0.9259259259259259
+        },
+        "score": 0.5463888888888888
+      },
+      {
         "slug": "imlunestrant",
         "name": "imlunestrant",
         "modulesPresent": [
@@ -28704,6 +28790,33 @@
         "score": 0.5280844155844155
       },
       {
+        "slug": "imiglucerase",
+        "name": "imiglucerase",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 6,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 11,
+        "sourceAttachmentsWithExcerpt": 9,
+        "numericValues": 1,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.42857142857142855,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.8181818181818182
+        },
+        "score": 0.5280844155844155
+      },
+      {
         "slug": "natamycin",
         "name": "natamycin",
         "modulesPresent": [
@@ -29436,6 +29549,33 @@
           "registryIdentifiers",
           "mechanism",
           "molecularIdentity",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 6,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 10,
+        "sourceAttachmentsWithExcerpt": 8,
+        "numericValues": 1,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.42857142857142855,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.8
+        },
+        "score": 0.5253571428571429
+      },
+      {
+        "slug": "mitoxantrone",
+        "name": "mitoxantrone",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
           "safety",
           "populationStatements"
         ],
@@ -47954,32 +48094,6 @@
         "score": 0.3398809523809524
       },
       {
-        "slug": "mitoxantrone",
-        "name": "mitoxantrone",
-        "modulesPresent": [
-          "productVariants",
-          "registryIdentifiers",
-          "mechanism",
-          "safety",
-          "populationStatements"
-        ],
-        "moduleCount": 5,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 9,
-        "sourceAttachmentsWithExcerpt": 7,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.35714285714285715,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0.7777777777777778
-        },
-        "score": 0.3398809523809524
-      },
-      {
         "slug": "nitric-oxide",
         "name": "nitric oxide",
         "modulesPresent": [
@@ -59256,28 +59370,6 @@
         "score": 0.16964285714285715
       },
       {
-        "slug": "bosutinib",
-        "name": "bosutinib",
-        "modulesPresent": [
-          "molecularIdentity"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 2,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 1,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0.5,
-          "excerptCoverage": 0
-        },
-        "score": 0.16964285714285715
-      },
-      {
         "slug": "boswellic-acid",
         "name": "boswellic acid",
         "modulesPresent": [
@@ -67046,28 +67138,6 @@
       {
         "slug": "eicosatrienoic-acid",
         "name": "eicosatrienoic acid",
-        "modulesPresent": [
-          "molecularIdentity"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 2,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 1,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0.5,
-          "excerptCoverage": 0
-        },
-        "score": 0.16964285714285715
-      },
-      {
-        "slug": "elacestrant",
-        "name": "elacestrant",
         "modulesPresent": [
           "molecularIdentity"
         ],
@@ -118192,26 +118262,6 @@
         "score": 0
       },
       {
-        "slug": "alirocumab",
-        "name": "alirocumab",
-        "modulesPresent": [],
-        "moduleCount": 0,
-        "distinctSourceDocuments": 0,
-        "sourceAttachments": 0,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": null,
-        "newestRetrievedAt": null,
-        "components": {
-          "moduleBreadth": 0,
-          "sourceCorroboration": 0,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0
-      },
-      {
         "slug": "alisma",
         "name": "alisma",
         "modulesPresent": [],
@@ -151772,26 +151822,6 @@
         "score": 0
       },
       {
-        "slug": "imiglucerase",
-        "name": "imiglucerase",
-        "modulesPresent": [],
-        "moduleCount": 0,
-        "distinctSourceDocuments": 0,
-        "sourceAttachments": 0,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": null,
-        "newestRetrievedAt": null,
-        "components": {
-          "moduleBreadth": 0,
-          "sourceCorroboration": 0,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0
-      },
-      {
         "slug": "imperata-cylindrica-root",
         "name": "imperata cylindrica root",
         "modulesPresent": [],
@@ -177944,11 +177974,11 @@
     "moduleCountHistogram": [
       {
         "moduleCount": 0,
-        "medicines": 3155
+        "medicines": 3153
       },
       {
         "moduleCount": 1,
-        "medicines": 2692
+        "medicines": 2690
       },
       {
         "moduleCount": 2,
@@ -177964,30 +177994,30 @@
       },
       {
         "moduleCount": 5,
-        "medicines": 267
+        "medicines": 266
       },
       {
         "moduleCount": 6,
-        "medicines": 309
+        "medicines": 311
       },
       {
         "moduleCount": 7,
-        "medicines": 428
+        "medicines": 429
       },
       {
         "moduleCount": 8,
-        "medicines": 402
+        "medicines": 404
       },
       {
         "moduleCount": 9,
         "medicines": 155
       }
     ],
-    "singleModuleCount": 2692,
+    "singleModuleCount": 2690,
     "singleModuleByModule": [
       {
         "module": "molecularIdentity",
-        "medicines": 1694
+        "medicines": 1692
       },
       {
         "module": "registryIdentifiers",
@@ -178008,73 +178038,78 @@
     ],
     "singleModuleSample": [
       {
-        "slug": "1-3-dmaa",
-        "name": "1 3 dmaa",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "9-hydroxy-alpha-naphthoflavone",
-        "name": "9 hydroxy alpha naphthoflavone",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "brucella-melitensis",
-        "name": "brucella melitensis",
-        "module": "registryIdentifiers"
-      },
-      {
-        "slug": "carbon-dioxide",
-        "name": "carbon dioxide",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "carlina-vulgaris-whole",
-        "name": "carlina vulgaris whole",
-        "module": "registryIdentifiers"
-      },
-      {
-        "slug": "cetyl-palmitate",
-        "name": "cetyl palmitate",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "chromic-sulfate-pentadecahydrate",
-        "name": "chromic sulfate pentadecahydrate",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "clematis-recta-flowering-top",
-        "name": "clematis recta flowering top",
-        "module": "registryIdentifiers"
-      },
-      {
-        "slug": "creatinine",
-        "name": "creatinine",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "ficus-carica-flower-bud",
-        "name": "ficus carica flower bud",
-        "module": "registryIdentifiers"
-      },
-      {
-        "slug": "fosnetupitant",
-        "name": "fosnetupitant",
+        "slug": "alpha-tocopherol-succinate-d",
+        "name": "alpha tocopherol succinate d",
         "module": "productVariants"
       },
       {
-        "slug": "glycine",
-        "name": "glycine",
+        "slug": "ammonium-chloride",
+        "name": "ammonium chloride",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "hexapeptide-9",
-        "name": "hexapeptide 9",
+        "slug": "bemotrizinol",
+        "name": "bemotrizinol",
         "module": "molecularIdentity"
       },
       {
-        "slug": "macropiper-methysticum-root",
-        "name": "macropiper methysticum root",
+        "slug": "caprylic-acid",
+        "name": "caprylic acid",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "carotenoids",
+        "name": "carotenoids",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "cetyl-oleate",
+        "name": "cetyl oleate",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "coenzyme-a",
+        "name": "coenzyme a",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "delavirdine",
+        "name": "delavirdine",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "egcg",
+        "name": "egcg",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "erythritol",
+        "name": "erythritol",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "ethionamide",
+        "name": "ethionamide",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "glecaprevir",
+        "name": "glecaprevir",
+        "module": "productVariants"
+      },
+      {
+        "slug": "ilex-aquifolium-whole",
+        "name": "ilex aquifolium whole",
+        "module": "registryIdentifiers"
+      },
+      {
+        "slug": "indinavir",
+        "name": "indinavir",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "kerosene",
+        "name": "kerosene",
         "module": "registryIdentifiers"
       },
       {
@@ -178083,62 +178118,57 @@
         "module": "molecularIdentity"
       },
       {
-        "slug": "methyl-nicotinate",
-        "name": "methyl nicotinate",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "methylclostebol",
-        "name": "methylclostebol",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "nicotinamide-adenine-dinucleotide",
-        "name": "nicotinamide adenine dinucleotide",
-        "module": "productVariants"
-      },
-      {
-        "slug": "sinapis-arvensis-whole",
-        "name": "sinapis arvensis whole",
+        "slug": "mercuric-cyanide",
+        "name": "mercuric cyanide",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "sodium-acetate",
-        "name": "sodium acetate",
+        "slug": "octacosanol",
+        "name": "octacosanol",
         "module": "molecularIdentity"
       },
       {
-        "slug": "ticlopidine",
-        "name": "ticlopidine",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "toxoplasma-gondii-dna",
-        "name": "toxoplasma gondii dna",
+        "slug": "okoubaka-aubrevillei-bark",
+        "name": "okoubaka aubrevillei bark",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "trichlormethiazide",
-        "name": "trichlormethiazide",
-        "module": "molecularIdentity"
-      },
-      {
-        "slug": "walnut",
-        "name": "walnut",
+        "slug": "onion",
+        "name": "onion",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "zirconium",
-        "name": "zirconium",
+        "slug": "phenylpiracetam",
+        "name": "phenylpiracetam",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "phytolacca-americana-root",
+        "name": "phytolacca americana root",
+        "module": "registryIdentifiers"
+      },
+      {
+        "slug": "proanthocyanidin",
+        "name": "proanthocyanidin",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "rose-bengal-sodium-i-131",
+        "name": "rose bengal sodium i 131",
+        "module": "molecularIdentity"
+      },
+      {
+        "slug": "sassafras",
+        "name": "sassafras",
         "module": "molecularIdentity"
       }
     ],
     "sourceConcentration": {
-      "distinctDocuments": 4809,
-      "medicinesOnOneDocument": 4215,
-      "medicinesWithNoDocument": 3155,
+      "distinctDocuments": 4811,
+      "medicinesOnOneDocument": 4217,
+      "medicinesWithNoDocument": 3153,
       "reachSummary": {
-        "count": 4809,
+        "count": 4811,
         "min": 1,
         "p25": 1,
         "median": 1,
@@ -178663,7 +178693,7 @@
     "Two documents count as one when they share a source kind and identifier. A document that was revised between two fetch dates therefore still counts once, so corroboration may be reported slightly higher than it is.",
     "The retrieval dates are the dates source artifacts were fetched during authoring. They say when the corpus last looked, not when the source last changed.",
     "The coverage queue was designed to rank widely marketed medicines first, using the count of recorded product variants as the proxy. This corpus cannot express that: the largest number of product variants on any record is 2, and the largest number of distinct jurisdictions on any record is 1, so the module reports little more than whether a marketed product entry was recorded at all. The queue is instead ordered by how much already-cited source material a record has left unstructured, and it does not rank medicines by prominence.",
-    "The queue cutoff is the corpus median density of 0.095 rather than the lower quartile, because 2692 records hold exactly one module and the lower quartile coincides with the lowest score in the corpus. A cut there would select only records that are tied on score and could not be ordered.",
+    "The queue cutoff is the corpus median density of 0.095 rather than the lower quartile, because 2690 records hold exactly one module and the lower quartile coincides with the lowest score in the corpus. A cut there would select only records that are tied on score and could not be ordered.",
     "Records assembled by the deterministic label parser and records assembled by a person are measured on the same scale here. The scale does not distinguish the two kinds of work; the provenance tier on each value does.",
     "Values recorded as displayed text with no parsed number are counted separately rather than penalised as missing. A source that prints no number is recorded faithfully when no number is stored."
   ]

@@ -161,8 +161,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
         sourceCount: 31,
         readings: [
           {
-            display: '358 L',
-            numeric: 358,
+            display: '13,358 L',
+            numeric: 13358,
             unit: 'L',
             sourceCount: 31,
             sources: [
@@ -14943,8 +14943,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '000 L',
-            numeric: 0,
+            display: '1,000 L',
+            numeric: 1000,
             unit: 'L',
             sourceCount: 4,
             sources: [
@@ -19270,8 +19270,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '505 L',
-            numeric: 505,
+            display: '2,505 L',
+            numeric: 2505,
             unit: 'L',
             sourceCount: 3,
             sources: [
@@ -25098,8 +25098,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '100 L',
-            numeric: 100,
+            display: '700 to 1,100 L',
+            numeric: 700,
             unit: 'L',
             sourceCount: 6,
             sources: [
@@ -25139,7 +25139,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
           },
         ],
         agreementRate: 0.6,
-        numericallyDisjoint: true,
+        numericallyDisjoint: false,
       },
     ],
   },
@@ -52902,8 +52902,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '670 L',
-            numeric: 670,
+            display: '1,670 L',
+            numeric: 1670,
             unit: 'L',
             sourceCount: 5,
             sources: [
@@ -53289,8 +53289,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
         sourceCount: 3,
         readings: [
           {
-            display: '000 L',
-            numeric: 0,
+            display: '1,000 L',
+            numeric: 1000,
             unit: 'L',
             sourceCount: 3,
             sources: [
@@ -57077,8 +57077,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '050 L',
-            numeric: 50,
+            display: '1,050 L',
+            numeric: 1050,
             unit: 'L',
             sourceCount: 2,
             sources: [
@@ -58459,8 +58459,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '000 L',
-            numeric: 0,
+            display: '1,000 L',
+            numeric: 1000,
             unit: 'L',
             sourceCount: 16,
             sources: [
@@ -60426,8 +60426,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '741 L',
-            numeric: 741,
+            display: '1,741 L',
+            numeric: 1741,
             unit: 'L',
             sourceCount: 1,
             sources: [
@@ -67462,8 +67462,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '348 L/kg',
-            numeric: 348,
+            display: '2,348 L/kg',
+            numeric: 2348,
             unit: 'L/kg',
             sourceCount: 5,
             sources: [
@@ -75239,6 +75239,21 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
         sourceCount: 2,
         readings: [
           {
+            display: '1,600 L',
+            numeric: 1600,
+            unit: 'L',
+            sourceCount: 1,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '5cf989d5-36f5-4561-a30b-9fcb9deb6b6a',
+                label: 'Tafenoquine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The apparent oral volume of distribution is ~1,600 L.',
+              },
+            ],
+          },
+          {
             display: '2470 L',
             numeric: 2470,
             unit: 'L',
@@ -75251,21 +75266,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'The apparent volume of distribution of tafenoquine in healthy adult subjects is 2470 L [Inter-Individual Variability (IIV): 24.1 %].',
-              },
-            ],
-          },
-          {
-            display: '600 L',
-            numeric: 600,
-            unit: 'L',
-            sourceCount: 1,
-            sources: [
-              {
-                kind: 'FDA_LABEL',
-                identifier: '5cf989d5-36f5-4561-a30b-9fcb9deb6b6a',
-                label: 'Tafenoquine label',
-                retrievedAt: '2026-08-28',
-                excerpt: 'The apparent oral volume of distribution is ~1,600 L.',
               },
             ],
           },
@@ -81006,8 +81006,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
         sourceCount: 2,
         readings: [
           {
-            display: '000 L',
-            numeric: 0,
+            display: '5,000 L',
+            numeric: 5000,
             unit: 'L',
             sourceCount: 1,
             sources: [

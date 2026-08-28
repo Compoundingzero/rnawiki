@@ -155,6 +155,27 @@ function normalizeForMatch(text: string): string {
   return text.replace(/[ \s]+/gu, ' ').replace(/,(?=\d{3}\b)/gu, '')
 }
 
+/**
+ * Whether a displayed number appears in the excerpt AS A NUMBER.
+ *
+ * Substring matching said yes to "800" inside "5,800", and that is not hypothetical: elacestrant's
+ * label reads "the estimated apparent volume of distribution is 5,800 L", the extractor's pattern
+ * began matching after the thousands separator, and a recorded value of 800 L passed this check
+ * with the correct sentence quoted beside it. A reader would have seen a number seven times too
+ * small, under an excerpt that appeared to prove it.
+ *
+ * Compared by value rather than by characters, so a display of "0.5" still matches an excerpt
+ * printing "0.50" — the same number written two ways is not the failure this guards against.
+ */
+function excerptStatesNumber(haystack: string, token: string): boolean {
+  const wanted = Number(token)
+  if (!Number.isFinite(wanted)) return haystack.includes(token)
+  for (const match of haystack.matchAll(/\d+(?:\.\d+)?/gu)) {
+    if (Number(match[0]) === wanted) return true
+  }
+  return false
+}
+
 export function runBackgroundIntelligence(
   background: MedicineRecordedBackground,
 ): BackgroundIntelligenceReport {
@@ -255,7 +276,7 @@ export function runBackgroundIntelligence(
         )
       } else {
         const haystack = normalizeForMatch(excerpt)
-        const missing = displayTokens.filter((token) => !haystack.includes(token))
+        const missing = displayTokens.filter((token) => !excerptStatesNumber(haystack, token))
         if (missing.length > 0) {
           flag(
             'I_VALUE_NOT_IN_EXCERPT',
@@ -304,8 +325,12 @@ export function runBackgroundIntelligence(
     checkRecordedValue('pharmacokinetics.tMax', pk.tMax, { min: 0, max: 720 })
     checkRecordedValue('pharmacokinetics.halfLife', pk.halfLife, { min: 0.01, max: 8760 })
     checkRecordedValue('pharmacokinetics.proteinBinding', pk.proteinBinding, { min: 0, max: 100 })
+    // The floor is a hundredth of a litre per kilogram, not a tenth. A monoclonal antibody stays
+    // almost entirely in plasma — alirocumab's label states 0.04 to 0.05 L/kg and imiglucerase's
+    // 0.09 to 0.15 L/kg — and a floor set for small molecules called both implausible and threw
+    // away a correctly extracted value with its own sentence attached.
     checkRecordedValue('pharmacokinetics.volumeOfDistribution', pk.volumeOfDistribution, {
-      min: 0.1,
+      min: 0.01,
       max: 100000,
     })
     checkRecordedValue('pharmacokinetics.metabolismAsRecorded', pk.metabolismAsRecorded)
