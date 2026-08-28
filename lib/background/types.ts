@@ -246,13 +246,15 @@ export interface RecordedMechanism {
  * chemist checks first and the two a label states unambiguously.
  */
 /**
- * A molecular formula as labels print it once whitespace is removed: element symbols with optional
- * counts, plus an optional salt or hydrate after a middle dot (`C4H11N5∙HCl`, `C16H19N3O5S·3H2O`).
+ * A molecular formula as sources print it once whitespace is removed: element symbols with optional
+ * counts, plus an optional salt or hydrate after a middle dot (`C4H11N5∙HCl`, `C16H19N3O5S·3H2O`),
+ * and an optional trailing charge for an ionic species (`Ca+2`, `CHO3-`). Ions are formulas too,
+ * and refusing them silently dropped seventy real compounds.
  * The extractor and the engine share this one definition so a written formula and a validated
  * formula can never disagree.
  */
 export const MOLECULAR_FORMULA_SHAPE =
-  /^(?:[A-Z][a-z]?\d{0,3})+(?:[·∙•.](?:\d)?(?:[A-Z][a-z]?\d{0,3})+)?$/u
+  /^(?:[A-Z][a-z]?\d{0,3})+(?:[·∙•.](?:\d)?(?:[A-Z][a-z]?\d{0,3})+)?(?:[+-]\d{0,2}|\d{0,2}[+-])?$/u
 
 export interface RecordedMolecularIdentity {
   molecularFormula?: RecordedValue

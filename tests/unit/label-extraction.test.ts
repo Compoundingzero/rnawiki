@@ -14,6 +14,7 @@ import {
   type LabelArtifact,
 } from '@/lib/background/label-extraction'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
+import { MOLECULAR_FORMULA_SHAPE } from '@/lib/background/types'
 
 const OPTIONS = { retrievedAt: '2026-08-28', sourceLabel: 'Synthetic medicine label' }
 
@@ -242,6 +243,27 @@ describe('label extraction: how the medicine works', () => {
 
   it('returns nothing when the label states no mechanism', () => {
     expect(extractMechanism(artifact({ sections: {} }), OPTIONS)).toBeNull()
+  })
+})
+
+describe('molecular formula shape', () => {
+  it('accepts the forms real sources print, including ions and hydrates', () => {
+    for (const formula of [
+      'C16H19N3O5S',
+      'C4H11N5∙HCl',
+      'Ca+2',
+      'CHO3-',
+      'C28H42Cl2N4O2+2',
+      'C6H6CaMgO24P6-8',
+    ]) {
+      expect(MOLECULAR_FORMULA_SHAPE.test(formula), formula).toBe(true)
+    }
+  })
+
+  it('still refuses prose that is not a formula', () => {
+    for (const notAFormula of ['not a formula', 'see monograph', '']) {
+      expect(MOLECULAR_FORMULA_SHAPE.test(notAFormula), notAFormula).toBe(false)
+    }
   })
 })
 

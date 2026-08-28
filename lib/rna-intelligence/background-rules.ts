@@ -597,7 +597,9 @@ export function runBackgroundIntelligence(
     if (molecular.molecularWeight) {
       checkRecordedValue('molecularIdentity.molecularWeight', molecular.molecularWeight)
       const weight = molecular.molecularWeight.numeric
-      if (weight !== undefined && (weight < 30 || weight > 200000)) {
+      // The floor is one atomic mass unit, not thirty. Carbon is 12, carbon monoxide 28, lithium
+      // 6.9, and all three are recorded medicines; a floor set for organic drugs refused them.
+      if (weight !== undefined && (weight < 1 || weight > 200000)) {
         flag(
           'I_MOLECULAR_WEIGHT_IMPLAUSIBLE',
           'molecularIdentity.molecularWeight',

@@ -33,7 +33,7 @@ interface CompoundIdentityEntry {
 }
 
 /** Bounds a molecular weight must fall inside to be a medicine-scale compound. */
-const MIN_WEIGHT = 10
+const MIN_WEIGHT = 1
 const MAX_WEIGHT = 500_000
 
 function main(): void {
