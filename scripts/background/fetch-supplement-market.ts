@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 
 import { normalizeContentName } from '@/lib/background/name-normalization'
@@ -206,6 +206,34 @@ function namesNeedingCoverage(): string[] {
   return [...new Set(names)]
 }
 
+/**
+ * Refuses to run while another copy of this fetcher is alive.
+ *
+ * Three copies of this script ran at once for over an hour without anyone noticing, each polling a
+ * service whose quota had already been exhausted once. Nothing in the script prevented it, and a
+ * process listing is a poor place to keep an invariant. The lock records the process id, and a
+ * stale lock left by a killed run is cleared by checking whether that process still exists rather
+ * than by trusting the file.
+ */
+function claimLock(lockPath: string): boolean {
+  if (existsSync(lockPath)) {
+    const held = Number(readFileSync(lockPath, 'utf8').trim())
+    if (Number.isInteger(held) && held > 0) {
+      try {
+        process.kill(held, 0)
+        console.error(
+          `[dsld] another fetcher is already running as process ${held}. Refusing to add a second one.`,
+        )
+        return false
+      } catch {
+        console.log(`[dsld] clearing a stale lock left by process ${held}`)
+      }
+    }
+  }
+  writeFileSync(lockPath, String(process.pid))
+  return true
+}
+
 async function main() {
   const limitFlag = process.argv.find((value) => value.startsWith('--limit='))
   const limit = limitFlag ? Number(limitFlag.split('=')[1]) : Infinity
@@ -214,6 +242,23 @@ async function main() {
     process.env.RNAWIKI_DSLD_CACHE ??
     '/private/tmp/claude-501/-Users-admin-ClaudeRepo-Claude-Projects-RNAwiki/dsld-market.json'
   mkdirSync(dirname(cachePath), { recursive: true })
+  const lockPath = `${cachePath}.lock`
+  if (!claimLock(lockPath)) process.exit(1)
+  const releaseLock = () => {
+    try {
+      rmSync(lockPath, { force: true })
+    } catch {
+      // A lock that cannot be removed is cleared by the next run's staleness check.
+    }
+  }
+  process.on('exit', releaseLock)
+  for (const signal of ['SIGINT', 'SIGTERM'] as const) {
+    process.on(signal, () => {
+      releaseLock()
+      process.exit(1)
+    })
+  }
+
   const cache: Cache = existsSync(cachePath)
     ? (JSON.parse(readFileSync(cachePath, 'utf8')) as Cache)
     : {}
