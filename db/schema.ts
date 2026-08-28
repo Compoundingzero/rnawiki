@@ -19,6 +19,7 @@ import {
   type AnyPgColumn,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
+import type { MedicineRecordedBackground } from '@/lib/background/types'
 import type {
   AuditPoint,
   ClinicalTrialRecord,
@@ -518,6 +519,9 @@ export const drugs = pgTable(
     // Nested dossier sections. Null means "not documented yet" and renders as the contribute
     // prompt — never as invented content.
     conditionContext: jsonb('condition_context').$type<ConditionContext>(),
+    // Versioned medicine-background/v1 envelope: label/registry facts fetched at authoring time,
+    // validated by the deterministic background engine. Never a reviewed programme conclusion.
+    recordedBackground: jsonb('recorded_background').$type<MedicineRecordedBackground>(),
     pricing: jsonb('pricing').$type<PricingTransparency>(),
     substitutes: jsonb('substitutes').$type<DrugSubstitutes>(),
     molecularSchema: jsonb('molecular_schema').$type<MolecularSchema>(),

@@ -680,12 +680,47 @@ function meaningLimitationsQuestion(
   })
 }
 
-function applicabilityQuestion(definition: QuestionDefinition): DossierQuestionPassage {
-  // The public view model records who was studied, not who was excluded. Until exclusion criteria
-  // become sourced fields, this question stays honestly unanswered for every record.
+function applicabilityQuestion(
+  definition: QuestionDefinition,
+  context: QuestionBuildContext,
+): DossierQuestionPassage {
+  // Eligibility criteria become answerable only through the recorded background layer, where
+  // they were fetched from the study register with their identifier and excerpt at authoring
+  // time. Records without that layer stay honestly unanswered.
+  const applicability = context.dossier.medicineRecord.background?.applicability
+  if (!applicability || applicability.included.length === 0) {
+    return passage(definition, {
+      coverage: 'not_yet_documented',
+      coverageNote: 'This record does not yet document who was excluded from the studies.',
+    })
+  }
+  const items: DossierQuestionAnswerItem[] = [
+    {
+      id: 'q-applicability-included',
+      heading: 'Included, as the study register records it',
+      summary: applicability.studiedGroup,
+      facts: applicability.included
+        .slice(0, MAX_ITEMS_PER_QUESTION * 2)
+        .map((criterion, index) => ({ label: `Criterion ${index + 1}`, value: criterion })),
+      sourceBindings: [],
+    },
+    ...(applicability.excluded.length > 0
+      ? [
+          {
+            id: 'q-applicability-excluded',
+            heading: 'Excluded, as the study register records it',
+            facts: applicability.excluded
+              .slice(0, MAX_ITEMS_PER_QUESTION * 2)
+              .map((criterion, index) => ({ label: `Criterion ${index + 1}`, value: criterion })),
+            sourceBindings: [],
+          },
+        ]
+      : []),
+  ]
   return passage(definition, {
-    coverage: 'not_yet_documented',
-    coverageNote: 'This record does not yet document who was excluded from the studies.',
+    coverage: 'answered',
+    answerLead: `Who the pivotal study of ${context.dossier.name} (${applicability.trialIdentifier}) recorded as eligible and excluded. A group the study left out is a boundary of the evidence, not a judgement about anyone.`,
+    items,
   })
 }
 
@@ -1190,7 +1225,7 @@ const QUESTION_BUILDERS: Record<
   measurement: measurementQuestion,
   'results-magnitude': resultsMagnitudeQuestion,
   'meaning-limitations': meaningLimitationsQuestion,
-  applicability: (definition) => applicabilityQuestion(definition),
+  applicability: applicabilityQuestion,
   harms: harmsQuestion,
   mechanism: mechanismQuestion,
   'evidence-certainty': evidenceCertaintyQuestion,

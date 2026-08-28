@@ -1,6 +1,16 @@
 import { CheckCircle2, ChevronDown, CircleHelp, ExternalLink } from 'lucide-react'
 
 import { AnnotatedMedicineText } from '@/components/AnnotatedMedicineText'
+import {
+  BackgroundAnatomyBody,
+  BackgroundApplicabilityBody,
+  BackgroundCostEntriesBody,
+  BackgroundPharmacokineticsBody,
+  BackgroundPivotalResultsBody,
+  BackgroundProductsBody,
+  BackgroundTitrationBody,
+  RegistryIdentifierList,
+} from '@/components/dossier/RecordedBackgroundRows'
 import { medicineTextContextMatches } from '@/lib/annotated-medicine-text'
 import type {
   DossierBindingState,
@@ -123,6 +133,7 @@ function hasSourcedPricing(context: MedicineRecordContextView): boolean {
 export function hasMedicineRecordContext(context: MedicineRecordContextView): boolean {
   return Boolean(
     context.condition ||
+    context.background ||
     context.safetyAndAdministration ||
     hasSourcedPricing(context) ||
     context.conventionalAlternatives.length > 0 ||
@@ -266,6 +277,74 @@ export function MedicineRecordContextSections({
                 </section>
               )}
             </div>
+          </BackgroundRow>
+        )}
+
+        {context.background?.applicability && (
+          <BackgroundRow
+            id="who-was-studied-record"
+            tone="blue"
+            title="Who the pivotal study included and excluded"
+            preview="Eligibility rules recorded from the study register, shown exactly as written."
+          >
+            <BackgroundApplicabilityBody applicability={context.background.applicability} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.pharmacokinetics && (
+          <BackgroundRow
+            id="after-a-dose"
+            tone="violet"
+            title="What happens after a dose"
+            preview="Recorded absorption, peak time, half-life and clearance values, each with its measured group and source."
+          >
+            <BackgroundPharmacokineticsBody
+              pharmacokinetics={context.background.pharmacokinetics}
+            />
+          </BackgroundRow>
+        )}
+
+        {context.background?.titration && (
+          <BackgroundRow
+            id="studied-schedule"
+            tone="blue"
+            title="The escalation schedule that was studied"
+            preview="Step-by-step schedule recorded from the label or trial protocol, as research context."
+          >
+            <BackgroundTitrationBody titration={context.background.titration} />
+          </BackgroundRow>
+        )}
+
+        {(context.background?.productVariants?.length ?? 0) > 0 && (
+          <BackgroundRow
+            id="recorded-products"
+            tone="blue"
+            title="Products that contain this medicine"
+            preview="Recorded brands, forms, strengths and approved uses by place."
+          >
+            <BackgroundProductsBody products={context.background!.productVariants!} />
+          </BackgroundRow>
+        )}
+
+        {(context.background?.anatomyTargets?.length ?? 0) > 0 && (
+          <BackgroundRow
+            id="where-it-acts-map"
+            tone="violet"
+            title="Where in the body it acts"
+            preview="Recorded body regions on a fixed map — every dot has a source."
+          >
+            <BackgroundAnatomyBody targets={context.background!.anatomyTargets!} />
+          </BackgroundRow>
+        )}
+
+        {(context.background?.pivotalResults?.length ?? 0) > 0 && (
+          <BackgroundRow
+            id="recorded-trial-results"
+            tone="blue"
+            title="Exact recorded study results"
+            preview="Named studies with their exact numbers, comparison groups and uncertainty."
+          >
+            <BackgroundPivotalResultsBody results={context.background!.pivotalResults!} />
           </BackgroundRow>
         )}
 
@@ -421,6 +500,17 @@ export function MedicineRecordContextSections({
           </BackgroundRow>
         )}
 
+        {(context.background?.costEntries?.length ?? 0) > 0 && (
+          <BackgroundRow
+            id="recorded-cost-context"
+            tone="blue"
+            title="Recorded price context"
+            preview="Dated price facts by place and payer, each with its source."
+          >
+            <BackgroundCostEntriesBody entries={context.background!.costEntries!} />
+          </BackgroundRow>
+        )}
+
         {context.commonQuestions.length > 0 && (
           <BackgroundRow
             id="common-questions"
@@ -461,6 +551,17 @@ export function MedicineRecordContextSections({
           </BackgroundRow>
         )}
 
+        {context.background?.registryIdentifiers && !context.molecular && (
+          <BackgroundRow
+            id="registry-identifiers"
+            tone="violet"
+            title="Registry identifiers"
+            preview="How major public registries identify this medicine."
+          >
+            <RegistryIdentifierList identifiers={context.background.registryIdentifiers} />
+          </BackgroundRow>
+        )}
+
         {context.molecular && (
           <BackgroundRow
             id="molecular-record"
@@ -469,6 +570,16 @@ export function MedicineRecordContextSections({
             preview="Molecular identifiers, sequences, structures, and the record’s consistency check."
           >
             <div className="space-y-5">
+              {context.background?.registryIdentifiers && (
+                <div className="rounded-2xl border border-black/[0.08] bg-white p-4">
+                  <h5 className="text-xs font-bold uppercase tracking-wide text-[#6E6E73]">
+                    Registry identifiers
+                  </h5>
+                  <div className="mt-2">
+                    <RegistryIdentifierList identifiers={context.background.registryIdentifiers} />
+                  </div>
+                </div>
+              )}
               <p className="text-base leading-7 text-[#515154]">
                 A structure check confirms that the stored molecular record is internally
                 consistent. It does not show whether the medicine works or is safe. Laboratory and

@@ -33,6 +33,7 @@ function makeRow(overrides: Partial<DrugRow> = {}): DrugRow {
     hasDiscrepancy: false,
     dossierDepth: 'flagship',
     conditionContext: null,
+    recordedBackground: null,
     pricing: null,
     substitutes: null,
     molecularSchema: null,

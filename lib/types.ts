@@ -259,6 +259,8 @@ export interface DrugDossier {
   auditConfidence: AuditConfidence
   confidenceScore: number // 0 - 100
   pricing?: PricingTransparency
+  /** medicine-background/v1 envelope of recorded label/registry facts; see lib/background/types. */
+  recordedBackground?: import('./background/types').MedicineRecordedBackground
   substitutes?: DrugSubstitutes
   molecularSchema?: MolecularSchema
   auditPointsCount: {

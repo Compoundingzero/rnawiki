@@ -604,6 +604,49 @@ describe('connected public JSON-LD graphs', () => {
     })
   })
 
+  it('prefers a recorded registry CID from the background layer over URL extraction', () => {
+    const drug = {
+      ...eligibleLegacyDrug(),
+      recordedBackground: {
+        version: 'medicine-background/v1' as const,
+        authoredAt: '2026-08-27',
+        registryIdentifiers: {
+          pubchemCid: '12345',
+          unii: '53AXN4NNHX',
+          casNumber: '910463-68-2',
+          source: {
+            kind: 'PUBCHEM' as const,
+            identifier: '12345',
+            label: 'PubChem compound record',
+            retrievedAt: '2026-08-27',
+          },
+        },
+      },
+    }
+    // The structure source records a DIFFERENT CID; the fetched registry identifier must win.
+    const legacyDossier = withMolecularSource(eligibleLegacyDossier(), {
+      label: 'PubChem CID 90311989 (example medicine)',
+      identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/90311989',
+      href: 'https://pubchem.ncbi.nlm.nih.gov/compound/90311989',
+    })
+
+    const graph = dossierJsonLdGraph(drug, legacyDossier, {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: 'https://rnawiki.com/d/example-medicine',
+    })
+
+    const medicine = graph?.['@graph'].find((node) => node['@type'] === 'Drug')
+    expect(medicine).toMatchObject({
+      identifier: [
+        { '@type': 'PropertyValue', propertyID: 'PubChem CID', value: '12345' },
+        { '@type': 'PropertyValue', propertyID: 'FDA UNII', value: '53AXN4NNHX' },
+        { '@type': 'PropertyValue', propertyID: 'CAS Registry Number', value: '910463-68-2' },
+      ],
+      sameAs: ['https://pubchem.ncbi.nlm.nih.gov/compound/12345'],
+    })
+  })
+
   it('matches the recorded label against the medicine name without its trailing parenthetical', () => {
     const thcDrug = { ...eligibleLegacyDrug(), name: 'Delta-9-Tetrahydrocannabinol (THC)' }
     const legacyDossier = withMolecularSource(

@@ -1,3 +1,4 @@
+import { medicineBackgroundContext } from '@/lib/medicine-background-view'
 import type {
   AuditPoint,
   ClinicalTrialRecord,
@@ -370,6 +371,8 @@ export interface MedicineSafetyAdministrationContextView {
  */
 export interface MedicineRecordContextView {
   condition?: MedicineConditionContextView
+  /** Recorded medicine-background/v1 modules, engine-validated at authoring time. */
+  background?: import('./medicine-background-view').MedicineBackgroundContextView
   safetyAndAdministration?: MedicineSafetyAdministrationContextView
   pricing?: MedicinePricingContextView
   alternativesSummary?: string
@@ -753,6 +756,7 @@ export function medicineRecordContext(drug: DrugDossier): MedicineRecordContextV
 
   return {
     condition: conditionContext(drug),
+    background: medicineBackgroundContext(drug.recordedBackground),
     safetyAndAdministration: safetyAdministrationContext(drug),
     pricing: pricingContext(drug),
     alternativesSummary: nonEmpty(substitutes?.summary),
@@ -808,6 +812,9 @@ function publishedProgrammeMedicineRecordContext(drug: DrugDossier): MedicineRec
 
   return {
     condition: recorded.condition,
+    // Recorded background is label/registry fact with per-value provenance and engine validation,
+    // so it survives onto published pages unchanged — schedules stay recorded research context.
+    background: recorded.background,
     safetyAndAdministration:
       safetyAndAdministration && Object.values(safetyAndAdministration).some(Boolean)
         ? safetyAndAdministration

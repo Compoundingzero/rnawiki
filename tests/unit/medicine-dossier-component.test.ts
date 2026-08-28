@@ -1955,6 +1955,67 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html).toContain('id="source-doi:10.1056/nejmoa0000000"')
   })
 
+  it('renders recorded background rows with their sources and honest framing', () => {
+    const html = renderDossier(
+      view({
+        bindingState: 'legacy_record',
+        medicineRecord: {
+          conventionalAlternatives: [],
+          commonQuestions: [],
+          communityNotes: [],
+          background: {
+            authoredAt: '2026-08-27',
+            pharmacokinetics: {
+              routeAsRecorded: 'oral tablet',
+              values: [
+                {
+                  label: 'Half-life',
+                  display: 'about 12 hours',
+                  populationContext: 'healthy adults, single dose',
+                  concordanceLabel: 'From the label; not separately corroborated',
+                  source: {
+                    kindLabel: 'FDA label',
+                    label: 'Synthetic medicine label',
+                    identifier: '00afce9b-48c9-487a-a738-e359c005c707',
+                    href: 'https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=00afce9b-48c9-487a-a738-e359c005c707',
+                    retrievedAt: '2026-08-27',
+                    excerpt: 'Synthetic wording: half-life is approximately 12 hours.',
+                  },
+                },
+              ],
+            },
+            anatomyTargets: [
+              {
+                regionCode: 'liver',
+                regionLabel: 'Liver',
+                x: 112,
+                y: 118,
+                action: 'a synthetic recorded action at this organ',
+                source: {
+                  kindLabel: 'FDA label',
+                  label: 'Synthetic medicine label',
+                  identifier: '00afce9b-48c9-487a-a738-e359c005c707',
+                  retrievedAt: '2026-08-27',
+                },
+              },
+            ],
+          },
+        },
+      }),
+    )
+
+    expect(html).toContain('id="after-a-dose"')
+    expect(html).toContain('What happens after a dose')
+    expect(html).toContain('about 12 hours')
+    expect(html).toContain('Measured in: healthy adults, single dose')
+    expect(html).toContain('From the label; not separately corroborated')
+    expect(html).toContain('Exact fetched wording')
+    expect(html).toContain('id="where-it-acts-map"')
+    expect(html).toContain('a synthetic recorded action at this organ')
+    expect(html).toContain('not a reviewed conclusion')
+    expect(html.toLowerCase()).not.toContain('you should')
+  })
+
   it('ends with plain links to the related RNAWiki pages', () => {
     const html = renderDossier(view())
     const nav = html.indexOf('aria-label="Related RNAWiki pages"')

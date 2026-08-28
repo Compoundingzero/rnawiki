@@ -382,12 +382,44 @@ describe('controlled dossier question registry', () => {
     expect(byId.get('q-mechanism')?.items).toEqual([])
   })
 
-  it('keeps corpus-wide honesty for questions no record can answer yet', () => {
-    const byId = new Map(
+  it('answers applicability only from recorded eligibility criteria, honestly otherwise', () => {
+    const withoutRecord = new Map(
       buildDossierQuestionRegistry(dossier()).map((question) => [question.id, question]),
     )
-    expect(byId.get('q-applicability')?.coverage).toBe('not_yet_documented')
-    expect(byId.get('q-applicability')?.coverageNote).toContain('who was excluded')
+    expect(withoutRecord.get('q-applicability')?.coverage).toBe('not_yet_documented')
+    expect(withoutRecord.get('q-applicability')?.coverageNote).toContain('who was excluded')
+
+    const withRecord = dossier()
+    withRecord.medicineRecord = {
+      ...withRecord.medicineRecord,
+      background: {
+        authoredAt: '2026-08-27',
+        applicability: {
+          trialIdentifier: 'NCT00000001',
+          included: ['adults aged 18 or older'],
+          excluded: ['a recorded prior-condition exclusion'],
+          studiedGroup: 'a synthetic recorded demographic summary',
+          source: {
+            kindLabel: 'ClinicalTrials.gov record',
+            label: 'Synthetic registry record',
+            identifier: 'NCT00000001',
+            href: 'https://clinicaltrials.gov/study/NCT00000001',
+            retrievedAt: '2026-08-27',
+          },
+        },
+      },
+    }
+    const answered = new Map(
+      buildDossierQuestionRegistry(withRecord).map((question) => [question.id, question]),
+    )
+    const applicability = answered.get('q-applicability')
+    expect(applicability?.coverage).toBe('answered')
+    expect(applicability?.answerLead).toContain('NCT00000001')
+    expect(applicability?.items.map((item) => item.id)).toEqual([
+      'q-applicability-included',
+      'q-applicability-excluded',
+    ])
+    expect(applicability?.items[0]?.facts[0]?.value).toBe('adults aged 18 or older')
   })
 
   it('server-renders the universe with honest state badges and no special SEO schema', () => {

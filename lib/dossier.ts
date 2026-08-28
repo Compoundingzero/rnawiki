@@ -103,6 +103,7 @@ export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDoss
     auditConfidence: row.auditConfidence,
     confidenceScore: row.confidenceScore,
     pricing: row.pricing ?? undefined,
+    recordedBackground: row.recordedBackground ?? undefined,
     substitutes: row.substitutes ?? undefined,
     molecularSchema: row.molecularSchema ?? undefined,
     auditPointsCount: countAuditPoints(row.keyAudits),

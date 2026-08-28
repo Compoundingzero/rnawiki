@@ -221,3 +221,27 @@ legacy read path. A sourced identity correction for one of those records is stor
 requires one independent reviewer; evidence and conclusion changes cannot use that small path.
 RNAWiki does not invent programme scope, claims, reviewers or verdicts to make an older record look
 complete.
+
+## Group I — recorded background (`rna-intelligence/background-1.0.0`)
+
+Group I is a separate deterministic engine for the `medicine-background/v1` envelope: the recorded
+pharmacokinetics, trial-protocol or label schedule, approved product variants, recorded prices,
+anatomy targets, recorded eligibility criteria, pivotal results and registry identifiers shown as
+medicine-wide research context. It validates structure and provenance — the envelope version and
+ISO dates, known source kinds with kind-specific identifier shapes, excerpt length, contiguous
+schedule steps, the controlled jurisdiction, currency, price-type and anatomy vocabularies, and the
+rule that a discrepant value records the other reading with its own source. It also rejects advice
+or commerce phrasing anywhere in recorded context.
+
+Its central guarantee is mechanical provenance for numbers: every displayed numeric value must
+literally appear in the short source excerpt fetched at authoring time, so a number that was
+remembered instead of read fails validation. Derived sentences — the steady-state note and the
+per-month US-dollar normalization — are deterministic functions of the recorded values; the engine
+recomputes each one and fails on any mismatch rather than trusting the stored copy.
+
+The engine runs in two places. `npm run check:medicine-content` validates every stored envelope and
+is part of `npm run gate`, and `scripts/apply-recorded-background.ts` runs the same validation
+before any write, so a failing envelope never reaches a medicine row. Like every other group, Group
+I checks structure only; people judge meaning. The Group I vocabulary contains 25 stable `I_` rule
+codes, each registered in `BACKGROUND_RULE_CODES` with an executable focused case in the coverage
+test.

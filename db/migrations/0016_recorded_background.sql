@@ -1,0 +1,1 @@
+ALTER TABLE "drugs" ADD COLUMN "recorded_background" jsonb;

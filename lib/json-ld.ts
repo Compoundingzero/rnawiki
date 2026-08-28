@@ -580,13 +580,45 @@ function legacyDossierJsonLdGraph(
   if (legacyEntity.description) medicine.description = legacyEntity.description
   if (legacyEntity.activeIngredient) medicine.activeIngredient = legacyEntity.activeIngredient
 
-  // The "Technical identity" section already shows this recorded identity source on the page;
-  // the graph repeats the same recorded fact and nothing more.
-  const pubChem = recordedPubChemCompound(dossier.medicineRecord.molecular?.source, drug.name)
+  // Recorded registry identifiers from the background layer take precedence: they were fetched
+  // from the registry itself at authoring time and are rendered visibly in "Registry identifiers".
+  // The structure-source URL extraction remains the fallback for records without that layer;
+  // either way the graph repeats a recorded fact shown on the page and nothing more.
+  const recordedIdentifiers = drug.recordedBackground?.registryIdentifiers
+  const recordedCid =
+    recordedIdentifiers?.pubchemCid && /^[1-9]\d{0,15}$/.test(recordedIdentifiers.pubchemCid)
+      ? recordedIdentifiers.pubchemCid
+      : undefined
+  const pubChem = recordedCid
+    ? { cid: recordedCid, url: `https://pubchem.ncbi.nlm.nih.gov/compound/${recordedCid}` }
+    : recordedPubChemCompound(dossier.medicineRecord.molecular?.source, drug.name)
   if (pubChem) {
-    medicine.identifier = [
+    const identifiers: Array<{ '@type': 'PropertyValue'; propertyID: string; value: string }> = [
       { '@type': 'PropertyValue', propertyID: 'PubChem CID', value: pubChem.cid },
     ]
+    if (
+      recordedCid &&
+      recordedIdentifiers?.unii &&
+      /^[0-9A-Z]{10}$/.test(recordedIdentifiers.unii)
+    ) {
+      identifiers.push({
+        '@type': 'PropertyValue',
+        propertyID: 'FDA UNII',
+        value: recordedIdentifiers.unii,
+      })
+    }
+    if (
+      recordedCid &&
+      recordedIdentifiers?.casNumber &&
+      /^\d{2,7}-\d{2}-\d$/.test(recordedIdentifiers.casNumber)
+    ) {
+      identifiers.push({
+        '@type': 'PropertyValue',
+        propertyID: 'CAS Registry Number',
+        value: recordedIdentifiers.casNumber,
+      })
+    }
+    medicine.identifier = identifiers
     medicine.sameAs = [pubChem.url]
   }
 
