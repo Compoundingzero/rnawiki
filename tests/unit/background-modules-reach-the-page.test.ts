@@ -31,6 +31,17 @@ const SECTIONS_SOURCE = 'components/MedicineRecordContextSections.tsx'
  */
 const NOT_READER_FACING = new Set(['version', 'authoredAt', 'provenanceTier', 'attribution'])
 
+/**
+ * Envelope fields the view deliberately renames, declared rather than inferred.
+ *
+ * The projection is allowed to give a field a reader-facing name — `costContext` is stored under
+ * that name and shown as `costEntries`. Listing the renames here keeps the check honest: an
+ * undeclared rename still reads as an unreachable module, which is what it would be.
+ */
+const PROJECTED_AS: Readonly<Record<string, string>> = {
+  costContext: 'costEntries',
+}
+
 /** The optional fields declared on `MedicineRecordedBackground`, read from the declaration itself. */
 function envelopeModules(): string[] {
   const source = readFileSync(TYPES_SOURCE, 'utf8')
@@ -97,7 +108,7 @@ describe('every stored module reaches a reader', () => {
         if (value !== undefined) projected.add(key)
       }
     }
-    const unreachable = [...stored].filter((field) => !projected.has(field))
+    const unreachable = [...stored].filter((field) => !projected.has(PROJECTED_AS[field] ?? field))
     expect(
       unreachable,
       `stored by the corpus but never projected: ${unreachable.join(', ')}`,

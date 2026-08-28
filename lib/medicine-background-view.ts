@@ -424,8 +424,14 @@ function compositionSummary(composition: RecordedComposition): string {
 function money(currency: string, low: number, high?: number): string {
   const symbol =
     currency === 'USD' ? '$' : currency === 'GBP' ? '£' : currency === 'EUR' ? '€' : `${currency} `
-  const format = (value: number) =>
-    value >= 100 ? Math.round(value).toLocaleString('en-US') : value.toFixed(2)
+  // Sub-cent amounts are real: an acquisition cost is per tablet, and metformin's is $0.01419. Two
+  // decimals would round a fifth of that away and print the same "$0.01" for prices differing
+  // fivefold, so small amounts keep the precision the source published.
+  const format = (value: number) => {
+    if (value >= 100) return Math.round(value).toLocaleString('en-US')
+    if (value >= 1) return value.toFixed(2)
+    return value.toFixed(5).replace(/0+$/u, '').replace(/\.$/u, '')
+  }
   return high !== undefined && high !== low
     ? `${symbol}${format(low)} to ${symbol}${format(high)}`
     : `${symbol}${format(low)}`

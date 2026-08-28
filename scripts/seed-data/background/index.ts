@@ -38,6 +38,7 @@ import { SUBSTANCE_BACKED_BACKGROUND } from './substance-backed-background'
 import { SUPPLEMENT_BACKGROUND } from './supplement-background'
 import { LABEL_PRESENCE_BACKGROUND } from './label-presence'
 import { COMBINATION_ROW_COMPOSITION } from './combination-row-composition'
+import { ACQUISITION_COST_BACKGROUND } from './acquisition-cost'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -122,6 +123,17 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     const existing = merged[slug]
     if (existing?.composition) continue
     merged[slug] = existing ? { ...existing, composition: composed.composition } : composed
+  }
+
+  // Acquisition cost attaches to whatever record exists. `costContext` had been part of the record
+  // model from the start and no source had ever filled it — zero records carried a price — because
+  // most published prices are list prices nobody pays. What CMS surveys is what pharmacies actually
+  // pay to buy the product, which is an observation rather than an asking price, and the entry says
+  // so in its own words. A curated record keeps any price a person authored.
+  for (const [slug, priced] of Object.entries(ACQUISITION_COST_BACKGROUND)) {
+    const existing = merged[slug]
+    if (existing?.costContext?.length) continue
+    merged[slug] = existing ? { ...existing, costContext: priced.costContext } : priced
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism

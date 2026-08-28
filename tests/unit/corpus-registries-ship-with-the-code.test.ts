@@ -28,6 +28,7 @@ const CORPUS_REGISTRIES = [
   { file: 'supplement-background.json', evidence: 'supplementMarket' },
   { file: 'label-presence.json', evidence: 'labelPresence' },
   { file: 'combination-row-composition.json', evidence: 'composition' },
+  { file: 'acquisition-cost.json', evidence: 'costContext' },
 ] as const
 
 describe('registries the published corpus reads', () => {

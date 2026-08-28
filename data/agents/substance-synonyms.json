@@ -14,9 +14,9 @@
     "counterionCationTermCount": 18
   },
   "coverage": {
-    "considered": 7913,
+    "considered": 7915,
     "used": 2021,
-    "reason": "2021 of 7913 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 376 records ended up in a candidate group."
+    "reason": "2021 of 7915 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 376 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [
@@ -92,11 +92,13 @@
             "name": "senna",
             "modulesHeld": [
               "productVariants",
+              "costContext",
               "registryIdentifiers"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:2b03d07c-ea4f-4663-bcc3-20ebdf83b7aa",
-              "FDA_LABEL:d2a5a13a-e7e4-488a-b60b-4dd467efa971"
+              "FDA_LABEL:d2a5a13a-e7e4-488a-b60b-4dd467efa971",
+              "NADAC:2026-08-26"
             ]
           },
           {
@@ -996,6 +998,7 @@
             "modulesHeld": [
               "pharmacokinetics",
               "productVariants",
+              "costContext",
               "registryIdentifiers",
               "mechanism",
               "molecularIdentity",
@@ -1004,7 +1007,8 @@
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:acb7d02d-249b-4645-ac1b-8ff9a56dd244",
-              "FDA_LABEL:dbbed17b-8ad3-05fb-fb63-03fbb75eae05"
+              "FDA_LABEL:dbbed17b-8ad3-05fb-fb63-03fbb75eae05",
+              "NADAC:2026-08-26"
             ]
           },
           {
@@ -1055,13 +1059,15 @@
             "name": "thyroid",
             "modulesHeld": [
               "productVariants",
+              "costContext",
               "registryIdentifiers",
               "safety",
               "populationStatements"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:9b517204-3d73-410f-aa86-741f29e51906",
-              "FDA_LABEL:b1085f7c-70b3-4850-89c0-5d2b3c6c46cf"
+              "FDA_LABEL:b1085f7c-70b3-4850-89c0-5d2b3c6c46cf",
+              "NADAC:2026-08-26"
             ]
           },
           {
@@ -1889,10 +1895,12 @@
             "slug": "castor-oil",
             "name": "castor oil",
             "modulesHeld": [
+              "costContext",
               "registryIdentifiers"
             ],
             "sourceIdentifiers": [
-              "FDA_LABEL:f2676cf2-f6fb-46b8-b723-5497f1655902"
+              "FDA_LABEL:f2676cf2-f6fb-46b8-b723-5497f1655902",
+              "NADAC:2026-08-26"
             ]
           }
         ],
@@ -1912,11 +1920,13 @@
             "modulesHeld": [
               "pharmacokinetics",
               "productVariants",
+              "costContext",
               "anatomyTargets",
               "registryIdentifiers"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:13891e5a-e57a-46e8-911c-2f680352b52b",
+              "NADAC:2026-08-26",
               "PUBCHEM:16132418"
             ]
           },
@@ -2350,6 +2360,7 @@
             "modulesHeld": [
               "pharmacokinetics",
               "productVariants",
+              "costContext",
               "anatomyTargets",
               "applicability",
               "pivotalResults",
@@ -2358,6 +2369,7 @@
             "sourceIdentifiers": [
               "CLINICALTRIALS:NCT02273180",
               "FDA_LABEL:0691def8-4a7b-4de3-866f-a280989f47f1",
+              "NADAC:2026-08-26",
               "PUBCHEM:16132438"
             ]
           },
@@ -3127,10 +3139,12 @@
             "slug": "mineral-oil",
             "name": "mineral oil",
             "modulesHeld": [
+              "costContext",
               "registryIdentifiers"
             ],
             "sourceIdentifiers": [
-              "FDA_LABEL:b8494d02-8a7d-47b4-80b0-b8ab51b625fd"
+              "FDA_LABEL:b8494d02-8a7d-47b4-80b0-b8ab51b625fd",
+              "NADAC:2026-08-26"
             ]
           }
         ],
@@ -3246,6 +3260,7 @@
             "name": "vitamin d2",
             "modulesHeld": [
               "productVariants",
+              "costContext",
               "registryIdentifiers",
               "molecularIdentity",
               "safety",
@@ -3253,7 +3268,8 @@
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:0d230fd8-2ea7-4dd6-a506-5f7804e539fc",
-              "FDA_LABEL:e58cfb46-f8a7-4327-bbe8-da4d4be2bd1d"
+              "FDA_LABEL:e58cfb46-f8a7-4327-bbe8-da4d4be2bd1d",
+              "NADAC:2026-08-26"
             ]
           }
         ],
@@ -5207,13 +5223,15 @@
             "name": "cefadroxil",
             "modulesHeld": [
               "productVariants",
+              "costContext",
               "registryIdentifiers",
               "molecularIdentity",
               "safety",
               "populationStatements"
             ],
             "sourceIdentifiers": [
-              "FDA_LABEL:ab9cf28c-7c16-4bfa-879d-c360b4d1d5a6"
+              "FDA_LABEL:ab9cf28c-7c16-4bfa-879d-c360b4d1d5a6",
+              "NADAC:2026-08-26"
             ]
           },
           {
@@ -16464,6 +16482,7 @@
         "CLINICALTRIALS:NCT02273180",
         "FDA_LABEL:0691def8-4a7b-4de3-866f-a280989f47f1",
         "FDA_LABEL:c5a056e2-b568-4ca6-9ed8-79c010942d00",
+        "NADAC:2026-08-26",
         "PUBCHEM:16132438"
       ]
     },
@@ -16477,6 +16496,7 @@
         "CLINICALTRIALS:NCT02273180",
         "FDA_LABEL:0691def8-4a7b-4de3-866f-a280989f47f1",
         "FDA_LABEL:c5a056e2-b568-4ca6-9ed8-79c010942d00",
+        "NADAC:2026-08-26",
         "PUBCHEM:16132438"
       ]
     },
@@ -16570,7 +16590,8 @@
         "FDA_LABEL:0d230fd8-2ea7-4dd6-a506-5f7804e539fc",
         "FDA_LABEL:26aba724-8990-def9-e063-6394a90a991d",
         "FDA_LABEL:84647b52-3c4c-31bb-e053-2991aa0a8a7e",
-        "FDA_LABEL:e58cfb46-f8a7-4327-bbe8-da4d4be2bd1d"
+        "FDA_LABEL:e58cfb46-f8a7-4327-bbe8-da4d4be2bd1d",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16583,7 +16604,8 @@
         "FDA_LABEL:0d230fd8-2ea7-4dd6-a506-5f7804e539fc",
         "FDA_LABEL:26aba724-8990-def9-e063-6394a90a991d",
         "FDA_LABEL:84647b52-3c4c-31bb-e053-2991aa0a8a7e",
-        "FDA_LABEL:e58cfb46-f8a7-4327-bbe8-da4d4be2bd1d"
+        "FDA_LABEL:e58cfb46-f8a7-4327-bbe8-da4d4be2bd1d",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16629,6 +16651,7 @@
       "sources": [
         "FDA_LABEL:13891e5a-e57a-46e8-911c-2f680352b52b",
         "FDA_LABEL:eee07a52-1102-4d48-9782-26061db175ad",
+        "NADAC:2026-08-26",
         "PUBCHEM:16132418"
       ]
     },
@@ -16641,6 +16664,7 @@
       "sources": [
         "FDA_LABEL:13891e5a-e57a-46e8-911c-2f680352b52b",
         "FDA_LABEL:eee07a52-1102-4d48-9782-26061db175ad",
+        "NADAC:2026-08-26",
         "PUBCHEM:16132418"
       ]
     },
@@ -16664,7 +16688,8 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 1 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:401e3a7e-54be-47cc-88c3-a343f5cbbd10",
-        "FDA_LABEL:b8494d02-8a7d-47b4-80b0-b8ab51b625fd"
+        "FDA_LABEL:b8494d02-8a7d-47b4-80b0-b8ab51b625fd",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16675,7 +16700,8 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 1 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:401e3a7e-54be-47cc-88c3-a343f5cbbd10",
-        "FDA_LABEL:b8494d02-8a7d-47b4-80b0-b8ab51b625fd"
+        "FDA_LABEL:b8494d02-8a7d-47b4-80b0-b8ab51b625fd",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16688,7 +16714,8 @@
         "FDA_LABEL:4cc32b8c-6316-4d4b-8fa9-ef640464ca69",
         "FDA_LABEL:acb7d02d-249b-4645-ac1b-8ff9a56dd244",
         "FDA_LABEL:af4323b6-5240-4697-992a-512c4d098340",
-        "FDA_LABEL:dbbed17b-8ad3-05fb-fb63-03fbb75eae05"
+        "FDA_LABEL:dbbed17b-8ad3-05fb-fb63-03fbb75eae05",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16701,7 +16728,8 @@
         "FDA_LABEL:4cc32b8c-6316-4d4b-8fa9-ef640464ca69",
         "FDA_LABEL:acb7d02d-249b-4645-ac1b-8ff9a56dd244",
         "FDA_LABEL:af4323b6-5240-4697-992a-512c4d098340",
-        "FDA_LABEL:dbbed17b-8ad3-05fb-fb63-03fbb75eae05"
+        "FDA_LABEL:dbbed17b-8ad3-05fb-fb63-03fbb75eae05",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16713,7 +16741,8 @@
       "sources": [
         "FDA_LABEL:2b03d07c-ea4f-4663-bcc3-20ebdf83b7aa",
         "FDA_LABEL:cfc6ab2f-5376-46fc-ac58-7dedd7010006",
-        "FDA_LABEL:d2a5a13a-e7e4-488a-b60b-4dd467efa971"
+        "FDA_LABEL:d2a5a13a-e7e4-488a-b60b-4dd467efa971",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16725,7 +16754,8 @@
       "sources": [
         "FDA_LABEL:2b03d07c-ea4f-4663-bcc3-20ebdf83b7aa",
         "FDA_LABEL:cfc6ab2f-5376-46fc-ac58-7dedd7010006",
-        "FDA_LABEL:d2a5a13a-e7e4-488a-b60b-4dd467efa971"
+        "FDA_LABEL:d2a5a13a-e7e4-488a-b60b-4dd467efa971",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16737,7 +16767,8 @@
       "sources": [
         "FDA_LABEL:3f207ff8-24d9-49a0-89ee-a22d0e745981",
         "FDA_LABEL:9b517204-3d73-410f-aa86-741f29e51906",
-        "FDA_LABEL:b1085f7c-70b3-4850-89c0-5d2b3c6c46cf"
+        "FDA_LABEL:b1085f7c-70b3-4850-89c0-5d2b3c6c46cf",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16749,7 +16780,8 @@
       "sources": [
         "FDA_LABEL:3f207ff8-24d9-49a0-89ee-a22d0e745981",
         "FDA_LABEL:9b517204-3d73-410f-aa86-741f29e51906",
-        "FDA_LABEL:b1085f7c-70b3-4850-89c0-5d2b3c6c46cf"
+        "FDA_LABEL:b1085f7c-70b3-4850-89c0-5d2b3c6c46cf",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16940,7 +16972,8 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:4947cf4d-3ebd-4b66-9582-f141407aa300",
-        "FDA_LABEL:f2676cf2-f6fb-46b8-b723-5497f1655902"
+        "FDA_LABEL:f2676cf2-f6fb-46b8-b723-5497f1655902",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -16951,7 +16984,8 @@
       "basis": "Grouped on a shared substance identifier. 0 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
         "FDA_LABEL:4947cf4d-3ebd-4b66-9582-f141407aa300",
-        "FDA_LABEL:f2676cf2-f6fb-46b8-b723-5497f1655902"
+        "FDA_LABEL:f2676cf2-f6fb-46b8-b723-5497f1655902",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -19573,7 +19607,8 @@
       "priority": 1,
       "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
-        "FDA_LABEL:ab9cf28c-7c16-4bfa-879d-c360b4d1d5a6"
+        "FDA_LABEL:ab9cf28c-7c16-4bfa-879d-c360b4d1d5a6",
+        "NADAC:2026-08-26"
       ]
     },
     {
@@ -19583,7 +19618,8 @@
       "priority": 1,
       "basis": "Grouped on a shared source document and a recorded name wholly contained in the other. 1 recorded fields match, 0 do not match, and 0 cannot be placed on one scale. Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.",
       "sources": [
-        "FDA_LABEL:ab9cf28c-7c16-4bfa-879d-c360b4d1d5a6"
+        "FDA_LABEL:ab9cf28c-7c16-4bfa-879d-c360b4d1d5a6",
+        "NADAC:2026-08-26"
       ]
     },
     {

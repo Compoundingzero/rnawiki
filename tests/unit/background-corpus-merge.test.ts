@@ -38,7 +38,10 @@ describe('recorded-background corpus merge', () => {
     // rather than a statement about the medicine, so none can contradict what a person wrote.
     // Anything else appearing here would mean a generated source had reached inside a record a
     // person authored.
-    const allowed = new Set(['sourceConsensus', 'supplementMarket', 'labelPresence'])
+    // `costContext` joins them: a dated acquisition price surveyed by CMS is an observation about
+    // the market, not a judgement about the medicine, and a curated record that authored its own
+    // price keeps it.
+    const allowed = new Set(['sourceConsensus', 'supplementMarket', 'labelPresence', 'costContext'])
     for (const slug of Object.keys(RECORDED_BACKGROUND)) {
       const curatedKeys = new Set(Object.keys(RECORDED_BACKGROUND[slug]!))
       const added = Object.keys(ALL_RECORDED_BACKGROUND[slug]!).filter(

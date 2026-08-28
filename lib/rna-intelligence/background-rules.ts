@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-2.2.0`.
+ * `rna-intelligence/background-2.3.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -151,8 +151,18 @@ function numberTokens(display: string): string[] {
   return display.match(/\d+(?:\.\d+)?/gu) ?? []
 }
 
+/**
+ * Prepares text for number matching: collapses whitespace and removes thousands separators.
+ *
+ * The separator rule matches a whole separated number rather than any comma followed by three
+ * digits. The looser form corrupted anything comma-delimited: in a pricing-file row ending
+ * "...,43386028001,221.72208", it deleted the field separator and glued an eleven-digit product
+ * code onto the price, so the price stopped existing as a number and a correct record was refused.
+ */
 function normalizeForMatch(text: string): string {
-  return text.replace(/[ \s]+/gu, ' ').replace(/,(?=\d{3}\b)/gu, '')
+  return text
+    .replace(/[\u00a0\s]+/gu, ' ')
+    .replace(/\b\d{1,3}(?:,\d{3})+\b/gu, (match) => match.replace(/,/gu, ''))
 }
 
 /**
@@ -423,7 +433,9 @@ export function runBackgroundIntelligence(
         )
       } else {
         const haystack = normalizeForMatch(excerpt)
-        const missing = amountTokens.filter((token) => !haystack.includes(token))
+        // Compared as numbers for the same reason as every other recorded value: a price of 0.05
+        // must not be accepted because "0.05" happens to sit inside "10.057".
+        const missing = amountTokens.filter((token) => !excerptStatesNumber(haystack, token))
         if (missing.length > 0) {
           flag(
             'I_VALUE_NOT_IN_EXCERPT',

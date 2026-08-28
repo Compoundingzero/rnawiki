@@ -9,7 +9,7 @@
     "independentOfEngine": true
   },
   "coverage": {
-    "considered": 7913,
+    "considered": 7915,
     "used": 3396,
     "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
   },
@@ -63825,7 +63825,7 @@
     ],
     "engineComparison": {
       "disagreements": [],
-      "recordsCompared": 7913,
+      "recordsCompared": 7915,
       "agreementRate": 1,
       "note": "This check is written independently of the background engine so that agreement means something. Where they differ, neither is assumed correct: either may be the stricter, and the difference is the finding."
     }

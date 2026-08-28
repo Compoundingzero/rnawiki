@@ -38,3 +38,4 @@ data/registries/*
 !data/registries/supplement-background.json
 !data/registries/label-presence.json
 !data/registries/combination-row-composition.json
+!data/registries/acquisition-cost.json
