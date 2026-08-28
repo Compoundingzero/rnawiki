@@ -22,7 +22,8 @@ import { createRng, shuffleInPlace } from '@/lib/agents/core/rng'
 import type { MedicineRecordedBackground } from '@/lib/background/types'
 
 const AGENT_NAME = 'coverage-ledger'
-const AGENT_VERSION = '1.0.0'
+// 1.1.0 knows about recorded organisms, which 691 records held while the ledger called them empty.
+const AGENT_VERSION = '1.1.0'
 
 /**
  * How a record came to be filled.
@@ -37,7 +38,9 @@ export const COVERAGE_ROUTES = [
   'LABEL_PRODUCT_ONLY',
   'SUPPLEMENT_MARKET',
   'LABEL_ARCHIVE_PRESENCE',
+  'BIOLOGICAL_IDENTITY',
   'COMPOUND_IDENTITY',
+  'OTHER_RECORDED_CONTEXT',
   'NONE',
 ] as const
 export type CoverageRoute = (typeof COVERAGE_ROUTES)[number]
@@ -57,6 +60,7 @@ const MODULES = [
   'sourceConsensus',
   'supplementMarket',
   'labelPresence',
+  'biologicalIdentity',
   'registryIdentifiers',
   'anatomyTargets',
   'applicability',
@@ -117,7 +121,10 @@ function has(background: MedicineRecordedBackground, module: ModuleName): boolea
  * Decided by what the record holds rather than by a stored marker, so a record assembled from two
  * sources is described by the richer one and the classification cannot drift from the data.
  */
-function routeFor(background: MedicineRecordedBackground): CoverageRoute {
+function routeFor(
+  background: MedicineRecordedBackground,
+  modulesPresent: readonly ModuleName[],
+): CoverageRoute {
   const tier = background.provenanceTier ?? 'curated'
   if (tier === 'curated') return 'CURATED'
   const composition = background.composition
@@ -136,8 +143,12 @@ function routeFor(background: MedicineRecordedBackground): CoverageRoute {
   }
   if (has(background, 'supplementMarket')) return 'SUPPLEMENT_MARKET'
   if (has(background, 'labelPresence')) return 'LABEL_ARCHIVE_PRESENCE'
+  if (has(background, 'biologicalIdentity')) return 'BIOLOGICAL_IDENTITY'
   if (has(background, 'molecularIdentity')) return 'COMPOUND_IDENTITY'
-  return 'NONE'
+  // A record holding something none of the named routes describes is still not empty. Falling
+  // through to NONE said "no source holds anything about this record" about rows that carried a
+  // registry identifier or a price, which is the ledger reporting the corpus as thinner than it is.
+  return modulesPresent.length > 0 ? 'OTHER_RECORDED_CONTEXT' : 'NONE'
 }
 
 const ROUTE_LIMITS: Readonly<Record<CoverageRoute, string>> = {
@@ -150,8 +161,12 @@ const ROUTE_LIMITS: Readonly<Record<CoverageRoute, string>> = {
     'Supplement labels carry no mechanism, no pharmacokinetics and no evaluated efficacy claim, so none can be recorded however many products exist.',
   LABEL_ARCHIVE_PRESENCE:
     'The archive records that published labels name this substance as an active ingredient, and how many of them name it alone. It does not say the product was approved or evaluated, and where no label names the substance alone there is no source its own data could come from.',
+  BIOLOGICAL_IDENTITY:
+    'A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows.',
   COMPOUND_IDENTITY:
     'A compound database states structure and nothing about use, effect or safety.',
+  OTHER_RECORDED_CONTEXT:
+    'The record holds identifiers, price or other context, but no source states what the medicine is, how it works, or what it is used for.',
   NONE: 'No source this corpus reads holds anything about this record.',
 }
 
@@ -184,7 +199,7 @@ export const coverageLedgerAgent: DatasetAgent<CoverageLedgerDataset> = {
       entries.push({
         slug,
         name,
-        route: routeFor(background),
+        route: routeFor(background, modulesPresent),
         modulesPresent,
         moduleCount: modulesPresent.length,
         ingredientCount: ingredients.length,

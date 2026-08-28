@@ -100,3 +100,40 @@ describe('coverage ledger', () => {
     expect(caveats).toContain('gap in reading')
   })
 })
+
+/**
+ * The ledger's own blind spot, which is the failure this dataset exists to prevent.
+ *
+ * `biologicalIdentity` reached 691 records and the ledger classified every one of them as holding
+ * nothing, because its module list had not been extended. A coverage report that cannot see a module
+ * reports the corpus as thinner than it is, and the one dataset nobody double-checks is the one that
+ * says how much there is.
+ */
+describe('the ledger sees every module the envelope declares', () => {
+  it('tracks every reader-facing field of the recorded-background envelope', async () => {
+    const { readFileSync } = await import('node:fs')
+    const source = readFileSync('lib/background/types.ts', 'utf8')
+    const block = source.match(/export interface MedicineRecordedBackground \{([\s\S]*?)\n\}/u)?.[1]
+    expect(block).toBeDefined()
+    const declared = [...block!.matchAll(/^\s{2}(\w+)\??:/gmu)]
+      .map((match) => match[1]!)
+      .filter(
+        (field) => !['version', 'authoredAt', 'provenanceTier', 'attribution'].includes(field),
+      )
+
+    const tracked = new Set(run.output.byModule.map((roll) => roll.module as string))
+    const untracked = declared.filter((field) => !tracked.has(field))
+    expect(untracked, `declared but not counted by the ledger: ${untracked.join(', ')}`).toEqual([])
+  })
+
+  it('never calls a record empty while it holds something', () => {
+    for (const entry of run.output.entries) {
+      if (entry.route === 'NONE') {
+        expect(entry.moduleCount, `${entry.slug} is routed NONE`).toBe(0)
+      }
+      if (entry.moduleCount > 0) {
+        expect(entry.route, `${entry.slug} holds ${entry.moduleCount} module(s)`).not.toBe('NONE')
+      }
+    }
+  })
+})
