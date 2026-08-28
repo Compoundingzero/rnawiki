@@ -67,7 +67,19 @@ SALT_AND_FORM_WORDS = (
     r"hydrochloride|hcl|sodium|potassium|calcium|sulfate|sulphate|tartrate|maleate|mesylate|"
     r"besylate|fumarate|succinate|citrate|acetate|phosphate|bitartrate|dihydrate|monohydrate|"
     r"anhydrous|micronized|usp|injection|tablets?|capsules?|oral|solution|suspension|cream|"
-    r"ointment|gel|spray"
+    r"ointment|gel|spray|"
+    # Water of crystallisation and unambiguous counterions, added after "ATORVASTATIN CALCIUM" and
+    # "ATORVASTATIN CALCIUM TRIHYDRATE" on one label were counted as two substances, which made
+    # Lipitor read as a combination product and cost it both its aliases and its substance data.
+    # 405 labels were being miscounted this way.
+    #
+    # Deliberately NOT here: bicarbonate, carbonate, chloride and oxide. Each is a real active
+    # ingredient in real products — sodium bicarbonate in the omeprazole combination, calcium
+    # carbonate as an antacid — and stripping them would collapse genuine combinations into one
+    # of their ingredients, which is the opposite mistake and a worse one.
+    r"trihydrate|hemihydrate|pentahydrate|sesquihydrate|hydrate|hydrous|hydrobromide|hbr|"
+    r"monosodium|disodium|dipotassium|tosylate|edisylate|isethionate|napsylate|xinafoate|"
+    r"pamoate|embonate|hyclate|meglumine|dimeglumine|tromethamine|trometamol"
 )
 PARENTHETICAL = re.compile(r"\([^)]*\)")
 SALT_AND_FORM = re.compile(r"\b(?:%s)\b" % SALT_AND_FORM_WORDS)

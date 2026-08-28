@@ -14,9 +14,9 @@
     "counterionCationTermCount": 18
   },
   "coverage": {
-    "considered": 3008,
-    "used": 1868,
-    "reason": "1868 of 3008 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 171 records ended up in a candidate group."
+    "considered": 3012,
+    "used": 1872,
+    "reason": "1872 of 3012 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 171 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [
@@ -6867,13 +6867,13 @@
       }
     ],
     "signalCounts": {
-      "recordsCarryingUnii": 1868,
+      "recordsCarryingUnii": 1872,
       "recordsCarryingMalformedUnii": 0,
       "uniiValuesSharedByMoreThanOneRecord": 28,
       "saltFormPairsExcluded": 3,
-      "sharedDocumentsConsidered": 258,
-      "documentPairsRejectedForMultipleDeclaredSubstances": 491,
-      "documentPairsRejectedForSaltForm": 33,
+      "sharedDocumentsConsidered": 261,
+      "documentPairsRejectedForMultipleDeclaredSubstances": 496,
+      "documentPairsRejectedForSaltForm": 35,
       "documentPairsRejectedForCombinationProduct": 1,
       "documentPairsRejectedForUnrelatedNames": 7,
       "documentPairsAlreadyCarriedByIdentifier": 2

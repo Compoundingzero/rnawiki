@@ -26,10 +26,21 @@ agent output may:
 - **Relate two medicines to each other.** This is the hardest line and the least obvious. A
   bipartite medicine-to-enzyme structure is fine, because each edge is a sourced statement about one
   medicine. The projection to medicine-to-medicine is not, however statistically validated it is:
-  FDA's mobile medical apps guidance treats drug-drug interaction lookup as software that is a
-  medical device, and two medicine names sharing a row with an implied relation is that thing
-  regardless of wording. No agent emits a medicine pair, similarity, ranking or "related medicines"
-  list.
+  Stated accurately, because a rule defended on a false basis gets overturned: interaction-lookup
+  functions fall under Appendix B of FDA's mobile medical applications guidance, which means they
+  **are** device functions over which FDA has said it does not intend to enforce. Enforcement
+  discretion is revocable and is not a safe harbour, and the discretion is framed around a
+  patient-specific report generated from a current medication list with clinical context — none of
+  which a public wiki has. RNAWiki therefore keeps a rule stricter than FDA requires, as a
+  deliberate editorial choice. No agent emits a medicine pair, similarity, ranking or "related
+  medicines" list.
+
+  The trap is subtler than it looks. Most ingredients are _also_ sold as standalone products:
+  amlodipine and atorvastatin are each marketed alone and co-formulated in Caduet, so a validated
+  co-formulation edge between them, rendered anywhere reachable from amlodipine's page, is a
+  medicine-to-medicine edge wearing an ingredient label. An ingredient pair may be rendered only on
+  the page of a product whose own ingredient set contains both endpoints.
+
 - **Frame silence as reassurance or as alarm.** A label that does not state a pediatric half-life
   has not said the medicine is safe for children, and has not said it is dangerous.
 

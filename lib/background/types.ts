@@ -366,20 +366,88 @@ export interface RecordedAttribution {
 }
 
 /**
- * Modules that state something about a substance itself, and therefore may only be recorded from a
- * source that is about that substance alone. Product identity is deliberately not in this list: a
- * combination product genuinely is a product containing the medicine.
+ * Modules that state something about a SUBSTANCE, and may therefore only be recorded from a source
+ * about that substance alone.
+ *
+ * These belong to an ingredient rather than to a product. A combination label discusses each of its
+ * substances' mechanisms and pharmacokinetics separately, and attributing either to the product as
+ * a whole would say something none of its sources said.
  */
 export const SUBSTANCE_SPECIFIC_MODULES = [
   'pharmacokinetics',
   'mechanism',
   'molecularIdentity',
   'interactionSignals',
+] as const
+export type SubstanceSpecificModule = (typeof SUBSTANCE_SPECIFIC_MODULES)[number]
+
+/**
+ * Modules that state something about the PRODUCT, and may be recorded from the product's own label
+ * however many substances it contains.
+ *
+ * This distinction was learned the hard way. Refusing everything on a multi-ingredient document
+ * discarded amoxicillin with clavulanate, sulfamethoxazole with trimethoprim, carbidopa with
+ * levodopa and every other combination — and their boxed warnings, contraindications and adverse
+ * reactions were never substance claims to begin with. A combination product's label warns about
+ * the combination, which is exactly the thing a reader of that page is taking.
+ */
+export const PRODUCT_LEVEL_MODULES = [
+  'productVariants',
   'safety',
   'populationStatements',
   'commonAdverseReactions',
+  'applicability',
+  'titration',
+  'costContext',
 ] as const
-export type SubstanceSpecificModule = (typeof SUBSTANCE_SPECIFIC_MODULES)[number]
+export type ProductLevelModule = (typeof PRODUCT_LEVEL_MODULES)[number]
+
+/**
+ * Whether substance-specific data was found for one ingredient, stated rather than implied.
+ *
+ * An absent field cannot distinguish "no source describes this substance on its own" from "nobody
+ * has looked yet", and a record that cannot tell those apart is a record that gets confused when it
+ * has no answer. Every ingredient carries one of these outright.
+ */
+export const SUBSTANCE_DATA_STATES = ['RECORDED', 'NO_SOURCE_ABOUT_THIS_SUBSTANCE_ALONE'] as const
+export type SubstanceDataState = (typeof SUBSTANCE_DATA_STATES)[number]
+
+/**
+ * One active ingredient of a product, carrying the substance data that belongs to it.
+ *
+ * Ingredients are data, never pages. The same substance appears inside every product that contains
+ * it, keyed by `substanceKey`, so a correction to one substance's mechanism reaches every product
+ * built on it rather than being re-authored per product.
+ */
+export interface RecordedIngredient {
+  /** The substance name as this product's own label prints it, including its salt form. */
+  nameAsRecorded: string
+  /** Normalized identity shared across every product containing this substance. */
+  substanceKey: string
+  unii?: string
+  /** Strength as the label prints it, when it states one for this ingredient. */
+  strengthAsRecorded?: string
+  substanceDataState: SubstanceDataState
+  mechanism?: RecordedMechanism
+  pharmacokinetics?: RecordedPharmacokinetics
+  molecularIdentity?: RecordedMolecularIdentity
+  interactionSignals?: RecordedInteractionSignal[]
+}
+
+/**
+ * What a product is made of.
+ *
+ * A product with one active ingredient still has a composition; the single-ingredient case is not
+ * special, it is just the common one. Keeping it uniform means a page never has two shapes to
+ * render and a reader never has to work out which one they are looking at.
+ */
+export interface RecordedComposition {
+  ingredients: RecordedIngredient[]
+  /** Active ingredients the product's label declares, which is the length of `ingredients`. */
+  declaredIngredientCount: number
+  /** Ingredients for which no source about that substance alone was found. */
+  ingredientsWithoutSubstanceData: number
+}
 
 /**
  * One distinct reading of a field, and every source that states it.
@@ -452,4 +520,5 @@ export interface MedicineRecordedBackground {
   commonAdverseReactions?: RecordedCommonAdverseReactions
   attribution?: RecordedAttribution
   sourceConsensus?: RecordedSourceConsensus
+  composition?: RecordedComposition
 }

@@ -19350,37 +19350,27 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
-    registryIdentifiers: {
-      unii: 'JFN36L5S8K',
-      rxcui: '1721473',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: 'e47a21b1-bbdb-4321-e053-2a95a90a3b4a',
-        label: 'Ampicillin label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
-    },
   },
   'ampicillin-ampicillin': {
     version: 'medicine-background/v1',
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 3,
     },
     productVariants: [
       {
-        brandName: 'Ampicillin',
-        formAsRecorded: 'oral',
+        brandName: 'Ampicillin and Sulbactam',
+        formAsRecorded: 'intramuscular',
         strengthsAsRecorded:
-          'HOW SUPPLIED Ampicillin capsules, USP: Each capsule, for oral administration, contains ampicillin trihydrate equivalent to 500 mg ampicillin, and are supplied as: 500 mg: White, opaque, hard gelatin capsules, imprinted…',
+          'HOW SUPPLIED Ampicillin and Sulbactam for Injection, USP (ampicillin sodium/sulbactam sodium) is a sterile white to off-white dry powder supplied as follows: NDC Ampicillin and Sulbactam for Injection, USP Package Facto…',
         approvedUseAsRecorded:
-          'INDICATIONS AND USAGE To reduce the development of drug-resistant bacteria and maintain the effectiveness of ampicillin capsules, ampicillin for oral suspension and other antibacterial drugs, ampicillin capsules and amp…',
+          'INDICATIONS AND USAGE Ampicillin and sulbactam for injection is indicated for the treatment of infections due to susceptible strains of the designated microorganisms in the conditions listed below.',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2026-07-27',
+        statusAsRecorded: 'FDA label in effect 2025-04-25',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '4134cd79-c895-4e6e-b1d5-8e01c38bf2d1',
+          identifier: '4446d4c8-056d-4bc3-8f58-21255b063398',
           label: 'Ampicillin/Ampicillin label',
           retrievedAt: '2026-08-28',
         },
@@ -35498,6 +35488,315 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         label: 'Baloxavir Marboxil label naming this substance alone',
         retrievedAt: '2026-08-28',
       },
+    },
+  },
+  balsalazide: {
+    version: 'medicine-background/v1',
+    authoredAt: '2026-08-28',
+    provenanceTier: 'extracted',
+    attribution: {
+      declaredSubstanceCount: 1,
+    },
+    productVariants: [
+      {
+        brandName: 'Balsalazide Disodium',
+        formAsRecorded: 'oral',
+        strengthsAsRecorded:
+          '3 DOSAGE FORMS AND STRENGTHS Balsalazide disodium capsules, USP are available as opaque white capsules containing 750 mg balsalazide disodium, imprinted with “APO B750” in red ink.',
+        approvedUseAsRecorded:
+          '1 INDICATIONS AND USAGE Balsalazide disodium capsules are indicated for the treatment of mildly to moderately active ulcerative colitis in patients 5 years of age and older.',
+        jurisdiction: 'US_FDA',
+        statusAsRecorded: 'FDA label in effect 2025-12-30',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+        },
+      },
+    ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Balsalazide disodium is delivered intact to the colon where it is cleaved by bacterial azoreduction to release equimolar quantities of mesalamine, which is the therapeutically active portion of the molecule, and the 4-aminobenzoyl-β-alanine carrier moiety.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+            label: 'Balsalazide label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Balsalazide disodium is delivered intact to the colon where it is cleaved by bacterial azoreduction to release equimolar quantities of mesalamine, which is the therapeutically active portion of the molecule, and the 4-aminobenzoyl-β-alanine carrier moiety.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The carrier moiety released when balsalazide disodium is cleaved is only minimally absorbed and is largely inert.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+            label: 'Balsalazide label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The carrier moiety released when balsalazide disodium is cleaved is only minimally absorbed and is largely inert.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The mechanism of action of 5-ASA is unknown, but appears to be local to the colonic mucosa rather than systemic.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+            label: 'Balsalazide label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The mechanism of action of 5-ASA is unknown, but appears to be local to the colonic mucosa rather than systemic.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Mucosal production or arachidonic acid metabolites, both through the cyclooxygenase pathways, i.e., prostanoids, and through the lipoxygenase pathways, i.e., leukotrienes and hydroxyeicosatetraenoic acids, is increased in patients with chronic inflammatory bowel disease, and it is possible that 5-ASA diminishes inflammation by blocking production of arachidonic acid metabolites in the colon.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+            label: 'Balsalazide label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Mucosal production or arachidonic acid metabolites, both through the cyclooxygenase pathways, i.e., prostanoids, and through the lipoxygenase pathways, i.e., leukotrienes and hydroxyeicosatetraenoic acids, is increased in patients with chronic inflammatory bowel disease, and it is possible that 5-ASA diminishes inflammation by blocking production of arachidonic acid metabolites in the colon.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularWeight: {
+        display: '437.32',
+        numeric: 437.32,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its structural formula is: Molecular Weight: 437.32 Molecular Formula: C 17 H 13 N 3 O 6 Na 2 •2H 2 O Balsalazide disodium is a stable, odorless orange to yellow microcrystalline powder.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Data In an in vitro study using human liver microsomes, balsalazide and its metabolites [5-aminosalicylic acid (5-ASA), Nacetyl-5-aminosalicylic acid (N-Ac-5-ASA), 4-aminobenzoyl-ß-alanine (4-ABA) and N-acetyl-4-aminobenzoyl-ß-alanine (N-Ac-4-ABA)] were not shown to inhibit the major CYP enzymes evaluated (CYP1A2, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Data In an in vitro study using human liver microsomes, balsalazide and its metabolites [5-aminosalicylic acid (5-ASA), Nacetyl-5-aminosalicylic acid (N-Ac-5-ASA), 4-aminobenzoyl-ß-alanine (4-ABA) and N-acetyl-4-aminobenzoyl-ß-alanine (N-Ac-4-ABA)] were not shown to inhibit the major CYP enzymes evaluated (CYP1A2, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Data In an in vitro study using human liver microsomes, balsalazide and its metabolites [5-aminosalicylic acid (5-ASA), Nacetyl-5-aminosalicylic acid (N-Ac-5-ASA), 4-aminobenzoyl-ß-alanine (4-ABA) and N-acetyl-4-aminobenzoyl-ß-alanine (N-Ac-4-ABA)] were not shown to inhibit the major CYP enzymes evaluated (CYP1A2, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Data In an in vitro study using human liver microsomes, balsalazide and its metabolites [5-aminosalicylic acid (5-ASA), Nacetyl-5-aminosalicylic acid (N-Ac-5-ASA), 4-aminobenzoyl-ß-alanine (4-ABA) and N-acetyl-4-aminobenzoyl-ß-alanine (N-Ac-4-ABA)] were not shown to inhibit the major CYP enzymes evaluated (CYP1A2, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Data In an in vitro study using human liver microsomes, balsalazide and its metabolites [5-aminosalicylic acid (5-ASA), Nacetyl-5-aminosalicylic acid (N-Ac-5-ASA), 4-aminobenzoyl-ß-alanine (4-ABA) and N-acetyl-4-aminobenzoyl-ß-alanine (N-Ac-4-ABA)] were not shown to inhibit the major CYP enzymes evaluated (CYP1A2, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5).',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'Balsalazide disodium capsules is contraindicated in patients with known or suspected hypersensitivity to salicylates, aminosalicylates, or to any of the components of balsalazide disodium capsules or balsalazide metabolites [see Warnings and Precautions (5.3), Adverse Reactions (6.2), Description (11)].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+            label: 'Balsalazide label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Balsalazide disodium capsules is contraindicated in patients with known or suspected hypersensitivity to salicylates, aminosalicylates, or to any of the components of balsalazide disodium capsules or balsalazide metabolites [see Warnings and Precautions (5.3), Adverse Reactions (6.2), Description (11)].',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Known or suspected hypersensitivity to salicylates, aminosalicylates, or any of the components of balsalazide disodium capsules or balsalazide metabolites.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+            label: 'Balsalazide label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Known or suspected hypersensitivity to salicylates, aminosalicylates, or any of the components of balsalazide disodium capsules or balsalazide metabolites.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'The safety and effectiveness of balsalazide disodium has been established for the treatment of mildly to moderately active ulcerative colitis in pediatric and adolescent patients 5 years to 17 years of age.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of balsalazide disodium has been established for the treatment of mildly to moderately active ulcerative colitis in pediatric and adolescent patients 5 years to 17 years of age.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Clinical trials of balsalazide disodium did not include sufficient numbers of subjects aged 65 years and over to determine whether they respond differently than younger subjects.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Clinical trials of balsalazide disodium did not include sufficient numbers of subjects aged 65 years and over to determine whether they respond differently than younger subjects.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Published data from meta-analyses, cohort studies and case series on the use of mesalamine, the active moiety of balsalazide, during pregnancy have not reliably informed an association with mesalamine and major birth defects, miscarriage, or adverse maternal or fetal outcomes (see Data).',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Published data from meta-analyses, cohort studies and case series on the use of mesalamine, the active moiety of balsalazide, during pregnancy have not reliably informed an association with mesalamine and major birth defects, miscarriage, or adverse maternal or fetal outcomes (see Data).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Data from published literature report the presence of mesalamine and its metabolite, N acetyl-5 aminosalicylic acid, in human milk in small amounts with relative infant doses (RID) of 0.1% or less for mesalamine (see Data).',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Data from published literature report the presence of mesalamine and its metabolite, N acetyl-5 aminosalicylic acid, in human milk in small amounts with relative infant doses (RID) of 0.1% or less for mesalamine (see Data).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Mesalamine is known to be substantially excreted by the kidney, and the risk of adverse reactions to balsalazide disodium, which is converted to mesalamine, may be greater in patients with impaired renal function.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+          label: 'Balsalazide label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Mesalamine is known to be substantially excreted by the kidney, and the risk of adverse reactions to balsalazide disodium, which is converted to mesalamine, may be greater in patients with impaired renal function.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: 'incidence ≥3%',
+      eventsAsRecorded: [
+        'headache',
+        'abdominal pain',
+        'diarrhea',
+        'nausea',
+        'vomiting',
+        'respiratory infection',
+        'arthralgia',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '509b83b6-cde6-393b-8560-557793b6a529',
+        label: 'Balsalazide label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'nd Precautions (5.6)] Photosensitivity [see Warnings and Precautions (5.7)] Nephrolithiasis [see Warnings and Precautions (5.8)] Most common adverse reactions (incidence ≥3%) are headache, abdominal pain, diarrhea, nausea, vomiting, respiratory infection, and arthralgia.',
+      },
+      provenanceTier: 'extracted',
     },
   },
   'baptisia-tinctoria': {
@@ -57136,24 +57435,158 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 3,
+      declaredSubstanceCount: 1,
     },
     productVariants: [
       {
-        brandName: 'TACLONEX',
+        brandName: 'SORILUX',
         formAsRecorded: 'topical',
-        strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS Topical Suspension: 0.005%/0.064% - each gram contains 50 mcg of calcipotriene and 0.643 mg of betamethasone dipropionate in a viscous, nearly odorless, almost clear, colorless to slightly o…',
+        strengthsAsRecorded: '3 DOSAGE FORMS AND STRENGTHS 0.005%, white foam.',
         approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE Taclonex ® Topical Suspension is indicated for the topical treatment of plaque psoriasis of the scalp and body in patients 12 years and older.',
+          '1 INDICATIONS AND USAGE SORILUX Foam is indicated for the topical treatment of plaque psoriasis of the scalp and body in adults and pediatric patients 4 years of age and older.',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2017-11-30',
+        statusAsRecorded: 'FDA label in effect 2024-05-09',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '757c914f-dd8d-43cc-a973-212d591af4af',
+          identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
           label: 'Calcipotriene Hydrate label',
           retrievedAt: '2026-08-28',
         },
+      },
+    ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Calcipotriene is a synthetic vitamin D3 analog that has a similar receptor binding affinity as natural vitamin D3.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+            label: 'Calcipotriene Hydrate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Calcipotriene is a synthetic vitamin D3 analog that has a similar receptor binding affinity as natural vitamin D3.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'However, the exact mechanism of action contributing to the clinical efficacy in the treatment of psoriasis is unknown.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+            label: 'Calcipotriene Hydrate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'However, the exact mechanism of action contributing to the clinical efficacy in the treatment of psoriasis is unknown.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularWeight: {
+        display: '412.6',
+        numeric: 412.6,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+          label: 'Calcipotriene Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The structural formula is represented below: Molecular Formula: C27H40O3 Molecular Weight: 412.6 Calcipotriene is a white or off-white crystalline substance.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded: 'SORILUX Foam should not be used by patients with known hypercalcemia.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+            label: 'Calcipotriene Hydrate label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'SORILUX Foam should not be used by patients with known hypercalcemia.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Do not use in patients with known hypercalcemia.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+            label: 'Calcipotriene Hydrate label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Do not use in patients with known hypercalcemia.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of SORILUX Foam in pediatric patients less than 4 years of age have not been established.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+          label: 'Calcipotriene Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of SORILUX Foam in pediatric patients less than 4 years of age have not been established.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Clinical trials of SORILUX Foam did not include sufficient numbers of subjects aged 65 years and over to determine whether they respond differently from younger subjects.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+          label: 'Calcipotriene Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Clinical trials of SORILUX Foam did not include sufficient numbers of subjects aged 65 years and over to determine whether they respond differently from younger subjects.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Although there are no available data on the drug- associated risk of major birth defects, miscarriage or adverse maternal or fetal outcomes in pregnant women exposed to SORILUX Foam, systemic exposure to calcipotriene is likely to be low [see Clinical Pharmacology (12.2 , 12.3) ] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+          label: 'Calcipotriene Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Although there are no available data on the drug- associated risk of major birth defects, miscarriage or adverse maternal or fetal outcomes in pregnant women exposed to SORILUX Foam, systemic exposure to calcipotriene is likely to be low [see Clinical Pharmacology (12.2 , 12.3) ] .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no data on the presence of topically administered calcipotriene in human or animal milk, the effects on the breastfed infant, or the effects on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '51f208d0-7b3f-44cc-8bed-92fa3d2e7bbe',
+          label: 'Calcipotriene Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no data on the presence of topically administered calcipotriene in human or animal milk, the effects on the breastfed infant, or the effects on milk production.',
+        },
+        provenanceTier: 'extracted',
       },
     ],
   },
@@ -62281,17 +62714,17 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'RYTARY',
+        brandName: 'Carbidopa and Levodopa',
         formAsRecorded: 'oral',
         strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS Extended-release capsules: 23.75 mg carbidopa and 95 mg levodopa: blue and white capsule imprinted with IPX066 on the capsule cap and 95 on the capsule body. 36.25 mg carbidopa and 145 mg le…',
+          '3 DOSAGE FORMS AND STRENGTHS Carbidopa and Levodopa Extended-release Capsules, 36.25 mg/145 mg: blue and light blue capsule imprinted with IPX066 on the capsule cap and 145 on the capsule body.',
         approvedUseAsRecorded:
-          "1 INDICATIONS AND USAGE RYTARY is indicated for the treatment of Parkinson's disease, post-encephalitic parkinsonism, and parkinsonism that may follow carbon monoxide intoxication or manganese intoxication.",
+          "1 INDICATIONS AND USAGE Carbidopa and levodopa extended-release capsules are indicated for the treatment of Parkinson's disease, post-encephalitic parkinsonism, and parkinsonism that may follow carbon monoxide intoxicat…",
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2026-03-26',
+        statusAsRecorded: 'FDA label in effect 2026-04-29',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '6c1f7cd4-de56-45c1-a734-5e77b4aeb6f7',
+          identifier: '4ce99f65-5857-448c-b22a-9b3b64de69e2',
           label: 'Carbidopa Hydrate label',
           retrievedAt: '2026-08-28',
         },
@@ -62777,17 +63210,17 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'Hemabate',
+        brandName: 'carboprost tromethamine',
         formAsRecorded: 'intramuscular',
         strengthsAsRecorded:
-          'HOW SUPPLIED HEMABATE Sterile Solution is available in the following packages: 1 mL ampoules NDC 0009-0856-05 10 × 1 mL ampoules NDC 0009-0856-08 HEMABATE contains carboprost tromethamine equivalent to 250 mcg/mL of car…',
+          'HOW SUPPLIED Carboprost tromethamine injection, USP is a clear, colorless sterile solution supplied in 1 mL graduated prefilled syringes and available in the following package: 10 x 1 mL Single-Dose Prefilled Syringes N…',
         approvedUseAsRecorded:
-          'INDICATIONS AND USAGE HEMABATE Sterile Solution is indicated for aborting pregnancy between the 13th and 20th weeks of gestation as calculated from the first day of the last normal menstrual period and in the following…',
+          'INDICATIONS AND USAGE Carboprost tromethamine injection sterile solution is indicated for aborting pregnancy between the 13th and 20th weeks of gestation as calculated from the first day of the last normal menstrual per…',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2026-03-30',
+        statusAsRecorded: 'FDA label in effect 2026-06-05',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
+          identifier: 'd79f4342-2d37-4a47-958e-ab800d4f3918',
           label: 'Carboprost label',
           retrievedAt: '2026-08-28',
         },
@@ -62799,7 +63232,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
+          identifier: 'd79f4342-2d37-4a47-958e-ab800d4f3918',
           label: 'Carboprost label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -62807,46 +63240,32 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
         provenanceTier: 'extracted',
       },
-      molecularWeight: {
-        display: '489.64',
-        numeric: 489.64,
-        unit: 'g/mol',
-        populationContext: 'as stated in the label sentence recorded below',
-        source: {
-          kind: 'FDA_LABEL',
-          identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
-          label: 'Carboprost label',
-          retrievedAt: '2026-08-28',
-          excerpt: 'The molecular weight of carboprost tromethamine is 489.64.',
-        },
-        provenanceTier: 'extracted',
-      },
     },
     safety: {
       boxedWarning: {
         textAsRecorded:
-          'WARNINGS HEMABATE Sterile Solution (carboprost tromethamine), like other potent oxytocic agents, should be used only with strict adherence to recommended dosages.',
+          'WARNING Carboprost tromethamine injection sterile solution (carboprost tromethamine), like other potent oxytocic agents, should be used only with strict adherence to recommended dosages.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
+          identifier: 'd79f4342-2d37-4a47-958e-ab800d4f3918',
           label: 'Carboprost label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'WARNINGS HEMABATE Sterile Solution (carboprost tromethamine), like other potent oxytocic agents, should be used only with strict adherence to recommended dosages.',
+            'WARNING Carboprost tromethamine injection sterile solution (carboprost tromethamine), like other potent oxytocic agents, should be used only with strict adherence to recommended dosages.',
         },
         provenanceTier: 'extracted',
       },
       contraindications: [
         {
           textAsRecorded:
-            'Hypersensitivity (including anaphylaxis and angioedema) to HEMABATE Sterile Solution [ see ADVERSE REACTIONS, Post-marketing Experience ] 2.',
+            'Hypersensitivity (including anaphylaxis and angioedema) to carboprost tromethamine injection sterile solution [ see ADVERSE REACTIONS, Post-marketing Experience ] 2.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
+            identifier: 'd79f4342-2d37-4a47-958e-ab800d4f3918',
             label: 'Carboprost label',
             retrievedAt: '2026-08-28',
             excerpt:
-              'Hypersensitivity (including anaphylaxis and angioedema) to HEMABATE Sterile Solution [ see ADVERSE REACTIONS, Post-marketing Experience ] 2.',
+              'Hypersensitivity (including anaphylaxis and angioedema) to carboprost tromethamine injection sterile solution [ see ADVERSE REACTIONS, Post-marketing Experience ] 2.',
           },
           provenanceTier: 'extracted',
         },
@@ -62854,7 +63273,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           textAsRecorded: 'Patients with active cardiac, pulmonary, renal or hepatic disease',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
+            identifier: 'd79f4342-2d37-4a47-958e-ab800d4f3918',
             label: 'Carboprost label',
             retrievedAt: '2026-08-28',
             excerpt: 'Patients with active cardiac, pulmonary, renal or hepatic disease',
@@ -62863,36 +63282,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       ],
     },
-    populationStatements: [
-      {
-        population: 'PEDIATRIC',
-        state: 'NOT_ESTABLISHED',
-        textAsRecorded: 'Safety and effectiveness in pediatric patients have not been established.',
-        source: {
-          kind: 'FDA_LABEL',
-          identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
-          label: 'Carboprost label',
-          retrievedAt: '2026-08-28',
-          excerpt: 'Safety and effectiveness in pediatric patients have not been established.',
-        },
-        provenanceTier: 'extracted',
-      },
-      {
-        population: 'PREGNANCY',
-        state: 'STATEMENT_ONLY',
-        textAsRecorded:
-          'Teratogenic Effects Animal studies do not indicate that HEMABATE is teratogenic, however, it has been shown to be embryotoxic in rats and rabbits and any dose which produces increased uterine tone could put the embryo or fetus at risk.',
-        source: {
-          kind: 'FDA_LABEL',
-          identifier: '3d282998-ff0c-480a-bd80-155606ef0a65',
-          label: 'Carboprost label',
-          retrievedAt: '2026-08-28',
-          excerpt:
-            'Teratogenic Effects Animal studies do not indicate that HEMABATE is teratogenic, however, it has been shown to be embryotoxic in rats and rabbits and any dose which produces increased uterine tone could put the embryo or fetus at risk.',
-        },
-        provenanceTier: 'extracted',
-      },
-    ],
   },
   'carboxymethylcellulose-sodium-unspecified': {
     version: 'medicine-background/v1',
@@ -67305,16 +67694,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         provenanceTier: 'extracted',
       },
     ],
-    registryIdentifiers: {
-      unii: '48SPP0PA9Q',
-      rxcui: '1722919',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: '33b13b93-58ce-44c7-b9a2-af3b3a333f80',
-        label: 'Cefotetan label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
-    },
   },
   cefoxitin: {
     version: 'medicine-background/v1',
@@ -75859,7 +76238,55 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '35 hours',
+        numeric: 35,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Biotransformation of citalopram is mainly hepatic, with a mean terminal half-life of about 35 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      bioavailability: {
+        display: '80%',
+        numeric: 80,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The absolute bioavailability of citalopram was about 80% relative to an intravenous dose, and absorption is not affected by food.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '12 L/kg',
+        numeric: 12,
+        unit: 'L/kg',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Distribution The volume of distribution of citalopram is about 12 L/kg and the binding of citalopram (CT), demethylcitalopram (DCT) and didemethylcitalopram (DDCT) to human plasma proteins is about 80%.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -75879,6 +76306,253 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'The mechanism of action of citalopram is unclear, but is presumed to be related to potentiation of serotonergic activity in the central nervous system (CNS) resulting from its inhibition of CNS neuronal reuptake of serotonin (5-HT).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+            label: 'Citalopram label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The mechanism of action of citalopram is unclear, but is presumed to be related to potentiation of serotonergic activity in the central nervous system (CNS) resulting from its inhibition of CNS neuronal reuptake of serotonin (5-HT).',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['5-HT'],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C20H22BrFN2O',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Citalopram hydrobromide is a racemic bicyclic phthalane structure and is designated (±)-1-(3-dimethylaminopropyl)-1-(4-fluorophenyl)-1,3-dihydroisobenzofuran-5-carbonitrile, hydrobromide with the following structural formula: The molecular formula is C 20 H 22 BrFN 2 O and its molecular weight is 405.35.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '405.35',
+        numeric: 405.35,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Citalopram hydrobromide is a racemic bicyclic phthalane structure and is designated (±)-1-(3-dimethylaminopropyl)-1-(4-fluorophenyl)-1,3-dihydroisobenzofuran-5-carbonitrile, hydrobromide with the following structural formula: The molecular formula is C 20 H 22 BrFN 2 O and its molecular weight is 405.35.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In vitro enzyme inhibition data did not reveal an inhibitory effect of citalopram on CYP3A4, -2C9, or -2E1, but did suggest that it is a weak inhibitor of CYP1A2, -2D6, and -2C19.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro studies using human liver microsomes indicated that CYP3A4 and CYP2C19 are the primary isozymes involved in the N-demethylation of citalopram.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP2D6 Poor Metabolizers Citalopram steady state levels were not significantly different in poor metabolizers and extensive metabolizers of CYP2D6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro studies using human liver microsomes indicated that CYP3A4 and CYP2C19 are the primary isozymes involved in the N-demethylation of citalopram.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      boxedWarning: {
+        textAsRecorded:
+          'WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepressants increased the risk of suicidal thoughts and behaviors in pediatric and young adult patients in short-term studies.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepressants increased the risk of suicidal thoughts and behaviors in pediatric and young adult patients in short-term studies.',
+        },
+        provenanceTier: 'extracted',
+      },
+      contraindications: [
+        {
+          textAsRecorded:
+            'Reactions have included angioedema and anaphylaxis [see Adverse Reactions (6.2) ] .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+            label: 'Citalopram label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Reactions have included angioedema and anaphylaxis [see Adverse Reactions (6.2) ] .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Concomitant use of monoamine oxidase inhibitors (MAOIs) or use within14 days of discontinuing a MAOI ( 4 ) .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+            label: 'Citalopram label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Concomitant use of monoamine oxidase inhibitors (MAOIs) or use within14 days of discontinuing a MAOI ( 4 ) .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Known hypersensitivity to citalopram or any of the inactive ingredients of citalopram tablets ( 4 ) .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+            label: 'Citalopram label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Known hypersensitivity to citalopram or any of the inactive ingredients of citalopram tablets ( 4 ) .',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of citalopram have not been established in pediatric patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of citalopram have not been established in pediatric patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Of 4422 patients in clinical studies of citalopram tablets, 1357 were 60 and over, 1034 were 65 and over, and 457 were 75 and over.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Of 4422 patients in clinical studies of citalopram tablets, 1357 were 60 and over, 1034 were 65 and over, and 457 were 75 and over.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antidepressants during pregnancy.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antidepressants during pregnancy.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Data from the published literature report the presence of citalopram in human milk at relative infant doses ranging between 0.7 to 9.4% of the maternal weight-adjusted dosage and a milk/plasma ratio ranging between 0.78 to 4.3.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Data from the published literature report the presence of citalopram in human milk at relative infant doses ranging between 0.7 to 9.4% of the maternal weight-adjusted dosage and a milk/plasma ratio ranging between 0.78 to 4.3.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded: 'Increased citalopram exposure occurs in patients with hepatic impairment.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+          label: 'Citalopram label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Increased citalopram exposure occurs in patients with hepatic impairment.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    registryIdentifiers: {
+      unii: 'I1E9D14F36',
+      rxcui: '200371',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '7307df53-d570-4e26-971d-e97522ccce7f',
+        label: 'Citalopram label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   'citharacanthus-spinicrus': {
     version: 'medicine-background/v1',
@@ -79598,6 +80272,122 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         label: 'Clopidogrel Bisulfate label naming this substance alone',
         retrievedAt: '2026-08-28',
       },
+    },
+  },
+  clorazepate: {
+    version: 'medicine-background/v1',
+    authoredAt: '2026-08-28',
+    provenanceTier: 'extracted',
+    attribution: {
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '40 to 50 hours',
+        numeric: 40,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+          label: 'Clorazepate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Nordiazepam, the primary metabolite, quickly appears in the blood and is eliminated from the plasma with an apparent half-life of about 40 to 50 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      proteinBinding: {
+        display: '97 to 98%',
+        numeric: 97,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+          label: 'Clorazepate label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'The protein binding of nordiazepam in plasma is high (97 to 98%).',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    productVariants: [
+      {
+        brandName: 'Clorazepate Dipotassium',
+        formAsRecorded: 'oral',
+        strengthsAsRecorded:
+          'HOW SUPPLIED Clorazepate Dipotassium Tablets USP are available as tablets containing 15 mg of clorazepate dipotassium, USP.',
+        approvedUseAsRecorded:
+          'INDICATIONS AND USAGE Clorazepate dipotassium is indicated for the management of anxiety disorders or for the short-term relief of the symptoms of anxiety.',
+        jurisdiction: 'US_FDA',
+        statusAsRecorded: 'FDA label in effect 2025-02-17',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+          label: 'Clorazepate label',
+          retrievedAt: '2026-08-28',
+        },
+      },
+    ],
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C16H11ClK2N2O4',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+          label: 'Clorazepate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The empirical formula is C 16 H 11 ClK 2 N 2 O 4 ; the molecular weight is 408.92; 1 H -1, 4-Benzodiazepine-3-carboxylic acid, 7-chloro-2,3-dihydro-2-oxo-5-phenyl-, potassium salt compound with potassium hydroxide (1:1) and the structural formula may be represented as follows: The compound occurs as a fine, light yellow, practically odorless powder.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '408.92',
+        numeric: 408.92,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+          label: 'Clorazepate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The empirical formula is C 16 H 11 ClK 2 N 2 O 4 ; the molecular weight is 408.92; 1 H -1, 4-Benzodiazepine-3-carboxylic acid, 7-chloro-2,3-dihydro-2-oxo-5-phenyl-, potassium salt compound with potassium hydroxide (1:1) and the structural formula may be represented as follows: The compound occurs as a fine, light yellow, practically odorless powder.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    safety: {
+      boxedWarning: {
+        textAsRecorded: 'WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS;',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+          label: 'Clorazepate label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'WARNING: RISKS FROM CONCOMITANT USE WITH OPIOIDS;',
+        },
+        provenanceTier: 'extracted',
+      },
+      contraindications: [
+        {
+          textAsRecorded:
+            'Clorazepate dipotassium tablets are contraindicated in patients with a known hypersensitivity to the drug and in those with acute narrow angle glaucoma.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+            label: 'Clorazepate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Clorazepate dipotassium tablets are contraindicated in patients with a known hypersensitivity to the drug and in those with acute narrow angle glaucoma.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
     },
   },
   'clostridium-difficile': {
@@ -92754,6 +93544,16 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         provenanceTier: 'extracted',
       },
     ],
+    registryIdentifiers: {
+      unii: 'CR02EYQ8GV',
+      rxcui: '485421',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '5ac2cb5a-c0bb-40e2-95d5-1b91a13036c3',
+        label: 'Darifenacin label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   darolutamide: {
     version: 'medicine-background/v1',
@@ -93495,24 +94295,274 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '15 hours',
+        numeric: 15,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The terminal elimination half-life of darunavir was approximately 15 hours when co-administered with ritonavir.',
+        },
+        provenanceTier: 'extracted',
+      },
+      tMax: {
+        display: '2.5-4 hours',
+        numeric: 2.5,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Absorption and Bioavailability Darunavir, co-administered with 100 mg ritonavir twice daily, was absorbed following oral administration with a T max of approximately 2.5-4 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
-        brandName: 'Darunavir 600 and 800 mg',
+        brandName: 'Darunavir',
         formAsRecorded: 'oral',
         strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS Darunavir Tablets 600 mg: beige, capsule-shaped, biconvex, film coated tablets containing darunavir hydrate equivalent to 600 mg of darunavir.',
+          "3 DOSAGE FORMS AND STRENGTHS 600 mg: Yellow, oval shaped, biconvex, film-coated tablets debossed with 'V' on one side and '5' on the other side. 800 mg: Yellow, oval shaped, biconvex, film-coated tablets debossed with '…",
         approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE Darunavir tablets, co-administered with ritonavir (darunavir/ritonavir), in combination with other antiretroviral agents, is indicated for the treatment of human immunodeficiency virus (HIV-1) in…',
+          '1 INDICATIONS AND USAGE Darunavir tablets, co-administered with ritonavir (darunavir tablets/ritonavir), in combination with other antiretroviral agents, is indicated for the treatment of human immunodeficiency virus (H…',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2024-01-18',
+        statusAsRecorded: 'FDA label in effect 2025-03-19',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '5624cc30-d484-458e-b234-9bb745a118ca',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
           label: 'Darunavir Hydrate label',
           retrievedAt: '2026-08-28',
         },
+      },
+    ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded: 'Darunavir is an HIV-1 antiviral drug [see Microbiology ( 12.4 )].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+            label: 'Darunavir Hydrate label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Darunavir is an HIV-1 antiviral drug [see Microbiology ( 12.4 )].',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C27H37N3O7S',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its molecular formula is C 27 H 37 N 3 O 7 S and its molecular weight is 547.67.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '547.67',
+        numeric: 547.67,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its molecular formula is C 27 H 37 N 3 O 7 S and its molecular weight is 547.67.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interactions [See also Contraindications (4) , Warnings and Precautions (5.5) and Drug Interactions (7) .] Darunavir co-administered with ritonavir is an inhibitor of CYP3A, CYP2D6, and P-gp.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'P-GLYCOPROTEIN',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vivo data suggest that darunavir/ritonavir is an inhibitor of the P-glycoprotein (P-gp) transporters.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'P-GP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vivo data suggest that darunavir/ritonavir is an inhibitor of the P-glycoprotein (P-gp) transporters.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'Co-administration of darunavir tablets/ritonavir is contraindicated with drugs that are highly dependent on CYP3A for clearance and for which elevated plasma concentrations are associated with serious and/or life-threatening events (narrow therapeutic index).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+            label: 'Darunavir Hydrate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Co-administration of darunavir tablets/ritonavir is contraindicated with drugs that are highly dependent on CYP3A for clearance and for which elevated plasma concentrations are associated with serious and/or life-threatening events (narrow therapeutic index).',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'These drugs and other contraindicated drugs (which may lead to reduced efficacy of darunavir) are listed below [see Drug Interactions (7.3)].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+            label: 'Darunavir Hydrate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'These drugs and other contraindicated drugs (which may lead to reduced efficacy of darunavir) are listed below [see Drug Interactions (7.3)].',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'The safety, pharmacokinetic profile, and virologic and immunologic responses of darunavir/ritonavir administered twice daily were evaluated in treatment-experienced HIV-1-infected pediatric subjects 3 to less than 18 years of age and weighting at least 10 kg.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety, pharmacokinetic profile, and virologic and immunologic responses of darunavir/ritonavir administered twice daily were evaluated in treatment-experienced HIV-1-infected pediatric subjects 3 to less than 18 years of age and weighting at least 10 kg.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Clinical studies of darunavir did not include sufficient numbers of patients aged 65 years and over to determine whether they respond differently from younger patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Clinical studies of darunavir did not include sufficient numbers of patients aged 65 years and over to determine whether they respond differently from younger patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Data Human Data Darunavir/ritonavir (600/100 mg twice daily or 800/100 mg once daily) in combination with a background regimen was evaluated in a clinical trial of 36 pregnant women during the second and third trimesters, and postpartum.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Data Human Data Darunavir/ritonavir (600/100 mg twice daily or 800/100 mg once daily) in combination with a background regimen was evaluated in a clinical trial of 36 pregnant women during the second and third trimesters, and postpartum.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary The Centers for Disease Control and Prevention recommend that HIV-infected mothers not breastfeed their infants to avoid risking postnatal transmission of HIV.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary The Centers for Disease Control and Prevention recommend that HIV-infected mothers not breastfeed their infants to avoid risking postnatal transmission of HIV.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dosage adjustment of darunavir/ritonavir is necessary for patients with either mild or moderate hepatic impairment.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dosage adjustment of darunavir/ritonavir is necessary for patients with either mild or moderate hepatic impairment.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Population pharmacokinetic analysis showed that the pharmacokinetics of darunavir were not significantly affected in HIV-infected subjects with moderate renal impairment (CrCL between 30 to 60 mL/min, n=20).',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '49606d5e-f45f-45eb-9ab8-15aa6a233875',
+          label: 'Darunavir Hydrate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Population pharmacokinetic analysis showed that the pharmacokinetics of darunavir were not significantly affected in HIV-infected subjects with moderate renal impairment (CrCL between 30 to 60 mL/min, n=20).',
+        },
+        provenanceTier: 'extracted',
       },
     ],
   },
@@ -104253,16 +105303,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       },
       provenanceTier: 'extracted',
     },
-    registryIdentifiers: {
-      unii: 'UYE4T5I70X',
-      rxcui: '833204',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: 'caad4ada-2cf9-4e12-99df-6ca4388cf0f6',
-        label: 'Dexlansoprazole label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
-    },
   },
   dexmedetomidine: {
     version: 'medicine-background/v1',
@@ -104979,32 +106019,22 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'GUAIFENESIN DM',
+        brandName: 'AUVELITY',
         formAsRecorded: 'oral',
         strengthsAsRecorded:
-          'HOW SUPPLIED: Guaifenesin Syrup and Dextromethorphan is a red, cherry flavored syrup supplied in the following oral dosage forms: NDC 0121-0638-04: 4 fl oz (118 mL) bottle NDC 0121-0638-08: 8 fl oz (237 mL) bottle NDC 0…',
+          '3 DOSAGE FORMS AND STRENGTHS AUVELITY extended-release tablets are available in two strengths: 30 mg dextromethorphan hydrobromide/105 mg bupropion hydrochloride.',
         approvedUseAsRecorded:
-          'USES helps loosen phlegm (mucus) and thin bronchial secretions to make coughs more productive temporarily relieves cough due to minor throat and bronchial irritation as may occur with a cold',
+          '1 INDICATIONS AND USAGE AUVELITY is a combination of dextromethorphan, an uncompetitive N -methyl D -aspartate (NMDA) receptor antagonist and sigma-1 receptor agonist, and bupropion, an aminoketone and CYP450 2D6 inhibi…',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2024-11-11',
+        statusAsRecorded: 'FDA label in effect 2026-08-17',
         source: {
           kind: 'FDA_LABEL',
-          identifier: 'ff970fff-d1a3-4322-83b4-34e361431a1c',
+          identifier: 'dcefda7c-9a68-278e-e053-2995a90aec79',
           label: 'Dextromethorphan label',
           retrievedAt: '2026-08-28',
         },
       },
     ],
-    registryIdentifiers: {
-      unii: '7355X3ROTS',
-      rxcui: '1373045',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: '234e6a2c-a280-4a39-8777-9316e9d681fb',
-        label: 'Dextromethorphan label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
-    },
   },
   'dextromethorphan-polistirex': {
     version: 'medicine-background/v1',
@@ -105196,7 +106226,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 3,
+      declaredSubstanceCount: 2,
     },
     productVariants: [
       {
@@ -122432,11 +123462,11 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'Though the half-life of the metabolite is estimated to be about 13 hours, the plasma concentration of the N-demethylated metabolite is 10-20% of parent drug and is unlikely to contribute significantly to the overall effect of the parent compound.',
+            'Though the half-life of the metabolite is estimated to be about 13 hours, the plasma concentration of the N-demethylated metabolite is 10 to 20% of parent drug and is unlikely to contribute significantly to the overall effect of the parent compound.',
         },
         provenanceTier: 'extracted',
       },
@@ -122447,7 +123477,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt: 'The mean absolute bioavailability of eletriptan is approximately 50%.',
@@ -122455,16 +123485,16 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         provenanceTier: 'extracted',
       },
       tMax: {
-        display: '2.0 hours',
+        display: '2 hours',
         numeric: 2,
         unit: 'hours',
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
-          excerpt: 'In patients with moderate to severe migraine, the median T max is 2.0 hours.',
+          excerpt: 'In patients with moderate to severe migraine the median T max is 2 hours.',
         },
         provenanceTier: 'extracted',
       },
@@ -122475,7 +123505,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt: 'Plasma protein binding is moderate and approximately 85%.',
@@ -122483,34 +123513,34 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         provenanceTier: 'extracted',
       },
       volumeOfDistribution: {
-        display: '138L',
+        display: '138 L',
         numeric: 138,
         unit: 'L',
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'Distribution The volume of distribution of eletriptan following IV administration is 138L.',
+            'Distribution: The volume of distribution of eletriptan following IV administration is 138 L.',
         },
         provenanceTier: 'extracted',
       },
     },
     productVariants: [
       {
-        brandName: 'Relpax',
+        brandName: 'Eletriptan hydrobromide',
         formAsRecorded: 'oral',
         strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS 20 mg Tablets: Orange, round, convex shaped, film-coated, debossed with “REP 20” on one side and “VLE” on the other side. 40 mg Tablets: Orange, round, convex shaped, film-coated, debossed w…',
+          '3 DOSAGE FORMS AND STRENGTHS Tablets: 20 mg and 40 mg ( 3 ) 20 mg Tablets : orange to mottled orange colored, round shaped, biconvex with beveled edge, film-coated tablets, debossed with "922" on one side and plain on t…',
         approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE RELPAX is indicated for the acute treatment of migraine with or without aura in adults.',
+          '1 INDICATIONS AND USAGE Eletriptan hydrobromide tablets are a serotonin (5-HT 1B/ 1D ) receptor agonist (triptan) indicated for the acute treatment of migraine with or without aura in adults ( 1 ) Limitations of Use: Us…',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2024-01-15',
+        statusAsRecorded: 'FDA label in effect 2023-09-18',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
         },
@@ -122520,14 +123550,14 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       statements: [
         {
           textAsRecorded:
-            'Eletriptan binds with high affinity to 5-HT 1B , 5-HT 1D and 5-HT 1F receptors, has modest affinity for 5-HT 1A , 5-HT 1E , 5-HT 2B and 5-HT 7 receptors.',
+            'Eletriptan binds with high affinity to 5-HT 1B , 5-HT 1D and 5-HT 1F receptors, has modest affinity for 5-HT 1A , 5-HT 1 E , 5-HT 2B and 5-HT 7 receptors.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+            identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
             label: 'Eletriptan label',
             retrievedAt: '2026-08-28',
             excerpt:
-              'Eletriptan binds with high affinity to 5-HT 1B , 5-HT 1D and 5-HT 1F receptors, has modest affinity for 5-HT 1A , 5-HT 1E , 5-HT 2B and 5-HT 7 receptors.',
+              'Eletriptan binds with high affinity to 5-HT 1B , 5-HT 1D and 5-HT 1F receptors, has modest affinity for 5-HT 1A , 5-HT 1 E , 5-HT 2B and 5-HT 7 receptors.',
           },
           provenanceTier: 'extracted',
         },
@@ -122536,7 +123566,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
             'Migraines are likely due to local cranial vasodilatation and/or to the release of sensory neuropeptides (vasoactive intestinal peptide, substance P and calcitonin gene-related peptide) through nerve endings in the trigeminal system.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+            identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
             label: 'Eletriptan label',
             retrievedAt: '2026-08-28',
             excerpt:
@@ -122546,14 +123576,14 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
         {
           textAsRecorded:
-            'The therapeutic activity of RELPAX for the treatment of migraine headache is thought to be due to the agonist effects at the 5-HT 1B/1D receptors on intracranial blood vessels (including the arterio-venous anastomoses) and sensory nerves of the trigeminal system which result in cranial vessel constriction and inhibition of pro-inflammatory neuropeptide release.',
+            'The therapeutic activity of eletriptan hydrobromide for the treatment of migraine headache is thought to be due to the agonist effects at the 5-HT 1B/1D receptors on intracranial blood vessels (including the arterio-venous anastomoses) and sensory nerves of the trigeminal system which result in cranial vessel constriction and inhibition of pro-inflammatory neuropeptide release.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+            identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
             label: 'Eletriptan label',
             retrievedAt: '2026-08-28',
             excerpt:
-              'The therapeutic activity of RELPAX for the treatment of migraine headache is thought to be due to the agonist effects at the 5-HT 1B/1D receptors on intracranial blood vessels (including the arterio-venous anastomoses) and sensory nerves of the trigeminal system which result in cranial vessel constriction and inhibition of pro-inflammatory neuropeptide release.',
+              'The therapeutic activity of eletriptan hydrobromide for the treatment of migraine headache is thought to be due to the agonist effects at the 5-HT 1B/1D receptors on intracranial blood vessels (including the arterio-venous anastomoses) and sensory nerves of the trigeminal system which result in cranial vessel constriction and inhibition of pro-inflammatory neuropeptide release.',
           },
           provenanceTier: 'extracted',
         },
@@ -122566,11 +123596,11 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'Eletriptan hydrobromide is chemically designated as (R)-3-[(1-Methyl-2-pyrrolidinyl)methyl]-5-[2-(phenylsulfonyl)ethyl]-1H-indole monohydrobromide, and it has the following chemical structure: The empirical formula is C 22 H 26 N 2 O 2 S .',
+            'Eletriptan hydrobromide is chemically designated as (R)-3-[(1-Methyl-2-pyrrolidinyl)methyl]-5-[2-(phenylsulfonyl)ethyl]-1H-indole monohydrobromide, and it has the following chemical structure: The molecular formula is C 22 H 26 N 2 O 2 S.',
         },
         provenanceTier: 'extracted',
       },
@@ -122581,10 +123611,10 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
-          excerpt: 'HBr, representing a molecular weight of 463.43.',
+          excerpt: 'HBr representing a molecular weight of 463.43.',
         },
         provenanceTier: 'extracted',
       },
@@ -122598,7 +123628,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -122612,7 +123642,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -122626,15 +123656,67 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'In vitro studies indicate that eletriptan is primarily metabolized by cytochrome P-450 enzyme CYP3A4 [see Contraindications (4) and Drug Interactions (7.2) ] .',
+            'In vitro studies indicate that eletriptan is primarily metabolized by cytochrome P-450 enzyme CYP3A4 [see Contraindications ( 4 ) and Drug Interactions ( 7.2 )] .',
         },
         provenanceTier: 'extracted',
       },
     ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'Wolff-Parkinson-White syndrome or arrhythmias associated with other cardiac accessory conduction pathway disorders [see Warnings and Precautions ( 5.2 )].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+            label: 'Eletriptan label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Wolff-Parkinson-White syndrome or arrhythmias associated with other cardiac accessory conduction pathway disorders [see Warnings and Precautions ( 5.2 )].',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'History of stroke, transient ischemic attack (TIA), or history or current evidence of hemiplegic or basilar migraine because these patients are at a higher risk of stroke [see Warnings and Precautions ( 5.4 )].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+            label: 'Eletriptan label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'History of stroke, transient ischemic attack (TIA), or history or current evidence of hemiplegic or basilar migraine because these patients are at a higher risk of stroke [see Warnings and Precautions ( 5.4 )].',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Peripheral vascular disease [see Warnings and Precautions ( 5.5 )].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+            label: 'Eletriptan label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Peripheral vascular disease [see Warnings and Precautions ( 5.5 )].',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Ischemic bowel disease [see Warnings and Precautions ( 5.5 )].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+            label: 'Eletriptan label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Ischemic bowel disease [see Warnings and Precautions ( 5.5 )].',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
     populationStatements: [
       {
         population: 'PEDIATRIC',
@@ -122642,7 +123724,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         textAsRecorded: 'Safety and effectiveness in pediatric patients have not been established.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt: 'Safety and effectiveness in pediatric patients have not been established.',
@@ -122656,7 +123738,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           'Blood pressure was increased to a greater extent in elderly subjects than in young subjects.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -122668,14 +123750,14 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         population: 'PREGNANCY',
         state: 'STATEMENT_ONLY',
         textAsRecorded:
-          'Risk Summary Available human data on the use of RELPAX in pregnant women are not sufficient to draw conclusions about drug-associated risk for major birth defects and miscarriage.',
+          'Risk Summary Available human data on the use of eletriptan hydrobromide tablets in pregnant women are not sufficient to draw conclusions about drug-associated risk for major birth defects and miscarriage.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'Risk Summary Available human data on the use of RELPAX in pregnant women are not sufficient to draw conclusions about drug-associated risk for major birth defects and miscarriage.',
+            'Risk Summary Available human data on the use of eletriptan hydrobromide tablets in pregnant women are not sufficient to draw conclusions about drug-associated risk for major birth defects and miscarriage.',
         },
         provenanceTier: 'extracted',
       },
@@ -122685,7 +123767,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         textAsRecorded: 'Risk Summary Eletriptan is excreted in human milk.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt: 'Risk Summary Eletriptan is excreted in human milk.',
@@ -122696,14 +123778,14 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         population: 'HEPATIC_IMPAIRMENT',
         state: 'STATEMENT_ONLY',
         textAsRecorded:
-          'The effect of severe hepatic impairment on RELPAX metabolism has not been evaluated.',
+          'The effect of severe hepatic impairment on eletriptan hydrobromide metabolism has not been evaluated.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+          identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
           label: 'Eletriptan label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'The effect of severe hepatic impairment on RELPAX metabolism has not been evaluated.',
+            'The effect of severe hepatic impairment on eletriptan hydrobromide metabolism has not been evaluated.',
         },
         provenanceTier: 'extracted',
       },
@@ -122713,11 +123795,11 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       eventsAsRecorded: ['asthenia', 'nausea', 'dizziness', 'somnolence'],
       source: {
         kind: 'FDA_LABEL',
-        identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+        identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
         label: 'Eletriptan label',
         retrievedAt: '2026-08-28',
         excerpt:
-          'in blood pressure [see Warnings and Precautions (5.8) ] • Hypersensitivity reactions [see Contraindications (4) and Warnings and Precautions (5.9) ] Most common adverse reactions (≥ 5% and > placebo) were asthenia, nausea, dizziness, and somnolence.',
+          '6 ADVERSE REACTIONS Most common adverse reactions ( ≥ 5% and > placebo) were asthenia, nausea, dizziness, and somnolence.',
       },
       provenanceTier: 'extracted',
     },
@@ -136043,16 +137125,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         provenanceTier: 'extracted',
       },
     ],
-    registryIdentifiers: {
-      unii: '4TI98Z838E',
-      rxcui: '310169',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: '546c168d-2a85-69b6-e063-6294a90a22ac',
-        label: 'Estradiol label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
-    },
   },
   'estradiol-cypionate': {
     version: 'medicine-background/v1',
@@ -158013,7 +159085,39 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'intravenous',
+      halfLife: {
+        display: '9 to 13 hours',
+        numeric: 9,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'The apparent terminal half-liferanged from approximately 9 to 13 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '70 L',
+        numeric: 70,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The mean apparent volume of distribution at steady state(Vd ss ) was approximately 70 L in humans.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -158033,6 +159137,314 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Fosaprepitant is a prodrugof aprepitant and accordingly, its antiemetic effectsare attributable to aprepitant.Aprepitant is a selectivehigh-affinity antagonist of human substanceP/neurokinin 1(NK1) receptors.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Fosaprepitant is a prodrugof aprepitant and accordingly, its antiemetic effectsare attributable to aprepitant.Aprepitant is a selectivehigh-affinity antagonist of human substanceP/neurokinin 1(NK1) receptors.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Aprepitant has little or no affinity for serotonin (5-HT 3 ), dopamine, and corticosteroid receptors, the targets of existing therapiesfor chemotherapy-induced nausea and vomiting(CINV).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Aprepitant has little or no affinity for serotonin (5-HT 3 ), dopamine, and corticosteroid receptors, the targets of existing therapiesfor chemotherapy-induced nausea and vomiting(CINV).',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Aprepitant has been shown in animal models to inhibit emesis induced by cytotoxicchemotherapeutic agents, such as cisplatin, via central actions.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Aprepitant has been shown in animal models to inhibit emesis induced by cytotoxicchemotherapeutic agents, such as cisplatin, via central actions.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Animal and human Positron Emission Tomography (PET) studies with aprepitant have shown that it crosses the blood brain barrier and occupies brain NK 1 receptors.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Animal and human Positron Emission Tomography (PET) studies with aprepitant have shown that it crosses the blood brain barrier and occupies brain NK 1 receptors.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['5-HT'],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C23H22F7N4O6P',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'ito[3-[[(2R,3S)-2-[(1R)-1-[3,5- bis(trifluoromethyl)phenyl]ethoxy]-3-(4­ fluorophenyl)-4-morpholinyl]methyl]-2,5-dihydro-5-oxo-1H-1,2,4-triazol-1-yl]phosphonate(2:1) (salt).Its empirical formula is C 23 H 22 F 7 N 4 O 6 P • 2(C 7 H 17 NO 5 ) and its structural formula is: Fosaprepitant dimeglumine is a white to off-white powder with a molecular weight of 1004.83.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '100',
+        numeric: 100,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'phosphonate(2:1) (salt).Its empirical formula is C 23 H 22 F 7 N 4 O 6 P • 2(C 7 H 17 NO 5 ) and its structural formula is: Fosaprepitant dimeglumine is a white to off-white powder with a molecular weight of 1004.83.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro studies using human liver microsomes indicate that aprepitant is metabolized primarily by CYP3A4 with minor metabolism by CYP1A2 and CYP2C19.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro studies using human liver microsomes indicate that aprepitant is metabolized primarily by CYP3A4 with minor metabolism by CYP1A2 and CYP2C19.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'No metabolism by CYP2D6, CYP2C9, or CYP2E1 was detected.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'No metabolism by CYP2D6, CYP2C9, or CYP2E1 was detected.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2E1',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'No metabolism by CYP2D6, CYP2C9, or CYP2E1 was detected.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro studies using human liver microsomes indicate that aprepitant is metabolized primarily by CYP3A4 with minor metabolism by CYP1A2 and CYP2C19.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'Fosaprepitant is contraindicated in patients: who are hypersensitive to any component of the product Hypersensitivity reactions includinganaphylactic reactions, flushing, erythema, and dyspnea have been reported [see Warnings and Precautions ( 5.2 ), Adverse Reactions ( 6.2 )]. taking pimozide.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Fosaprepitant is contraindicated in patients: who are hypersensitive to any component of the product Hypersensitivity reactions includinganaphylactic reactions, flushing, erythema, and dyspnea have been reported [see Warnings and Precautions ( 5.2 ), Adverse Reactions ( 6.2 )]. taking pimozide.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Inhibition of CYP3A4 by aprepitant, the active moiety,could result in elevated plasma concentrations of this drug, which is a CYP3A4 substrate, potentially causing serious or life- threatening reactions, such as QT prolongation, a known adverse reaction of pimozide [see Warnings and Precautions( 5.1 )].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Inhibition of CYP3A4 by aprepitant, the active moiety,could result in elevated plasma concentrations of this drug, which is a CYP3A4 substrate, potentially causing serious or life- threatening reactions, such as QT prolongation, a known adverse reaction of pimozide [see Warnings and Precautions( 5.1 )].',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Known hypersensitivity to any component of this drug.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Known hypersensitivity to any component of this drug.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: '( 4 , 5.2 ) Concurrent use with pimozide.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+            label: 'Fosaprepitant Dimeglumine label',
+            retrievedAt: '2026-08-28',
+            excerpt: '( 4 , 5.2 ) Concurrent use with pimozide.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'The safety and effectiveness of fosaprepitant dimeglumine for the prevention of nausea and vomiting associated with HEC or MEC have not been established in patients less than 6 months of age.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of fosaprepitant dimeglumine for the prevention of nausea and vomiting associated with HEC or MEC have not been established in patients less than 6 months of age.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Of the 1649 adult cancer patients treated with intravenous fosaprepitant in HEC and MEC clinical studies, 27% were aged 65 and over, while 5% were aged 75 and over.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Of the 1649 adult cancer patients treated with intravenous fosaprepitant in HEC and MEC clinical studies, 27% were aged 65 and over, while 5% were aged 75 and over.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are insufficient data on use of fosaprepitant in pregnant women to inform a drug associated risk.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are insufficient data on use of fosaprepitant in pregnant women to inform a drug associated risk.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          '8.3 Females and Males of Reproductive Potential Contraception Upon administration of fosaprepitant, the efficacy of hormonal contraceptives may be reduced.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+          label: 'Fosaprepitant Dimeglumine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            '8.3 Females and Males of Reproductive Potential Contraception Upon administration of fosaprepitant, the efficacy of hormonal contraceptives may be reduced.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: '≥2%',
+      eventsAsRecorded: [
+        'fatigue',
+        'diarrhea',
+        'neutropenia',
+        'asthenia',
+        'anemia',
+        'peripheral neuropathy',
+        'leukopenia',
+        'dyspepsia',
+        'urinary tract infection',
+        'pain in extremity',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+        label: 'Fosaprepitant Dimeglumine label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'ions [see Warnings and Precautions (5.2) ] Infusion Site Reactions [see Warnings and Precautions (5.3) ] Most common adverse reactions in adults (≥2%) are: fatigue, diarrhea, neutropenia, asthenia, anemia, peripheral neuropathy, leukopenia, dyspepsia, urinary tract infection, pain in extremity.',
+      },
+      provenanceTier: 'extracted',
+    },
     registryIdentifiers: {
       unii: 'D35FM8T64X',
       rxcui: '1731077',
@@ -158652,7 +160064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
     },
     productVariants: [
       {
@@ -158672,6 +160084,389 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded: 'CONTEPO is an antibacterial drug [ see Microbiology ( 12.4 ) ] .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+            label: 'Fosfomycin label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'CONTEPO is an antibacterial drug [ see Microbiology ( 12.4 ) ] .',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C3H5Na2O4P',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Fosfomycin disodium is a powder with the chemical name of disodium [(2R,3S)-3-methyloxiran-2-yl]-dioxido-oxophosphorane, an empirical formula of C 3 H 5 Na 2 O 4 P and molecular weight of 182.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '182',
+        numeric: 182,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Fosfomycin disodium is a powder with the chemical name of disodium [(2R,3S)-3-methyloxiran-2-yl]-dioxido-oxophosphorane, an empirical formula of C 3 H 5 Na 2 O 4 P and molecular weight of 182.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BCRP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Fosfomycin is not a substrate for P-gp, BCRP, OATP1B1, OATP1B3, OAT1, OAT3, OCT2, MATE1 or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Studies Fosfomycin at clinically relevant concentrations does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2B6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Studies Fosfomycin at clinically relevant concentrations does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Studies Fosfomycin at clinically relevant concentrations does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Studies Fosfomycin at clinically relevant concentrations does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Studies Fosfomycin at clinically relevant concentrations does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Studies Fosfomycin at clinically relevant concentrations does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies In Vitro Studies Fosfomycin at clinically relevant concentrations does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Fosfomycin is not a substrate for P-gp, BCRP, OATP1B1, OATP1B3, OAT1, OAT3, OCT2, MATE1 or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE2',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Fosfomycin is not a substrate for P-gp, BCRP, OATP1B1, OATP1B3, OAT1, OAT3, OCT2, MATE1 or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Fosfomycin is not a substrate for P-gp, BCRP, OATP1B1, OATP1B3, OAT1, OAT3, OCT2, MATE1 or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT3',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Fosfomycin is not a substrate for P-gp, BCRP, OATP1B1, OATP1B3, OAT1, OAT3, OCT2, MATE1 or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'CONTEPO is contraindicated in patients with known serious hypersensitivity to fosfomycin, or any of the excipients [ see Warnings and Precautions ( 5.2 ) ] .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+            label: 'Fosfomycin label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'CONTEPO is contraindicated in patients with known serious hypersensitivity to fosfomycin, or any of the excipients [ see Warnings and Precautions ( 5.2 ) ] .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'CONTEPO is contraindicated in patients with known serious hypersensitivity to fosfomycin, or any of the excipients.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+            label: 'Fosfomycin label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'CONTEPO is contraindicated in patients with known serious hypersensitivity to fosfomycin, or any of the excipients.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'Safety and effectiveness of CONTEPO in patients less than 18 years of age has not been established.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Safety and effectiveness of CONTEPO in patients less than 18 years of age has not been established.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Of the 233 patients treated with CONTEPO in Trial 1, 32% (74/233) were 65 years of age and older, including 11.2% (26/233) who were 75 years of age and older.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Of the 233 patients treated with CONTEPO in Trial 1, 32% (74/233) were 65 years of age and older, including 11.2% (26/233) who were 75 years of age and older.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Available data from observational studies and pharmacovigilance reports with fosfomycin use in pregnant women are insufficient to identify a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Available data from observational studies and pharmacovigilance reports with fosfomycin use in pregnant women are insufficient to identify a drug-associated risk of major birth defects, miscarriage, or adverse maternal or fetal outcomes.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded: 'Risk Summary Fosfomycin is present in human milk.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Risk Summary Fosfomycin is present in human milk.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Monitor patients with severe hepatic impairment closely for fluid overload and electrolyte abnormalities [see Warnings and Precautions ( 5.1 ), Clinical Pharmacology ( 12.3 )] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Monitor patients with severe hepatic impairment closely for fluid overload and electrolyte abnormalities [see Warnings and Precautions ( 5.1 ), Clinical Pharmacology ( 12.3 )] .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Dosage adjustment is required for patients with estimated CLcr 50 mL/min or less.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+          label: 'Fosfomycin label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Dosage adjustment is required for patients with estimated CLcr 50 mL/min or less.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: 'incidence ≥2%',
+      eventsAsRecorded: [
+        'transaminase elevations',
+        'hypokalemia',
+        'neutropenia',
+        'nausea',
+        'vomiting',
+        'diarrhea',
+        'hypocalcemia',
+        'hypernatremia',
+        'headache',
+        'hypophosphatemia',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '855574f2-39f8-43bc-a3d2-79dbb578cb94',
+        label: 'Fosfomycin label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'gs and Precautions ( 5.6 )] Development of Drug-Resistant Bacteria [see Warnings and Precautions ( 5.7 )] Most common adverse reactions (incidence ≥2%) are transaminase elevations, hypokalemia, neutropenia, nausea, vomiting, diarrhea, hypocalcemia, hypernatremia, headache, and hypophosphatemia.',
+      },
+      provenanceTier: 'extracted',
+    },
   },
   fosinopril: {
     version: 'medicine-background/v1',
@@ -162390,17 +164185,17 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'DOTAREM',
+        brandName: 'gadoterate meglumine',
         formAsRecorded: 'intravenous',
         strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS DOTAREM 0.5 mmol/mL is a sterile, clear, colorless to yellow, aqueous solution for intravenous injection containing 376.9 mg/mL gadoterate meglumine.',
+          '3 DOSAGE FORMS AND STRENGTHS Gadoterate Meglumine Injection, USP 0.5 mmol/mL is a sterile, clear, colorless to yellow, aqueous solution for intravenous injection containing 376.9 mg/mL gadoterate meglumine and is availa…',
         approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE DOTAREM is a gadolinium-based contrast agent indicated for intravenous use with magnetic resonance imaging (MRI) in brain (intracranial), spine and associated tissues in adult and pediatric patie…',
+          '1 INDICATIONS AND USAGE Gadoterate Meglumine Injection is a gadolinium-based contrast agent indicated for intravenous use with magnetic resonance imaging (MRI) in brain (intracranial), spine and associated tissues in ad…',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2025-03-12',
+        statusAsRecorded: 'FDA label in effect 2025-04-16',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
         },
@@ -162413,7 +164208,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
             'Gadoterate is a paramagnetic molecule that develops a magnetic moment when placed in a magnetic field.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+            identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
             label: 'Gadoterate label',
             retrievedAt: '2026-08-28',
             excerpt:
@@ -162426,7 +164221,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
             'The magnetic moment enhances the relaxation rates of water protons in its vicinity, leading to an increase in signal intensity (brightness) of tissues.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+            identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
             label: 'Gadoterate label',
             retrievedAt: '2026-08-28',
             excerpt:
@@ -162439,7 +164234,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
             'At recommended doses, the effect is observed with greatest sensitivity in the T1-weighted sequences.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+            identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
             label: 'Gadoterate label',
             retrievedAt: '2026-08-28',
             excerpt:
@@ -162455,7 +164250,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         populationContext: 'as stated in the label sentence recorded below',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -162470,7 +164265,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           'WARNING: RISK ASSOCIATED WITH INTRATHECAL USE and NEPHROGENIC SYSTEMIC FIBROSIS Risk Associated with Intrathecal Use Intrathecal administration of gadolinium-based contrast agents (GBCAs) can cause serious adverse reactions including death, coma, encephalopathy, and seizures.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -162481,25 +164276,27 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       contraindications: [
         {
           textAsRecorded:
-            'History of clinically important hypersensitivity reactions to DOTAREM [see Warnings and Precautions ( 5.2 )].',
+            'History of clinically important hypersensitivity reactions to Gadoterate Meglumine Injection [see Warnings and Precautions ( 5.3 )] .',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+            identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
             label: 'Gadoterate label',
             retrievedAt: '2026-08-28',
             excerpt:
-              'History of clinically important hypersensitivity reactions to DOTAREM [see Warnings and Precautions ( 5.2 )].',
+              'History of clinically important hypersensitivity reactions to Gadoterate Meglumine Injection [see Warnings and Precautions ( 5.3 )] .',
           },
           provenanceTier: 'extracted',
         },
         {
-          textAsRecorded: 'Clinically important hypersensitivity reactions to DOTAREM.',
+          textAsRecorded:
+            'Clinically important hypersensitivity reactions to Gadoterate Meglumine Injection.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+            identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
             label: 'Gadoterate label',
             retrievedAt: '2026-08-28',
-            excerpt: 'Clinically important hypersensitivity reactions to DOTAREM.',
+            excerpt:
+              'Clinically important hypersensitivity reactions to Gadoterate Meglumine Injection.',
           },
           provenanceTier: 'extracted',
         },
@@ -162509,13 +164306,15 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         population: 'PEDIATRIC',
         state: 'NOT_ESTABLISHED',
-        textAsRecorded: 'The safety of DOTAREM has not been established in preterm neonates.',
+        textAsRecorded:
+          'The safety of Gadoterate Meglumine Injection has not been established in preterm neonates.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
-          excerpt: 'The safety of DOTAREM has not been established in preterm neonates.',
+          excerpt:
+            'The safety of Gadoterate Meglumine Injection has not been established in preterm neonates.',
         },
         provenanceTier: 'extracted',
       },
@@ -162523,14 +164322,14 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         population: 'GERIATRIC',
         state: 'STATEMENT_ONLY',
         textAsRecorded:
-          'In clinical studies of DOTAREM, 900 patients were 65 years of age and over, and 304 patients were 75 years of age and over.',
+          'In clinical studies of Gadoterate Meglumine Injection, 900 patients were 65 years of age and over, and 304 patients were 75 years of age and over.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'In clinical studies of DOTAREM, 900 patients were 65 years of age and over, and 304 patients were 75 years of age and over.',
+            'In clinical studies of Gadoterate Meglumine Injection, 900 patients were 65 years of age and over, and 304 patients were 75 years of age and over.',
         },
         provenanceTier: 'extracted',
       },
@@ -162541,7 +164340,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           'Risk Summary GBCAs cross the human placenta and result in fetal exposure and gadolinium retention.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -162556,7 +164355,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           'Risk Summary There are no data on the presence of gadoterate in human milk, the effects on the breastfed infant, or the effects on milk production.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -162568,14 +164367,14 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         population: 'RENAL_IMPAIRMENT',
         state: 'STATEMENT_ONLY',
         textAsRecorded:
-          'No DOTAREM dosage adjustment is recommended for patients with renal impairment.',
+          'No Gadoterate Meglumine Injection dosage adjustment is recommended for patients with renal impairment.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '82b83e61-6af8-4225-aa39-8cbf206f65b0',
+          identifier: '85404ca7-dbe7-4d06-b30c-4368dcd33b0b',
           label: 'Gadoterate label',
           retrievedAt: '2026-08-28',
           excerpt:
-            'No DOTAREM dosage adjustment is recommended for patients with renal impairment.',
+            'No Gadoterate Meglumine Injection dosage adjustment is recommended for patients with renal impairment.',
         },
         provenanceTier: 'extracted',
       },
@@ -163086,26 +164885,414 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '7 hours',
+        numeric: 7,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Galantamine has a terminal half-life of about 7 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      bioavailability: {
+        display: '90%',
+        numeric: 90,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'The absolute bioavailability of galantamine is about 90%.',
+        },
+        provenanceTier: 'extracted',
+      },
+      tMax: {
+        display: '1 hour',
+        numeric: 1,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Absorption and Distribution: Galantamine is absorbed with time to peak concentration of about 1 hour.',
+        },
+        provenanceTier: 'extracted',
+      },
+      proteinBinding: {
+        display: '18%',
+        numeric: 18,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The plasma protein binding of galantamine is 18% at therapeutically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '175 L',
+        numeric: 175,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'The mean volume of distribution of galantamine is 175 L.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
-        brandName: 'Galantamine',
+        brandName: 'Galantamine Hydrobromide',
         formAsRecorded: 'oral',
         strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS Galantamine extended-release capsules contain white to off-white mini tablets and are available in the following strengths: 8 mg are white opaque size “1” hard gelatin capsule with inscripti…',
+          '3 DOSAGE FORMS AND STRENGTHS Galantamine Oral Solution USP, 4 mg/mL is a clear, colorless to pale yellow solution supplied in 100 mL bottles with a calibrated (in milliliters) syringe.',
         approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE Galantamine extended-release capsules are indicated for the treatment of mild to moderate dementia of the Alzheimer’s type.',
+          '1 INDICATIONS AND USAGE Galantamine is indicated for the treatment of mild to moderate dementia of the Alzheimer’s type.',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2024-01-30',
+        statusAsRecorded: 'FDA label in effect 2023-10-25',
         source: {
           kind: 'FDA_LABEL',
-          identifier: 'd0b75970-8d3d-408b-9e17-9cbad0f776b1',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
           label: 'Galantamine label',
           retrievedAt: '2026-08-28',
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Although the etiology of cognitive impairment in Alzheimer’s disease (AD) is not fully understood, it has been reported that acetylcholine-producing neurons degenerate in the brains of patients with Alzheimer’s disease.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+            label: 'Galantamine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Although the etiology of cognitive impairment in Alzheimer’s disease (AD) is not fully understood, it has been reported that acetylcholine-producing neurons degenerate in the brains of patients with Alzheimer’s disease.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The degree of this cholinergic loss has been correlated with degree of cognitive impairment and density of amyloid plaques (a neuropathological hallmark of Alzheimer’s disease).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+            label: 'Galantamine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The degree of this cholinergic loss has been correlated with degree of cognitive impairment and density of amyloid plaques (a neuropathological hallmark of Alzheimer’s disease).',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Galantamine, a tertiary alkaloid, is a competitive and reversible inhibitor of acetylcholinesterase.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+            label: 'Galantamine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Galantamine, a tertiary alkaloid, is a competitive and reversible inhibitor of acetylcholinesterase.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'While the precise mechanism of galantamine’s action is unknown, it is postulated to exert its therapeutic effect by enhancing cholinergic function.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+            label: 'Galantamine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'While the precise mechanism of galantamine’s action is unknown, it is postulated to exert its therapeutic effect by enhancing cholinergic function.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C17H21NO3•HBr',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'It has an empirical formula of C 17 H 21 NO 3 •HBr and a molecular weight of 368.27.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '368.27',
+        numeric: 368.27,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'It has an empirical formula of C 17 H 21 NO 3 •HBr and a molecular weight of 368.27.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Effect of Galantamine on Other Drugs: • In Vitro Studies : In vitro studies show that galantamine did not inhibit the metabolic pathways catalyzed by CYP1A2, CYP2A6, CYP3A4, CYP4A, CYP2C, CYP2D6 or CYP2E1.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2A6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Effect of Galantamine on Other Drugs: • In Vitro Studies : In vitro studies show that galantamine did not inhibit the metabolic pathways catalyzed by CYP1A2, CYP2A6, CYP3A4, CYP4A, CYP2C, CYP2D6 or CYP2E1.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro studies indicate that cytochrome CYP2D6 and CYP3A4 were the major cytochrome P450 isoenzymes involved in the metabolism of galantamine, and inhibitors of both pathways increase oral bioavailability of galantamine modestly.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2E1',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Effect of Galantamine on Other Drugs: • In Vitro Studies : In vitro studies show that galantamine did not inhibit the metabolic pathways catalyzed by CYP1A2, CYP2A6, CYP3A4, CYP4A, CYP2C, CYP2D6 or CYP2E1.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro studies indicate that cytochrome CYP2D6 and CYP3A4 were the major cytochrome P450 isoenzymes involved in the metabolism of galantamine, and inhibitors of both pathways increase oral bioavailability of galantamine modestly.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'Galantamine is contraindicated in patients with known hypersensitivity to galantamine hydrobromide or to any excipients used in the formulation.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+            label: 'Galantamine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Galantamine is contraindicated in patients with known hypersensitivity to galantamine hydrobromide or to any excipients used in the formulation.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Known hypersensitivity to galantamine hydrobromide or any excipients.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+            label: 'Galantamine label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Known hypersensitivity to galantamine hydrobromide or any excipients.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness in pediatric patients have not been established.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'The safety and effectiveness in pediatric patients have not been established.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Eight double-blind, placebo-controlled clinical trials and 5 open-label trials in a total of 6519 patients have investigated galantamine in the treatment of mild to moderate dementia of the Alzheimer’s type [see Adverse Reactions (6.1) and Clinical Studies (14) ] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Eight double-blind, placebo-controlled clinical trials and 5 open-label trials in a total of 6519 patients have investigated galantamine in the treatment of mild to moderate dementia of the Alzheimer’s type [see Adverse Reactions (6.1) and Clinical Studies (14) ] .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded: 'There are no adequate and well-controlled studies in pregnant women.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'There are no adequate and well-controlled studies in pregnant women.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded: 'It is not known whether this drug is excreted in human milk.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'It is not known whether this drug is excreted in human milk.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'In patients with moderate hepatic impairment, a dosage adjustment is recommended.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In patients with moderate hepatic impairment, a dosage adjustment is recommended.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'In patients with a creatinine clearance of 9 mL to 59 mL/min, a dosage adjustment is recommended.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+          label: 'Galantamine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In patients with a creatinine clearance of 9 mL to 59 mL/min, a dosage adjustment is recommended.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: '≥5%',
+      eventsAsRecorded: [
+        'nausea',
+        'vomiting',
+        'diarrhea',
+        'dizziness',
+        'headache',
+        'decreased appetite',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+        label: 'Galantamine label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'tions [see Warnings and Precautions (5.7) ] • Deaths in Subjects with Mild cognitive impairment (MCI) [see Warnings and Precautions (5.8) ] The most common adverse reactions (≥5%) were nausea, vomiting, diarrhea, dizziness, headache, and decreased appetite.',
+      },
+      provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: 'MJ4PTD2VVW',
+      rxcui: '860695',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'd0b75970-8d3d-408b-9e17-9cbad0f776b1',
+        label: 'Galantamine label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   galcanezumab: {
     version: 'medicine-background/v1',
@@ -170810,7 +172997,25 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'topical',
+      volumeOfDistribution: {
+        display: '1.3 to 1.8 L/kg',
+        numeric: 1.3,
+        unit: 'L/kg',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            '(h ∗ ng/mL) 0.2 ± 0.14 AUC 0-24h (h ∗ ng/mL) 0.88 ± 0.57 Median T max (Range) (h) 1 (0, 10) Distribution After IV administration, glycopyrronium has a mean volume of distribution in children aged 1 to 14 years of approximately 1.3 to 1.8 L/kg, with a range from 0.7 to 3.9 L/kg.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -170830,6 +173035,208 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Glycopyrronium is a competitive inhibitor of acetylcholine receptors that are located on certain peripheral tissues, including sweat glands.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+            label: 'Glycopyrronium label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Glycopyrronium is a competitive inhibitor of acetylcholine receptors that are located on certain peripheral tissues, including sweat glands.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'In hyperhidrosis, glycopyrronium inhibits the action of acetylcholine on sweat glands, reducing sweating.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+            label: 'Glycopyrronium label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'In hyperhidrosis, glycopyrronium inhibits the action of acetylcholine on sweat glands, reducing sweating.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C26H37NO7S',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Glycopyrronium tosylate is chemically described as pyrrolidinium, 3-[(2-cyclopentyl-2-hydroxy-2-phenylacetyl)oxy]-1, 1-dimethyl-, 4-methylbenzensulfonate, hydrate (1:1:1) with an empirical formula of C 26 H 37 NO 7 S and a molecular weight of 507.6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '507.6',
+        numeric: 507.6,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Glycopyrronium tosylate is chemically described as pyrrolidinium, 3-[(2-cyclopentyl-2-hydroxy-2-phenylacetyl)oxy]-1, 1-dimethyl-, 4-methylbenzensulfonate, hydrate (1:1:1) with an empirical formula of C 26 H 37 NO 7 S and a molecular weight of 507.6.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'Qbrexza is contraindicated in patients with medical conditions that can be exacerbated by the anticholinergic effect of Qbrexza (e.g., glaucoma, paralytic ileus, unstable cardiovascular status in acute hemorrhage, severe ulcerative colitis, toxic megacolon complicating ulcerative colitis, myasthenia gravis, Sjogren’s syndrome).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+            label: 'Glycopyrronium label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Qbrexza is contraindicated in patients with medical conditions that can be exacerbated by the anticholinergic effect of Qbrexza (e.g., glaucoma, paralytic ileus, unstable cardiovascular status in acute hemorrhage, severe ulcerative colitis, toxic megacolon complicating ulcerative colitis, myasthenia gravis, Sjogren’s syndrome).',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Qbrexza is contraindicated in patients with medical conditions that can be exacerbated by the anticholinergic effect of Qbrexza (e.g., glaucoma, paralytic ileus, unstable cardiovascular status in acute hemorrhage, severe ulcerative colitis, toxic megacolon complicating ulcerative colitis, myasthenia gravis, Sjogren’s syndrome) ( 4 ).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+            label: 'Glycopyrronium label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Qbrexza is contraindicated in patients with medical conditions that can be exacerbated by the anticholinergic effect of Qbrexza (e.g., glaucoma, paralytic ileus, unstable cardiovascular status in acute hemorrhage, severe ulcerative colitis, toxic megacolon complicating ulcerative colitis, myasthenia gravis, Sjogren’s syndrome) ( 4 ).',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of Qbrexza have not been established in pediatric patients under 9 years of age.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of Qbrexza have not been established in pediatric patients under 9 years of age.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Clinical trials of Qbrexza did not include sufficient numbers of subjects age 65 years and older to determine whether they respond differently from younger subjects.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Clinical trials of Qbrexza did not include sufficient numbers of subjects age 65 years and older to determine whether they respond differently from younger subjects.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no available data on Qbrexza use in pregnant women to inform a drug-associated risk for adverse developmental outcomes.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no available data on Qbrexza use in pregnant women to inform a drug-associated risk for adverse developmental outcomes.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no data on the presence of glycopyrrolate or its metabolites in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no data on the presence of glycopyrrolate or its metabolites in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'The elimination of glycopyrronium is severely impaired in patients with renal failure [see Clinical Pharmacology ( 12.3 )] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+          label: 'Glycopyrronium label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The elimination of glycopyrronium is severely impaired in patients with renal failure [see Clinical Pharmacology ( 12.3 )] .',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: 'incidence ≥2%',
+      eventsAsRecorded: [
+        'dry mouth',
+        'mydriasis',
+        'oropharyngeal pain',
+        'headache',
+        'urinary hesitation',
+        'vision blurred',
+        'nasal dryness',
+        'dry throat',
+        'dry eye',
+        'dry skin',
+        'constipation',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+        label: 'Glycopyrronium label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          '6 ADVERSE REACTIONS The following adverse reactions are described in greater detail in other sections • New or Worsening Urinary Retention [see Warnings and Precautions ( 5.1 )] Most common adverse reactions (incidence ≥2%) are dry mouth, mydriasis, oropharyngeal pain, headache, urinary hesitation, vision blurred, nasal dryness, dry throat, dry eye, dry skin, constipation.',
+      },
+      provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: '1PVF6JLU7B',
+      rxcui: '2054118',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '5b372650-e56e-47a5-93e2-c0c292017059',
+        label: 'Glycopyrronium label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   'glycyrrhiza-glabra': {
     version: 'medicine-background/v1',
@@ -192273,43 +194680,69 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'Cysto-Conray II',
-        formAsRecorded: 'ureteral',
+        brandName: 'Conray',
+        formAsRecorded: 'intravascular',
         strengthsAsRecorded:
-          'HOW SUPPLIED Cysto-Conray ® II Glass Bottles NDC Number 12 x 250 mL single dose bottles 0019-0862-50 Storage Store at 20° to 25°C (68° to 77°F) [see USP Controlled Room Temperature].',
+          'HOW SUPPLIED Conray ® Glass Vials/Bottles NDC Number 25x30 mL vials 0019-0953-23 25x50 mL vials 0019-0953-05 12x100 mL bottles 0019-0953-10 12x150 mL bottles 0019-0953-50 Storage Store below 30°C (86°F).',
         approvedUseAsRecorded:
-          'INDICATIONS AND USAGE Cysto-Conray II is indicated for use in retrograde cystography and cystourethrography.',
+          'INDICATIONS AND USAGE Conray is indicated for use in excretory urography, cerebral angiography, peripheral arteriography, venography, arthrography, direct cholangiography, endoscopic retrograde cholangiopancreatography,…',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2020-12-31',
+        statusAsRecorded: 'FDA label in effect 2023-05-11',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '8841ab4d-674d-4beb-88a5-13e35f6005cc',
+          identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
           label: 'Iothalamate label',
           retrievedAt: '2026-08-28',
         },
       },
     ],
     safety: {
-      boxedWarning: {
-        textAsRecorded: 'NOT FOR INTRAVASCULAR ADMINISTRATION NOT FOR INTRATHECAL USE',
-        source: {
-          kind: 'FDA_LABEL',
-          identifier: '8841ab4d-674d-4beb-88a5-13e35f6005cc',
-          label: 'Iothalamate label',
-          retrievedAt: '2026-08-28',
-          excerpt: 'NOT FOR INTRAVASCULAR ADMINISTRATION NOT FOR INTRATHECAL USE',
-        },
-        provenanceTier: 'extracted',
-      },
       contraindications: [
         {
-          textAsRecorded: 'See WARNINGS concerning inadvertant intrathecal administration.',
+          textAsRecorded: 'Refer to PRECAUTIONS, General, concerning hypersensitivity.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '8841ab4d-674d-4beb-88a5-13e35f6005cc',
+            identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
             label: 'Iothalamate label',
             retrievedAt: '2026-08-28',
-            excerpt: 'See WARNINGS concerning inadvertant intrathecal administration.',
+            excerpt: 'Refer to PRECAUTIONS, General, concerning hypersensitivity.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Conray should not be used for myelography.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
+            label: 'Iothalamate label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Conray should not be used for myelography.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Arthrography should not be performed if infection is present in or near the joint.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
+            label: 'Iothalamate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Arthrography should not be performed if infection is present in or near the joint.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Percutaneous transhepatic cholangiography is contraindicated in patients with coagulation defects and prolonged prothrombin times.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
+            label: 'Iothalamate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Percutaneous transhepatic cholangiography is contraindicated in patients with coagulation defects and prolonged prothrombin times.',
           },
           provenanceTier: 'extracted',
         },
@@ -192317,15 +194750,32 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     populationStatements: [
       {
-        population: 'PREGNANCY',
+        population: 'PEDIATRIC',
         state: 'STATEMENT_ONLY',
-        textAsRecorded: 'Animal reproduction studies have not been conducted with Cysto-Conray II.',
+        textAsRecorded:
+          'Thyroid function tests indicative of thyroid dysfunction, characterized by hypothyroidism or transient thyroid suppression have been uncommonly reported following iodinated contrast media administration in pediatric patients, including term and preterm neonates; some patients were treated for hypothyroidism.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '8841ab4d-674d-4beb-88a5-13e35f6005cc',
+          identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
           label: 'Iothalamate label',
           retrievedAt: '2026-08-28',
-          excerpt: 'Animal reproduction studies have not been conducted with Cysto-Conray II.',
+          excerpt:
+            'Thyroid function tests indicative of thyroid dysfunction, characterized by hypothyroidism or transient thyroid suppression have been uncommonly reported following iodinated contrast media administration in pediatric patients, including term and preterm neonates; some patients were treated for hypothyroidism.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Category B Reproduction studies have been performed in mice, rats, and rabbits at doses up to 6.6 times the human dose and have revealed no evidence of impaired fertility or harm to the fetus due to Conray.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
+          label: 'Iothalamate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Category B Reproduction studies have been performed in mice, rats, and rabbits at doses up to 6.6 times the human dose and have revealed no evidence of impaired fertility or harm to the fetus due to Conray.',
         },
         provenanceTier: 'extracted',
       },
@@ -192335,7 +194785,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         textAsRecorded: 'Iothalamate salts are excreted unchanged in human milk.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '8841ab4d-674d-4beb-88a5-13e35f6005cc',
+          identifier: '1292abfc-496f-4df7-9a08-72072953e1f1',
           label: 'Iothalamate label',
           retrievedAt: '2026-08-28',
           excerpt: 'Iothalamate salts are excreted unchanged in human milk.',
@@ -199911,26 +202361,243 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 3,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'nasal',
+      halfLife: {
+        display: '2.5 hours',
+        numeric: 2.5,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The half-life of the ketorolac tromethamine S-enantiomer was approximately 2.5 hours (SD ± 0.4) compared with 5 hours (SD ± 1.7) for the R-enantiomer.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
-        brandName: 'Omidria',
-        formAsRecorded: 'intraocular',
+        brandName: 'Sprix',
+        formAsRecorded: 'nasal',
         strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS Omidria is an intraocular solution containing 10.16 mg/mL (1% w/v) of phenylephrine and 2.88 mg/mL (0.3% w/v) of ketorolac for use in a single patient.',
+          '3 DOSAGE FORMS AND STRENGTHS SPRIX (ketorolac tromethamine) Nasal spray: 15.75 mg of ketorolac tromethamine in each 100 μL spray.',
         approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE Omidria ® is added to an ocular irrigating solution used during cataract surgery or intraocular lens replacement and is indicated for maintaining pupil size by preventing intraoperative miosis an…',
+          '1 INDICATIONS AND USAGE SPRIX is indicated in adult patients for the short term (up to 5 days) management of moderate to moderately severe pain that requires analgesia at the opioid level.',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2023-07-07',
+        statusAsRecorded: 'FDA label in effect 2024-12-05',
         source: {
           kind: 'FDA_LABEL',
-          identifier: 'f25d7a42-da2a-7310-e053-2995a90a590f',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
           label: 'Ketorolac label',
           retrievedAt: '2026-08-28',
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded: 'Ketorolac has analgesic, anti-inflammatory, and antipyretic properties.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+            label: 'Ketorolac label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Ketorolac has analgesic, anti-inflammatory, and antipyretic properties.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The mechanism of action of SPRIX, like that of other NSAIDs, is not completely understood but involves inhibition of cyclooxygenase (COX-1 and COX-2), an early component of the arachidonic acid cascade, resulting in the reduced synthesis of prostaglandins, thromboxanes, and prostacyclin.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+            label: 'Ketorolac label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The mechanism of action of SPRIX, like that of other NSAIDs, is not completely understood but involves inhibition of cyclooxygenase (COX-1 and COX-2), an early component of the arachidonic acid cascade, resulting in the reduced synthesis of prostaglandins, thromboxanes, and prostacyclin.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Ketorolac is a potent inhibitor of prostaglandin synthesis in vitro .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+            label: 'Ketorolac label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Ketorolac is a potent inhibitor of prostaglandin synthesis in vitro .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Ketorolac concentrations reached during therapy have produced in vivo effects.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+            label: 'Ketorolac label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Ketorolac concentrations reached during therapy have produced in vivo effects.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['COX-1', 'COX-2'],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C19H24N2O6',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its molecular formula is C 19 H 24 N 2 O 6 (C 15 H 13 NO 3 •C 4 H 11 NO 3 ), and it has the following chemical structure.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '376.41',
+        numeric: 376.41,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'The molecular weight is 376.41.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    safety: {
+      boxedWarning: {
+        textAsRecorded:
+          'WARNING: RISK OF SERIOUS CARDIOVASCULAR AND GASTROINTESTINAL EVENTS Cardiovascular Thrombotic Events Nonsteroidal anti-inflammatory drugs (NSAIDs) cause an increased risk of serious cardiovascular thrombotic events, including myocardial infarction and stroke, which can be fatal.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'WARNING: RISK OF SERIOUS CARDIOVASCULAR AND GASTROINTESTINAL EVENTS Cardiovascular Thrombotic Events Nonsteroidal anti-inflammatory drugs (NSAIDs) cause an increased risk of serious cardiovascular thrombotic events, including myocardial infarction and stroke, which can be fatal.',
+        },
+        provenanceTier: 'extracted',
+      },
+      contraindications: [
+        {
+          textAsRecorded:
+            'SPRIX is contraindicated in the following patients: Known hypersensitivity (e.g., anaphylactic reactions and serious skin reactions) to ketorolac or any components of the drug product [ see Warnings and Precautions ( 5.7 , 5.9 ) ] History of asthma, urticaria, or other allergic-type reactions after taking aspirin or other NSAIDs.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+            label: 'Ketorolac label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'SPRIX is contraindicated in the following patients: Known hypersensitivity (e.g., anaphylactic reactions and serious skin reactions) to ketorolac or any components of the drug product [ see Warnings and Precautions ( 5.7 , 5.9 ) ] History of asthma, urticaria, or other allergic-type reactions after taking aspirin or other NSAIDs.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of ketorolac in pediatric patients 17 years of age and younger have not been established.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of ketorolac in pediatric patients 17 years of age and younger have not been established.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Exercise caution when treating the elderly (65 years and older) with SPRIX.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Exercise caution when treating the elderly (65 years and older) with SPRIX.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Use of NSAIDs, including SPRIX, can cause premature closure of the fetal ductus arteriosus and fetal renal dysfunction leading to oligohydramnios and, in some cases, neonatal renal impairment.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Use of NSAIDs, including SPRIX, can cause premature closure of the fetal ductus arteriosus and fetal renal dysfunction leading to oligohydramnios and, in some cases, neonatal renal impairment.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          '8.3 Females and Males of Reproductive Potential Infertility Females Based on the mechanism of action, the use of prostaglandin-mediated NSAIDs, including SPRIX, may delay or prevent rupture of ovarian follicles, which has been associated with reversible infertility in some women.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+          label: 'Ketorolac label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            '8.3 Females and Males of Reproductive Potential Infertility Females Based on the mechanism of action, the use of prostaglandin-mediated NSAIDs, including SPRIX, may delay or prevent rupture of ovarian follicles, which has been associated with reversible infertility in some women.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: 'incidence ≥2%',
+      eventsAsRecorded: [
+        'nasal discomfort',
+        'rhinalgia',
+        'increased lacrimation',
+        'throat irritation',
+        'oliguria',
+        'rash',
+        'bradycardia',
+        'decreased urine output',
+        'increased ALT',
+        '/or AST',
+        'hypertension',
+        'rhinitis',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '97005a1c-167e-4676-bae7-e49b38c36f9e',
+        label: 'Ketorolac label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'y [ see Warnings and Precautions ( 5.12 ) ] Most common adverse reactions (incidence ≥2%) in patients treated with SPRIX and occurring at a rate at least twice that of placebo are nasal discomfort, rhinalgia, increased lacrimation, throat irritation, oliguria, rash, bradycardia, decreased urine output, increased ALT and/or AST, hypertension, and rhinitis.',
+      },
+      provenanceTier: 'extracted',
+    },
   },
   ketotifen: {
     version: 'medicine-background/v1',
@@ -210496,16 +213163,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           'Precautions ( 5.1 )] Increased gastrointestinal toxicities with fluorouracil [see Warnings and Precautions ( 5.2 )] The most common adverse reactions (≥20%) in patients receiving high-dose methotrexate therapy with Levoleucovorin for Injection rescue are stomatitis and vomiting.',
       },
       provenanceTier: 'extracted',
-    },
-    registryIdentifiers: {
-      unii: '778XL6VBS8',
-      rxcui: '1720760',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: '54f01988-aac2-4b0e-9d20-b7f621a0cd50',
-        label: 'Levoleucovorin label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
     },
   },
   levomefolate: {
@@ -245881,7 +248538,68 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '11 hours',
+        numeric: 11,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Elimination The terminal elimination half-life of naldemedine is 11 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      tMax: {
+        display: '0.75 hours',
+        numeric: 0.75,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            '12.3 Pharmacokinetics Absorption Following oral administration, naldemedine is absorbed with a time to achieve peak concentrations (T max ) of approximately 0.75 hours in a fasted state.',
+        },
+        provenanceTier: 'extracted',
+      },
+      proteinBinding: {
+        display: '93%',
+        numeric: 93,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Distribution Plasma protein binding of naldemedine in humans is 93% to 94%.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '155 L',
+        numeric: 155,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The mean apparent volume of distribution during the terminal phase (Vz/F) is 155 L.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -245901,6 +248619,389 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Naldemedine is an opioid antagonist with binding affinities for mu-, delta-, and kappa-opioid receptors.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Naldemedine is an opioid antagonist with binding affinities for mu-, delta-, and kappa-opioid receptors.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Naldemedine functions as a peripherally-acting mu-opioid receptor antagonist in tissues such as the gastrointestinal tract, thereby decreasing the constipating effects of opioids.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Naldemedine functions as a peripherally-acting mu-opioid receptor antagonist in tissues such as the gastrointestinal tract, thereby decreasing the constipating effects of opioids.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Naldemedine is a derivative of naltrexone to which a side chain has been added that increases the molecular weight and the polar surface area, thereby reducing its ability to cross the blood-brain barrier (BBB).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Naldemedine is a derivative of naltrexone to which a side chain has been added that increases the molecular weight and the polar surface area, thereby reducing its ability to cross the blood-brain barrier (BBB).',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Naldemedine is also a substrate of the P-glycoprotein (P-gp) efflux transporter.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Naldemedine is also a substrate of the P-glycoprotein (P-gp) efflux transporter.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['opioid receptor', 'opioid receptors'],
+    },
+    molecularIdentity: {
+      molecularWeight: {
+        display: '742.84',
+        numeric: 742.84,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The structural formula is: The empirical formula for naldemedine tosylate is C 32 H 34 N 4 O 6 ∙C 7 H 8 O 3 S and the molecular weight is 742.84.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BCRP',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2A6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2B6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2E1',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP4A11',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT1',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Effect of Naldemedine on Other Drugs In in vitro studies at clinically relevant concentrations, naldemedine did not inhibit the major CYP enzymes (including CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, or CYP4A11 isozymes) and is not an inhibitor of transporters (including OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BCRP, or P-gp).',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'SYMPROIC is contraindicated in: Patients with known or suspected gastrointestinal obstruction and patients at increased risk of recurrent obstruction, due to the potential for gastrointestinal perforation [see Warnings and Precautions (5.1) ].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'SYMPROIC is contraindicated in: Patients with known or suspected gastrointestinal obstruction and patients at increased risk of recurrent obstruction, due to the potential for gastrointestinal perforation [see Warnings and Precautions (5.1) ].',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Patients with a history of a hypersensitivity reaction to naldemedine.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Patients with a history of a hypersensitivity reaction to naldemedine.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Reactions have included bronchospasm and rash [see Adverse Reactions (6.1) ] .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Reactions have included bronchospasm and rash [see Adverse Reactions (6.1) ] .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Patients with known or suspected gastrointestinal obstruction or at increased risk of recurrent obstruction ( 4 , 5.1 ) Patients with a history of a hypersensitivity reaction to naldemedine ( 6.1 )',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+            label: 'Naldemedine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Patients with known or suspected gastrointestinal obstruction or at increased risk of recurrent obstruction ( 4 , 5.1 ) Patients with a history of a hypersensitivity reaction to naldemedine ( 6.1 )',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of SYMPROIC have not been established in pediatric patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of SYMPROIC have not been established in pediatric patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Of the 1163 patients exposed to SYMPROIC in clinical studies, 183 (16%) were 65 years of age and over, while 37 (3%) were 75 years and over.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Of the 1163 patients exposed to SYMPROIC in clinical studies, 183 (16%) were 65 years of age and over, while 37 (3%) were 75 years and over.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no available data with naldemedine in pregnant women to inform a drug-associated risk of major birth defects and miscarriage.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no available data with naldemedine in pregnant women to inform a drug-associated risk of major birth defects and miscarriage.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There is no information regarding the presence of naldemedine in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+          label: 'Naldemedine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There is no information regarding the presence of naldemedine in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: '≥2%',
+      eventsAsRecorded: ['abdominal pain', 'diarrhea', 'nausea', 'gastroenteritis ( 6'],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+        label: 'Naldemedine label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'ewhere in labeling include: Gastrointestinal perforation [see Warnings and Precautions (5.1) ] Opioid withdrawal [see Warnings and Precautions (5.2) ] Most common adverse reactions (≥2%) are: abdominal pain, diarrhea, nausea and gastroenteritis ( 6.1 ) To report SUSPECTED ADVERSE REACTIONS, contact BioDelivery Sciences International, Inc. at 1-800-469-0261 or FDA at 1-800-FDA-1088 or www.fda.gov/m',
+      },
+      provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: 'V1N8F1RVVO',
+      rxcui: '1876603',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'b1a1256c-a1eb-4abe-ab1e-30e4711afd16',
+        label: 'Naldemedine label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   nalmefene: {
     version: 'medicine-background/v1',
@@ -251010,16 +254111,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         provenanceTier: 'extracted',
       },
     ],
-    registryIdentifiers: {
-      unii: '99DK7FVK1H',
-      rxcui: '199422',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: 'effb86cc-4b80-4fac-aaa3-9f373b3d0f7d',
-        label: 'Nevirapine label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
-    },
   },
   niacin: {
     version: 'medicine-background/v1',
@@ -253439,26 +256530,36 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 3,
     },
     productVariants: [
       {
-        brandName: 'ZEJULA',
+        brandName: 'AKEEGA',
         formAsRecorded: 'oral',
         strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS • Tablets: 100-mg gray, oval-shaped, film-coated tablet debossed with “100” on one side and “Zejula” on the other side. • Tablets: 200-mg blue, oval-shaped, film-coated tablet debossed with…',
+          '3 DOSAGE FORMS AND STRENGTHS Tablets 50 mg niraparib/500 mg abiraterone acetate: yellowish orange to yellowish brown, oval, film-coated tablets debossed with "N 50 A" on one side and plain on the other side. 100 mg nira…',
         approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE ZEJULA is a poly (ADP-ribose) polymerase (PARP) inhibitor indicated: • for the maintenance treatment of adult patients with advanced epithelial ovarian, fallopian tube, or primary peritoneal canc…',
+          '1 INDICATIONS AND USAGE AKEEGA with prednisone is indicated for the treatment of adult patients with deleterious or suspected deleterious BRCA2 -mutated ( BRCA2 m) metastatic castration-sensitive prostate cancer (mCSPC).',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2026-07-28',
+        statusAsRecorded: 'FDA label in effect 2025-12-18',
         source: {
           kind: 'FDA_LABEL',
-          identifier: 'b7f675e2-159c-490c-b6f4-3f16d9492b7d',
+          identifier: '8245a990-3268-4613-b5c5-9537858a1eb9',
           label: 'Niraparib label',
           retrievedAt: '2026-08-28',
         },
       },
     ],
+    registryIdentifiers: {
+      unii: '195Q483UZD',
+      rxcui: '2637449',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'b7f675e2-159c-490c-b6f4-3f16d9492b7d',
+        label: 'Niraparib label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   nirmatrelvir: {
     version: 'medicine-background/v1',
@@ -272348,6 +275449,238 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       },
     },
   },
+  pamidronate: {
+    version: 'medicine-background/v1',
+    authoredAt: '2026-08-28',
+    provenanceTier: 'extracted',
+    attribution: {
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'intravenous',
+      halfLife: {
+        display: '7 hours',
+        numeric: 7,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination The elimination half-life is 28 ± 7 hours (mean ± standard deviation).',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    productVariants: [
+      {
+        brandName: 'Pamidronate Disodium',
+        formAsRecorded: 'intravenous',
+        strengthsAsRecorded:
+          '3 DOSAGE FORMS AND STRENGTHS Injection: 30 mg/10 mL (3 mg/mL) and 90 mg/10 mL (9 mg/mL) solution in single-dose vials • Injection: 30 mg/10 mL (3 mg/mL) and 90 mg/10 mL (9 mg/mL) solution in single-dose vials ( 3 )',
+        approvedUseAsRecorded:
+          '1 INDICATIONS AND USAGE Pamidronate disodium is a bisphosphonate indicated for the treatment of: • moderate or severe hypercalcemia associated with malignancy, with or without bone metastases ( 1.1 ) • patients with mod…',
+        jurisdiction: 'US_FDA',
+        statusAsRecorded: 'FDA label in effect 2025-12-15',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+        },
+      },
+    ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'The principal pharmacologic action of pamidronate disodium is inhibition of bone resorption.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+            label: 'Pamidronate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The principal pharmacologic action of pamidronate disodium is inhibition of bone resorption.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Although the mechanism of antiresorptive action is not completely understood, several factors are thought to contribute to this action.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+            label: 'Pamidronate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Although the mechanism of antiresorptive action is not completely understood, several factors are thought to contribute to this action.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Pamidronate disodium adsorbs to calcium phosphate (hydroxyapatite) crystals in bone and may block dissolution of this mineral component of bone.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+            label: 'Pamidronate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Pamidronate disodium adsorbs to calcium phosphate (hydroxyapatite) crystals in bone and may block dissolution of this mineral component of bone.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'In vitro , pamidronate disodium inhibited osteoclast activity.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+            label: 'Pamidronate label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'In vitro , pamidronate disodium inhibited osteoclast activity.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C3H9NO7P2Na2',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its molecular formula is C 3 H 9 NO 7 P 2 Na 2 and its molecular weight is 279.1 (calculated as the anhydrous form). structural formula',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '279.1',
+        numeric: 279.1,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its molecular formula is C 3 H 9 NO 7 P 2 Na 2 and its molecular weight is 279.1 (calculated as the anhydrous form). structural formula',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            'Pamidronate disodium is contraindicated in patients with hypersensitivity to pamidronate disodium, other bisphosphonates, or mannitol.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+            label: 'Pamidronate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Pamidronate disodium is contraindicated in patients with hypersensitivity to pamidronate disodium, other bisphosphonates, or mannitol.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Reactions to pamidronate disodium injection and to mannitol have included anaphylaxis.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+            label: 'Pamidronate label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Reactions to pamidronate disodium injection and to mannitol have included anaphylaxis.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Hypersensitivity to pamidronate, other bisphosphonates, or mannitol ( 4 )',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+            label: 'Pamidronate label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Hypersensitivity to pamidronate, other bisphosphonates, or mannitol ( 4 )',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'Safety and effectiveness of pamidronate disodium in pediatric patients have not been established.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Safety and effectiveness of pamidronate disodium in pediatric patients have not been established.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Of the total number of subjects in clinical studies of pamidronate disodium, approximately 20% were 65 and over, while approximately 15% were 75 and over.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Of the total number of subjects in clinical studies of pamidronate disodium, approximately 20% were 65 and over, while approximately 15% were 75 and over.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Based on findings from animal studies and its mechanism of action [see Clinical Pharmacology (12.1) ] , pamidronate disodium can cause fetal harm when administered to a pregnant woman.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Based on findings from animal studies and its mechanism of action [see Clinical Pharmacology (12.1) ] , pamidronate disodium can cause fetal harm when administered to a pregnant woman.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are limited data on the presence of pamidronate or its metabolites in human milk, its effects on a breastfed child, or its effects on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+          label: 'Pamidronate label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are limited data on the presence of pamidronate or its metabolites in human milk, its effects on a breastfed child, or its effects on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+  },
   'panax-ginseng-root': {
     version: 'medicine-background/v1',
     authoredAt: '2026-08-28',
@@ -277698,17 +281031,15 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'Pemetrexed',
+        brandName: 'PEMRYDI RTU',
         formAsRecorded: 'intravenous',
-        strengthsAsRecorded:
-          '3 DOSAGE FORMS AND STRENGTHS For injection: 100 mg or 500 mg pemetrexed as a white or off-white lyophilized powder in single-dose vials for reconstitution.',
-        approvedUseAsRecorded:
-          '1 INDICATIONS AND USAGE Pemetrexed for Injection is a folate analog metabolic inhibitor indicated: in combination with pembrolizumab and platinum chemotherapy, for the initial treatment of patients with metastatic non-s…',
+        strengthsAsRecorded: '3.',
+        approvedUseAsRecorded: '1.',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2026-08-21',
+        statusAsRecorded: 'FDA label in effect 2025-07-08',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '5fb3a2d5-b9ec-4044-abb9-3e0d848a448e',
+          identifier: '0f006b06-ab85-423d-ba0c-dfc3fc25844e',
           label: 'Pemetrexed label',
           retrievedAt: '2026-08-28',
         },
@@ -279620,17 +282951,17 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'NebuPent',
+        brandName: 'Pentamidine Isethionate',
         formAsRecorded: 'respiratory (inhalation)',
         strengthsAsRecorded:
-          'HOW SUPPLIED: Product No. NDC No. 87715 63323-877-15 NebuPent ® (pentamidine isethionate) 300 mg per vial lyophilized product in single dose vials, individually packaged.',
+          'HOW SUPPLIED ​NDC No. 13925-522-01 Pentamidine Isethionate 300 mg lyophilized product in a single dose vials, individually packaged.',
         approvedUseAsRecorded:
-          'INDICATIONS AND USAGE: NebuPent is indicated for the prevention of Pneumocystis jiroveci pneumonia (PJP) in high-risk, HIV-infected patients defined by one or both of the following criteria: i. a history of one or more…',
+          'INDICATIONS AND USAGE Pentamidine Isethionate is indicated for the prevention of Pneumocystis jiroveci pneumonia (PJP) in high-risk, HIV-infected patients defined by one or both of the following criteria: i. a history o…',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2024-10-15',
+        statusAsRecorded: 'FDA label in effect 2025-04-08',
         source: {
           kind: 'FDA_LABEL',
-          identifier: 'e2ad9d3c-b6c3-4f70-87e0-722a8ff94ccb',
+          identifier: 'c484f16e-9d97-4416-84a4-8ad8deaf5e19',
           label: 'Pentamidine label',
           retrievedAt: '2026-08-28',
         },
@@ -279643,7 +282974,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
             'Studies suggest that the pentamidine isethionate interferes with microbial nuclear metabolism by inhibition of DNA, RNA, phospholipid and protein synthesis.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: 'e2ad9d3c-b6c3-4f70-87e0-722a8ff94ccb',
+            identifier: 'c484f16e-9d97-4416-84a4-8ad8deaf5e19',
             label: 'Pentamidine label',
             retrievedAt: '2026-08-28',
             excerpt:
@@ -279655,36 +282986,10 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           textAsRecorded: 'However, the mode of action is not fully understood.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: 'e2ad9d3c-b6c3-4f70-87e0-722a8ff94ccb',
+            identifier: 'c484f16e-9d97-4416-84a4-8ad8deaf5e19',
             label: 'Pentamidine label',
             retrievedAt: '2026-08-28',
             excerpt: 'However, the mode of action is not fully understood.',
-          },
-          provenanceTier: 'extracted',
-        },
-        {
-          textAsRecorded:
-            'Activity in vitro and in vivo Pentamidine isethionate, an aromatic diamidine, is known to have activity against Pneumocystis jiroveci .',
-          source: {
-            kind: 'FDA_LABEL',
-            identifier: 'e2ad9d3c-b6c3-4f70-87e0-722a8ff94ccb',
-            label: 'Pentamidine label',
-            retrievedAt: '2026-08-28',
-            excerpt:
-              'Activity in vitro and in vivo Pentamidine isethionate, an aromatic diamidine, is known to have activity against Pneumocystis jiroveci .',
-          },
-          provenanceTier: 'extracted',
-        },
-        {
-          textAsRecorded:
-            'Pharmacokinetics In 5 AIDS patients with suspected Pneumocystis jiroveci pneumonia (PJP), the mean concentrations of pentamidine determined 18 to 24 hours after inhalation therapy were 23.2 ng/mL (range 5.1 to 43.0 ng/mL) in bronchoalveolar lavage fluid and 705 ng/mL (range 140 to 1336 ng/mL) in sediment after administration of a 300 mg single dose via the Respirgard ® II nebulizer.',
-          source: {
-            kind: 'FDA_LABEL',
-            identifier: 'e2ad9d3c-b6c3-4f70-87e0-722a8ff94ccb',
-            label: 'Pentamidine label',
-            retrievedAt: '2026-08-28',
-            excerpt:
-              'Pharmacokinetics In 5 AIDS patients with suspected Pneumocystis jiroveci pneumonia (PJP), the mean concentrations of pentamidine determined 18 to 24 hours after inhalation therapy were 23.2 ng/mL (range 5.1 to 43.0 ng/mL) in bronchoalveolar lavage fluid and 705 ng/mL (range 140 to 1336 ng/mL) in sediment after administration of a 300 mg single dose via the Respirgard ® II nebulizer.',
           },
           provenanceTier: 'extracted',
         },
@@ -279694,19 +282999,65 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       contraindications: [
         {
           textAsRecorded:
-            'NebuPent is contraindicated in patients with a ­history of an anaphylactic reaction to inhaled or parenteral pentamidine isethionate.',
+            'Pentamidine Isethionate is contraindicated in patients with a history of an anaphylactic reaction to inhaled or parenteral pentamidine isethionate.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: 'e2ad9d3c-b6c3-4f70-87e0-722a8ff94ccb',
+            identifier: 'c484f16e-9d97-4416-84a4-8ad8deaf5e19',
             label: 'Pentamidine label',
             retrievedAt: '2026-08-28',
             excerpt:
-              'NebuPent is contraindicated in patients with a ­history of an anaphylactic reaction to inhaled or parenteral pentamidine isethionate.',
+              'Pentamidine Isethionate is contraindicated in patients with a history of an anaphylactic reaction to inhaled or parenteral pentamidine isethionate.',
           },
           provenanceTier: 'extracted',
         },
       ],
     },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of Pentamidine Isethionate in pediatric patients (birth to 16 years of age) have not been established.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c484f16e-9d97-4416-84a4-8ad8deaf5e19',
+          label: 'Pentamidine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of Pentamidine Isethionate in pediatric patients (birth to 16 years of age) have not been established.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Pregnancy Category C There are no adequate and well controlled studies of Pentamidine Isethionate in pregnant women.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c484f16e-9d97-4416-84a4-8ad8deaf5e19',
+          label: 'Pentamidine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Pregnancy Category C There are no adequate and well controlled studies of Pentamidine Isethionate in pregnant women.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'It is not known whether Pentamidine Isethionate is excreted in human milk.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'c484f16e-9d97-4416-84a4-8ad8deaf5e19',
+          label: 'Pentamidine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'It is not known whether Pentamidine Isethionate is excreted in human milk.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
   },
   'pentamidine-diisethionate': {
     version: 'medicine-background/v1',
@@ -297777,17 +301128,16 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     },
     productVariants: [
       {
-        brandName: 'Prochlorperazine',
-        formAsRecorded: 'rectal',
+        brandName: 'PROCHLORPERAZINE EDISYLATE',
+        formAsRecorded: 'intramuscular',
         strengthsAsRecorded:
-          'HOW SUPPLIED For Adults, Prochlorperazine Suppositories, USP 25 mg in boxes of 12 and 1000 as follows: Box of 12 NDC 0713-0135-12 Box of 1000 NDC 0713-0135-10 Rx only Storage: Store at 20-25°C (68-77°F) [See USP Control…',
-        approvedUseAsRecorded:
-          'INDICATIONS AND USAGE Prochlorperazine Suppositories, USP 25 mg are indicated in the control of severe nausea and vomiting in adults.',
+          'HOW SUPPLIED Prochlorperazine Edisylate Injection, USP is supplied as follows: Prochlorperazine Edisylate Injection, USP NDC (5 mg per mL) Package Factor 25021-790-02 10 mg per 2 mL Multi-Dose Vial 10 vials per carton 2…',
+        approvedUseAsRecorded: 'INDICATIONS AND USAGE To control severe nausea and vomiting.',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2025-12-17',
+        statusAsRecorded: 'FDA label in effect 2022-11-29',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '9595346e-76e5-e155-341b-ffaaafb885ab',
+          identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
           label: 'Prochlorperazine label',
           retrievedAt: '2026-08-28',
         },
@@ -297799,7 +301149,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           'WARNING Increased Mortality in Elderly Patients with Dementia-Related Psychosis Elderly patients with dementia-related psychosis treated with antipsychotic drugs are at an increased risk of death.',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '9595346e-76e5-e155-341b-ffaaafb885ab',
+          identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
           label: 'Prochlorperazine label',
           retrievedAt: '2026-08-28',
           excerpt:
@@ -297809,11 +301159,22 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       },
       contraindications: [
         {
+          textAsRecorded: 'Do not use in patients with known hypersensitivity to phenothiazines.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
+            label: 'Prochlorperazine label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Do not use in patients with known hypersensitivity to phenothiazines.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
           textAsRecorded:
             'Do not use in comatose states or in the presence of large amounts of central nervous system depressants (alcohol, barbiturates, narcotics, etc.).',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '9595346e-76e5-e155-341b-ffaaafb885ab',
+            identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
             label: 'Prochlorperazine label',
             retrievedAt: '2026-08-28',
             excerpt:
@@ -297822,13 +301183,13 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           provenanceTier: 'extracted',
         },
         {
-          textAsRecorded: 'Do not use in children under 2 years of age or under 20 lbs.',
+          textAsRecorded: 'Do not use in pediatric patients under 2 years of age or under 20 lbs.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '9595346e-76e5-e155-341b-ffaaafb885ab',
+            identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
             label: 'Prochlorperazine label',
             retrievedAt: '2026-08-28',
-            excerpt: 'Do not use in children under 2 years of age or under 20 lbs.',
+            excerpt: 'Do not use in pediatric patients under 2 years of age or under 20 lbs.',
           },
           provenanceTier: 'extracted',
         },
@@ -297837,7 +301198,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
             'Do not use in children for conditions for which dosage has not been established.',
           source: {
             kind: 'FDA_LABEL',
-            identifier: '9595346e-76e5-e155-341b-ffaaafb885ab',
+            identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
             label: 'Prochlorperazine label',
             retrievedAt: '2026-08-28',
             excerpt:
@@ -297847,6 +301208,53 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       ],
     },
+    populationStatements: [
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Clinical studies of prochlorperazine did not include sufficient numbers of subjects aged 65 and over to determine whether elderly subjects respond differently from younger subjects.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
+          label: 'Prochlorperazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Clinical studies of prochlorperazine did not include sufficient numbers of subjects aged 65 and over to determine whether elderly subjects respond differently from younger subjects.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'NON-TERATOGENIC EFFECTS Neonates exposed to antipsychotic drugs, during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
+          label: 'Prochlorperazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'NON-TERATOGENIC EFFECTS Neonates exposed to antipsychotic drugs, during the third trimester of pregnancy are at risk for extrapyramidal and/or withdrawal symptoms following delivery.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'There is evidence that phenothiazines are excreted in the breast milk of nursing mothers.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'fed5ed29-7091-4b3c-bf67-64f32cd189bb',
+          label: 'Prochlorperazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'There is evidence that phenothiazines are excreted in the breast milk of nursing mothers.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
   },
   progesterone: {
     version: 'medicine-background/v1',
@@ -300476,6 +303884,31 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         retrievedAt: '2026-08-28',
       },
     },
+  },
+  pyrantel: {
+    version: 'medicine-background/v1',
+    authoredAt: '2026-08-28',
+    provenanceTier: 'extracted',
+    attribution: {
+      declaredSubstanceCount: 1,
+    },
+    productVariants: [
+      {
+        brandName: 'Pyrantel Pamoate',
+        formAsRecorded: 'oral',
+        strengthsAsRecorded:
+          'Dosage Information Each mL of Pyrantel Pamoate Oral Suspension contains the equivalent of 50 mg of Pyrantel Base (as Pyrantel Pamoate).',
+        approvedUseAsRecorded: 'Indications For the treatment of pinworms.',
+        jurisdiction: 'US_FDA',
+        statusAsRecorded: 'FDA label in effect 2025-12-19',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'e862b337-2991-4b56-8584-fd80dccd725f',
+          label: 'Pyrantel label',
+          retrievedAt: '2026-08-28',
+        },
+      },
+    ],
   },
   pyrazinamide: {
     version: 'medicine-background/v1',
@@ -315743,7 +319176,55 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '1.3 to 2.3 hours',
+        numeric: 1.3,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination The ritlecitinib mean terminal half-life ranges from 1.3 to 2.3 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      bioavailability: {
+        display: '64%',
+        numeric: 64,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Absorption The ritlecitinib absolute oral bioavailability is approximately 64%.',
+        },
+        provenanceTier: 'extracted',
+      },
+      tMax: {
+        display: '1 hour',
+        numeric: 1,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Ritlecitinib peak plasma concentrations were reached within 1 hour following an oral dose.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -315763,6 +319244,329 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Ritlecitinib irreversibly inhibits Janus kinase 3 (JAK3) and the tyrosine kinase expressed in hepatocellular carcinoma (TEC) kinase family by blocking the adenosine triphosphate (ATP) binding site.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+            label: 'Ritlecitinib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Ritlecitinib irreversibly inhibits Janus kinase 3 (JAK3) and the tyrosine kinase expressed in hepatocellular carcinoma (TEC) kinase family by blocking the adenosine triphosphate (ATP) binding site.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'In cellular settings, ritlecitinib inhibits cytokine induced STAT phosphorylation mediated by JAK3-dependent receptors.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+            label: 'Ritlecitinib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'In cellular settings, ritlecitinib inhibits cytokine induced STAT phosphorylation mediated by JAK3-dependent receptors.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Additionally, ritlecitinib inhibits signaling of immune receptors dependent on TEC kinase family members.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+            label: 'Ritlecitinib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Additionally, ritlecitinib inhibits signaling of immune receptors dependent on TEC kinase family members.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The relevance of inhibition of specific JAK or TEC family enzymes to therapeutic effectiveness is not currently known.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+            label: 'Ritlecitinib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The relevance of inhibition of specific JAK or TEC family enzymes to therapeutic effectiveness is not currently known.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['JAK', 'JAK3'],
+    },
+    molecularIdentity: {
+      molecularWeight: {
+        display: '457.55 g/mol',
+        numeric: 457.55,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The molecular weight is 457.55 g/mol and its structural formula is: LITFULO is supplied for oral administration as a 50 mg immediate-release capsule.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BSEP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Transporter Systems: Ritlecitinib is not an inhibitor of P-glycoprotein (P-gp) or bile salt export pump (BSEP).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'These pathways include: • Glutathione S-transferase (GST): cytosolic GST A1/3, M1/3/5, P1, S1, T2, Z1 and microsomal GST 1/2/3 • CYP enzymes (CYP3A, CYP2C8, CYP1A2, and CYP2C9) Excretion Approximately 66% of radiolabeled ritlecitinib dose is excreted in the urine and 20% in the feces.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'These pathways include: • Glutathione S-transferase (GST): cytosolic GST A1/3, M1/3/5, P1, S1, T2, Z1 and microsomal GST 1/2/3 • CYP enzymes (CYP3A, CYP2C8, CYP1A2, and CYP2C9) Excretion Approximately 66% of radiolabeled ritlecitinib dose is excreted in the urine and 20% in the feces.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'These pathways include: • Glutathione S-transferase (GST): cytosolic GST A1/3, M1/3/5, P1, S1, T2, Z1 and microsomal GST 1/2/3 • CYP enzymes (CYP3A, CYP2C8, CYP1A2, and CYP2C9) Excretion Approximately 66% of radiolabeled ritlecitinib dose is excreted in the urine and 20% in the feces.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'P-GLYCOPROTEIN',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Transporter Systems: Ritlecitinib is not an inhibitor of P-glycoprotein (P-gp) or bile salt export pump (BSEP).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'P-GP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Transporter Systems: Ritlecitinib is not an inhibitor of P-glycoprotein (P-gp) or bile salt export pump (BSEP).',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      boxedWarning: {
+        textAsRecorded:
+          'Interrupt treatment if serious infection occurs until the infection is controlled.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Interrupt treatment if serious infection occurs until the infection is controlled.',
+        },
+        provenanceTier: 'extracted',
+      },
+      contraindications: [
+        {
+          textAsRecorded:
+            'LITFULO is contraindicated in patients with known hypersensitivity to ritlecitinib or any of its excipients [see Warnings and Precautions (5.6) ] .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+            label: 'Ritlecitinib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'LITFULO is contraindicated in patients with known hypersensitivity to ritlecitinib or any of its excipients [see Warnings and Precautions (5.6) ] .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'LITFULO is contraindicated in patients with known hypersensitivity to ritlecitinib or any of its excipients.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+            label: 'Ritlecitinib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'LITFULO is contraindicated in patients with known hypersensitivity to ritlecitinib or any of its excipients.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'A total of 181 pediatric patients ages 12 to <18 years were enrolled in alopecia areata clinical trials, with 105 pediatric patients ages 12 to <18 years with alopecia areata randomized in a pivotal, double-blind, placebo-controlled trial (Trial AA-I).',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'A total of 181 pediatric patients ages 12 to <18 years were enrolled in alopecia areata clinical trials, with 105 pediatric patients ages 12 to <18 years with alopecia areata randomized in a pivotal, double-blind, placebo-controlled trial (Trial AA-I).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Clinical trials of LITFULO did not include sufficient numbers of patients 65 years of age and older to determine whether they respond differently from younger adult patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Clinical trials of LITFULO did not include sufficient numbers of patients 65 years of age and older to determine whether they respond differently from younger adult patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Pregnancy Exposure Registry If a patient becomes pregnant while receiving LITFULO, healthcare providers should report LITFULO exposure by calling 1-877-390-2940.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Pregnancy Exposure Registry If a patient becomes pregnant while receiving LITFULO, healthcare providers should report LITFULO exposure by calling 1-877-390-2940.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no data on the presence of ritlecitinib in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no data on the presence of ritlecitinib in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dose adjustment is required in patients with mild (Child Pugh A) or moderate (Child Pugh B) hepatic impairment.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+          label: 'Ritlecitinib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dose adjustment is required in patients with mild (Child Pugh A) or moderate (Child Pugh B) hepatic impairment.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: 'incidence ≥1%',
+      eventsAsRecorded: [
+        'headache',
+        'diarrhea',
+        'acne',
+        'rash',
+        'urticaria',
+        'folliculitis',
+        'pyrexia',
+        'atopic dermatitis',
+        'dizziness',
+        'blood creatine phosphokinase increased',
+        'herpes zoster',
+        'red blood cell count decreased',
+        'stomatitis',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+        label: 'Ritlecitinib label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'ns (5.6) ] • Laboratory Abnormalities [see Warnings and Precautions (5.8) ] Most common adverse reactions (incidence ≥1%) are headache, diarrhea, acne, rash, urticaria, folliculitis, pyrexia, atopic dermatitis, dizziness, blood creatine phosphokinase increased, herpes zoster, red blood cell count decreased, and stomatitis.',
+      },
+      provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: 'EAG4T1459K',
+      rxcui: '2641601',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+        label: 'Ritlecitinib label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   ritonavir: {
     version: 'medicine-background/v1',
@@ -337620,7 +341424,40 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '25 to 48 hours',
+        numeric: 25,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination The mean elimination half-life of sorafenib was approximately 25 to 48 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      bioavailability: {
+        display: '38 to 49%',
+        numeric: 38,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Absorption After administration of sorafenib tablets, the mean relative bioavailability was 38 to 49% when compared to an oral solution.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -337640,15 +341477,322 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
-    registryIdentifiers: {
-      unii: '9ZOQ3TZI87',
-      rxcui: '597747',
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Sorafenib is a kinase inhibitor that decreases tumor cell proliferation in vitro .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+            label: 'Sorafenib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Sorafenib is a kinase inhibitor that decreases tumor cell proliferation in vitro .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Sorafenib was shown to inhibit multiple intracellular (c-CRAF, BRAF and mutant BRAF) and cell surface kinases (KIT, FLT-3, RET, RET/PTC, VEGFR-1, VEGFR-2, VEGFR-3, and PDGFR-ß).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+            label: 'Sorafenib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Sorafenib was shown to inhibit multiple intracellular (c-CRAF, BRAF and mutant BRAF) and cell surface kinases (KIT, FLT-3, RET, RET/PTC, VEGFR-1, VEGFR-2, VEGFR-3, and PDGFR-ß).',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Several of these kinases are thought to be involved in tumor cell signaling, angiogenesis and apoptosis.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+            label: 'Sorafenib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Several of these kinases are thought to be involved in tumor cell signaling, angiogenesis and apoptosis.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Sorafenib inhibited tumor growth of HCC, RCC, and DTC human tumor xenografts in immunocompromised mice.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+            label: 'Sorafenib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Sorafenib inhibited tumor growth of HCC, RCC, and DTC human tumor xenografts in immunocompromised mice.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['BRAF', 'VEGFR'],
+    },
+    molecularIdentity: {
+      molecularWeight: {
+        display: '637.03',
+        numeric: 637.03,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The molecular formula of sorafenib tosylate, USP is C 21 H 16 ClF 3 N 4 O 3 .C 7 H 8 O 3 S and the molecular weight of sorafenib tosylate, USP is 637.03 grams/mole.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Sorafenib did not increase CYP1A2 and CYP3A4 activities, suggesting that sorafenib is unlikely to induce CYP1A2 or CYP3A4 in humans.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2B6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Sorafenib competitively inhibited CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4 in vitro .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Effect of Sorafenib on Other Drugs : Sorafenib 400 mg twice daily for 28 days did not increase the systemic exposure of concomitantly administered midazolam (CYP3A4 substrate), dextromethorphan (CYP2D6 substrate), and omeprazole (CYP2C19 substrate) [see Clinical Pharmacology ( 12.3 )].',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Sorafenib competitively inhibited CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4 in vitro .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Sorafenib competitively inhibited CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, and CYP3A4 in vitro .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Effect of Sorafenib on Other Drugs : Sorafenib 400 mg twice daily for 28 days did not increase the systemic exposure of concomitantly administered midazolam (CYP3A4 substrate), dextromethorphan (CYP2D6 substrate), and omeprazole (CYP2C19 substrate) [see Clinical Pharmacology ( 12.3 )].',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Metabolism Sorafenib undergoes oxidative metabolism by hepatic CYP3A4, as well as glucuronidation by UGT1A9.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'P-GLYCOPROTEIN',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interactions Studies Effect of Strong CYP3A4 Inhibitors on Sorafenib: Ketoconazole, a strong inhibitor of CYP3A4 and P-glycoprotein, administered at a dose of 400 mg once daily for 7 days did not alter the mean AUC of a single oral dose of sorafenib 50 mg in healthy subjects.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      contraindications: [
+        {
+          textAsRecorded:
+            '( 4 ) • Sorafenib in combination with carboplatin and paclitaxel is contraindicated in patients with squamous cell lung cancer.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+            label: 'Sorafenib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              '( 4 ) • Sorafenib in combination with carboplatin and paclitaxel is contraindicated in patients with squamous cell lung cancer.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of sorafenib have not been established in pediatric patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of sorafenib have not been established in pediatric patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'In total, 59% of HCC patients treated with sorafenib were age 65 years or older and 19% were 75 and older.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In total, 59% of HCC patients treated with sorafenib were age 65 years or older and 19% were 75 and older.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Based on findings from animal studies and its mechanism of action [ see Clinical Pharmacology ( 12.1 )] , sorafenib may cause fetal harm when administered to a pregnant woman.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Based on findings from animal studies and its mechanism of action [ see Clinical Pharmacology ( 12.1 )] , sorafenib may cause fetal harm when administered to a pregnant woman.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no data on the presence of sorafenib or its metabolites in human milk, or its effects on the breast-fed child or on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no data on the presence of sorafenib or its metabolites in human milk, or its effects on the breast-fed child or on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dose adjustment is necessary for patients with mild, moderate or severe renal impairment who are not on dialysis.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+          label: 'Sorafenib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dose adjustment is necessary for patients with mild, moderate or severe renal impairment who are not on dialysis.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: '≥20%',
+      eventsAsRecorded: [
+        'diarrhea',
+        'fatigue',
+        'infection',
+        'alopecia',
+        'hand-foot skin reaction',
+        'rash',
+        'weight loss',
+        'decreased appetite',
+        'nausea',
+        'gastrointestinal',
+        'abdominal pains',
+        'hypertension',
+        'hemorrhage',
+      ],
       source: {
         kind: 'FDA_LABEL',
-        identifier: '68aa4b7f-3f13-4e73-b572-aa6c11a8429c',
-        label: 'Sorafenib label naming this substance alone',
+        identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+        label: 'Sorafenib label',
         retrievedAt: '2026-08-28',
+        excerpt:
+          '.10 )] • Impairment of TSH suppression in DTC [see Warnings and Precautions ( 5.12 )] The most common adverse reactions (≥20%) are diarrhea, fatigue, infection, alopecia, hand-foot skin reaction, rash, weight loss, decreased appetite, nausea, gastrointestinal and abdominal pains, hypertension, and hemorrhage.',
       },
+      provenanceTier: 'extracted',
     },
   },
   sorbitol: {
@@ -343699,7 +347843,68 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '49 hours',
+        numeric: 49,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Elimination The mean half-life of tafamidis is approximately 49 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      tMax: {
+        display: '4 hours',
+        numeric: 4,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Absorption Median tafamidis peak concentrations occurred within 4 hours following dosing.',
+        },
+        provenanceTier: 'extracted',
+      },
+      proteinBinding: {
+        display: '>99%',
+        numeric: 99,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Plasma protein binding of tafamidis is >99% in vitro.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '16 liters',
+        numeric: 16,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Distribution The apparent steady state volume of distribution of tafamidis meglumine is 16 liters and 18.5 liters for tafamidis.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -343717,6 +347922,317 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded: 'Tafamidis is a selective stabilizer of TTR.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1b4121ee-a733-4456-a917-be2603477839',
+            label: 'Tafamidis label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Tafamidis is a selective stabilizer of TTR.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Tafamidis binds to TTR at the thyroxine binding sites, stabilizing the tetramer and slowing dissociation into monomers, the rate-limiting step in the amyloidogenic process.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1b4121ee-a733-4456-a917-be2603477839',
+            label: 'Tafamidis label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Tafamidis binds to TTR at the thyroxine binding sites, stabilizing the tetramer and slowing dissociation into monomers, the rate-limiting step in the amyloidogenic process.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C14H7Cl2NO3C7H17NO5',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The molecular formula is C 14 H 7 Cl 2 NO 3 C 7 H 17 NO 5 , and the molecular weight is 503.33 g/mol.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '503.33 g/mol',
+        numeric: 503.33,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The molecular formula is C 14 H 7 Cl 2 NO 3 C 7 H 17 NO 5 , and the molecular weight is 503.33 g/mol.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BCRP',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'BCRP substrates: Tafamidis inhibits breast cancer resistant protein (BCRP).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Cytochrome P450 Enzymes : Tafamidis induces CYP2B6 and CYP3A4 and does not induce CYP1A2.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2B6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Cytochrome P450 Enzymes : Tafamidis induces CYP2B6 and CYP3A4 and does not induce CYP1A2.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tafamidis does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP3A4/5 or CYP2D6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tafamidis does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP3A4/5 or CYP2D6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tafamidis does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP3A4/5 or CYP2D6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tafamidis does not inhibit CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP3A4/5 or CYP2D6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Drug Interaction Studies Clinical Studies CYP3A4 substrates: No clinically significant differences in the pharmacokinetics of midazolam (a CYP3A4 substrate) or on the formation of its active metabolite (1-hydroxymidazolam) were observed when a single 7.5-mg dose of midazolam was administered prior to and after a 14-day regimen of VYNDAQEL 20-mg once daily.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE1',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'P-gp), organic cation transporter OCT2, multidrug and toxin extrusion transporters MATE1 and MATE2K and, organic anion transporting polypeptide OATP1B1 and OATP1B3.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Transporter Systems : In vitro studies and model predictions show that tafamidis has a low potential to inhibit organic anion transporters OAT1 and OAT3 at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT3',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Transporter Systems : In vitro studies and model predictions show that tafamidis has a low potential to inhibit organic anion transporters OAT1 and OAT3 at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OATP1B1',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'P-gp), organic cation transporter OCT2, multidrug and toxin extrusion transporters MATE1 and MATE2K and, organic anion transporting polypeptide OATP1B1 and OATP1B3.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of VYNDAQEL and VYNDAMAX have not been established in pediatric patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of VYNDAQEL and VYNDAMAX have not been established in pediatric patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dosage adjustment is required for elderly patients (≥65 years) [see Clinical Pharmacology (12.3) ] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dosage adjustment is required for elderly patients (≥65 years) [see Clinical Pharmacology (12.3) ] .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Based on findings from animal studies, VYNDAQEL and VYNDAMAX may cause fetal harm when administered to a pregnant woman.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Based on findings from animal studies, VYNDAQEL and VYNDAMAX may cause fetal harm when administered to a pregnant woman.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no available data on the presence of tafamidis in human milk, the effect on the breastfed infant, or the effect on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1b4121ee-a733-4456-a917-be2603477839',
+          label: 'Tafamidis label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no available data on the presence of tafamidis in human milk, the effect on the breastfed infant, or the effect on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    registryIdentifiers: {
+      unii: '8FG9H9D31J',
+      rxcui: '2168534',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '1b4121ee-a733-4456-a917-be2603477839',
+        label: 'Tafamidis label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   tafasitamab: {
     version: 'medicine-background/v1',
@@ -344620,7 +349136,39 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      proteinBinding: {
+        display: '74%',
+        numeric: 74,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In vitro , protein binding of talazoparib is 74% and is independent of talazoparib concentration.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '420 L',
+        numeric: 420,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Distribution The mean apparent volume of distribution of talazoparib is 420 L.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -344639,6 +349187,366 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Talazoparib is an inhibitor of PARP enzymes, including PARP1 and PARP2, which play a role in DNA repair.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+            label: 'Talazoparib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Talazoparib is an inhibitor of PARP enzymes, including PARP1 and PARP2, which play a role in DNA repair.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'In vitro studies with cancer cell lines that harbored defects in DNA repair genes, including BRCA1 and BRCA2 , have shown that talazoparib-induced cytotoxicity may involve inhibition of PARP enzymatic activity and increased formation of PARP-DNA complexes resulting in DNA damage, decreased cell proliferation, and apoptosis.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+            label: 'Talazoparib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'In vitro studies with cancer cell lines that harbored defects in DNA repair genes, including BRCA1 and BRCA2 , have shown that talazoparib-induced cytotoxicity may involve inhibition of PARP enzymatic activity and increased formation of PARP-DNA complexes resulting in DNA damage, decreased cell proliferation, and apoptosis.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Talazoparib anti-tumor activity was observed in patient-derived xenograft breast cancer models bearing mutated BRCA1 or mutated BRCA2 or wild type BRCA1 and BRCA2 .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+            label: 'Talazoparib label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Talazoparib anti-tumor activity was observed in patient-derived xenograft breast cancer models bearing mutated BRCA1 or mutated BRCA2 or wild type BRCA1 and BRCA2 .',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['PARP'],
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BCRP',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Transporters: Talazoparib is a substrate of P-gp and BCRP transporters, but not a substrate of OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BSEP, MATE1, or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'BSEP',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Transporters: Talazoparib is a substrate of P-gp and BCRP transporters, but not a substrate of OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BSEP, MATE1, or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP Enzymes: Talazoparib is not an inhibitor of CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, or CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2B6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP Enzymes: Talazoparib is not an inhibitor of CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, or CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP Enzymes: Talazoparib is not an inhibitor of CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, or CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP Enzymes: Talazoparib is not an inhibitor of CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, or CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP Enzymes: Talazoparib is not an inhibitor of CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, or CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP Enzymes: Talazoparib is not an inhibitor of CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, or CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'CYP Enzymes: Talazoparib is not an inhibitor of CYP1A2, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, or CYP3A4/5.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE1',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Transporters: Talazoparib is a substrate of P-gp and BCRP transporters, but not a substrate of OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BSEP, MATE1, or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE2',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Transporters: Talazoparib is a substrate of P-gp and BCRP transporters, but not a substrate of OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BSEP, MATE1, or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT1',
+        kind: 'TRANSPORTER',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Transporters: Talazoparib is a substrate of P-gp and BCRP transporters, but not a substrate of OATP1B1, OATP1B3, OCT1, OCT2, OAT1, OAT3, BSEP, MATE1, or MATE2-K.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of TALZENNA have not been established in pediatric patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of TALZENNA have not been established in pediatric patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'In clinical trials of TALZENNA enrolling 494 patients with advanced solid tumors who received TALZENNA 1 mg daily as a single agent, 85 (17%) patients were ≥65 years of age, and this included 19 (4%) patients who were ≥75 years old.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In clinical trials of TALZENNA enrolling 494 patients with advanced solid tumors who received TALZENNA 1 mg daily as a single agent, 85 (17%) patients were ≥65 years of age, and this included 19 (4%) patients who were ≥75 years old.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Based on findings from animal studies and its mechanism of action [see Clinical Pharmacology (12.1) ] , TALZENNA can cause embryo-fetal harm when administered to a pregnant woman.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Based on findings from animal studies and its mechanism of action [see Clinical Pharmacology (12.1) ] , TALZENNA can cause embryo-fetal harm when administered to a pregnant woman.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no data on the presence of talazoparib in human milk, the effects of the drug on milk production, or the effects of the drug on the breastfed child.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no data on the presence of talazoparib in human milk, the effects of the drug on milk production, or the effects of the drug on the breastfed child.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dosage modification is recommended for patients with hepatic impairment [see Clinical Pharmacology (12.3) ] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dosage modification is recommended for patients with hepatic impairment [see Clinical Pharmacology (12.3) ] .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Reduce the recommended dosage of TALZENNA in patients with moderate (CLcr 30 – 59 mL/min) and severe (CLcr 15 – 29 mL/min) renal impairment [see Dosage and Administration (2.7) ] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+          label: 'Talazoparib label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Reduce the recommended dosage of TALZENNA in patients with moderate (CLcr 30 – 59 mL/min) and severe (CLcr 15 – 29 mL/min) renal impairment [see Dosage and Administration (2.7) ] .',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: '≥10%',
+      eventsAsRecorded: [
+        '• Hemoglobin decreased',
+        'neutrophils decreased',
+        'lymphocytes decreased',
+        'fatigue',
+        'platelets decreased',
+        'calcium decreased',
+        'nausea',
+        'decreased appetite',
+        'sodium decreased',
+        'phosphate decreased',
+        'fractures',
+        'magnesium decreased',
+        'dizziness',
+        'bilirubin increased',
+        'potassium decreased',
+        'dysgeusia',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+        label: 'Talazoparib label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          ') Most common adverse reactions (≥10%) in combination with enzalutamide, including laboratory abnormalities, are: • Hemoglobin decreased, neutrophils decreased, lymphocytes decreased, fatigue, platelets decreased, calcium decreased, nausea, decreased appetite, sodium decreased, phosphate decreased, fractures, magnesium decreased, dizziness, bilirubin increased, potassium decreased, and dysgeusia.',
+      },
+      provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: '02WK9U5NZC',
+      rxcui: '2099946',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+        label: 'Talazoparib label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   'taletrectinib-adipate': {
     version: 'medicine-background/v1',
@@ -347250,7 +352158,70 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '3.1 hours',
+        numeric: 3.1,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination At steady-state, the estimated mean (CV%) terminal elimination half-life of tazemetostat is 3.1 hours (14%) and the apparent total clearance (CL ss /F) is 274 L/h (49%).',
+        },
+        provenanceTier: 'extracted',
+      },
+      bioavailability: {
+        display: '33%',
+        numeric: 33,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Absorption The mean absolute oral bioavailability of tazemetostat is approximately 33%.',
+        },
+        provenanceTier: 'extracted',
+      },
+      tMax: {
+        display: '1 to 2 hours',
+        numeric: 1,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The median time to reach the peak plasma concentration of tazemetostat is 1 to 2 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '1230 L',
+        numeric: 1230,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Distribution The mean (CV%) apparent volume of distribution at steady-state (V ss /F) is 1230 L (46%).',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -347270,6 +352241,389 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'Tazemetostat is an inhibitor of the methyltransferase, EZH2, and some EZH2 gain-of-function mutations including Y646X, A682G, and A692V.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+            label: 'Tazemetostat label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Tazemetostat is an inhibitor of the methyltransferase, EZH2, and some EZH2 gain-of-function mutations including Y646X, A682G, and A692V.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Tazemetostat also inhibited EZH1 with a half-maximal inhibitory concentration (IC 50 ) of 392 nM, approximately 36 times higher than the IC 50 for inhibition of EZH2.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+            label: 'Tazemetostat label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Tazemetostat also inhibited EZH1 with a half-maximal inhibitory concentration (IC 50 ) of 392 nM, approximately 36 times higher than the IC 50 for inhibition of EZH2.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The most well-characterized function of EZH2 is as the catalytic subunit of the polycomb repressive complex 2 (PRC2), catalyzing mono-, di-, and trimethylation of lysine 27 of histone H3.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+            label: 'Tazemetostat label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The most well-characterized function of EZH2 is as the catalytic subunit of the polycomb repressive complex 2 (PRC2), catalyzing mono-, di-, and trimethylation of lysine 27 of histone H3.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded: 'Trimethylation of histone H3 leads to transcriptional repression.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+            label: 'Tazemetostat label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Trimethylation of histone H3 leads to transcriptional repression.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularWeight: {
+        display: '653.66 g/mol',
+        numeric: 653.66,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tazemetostat hydrobromide has a molecular weight of 653.66 g/mol and the following structural formula: Tazemetostat hydrobromide is a white to off-white solid that is slightly soluble in water and has pKa values of 5.26, 6.88, and 12.62.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BCRP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tazemetostat is not a substrate of breast cancer resistance protein (BCRP); renal transporters organic cation transporter 2 (OCT2), organic anion transporter 3 (OAT3), and multidrug and toxin extrusion transporter 1 (MATE1); or hepatic transporters organic anion transporting polypeptide 1B1 (OATP1B1) and organic anion transporting polypeptide 1B3 (OATP1B3).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'BSEP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tazemetostat does not inhibit P-gp, BCRP, OATP1B1, OATP1B3, organic cation transporter 1 (OCT1), OCT2, organic anion transporter 1 (OAT1), OAT3, or bile salt export pump (BSEP) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Metabolic Enzymes: Tazemetostat does not inhibit CYP1A2, CYP2B6, CYP2C9, and CYP2D6 at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2B6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Metabolic Enzymes: Tazemetostat does not inhibit CYP1A2, CYP2B6, CYP2C9, and CYP2D6 at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Effect of Tazemetostat on CYP2C8 and CYP2C19 Substrates: Coadministration of TAZVERIK 800 mg twice daily with repaglinide (a sensitive CYP2C8 substrate) and omeprazole (a sensitive CYP2C19 substrate) in patients increased repaglinide AUC 0-8h by 80% and C max by 51%; and had no effect on the exposure of omeprazole.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Effect of Tazemetostat on CYP2C8 and CYP2C19 Substrates: Coadministration of TAZVERIK 800 mg twice daily with repaglinide (a sensitive CYP2C8 substrate) and omeprazole (a sensitive CYP2C19 substrate) in patients increased repaglinide AUC 0-8h by 80% and C max by 51%; and had no effect on the exposure of omeprazole.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Metabolic Enzymes: Tazemetostat does not inhibit CYP1A2, CYP2B6, CYP2C9, and CYP2D6 at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'In Vitro Studies Metabolic Enzymes: Tazemetostat does not inhibit CYP1A2, CYP2B6, CYP2C9, and CYP2D6 at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tazemetostat is not a substrate of breast cancer resistance protein (BCRP); renal transporters organic cation transporter 2 (OCT2), organic anion transporter 3 (OAT3), and multidrug and toxin extrusion transporter 1 (MATE1); or hepatic transporters organic anion transporting polypeptide 1B1 (OATP1B1) and organic anion transporting polypeptide 1B3 (OATP1B3).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE2',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tazemetostat is an inhibitor of MATE1 and multidrug and toxin extrusion transporter 2-K (MATE2-K).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tazemetostat does not inhibit P-gp, BCRP, OATP1B1, OATP1B3, organic cation transporter 1 (OCT1), OCT2, organic anion transporter 1 (OAT1), OAT3, or bile salt export pump (BSEP) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT3',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Tazemetostat is not a substrate of breast cancer resistance protein (BCRP); renal transporters organic cation transporter 2 (OCT2), organic anion transporter 3 (OAT3), and multidrug and toxin extrusion transporter 1 (MATE1); or hepatic transporters organic anion transporting polypeptide 1B1 (OATP1B1) and organic anion transporting polypeptide 1B3 (OATP1B3).',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of TAZVERIK in pediatric patients aged less than 16 years have not been established.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of TAZVERIK in pediatric patients aged less than 16 years have not been established.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Clinical studies of TAZVERIK did not include sufficient numbers of patients with epithelioid sarcoma or relapsed or refractory follicular lymphoma aged 65 and over to determine whether they respond differently from younger subjects.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Clinical studies of TAZVERIK did not include sufficient numbers of patients with epithelioid sarcoma or relapsed or refractory follicular lymphoma aged 65 and over to determine whether they respond differently from younger subjects.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary Based on findings from animal studies and its mechanism of action [see Clinical Pharmacology ( 12.1 )] , TAZVERIK can cause fetal harm when administered to pregnant women.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary Based on findings from animal studies and its mechanism of action [see Clinical Pharmacology ( 12.1 )] , TAZVERIK can cause fetal harm when administered to pregnant women.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There are no animal or human data on the presence of tazemetostat in human milk or on its effects on the breastfed child or milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There are no animal or human data on the presence of tazemetostat in human milk or on its effects on the breastfed child or milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dose adjustment of TAZVERIK is recommended for patients with mild hepatic impairment (total bilirubin > 1 to 1.5 times upper limit of normal [ULN] or AST > ULN).',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dose adjustment of TAZVERIK is recommended for patients with mild hepatic impairment (total bilirubin > 1 to 1.5 times upper limit of normal [ULN] or AST > ULN).',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dose adjustment of TAZVERIK is recommended for patients with mild to severe renal impairment or end stage renal disease [see Clinical Pharmacology ( 12.3 )] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+          label: 'Tazemetostat label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dose adjustment of TAZVERIK is recommended for patients with mild to severe renal impairment or end stage renal disease [see Clinical Pharmacology ( 12.3 )] .',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: '≥20%',
+      eventsAsRecorded: [
+        'pain',
+        'fatigue',
+        'nausea',
+        'decreased appetite',
+        'vomiting',
+        'constipation',
+      ],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+        label: 'Tazemetostat label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'The most common adverse reactions (≥20%) were pain, fatigue, nausea, decreased appetite, vomiting, and constipation.',
+      },
+      provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: '6P89T5M073',
+      rxcui: '2274384',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '7db07b5f-4e22-467c-9c0a-f830b08dbb1d',
+        label: 'Tazemetostat label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   tazobactam: {
     version: 'medicine-background/v1',
@@ -374827,64 +380181,26 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 1,
+      declaredSubstanceCount: 0,
     },
     productVariants: [
       {
-        brandName: 'Tromethamine',
+        brandName: 'THAM',
         formAsRecorded: 'intravenous',
         strengthsAsRecorded:
-          'HOW SUPPLIED Tromethamine Injection is available as: Unit of Sale Concentration Each NDC 71357-001-06 NDC 71357-001-01 Case of 6 Single-dose 500 mL large volume glass containers 500 mL (150 mEq) 1 Single-dose 500 mL lar…',
+          'HOW SUPPLIED Tham Solution (tromethamine injection) is available as: Unit of Sale Concentration NDC-0409-1593-04 Case of 6 Single-dose 500 mL large volume glass containers 500 mL (150 mEq) Store at 20 to 25°C (68 to 77°…',
         approvedUseAsRecorded:
-          'INDICATIONS AND USAGE Tromethamine Injection is indicated for the prevention and correction of metabolic acidosis.',
+          'INDICATIONS AND USAGE Tham Solution (tromethamine injection) is indicated for the prevention and correction of metabolic acidosis.',
         jurisdiction: 'US_FDA',
-        statusAsRecorded: 'FDA label in effect 2026-01-07',
+        statusAsRecorded: 'FDA label in effect 2026-05-27',
         source: {
           kind: 'FDA_LABEL',
-          identifier: '082b1104-502b-47af-95bf-0dbf2422990e',
+          identifier: '4af52118-c12b-4ad5-30bb-959848357e8a',
           label: 'Tromethamine label',
           retrievedAt: '2026-08-28',
         },
       },
     ],
-    safety: {
-      contraindications: [
-        {
-          textAsRecorded: 'Tromethamine Injection is contraindicated in uremia and anuria.',
-          source: {
-            kind: 'FDA_LABEL',
-            identifier: '082b1104-502b-47af-95bf-0dbf2422990e',
-            label: 'Tromethamine label',
-            retrievedAt: '2026-08-28',
-            excerpt: 'Tromethamine Injection is contraindicated in uremia and anuria.',
-          },
-          provenanceTier: 'extracted',
-        },
-        {
-          textAsRecorded:
-            'In neonates it is also contraindicated in chronic respiratory acidosis and salicylate intoxication.',
-          source: {
-            kind: 'FDA_LABEL',
-            identifier: '082b1104-502b-47af-95bf-0dbf2422990e',
-            label: 'Tromethamine label',
-            retrievedAt: '2026-08-28',
-            excerpt:
-              'In neonates it is also contraindicated in chronic respiratory acidosis and salicylate intoxication.',
-          },
-          provenanceTier: 'extracted',
-        },
-      ],
-    },
-    registryIdentifiers: {
-      unii: '023C2WHX2V',
-      rxcui: '198412',
-      source: {
-        kind: 'FDA_LABEL',
-        identifier: '082b1104-502b-47af-95bf-0dbf2422990e',
-        label: 'Tromethamine label naming this substance alone',
-        retrievedAt: '2026-08-28',
-      },
-    },
   },
   tropicamide: {
     version: 'medicine-background/v1',
@@ -379408,7 +384724,69 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      bioavailability: {
+        display: '49%',
+        numeric: 49,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The absolute oral bioavailability of valbenazine is approximately 49%. [+]-α-HTBZ gradually forms and reaches C max 4 to 8 hours after administration of INGREZZA.',
+        },
+        provenanceTier: 'extracted',
+      },
+      tMax: {
+        display: '1.5 hours',
+        numeric: 1.5,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'INGREZZA SPRINKLE Following administration of 80 mg INGREZZA SPRINKLE orally as sprinkle on applesauce, the geometric mean peak plasma concentration (C max ) of valbenazine was 512 ng/mL, area under the plasma concentration-time curve (AUC inf ) was 5,600 ng*hr/mL and the median time to reach C max (T max ) was 1.5 hours.',
+        },
+        provenanceTier: 'extracted',
+      },
+      proteinBinding: {
+        display: '99%',
+        numeric: 99,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Distribution The plasma protein binding of valbenazine and [+]-α-HTBZ are greater than 99% and approximately 64%, respectively.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '92 L',
+        numeric: 92,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'The mean steady state volume of distribution of valbenazine is 92 L.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -379428,6 +384806,337 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'The mechanism of action of valbenazine for the treatment of tardive dyskinesia and chorea in patients with Huntington’s disease is unclear, but is thought to be mediated through the reversible inhibition of vesicular monoamine transporter 2 (VMAT2), a transporter that regulates monoamine uptake from the cytoplasm to the synaptic vesicle for storage and release.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+            label: 'Valbenazine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The mechanism of action of valbenazine for the treatment of tardive dyskinesia and chorea in patients with Huntington’s disease is unclear, but is thought to be mediated through the reversible inhibition of vesicular monoamine transporter 2 (VMAT2), a transporter that regulates monoamine uptake from the cytoplasm to the synaptic vesicle for storage and release.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C38H54N2O10S2',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its molecular formula is C 38 H 54 N 2 O 10 S 2 , and its molecular weight is 762.97 g/mol (ditosylate salt) with the following structure: The molecular formula of valbenazine free base is C 24 H 38 N 2 O 4 and its molecular weight is 418.57.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '762.97 g/mol',
+        numeric: 762.97,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Its molecular formula is C38H54N2O10S2, and its molecular weight is 762.97 g/mol (ditosylate salt) with the following structure:',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BCRP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The results of in vitro studies suggest that valbenazine and [+]-α-HTBZ are unlikely to inhibit the transporters (BCRP, OAT1, OAT3, OCT2, OATP1B1, or OATP1B3) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Metabolism Valbenazine is extensively metabolized after oral administration by hydrolysis of the valine ester to form the active metabolite ([+]-α-HTBZ) and by oxidative metabolism, primarily by CYP3A4/5, to form mono-oxidized valbenazine and other minor metabolites. [+]-α-HTBZ appears to be further metabolized in part by CYP2D6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Metabolism Valbenazine is extensively metabolized after oral administration by hydrolysis of the valine ester to form the active metabolite ([+]-α-HTBZ) and by oxidative metabolism, primarily by CYP3A4/5, to form mono-oxidized valbenazine and other minor metabolites. [+]-α-HTBZ appears to be further metabolized in part by CYP2D6.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The results of in vitro studies suggest that valbenazine and [+]-α-HTBZ are unlikely to inhibit the transporters (BCRP, OAT1, OAT3, OCT2, OATP1B1, or OATP1B3) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OAT3',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The results of in vitro studies suggest that valbenazine and [+]-α-HTBZ are unlikely to inhibit the transporters (BCRP, OAT1, OAT3, OCT2, OATP1B1, or OATP1B3) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OATP1B1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The results of in vitro studies suggest that valbenazine and [+]-α-HTBZ are unlikely to inhibit the transporters (BCRP, OAT1, OAT3, OCT2, OATP1B1, or OATP1B3) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OATP1B3',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The results of in vitro studies suggest that valbenazine and [+]-α-HTBZ are unlikely to inhibit the transporters (BCRP, OAT1, OAT3, OCT2, OATP1B1, or OATP1B3) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'OCT2',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The results of in vitro studies suggest that valbenazine and [+]-α-HTBZ are unlikely to inhibit the transporters (BCRP, OAT1, OAT3, OCT2, OATP1B1, or OATP1B3) at clinically relevant concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      boxedWarning: {
+        textAsRecorded:
+          'WARNING: DEPRESSION AND SUICIDAL IDEATION AND BEHAVIOR IN PATIENTS WITH HUNTINGTON’S DISEASE VMAT2 inhibitors, including INGREZZA and INGREZZA SPRINKLE, can increase the risk of depression and suicidal thoughts and behavior in patients with Huntington’s disease.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'WARNING: DEPRESSION AND SUICIDAL IDEATION AND BEHAVIOR IN PATIENTS WITH HUNTINGTON’S DISEASE VMAT2 inhibitors, including INGREZZA and INGREZZA SPRINKLE, can increase the risk of depression and suicidal thoughts and behavior in patients with Huntington’s disease.',
+        },
+        provenanceTier: 'extracted',
+      },
+      contraindications: [
+        {
+          textAsRecorded:
+            'INGREZZA and INGREZZA SPRINKLE are contraindicated in patients with a history of hypersensitivity to valbenazine or any components of INGREZZA or INGREZZA SPRINKLE.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+            label: 'Valbenazine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'INGREZZA and INGREZZA SPRINKLE are contraindicated in patients with a history of hypersensitivity to valbenazine or any components of INGREZZA or INGREZZA SPRINKLE.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Rash, urticaria, and reactions consistent with angioedema (e.g., swelling of the face, lips, and mouth) have been reported with use of INGREZZA [see Warnings and Precautions ( 5.2 ) and Adverse Reactions ( 6.2 )].',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+            label: 'Valbenazine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Rash, urticaria, and reactions consistent with angioedema (e.g., swelling of the face, lips, and mouth) have been reported with use of INGREZZA [see Warnings and Precautions ( 5.2 ) and Adverse Reactions ( 6.2 )].',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Known hypersensitivity to valbenazine or any components of INGREZZA or INGREZZA SPRINKLE.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+            label: 'Valbenazine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Known hypersensitivity to valbenazine or any components of INGREZZA or INGREZZA SPRINKLE.',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'Safety and effectiveness of INGREZZA and INGREZZA SPRINKLE have not been established in pediatric patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Safety and effectiveness of INGREZZA and INGREZZA SPRINKLE have not been established in pediatric patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'No dose adjustment of INGREZZA or INGREZZA SPRINKLE is required for elderly patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'No dose adjustment of INGREZZA or INGREZZA SPRINKLE is required for elderly patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary The limited available data on INGREZZA or INGREZZA SPRINKLE use in pregnant women are insufficient to inform a drug-associated risk.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary The limited available data on INGREZZA or INGREZZA SPRINKLE use in pregnant women are insufficient to inform a drug-associated risk.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There is no information regarding the presence of valbenazine or its metabolites in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There is no information regarding the presence of valbenazine or its metabolites in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'HEPATIC_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Dosage reduction of INGREZZA and INGREZZA SPRINKLE is recommended for patients with moderate or severe hepatic impairment [see Dosage and Administration ( 2.3 )] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Dosage reduction of INGREZZA and INGREZZA SPRINKLE is recommended for patients with moderate or severe hepatic impairment [see Dosage and Administration ( 2.3 )] .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'RENAL_IMPAIRMENT',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Dosage adjustment is not necessary for patients with mild, moderate, or severe renal impairment.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+          label: 'Valbenazine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Dosage adjustment is not necessary for patients with mild, moderate, or severe renal impairment.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    registryIdentifiers: {
+      unii: '5SML1T733B',
+      rxcui: '1918224',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '4c970164-cafb-421f-9eb5-c226ef0a3417',
+        label: 'Valbenazine label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   valerian: {
     version: 'medicine-background/v1',
@@ -381611,6 +387320,16 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
           'aring Loss [see Warnings and Precautions ( 5.5 )] QT Prolongation [see Warnings and Precautions ( 5.7 )] Most common adverse reactions reported (≥2% of patients) are headache, flushing, nasal congestion, dyspepsia, sinusitis, flu syndrome, dizziness, increased creatine kinase, nausea, back pain.',
       },
       provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: '5M8S2CU0TS',
+      rxcui: '349480',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: 'c70a9c8e-46b0-489d-bbda-2d7fca4b629f',
+        label: 'Vardenafil label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
     },
   },
   varenicline: {
@@ -391966,7 +397685,69 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
     authoredAt: '2026-08-28',
     provenanceTier: 'extracted',
     attribution: {
-      declaredSubstanceCount: 2,
+      declaredSubstanceCount: 1,
+    },
+    pharmacokinetics: {
+      routeAsRecorded: 'oral',
+      halfLife: {
+        display: '66 hours',
+        numeric: 66,
+        unit: 'hours',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The mean terminal half-life is approximately 66 hours, and steady-state plasma concentrations are typically achieved within two weeks of dosing.',
+        },
+        provenanceTier: 'extracted',
+      },
+      bioavailability: {
+        display: '75%',
+        numeric: 75,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt: 'Absolute bioavailability is 75%.',
+        },
+        provenanceTier: 'extracted',
+      },
+      proteinBinding: {
+        display: '98%',
+        numeric: 98,
+        unit: '%',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The plasma protein binding of vortioxetine in humans is 98%, independent of plasma concentrations.',
+        },
+        provenanceTier: 'extracted',
+      },
+      volumeOfDistribution: {
+        display: '2600 L',
+        numeric: 2600,
+        unit: 'L',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Distribution The apparent volume of distribution of vortioxetine is approximately 2600 L, indicating extensive extravascular distribution.',
+        },
+        provenanceTier: 'extracted',
+      },
     },
     productVariants: [
       {
@@ -391986,6 +397767,412 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         },
       },
     ],
+    mechanism: {
+      statements: [
+        {
+          textAsRecorded:
+            'The mechanism of the antidepressant effect of vortioxetine is not fully understood, but is thought to be related to its enhancement of serotonergic activity in the CNS through inhibition of the reuptake of serotonin (5-HT).',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+            label: 'Vortioxetine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The mechanism of the antidepressant effect of vortioxetine is not fully understood, but is thought to be related to its enhancement of serotonergic activity in the CNS through inhibition of the reuptake of serotonin (5-HT).',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'It also has several other activities including 5-HT3 receptor antagonism and 5-HT1A receptor agonism.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+            label: 'Vortioxetine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'It also has several other activities including 5-HT3 receptor antagonism and 5-HT1A receptor agonism.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            "The contribution of these activities to vortioxetine's antidepressant effect has not been established.",
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+            label: 'Vortioxetine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              "The contribution of these activities to vortioxetine's antidepressant effect has not been established.",
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+      namedTargetsAsRecorded: ['5-HT'],
+    },
+    molecularIdentity: {
+      molecularFormula: {
+        display: 'C18H22N2S',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The empirical formula is C 18 H 22 N 2 S, HBr with a molecular weight of 379.36 g/mol.',
+        },
+        provenanceTier: 'extracted',
+      },
+      molecularWeight: {
+        display: '379.36 g/mol',
+        numeric: 379.36,
+        unit: 'g/mol',
+        populationContext: 'as stated in the label sentence recorded below',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The empirical formula is C 18 H 22 N 2 S, HBr with a molecular weight of 379.36 g/mol.',
+        },
+        provenanceTier: 'extracted',
+      },
+    },
+    interactionSignals: [
+      {
+        counterpartyAsRecorded: 'BCRP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Impact of Vortioxetine on PK of Other Drugs Figure 3 In Vitro Vortioxetine and its metabolite(s) are unlikely to inhibit the following CYP enzymes and transporter based on in vitro data: CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, P-gp, BCRP, BSEP, MATE1, MATE2-K, OAT1, OAT3, OATP1B1, OATP1B3, OCT1, and OCT2.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'BSEP',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Impact of Vortioxetine on PK of Other Drugs Figure 3 In Vitro Vortioxetine and its metabolite(s) are unlikely to inhibit the following CYP enzymes and transporter based on in vitro data: CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, P-gp, BCRP, BSEP, MATE1, MATE2-K, OAT1, OAT3, OATP1B1, OATP1B3, OCT1, and OCT2.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP1A2',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Impact of Vortioxetine on PK of Other Drugs Figure 3 In Vitro Vortioxetine and its metabolite(s) are unlikely to inhibit the following CYP enzymes and transporter based on in vitro data: CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, P-gp, BCRP, BSEP, MATE1, MATE2-K, OAT1, OAT3, OATP1B1, OATP1B3, OCT1, and OCT2.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2A6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination Metabolism Vortioxetine is extensively metabolized primarily through oxidation via cytochrome P450 isozymes CYP2D6, CYP3A4/5, CYP2C19, CYP2C9, CYP2A6, CYP2C8, and CYP2B6 and subsequent glucuronic acid conjugation.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2B6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination Metabolism Vortioxetine is extensively metabolized primarily through oxidation via cytochrome P450 isozymes CYP2D6, CYP3A4/5, CYP2C19, CYP2C9, CYP2A6, CYP2C8, and CYP2B6 and subsequent glucuronic acid conjugation.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C19',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination Metabolism Vortioxetine is extensively metabolized primarily through oxidation via cytochrome P450 isozymes CYP2D6, CYP3A4/5, CYP2C19, CYP2C9, CYP2A6, CYP2C8, and CYP2B6 and subsequent glucuronic acid conjugation.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C8',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination Metabolism Vortioxetine is extensively metabolized primarily through oxidation via cytochrome P450 isozymes CYP2D6, CYP3A4/5, CYP2C19, CYP2C9, CYP2A6, CYP2C8, and CYP2B6 and subsequent glucuronic acid conjugation.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2C9',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination Metabolism Vortioxetine is extensively metabolized primarily through oxidation via cytochrome P450 isozymes CYP2D6, CYP3A4/5, CYP2C19, CYP2C9, CYP2A6, CYP2C8, and CYP2B6 and subsequent glucuronic acid conjugation.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2D6',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination Metabolism Vortioxetine is extensively metabolized primarily through oxidation via cytochrome P450 isozymes CYP2D6, CYP3A4/5, CYP2C19, CYP2C9, CYP2A6, CYP2C8, and CYP2B6 and subsequent glucuronic acid conjugation.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP2E1',
+        kind: 'ENZYME',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Impact of Vortioxetine on PK of Other Drugs Figure 3 In Vitro Vortioxetine and its metabolite(s) are unlikely to inhibit the following CYP enzymes and transporter based on in vitro data: CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, P-gp, BCRP, BSEP, MATE1, MATE2-K, OAT1, OAT3, OATP1B1, OATP1B3, OCT1, and OCT2.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'CYP3A4',
+        kind: 'ENZYME',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Elimination Metabolism Vortioxetine is extensively metabolized primarily through oxidation via cytochrome P450 isozymes CYP2D6, CYP3A4/5, CYP2C19, CYP2C9, CYP2A6, CYP2C8, and CYP2B6 and subsequent glucuronic acid conjugation.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        counterpartyAsRecorded: 'MATE1',
+        kind: 'TRANSPORTER',
+        roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
+        labelSection: 'pharmacokinetics',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Impact of Vortioxetine on PK of Other Drugs Figure 3 In Vitro Vortioxetine and its metabolite(s) are unlikely to inhibit the following CYP enzymes and transporter based on in vitro data: CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6, CYP2E1, CYP3A4/5, P-gp, BCRP, BSEP, MATE1, MATE2-K, OAT1, OAT3, OATP1B1, OATP1B3, OCT1, and OCT2.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    safety: {
+      boxedWarning: {
+        textAsRecorded:
+          'WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepressants increased the risk of suicidal thoughts and behavior in pediatric and young adult patients in short-term studies.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'WARNING: SUICIDAL THOUGHTS AND BEHAVIORS Antidepressants increased the risk of suicidal thoughts and behavior in pediatric and young adult patients in short-term studies.',
+        },
+        provenanceTier: 'extracted',
+      },
+      contraindications: [
+        {
+          textAsRecorded: 'Hypersensitivity to vortioxetine or any component of the formulation.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+            label: 'Vortioxetine label',
+            retrievedAt: '2026-08-28',
+            excerpt: 'Hypersensitivity to vortioxetine or any component of the formulation.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'Hypersensitivity reactions including anaphylaxis, angioedema, and urticaria have been reported in patients treated with TRINTELLIX [see Adverse Reactions (6.2) ] .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+            label: 'Vortioxetine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'Hypersensitivity reactions including anaphylaxis, angioedema, and urticaria have been reported in patients treated with TRINTELLIX [see Adverse Reactions (6.2) ] .',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The use of MAOIs intended to treat psychiatric disorders with TRINTELLIX or within 21 days of stopping treatment with TRINTELLIX is contraindicated because of an increased risk of serotonin syndrome.',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+            label: 'Vortioxetine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The use of MAOIs intended to treat psychiatric disorders with TRINTELLIX or within 21 days of stopping treatment with TRINTELLIX is contraindicated because of an increased risk of serotonin syndrome.',
+          },
+          provenanceTier: 'extracted',
+        },
+        {
+          textAsRecorded:
+            'The use of TRINTELLIX within 14 days of stopping an MAOI intended to treat psychiatric disorders is also contraindicated [see Dosage and Administration (2.4) , Warnings and Precautions (5.2) ] .',
+          source: {
+            kind: 'FDA_LABEL',
+            identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+            label: 'Vortioxetine label',
+            retrievedAt: '2026-08-28',
+            excerpt:
+              'The use of TRINTELLIX within 14 days of stopping an MAOI intended to treat psychiatric disorders is also contraindicated [see Dosage and Administration (2.4) , Warnings and Precautions (5.2) ] .',
+          },
+          provenanceTier: 'extracted',
+        },
+      ],
+    },
+    populationStatements: [
+      {
+        population: 'PEDIATRIC',
+        state: 'NOT_ESTABLISHED',
+        textAsRecorded:
+          'The safety and effectiveness of TRINTELLIX have not been established in pediatric patients.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'The safety and effectiveness of TRINTELLIX have not been established in pediatric patients.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'GERIATRIC',
+        state: 'STUDIED',
+        textAsRecorded:
+          'Of the 2,616 subjects in clinical studies of TRINTELLIX, 11% (286) were 65 and over, which included subjects from a placebo-controlled study specifically in elderly patients [see Clinical Studies (14) ] .',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Of the 2,616 subjects in clinical studies of TRINTELLIX, 11% (286) were 65 and over, which included subjects from a placebo-controlled study specifically in elderly patients [see Clinical Studies (14) ] .',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'PREGNANCY',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antidepressants during pregnancy.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Pregnancy Exposure Registry There is a pregnancy exposure registry that monitors pregnancy outcomes in women exposed to antidepressants during pregnancy.',
+        },
+        provenanceTier: 'extracted',
+      },
+      {
+        population: 'LACTATION',
+        state: 'STATEMENT_ONLY',
+        textAsRecorded:
+          'Risk Summary There is no information regarding the presence of vortioxetine in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        source: {
+          kind: 'FDA_LABEL',
+          identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+          label: 'Vortioxetine label',
+          retrievedAt: '2026-08-28',
+          excerpt:
+            'Risk Summary There is no information regarding the presence of vortioxetine in human milk, the effects on the breastfed infant, or the effects on milk production.',
+        },
+        provenanceTier: 'extracted',
+      },
+    ],
+    commonAdverseReactions: {
+      thresholdAsRecorded: 'incidence ≥5% and at least twice the rate of placebo',
+      eventsAsRecorded: ['nausea', 'constipation', 'vomiting ( 6 )'],
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+        label: 'Vortioxetine label',
+        retrievedAt: '2026-08-28',
+        excerpt:
+          'nd Precautions (5.5) ] Angle Closure Glaucoma [see Warnings and Precautions (5.6) ] Hyponatremia [see Warnings and Precautions (5.7) ] Most common adverse reactions (incidence ≥5% and at least twice the rate of placebo) were: nausea, constipation and vomiting ( 6 ).',
+      },
+      provenanceTier: 'extracted',
+    },
+    registryIdentifiers: {
+      unii: 'TKS641KOAY',
+      rxcui: '1439808',
+      source: {
+        kind: 'FDA_LABEL',
+        identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+        label: 'Vortioxetine label naming this substance alone',
+        retrievedAt: '2026-08-28',
+      },
+    },
   },
   vosoritide: {
     version: 'medicine-background/v1',

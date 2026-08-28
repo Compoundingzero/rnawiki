@@ -6,6 +6,10 @@ import { join } from 'node:path'
 
 import { extractBackgroundFromLabel, type LabelArtifact } from '@/lib/background/label-extraction'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
+import {
+  normalizeContentName as normalizeName,
+  normalizeIdentityName,
+} from '@/lib/background/name-normalization'
 import type { MedicineRecordedBackground } from '@/lib/background/types'
 import { RECORDED_BACKGROUND } from '../seed-data/background'
 
@@ -52,34 +56,6 @@ interface IndexedLabel {
   sections: Record<string, string>
   /** Higher is better when several labels share a name. */
   score: number
-}
-
-/**
- * Identity normalization, which deliberately keeps salt and form words.
- *
- * Content matching strips them so "metformin hydrochloride" can find a "metformin" label. Identity
- * must not: barium sulfate is an insoluble radiocontrast agent and barium acetate is a soluble
- * salt, and collapsing them to "barium" hands both the same substance identifier. A looser rule is
- * right for finding a document and wrong for saying what something is.
- */
-function normalizeIdentityName(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/\([^)]*\)/gu, ' ')
-    .replace(/[^a-z0-9]+/gu, ' ')
-    .trim()
-}
-
-function normalizeName(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/\([^)]*\)/gu, ' ')
-    .replace(
-      /\b(hydrochloride|hcl|sodium|potassium|calcium|sulfate|sulphate|tartrate|maleate|mesylate|besylate|fumarate|succinate|citrate|acetate|phosphate|bitartrate|dihydrate|monohydrate|anhydrous|micronized|usp|injection|tablets?|capsules?|oral|solution|suspension|cream|ointment|gel|spray)\b/gu,
-      ' ',
-    )
-    .replace(/[^a-z0-9]+/gu, ' ')
-    .trim()
 }
 
 /**

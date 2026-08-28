@@ -5,6 +5,7 @@ import { createInterface } from 'node:readline'
 import { join } from 'node:path'
 
 import { extractPharmacokinetics, type LabelArtifact } from '@/lib/background/label-extraction'
+import { normalizeContentName as normalizeName } from '@/lib/background/name-normalization'
 import type {
   BackgroundSource,
   ConsensusReading,
@@ -68,18 +69,6 @@ const MAX_READINGS_PER_FIELD = 5
  * The number examined is reported so the cap is visible rather than silent.
  */
 const MAX_DOCUMENTS_PER_MEDICINE = 60
-
-function normalizeName(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/\([^)]*\)/gu, ' ')
-    .replace(
-      /\b(hydrochloride|hcl|sodium|potassium|calcium|sulfate|sulphate|tartrate|maleate|mesylate|besylate|fumarate|succinate|citrate|acetate|phosphate|bitartrate|dihydrate|monohydrate|anhydrous|micronized|usp|injection|tablets?|capsules?|oral|solution|suspension|cream|ointment|gel|spray)\b/gu,
-      ' ',
-    )
-    .replace(/[^a-z0-9]+/gu, ' ')
-    .trim()
-}
 
 /**
  * A reading's identity for grouping. Two labels stating "5 to 7 hours" and "5-7 hours" have said

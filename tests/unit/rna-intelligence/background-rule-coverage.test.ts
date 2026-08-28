@@ -222,6 +222,24 @@ function validBackground(): MedicineRecordedBackground {
         source: { ...labelSource, excerpt: PEDIATRIC_TEXT },
       },
     ],
+    composition: {
+      declaredIngredientCount: 2,
+      ingredientsWithoutSubstanceData: 1,
+      ingredients: [
+        {
+          nameAsRecorded: 'SYNTHETIC MEDICINE',
+          substanceKey: 'synthetic medicine',
+          unii: 'ABC1234XYZ',
+          substanceDataState: 'RECORDED',
+          mechanism: { statements: [statement(MECHANISM_TEXT)] },
+        },
+        {
+          nameAsRecorded: 'SYNTHETIC COMPANION',
+          substanceKey: 'synthetic companion',
+          substanceDataState: 'NO_SOURCE_ABOUT_THIS_SUBSTANCE_ALONE',
+        },
+      ],
+    },
     sourceConsensus: {
       documentsExamined: 12,
       fields: [
@@ -482,6 +500,29 @@ const ruleCases = {
     mutate: (background) => {
       // A role whose sentence may have been denying it must not reach a reader as an assertion.
       delete background.interactionSignals![0]!.polarity
+    },
+  },
+  I_COMPOSITION_COUNT_MISMATCH: {
+    mutate: (background) => {
+      background.composition!.declaredIngredientCount = 5
+    },
+  },
+  I_INGREDIENT_STATE_UNKNOWN: {
+    mutate: (background) => {
+      // @ts-expect-error deliberately outside the vocabulary
+      background.composition!.ingredients[0]!.substanceDataState = 'PROBABLY'
+    },
+  },
+  I_INGREDIENT_KEY_MISSING: {
+    mutate: (background) => {
+      background.composition!.ingredients[0]!.substanceKey = ''
+    },
+  },
+  I_INGREDIENT_DUPLICATED: {
+    mutate: (background) => {
+      // One substance twice in one product means two spellings collapsed to one identity.
+      background.composition!.ingredients[1]!.substanceKey =
+        background.composition!.ingredients[0]!.substanceKey
     },
   },
   I_CONSENSUS_COUNT_INCONSISTENT: {

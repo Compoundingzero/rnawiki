@@ -17,8 +17,8 @@
     "documentIdentity": "source kind plus source identifier"
   },
   "coverage": {
-    "considered": 3008,
-    "used": 3008,
+    "considered": 3012,
+    "used": 3012,
     "reason": "Every record in the corpus holds at least one recordable module and is measured."
   },
   "output": {
@@ -202,6 +202,36 @@
           "excerptCoverage": 0.8888888888888888
         },
         "score": 0.6976190476190476
+      },
+      {
+        "slug": "galantamine",
+        "name": "galantamine",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 9,
+        "distinctSourceDocuments": 2,
+        "sourceAttachments": 27,
+        "sourceAttachmentsWithExcerpt": 25,
+        "numericValues": 6,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.6428571428571429,
+          "sourceCorroboration": 0.5,
+          "numericComparability": 0.8571428571428571,
+          "excerptCoverage": 0.9259259259259259
+        },
+        "score": 0.6817460317460318
       },
       {
         "slug": "alosetron",
@@ -534,6 +564,64 @@
         "score": 0.6699999999999999
       },
       {
+        "slug": "vardenafil",
+        "name": "vardenafil",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 2,
+        "sourceAttachments": 23,
+        "sourceAttachmentsWithExcerpt": 21,
+        "numericValues": 4,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.5,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9130434782608695
+        },
+        "score": 0.6690993788819876
+      },
+      {
+        "slug": "darifenacin",
+        "name": "darifenacin",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 2,
+        "sourceAttachments": 21,
+        "sourceAttachmentsWithExcerpt": 19,
+        "numericValues": 3,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.5,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9047619047619048
+        },
+        "score": 0.6678571428571428
+      },
+      {
         "slug": "fluvastatin",
         "name": "fluvastatin",
         "modulesPresent": [
@@ -648,6 +736,36 @@
           "excerptCoverage": 0.8888888888888888
         },
         "score": 0.6654761904761904
+      },
+      {
+        "slug": "fosaprepitant-dimeglumine",
+        "name": "fosaprepitant dimeglumine",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 9,
+        "distinctSourceDocuments": 2,
+        "sourceAttachments": 25,
+        "sourceAttachmentsWithExcerpt": 23,
+        "numericValues": 3,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.6428571428571429,
+          "sourceCorroboration": 0.5,
+          "numericComparability": 0.75,
+          "excerptCoverage": 0.92
+        },
+        "score": 0.6647857142857143
       },
       {
         "slug": "glycopyrrolate",
@@ -1180,6 +1298,36 @@
         "score": 0.6424107142857143
       },
       {
+        "slug": "naldemedine",
+        "name": "naldemedine",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 9,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 32,
+        "sourceAttachmentsWithExcerpt": 30,
+        "numericValues": 5,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.6428571428571429,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9375
+        },
+        "score": 0.6424107142857143
+      },
+      {
         "slug": "dupilumab",
         "name": "dupilumab",
         "modulesPresent": [
@@ -1415,6 +1563,36 @@
         "score": 0.6402472527472527
       },
       {
+        "slug": "ritlecitinib",
+        "name": "ritlecitinib",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 9,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 25,
+        "sourceAttachmentsWithExcerpt": 23,
+        "numericValues": 4,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.6428571428571429,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.92
+        },
+        "score": 0.6397857142857143
+      },
+      {
         "slug": "triclabendazole",
         "name": "triclabendazole",
         "modulesPresent": [
@@ -1475,36 +1653,6 @@
         "score": 0.6381493506493506
       },
       {
-        "slug": "dexlansoprazole",
-        "name": "dexlansoprazole",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "registryIdentifiers",
-          "mechanism",
-          "molecularIdentity",
-          "interactionSignals",
-          "safety",
-          "populationStatements",
-          "commonAdverseReactions"
-        ],
-        "moduleCount": 9,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 22,
-        "sourceAttachmentsWithExcerpt": 20,
-        "numericValues": 4,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.6428571428571429,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 1,
-          "excerptCoverage": 0.9090909090909091
-        },
-        "score": 0.6381493506493506
-      },
-      {
         "slug": "gilteritinib",
         "name": "gilteritinib",
         "modulesPresent": [
@@ -1533,6 +1681,35 @@
           "excerptCoverage": 0.9090909090909091
         },
         "score": 0.6381493506493506
+      },
+      {
+        "slug": "citalopram",
+        "name": "citalopram",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 2,
+        "sourceAttachments": 21,
+        "sourceAttachmentsWithExcerpt": 19,
+        "numericValues": 4,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.5,
+          "numericComparability": 0.8,
+          "excerptCoverage": 0.9047619047619048
+        },
+        "score": 0.6378571428571428
       },
       {
         "slug": "temozolomide",
@@ -2817,6 +2994,36 @@
         "score": 0.6176948051948052
       },
       {
+        "slug": "vortioxetine",
+        "name": "vortioxetine",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 9,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 33,
+        "sourceAttachmentsWithExcerpt": 31,
+        "numericValues": 5,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.6428571428571429,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.8333333333333334,
+          "excerptCoverage": 0.9393939393939394
+        },
+        "score": 0.6176948051948052
+      },
+      {
         "slug": "apremilast",
         "name": "apremilast",
         "modulesPresent": [
@@ -3788,6 +3995,35 @@
         "score": 0.6131211180124223
       },
       {
+        "slug": "sorafenib",
+        "name": "sorafenib",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 23,
+        "sourceAttachmentsWithExcerpt": 22,
+        "numericValues": 3,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9565217391304348
+        },
+        "score": 0.6131211180124223
+      },
+      {
         "slug": "palovarotene",
         "name": "palovarotene",
         "modulesPresent": [
@@ -3905,6 +4141,35 @@
           "excerptCoverage": 0.9393939393939394
         },
         "score": 0.6126948051948052
+      },
+      {
+        "slug": "dexlansoprazole",
+        "name": "dexlansoprazole",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 21,
+        "sourceAttachmentsWithExcerpt": 20,
+        "numericValues": 4,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9523809523809523
+        },
+        "score": 0.6125
       },
       {
         "slug": "remimazolam",
@@ -4730,6 +4995,35 @@
           "excerptCoverage": 0.92
         },
         "score": 0.6097857142857144
+      },
+      {
+        "slug": "tazemetostat",
+        "name": "tazemetostat",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 30,
+        "sourceAttachmentsWithExcerpt": 28,
+        "numericValues": 5,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9333333333333333
+        },
+        "score": 0.6096428571428572
       },
       {
         "slug": "zidesamtinib",
@@ -8892,6 +9186,35 @@
         "score": 0.5923701298701298
       },
       {
+        "slug": "eletriptan",
+        "name": "eletriptan",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 24,
+        "sourceAttachmentsWithExcerpt": 23,
+        "numericValues": 6,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.8571428571428571,
+          "excerptCoverage": 0.9583333333333334
+        },
+        "score": 0.5919642857142857
+      },
+      {
         "slug": "cladribine",
         "name": "cladribine",
         "modulesPresent": [
@@ -10689,6 +11012,35 @@
         "score": 0.583531746031746
       },
       {
+        "slug": "valbenazine",
+        "name": "valbenazine",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 27,
+        "sourceAttachmentsWithExcerpt": 25,
+        "numericValues": 5,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.8333333333333334,
+          "excerptCoverage": 0.9259259259259259
+        },
+        "score": 0.583531746031746
+      },
+      {
         "slug": "vemurafenib",
         "name": "vemurafenib",
         "modulesPresent": [
@@ -11319,34 +11671,6 @@
         "score": 0.5806818181818182
       },
       {
-        "slug": "vardenafil",
-        "name": "vardenafil",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "mechanism",
-          "interactionSignals",
-          "safety",
-          "populationStatements",
-          "commonAdverseReactions"
-        ],
-        "moduleCount": 7,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 22,
-        "sourceAttachmentsWithExcerpt": 21,
-        "numericValues": 4,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.5,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 1,
-          "excerptCoverage": 0.9545454545454546
-        },
-        "score": 0.5806818181818182
-      },
-      {
         "slug": "cimetidine",
         "name": "cimetidine",
         "modulesPresent": [
@@ -11511,34 +11835,6 @@
           "excerptCoverage": 0.9523809523809523
         },
         "score": 0.5803571428571428
-      },
-      {
-        "slug": "darifenacin",
-        "name": "darifenacin",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "mechanism",
-          "molecularIdentity",
-          "interactionSignals",
-          "safety",
-          "populationStatements"
-        ],
-        "moduleCount": 7,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 20,
-        "sourceAttachmentsWithExcerpt": 19,
-        "numericValues": 3,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.5,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 1,
-          "excerptCoverage": 0.95
-        },
-        "score": 0.58
       },
       {
         "slug": "granisetron",
@@ -11828,6 +12124,34 @@
           "excerptCoverage": 0.9333333333333333
         },
         "score": 0.5796428571428571
+      },
+      {
+        "slug": "balsalazide",
+        "name": "balsalazide",
+        "modulesPresent": [
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 19,
+        "sourceAttachmentsWithExcerpt": 18,
+        "numericValues": 1,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9473684210526315
+        },
+        "score": 0.5796052631578947
       },
       {
         "slug": "monomethyl",
@@ -12199,34 +12523,6 @@
           "excerptCoverage": 0.9411764705882353
         },
         "score": 0.5786764705882352
-      },
-      {
-        "slug": "estradiol",
-        "name": "estradiol",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "registryIdentifiers",
-          "mechanism",
-          "molecularIdentity",
-          "safety",
-          "populationStatements"
-        ],
-        "moduleCount": 7,
-        "distinctSourceDocuments": 2,
-        "sourceAttachments": 14,
-        "sourceAttachmentsWithExcerpt": 12,
-        "numericValues": 2,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.5,
-          "sourceCorroboration": 0.5,
-          "numericComparability": 0.6666666666666666,
-          "excerptCoverage": 0.8571428571428571
-        },
-        "score": 0.5785714285714285
       },
       {
         "slug": "fomepizole",
@@ -13230,6 +13526,34 @@
       {
         "slug": "selumetinib",
         "name": "selumetinib",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "interactionSignals",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 26,
+        "sourceAttachmentsWithExcerpt": 24,
+        "numericValues": 2,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9230769230769231
+        },
+        "score": 0.5759615384615384
+      },
+      {
+        "slug": "talazoparib",
+        "name": "talazoparib",
         "modulesPresent": [
           "pharmacokinetics",
           "productVariants",
@@ -16816,35 +17140,6 @@
         "score": 0.5638736263736264
       },
       {
-        "slug": "nevirapine",
-        "name": "nevirapine",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "registryIdentifiers",
-          "mechanism",
-          "molecularIdentity",
-          "interactionSignals",
-          "safety",
-          "populationStatements"
-        ],
-        "moduleCount": 8,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 16,
-        "sourceAttachmentsWithExcerpt": 14,
-        "numericValues": 3,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.5714285714285714,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0.75,
-          "excerptCoverage": 0.875
-        },
-        "score": 0.5633928571428571
-      },
-      {
         "slug": "letrozole",
         "name": "letrozole",
         "modulesPresent": [
@@ -17835,34 +18130,6 @@
           "excerptCoverage": 0.9285714285714286
         },
         "score": 0.5589285714285714
-      },
-      {
-        "slug": "eletriptan",
-        "name": "eletriptan",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "mechanism",
-          "molecularIdentity",
-          "interactionSignals",
-          "populationStatements",
-          "commonAdverseReactions"
-        ],
-        "moduleCount": 7,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 20,
-        "sourceAttachmentsWithExcerpt": 19,
-        "numericValues": 6,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.5,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0.8571428571428571,
-          "excerptCoverage": 0.95
-        },
-        "score": 0.5585714285714285
       },
       {
         "slug": "cobimetinib",
@@ -19361,6 +19628,34 @@
         "score": 0.5509615384615385
       },
       {
+        "slug": "tafamidis",
+        "name": "tafamidis",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "populationStatements"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 26,
+        "sourceAttachmentsWithExcerpt": 24,
+        "numericValues": 5,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.8333333333333334,
+          "excerptCoverage": 0.9230769230769231
+        },
+        "score": 0.5509615384615385
+      },
+      {
         "slug": "gadobutrol",
         "name": "gadobutrol",
         "modulesPresent": [
@@ -19430,35 +19725,6 @@
           "interactionSignals",
           "safety",
           "populationStatements"
-        ],
-        "moduleCount": 8,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 16,
-        "sourceAttachmentsWithExcerpt": 14,
-        "numericValues": 2,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.5714285714285714,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0.6666666666666666,
-          "excerptCoverage": 0.875
-        },
-        "score": 0.5508928571428571
-      },
-      {
-        "slug": "levoleucovorin",
-        "name": "levoleucovorin",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "registryIdentifiers",
-          "mechanism",
-          "molecularIdentity",
-          "safety",
-          "populationStatements",
-          "commonAdverseReactions"
         ],
         "moduleCount": 8,
         "distinctSourceDocuments": 1,
@@ -19560,6 +19826,35 @@
           "excerptCoverage": 0.95
         },
         "score": 0.5499999999999999
+      },
+      {
+        "slug": "glycopyrronium",
+        "name": "glycopyrronium",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "registryIdentifiers",
+          "mechanism",
+          "molecularIdentity",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 8,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 15,
+        "sourceAttachmentsWithExcerpt": 13,
+        "numericValues": 2,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5714285714285714,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.6666666666666666,
+          "excerptCoverage": 0.8666666666666667
+        },
+        "score": 0.5496428571428571
       },
       {
         "slug": "zenocutuzumab",
@@ -21623,6 +21918,34 @@
         "score": 0.5411764705882353
       },
       {
+        "slug": "darunavir-hydrate",
+        "name": "darunavir hydrate",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 17,
+        "sourceAttachmentsWithExcerpt": 16,
+        "numericValues": 3,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.75,
+          "excerptCoverage": 0.9411764705882353
+        },
+        "score": 0.5411764705882353
+      },
+      {
         "slug": "tiagabine",
         "name": "tiagabine",
         "modulesPresent": [
@@ -21736,6 +22059,34 @@
       {
         "slug": "acamprosate",
         "name": "acamprosate",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 15,
+        "sourceAttachmentsWithExcerpt": 14,
+        "numericValues": 3,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.75,
+          "excerptCoverage": 0.9333333333333333
+        },
+        "score": 0.5399999999999999
+      },
+      {
+        "slug": "nevirapine",
+        "name": "nevirapine",
         "modulesPresent": [
           "pharmacokinetics",
           "productVariants",
@@ -24053,6 +24404,62 @@
       {
         "slug": "frovatriptan",
         "name": "frovatriptan",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 15,
+        "sourceAttachmentsWithExcerpt": 14,
+        "numericValues": 2,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.6666666666666666,
+          "excerptCoverage": 0.9333333333333333
+        },
+        "score": 0.5275
+      },
+      {
+        "slug": "ketorolac",
+        "name": "ketorolac",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 15,
+        "sourceAttachmentsWithExcerpt": 14,
+        "numericValues": 2,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.6666666666666666,
+          "excerptCoverage": 0.9333333333333333
+        },
+        "score": 0.5275
+      },
+      {
+        "slug": "levoleucovorin",
+        "name": "levoleucovorin",
         "modulesPresent": [
           "pharmacokinetics",
           "productVariants",
@@ -27843,6 +28250,32 @@
         "score": 0.5082142857142857
       },
       {
+        "slug": "calcipotriene-hydrate",
+        "name": "calcipotriene hydrate",
+        "modulesPresent": [
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 5,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 10,
+        "sourceAttachmentsWithExcerpt": 9,
+        "numericValues": 1,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.35714285714285715,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.9
+        },
+        "score": 0.5082142857142857
+      },
+      {
         "slug": "carbinoxamine",
         "name": "carbinoxamine",
         "modulesPresent": [
@@ -28576,6 +29009,34 @@
           "excerptCoverage": 0.8888888888888888
         },
         "score": 0.506547619047619
+      },
+      {
+        "slug": "fosfomycin",
+        "name": "fosfomycin",
+        "modulesPresent": [
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "interactionSignals",
+          "safety",
+          "populationStatements",
+          "commonAdverseReactions"
+        ],
+        "moduleCount": 7,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 25,
+        "sourceAttachmentsWithExcerpt": 24,
+        "numericValues": 1,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.5,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.5,
+          "excerptCoverage": 0.96
+        },
+        "score": 0.5065
       },
       {
         "slug": "lenacapavir",
@@ -29760,6 +30221,33 @@
         "score": 0.49535714285714283
       },
       {
+        "slug": "pamidronate",
+        "name": "pamidronate",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 6,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 15,
+        "sourceAttachmentsWithExcerpt": 14,
+        "numericValues": 2,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.42857142857142855,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.6666666666666666,
+          "excerptCoverage": 0.9333333333333333
+        },
+        "score": 0.49535714285714283
+      },
+      {
         "slug": "canakinumab",
         "name": "canakinumab",
         "modulesPresent": [
@@ -29906,6 +30394,33 @@
           "molecularIdentity",
           "populationStatements",
           "commonAdverseReactions"
+        ],
+        "moduleCount": 6,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 13,
+        "sourceAttachmentsWithExcerpt": 12,
+        "numericValues": 2,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.42857142857142855,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.6666666666666666,
+          "excerptCoverage": 0.9230769230769231
+        },
+        "score": 0.4938186813186813
+      },
+      {
+        "slug": "estradiol",
+        "name": "estradiol",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "mechanism",
+          "molecularIdentity",
+          "safety",
+          "populationStatements"
         ],
         "moduleCount": 6,
         "distinctSourceDocuments": 1,
@@ -31864,32 +32379,6 @@
         "score": 0.48035714285714287
       },
       {
-        "slug": "cefotetan",
-        "name": "cefotetan",
-        "modulesPresent": [
-          "pharmacokinetics",
-          "productVariants",
-          "registryIdentifiers",
-          "safety",
-          "populationStatements"
-        ],
-        "moduleCount": 5,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 7,
-        "sourceAttachmentsWithExcerpt": 5,
-        "numericValues": 1,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.35714285714285715,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 1,
-          "excerptCoverage": 0.7142857142857143
-        },
-        "score": 0.48035714285714287
-      },
-      {
         "slug": "crotamiton",
         "name": "crotamiton",
         "modulesPresent": [
@@ -33719,6 +34208,31 @@
         "modulesPresent": [
           "productVariants",
           "molecularIdentity",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 4,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 6,
+        "sourceAttachmentsWithExcerpt": 5,
+        "numericValues": 1,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.2857142857142857,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 1,
+          "excerptCoverage": 0.8333333333333334
+        },
+        "score": 0.4660714285714286
+      },
+      {
+        "slug": "cefotetan",
+        "name": "cefotetan",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
           "safety",
           "populationStatements"
         ],
@@ -35712,6 +36226,31 @@
         "score": 0.4332142857142857
       },
       {
+        "slug": "clorazepate",
+        "name": "clorazepate",
+        "modulesPresent": [
+          "pharmacokinetics",
+          "productVariants",
+          "molecularIdentity",
+          "safety"
+        ],
+        "moduleCount": 4,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 7,
+        "sourceAttachmentsWithExcerpt": 6,
+        "numericValues": 3,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.2857142857142857,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0.75,
+          "excerptCoverage": 0.8571428571428571
+        },
+        "score": 0.4321428571428571
+      },
+      {
         "slug": "isoproterenol",
         "name": "isoproterenol",
         "modulesPresent": [
@@ -36876,31 +37415,6 @@
       {
         "slug": "atracurium",
         "name": "atracurium",
-        "modulesPresent": [
-          "productVariants",
-          "molecularIdentity",
-          "safety",
-          "populationStatements"
-        ],
-        "moduleCount": 4,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 8,
-        "sourceAttachmentsWithExcerpt": 7,
-        "numericValues": 1,
-        "displayOnlyValues": 1,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.2857142857142857,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0.5,
-          "excerptCoverage": 0.875
-        },
-        "score": 0.3973214285714286
-      },
-      {
-        "slug": "carboprost",
-        "name": "carboprost",
         "modulesPresent": [
           "productVariants",
           "molecularIdentity",
@@ -40516,6 +41030,31 @@
         "score": 0.3214285714285714
       },
       {
+        "slug": "pentamidine",
+        "name": "pentamidine",
+        "modulesPresent": [
+          "productVariants",
+          "mechanism",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 4,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 7,
+        "sourceAttachmentsWithExcerpt": 6,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.2857142857142857,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0.8571428571428571
+        },
+        "score": 0.3196428571428571
+      },
+      {
         "slug": "sorbitol",
         "name": "sorbitol",
         "modulesPresent": [
@@ -41305,6 +41844,30 @@
         "score": 0.2922619047619047
       },
       {
+        "slug": "prochlorperazine",
+        "name": "prochlorperazine",
+        "modulesPresent": [
+          "productVariants",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 3,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 9,
+        "sourceAttachmentsWithExcerpt": 8,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.21428571428571427,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0.8888888888888888
+        },
+        "score": 0.2922619047619047
+      },
+      {
         "slug": "ammonium-lactate",
         "name": "ammonium lactate",
         "modulesPresent": [
@@ -41456,6 +42019,30 @@
       {
         "slug": "ethambutol",
         "name": "ethambutol",
+        "modulesPresent": [
+          "productVariants",
+          "safety",
+          "populationStatements"
+        ],
+        "moduleCount": 3,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 8,
+        "sourceAttachmentsWithExcerpt": 7,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.21428571428571427,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0.875
+        },
+        "score": 0.2901785714285714
+      },
+      {
+        "slug": "iothalamate",
+        "name": "iothalamate",
         "modulesPresent": [
           "productVariants",
           "safety",
@@ -41766,30 +42353,6 @@
         "score": 0.2839285714285714
       },
       {
-        "slug": "pentamidine",
-        "name": "pentamidine",
-        "modulesPresent": [
-          "productVariants",
-          "mechanism",
-          "safety"
-        ],
-        "moduleCount": 3,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 6,
-        "sourceAttachmentsWithExcerpt": 5,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.21428571428571427,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0.8333333333333334
-        },
-        "score": 0.2839285714285714
-      },
-      {
         "slug": "proparacaine",
         "name": "proparacaine",
         "modulesPresent": [
@@ -41864,6 +42427,30 @@
         "score": 0.2810714285714285
       },
       {
+        "slug": "carboprost",
+        "name": "carboprost",
+        "modulesPresent": [
+          "productVariants",
+          "molecularIdentity",
+          "safety"
+        ],
+        "moduleCount": 3,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 5,
+        "sourceAttachmentsWithExcerpt": 4,
+        "numericValues": 0,
+        "displayOnlyValues": 1,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.21428571428571427,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0.8
+        },
+        "score": 0.2789285714285714
+      },
+      {
         "slug": "dyclonine",
         "name": "dyclonine",
         "modulesPresent": [
@@ -41890,30 +42477,6 @@
       {
         "slug": "homatropine",
         "name": "homatropine",
-        "modulesPresent": [
-          "productVariants",
-          "safety",
-          "populationStatements"
-        ],
-        "moduleCount": 3,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 5,
-        "sourceAttachmentsWithExcerpt": 4,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.21428571428571427,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0.8
-        },
-        "score": 0.2789285714285714
-      },
-      {
-        "slug": "iothalamate",
-        "name": "iothalamate",
         "modulesPresent": [
           "productVariants",
           "safety",
@@ -42922,29 +43485,6 @@
         "score": 0.24678571428571427
       },
       {
-        "slug": "prochlorperazine",
-        "name": "prochlorperazine",
-        "modulesPresent": [
-          "productVariants",
-          "safety"
-        ],
-        "moduleCount": 2,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 5,
-        "sourceAttachmentsWithExcerpt": 4,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.14285714285714285,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0.8
-        },
-        "score": 0.24678571428571427
-      },
-      {
         "slug": "calcium-sulfate",
         "name": "calcium sulfate",
         "modulesPresent": [
@@ -43080,30 +43620,6 @@
       {
         "slug": "protamine",
         "name": "protamine",
-        "modulesPresent": [
-          "productVariants",
-          "registryIdentifiers",
-          "safety"
-        ],
-        "moduleCount": 3,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 4,
-        "sourceAttachmentsWithExcerpt": 2,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.21428571428571427,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0.5
-        },
-        "score": 0.23392857142857143
-      },
-      {
-        "slug": "tromethamine",
-        "name": "tromethamine",
         "modulesPresent": [
           "productVariants",
           "registryIdentifiers",
@@ -43476,29 +43992,6 @@
       {
         "slug": "ambrosia-artemisiifolia",
         "name": "ambrosia artemisiifolia",
-        "modulesPresent": [
-          "productVariants",
-          "registryIdentifiers"
-        ],
-        "moduleCount": 2,
-        "distinctSourceDocuments": 2,
-        "sourceAttachments": 2,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.14285714285714285,
-          "sourceCorroboration": 0.5,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.18928571428571428
-      },
-      {
-        "slug": "ampicillin",
-        "name": "ampicillin",
         "modulesPresent": [
           "productVariants",
           "registryIdentifiers"
@@ -44463,29 +44956,6 @@
         "score": 0.18928571428571428
       },
       {
-        "slug": "dextromethorphan",
-        "name": "dextromethorphan",
-        "modulesPresent": [
-          "productVariants",
-          "registryIdentifiers"
-        ],
-        "moduleCount": 2,
-        "distinctSourceDocuments": 2,
-        "sourceAttachments": 2,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.14285714285714285,
-          "sourceCorroboration": 0.5,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.18928571428571428
-      },
-      {
         "slug": "difluprednate",
         "name": "difluprednate",
         "modulesPresent": [
@@ -44879,29 +45349,6 @@
       {
         "slug": "fluoride",
         "name": "fluoride",
-        "modulesPresent": [
-          "productVariants",
-          "registryIdentifiers"
-        ],
-        "moduleCount": 2,
-        "distinctSourceDocuments": 2,
-        "sourceAttachments": 2,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.14285714285714285,
-          "sourceCorroboration": 0.5,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.18928571428571428
-      },
-      {
-        "slug": "fosaprepitant-dimeglumine",
-        "name": "fosaprepitant dimeglumine",
         "modulesPresent": [
           "productVariants",
           "registryIdentifiers"
@@ -45799,6 +46246,29 @@
       {
         "slug": "nintedanib-esylate",
         "name": "nintedanib esylate",
+        "modulesPresent": [
+          "productVariants",
+          "registryIdentifiers"
+        ],
+        "moduleCount": 2,
+        "distinctSourceDocuments": 2,
+        "sourceAttachments": 2,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.14285714285714285,
+          "sourceCorroboration": 0.5,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0.18928571428571428
+      },
+      {
+        "slug": "niraparib",
+        "name": "niraparib",
         "modulesPresent": [
           "productVariants",
           "registryIdentifiers"
@@ -46788,29 +47258,6 @@
       {
         "slug": "solidago-virgaurea-flowering-top",
         "name": "solidago virgaurea flowering top",
-        "modulesPresent": [
-          "productVariants",
-          "registryIdentifiers"
-        ],
-        "moduleCount": 2,
-        "distinctSourceDocuments": 2,
-        "sourceAttachments": 2,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.14285714285714285,
-          "sourceCorroboration": 0.5,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.18928571428571428
-      },
-      {
-        "slug": "sorafenib",
-        "name": "sorafenib",
         "modulesPresent": [
           "productVariants",
           "registryIdentifiers"
@@ -48857,6 +49304,28 @@
       {
         "slug": "amphetamine-dl-aspartate",
         "name": "amphetamine dl aspartate",
+        "modulesPresent": [
+          "productVariants"
+        ],
+        "moduleCount": 1,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 1,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.07142857142857142,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0.09464285714285714
+      },
+      {
+        "slug": "ampicillin",
+        "name": "ampicillin",
         "modulesPresent": [
           "productVariants"
         ],
@@ -51737,28 +52206,6 @@
         "score": 0.09464285714285714
       },
       {
-        "slug": "calcipotriene-hydrate",
-        "name": "calcipotriene hydrate",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
         "slug": "calcium-ascorbate",
         "name": "calcium ascorbate",
         "modulesPresent": [
@@ -53541,28 +53988,6 @@
         "score": 0.09464285714285714
       },
       {
-        "slug": "citalopram",
-        "name": "citalopram",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
         "slug": "citharacanthus-spinicrus",
         "name": "citharacanthus spinicrus",
         "modulesPresent": [
@@ -54817,28 +55242,6 @@
         "score": 0.09464285714285714
       },
       {
-        "slug": "darunavir-hydrate",
-        "name": "darunavir hydrate",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
         "slug": "darunavir-propylene-glycolate",
         "name": "darunavir propylene glycolate",
         "modulesPresent": [
@@ -55215,6 +55618,28 @@
       {
         "slug": "dextroamphetamine-saccharate",
         "name": "dextroamphetamine saccharate",
+        "modulesPresent": [
+          "productVariants"
+        ],
+        "moduleCount": 1,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 1,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.07142857142857142,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0.09464285714285714
+      },
+      {
+        "slug": "dextromethorphan",
+        "name": "dextromethorphan",
         "modulesPresent": [
           "productVariants"
         ],
@@ -57831,28 +58256,6 @@
         "score": 0.09464285714285714
       },
       {
-        "slug": "fosfomycin",
-        "name": "fosfomycin",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
         "slug": "foslevodopa",
         "name": "foslevodopa",
         "modulesPresent": [
@@ -58097,28 +58500,6 @@
       {
         "slug": "futibatinib",
         "name": "futibatinib",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "galantamine",
-        "name": "galantamine",
         "modulesPresent": [
           "productVariants"
         ],
@@ -58583,28 +58964,6 @@
         "name": "glycine",
         "modulesPresent": [
           "registryIdentifiers"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "glycopyrronium",
-        "name": "glycopyrronium",
-        "modulesPresent": [
-          "productVariants"
         ],
         "moduleCount": 1,
         "distinctSourceDocuments": 1,
@@ -61025,28 +61384,6 @@
         "name": "kerosene",
         "modulesPresent": [
           "registryIdentifiers"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "ketorolac",
-        "name": "ketorolac",
-        "modulesPresent": [
-          "productVariants"
         ],
         "moduleCount": 1,
         "distinctSourceDocuments": 1,
@@ -64123,28 +64460,6 @@
         "score": 0.09464285714285714
       },
       {
-        "slug": "naldemedine",
-        "name": "naldemedine",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
         "slug": "naloxone",
         "name": "naloxone",
         "modulesPresent": [
@@ -64521,28 +64836,6 @@
       {
         "slug": "nipocalimab-aahu",
         "name": "nipocalimab aahu",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "niraparib",
-        "name": "niraparib",
         "modulesPresent": [
           "productVariants"
         ],
@@ -67621,6 +67914,28 @@
         "score": 0.09464285714285714
       },
       {
+        "slug": "pyrantel",
+        "name": "pyrantel",
+        "modulesPresent": [
+          "productVariants"
+        ],
+        "moduleCount": 1,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 1,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.07142857142857142,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0.09464285714285714
+      },
+      {
         "slug": "pyridoxal",
         "name": "pyridoxal",
         "modulesPresent": [
@@ -68503,28 +68818,6 @@
       {
         "slug": "risedronate-sodium-hemipentahydrate",
         "name": "risedronate sodium hemipentahydrate",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "ritlecitinib",
-        "name": "ritlecitinib",
         "modulesPresent": [
           "productVariants"
         ],
@@ -71097,28 +71390,6 @@
         "score": 0.09464285714285714
       },
       {
-        "slug": "tafamidis",
-        "name": "tafamidis",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
         "slug": "tafasitamab",
         "name": "tafasitamab",
         "modulesPresent": [
@@ -71143,28 +71414,6 @@
       {
         "slug": "tafasitamab-cxix",
         "name": "tafasitamab cxix",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "talazoparib",
-        "name": "talazoparib",
         "modulesPresent": [
           "productVariants"
         ],
@@ -71275,28 +71524,6 @@
       {
         "slug": "taurolidine",
         "name": "taurolidine",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "tazemetostat",
-        "name": "tazemetostat",
         "modulesPresent": [
           "productVariants"
         ],
@@ -72989,6 +73216,28 @@
         "score": 0.09464285714285714
       },
       {
+        "slug": "tromethamine",
+        "name": "tromethamine",
+        "modulesPresent": [
+          "productVariants"
+        ],
+        "moduleCount": 1,
+        "distinctSourceDocuments": 1,
+        "sourceAttachments": 1,
+        "sourceAttachmentsWithExcerpt": 0,
+        "numericValues": 0,
+        "displayOnlyValues": 0,
+        "oldestRetrievedAt": "2026-08-28",
+        "newestRetrievedAt": "2026-08-28",
+        "components": {
+          "moduleBreadth": 0.07142857142857142,
+          "sourceCorroboration": 0.25,
+          "numericComparability": 0,
+          "excerptCoverage": 0
+        },
+        "score": 0.09464285714285714
+      },
+      {
         "slug": "tuberculinum-residuum",
         "name": "tuberculinum residuum",
         "modulesPresent": [
@@ -73477,28 +73726,6 @@
         "name": "vaccinium vitis idaea leaf",
         "modulesPresent": [
           "registryIdentifiers"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
-        "slug": "valbenazine",
-        "name": "valbenazine",
-        "modulesPresent": [
-          "productVariants"
         ],
         "moduleCount": 1,
         "distinctSourceDocuments": 1,
@@ -74155,28 +74382,6 @@
         "score": 0.09464285714285714
       },
       {
-        "slug": "vortioxetine",
-        "name": "vortioxetine",
-        "modulesPresent": [
-          "productVariants"
-        ],
-        "moduleCount": 1,
-        "distinctSourceDocuments": 1,
-        "sourceAttachments": 1,
-        "sourceAttachmentsWithExcerpt": 0,
-        "numericValues": 0,
-        "displayOnlyValues": 0,
-        "oldestRetrievedAt": "2026-08-28",
-        "newestRetrievedAt": "2026-08-28",
-        "components": {
-          "moduleBreadth": 0.07142857142857142,
-          "sourceCorroboration": 0.25,
-          "numericComparability": 0,
-          "excerptCoverage": 0
-        },
-        "score": 0.09464285714285714
-      },
-      {
         "slug": "voxilaprevir",
         "name": "voxilaprevir",
         "modulesPresent": [
@@ -74728,22 +74933,22 @@
       }
     ],
     "scoreDistribution": {
-      "count": 3008,
+      "count": 3012,
       "min": 0.09464285714285714,
       "p25": 0.09464285714285714,
-      "median": 0.29107142857142854,
-      "p75": 0.5416666666666666,
+      "median": 0.30565476190476193,
+      "p75": 0.5417207792207792,
       "max": 0.7039408866995074,
-      "robustScale": 0.29122499999999996
+      "robustScale": 0.31284625000000005
     },
     "moduleCountHistogram": [
       {
         "moduleCount": 1,
-        "medicines": 1251
+        "medicines": 1240
       },
       {
         "moduleCount": 2,
-        "medicines": 212
+        "medicines": 208
       },
       {
         "moduleCount": 3,
@@ -74751,7 +74956,7 @@
       },
       {
         "moduleCount": 4,
-        "medicines": 181
+        "medicines": 183
       },
       {
         "moduleCount": 5,
@@ -74759,26 +74964,26 @@
       },
       {
         "moduleCount": 6,
-        "medicines": 242
+        "medicines": 244
       },
       {
         "moduleCount": 7,
-        "medicines": 333
+        "medicines": 337
       },
       {
         "moduleCount": 8,
-        "medicines": 340
+        "medicines": 347
       },
       {
         "moduleCount": 9,
-        "medicines": 138
+        "medicines": 142
       }
     ],
-    "singleModuleCount": 1251,
+    "singleModuleCount": 1240,
     "singleModuleByModule": [
       {
         "module": "productVariants",
-        "medicines": 644
+        "medicines": 633
       },
       {
         "module": "registryIdentifiers",
@@ -74800,129 +75005,129 @@
         "module": "registryIdentifiers"
       },
       {
-        "slug": "amivantamab-vmjw",
-        "name": "amivantamab vmjw",
-        "module": "productVariants"
-      },
-      {
-        "slug": "anhydrous-dibasic",
-        "name": "anhydrous dibasic",
-        "module": "productVariants"
-      },
-      {
-        "slug": "anhydrous-trisodium",
-        "name": "anhydrous trisodium",
-        "module": "productVariants"
-      },
-      {
-        "slug": "antazoline",
-        "name": "antazoline",
-        "module": "productVariants"
-      },
-      {
-        "slug": "bacillus-subtilis",
-        "name": "bacillus subtilis",
+        "slug": "amanita-muscaria-whole",
+        "name": "amanita muscaria whole",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "bevacizumab-bvzr",
-        "name": "bevacizumab bvzr",
-        "module": "productVariants"
-      },
-      {
-        "slug": "cenegermin-bkbj",
-        "name": "cenegermin bkbj",
-        "module": "productVariants"
-      },
-      {
-        "slug": "chimaphila-umbellata",
-        "name": "chimaphila umbellata",
+        "slug": "amitriptyline",
+        "name": "amitriptyline",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "chloride",
-        "name": "chloride",
+        "slug": "aspartic-acid",
+        "name": "aspartic acid",
         "module": "productVariants"
       },
       {
-        "slug": "chlorine",
-        "name": "chlorine",
+        "slug": "autologous-cultured-chondrocytes",
+        "name": "autologous cultured chondrocytes",
+        "module": "productVariants"
+      },
+      {
+        "slug": "bryonia-alba-root",
+        "name": "bryonia alba root",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "dapagliflozin-propanediol",
-        "name": "dapagliflozin propanediol",
-        "module": "productVariants"
-      },
-      {
-        "slug": "elvitegravir",
-        "name": "elvitegravir",
-        "module": "productVariants"
-      },
-      {
-        "slug": "erigeron-canadensis-whole",
-        "name": "erigeron canadensis whole",
+        "slug": "citrus-x-limon-flowering-top-oil",
+        "name": "citrus x limon flowering top oil",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "ferrous-iodide",
-        "name": "ferrous iodide",
+        "slug": "diltiazem-hcl",
+        "name": "diltiazem hcl",
+        "module": "productVariants"
+      },
+      {
+        "slug": "gentian-violet",
+        "name": "gentian violet",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "folate",
-        "name": "folate",
-        "module": "productVariants"
-      },
-      {
-        "slug": "insulin-glargine-aldy",
-        "name": "insulin glargine aldy",
-        "module": "productVariants"
-      },
-      {
-        "slug": "islelizumab-jsgr",
-        "name": "islelizumab jsgr",
-        "module": "productVariants"
-      },
-      {
-        "slug": "lecanemab-irmb",
-        "name": "lecanemab irmb",
-        "module": "productVariants"
-      },
-      {
-        "slug": "lunsotogene-parvec",
-        "name": "lunsotogene parvec",
-        "module": "productVariants"
-      },
-      {
-        "slug": "nicotine-polacrilex",
-        "name": "nicotine polacrilex",
-        "module": "productVariants"
-      },
-      {
-        "slug": "palmitoyl-tripeptide-8",
-        "name": "palmitoyl tripeptide 8",
+        "slug": "hawthorn-leaf-with-flower",
+        "name": "hawthorn leaf with flower",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "sulfamethoxazole",
-        "name": "sulfamethoxazole",
+        "slug": "letibotulinumtoxina-wlbg",
+        "name": "letibotulinumtoxina wlbg",
         "module": "productVariants"
       },
       {
-        "slug": "trillium-erectum-root",
-        "name": "trillium erectum root",
+        "slug": "marstacimab",
+        "name": "marstacimab",
+        "module": "productVariants"
+      },
+      {
+        "slug": "nemolizumab",
+        "name": "nemolizumab",
+        "module": "productVariants"
+      },
+      {
+        "slug": "neomycin",
+        "name": "neomycin",
+        "module": "productVariants"
+      },
+      {
+        "slug": "ornithogalum-umbellatum-whole",
+        "name": "ornithogalum umbellatum whole",
         "module": "registryIdentifiers"
       },
       {
-        "slug": "vaccinium-vitis-idaea-leaf",
-        "name": "vaccinium vitis idaea leaf",
+        "slug": "packera-aurea-whole",
+        "name": "packera aurea whole",
+        "module": "registryIdentifiers"
+      },
+      {
+        "slug": "pegvaliase-pqpz",
+        "name": "pegvaliase pqpz",
+        "module": "productVariants"
+      },
+      {
+        "slug": "proteus-inconstans",
+        "name": "proteus inconstans",
+        "module": "registryIdentifiers"
+      },
+      {
+        "slug": "secretin-human",
+        "name": "secretin human",
+        "module": "productVariants"
+      },
+      {
+        "slug": "strychnos-nux-vomica-seed",
+        "name": "strychnos nux vomica seed",
+        "module": "registryIdentifiers"
+      },
+      {
+        "slug": "syzygium-cumini-seed",
+        "name": "syzygium cumini seed",
+        "module": "registryIdentifiers"
+      },
+      {
+        "slug": "taletrectinib-adipate",
+        "name": "taletrectinib adipate",
+        "module": "productVariants"
+      },
+      {
+        "slug": "toripalimab",
+        "name": "toripalimab",
+        "module": "productVariants"
+      },
+      {
+        "slug": "toxoplasma-gondii",
+        "name": "toxoplasma gondii",
+        "module": "registryIdentifiers"
+      },
+      {
+        "slug": "verbena-officinalis",
+        "name": "verbena officinalis",
         "module": "registryIdentifiers"
       }
     ],
     "sourceConcentration": {
       "distinctDocuments": 3131,
-      "medicinesOnOneDocument": 2485,
+      "medicinesOnOneDocument": 2488,
       "medicinesWithNoDocument": 0,
       "reachSummary": {
         "count": 3131,
@@ -75047,7 +75252,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:6383c722-84e2-4719-a13d-19c54e3eefff",
         "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d"
@@ -75058,7 +75263,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:74aa5ab4-cd93-36b0-e053-2991aa0a1068",
         "FDA_LABEL:84a10b02-f02d-11bf-e053-2a91aa0a0844"
@@ -75069,7 +75274,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:0739d631-171b-42a8-bd55-0022b8df2d8a",
         "FDA_LABEL:e50e3ef9-3a9b-4172-a908-71c973a7fb5c"
@@ -75080,7 +75285,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:3abc9395-6a79-4d46-89db-ab2e7e4f9673",
         "FDA_LABEL:9a5247a1-cc05-442d-b2d0-950f887f03c2"
@@ -75091,7 +75296,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:f6725df6-50ee-4b0a-b900-d02ba634395d",
         "FDA_LABEL:f96cfd69-da34-41ee-90a9-610a4655cd1c"
@@ -75102,7 +75307,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:1ec54297-9b2d-427f-afc9-b18f4f8ffd93",
         "FDA_LABEL:83ec645b-ae8e-5979-e053-2991aa0a554f"
@@ -75113,7 +75318,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:3b13e528-b2e8-46c1-a3f9-e2e07f637cb8",
         "FDA_LABEL:60a54d4e-89c2-4329-86bf-a288527f37b5"
@@ -75124,21 +75329,10 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:1482f8a2-c2c0-45a1-8e90-b427227f0b28",
         "FDA_LABEL:8427439b-f497-5dd7-e053-2991aa0a591b"
-      ]
-    },
-    {
-      "slug": "ampicillin",
-      "reason": "COVERAGE_GAP",
-      "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
-      "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
-      "sources": [
-        "FDA_LABEL:4446d4c8-056d-4bc3-8f58-21255b063398",
-        "FDA_LABEL:e47a21b1-bbdb-4321-e053-2a95a90a3b4a"
       ]
     },
     {
@@ -75146,7 +75340,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:3f91cd92-eb6d-4bda-9cad-2e11e0b0fbe2",
         "FDA_LABEL:84606086-b4e0-4430-e053-2a91aa0ab677"
@@ -75157,7 +75351,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:24245e80-529f-0542-e063-6394a90a1fb4",
         "FDA_LABEL:e49ae317-a03d-4576-ba27-f661469584ed"
@@ -75168,7 +75362,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:6fa682c9-a312-4932-9831-f286908660ee",
         "FDA_LABEL:a617b089-ce66-464b-987b-b45d029b4d6f"
@@ -75179,7 +75373,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:088b9cd1-da68-4c34-8f09-62c2cde19e1f",
         "FDA_LABEL:b6b5863c-4d65-40a1-93f2-2ccb6ebc0252"
@@ -75190,7 +75384,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:9a105eaf-ee77-4016-beeb-d425a5565db2",
         "FDA_LABEL:be1a6c99-d4b3-46d7-9e99-6e5f9fab556a"
@@ -75201,7 +75395,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:5b0249c0-c196-4d3c-973f-49bd2d3d4a75",
         "FDA_LABEL:97c87111-260a-48d0-92cd-e22f55a48c7d"
@@ -75212,7 +75406,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:19b4cfab-5927-47c5-a032-58ab2998d9c7",
         "FDA_LABEL:a23ce772-7078-0a4b-e053-2995a90aff0d"
@@ -75223,7 +75417,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:af1773c5-5d5b-4278-b551-30ad2df6d5b5",
         "FDA_LABEL:f370e3c4-65ca-4f3c-a5aa-70e198e681a2"
@@ -75234,7 +75428,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:09821e01-1135-e75c-e063-6294a90a3451",
         "FDA_LABEL:124e1676-96fd-1a52-e063-6294a90a901f"
@@ -75245,7 +75439,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:221de6a3-c1d7-4dcf-a47b-51edaa682c2a",
         "FDA_LABEL:6079d45c-dd86-6f2e-e053-2991aa0a9743"
@@ -75256,7 +75450,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:cd6a061d-8ad7-4ad1-b039-1e3aa3435d32",
         "FDA_LABEL:f68306a9-80ec-4bc5-8c00-1e1328f21e36"
@@ -75267,7 +75461,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:0ad62039-f848-4f3d-b489-2524e6b6b86e",
         "FDA_LABEL:d497f2a2-8e8d-4372-ba09-f8e6b22d2cf8"
@@ -75278,7 +75472,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:70ab1de6-fb68-aee4-a6cb-f9a0f146687f",
         "FDA_LABEL:939b5d1f-9fb2-4499-80ef-0607aa6b114e"
@@ -75289,7 +75483,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:42b4f96e-1f70-2126-e063-6294a90a93e3",
         "FDA_LABEL:6b4040a2-a5c5-4ff0-ab45-935d7e49cf78"
@@ -75300,7 +75494,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:460fff55-728a-9c3a-e063-6394a90a3188",
         "FDA_LABEL:53efbf65-8844-8486-e063-6394a90a51d3"
@@ -75311,7 +75505,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:71dea737-3fde-461f-958d-3a39ebdbf1ae",
         "FDA_LABEL:cb6d0135-92c6-4078-954c-b7549302145f"
@@ -75322,7 +75516,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:39c20cb2-79c4-4775-b3a9-55cfa67fb743",
         "FDA_LABEL:852a3251-bf24-5557-e053-2991aa0a4fbd"
@@ -75333,7 +75527,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:3c3a423c-805d-4146-b16e-0138617a8dc6",
         "FDA_LABEL:fcd50c95-2522-418f-a2f3-de7e22622363"
@@ -75344,7 +75538,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:3aaa6e14-a3f7-4fb2-b9f9-d3a9c3ae1f74",
         "FDA_LABEL:3f35d6e0-3450-4abc-a0da-cc7b277e7c6e"
@@ -75355,7 +75549,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:038cf2ba-ad08-4981-a3cc-bff0e4ba5dfb",
         "FDA_LABEL:c899b329-cc5e-4443-8e94-451314de47c9"
@@ -75366,7 +75560,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:0af296bb-1599-4b35-b66b-994924d3e898",
         "FDA_LABEL:dab484a7-9353-43ba-9e74-7fab910c712b"
@@ -75377,7 +75571,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:0a100e7d-3a8d-2d8b-e063-6394a90a3203",
         "FDA_LABEL:899f057a-914d-49ca-a9fd-9fc48149782a"
@@ -75388,7 +75582,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:753c3973-6522-4d33-811b-b63a4e8cc585",
         "FDA_LABEL:d5b85158-b0d6-4855-9d07-8d1b3ad9ab71"
@@ -75399,7 +75593,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:601774d5-f4de-01bc-e053-2991aa0a7f4f",
         "FDA_LABEL:dbed54cc-12ec-0a73-e053-2a95a90a8cc2"
@@ -75410,7 +75604,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:3432a4a6-aeb1-4a72-8451-5903266931fa",
         "FDA_LABEL:730198a5-b6d9-4fc7-b053-a7c65a93c540"
@@ -75421,7 +75615,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:5f76e16f-0c24-454a-81af-4080b312c940",
         "FDA_LABEL:6868666b-c25e-40d1-9d1f-306bbe9390c1"
@@ -75432,7 +75626,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:880f685f-be01-42f4-9e76-ebd1fcfb1f77",
         "FDA_LABEL:94a59260-d2b6-464a-b5b9-bbc599e57e10"
@@ -75443,7 +75637,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:68198098-0f33-458f-83b8-eb2a5ec69012",
         "FDA_LABEL:f28d7a56-e079-4a8b-ad81-9a97c780de67"
@@ -75454,7 +75648,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:ac3d57a4-08d5-45f1-be84-f68eef9d1398",
         "FDA_LABEL:ba8d71b5-7f1f-44a5-ac5b-1f7ceeb02875"
@@ -75465,7 +75659,7 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:33ee4598-cbcc-45e0-a48e-dc0101e1f204",
         "FDA_LABEL:4ce99f65-5857-448c-b22a-9b3b64de69e2"
@@ -75476,10 +75670,21 @@
       "reason": "COVERAGE_GAP",
       "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
       "priority": 1.6214285714285714,
-      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.291. This orders recording work against the corpus and carries no finding about the medicine.",
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
       "sources": [
         "FDA_LABEL:9b73979c-c95a-4433-0a9d-f9cea3cb557f",
         "FDA_LABEL:d9c2803f-dc9c-4b19-b4a3-8303bc8c15fd"
+      ]
+    },
+    {
+      "slug": "chlorthalidone",
+      "reason": "COVERAGE_GAP",
+      "question": "The corpus records a marketed product entry for this medicine but holds 2 of 14 background modules for it, across 2 distinct source documents. Which further modules could be structured from the documents this record already cites?",
+      "priority": 1.6214285714285714,
+      "basis": "Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score 0.189 is at or below the corpus median of 0.306. This orders recording work against the corpus and carries no finding about the medicine.",
+      "sources": [
+        "FDA_LABEL:2de92cea-8f03-4af0-9d91-d4578510cc53",
+        "FDA_LABEL:e60f795b-fce3-4361-aa03-f143451689d1"
       ]
     }
   ],
@@ -75490,7 +75695,7 @@
     "Two documents count as one when they share a source kind and identifier. A document that was revised between two fetch dates therefore still counts once, so corroboration may be reported slightly higher than it is.",
     "The retrieval dates are the dates source artifacts were fetched during authoring. They say when the corpus last looked, not when the source last changed.",
     "The coverage queue was designed to rank widely marketed medicines first, using the count of recorded product variants as the proxy. This corpus cannot express that: the largest number of product variants on any record is 2, and the largest number of distinct jurisdictions on any record is 1, so the module reports little more than whether a marketed product entry was recorded at all. The queue is instead ordered by how much already-cited source material a record has left unstructured, and it does not rank medicines by prominence.",
-    "The queue cutoff is the corpus median density of 0.291 rather than the lower quartile, because 1251 records hold exactly one module and the lower quartile coincides with the lowest score in the corpus. A cut there would select only records that are tied on score and could not be ordered.",
+    "The queue cutoff is the corpus median density of 0.306 rather than the lower quartile, because 1240 records hold exactly one module and the lower quartile coincides with the lowest score in the corpus. A cut there would select only records that are tied on score and could not be ordered.",
     "Records assembled by the deterministic label parser and records assembled by a person are measured on the same scale here. The scale does not distinguish the two kinds of work; the provenance tier on each value does.",
     "Values recorded as displayed text with no parsed number are counted separately rather than penalised as missing. A source that prints no number is recorded faithfully when no number is stored."
   ]

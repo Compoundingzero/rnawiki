@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-1.4.0`.
+ * `rna-intelligence/background-2.0.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -24,6 +24,7 @@ import {
   MEDICINE_BACKGROUND_VERSION,
   MOLECULAR_FORMULA_SHAPE,
   PRODUCT_JURISDICTIONS,
+  SUBSTANCE_DATA_STATES,
   SUBSTANCE_SPECIFIC_MODULES,
   type BackgroundSource,
   type MedicineRecordedBackground,
@@ -36,7 +37,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.4.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.0.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -84,6 +85,10 @@ export const BACKGROUND_RULE_CODES = [
   'I_CONSENSUS_READING_NOT_IN_EXCERPT',
   'I_INTERACTION_POLARITY_UNKNOWN',
   'I_INTERACTION_POLARITY_MISSING',
+  'I_COMPOSITION_COUNT_MISMATCH',
+  'I_INGREDIENT_STATE_UNKNOWN',
+  'I_INGREDIENT_KEY_MISSING',
+  'I_INGREDIENT_DUPLICATED',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -705,10 +710,86 @@ export function runBackgroundIntelligence(
         flag(
           'I_ATTRIBUTION_TOO_BROAD',
           'attribution.declaredSubstanceCount',
-          `${carried.join(', ')} recorded from a source declaring ${declared ?? 'an unknown number of'} active substance(s); a substance-specific module requires a source about exactly one.`,
+          `${carried.join(', ')} recorded at product level from a source declaring ${declared ?? 'an unknown number of'} active substance(s). A substance-specific module belongs to an ingredient inside composition, not to the product.`,
         )
       }
     }
+  }
+
+  /**
+   * Composition, where a product meets the substances it is made of.
+   *
+   * Each ingredient's substance-specific data must have come from a source about that substance
+   * alone, which is the same guarantee as before, now applied where it actually belongs. An
+   * ingredient that has no such source says so outright rather than looking identical to one nobody
+   * has looked for yet.
+   */
+  const composition = background.composition
+  if (composition) {
+    if (composition.declaredIngredientCount !== composition.ingredients.length) {
+      flag(
+        'I_COMPOSITION_COUNT_MISMATCH',
+        'composition.declaredIngredientCount',
+        `Declares ${composition.declaredIngredientCount} ingredients but carries ${composition.ingredients.length}.`,
+      )
+    }
+    const missing = composition.ingredients.filter(
+      (ingredient) => ingredient.substanceDataState === 'NO_SOURCE_ABOUT_THIS_SUBSTANCE_ALONE',
+    ).length
+    if (composition.ingredientsWithoutSubstanceData !== missing) {
+      flag(
+        'I_COMPOSITION_COUNT_MISMATCH',
+        'composition.ingredientsWithoutSubstanceData',
+        `Reports ${composition.ingredientsWithoutSubstanceData} ingredients without substance data but ${missing} are marked as having none.`,
+      )
+    }
+    const seenKeys = new Set<string>()
+    composition.ingredients.forEach((ingredient, index) => {
+      const path = `composition.ingredients[${index}]`
+      if (!SUBSTANCE_DATA_STATES.includes(ingredient.substanceDataState)) {
+        flag(
+          'I_INGREDIENT_STATE_UNKNOWN',
+          path,
+          `Unknown substance-data state "${ingredient.substanceDataState}".`,
+        )
+      }
+      if (ingredient.substanceKey.length === 0) {
+        flag('I_INGREDIENT_KEY_MISSING', path, 'Ingredient carries no substance key.')
+      }
+      // One substance may not appear twice in one product: a duplicate means two label spellings
+      // collapsed to one identity and the strengths would be read as separate ingredients.
+      if (seenKeys.has(ingredient.substanceKey)) {
+        flag(
+          'I_INGREDIENT_DUPLICATED',
+          path,
+          `Substance "${ingredient.substanceKey}" appears more than once in this composition.`,
+        )
+      }
+      seenKeys.add(ingredient.substanceKey)
+
+      const carries = SUBSTANCE_SPECIFIC_MODULES.some((module) => {
+        const value = ingredient[module]
+        return Array.isArray(value) ? value.length > 0 : value !== undefined
+      })
+      if (carries && ingredient.substanceDataState !== 'RECORDED') {
+        flag(
+          'I_INGREDIENT_STATE_UNKNOWN',
+          path,
+          'Ingredient carries substance data while declaring that no source about the substance alone was found.',
+        )
+      }
+      for (const value of [
+        ingredient.pharmacokinetics?.halfLife,
+        ingredient.pharmacokinetics?.bioavailability,
+        ingredient.molecularIdentity?.molecularWeight,
+        ingredient.molecularIdentity?.molecularFormula,
+      ]) {
+        checkRecordedValue(`${path}`, value)
+      }
+      for (const statement of ingredient.mechanism?.statements ?? []) {
+        checkStatement(`${path}.mechanism`, statement)
+      }
+    })
   }
 
   /**

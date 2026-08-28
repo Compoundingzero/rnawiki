@@ -9,8 +9,8 @@
     "independentOfEngine": true
   },
   "coverage": {
-    "considered": 3008,
-    "used": 1433,
+    "considered": 3012,
+    "used": 1451,
     "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
   },
   "output": {
@@ -1966,6 +1966,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "balsalazide",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "baricitinib",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -3106,6 +3112,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "calcipotriene-hydrate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "calcitonin-salmon",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -3384,12 +3396,6 @@
       {
         "slug": "carboprost",
         "path": "molecularIdentity.molecularFormula",
-        "module": "molecularIdentity",
-        "state": "VERIFIED"
-      },
-      {
-        "slug": "carboprost",
-        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -4030,6 +4036,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "citalopram",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "cladribine",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -4289,6 +4325,30 @@
       },
       {
         "slug": "clopidogrel-bisulfate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "clorazepate",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "clorazepate",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "clorazepate",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "clorazepate",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -5105,6 +5165,30 @@
       },
       {
         "slug": "darunavir",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "darunavir-hydrate",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "darunavir-hydrate",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "darunavir-hydrate",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "darunavir-hydrate",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -8830,6 +8914,30 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "fosaprepitant-dimeglumine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "fosaprepitant-dimeglumine",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "fosaprepitant-dimeglumine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "fosaprepitant-dimeglumine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "foscarnet",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -8861,6 +8969,18 @@
       },
       {
         "slug": "fosdenopterin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "fosfomycin",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "fosfomycin",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -9125,6 +9245,48 @@
       },
       {
         "slug": "gadoxetate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -9539,6 +9701,24 @@
       },
       {
         "slug": "glycopyrrolate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "glycopyrronium",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "glycopyrronium",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "glycopyrronium",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -11087,6 +11267,24 @@
       },
       {
         "slug": "ketamine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ketorolac",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ketorolac",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ketorolac",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -13774,6 +13972,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "naldemedine",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "naldemedine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "naldemedine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "naldemedine",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "naldemedine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "nalmefene",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -15335,6 +15563,24 @@
       },
       {
         "slug": "paltusotine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pamidronate",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pamidronate",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pamidronate",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -17680,6 +17926,30 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "ritlecitinib",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ritlecitinib",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ritlecitinib",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ritlecitinib",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "ritonavir",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -18898,6 +19168,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "sorafenib",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sorafenib",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "sorafenib",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "sotagliflozin",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -19216,6 +19504,42 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "tafamidis",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tafamidis",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tafamidis",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tafamidis",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tafamidis",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tafamidis",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "tafenoquine",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -19243,6 +19567,18 @@
         "slug": "tagraxofusp-erzs",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "talazoparib",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "talazoparib",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
         "state": "VERIFIED"
       },
       {
@@ -19397,6 +19733,36 @@
       },
       {
         "slug": "tazarotene",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tazemetostat",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tazemetostat",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tazemetostat",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tazemetostat",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "tazemetostat",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -21094,6 +21460,42 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "valbenazine",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valbenazine",
+        "path": "pharmacokinetics.tMax",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valbenazine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valbenazine",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valbenazine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "valbenazine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "valganciclovir",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -21875,6 +22277,42 @@
       },
       {
         "slug": "vorinostat",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "pharmacokinetics.bioavailability",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "pharmacokinetics.halfLife",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "pharmacokinetics.proteinBinding",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "pharmacokinetics.volumeOfDistribution",
+        "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -27616,6 +28054,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "cefotetan",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "cefpodoxime-proxetil",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -27790,6 +28234,36 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "citalopram",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "sourceConsensus.fields[0].readings[1]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "citalopram",
+        "path": "sourceConsensus.fields[3].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "cladribine",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -27918,6 +28392,18 @@
       {
         "slug": "clopidogrel-bisulfate",
         "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "clorazepate",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "clorazepate",
+        "path": "sourceConsensus.fields[1].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -28104,6 +28590,24 @@
       {
         "slug": "daptomycin",
         "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "darifenacin",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "darifenacin",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "darifenacin",
+        "path": "sourceConsensus.fields[2].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -28948,6 +29452,42 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "eletriptan",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "eletriptan",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "eletriptan",
+        "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "eletriptan",
+        "path": "sourceConsensus.fields[2].readings[1]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "eletriptan",
+        "path": "sourceConsensus.fields[3].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "eletriptan",
+        "path": "sourceConsensus.fields[4].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "emtricitabine",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -29704,6 +30244,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "fosfomycin",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "fosinopril",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -29766,6 +30312,36 @@
       {
         "slug": "gadopiclenol",
         "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "sourceConsensus.fields[3].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "galantamine",
+        "path": "sourceConsensus.fields[4].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -30492,6 +31068,24 @@
       {
         "slug": "ivermectin",
         "path": "sourceConsensus.fields[0].readings[1]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ketorolac",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ketorolac",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ketorolac",
+        "path": "sourceConsensus.fields[2].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -32500,6 +33094,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "pamidronate",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "paricalcitol",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -32544,12 +33144,6 @@
       {
         "slug": "paroxetine",
         "path": "sourceConsensus.fields[0].readings[1]",
-        "module": "sourceConsensus",
-        "state": "VERIFIED"
-      },
-      {
-        "slug": "paroxetine",
-        "path": "sourceConsensus.fields[1].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -32614,6 +33208,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "pemetrexed",
+        "path": "sourceConsensus.fields[1].readings[2]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "penciclovir",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -32621,6 +33221,12 @@
       },
       {
         "slug": "penicillamine",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pentamidine",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
@@ -33598,6 +34204,24 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "ritlecitinib",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ritlecitinib",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "ritlecitinib",
+        "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "ritonavir",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -33958,6 +34582,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "sorafenib",
+        "path": "sourceConsensus.fields[1].readings[1]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "sotalol",
         "path": "sourceConsensus.fields[0].readings[0]",
         "module": "sourceConsensus",
@@ -34098,6 +34728,24 @@
       {
         "slug": "tafenoquine",
         "path": "sourceConsensus.fields[1].readings[1]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "talazoparib",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "talazoparib",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "talazoparib",
+        "path": "sourceConsensus.fields[2].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -34979,6 +35627,12 @@
       },
       {
         "slug": "vardenafil",
+        "path": "sourceConsensus.fields[0].readings[1]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vardenafil",
         "path": "sourceConsensus.fields[1].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
@@ -35100,6 +35754,30 @@
       {
         "slug": "voriconazole",
         "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "sourceConsensus.fields[0].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "sourceConsensus.fields[1].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "sourceConsensus.fields[2].readings[0]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vortioxetine",
+        "path": "sourceConsensus.fields[3].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -35610,6 +36288,12 @@
       {
         "slug": "doxycycline",
         "path": "sourceConsensus.fields[0].readings[2]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "doxycycline",
+        "path": "sourceConsensus.fields[0].readings[3]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
       },
@@ -37277,6 +37961,12 @@
       },
       {
         "slug": "olanzapine",
+        "path": "sourceConsensus.fields[0].readings[1]",
+        "module": "sourceConsensus",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "olanzapine",
         "path": "sourceConsensus.fields[1].readings[0]",
         "module": "sourceConsensus",
         "state": "VERIFIED"
@@ -37849,35 +38539,35 @@
     "byModule": [
       {
         "module": "molecularIdentity",
-        "checked": 1641,
-        "verified": 1641,
+        "checked": 1670,
+        "verified": 1670,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
       },
       {
         "module": "pharmacokinetics",
-        "checked": 2626,
-        "verified": 2626,
+        "checked": 2670,
+        "verified": 2670,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
       },
       {
         "module": "sourceConsensus",
-        "checked": 1944,
-        "verified": 1944,
+        "checked": 1986,
+        "verified": 1986,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
       }
     ],
-    "statementsChecked": 12655,
-    "statementsVerbatim": 12655,
-    "adverseTermsChecked": 4633,
-    "adverseTermsFound": 4633,
-    "totalChecked": 6211,
-    "totalVerified": 6211,
+    "statementsChecked": 12848,
+    "statementsVerbatim": 12848,
+    "adverseTermsChecked": 4744,
+    "adverseTermsFound": 4744,
+    "totalChecked": 6326,
+    "totalVerified": 6326,
     "overallVerifiedShare": 1,
     "normalisationRules": [
       {
@@ -37911,7 +38601,7 @@
     ],
     "engineComparison": {
       "disagreements": [],
-      "recordsCompared": 3008,
+      "recordsCompared": 3012,
       "agreementRate": 1,
       "note": "This check is written independently of the background engine so that agreement means something. Where they differ, neither is assumed correct: either may be the stricter, and the difference is the finding."
     }

@@ -5702,21 +5702,21 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   atorvastatin: {
-    documentsExamined: 12,
+    documentsExamined: 60,
     fields: [
       {
         field: 'bioavailability',
-        sourceCount: 12,
+        sourceCount: 60,
         readings: [
           {
             display: '14%',
             numeric: 14,
             unit: '%',
-            sourceCount: 12,
+            sourceCount: 60,
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '20f820ba-9600-4b51-bf23-8c99e815674c',
+                identifier: 'bd56a76b-5570-46a7-9399-fc110d913bf9',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -5724,7 +5724,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'acbbd2c4-60bd-4e01-ad7a-b9b3178569f0',
+                identifier: 'b16b3805-7e60-447c-b3df-7a9392b63c99',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -5732,7 +5732,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '71cd9b85-4914-4b0b-97db-7aaf25983211',
+                identifier: 'a1b22973-cb9a-473e-a240-112b3e84e97c',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -5740,7 +5740,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '7c58bf4a-4a92-4db8-89bc-4de1b5831efc',
+                identifier: '01eadde8-37f3-4474-995f-22c1a65adf12',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -5754,45 +5754,45 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'volumeOfDistribution',
-        sourceCount: 12,
+        sourceCount: 60,
         readings: [
           {
             display: '381 liters',
             numeric: 381,
             unit: 'L',
-            sourceCount: 12,
+            sourceCount: 60,
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '20f820ba-9600-4b51-bf23-8c99e815674c',
+                identifier: 'bd56a76b-5570-46a7-9399-fc110d913bf9',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Distribution Mean volume of distribution of atorvastatin calcium is approximately 381 liters.',
+                  'Distribution: Mean volume of distribution of atorvastatin calcium is approximately 381 liters.',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'acbbd2c4-60bd-4e01-ad7a-b9b3178569f0',
+                identifier: 'b16b3805-7e60-447c-b3df-7a9392b63c99',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Distribution Mean volume of distribution of atorvastatin calcium is approximately 381 liters.',
+                  'Distribution: Mean volume of distribution of atorvastatin calcium is approximately 381 liters.',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '71cd9b85-4914-4b0b-97db-7aaf25983211',
+                identifier: 'a1b22973-cb9a-473e-a240-112b3e84e97c',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Distribution Mean volume of distribution of atorvastatin calcium is approximately 381 liters.',
+                  'Distribution: Mean volume of distribution of atorvastatin calcium is approximately 381 liters.',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '7c58bf4a-4a92-4db8-89bc-4de1b5831efc',
+                identifier: '01eadde8-37f3-4474-995f-22c1a65adf12',
                 label: 'Atorvastatin label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Distribution Mean volume of distribution of atorvastatin calcium is approximately 381 liters.',
+                  'Distribution: Mean volume of distribution of atorvastatin is approximately 381 liters.',
               },
             ],
           },
@@ -10098,13 +10098,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 25,
+        sourceCount: 26,
         readings: [
           {
             display: '29 hours',
             numeric: 29,
             unit: 'hours',
-            sourceCount: 25,
+            sourceCount: 26,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -10146,13 +10146,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'bioavailability',
-        sourceCount: 35,
+        sourceCount: 34,
         readings: [
           {
             display: '5%',
             numeric: 5,
             unit: '%',
-            sourceCount: 35,
+            sourceCount: 34,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -10200,7 +10200,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             display: '3 hours',
             numeric: 3,
             unit: 'hours',
-            sourceCount: 36,
+            sourceCount: 35,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -10240,7 +10240,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             display: '5 hours',
             numeric: 5,
             unit: 'hours',
-            sourceCount: 24,
+            sourceCount: 25,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -10277,7 +10277,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
         ],
-        agreementRate: 0.6,
+        agreementRate: 0.5833333333333334,
         numericallyDisjoint: true,
       },
     ],
@@ -12796,6 +12796,51 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
     ],
   },
+  cefotetan: {
+    documentsExamined: 3,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 3,
+        readings: [
+          {
+            display: '3 to 4.6 hours',
+            numeric: 3,
+            unit: 'hours',
+            sourceCount: 3,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '33b13b93-58ce-44c7-b9a2-af3b3a333f80',
+                label: 'Cefotetan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'in 10 min 1 h 3 h 5 h 9 h 12 h IV 237 223 135 74 48 22 12 b IM — 20 75 91 69 33 19 a Injected over 3 minutes b Concentrations estimated from regression line The plasma elimination half-life of cefotetan is 3 to 4.6 hours after either intravenous or intramuscular administration.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'bd22c66b-8a1c-44c8-b5b6-3ab0ce5c800e',
+                label: 'Cefotetan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'maxillary sinus mucosa myometrium tonsil endometrium bile cervix peritoneal fluid ovary umbilical cord serum kidney amniotic fluid Metabolism and Excretion The plasma elimination half-life of cefotetan is 3 to 4.6 hours after either intravenous or intramuscular administration.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'f1510f5e-d001-44e0-accb-27cf79fd4f9a',
+                label: 'Cefotetan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'maxillary sinus mucosa myometrium tonsil endometrium bile cervix peritoneal fluid ovary umbilical cord serum kidney amniotic fluid Metabolism and Excretion The plasma elimination half-life of cefotetan is 3 to 4.6 hours after either intravenous or intramuscular administration.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
   'cefpodoxime-proxetil': {
     documentsExamined: 15,
     fields: [
@@ -14427,6 +14472,211 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
     ],
   },
+  citalopram: {
+    documentsExamined: 60,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 59,
+        readings: [
+          {
+            display: '35 hours',
+            numeric: 35,
+            unit: 'hours',
+            sourceCount: 57,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '7307df53-d570-4e26-971d-e97522ccce7f',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Biotransformation of citalopram is mainly hepatic, with a mean terminal half-life of about 35 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Biotransformation of citalopram is mainly hepatic, with a mean terminal half-life of about 35 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '29408d84-7b00-4cee-969c-8095f8083ff5',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Biotransformation of citalopram is mainly hepatic, with a mean terminal half-life of about 35 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2632b547-2e13-447f-ac85-c774e437d6a8',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Biotransformation of citalopram is mainly hepatic, with a mean terminal half-life of about 35 hours.',
+              },
+            ],
+          },
+          {
+            display: '52.7 hours',
+            numeric: 52.7,
+            unit: 'hours',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2f815b0c-6da7-cb61-e89c-7de628092d0d',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  '12.3 Pharmacokinetics Biotransformation of citalopram is mainly hepatic, with a mean terminal half-life of about 52.7 hours (30 mg capsule).',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '80af8ae8-c106-4895-bab3-0579b41f1e75',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  '12.3 Pharmacokinetics Biotransformation of citalopram is mainly hepatic, with a mean terminal half-life of about 52.7 hours (30 mg capsule).',
+              },
+            ],
+          },
+        ],
+        agreementRate: 0.9661016949152542,
+        numericallyDisjoint: true,
+      },
+      {
+        field: 'bioavailability',
+        sourceCount: 59,
+        readings: [
+          {
+            display: '80%',
+            numeric: 80,
+            unit: '%',
+            sourceCount: 59,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '7307df53-d570-4e26-971d-e97522ccce7f',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The absolute bioavailability of citalopram was about 80% relative to an intravenous dose, and absorption is not affected by food.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The absolute bioavailability of citalopram was about 80% relative to an intravenous dose, and absorption is not affected by food.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '29408d84-7b00-4cee-969c-8095f8083ff5',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The absolute bioavailability of citalopram was about 80% relative to an intravenous dose, and absorption is not affected by food.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2632b547-2e13-447f-ac85-c774e437d6a8',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The absolute bioavailability of citalopram was about 80% relative to an intravenous dose, and absorption is not affected by food.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'tMax',
+        sourceCount: 2,
+        readings: [
+          {
+            display: '1 hour',
+            numeric: 1,
+            unit: 'hours',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2f815b0c-6da7-cb61-e89c-7de628092d0d',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'However, median T max of citalopram is delayed by approximately 1 hour (6 vs 5 hours).',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '80af8ae8-c106-4895-bab3-0579b41f1e75',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'However, median Tmax of citalopram is delayed by approximately 1 hour (6 vs 5 hours).',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'volumeOfDistribution',
+        sourceCount: 59,
+        readings: [
+          {
+            display: '12 L/kg',
+            numeric: 12,
+            unit: 'L/kg',
+            sourceCount: 59,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '7307df53-d570-4e26-971d-e97522ccce7f',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The volume of distribution of citalopram is about 12 L/kg and the binding of citalopram (CT), demethylcitalopram (DCT) and didemethylcitalopram (DDCT) to human plasma proteins is about 80%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '0dfb11d9-f48d-56ee-e063-6294a90ad256',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The volume of distribution of citalopram is about 12 L/kg and the binding of citalopram (CT), demethylcitalopram (DCT) and didemethylcitalopram (DDCT) to human plasma proteins is about 80%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '29408d84-7b00-4cee-969c-8095f8083ff5',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The volume of distribution of citalopram is about 12 L/kg and the binding of citalopram (CT), demethylcitalopram (DCT) and didemethylcitalopram (DDCT) to human plasma proteins is about 80%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2632b547-2e13-447f-ac85-c774e437d6a8',
+                label: 'Citalopram label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The volume of distribution of citalopram is about 12 L/kg and the binding of citalopram (CT), demethylcitalopram (DCT) and didemethylcitalopram (DDCT) to human plasma proteins is about 80%.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
   cladribine: {
     documentsExamined: 8,
     fields: [
@@ -15824,6 +16074,103 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'After a single, oral dose of 75 mg, clopidogrel has a half-life of approximately 6 hours.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
+  clorazepate: {
+    documentsExamined: 11,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 11,
+        readings: [
+          {
+            display: '40 to 50 hours',
+            numeric: 40,
+            unit: 'hours',
+            sourceCount: 11,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Nordiazepam, the primary metabolite, quickly appears in the blood and is eliminated from the plasma with an apparent half-life of about 40 to 50 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'a4b80e69-b7c7-471a-8ce8-4e992808c669',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Nordiazepam, the primary metabolite, quickly appears in the blood and is eliminated from the plasma with an apparent half-life of about 40 to 50 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '40074ed8-0799-e3e0-e063-6394a90ad200',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Nordiazepam, the primary metabolite, quickly appears in the blood and is eliminated from the plasma with an apparent half-life of about 40 to 50 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '919cbd07-f587-4005-acff-26213dd1d1fb',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Nordiazepam, the primary metabolite, quickly appears in the blood and is eliminated from the plasma with an apparent half-life of about 40 to 50 hours.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'proteinBinding',
+        sourceCount: 11,
+        readings: [
+          {
+            display: '97 to 98%',
+            numeric: 97,
+            unit: '%',
+            sourceCount: 11,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '7b59a3ab-3dff-4458-a63a-ef0d9e0d996d',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The protein binding of nordiazepam in plasma is high (97 to 98%).',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'a4b80e69-b7c7-471a-8ce8-4e992808c669',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The protein binding of nordiazepam in plasma is high (97-98%).',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '40074ed8-0799-e3e0-e063-6394a90ad200',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The protein binding of nordiazepam in plasma is high (97 to 98%).',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '919cbd07-f587-4005-acff-26213dd1d1fb',
+                label: 'Clorazepate label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The protein binding of nordiazepam in plasma is high (97-98%).',
               },
             ],
           },
@@ -17688,19 +18035,158 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
     ],
   },
-  darunavir: {
-    documentsExamined: 9,
+  darifenacin: {
+    documentsExamined: 10,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 9,
+        sourceCount: 10,
+        readings: [
+          {
+            display: '13 to 19 hours',
+            numeric: 13,
+            unit: 'hours',
+            sourceCount: 10,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '6e8470d1-c3e6-4644-b70a-aa47ddf79676',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The elimination half-life of darifenacin following chronic dosing is approximately 13 to 19 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '62a72d3e-3c33-4f2d-b3d0-2e014f704c63',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The elimination half-life of darifenacin following chronic dosing is approximately 13 to 19 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '5ac2cb5a-c0bb-40e2-95d5-1b91a13036c3',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The elimination half-life of darifenacin following chronic dosing is approximately 13 to 19 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e84f1ae3-b9a2-4a15-a299-c75373891cc1',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The elimination half-life of darifenacin following chronic dosing is approximately 13 to 19 hours.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'bioavailability',
+        sourceCount: 2,
+        readings: [
+          {
+            display: '15%',
+            numeric: 15,
+            unit: '%',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '7ae60119-e22c-4806-a5d8-db7c9e8984a2',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean oral bioavailability of darifenacin in EMs at steady-state is estimated to be 15% and 19% for 7.5 mg and 15 mg tablets, respectively.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '9f6952c8-e547-4f3e-a978-a88d6ea9dc10',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean oral bioavailability of darifenacin in EMs at steady-state is estimated to be 15% and 19% for 7.5 mg and 15 mg tablets, respectively.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'volumeOfDistribution',
+        sourceCount: 10,
+        readings: [
+          {
+            display: '163 L',
+            numeric: 163,
+            unit: 'L',
+            sourceCount: 10,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '6e8470d1-c3e6-4644-b70a-aa47ddf79676',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The steady-state volume of distribution (V ss ) is estimated to be 163 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '62a72d3e-3c33-4f2d-b3d0-2e014f704c63',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The steady-state volume of distribution (V ss ) is estimated to be 163 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '5ac2cb5a-c0bb-40e2-95d5-1b91a13036c3',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The steady-state volume of distribution (Vss) is estimated to be 163 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e84f1ae3-b9a2-4a15-a299-c75373891cc1',
+                label: 'Darifenacin label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The steady-state volume of distribution (Vss) is estimated to be 163 L.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
+  darunavir: {
+    documentsExamined: 10,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 10,
         readings: [
           {
             display: '15 hours',
             numeric: 15,
             unit: 'hours',
-            sourceCount: 9,
+            sourceCount: 10,
             sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '5624cc30-d484-458e-b234-9bb745a118ca',
+                label: 'Darunavir label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The terminal elimination half-life of darunavir was approximately 15 hours when co-administered with ritonavir.',
+              },
               {
                 kind: 'FDA_LABEL',
                 identifier: 'e80e44f8-1987-4b78-a63d-a4e4d5122ddb',
@@ -17720,14 +18206,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: 'bf99d8b8-c4e0-4cb4-924e-8cdcfd8d1aa1',
-                label: 'Darunavir label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'The terminal elimination half-life of darunavir was approximately 15 hours when co-administered with ritonavir.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '632293b0-d220-444e-8a5b-2ee8c225b66d',
                 label: 'Darunavir label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -17741,14 +18219,22 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'tMax',
-        sourceCount: 9,
+        sourceCount: 10,
         readings: [
           {
             display: '2.5-4 hours',
             numeric: 2.5,
             unit: 'hours',
-            sourceCount: 8,
+            sourceCount: 9,
             sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '5624cc30-d484-458e-b234-9bb745a118ca',
+                label: 'Darunavir label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption and Bioavailability Darunavir, co-administered with 100 mg ritonavir twice daily, was absorbed following oral administration with a T max of approximately 2.5-4 hours.',
+              },
               {
                 kind: 'FDA_LABEL',
                 identifier: 'e80e44f8-1987-4b78-a63d-a4e4d5122ddb',
@@ -17772,14 +18258,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Absorption and Bioavailability Darunavir, co-administered with 100 mg ritonavir twice daily, was absorbed following oral administration with a T max of approximately 2.5-4 hours.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '632293b0-d220-444e-8a5b-2ee8c225b66d',
-                label: 'Darunavir label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  '55-7368) N=number of subjects with data Absorption and Bioavailability Darunavir, co-administered with 100 mg ritonavir twice daily, was absorbed following oral administration with a T max of approximately 2.5-4 hours.',
               },
             ],
           },
@@ -17800,7 +18278,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
         ],
-        agreementRate: 0.8888888888888888,
+        agreementRate: 0.9,
         numericallyDisjoint: false,
       },
     ],
@@ -19260,17 +19738,17 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   dexlansoprazole: {
-    documentsExamined: 14,
+    documentsExamined: 15,
     fields: [
       {
         field: 'tMax',
-        sourceCount: 14,
+        sourceCount: 15,
         readings: [
           {
             display: '0.7 hours',
             numeric: 0.7,
             unit: 'hours',
-            sourceCount: 14,
+            sourceCount: 15,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -19312,13 +19790,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'proteinBinding',
-        sourceCount: 14,
+        sourceCount: 15,
         readings: [
           {
             display: '96 to 99%',
             numeric: 96,
             unit: '%',
-            sourceCount: 14,
+            sourceCount: 15,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -19360,13 +19838,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'volumeOfDistribution',
-        sourceCount: 14,
+        sourceCount: 15,
         readings: [
           {
             display: '40 L',
             numeric: 40,
             unit: 'L',
-            sourceCount: 14,
+            sourceCount: 15,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -23508,17 +23986,57 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   doxycycline: {
-    documentsExamined: 59,
+    documentsExamined: 60,
     fields: [
       {
         field: 'halfLife',
         sourceCount: 59,
         readings: [
           {
+            display: '18-22 hours',
+            numeric: 18,
+            unit: 'hours',
+            sourceCount: 43,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '5fdc01c3-c62f-40cf-8351-91cbcc43d379',
+                label: 'Doxycycline label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Studies have shown no significant difference in serum half-life of doxycycline (range 18-22 hours) in individuals with normal and severely impaired renal function.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '61195fc6-3fa7-4203-b526-477b48395856',
+                label: 'Doxycycline label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Studies have shown no significant difference in serum half-life of doxycycline (range 18 to 22 hours) in individuals with normal and severely impaired renal function.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '86c1f165-af79-4f01-ab61-3bdbce24cd0d',
+                label: 'Doxycycline label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Studies have shown no significant difference in serum half-life of doxycycline (range 18-22 hours) in individuals with normal and severely impaired renal function.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'b0894010-39bd-459f-8563-cf83343105ee',
+                label: 'Doxycycline label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Studies have shown no significant difference in serum half-life of doxycycline (range 18 to 22 hours) in individuals with normal and severely impaired renal function.',
+              },
+            ],
+          },
+          {
             display: '16.33 hr',
             numeric: 16.33,
             unit: 'hours',
-            sourceCount: 46,
+            sourceCount: 12,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -23558,7 +24076,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             display: '21.2 hours',
             numeric: 21.2,
             unit: 'hours',
-            sourceCount: 11,
+            sourceCount: 3,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -23584,42 +24102,26 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 excerpt:
                   'Terminal half-life averaged 21.2 hours in subjects receiving a single dose of doxycycline.',
               },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '99305d9a-d058-45d6-8dec-19308b1fc5a9',
-                label: 'Doxycycline label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Terminal half-life averaged 21.2 hours in subjects receiving a single dose of doxycycline capsules.',
-              },
             ],
           },
           {
-            display: '18-22 hours',
+            display: '18 hours',
             numeric: 18,
             unit: 'hours',
-            sourceCount: 2,
+            sourceCount: 1,
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '5bebf320-1395-43b9-9404-fe479d70b240',
+                identifier: '861b71f3-37e8-4596-838c-c8dad8ed5ff4',
                 label: 'Doxycycline label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Studies have shown no significant difference in serum half-life of doxycycline (range 18-22 hours) in individuals with normal and severely impaired renal function.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'e0e80435-1b6a-4361-8c8a-e432f8f23a1b',
-                label: 'Doxycycline label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Studies have shown no significant difference in serum half-life of doxycycline (range 18 to 22 hours) in individuals with normal and severely impaired renal function.',
+                  'Doxycycline is eliminated with a half-life of approximately 18 hours by renal and fecal excretion of unchanged drug.',
               },
             ],
           },
         ],
-        agreementRate: 0.7796610169491526,
+        agreementRate: 0.7288135593220338,
         numericallyDisjoint: true,
       },
     ],
@@ -24683,6 +25185,259 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Time-to-peak plasma concentrations were approximately 3 to 5 hours and steady-state plasma concentrations were reached in 6 to 10 days.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
+  eletriptan: {
+    documentsExamined: 12,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 11,
+        readings: [
+          {
+            display: '13 hours',
+            numeric: 13,
+            unit: 'hours',
+            sourceCount: 11,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Though the half-life of the metabolite is estimated to be about 13 hours, the plasma concentration of the N-demethylated metabolite is 10 to 20% of parent drug and is unlikely to contribute significantly to the overall effect of the parent compound.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'a3953ca6-3da6-4420-9eb5-a16b38372f4e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Though the half-life of the metabolite is estimated to be about 13 hours, the plasma concentration of the N-demethylated metabolite is 10 to 20% of parent drug and is unlikely to contribute significantly to the overall effect of the parent compound.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Though the half-life of the metabolite is estimated to be about 13 hours, the plasma concentration of the N-demethylated metabolite is 10-20% of parent drug and is unlikely to contribute significantly to the overall effect of the parent compound.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '077134d1-427d-6235-e063-6394a90abcf6',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Though the half-life of the metabolite is estimated to be about 13 hours, the plasma concentration of the N-demethylated metabolite is 10 to 20% of parent drug and is unlikely to contribute significantly to the overall effect of the parent compound.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'bioavailability',
+        sourceCount: 11,
+        readings: [
+          {
+            display: '50%',
+            numeric: 50,
+            unit: '%',
+            sourceCount: 11,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean absolute bioavailability of eletriptan is approximately 50%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'a3953ca6-3da6-4420-9eb5-a16b38372f4e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean absolute bioavailability of eletriptan is approximately 50%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean absolute bioavailability of eletriptan is approximately 50%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '077134d1-427d-6235-e063-6394a90abcf6',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean absolute bioavailability of eletriptan is approximately 50%.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'tMax',
+        sourceCount: 11,
+        readings: [
+          {
+            display: '2.0 hours',
+            numeric: 2,
+            unit: 'hours',
+            sourceCount: 10,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'a3953ca6-3da6-4420-9eb5-a16b38372f4e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In patients with moderate to severe migraine the median T max is 2.0 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In patients with moderate to severe migraine, the median T max is 2.0 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '077134d1-427d-6235-e063-6394a90abcf6',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In patients with moderate to severe migraine the median Tmax is 2.0 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '62dc12ce-4f19-41c6-9593-3cae29f04af1',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In patients with moderate to severe migraine the median T max is 2.0 hours.',
+              },
+            ],
+          },
+          {
+            display: '2 hours',
+            numeric: 2,
+            unit: 'hours',
+            sourceCount: 1,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In patients with moderate to severe migraine the median T max is 2 hours.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 0.9090909090909091,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'proteinBinding',
+        sourceCount: 11,
+        readings: [
+          {
+            display: '85%',
+            numeric: 85,
+            unit: '%',
+            sourceCount: 11,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Plasma protein binding is moderate and approximately 85%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'a3953ca6-3da6-4420-9eb5-a16b38372f4e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Plasma protein binding is moderate and approximately 85%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Plasma protein binding is moderate and approximately 85%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '077134d1-427d-6235-e063-6394a90abcf6',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Plasma protein binding is moderate and approximately 85%.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'volumeOfDistribution',
+        sourceCount: 11,
+        readings: [
+          {
+            display: '138 L',
+            numeric: 138,
+            unit: 'L',
+            sourceCount: 11,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e0dfeb1f-f0f0-449a-81ae-2c8fdddcff10',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution: The volume of distribution of eletriptan following IV administration is 138 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'a3953ca6-3da6-4420-9eb5-a16b38372f4e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution: The volume of distribution of eletriptan following IV administration is 138L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '2a501dbd-3ea8-47e4-9fcb-07035b8c8c9e',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The volume of distribution of eletriptan following IV administration is 138L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '077134d1-427d-6235-e063-6394a90abcf6',
+                label: 'Eletriptan label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution: The volume of distribution of eletriptan following IV administration is 138L.',
               },
             ],
           },
@@ -31431,18 +32186,32 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   'fosaprepitant-dimeglumine': {
-    documentsExamined: 13,
+    documentsExamined: 27,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 13,
+        sourceCount: 27,
         readings: [
           {
             display: '9 to 13 hours',
             numeric: 9,
             unit: 'hours',
-            sourceCount: 13,
+            sourceCount: 27,
             sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+                label: 'Fosaprepitant Dimeglumine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The apparent terminal half-liferanged from approximately 9 to 13 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'ffee61d1-c1c6-4224-871c-ab7ff6cd01e5',
+                label: 'Fosaprepitant Dimeglumine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The apparent terminal half-life ranged from approximately 9 to 13 hours.',
+              },
               {
                 kind: 'FDA_LABEL',
                 identifier: '5bb41bcb-c775-4447-9bd0-d4c55ad110ea',
@@ -31453,20 +32222,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: 'df341f63-0fef-4411-a89b-6df6b9e792be',
-                label: 'Fosaprepitant Dimeglumine label',
-                retrievedAt: '2026-08-28',
-                excerpt: 'The apparent terminal half-life ranged from approximately 9 to 13 hours.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '2d30d839-bb88-46ce-a9ed-66fe32a12a7a',
-                label: 'Fosaprepitant Dimeglumine label',
-                retrievedAt: '2026-08-28',
-                excerpt: 'The apparent terminal half-life ranged from approximately 9 to 13 hours.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '1cc7d482-5d45-4621-9ffc-cd3f7c54614d',
                 label: 'Fosaprepitant Dimeglumine label',
                 retrievedAt: '2026-08-28',
                 excerpt: 'The apparent terminal half-life ranged from approximately 9 to 13 hours.',
@@ -31479,14 +32234,30 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'volumeOfDistribution',
-        sourceCount: 13,
+        sourceCount: 27,
         readings: [
           {
             display: '70 L',
             numeric: 70,
             unit: 'L',
-            sourceCount: 13,
+            sourceCount: 27,
             sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd624667d-ee3b-3501-53fe-da453352042d',
+                label: 'Fosaprepitant Dimeglumine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean apparent volume of distribution at steady state(Vd ss ) was approximately 70 L in humans.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'ffee61d1-c1c6-4224-871c-ab7ff6cd01e5',
+                label: 'Fosaprepitant Dimeglumine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean apparent volume of distribution at steady state (Vd ss ) was approximately 70 L in humans.',
+              },
               {
                 kind: 'FDA_LABEL',
                 identifier: '5bb41bcb-c775-4447-9bd0-d4c55ad110ea',
@@ -31503,21 +32274,54 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 excerpt:
                   'The mean apparent volume of distribution at steady state (Vd ss ) was approximately 70 L in humans.',
               },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
+  fosfomycin: {
+    documentsExamined: 9,
+    fields: [
+      {
+        field: 'bioavailability',
+        sourceCount: 8,
+        readings: [
+          {
+            display: '37%',
+            numeric: 37,
+            unit: '%',
+            sourceCount: 8,
+            sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '2d30d839-bb88-46ce-a9ed-66fe32a12a7a',
-                label: 'Fosaprepitant Dimeglumine label',
+                identifier: 'd101b5d8-bffc-4ee6-b93b-4589fcb8750d',
+                label: 'Fosfomycin label',
                 retrievedAt: '2026-08-28',
-                excerpt:
-                  'The mean apparent volume of distribution at steady state (Vd ss ) was approximately 70 L in humans.',
+                excerpt: 'Absolute oral bioavailability under fasting conditions is 37%.',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '1cc7d482-5d45-4621-9ffc-cd3f7c54614d',
-                label: 'Fosaprepitant Dimeglumine label',
+                identifier: 'aacd04a4-f2d5-45a2-b9e7-0e92244a5880',
+                label: 'Fosfomycin label',
                 retrievedAt: '2026-08-28',
-                excerpt:
-                  'The mean apparent volume of distribution at steady state (Vd ss ) was approximately 70 L in humans.',
+                excerpt: 'Absolute oral bioavailability under fasting conditions is 37%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '3fa61bd4-fc55-0987-e063-6394a90abce2',
+                label: 'Fosfomycin label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Absolute oral bioavailability under fasting conditions is 37%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'f8ec4771-3f8d-473a-a1d0-e42038f61a42',
+                label: 'Fosfomycin label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Absolute oral bioavailability under fasting conditions is 37%.',
               },
             ],
           },
@@ -32277,6 +33081,239 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Protein binding of gadopiclenol is ≤ 1.8% at clinically relevant concentrations.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
+  galantamine: {
+    documentsExamined: 17,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 17,
+        readings: [
+          {
+            display: '7 hours',
+            numeric: 7,
+            unit: 'hours',
+            sourceCount: 17,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Galantamine has a terminal half-life of about 7 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '3e7e2839-a834-4464-a82a-7554e10ad004',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Galantamine has a terminal half-life of about 7 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd1697161-ebe8-42b0-83e7-c9de4412546c',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Galantamine has a terminal half-life of about 7 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd0b75970-8d3d-408b-9e17-9cbad0f776b1',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Galantamine has a terminal half-life of about 7 hours.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'bioavailability',
+        sourceCount: 17,
+        readings: [
+          {
+            display: '90%',
+            numeric: 90,
+            unit: '%',
+            sourceCount: 17,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The absolute bioavailability of galantamine is about 90%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '3e7e2839-a834-4464-a82a-7554e10ad004',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The absolute bioavailability of galantamine is about 90%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd1697161-ebe8-42b0-83e7-c9de4412546c',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The absolute bioavailability of galantamine is about 90%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd0b75970-8d3d-408b-9e17-9cbad0f776b1',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The absolute bioavailability of galantamine is about 90%.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'tMax',
+        sourceCount: 17,
+        readings: [
+          {
+            display: '1 hour',
+            numeric: 1,
+            unit: 'hours',
+            sourceCount: 17,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption and Distribution: Galantamine is absorbed with time to peak concentration of about 1 hour.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '3e7e2839-a834-4464-a82a-7554e10ad004',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption and Distribution Galantamine is absorbed with time to peak concentration of about 1 hour.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd1697161-ebe8-42b0-83e7-c9de4412546c',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption and Distribution Galantamine is absorbed with time to peak concentration of about 1 hour.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd0b75970-8d3d-408b-9e17-9cbad0f776b1',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption and Distribution Galantamine is absorbed with time to peak concentration of about 1 hour.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'proteinBinding',
+        sourceCount: 17,
+        readings: [
+          {
+            display: '18%',
+            numeric: 18,
+            unit: '%',
+            sourceCount: 17,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of galantamine is 18% at therapeutically relevant concentrations.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '3e7e2839-a834-4464-a82a-7554e10ad004',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of galantamine is 18% at therapeutically relevant concentrations.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd1697161-ebe8-42b0-83e7-c9de4412546c',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of galantamine is 18% at therapeutically relevant concentrations.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd0b75970-8d3d-408b-9e17-9cbad0f776b1',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of galantamine is 18% at therapeutically relevant concentrations.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'volumeOfDistribution',
+        sourceCount: 17,
+        readings: [
+          {
+            display: '175 L',
+            numeric: 175,
+            unit: 'L',
+            sourceCount: 17,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd5b0e225-e94d-4324-afb2-b6e51c949dd0',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean volume of distribution of galantamine is 175 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '3e7e2839-a834-4464-a82a-7554e10ad004',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean volume of distribution of galantamine is 175 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd1697161-ebe8-42b0-83e7-c9de4412546c',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean volume of distribution of galantamine is 175 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'd0b75970-8d3d-408b-9e17-9cbad0f776b1',
+                label: 'Galantamine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean volume of distribution of galantamine is 175 L.',
               },
             ],
           },
@@ -38686,6 +39723,155 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
     ],
   },
+  ketorolac: {
+    documentsExamined: 60,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 45,
+        readings: [
+          {
+            display: '2.5 hours',
+            numeric: 2.5,
+            unit: 'hours',
+            sourceCount: 45,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e0065781-ea33-4662-a8b1-c936e937ac9f',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The half-life of the ketorolac tromethamine S-enantiomer was approximately 2.5 hours (SD ± 0.4) compared with 5 hours (SD ± 1.7) for the R-enantiomer.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '46dc8f62-e754-50e3-e054-00144ff8d46c',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The half-life of the ketorolac tromethamine S-enantiomer was approximately 2.5 hours (SD ± 0.4) compared with 5 hours (SD ± 1.7) for the R-enantiomer.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '688f5dec-a6db-43c6-a1f8-5df99d08d395',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The half-life of the ketorolac tromethamine S-enantiomer was approximately 2.5 hours (SD ± 0.4) compared with 5 hours (SD ± 1.7) for the R-enantiomer.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'f4e7f1c8-e458-0860-e053-2a95a90a1bf0',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The half-life of the ketorolac tromethamine S-enantiomer was approximately 2.5 hours (SD ± 0.4) compared with 5 hours (SD ± 1.7) for the R-enantiomer.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'bioavailability',
+        sourceCount: 41,
+        readings: [
+          {
+            display: '100%',
+            numeric: 100,
+            unit: '%',
+            sourceCount: 41,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'e0065781-ea33-4662-a8b1-c936e937ac9f',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'ing Oral, Intramuscular and Intravenous Doses of Ketorolac Tromethamine Oral † Intramuscular* Intravenous Bolus ‡ Pharmacokinetic Parameters (units) 10 mg 15 mg 30 mg 60 mg 15 mg 30 mg Bioavailability (extent) 100% T max 1 (min) 44±34 33±21** 44±29 33±21** 1.1±0.7** 2.9±1.8 C max 2 (mcg/mL) [Single-dose] 0.87±0.22 1.14±0.32** 2.42±0.68 4.55±1.27** 2.47±0.51** 4.65±0.96 C max (mcg/mL) [steady state',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '46dc8f62-e754-50e3-e054-00144ff8d46c',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'ar Derived from IM pharmacokinetic studies in 54 normal volunteers Intravenous Bolus Derived from IV pharmacokinetic studies in 24 normal volunteers 10 mg 15 mg 30 mg 60 mg 15 mg 30 mg Bioavailability (extent) 100% T max Time-to-peak plasma concentration (min) 44 ± 34 33 ± 21 Mean value was simulated from observed plasma concentration data and standard deviation was simulated from percent coeffici',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '688f5dec-a6db-43c6-a1f8-5df99d08d395',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'ng Oral, Intramuscular and Intravenous Doses of Ketorolac Tromethamine Pharmacokinetic Parameters (units) Oral 1 Intramuscular 2 Intravenous Bolus 3 10 mg 15 mg 30 mg 60 mg 15 mg 30 mg Bioavailability (extent) 100% T max 6 (min) 44 ± 34 33 ± 21 4 44 ± 29 33 ± 21 4 1.1 ± 0.7 4 2.9 ± 1.8 C max 7 (mcg/mL) [single-dose] 0.87 ± 0.22 1.14 ± 0.32 4 2.42 ± 0.68 4.55 ± 1.27 4 2.47 ± 0.51 4 4.65 ± 0.96 C ma',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'f4e7f1c8-e458-0860-e053-2a95a90a1bf0',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'ing Oral, Intramuscular and Intravenous Doses of Ketorolac Tromethamine Pharmacokinetic Parameters (units) Oral * Intramuscular † Intravenous Bolus‡ 10 mg 15 mg 30 mg 60 mg 15 mg 30 mg Bioavailability (extent) 100% Tmax6 (min) 44 ± 34 33 ± 21§ 44 ± 29 33 ± 21§ 1.1 ± 0.74 2.9 ± 1.8 Cmax¶ (mcg/mL) [single-dose] 0.87 ± 0.22 1.14 ± 0.32 § 2.42 ± 0.68 4.55 ± 1.27§ 2.47 ± 0.51§ 4.65 ± 0.96 Cmax (mcg/mL)',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'tMax',
+        sourceCount: 21,
+        readings: [
+          {
+            display: '1 hour',
+            numeric: 1,
+            unit: 'hours',
+            sourceCount: 21,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '46dc8f62-e754-50e3-e054-00144ff8d46c',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Oral administration of ketorolac tromethamine after a high-fat meal resulted in decreased peak and delayed time-to-peak concentrations of ketorolac tromethamine by about 1 hour.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '688f5dec-a6db-43c6-a1f8-5df99d08d395',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Oral administration of ketorolac tromethamine after a high-fat meal resulted in decreased peak and delayed time-to-peak concentrations of ketorolac tromethamine by about 1 hour.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'f4e7f1c8-e458-0860-e053-2a95a90a1bf0',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Oral administration of ketorolac tromethamine after a high-fat meal resulted in decreased peak and delayed time-to-peak concentrations of ketorolac tromethamine by about 1 hour.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '8f36fde8-bc59-4a59-8659-b173cfd15774',
+                label: 'Ketorolac label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Oral administration of ketorolac tromethamine after a high-fat meal resulted in decreased peak and delayed time-to-peak concentrations of ketorolac tromethamine by about 1 hour.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
   labetalol: {
     documentsExamined: 60,
     fields: [
@@ -41040,17 +42226,17 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   levoleucovorin: {
-    documentsExamined: 8,
+    documentsExamined: 9,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 7,
+        sourceCount: 8,
         readings: [
           {
             display: '5.1 hours',
             numeric: 5.1,
             unit: 'hours',
-            sourceCount: 7,
+            sourceCount: 8,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -52727,17 +53913,17 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   nevirapine: {
-    documentsExamined: 8,
+    documentsExamined: 9,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 8,
+        sourceCount: 9,
         readings: [
           {
             display: '45 hours',
             numeric: 45,
             unit: 'hours',
-            sourceCount: 8,
+            sourceCount: 9,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -52746,6 +53932,14 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Autoinduction also results in a corresponding decrease in the terminal phase half-life of nevirapine in plasma, from approximately 45 hours (single dose) to approximately 25-30 hours following multiple dosing with 200-400 mg per day.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '8dfe86aa-ea5d-48d2-94a8-1a5506055d70',
+                label: 'Nevirapine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Autoinduction also results in a corresponding decrease in the terminal phase half-life of nevirapine in plasma, from approximately 45 hours (single dose) to approximately 25 to 30 hours following multiple dosing with 200 to 400 mg per day.',
               },
               {
                 kind: 'FDA_LABEL',
@@ -52763,14 +53957,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 excerpt:
                   'Autoinduction also results in a corresponding decrease in the terminal phase half-life of nevirapine in plasma, from approximately 45 hours (single dose) to approximately 25 to 30 hours following multiple dosing with 200 to 400 mg per day.',
               },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '2620b114-f53f-44f1-8708-697e86343090',
-                label: 'Nevirapine label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Autoinduction also results in a corresponding decrease in the terminal phase half-life of nevirapine in plasma, from approximately 45 hours (single dose) to approximately 25-30 hours following multiple dosing with 200-400 mg per day.',
-              },
             ],
           },
         ],
@@ -52779,17 +53965,25 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'bioavailability',
-        sourceCount: 6,
+        sourceCount: 7,
         readings: [
           {
             display: '90%',
             numeric: 90,
             unit: '%',
-            sourceCount: 6,
+            sourceCount: 7,
             sources: [
               {
                 kind: 'FDA_LABEL',
                 identifier: 'effb86cc-4b80-4fac-aaa3-9f373b3d0f7d',
+                label: 'Nevirapine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  '12.3 Pharmacokinetics Adults Absorption and Bioavailability Nevirapine is readily absorbed (greater than 90%) after oral administration in healthy volunteers and in adults with HIV-1 infection.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '8dfe86aa-ea5d-48d2-94a8-1a5506055d70',
                 label: 'Nevirapine label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -52806,14 +54000,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: '61409678-d2f6-42cd-b03d-b26b11b39641',
-                label: 'Nevirapine label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  '12.3 Pharmacokinetics Adults Absorption and Bioavailability Nevirapine is readily absorbed (greater than 90%) after oral administration in healthy volunteers and in adults with HIV-1 infection.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'fbd628db-4076-4fe0-8323-9cc33ae92e42',
                 label: 'Nevirapine label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -54798,7 +55984,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             display: '21 to 54 hours',
             numeric: 21,
             unit: 'hours',
-            sourceCount: 60,
+            sourceCount: 59,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -54834,19 +56020,35 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
             ],
           },
+          {
+            display: '30 hours',
+            numeric: 30,
+            unit: 'hours',
+            sourceCount: 1,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '11544cba-64a9-49cb-8d74-da228053b252',
+                label: 'Olanzapine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The effective half-life for olanzapine after intramuscular ZYPREXA RELPREVV administration is approximately 30 days as compared to a half-life after oral administration of approximately 30 hours.',
+              },
+            ],
+          },
         ],
-        agreementRate: 1,
+        agreementRate: 0.9833333333333333,
         numericallyDisjoint: false,
       },
       {
         field: 'tMax',
-        sourceCount: 60,
+        sourceCount: 59,
         readings: [
           {
             display: '6 hours',
             numeric: 6,
             unit: 'hours',
-            sourceCount: 60,
+            sourceCount: 59,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -57281,6 +58483,42 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
     ],
   },
+  pamidronate: {
+    documentsExamined: 2,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 2,
+        readings: [
+          {
+            display: '7 hours',
+            numeric: 7,
+            unit: 'hours',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '9b6a9a3b-71c9-4dcb-b857-5d1de25c3a23',
+                label: 'Pamidronate label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The mean ± SD elimination half-life is 28 ± 7 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c2ca033e-fa5f-4141-b702-11f8b4303da1',
+                label: 'Pamidronate label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Elimination The elimination half-life is 28 ± 7 hours (mean ± standard deviation).',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
   pantoprazole: {
     documentsExamined: 60,
     fields: [
@@ -57856,21 +59094,37 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   paroxetine: {
-    documentsExamined: 27,
+    documentsExamined: 60,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 24,
+        sourceCount: 59,
         readings: [
           {
             display: '21 hours',
             numeric: 21,
             unit: 'hours',
-            sourceCount: 20,
+            sourceCount: 51,
             sources: [
               {
                 kind: 'FDA_LABEL',
                 identifier: '7d558598-6905-46da-8f34-668456c68411',
+                label: 'Paroxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Elimination Metabolism The mean elimination half-life is approximately 21 hours (CV 32%) after oral dosing of 30 mg tablets daily for 30 days of paroxetine.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '45ef7ce8-5aa0-488c-a81c-cdfbda66ac04',
+                label: 'Paroxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean elimination half-life is approximately 21 hours (CV 32%) after oral dosing of 30 mg tablets of paroxetine hydrochloride daily for 30 days.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c0acc97d-3d8d-4a7f-8acd-99050b0af2f1',
                 label: 'Paroxetine label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -57884,57 +59138,41 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 excerpt:
                   'Elimination Metabolism The mean elimination half-life is approximately 21 hours (CV 32%) after oral dosing of 30 mg tablets daily for 30 days of paroxetine.',
               },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '08320ea3-8f93-6f04-5d1c-f69af3eb5a81',
-                label: 'Paroxetine label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Elimination Metabolism The mean elimination half-life is approximately 21 hours (CV 32%) after oral dosing of 30 mg tablets daily for 30 days of paroxetine.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '0a8a58c7-5008-4c65-ae0e-e4ee809b1807',
-                label: 'Paroxetine label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'The mean elimination half-life is approximately 21 hours (CV 32%) after oral dosing of 30 mg tablets of paroxetine daily for 30 days.',
-              },
             ],
           },
           {
             display: '15 to 20 hours',
             numeric: 15,
             unit: 'hours',
-            sourceCount: 4,
+            sourceCount: 8,
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '52c3c5c4-6434-4f95-b5f0-9ecfdc0a7e0a',
+                identifier: '087ff0d3-1761-47ea-a8c1-7c4cb679af97',
                 label: 'Paroxetine label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Elimination Metabolism The mean elimination half-life of paroxetine was 15 to 20 hours throughout a range of single doses of Paroxetine (12.5 mg, 25 mg, 37.5 mg, and 50 mg).',
+                  'Elimination Metabolism The mean elimination half-life of paroxetine was 15 to 20 hours throughout a range of single doses of Paroxetine HCL CR (12.5 mg, 25 mg, 37.5 mg, and 50 mg).',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '483bd97f-c4d0-4e23-aaa8-6334f4471e0c',
+                identifier: 'd315e0da-f829-408b-be5d-2bca2e06913c',
                 label: 'Paroxetine label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Elimination Metabolism The mean elimination half-life of paroxetine was 15 to 20 hours throughout a range of single doses of PAXIL CR (12.5 mg, 25 mg, 37.5 mg, and 50 mg).',
+                  'Elimination Metabolism The mean elimination half-life of paroxetine was 15 to 20 hours throughout a range of single doses of paroxetine extended-release tablets (12.5 mg, 25 mg, 37.5 mg, and 50 mg).',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'f22886f5-230c-47e4-9dd8-ffb14c8d6ae4',
+                identifier: '555cfa31-3865-450f-b16b-2f4004af7a67',
                 label: 'Paroxetine label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Elimination Metabolism The mean elimination half-life of paroxetine was 15 to 20 hours throughout a range of single doses of Paroxetine (12.5 mg, 25 mg, 37.5 mg, and 50 mg).',
+                  'Elimination Metabolism The mean elimination half-life of paroxetine was 15 to 20 hours throughout a range of single doses of paroxetine extended-release tablets (12.5 mg, 25 mg, 37.5 mg, and 50 mg).',
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'f39a2a7a-7a7e-4dd8-9704-54d9598504fb',
+                identifier: '59cb7de6-483d-4007-b6ef-f10a70b872e9',
                 label: 'Paroxetine label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -57943,40 +59181,8 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
         ],
-        agreementRate: 0.8333333333333334,
+        agreementRate: 0.864406779661017,
         numericallyDisjoint: true,
-      },
-      {
-        field: 'tMax',
-        sourceCount: 2,
-        readings: [
-          {
-            display: '6 hours',
-            numeric: 6,
-            unit: 'hours',
-            sourceCount: 2,
-            sources: [
-              {
-                kind: 'FDA_LABEL',
-                identifier: '1383d713-79b9-45bd-bd06-65707f28bc99',
-                label: 'Paroxetine label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Peak concentrations were reached at a median of 6 hours (3 to 8 hours range).',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '502311b3-b617-4cbd-a3ab-a60f2c62880a',
-                label: 'Paroxetine label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Peak concentrations were reached at a median of 6 hours (3 to 8 hours range).',
-              },
-            ],
-          },
-        ],
-        agreementRate: 1,
-        numericallyDisjoint: false,
       },
     ],
   },
@@ -58200,17 +59406,17 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   pemetrexed: {
-    documentsExamined: 4,
+    documentsExamined: 14,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 4,
+        sourceCount: 14,
         readings: [
           {
             display: '3.5 hours',
             numeric: 3.5,
             unit: 'hours',
-            sourceCount: 4,
+            sourceCount: 14,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -58222,7 +59428,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '8b660f68-b770-4e0a-b2f9-25e663deecc3',
+                identifier: '4cc1574b-3d2f-489b-9ad3-55695bb97200',
                 label: 'Pemetrexed label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -58230,7 +59436,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: '9582c46c-d8b0-44b7-a2ee-9c86f5e9b7b1',
+                identifier: 'adc9ce4c-926a-4ee8-bd0d-d06fc89c17fc',
                 label: 'Pemetrexed label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -58238,7 +59444,7 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
-                identifier: 'caef07ce-066b-4c48-98dc-974b05ebbbe0',
+                identifier: '3e087418-69ff-47fa-93c2-f28699309433',
                 label: 'Pemetrexed label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -58252,8 +59458,48 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'volumeOfDistribution',
-        sourceCount: 4,
+        sourceCount: 14,
         readings: [
+          {
+            display: '16.1 liters',
+            numeric: 16.1,
+            unit: 'L',
+            sourceCount: 11,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '4cc1574b-3d2f-489b-9ad3-55695bb97200',
+                label: 'Pemetrexed label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution Pemetrexed has a steady-state volume of distribution of 16.1 liters.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'adc9ce4c-926a-4ee8-bd0d-d06fc89c17fc',
+                label: 'Pemetrexed label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution Pemetrexed has a steady-state volume of distribution of 16.1 liters.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '3e087418-69ff-47fa-93c2-f28699309433',
+                label: 'Pemetrexed label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution Pemetrexed has a steady-state volume of distribution of 16.1 liters.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'ae77f00f-d43b-4b75-afd5-a2a9cb7138da',
+                label: 'Pemetrexed label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution Pemetrexed has a steady-state volume of distribution of 16.1 liters.',
+              },
+            ],
+          },
           {
             display: '16.1 L',
             numeric: 16.1,
@@ -58279,32 +59525,23 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
             ],
           },
           {
-            display: '16.1 liters',
-            numeric: 16.1,
+            display: '16 L',
+            numeric: 16,
             unit: 'L',
-            sourceCount: 2,
+            sourceCount: 1,
             sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '8b660f68-b770-4e0a-b2f9-25e663deecc3',
+                identifier: '7ac04ab7-7f8c-46ce-ab56-a7a08cd02ab3',
                 label: 'Pemetrexed label',
                 retrievedAt: '2026-08-28',
-                excerpt:
-                  'Distribution Pemetrexed has a steady-state volume of distribution of 16.1 liters.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '9582c46c-d8b0-44b7-a2ee-9c86f5e9b7b1',
-                label: 'Pemetrexed label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Distribution Pemetrexed has a steady-state volume of distribution of 16.1 liters.',
+                excerpt: 'Distribution Pemetrexed steady-state volume of distribution is 16 L.',
               },
             ],
           },
         ],
-        agreementRate: 0.5,
-        numericallyDisjoint: false,
+        agreementRate: 0.7857142857142857,
+        numericallyDisjoint: true,
       },
     ],
   },
@@ -58405,6 +59642,59 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'The peak plasma concentration of penicillamine occurs 1 to 3 hours after ingestion; it is approximately 1 to 2 mg/L after an oral dose of 250 mg.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
+  pentamidine: {
+    documentsExamined: 7,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 4,
+        readings: [
+          {
+            display: '8 hour',
+            numeric: 8,
+            unit: 'hours',
+            sourceCount: 4,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'cc2b635e-4840-4dc3-a177-5484371680e8',
+                label: 'Pentamidine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'ngle two-hour intravenous infusion or after a single intramuscular injection to 12 patients with AIDS are presented in the following table: Mean ± SD Cmax ng/mL Clearance L/h Half-life hours Vdss L Concentration ng/mL 8 hour 24 hour 2 hour I.V. infusion 4 mg/kg (N=6) 612 ± 371 248 ± 91 6.4 ± 1.3 821 ± 535 19.3 ± 16.9 2.9 ± 1.4 I.M. 4 mg/kg (N=6) 209 ± 48 305 ± 81 9.4 ± 2.0 2724 ± 1066 22.9 ± 8.0 6',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'cb8e8155-5505-44d5-9dee-525e2e45b95d',
+                label: 'Pentamidine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'gle two-hour intravenous infusion or after a single intramuscular injection to 12 patients with AIDS are presented in the following table: Mean ± SD C max ng/mL Clearance L/h Half-life hours Vdss L Concentration ng/mL 8 hour 24 hour 2 hour I.V. infusion 4 mg/kg (N=6) 612 ± 371 248 ± 91 6.4 ± 1.3 821 ± 535 19.3 ± 16.9 2.9 ± 1.4 I.M. 4 mg/kg (N=6) 209 ± 48 305 ± 81 9.4 ± 2.0 2724 ± 1066 22.9 ± 8.0 6',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '860c799c-5199-4f0c-b21b-9910273474d9',
+                label: 'Pentamidine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'gle two-hour intravenous infusion or after a single intramuscular injection to 12 patients with AIDS are presented in the following table: Mean ± SD C max ng/mL Clearance L/h Half-life hours Vdss L Concentration ng/mL 8 hour 24 hour 2 hour I.V. infusion 4 mg/kg (N=6) 612 ± 371 248 ± 91 6.4 ± 1.3 821 ± 535 19.3 ± 16.9 2.9 ± 1.4 I.M. 4 mg/kg (N=6) 209 ± 48 305 ± 81 9.4 ± 2.0 2724 ± 1066 22.9 ± 8.0 6',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '5c14fbf2-e21f-44b3-b35c-06919d40d7e0',
+                label: 'Pentamidine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'ngle two-hour intravenous infusion or after a single intramuscular injection to 12 patients with AIDS are presented in the following table: Mean ± SD Cmax ng/mL Clearance L/h Half-life hours Vdss L Concentration ng/mL 8 hour 24 hour 2 hour I.V. infusion 4 mg/kg (N=6) 612 ± 371 248 ± 91 6.4 ± 1.3 821 ± 535 19.3 ± 16.9 2.9 ± 1.4 I.M. 4 mg/kg (N=6) 209 ± 48 305 ± 81 9.4 ± 2.0 2724 ± 1066 22.9 ± 8.0 6',
               },
             ],
           },
@@ -66179,6 +67469,107 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
     ],
   },
+  ritlecitinib: {
+    documentsExamined: 2,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 2,
+        readings: [
+          {
+            display: '1.3 to 2.3 hours',
+            numeric: 1.3,
+            unit: 'hours',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+                label: 'Ritlecitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Elimination The ritlecitinib mean terminal half-life ranges from 1.3 to 2.3 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '6b2f9446-fb23-4741-b73a-5a2f993733c3',
+                label: 'Ritlecitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Elimination The ritlecitinib mean terminal half-life ranges from 1.3 to 2.3 hours.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'bioavailability',
+        sourceCount: 2,
+        readings: [
+          {
+            display: '64%',
+            numeric: 64,
+            unit: '%',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+                label: 'Ritlecitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption The ritlecitinib absolute oral bioavailability is approximately 64%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '6b2f9446-fb23-4741-b73a-5a2f993733c3',
+                label: 'Ritlecitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption The ritlecitinib absolute oral bioavailability is approximately 64%.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'tMax',
+        sourceCount: 2,
+        readings: [
+          {
+            display: '1 hour',
+            numeric: 1,
+            unit: 'hours',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '1882f799-61b0-4813-965a-4910c4ae419c',
+                label: 'Ritlecitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Ritlecitinib peak plasma concentrations were reached within 1 hour following an oral dose.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '6b2f9446-fb23-4741-b73a-5a2f993733c3',
+                label: 'Ritlecitinib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Ritlecitinib peak plasma concentrations were reached within 1 hour following an oral dose.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
   ritonavir: {
     documentsExamined: 8,
     fields: [
@@ -69446,17 +70837,17 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   sorafenib: {
-    documentsExamined: 4,
+    documentsExamined: 7,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 4,
+        sourceCount: 7,
         readings: [
           {
             display: '25 to 48 hours',
             numeric: 25,
             unit: 'hours',
-            sourceCount: 4,
+            sourceCount: 7,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -69468,23 +70859,23 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
+                identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+                label: 'Sorafenib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Elimination The mean elimination half-life of sorafenib was approximately 25 to 48 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'b7919013-1511-44f0-a759-3fa78a9fa178',
+                label: 'Sorafenib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Elimination The mean elimination half-life of sorafenib was approximately 25 to 48 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
                 identifier: 'b5305e23-7bc6-44d8-b177-930c47d1653a',
-                label: 'Sorafenib label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Elimination The mean elimination half-life of sorafenib was approximately 25 to 48 hours.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '06f442d6-071e-4081-b7f7-40f3b803ab3f',
-                label: 'Sorafenib label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Elimination The mean elimination half-life of sorafenib was approximately 25 to 48 hours.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'b50667e4-5ebc-4968-a646-d605058dbef0',
                 label: 'Sorafenib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -69498,13 +70889,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'bioavailability',
-        sourceCount: 4,
+        sourceCount: 7,
         readings: [
           {
             display: '38–49%',
             numeric: 38,
             unit: '%',
-            sourceCount: 4,
+            sourceCount: 6,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -69516,32 +70907,48 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               },
               {
                 kind: 'FDA_LABEL',
+                identifier: '93f9c3b2-d4c5-80d3-5421-8b4c29fbf8a6',
+                label: 'Sorafenib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption After administration of sorafenib tablets, the mean relative bioavailability was 38 to 49% when compared to an oral solution.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'b7919013-1511-44f0-a759-3fa78a9fa178',
+                label: 'Sorafenib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption After administration of sorafenib tablets, the mean relative bioavailability was 38-49% when compared to an oral solution.',
+              },
+              {
+                kind: 'FDA_LABEL',
                 identifier: 'b5305e23-7bc6-44d8-b177-930c47d1653a',
                 label: 'Sorafenib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Absorption After administration of sorafenib tablets tablets, the mean relative bioavailability was 38 to 49% when compared to an oral solution.',
               },
+            ],
+          },
+          {
+            display: '38%',
+            numeric: 38,
+            unit: '%',
+            sourceCount: 1,
+            sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '06f442d6-071e-4081-b7f7-40f3b803ab3f',
+                identifier: 'dae598f7-823f-405c-ae31-f924594187b9',
                 label: 'Sorafenib label',
                 retrievedAt: '2026-08-28',
                 excerpt:
-                  'Absorption After administration of sorafenib tablets, the mean relative bioavailability was 38–49% when compared to an oral solution.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: 'b50667e4-5ebc-4968-a646-d605058dbef0',
-                label: 'Sorafenib label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Absorption After administration of NEXAVAR tablets, the mean relative bioavailability was 38–49% when compared to an oral solution.',
+                  'Absorption After administration of sorafenib tablets, the mean relative bioavailability was 38% to 49% when compared to an oral solution.',
               },
             ],
           },
         ],
-        agreementRate: 1,
+        agreementRate: 0.8571428571428571,
         numericallyDisjoint: false,
       },
     ],
@@ -71101,6 +72508,139 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
         ],
         agreementRate: 0.5,
         numericallyDisjoint: true,
+      },
+    ],
+  },
+  talazoparib: {
+    documentsExamined: 4,
+    fields: [
+      {
+        field: 'tMax',
+        sourceCount: 2,
+        readings: [
+          {
+            display: '1 hour',
+            numeric: 1,
+            unit: 'hours',
+            sourceCount: 2,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c6fd147f-a77e-4a0b-9280-e82ecc41b4be',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption The median time to C max (T max ) was approximately 1 hour (range: 0.4 to 4 hours) after dosing.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'b653221e-971f-4452-92d4-797924f1ff59',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Absorption The median time to C max (T max ) was approximately 1 hour (range: 0.4 to 4 hours) after dosing.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'proteinBinding',
+        sourceCount: 4,
+        readings: [
+          {
+            display: '74%',
+            numeric: 74,
+            unit: '%',
+            sourceCount: 4,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In vitro , protein binding of talazoparib is 74% and is independent of talazoparib concentration.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c6fd147f-a77e-4a0b-9280-e82ecc41b4be',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In vitro , protein binding of talazoparib is 74% and is independent of talazoparib concentration.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '13839d4f-6acf-4ffb-a128-79df59319273',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In vitro , protein binding of talazoparib is 74% and is independent of talazoparib concentration.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'b653221e-971f-4452-92d4-797924f1ff59',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'In vitro , protein binding of talazoparib is 74% and is independent of talazoparib concentration.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'volumeOfDistribution',
+        sourceCount: 4,
+        readings: [
+          {
+            display: '420 L',
+            numeric: 420,
+            unit: 'L',
+            sourceCount: 4,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'f2423edd-6d24-495c-aec1-c2f457f08d9a',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The mean apparent volume of distribution of talazoparib is 420 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c6fd147f-a77e-4a0b-9280-e82ecc41b4be',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The mean apparent volume of distribution of talazoparib is 420 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '13839d4f-6acf-4ffb-a128-79df59319273',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The mean apparent volume of distribution of talazoparib is 420 L.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'b653221e-971f-4452-92d4-797924f1ff59',
+                label: 'Talazoparib label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The mean apparent volume of distribution of talazoparib is 420 L.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
       },
     ],
   },
@@ -73961,17 +75501,17 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   timolol: {
-    documentsExamined: 32,
+    documentsExamined: 34,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 3,
+        sourceCount: 4,
         readings: [
           {
             display: '4 hours',
             numeric: 4,
             unit: 'hours',
-            sourceCount: 3,
+            sourceCount: 4,
             sources: [
               {
                 kind: 'FDA_LABEL',
@@ -73995,6 +75535,13 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'The drug half-life in plasma is approximately 4 hours and this is essentially unchanged in patients with moderate renal insufficiency.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'cebc9a5e-0bdb-4f23-9b2c-cde543b62fb6',
+                label: 'Timolol label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The half-life of timolol in plasma is approximately 4 hours.',
               },
             ],
           },
@@ -78788,21 +80335,29 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
     ],
   },
   vardenafil: {
-    documentsExamined: 13,
+    documentsExamined: 18,
     fields: [
       {
         field: 'halfLife',
-        sourceCount: 13,
+        sourceCount: 18,
         readings: [
           {
             display: '4 to 5 hours',
             numeric: 4,
             unit: 'hours',
-            sourceCount: 13,
+            sourceCount: 15,
             sources: [
               {
                 kind: 'FDA_LABEL',
                 identifier: '31be68b0-ac7e-42d0-9435-1f0a329b63d8',
+                label: 'Vardenafil label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Excretion The total body clearance of vardenafil is 56 L/h, and the terminal half-life of vardenafil and its primary metabolite (M1) is approximately 4 to 5 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c70a9c8e-46b0-489d-bbda-2d7fca4b629f',
                 label: 'Vardenafil label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -78824,33 +80379,62 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 excerpt:
                   'Excretion The total body clearance of vardenafil is 56 L/h, and the terminal half-life of vardenafil and its primary metabolite (M1) is approximately 4 to 5 hours.',
               },
+            ],
+          },
+          {
+            display: '3 to 5 hours',
+            numeric: 3,
+            unit: 'hours',
+            sourceCount: 3,
+            sources: [
               {
                 kind: 'FDA_LABEL',
-                identifier: '57a0c163-a5e8-4c6e-a4ea-114cb2668407',
+                identifier: '0ad213e0-d18a-4e67-a405-df95322eaa52',
                 label: 'Vardenafil label',
                 retrievedAt: '2026-08-28',
-                excerpt:
-                  'Excretion The total body clearance of vardenafil is 56 L/h, and the terminal half-life of vardenafil and its primary metabolite (M1) is approximately 4-5 hours.',
+                excerpt: 'The elimination half-life of the metabolite M1 is between 3 to 5 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'dce0b31b-4522-4cb4-9dba-3aea2b2bb082',
+                label: 'Vardenafil label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The elimination half-life of the metabolite M1 is between 3 to 5 hours.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '0ce4eb7b-fa50-441d-ae71-eb33dca27926',
+                label: 'Vardenafil label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'The elimination half-life of the metabolite M1 is between 3 to 5 hours.',
               },
             ],
           },
         ],
-        agreementRate: 1,
+        agreementRate: 0.8333333333333334,
         numericallyDisjoint: false,
       },
       {
         field: 'bioavailability',
-        sourceCount: 13,
+        sourceCount: 15,
         readings: [
           {
             display: '15%',
             numeric: 15,
             unit: '%',
-            sourceCount: 13,
+            sourceCount: 15,
             sources: [
               {
                 kind: 'FDA_LABEL',
                 identifier: '31be68b0-ac7e-42d0-9435-1f0a329b63d8',
+                label: 'Vardenafil label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Figure 8: Plasma Vardenafil Concentration (Mean ± SD) Curve for a Single 20 mg Vardenafil Dose Vardenafil is rapidly absorbed with absolute bioavailability of approximately 15%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c70a9c8e-46b0-489d-bbda-2d7fca4b629f',
                 label: 'Vardenafil label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -78872,14 +80456,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 excerpt:
                   'Figure 8: Plasma Vardenafil Concentration (Mean ± SD) Curve for a Single 20 mg Vardenafil Hydrochloride Dose Vardenafil is rapidly absorbed with absolute bioavailability of approximately 15%.',
               },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '57a0c163-a5e8-4c6e-a4ea-114cb2668407',
-                label: 'Vardenafil label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Figure 8: Plasma Vardenafil Concentration (Mean ± SD) Curve for a Single 20 mg Vardenafil Hydrochloride Tablets Dose Vardenafil is rapidly absorbed with absolute bioavailability of approximately 15%.',
-              },
             ],
           },
         ],
@@ -78888,17 +80464,25 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'proteinBinding',
-        sourceCount: 13,
+        sourceCount: 18,
         readings: [
           {
             display: '95%',
             numeric: 95,
             unit: '%',
-            sourceCount: 13,
+            sourceCount: 18,
             sources: [
               {
                 kind: 'FDA_LABEL',
                 identifier: '31be68b0-ac7e-42d0-9435-1f0a329b63d8',
+                label: 'Vardenafil label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Vardenafil and its major circulating metabolite, M1, are highly bound to plasma proteins (about 95% for parent drug and M1).',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c70a9c8e-46b0-489d-bbda-2d7fca4b629f',
                 label: 'Vardenafil label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -78915,14 +80499,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: '9b8da728-8f52-4c1f-9f0c-4bd9736e912f',
-                label: 'Vardenafil label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Vardenafil and its major circulating metabolite, M1, are highly bound to plasma proteins (about 95% for parent drug and M1).',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '57a0c163-a5e8-4c6e-a4ea-114cb2668407',
                 label: 'Vardenafil label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -78936,17 +80512,25 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
       },
       {
         field: 'volumeOfDistribution',
-        sourceCount: 13,
+        sourceCount: 18,
         readings: [
           {
             display: '208 L',
             numeric: 208,
             unit: 'L',
-            sourceCount: 13,
+            sourceCount: 18,
             sources: [
               {
                 kind: 'FDA_LABEL',
                 identifier: '31be68b0-ac7e-42d0-9435-1f0a329b63d8',
+                label: 'Vardenafil label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The mean steady-state volume of distribution (Vss) for vardenafil is 208 L, indicating extensive tissue distribution.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'c70a9c8e-46b0-489d-bbda-2d7fca4b629f',
                 label: 'Vardenafil label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -78963,14 +80547,6 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
               {
                 kind: 'FDA_LABEL',
                 identifier: '9b8da728-8f52-4c1f-9f0c-4bd9736e912f',
-                label: 'Vardenafil label',
-                retrievedAt: '2026-08-28',
-                excerpt:
-                  'Distribution The mean steady-state volume of distribution (Vss) for vardenafil is 208 L, indicating extensive tissue distribution.',
-              },
-              {
-                kind: 'FDA_LABEL',
-                identifier: '57a0c163-a5e8-4c6e-a4ea-114cb2668407',
                 label: 'Vardenafil label',
                 retrievedAt: '2026-08-28',
                 excerpt:
@@ -80220,6 +81796,199 @@ export const SOURCE_CONSENSUS: Record<string, RecordedSourceConsensus> = {
                 retrievedAt: '2026-08-28',
                 excerpt:
                   'Distribution The volume of distribution at steady state for voriconazole is estimated to be 4.6 L/kg, suggesting extensive distribution into tissues.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+    ],
+  },
+  vortioxetine: {
+    documentsExamined: 4,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 4,
+        readings: [
+          {
+            display: '66 hours',
+            numeric: 66,
+            unit: 'hours',
+            sourceCount: 4,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean terminal half-life is approximately 66 hours, and steady-state plasma concentrations are typically achieved within two weeks of dosing.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'cb1e9df4-dd74-4073-9d78-bb55593dd000',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean terminal half-life is approximately 66 hours, and steady-state plasma concentrations are typically achieved within two weeks of dosing.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'bd0107e5-1cb9-4b40-a6af-fa65fcbe6b4e',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean terminal half-life is approximately 66 hours, and steady-state plasma concentrations are typically achieved within two weeks of dosing.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '239215eb-be32-4286-9677-1e5556c6cccf',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The mean terminal half-life is approximately 66 hours, and steady-state plasma concentrations are typically achieved within two weeks of dosing.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'bioavailability',
+        sourceCount: 4,
+        readings: [
+          {
+            display: '75%',
+            numeric: 75,
+            unit: '%',
+            sourceCount: 4,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Absolute bioavailability is 75%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'cb1e9df4-dd74-4073-9d78-bb55593dd000',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Absolute bioavailability is 75%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'bd0107e5-1cb9-4b40-a6af-fa65fcbe6b4e',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Absolute bioavailability is 75%.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '239215eb-be32-4286-9677-1e5556c6cccf',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt: 'Absolute bioavailability is 75%.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'proteinBinding',
+        sourceCount: 4,
+        readings: [
+          {
+            display: '98%',
+            numeric: 98,
+            unit: '%',
+            sourceCount: 4,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of vortioxetine in humans is 98%, independent of plasma concentrations.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'cb1e9df4-dd74-4073-9d78-bb55593dd000',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of vortioxetine in humans is 98%, independent of plasma concentrations.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'bd0107e5-1cb9-4b40-a6af-fa65fcbe6b4e',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of vortioxetine in humans is 98%, independent of plasma concentrations.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '239215eb-be32-4286-9677-1e5556c6cccf',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'The plasma protein binding of vortioxetine in humans is 98%, independent of plasma concentrations.',
+              },
+            ],
+          },
+        ],
+        agreementRate: 1,
+        numericallyDisjoint: false,
+      },
+      {
+        field: 'volumeOfDistribution',
+        sourceCount: 4,
+        readings: [
+          {
+            display: '2600 L',
+            numeric: 2600,
+            unit: 'L',
+            sourceCount: 4,
+            sources: [
+              {
+                kind: 'FDA_LABEL',
+                identifier: '1a5b68e2-14d0-419d-9ec6-1ca97145e838',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The apparent volume of distribution of vortioxetine is approximately 2600 L, indicating extensive extravascular distribution.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'cb1e9df4-dd74-4073-9d78-bb55593dd000',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The apparent volume of distribution of vortioxetine is approximately 2600 L, indicating extensive extravascular distribution.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: 'bd0107e5-1cb9-4b40-a6af-fa65fcbe6b4e',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The apparent volume of distribution of vortioxetine is approximately 2600 L, indicating extensive extravascular distribution.',
+              },
+              {
+                kind: 'FDA_LABEL',
+                identifier: '239215eb-be32-4286-9677-1e5556c6cccf',
+                label: 'Vortioxetine label',
+                retrievedAt: '2026-08-28',
+                excerpt:
+                  'Distribution The apparent volume of distribution of vortioxetine is approximately 2600 L, indicating extensive extravascular distribution.',
               },
             ],
           },
