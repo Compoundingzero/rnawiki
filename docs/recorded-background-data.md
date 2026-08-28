@@ -80,6 +80,25 @@ schedule beside the ClinicalTrials source-sync worker and page the operator the 
 what keeps the dataset self-updating without generated prose: sources move, the loop detects the
 exact entry that moved, and a person re-records it.
 
+## The companion dataset: computed molecular properties
+
+`molecular-properties/v1` (`lib/background/molecular-properties.ts`) holds PubChem's computed
+descriptors — formula, weight, XLogP lipophilicity, hydrogen-bond counts, polar surface area,
+rotatable bonds, complexity, SMILES, InChIKey — for every recorded medicine that carries a PubChem
+CID in its `registryIdentifiers`.
+
+Nothing in it is authored. `npm run build:molecular` fetches each record by the CID the verified
+background layer already holds and regenerates
+`scripts/seed-data/background/molecular-properties.generated.ts` wholesale, so refreshing is
+re-running the script and `git diff` is the change report. There is no wording to structure and no
+judgement to make, which is why this dataset needs no engine of its own: a test asserts it can
+never introduce an identifier the verified corpus does not hold.
+
+It exists for the chemist's and biotech researcher's view — chemical space, property distributions,
+and an arithmetic rule-of-five summary that always reports its four components and never a verdict
+on a molecule. Antibodies and peptides without a computed PubChem record are simply absent rather
+than approximated.
+
 ## Diagram projections
 
 `lib/background/diagram-projections.ts` turns the corpus into typed, renderer-agnostic views.
