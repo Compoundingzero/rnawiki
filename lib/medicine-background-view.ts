@@ -382,6 +382,25 @@ function archiveDate(value: string): string {
     : value
 }
 
+/**
+ * How many of the counted labels are about this substance alone, said in a sentence.
+ *
+ * Built case by case rather than by interpolating a number into one template, because the template
+ * read "None of them name it..." beside a count of one label, and a reader who has to work out that
+ * "them" is one thing is being made to do the writer's job.
+ */
+function aloneSentence(total: number, alone: number): string {
+  if (total === 1) {
+    return alone === 1
+      ? 'It names no other active ingredient'
+      : 'That label also names other active ingredients'
+  }
+  if (alone === 0) return 'Each of them also names other active ingredients'
+  if (alone === total) return 'None of them names any other active ingredient'
+  if (alone === 1) return 'One of them names no other active ingredient'
+  return `${alone.toLocaleString('en-US')} of them name no other active ingredient`
+}
+
 function compositionSummary(composition: RecordedComposition): string {
   const total = composition.declaredIngredientCount
   const missing = composition.ingredientsWithoutSubstanceData
@@ -389,11 +408,17 @@ function compositionSummary(composition: RecordedComposition): string {
     total === 1
       ? 'This product has one active ingredient.'
       : `This product has ${total.toLocaleString('en-US')} active ingredients.`
-  if (missing === 0) return `${head} Every one of them has sources describing it on its own.`
-  if (missing === total) {
-    return `${head} No source describes any of them on its own, so only what the product's own label states is recorded.`
+  if (missing === 0) {
+    return total === 1
+      ? `${head} Sources describe it on its own.`
+      : `${head} Every one of them has sources describing it on its own.`
   }
-  return `${head} ${missing.toLocaleString('en-US')} of them have no source describing them on their own.`
+  if (missing === total) {
+    return `${head} No source describes ${total === 1 ? 'it' : 'any of them'} on its own, so only what the product's own label states is recorded.`
+  }
+  return missing === 1
+    ? `${head} One of them has no source describing it on its own.`
+    : `${head} ${missing.toLocaleString('en-US')} of them have no source describing them on their own.`
 }
 
 function money(currency: string, low: number, high?: number): string {
@@ -654,10 +679,7 @@ export function medicineBackgroundContext(
           'published label names',
           'published labels name',
         ),
-        aloneLabel:
-          presence.singleSubstanceLabelCount > 0
-            ? `${presence.singleSubstanceLabelCount.toLocaleString('en-US')} of them name it and no other active ingredient`
-            : 'None of them name it and no other active ingredient',
+        aloneLabel: aloneSentence(presence.labelCount, presence.singleSubstanceLabelCount),
         // Said outright rather than left to be inferred from a page of empty sections. A substance
         // that never appears alone on a label has no source its own data could come from, and that
         // is a fact about the sources rather than about the substance.

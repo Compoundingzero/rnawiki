@@ -132,6 +132,40 @@ def score(sections):
     return sum(points for key, points in SECTION_SCORES.items() if sections.get(key))
 
 
+def declared_substance_count(openfda):
+    """How many distinct active substances a label declares.
+
+    Counted from `substance_name` alone, which is the archive's own list of active substances: a
+    combination lists each of its actives as a separate entry, and a biological product lists its
+    substance once however its proper name is spelled.
+
+    Counting distinct spellings across `generic_name` and `substance_name` instead answers a
+    different question and answers it wrongly in both directions. Donanemab's only label prints
+    "donanemab-azbt" as the proper name and "DONANEMAB" as the substance — FDA's four-letter
+    biological suffix, which its naming guidance makes devoid of meaning on purpose — so the label
+    counted as two substances and the record stated that no published label describes donanemab on
+    its own. That was false. Collapsing any four-letter suffix instead is worse: a proper name of
+    "DIPHENHYDRAMINE HCL/ZINC ACETATE" would lose the zinc, which is a real second ingredient on
+    thirty-three real products.
+
+    `generic_name` is the fallback for labels that carry no `substance_name` at all, where a
+    spelling is better than no count.
+    """
+    substances = {
+        key
+        for key in (normalize_name(value) for value in openfda.get("substance_name") or [])
+        if len(key) >= 3
+    }
+    if substances:
+        return len(substances)
+    generics = {
+        key
+        for key in (normalize_name(value) for value in openfda.get("generic_name") or [])
+        if len(key) >= 3
+    }
+    return len(generics)
+
+
 def presence_record(result, openfda, set_id):
     """The structured facts about a label that hold whether or not it has readable prose.
 
@@ -159,10 +193,13 @@ def presence_record(result, openfda, set_id):
         return None
     return {
         "setId": set_id,
+        # Every spelling the label offers, so a row filed under either one reaches this document.
         "names": names,
         # How many distinct active substances the document declares, so a count of labels can be
         # split into those about the substance alone and those where it is one ingredient of many.
-        "declared": len(names),
+        # Read from the archive's own active-substance list rather than from how many spellings the
+        # label offers, which is a different question.
+        "declared": declared_substance_count(openfda),
         "productTypes": sorted(set(openfda.get("product_type") or [])),
         "routes": sorted(set(openfda.get("route") or [])),
         "effectiveTime": result.get("effective_time"),
@@ -240,18 +277,22 @@ def main():
                     skipped += 1
                     continue
 
-                # How many distinct active substances this document is about, after the same
-                # normalization the matcher uses so salt forms collapse. A multi-ingredient
+                # How many distinct active substances this document is about. A multi-ingredient
                 # product (allergenic extract, homeopathic combination, multivitamin) declares
                 # many, and nothing substance-specific on it belongs to any one of them.
-                normalized_substances = {
-                    key
-                    for key in (
-                        normalize_name(name)
-                        for name in list(generic_names) + list(openfda.get("substance_name") or [])
-                    )
-                    if key
-                }
+                #
+                # Read from `substance_name`, which is the archive's list of active substances, and
+                # not from the union of that with `generic_name`. The union counted a second
+                # spelling as a second substance: "ALCOHOL" beside "ETHYL ALCOHOL", "NICOTINE"
+                # beside "NICOTINE POLACRILEX", "donanemab" beside "donanemab-azbt". 9,410 labels —
+                # one in eight — were marked as combinations on that basis, and every
+                # substance-specific module on them was refused for a combination that does not
+                # exist. Refusing is the safe direction to err in, but it is still an error, and it
+                # cost these medicines their mechanism, pharmacokinetics and chemical identity.
+                #
+                # A genuine combination is unaffected: "AMOXICILLIN AND CLAVULANATE POTASSIUM"
+                # lists two substances in `substance_name` and still counts as two.
+                substance_count = declared_substance_count(openfda)
 
                 # openFDA's substance_name and unii arrays are NOT positionally aligned. They are
                 # the same length often enough to look parallel, but checking pairs against
@@ -262,7 +303,7 @@ def main():
                 # build step uses it solely when the document declares a single substance.
                 record = {
                     "setId": set_id,
-                    "declaredSubstanceCount": len(normalized_substances),
+                    "declaredSubstanceCount": substance_count,
                     "effectiveTime": result.get("effective_time"),
                     "brandNames": openfda.get("brand_name") or [],
                     "genericNames": generic_names,

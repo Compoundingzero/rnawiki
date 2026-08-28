@@ -183,6 +183,61 @@ labels, 15% of pairings disagreed, and one combination label paired guaifenesin 
 each with the other's identifier. Identity also keeps the salt words that content matching strips,
 because barium sulfate and barium acetate are not the same substance.
 
+**How the count is taken.** `declaredSubstanceCount` reads `substance_name`, the archive's own list
+of active substances, and not the union of that with `generic_name`. The union counted a second
+spelling as a second substance — `ALCOHOL` beside `ETHANOL`, `MINOXIDIL` beside
+`MINOXIDIL TOPICAL SOLUTION`, `donanemab` beside `donanemab-azbt` — and marked 9,410 labels, one in
+eight, as combinations that do not exist. Refusal is the safe direction to err in and it was still
+an error: those medicines lost their mechanism, pharmacokinetics and chemical identity, and
+donanemab's record stated that no published label describes it on its own when its only label
+describes nothing else. A genuine combination is unaffected, because
+`AMOXICILLIN AND CLAVULANATE POTASSIUM` lists two substances in `substance_name` and still counts as
+two.
+
+## Archive presence: the rows extraction cannot read
+
+Extraction reads prose and keeps only labels that have some, which is right for extraction and wrong
+as a measure of what is knowable. Roughly half this corpus is botanicals, homeopathic preparations,
+allergenic extracts and animal-derived materials whose labels carry no clinical pharmacology
+whatsoever, so they scored zero and their rows came out blank. Sampling forty blank rows against the
+archive found twenty of them named on published labels: the information was there and nothing was
+counting it.
+
+`labelPresence` records how many published labels name a substance as an active ingredient, how many
+of those name it and nothing else, the product types and routes those labels state, and the set ids
+behind every count. It is a fact about the archive. It is not a claim about the substance, and a
+label existing there is not approval — unapproved and homeopathic products are published alongside
+approved medicines, and the row says so.
+
+`singleSubstanceLabelCount` is what makes a thin record legible. A substance that appears only ever
+alongside thirty others has no source about it alone, which is exactly why its other sections are
+empty, and the record says that outright instead of showing a page of absences.
+
+Counts are transcribed rather than extracted: the archive returns structured fields with no sentence
+behind them, so there is no excerpt to quote and the identifiers stand in its place.
+`I_LABEL_PRESENCE_COUNT_UNCHECKABLE` refuses a count with no identifier behind it, and
+`I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL` refuses a subset larger than its set.
+
+The unfiltered stream this reads is produced by the same indexer, via `--presence=<file>`, because
+the filtered stream drops precisely the labels it needs.
+
+## Every stored module reaches a reader
+
+A module that is stored, validated and never rendered does not exist for a reader. `supplementMarket`
+was recorded for hundreds of medicines, passed the engine on every one, and reached no page: the view
+model had no projection for it. `sourceConsensus` — the strongest thing this corpus can say about a
+value, that fifty-nine labels agree on it — was invisible the same way, as were `composition` and
+`recordedUses`. Every test asked whether a module was correct; none asked whether it was reachable.
+
+`tests/unit/background-modules-reach-the-page.test.ts` reads the envelope's own field list out of the
+type declaration and fails if a field has no projection or no section, so the next module added is
+caught by the check that caught these.
+
+The four registries the corpus reads at runtime are version-controlled for the same reason. Three of
+them were gitignored, so the deployed corpus was assembled without them and held a third of the
+records this repository can produce while every local check passed on a machine that happened to have
+the files. `tests/unit/corpus-registries-ship-with-the-code.test.ts` fails if one goes missing.
+
 ## Polarity: what a label denies
 
 Roughly three quarters of the role-bearing sentences in this corpus are negative findings —

@@ -130,7 +130,13 @@ describe('substance synonym agent', () => {
     expect([...excluded.keys()]).toContain('clopidogrel|clopidogrel-bisulfate')
     expect(excluded.get('clopidogrel|clopidogrel-bisulfate')).toEqual(['bisulfate'])
     expect(excluded.get('lithium|lithium-citrate')).toEqual(['citrate'])
-    expect(excluded.get('fluoride|sodium-fluoride')).toEqual(['sodium'])
+    // Every exclusion names the words that separate the records, whichever pairs the corpus holds
+    // this week. Pinning a third specific pair here broke when `fluoride` stopped resolving to one
+    // identifier — which is the identity index refusing an ambiguous name, exactly as intended.
+    for (const entry of DATASET.saltFormExclusions) {
+      expect(entry.separatingTerms.length).toBeGreaterThan(0)
+      expect(entry.slugs.length).toBeGreaterThan(1)
+    }
   })
 
   it('separates a base from its salt for the pairs the research names, whether or not they are grouped', () => {
@@ -175,9 +181,17 @@ describe('substance synonym agent', () => {
       ]),
     )
     expect([...byKey.keys()]).toContain('alumina|aluminum-oxide')
-    expect([...byKey.keys()]).toContain('aflibercept|aflibercept-mrbb')
     expect([...byKey.keys()]).toContain('anemone-pulsatilla|pulsatilla-vulgaris')
     expect(byKey.get('alumina|aluminum-oxide')?.sharedKey).toBe('LMI26O6933')
+    // Aflibercept and its biosimilars were pinned here as a third example and stopped being a
+    // group once the sixth biosimilar resolved: six records on one identifier is past the size a
+    // naming variation explains, so the agent now rejects and counts it. The rejection is the
+    // right answer, and it is reported rather than assumed.
+    expect(DATASET.signalCounts.uniiValuesRejectedAsTooManyRecords).toBeGreaterThanOrEqual(0)
+    for (const group of DATASET.registryIdentifierGroups) {
+      expect(group.members.length).toBeGreaterThan(1)
+      expect(group.members.length).toBeLessThanOrEqual(4)
+    }
   })
 
   it('keeps the two signals apart and never mixes them into one list', () => {
@@ -201,17 +215,21 @@ describe('substance synonym agent', () => {
     for (const candidate of queue) expect(candidate.reason).toBe('POSSIBLE_DUPLICATE_SUBSTANCE')
     const priorities = queue.map((candidate) => candidate.priority)
     expect([...priorities].sort((left, right) => right - left)).toEqual(priorities)
-    const identifierSlugs = new Set(
-      DATASET.registryIdentifierGroups.flatMap((group) =>
-        group.members.map((member) => member.slug),
-      ),
-    )
+    // Classified by each candidate's own stated basis rather than by whether its slug appears in
+    // some identifier group. One slug can belong to both an identifier group and a document group,
+    // so membership by slug labelled document-evidence candidates as identifier ones and the
+    // ordering check silently tested nothing — until the corpus grew and it failed on a pair that
+    // was ordered correctly.
+    const isIdentifier = (basis: string) =>
+      basis.startsWith('Grouped on a shared substance identifier.')
     const lastIdentifierIndex = queue.reduce(
-      (best, candidate, index) => (identifierSlugs.has(candidate.slug) ? index : best),
+      (best, candidate, index) => (isIdentifier(candidate.basis) ? index : best),
       -1,
     )
-    const firstDocumentIndex = queue.findIndex((candidate) => !identifierSlugs.has(candidate.slug))
-    if (firstDocumentIndex >= 0) expect(lastIdentifierIndex).toBeLessThan(firstDocumentIndex)
+    const firstDocumentIndex = queue.findIndex((candidate) => !isIdentifier(candidate.basis))
+    if (firstDocumentIndex >= 0 && lastIdentifierIndex >= 0) {
+      expect(lastIdentifierIndex).toBeLessThan(firstDocumentIndex)
+    }
   })
 
   it('asks a person the question instead of proposing the merge', () => {
@@ -312,8 +330,13 @@ describe('substance synonym agent', () => {
   it('reports every stage of the filtering, so an empty list is readable', () => {
     const counts = DATASET.signalCounts
     expect(counts.recordsCarryingUnii).toBeGreaterThan(0)
+    // Every shared identifier is accounted for: published as a group, excluded as a salt form, or
+    // rejected for holding more records than a naming variation explains. The third term is what
+    // this assertion was missing, and seven identifiers were disappearing into it unreported.
     expect(counts.uniiValuesSharedByMoreThanOneRecord).toBe(
-      DATASET.registryIdentifierGroups.length + DATASET.saltFormExclusions.length,
+      DATASET.registryIdentifierGroups.length +
+        DATASET.saltFormExclusions.length +
+        counts.uniiValuesRejectedAsTooManyRecords,
     )
     expect(counts.sharedDocumentsConsidered).toBeGreaterThan(0)
     expect(counts.documentPairsRejectedForMultipleDeclaredSubstances).toBeGreaterThan(0)

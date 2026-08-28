@@ -279,6 +279,16 @@ export interface SubstanceSynonymDataset {
     recordsCarryingMalformedUnii: number
     uniiValuesSharedByMoreThanOneRecord: number
     saltFormPairsExcluded: number
+    /**
+     * Identifiers held by more records than a naming variation can plausibly account for.
+     *
+     * The comment on `MAX_GROUP_SIZE` claimed these were "dropped and counted"; only the dropping
+     * was implemented. Seven identifiers vanished between the shared-identifier count and the
+     * published groups the first time the corpus grew enough to produce one — aflibercept and its
+     * five biosimilars share a UNII — and nothing said so, in the one dataset whose purpose is to
+     * report what each stage rejected.
+     */
+    uniiValuesRejectedAsTooManyRecords: number
     sharedDocumentsConsidered: number
     documentPairsRejectedForMultipleDeclaredSubstances: number
     documentPairsRejectedForSaltForm: number
@@ -716,7 +726,9 @@ function candidatesFor(group: SynonymCandidateGroup): ReviewCandidate[] {
 
 export const substanceSynonymAgent: DatasetAgent<SubstanceSynonymDataset> = {
   name: 'substance-synonyms',
-  version: '1.0.0',
+  // 1.1.0 reports the identifiers rejected for holding too many records, which were previously
+  // dropped without a count.
+  version: '1.1.0',
   description:
     'Groups records that carry the same substance identifier, and separately records structured from the same source document, and asks a person whether each group names one substance.',
 
@@ -746,6 +758,7 @@ export const substanceSynonymAgent: DatasetAgent<SubstanceSynonymDataset> = {
     const registryIdentifierGroups: SynonymCandidateGroup[] = []
     const saltFormExclusions: SaltFormExclusion[] = []
     let uniiValuesSharedByMoreThanOneRecord = 0
+    let uniiValuesRejectedAsTooManyRecords = 0
 
     for (const unii of [...byUnii.keys()].sort()) {
       const entries = byUnii.get(unii) ?? []
@@ -772,7 +785,10 @@ export const substanceSynonymAgent: DatasetAgent<SubstanceSynonymDataset> = {
         })
         continue
       }
-      if (entries.length > MAX_GROUP_SIZE) continue
+      if (entries.length > MAX_GROUP_SIZE) {
+        uniiValuesRejectedAsTooManyRecords += 1
+        continue
+      }
       registryIdentifierGroups.push(
         assembleGroup(
           'SHARED_REGISTRY_IDENTIFIER',
@@ -907,6 +923,7 @@ export const substanceSynonymAgent: DatasetAgent<SubstanceSynonymDataset> = {
         recordsCarryingUnii,
         recordsCarryingMalformedUnii,
         uniiValuesSharedByMoreThanOneRecord,
+        uniiValuesRejectedAsTooManyRecords,
         saltFormPairsExcluded: saltFormExclusions.length,
         sharedDocumentsConsidered,
         documentPairsRejectedForMultipleDeclaredSubstances,
