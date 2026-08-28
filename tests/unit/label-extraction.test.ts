@@ -379,6 +379,21 @@ describe('label extraction: harms and populations', () => {
     expect(safety!.contraindications![0]!.textAsRecorded).toMatch(/^The synthetic medicine/u)
   })
 
+  it('refuses an SPL template that was published without being filled in', () => {
+    // A real published label carries this instead of a warning. Recording it would put the label
+    // author's own to-do note on a page where a reader is looking for the warning.
+    const safety = extractSafetyStatements(
+      artifact({
+        sections: {
+          boxed_warning:
+            '[Insert boxed warning highlight title] See full prescribing information for complete boxed warning [Insert boxed warning text here].',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(safety?.boxedWarning).toBeUndefined()
+  })
+
   it('separates a label that settled the question from one that only discussed the group', () => {
     const statements = extractPopulationStatements(
       artifact({

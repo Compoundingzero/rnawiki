@@ -223,7 +223,12 @@ async function buildRegistry(
       }))
     registry[productKey] = {
       productKey,
-      displayName: ingredients.map((ingredient) => ingredient.ingredientName).join(' and '),
+      // The key is ordered by concept id so it is stable; the display name is ordered by name so it
+      // reads the way labels write it — "amoxicillin and clavulanate", not the reverse.
+      displayName: [...ingredients]
+        .sort((left, right) => left.ingredientName.localeCompare(right.ingredientName))
+        .map((ingredient) => ingredient.ingredientName)
+        .join(' and '),
       ingredients,
       labelCount: entry.labelCount,
       brandNames: [...entry.brands].sort(),

@@ -379,6 +379,18 @@ function stripSectionHeading(sentence: string, heading: RegExp | undefined): str
   return sentence.replace(prefix, '').trim()
 }
 
+/**
+ * An SPL authoring template that was published without being filled in.
+ *
+ * "[Insert boxed warning highlight title] See full prescribing information for complete boxed
+ * warning" is a real string on a real published label, and recording it would put meaningless
+ * instructions to the label's author on a page where a reader expects the warning itself. Rare —
+ * one statement in this corpus — and worth refusing outright, because the one place it appeared was
+ * a boxed warning.
+ */
+const UNFILLED_TEMPLATE =
+  /\[\s*insert\b|\[\s*(?:drug|product|company|sponsor|trade)\s*name\s*\]|\bto be completed by\b/iu
+
 function statementSentences(text: string | undefined, heading?: RegExp): string[] {
   if (!text) return []
   return sentences(text)
@@ -387,7 +399,8 @@ function statementSentences(text: string | undefined, heading?: RegExp): string[
       (sentence) =>
         sentence.length >= MIN_STATEMENT_CHARS &&
         sentence.length <= MAX_STATEMENT_CHARS &&
-        !SECTION_HEADING.test(sentence),
+        !SECTION_HEADING.test(sentence) &&
+        !UNFILLED_TEMPLATE.test(sentence),
     )
 }
 

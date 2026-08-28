@@ -15,6 +15,8 @@
     "check:medicine-content": "tsx scripts/apply-recorded-background.ts --check",
     "check:name-index": "tsx scripts/apply-name-index.ts --check",
     "apply:name-index": "tsx scripts/apply-name-index.ts",
+    "check:combinations": "tsx scripts/apply-combination-products.ts --check",
+    "apply:combinations": "tsx scripts/apply-combination-products.ts",
     "apply:background": "tsx scripts/apply-recorded-background.ts",
     "verify:background": "tsx scripts/background/verify-recorded-background.ts",
     "build:molecular": "tsx scripts/background/build-molecular-properties.ts",
