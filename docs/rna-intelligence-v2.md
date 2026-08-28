@@ -222,12 +222,14 @@ requires one independent reviewer; evidence and conclusion changes cannot use th
 RNAWiki does not invent programme scope, claims, reviewers or verdicts to make an older record look
 complete.
 
-## Group I — recorded background (`rna-intelligence/background-1.0.0`)
+## Group I — recorded background (`rna-intelligence/background-1.1.0`)
 
 Group I is a separate deterministic engine for the `medicine-background/v1` envelope: the recorded
-pharmacokinetics, trial-protocol or label schedule, approved product variants, recorded prices,
-anatomy targets, recorded eligibility criteria, pivotal results and registry identifiers shown as
-medicine-wide research context. It validates structure and provenance — the envelope version and
+mechanism statements, molecular identity, interaction counterparties, warnings and
+contraindications, population statements, most-common reactions, pharmacokinetics, trial-protocol
+or label schedule, approved product variants, recorded prices, anatomy targets, recorded
+eligibility criteria, main-study results and registry identifiers shown as medicine-wide research
+context. It validates structure and provenance — the envelope version and
 ISO dates, known source kinds with kind-specific identifier shapes, excerpt length, contiguous
 schedule steps, the controlled jurisdiction, currency, price-type and anatomy vocabularies, and the
 rule that a discrepant value records the other reading with its own source. It also rejects advice
@@ -235,13 +237,23 @@ or commerce phrasing anywhere in recorded context.
 
 Its central guarantee is mechanical provenance for numbers: every displayed numeric value must
 literally appear in the short source excerpt fetched at authoring time, so a number that was
-remembered instead of read fails validation. Derived sentences — the steady-state note and the
-per-month US-dollar normalization — are deterministic functions of the recorded values; the engine
-recomputes each one and fails on any mismatch rather than trusting the stored copy.
+remembered instead of read fails validation. Version 1.1.0 extends that guarantee from numbers to
+words: a named mechanism target, an interaction counterparty and every listed adverse reaction must
+each appear in the recorded excerpt, so a term the source never printed cannot be indexed onto it.
+
+Quoted modules are held to a stricter rule still. A recorded statement must match its source
+excerpt character for character. That equality is what lets a mechanism sentence or a boxed warning
+carry a label's own "patients should be monitored" while the advice-and-commerce scan keeps
+applying in full to every field RNAWiki writes in its own voice — the engine can tell the source's
+words from ours because it can prove the former were not edited.
+
+Derived sentences — the steady-state note and the per-month US-dollar normalization — are
+deterministic functions of the recorded values; the engine recomputes each one and fails on any
+mismatch rather than trusting the stored copy.
 
 The engine runs in two places. `npm run check:medicine-content` validates every stored envelope and
 is part of `npm run gate`, and `scripts/apply-recorded-background.ts` runs the same validation
 before any write, so a failing envelope never reaches a medicine row. Like every other group, Group
-I checks structure only; people judge meaning. The Group I vocabulary contains 25 stable `I_` rule
+I checks structure only; people judge meaning. The Group I vocabulary contains 38 stable `I_` rule
 codes, each registered in `BACKGROUND_RULE_CODES` with an executable focused case in the coverage
 test.

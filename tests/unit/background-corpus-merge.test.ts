@@ -1,9 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import {
-  ALL_RECORDED_BACKGROUND,
-  RECORDED_BACKGROUND,
-} from '@/scripts/seed-data/background'
+import { ALL_RECORDED_BACKGROUND, RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
 import { EXTRACTED_BACKGROUND } from '@/scripts/seed-data/background/extracted-background.generated'
 import { medicineBackgroundContext } from '@/lib/medicine-background-view'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'

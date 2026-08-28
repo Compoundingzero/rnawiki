@@ -295,7 +295,7 @@ export function MedicineRecordContextSections({
           <BackgroundRow
             id="who-was-studied-record"
             tone="blue"
-            title="Who the pivotal study included and excluded"
+            title="Who the main study included and excluded"
             preview="Eligibility rules recorded from the study register, shown exactly as written."
           >
             <BackgroundApplicabilityBody applicability={context.background.applicability} />

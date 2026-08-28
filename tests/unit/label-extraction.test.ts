@@ -101,7 +101,8 @@ describe('label extraction: refusals that protect the dataset', () => {
     const pharmacokinetics = extractPharmacokinetics(
       artifact({
         sections: {
-          pharmacokinetics: 'Distribution. The medicine shows a volume of distribution of about 0.14 L/kg.',
+          pharmacokinetics:
+            'Distribution. The medicine shows a volume of distribution of about 0.14 L/kg.',
         },
       }),
       OPTIONS,
@@ -318,7 +319,8 @@ describe('label extraction: interaction counterparties', () => {
     const signals = extractInteractionSignals(
       artifact({
         sections: {
-          drug_interactions: 'The synthetic medicine is a substrate of P-gp in the synthetic model.',
+          drug_interactions:
+            'The synthetic medicine is a substrate of P-gp in the synthetic model.',
         },
       }),
       OPTIONS,
@@ -363,6 +365,42 @@ describe('label extraction: harms and populations', () => {
     expect(statements[0]!.textAsRecorded).toMatch(/^Safety and effectiveness/u)
   })
 
+  it('reads groups out of a combined populations section when there is no dedicated one', () => {
+    // Kidney and liver groups have no standalone label section, so this is their only route in.
+    const statements = extractPopulationStatements(
+      artifact({
+        sections: {
+          use_in_specific_populations:
+            '8 USE IN SPECIFIC POPULATIONS 8.4 Pediatric Use Safety and effectiveness in synthetic pediatric patients have not been established. 8.6 Hepatic Impairment Synthetic exposure was evaluated in participants with reduced synthetic liver function. 8.7 Renal Impairment No synthetic dedicated study of reduced kidney function was conducted for this synthetic product.',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(statements.map((entry) => entry.population)).toEqual([
+      'PEDIATRIC',
+      'HEPATIC_IMPAIRMENT',
+      'RENAL_IMPAIRMENT',
+    ])
+    // Each group keeps the text under its own heading, never the next group's.
+    expect(statements[1]!.textAsRecorded).toContain('liver function')
+    expect(statements[2]!.textAsRecorded).toContain('kidney function')
+  })
+
+  it('prefers a dedicated section over the combined block for the same group', () => {
+    const statements = extractPopulationStatements(
+      artifact({
+        sections: {
+          pediatric_use:
+            '8.4 Pediatric Use The dedicated synthetic pediatric section was studied in the model.',
+          use_in_specific_populations:
+            '8.4 Pediatric Use The combined synthetic block says something different entirely here.',
+        },
+      }),
+      OPTIONS,
+    )
+    expect(statements[0]!.textAsRecorded).toContain('dedicated synthetic pediatric section')
+  })
+
   it('records the most-common reactions with the threshold the label stated', () => {
     const adverse = extractCommonAdverseReactions(
       artifact({
@@ -388,7 +426,9 @@ describe('label extraction: harms and populations', () => {
     expect(
       extractCommonAdverseReactions(
         artifact({
-          sections: { adverse_reactions: 'Synthetic adverse reactions are listed in the table below.' },
+          sections: {
+            adverse_reactions: 'Synthetic adverse reactions are listed in the table below.',
+          },
         }),
         OPTIONS,
       ),

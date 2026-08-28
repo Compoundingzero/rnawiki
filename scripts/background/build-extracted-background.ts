@@ -1,12 +1,10 @@
 import 'dotenv/config'
+import { execFileSync } from 'node:child_process'
 import { createReadStream, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { createInterface } from 'node:readline'
 import { join } from 'node:path'
 
-import {
-  extractBackgroundFromLabel,
-  type LabelArtifact,
-} from '@/lib/background/label-extraction'
+import { extractBackgroundFromLabel, type LabelArtifact } from '@/lib/background/label-extraction'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
 import type { MedicineRecordedBackground } from '@/lib/background/types'
 import { RECORDED_BACKGROUND } from '../seed-data/background'
@@ -103,7 +101,9 @@ async function buildIndex(indexPath: string): Promise<Map<string, IndexedLabel>>
 function loadMedicineRows(): MedicineRow[] {
   const dir = join(process.cwd(), 'data', 'drugs')
   const rows: MedicineRow[] = []
-  for (const file of readdirSync(dir).filter((name) => name.endsWith('.ndjson')).sort()) {
+  for (const file of readdirSync(dir)
+    .filter((name) => name.endsWith('.ndjson'))
+    .sort()) {
     for (const line of readFileSync(join(dir, file), 'utf8').split('\n')) {
       if (!line.trim()) continue
       const record = JSON.parse(line) as { id?: string; name?: string; tradeName?: string }
@@ -244,6 +244,9 @@ async function main() {
     'extracted-background.generated.ts',
   )
   writeFileSync(outPath, serialize(dataset))
+  // Formatting here rather than leaving it to a human step: a regenerated corpus that skipped it
+  // would fail `npm run gate` on formatting alone, long after the run that caused it.
+  execFileSync('npx', ['prettier', '--write', outPath], { stdio: 'ignore' })
   console.log(`[extract] ${JSON.stringify(stats)}`)
   console.log(`[extract] modules: ${JSON.stringify(Object.fromEntries(moduleCounts))}`)
   console.log(`[extract] wrote ${stats.written} record(s) to ${outPath}`)

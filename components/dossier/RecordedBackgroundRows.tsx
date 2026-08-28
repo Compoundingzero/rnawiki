@@ -232,7 +232,7 @@ export function BackgroundApplicabilityBody({
   return (
     <div className="space-y-4">
       <p className="text-base leading-7 text-[#515154]">
-        Who the pivotal study ({applicability.trialIdentifier}) recorded as eligible and excluded. A
+        Who the main study ({applicability.trialIdentifier}) recorded as eligible and excluded. A
         group the study left out is a boundary of the evidence, not a judgement about anyone.
       </p>
       {applicability.studiedGroup && (
@@ -289,7 +289,7 @@ export function BackgroundPivotalResultsBody({
         Exact recorded numbers from named studies. Group averages are not personal predictions.{' '}
         {ROW_BOUNDARY}
       </p>
-      <ul className="space-y-3" aria-label="Recorded pivotal study results">
+      <ul className="space-y-3" aria-label="Recorded main study results">
         {results.map((result, index) => (
           <li
             key={`${result.trialIdentifier}-${index}`}
@@ -519,15 +519,15 @@ export function BackgroundSafetyBody({
             The strongest warning on this source
           </h4>
           <ul className="grid min-w-0 gap-3">
-            <QuotedStatement
-              text={safety.boxedWarning.text}
-              source={safety.boxedWarning.source}
-            />
+            <QuotedStatement text={safety.boxedWarning.text} source={safety.boxedWarning.source} />
           </ul>
         </section>
       )}
       {safety.contraindications && (
-        <section aria-labelledby="background-contraindications-heading" className="min-w-0 space-y-3">
+        <section
+          aria-labelledby="background-contraindications-heading"
+          className="min-w-0 space-y-3"
+        >
           <h4
             id="background-contraindications-heading"
             className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]"

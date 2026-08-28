@@ -62,7 +62,10 @@ function normalizeWhitespace(text: string): string {
  */
 function sentences(text: string): string[] {
   const guarded = normalizeWhitespace(text)
-    .replace(/\b(e\.g|i\.e|approx|vs|Dr|Fig|No|Inc|Ltd|Co|St|U\.S|i\.v|p\.o|b\.i\.d|t\.i\.d|q\.d)\./giu, '$1<DOT>')
+    .replace(
+      /\b(e\.g|i\.e|approx|vs|Dr|Fig|No|Inc|Ltd|Co|St|U\.S|i\.v|p\.o|b\.i\.d|t\.i\.d|q\.d)\./giu,
+      '$1<DOT>',
+    )
     .replace(/\b([A-Za-z])\.(?=\s?[A-Za-z]\.)/gu, '$1<DOT>')
   return guarded
     .split(/(?<=[.;])\s+(?=[A-Z(])/u)
@@ -105,7 +108,14 @@ function firstNumber(text: string): number | undefined {
 function findPattern(text: string | undefined, pattern: RegExp): PatternHit | null {
   if (!text) return null
   for (const sentence of sentences(text)) {
-    const matches = [...sentence.matchAll(new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : `${pattern.flags}g`))]
+    const matches = [
+      ...sentence.matchAll(
+        new RegExp(
+          pattern.source,
+          pattern.flags.includes('g') ? pattern.flags : `${pattern.flags}g`,
+        ),
+      ),
+    ]
     if (matches.length !== 1) continue
     const match = matches[0]!
     const captured = match[1]?.trim()
@@ -191,9 +201,10 @@ function labelSource(artifact: LabelArtifact, options: ExtractionOptions): Backg
 
 /** Pharmacokinetic section text, in the order labels usually carry the values. */
 function pharmacokineticText(artifact: LabelArtifact): string | undefined {
-  const parts = [artifact.sections.pharmacokinetics, artifact.sections.clinical_pharmacology].filter(
-    (part): part is string => Boolean(part),
-  )
+  const parts = [
+    artifact.sections.pharmacokinetics,
+    artifact.sections.clinical_pharmacology,
+  ].filter((part): part is string => Boolean(part))
   return parts.length > 0 ? parts.join(' ') : undefined
 }
 
@@ -354,7 +365,10 @@ const SECTION_HEADING = /^(?:\d+(?:\.\d+)*\s*)?[A-Z][A-Za-z ]{0,40}$/u
  */
 function stripSectionHeading(sentence: string, heading: RegExp | undefined): string {
   if (!heading) return sentence
-  const prefix = new RegExp(`^\\s*(?:\\d+(?:\\.\\d+)*\\s*)?(?:${heading.source})\\s*[:.\\-]?\\s*`, 'iu')
+  const prefix = new RegExp(
+    `^\\s*(?:\\d+(?:\\.\\d+)*\\s*)?(?:${heading.source})\\s*[:.\\-]?\\s*`,
+    'iu',
+  )
   return sentence.replace(prefix, '').trim()
 }
 
@@ -521,10 +535,12 @@ export function extractInteractionSignals(
 
     const found: Array<[string, InteractionCounterpartyKind]> = [
       ...[...sentence.matchAll(ENZYME_PATTERN)].map(
-        (match) => [`CYP${match[1]!.toUpperCase()}`, 'ENZYME'] as [string, InteractionCounterpartyKind],
+        (match) =>
+          [`CYP${match[1]!.toUpperCase()}`, 'ENZYME'] as [string, InteractionCounterpartyKind],
       ),
       ...[...sentence.matchAll(TRANSPORTER_PATTERN)].map(
-        (match) => [match[1]!.toUpperCase(), 'TRANSPORTER'] as [string, InteractionCounterpartyKind],
+        (match) =>
+          [match[1]!.toUpperCase(), 'TRANSPORTER'] as [string, InteractionCounterpartyKind],
       ),
     ]
 
@@ -574,6 +590,37 @@ const POPULATION_SECTIONS: ReadonlyArray<readonly [StudiedPopulation, string]> =
   ['LACTATION', 'nursing_mothers'],
 ]
 
+/**
+ * Headings inside a combined "Use in Specific Populations" section.
+ *
+ * Many labels carry no per-group section at all and put every group under this one heading, so a
+ * reader with reduced kidney or liver function would otherwise find nothing recorded — and those
+ * two groups have no standalone section anywhere in the label vocabulary.
+ */
+const COMBINED_POPULATION_HEADINGS: ReadonlyArray<readonly [StudiedPopulation, RegExp]> = [
+  ['PEDIATRIC', /pediatric use/iu],
+  ['GERIATRIC', /geriatric use/iu],
+  ['PREGNANCY', /pregnancy/iu],
+  ['LACTATION', /(?:lactation|nursing mothers)/iu],
+  ['HEPATIC_IMPAIRMENT', /hepatic impairment/iu],
+  ['RENAL_IMPAIRMENT', /renal impairment/iu],
+]
+
+/**
+ * Returns the text following one subsection heading, stopping at the next numbered heading.
+ *
+ * The bound matters: without it a group's recorded statement could be pulled from the block that
+ * belongs to a different group entirely.
+ */
+function combinedPopulationText(section: string, heading: RegExp): string | undefined {
+  const at = section.search(new RegExp(`\\d+\\.\\d+\\s*${heading.source}`, 'iu'))
+  if (at === -1) return undefined
+  const rest = section.slice(at)
+  const withoutHeading = rest.replace(new RegExp(`^\\d+\\.\\d+\\s*${heading.source}\\s*`, 'iu'), '')
+  const next = withoutHeading.search(/\d+\.\d+\s+[A-Z]/u)
+  return next === -1 ? withoutHeading : withoutHeading.slice(0, next)
+}
+
 /** The label's own phrasing when it says a question was not settled. */
 const NOT_ESTABLISHED =
   /\b(?:safety and (?:effectiveness|efficacy)|effectiveness|efficacy|safety)\b[^.;]{0,80}\b(?:have|has)\s+not\s+been\s+established\b/iu
@@ -595,8 +642,25 @@ export function extractPopulationStatements(
   const source = labelSource(artifact, options)
   const statements: RecordedPopulationStatement[] = []
 
+  const combined = artifact.sections.use_in_specific_populations
+  const texts = new Map<StudiedPopulation, string>()
   for (const [population, section] of POPULATION_SECTIONS) {
-    const candidates = statementSentences(artifact.sections[section], POPULATION_HEADINGS[section])
+    const text = artifact.sections[section]
+    if (text) texts.set(population, text)
+  }
+  if (combined) {
+    for (const [population, heading] of COMBINED_POPULATION_HEADINGS) {
+      // A dedicated section is the better source; the combined block only fills what it left out.
+      if (texts.has(population)) continue
+      const text = combinedPopulationText(combined, heading)
+      if (text) texts.set(population, text)
+    }
+  }
+
+  for (const [population, heading] of COMBINED_POPULATION_HEADINGS) {
+    const sectionText = texts.get(population)
+    if (!sectionText) continue
+    const candidates = statementSentences(sectionText, heading)
     if (candidates.length === 0) continue
 
     // A sentence that settles the question is preferred over the section's opening line.

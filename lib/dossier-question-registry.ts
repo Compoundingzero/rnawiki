@@ -719,7 +719,7 @@ function applicabilityQuestion(
   ]
   return passage(definition, {
     coverage: 'answered',
-    answerLead: `Who the pivotal study of ${context.dossier.name} (${applicability.trialIdentifier}) recorded as eligible and excluded. A group the study left out is a boundary of the evidence, not a judgement about anyone.`,
+    answerLead: `Who the main study of ${context.dossier.name} (${applicability.trialIdentifier}) recorded as eligible and excluded. A group the study left out is a boundary of the evidence, not a judgement about anyone.`,
     items,
   })
 }

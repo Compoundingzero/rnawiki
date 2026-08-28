@@ -179,7 +179,7 @@ export interface RecordedAnatomyTarget {
 }
 
 export interface RecordedApplicability {
-  /** The pivotal study or label section the criteria were recorded from. */
+  /** The main study or label section the criteria were recorded from. */
   trialIdentifier: string
   includedAsRecorded: string[]
   excludedAsRecorded: string[]
@@ -288,11 +288,7 @@ export const STUDIED_POPULATIONS = [
 ] as const
 export type StudiedPopulation = (typeof STUDIED_POPULATIONS)[number]
 
-export const POPULATION_EVIDENCE_STATES = [
-  'STUDIED',
-  'NOT_ESTABLISHED',
-  'STATEMENT_ONLY',
-] as const
+export const POPULATION_EVIDENCE_STATES = ['STUDIED', 'NOT_ESTABLISHED', 'STATEMENT_ONLY'] as const
 /**
  * `NOT_ESTABLISHED` is used only when the source itself says effectiveness or safety has not been
  * established. `STATEMENT_ONLY` means the source discusses the group without settling that

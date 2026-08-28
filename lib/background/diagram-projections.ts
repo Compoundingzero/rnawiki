@@ -14,11 +14,19 @@
  *    corpus it is drawing.
  *
  * The comparative projections are what the corpus makes possible and a per-medicine scrape does
- * not: 127 records structured to one schema, on one unit, with one controlled anatomy vocabulary.
+ * not: thousands of records structured to one schema, on one unit, with one controlled anatomy
+ * vocabulary, each value answerable to the source sentence it was read from.
  */
 
 import { ANATOMY_REGIONS, type AnatomyRegionCode } from './anatomy-regions'
-import type { BackgroundSource, MedicineRecordedBackground } from './types'
+import { STUDIED_POPULATIONS } from './types'
+import type {
+  BackgroundSource,
+  InteractionCounterpartyKind,
+  InteractionRole,
+  MedicineRecordedBackground,
+  StudiedPopulation,
+} from './types'
 
 export interface DiagramSourceRef {
   kind: BackgroundSource['kind']
@@ -591,4 +599,235 @@ export function sourceComposition(corpus: readonly CorpusEntry[]): SourceComposi
     totalRecordedValues: total,
     distinctSources: distinct.size,
   }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* Handling network — which enzymes and transporters act on which medicines                     */
+/* ------------------------------------------------------------------------------------------- */
+
+export interface HandlingEdge {
+  slug: string
+  name: string
+  /** Absent when the recorded sentence stated more than one role and none could be attached. */
+  role?: InteractionRole
+  source: DiagramSourceRef
+}
+
+export interface HandlingNode {
+  counterparty: string
+  kind: InteractionCounterpartyKind
+  edges: HandlingEdge[]
+}
+
+export interface HandlingNetworkProjection {
+  nodes: HandlingNode[]
+  medicinesWithRecordedHandling: number
+  /** Edges whose recorded sentence named several roles, so no role was attached. */
+  edgesWithoutRole: number
+}
+
+/**
+ * A bipartite network of medicines and the enzymes or transporters a source named for them.
+ *
+ * This reads the recorded interaction signals rather than searching prose, so every edge already
+ * carries the sentence that created it. Edges without a role are counted rather than hidden: a
+ * diagram that quietly dropped them would overstate how much the sources actually settled.
+ */
+export function handlingNetwork(corpus: readonly CorpusEntry[]): HandlingNetworkProjection {
+  const byCounterparty = new Map<string, HandlingNode>()
+  let medicinesWithRecordedHandling = 0
+  let edgesWithoutRole = 0
+
+  for (const entry of corpus) {
+    const signals = entry.background.interactionSignals
+    if (!signals?.length) continue
+    medicinesWithRecordedHandling += 1
+
+    for (const signal of signals) {
+      const node = byCounterparty.get(signal.counterpartyAsRecorded) ?? {
+        counterparty: signal.counterpartyAsRecorded,
+        kind: signal.kind,
+        edges: [],
+      }
+      if (!signal.roleAsRecorded) edgesWithoutRole += 1
+      node.edges.push({
+        slug: entry.slug,
+        name: entry.name,
+        ...(signal.roleAsRecorded ? { role: signal.roleAsRecorded } : {}),
+        source: sourceRef(signal.source),
+      })
+      byCounterparty.set(signal.counterpartyAsRecorded, node)
+    }
+  }
+
+  const nodes = [...byCounterparty.values()].sort(
+    (left, right) =>
+      right.edges.length - left.edges.length || left.counterparty.localeCompare(right.counterparty),
+  )
+  return { nodes, medicinesWithRecordedHandling, edgesWithoutRole }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* Evidence-gap matrix — where the sources stop answering                                       */
+/* ------------------------------------------------------------------------------------------- */
+
+export interface EvidenceGapCell {
+  population: StudiedPopulation
+  studied: number
+  notEstablished: number
+  statementOnly: number
+  /** Medicines whose record says nothing at all about this group. */
+  silent: number
+}
+
+export interface EvidenceGapMatrixProjection {
+  cells: EvidenceGapCell[]
+  medicinesConsidered: number
+}
+
+/**
+ * How often the corpus answers, declines to answer, or says nothing at all for each group.
+ *
+ * The silent count is the point of this projection. A reader can find what a label says about
+ * children on any medicine site; what none of them show is how much of the corpus never addresses
+ * the question — and silence is a different thing from a stated negative, so the two never merge
+ * into one bar here.
+ */
+export function evidenceGapMatrix(corpus: readonly CorpusEntry[]): EvidenceGapMatrixProjection {
+  const cells = new Map<StudiedPopulation, EvidenceGapCell>(
+    STUDIED_POPULATIONS.map((population) => [
+      population,
+      { population, studied: 0, notEstablished: 0, statementOnly: 0, silent: 0 },
+    ]),
+  )
+
+  for (const entry of corpus) {
+    const statements = entry.background.populationStatements ?? []
+    for (const population of STUDIED_POPULATIONS) {
+      const cell = cells.get(population)!
+      const statement = statements.find((candidate) => candidate.population === population)
+      if (!statement) {
+        cell.silent += 1
+      } else if (statement.state === 'STUDIED') {
+        cell.studied += 1
+      } else if (statement.state === 'NOT_ESTABLISHED') {
+        cell.notEstablished += 1
+      } else {
+        cell.statementOnly += 1
+      }
+    }
+  }
+
+  return { cells: [...cells.values()], medicinesConsidered: corpus.length }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* Shared-reaction index — reactions many medicines report as most common                       */
+/* ------------------------------------------------------------------------------------------- */
+
+export interface SharedReactionEntry {
+  event: string
+  medicines: Array<{ slug: string; name: string; threshold: string; source: DiagramSourceRef }>
+}
+
+export interface SharedReactionIndexProjection {
+  entries: SharedReactionEntry[]
+  medicinesWithRecordedReactions: number
+}
+
+/**
+ * Reactions that appear in more than one medicine's recorded "most common" sentence.
+ *
+ * Each medicine keeps the threshold its own source printed, because a reaction listed at 1% and
+ * one listed at 5% are not the same finding and must never be summed into a single count. The
+ * shape supports a co-occurrence diagram without ever implying a shared rate.
+ */
+export function sharedReactionIndex(corpus: readonly CorpusEntry[]): SharedReactionIndexProjection {
+  const byEvent = new Map<string, SharedReactionEntry>()
+  let medicinesWithRecordedReactions = 0
+
+  for (const entry of corpus) {
+    const reactions = entry.background.commonAdverseReactions
+    if (!reactions) continue
+    medicinesWithRecordedReactions += 1
+
+    for (const event of reactions.eventsAsRecorded) {
+      const key = event.toLowerCase()
+      const existing = byEvent.get(key) ?? { event: key, medicines: [] }
+      existing.medicines.push({
+        slug: entry.slug,
+        name: entry.name,
+        threshold: reactions.thresholdAsRecorded,
+        source: sourceRef(reactions.source),
+      })
+      byEvent.set(key, existing)
+    }
+  }
+
+  const entries = [...byEvent.values()]
+    .filter((candidate) => candidate.medicines.length > 1)
+    .sort(
+      (left, right) =>
+        right.medicines.length - left.medicines.length || left.event.localeCompare(right.event),
+    )
+  return { entries, medicinesWithRecordedReactions }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* Size-and-persistence scatter — molecular weight against half-life                            */
+/* ------------------------------------------------------------------------------------------- */
+
+export interface SizePersistencePoint {
+  slug: string
+  name: string
+  molecularWeight: number
+  halfLifeHours: number
+  formula?: string
+  weightSource: DiagramSourceRef
+  halfLifeSource: DiagramSourceRef
+}
+
+export interface SizePersistenceScatterProjection {
+  points: SizePersistencePoint[]
+  /** Medicines carrying one of the two values but not the other, so coverage is never implied. */
+  incomplete: number
+}
+
+/**
+ * Every medicine for which one source recorded a molecular weight and another recorded a half-life
+ * in hours, plotted as a scatter.
+ *
+ * Both numbers are already excerpt-verified, so each point is checkable against two quoted
+ * sentences. The projection asserts no relationship between the two axes; it makes the corpus
+ * plottable and leaves the reading to the reader.
+ */
+export function sizePersistenceScatter(
+  corpus: readonly CorpusEntry[],
+): SizePersistenceScatterProjection {
+  const points: SizePersistencePoint[] = []
+  let incomplete = 0
+
+  for (const entry of corpus) {
+    const weight = entry.background.molecularIdentity?.molecularWeight
+    const halfLife = entry.background.pharmacokinetics?.halfLife
+    const hasWeight = weight?.numeric !== undefined
+    const hasHalfLife = halfLife?.numeric !== undefined
+    if (!hasWeight || !hasHalfLife) {
+      if (hasWeight || hasHalfLife) incomplete += 1
+      continue
+    }
+    const formula = entry.background.molecularIdentity?.molecularFormula?.display
+    points.push({
+      slug: entry.slug,
+      name: entry.name,
+      molecularWeight: weight!.numeric!,
+      halfLifeHours: halfLife!.numeric!,
+      ...(formula ? { formula } : {}),
+      weightSource: sourceRef(weight!.source),
+      halfLifeSource: sourceRef(halfLife!.source),
+    })
+  }
+
+  points.sort((left, right) => left.molecularWeight - right.molecularWeight)
+  return { points, incomplete }
 }

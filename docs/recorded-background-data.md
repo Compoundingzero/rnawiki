@@ -1,10 +1,22 @@
 # Recorded background data
 
 The `medicine-background/v1` layer fills the dossier sections the wireframe shows but the corpus
-could not honestly support: pharmacokinetics, studied escalation schedules, product variants,
-recorded price context, the systemic body map, pivotal-study eligibility and exact results, and
-registry identifiers. It lives in `drugs.recorded_background` (migration 0016) and is authored as
-TypeScript batches under `scripts/seed-data/background/`.
+could not honestly support: how a medicine works, its chemical identity, the enzymes and
+transporters that handle it, what its source warns about, which groups the source does and does
+not answer for, the reactions reported most often, pharmacokinetics, studied escalation schedules,
+product variants, recorded price context, the systemic body map, main-study eligibility and exact
+results, and registry identifiers. It lives in `drugs.recorded_background` (migration 0016).
+
+The corpus has two tiers, and they are never presented as the same thing:
+
+- **Curated** (155 medicines) — hand-authored TypeScript batches under
+  `scripts/seed-data/background/`, where a person selected and checked each value.
+- **Extracted** (5,881 medicines) — `extracted-background.generated.ts`, produced by the
+  deterministic parser in `lib/background/label-extraction.ts`. Nobody has checked these, and the
+  dossier says so on the page.
+
+Curated always wins on a shared slug. `ALL_RECORDED_BACKGROUND` is the merged corpus; the merge
+and its precedence are pinned by `tests/unit/background-corpus-merge.test.ts`.
 
 ## Why this dataset is hard to reproduce
 
@@ -41,13 +53,23 @@ The values themselves are public. The discipline around them is the product:
 ## Engine
 
 `runBackgroundIntelligence` (`lib/rna-intelligence/background-rules.ts`, version
-`rna-intelligence/background-1.0.0`) checks structure only: envelope version, source-identifier
+`rna-intelligence/background-1.1.0`) checks structure only: envelope version, source-identifier
 shapes per kind, ISO dates, excerpt length, number-in-excerpt, measurement context, plausibility
 ranges by value type, contiguous schedule steps, controlled vocabularies (jurisdictions,
 currencies, price types, anatomy regions), derivation equality, concordance/alternate pairing,
-registry-identifier shapes, and the forbidden-guidance scan. Every code has a focused executable
-case in `tests/unit/rna-intelligence/background-rule-coverage.test.ts`. People judge meaning;
-this group never does.
+registry-identifier shapes, and the forbidden-guidance scan.
+
+Version 1.1.0 adds the checks the quoted modules need. A `RecordedStatement` must match its source
+excerpt character for character — that equality is what lets a mechanism sentence or a boxed
+warning carry the label's own "patients should be monitored" without the forbidden-guidance scan
+rejecting the source's voice as though it were ours. The scan still applies in full to every field
+RNAWiki writes in its own voice. Named mechanism targets, interaction counterparties and
+adverse-reaction terms must each appear in the recorded excerpt, extending to words the guarantee
+that already covered numbers.
+
+Every code has a focused executable case in
+`tests/unit/rna-intelligence/background-rule-coverage.test.ts`. People judge meaning; this group
+never does.
 
 ## Commands
 
@@ -99,6 +121,48 @@ and an arithmetic rule-of-five summary that always reports its four components a
 on a molecule. Antibodies and peptides without a computed PubChem record are simply absent rather
 than approximated.
 
+## Extraction at corpus scale
+
+Hand-authoring reached 155 medicines. Extraction reaches thousands because it inverts the usual
+order: the parser finds a value inside a sentence and stores _that sentence_ as the excerpt, so the
+number-in-excerpt guarantee holds by construction, with no model in the loop and nothing to
+hallucinate.
+
+The pipeline is two steps:
+
+1. `scripts/background/index-openfda-labels.py <archiveDir> <out.ndjson> [medicineRows.json]` —
+   reduces openFDA's bulk label archive (14 partitions, ~262k labels, one download from
+   <https://api.fda.gov/download.json>) to the sections the extractors read. It runs in Python
+   because a decompressed partition exceeds the longest string a Node process can hold. Passing the
+   medicine list filters to labels the corpus can reach, which is what makes the wider section set
+   affordable.
+2. `npx tsx scripts/background/build-extracted-background.ts <index.ndjson>` — matches medicines to
+   labels by generic, brand and substance name, extracts, and writes the generated file.
+
+Two boundaries are absolute: a curated record is never overwritten, and every extracted envelope
+must pass Group I before it is written. An extraction that produced something structurally wrong is
+dropped, not published.
+
+What the parser refuses is as load-bearing as what it records, and each refusal is pinned by a test
+in `tests/unit/label-extraction.test.ts`:
+
+- A **free fraction is never recorded as protein binding.** Losartan's label states "free fractions
+  of 1.3%" for a medicine that is 98.7% bound; capturing it would invert the value. The parser skips
+  rather than doing arithmetic the label did not print.
+- A **per-kilogram volume keeps its unit.** "0.14 L/kg" is never stored as "0.14 L".
+- A **sentence with two candidate quantities is skipped.** Two numbers in one sentence is exactly
+  the ambiguity the parser will not resolve on its own.
+- A **half-life stated in days gets no invented hour figure.** It is recorded for display and stays
+  off every numeric axis.
+- An **implausible magnitude is dropped**, because a 900% bioavailability means the pattern matched
+  the wrong quantity.
+- An **interaction role is attached only when one sentence states exactly one role.** Interaction
+  prose routinely names two at once, and deciding which attaches to which counterparty is judgement
+  the parser does not have.
+- **Per-event adverse-reaction percentages are never parsed out of label tables.** Only the
+  threshold and list a source prints in a single sentence are recorded, because pairing a number to
+  an event across table text would put a wrong frequency on a real harm.
+
 ## Diagram projections
 
 `lib/background/diagram-projections.ts` turns the corpus into typed, renderer-agnostic views.
@@ -108,15 +172,19 @@ source that was fetched for it, so a tooltip can show the exact excerpt; and a r
 typed field is absent from the projection rather than estimated onto it, with coverage reported
 so a chart can state how much of the corpus it draws.
 
-| Projection              | What it draws                                                                                | Anchored on                                                                         |
-| ----------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `durationOfActionScale` | Every recorded half-life on one logarithmic hour axis, with deterministic bands              | `pharmacokinetics.halfLife.numeric`                                                 |
-| `bodyRegionAtlas`       | The corpus inverted into body regions — which medicines act where, and what each source says | `anatomyTargets[].regionCode` + vocabulary coordinates                              |
-| `exposureTimeline`      | One medicine's peak, half-life and derived steady-state marks on an hour axis                | numeric half-life, with `derived` flagged per marker                                |
-| `titrationLadder`       | The recorded escalation schedule as ordered rungs                                            | `titration.steps`                                                                   |
-| `completenessMatrix`    | Which modules each record actually holds, and corpus-wide shares                             | module presence                                                                     |
-| `sourceComposition`     | The dataset's provenance profile by source kind                                              | every recorded `source`                                                             |
-| `metabolicPathwayIndex` | Which recorded medicines each named enzyme appears in, inverted for a network view           | enzyme names inside the verified excerpt of `pharmacokinetics.metabolismAsRecorded` |
+| Projection               | What it draws                                                                                | Anchored on                                                                         |
+| ------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `durationOfActionScale`  | Every recorded half-life on one logarithmic hour axis, with deterministic bands              | `pharmacokinetics.halfLife.numeric`                                                 |
+| `bodyRegionAtlas`        | The corpus inverted into body regions — which medicines act where, and what each source says | `anatomyTargets[].regionCode` + vocabulary coordinates                              |
+| `exposureTimeline`       | One medicine's peak, half-life and derived steady-state marks on an hour axis                | numeric half-life, with `derived` flagged per marker                                |
+| `titrationLadder`        | The recorded escalation schedule as ordered rungs                                            | `titration.steps`                                                                   |
+| `completenessMatrix`     | Which modules each record actually holds, and corpus-wide shares                             | module presence                                                                     |
+| `sourceComposition`      | The dataset's provenance profile by source kind                                              | every recorded `source`                                                             |
+| `metabolicPathwayIndex`  | Which recorded medicines each named enzyme appears in, inverted for a network view           | enzyme names inside the verified excerpt of `pharmacokinetics.metabolismAsRecorded` |
+| `handlingNetwork`        | A bipartite network of medicines and the enzymes or transporters a source named for them     | `interactionSignals[]`                                                              |
+| `evidenceGapMatrix`      | How often the corpus answers, declines to answer, or says nothing for each group             | `populationStatements[]` and their absence                                          |
+| `sharedReactionIndex`    | Reactions more than one medicine records as most common, each on its own printed threshold   | `commonAdverseReactions.eventsAsRecorded`                                           |
+| `sizePersistenceScatter` | Molecular weight against half-life, every point checkable against two quoted sentences       | `molecularIdentity.molecularWeight.numeric` + `pharmacokinetics.halfLife.numeric`   |
 
 The pathway index reports strictly what labels name. Sharing a metabolic route is a recorded fact
 about metabolism, never a statement about interactions, safety, or what anyone should do — an
@@ -135,3 +203,9 @@ derivations by calling the derivation functions, and keep `npm run check:medicin
 zero findings. The authoring rules header in `scripts/seed-data/background/index.ts` is the
 contract; independent re-verification against the live sources belongs in review, not in the
 author's own run.
+
+The `evidenceGapMatrix` is the projection a reader cannot get anywhere else. Any medicine site will
+show what a label says about children; none of them show how much of the corpus never addresses the
+question at all. Silence and a stated negative are counted separately and never merge into one bar,
+because "the source says effectiveness was not established" and "the source says nothing" are
+different facts about the evidence.

@@ -415,7 +415,11 @@ export function medicineBackgroundContext(
 
   const molecularValues = background.molecularIdentity
     ? [
-        ...valueView('Molecular formula', background.molecularIdentity.molecularFormula, recordTier),
+        ...valueView(
+          'Molecular formula',
+          background.molecularIdentity.molecularFormula,
+          recordTier,
+        ),
         ...valueView('Molecular weight', background.molecularIdentity.molecularWeight, recordTier),
       ]
     : []

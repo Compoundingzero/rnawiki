@@ -437,7 +437,11 @@ export function runBackgroundIntelligence(
     const path = `pivotalResults[${index}]`
     checkSource(path, result.source)
     if (!/^NCT\d{8}$/u.test(result.trialIdentifier)) {
-      flag('I_TRIAL_IDENTIFIER_INVALID', path, 'Pivotal results must reference an NCT number.')
+      flag(
+        'I_TRIAL_IDENTIFIER_INVALID',
+        path,
+        'Recorded study results must reference an NCT number.',
+      )
     }
     checkGuidanceLanguage(
       path,
