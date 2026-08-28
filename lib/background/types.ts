@@ -363,6 +363,52 @@ export const SUBSTANCE_SPECIFIC_MODULES = [
 ] as const
 export type SubstanceSpecificModule = (typeof SUBSTANCE_SPECIFIC_MODULES)[number]
 
+/**
+ * One distinct reading of a field, and every source that states it.
+ *
+ * A medicine is often covered by many labels — gabapentin by more than four hundred — because each
+ * manufacturer publishes its own. Keeping only one discards the fact that the others agree, which
+ * is the strongest thing the corpus can say about a value and the thing no other public resource
+ * reports. Sources are capped for size, and the count is the full count regardless.
+ */
+export interface ConsensusReading {
+  display: string
+  numeric?: number
+  unit?: string
+  sourceCount: number
+  sources: BackgroundSource[]
+}
+
+/**
+ * What every source in the corpus states for one field of one medicine.
+ *
+ * Deliberately NOT a resolved value. Where readings differ, both are kept with their own excerpts
+ * and neither is preferred, because most apparent numeric disagreement between labels is a real
+ * difference in population or formulation — fed against fasted, immediate against extended release
+ * — rather than one label being wrong. Deciding between them is a judgement this record exists to
+ * present rather than to make.
+ */
+export interface RecordedFieldConsensus {
+  field: string
+  /** Documents that stated this field at all. */
+  sourceCount: number
+  /** Distinct readings, most-supported first. */
+  readings: ConsensusReading[]
+  /** Share of sources stating the most-supported reading, in [0, 1]. */
+  agreementRate: number
+  /**
+   * True when at least two readings carry numbers whose ranges do not overlap. This marks a pair
+   * worth a person's attention; it is not a claim that either reading is wrong.
+   */
+  numericallyDisjoint: boolean
+}
+
+export interface RecordedSourceConsensus {
+  /** Documents examined for this medicine, whether or not they stated anything. */
+  documentsExamined: number
+  fields: RecordedFieldConsensus[]
+}
+
 export interface MedicineRecordedBackground {
   version: typeof MEDICINE_BACKGROUND_VERSION
   /** ISO date this record was authored from fetched artifacts. */
@@ -387,4 +433,5 @@ export interface MedicineRecordedBackground {
   populationStatements?: RecordedPopulationStatement[]
   commonAdverseReactions?: RecordedCommonAdverseReactions
   attribution?: RecordedAttribution
+  sourceConsensus?: RecordedSourceConsensus
 }

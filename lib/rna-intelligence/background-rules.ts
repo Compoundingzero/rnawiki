@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-1.2.0`.
+ * `rna-intelligence/background-1.3.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -35,7 +35,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.2.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.3.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -78,6 +78,9 @@ export const BACKGROUND_RULE_CODES = [
   'I_ADVERSE_EVENT_NOT_IN_EXCERPT',
   'I_ATTRIBUTION_TOO_BROAD',
   'I_INTERACTION_SECTION_NOT_DESCRIPTIVE',
+  'I_CONSENSUS_COUNT_INCONSISTENT',
+  'I_CONSENSUS_AGREEMENT_INVALID',
+  'I_CONSENSUS_READING_NOT_IN_EXCERPT',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -690,6 +693,66 @@ export function runBackgroundIntelligence(
         )
       }
     }
+  }
+
+  /**
+   * Cross-source consensus is held to the same guarantee as every other number: a reading must
+   * appear in the excerpt of a source that states it. The counts are checked for internal
+   * consistency because an agreement rate is the one number here a reader will take at face value,
+   * and it is only meaningful if the denominator is real.
+   */
+  const consensus = background.sourceConsensus
+  if (consensus) {
+    consensus.fields.forEach((field, fieldIndex) => {
+      const path = `sourceConsensus.fields[${fieldIndex}]`
+      const summed = field.readings.reduce((total, reading) => total + reading.sourceCount, 0)
+      // Readings are capped for size, so the summed count may be below the total; it may never
+      // exceed it, and the leading reading may never claim more sources than exist.
+      if (summed > field.sourceCount) {
+        flag(
+          'I_CONSENSUS_COUNT_INCONSISTENT',
+          path,
+          `Readings account for ${summed} sources but the field reports ${field.sourceCount}.`,
+        )
+      }
+      if (!(field.agreementRate >= 0 && field.agreementRate <= 1)) {
+        flag(
+          'I_CONSENSUS_AGREEMENT_INVALID',
+          path,
+          `Agreement rate ${field.agreementRate} is outside [0, 1].`,
+        )
+      }
+      const leading = field.readings[0]
+      if (leading && field.sourceCount > 0) {
+        const expected = leading.sourceCount / field.sourceCount
+        if (Math.abs(expected - field.agreementRate) > 1e-9) {
+          flag(
+            'I_CONSENSUS_AGREEMENT_INVALID',
+            path,
+            `Agreement rate ${field.agreementRate} does not match the leading reading's share ${expected}.`,
+          )
+        }
+      }
+      field.readings.forEach((reading, readingIndex) => {
+        const readingPath = `${path}.readings[${readingIndex}]`
+        for (const source of reading.sources) checkSource(readingPath, source)
+        const tokens = numberTokens(reading.display)
+        if (tokens.length === 0) return
+        // At least one cited source must print the reading, which is what makes a count of
+        // agreeing sources checkable rather than asserted.
+        const stated = reading.sources.some((source) => {
+          const haystack = normalizeForMatch(source.excerpt ?? '')
+          return tokens.every((token) => haystack.includes(token))
+        })
+        if (!stated) {
+          flag(
+            'I_CONSENSUS_READING_NOT_IN_EXCERPT',
+            readingPath,
+            `Reading "${reading.display}" does not appear in the excerpt of any source cited for it.`,
+          )
+        }
+      })
+    })
   }
 
   return {

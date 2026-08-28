@@ -32,6 +32,7 @@ import { BACKGROUND_BATCH_15 } from './batch-15'
 import { BACKGROUND_BATCH_16 } from './batch-16'
 import { BACKGROUND_BATCH_17 } from './batch-17'
 import { EXTRACTED_BACKGROUND } from './extracted-background.generated'
+import { SOURCE_CONSENSUS } from './source-consensus.generated'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -80,6 +81,13 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
   const merged: RecordedBackgroundBySlug = { ...EXTRACTED_BACKGROUND }
   for (const [slug, background] of Object.entries(RECORDED_BACKGROUND)) {
     merged[slug] = background
+  }
+  // Cross-source consensus attaches to whichever record exists, curated or extracted. It says what
+  // every published label states for a field rather than what one of them states, and it applies
+  // equally either way: a curated record benefits from knowing fifty-nine labels agree with it.
+  for (const [slug, consensus] of Object.entries(SOURCE_CONSENSUS)) {
+    const existing = merged[slug]
+    if (existing) merged[slug] = { ...existing, sourceConsensus: consensus }
   }
   return merged
 })()

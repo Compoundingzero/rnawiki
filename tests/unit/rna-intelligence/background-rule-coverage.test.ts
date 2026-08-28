@@ -221,6 +221,33 @@ function validBackground(): MedicineRecordedBackground {
         source: { ...labelSource, excerpt: PEDIATRIC_TEXT },
       },
     ],
+    sourceConsensus: {
+      documentsExamined: 12,
+      fields: [
+        {
+          field: 'halfLife',
+          sourceCount: 10,
+          agreementRate: 0.8,
+          numericallyDisjoint: false,
+          readings: [
+            {
+              display: '9 hours',
+              numeric: 9,
+              unit: 'hours',
+              sourceCount: 8,
+              sources: [{ ...labelSource, excerpt: 'The elimination half-life is 9 hours.' }],
+            },
+            {
+              display: '11 hours',
+              numeric: 11,
+              unit: 'hours',
+              sourceCount: 2,
+              sources: [{ ...labelSource, excerpt: 'The elimination half-life is 11 hours.' }],
+            },
+          ],
+        },
+      ],
+    },
     commonAdverseReactions: {
       thresholdAsRecorded: '≥ 5 %',
       eventsAsRecorded: ['synthetic headache', 'synthetic nausea'],
@@ -442,6 +469,21 @@ const ruleCases = {
       // Section 7 is the regulated advice section; a role may never be read out of it.
       // @ts-expect-error deliberately outside the descriptive-section vocabulary
       background.interactionSignals![0]!.labelSection = 'drug_interactions'
+    },
+  },
+  I_CONSENSUS_COUNT_INCONSISTENT: {
+    mutate: (background) => {
+      background.sourceConsensus!.fields[0]!.readings[0]!.sourceCount = 99
+    },
+  },
+  I_CONSENSUS_AGREEMENT_INVALID: {
+    mutate: (background) => {
+      background.sourceConsensus!.fields[0]!.agreementRate = 1.4
+    },
+  },
+  I_CONSENSUS_READING_NOT_IN_EXCERPT: {
+    mutate: (background) => {
+      background.sourceConsensus!.fields[0]!.readings[0]!.display = '77 hours'
     },
   },
   I_ATTRIBUTION_TOO_BROAD: {
