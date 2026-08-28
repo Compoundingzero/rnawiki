@@ -4,7 +4,17 @@ builder = "NIXPACKS"
 [deploy]
 # Migrations run before the new container takes traffic. Without this, a deploy that adds a column
 # serves 500s from the moment it starts until someone remembers to run the migration by hand.
-preDeployCommand = "npm run db:migrate"
+#
+# The recorded-background dataset is version-controlled TypeScript, so it ships with the code for
+# the same reason: otherwise a deploy that adds records shows nothing until someone remembers to
+# load them. `apply:background` validates every envelope with the background engine before it
+# writes anything and fails the deploy if any envelope has a finding, so invalid data can never
+# reach a live page. It writes only `drugs.recorded_background`, keyed by slug, skips slugs with
+# no row, and is idempotent — re-running writes the same values.
+#
+# It runs from inside Railway's network against the private database host, which is the only place
+# the connection needs no public TLS trust anchor (see db/ssl.ts).
+preDeployCommand = "npm run db:migrate && npm run apply:background"
 
 healthcheckPath = "/healthz"
 healthcheckTimeout = 120

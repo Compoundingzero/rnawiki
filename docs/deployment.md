@@ -15,9 +15,17 @@ source-check schedule, required environment variables and recovery steps.
 
 ## What a deploy does
 
-`railway.toml` sets `preDeployCommand = "npm run db:migrate"`, so migrations run in a throwaway
-container **before** the new version takes traffic. Without it, a deploy that adds a column serves
-500s from the moment it starts until someone remembers to migrate by hand.
+`railway.toml` sets `preDeployCommand = "npm run db:migrate && npm run apply:background"`, so
+migrations and the recorded-background dataset both land in a throwaway container **before** the
+new version takes traffic. Without the migration step, a deploy that adds a column serves 500s
+from the moment it starts until someone remembers to migrate by hand; without the dataset step, a
+deploy that adds records shows nothing until someone remembers to load them.
+
+`apply:background` validates every envelope with the background engine before writing and fails
+the deploy on any finding, so invalid data cannot reach a live page. It writes only
+`drugs.recorded_background`, keyed by slug, skips slugs with no row, and is idempotent. It runs
+inside Railway's network against the private database host — the one place the connection needs no
+public TLS trust anchor (see `db/ssl.ts`, which deliberately offers no verification bypass).
 
 The healthcheck is `/healthz`, which returns a bare `200 ok` and deliberately **does not touch the
 database**. Liveness and readiness are different questions: a transient database blip must not roll
