@@ -41,7 +41,16 @@ describe('recorded-background corpus merge', () => {
     // `costContext` joins them: a dated acquisition price surveyed by CMS is an observation about
     // the market, not a judgement about the medicine, and a curated record that authored its own
     // price keeps it.
-    const allowed = new Set(['sourceConsensus', 'supplementMarket', 'labelPresence', 'costContext'])
+    // `biologicalIdentity` joins them for the same reason: what organism a name denotes is a fact
+    // about biological nomenclature, and it cannot contradict anything a person wrote about the
+    // medicine.
+    const allowed = new Set([
+      'sourceConsensus',
+      'supplementMarket',
+      'labelPresence',
+      'costContext',
+      'biologicalIdentity',
+    ])
     for (const slug of Object.keys(RECORDED_BACKGROUND)) {
       const curatedKeys = new Set(Object.keys(RECORDED_BACKGROUND[slug]!))
       const added = Object.keys(ALL_RECORDED_BACKGROUND[slug]!).filter(

@@ -39,3 +39,4 @@ data/registries/*
 !data/registries/label-presence.json
 !data/registries/combination-row-composition.json
 !data/registries/acquisition-cost.json
+!data/registries/biological-identity.json

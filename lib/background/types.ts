@@ -59,6 +59,7 @@ export const BACKGROUND_SOURCE_KINDS = [
   'NICE_BNF',
   'PUBLISHED_ANALYSIS',
   'DSLD',
+  'NCBI_TAXONOMY',
 ] as const
 export type BackgroundSourceKind = (typeof BACKGROUND_SOURCE_KINDS)[number]
 
@@ -481,6 +482,73 @@ export interface RecordedUses {
 }
 
 /**
+ * What organism a medicine row is, when the row names one.
+ *
+ * A large part of this corpus is not a molecule. It is a plant, a fungus, an insect, a bacterium or
+ * an animal tissue: "Solenopsis Richteri", "Gliocladium Viride", "Curcuma Longa Leaf",
+ * "Wuchereria Bancrofti", "Oryctolagus Cuniculus Uterus". Chemistry has nothing to say about any of
+ * them, and a page that could say nothing about what the thing IS was the result.
+ *
+ * A taxonomy answers exactly that and nothing more. It states the accepted scientific name, where
+ * the organism sits, and what else it is called — facts about biological nomenclature, not about
+ * medicine. Nothing here says an organism treats anything, and nothing may be read that way.
+ *
+ * `partAsRecorded` keeps the distinction the row itself draws. A row named "Curcuma Longa Leaf" is
+ * about the leaf; the taxon is the plant. Recording the part separately is what stops the record
+ * claiming the row and the organism are the same thing.
+ *
+ * Matched only where a name resolves to exactly one taxon. A name claimed by several organisms is
+ * refused rather than guessed, on the same rule that governs substance identity: an ambiguous
+ * identity is not an identity.
+ */
+/**
+ * Ranks at which a name identifies one organism rather than a group of them.
+ *
+ * A binomial is unambiguous by construction: nothing else is called "Withania somnifera". A bare
+ * genus name is a single ordinary word, and single ordinary words collide — *Glycine* is a genus of
+ * soybeans and also an amino acid, *Neon* is a genus of jumping spiders and also an element,
+ * *Ammonia* is a genus of foraminifera, *Mica* is both a genus and a mineral. Every one of those
+ * matched, every one was wrong, and every one was a page telling a reader that a chemical is a
+ * plant or an animal.
+ *
+ * Genus-and-above matches are still worth having — Acacia, Aloe and Agaricus are real botanical
+ * rows — so they are kept wherever nothing else says the row is a chemical.
+ */
+export const RANKS_NAMING_ONE_ORGANISM: ReadonlySet<string> = new Set([
+  'species',
+  'subspecies',
+  'varietas',
+  'forma',
+  'subvariety',
+  'strain',
+  'serotype',
+  'serovar',
+  'genotype',
+  'isolate',
+  'biotype',
+  'morph',
+  'pathogroup',
+  'serogroup',
+  'forma specialis',
+])
+
+export interface RecordedBiologicalIdentity {
+  /** The accepted scientific name, as the taxonomy states it. */
+  scientificName: string
+  /** The taxonomic rank the taxonomy assigns, e.g. species, genus, family. */
+  rankAsRecorded: string
+  /** The ranked lineage from the broadest level down, in the taxonomy's own words. */
+  lineageAsRecorded: string[]
+  /** Other names the taxonomy carries for this organism. */
+  commonNamesAsRecorded: string[]
+  /** The part of the organism the medicine row names, when it names one. */
+  partAsRecorded?: string
+  /** How the corpus name reached this taxon: its scientific name, or a common name it carries. */
+  matchedOn: 'SCIENTIFIC_NAME' | 'COMMON_NAME'
+  source: BackgroundSource
+}
+
+/**
  * Where a substance appears in the published drug-label archive.
  *
  * The extraction pipeline reads prose, so it keeps only labels that have some. That is right for
@@ -624,4 +692,5 @@ export interface MedicineRecordedBackground {
   composition?: RecordedComposition
   supplementMarket?: RecordedSupplementMarket
   labelPresence?: RecordedLabelPresence
+  biologicalIdentity?: RecordedBiologicalIdentity
 }

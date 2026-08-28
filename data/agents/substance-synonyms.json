@@ -14,9 +14,9 @@
     "counterionCationTermCount": 18
   },
   "coverage": {
-    "considered": 7918,
+    "considered": 8582,
     "used": 2021,
-    "reason": "2021 of 7918 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 386 records ended up in a candidate group."
+    "reason": "2021 of 8582 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 386 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [

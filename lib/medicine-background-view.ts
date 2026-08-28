@@ -172,6 +172,21 @@ export interface MedicineBackgroundContextView {
     mostRecentLabelDate?: string
     source: RecordedSourceView
   }
+  /**
+   * What organism the row is, when it is one.
+   *
+   * For a botanical, a fungus, an insect or an animal tissue this is often the only thing any
+   * source can say, and it is a fact about naming rather than about medicine.
+   */
+  biologicalIdentity?: {
+    scientificName: string
+    rankLabel: string
+    lineage: string[]
+    commonNames: string[]
+    partLabel?: string
+    matchNote: string
+    source: RecordedSourceView
+  }
   supplementMarket?: {
     labelCountLabel: string
     categories: string[]
@@ -215,6 +230,7 @@ const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
   NICE_BNF: 'NICE / BNF record',
   PUBLISHED_ANALYSIS: 'Published analysis',
   DSLD: 'Supplement label database record',
+  NCBI_TAXONOMY: 'NCBI Taxonomy record',
 }
 
 const CONCORDANCE_LABELS = {
@@ -235,6 +251,8 @@ function sourceHref(source: BackgroundSource): string | undefined {
       return `https://clinicaltrials.gov/study/${id}`
     case 'PUBCHEM':
       return `https://pubchem.ncbi.nlm.nih.gov/compound/${id}`
+    case 'NCBI_TAXONOMY':
+      return `https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=${id}`
     case 'PUBLISHED_ANALYSIS':
       return `https://doi.org/${encodeURIComponent(source.identifier.trim())}`
     case 'NICE_BNF':
@@ -704,6 +722,24 @@ export function medicineBackgroundContext(
       }
     : undefined
 
+  const biology = background.biologicalIdentity
+  const biologicalIdentity = biology
+    ? {
+        scientificName: biology.scientificName,
+        rankLabel: biology.rankAsRecorded,
+        lineage: biology.lineageAsRecorded,
+        commonNames: biology.commonNamesAsRecorded,
+        ...(biology.partAsRecorded ? { partLabel: biology.partAsRecorded } : {}),
+        // How the name reached the taxon is part of the record: a reader should know whether this
+        // row was matched on the scientific name itself or on a common name the taxonomy carries.
+        matchNote:
+          biology.matchedOn === 'SCIENTIFIC_NAME'
+            ? 'Matched on the scientific name this record is filed under.'
+            : 'Matched on a common name the taxonomy records for this organism, and only where that name refers to one organism and no other.',
+        source: sourceView(biology.source),
+      }
+    : undefined
+
   const market = background.supplementMarket
   const supplementMarket = market
     ? {
@@ -814,6 +850,7 @@ export function medicineBackgroundContext(
     ...(commonAdverseReactions ? { commonAdverseReactions } : {}),
     ...(recordedUses ? { recordedUses } : {}),
     ...(sourceConsensus ? { sourceConsensus } : {}),
+    ...(biologicalIdentity ? { biologicalIdentity } : {}),
     ...(labelPresence ? { labelPresence } : {}),
     ...(supplementMarket ? { supplementMarket } : {}),
     ...(composition ? { composition } : {}),

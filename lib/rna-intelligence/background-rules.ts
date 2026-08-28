@@ -94,6 +94,7 @@ export const BACKGROUND_RULE_CODES = [
   'I_TRANSCRIBED_VALUE_UNCHECKABLE',
   'I_LABEL_PRESENCE_COUNT_UNCHECKABLE',
   'I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL',
+  'I_BIOLOGY_IDENTITY_UNCHECKABLE',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -127,6 +128,8 @@ const SOURCE_IDENTIFIER_PATTERNS: Record<string, RegExp> = {
   PUBLISHED_ANALYSIS: /^10\.\d{4,9}\/\S{2,200}$/u,
   // A supplement label database record id, which is what makes a transcribed count checkable.
   DSLD: /^[0-9]{1,9}$/u,
+  // An NCBI taxonomy identifier, which is what makes a recorded organism checkable.
+  NCBI_TAXONOMY: /^[1-9][0-9]{0,8}$/u,
 }
 
 /**
@@ -957,6 +960,8 @@ export function runBackgroundIntelligence(
       // Archive presence is transcribed too, so a record holding only these two is still a
       // transcribed record rather than one that has quietly acquired a richer tier.
       'labelPresence',
+      // So is a taxonomy record: a name and a lineage copied from a structured table.
+      'biologicalIdentity',
     ])
     const otherModules = Object.entries(background).some(([key, value]) => {
       if (ENVELOPE_FIELDS.has(key)) return false
@@ -1013,6 +1018,54 @@ export function runBackgroundIntelligence(
         'I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL',
         'labelPresence.singleSubstanceLabelCount',
         'A count of labels cannot be negative.',
+      )
+    }
+  }
+
+  /**
+   * A recorded organism, held to the reproducibility standard every transcribed value meets.
+   *
+   * A taxonomy returns structured fields and no prose, so there is no excerpt. What replaces it is
+   * the taxonomy identifier: anyone can look the same number up in the same public table and get
+   * the same name and lineage. A scientific name with no identifier behind it is an assertion about
+   * biology, which is not a thing this record may make on its own authority.
+   */
+  const biology = background.biologicalIdentity
+  if (biology) {
+    checkSource('biologicalIdentity', biology.source)
+    if (biology.source.kind !== 'NCBI_TAXONOMY') {
+      flag(
+        'I_BIOLOGY_IDENTITY_UNCHECKABLE',
+        'biologicalIdentity.source',
+        `A recorded organism must cite the taxonomy it was copied from, not "${biology.source.kind}".`,
+      )
+    }
+    if (!biology.scientificName.trim()) {
+      flag(
+        'I_BIOLOGY_IDENTITY_UNCHECKABLE',
+        'biologicalIdentity.scientificName',
+        'A recorded organism must carry the accepted scientific name the taxonomy states.',
+      )
+    }
+    if (!biology.rankAsRecorded.trim()) {
+      flag(
+        'I_BIOLOGY_IDENTITY_UNCHECKABLE',
+        'biologicalIdentity.rankAsRecorded',
+        'A recorded organism must carry the rank the taxonomy assigns it.',
+      )
+    }
+    if (biology.lineageAsRecorded.length === 0) {
+      flag(
+        'I_BIOLOGY_IDENTITY_UNCHECKABLE',
+        'biologicalIdentity.lineageAsRecorded',
+        'A recorded organism must carry the lineage that places it, or it says nothing a reader can use.',
+      )
+    }
+    if (biology.matchedOn !== 'SCIENTIFIC_NAME' && biology.matchedOn !== 'COMMON_NAME') {
+      flag(
+        'I_BIOLOGY_IDENTITY_UNCHECKABLE',
+        'biologicalIdentity.matchedOn',
+        `Unknown match basis "${biology.matchedOn}"; how a name reached a taxon is part of the record.`,
       )
     }
   }

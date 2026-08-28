@@ -400,6 +400,7 @@ const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
   NICE_BNF: 'BNF monograph',
   PUBLISHED_ANALYSIS: 'published analysis',
   DSLD: 'supplement label database',
+  NCBI_TAXONOMY: 'NCBI Taxonomy',
 }
 
 function* allSources(background: MedicineRecordedBackground): Generator<BackgroundSource> {

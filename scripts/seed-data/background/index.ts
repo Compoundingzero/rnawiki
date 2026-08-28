@@ -12,6 +12,7 @@
  *   research context — never as guidance.
  */
 
+import { RANKS_NAMING_ONE_ORGANISM } from '@/lib/background/types'
 import type { MedicineRecordedBackground } from '@/lib/background/types'
 
 import { BACKGROUND_BATCH_1 } from './batch-1'
@@ -39,6 +40,7 @@ import { SUPPLEMENT_BACKGROUND } from './supplement-background'
 import { LABEL_PRESENCE_BACKGROUND } from './label-presence'
 import { COMBINATION_ROW_COMPOSITION } from './combination-row-composition'
 import { ACQUISITION_COST_BACKGROUND } from './acquisition-cost'
+import { BIOLOGICAL_IDENTITY_BACKGROUND } from './biological-identity'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -134,6 +136,29 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     const existing = merged[slug]
     if (existing?.costContext?.length) continue
     merged[slug] = existing ? { ...existing, costContext: priced.costContext } : priced
+  }
+
+  // What the organism IS attaches to whatever record exists. A large part of this corpus is a
+  // plant, a fungus, an insect or an animal tissue rather than a molecule, and for those rows no
+  // chemical or label source could ever say what the thing is. A taxonomy can, and says nothing
+  // else: a name, a rank, a lineage and the other names it is known by.
+  for (const [slug, biology] of Object.entries(BIOLOGICAL_IDENTITY_BACKGROUND)) {
+    const existing = merged[slug]
+    if (existing?.biologicalIdentity) continue
+    // A row with a molecular formula is a compound, and a compound is not a genus. This is the last
+    // guard against a name collision: *Ammonia* is a genus of foraminifera, and the row named
+    // "Ammonia" has a formula recorded from a label.
+    const identity = biology.biologicalIdentity
+    if (
+      existing?.molecularIdentity &&
+      identity &&
+      !RANKS_NAMING_ONE_ORGANISM.has(identity.rankAsRecorded)
+    ) {
+      continue
+    }
+    merged[slug] = existing
+      ? { ...existing, biologicalIdentity: biology.biologicalIdentity }
+      : biology
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism

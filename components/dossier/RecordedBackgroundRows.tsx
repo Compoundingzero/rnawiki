@@ -747,6 +747,63 @@ export function BackgroundLabelPresenceBody({
   )
 }
 
+/**
+ * What organism the row is.
+ *
+ * For a botanical, fungus, insect or animal tissue this is often the only thing any source can say
+ * about the row, and it is a fact about biological naming rather than about medicine. The closing
+ * line says so, because a lineage sitting on a medicine page could otherwise be read as a claim
+ * that the organism does something.
+ */
+export function BackgroundBiologicalIdentityBody({
+  biology,
+}: {
+  biology: NonNullable<MedicineBackgroundContextView['biologicalIdentity']>
+}) {
+  return (
+    <div className="space-y-4">
+      <div className="min-w-0">
+        <p className="break-words text-base font-semibold italic text-[#1D1D1F]">
+          {biology.scientificName}
+        </p>
+        <p className="mt-1 text-sm leading-6 text-[#515154]">
+          Recorded rank: {biology.rankLabel}
+          {biology.partLabel ? ` · this record is about the ${biology.partLabel}` : ''}
+        </p>
+      </div>
+      {biology.lineage.length > 0 && (
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">
+            Where the taxonomy places it
+          </p>
+          <ol className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
+            {biology.lineage.map((level, index) => (
+              <li key={`${level}-${index}`} className="flex items-center gap-2">
+                <span className="rounded-full border border-black/[0.1] bg-[#F5F5F7] px-2.5 py-1 text-[13px] font-semibold leading-5 text-[#1D1D1F]">
+                  {level}
+                </span>
+                {index < biology.lineage.length - 1 && (
+                  <span aria-hidden="true" className="text-[#6E6E73]">
+                    ›
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+      <ChipList label="Also known as" values={biology.commonNames} />
+      <p className="text-sm leading-6 text-[#515154]">{biology.matchNote}</p>
+      <SourceLine source={biology.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        This says what the organism is and where it sits in biological classification. It says
+        nothing about what it does in the body, and nothing here should be read that way.{' '}
+        {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
 export function BackgroundSupplementMarketBody({
   market,
 }: {

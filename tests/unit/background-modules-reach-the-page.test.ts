@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
 import { medicineBackgroundContext } from '@/lib/medicine-background-view'
+import { RANKS_NAMING_ONE_ORGANISM } from '@/lib/background/types'
 import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
 
 /**
@@ -113,5 +114,77 @@ describe('every stored module reaches a reader', () => {
       unreachable,
       `stored by the corpus but never projected: ${unreachable.join(', ')}`,
     ).toEqual([])
+  })
+})
+
+/**
+ * The taxonomy match, and the collisions it must refuse.
+ *
+ * A bare one-word row matched to a genus is where biological naming and chemical naming collide.
+ * *Lithium* is a genus of moths, *Trachea* another, *Ammonia* is a foraminiferan, *Castor* is the
+ * beaver — each matched a real corpus row, each was wrong, and each would have told a reader that a
+ * chemical or an organ is an animal.
+ */
+describe('recorded organisms', () => {
+  const identities = Object.entries(ALL_RECORDED_BACKGROUND)
+    .map(([slug, background]) => ({ slug, identity: background.biologicalIdentity }))
+    .filter((entry): entry is { slug: string; identity: NonNullable<typeof entry.identity> } =>
+      Boolean(entry.identity),
+    )
+
+  it('records organisms for a substantial part of the corpus', () => {
+    expect(identities.length).toBeGreaterThan(2000)
+  })
+
+  it('refuses the chemical and anatomical names that collide with a genus', () => {
+    for (const slug of ['ammonia', 'lithium', 'manna', 'galanga', 'trachea', 'castor', 'glycine']) {
+      expect(ALL_RECORDED_BACKGROUND[slug]?.biologicalIdentity, slug).toBeUndefined()
+    }
+  })
+
+  it('keeps the botanical and microbial rows the collisions were guarding', () => {
+    for (const slug of ['ashwagandha', 'aloe', 'acacia', 'lactobacillus']) {
+      expect(ALL_RECORDED_BACKGROUND[slug]?.biologicalIdentity?.scientificName, slug).toBeTruthy()
+    }
+  })
+
+  it('admits a bare one-word name only for groups whose genus names are unambiguous', () => {
+    const admissible = [
+      'Viridiplantae',
+      'Fungi',
+      'Bacteria',
+      'Archaea',
+      'Rhodophyta',
+      'Phaeophyceae',
+      'Chlorophyta',
+      'Viruses',
+    ]
+    for (const { slug, identity } of identities) {
+      if (RANKS_NAMING_ONE_ORGANISM.has(identity.rankAsRecorded)) continue
+      if (identity.partAsRecorded || slug.includes('-')) continue
+      expect(
+        identity.lineageAsRecorded.some((level) => admissible.includes(level)),
+        `${slug} -> ${identity.scientificName} [${identity.lineageAsRecorded.join(' > ')}]`,
+      ).toBe(true)
+    }
+  })
+
+  it('separates the organism from the part the row names', () => {
+    const withPart = identities.filter((entry) => entry.identity.partAsRecorded)
+    expect(withPart.length).toBeGreaterThan(100)
+    for (const { identity } of withPart.slice(0, 200)) {
+      // The part is never folded into the scientific name; they are different facts.
+      expect(identity.scientificName.toLowerCase()).not.toContain(
+        identity.partAsRecorded!.toLowerCase(),
+      )
+    }
+  })
+
+  it('carries a taxonomy identifier on every record, since there is no sentence to quote', () => {
+    for (const { slug, identity } of identities) {
+      expect(identity.source.kind, slug).toBe('NCBI_TAXONOMY')
+      expect(identity.source.identifier, slug).toMatch(/^[1-9][0-9]*$/u)
+      expect(identity.lineageAsRecorded.length, slug).toBeGreaterThan(0)
+    }
   })
 })

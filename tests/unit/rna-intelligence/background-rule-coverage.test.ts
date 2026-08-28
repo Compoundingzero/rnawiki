@@ -272,6 +272,20 @@ function validBackground(): MedicineRecordedBackground {
       eventsAsRecorded: ['synthetic headache', 'synthetic nausea'],
       source: { ...labelSource, excerpt: ADVERSE_TEXT },
     },
+    biologicalIdentity: {
+      scientificName: 'Syntheticus exemplaris',
+      rankAsRecorded: 'species',
+      lineageAsRecorded: ['Eukaryota', 'Syntheticaceae'],
+      commonNamesAsRecorded: ['synthetic example organism'],
+      partAsRecorded: 'leaf',
+      matchedOn: 'SCIENTIFIC_NAME',
+      source: {
+        kind: 'NCBI_TAXONOMY',
+        identifier: '9606',
+        label: 'Synthetic taxonomy record',
+        retrievedAt: '2026-08-29',
+      },
+    },
     labelPresence: {
       labelCount: 12,
       singleSubstanceLabelCount: 4,
@@ -621,6 +635,13 @@ const ruleCases = {
       // A count of labels with no label identifier behind it cannot be put to the archive again,
       // which is the only check this kind of value can have.
       background.labelPresence!.sampleLabelIds = []
+    },
+  },
+  I_BIOLOGY_IDENTITY_UNCHECKABLE: {
+    mutate: (background) => {
+      // A lineage is what places an organism. Without it the record names something and says
+      // nothing about what it is.
+      background.biologicalIdentity!.lineageAsRecorded = []
     },
   },
   I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL: {

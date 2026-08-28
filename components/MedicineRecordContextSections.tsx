@@ -4,6 +4,7 @@ import { AnnotatedMedicineText } from '@/components/AnnotatedMedicineText'
 import {
   BackgroundAnatomyBody,
   BackgroundApplicabilityBody,
+  BackgroundBiologicalIdentityBody,
   BackgroundCommonAdverseReactionsBody,
   BackgroundCompositionBody,
   BackgroundCostEntriesBody,
@@ -453,6 +454,17 @@ export function MedicineRecordContextSections({
             preview="Each reading of a value, how many labels state it, and where the labels disagree."
           >
             <BackgroundSourceConsensusBody consensus={context.background.sourceConsensus} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.biologicalIdentity && (
+          <BackgroundRow
+            id="what-organism-it-is"
+            tone="emerald"
+            title="What organism this is"
+            preview="The accepted scientific name, where biological classification places it, and its other names."
+          >
+            <BackgroundBiologicalIdentityBody biology={context.background.biologicalIdentity} />
           </BackgroundRow>
         )}
 

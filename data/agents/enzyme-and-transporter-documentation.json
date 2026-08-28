@@ -17,7 +17,7 @@
           "transporter": 0
         },
         "medicinesRecording": 476,
-        "shareOfRecordsConsidered": 0.060116,
+        "shareOfRecordsConsidered": 0.055465,
         "shareOfDocumentedRecords": 0.690856,
         "roles": {
           "substrate": 27,
@@ -4921,7 +4921,7 @@
           "transporter": 0
         },
         "medicinesRecording": 404,
-        "shareOfRecordsConsidered": 0.051023,
+        "shareOfRecordsConsidered": 0.047075,
         "shareOfDocumentedRecords": 0.586357,
         "roles": {
           "substrate": 26,
@@ -9181,7 +9181,7 @@
           "transporter": 0
         },
         "medicinesRecording": 375,
-        "shareOfRecordsConsidered": 0.04736,
+        "shareOfRecordsConsidered": 0.043696,
         "shareOfDocumentedRecords": 0.544267,
         "roles": {
           "substrate": 27,
@@ -13111,7 +13111,7 @@
           "transporter": 0
         },
         "medicinesRecording": 371,
-        "shareOfRecordsConsidered": 0.046855,
+        "shareOfRecordsConsidered": 0.04323,
         "shareOfDocumentedRecords": 0.538462,
         "roles": {
           "substrate": 37,
@@ -17015,7 +17015,7 @@
           "transporter": 0
         },
         "medicinesRecording": 344,
-        "shareOfRecordsConsidered": 0.043445,
+        "shareOfRecordsConsidered": 0.040084,
         "shareOfDocumentedRecords": 0.499274,
         "roles": {
           "substrate": 23,
@@ -20622,7 +20622,7 @@
           "transporter": 323
         },
         "medicinesRecording": 323,
-        "shareOfRecordsConsidered": 0.040793,
+        "shareOfRecordsConsidered": 0.037637,
         "shareOfDocumentedRecords": 0.468795,
         "roles": {
           "substrate": 128,
@@ -24082,7 +24082,7 @@
           "transporter": 0
         },
         "medicinesRecording": 282,
-        "shareOfRecordsConsidered": 0.035615,
+        "shareOfRecordsConsidered": 0.032859,
         "shareOfDocumentedRecords": 0.409289,
         "roles": {
           "substrate": 24,
@@ -27056,7 +27056,7 @@
           "transporter": 0
         },
         "medicinesRecording": 267,
-        "shareOfRecordsConsidered": 0.033721,
+        "shareOfRecordsConsidered": 0.031112,
         "shareOfDocumentedRecords": 0.387518,
         "roles": {
           "substrate": 13,
@@ -29886,7 +29886,7 @@
           "transporter": 203
         },
         "medicinesRecording": 203,
-        "shareOfRecordsConsidered": 0.025638,
+        "shareOfRecordsConsidered": 0.023654,
         "shareOfDocumentedRecords": 0.29463,
         "roles": {
           "substrate": 39,
@@ -32085,7 +32085,7 @@
           "transporter": 198
         },
         "medicinesRecording": 198,
-        "shareOfRecordsConsidered": 0.025006,
+        "shareOfRecordsConsidered": 0.023072,
         "shareOfDocumentedRecords": 0.287373,
         "roles": {
           "substrate": 75,
@@ -34211,7 +34211,7 @@
           "transporter": 188
         },
         "medicinesRecording": 188,
-        "shareOfRecordsConsidered": 0.023743,
+        "shareOfRecordsConsidered": 0.021906,
         "shareOfDocumentedRecords": 0.272859,
         "roles": {
           "substrate": 40,
@@ -36244,7 +36244,7 @@
           "transporter": 184
         },
         "medicinesRecording": 184,
-        "shareOfRecordsConsidered": 0.023238,
+        "shareOfRecordsConsidered": 0.02144,
         "shareOfDocumentedRecords": 0.267054,
         "roles": {
           "substrate": 36,
@@ -38235,7 +38235,7 @@
           "transporter": 173
         },
         "medicinesRecording": 173,
-        "shareOfRecordsConsidered": 0.021849,
+        "shareOfRecordsConsidered": 0.020158,
         "shareOfDocumentedRecords": 0.251089,
         "roles": {
           "substrate": 58,
@@ -40112,7 +40112,7 @@
           "transporter": 138
         },
         "medicinesRecording": 138,
-        "shareOfRecordsConsidered": 0.017429,
+        "shareOfRecordsConsidered": 0.01608,
         "shareOfDocumentedRecords": 0.20029,
         "roles": {
           "substrate": 47,
@@ -41617,7 +41617,7 @@
           "transporter": 136
         },
         "medicinesRecording": 136,
-        "shareOfRecordsConsidered": 0.017176,
+        "shareOfRecordsConsidered": 0.015847,
         "shareOfDocumentedRecords": 0.197388,
         "roles": {
           "substrate": 60,
@@ -43083,7 +43083,7 @@
           "transporter": 133
         },
         "medicinesRecording": 133,
-        "shareOfRecordsConsidered": 0.016797,
+        "shareOfRecordsConsidered": 0.015498,
         "shareOfDocumentedRecords": 0.193033,
         "roles": {
           "substrate": 27,
@@ -44525,7 +44525,7 @@
           "transporter": 121
         },
         "medicinesRecording": 121,
-        "shareOfRecordsConsidered": 0.015282,
+        "shareOfRecordsConsidered": 0.014099,
         "shareOfDocumentedRecords": 0.175617,
         "roles": {
           "substrate": 16,
@@ -45838,7 +45838,7 @@
           "transporter": 0
         },
         "medicinesRecording": 104,
-        "shareOfRecordsConsidered": 0.013135,
+        "shareOfRecordsConsidered": 0.012118,
         "shareOfDocumentedRecords": 0.150943,
         "roles": {
           "substrate": 7,
@@ -46962,7 +46962,7 @@
           "transporter": 94
         },
         "medicinesRecording": 94,
-        "shareOfRecordsConsidered": 0.011872,
+        "shareOfRecordsConsidered": 0.010953,
         "shareOfDocumentedRecords": 0.13643,
         "roles": {
           "substrate": 17,
@@ -47992,7 +47992,7 @@
           "transporter": 0
         },
         "medicinesRecording": 89,
-        "shareOfRecordsConsidered": 0.01124,
+        "shareOfRecordsConsidered": 0.010371,
         "shareOfDocumentedRecords": 0.129173,
         "roles": {
           "substrate": 6,
@@ -48956,7 +48956,7 @@
           "transporter": 66
         },
         "medicinesRecording": 66,
-        "shareOfRecordsConsidered": 0.008335,
+        "shareOfRecordsConsidered": 0.007691,
         "shareOfDocumentedRecords": 0.095791,
         "roles": {
           "substrate": 16,
@@ -49684,7 +49684,7 @@
           "transporter": 47
         },
         "medicinesRecording": 47,
-        "shareOfRecordsConsidered": 0.005936,
+        "shareOfRecordsConsidered": 0.005477,
         "shareOfDocumentedRecords": 0.068215,
         "roles": {
           "substrate": 11,
@@ -50214,7 +50214,7 @@
           "transporter": 0
         },
         "medicinesRecording": 35,
-        "shareOfRecordsConsidered": 0.00442,
+        "shareOfRecordsConsidered": 0.004078,
         "shareOfDocumentedRecords": 0.050798,
         "roles": {
           "substrate": 2,
@@ -50596,7 +50596,7 @@
           "transporter": 0
         },
         "medicinesRecording": 25,
-        "shareOfRecordsConsidered": 0.003157,
+        "shareOfRecordsConsidered": 0.002913,
         "shareOfDocumentedRecords": 0.036284,
         "roles": {
           "substrate": 4,
@@ -50882,7 +50882,7 @@
           "transporter": 22
         },
         "medicinesRecording": 22,
-        "shareOfRecordsConsidered": 0.002778,
+        "shareOfRecordsConsidered": 0.002564,
         "shareOfDocumentedRecords": 0.03193,
         "roles": {
           "substrate": 4,
@@ -51146,7 +51146,7 @@
           "transporter": 0
         },
         "medicinesRecording": 9,
-        "shareOfRecordsConsidered": 0.001137,
+        "shareOfRecordsConsidered": 0.001049,
         "shareOfDocumentedRecords": 0.013062,
         "roles": {
           "substrate": 0,
@@ -51262,7 +51262,7 @@
           "transporter": 9
         },
         "medicinesRecording": 9,
-        "shareOfRecordsConsidered": 0.001137,
+        "shareOfRecordsConsidered": 0.001049,
         "shareOfDocumentedRecords": 0.013062,
         "roles": {
           "substrate": 4,
@@ -51385,7 +51385,7 @@
           "transporter": 0
         },
         "medicinesRecording": 6,
-        "shareOfRecordsConsidered": 0.000758,
+        "shareOfRecordsConsidered": 0.000699,
         "shareOfDocumentedRecords": 0.008708,
         "roles": {
           "substrate": 0,
@@ -51472,7 +51472,7 @@
           "transporter": 5
         },
         "medicinesRecording": 5,
-        "shareOfRecordsConsidered": 0.000631,
+        "shareOfRecordsConsidered": 0.000583,
         "shareOfDocumentedRecords": 0.007257,
         "roles": {
           "substrate": 1,
@@ -51554,7 +51554,7 @@
           "transporter": 0
         },
         "medicinesRecording": 4,
-        "shareOfRecordsConsidered": 0.000505,
+        "shareOfRecordsConsidered": 0.000466,
         "shareOfDocumentedRecords": 0.005806,
         "roles": {
           "substrate": 0,
@@ -51620,7 +51620,7 @@
           "transporter": 0
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000379,
+        "shareOfRecordsConsidered": 0.00035,
         "shareOfDocumentedRecords": 0.004354,
         "roles": {
           "substrate": 0,
@@ -51676,7 +51676,7 @@
           "transporter": 0
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000379,
+        "shareOfRecordsConsidered": 0.00035,
         "shareOfDocumentedRecords": 0.004354,
         "roles": {
           "substrate": 0,
@@ -51734,7 +51734,7 @@
           "transporter": 0
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000379,
+        "shareOfRecordsConsidered": 0.00035,
         "shareOfDocumentedRecords": 0.004354,
         "roles": {
           "substrate": 0,
@@ -51792,7 +51792,7 @@
           "transporter": 3
         },
         "medicinesRecording": 3,
-        "shareOfRecordsConsidered": 0.000379,
+        "shareOfRecordsConsidered": 0.00035,
         "shareOfDocumentedRecords": 0.004354,
         "roles": {
           "substrate": 0,
@@ -51849,7 +51849,7 @@
           "transporter": 0
         },
         "medicinesRecording": 1,
-        "shareOfRecordsConsidered": 0.000126,
+        "shareOfRecordsConsidered": 0.000117,
         "shareOfDocumentedRecords": 0.001451,
         "roles": {
           "substrate": 0,
@@ -51885,7 +51885,7 @@
           "transporter": 0
         },
         "medicinesRecording": 1,
-        "shareOfRecordsConsidered": 0.000126,
+        "shareOfRecordsConsidered": 0.000117,
         "shareOfDocumentedRecords": 0.001451,
         "roles": {
           "substrate": 0,
@@ -51928,9 +51928,9 @@
       "uniformReferenceDrawsAtOrAboveObserved": 0,
       "uniformReferenceDraws": 200
     },
-    "recordsConsidered": 7918,
+    "recordsConsidered": 8582,
     "recordsNamingAnyCounterparty": 689,
-    "recordsNamingNone": 7229,
+    "recordsNamingNone": 7893,
     "mentionsAdmitted": 4845,
     "mentionsWithheldCounterpartyNotInExcerpt": 40,
     "mentionsWithheldExcerptFailedScreen": 0,
@@ -51938,9 +51938,9 @@
     "mentionsFromExtractedRecords": 4845
   },
   "coverage": {
-    "considered": 7918,
+    "considered": 8582,
     "used": 689,
-    "reason": "7229 records name no enzyme or transporter in their recorded sources, so they cannot enter a counterparty profile. Of the mentions in the remaining records, 40 were withheld: 40 because the recorded counterparty is not present in the sentence it was read from, 0 because the sentence reads as advice rather than description. Withheld mentions are in the review queue, not deleted."
+    "reason": "7893 records name no enzyme or transporter in their recorded sources, so they cannot enter a counterparty profile. Of the mentions in the remaining records, 40 were withheld: 40 because the recorded counterparty is not present in the sentence it was read from, 0 because the sentence reads as advice rather than description. Withheld mentions are in the review queue, not deleted."
   },
   "queue": [
     {
@@ -53092,7 +53092,7 @@
     "48.2% of admitted mentions carry no role. The sentence named more than one role and the parser left the question open rather than attaching a guess, so a role tally is a count of sentences that settled the question, not of medicines for which it is settled.",
     "Recorded spellings are counted separately and never merged. P-GP, PGP and P-GLYCOPROTEIN are three entries in this dataset because they are three strings in the corpus; whether they name one thing is a question for a person, and prefix relationships are reported as questions rather than resolved.",
     "A mention is admitted only when its excerpt contains the recorded counterparty, tolerating letter case alone. Every other reading of the corpus, including the mentions withheld for that reason, is in the review queue and is not represented in any count above.",
-    "7229 of 7918 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+    "7893 of 8582 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
     "4845 of 4845 admitted mentions come from records the deterministic label parser produced, where no person chose the value or wrote its measurement context. The sentence is stored with each one so a reader can check it.",
     "The uniform reference for concentration allocates the same 4845 mentions over the same 36 counterparties by chance. Labels are not written that way, so the reference shows only that the observed spread is not a consequence of how many mentions there are."
   ]
