@@ -203,6 +203,7 @@ function validBackground(): MedicineRecordedBackground {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         source: {
           ...labelSource,
           excerpt: 'This synthetic medicine is a substrate of CYP3A4 in the synthetic model.',
@@ -469,6 +470,18 @@ const ruleCases = {
       // Section 7 is the regulated advice section; a role may never be read out of it.
       // @ts-expect-error deliberately outside the descriptive-section vocabulary
       background.interactionSignals![0]!.labelSection = 'drug_interactions'
+    },
+  },
+  I_INTERACTION_POLARITY_UNKNOWN: {
+    mutate: (background) => {
+      // @ts-expect-error deliberately outside the vocabulary
+      background.interactionSignals![0]!.polarity = 'MAYBE'
+    },
+  },
+  I_INTERACTION_POLARITY_MISSING: {
+    mutate: (background) => {
+      // A role whose sentence may have been denying it must not reach a reader as an assertion.
+      delete background.interactionSignals![0]!.polarity
     },
   },
   I_CONSENSUS_COUNT_INCONSISTENT: {

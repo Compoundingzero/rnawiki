@@ -207,12 +207,28 @@ describe('conformal flagging', () => {
 })
 
 describe('TF-IDF and clustering', () => {
-  it('drops stopwords and regulatory boilerplate', () => {
-    const tokens = tokenize('The mechanism of action of this drug in patients is not fully known.')
-    expect(tokens).not.toContain('the')
-    expect(tokens).not.toContain('mechanism')
-    expect(tokens).not.toContain('patients')
-    expect(tokens).toContain('fully')
+  it('drops stopwords and regulatory boilerplate, keeping what distinguishes a document', () => {
+    const tokens = tokenize(
+      'The precise mechanism of action in patients is not fully understood but may involve inhibition of dihydrofolate reductase.',
+    )
+    // Every word of the hedge goes, because grouping on it groups medicines by how uncertain their
+    // label sounds rather than by what the label says.
+    for (const hedge of [
+      'the',
+      'precise',
+      'mechanism',
+      'action',
+      'patients',
+      'fully',
+      'understood',
+      'involve',
+    ]) {
+      expect(tokens, hedge).not.toContain(hedge)
+    }
+    // What the sentence actually contributes survives.
+    expect(tokens).toContain('inhibition')
+    expect(tokens).toContain('dihydrofolate')
+    expect(tokens).toContain('reductase')
   })
 
   it('produces unit-length vectors whose cosine separates unrelated text', () => {

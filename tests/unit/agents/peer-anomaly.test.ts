@@ -39,6 +39,21 @@ function collectStrings(value: unknown, into: string[] = []): string[] {
   return into
 }
 
+/**
+ * The fetched wording carried on each flag's source. It is quoted, not authored: one FDA label in
+ * this corpus prints "the estimated half-life of gilteritinib is 113 hours", which the phrase
+ * screen catches by design. Screening a label's own sentence would mean the agent could not show
+ * the evidence behind a flag, so excerpts are held apart and everything the agent writes is
+ * screened.
+ */
+const QUOTED_EXCERPTS = new Set(
+  SCREEN.quantities.flatMap((quantity) =>
+    quantity.flags.flatMap((flag) => (flag.source.excerpt ? [flag.source.excerpt] : [])),
+  ),
+)
+
+const AUTHORED_STRINGS = collectStrings(RUN).filter((text) => !QUOTED_EXCERPTS.has(text))
+
 describe('peer-group anomaly screen over the real corpus', () => {
   it('draws on the corpus and reports its coverage honestly', () => {
     expect(RUN.coverage.considered).toBe(CORPUS.length)
@@ -101,10 +116,18 @@ describe('peer-group anomaly screen over the real corpus', () => {
 })
 
 describe('the boundary the screen has to hold', () => {
-  it('puts no advice and no claim about a medicine in any string it emits', () => {
-    for (const text of collectStrings(RUN)) {
+  it('puts no advice and no claim about a medicine in any string it writes', () => {
+    expect(AUTHORED_STRINGS.length).toBeGreaterThan(100)
+    for (const text of AUTHORED_STRINGS) {
       expect(findForbiddenPhrases(text)).toEqual([])
     }
+  })
+
+  it('carries source excerpts verbatim rather than editing them to pass the screen', () => {
+    // At least one excerpt in this corpus would fail the phrase screen. It is still shown exactly
+    // as fetched, because a flag a reviewer cannot check against the source sentence is useless.
+    const failing = [...QUOTED_EXCERPTS].filter((text) => findForbiddenPhrases(text).length > 0)
+    expect(failing.length).toBeGreaterThan(0)
   })
 
   it('never emits a flag from a peer group below the resolution limit', () => {
@@ -157,14 +180,7 @@ describe('the boundary the screen has to hold', () => {
 
   it('keeps every emitted string clear of the words that would turn a flag into a verdict', () => {
     const forbiddenWords = /\b(?:wrong|error|errors|erroneous|incorrect|mistaken|invalid)\b/iu
-    // Source excerpts are the fetched wording and are quoted, not written, so they are exempt.
-    const excerpts = new Set(
-      SCREEN.quantities.flatMap((quantity) =>
-        quantity.flags.map((flag) => flag.source.excerpt ?? ''),
-      ),
-    )
-    for (const text of collectStrings(RUN)) {
-      if (excerpts.has(text)) continue
+    for (const text of AUTHORED_STRINGS) {
       expect(text).not.toMatch(forbiddenWords)
     }
   })

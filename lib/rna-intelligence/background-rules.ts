@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-1.3.0`.
+ * `rna-intelligence/background-1.4.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -14,6 +14,7 @@ import {
   DESCRIPTIVE_LABEL_SECTIONS,
   BACKGROUND_SOURCE_KINDS,
   INTERACTION_COUNTERPARTY_KINDS,
+  INTERACTION_POLARITIES,
   INTERACTION_ROLES,
   POPULATION_EVIDENCE_STATES,
   STUDIED_POPULATIONS,
@@ -35,7 +36,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.3.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-1.4.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -81,6 +82,8 @@ export const BACKGROUND_RULE_CODES = [
   'I_CONSENSUS_COUNT_INCONSISTENT',
   'I_CONSENSUS_AGREEMENT_INVALID',
   'I_CONSENSUS_READING_NOT_IN_EXCERPT',
+  'I_INTERACTION_POLARITY_UNKNOWN',
+  'I_INTERACTION_POLARITY_MISSING',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -582,6 +585,19 @@ export function runBackgroundIntelligence(
     }
     if (signal.roleAsRecorded && !INTERACTION_ROLES.includes(signal.roleAsRecorded)) {
       flag('I_INTERACTION_ROLE_UNKNOWN', path, `Unknown role "${signal.roleAsRecorded}".`)
+    }
+    if (signal.polarity && !INTERACTION_POLARITIES.includes(signal.polarity)) {
+      flag('I_INTERACTION_POLARITY_UNKNOWN', path, `Unknown polarity "${signal.polarity}".`)
+    }
+    // A role without polarity cannot be displayed, because the sentence it came from may have been
+    // denying it. Labels report negative findings constantly, and a role recorded from "does not
+    // inhibit" and shown as "inhibits" states the opposite of its own source.
+    if (signal.roleAsRecorded && !signal.polarity) {
+      flag(
+        'I_INTERACTION_POLARITY_MISSING',
+        path,
+        `Role "${signal.roleAsRecorded}" carries no polarity, so whether the source asserted or denied it is unrecorded.`,
+      )
     }
     // A structural role may only come from a descriptive section. Section 7 of a US label is,
     // by 21 CFR 201.57(c)(8), the section for clinically significant interactions and the

@@ -1,6 +1,9 @@
 .next/
 node_modules/
 db/migrations/
+# Agent run output. Generated data, not source: it is written by scripts/agents/run-agents.ts and
+# read as a diff, and reformatting it would only add noise to that diff.
+data/agents/
 package-lock.json
 test-results/
 playwright-report/

@@ -15,7 +15,31 @@ import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rul
 describe('recorded-background corpus merge', () => {
   it('never lets an extracted record overwrite a curated one', () => {
     for (const slug of Object.keys(RECORDED_BACKGROUND)) {
-      expect(ALL_RECORDED_BACKGROUND[slug]).toBe(RECORDED_BACKGROUND[slug])
+      const curated = RECORDED_BACKGROUND[slug]!
+      const merged = ALL_RECORDED_BACKGROUND[slug]
+      expect(merged, slug).toBeDefined()
+      // Every field the curated record carries survives the merge byte for byte. Reference
+      // identity is deliberately not asserted: a curated record gains sourceConsensus, which is
+      // what every published label states for its fields, and a curated record benefits from
+      // knowing fifty-nine labels agree with it.
+      for (const [key, value] of Object.entries(curated)) {
+        expect(JSON.stringify(merged![key as keyof typeof merged]), `${slug}.${key}`).toBe(
+          JSON.stringify(value),
+        )
+      }
+    }
+  })
+
+  it('adds only cross-source consensus to a curated record, never anything else', () => {
+    for (const slug of Object.keys(RECORDED_BACKGROUND)) {
+      const curatedKeys = new Set(Object.keys(RECORDED_BACKGROUND[slug]!))
+      const added = Object.keys(ALL_RECORDED_BACKGROUND[slug]!).filter(
+        (key) => !curatedKeys.has(key),
+      )
+      expect(
+        added.filter((key) => key !== 'sourceConsensus'),
+        slug,
+      ).toEqual([])
     }
   })
 

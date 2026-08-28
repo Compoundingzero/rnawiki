@@ -194,9 +194,27 @@ describe('silence ledger discipline', () => {
     expect(JSON.stringify(again)).toBe(JSON.stringify(run))
   })
 
-  it('lets the seed change only the ordering of equally ranked queue items', () => {
+  it('lets the seed change the review queue but never the dataset', () => {
     const other = silenceLedgerAgent.run({ corpus: CORPUS, seed: SEED + 1, runDate: RUN_DATE })
+    // The published dataset is seed-independent, which is the property that matters for a record
+    // someone may cite.
     expect(JSON.stringify(other.output)).toBe(JSON.stringify(run.output))
+
+    // The queue is not. Priorities tie in large groups, and the tie is broken by a seeded shuffle
+    // before truncation, so a different seed surfaces a different sample of equally ranked records.
+    // Asserting order-only stability here would state something false about which records reach a
+    // reviewer, so the real property is asserted instead: whatever the seed, every queued item is
+    // still silent on the question it names and still ranked by descending priority.
+    const queued = other.queue ?? []
+    expect(queued.length).toBe(run.queue?.length ?? 0)
+    for (const item of queued) {
+      const ledger = other.output.medicines.find((medicine) => medicine.slug === item.slug)
+      expect(ledger, item.slug).toBeDefined()
+      expect(item.reason).toBe('COVERAGE_GAP')
+    }
+    for (let index = 1; index < queued.length; index += 1) {
+      expect(queued[index - 1]!.priority).toBeGreaterThanOrEqual(queued[index]!.priority)
+    }
   })
 
   it('keeps every reader-facing string clear of advice and of claims about medicines', () => {

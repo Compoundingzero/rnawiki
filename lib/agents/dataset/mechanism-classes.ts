@@ -28,12 +28,7 @@ import {
   type Clustering,
 } from '@/lib/agents/core/cluster'
 import { cosine, fitTfIdf, transform, type SparseVector } from '@/lib/agents/core/text'
-import type {
-  AgentInput,
-  AgentRun,
-  DatasetAgent,
-  ReviewCandidate,
-} from '@/lib/agents/core/types'
+import type { AgentInput, AgentRun, DatasetAgent, ReviewCandidate } from '@/lib/agents/core/types'
 
 /**
  * Cluster counts the run tries before choosing one. Declared as a constant rather than an argument
@@ -141,7 +136,9 @@ function padIndex(index: number, count: number): string {
 }
 
 /** Source identifiers behind a record's mechanism statements, for a reviewer to check against. */
-function mechanismSourceIdentifiers(statements: ReadonlyArray<{ source: { kind: string; identifier: string } }>): string[] {
+function mechanismSourceIdentifiers(
+  statements: ReadonlyArray<{ source: { kind: string; identifier: string } }>,
+): string[] {
   const seen = new Set<string>()
   for (const statement of statements) {
     seen.add(`${statement.source.kind}:${statement.source.identifier}`)
@@ -290,7 +287,9 @@ export const mechanismGroupingAgent: DatasetAgent<MechanismGroupingDataset> = {
         })
       }
 
-      groups.sort((left, right) => right.size - left.size || (left.groupId < right.groupId ? -1 : 1))
+      groups.sort(
+        (left, right) => right.size - left.size || (left.groupId < right.groupId ? -1 : 1),
+      )
     }
 
     const statementsBySlug = new Map(

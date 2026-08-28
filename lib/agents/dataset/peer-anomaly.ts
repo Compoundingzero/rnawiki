@@ -357,6 +357,19 @@ function screenOneQuantity(
   }
 }
 
+/**
+ * How the flag count compares with the count expected by chance.
+ *
+ * Conformal p-values are discrete and conservative, so a screen can select fewer values than the
+ * threshold would nominally allow. When that happens the flag list carries no aggregate signal at
+ * all, and a reader who is not told so will read a list of 96 records as 96 problems.
+ */
+function chanceComparison(flagCount: number, expectedFalseFlags: number): string {
+  return flagCount > expectedFalseFlags
+    ? 'More values were selected than chance alone accounts for, but which particular ones are the chance flags is not knowable from the screen, so each still needs a person to read it against its source.'
+    : 'That figure is at least as large as the number of values actually selected, so the flag list as a whole cannot be told apart from chance. Read it as an order in which to read records, not as a set of findings.'
+}
+
 function reviewCandidate(flag: PeerAnomalyFlag, expectedFalseFlags: number): ReviewCandidate {
   const direction =
     flag.positionRelativeToGroupMedian === 'at'
@@ -367,7 +380,7 @@ function reviewCandidate(flag: PeerAnomalyFlag, expectedFalseFlags: number): Rev
     reason: 'UNUSUAL_FOR_PEER_GROUP',
     // A question about the record, answerable by reading the source sentence beside it. It asks
     // what the source says, never what the value ought to be.
-    question: `Recorded ${flag.fieldLabel} for ${flag.name} is "${flag.display}", measured in ${flag.populationContext}. It sits ${direction} the ${flag.groupSize} recorded ${flag.fieldLabel} values in the ${flag.group} peer group. Does the fetched excerpt on this record state this figure, in this unit, for this population, and is the ${flag.group} group the right set of recorded values to read it beside?`,
+    question: `Recorded ${flag.fieldLabel} for ${flag.name} is "${flag.display}", with the population context recorded as "${flag.populationContext}". It sits ${direction} the ${flag.groupSize} recorded ${flag.fieldLabel} values in the ${flag.group} peer group. Does the fetched excerpt on this record state this figure, in this unit, for this population, and is the ${flag.group} group the right set of recorded values to read it beside?`,
     priority: 1 - flag.pValue,
     basis: `Group-conditional split-conformal p-value ${flag.pValue.toFixed(4)} within the ${flag.group} peer group, from ${flag.calibrationSize} calibration values whose smallest reachable p-value is ${flag.resolutionLimit.toFixed(4)}. The recorded value is ${formatNumber(flag.numeric)} ${flag.unit} against a group median of ${formatNumber(flag.medianOfRecordedGroupValues)} ${flag.unit}. About ${expectedFalseFlags.toFixed(1)} flags in this screen are expected to look this unusual by chance alone.`,
     sources: [`${flag.source.kind} ${flag.source.identifier}`],
@@ -385,7 +398,10 @@ export const peerAnomalyAgent: DatasetAgent<PeerGroupAnomalyScreen> = {
     'Finds recorded pharmacokinetic values that sit far from the other recorded values in their peer group, and queues each one for a person to read against its source.',
 
   run(input: AgentInput): AgentRun<PeerGroupAnomalyScreen> {
-    const buckets = new Map<string, { field: ScreenedField; unit: string; values: ScreenedRecordedValue[] }>()
+    const buckets = new Map<
+      string,
+      { field: ScreenedField; unit: string; values: ScreenedRecordedValue[] }
+    >()
     let medicinesWithoutPharmacokinetics = 0
     let displayOnlyValues = 0
     let valuesWithoutRecordedUnit = 0
@@ -440,18 +456,19 @@ export const peerAnomalyAgent: DatasetAgent<PeerGroupAnomalyScreen> = {
     }
 
     const groupingBasis =
-      'Recorded route of administration, lower-cased with any parenthetical or clause-level detail dropped. A mechanism-class grouping is not available in this version of the tree, so route is what defines a peer group here.'
+      'A peer group is the recorded route of administration, lower-cased with any parenthetical or clause-level detail dropped. A mechanism-class grouping exists in the tree only as a clustering agent that has to be run to produce one, so taking it would make every p-value here depend on the seed, cluster count and version of another agent, and would narrow the screen to records carrying mechanism text as well as a number.'
 
     const caveats: string[] = [
-      `Peer groups are ${groupingBasis} Two medicines share a group because their records state the same route, which is a weaker resemblance than a shared mechanism and puts, for example, an extended-release oral record beside an immediate-release one.`,
+      `${groupingBasis} Two records share a group because they state the same route, which is a weaker resemblance than a shared mechanism and puts, for example, an extended-release oral record beside an immediate-release one.`,
       `A flag marks a recorded value that sits far from the other recorded values in its group. It is a pointer to read the source excerpt beside the value, never a judgement about the medicine, the value or the source that carries it.`,
-      `Two recorded values in this corpus are extreme and also faithful to their sources: lanthanum carbonate's recorded bioavailability of 0.002%, because the compound is designed not to be absorbed, and risedronate's recorded terminal half-life of 561 hours, because bisphosphonates deposit in bone. Both would be flagged here, and neither finding says anything against the record.`,
-      `This run performed ${totals.testCount} tests at a threshold of ${ALPHA} and selected ${totals.flagCount} values, of which about ${totals.expectedFalseFlags.toFixed(1)} are expected to look this unusual purely by chance even if every recorded value is exactly what its source states.`,
+      `Sitting far from a peer group says nothing about whether a value is faithful to its source. This corpus holds recorded values that are extreme and also exactly what their sources print — a recorded bioavailability of 0.002% and a recorded terminal half-life of 561 hours both appear here, and each matches the excerpt stored beside it. A flag asks a reviewer to read that excerpt; a value that matches it has been confirmed, not faulted.`,
+      `This run performed ${totals.testCount} tests at a threshold of ${ALPHA} and selected ${totals.flagCount} values. If every recorded value were exactly what its source states, about ${totals.expectedFalseFlags.toFixed(1)} would still be expected to look this unusual purely by chance. ${chanceComparison(totals.flagCount, totals.expectedFalseFlags)}`,
       `Each quantity is screened once per recorded unit, so values recorded in L are never placed beside values recorded in L/kg, and neither are hours beside minutes. Those pairs share a name and are not the same quantity.`,
       `${totals.underpoweredGroupCount} peer groups across all screens hold fewer than ${minimumCalibrationSize(ALPHA) + 1} recorded values and so cannot produce a p-value at or below ${ALPHA} however far out a member sits. Their silence is a limit of the screen, not a statement about those records.`,
       `${displayOnlyValues} recorded values for these quantities carry no parsed number and were left out entirely; a value that reads "about five days" with no hour figure never becomes a coordinate. A further ${valuesWithoutRecordedUnit} carried a number with no recorded unit and were left out for the same reason.`,
-      `Peer values were measured in different populations and study conditions — single dose, healthy adults, renal impairment — and the population context is carried on every row but is not part of the grouping. A value can sit far out because its population context differs from its group's.`,
-      `A recorded value at or below zero cannot be placed on the log scale used for the distance and is scored as maximally unusual rather than dropped, so it always reaches a reviewer.`,
+      `Peer values were measured in different populations and study conditions — single dose, healthy adults, renal impairment — and the population context is carried on every row but is not part of the grouping. A value can sit far out because its population context differs from its group's. On extracted records that context is usually the parser's own phrase rather than a described population, so for most rows it tells a reviewer where to look rather than what was measured.`,
+      `A value the source states as a range is compared using the first number it prints, which is the low end of that range. A row whose display shows a range is therefore positioned by its lower bound, and a reviewer reading the row against a group median should read the display rather than the position.`,
+      `A recorded value at or below zero cannot be placed on the log scale used for the distance and is scored as maximally unusual rather than dropped. That does not guarantee it is flagged: several such values in one group tie at the same score, and a tie at the top of a small group can still leave every one of them above the threshold.`,
       `The screen has no randomised step, so the recorded seed ${input.seed} does not change its output.`,
     ]
 

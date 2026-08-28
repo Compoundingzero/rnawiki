@@ -129,8 +129,37 @@ export const FORBIDDEN_AGENT_PHRASES: readonly RegExp[] = [
   /\bpredicted (?:half-life|bioavailability|clearance|value)\b/iu,
 ]
 
+/**
+ * Screens text an agent WROTE. It must never be run over a quoted source excerpt.
+ *
+ * The distinction is the same one the background engine draws between a statement and its excerpt:
+ * a label that prints "the estimated half-life of gilteritinib is 113 hours" is the source
+ * speaking, and quoting it faithfully is the whole point of the corpus. The same words composed by
+ * an agent would be an invented value. Screening an agent's output blindly — excerpts included —
+ * therefore reports the source for the agent's sin, which is why `authoredStrings` exists and why
+ * every agent's test screens that rather than the whole serialized output.
+ */
 export function findForbiddenPhrases(text: string): string[] {
   return FORBIDDEN_AGENT_PHRASES.filter((pattern) => pattern.test(text)).map(
     (pattern) => pattern.source,
   )
+}
+
+/** Keys whose values are quoted from a source and are therefore not the agent's words. */
+const QUOTED_KEYS = new Set(['excerpt', 'textAsRecorded', 'display', 'sources', 'source'])
+
+/**
+ * Every string in a value that the agent composed itself, with quoted source text left out.
+ *
+ * This is what a boundary screen should run over: the agent's own prose, labels, questions and
+ * caveats, and nothing a source printed.
+ */
+export function authoredStrings(value: unknown, key?: string): string[] {
+  if (key !== undefined && QUOTED_KEYS.has(key)) return []
+  if (typeof value === 'string') return [value]
+  if (Array.isArray(value)) return value.flatMap((entry) => authoredStrings(entry, key))
+  if (value && typeof value === 'object') {
+    return Object.entries(value).flatMap(([childKey, child]) => authoredStrings(child, childKey))
+  }
+  return []
 }

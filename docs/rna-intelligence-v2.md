@@ -222,7 +222,7 @@ requires one independent reviewer; evidence and conclusion changes cannot use th
 RNAWiki does not invent programme scope, claims, reviewers or verdicts to make an older record look
 complete.
 
-## Group I — recorded background (`rna-intelligence/background-1.1.0`)
+## Group I — recorded background (`rna-intelligence/background-1.4.0`)
 
 Group I is a separate deterministic engine for the `medicine-background/v1` envelope: the recorded
 mechanism statements, molecular identity, interaction counterparties, warnings and
@@ -254,6 +254,6 @@ mismatch rather than trusting the stored copy.
 The engine runs in two places. `npm run check:medicine-content` validates every stored envelope and
 is part of `npm run gate`, and `scripts/apply-recorded-background.ts` runs the same validation
 before any write, so a failing envelope never reaches a medicine row. Like every other group, Group
-I checks structure only; people judge meaning. The Group I vocabulary contains 38 stable `I_` rule
+I checks structure only; people judge meaning. The Group I vocabulary contains 45 stable `I_` rule
 codes, each registered in `BACKGROUND_RULE_CODES` with an executable focused case in the coverage
 test.

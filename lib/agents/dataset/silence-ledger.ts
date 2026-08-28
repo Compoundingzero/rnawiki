@@ -31,7 +31,6 @@
 
 import type { AgentInput, AgentRun, DatasetAgent, ReviewCandidate } from '@/lib/agents/core/types'
 import { createRng, shuffleInPlace } from '@/lib/agents/core/rng'
-import { STUDIED_POPULATIONS } from '@/lib/background/types'
 import type {
   BackgroundSource,
   MedicineRecordedBackground,
@@ -110,6 +109,17 @@ export interface SilenceLedgerEntry {
    * RECORDED because sourced statements do answer it; which statement is right is not decided here.
    */
   mixedRecordedStates?: boolean
+  /**
+   * Set when every recorded statement behind a RECORDED entry only DISCUSSES the group without
+   * settling safety or effectiveness for it.
+   *
+   * The corpus keeps STUDIED and STATEMENT_ONLY apart deliberately, and the difference is most of
+   * the data: 4,620 of 6,282 recorded population statements merely mention the group. Folding them
+   * together would let a roll-up report a question as answered for 45% of records when for almost
+   * all of that share the source raised the group and settled nothing, which is the exact mistake
+   * this ledger exists to prevent, made in the reassuring direction.
+   */
+  mentionedWithoutFinding?: boolean
 }
 
 export interface MedicineSilenceLedger {
@@ -146,6 +156,11 @@ export interface SilenceQuestionRollUp {
    * there is nothing missing. The gap sits in between.
    */
   gapScore: number
+  /**
+   * Of `recorded`, how many hold only statements that mention the group without settling it. A
+   * high recorded share is not a high share of settled answers when this number is close to it.
+   */
+  recordedMentionOnly: number
   recordedByTier: TierCounts
   silentByTier: TierCounts
 }
@@ -180,6 +195,7 @@ interface Classification {
   state: SilenceState
   sources: string[]
   mixedRecordedStates?: boolean
+  mentionedWithoutFinding?: boolean
 }
 
 type Classifier = (background: MedicineRecordedBackground) => Classification
@@ -233,6 +249,11 @@ function classifyPopulation(population: StudiedPopulation): Classifier {
     // winner; it stays RECORDED and carries the mark instead.
     if (notEstablished === statements.length) return { state: 'NOT_ESTABLISHED', sources }
     if (notEstablished > 0) return { state: 'RECORDED', sources, mixedRecordedStates: true }
+    // A set where every statement only discusses the group is marked, because "the source mentions
+    // pregnancy" and "the source reports a finding in pregnancy" are different answers, and the
+    // corpus already keeps them apart.
+    const allMentionOnly = statements.every((statement) => statement.state === 'STATEMENT_ONLY')
+    if (allMentionOnly) return { state: 'RECORDED', sources, mentionedWithoutFinding: true }
     return { state: 'RECORDED', sources }
   }
 }
@@ -438,6 +459,7 @@ export const silenceLedgerAgent: DatasetAgent<SilenceLedger> = {
     const medicines: MedicineSilenceLedger[] = []
 
     const recordedByQuestion = new Map<SilenceQuestionId, number>()
+    const mentionOnlyByQuestion = new Map<SilenceQuestionId, number>()
     const notEstablishedByQuestion = new Map<SilenceQuestionId, number>()
     const silentByQuestion = new Map<SilenceQuestionId, number>()
     const recordedTierByQuestion = new Map<SilenceQuestionId, TierCounts>()
@@ -471,12 +493,16 @@ export const silenceLedgerAgent: DatasetAgent<SilenceLedger> = {
           state: classification.state,
           sources: classification.sources,
           ...(classification.mixedRecordedStates ? { mixedRecordedStates: true } : {}),
+          ...(classification.mentionedWithoutFinding ? { mentionedWithoutFinding: true } : {}),
         })
         if (classification.mixedRecordedStates) mixedRecordedStates += 1
 
         if (classification.state === 'RECORDED') {
           recorded += 1
           recordedByQuestion.set(id, (recordedByQuestion.get(id) ?? 0) + 1)
+          if (classification.mentionedWithoutFinding) {
+            mentionOnlyByQuestion.set(id, (mentionOnlyByQuestion.get(id) ?? 0) + 1)
+          }
           const counts = recordedTierByQuestion.get(id)
           if (counts) counts[tier] += 1
         } else if (classification.state === 'NOT_ESTABLISHED') {
@@ -505,6 +531,7 @@ export const silenceLedgerAgent: DatasetAgent<SilenceLedger> = {
 
     const rollUp: SilenceQuestionRollUp[] = SILENCE_QUESTION_IDS.map((id) => {
       const recorded = recordedByQuestion.get(id) ?? 0
+      const recordedMentionOnly = mentionOnlyByQuestion.get(id) ?? 0
       const notEstablished = notEstablishedByQuestion.get(id) ?? 0
       const silent = silentByQuestion.get(id) ?? 0
       const addressedShare = total > 0 ? (recorded + notEstablished) / total : 0
@@ -512,6 +539,7 @@ export const silenceLedgerAgent: DatasetAgent<SilenceLedger> = {
         questionId: id,
         prompt: QUESTION_DEFINITIONS[id].prompt,
         recorded,
+        recordedMentionOnly,
         notEstablished,
         silent,
         medicines: total,
@@ -640,6 +668,18 @@ function buildCaveats(
     (question) => question.distinguishesNotEstablished,
   ).length
   const boxed = rollUp.find((question) => question.questionId === 'boxed_warning')
+  // The share of recorded population answers that only mention the group. Computed here rather
+  // than asserted, so the caveat cannot drift away from the data it describes.
+  const populationRollUps = rollUp.filter((question) =>
+    question.questionId.startsWith('population_'),
+  )
+  const populationRecorded = populationRollUps.reduce((sum, question) => sum + question.recorded, 0)
+  const populationMentionOnly = populationRollUps.reduce(
+    (sum, question) => sum + question.recordedMentionOnly,
+    0,
+  )
+  const mentionOnlyShare =
+    populationRecorded > 0 ? Math.round((100 * populationMentionOnly) / populationRecorded) : 0
 
   return [
     'SILENT means no source in this corpus, in the sections that were read, states an answer. It is a fact about the documents recorded here and never a fact about the medicine.',
@@ -650,8 +690,10 @@ function buildCaveats(
       : 'Silence on the boxed-warning question means no recorded document contributed one, not that no boxed warning exists.',
     `Only the ${populationQuestions} population questions can show NOT_ESTABLISHED, because only population statements carry a source-stated evidence state. On the other ${SILENCE_QUESTIONS.length - populationQuestions} questions a source sentence saying something was never determined, if one was printed, arrives here as a plain absence and is counted as SILENT.`,
     `${extractedRecords} of ${total} records were produced by the deterministic label parser rather than assembled by a person. The parser reads a fixed set of sections, so its silences are more often a limit of the parser than of the source; the roll-up splits recorded and silent counts by tier so the two are never added together blindly.`,
+    `RECORDED on a population question merges two different answers: a source reporting a finding in the group, and a source that only raises the group without settling safety or effectiveness for it. ${mentionOnlyShare}% of recorded population answers here are the second kind, so a high recorded share on those questions is not a high share of settled answers. Entries of the second kind carry mentionedWithoutFinding and the roll-up counts them in recordedMentionOnly.`,
     'Where the recorded statements for one population disagree, one saying a group was studied and another saying the question was not established, the entry counts as RECORDED and is marked as holding mixed states. The disagreement is recorded and is not settled here.',
     'Counts are over the records this corpus holds, which is neither every medicine nor every revision of every document. The recorded share of a question is a property of this corpus on this run date.',
+    'The review queue is one seeded sample of the records tied at the top of each question, not the canonical worst forty. Priorities tie in large groups, so a different seed surfaces different records and a record absent from the queue has not been ruled out.',
     'A queued item is not a claim that a record is wrong. Many silences are correct, because sources genuinely do not state many of these things; the queue only marks where a person looking again is most likely to find something.',
   ]
 }

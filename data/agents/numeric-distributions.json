@@ -1,0 +1,3871 @@
+{
+  "agent": "numeric-distributions",
+  "version": "1.0.0",
+  "runDate": "2026-08-28",
+  "seed": 20260828,
+  "parameters": {
+    "fields": 6,
+    "distributions": 7,
+    "logScaleBins": 12,
+    "percentBins": 10,
+    "minimumStratumSize": 12,
+    "routeNormalisation": "trim, collapse repeated whitespace, lower case; no other mapping",
+    "unitPolicy": "exact unit match required; no value is ever converted between units",
+    "valueUniverse": "one recorded value per medicine record per field slot",
+    "binEdgeBasis": "edges computed once per distribution and shared by all of its strata"
+  },
+  "coverage": {
+    "considered": 3008,
+    "used": 1325,
+    "reason": "1325 of 3008 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
+  },
+  "output": {
+    "fields": [
+      {
+        "field": "halfLife",
+        "label": "Recorded elimination half-life",
+        "recordedValues": 835,
+        "numericValues": 690,
+        "displayOnlyValues": 145,
+        "offUnitValues": [],
+        "offUnitValueCount": 0,
+        "distributions": [
+          {
+            "field": "halfLife",
+            "unit": "hours",
+            "label": "Recorded elimination half-life, in hours",
+            "scale": "log10",
+            "scaleReason": "Recorded values run from 0.400 to 561 hours, a span of about 3.1 orders of magnitude. Split into 12 equal-width linear bins, 90.9 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "binEdges": [
+              0.4,
+              0.7316475070429229,
+              1.3382701864053101,
+              2.447855114083283,
+              4.47741772955326,
+              8.189728799543563,
+              14.979986648859201,
+              27.40017471793527,
+              50.11817381229467,
+              91.67209231827317,
+              167.67914452518318,
+              306.70507018735066,
+              561
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in hours",
+              "summary": {
+                "count": 690,
+                "min": 0.4,
+                "p25": 3.05,
+                "median": 8,
+                "p75": 20,
+                "max": 561,
+                "robustScale": 8.8956
+              },
+              "histogram": [
+                {
+                  "lowerBound": 0.4,
+                  "upperBound": 0.7316475070429229,
+                  "upperInclusive": false,
+                  "count": 14
+                },
+                {
+                  "lowerBound": 0.7316475070429229,
+                  "upperBound": 1.3382701864053101,
+                  "upperInclusive": false,
+                  "count": 38
+                },
+                {
+                  "lowerBound": 1.3382701864053101,
+                  "upperBound": 2.447855114083283,
+                  "upperInclusive": false,
+                  "count": 73
+                },
+                {
+                  "lowerBound": 2.447855114083283,
+                  "upperBound": 4.47741772955326,
+                  "upperInclusive": false,
+                  "count": 97
+                },
+                {
+                  "lowerBound": 4.47741772955326,
+                  "upperBound": 8.189728799543563,
+                  "upperInclusive": false,
+                  "count": 130
+                },
+                {
+                  "lowerBound": 8.189728799543563,
+                  "upperBound": 14.979986648859201,
+                  "upperInclusive": false,
+                  "count": 109
+                },
+                {
+                  "lowerBound": 14.979986648859201,
+                  "upperBound": 27.40017471793527,
+                  "upperInclusive": false,
+                  "count": 103
+                },
+                {
+                  "lowerBound": 27.40017471793527,
+                  "upperBound": 50.11817381229467,
+                  "upperInclusive": false,
+                  "count": 74
+                },
+                {
+                  "lowerBound": 50.11817381229467,
+                  "upperBound": 91.67209231827317,
+                  "upperInclusive": false,
+                  "count": 30
+                },
+                {
+                  "lowerBound": 91.67209231827317,
+                  "upperBound": 167.67914452518318,
+                  "upperInclusive": false,
+                  "count": 12
+                },
+                {
+                  "lowerBound": 167.67914452518318,
+                  "upperBound": 306.70507018735066,
+                  "upperInclusive": false,
+                  "count": 8
+                },
+                {
+                  "lowerBound": 306.70507018735066,
+                  "upperBound": 561,
+                  "upperInclusive": true,
+                  "count": 2
+                }
+              ],
+              "logSpread": {
+                "medianAbsoluteDeviationLog10": 0.5899858568571631,
+                "spreadFactor": 3.890324756381359
+              }
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [
+                {
+                  "dimension": "route",
+                  "key": "oral",
+                  "label": "recorded route: oral",
+                  "summary": {
+                    "count": 426,
+                    "min": 0.4,
+                    "p25": 4,
+                    "median": 9.8,
+                    "p75": 21,
+                    "max": 561,
+                    "robustScale": 10.748850000000001
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 20
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 38
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 53
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 73
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 75
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 74
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 51
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 20
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 1
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.5767429305948959,
+                    "spreadFactor": 3.7734876294862456
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "intravenous",
+                  "label": "recorded route: intravenous",
+                  "summary": {
+                    "count": 106,
+                    "min": 0.5,
+                    "p25": 2.5,
+                    "median": 5.65,
+                    "p75": 24,
+                    "max": 245,
+                    "robustScale": 5.9304
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 14
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 20
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 17
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 12
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.6686547433582956,
+                    "spreadFactor": 4.662885415598844
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "subcutaneous",
+                  "label": "recorded route: subcutaneous",
+                  "summary": {
+                    "count": 26,
+                    "min": 1,
+                    "p25": 3.8499999999999996,
+                    "median": 5.5,
+                    "p75": 15,
+                    "max": 332,
+                    "robustScale": 5.1891
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 1
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.5181464642142908,
+                    "spreadFactor": 3.297208905849671
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "intramuscular",
+                  "label": "recorded route: intramuscular",
+                  "summary": {
+                    "count": 15,
+                    "min": 1,
+                    "p25": 3,
+                    "median": 5,
+                    "p75": 10,
+                    "max": 75,
+                    "robustScale": 4.4478
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.4463070715714184,
+                    "spreadFactor": 2.794519031086429
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "nasal",
+                  "label": "recorded route: nasal",
+                  "summary": {
+                    "count": 13,
+                    "min": 1,
+                    "p25": 2.5,
+                    "median": 7,
+                    "p75": 15,
+                    "max": 22,
+                    "robustScale": 7.412999999999999
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.5455623818777656,
+                    "spreadFactor": 3.5120636802919636
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "oral (tablets)",
+                  "label": "recorded route: oral (tablets)",
+                  "summary": {
+                    "count": 12,
+                    "min": 2,
+                    "p25": 3,
+                    "median": 5.8,
+                    "p75": 14.25,
+                    "max": 36,
+                    "robustScale": 4.225409999999999
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.4306688208545672,
+                    "spreadFactor": 2.695683006422792
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 92,
+              "groupsBelowMinimum": 50,
+              "valuesWithoutKey": 0,
+              "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 603,
+                    "min": 0.4,
+                    "p25": 3,
+                    "median": 8,
+                    "p75": 20,
+                    "max": 561,
+                    "robustScale": 8.8956
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 36
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 67
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 88
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 104
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 92
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 92
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 62
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 28
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 8
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 2
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.6214011116582532,
+                    "spreadFactor": 4.18216450416166
+                  }
+                },
+                {
+                  "dimension": "provenanceTier",
+                  "key": "curated",
+                  "label": "curated: read and structured by a person or agent",
+                  "summary": {
+                    "count": 87,
+                    "min": 0.5,
+                    "p25": 5,
+                    "median": 8,
+                    "p75": 19.5,
+                    "max": 102,
+                    "robustScale": 7.561259999999999
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.4,
+                      "upperBound": 0.7316475070429229,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 0.7316475070429229,
+                      "upperBound": 1.3382701864053101,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 1.3382701864053101,
+                      "upperBound": 2.447855114083283,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 2.447855114083283,
+                      "upperBound": 4.47741772955326,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 4.47741772955326,
+                      "upperBound": 8.189728799543563,
+                      "upperInclusive": false,
+                      "count": 26
+                    },
+                    {
+                      "lowerBound": 8.189728799543563,
+                      "upperBound": 14.979986648859201,
+                      "upperInclusive": false,
+                      "count": 17
+                    },
+                    {
+                      "lowerBound": 14.979986648859201,
+                      "upperBound": 27.40017471793527,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 27.40017471793527,
+                      "upperBound": 50.11817381229467,
+                      "upperInclusive": false,
+                      "count": 12
+                    },
+                    {
+                      "lowerBound": 50.11817381229467,
+                      "upperBound": 91.67209231827317,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 91.67209231827317,
+                      "upperBound": 167.67914452518318,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 167.67914452518318,
+                      "upperBound": 306.70507018735066,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 306.70507018735066,
+                      "upperBound": 561,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.40475168596169764,
+                    "spreadFactor": 2.5395202835765462
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          }
+        ]
+      },
+      {
+        "field": "tMax",
+        "label": "Recorded time to maximum concentration",
+        "recordedValues": 368,
+        "numericValues": 361,
+        "displayOnlyValues": 7,
+        "offUnitValues": [
+          {
+            "unit": "days",
+            "count": 1
+          },
+          {
+            "unit": "minutes",
+            "count": 1
+          }
+        ],
+        "offUnitValueCount": 2,
+        "distributions": [
+          {
+            "field": "tMax",
+            "unit": "hours",
+            "label": "Recorded time to maximum concentration, in hours",
+            "scale": "log10",
+            "scaleReason": "Recorded values run from 0.150 to 168 hours, a span of about 3.0 orders of magnitude. Split into 12 equal-width linear bins, 96.1 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "binEdges": [
+              0.15,
+              0.26927297027109215,
+              0.4833862167907766,
+              0.8677522825557233,
+              1.557748230555331,
+              2.796396619841148,
+              5.0199601592044525,
+              9.011597218076849,
+              16.177196998655102,
+              29.04054590992304,
+              52.13222703639333,
+              93.58533080624368,
+              168
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in hours",
+              "summary": {
+                "count": 359,
+                "min": 0.15,
+                "p25": 1,
+                "median": 2,
+                "p75": 3.3499999999999996,
+                "max": 168,
+                "robustScale": 1.4826
+              },
+              "histogram": [
+                {
+                  "lowerBound": 0.15,
+                  "upperBound": 0.26927297027109215,
+                  "upperInclusive": false,
+                  "count": 7
+                },
+                {
+                  "lowerBound": 0.26927297027109215,
+                  "upperBound": 0.4833862167907766,
+                  "upperInclusive": false,
+                  "count": 1
+                },
+                {
+                  "lowerBound": 0.4833862167907766,
+                  "upperBound": 0.8677522825557233,
+                  "upperInclusive": false,
+                  "count": 18
+                },
+                {
+                  "lowerBound": 0.8677522825557233,
+                  "upperBound": 1.557748230555331,
+                  "upperInclusive": false,
+                  "count": 110
+                },
+                {
+                  "lowerBound": 1.557748230555331,
+                  "upperBound": 2.796396619841148,
+                  "upperInclusive": false,
+                  "count": 93
+                },
+                {
+                  "lowerBound": 2.796396619841148,
+                  "upperBound": 5.0199601592044525,
+                  "upperInclusive": false,
+                  "count": 82
+                },
+                {
+                  "lowerBound": 5.0199601592044525,
+                  "upperBound": 9.011597218076849,
+                  "upperInclusive": false,
+                  "count": 20
+                },
+                {
+                  "lowerBound": 9.011597218076849,
+                  "upperBound": 16.177196998655102,
+                  "upperInclusive": false,
+                  "count": 15
+                },
+                {
+                  "lowerBound": 16.177196998655102,
+                  "upperBound": 29.04054590992304,
+                  "upperInclusive": false,
+                  "count": 5
+                },
+                {
+                  "lowerBound": 29.04054590992304,
+                  "upperBound": 52.13222703639333,
+                  "upperInclusive": false,
+                  "count": 4
+                },
+                {
+                  "lowerBound": 52.13222703639333,
+                  "upperBound": 93.58533080624368,
+                  "upperInclusive": false,
+                  "count": 1
+                },
+                {
+                  "lowerBound": 93.58533080624368,
+                  "upperBound": 168,
+                  "upperInclusive": true,
+                  "count": 3
+                }
+              ],
+              "logSpread": {
+                "medianAbsoluteDeviationLog10": 0.4463070715714185,
+                "spreadFactor": 2.7945190310864296
+              }
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [
+                {
+                  "dimension": "route",
+                  "key": "oral",
+                  "label": "recorded route: oral",
+                  "summary": {
+                    "count": 270,
+                    "min": 0.25,
+                    "p25": 1,
+                    "median": 2,
+                    "p75": 3,
+                    "max": 36,
+                    "robustScale": 1.4826
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.15,
+                      "upperBound": 0.26927297027109215,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 0.26927297027109215,
+                      "upperBound": 0.4833862167907766,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.4833862167907766,
+                      "upperBound": 0.8677522825557233,
+                      "upperInclusive": false,
+                      "count": 14
+                    },
+                    {
+                      "lowerBound": 0.8677522825557233,
+                      "upperBound": 1.557748230555331,
+                      "upperInclusive": false,
+                      "count": 91
+                    },
+                    {
+                      "lowerBound": 1.557748230555331,
+                      "upperBound": 2.796396619841148,
+                      "upperInclusive": false,
+                      "count": 75
+                    },
+                    {
+                      "lowerBound": 2.796396619841148,
+                      "upperBound": 5.0199601592044525,
+                      "upperInclusive": false,
+                      "count": 61
+                    },
+                    {
+                      "lowerBound": 5.0199601592044525,
+                      "upperBound": 9.011597218076849,
+                      "upperInclusive": false,
+                      "count": 12
+                    },
+                    {
+                      "lowerBound": 9.011597218076849,
+                      "upperBound": 16.177196998655102,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 16.177196998655102,
+                      "upperBound": 29.04054590992304,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 29.04054590992304,
+                      "upperBound": 52.13222703639333,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 52.13222703639333,
+                      "upperBound": 93.58533080624368,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 93.58533080624368,
+                      "upperBound": 168,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.32244169569153736,
+                    "spreadFactor": 2.1010756793749787
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "subcutaneous",
+                  "label": "recorded route: subcutaneous",
+                  "summary": {
+                    "count": 12,
+                    "min": 0.15,
+                    "p25": 0.9375,
+                    "median": 3.25,
+                    "p75": 6.5,
+                    "max": 40,
+                    "robustScale": 3.8844119999999998
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.15,
+                      "upperBound": 0.26927297027109215,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 0.26927297027109215,
+                      "upperBound": 0.4833862167907766,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.4833862167907766,
+                      "upperBound": 0.8677522825557233,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 0.8677522825557233,
+                      "upperBound": 1.557748230555331,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 1.557748230555331,
+                      "upperBound": 2.796396619841148,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 2.796396619841148,
+                      "upperBound": 5.0199601592044525,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 5.0199601592044525,
+                      "upperBound": 9.011597218076849,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 9.011597218076849,
+                      "upperBound": 16.177196998655102,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 16.177196998655102,
+                      "upperBound": 29.04054590992304,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 29.04054590992304,
+                      "upperBound": 52.13222703639333,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 52.13222703639333,
+                      "upperBound": 93.58533080624368,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 93.58533080624368,
+                      "upperBound": 168,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.6694606073571278,
+                    "spreadFactor": 4.6715457603526565
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 77,
+              "groupsBelowMinimum": 41,
+              "valuesWithoutKey": 0,
+              "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 276,
+                    "min": 0.15,
+                    "p25": 1,
+                    "median": 2,
+                    "p75": 3,
+                    "max": 36,
+                    "robustScale": 1.4826
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.15,
+                      "upperBound": 0.26927297027109215,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 0.26927297027109215,
+                      "upperBound": 0.4833862167907766,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.4833862167907766,
+                      "upperBound": 0.8677522825557233,
+                      "upperInclusive": false,
+                      "count": 16
+                    },
+                    {
+                      "lowerBound": 0.8677522825557233,
+                      "upperBound": 1.557748230555331,
+                      "upperInclusive": false,
+                      "count": 91
+                    },
+                    {
+                      "lowerBound": 1.557748230555331,
+                      "upperBound": 2.796396619841148,
+                      "upperInclusive": false,
+                      "count": 72
+                    },
+                    {
+                      "lowerBound": 2.796396619841148,
+                      "upperBound": 5.0199601592044525,
+                      "upperInclusive": false,
+                      "count": 63
+                    },
+                    {
+                      "lowerBound": 5.0199601592044525,
+                      "upperBound": 9.011597218076849,
+                      "upperInclusive": false,
+                      "count": 12
+                    },
+                    {
+                      "lowerBound": 9.011597218076849,
+                      "upperBound": 16.177196998655102,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 16.177196998655102,
+                      "upperBound": 29.04054590992304,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 29.04054590992304,
+                      "upperBound": 52.13222703639333,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 52.13222703639333,
+                      "upperBound": 93.58533080624368,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 93.58533080624368,
+                      "upperBound": 168,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.3905235405430711,
+                    "spreadFactor": 2.457669843395389
+                  }
+                },
+                {
+                  "dimension": "provenanceTier",
+                  "key": "curated",
+                  "label": "curated: read and structured by a person or agent",
+                  "summary": {
+                    "count": 83,
+                    "min": 0.42,
+                    "p25": 1.5,
+                    "median": 2.5,
+                    "p75": 5.15,
+                    "max": 168,
+                    "robustScale": 2.2239
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.15,
+                      "upperBound": 0.26927297027109215,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.26927297027109215,
+                      "upperBound": 0.4833862167907766,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 0.4833862167907766,
+                      "upperBound": 0.8677522825557233,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 0.8677522825557233,
+                      "upperBound": 1.557748230555331,
+                      "upperInclusive": false,
+                      "count": 19
+                    },
+                    {
+                      "lowerBound": 1.557748230555331,
+                      "upperBound": 2.796396619841148,
+                      "upperInclusive": false,
+                      "count": 21
+                    },
+                    {
+                      "lowerBound": 2.796396619841148,
+                      "upperBound": 5.0199601592044525,
+                      "upperInclusive": false,
+                      "count": 19
+                    },
+                    {
+                      "lowerBound": 5.0199601592044525,
+                      "upperBound": 9.011597218076849,
+                      "upperInclusive": false,
+                      "count": 8
+                    },
+                    {
+                      "lowerBound": 9.011597218076849,
+                      "upperBound": 16.177196998655102,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 16.177196998655102,
+                      "upperBound": 29.04054590992304,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 29.04054590992304,
+                      "upperBound": 52.13222703639333,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 52.13222703639333,
+                      "upperBound": 93.58533080624368,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 93.58533080624368,
+                      "upperBound": 168,
+                      "upperInclusive": true,
+                      "count": 3
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.3289129561812099,
+                    "spreadFactor": 2.1326174387541914
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          }
+        ]
+      },
+      {
+        "field": "bioavailability",
+        "label": "Recorded bioavailability",
+        "recordedValues": 341,
+        "numericValues": 334,
+        "displayOnlyValues": 7,
+        "offUnitValues": [],
+        "offUnitValueCount": 0,
+        "distributions": [
+          {
+            "field": "bioavailability",
+            "unit": "%",
+            "label": "Recorded bioavailability, in percent",
+            "scale": "linear",
+            "scaleReason": "Recorded bioavailability is a percentage bounded at 0 and 100 by the definition of the quantity, not by anything in this corpus, so the bins are equal width on the linear scale: 10 bins of 10 percentage points, each readable as the number the source printed.",
+            "binEdges": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70,
+              80,
+              90,
+              100
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in percent",
+              "summary": {
+                "count": 334,
+                "min": 0.002,
+                "p25": 36,
+                "median": 60,
+                "p75": 82,
+                "max": 100,
+                "robustScale": 34.099799999999995
+              },
+              "histogram": [
+                {
+                  "lowerBound": 0,
+                  "upperBound": 10,
+                  "upperInclusive": false,
+                  "count": 28
+                },
+                {
+                  "lowerBound": 10,
+                  "upperBound": 20,
+                  "upperInclusive": false,
+                  "count": 21
+                },
+                {
+                  "lowerBound": 20,
+                  "upperBound": 30,
+                  "upperInclusive": false,
+                  "count": 19
+                },
+                {
+                  "lowerBound": 30,
+                  "upperBound": 40,
+                  "upperInclusive": false,
+                  "count": 20
+                },
+                {
+                  "lowerBound": 40,
+                  "upperBound": 50,
+                  "upperInclusive": false,
+                  "count": 31
+                },
+                {
+                  "lowerBound": 50,
+                  "upperBound": 60,
+                  "upperInclusive": false,
+                  "count": 36
+                },
+                {
+                  "lowerBound": 60,
+                  "upperBound": 70,
+                  "upperInclusive": false,
+                  "count": 45
+                },
+                {
+                  "lowerBound": 70,
+                  "upperBound": 80,
+                  "upperInclusive": false,
+                  "count": 36
+                },
+                {
+                  "lowerBound": 80,
+                  "upperBound": 90,
+                  "upperInclusive": false,
+                  "count": 39
+                },
+                {
+                  "lowerBound": 90,
+                  "upperBound": 100,
+                  "upperInclusive": true,
+                  "count": 59
+                }
+              ]
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [
+                {
+                  "dimension": "route",
+                  "key": "oral",
+                  "label": "recorded route: oral",
+                  "summary": {
+                    "count": 212,
+                    "min": 0.002,
+                    "p25": 29.75,
+                    "median": 57.5,
+                    "p75": 80,
+                    "max": 100,
+                    "robustScale": 37.8063
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 20
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 18
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 15
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 14
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 22
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 20
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 23
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 22
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 22
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 36
+                    }
+                  ]
+                },
+                {
+                  "dimension": "route",
+                  "key": "subcutaneous",
+                  "label": "recorded route: subcutaneous",
+                  "summary": {
+                    "count": 34,
+                    "min": 55,
+                    "p25": 62,
+                    "median": 73,
+                    "p75": 89.35,
+                    "max": 100,
+                    "robustScale": 19.273799999999998
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 7
+                    }
+                  ]
+                },
+                {
+                  "dimension": "route",
+                  "key": "intravenous",
+                  "label": "recorded route: intravenous",
+                  "summary": {
+                    "count": 16,
+                    "min": 34.5,
+                    "p25": 54.75,
+                    "median": 66,
+                    "p75": 82.75,
+                    "max": 100,
+                    "robustScale": 19.273799999999998
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 4
+                    }
+                  ]
+                }
+              ],
+              "valuesBelowMinimum": 72,
+              "groupsBelowMinimum": 34,
+              "valuesWithoutKey": 0,
+              "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 274,
+                    "min": 0.002,
+                    "p25": 34.125,
+                    "median": 60,
+                    "p75": 83,
+                    "max": 100,
+                    "robustScale": 35.5824
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 26
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 19
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 15
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 16
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 24
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 27
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 35
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 29
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 33
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 50
+                    }
+                  ]
+                },
+                {
+                  "dimension": "provenanceTier",
+                  "key": "curated",
+                  "label": "curated: read and structured by a person or agent",
+                  "summary": {
+                    "count": 60,
+                    "min": 0.7,
+                    "p25": 40,
+                    "median": 60,
+                    "p75": 79.25,
+                    "max": 100,
+                    "robustScale": 29.651999999999997
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 10
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 9
+                    }
+                  ]
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          }
+        ]
+      },
+      {
+        "field": "proteinBinding",
+        "label": "Recorded plasma protein binding",
+        "recordedValues": 431,
+        "numericValues": 427,
+        "displayOnlyValues": 4,
+        "offUnitValues": [],
+        "offUnitValueCount": 0,
+        "distributions": [
+          {
+            "field": "proteinBinding",
+            "unit": "%",
+            "label": "Recorded plasma protein binding, in percent",
+            "scale": "linear",
+            "scaleReason": "Recorded plasma protein binding is a percentage bounded at 0 and 100 by the definition of the quantity, not by anything in this corpus, so the bins are equal width on the linear scale: 10 bins of 10 percentage points, each readable as the number the source printed.",
+            "binEdges": [
+              0,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70,
+              80,
+              90,
+              100
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in percent",
+              "summary": {
+                "count": 427,
+                "min": 1,
+                "p25": 44.5,
+                "median": 87,
+                "p75": 98,
+                "max": 99.92,
+                "robustScale": 17.7912
+              },
+              "histogram": [
+                {
+                  "lowerBound": 0,
+                  "upperBound": 10,
+                  "upperInclusive": false,
+                  "count": 19
+                },
+                {
+                  "lowerBound": 10,
+                  "upperBound": 20,
+                  "upperInclusive": false,
+                  "count": 28
+                },
+                {
+                  "lowerBound": 20,
+                  "upperBound": 30,
+                  "upperInclusive": false,
+                  "count": 29
+                },
+                {
+                  "lowerBound": 30,
+                  "upperBound": 40,
+                  "upperInclusive": false,
+                  "count": 18
+                },
+                {
+                  "lowerBound": 40,
+                  "upperBound": 50,
+                  "upperInclusive": false,
+                  "count": 17
+                },
+                {
+                  "lowerBound": 50,
+                  "upperBound": 60,
+                  "upperInclusive": false,
+                  "count": 23
+                },
+                {
+                  "lowerBound": 60,
+                  "upperBound": 70,
+                  "upperInclusive": false,
+                  "count": 20
+                },
+                {
+                  "lowerBound": 70,
+                  "upperBound": 80,
+                  "upperInclusive": false,
+                  "count": 27
+                },
+                {
+                  "lowerBound": 80,
+                  "upperBound": 90,
+                  "upperInclusive": false,
+                  "count": 49
+                },
+                {
+                  "lowerBound": 90,
+                  "upperBound": 100,
+                  "upperInclusive": true,
+                  "count": 197
+                }
+              ]
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [
+                {
+                  "dimension": "route",
+                  "key": "oral",
+                  "label": "recorded route: oral",
+                  "summary": {
+                    "count": 258,
+                    "min": 1,
+                    "p25": 51.25,
+                    "median": 90,
+                    "p75": 98,
+                    "max": 99.92,
+                    "robustScale": 13.343399999999999
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 14
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 10
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 12
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 14
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 18
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 29
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 130
+                    }
+                  ]
+                },
+                {
+                  "dimension": "route",
+                  "key": "intravenous",
+                  "label": "recorded route: intravenous",
+                  "summary": {
+                    "count": 62,
+                    "min": 1,
+                    "p25": 25,
+                    "median": 68,
+                    "p75": 93.525,
+                    "max": 99,
+                    "robustScale": 41.5128
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 8
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 22
+                    }
+                  ]
+                },
+                {
+                  "dimension": "route",
+                  "key": "subcutaneous",
+                  "label": "recorded route: subcutaneous",
+                  "summary": {
+                    "count": 17,
+                    "min": 27.3,
+                    "p25": 80,
+                    "median": 86,
+                    "p75": 98,
+                    "max": 99,
+                    "robustScale": 15.715559999999991
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 7
+                    }
+                  ]
+                },
+                {
+                  "dimension": "route",
+                  "key": "oral (tablets)",
+                  "label": "recorded route: oral (tablets)",
+                  "summary": {
+                    "count": 13,
+                    "min": 15.7,
+                    "p25": 30,
+                    "median": 87,
+                    "p75": 98.5,
+                    "max": 99.3,
+                    "robustScale": 18.235979999999994
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 6
+                    }
+                  ]
+                }
+              ],
+              "valuesBelowMinimum": 77,
+              "groupsBelowMinimum": 41,
+              "valuesWithoutKey": 0,
+              "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 342,
+                    "min": 1,
+                    "p25": 45,
+                    "median": 86.7,
+                    "p75": 98,
+                    "max": 99.92,
+                    "robustScale": 18.235979999999994
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 17
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 19
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 22
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 15
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 15
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 18
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 17
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 23
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 39
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 157
+                    }
+                  ]
+                },
+                {
+                  "dimension": "provenanceTier",
+                  "key": "curated",
+                  "label": "curated: read and structured by a person or agent",
+                  "summary": {
+                    "count": 85,
+                    "min": 3,
+                    "p25": 40,
+                    "median": 87,
+                    "p75": 98,
+                    "max": 99.9,
+                    "robustScale": 17.7912
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0,
+                      "upperBound": 10,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 10,
+                      "upperBound": 20,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 20,
+                      "upperBound": 30,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 30,
+                      "upperBound": 40,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 40,
+                      "upperBound": 50,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 50,
+                      "upperBound": 60,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 60,
+                      "upperBound": 70,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 70,
+                      "upperBound": 80,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 80,
+                      "upperBound": 90,
+                      "upperInclusive": false,
+                      "count": 10
+                    },
+                    {
+                      "lowerBound": 90,
+                      "upperBound": 100,
+                      "upperInclusive": true,
+                      "count": 40
+                    }
+                  ]
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          }
+        ]
+      },
+      {
+        "field": "volumeOfDistribution",
+        "label": "Recorded volume of distribution",
+        "recordedValues": 539,
+        "numericValues": 537,
+        "displayOnlyValues": 2,
+        "offUnitValues": [],
+        "offUnitValueCount": 0,
+        "distributions": [
+          {
+            "field": "volumeOfDistribution",
+            "unit": "L",
+            "label": "Recorded volume of distribution, in litres",
+            "scale": "log10",
+            "scaleReason": "Recorded values run from 0.560 to 92800 litres, a span of about 5.2 orders of magnitude. Split into 12 equal-width linear bins, 99.5 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "binEdges": [
+              0.56,
+              1.5245254875202987,
+              4.150317789462508,
+              11.298687948829457,
+              30.75917455987313,
+              83.73775998502234,
+              227.96490958040013,
+              620.6041337778217,
+              1689.5121778656178,
+              4599.472101128681,
+              12521.45079876645,
+              34087.983720448006,
+              92800
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in litres",
+              "summary": {
+                "count": 416,
+                "min": 0.56,
+                "p25": 10.975,
+                "median": 72.5,
+                "p75": 260.25,
+                "max": 92800,
+                "robustScale": 98.74115999999998
+              },
+              "histogram": [
+                {
+                  "lowerBound": 0.56,
+                  "upperBound": 1.5245254875202987,
+                  "upperInclusive": false,
+                  "count": 3
+                },
+                {
+                  "lowerBound": 1.5245254875202987,
+                  "upperBound": 4.150317789462508,
+                  "upperInclusive": false,
+                  "count": 30
+                },
+                {
+                  "lowerBound": 4.150317789462508,
+                  "upperBound": 11.298687948829457,
+                  "upperInclusive": false,
+                  "count": 78
+                },
+                {
+                  "lowerBound": 11.298687948829457,
+                  "upperBound": 30.75917455987313,
+                  "upperInclusive": false,
+                  "count": 48
+                },
+                {
+                  "lowerBound": 30.75917455987313,
+                  "upperBound": 83.73775998502234,
+                  "upperInclusive": false,
+                  "count": 59
+                },
+                {
+                  "lowerBound": 83.73775998502234,
+                  "upperBound": 227.96490958040013,
+                  "upperInclusive": false,
+                  "count": 86
+                },
+                {
+                  "lowerBound": 227.96490958040013,
+                  "upperBound": 620.6041337778217,
+                  "upperInclusive": false,
+                  "count": 56
+                },
+                {
+                  "lowerBound": 620.6041337778217,
+                  "upperBound": 1689.5121778656178,
+                  "upperInclusive": false,
+                  "count": 33
+                },
+                {
+                  "lowerBound": 1689.5121778656178,
+                  "upperBound": 4599.472101128681,
+                  "upperInclusive": false,
+                  "count": 16
+                },
+                {
+                  "lowerBound": 4599.472101128681,
+                  "upperBound": 12521.45079876645,
+                  "upperInclusive": false,
+                  "count": 5
+                },
+                {
+                  "lowerBound": 12521.45079876645,
+                  "upperBound": 34087.983720448006,
+                  "upperInclusive": false,
+                  "count": 1
+                },
+                {
+                  "lowerBound": 34087.983720448006,
+                  "upperBound": 92800,
+                  "upperInclusive": true,
+                  "count": 1
+                }
+              ],
+              "logSpread": {
+                "medianAbsoluteDeviationLog10": 1.036742883078254,
+                "spreadFactor": 10.882856009391432
+              }
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [
+                {
+                  "dimension": "route",
+                  "key": "oral",
+                  "label": "recorded route: oral",
+                  "summary": {
+                    "count": 233,
+                    "min": 0.56,
+                    "p25": 55.8,
+                    "median": 140,
+                    "p75": 432,
+                    "max": 92800,
+                    "robustScale": 161.6034
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.56,
+                      "upperBound": 1.5245254875202987,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 1.5245254875202987,
+                      "upperBound": 4.150317789462508,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 4.150317789462508,
+                      "upperBound": 11.298687948829457,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 11.298687948829457,
+                      "upperBound": 30.75917455987313,
+                      "upperInclusive": false,
+                      "count": 23
+                    },
+                    {
+                      "lowerBound": 30.75917455987313,
+                      "upperBound": 83.73775998502234,
+                      "upperInclusive": false,
+                      "count": 47
+                    },
+                    {
+                      "lowerBound": 83.73775998502234,
+                      "upperBound": 227.96490958040013,
+                      "upperInclusive": false,
+                      "count": 67
+                    },
+                    {
+                      "lowerBound": 227.96490958040013,
+                      "upperBound": 620.6041337778217,
+                      "upperInclusive": false,
+                      "count": 41
+                    },
+                    {
+                      "lowerBound": 620.6041337778217,
+                      "upperBound": 1689.5121778656178,
+                      "upperInclusive": false,
+                      "count": 26
+                    },
+                    {
+                      "lowerBound": 1689.5121778656178,
+                      "upperBound": 4599.472101128681,
+                      "upperInclusive": false,
+                      "count": 12
+                    },
+                    {
+                      "lowerBound": 4599.472101128681,
+                      "upperBound": 12521.45079876645,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 12521.45079876645,
+                      "upperBound": 34087.983720448006,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 34087.983720448006,
+                      "upperBound": 92800,
+                      "upperInclusive": true,
+                      "count": 1
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.6629564972679745,
+                    "spreadFactor": 4.602104725682393
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "intravenous",
+                  "label": "recorded route: intravenous",
+                  "summary": {
+                    "count": 88,
+                    "min": 0.56,
+                    "p25": 5.6525,
+                    "median": 10.8,
+                    "p75": 53.275,
+                    "max": 1741,
+                    "robustScale": 10.822980000000001
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.56,
+                      "upperBound": 1.5245254875202987,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 1.5245254875202987,
+                      "upperBound": 4.150317789462508,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 4.150317789462508,
+                      "upperBound": 11.298687948829457,
+                      "upperInclusive": false,
+                      "count": 36
+                    },
+                    {
+                      "lowerBound": 11.298687948829457,
+                      "upperBound": 30.75917455987313,
+                      "upperInclusive": false,
+                      "count": 14
+                    },
+                    {
+                      "lowerBound": 30.75917455987313,
+                      "upperBound": 83.73775998502234,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 83.73775998502234,
+                      "upperBound": 227.96490958040013,
+                      "upperInclusive": false,
+                      "count": 10
+                    },
+                    {
+                      "lowerBound": 227.96490958040013,
+                      "upperBound": 620.6041337778217,
+                      "upperInclusive": false,
+                      "count": 8
+                    },
+                    {
+                      "lowerBound": 620.6041337778217,
+                      "upperBound": 1689.5121778656178,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 1689.5121778656178,
+                      "upperBound": 4599.472101128681,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 4599.472101128681,
+                      "upperBound": 12521.45079876645,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 12521.45079876645,
+                      "upperBound": 34087.983720448006,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 34087.983720448006,
+                      "upperBound": 92800,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.564693306389105,
+                    "spreadFactor": 3.6702302165529987
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "subcutaneous",
+                  "label": "recorded route: subcutaneous",
+                  "summary": {
+                    "count": 48,
+                    "min": 2.7,
+                    "p25": 4,
+                    "median": 6.449999999999999,
+                    "p75": 11.2,
+                    "max": 481,
+                    "robustScale": 4.722080999999999
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.56,
+                      "upperBound": 1.5245254875202987,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 1.5245254875202987,
+                      "upperBound": 4.150317789462508,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 4.150317789462508,
+                      "upperBound": 11.298687948829457,
+                      "upperInclusive": false,
+                      "count": 24
+                    },
+                    {
+                      "lowerBound": 11.298687948829457,
+                      "upperBound": 30.75917455987313,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 30.75917455987313,
+                      "upperBound": 83.73775998502234,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 83.73775998502234,
+                      "upperBound": 227.96490958040013,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 227.96490958040013,
+                      "upperBound": 620.6041337778217,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 620.6041337778217,
+                      "upperBound": 1689.5121778656178,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 1689.5121778656178,
+                      "upperBound": 4599.472101128681,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 4599.472101128681,
+                      "upperBound": 12521.45079876645,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 12521.45079876645,
+                      "upperBound": 34087.983720448006,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 34087.983720448006,
+                      "upperBound": 92800,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.309233493093961,
+                    "spreadFactor": 2.03813756281944
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 47,
+              "groupsBelowMinimum": 29,
+              "valuesWithoutKey": 0,
+              "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 376,
+                    "min": 0.56,
+                    "p25": 11,
+                    "median": 75,
+                    "p75": 261.25,
+                    "max": 92800,
+                    "robustScale": 102.69228899999999
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.56,
+                      "upperBound": 1.5245254875202987,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 1.5245254875202987,
+                      "upperBound": 4.150317789462508,
+                      "upperInclusive": false,
+                      "count": 27
+                    },
+                    {
+                      "lowerBound": 4.150317789462508,
+                      "upperBound": 11.298687948829457,
+                      "upperInclusive": false,
+                      "count": 67
+                    },
+                    {
+                      "lowerBound": 11.298687948829457,
+                      "upperBound": 30.75917455987313,
+                      "upperInclusive": false,
+                      "count": 42
+                    },
+                    {
+                      "lowerBound": 30.75917455987313,
+                      "upperBound": 83.73775998502234,
+                      "upperInclusive": false,
+                      "count": 53
+                    },
+                    {
+                      "lowerBound": 83.73775998502234,
+                      "upperBound": 227.96490958040013,
+                      "upperInclusive": false,
+                      "count": 81
+                    },
+                    {
+                      "lowerBound": 227.96490958040013,
+                      "upperBound": 620.6041337778217,
+                      "upperInclusive": false,
+                      "count": 51
+                    },
+                    {
+                      "lowerBound": 620.6041337778217,
+                      "upperBound": 1689.5121778656178,
+                      "upperInclusive": false,
+                      "count": 29
+                    },
+                    {
+                      "lowerBound": 1689.5121778656178,
+                      "upperBound": 4599.472101128681,
+                      "upperInclusive": false,
+                      "count": 16
+                    },
+                    {
+                      "lowerBound": 4599.472101128681,
+                      "upperBound": 12521.45079876645,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 12521.45079876645,
+                      "upperBound": 34087.983720448006,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 34087.983720448006,
+                      "upperBound": 92800,
+                      "upperInclusive": true,
+                      "count": 1
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.9946803035086492,
+                    "spreadFactor": 9.878256604488337
+                  }
+                },
+                {
+                  "dimension": "provenanceTier",
+                  "key": "curated",
+                  "label": "curated: read and structured by a person or agent",
+                  "summary": {
+                    "count": 40,
+                    "min": 2.7,
+                    "p25": 9.325,
+                    "median": 31.15,
+                    "p75": 194.25,
+                    "max": 1640,
+                    "robustScale": 40.69737
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.56,
+                      "upperBound": 1.5245254875202987,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 1.5245254875202987,
+                      "upperBound": 4.150317789462508,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 4.150317789462508,
+                      "upperBound": 11.298687948829457,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 11.298687948829457,
+                      "upperBound": 30.75917455987313,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 30.75917455987313,
+                      "upperBound": 83.73775998502234,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 83.73775998502234,
+                      "upperBound": 227.96490958040013,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 227.96490958040013,
+                      "upperBound": 620.6041337778217,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 620.6041337778217,
+                      "upperBound": 1689.5121778656178,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 1689.5121778656178,
+                      "upperBound": 4599.472101128681,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 4599.472101128681,
+                      "upperBound": 12521.45079876645,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 12521.45079876645,
+                      "upperBound": 34087.983720448006,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 34087.983720448006,
+                      "upperBound": 92800,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.8786671219551964,
+                    "spreadFactor": 7.562530199853288
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          },
+          {
+            "field": "volumeOfDistribution",
+            "unit": "L/kg",
+            "label": "Recorded volume of distribution, in litres per kilogram",
+            "scale": "log10",
+            "scaleReason": "Recorded values run from 0.100 to 84 litres per kilogram, a span of about 2.9 orders of magnitude. Split into 12 equal-width linear bins, 83.5 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "binEdges": [
+              0.1,
+              0.1752628786130861,
+              0.30717076619745354,
+              0.5383563270955295,
+              0.9435387960633066,
+              1.6536732548118076,
+              2.8982753492378874,
+              5.079600807207795,
+              8.902654596765942,
+              15.603048719272218,
+              27.346352336798773,
+              47.92800430115041,
+              84
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in litres per kilogram",
+              "summary": {
+                "count": 121,
+                "min": 0.1,
+                "p25": 0.45,
+                "median": 1.1,
+                "p75": 4,
+                "max": 84,
+                "robustScale": 1.3343399999999999
+              },
+              "histogram": [
+                {
+                  "lowerBound": 0.1,
+                  "upperBound": 0.1752628786130861,
+                  "upperInclusive": false,
+                  "count": 11
+                },
+                {
+                  "lowerBound": 0.1752628786130861,
+                  "upperBound": 0.30717076619745354,
+                  "upperInclusive": false,
+                  "count": 9
+                },
+                {
+                  "lowerBound": 0.30717076619745354,
+                  "upperBound": 0.5383563270955295,
+                  "upperInclusive": false,
+                  "count": 17
+                },
+                {
+                  "lowerBound": 0.5383563270955295,
+                  "upperBound": 0.9435387960633066,
+                  "upperInclusive": false,
+                  "count": 19
+                },
+                {
+                  "lowerBound": 0.9435387960633066,
+                  "upperBound": 1.6536732548118076,
+                  "upperInclusive": false,
+                  "count": 14
+                },
+                {
+                  "lowerBound": 1.6536732548118076,
+                  "upperBound": 2.8982753492378874,
+                  "upperInclusive": false,
+                  "count": 10
+                },
+                {
+                  "lowerBound": 2.8982753492378874,
+                  "upperBound": 5.079600807207795,
+                  "upperInclusive": false,
+                  "count": 17
+                },
+                {
+                  "lowerBound": 5.079600807207795,
+                  "upperBound": 8.902654596765942,
+                  "upperInclusive": false,
+                  "count": 8
+                },
+                {
+                  "lowerBound": 8.902654596765942,
+                  "upperBound": 15.603048719272218,
+                  "upperInclusive": false,
+                  "count": 10
+                },
+                {
+                  "lowerBound": 15.603048719272218,
+                  "upperBound": 27.346352336798773,
+                  "upperInclusive": false,
+                  "count": 4
+                },
+                {
+                  "lowerBound": 27.346352336798773,
+                  "upperBound": 47.92800430115041,
+                  "upperInclusive": false,
+                  "count": 0
+                },
+                {
+                  "lowerBound": 47.92800430115041,
+                  "upperBound": 84,
+                  "upperInclusive": true,
+                  "count": 2
+                }
+              ],
+              "logSpread": {
+                "medianAbsoluteDeviationLog10": 0.7073799722473714,
+                "spreadFactor": 5.0977668902328865
+              }
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [
+                {
+                  "dimension": "route",
+                  "key": "oral",
+                  "label": "recorded route: oral",
+                  "summary": {
+                    "count": 63,
+                    "min": 0.12,
+                    "p25": 0.6499999999999999,
+                    "median": 1.45,
+                    "p75": 4.55,
+                    "max": 25,
+                    "robustScale": 1.70499
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.1,
+                      "upperBound": 0.1752628786130861,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 0.1752628786130861,
+                      "upperBound": 0.30717076619745354,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 0.30717076619745354,
+                      "upperBound": 0.5383563270955295,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 0.5383563270955295,
+                      "upperBound": 0.9435387960633066,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 0.9435387960633066,
+                      "upperBound": 1.6536732548118076,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 1.6536732548118076,
+                      "upperBound": 2.8982753492378874,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 2.8982753492378874,
+                      "upperBound": 5.079600807207795,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 5.079600807207795,
+                      "upperBound": 8.902654596765942,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 8.902654596765942,
+                      "upperBound": 15.603048719272218,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 15.603048719272218,
+                      "upperBound": 27.346352336798773,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 27.346352336798773,
+                      "upperBound": 47.92800430115041,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 47.92800430115041,
+                      "upperBound": 84,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.6533699430292632,
+                    "spreadFactor": 4.501631519830159
+                  }
+                },
+                {
+                  "dimension": "route",
+                  "key": "intravenous",
+                  "label": "recorded route: intravenous",
+                  "summary": {
+                    "count": 18,
+                    "min": 0.11,
+                    "p25": 0.3825,
+                    "median": 0.5,
+                    "p75": 3.6399999999999997,
+                    "max": 60,
+                    "robustScale": 0.385476
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.1,
+                      "upperBound": 0.1752628786130861,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 0.1752628786130861,
+                      "upperBound": 0.30717076619745354,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 0.30717076619745354,
+                      "upperBound": 0.5383563270955295,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 0.5383563270955295,
+                      "upperBound": 0.9435387960633066,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 0.9435387960633066,
+                      "upperBound": 1.6536732548118076,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 1.6536732548118076,
+                      "upperBound": 2.8982753492378874,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 2.8982753492378874,
+                      "upperBound": 5.079600807207795,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 5.079600807207795,
+                      "upperBound": 8.902654596765942,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 8.902654596765942,
+                      "upperBound": 15.603048719272218,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 15.603048719272218,
+                      "upperBound": 27.346352336798773,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 27.346352336798773,
+                      "upperBound": 47.92800430115041,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 47.92800430115041,
+                      "upperBound": 84,
+                      "upperInclusive": true,
+                      "count": 1
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.3710965224769371,
+                    "spreadFactor": 2.3501550876362143
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 40,
+              "groupsBelowMinimum": 22,
+              "valuesWithoutKey": 0,
+              "note": "Strata are the route text the source printed, lower-cased and with repeated spaces removed. They are not a controlled vocabulary: the corpus records \"oral\" and \"oral (tablets)\" separately, and they are kept separate here. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 102,
+                    "min": 0.1,
+                    "p25": 0.4,
+                    "median": 1,
+                    "p75": 3.6125,
+                    "max": 84,
+                    "robustScale": 1.200906
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.1,
+                      "upperBound": 0.1752628786130861,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 0.1752628786130861,
+                      "upperBound": 0.30717076619745354,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 0.30717076619745354,
+                      "upperBound": 0.5383563270955295,
+                      "upperInclusive": false,
+                      "count": 14
+                    },
+                    {
+                      "lowerBound": 0.5383563270955295,
+                      "upperBound": 0.9435387960633066,
+                      "upperInclusive": false,
+                      "count": 17
+                    },
+                    {
+                      "lowerBound": 0.9435387960633066,
+                      "upperBound": 1.6536732548118076,
+                      "upperInclusive": false,
+                      "count": 11
+                    },
+                    {
+                      "lowerBound": 1.6536732548118076,
+                      "upperBound": 2.8982753492378874,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 2.8982753492378874,
+                      "upperBound": 5.079600807207795,
+                      "upperInclusive": false,
+                      "count": 12
+                    },
+                    {
+                      "lowerBound": 5.079600807207795,
+                      "upperBound": 8.902654596765942,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 8.902654596765942,
+                      "upperBound": 15.603048719272218,
+                      "upperInclusive": false,
+                      "count": 9
+                    },
+                    {
+                      "lowerBound": 15.603048719272218,
+                      "upperBound": 27.346352336798773,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 27.346352336798773,
+                      "upperBound": 47.92800430115041,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 47.92800430115041,
+                      "upperBound": 84,
+                      "upperInclusive": true,
+                      "count": 2
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.6964656219661818,
+                    "spreadFactor": 4.971250205722226
+                  }
+                },
+                {
+                  "dimension": "provenanceTier",
+                  "key": "curated",
+                  "label": "curated: read and structured by a person or agent",
+                  "summary": {
+                    "count": 19,
+                    "min": 0.14,
+                    "p25": 0.565,
+                    "median": 1.5,
+                    "p75": 4.2,
+                    "max": 10,
+                    "robustScale": 1.9866840000000001
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 0.1,
+                      "upperBound": 0.1752628786130861,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 0.1752628786130861,
+                      "upperBound": 0.30717076619745354,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 0.30717076619745354,
+                      "upperBound": 0.5383563270955295,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 0.5383563270955295,
+                      "upperBound": 0.9435387960633066,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 0.9435387960633066,
+                      "upperBound": 1.6536732548118076,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 1.6536732548118076,
+                      "upperBound": 2.8982753492378874,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 2.8982753492378874,
+                      "upperBound": 5.079600807207795,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 5.079600807207795,
+                      "upperBound": 8.902654596765942,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 8.902654596765942,
+                      "upperBound": 15.603048719272218,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 15.603048719272218,
+                      "upperBound": 27.346352336798773,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 27.346352336798773,
+                      "upperBound": 47.92800430115041,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 47.92800430115041,
+                      "upperBound": 84,
+                      "upperInclusive": true,
+                      "count": 0
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.6929100374824685,
+                    "spreadFactor": 4.930716553808626
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          }
+        ]
+      },
+      {
+        "field": "molecularWeight",
+        "label": "Recorded molecular weight",
+        "recordedValues": 1022,
+        "numericValues": 1022,
+        "displayOnlyValues": 0,
+        "offUnitValues": [],
+        "offUnitValueCount": 0,
+        "distributions": [
+          {
+            "field": "molecularWeight",
+            "unit": "g/mol",
+            "label": "Recorded molecular weight, in grams per mole",
+            "scale": "log10",
+            "scaleReason": "Recorded values run from 31 to 1.50e+5 grams per mole, a span of about 3.7 orders of magnitude. Split into 12 equal-width linear bins, 97.7 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "binEdges": [
+              31,
+              62.86696446698172,
+              127.49210391266912,
+              258.5497279515649,
+              524.3302116154465,
+              1063.3241542772016,
+              2156.385865284784,
+              4373.078502256774,
+              8868.457122990278,
+              17984.934800902585,
+              36472.84700223636,
+              73965.71537094377,
+              150000
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in grams per mole",
+              "summary": {
+                "count": 1022,
+                "min": 31,
+                "p25": 204.23250000000002,
+                "median": 369.425,
+                "p75": 497.28,
+                "max": 150000,
+                "robustScale": 211.34463
+              },
+              "histogram": [
+                {
+                  "lowerBound": 31,
+                  "upperBound": 62.86696446698172,
+                  "upperInclusive": false,
+                  "count": 17
+                },
+                {
+                  "lowerBound": 62.86696446698172,
+                  "upperBound": 127.49210391266912,
+                  "upperInclusive": false,
+                  "count": 54
+                },
+                {
+                  "lowerBound": 127.49210391266912,
+                  "upperBound": 258.5497279515649,
+                  "upperInclusive": false,
+                  "count": 255
+                },
+                {
+                  "lowerBound": 258.5497279515649,
+                  "upperBound": 524.3302116154465,
+                  "upperInclusive": false,
+                  "count": 474
+                },
+                {
+                  "lowerBound": 524.3302116154465,
+                  "upperBound": 1063.3241542772016,
+                  "upperInclusive": false,
+                  "count": 195
+                },
+                {
+                  "lowerBound": 1063.3241542772016,
+                  "upperBound": 2156.385865284784,
+                  "upperInclusive": false,
+                  "count": 1
+                },
+                {
+                  "lowerBound": 2156.385865284784,
+                  "upperBound": 4373.078502256774,
+                  "upperInclusive": false,
+                  "count": 1
+                },
+                {
+                  "lowerBound": 4373.078502256774,
+                  "upperBound": 8868.457122990278,
+                  "upperInclusive": false,
+                  "count": 2
+                },
+                {
+                  "lowerBound": 8868.457122990278,
+                  "upperBound": 17984.934800902585,
+                  "upperInclusive": false,
+                  "count": 6
+                },
+                {
+                  "lowerBound": 17984.934800902585,
+                  "upperBound": 36472.84700223636,
+                  "upperInclusive": false,
+                  "count": 5
+                },
+                {
+                  "lowerBound": 36472.84700223636,
+                  "upperBound": 73965.71537094377,
+                  "upperInclusive": false,
+                  "count": 8
+                },
+                {
+                  "lowerBound": 73965.71537094377,
+                  "upperBound": 150000,
+                  "upperInclusive": true,
+                  "count": 4
+                }
+              ],
+              "logSpread": {
+                "medianAbsoluteDeviationLog10": 0.2508236403806699,
+                "spreadFactor": 1.7816551206170421
+              }
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 1022,
+              "note": "Recorded molecular weight is recorded on the molecular identity module, which carries no route. There is nothing to stratify on, so no route strata are published rather than a route being attached from elsewhere in the record."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 1022,
+                    "min": 31,
+                    "p25": 204.23250000000002,
+                    "median": 369.425,
+                    "p75": 497.28,
+                    "max": 150000,
+                    "robustScale": 211.34463
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 31,
+                      "upperBound": 62.86696446698172,
+                      "upperInclusive": false,
+                      "count": 17
+                    },
+                    {
+                      "lowerBound": 62.86696446698172,
+                      "upperBound": 127.49210391266912,
+                      "upperInclusive": false,
+                      "count": 54
+                    },
+                    {
+                      "lowerBound": 127.49210391266912,
+                      "upperBound": 258.5497279515649,
+                      "upperInclusive": false,
+                      "count": 255
+                    },
+                    {
+                      "lowerBound": 258.5497279515649,
+                      "upperBound": 524.3302116154465,
+                      "upperInclusive": false,
+                      "count": 474
+                    },
+                    {
+                      "lowerBound": 524.3302116154465,
+                      "upperBound": 1063.3241542772016,
+                      "upperInclusive": false,
+                      "count": 195
+                    },
+                    {
+                      "lowerBound": 1063.3241542772016,
+                      "upperBound": 2156.385865284784,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 2156.385865284784,
+                      "upperBound": 4373.078502256774,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 4373.078502256774,
+                      "upperBound": 8868.457122990278,
+                      "upperInclusive": false,
+                      "count": 2
+                    },
+                    {
+                      "lowerBound": 8868.457122990278,
+                      "upperBound": 17984.934800902585,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 17984.934800902585,
+                      "upperBound": 36472.84700223636,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 36472.84700223636,
+                      "upperBound": 73965.71537094377,
+                      "upperInclusive": false,
+                      "count": 8
+                    },
+                    {
+                      "lowerBound": 73965.71537094377,
+                      "upperBound": 150000,
+                      "upperInclusive": true,
+                      "count": 4
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.2508236403806699,
+                    "spreadFactor": 1.7816551206170421
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          }
+        ]
+      }
+    ],
+    "reportedRoutes": [
+      "intramuscular",
+      "intravenous",
+      "nasal",
+      "oral",
+      "oral (tablets)",
+      "subcutaneous"
+    ],
+    "minimumStratumSize": 12,
+    "recordsWithAnyNumericValue": 1325
+  },
+  "caveats": [
+    "Every number here describes recorded values. It does not describe medicines, and it does not describe the people a value was measured in. A median recorded half-life is a fact about what source documents state, shaped first of all by which medicines happen to have a document with a pharmacokinetics section structured into this corpus.",
+    "No percentile in this output is typical, normal or expected for any medicine. A value at the 5th or the 95th percentile of a stratum is an unremarkable recorded value that sits near the edge of the recorded values around it, and nothing follows from where it sits.",
+    "Of 3536 recorded values across these fields, 165 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
+    "A further 2 numeric values are recorded in a unit no distribution here accepts. They are named with their units beside each field and left out, because rescaling a recorded number would replace what the source printed with a number no source stated.",
+    "Volume of distribution is published as two separate distributions and never as one: 416 values recorded in litres and 121 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
+    "The route strata are the route text the source printed, lower-cased. They are not a controlled vocabulary, so a medicine given by more than one route appears under whichever single route its record states, and near-identical route wordings are separate strata.",
+    "A route stratum is a group of recorded values, not a group of medicines and not a group of doses. Differences between route strata reflect which medicines have a structured record for that route as much as anything about the routes.",
+    "The two provenance tiers are two different kinds of work on differently-selected documents, not two samples of one population. A distributional difference between them is a fact about how the corpus was built, and it does not indicate that values in either tier are wrong.",
+    "Each field slot contributes at most one value per medicine record. Alternative readings held in the source-consensus module are not counted here; including them would weight the distribution toward medicines that happen to have many published labels.",
+    "Bin edges span the full range of each distribution and are shared by all of its strata so that two histograms can be read against each other. A stratum whose values occupy a narrow part of the range therefore shows empty bins at both ends, which is the shared axis and not a gap in the data.",
+    "Groups holding fewer than 12 values are counted but not published as strata, because a quartile over a handful of values reads as a distribution while resting on two or three records."
+  ]
+}

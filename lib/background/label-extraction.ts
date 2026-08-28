@@ -21,6 +21,7 @@ import type {
   BackgroundSource,
   DescriptiveLabelSection,
   InteractionCounterpartyKind,
+  InteractionPolarity,
   InteractionRole,
   MedicineRecordedBackground,
   PopulationEvidenceState,
@@ -498,6 +499,21 @@ const ENZYME_PATTERN = /\bCYP\s?([1-4][A-Z]\d{1,2})\b/giu
 const TRANSPORTER_PATTERN =
   /\b(P-?gp|P-?glycoprotein|BCRP|OATP1B[13]|OATP|OAT[13]|OCT[12]|MATE-?[12]?|BSEP)\b/giu
 
+/**
+ * Negation cues that flip what a role sentence is saying.
+ *
+ * Regulatory pharmacology reports negative findings constantly — "does not inhibit", "is not a
+ * substrate of", "no inhibition was observed" — and those sentences carry the same verbs as the
+ * positive ones. Matching the verb alone recorded three quarters of this corpus's roles as the
+ * opposite of what the label stated, so polarity is read before a role is admitted.
+ */
+const NEGATION_CUE =
+  /\b(?:not|no|neither|nor|without|lack(?:s|ed|ing)?|absence of|fail(?:s|ed)? to|unlikely to|minimal(?:ly)?|negligible)\b/iu
+
+/** Counts how many times any role verb appears, to detect a sentence that both asserts and denies. */
+const ROLE_VERB_OCCURRENCE =
+  /\b(?:substrates?|inhibitors?|inhibits?|inhibited|inhibition|inducers?|induces?|induced|induction)\b/giu
+
 const ROLE_PATTERNS: ReadonlyArray<readonly [InteractionRole, RegExp]> = [
   ['SUBSTRATE', /\bsubstrates?\b/iu],
   ['INHIBITOR', /\binhibitors?\b|\binhibits?\b|\binhibited\b|\binhibition\b/iu],
@@ -538,7 +554,19 @@ export function extractInteractionSignals(
     for (const sentence of sentences(sectionText)) {
       if (sentence.length > MAX_STATEMENT_CHARS) continue
       const roles = ROLE_PATTERNS.filter(([, pattern]) => pattern.test(sentence))
-      const role = roles.length === 1 ? roles[0]![0] : undefined
+      const negated = NEGATION_CUE.test(sentence)
+      const roleVerbCount = (sentence.match(ROLE_VERB_OCCURRENCE) ?? []).length
+      // A sentence that denies something and names the role verb more than once may be asserting
+      // one counterparty and denying another ("inhibits CYP3A4 but not CYP2D6"). Which negation
+      // scopes which name is exactly the judgement this parser refuses to make, so no role is
+      // recorded at all and the counterparty is kept with its sentence.
+      const scopeIsAmbiguous = negated && roleVerbCount > 1
+      const role = roles.length === 1 && !scopeIsAmbiguous ? roles[0]![0] : undefined
+      const polarity: InteractionPolarity | undefined = role
+        ? negated
+          ? 'NEGATED'
+          : 'ASSERTED'
+        : undefined
       const excerpt = normalizeWhitespace(sentence)
 
       const found: Array<[string, InteractionCounterpartyKind]> = [
@@ -559,6 +587,7 @@ export function extractInteractionSignals(
           counterpartyAsRecorded: counterparty,
           kind,
           ...(role ? { roleAsRecorded: role } : {}),
+          ...(polarity ? { polarity } : {}),
           labelSection,
           source: { ...source, excerpt },
           provenanceTier: 'extracted',

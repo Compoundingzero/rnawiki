@@ -481,6 +481,7 @@ export const enzymeDocumentationAgent: DatasetAgent<EnzymeDocumentationProfile> 
         spellingsMerged: false,
         uniformReferenceDraws: UNIFORM_REFERENCE_DRAWS,
       },
+      output,
       coverage: {
         considered: recordsConsidered,
         used: recordsNamingAnyCounterparty,

@@ -255,6 +255,19 @@ export const INTERACTION_ROLES = ['SUBSTRATE', 'INHIBITOR', 'INDUCER'] as const
 export type InteractionRole = (typeof INTERACTION_ROLES)[number]
 
 /**
+ * Whether the recorded sentence asserts the role or denies it.
+ *
+ * Labels state negative findings as often as positive ones — "abacavir does not inhibit human
+ * CYP3A4, CYP2D6, or CYP2C9" is a real result from a real study, and roughly three quarters of the
+ * role-bearing sentences in this corpus are of that kind. A parser that matched the verb and
+ * ignored the negation recorded every one of them as the opposite of what the label said. Polarity
+ * exists so the denial survives as a denial, because "was tested and does not inhibit" is more
+ * informative than silence and must never be shown as "inhibits".
+ */
+export const INTERACTION_POLARITIES = ['ASSERTED', 'NEGATED'] as const
+export type InteractionPolarity = (typeof INTERACTION_POLARITIES)[number]
+
+/**
  * One metabolic or transport counterparty the source names, with the sentence naming it.
  *
  * `roleAsRecorded` is present only when the recorded sentence states exactly one role. A sentence
@@ -278,6 +291,11 @@ export interface RecordedInteractionSignal {
   counterpartyAsRecorded: string
   kind: InteractionCounterpartyKind
   roleAsRecorded?: InteractionRole
+  /**
+   * Whether the sentence asserts the role or denies it. Absent only on records written before
+   * polarity was recorded; a role with unknown polarity may not be displayed as an assertion.
+   */
+  polarity?: InteractionPolarity
   /** Which descriptive label section the naming sentence came from. */
   labelSection?: DescriptiveLabelSection
   source: BackgroundSource

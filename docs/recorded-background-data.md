@@ -53,7 +53,7 @@ The values themselves are public. The discipline around them is the product:
 ## Engine
 
 `runBackgroundIntelligence` (`lib/rna-intelligence/background-rules.ts`, version
-`rna-intelligence/background-1.1.0`) checks structure only: envelope version, source-identifier
+`rna-intelligence/background-1.4.0`) checks structure only: envelope version, source-identifier
 shapes per kind, ISO dates, excerpt length, number-in-excerpt, measurement context, plausibility
 ranges by value type, contiguous schedule steps, controlled vocabularies (jurisdictions,
 currencies, price types, anatomy regions), derivation equality, concordance/alternate pairing,
@@ -162,6 +162,43 @@ in `tests/unit/label-extraction.test.ts`:
 - **Per-event adverse-reaction percentages are never parsed out of label tables.** Only the
   threshold and list a source prints in a single sentence are recorded, because pairing a number to
   an event across table text would put a wrong frequency on a real harm.
+
+## The attribution guarantee
+
+The excerpt guarantee proves a sentence was printed. It cannot prove the sentence was **about this
+medicine**, and that turned out to matter enormously. A multi-ingredient document — an allergenic
+extract naming ninety-one pollens, a homeopathic combination naming gold among thirty-five other
+things — prints sentences that belong to none of its substances individually. One such document was
+supplying the same mechanism, safety and identity to ninety-one different pollen records.
+
+A substance-specific module may therefore only be recorded from a document declaring exactly one
+active substance, enforced by `I_ATTRIBUTION_TOO_BROAD` rather than by the pipeline alone. Shared-UNII
+collisions fell from 832 groups over 3,964 slugs to 28 over 56, and every one that remains is a
+genuine synonym.
+
+Substance identity is resolved only from labels naming a single substance, and cites the label that
+established it. An earlier attempt paired openFDA's `substance_name` and `unii` arrays positionally,
+on the evidence that they are the same length. They are not aligned: checked against single-substance
+labels, 15% of pairings disagreed, and one combination label paired guaifenesin and phenylephrine
+each with the other's identifier. Identity also keeps the salt words that content matching strips,
+because barium sulfate and barium acetate are not the same substance.
+
+## Polarity: what a label denies
+
+Roughly three quarters of the role-bearing sentences in this corpus are negative findings —
+"abacavir does not inhibit human CYP3A4, CYP2D6, or CYP2C9" is a real result from a real study. A
+parser that matched the verb and ignored the negation recorded every one of them as the opposite of
+what the label said, and 2,028 signals were inverted this way before it was caught.
+
+Roles now carry `polarity`, so a denial survives as a denial: 700 asserted, 1,511 negated, and 2,015
+counterparties recorded with no role at all because the sentence both asserts and denies and which
+negation scopes which name is not something a parser can decide. `I_INTERACTION_POLARITY_MISSING`
+makes a role without polarity a validation failure, because a role recorded from "does not inhibit"
+and shown as "inhibits" states the opposite of its own source.
+
+Roles are also read only from descriptive sections. 21 CFR 201.57(c)(8) makes Section 7 the place
+for clinically significant interactions and the instructions for preventing them; a role taken from
+there is inferred from regulated advice rather than stated as a property.
 
 ## Diagram projections
 

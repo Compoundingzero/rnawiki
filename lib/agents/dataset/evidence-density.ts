@@ -32,7 +32,12 @@ import type {
   RecordedValue,
 } from '@/lib/background/types'
 import { createRng, shuffleInPlace } from '@/lib/agents/core/rng'
-import { robustSummary, type RobustSummary } from '@/lib/agents/core/statistics'
+import {
+  cleanSorted,
+  quantileSorted,
+  robustSummary,
+  type RobustSummary,
+} from '@/lib/agents/core/statistics'
 import type {
   AgentCorpusEntry,
   AgentInput,
@@ -190,13 +195,31 @@ const WIDEST_REACH_SIZE = 20
 const QUEUE_SIZE = 40
 
 /**
- * Product variants that mark a record as widely marketed, for the coverage queue only.
+ * Product-variant entries a record must hold to enter the coverage queue.
  *
- * This is a proxy and a weak one: it counts brand entries the corpus happens to hold, so it finds
- * medicines sold under many names rather than medicines that matter. It is used only to order
- * recording work, never reported as a property of a medicine.
+ * This began as a "widely marketed" proxy — many recorded brand entries standing in for a medicine
+ * many people encounter. The corpus cannot support that reading: no record holds more than two
+ * product variants, 2,322 hold exactly one, and every record that holds any names a single
+ * jurisdiction. A threshold of "many" would therefore select nothing, and tuning it downward until
+ * it selected something would be inventing a distinction the data does not draw.
+ *
+ * What the module can honestly say is binary: whether the corpus recorded a marketed product entry
+ * for this medicine at all. A record that holds one and little else is a marketed product the
+ * corpus has structured almost nothing about, which is the coverage gap worth queueing. The
+ * threshold is 1 and the queue is described in those terms rather than in terms of prominence.
  */
-const WIDELY_MARKETED_VARIANTS = 8
+const MARKETED_PRODUCT_VARIANTS = 1
+
+/**
+ * Density at or below which a record enters the coverage queue, as a quantile of the corpus.
+ *
+ * The median is used rather than the lower quartile because the quartile is degenerate here: 1,251
+ * of 3,008 records hold exactly one module, so the 25th percentile coincides with the minimum score
+ * and a quartile cut selects only the floor, where every record has an identical score and the
+ * queue cannot be ordered at all. The median is stated as a parameter rather than tuned against the
+ * length of the queue it produces.
+ */
+const LOW_DENSITY_QUANTILE = 0.5
 
 /** Every source attached anywhere in a record, in a fixed module order so runs are comparable. */
 function collectSources(background: MedicineRecordedBackground): BackgroundSource[] {
@@ -271,8 +294,8 @@ function collectPharmacokineticValues(background: MedicineRecordedBackground): R
 
 function modulesPresent(background: MedicineRecordedBackground): RecordableModule[] {
   const present: RecordableModule[] = []
-  for (const module of RECORDABLE_MODULES) {
-    if (hasModule(background, module)) present.push(module)
+  for (const candidate of RECORDABLE_MODULES) {
+    if (hasModule(background, candidate)) present.push(candidate)
   }
   return present
 }
@@ -368,7 +391,7 @@ function measureOne(entry: AgentCorpusEntry): MedicineEvidenceDensity {
   }
 }
 
-const AGENT_VERSION = 'evidence-density/1.0.0'
+const AGENT_VERSION = '1.0.0'
 
 export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
   name: 'evidence-density',
@@ -393,10 +416,10 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
     const singleModuleTally = new Map<RecordableModule, number>()
     const singleModuleEntries: SingleModuleEntry[] = []
     for (const record of singleModule) {
-      const module = record.modulesPresent[0]
-      if (!module) continue
-      singleModuleTally.set(module, (singleModuleTally.get(module) ?? 0) + 1)
-      singleModuleEntries.push({ slug: record.slug, name: record.name, module })
+      const onlyModule = record.modulesPresent[0]
+      if (!onlyModule) continue
+      singleModuleTally.set(onlyModule, (singleModuleTally.get(onlyModule) ?? 0) + 1)
+      singleModuleEntries.push({ slug: record.slug, name: record.name, module: onlyModule })
     }
     const singleModuleByModule = [...singleModuleTally]
       .map(([module, medicines]) => ({ module, medicines }))
@@ -455,6 +478,28 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
     const scored = perMedicine.map((record) => record.score)
     const withAnyModule = perMedicine.filter((record) => record.moduleCount > 0)
 
+    // The two caveats below state facts about the corpus that was actually handed in. Writing the
+    // current corpus's numbers into a literal would leave a caveat asserting something false the
+    // first time the corpus changed.
+    const sortedScores = cleanSorted(scored)
+    const widestVariantList = input.corpus.reduce(
+      (widest, entry) => Math.max(widest, entry.background.productVariants?.length ?? 0),
+      0,
+    )
+    const jurisdictionSpread = input.corpus.reduce(
+      (widest, entry) =>
+        Math.max(
+          widest,
+          new Set((entry.background.productVariants ?? []).map((variant) => variant.jurisdiction))
+            .size,
+        ),
+      0,
+    )
+    const queueCutoff = quantileSorted(sortedScores, LOW_DENSITY_QUANTILE)
+    const lowerQuartile = quantileSorted(sortedScores, 0.25)
+    const quartileIsDegenerate =
+      sortedScores.length > 0 && lowerQuartile === (sortedScores[0] ?? Number.NaN)
+
     const output: EvidenceDensityIndex = {
       perMedicine,
       scoreDistribution: robustSummary(scored),
@@ -487,7 +532,8 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
         weightNumericComparability: DENSITY_WEIGHTS.numericComparability,
         weightExcerptCoverage: DENSITY_WEIGHTS.excerptCoverage,
         corroborationSaturation: CORROBORATION_SATURATION,
-        widelyMarketedVariantThreshold: WIDELY_MARKETED_VARIANTS,
+        queueMarketedVariantThreshold: MARKETED_PRODUCT_VARIANTS,
+        queueLowDensityQuantile: LOW_DENSITY_QUANTILE,
         singleModuleSampleSize: SINGLE_MODULE_SAMPLE_SIZE,
         queueSize: QUEUE_SIZE,
         documentIdentity: 'source kind plus source identifier',
@@ -508,7 +554,10 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
         'The weighting is a stated convention chosen for this index, not a measured quantity. Each component is published beside the score so a different weighting can be applied to the same components.',
         `Two documents count as one when they share a source kind and identifier. A document that was revised between two fetch dates therefore still counts once, so corroboration may be reported slightly higher than it is.`,
         'The retrieval dates are the dates source artifacts were fetched during authoring. They say when the corpus last looked, not when the source last changed.',
-        'Product-variant count is a weak proxy for how widely a medicine is marketed: it counts brand entries the corpus happens to hold. It is used only to order recording work.',
+        `The coverage queue was designed to rank widely marketed medicines first, using the count of recorded product variants as the proxy. This corpus cannot express that: the largest number of product variants on any record is ${widestVariantList}, and the largest number of distinct jurisdictions on any record is ${jurisdictionSpread}, so the module reports little more than whether a marketed product entry was recorded at all. The queue is instead ordered by how much already-cited source material a record has left unstructured, and it does not rank medicines by prominence.`,
+        quartileIsDegenerate
+          ? `The queue cutoff is the corpus median density of ${queueCutoff.toFixed(3)} rather than the lower quartile, because ${singleModule.length} records hold exactly one module and the lower quartile coincides with the lowest score in the corpus. A cut there would select only records that are tied on score and could not be ordered.`
+          : `The queue cutoff is the corpus median density of ${queueCutoff.toFixed(3)}, chosen and stated in advance rather than tuned against the length of queue it produces.`,
         'Records assembled by the deterministic label parser and records assembled by a person are measured on the same scale here. The scale does not distinguish the two kinds of work; the provenance tier on each value does.',
         'Values recorded as displayed text with no parsed number are counted separately rather than penalised as missing. A source that prints no number is recorded faithfully when no number is stored.',
       ],
@@ -517,11 +566,16 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
 }
 
 /**
- * Records that are widely marketed by the variant proxy yet hold few modules.
+ * Records that hold a marketed product entry yet sit at or below the corpus median density.
  *
- * The queue is an ordering of recording work. Each item asks a person what else could be structured
- * from documents the record already cites; none of them asserts anything about the medicine, and
- * none proposes an edit.
+ * The queue is an ordering of recording work, nothing else. Each item asks a person what further
+ * modules could be structured from documents the record already cites; none asserts anything about
+ * a medicine, and none proposes an edit.
+ *
+ * Ordering multiplies the unstructured share by the number of documents already cited, because a
+ * record citing several documents while holding one module has material already fetched and
+ * unstructured, whereas a record citing one document needs new sourcing before anything can change.
+ * That makes the queue an ordering by tractability, which is the only ordering the corpus supports.
  */
 function buildQueue(
   corpus: readonly AgentCorpusEntry[],
@@ -533,21 +587,24 @@ function buildQueue(
     variantsBySlug.set(entry.slug, entry.background.productVariants?.length ?? 0)
     documentsBySlug.set(entry.slug, [...new Set(collectSources(entry.background).map(documentKey))])
   }
-  const summary = robustSummary(measured.map((record) => record.score))
-  const lowScore = summary === null ? 0 : summary.p25
+  const cutoff = quantileSorted(
+    cleanSorted(measured.map((record) => record.score)),
+    LOW_DENSITY_QUANTILE,
+  )
+  if (!Number.isFinite(cutoff)) return []
 
   const candidates: ReviewCandidate[] = []
   for (const record of measured) {
-    const variants = variantsBySlug.get(record.slug) ?? 0
-    if (variants < WIDELY_MARKETED_VARIANTS) continue
-    if (record.score > lowScore) continue
+    if ((variantsBySlug.get(record.slug) ?? 0) < MARKETED_PRODUCT_VARIANTS) continue
+    if (record.score > cutoff) continue
+    const documents = documentsBySlug.get(record.slug) ?? []
     candidates.push({
       slug: record.slug,
       reason: 'COVERAGE_GAP',
-      question: `This record lists ${variants} recorded product variants but holds ${record.moduleCount} of ${RECORDABLE_MODULES.length} background modules and cites ${record.distinctSourceDocuments} distinct source ${record.distinctSourceDocuments === 1 ? 'document' : 'documents'}. Which further modules could be structured from documents this record already cites?`,
-      priority: variants * (1 - record.score),
-      basis: `Priority is the recorded product-variant count multiplied by one minus the density score, so a record that is listed under many brand entries and holds few modules is asked about first. Density score ${record.score.toFixed(3)} is at or below the corpus lower quartile of ${lowScore.toFixed(3)}. This orders recording work and says nothing about how well the medicine itself has been studied.`,
-      sources: [...(documentsBySlug.get(record.slug) ?? [])].sort().slice(0, 8),
+      question: `The corpus records a marketed product entry for this medicine but holds ${record.moduleCount} of ${RECORDABLE_MODULES.length} background modules for it, across ${record.distinctSourceDocuments} distinct source ${record.distinctSourceDocuments === 1 ? 'document' : 'documents'}. Which further modules could be structured from the documents this record already cites?`,
+      priority: (1 - record.score) * Math.max(documents.length, 1),
+      basis: `Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score ${record.score.toFixed(3)} is at or below the corpus median of ${cutoff.toFixed(3)}. This orders recording work against the corpus and carries no finding about the medicine.`,
+      sources: [...documents].sort().slice(0, 8),
     })
   }
 

@@ -139,6 +139,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -154,6 +155,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -169,6 +171,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184,6 +187,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -199,6 +203,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214,6 +219,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -229,6 +235,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -244,6 +251,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259,6 +267,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -274,6 +283,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289,6 +299,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -304,6 +315,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -665,6 +677,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -680,6 +693,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -695,6 +709,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -710,6 +725,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1274,6 +1290,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1288,6 +1305,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1303,6 +1321,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1318,6 +1337,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1333,6 +1353,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1348,6 +1369,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1363,6 +1385,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1378,6 +1401,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1393,6 +1417,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1408,6 +1433,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1423,6 +1449,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1438,6 +1465,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1744,7 +1772,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1774,6 +1801,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1803,6 +1831,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -1832,6 +1861,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2356,7 +2386,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2469,7 +2498,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2485,6 +2513,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2499,7 +2528,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2514,7 +2542,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2824,6 +2851,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2839,6 +2867,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2854,6 +2883,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2869,6 +2899,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2884,6 +2915,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2899,6 +2931,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2914,6 +2947,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2929,6 +2963,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2944,6 +2979,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2959,6 +2995,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2974,6 +3011,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -2988,6 +3026,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -3242,7 +3281,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5662,6 +5700,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5676,7 +5715,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5691,7 +5729,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5706,7 +5743,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5721,7 +5757,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5736,7 +5771,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5751,7 +5785,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5766,7 +5799,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5781,7 +5813,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5796,7 +5827,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5811,7 +5841,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -5826,7 +5855,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -6133,6 +6161,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -6148,6 +6177,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -6163,6 +6193,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -6178,6 +6209,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -6193,6 +6225,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -7709,6 +7742,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -7724,6 +7758,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -7739,6 +7774,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -7754,6 +7790,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -7769,6 +7806,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9352,6 +9390,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9367,6 +9406,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9382,6 +9422,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9411,6 +9452,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9454,6 +9496,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9469,6 +9512,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9484,6 +9528,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9499,6 +9544,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -9514,6 +9560,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11213,6 +11260,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11228,6 +11276,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11242,7 +11291,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11272,6 +11320,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11287,6 +11336,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11302,6 +11352,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11317,6 +11368,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11332,6 +11384,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11347,6 +11400,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11361,7 +11415,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -11376,7 +11429,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -12106,6 +12158,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -13935,6 +13988,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -13950,6 +14004,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -13964,7 +14019,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -13979,7 +14033,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -13994,7 +14047,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -14009,7 +14061,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -14039,6 +14090,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -14054,6 +14106,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -14069,6 +14122,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -14084,6 +14138,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -14099,6 +14154,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -15357,6 +15413,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -15372,6 +15429,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -15708,6 +15766,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -15723,6 +15782,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -15807,6 +15867,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -16082,7 +16143,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -16112,6 +16172,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -16127,6 +16188,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -16142,6 +16204,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -16157,6 +16220,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -17882,6 +17946,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -18150,6 +18215,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -18221,6 +18287,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -18264,6 +18331,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -18293,6 +18361,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -18307,6 +18376,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -19490,6 +19560,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -19505,6 +19576,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21471,7 +21543,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21514,6 +21585,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21543,6 +21615,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21571,6 +21644,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21585,7 +21659,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21600,7 +21673,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21615,7 +21687,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -21631,6 +21702,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -22992,6 +23064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23281,7 +23354,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23296,7 +23368,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23311,7 +23382,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23326,7 +23396,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23341,7 +23410,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23356,7 +23424,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23370,7 +23437,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23385,7 +23451,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23400,7 +23465,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23415,7 +23479,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23431,6 +23494,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23446,6 +23510,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23806,6 +23871,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23821,6 +23887,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23850,6 +23917,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23879,6 +23947,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23894,6 +23963,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -23909,6 +23979,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP4A9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -24490,6 +24561,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -24603,6 +24675,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -24618,6 +24691,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -24633,6 +24707,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -24648,6 +24723,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -25281,6 +25357,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26128,6 +26205,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26143,6 +26221,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26158,6 +26237,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26187,6 +26267,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26201,6 +26282,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26215,6 +26297,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26229,6 +26312,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26517,6 +26601,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -26532,6 +26617,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27599,6 +27685,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27614,6 +27701,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27629,6 +27717,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27644,6 +27733,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27659,6 +27749,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27674,6 +27765,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27689,6 +27781,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -27704,6 +27797,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28338,6 +28432,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28353,6 +28448,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28368,6 +28464,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28383,6 +28480,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28412,6 +28510,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28426,6 +28525,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28441,6 +28541,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28455,6 +28556,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28470,6 +28572,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28485,6 +28588,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -28500,6 +28604,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -29466,7 +29571,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -29537,7 +29641,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -29566,7 +29669,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -29582,6 +29684,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -29596,6 +29699,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -29610,6 +29714,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -29625,6 +29730,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -30543,6 +30649,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -30656,6 +30763,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -30671,6 +30779,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -30686,6 +30795,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -30701,6 +30811,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31054,6 +31165,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31069,6 +31181,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31084,6 +31197,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31449,7 +31563,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31464,7 +31577,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31480,6 +31592,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31495,6 +31608,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31510,6 +31624,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31525,6 +31640,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31554,6 +31670,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31596,7 +31713,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31611,7 +31727,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -31890,6 +32005,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32003,6 +32119,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32018,6 +32135,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32032,6 +32150,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32047,6 +32166,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32518,7 +32638,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32533,7 +32652,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32548,7 +32666,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32563,7 +32680,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32578,7 +32694,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32606,7 +32721,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32635,7 +32749,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32650,7 +32763,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32665,7 +32777,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -32680,7 +32791,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33138,6 +33248,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33167,6 +33278,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33196,6 +33308,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33211,6 +33324,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33226,6 +33340,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33241,6 +33356,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33270,6 +33386,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33285,6 +33402,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33559,6 +33677,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33574,6 +33693,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33589,6 +33709,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33604,6 +33725,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33619,6 +33741,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33634,6 +33757,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33649,6 +33773,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33664,6 +33789,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33679,6 +33805,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33694,6 +33821,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33709,6 +33837,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -33724,6 +33853,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35080,7 +35210,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35179,7 +35308,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35195,6 +35323,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35210,6 +35339,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35225,6 +35355,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35240,6 +35371,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35596,6 +35728,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35667,6 +35800,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35682,6 +35816,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35697,6 +35832,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35740,6 +35876,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -35755,6 +35892,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -36893,6 +37031,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -36908,6 +37047,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -36937,6 +37077,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37022,6 +37163,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37051,6 +37193,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37571,6 +37714,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37586,6 +37730,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37601,6 +37746,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37861,6 +38007,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37876,6 +38023,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -37891,6 +38039,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -38128,6 +38277,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -38143,6 +38293,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -38158,6 +38309,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -38173,6 +38325,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -38695,6 +38848,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39029,6 +39183,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39044,6 +39199,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39058,7 +39214,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39087,7 +39242,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39117,6 +39271,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39132,6 +39287,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39147,6 +39303,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39439,7 +39596,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39455,6 +39611,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39470,6 +39627,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39499,6 +39657,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39514,6 +39673,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39529,6 +39689,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39558,6 +39719,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39573,6 +39735,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39588,6 +39751,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39602,7 +39766,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39893,7 +40056,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39909,6 +40071,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -39924,6 +40087,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40240,6 +40404,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40269,6 +40434,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40284,6 +40450,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40299,6 +40466,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40314,6 +40482,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40329,6 +40498,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40344,6 +40514,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40359,6 +40530,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -40374,6 +40546,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -41027,6 +41200,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -41042,6 +41216,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -41071,6 +41246,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -42828,6 +43004,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -42843,6 +43020,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -42858,6 +43036,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -42901,6 +43080,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44123,6 +44303,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44138,6 +44319,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44153,6 +44335,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44168,6 +44351,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44183,6 +44367,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44198,6 +44383,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44213,6 +44399,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44228,6 +44415,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44243,6 +44431,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44258,6 +44447,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44272,6 +44462,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44549,6 +44740,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44564,6 +44756,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44579,6 +44772,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44608,6 +44802,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44623,6 +44818,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -44638,6 +44834,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46162,6 +46359,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46232,7 +46430,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46248,6 +46445,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46263,6 +46461,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46278,6 +46477,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46293,6 +46493,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46308,6 +46509,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46520,6 +46722,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -46534,6 +46737,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -48174,6 +48378,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -48188,6 +48393,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49005,7 +49211,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49021,6 +49226,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49036,6 +49242,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49051,6 +49258,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49080,6 +49288,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49109,6 +49318,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49123,7 +49333,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49138,7 +49347,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49153,7 +49361,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49168,7 +49375,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49674,6 +49880,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -49731,6 +49938,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50203,6 +50411,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50218,6 +50427,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50259,6 +50469,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50274,6 +50485,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50289,6 +50501,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50304,6 +50517,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50319,6 +50533,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50334,6 +50549,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50349,6 +50565,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50735,6 +50952,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50750,6 +50968,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50765,6 +50984,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50780,6 +51000,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50795,6 +51016,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50810,6 +51032,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50825,6 +51048,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50840,6 +51064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50869,6 +51094,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50884,6 +51110,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -50899,6 +51126,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51405,7 +51633,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51420,7 +51647,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51435,7 +51661,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51477,7 +51702,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51492,7 +51716,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51507,7 +51730,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51522,7 +51744,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51537,7 +51758,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51552,7 +51772,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51567,7 +51786,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -51844,6 +52062,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -52994,6 +53213,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53009,6 +53229,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53024,6 +53245,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53039,6 +53261,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53054,6 +53277,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53069,6 +53293,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53084,6 +53309,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53404,6 +53630,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53419,6 +53646,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53434,6 +53662,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53449,6 +53678,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53464,6 +53694,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53479,6 +53710,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -53494,6 +53726,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55199,6 +55432,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55214,6 +55448,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55229,6 +55464,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55244,6 +55480,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55787,6 +56024,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55802,6 +56040,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55831,6 +56070,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -55860,6 +56100,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -58153,6 +58394,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -58168,6 +58410,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -58183,6 +58426,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -58198,6 +58442,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -58213,6 +58458,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -59569,6 +59815,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -59584,6 +59831,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -59626,7 +59874,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60127,6 +60374,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60142,6 +60390,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60157,6 +60406,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60172,6 +60422,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60187,6 +60438,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60202,6 +60454,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60217,6 +60470,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60575,6 +60829,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60590,6 +60845,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60603,7 +60859,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60619,6 +60874,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60647,6 +60903,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60662,6 +60919,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60677,6 +60935,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60692,6 +60951,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60707,6 +60967,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -60722,6 +60983,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61179,6 +61441,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61193,7 +61456,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61221,7 +61483,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61236,7 +61497,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61251,7 +61511,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61266,7 +61525,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61281,7 +61539,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61296,7 +61553,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -61312,6 +61568,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -62854,6 +63111,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -62869,6 +63127,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63101,6 +63360,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63116,6 +63376,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63131,6 +63392,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63146,6 +63408,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63161,6 +63424,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63176,6 +63440,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63191,6 +63456,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63206,6 +63472,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63221,6 +63488,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63236,6 +63504,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63460,6 +63729,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63489,6 +63759,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63503,6 +63774,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63545,6 +63817,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63573,6 +63846,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63588,6 +63862,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63603,6 +63878,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -63618,6 +63894,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -64503,6 +64780,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -64517,6 +64795,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -64545,6 +64824,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -64573,6 +64853,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -64869,6 +65150,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -64883,7 +65165,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66215,6 +66496,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66230,6 +66512,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66245,6 +66528,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66260,6 +66544,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66275,6 +66560,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66290,6 +66576,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66305,6 +66592,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66320,6 +66608,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66335,6 +66624,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66350,6 +66640,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66365,6 +66656,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -66380,6 +66672,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67651,6 +67944,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67666,6 +67960,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67681,6 +67976,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67696,6 +67992,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67711,6 +68008,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67726,6 +68024,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67741,6 +68040,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67756,6 +68056,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67771,6 +68072,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -67786,6 +68088,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68005,7 +68308,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68020,7 +68322,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68035,7 +68336,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68050,7 +68350,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68065,7 +68364,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68080,7 +68378,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68095,7 +68392,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68110,7 +68406,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68125,7 +68420,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68140,7 +68434,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68903,7 +69196,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68960,7 +69252,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68976,6 +69267,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -68990,7 +69282,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69394,7 +69685,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69409,7 +69699,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69425,6 +69714,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69440,6 +69730,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69454,7 +69745,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69470,6 +69760,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69484,7 +69775,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69500,6 +69790,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -69515,6 +69806,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -74879,7 +75171,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -74894,7 +75185,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -75854,6 +76144,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -75981,6 +76272,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -75996,6 +76288,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -76473,6 +76766,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -77452,6 +77746,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -77495,6 +77790,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -77510,6 +77806,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -77525,6 +77822,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -78180,6 +78478,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -78195,6 +78494,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -78210,6 +78510,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -79169,6 +79470,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -79440,6 +79742,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -79455,6 +79758,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -79470,6 +79774,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80030,7 +80335,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80059,7 +80363,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80075,6 +80378,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80090,6 +80394,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80104,7 +80409,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80119,7 +80423,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80134,7 +80437,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80150,6 +80452,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80164,7 +80467,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -80179,7 +80481,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82092,6 +82393,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82107,6 +82409,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82121,6 +82424,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82136,6 +82440,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82151,6 +82456,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82166,6 +82472,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82181,6 +82488,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82196,6 +82504,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82211,6 +82520,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82226,6 +82536,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82241,6 +82552,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -82256,6 +82568,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -83289,7 +83602,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -83304,7 +83616,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -83319,7 +83630,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -83334,7 +83644,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -83350,6 +83659,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -83365,6 +83675,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -83999,6 +84310,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84014,6 +84326,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84028,6 +84341,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84042,6 +84356,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84056,6 +84371,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84070,6 +84386,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84084,6 +84401,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84098,6 +84416,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84113,6 +84432,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84128,6 +84448,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84143,6 +84464,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84158,6 +84480,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84371,6 +84694,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84386,6 +84710,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -84401,6 +84726,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86721,6 +87047,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86736,6 +87063,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86751,6 +87079,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86766,6 +87095,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86781,6 +87111,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86796,6 +87127,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86811,6 +87143,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86826,6 +87159,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -86841,6 +87175,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87350,6 +87685,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87654,7 +87990,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87670,6 +88005,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87685,6 +88021,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87714,6 +88051,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87743,6 +88081,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87758,6 +88097,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87772,7 +88112,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87787,7 +88126,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87802,7 +88140,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -87818,6 +88155,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88219,6 +88557,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88234,6 +88573,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88249,6 +88589,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88264,6 +88605,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88279,6 +88621,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88294,6 +88637,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88308,7 +88652,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88338,6 +88681,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88353,6 +88697,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88368,6 +88713,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88383,6 +88729,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88597,6 +88944,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -88612,6 +88960,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89073,6 +89422,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89088,6 +89438,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89103,6 +89454,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89118,6 +89470,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89133,6 +89486,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89148,6 +89502,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89163,6 +89518,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89192,6 +89548,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89207,6 +89564,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89867,6 +90225,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89882,6 +90241,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89951,7 +90311,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89966,7 +90325,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89981,7 +90339,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -89996,7 +90353,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90011,7 +90367,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90026,7 +90381,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90632,6 +90986,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90646,6 +91001,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90661,6 +91017,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90675,6 +91032,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90704,6 +91062,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90719,6 +91078,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90748,6 +91108,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90763,6 +91124,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -90778,6 +91140,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92213,6 +92576,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92228,6 +92592,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92568,6 +92933,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92583,6 +92949,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92598,6 +92965,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92627,6 +92995,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92642,6 +93011,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92657,6 +93027,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92899,6 +93270,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92914,6 +93286,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -92929,6 +93302,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -93314,6 +93688,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -93341,6 +93716,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -93749,6 +94125,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -93764,6 +94141,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -93876,6 +94254,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -93891,6 +94270,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -93906,6 +94286,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94165,6 +94546,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94180,6 +94562,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94292,6 +94675,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94307,6 +94691,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94322,6 +94707,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94952,7 +95338,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94967,7 +95352,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94982,7 +95366,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -94997,7 +95380,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95012,7 +95394,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95040,7 +95421,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95069,7 +95449,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95084,7 +95463,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95099,7 +95477,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95114,7 +95491,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95351,6 +95727,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95365,7 +95742,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95380,7 +95756,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95396,6 +95771,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95410,7 +95786,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95426,6 +95801,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -95440,7 +95816,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -96428,7 +96803,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -96443,7 +96817,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -96473,6 +96846,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97117,6 +97491,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97132,6 +97507,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97147,6 +97523,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97162,6 +97539,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97177,6 +97555,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97192,6 +97571,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97207,6 +97587,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97222,6 +97603,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97237,6 +97619,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97252,6 +97635,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97267,6 +97651,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -97282,6 +97667,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99700,6 +100086,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99715,6 +100102,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99730,6 +100118,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99745,6 +100134,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99760,6 +100150,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99775,6 +100166,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99790,6 +100182,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -99805,6 +100198,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -101698,6 +102092,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102101,6 +102496,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102115,7 +102511,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102131,6 +102526,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102160,6 +102556,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102175,6 +102572,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102190,6 +102588,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102219,6 +102618,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102234,6 +102634,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102248,7 +102649,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102264,6 +102664,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102621,7 +103022,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102636,7 +103036,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102666,6 +103065,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102681,6 +103081,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102696,6 +103097,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102725,6 +103127,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102753,7 +103156,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102768,7 +103170,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -102783,7 +103184,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -103077,6 +103477,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -103092,6 +103493,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -103205,6 +103607,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -103220,6 +103623,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -103235,6 +103639,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -103649,7 +104054,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -103678,7 +104082,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -104240,6 +104643,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -104255,6 +104659,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -104937,7 +105342,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -104952,7 +105356,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -104981,7 +105384,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -104996,7 +105398,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105011,7 +105412,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105377,6 +105777,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105406,6 +105807,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105434,6 +105836,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105449,6 +105852,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105464,6 +105868,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105479,6 +105884,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105494,6 +105900,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105509,6 +105916,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105868,6 +106276,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105883,6 +106292,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105898,6 +106308,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105913,6 +106324,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105928,6 +106340,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105943,6 +106356,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -105958,6 +106372,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -106000,7 +106415,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -106015,7 +106429,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107241,7 +107654,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107271,6 +107683,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107286,6 +107699,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107301,6 +107715,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107316,6 +107731,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107331,6 +107747,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107346,6 +107763,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107361,6 +107779,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107390,6 +107809,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -107405,6 +107825,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -111778,6 +112199,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -111793,6 +112215,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -111808,6 +112231,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -111851,6 +112275,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -112088,6 +112513,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -112847,7 +113273,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -112975,6 +113400,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -112990,6 +113416,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -113005,6 +113432,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115615,6 +116043,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115630,6 +116059,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115645,6 +116075,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115660,6 +116091,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115675,6 +116107,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115690,6 +116123,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115705,6 +116139,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115720,6 +116155,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115735,6 +116171,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115750,6 +116187,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -115765,6 +116203,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117278,6 +117717,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117305,6 +117745,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117320,6 +117761,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117335,6 +117777,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117350,6 +117793,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117365,6 +117809,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117380,6 +117825,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117395,6 +117841,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -117409,6 +117856,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118552,6 +119000,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118567,6 +119016,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118582,6 +119032,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118597,6 +119048,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118612,6 +119064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118627,6 +119080,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118642,6 +119096,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118657,6 +119112,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118672,6 +119128,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118687,6 +119144,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118702,6 +119160,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -118717,6 +119176,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119306,6 +119766,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119321,6 +119782,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119336,6 +119798,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119351,6 +119814,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119366,6 +119830,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119381,6 +119846,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119931,6 +120397,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119946,6 +120413,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119961,6 +120429,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119976,6 +120445,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -119991,6 +120461,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120006,6 +120477,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120021,6 +120493,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120600,6 +121073,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120615,6 +121089,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120630,6 +121105,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120645,6 +121121,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120660,6 +121137,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120689,6 +121167,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120704,6 +121183,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120733,6 +121213,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120748,6 +121229,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -120763,6 +121245,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121563,6 +122046,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121578,6 +122062,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121592,6 +122077,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121607,6 +122093,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121622,6 +122109,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121637,6 +122125,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121652,6 +122141,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121667,6 +122157,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121682,6 +122173,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121696,6 +122188,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121710,6 +122203,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -121725,6 +122219,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122099,6 +122594,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122324,6 +122820,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122338,6 +122835,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122353,6 +122851,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122368,6 +122867,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122383,6 +122883,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122398,6 +122899,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122413,6 +122915,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122428,6 +122931,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122443,6 +122947,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122457,6 +122962,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122471,6 +122977,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122486,6 +122993,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122810,6 +123318,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -122824,6 +123333,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123173,7 +123683,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123188,7 +123697,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123231,7 +123739,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123260,7 +123767,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123275,7 +123781,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123290,7 +123795,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123305,7 +123809,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123320,7 +123823,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -123335,7 +123837,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -124251,6 +124752,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -124266,6 +124768,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -124365,6 +124868,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -124394,6 +124898,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -124409,6 +124914,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -125646,6 +126152,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -125759,6 +126266,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -125774,6 +126282,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -125789,6 +126298,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -125804,6 +126314,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126089,6 +126600,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126103,7 +126615,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126118,7 +126629,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126147,7 +126657,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126191,6 +126700,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126206,6 +126716,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126221,6 +126732,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126236,6 +126748,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126251,6 +126764,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -126554,6 +127068,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127038,7 +127553,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127137,7 +127651,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127152,7 +127665,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127167,7 +127679,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127182,7 +127693,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127197,7 +127707,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127518,6 +128027,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127532,6 +128042,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127547,6 +128058,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127562,6 +128074,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127577,6 +128090,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127620,6 +128134,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127635,6 +128150,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127650,6 +128166,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127665,6 +128182,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127680,6 +128198,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127935,6 +128454,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127950,6 +128470,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127964,6 +128485,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127978,6 +128500,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -127992,6 +128515,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128007,6 +128531,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128021,6 +128546,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128035,6 +128561,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128049,7 +128576,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128064,7 +128590,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128079,7 +128604,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128094,7 +128618,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128688,7 +129211,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128717,6 +129239,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128731,6 +129254,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128745,6 +129269,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -128760,6 +129285,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -129068,7 +129594,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -129083,7 +129608,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -129099,6 +129623,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -129114,6 +129639,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -129142,6 +129668,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -129156,7 +129683,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -129185,6 +129711,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -130171,6 +130698,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -130185,6 +130713,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -130199,6 +130728,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -130213,6 +130743,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131323,6 +131854,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131364,6 +131896,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE-',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131379,6 +131912,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE-1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131394,6 +131928,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131409,6 +131944,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131424,6 +131960,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131439,6 +131976,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131453,7 +131991,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131469,6 +132006,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131778,7 +132316,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131794,6 +132331,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131851,6 +132389,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131866,6 +132405,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131893,7 +132433,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131908,7 +132447,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131923,7 +132461,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -131938,7 +132475,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133450,6 +133986,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133465,6 +134002,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133535,6 +134073,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133550,6 +134089,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133565,6 +134105,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133580,6 +134121,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133595,6 +134137,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -133610,6 +134153,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135011,6 +135555,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135040,6 +135585,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135054,7 +135600,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135070,6 +135615,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135085,6 +135631,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135100,6 +135647,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135143,6 +135691,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -135158,6 +135707,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136191,6 +136741,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136206,6 +136757,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136221,6 +136773,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136236,6 +136789,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136251,6 +136805,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136266,6 +136821,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136281,6 +136837,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136296,6 +136853,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136311,6 +136869,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136326,6 +136885,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136585,6 +137145,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136600,6 +137161,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136615,6 +137177,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136630,6 +137193,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136645,6 +137209,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136660,6 +137225,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136675,6 +137241,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136690,6 +137257,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136705,6 +137273,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136720,6 +137289,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136735,6 +137305,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -136750,6 +137321,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -138935,6 +139507,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -138950,6 +139523,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -138965,6 +139539,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -138978,7 +139553,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -138993,7 +139567,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -139008,7 +139581,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -139023,7 +139595,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -139067,6 +139638,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -139082,6 +139654,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -139097,6 +139670,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -139664,6 +140238,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -139678,6 +140253,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -140406,6 +140982,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -141683,6 +142260,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -141988,7 +142566,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -142003,7 +142580,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -142033,6 +142609,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -142103,7 +142680,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -142132,7 +142708,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -142917,6 +143492,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143030,6 +143606,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143045,6 +143622,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143060,6 +143638,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143075,6 +143654,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143366,6 +143946,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143381,6 +143962,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143396,6 +143978,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143411,6 +143994,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143426,6 +144010,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143441,6 +144026,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143456,6 +144042,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143471,6 +144058,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143750,6 +144338,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143765,6 +144354,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143780,6 +144370,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143795,6 +144386,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143810,6 +144402,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143825,6 +144418,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143840,6 +144434,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -143855,6 +144450,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -144386,6 +144982,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146752,6 +147349,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146766,6 +147364,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146781,6 +147380,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146796,6 +147396,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146811,6 +147412,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146826,6 +147428,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146841,6 +147444,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146870,6 +147474,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146885,6 +147490,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146900,6 +147506,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -146915,6 +147522,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147286,6 +147894,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147315,6 +147924,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147344,6 +147954,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147373,6 +147984,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147388,6 +148000,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147403,6 +148016,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147418,6 +148032,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147433,6 +148048,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -147448,6 +148064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148472,7 +149089,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148501,7 +149117,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148530,7 +149145,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148545,7 +149159,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148859,6 +149472,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148874,6 +149488,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148889,6 +149504,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148904,6 +149520,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148919,6 +149536,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148934,6 +149552,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148949,6 +149568,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148964,6 +149584,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148979,6 +149600,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -148994,6 +149616,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP4F12',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149023,6 +149646,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149345,6 +149969,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149360,6 +149985,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149375,6 +150001,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149390,6 +150017,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149405,6 +150033,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149420,6 +150049,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149435,6 +150065,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149450,6 +150081,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149465,6 +150097,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149480,6 +150113,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP4F12',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -149509,6 +150143,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -150670,6 +151305,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -150685,6 +151321,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157121,6 +157758,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157136,6 +157774,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157151,6 +157790,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157166,6 +157806,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157181,6 +157822,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157737,7 +158379,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157753,6 +158394,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157768,6 +158410,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157783,6 +158426,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157798,6 +158442,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157813,6 +158458,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157828,6 +158474,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157843,6 +158490,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157857,7 +158505,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157872,7 +158519,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157887,7 +158533,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -157902,7 +158547,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158483,6 +159127,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158497,7 +159142,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158526,7 +159170,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158542,6 +159185,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158557,6 +159201,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158572,6 +159217,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158753,6 +159399,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158782,6 +159429,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158825,6 +159473,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158839,6 +159488,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158867,6 +159517,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -158882,6 +159533,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -159523,7 +160175,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -159623,6 +160274,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -159638,6 +160290,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -159653,6 +160306,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -159668,6 +160322,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -159683,6 +160338,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -159939,6 +160595,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163243,6 +163900,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163258,6 +163916,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163273,6 +163932,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163316,6 +163976,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163331,6 +163992,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163374,6 +164036,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163389,6 +164052,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -163404,6 +164068,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -164582,6 +165247,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -164639,6 +165305,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -164654,6 +165321,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165366,6 +166034,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165381,6 +166050,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165396,6 +166066,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165411,6 +166082,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165426,6 +166098,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165441,6 +166114,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165456,6 +166130,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165962,6 +166637,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -165977,6 +166653,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166006,6 +166683,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166021,6 +166699,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166036,6 +166715,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166051,6 +166731,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166066,6 +166747,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166081,6 +166763,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166096,6 +166779,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166111,6 +166795,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166395,6 +167080,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166410,6 +167096,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166425,6 +167112,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166440,6 +167128,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166455,6 +167144,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166470,6 +167160,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166485,6 +167176,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166798,6 +167490,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166825,6 +167518,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166840,6 +167534,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -166855,6 +167550,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167141,6 +167837,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167155,7 +167852,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167171,6 +167867,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167185,6 +167882,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167200,6 +167898,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167215,6 +167914,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167445,6 +168145,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167459,7 +168160,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167474,7 +168174,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167490,6 +168189,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167504,7 +168204,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167754,6 +168453,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167867,6 +168567,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167882,6 +168583,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE-',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167897,6 +168599,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -167912,6 +168615,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -169624,7 +170328,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -169640,6 +170343,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -169655,6 +170359,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -169670,6 +170375,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -170525,6 +171231,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -170540,6 +171247,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -170555,6 +171263,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -170570,6 +171279,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -170585,6 +171295,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -170600,6 +171311,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -170615,6 +171327,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172061,6 +172774,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172075,7 +172789,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172188,7 +172901,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172204,6 +172916,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172218,7 +172931,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172475,6 +173187,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172490,6 +173203,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172505,6 +173219,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172520,6 +173235,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -172535,6 +173251,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -176251,6 +176968,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178087,6 +178805,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178101,6 +178820,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178116,6 +178836,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178131,6 +178852,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178146,6 +178868,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178161,6 +178884,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178176,6 +178900,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178191,6 +178916,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178206,6 +178932,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178221,6 +178948,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178236,6 +178964,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178251,6 +178980,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178764,6 +179494,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178793,6 +179524,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178822,6 +179554,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -178837,6 +179570,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180211,6 +180945,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180226,6 +180961,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180241,6 +180977,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180256,6 +180993,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180271,6 +181009,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180286,6 +181025,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180301,6 +181041,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180316,6 +181057,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180331,6 +181073,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180346,6 +181089,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180361,6 +181105,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -180376,6 +181121,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181171,6 +181917,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181227,6 +181974,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181241,6 +181989,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181255,6 +182004,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181269,6 +182019,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181283,6 +182034,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181297,6 +182049,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181311,6 +182064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -181806,6 +182560,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182116,6 +182871,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182131,6 +182887,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182146,6 +182903,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182161,6 +182919,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182176,6 +182935,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182191,6 +182951,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182206,6 +182967,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -182235,6 +182997,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183070,6 +183833,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183084,6 +183848,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183734,6 +184499,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183748,7 +184514,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183763,7 +184528,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183778,7 +184542,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183793,7 +184556,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183808,7 +184570,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183823,7 +184584,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183853,6 +184613,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183868,6 +184629,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183883,6 +184645,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -183898,6 +184661,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184211,7 +184975,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184227,6 +184990,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184242,6 +185006,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184256,6 +185021,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184271,6 +185037,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184286,6 +185053,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184301,6 +185069,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184315,7 +185084,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184330,7 +185098,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184346,6 +185113,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184360,7 +185128,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -184375,7 +185142,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -186368,6 +187134,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -186383,6 +187150,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -192262,7 +193030,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -192305,7 +193072,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -192320,7 +193086,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193466,6 +194231,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193480,6 +194246,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193494,6 +194261,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193508,6 +194276,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193522,6 +194291,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193536,6 +194306,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193578,6 +194349,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -193592,6 +194364,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -195348,6 +196121,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -195432,7 +196206,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -195447,7 +196220,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -195462,7 +196234,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -195477,7 +196248,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -195493,6 +196263,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -195508,6 +196279,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196105,7 +196877,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196121,6 +196892,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196135,6 +196907,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196150,6 +196923,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196165,6 +196939,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196377,6 +197152,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196392,6 +197168,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196407,6 +197184,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196422,6 +197200,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196437,6 +197216,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196452,6 +197232,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196467,6 +197248,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196510,6 +197292,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196525,6 +197308,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196540,6 +197324,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196955,6 +197740,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196970,6 +197756,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -196985,6 +197772,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197000,6 +197788,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197014,7 +197803,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197030,6 +197818,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197044,6 +197833,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197058,6 +197848,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197073,6 +197864,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197088,6 +197880,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197102,6 +197895,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197116,6 +197910,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197407,7 +198202,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197423,6 +198217,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197438,6 +198233,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197453,6 +198249,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197468,6 +198265,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197483,6 +198281,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197498,6 +198297,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197513,6 +198313,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197554,7 +198355,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197879,6 +198679,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197892,7 +198693,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197908,6 +198708,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197923,6 +198724,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197938,6 +198740,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197953,6 +198756,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197968,6 +198772,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197983,6 +198788,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -197998,6 +198804,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -198013,6 +198820,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -198028,6 +198836,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -198043,6 +198852,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -198316,7 +199126,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -198331,7 +199140,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -198346,7 +199154,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -199538,6 +200345,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -199553,6 +200361,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -200181,6 +200990,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -200196,6 +201006,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -200211,6 +201022,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -200226,6 +201038,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -200241,6 +201054,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -200541,7 +201355,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -200556,7 +201369,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202055,6 +202867,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202070,6 +202883,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202182,6 +202996,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202197,6 +203012,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202212,6 +203028,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202466,6 +203283,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202481,6 +203299,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202496,6 +203315,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202510,7 +203330,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202526,6 +203345,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202540,6 +203360,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202554,6 +203375,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -202568,6 +203390,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203050,6 +203873,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203065,6 +203889,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203079,6 +203904,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203106,7 +203932,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203940,6 +204765,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203955,6 +204781,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203970,6 +204797,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -203985,6 +204813,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204056,6 +204885,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204071,6 +204901,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204349,7 +205180,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204448,6 +205278,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204462,6 +205293,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204476,6 +205308,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204490,6 +205323,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204503,7 +205337,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204770,6 +205603,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204785,6 +205619,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204800,6 +205635,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204815,6 +205651,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204830,6 +205667,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204845,6 +205683,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204860,6 +205699,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204875,6 +205715,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -204890,6 +205731,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205302,7 +206144,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205317,7 +206158,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205332,7 +206172,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205347,7 +206186,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205363,6 +206201,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205378,6 +206217,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205654,6 +206494,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205668,7 +206509,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205683,7 +206523,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205713,6 +206552,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205755,6 +206595,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205798,6 +206639,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -205812,6 +206654,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -206158,6 +207001,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -206173,6 +207017,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -206286,6 +207131,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -206719,6 +207565,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207388,6 +208235,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207402,7 +208250,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207431,7 +208278,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207447,6 +208293,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207461,7 +208308,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207476,7 +208322,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207492,6 +208337,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -207507,6 +208353,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -209147,6 +209994,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -209218,6 +210066,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -209903,7 +210752,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -209919,6 +210767,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -209934,6 +210783,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -209977,6 +210827,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -210006,6 +210857,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -210048,7 +210900,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -210063,7 +210914,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -211871,6 +212721,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -211885,7 +212736,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -211901,6 +212751,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -211916,6 +212767,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -211931,6 +212783,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -211946,6 +212799,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -211961,6 +212815,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -212238,6 +213093,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214257,7 +215113,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214273,6 +215128,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214287,6 +215143,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214740,7 +215597,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214784,6 +215640,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214841,6 +215698,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214869,7 +215727,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214884,7 +215741,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -214899,7 +215755,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215193,7 +216048,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215209,6 +216063,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215224,6 +216079,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215239,6 +216095,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215254,6 +216111,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215269,6 +216127,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215284,6 +216143,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215299,6 +216159,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215314,6 +216175,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215329,6 +216191,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215357,6 +216220,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215557,7 +216421,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215573,6 +216436,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215588,6 +216452,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215603,6 +216468,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215618,6 +216484,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215633,6 +216500,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215648,6 +216516,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215663,6 +216532,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215678,6 +216548,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215693,6 +216564,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -215721,6 +216593,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216018,6 +216891,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216456,6 +217330,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216470,6 +217345,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216485,6 +217361,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216528,6 +217405,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216543,6 +217421,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216586,6 +217465,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216600,6 +217480,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -216615,6 +217496,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -217048,6 +217930,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218055,6 +218938,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218069,7 +218953,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218085,6 +218968,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218584,6 +219468,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218598,6 +219483,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218613,6 +219499,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218627,6 +219514,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218642,6 +219530,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218657,6 +219546,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218671,7 +219561,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218687,6 +219576,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218701,6 +219591,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218715,6 +219606,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218729,6 +219621,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -218743,6 +219636,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219039,7 +219933,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219055,6 +219948,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219070,6 +219964,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219085,6 +219980,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219100,6 +219996,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219115,6 +220012,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219130,6 +220028,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219145,6 +220044,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219160,6 +220060,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219175,6 +220076,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219190,6 +220092,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219539,6 +220442,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219554,6 +220458,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219569,6 +220474,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219584,6 +220490,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219599,6 +220506,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219614,6 +220522,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219629,6 +220538,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219644,6 +220554,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219659,6 +220570,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219674,6 +220586,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219688,7 +220601,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -219704,6 +220616,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220228,6 +221141,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220243,6 +221157,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220258,6 +221173,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220273,6 +221189,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220288,6 +221205,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220303,6 +221221,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220318,6 +221237,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220333,6 +221253,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220348,6 +221269,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220363,6 +221285,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220392,6 +221315,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220660,6 +221584,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220689,6 +221614,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220704,6 +221630,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220719,6 +221646,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220734,6 +221662,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220749,6 +221678,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220764,6 +221694,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220779,6 +221710,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220794,6 +221726,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -220809,6 +221742,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -221309,7 +222243,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222743,6 +223676,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222786,6 +223720,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222801,6 +223736,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222816,6 +223752,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222831,6 +223768,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222846,6 +223784,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222861,6 +223800,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222876,6 +223816,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222891,6 +223832,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -222906,6 +223848,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -223153,6 +224096,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -223251,6 +224195,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -223557,6 +224502,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -223572,6 +224518,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -223643,6 +224590,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -223658,6 +224606,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -223673,6 +224622,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224202,6 +225152,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224217,6 +225168,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224232,6 +225184,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224247,6 +225200,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224276,6 +225230,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224305,6 +225260,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224334,6 +225290,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224349,6 +225306,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224364,6 +225322,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224668,7 +225627,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224683,7 +225641,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224698,7 +225655,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224713,7 +225669,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224728,7 +225683,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224743,7 +225697,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224758,7 +225711,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224787,7 +225739,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224816,7 +225767,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -224831,7 +225781,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP4A11',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -228006,6 +228955,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -230082,6 +231032,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -230097,6 +231048,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232364,6 +233316,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232378,7 +233331,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232392,7 +233344,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232449,6 +233400,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232463,6 +233415,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232477,6 +233430,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232492,6 +233446,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232507,6 +233462,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -232522,6 +233478,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -233066,7 +234023,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -233138,6 +234094,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -233167,6 +234124,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -233182,6 +234140,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -233209,7 +234168,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -233224,7 +234182,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -234969,6 +235926,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -234984,6 +235942,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -236154,6 +237113,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -236169,6 +237129,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -236184,6 +237145,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -236199,6 +237161,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -236214,6 +237177,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -236229,6 +237193,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -236244,6 +237209,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239176,7 +240142,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239191,7 +240156,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239206,7 +240170,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239221,7 +240184,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239236,7 +240198,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239265,7 +240226,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239295,6 +240255,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239310,6 +240271,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239325,6 +240287,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239340,6 +240303,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239678,6 +240642,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239693,6 +240658,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239708,6 +240674,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239723,6 +240690,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239738,6 +240706,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239753,6 +240722,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239780,7 +240750,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -239795,7 +240764,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240056,6 +241024,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240071,6 +241040,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240086,6 +241056,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240101,6 +241072,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240116,6 +241088,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240131,6 +241104,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240158,7 +241132,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240173,7 +241146,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240466,6 +241438,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240481,6 +241454,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240496,6 +241470,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240511,6 +241486,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -240540,6 +241516,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -242809,7 +243786,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -242825,6 +243801,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -242840,6 +243817,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -243062,6 +244040,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -243077,6 +244056,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -243092,6 +244072,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -243107,6 +244088,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -243122,6 +244104,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245280,6 +246263,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245295,6 +246279,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245310,6 +246295,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245325,6 +246311,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245340,6 +246327,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245355,6 +246343,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245370,6 +246359,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245385,6 +246375,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245400,6 +246391,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245415,6 +246407,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245430,6 +246423,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -245445,6 +246439,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -248103,6 +249098,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -248132,6 +249128,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -248147,6 +249144,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -248162,6 +249160,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249097,7 +250096,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249113,6 +250111,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249128,6 +250127,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249143,6 +250143,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249158,6 +250159,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249173,6 +250175,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249188,6 +250191,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249203,6 +250207,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249218,6 +250223,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249233,6 +250239,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249247,7 +250254,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249262,7 +250268,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -249555,6 +250560,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -251734,7 +252740,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -251778,6 +252783,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252539,6 +253545,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252554,6 +253561,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252582,6 +253590,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252596,6 +253605,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252637,6 +253647,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252652,6 +253663,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252667,6 +253679,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252695,6 +253708,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252966,6 +253980,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -252981,6 +253996,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253009,6 +254025,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253023,6 +254040,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253064,6 +254082,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253079,6 +254098,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253094,6 +254114,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253122,6 +254143,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253416,6 +254438,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253431,6 +254454,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253446,6 +254470,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253460,6 +254485,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253474,7 +254500,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253489,7 +254514,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253505,6 +254529,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253520,6 +254545,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253535,6 +254561,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253550,6 +254577,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253565,6 +254593,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -253580,6 +254609,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254479,6 +255509,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254494,6 +255525,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254523,6 +255555,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254565,6 +255598,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254579,6 +255613,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254594,6 +255629,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254609,6 +255645,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -254624,6 +255661,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257075,7 +258113,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257104,6 +258141,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257188,7 +258226,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257203,7 +258240,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257898,6 +258934,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257927,6 +258964,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257942,6 +258980,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257957,6 +258996,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257972,6 +259012,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -257987,6 +259028,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -258738,6 +259780,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259505,6 +260548,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259520,6 +260564,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259549,6 +260594,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259606,6 +260652,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259621,6 +260668,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259636,6 +260684,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259651,6 +260700,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259666,6 +260716,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259931,6 +260982,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259946,6 +260998,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259961,6 +261014,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -259976,6 +261030,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260570,6 +261625,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260585,6 +261641,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260600,6 +261657,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260615,6 +261673,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260630,6 +261689,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260659,6 +261719,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260674,6 +261735,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260703,6 +261765,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260718,6 +261781,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -260733,6 +261797,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261480,6 +262545,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261495,6 +262561,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261509,7 +262576,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261524,7 +262590,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261539,7 +262604,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261554,7 +262618,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261570,6 +262633,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261585,6 +262649,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261600,6 +262665,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261615,6 +262681,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261629,7 +262696,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -261645,6 +262711,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262025,7 +263092,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262124,7 +263190,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2J2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262153,7 +263218,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262169,6 +263233,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262184,6 +263249,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262480,6 +263546,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262495,6 +263562,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262510,6 +263578,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -262525,6 +263594,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263197,6 +264267,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263226,6 +264297,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263544,6 +264616,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263559,6 +264632,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263573,7 +264647,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263588,7 +264661,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263603,7 +264675,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263618,7 +264689,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263633,7 +264703,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263648,7 +264717,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263663,7 +264731,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263678,7 +264745,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263694,6 +264760,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263944,6 +265011,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -263973,6 +265041,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -264002,6 +265071,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -264031,6 +265101,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -264329,6 +265400,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -264343,7 +265415,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -264358,7 +265429,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265533,6 +266603,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265548,6 +266619,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265577,6 +266649,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265592,6 +266665,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265607,6 +266681,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265636,6 +266711,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265651,6 +266727,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP4A11',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -265666,6 +266743,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP4A9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -266111,6 +267189,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -266328,6 +267407,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -266343,6 +267423,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -266358,6 +267439,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -266623,6 +267705,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267041,7 +268124,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267085,6 +268167,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267100,6 +268183,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267115,6 +268199,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267130,6 +268215,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267145,6 +268231,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267160,6 +268247,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267174,7 +268262,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267837,6 +268924,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267852,6 +268940,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267866,6 +268955,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267881,6 +268971,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267896,6 +268987,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267911,6 +269003,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267926,6 +269019,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267941,6 +269035,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267969,6 +269064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267984,6 +269080,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -267999,6 +269096,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -268272,6 +269370,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268287,6 +269386,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268302,6 +269402,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268317,6 +269418,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268332,6 +269434,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268347,6 +269450,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268362,6 +269466,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268377,6 +269482,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268392,6 +269498,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -268623,6 +269730,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -268652,6 +269760,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -268667,6 +269776,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -268682,6 +269792,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -268697,6 +269808,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -268712,6 +269824,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -268727,6 +269840,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -269225,6 +270339,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270407,6 +271522,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270422,6 +271538,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270437,6 +271554,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270452,6 +271570,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270495,6 +271614,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270510,6 +271630,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270539,6 +271660,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270554,6 +271676,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270569,6 +271692,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270920,6 +272044,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270933,7 +272058,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270949,6 +272073,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270964,6 +272089,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270978,7 +272104,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -270994,6 +272119,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -271009,6 +272135,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -271052,6 +272179,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -271066,7 +272194,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE-1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -271081,7 +272208,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272353,6 +273479,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272602,6 +273729,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272617,6 +273745,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272632,6 +273761,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272647,6 +273777,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272662,6 +273793,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272924,6 +274056,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272939,6 +274072,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272954,6 +274088,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272969,6 +274104,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -272984,6 +274120,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -273828,6 +274965,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -273855,7 +274993,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -273884,7 +275021,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -273900,6 +275036,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -273929,6 +275066,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -273944,6 +275082,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -276734,6 +277873,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -276845,6 +277985,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -276860,6 +278001,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -276875,6 +278017,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -279445,6 +280588,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -279474,6 +280618,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -279503,6 +280648,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -279518,6 +280664,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -279533,6 +280680,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -279548,6 +280696,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -280910,6 +282059,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -280925,6 +282075,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -280953,7 +282104,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -280968,7 +282118,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -280983,7 +282132,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -280999,6 +282147,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -281013,6 +282162,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -281027,6 +282177,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -281042,6 +282193,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -281057,6 +282209,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -281072,6 +282225,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -281789,6 +282943,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281804,6 +282959,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281833,6 +282989,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281876,6 +283033,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281891,6 +283049,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281906,6 +283065,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281921,6 +283081,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281936,6 +283097,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -281951,6 +283113,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -283640,6 +284803,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -284695,6 +285859,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -284710,6 +285875,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285300,6 +286466,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285315,6 +286482,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285329,7 +286497,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285345,6 +286512,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285360,6 +286528,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285375,6 +286544,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285389,7 +286559,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285405,6 +286574,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285434,6 +286604,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285448,6 +286619,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -285463,6 +286635,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286374,6 +287547,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286403,6 +287577,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286418,6 +287593,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286433,6 +287609,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286448,6 +287625,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286463,6 +287641,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286478,6 +287657,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286493,6 +287673,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286791,6 +287972,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286806,6 +287988,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286821,6 +288004,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286836,6 +288020,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286851,6 +288036,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286866,6 +288052,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286881,6 +288068,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286896,6 +288084,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286911,6 +288100,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286926,6 +288116,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286941,6 +288132,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -286956,6 +288148,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -287577,6 +288770,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -287592,6 +288786,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -287607,6 +288802,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289064,6 +290260,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289405,6 +290602,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289420,6 +290618,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289546,6 +290745,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289561,6 +290761,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289863,6 +291064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289933,6 +291135,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289947,6 +291150,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -289961,6 +291165,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -290594,6 +291799,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -290609,6 +291815,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -290624,6 +291831,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -291804,6 +293012,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -291819,6 +293028,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -291834,6 +293044,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -291849,6 +293060,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -291864,6 +293076,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -292965,7 +294178,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -292980,7 +294192,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -292995,7 +294206,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293010,7 +294220,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293025,7 +294234,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293040,7 +294248,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293055,7 +294262,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293466,7 +294672,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293481,7 +294686,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293510,7 +294714,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293525,7 +294728,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293540,7 +294742,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293555,7 +294756,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293598,7 +294798,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293613,7 +294812,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -293628,7 +294826,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -294518,7 +295715,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -294534,6 +295730,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295516,6 +296713,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295531,6 +296729,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295546,6 +296745,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295561,6 +296761,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295575,6 +296776,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295590,6 +296792,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295604,6 +296807,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295632,6 +296836,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295647,6 +296852,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -295662,6 +296868,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -296025,6 +297232,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -296039,7 +297247,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -296055,6 +297262,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -296070,6 +297278,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -297883,6 +299092,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -297898,6 +299108,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -297927,6 +299138,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -297942,6 +299154,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -298725,6 +299938,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -298754,6 +299968,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -298880,6 +300095,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -299928,6 +301144,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -300589,6 +301806,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301645,6 +302863,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301660,6 +302879,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301675,6 +302895,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301690,6 +302911,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301705,6 +302927,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301720,6 +302943,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301735,6 +302959,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -301748,7 +302973,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -302070,6 +303294,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -303313,6 +304538,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -303328,6 +304554,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -303343,6 +304570,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -303358,6 +304586,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -303373,6 +304602,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -303388,6 +304618,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -304949,6 +306180,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -304964,6 +306196,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305035,6 +306268,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305352,6 +306586,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305366,6 +306601,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305395,6 +306631,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305438,6 +306675,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305779,6 +307017,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305793,6 +307032,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305821,6 +307061,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305836,6 +307077,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305851,6 +307093,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305865,6 +307108,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305879,6 +307123,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -305894,6 +307139,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306215,6 +307461,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306230,6 +307477,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306244,7 +307492,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306260,6 +307507,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306275,6 +307523,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306290,6 +307539,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306304,7 +307554,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306320,6 +307569,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306348,6 +307598,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306363,6 +307614,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306378,6 +307630,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306863,6 +308116,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306891,6 +308145,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306906,6 +308161,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306921,6 +308177,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306936,6 +308193,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -306951,6 +308209,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -307266,6 +308525,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -307572,6 +308832,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -307586,6 +308847,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -307669,6 +308931,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -307683,6 +308946,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -307697,6 +308961,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308266,6 +309531,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -308295,6 +309561,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -308310,6 +309577,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -308325,6 +309593,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -308340,6 +309609,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -308677,6 +309947,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308692,6 +309963,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308707,6 +309979,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308722,6 +309995,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308737,6 +310011,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308752,6 +310027,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308767,6 +310043,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308782,6 +310059,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308797,6 +310075,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308812,6 +310091,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308827,6 +310107,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -308842,6 +310123,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309122,7 +310404,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309137,7 +310418,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309152,7 +310432,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309167,7 +310446,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309182,7 +310460,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309197,7 +310474,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309212,7 +310488,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309227,7 +310502,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309242,7 +310516,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309257,7 +310530,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309273,6 +310545,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -309287,7 +310560,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310176,6 +311448,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310191,6 +311464,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310206,6 +311480,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310221,6 +311496,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310236,6 +311512,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310251,6 +311528,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310266,6 +311544,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310281,6 +311560,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310296,6 +311576,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310311,6 +311592,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -310340,6 +311622,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311055,6 +312338,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311083,6 +312367,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311098,6 +312383,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311113,6 +312399,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311128,6 +312415,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311955,7 +313243,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311970,7 +313257,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -311999,7 +313285,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312014,7 +313299,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312029,7 +313313,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312044,7 +313327,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312059,7 +313341,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312074,7 +313355,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312090,6 +313370,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312105,6 +313386,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312735,6 +314017,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312750,6 +314033,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312765,6 +314049,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312808,6 +314093,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312823,6 +314109,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312838,6 +314125,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312853,6 +314141,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312868,6 +314157,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312882,6 +314172,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -312896,6 +314187,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313208,6 +314500,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313278,6 +314571,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313541,6 +314835,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313556,6 +314851,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313571,6 +314867,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313586,6 +314883,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313601,6 +314899,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313616,6 +314915,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313631,6 +314931,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313645,7 +314946,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313972,6 +315272,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -313987,6 +315288,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -314002,6 +315304,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -314017,6 +315320,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -314032,6 +315336,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -314047,6 +315352,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -314062,6 +315368,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -315468,7 +316775,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -315484,6 +316790,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -315499,6 +316806,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -315814,6 +317122,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -315843,6 +317152,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316272,6 +317582,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316287,6 +317598,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316316,6 +317628,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316359,6 +317672,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316374,6 +317688,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316389,6 +317704,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316432,6 +317748,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316896,6 +318213,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316925,6 +318243,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316940,6 +318259,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316955,6 +318275,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316970,6 +318291,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -316985,6 +318307,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317000,6 +318323,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317015,6 +318339,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317278,6 +318603,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317307,6 +318633,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317322,6 +318649,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317337,6 +318665,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317352,6 +318681,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317367,6 +318697,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317382,6 +318713,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317397,6 +318729,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -317693,6 +319026,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -318393,6 +319727,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319187,6 +320522,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319201,6 +320537,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319215,6 +320552,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319567,6 +320905,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319624,6 +320963,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319639,6 +320979,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319654,6 +320995,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319669,6 +321011,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319684,6 +321027,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319699,6 +321043,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -319714,6 +321059,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -320665,6 +322011,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -320694,6 +322041,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -320709,6 +322057,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -320724,6 +322073,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -320739,6 +322089,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -320754,6 +322105,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321334,6 +322686,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321349,6 +322702,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321364,6 +322718,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321379,6 +322734,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321394,6 +322750,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321409,6 +322766,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321424,6 +322782,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321439,6 +322798,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321686,6 +323046,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321700,7 +323061,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321715,7 +323075,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321730,7 +323089,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321745,7 +323103,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321760,7 +323117,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321775,7 +323131,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321790,7 +323145,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321805,7 +323159,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321820,7 +323173,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321835,7 +323187,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -321850,7 +323201,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -322318,6 +323668,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -322333,6 +323684,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -322904,6 +324256,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -322919,6 +324272,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323289,6 +324643,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323303,7 +324658,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323318,7 +324672,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323333,7 +324686,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323348,7 +324700,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323377,7 +324728,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323392,7 +324742,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323407,7 +324756,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -323436,7 +324784,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324052,6 +325399,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324109,6 +325457,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324124,6 +325473,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324139,6 +325489,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324154,6 +325505,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324168,7 +325520,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324184,6 +325535,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324199,6 +325551,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324214,6 +325567,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324423,6 +325777,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324466,6 +325821,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324495,6 +325851,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324911,6 +326268,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324954,6 +326312,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324968,6 +326327,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -324982,6 +326342,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325264,6 +326625,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325279,6 +326641,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325294,6 +326657,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325309,6 +326673,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325324,6 +326689,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325339,6 +326705,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325368,6 +326735,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325383,6 +326751,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325398,6 +326767,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325413,6 +326783,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325428,6 +326799,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325731,6 +327103,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325746,6 +327119,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325803,6 +327177,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325858,7 +327233,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325874,6 +327248,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -325889,6 +327264,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -326151,6 +327527,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -326194,6 +327571,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -326223,6 +327601,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -326252,6 +327631,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -326309,6 +327689,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327533,6 +328914,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327561,7 +328943,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327576,7 +328957,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327591,7 +328971,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327606,7 +328985,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327621,7 +328999,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327636,7 +329013,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327651,7 +329027,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327666,7 +329041,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327681,7 +329055,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -327696,7 +329069,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -328942,6 +330314,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -328970,7 +330343,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -329440,6 +330812,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -331058,6 +332431,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -331072,6 +332446,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333097,6 +334472,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333112,6 +334488,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333127,6 +334504,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333142,6 +334520,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333157,6 +334536,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333456,6 +334836,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333471,6 +334852,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333486,6 +334868,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -333501,6 +334884,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -334467,6 +335851,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -334481,6 +335866,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -334523,6 +335909,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -334538,6 +335925,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -334553,6 +335941,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -334568,6 +335957,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -334928,6 +336318,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -335252,6 +336643,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -335267,6 +336659,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -335281,7 +336674,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -335352,7 +336744,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -335368,6 +336759,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -335968,6 +337360,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336025,6 +337418,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336040,6 +337434,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336055,6 +337450,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336070,6 +337466,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336085,6 +337482,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336100,6 +337498,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336115,6 +337514,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336537,6 +337937,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336552,6 +337953,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336567,6 +337969,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -336582,6 +337985,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337330,6 +338734,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337345,6 +338750,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337359,6 +338765,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337374,6 +338781,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337388,6 +338796,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337403,6 +338812,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337418,6 +338828,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337432,6 +338843,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337792,7 +339204,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337808,6 +339219,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337823,6 +339235,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337838,6 +339251,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337852,7 +339266,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337895,7 +339308,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337910,7 +339322,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -337940,6 +339351,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -338659,6 +340071,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -338715,6 +340128,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -338744,6 +340158,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341512,6 +342927,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341526,7 +342942,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341541,7 +342956,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341570,7 +342984,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341585,7 +342998,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341600,7 +343012,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341616,6 +343027,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341631,6 +343043,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341645,7 +343058,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341902,6 +343314,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341916,7 +343329,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341931,7 +343343,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341947,6 +343358,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341962,6 +343374,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341977,6 +343390,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -341991,7 +343405,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342007,6 +343420,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342022,6 +343436,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342037,6 +343452,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342052,6 +343468,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342067,6 +343484,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342447,6 +343865,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342462,6 +343881,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342477,6 +343897,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342492,6 +343913,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342507,6 +343929,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342522,6 +343945,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342537,6 +343961,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342552,6 +343977,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342567,6 +343993,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342582,6 +344009,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342597,6 +344025,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -342612,6 +344041,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344554,6 +345984,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344569,6 +346000,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344583,6 +346015,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344598,6 +346031,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344613,6 +346047,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344628,6 +346063,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344643,6 +346079,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344658,6 +346095,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344673,6 +346111,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE-',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344688,6 +346127,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344703,6 +346143,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -344718,6 +346159,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -345170,6 +346612,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -345185,6 +346628,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -347507,6 +348951,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -347632,6 +349077,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -347647,6 +349093,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -347662,6 +349109,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -347933,6 +349381,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -348472,6 +349921,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -348735,6 +350185,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -348749,6 +350200,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349026,6 +350478,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349040,6 +350493,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349358,6 +350812,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349634,7 +351089,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349650,6 +351104,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349665,6 +351120,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349680,6 +351136,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349695,6 +351152,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349710,6 +351168,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349725,6 +351184,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349740,6 +351200,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349755,6 +351216,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349770,6 +351232,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -349783,7 +351246,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350026,7 +351488,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350042,6 +351503,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350057,6 +351519,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350072,6 +351535,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350087,6 +351551,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350102,6 +351567,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350117,6 +351583,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350132,6 +351599,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350147,6 +351615,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350162,6 +351631,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350175,7 +351645,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350839,6 +352308,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350852,7 +352322,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350868,6 +352337,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -350883,6 +352353,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'PGP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351164,7 +352635,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351180,6 +352650,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351195,6 +352666,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351210,6 +352682,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351225,6 +352698,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351240,6 +352714,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351255,6 +352730,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351284,6 +352760,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351299,6 +352776,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351314,6 +352792,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351329,6 +352808,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351943,6 +353423,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -351957,6 +353438,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -352040,7 +353522,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -352096,7 +353577,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -353296,7 +354776,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -353311,7 +354790,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -353340,7 +354818,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -353355,7 +354832,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -353370,7 +354846,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -355525,6 +357000,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -355540,6 +357016,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -355555,6 +357032,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -355570,6 +357048,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -355585,6 +357064,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -355614,6 +357094,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -355629,6 +357110,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -358494,6 +359976,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -358564,6 +360047,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A5',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -358593,6 +360077,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -358844,6 +360329,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -358859,6 +360345,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359236,6 +360723,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359251,6 +360739,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359266,6 +360755,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359281,6 +360771,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359296,6 +360787,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359873,6 +361365,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359888,6 +361381,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359903,6 +361397,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359946,6 +361441,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359961,6 +361457,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359976,6 +361473,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -359991,6 +361489,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360006,6 +361505,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360021,6 +361521,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360036,6 +361537,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360766,6 +362268,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360781,6 +362284,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360796,6 +362300,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360811,6 +362316,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360826,6 +362332,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -360841,6 +362348,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361113,6 +362621,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361128,6 +362637,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361143,6 +362653,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361158,6 +362669,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361173,6 +362685,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361188,6 +362701,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361567,7 +363081,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361582,7 +363095,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361598,6 +363110,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361613,6 +363126,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361628,6 +363142,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361643,6 +363158,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361658,6 +363174,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361673,6 +363190,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361688,6 +363206,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361715,7 +363234,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -361730,7 +363248,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -362303,6 +363820,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -362727,6 +364245,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -363101,6 +364620,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -363562,6 +365082,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -364469,6 +365990,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -364870,6 +366392,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -364885,6 +366408,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -364900,6 +366424,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -364915,6 +366440,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -365191,6 +366717,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -365206,6 +366733,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -365221,6 +366749,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -365236,6 +366765,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -365251,6 +366781,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -365266,6 +366797,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -365281,6 +366813,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366216,6 +367749,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366230,7 +367764,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366245,7 +367778,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366300,7 +367832,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366316,6 +367847,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366331,6 +367863,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366346,6 +367879,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366361,6 +367895,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -366376,6 +367911,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -367003,7 +368539,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -367116,7 +368651,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -367131,7 +368665,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -367147,6 +368680,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -367162,6 +368696,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -369159,6 +370694,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -369174,6 +370710,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -369231,6 +370768,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -369260,6 +370798,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -369289,6 +370828,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -369304,6 +370844,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -369319,6 +370860,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -369893,6 +371435,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -369922,6 +371465,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -370665,6 +372209,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -370680,6 +372225,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -370709,6 +372255,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371374,6 +372921,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371389,6 +372937,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371474,6 +373023,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371489,6 +373039,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371504,6 +373055,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371824,6 +373376,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371839,6 +373392,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371854,6 +373408,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371869,6 +373424,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371884,6 +373440,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371899,6 +373456,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -371914,6 +373472,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -372639,7 +374198,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -372654,7 +374212,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -372670,6 +374227,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -372976,6 +374534,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -372991,6 +374550,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373006,6 +374566,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373021,6 +374582,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373035,6 +374597,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373050,6 +374613,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373065,6 +374629,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373080,6 +374645,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373094,6 +374660,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373109,6 +374676,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373124,6 +374692,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -373139,6 +374708,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374022,7 +375592,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374037,7 +375606,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374052,7 +375620,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374067,7 +375634,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374082,7 +375648,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374125,7 +375690,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374140,7 +375704,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374155,7 +375718,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374170,7 +375732,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374185,7 +375746,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374921,7 +376481,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374937,6 +376496,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374952,6 +376512,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374979,7 +376540,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -374994,7 +376554,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375009,7 +376568,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375024,7 +376582,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375039,7 +376596,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375352,6 +376908,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375380,6 +376937,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375395,6 +376953,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375786,6 +377345,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375801,6 +377361,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375816,6 +377377,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375831,6 +377393,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375846,6 +377409,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375861,6 +377425,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375904,6 +377469,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375919,6 +377485,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375934,6 +377501,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -375949,6 +377517,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376352,6 +377921,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376367,6 +377937,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376382,6 +377953,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376397,6 +377969,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376412,6 +377985,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376427,6 +378001,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376442,6 +378017,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376457,6 +378033,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376472,6 +378049,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376487,6 +378065,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376942,7 +378521,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376957,7 +378535,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -376972,7 +378549,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -377271,7 +378847,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -377286,7 +378861,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -377301,7 +378875,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -378988,6 +380561,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379003,6 +380577,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379046,6 +380621,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379061,6 +380637,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379076,6 +380653,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379091,6 +380669,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379106,6 +380685,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379121,6 +380701,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379136,6 +380717,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -379507,6 +381089,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -381756,6 +383339,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -381771,6 +383355,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -381786,6 +383371,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -381801,6 +383387,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382114,6 +383701,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382171,6 +383759,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382185,6 +383774,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382227,6 +383817,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382242,6 +383833,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382257,6 +383849,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382272,6 +383865,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -382605,6 +384199,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -382732,6 +384327,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -382747,6 +384343,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -382762,6 +384359,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -383107,7 +384705,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383123,6 +384720,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383152,6 +384750,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383167,6 +384766,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383182,6 +384782,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383196,7 +384797,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383211,7 +384811,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383226,7 +384825,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383242,6 +384840,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383256,7 +384855,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383951,6 +385549,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383966,6 +385565,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383981,6 +385581,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -383996,6 +385597,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384011,6 +385613,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384026,6 +385629,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384041,6 +385645,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384069,6 +385674,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384084,6 +385690,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384099,6 +385706,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384114,6 +385722,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -384488,7 +386097,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'INDUCER',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385187,6 +386795,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385202,6 +386811,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385216,6 +386826,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385230,6 +386841,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385257,6 +386869,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385271,6 +386884,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385286,6 +386900,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385301,6 +386916,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385316,6 +386932,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385546,6 +387163,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385561,6 +387179,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385576,6 +387195,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385591,6 +387211,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2A6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385606,6 +387227,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385621,6 +387243,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385636,6 +387259,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385651,6 +387275,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385666,6 +387291,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385681,6 +387307,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2E1',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385696,6 +387323,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385711,6 +387339,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385935,7 +387564,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385950,7 +387578,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385966,6 +387593,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385981,6 +387609,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -385996,6 +387625,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -386011,6 +387641,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -386026,6 +387657,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -386041,6 +387673,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -386056,6 +387689,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -386070,7 +387704,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -386085,7 +387718,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -386100,7 +387732,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -387124,6 +388755,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -387152,7 +388784,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -387167,7 +388798,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -388461,6 +390091,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -388489,6 +390120,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -388504,6 +390136,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -388948,6 +390581,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -388963,6 +390597,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -389301,7 +390936,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -389401,6 +391035,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -389415,6 +391050,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -389428,7 +391064,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -389874,6 +391509,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390203,6 +391839,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GLYCOPROTEIN',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390218,6 +391855,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390833,6 +392471,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390848,6 +392487,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390863,6 +392503,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390906,6 +392547,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390935,6 +392577,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390978,6 +392621,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -390993,6 +392637,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -391812,6 +393457,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'clinical_pharmacology',
         source: {
           kind: 'FDA_LABEL',
@@ -392746,6 +394392,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -392761,6 +394408,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -392776,6 +394424,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -392791,6 +394440,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -392805,7 +394455,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -392891,6 +394540,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -393163,6 +394813,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -393178,6 +394829,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -393249,6 +394901,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -393263,6 +394916,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -393277,6 +394931,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -393292,6 +394947,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -393321,6 +394977,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394385,6 +396042,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394414,6 +396072,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394429,6 +396088,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394458,6 +396118,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394473,6 +396134,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394488,6 +396150,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394503,6 +396166,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394518,6 +396182,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394533,6 +396198,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394548,6 +396214,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394861,6 +396528,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394876,6 +396544,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394891,6 +396560,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394906,6 +396576,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394919,7 +396590,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C19',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394934,7 +396604,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394949,7 +396618,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394965,6 +396633,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394980,6 +396649,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -394995,6 +396665,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395010,6 +396681,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395025,6 +396697,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395624,6 +397297,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395639,6 +397313,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395654,6 +397329,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395669,6 +397345,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395684,6 +397361,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395699,6 +397377,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395714,6 +397393,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395729,6 +397409,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395744,6 +397425,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -395759,6 +397441,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -397683,6 +399366,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -397712,6 +399396,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -397783,6 +399468,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -397798,6 +399484,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -397812,6 +399499,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -397826,6 +399514,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -397841,6 +399530,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398378,6 +400068,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398393,6 +400084,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2C9',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398408,6 +400100,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP3A4',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398731,6 +400424,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398745,7 +400439,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'CYP2C8',
         kind: 'ENZYME',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398788,7 +400481,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398803,7 +400495,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'OCT2',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'SUBSTRATE',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -398818,7 +400509,6 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
       {
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
-        roleAsRecorded: 'INHIBITOR',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399088,6 +400778,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2D6',
         kind: 'ENZYME',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399117,6 +400808,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'P-GP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'ASSERTED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399514,6 +401206,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BCRP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399529,6 +401222,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'BSEP',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399544,6 +401238,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP1A2',
         kind: 'ENZYME',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399559,6 +401254,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'CYP2B6',
         kind: 'ENZYME',
         roleAsRecorded: 'INDUCER',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399588,6 +401284,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399603,6 +401300,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'MATE2',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399618,6 +401316,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399633,6 +401332,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OAT3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399648,6 +401348,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399663,6 +401364,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OATP1B3',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'SUBSTRATE',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',
@@ -399678,6 +401380,7 @@ export const EXTRACTED_BACKGROUND: Record<string, MedicineRecordedBackground> = 
         counterpartyAsRecorded: 'OCT1',
         kind: 'TRANSPORTER',
         roleAsRecorded: 'INHIBITOR',
+        polarity: 'NEGATED',
         labelSection: 'pharmacokinetics',
         source: {
           kind: 'FDA_LABEL',

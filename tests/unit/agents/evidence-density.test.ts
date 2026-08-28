@@ -120,12 +120,17 @@ describe('evidence density on the recorded corpus', () => {
     )
   })
 
-  it('queues only widely marketed records with a low score, and only as questions', () => {
-    const scores = new Map(RUN.output.perMedicine.map((record) => [record.slug, record.score]))
-    const lowerQuartile = RUN.output.scoreDistribution?.p25 ?? 0
+  it('queues records that hold a marketed product entry and sit at or below median density', () => {
+    const byslug = new Map(RUN.output.perMedicine.map((record) => [record.slug, record]))
+    const variants = new Map(
+      CORPUS.map((entry) => [entry.slug, entry.background.productVariants?.length ?? 0]),
+    )
+    const median = RUN.output.scoreDistribution?.median ?? 0
+    expect((RUN.queue ?? []).length).toBeGreaterThan(0)
     for (const item of RUN.queue ?? []) {
       expect(item.reason).toBe('COVERAGE_GAP')
-      expect(scores.get(item.slug)).toBeLessThanOrEqual(lowerQuartile)
+      expect(byslug.get(item.slug)?.score).toBeLessThanOrEqual(median)
+      expect(variants.get(item.slug) ?? 0).toBeGreaterThanOrEqual(1)
       expect(item.question.trim().endsWith('?')).toBe(true)
       expect(item.priority).toBeGreaterThan(0)
       expect(item.sources.length).toBeGreaterThan(0)
@@ -135,6 +140,18 @@ describe('evidence density on the recorded corpus', () => {
     for (let index = 1; index < priorities.length; index += 1) {
       expect(priorities[index]!).toBeLessThanOrEqual(priorities[index - 1]!)
     }
+  })
+
+  it('states the variant proxy is unavailable rather than quietly ranking on a flat field', () => {
+    // The queue's design called for "many product variants" as a prominence proxy. If the corpus
+    // ever cannot supply it, the caveat has to say so, because a queue silently ordered on a field
+    // that takes one value is a ranking with no content.
+    const widest = Math.max(...CORPUS.map((entry) => entry.background.productVariants?.length ?? 0))
+    expect(widest).toBeLessThanOrEqual(2)
+    expect(RUN.caveats.join(' ')).toContain(
+      `the largest number of product variants on any record is ${widest}`,
+    )
+    expect(RUN.caveats.join(' ')).toContain('does not rank medicines by prominence')
   })
 })
 
