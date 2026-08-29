@@ -42,6 +42,7 @@ import { COMBINATION_ROW_COMPOSITION } from './combination-row-composition'
 import { ACQUISITION_COST_BACKGROUND } from './acquisition-cost'
 import { BIOLOGICAL_IDENTITY_BACKGROUND } from './biological-identity'
 import { PRODUCT_LISTING_BACKGROUND } from './product-listing'
+import { REGULATORY_APPROVAL_BACKGROUND } from './regulatory-approval'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -169,6 +170,16 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     const existing = merged[slug]
     if (existing?.productListing) continue
     merged[slug] = existing ? { ...existing, productListing: listed.productListing } : listed
+  }
+
+  // When it was approved attaches to whatever record exists. A date orients a reader more than
+  // almost anything else on the page, and the corpus could not state one.
+  for (const [slug, approved] of Object.entries(REGULATORY_APPROVAL_BACKGROUND)) {
+    const existing = merged[slug]
+    if (existing?.regulatoryApproval) continue
+    merged[slug] = existing
+      ? { ...existing, regulatoryApproval: approved.regulatoryApproval }
+      : approved
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism

@@ -204,6 +204,19 @@ export interface MedicineBackgroundContextView {
     earliestMarketedDate?: string
     source: RecordedSourceView
   }
+  /**
+   * When a product containing the substance was first approved, and under what.
+   *
+   * A regulatory event, not a verdict. A discontinued marketing status is not a statement that a
+   * medicine failed — products are withdrawn for commercial reasons constantly.
+   */
+  regulatoryApproval?: {
+    applicationCountLabel: string
+    earliestApprovalLabel?: string
+    applicationKinds: string[]
+    marketingStatuses: string[]
+    source: RecordedSourceView
+  }
   supplementMarket?: {
     labelCountLabel: string
     categories: string[]
@@ -249,6 +262,7 @@ const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
   DSLD: 'Supplement label database record',
   NCBI_TAXONOMY: 'NCBI Taxonomy record',
   FDA_NDC: 'FDA National Drug Code directory',
+  FDA_DRUGSFDA: 'Drugs@FDA application record',
 }
 
 const CONCORDANCE_LABELS = {
@@ -397,17 +411,34 @@ const CONSENSUS_FIELD_LABELS: Record<string, string> = {
   volumeOfDistribution: 'Distribution volume',
 }
 
+/** Application kinds are acronyms nobody should have to expand for themselves. */
+function applicationKindLabel(kind: string): string {
+  if (kind === 'NDA') return 'New drug application'
+  if (kind === 'ANDA') return 'Abbreviated (generic) application'
+  if (kind === 'BLA') return 'Biologics licence application'
+  return kind
+}
+
 /** "12 published labels name…" / "1 published label names…", so a count never reads as a template. */
 function countPhrase(count: number, singular: string, plural: string): string {
   return `${count.toLocaleString('en-US')} ${count === 1 ? singular : plural}`
 }
 
-/** Archive vocabulary is shouted; a reader should not be. */
+/**
+ * Archive vocabulary is shouted; a reader should not be.
+ *
+ * A short all-capitals string is an acronym rather than shouting. "ANDA" is the name of a kind of
+ * application and lowercasing it to "Anda" makes it a word nobody uses, while "HUMAN PRESCRIPTION
+ * DRUG" genuinely is shouting and reads better sentence-cased.
+ */
+const ACRONYM_MAX_LENGTH = 5
+
 function sentenceCase(value: string): string {
   const trimmed = value.trim()
   if (trimmed.length === 0) return trimmed
   // Left alone when the source already mixes case, because that is someone's chosen spelling.
   if (trimmed !== trimmed.toUpperCase()) return trimmed
+  if (trimmed.length <= ACRONYM_MAX_LENGTH && /^[A-Z]+$/u.test(trimmed)) return trimmed
   return trimmed.charAt(0) + trimmed.slice(1).toLowerCase()
 }
 
@@ -758,6 +789,25 @@ export function medicineBackgroundContext(
       }
     : undefined
 
+  const approved = background.regulatoryApproval
+  const regulatoryApproval = approved
+    ? {
+        applicationCountLabel: countPhrase(
+          approved.applicationCount,
+          'approved application covers a product containing this',
+          'approved applications cover products containing this',
+        ),
+        ...(approved.earliestOriginalApprovalDate && approved.earliestApplicationNumber
+          ? {
+              earliestApprovalLabel: `The earliest was ${archiveDate(approved.earliestOriginalApprovalDate)}, under ${approved.earliestApplicationNumber}${approved.earliestSponsorAsRecorded ? `, sponsored by ${sentenceCase(approved.earliestSponsorAsRecorded)}` : ''}`,
+            }
+          : {}),
+        applicationKinds: approved.applicationKindsAsRecorded.map(applicationKindLabel),
+        marketingStatuses: approved.marketingStatusesAsRecorded.map(sentenceCase),
+        source: sourceView(approved.source),
+      }
+    : undefined
+
   const listed = background.productListing
   const productListing = listed
     ? {
@@ -898,6 +948,7 @@ export function medicineBackgroundContext(
     ...(sourceConsensus ? { sourceConsensus } : {}),
     ...(biologicalIdentity ? { biologicalIdentity } : {}),
     ...(productListing ? { productListing } : {}),
+    ...(regulatoryApproval ? { regulatoryApproval } : {}),
     ...(labelPresence ? { labelPresence } : {}),
     ...(supplementMarket ? { supplementMarket } : {}),
     ...(composition ? { composition } : {}),

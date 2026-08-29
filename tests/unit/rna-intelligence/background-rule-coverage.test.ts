@@ -286,6 +286,21 @@ function validBackground(): MedicineRecordedBackground {
         retrievedAt: '2026-08-29',
       },
     },
+    regulatoryApproval: {
+      applicationCount: 4,
+      earliestOriginalApprovalDate: '19820101',
+      earliestApplicationNumber: 'NDA000001',
+      earliestSponsorAsRecorded: 'SYNTHETIC LABS',
+      applicationKindsAsRecorded: ['NDA'],
+      marketingStatusesAsRecorded: ['Prescription'],
+      sampleApplicationNumbers: ['NDA000001'],
+      source: {
+        kind: 'FDA_DRUGSFDA',
+        identifier: 'NDA000001',
+        label: 'Synthetic application record',
+        retrievedAt: '2026-08-29',
+      },
+    },
     productListing: {
       productCount: 9,
       singleIngredientProductCount: 3,
@@ -658,6 +673,12 @@ const ruleCases = {
       // A lineage is what places an organism. Without it the record names something and says
       // nothing about what it is.
       background.biologicalIdentity!.lineageAsRecorded = []
+    },
+  },
+  I_APPROVAL_UNCHECKABLE: {
+    mutate: (background) => {
+      // A date with no application number beside it cannot be looked up again.
+      delete background.regulatoryApproval!.earliestApplicationNumber
     },
   },
   I_PRODUCT_LISTING_UNCHECKABLE: {

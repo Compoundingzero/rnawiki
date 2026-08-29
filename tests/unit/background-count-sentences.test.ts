@@ -133,3 +133,42 @@ describe('composition summaries read as sentences', () => {
     )
   })
 })
+
+describe('archive vocabulary reads as English', () => {
+  const withListing = (categories: string[]): MedicineRecordedBackground => ({
+    version: 'medicine-background/v1',
+    authoredAt: '2026-08-29',
+    provenanceTier: 'transcribed',
+    productListing: {
+      productCount: 3,
+      singleIngredientProductCount: 3,
+      dosageFormsAsRecorded: ['TABLET'],
+      routesAsRecorded: ['ORAL'],
+      marketingCategoriesAsRecorded: categories,
+      pharmacologicClassesAsRecorded: [],
+      sampleProductNdcs: ['00000-000'],
+      source: {
+        kind: 'FDA_NDC',
+        identifier: '00000-000',
+        label: 'Synthetic product listing',
+        retrievedAt: '2026-08-29',
+      },
+    },
+  })
+
+  it('keeps an acronym an acronym', () => {
+    // "ANDA" lowercased to "Anda" is a word nobody uses; it is the name of a kind of application.
+    const view = medicineBackgroundContext(withListing(['ANDA', 'NDA', 'BLA']))
+    expect(view?.productListing?.marketingCategories).toEqual(['ANDA', 'NDA', 'BLA'])
+  })
+
+  it('stops shouting a whole phrase', () => {
+    const view = medicineBackgroundContext(withListing(['HUMAN PRESCRIPTION DRUG']))
+    expect(view?.productListing?.marketingCategories).toEqual(['Human prescription drug'])
+  })
+
+  it('leaves a spelling the source already mixed alone', () => {
+    const view = medicineBackgroundContext(withListing(['OTC Monograph Final']))
+    expect(view?.productListing?.marketingCategories).toEqual(['OTC Monograph Final'])
+  })
+})

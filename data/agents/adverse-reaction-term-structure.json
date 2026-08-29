@@ -101846,9 +101846,9 @@
       "medianValidatedPairs": 0,
       "maximumValidatedPairs": 1
     },
-    "recordsConsidered": 8692,
+    "recordsConsidered": 8781,
     "labelsWithAMostCommonList": 854,
-    "recordsWithoutAMostCommonList": 7838,
+    "recordsWithoutAMostCommonList": 7927,
     "distinctTermsRecorded": 1161,
     "termsEnteringPairTesting": 150,
     "pairsTested": 11175,
@@ -101862,9 +101862,9 @@
     "listingsFromExtractedRecords": 6002
   },
   "coverage": {
-    "considered": 8692,
+    "considered": 8781,
     "used": 854,
-    "reason": "7838 of 8692 records have no most-common adverse reaction sentence in their recorded sources, so no term can be read from them. Of the 854 that do, 854 contributed at least one admitted term; 0 term listings were withheld (0 absent from the sentence they were read from, 0 from a sentence that reads as advice) and are in the review queue rather than deleted."
+    "reason": "7927 of 8781 records have no most-common adverse reaction sentence in their recorded sources, so no term can be read from them. Of the 854 that do, 854 contributed at least one admitted term; 0 term listings were withheld (0 absent from the sentence they were read from, 0 from a sentence that reads as advice) and are in the review queue rather than deleted."
   },
   "queue": [
     {
@@ -105824,7 +105824,7 @@
     "Each label keeps the threshold it printed. A term listed at 1% or more on one label and at 20% or more on another has not been measured the same way twice, so those labels are never pooled into a rate; the thresholds are reported as the exact strings the labels used and are never parsed into numbers or averaged.",
     "A validated pair is a statement about how a body of labels is worded: two terms are printed in the same list more often than each term’s own frequency accounts for. It is not a statement about two events occurring together in a person, and it is not a rate.",
     "This dataset holds no relation between one medicine and another. Structure is computed over reaction terms; the labels printing a term are listed individually with their own thresholds and sentences, and are never paired, ranked against each other or compared.",
-    "7838 of 8692 records have no most-common adverse reaction sentence in their recorded sources at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+    "7927 of 8781 records have no most-common adverse reaction sentence in their recorded sources at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
     "Raw co-occurrence is mostly a restatement of how common each term is: of the 10 leading pairs by raw count, 9 survive the frequency-preserving test. The validated set is the one to read; the raw leaders are shown only so the difference is visible.",
     "11175 pairs were tested and 220 validated at a false discovery rate of 0.01, so roughly 2.2 of them are expected to be false. A single pair is not evidence on its own.",
     "The analytic null holds each term’s frequency fixed but treats every label list as the same size. The seeded reference preserves both each term’s frequency and each label’s list length and reruns the whole procedure 25 times, validating a median of 0 pairs and at most 1, against 220 in the recorded corpus.",

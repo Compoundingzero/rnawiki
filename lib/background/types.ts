@@ -61,6 +61,7 @@ export const BACKGROUND_SOURCE_KINDS = [
   'DSLD',
   'NCBI_TAXONOMY',
   'FDA_NDC',
+  'FDA_DRUGSFDA',
 ] as const
 export type BackgroundSourceKind = (typeof BACKGROUND_SOURCE_KINDS)[number]
 
@@ -541,6 +542,40 @@ export interface RecordedProductListing {
 }
 
 /**
+ * When a substance was first approved, and under what.
+ *
+ * The corpus could say what a medicine is and what its label states, and nothing at all about when
+ * it entered regulated use. A date orients a reader more than almost anything else on the page: a
+ * substance first approved in 1952 and one first approved last year are different kinds of thing
+ * even before a word is said about either.
+ *
+ * Every value is a fact about an application record, not about the medicine. An approval is a
+ * regulatory event; it is not a statement that a medicine works, and a discontinued marketing status
+ * is not a statement that it failed — products are withdrawn for commercial reasons constantly.
+ *
+ * The count is of approved applications whose products declare this substance, which includes
+ * combination products. That is deliberate and is what the wording says: the earliest approval of a
+ * product CONTAINING the substance. Narrowing it to single-ingredient products would answer a
+ * different and less useful question.
+ */
+export interface RecordedRegulatoryApproval {
+  /** Approved applications whose products declare this substance as an active ingredient. */
+  applicationCount: number
+  /** The earliest original approval date among them, as the register states it. */
+  earliestOriginalApprovalDate?: string
+  /** The application carrying that earliest approval. */
+  earliestApplicationNumber?: string
+  earliestSponsorAsRecorded?: string
+  /** Application kinds seen: a new drug application, a generic one, or a biologics licence. */
+  applicationKindsAsRecorded: string[]
+  /** Marketing statuses across those products, e.g. prescription, over-the-counter, discontinued. */
+  marketingStatusesAsRecorded: string[]
+  /** Application numbers, so every count above can be checked against the same public register. */
+  sampleApplicationNumbers: string[]
+  source: BackgroundSource
+}
+
+/**
  * Ranks at which a name identifies one organism rather than a group of them.
  *
  * A binomial is unambiguous by construction: nothing else is called "Withania somnifera". A bare
@@ -736,6 +771,7 @@ export const RECORDED_BACKGROUND_MODULES = [
   'labelPresence',
   'biologicalIdentity',
   'productListing',
+  'regulatoryApproval',
 ] as const
 export type RecordedBackgroundModule = (typeof RECORDED_BACKGROUND_MODULES)[number]
 
@@ -770,4 +806,5 @@ export interface MedicineRecordedBackground {
   labelPresence?: RecordedLabelPresence
   biologicalIdentity?: RecordedBiologicalIdentity
   productListing?: RecordedProductListing
+  regulatoryApproval?: RecordedRegulatoryApproval
 }

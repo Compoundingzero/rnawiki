@@ -41,3 +41,4 @@ data/registries/*
 !data/registries/acquisition-cost.json
 !data/registries/biological-identity.json
 !data/registries/product-listing.json
+!data/registries/regulatory-approval.json

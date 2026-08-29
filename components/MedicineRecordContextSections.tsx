@@ -16,6 +16,7 @@ import {
   BackgroundPopulationStatementsBody,
   BackgroundPivotalResultsBody,
   BackgroundProductListingBody,
+  BackgroundRegulatoryApprovalBody,
   BackgroundProductsBody,
   BackgroundRecordedUsesBody,
   BackgroundSafetyBody,
@@ -466,6 +467,17 @@ export function MedicineRecordContextSections({
             preview="The accepted scientific name, where biological classification places it, and its other names."
           >
             <BackgroundBiologicalIdentityBody biology={context.background.biologicalIdentity} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.regulatoryApproval && (
+          <BackgroundRow
+            id="when-it-was-approved"
+            tone="blue"
+            title="When it was approved"
+            preview="The earliest approval of a product containing this, the application it came under, and its sponsor."
+          >
+            <BackgroundRegulatoryApprovalBody approval={context.background.regulatoryApproval} />
           </BackgroundRow>
         )}
 

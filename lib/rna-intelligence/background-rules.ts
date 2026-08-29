@@ -102,6 +102,7 @@ export const BACKGROUND_RULE_CODES = [
   'I_BIOLOGY_IDENTITY_UNCHECKABLE',
   'I_PRODUCT_LISTING_UNCHECKABLE',
   'I_PRODUCT_LISTING_CLASS_UNATTRIBUTABLE',
+  'I_APPROVAL_UNCHECKABLE',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -139,6 +140,8 @@ const SOURCE_IDENTIFIER_PATTERNS: Record<string, RegExp> = {
   NCBI_TAXONOMY: /^[1-9][0-9]{0,8}$/u,
   // A National Drug Code product code: labeler and product segments.
   FDA_NDC: /^\d{4,5}-\d{3,4}$/u,
+  // A Drugs@FDA application number: NDA, ANDA or BLA followed by its digits.
+  FDA_DRUGSFDA: /^(?:NDA|ANDA|BLA)\d{4,8}$/u,
 }
 
 /**
@@ -949,6 +952,7 @@ export function runBackgroundIntelligence(
       'biologicalIdentity',
       // A product listing is transcribed too.
       'productListing',
+      'regulatoryApproval',
     ])
     const otherModules = Object.entries(background).some(([key, value]) => {
       if (ENVELOPE_FIELDS.has(key)) return false
@@ -1099,6 +1103,52 @@ export function runBackgroundIntelligence(
         'I_PRODUCT_LISTING_CLASS_UNATTRIBUTABLE',
         'productListing.pharmacologicClassesAsRecorded',
         'A pharmacologic class may only be recorded from a product declaring this substance alone, and no such product was counted.',
+      )
+    }
+  }
+
+  /**
+   * A recorded approval, held to the reproducibility standard every transcribed count meets.
+   *
+   * The register returns structured fields and no prose, so the application numbers stand in for an
+   * excerpt. A date with no application behind it is an assertion about regulatory history.
+   */
+  const approval = background.regulatoryApproval
+  if (approval) {
+    checkSource('regulatoryApproval', approval.source)
+    if (approval.source.kind !== 'FDA_DRUGSFDA') {
+      flag(
+        'I_APPROVAL_UNCHECKABLE',
+        'regulatoryApproval.source',
+        `An approval must cite the register it was read from, not "${approval.source.kind}".`,
+      )
+    }
+    if (approval.applicationCount < 1 || approval.sampleApplicationNumbers.length === 0) {
+      flag(
+        'I_APPROVAL_UNCHECKABLE',
+        'regulatoryApproval',
+        `Reports ${approval.applicationCount} application(s) with ${approval.sampleApplicationNumbers.length} number(s); a transcribed count needs at least one to be checkable.`,
+      )
+    }
+    // A date with no application number beside it cannot be looked up, and an application number
+    // with no date states nothing. Either both or neither.
+    const hasDate = Boolean(approval.earliestOriginalApprovalDate)
+    const hasApplication = Boolean(approval.earliestApplicationNumber)
+    if (hasDate !== hasApplication) {
+      flag(
+        'I_APPROVAL_UNCHECKABLE',
+        'regulatoryApproval.earliestOriginalApprovalDate',
+        'An earliest approval date and the application that carried it are recorded together or not at all.',
+      )
+    }
+    if (
+      approval.earliestOriginalApprovalDate &&
+      !/^\d{8}$/u.test(approval.earliestOriginalApprovalDate)
+    ) {
+      flag(
+        'I_APPROVAL_UNCHECKABLE',
+        'regulatoryApproval.earliestOriginalApprovalDate',
+        `"${approval.earliestOriginalApprovalDate}" is not a date as the register writes them.`,
       )
     }
   }

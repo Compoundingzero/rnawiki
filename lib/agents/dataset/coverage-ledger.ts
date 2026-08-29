@@ -40,6 +40,7 @@ export const COVERAGE_ROUTES = [
   'SUPPLEMENT_MARKET',
   'LABEL_ARCHIVE_PRESENCE',
   'MARKETED_PRODUCT_LISTING',
+  'REGULATORY_APPROVAL',
   'BIOLOGICAL_IDENTITY',
   'COMPOUND_IDENTITY',
   'OTHER_RECORDED_CONTEXT',
@@ -64,6 +65,7 @@ const MODULES = [
   'labelPresence',
   'biologicalIdentity',
   'productListing',
+  'regulatoryApproval',
   'registryIdentifiers',
   'anatomyTargets',
   'applicability',
@@ -147,6 +149,7 @@ function routeFor(
   if (has(background, 'supplementMarket')) return 'SUPPLEMENT_MARKET'
   if (has(background, 'labelPresence')) return 'LABEL_ARCHIVE_PRESENCE'
   if (has(background, 'productListing')) return 'MARKETED_PRODUCT_LISTING'
+  if (has(background, 'regulatoryApproval')) return 'REGULATORY_APPROVAL'
   if (has(background, 'biologicalIdentity')) return 'BIOLOGICAL_IDENTITY'
   if (has(background, 'molecularIdentity')) return 'COMPOUND_IDENTITY'
   // A record holding something none of the named routes describes is still not empty. Falling
@@ -167,6 +170,8 @@ const ROUTE_LIMITS: Readonly<Record<CoverageRoute, string>> = {
     'The archive records that published labels name this substance as an active ingredient, and how many of them name it alone. It does not say the product was approved or evaluated, and where no label names the substance alone there is no source its own data could come from.',
   MARKETED_PRODUCT_LISTING:
     'The product directory records that marketed products declare this as an active ingredient, and how they reached the market. It carries no prose, so nothing about how the substance works can come from it.',
+  REGULATORY_APPROVAL:
+    'The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it.',
   BIOLOGICAL_IDENTITY:
     'A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows.',
   COMPOUND_IDENTITY:

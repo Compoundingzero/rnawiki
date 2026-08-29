@@ -811,6 +811,36 @@ export function BackgroundBiologicalIdentityBody({
  * approved application beside an over-the-counter monograph product beside one marketed without
  * approval at all. The closing line says what a category is and is not.
  */
+/**
+ * When a product containing the substance was first approved.
+ *
+ * An approval is a regulatory event and the closing line says so. A discontinued status in
+ * particular reads as a verdict and is not one: products leave the market for commercial reasons
+ * far more often than for any finding about them.
+ */
+export function BackgroundRegulatoryApprovalBody({
+  approval,
+}: {
+  approval: NonNullable<MedicineBackgroundContextView['regulatoryApproval']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">
+        <span className="font-semibold">{approval.applicationCountLabel}</span>.
+        {approval.earliestApprovalLabel ? ` ${approval.earliestApprovalLabel}.` : ''}
+      </p>
+      <ChipList label="Kinds of application" values={approval.applicationKinds} />
+      <ChipList label="Marketing status of those products" values={approval.marketingStatuses} />
+      <SourceLine source={approval.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        An approval is a regulatory event, not a finding that a medicine works. A discontinued
+        status is not a finding that one failed — products leave the market for commercial reasons
+        far more often than for anything discovered about them. {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
 export function BackgroundProductListingBody({
   listing,
 }: {
