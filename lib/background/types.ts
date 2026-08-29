@@ -60,6 +60,7 @@ export const BACKGROUND_SOURCE_KINDS = [
   'PUBLISHED_ANALYSIS',
   'DSLD',
   'NCBI_TAXONOMY',
+  'FDA_NDC',
 ] as const
 export type BackgroundSourceKind = (typeof BACKGROUND_SOURCE_KINDS)[number]
 
@@ -502,6 +503,44 @@ export interface RecordedUses {
  * identity is not an identity.
  */
 /**
+ * What the marketed-product listing records for a substance.
+ *
+ * The label archive carries documents; the National Drug Code directory carries PRODUCTS, including
+ * every product whose labelling has no readable prose. That is why it reaches rows nothing else
+ * does — the pneumococcal and meningococcal capsular polysaccharide antigens, the hepatitis and
+ * papillomavirus antigens, the biosimilars — each of which is a declared active ingredient of a
+ * listed product and appears nowhere in the prose archive.
+ *
+ * `marketingCategoriesAsRecorded` is the most useful field here and the easiest to misread. FDA
+ * lists approved products beside OTC monograph products beside ones marketed without approval, and
+ * the category is how they are told apart. Recording it says which route to market a product took.
+ * It is not a statement that anything works.
+ *
+ * `pharmacologicClassesAsRecorded` is taken ONLY from products declaring one active ingredient. The
+ * directory attaches the union of a combination's classes to the combination, so a glyburide and
+ * metformin tablet carries both "Sulfonylurea" and "Biguanide", and reading either off that product
+ * would file glyburide as a biguanide. It is the same attribution rule the rest of the record model
+ * runs on, applied to a field that invites the error.
+ */
+export interface RecordedProductListing {
+  /** Listed products declaring this substance as an active ingredient. */
+  productCount: number
+  /** Those declaring it and no other, which is the only basis for a class or a form of its own. */
+  singleIngredientProductCount: number
+  dosageFormsAsRecorded: string[]
+  routesAsRecorded: string[]
+  /** How FDA categorises the route to market: an approved application, a monograph, or neither. */
+  marketingCategoriesAsRecorded: string[]
+  /** FDA established pharmacologic classes, read only from single-ingredient products. */
+  pharmacologicClassesAsRecorded: string[]
+  /** The earliest marketing start date among the counted products, as the directory states it. */
+  earliestMarketingStartDate?: string
+  /** Product codes, so every count above can be checked against the same public directory. */
+  sampleProductNdcs: string[]
+  source: BackgroundSource
+}
+
+/**
  * Ranks at which a name identifies one organism rather than a group of them.
  *
  * A binomial is unambiguous by construction: nothing else is called "Withania somnifera". A bare
@@ -696,6 +735,7 @@ export const RECORDED_BACKGROUND_MODULES = [
   'supplementMarket',
   'labelPresence',
   'biologicalIdentity',
+  'productListing',
 ] as const
 export type RecordedBackgroundModule = (typeof RECORDED_BACKGROUND_MODULES)[number]
 
@@ -729,4 +769,5 @@ export interface MedicineRecordedBackground {
   supplementMarket?: RecordedSupplementMarket
   labelPresence?: RecordedLabelPresence
   biologicalIdentity?: RecordedBiologicalIdentity
+  productListing?: RecordedProductListing
 }

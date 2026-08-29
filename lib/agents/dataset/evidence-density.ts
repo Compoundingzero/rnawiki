@@ -332,6 +332,8 @@ function hasModule(background: MedicineRecordedBackground, module: RecordableMod
       return background.labelPresence !== undefined
     case 'biologicalIdentity':
       return background.biologicalIdentity !== undefined
+    case 'productListing':
+      return background.productListing !== undefined
   }
 }
 

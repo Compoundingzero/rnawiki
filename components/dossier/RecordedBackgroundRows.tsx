@@ -804,6 +804,49 @@ export function BackgroundBiologicalIdentityBody({
   )
 }
 
+/**
+ * What the product directory lists.
+ *
+ * The most useful thing here is the marketing category, and the easiest to misread: FDA lists an
+ * approved application beside an over-the-counter monograph product beside one marketed without
+ * approval at all. The closing line says what a category is and is not.
+ */
+export function BackgroundProductListingBody({
+  listing,
+}: {
+  listing: NonNullable<MedicineBackgroundContextView['productListing']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">
+        <span className="font-semibold">{listing.productCountLabel}</span>. {listing.aloneLabel}.
+      </p>
+      <ChipList label="How it reached the market" values={listing.marketingCategories} />
+      {listing.pharmacologicClasses.length > 0 && (
+        <div className="min-w-0 space-y-2">
+          <ChipList label="Recorded pharmacologic class" values={listing.pharmacologicClasses} />
+          {listing.classAttributionNote && (
+            <p className="text-sm leading-6 text-[#515154]">{listing.classAttributionNote}</p>
+          )}
+        </div>
+      )}
+      <ChipList label="Forms those products take" values={listing.dosageForms} />
+      <ChipList label="Routes those products state" values={listing.routes} />
+      {listing.earliestMarketedDate && (
+        <p className="text-sm leading-6 text-[#515154]">
+          Earliest marketing start date among them: {listing.earliestMarketedDate}
+        </p>
+      )}
+      <SourceLine source={listing.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        A marketing category says which route to market a product took, not whether it works. FDA
+        lists approved applications, over-the-counter monograph products and products marketed
+        without approval in the same directory. {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
 export function BackgroundSupplementMarketBody({
   market,
 }: {

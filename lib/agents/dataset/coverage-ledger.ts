@@ -23,7 +23,8 @@ import type { MedicineRecordedBackground } from '@/lib/background/types'
 
 const AGENT_NAME = 'coverage-ledger'
 // 1.1.0 knows about recorded organisms, which 691 records held while the ledger called them empty.
-const AGENT_VERSION = '1.1.0'
+// 1.2.0 knows about marketed product listings.
+const AGENT_VERSION = '1.2.0'
 
 /**
  * How a record came to be filled.
@@ -38,6 +39,7 @@ export const COVERAGE_ROUTES = [
   'LABEL_PRODUCT_ONLY',
   'SUPPLEMENT_MARKET',
   'LABEL_ARCHIVE_PRESENCE',
+  'MARKETED_PRODUCT_LISTING',
   'BIOLOGICAL_IDENTITY',
   'COMPOUND_IDENTITY',
   'OTHER_RECORDED_CONTEXT',
@@ -61,6 +63,7 @@ const MODULES = [
   'supplementMarket',
   'labelPresence',
   'biologicalIdentity',
+  'productListing',
   'registryIdentifiers',
   'anatomyTargets',
   'applicability',
@@ -143,6 +146,7 @@ function routeFor(
   }
   if (has(background, 'supplementMarket')) return 'SUPPLEMENT_MARKET'
   if (has(background, 'labelPresence')) return 'LABEL_ARCHIVE_PRESENCE'
+  if (has(background, 'productListing')) return 'MARKETED_PRODUCT_LISTING'
   if (has(background, 'biologicalIdentity')) return 'BIOLOGICAL_IDENTITY'
   if (has(background, 'molecularIdentity')) return 'COMPOUND_IDENTITY'
   // A record holding something none of the named routes describes is still not empty. Falling
@@ -161,6 +165,8 @@ const ROUTE_LIMITS: Readonly<Record<CoverageRoute, string>> = {
     'Supplement labels carry no mechanism, no pharmacokinetics and no evaluated efficacy claim, so none can be recorded however many products exist.',
   LABEL_ARCHIVE_PRESENCE:
     'The archive records that published labels name this substance as an active ingredient, and how many of them name it alone. It does not say the product was approved or evaluated, and where no label names the substance alone there is no source its own data could come from.',
+  MARKETED_PRODUCT_LISTING:
+    'The product directory records that marketed products declare this as an active ingredient, and how they reached the market. It carries no prose, so nothing about how the substance works can come from it.',
   BIOLOGICAL_IDENTITY:
     'A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows.',
   COMPOUND_IDENTITY:

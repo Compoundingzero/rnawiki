@@ -15,6 +15,7 @@ import {
   BackgroundPharmacokineticsBody,
   BackgroundPopulationStatementsBody,
   BackgroundPivotalResultsBody,
+  BackgroundProductListingBody,
   BackgroundProductsBody,
   BackgroundRecordedUsesBody,
   BackgroundSafetyBody,
@@ -465,6 +466,17 @@ export function MedicineRecordContextSections({
             preview="The accepted scientific name, where biological classification places it, and its other names."
           >
             <BackgroundBiologicalIdentityBody biology={context.background.biologicalIdentity} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.productListing && (
+          <BackgroundRow
+            id="listed-products"
+            tone="blue"
+            title="What is listed on the market"
+            preview="How many marketed products declare this as an active ingredient, how they reached the market, and their forms."
+          >
+            <BackgroundProductListingBody listing={context.background.productListing} />
           </BackgroundRow>
         )}
 

@@ -392,6 +392,7 @@ const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
   PUBLISHED_ANALYSIS: 'published analysis',
   DSLD: 'supplement label database',
   NCBI_TAXONOMY: 'NCBI Taxonomy',
+  FDA_NDC: 'FDA National Drug Code directory',
 }
 
 function* allSources(background: MedicineRecordedBackground): Generator<BackgroundSource> {

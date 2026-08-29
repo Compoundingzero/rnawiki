@@ -187,6 +187,23 @@ export interface MedicineBackgroundContextView {
     matchNote: string
     source: RecordedSourceView
   }
+  /**
+   * What the product directory lists, which reaches products whose labelling has no prose at all.
+   *
+   * `marketingCategories` is the field a reader has no other way to learn: FDA lists approved
+   * applications beside monograph products beside ones marketed without approval.
+   */
+  productListing?: {
+    productCountLabel: string
+    aloneLabel: string
+    dosageForms: string[]
+    routes: string[]
+    marketingCategories: string[]
+    pharmacologicClasses: string[]
+    classAttributionNote?: string
+    earliestMarketedDate?: string
+    source: RecordedSourceView
+  }
   supplementMarket?: {
     labelCountLabel: string
     categories: string[]
@@ -231,6 +248,7 @@ const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
   PUBLISHED_ANALYSIS: 'Published analysis',
   DSLD: 'Supplement label database record',
   NCBI_TAXONOMY: 'NCBI Taxonomy record',
+  FDA_NDC: 'FDA National Drug Code directory',
 }
 
 const CONCORDANCE_LABELS = {
@@ -740,6 +758,34 @@ export function medicineBackgroundContext(
       }
     : undefined
 
+  const listed = background.productListing
+  const productListing = listed
+    ? {
+        productCountLabel: countPhrase(
+          listed.productCount,
+          'listed product declares this as an active ingredient',
+          'listed products declare this as an active ingredient',
+        ),
+        aloneLabel: aloneSentence(listed.productCount, listed.singleIngredientProductCount),
+        dosageForms: listed.dosageFormsAsRecorded.map(sentenceCase),
+        routes: listed.routesAsRecorded.map(sentenceCase),
+        marketingCategories: listed.marketingCategoriesAsRecorded.map(sentenceCase),
+        pharmacologicClasses: listed.pharmacologicClassesAsRecorded,
+        // Said rather than left to inference: a class read off a combination product belongs to
+        // whichever ingredient earned it, and the directory does not say which.
+        ...(listed.pharmacologicClassesAsRecorded.length > 0
+          ? {
+              classAttributionNote:
+                'Read only from products that declare this substance and no other, because the directory reports a combination product under the classes of all its ingredients together.',
+            }
+          : {}),
+        ...(listed.earliestMarketingStartDate
+          ? { earliestMarketedDate: archiveDate(listed.earliestMarketingStartDate) }
+          : {}),
+        source: sourceView(listed.source),
+      }
+    : undefined
+
   const market = background.supplementMarket
   const supplementMarket = market
     ? {
@@ -851,6 +897,7 @@ export function medicineBackgroundContext(
     ...(recordedUses ? { recordedUses } : {}),
     ...(sourceConsensus ? { sourceConsensus } : {}),
     ...(biologicalIdentity ? { biologicalIdentity } : {}),
+    ...(productListing ? { productListing } : {}),
     ...(labelPresence ? { labelPresence } : {}),
     ...(supplementMarket ? { supplementMarket } : {}),
     ...(composition ? { composition } : {}),

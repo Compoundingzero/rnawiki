@@ -41,6 +41,7 @@ import { LABEL_PRESENCE_BACKGROUND } from './label-presence'
 import { COMBINATION_ROW_COMPOSITION } from './combination-row-composition'
 import { ACQUISITION_COST_BACKGROUND } from './acquisition-cost'
 import { BIOLOGICAL_IDENTITY_BACKGROUND } from './biological-identity'
+import { PRODUCT_LISTING_BACKGROUND } from './product-listing'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -159,6 +160,15 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     merged[slug] = existing
       ? { ...existing, biologicalIdentity: biology.biologicalIdentity }
       : biology
+  }
+
+  // What the product directory lists attaches to whatever record exists. The label archive carries
+  // documents; the directory carries products, including every product whose labelling has no prose
+  // to read — which is why it reaches the vaccine antigens and biosimilars that nothing else does.
+  for (const [slug, listed] of Object.entries(PRODUCT_LISTING_BACKGROUND)) {
+    const existing = merged[slug]
+    if (existing?.productListing) continue
+    merged[slug] = existing ? { ...existing, productListing: listed.productListing } : listed
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism

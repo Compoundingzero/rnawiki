@@ -100,6 +100,8 @@ export const BACKGROUND_RULE_CODES = [
   'I_LABEL_PRESENCE_COUNT_UNCHECKABLE',
   'I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL',
   'I_BIOLOGY_IDENTITY_UNCHECKABLE',
+  'I_PRODUCT_LISTING_UNCHECKABLE',
+  'I_PRODUCT_LISTING_CLASS_UNATTRIBUTABLE',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -135,6 +137,8 @@ const SOURCE_IDENTIFIER_PATTERNS: Record<string, RegExp> = {
   DSLD: /^[0-9]{1,9}$/u,
   // An NCBI taxonomy identifier, which is what makes a recorded organism checkable.
   NCBI_TAXONOMY: /^[1-9][0-9]{0,8}$/u,
+  // A National Drug Code product code: labeler and product segments.
+  FDA_NDC: /^\d{4,5}-\d{3,4}$/u,
 }
 
 /**
@@ -943,6 +947,8 @@ export function runBackgroundIntelligence(
       'labelPresence',
       // So is a taxonomy record: a name and a lineage copied from a structured table.
       'biologicalIdentity',
+      // A product listing is transcribed too.
+      'productListing',
     ])
     const otherModules = Object.entries(background).some(([key, value]) => {
       if (ENVELOPE_FIELDS.has(key)) return false
@@ -1047,6 +1053,52 @@ export function runBackgroundIntelligence(
         'I_BIOLOGY_IDENTITY_UNCHECKABLE',
         'biologicalIdentity.matchedOn',
         `Unknown match basis "${biology.matchedOn}"; how a name reached a taxon is part of the record.`,
+      )
+    }
+  }
+
+  /**
+   * The marketed-product listing, held to the same reproducibility standard as every other count.
+   *
+   * The directory returns structured fields and no prose, so the product codes stand in for an
+   * excerpt: anyone can look the same codes up in the same public directory and get the same
+   * numbers.
+   */
+  const listing = background.productListing
+  if (listing) {
+    checkSource('productListing', listing.source)
+    if (listing.source.kind !== 'FDA_NDC') {
+      flag(
+        'I_PRODUCT_LISTING_UNCHECKABLE',
+        'productListing.source',
+        `A product listing must cite the directory it was counted from, not "${listing.source.kind}".`,
+      )
+    }
+    if (listing.productCount < 1 || listing.sampleProductNdcs.length === 0) {
+      flag(
+        'I_PRODUCT_LISTING_UNCHECKABLE',
+        'productListing',
+        `Reports ${listing.productCount} product(s) with ${listing.sampleProductNdcs.length} code(s); a transcribed count needs at least one code to be checkable.`,
+      )
+    }
+    if (listing.singleIngredientProductCount > listing.productCount) {
+      flag(
+        'I_PRODUCT_LISTING_UNCHECKABLE',
+        'productListing.singleIngredientProductCount',
+        `${listing.singleIngredientProductCount} single-ingredient product(s) cannot exceed ${listing.productCount} in total.`,
+      )
+    }
+    // A pharmacologic class read off a combination product belongs to whichever of its ingredients
+    // earned it, and the directory does not say which. Without a single-ingredient product there is
+    // no document attributing the class to this substance alone.
+    if (
+      listing.pharmacologicClassesAsRecorded.length > 0 &&
+      listing.singleIngredientProductCount === 0
+    ) {
+      flag(
+        'I_PRODUCT_LISTING_CLASS_UNATTRIBUTABLE',
+        'productListing.pharmacologicClassesAsRecorded',
+        'A pharmacologic class may only be recorded from a product declaring this substance alone, and no such product was counted.',
       )
     }
   }

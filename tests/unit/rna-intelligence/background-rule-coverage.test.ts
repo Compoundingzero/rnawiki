@@ -286,6 +286,22 @@ function validBackground(): MedicineRecordedBackground {
         retrievedAt: '2026-08-29',
       },
     },
+    productListing: {
+      productCount: 9,
+      singleIngredientProductCount: 3,
+      dosageFormsAsRecorded: ['TABLET'],
+      routesAsRecorded: ['ORAL'],
+      marketingCategoriesAsRecorded: ['NDA'],
+      pharmacologicClassesAsRecorded: ['Synthetic Class [EPC]'],
+      earliestMarketingStartDate: '20200101',
+      sampleProductNdcs: ['00000-000'],
+      source: {
+        kind: 'FDA_NDC',
+        identifier: '00000-000',
+        label: 'Synthetic product listing',
+        retrievedAt: '2026-08-29',
+      },
+    },
     labelPresence: {
       labelCount: 12,
       singleSubstanceLabelCount: 4,
@@ -642,6 +658,20 @@ const ruleCases = {
       // A lineage is what places an organism. Without it the record names something and says
       // nothing about what it is.
       background.biologicalIdentity!.lineageAsRecorded = []
+    },
+  },
+  I_PRODUCT_LISTING_UNCHECKABLE: {
+    mutate: (background) => {
+      // A count of listed products with no product code behind it cannot be put to the directory
+      // again, which is the only check a transcribed count can have.
+      background.productListing!.sampleProductNdcs = []
+    },
+  },
+  I_PRODUCT_LISTING_CLASS_UNATTRIBUTABLE: {
+    mutate: (background) => {
+      // The directory attaches a combination's classes to the combination. Without a product
+      // declaring this substance alone, no document attributes the class to it.
+      background.productListing!.singleIngredientProductCount = 0
     },
   },
   I_LABEL_PRESENCE_SINGLE_EXCEEDS_TOTAL: {

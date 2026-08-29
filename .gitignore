@@ -40,3 +40,4 @@ data/registries/*
 !data/registries/combination-row-composition.json
 !data/registries/acquisition-cost.json
 !data/registries/biological-identity.json
+!data/registries/product-listing.json
