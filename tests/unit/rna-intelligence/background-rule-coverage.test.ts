@@ -286,6 +286,19 @@ function validBackground(): MedicineRecordedBackground {
         retrievedAt: '2026-08-29',
       },
     },
+    sourceMaterial: {
+      substanceClassAsRecorded: 'structurallyDiverse',
+      sourceMaterialClassAsRecorded: 'ORGANISM',
+      sourceMaterialTypeAsRecorded: 'PLANT',
+      parentSubstanceAsRecorded: 'SYNTHETICA EXEMPLARIS WHOLE',
+      partsAsRecorded: ['leaf'],
+      source: {
+        kind: 'FDA_UNII',
+        identifier: 'ABC1234XYZ',
+        label: 'Synthetic substance registry record',
+        retrievedAt: '2026-08-29',
+      },
+    },
     supplementIngredient: {
       groupNameAsRecorded: 'Synthetic Ingredient',
       categoriesAsRecorded: ['non-nutrient/non-botanical'],
@@ -684,6 +697,12 @@ const ruleCases = {
       // A lineage is what places an organism. Without it the record names something and says
       // nothing about what it is.
       background.biologicalIdentity!.lineageAsRecorded = []
+    },
+  },
+  I_SOURCE_MATERIAL_UNCHECKABLE: {
+    mutate: (background) => {
+      // A part belongs to something; recording one with no organism states half a fact.
+      delete background.sourceMaterial!.parentSubstanceAsRecorded
     },
   },
   I_SUPPLEMENT_INGREDIENT_UNCHECKABLE: {

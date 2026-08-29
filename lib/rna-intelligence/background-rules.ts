@@ -104,6 +104,7 @@ export const BACKGROUND_RULE_CODES = [
   'I_PRODUCT_LISTING_CLASS_UNATTRIBUTABLE',
   'I_APPROVAL_UNCHECKABLE',
   'I_SUPPLEMENT_INGREDIENT_UNCHECKABLE',
+  'I_SOURCE_MATERIAL_UNCHECKABLE',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -143,6 +144,8 @@ const SOURCE_IDENTIFIER_PATTERNS: Record<string, RegExp> = {
   FDA_NDC: /^\d{4,5}-\d{3,4}$/u,
   // A Drugs@FDA application number: NDA, ANDA or BLA followed by its digits.
   FDA_DRUGSFDA: /^(?:NDA|ANDA|BLA)\d{4,8}$/u,
+  // A Unique Ingredient Identifier: ten characters of upper-case letters and digits.
+  FDA_UNII: /^[A-Z0-9]{10}$/u,
 }
 
 /**
@@ -955,6 +958,7 @@ export function runBackgroundIntelligence(
       'productListing',
       'regulatoryApproval',
       'supplementIngredient',
+      'sourceMaterial',
     ])
     const otherModules = Object.entries(background).some(([key, value]) => {
       if (ENVELOPE_FIELDS.has(key)) return false
@@ -1180,6 +1184,37 @@ export function runBackgroundIntelligence(
         'I_SUPPLEMENT_INGREDIENT_UNCHECKABLE',
         'supplementIngredient.recordedSpellingCount',
         'A count of recorded spellings cannot be negative.',
+      )
+    }
+  }
+
+  /**
+   * Recorded source material, checkable by the substance identifier it was copied from.
+   */
+  const material = background.sourceMaterial
+  if (material) {
+    checkSource('sourceMaterial', material.source)
+    if (material.source.kind !== 'FDA_UNII') {
+      flag(
+        'I_SOURCE_MATERIAL_UNCHECKABLE',
+        'sourceMaterial.source',
+        `Source material must cite the substance registry it was copied from, not "${material.source.kind}".`,
+      )
+    }
+    if (!material.substanceClassAsRecorded.trim()) {
+      flag(
+        'I_SOURCE_MATERIAL_UNCHECKABLE',
+        'sourceMaterial.substanceClassAsRecorded',
+        'A source-material record must carry the class the registry assigns.',
+      )
+    }
+    // A part belongs to something. Recording "leaf" with no organism beside it states a fragment of
+    // a fact and invites a reader to supply the rest.
+    if (material.partsAsRecorded.length > 0 && !material.parentSubstanceAsRecorded?.trim()) {
+      flag(
+        'I_SOURCE_MATERIAL_UNCHECKABLE',
+        'sourceMaterial.partsAsRecorded',
+        'A recorded part must name the organism it is a part of.',
       )
     }
   }

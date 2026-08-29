@@ -43,3 +43,4 @@ data/registries/*
 !data/registries/product-listing.json
 !data/registries/regulatory-approval.json
 !data/registries/supplement-ingredient.json
+!data/registries/source-material.json

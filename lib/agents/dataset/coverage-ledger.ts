@@ -43,6 +43,7 @@ export const COVERAGE_ROUTES = [
   'MARKETED_PRODUCT_LISTING',
   'REGULATORY_APPROVAL',
   'BIOLOGICAL_IDENTITY',
+  'SOURCE_MATERIAL',
   'COMPOUND_IDENTITY',
   'OTHER_RECORDED_CONTEXT',
   'NONE',
@@ -68,6 +69,7 @@ const MODULES = [
   'productListing',
   'regulatoryApproval',
   'supplementIngredient',
+  'sourceMaterial',
   'registryIdentifiers',
   'anatomyTargets',
   'applicability',
@@ -154,6 +156,7 @@ function routeFor(
   if (has(background, 'productListing')) return 'MARKETED_PRODUCT_LISTING'
   if (has(background, 'regulatoryApproval')) return 'REGULATORY_APPROVAL'
   if (has(background, 'biologicalIdentity')) return 'BIOLOGICAL_IDENTITY'
+  if (has(background, 'sourceMaterial')) return 'SOURCE_MATERIAL'
   if (has(background, 'molecularIdentity')) return 'COMPOUND_IDENTITY'
   // A record holding something none of the named routes describes is still not empty. Falling
   // through to NONE said "no source holds anything about this record" about rows that carried a
@@ -179,6 +182,8 @@ const ROUTE_LIMITS: Readonly<Record<CoverageRoute, string>> = {
     'The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it.',
   BIOLOGICAL_IDENTITY:
     'A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows.',
+  SOURCE_MATERIAL:
+    'The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety.',
   COMPOUND_IDENTITY:
     'A compound database states structure and nothing about use, effect or safety.',
   OTHER_RECORDED_CONTEXT:

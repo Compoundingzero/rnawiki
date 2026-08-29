@@ -338,6 +338,8 @@ function hasModule(background: MedicineRecordedBackground, module: RecordableMod
       return background.regulatoryApproval !== undefined
     case 'supplementIngredient':
       return background.supplementIngredient !== undefined
+    case 'sourceMaterial':
+      return background.sourceMaterial !== undefined
   }
 }
 

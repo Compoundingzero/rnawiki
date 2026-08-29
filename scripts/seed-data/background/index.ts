@@ -44,6 +44,7 @@ import { BIOLOGICAL_IDENTITY_BACKGROUND } from './biological-identity'
 import { PRODUCT_LISTING_BACKGROUND } from './product-listing'
 import { REGULATORY_APPROVAL_BACKGROUND } from './regulatory-approval'
 import { SUPPLEMENT_INGREDIENT_BACKGROUND } from './supplement-ingredient'
+import { SOURCE_MATERIAL_BACKGROUND } from './source-material'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -193,6 +194,15 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     merged[slug] = existing
       ? { ...existing, supplementIngredient: ingredient.supplementIngredient }
       : ingredient
+  }
+
+  // What kind of material the substance is attaches to whatever record exists. This is the plant
+  // part stated by the registry rather than inferred from a row's name, and it is the open route
+  // around a botanical names service that cannot be used.
+  for (const [slug, material] of Object.entries(SOURCE_MATERIAL_BACKGROUND)) {
+    const existing = merged[slug]
+    if (existing?.sourceMaterial) continue
+    merged[slug] = existing ? { ...existing, sourceMaterial: material.sourceMaterial } : material
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism

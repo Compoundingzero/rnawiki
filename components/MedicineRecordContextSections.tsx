@@ -21,6 +21,7 @@ import {
   BackgroundRecordedUsesBody,
   BackgroundSafetyBody,
   BackgroundSourceConsensusBody,
+  BackgroundSourceMaterialBody,
   BackgroundSupplementIngredientBody,
   BackgroundSupplementMarketBody,
   BackgroundTitrationBody,
@@ -457,6 +458,17 @@ export function MedicineRecordContextSections({
             preview="Each reading of a value, how many labels state it, and where the labels disagree."
           >
             <BackgroundSourceConsensusBody consensus={context.background.sourceConsensus} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.sourceMaterial && (
+          <BackgroundRow
+            id="what-kind-of-material"
+            tone="emerald"
+            title="What kind of material this is"
+            preview="Whether it is a chemical, a protein or material taken from an organism — and if so, which organism and which part."
+          >
+            <BackgroundSourceMaterialBody material={context.background.sourceMaterial} />
           </BackgroundRow>
         )}
 

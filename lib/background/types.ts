@@ -62,6 +62,7 @@ export const BACKGROUND_SOURCE_KINDS = [
   'NCBI_TAXONOMY',
   'FDA_NDC',
   'FDA_DRUGSFDA',
+  'FDA_UNII',
 ] as const
 export type BackgroundSourceKind = (typeof BACKGROUND_SOURCE_KINDS)[number]
 
@@ -601,6 +602,36 @@ export interface RecordedSupplementIngredient {
 }
 
 /**
+ * What kind of material a substance is, and where it comes from.
+ *
+ * FDA's substance registry answers a question nothing else in this corpus could: whether a substance
+ * is a chemical, a protein, a polymer, a mixture, or material taken from an organism — and where an
+ * organism is involved, which organism and which part of it.
+ *
+ * The part is why this exists. Kew's Medicinal Plant Names Services holds the plant part used for
+ * medicinal botanicals and cannot be used: no published licence, ClaudeBot disallowed in its
+ * robots.txt, rights reserved under EU DSM Article 4. The FDA registry carries the same fact as a
+ * US Government work, and carries it better, because it is the registry the labels are keyed to.
+ *
+ * `partsAsRecorded` is the registry's own statement rather than a guess from the row's name. The
+ * taxonomy module infers a part by stripping a trailing word — "Curcuma Longa Leaf" ends in "leaf"
+ * — which works and is inference. This is the registry saying so.
+ */
+export interface RecordedSourceMaterial {
+  /** How the registry classifies the substance: chemical, protein, polymer, mixture, and so on. */
+  substanceClassAsRecorded: string
+  /** Whether the material comes from an organism or a mineral, when the registry says. */
+  sourceMaterialClassAsRecorded?: string
+  /** The kind of organism, e.g. plant, bony fish, bacterium. */
+  sourceMaterialTypeAsRecorded?: string
+  /** The organism the material is taken from, as the registry names it. */
+  parentSubstanceAsRecorded?: string
+  /** The part used, as the registry records it rather than as a name suggests. */
+  partsAsRecorded: string[]
+  source: BackgroundSource
+}
+
+/**
  * Ranks at which a name identifies one organism rather than a group of them.
  *
  * A binomial is unambiguous by construction: nothing else is called "Withania somnifera". A bare
@@ -798,6 +829,7 @@ export const RECORDED_BACKGROUND_MODULES = [
   'productListing',
   'regulatoryApproval',
   'supplementIngredient',
+  'sourceMaterial',
 ] as const
 export type RecordedBackgroundModule = (typeof RECORDED_BACKGROUND_MODULES)[number]
 
@@ -834,4 +866,5 @@ export interface MedicineRecordedBackground {
   productListing?: RecordedProductListing
   regulatoryApproval?: RecordedRegulatoryApproval
   supplementIngredient?: RecordedSupplementIngredient
+  sourceMaterial?: RecordedSourceMaterial
 }

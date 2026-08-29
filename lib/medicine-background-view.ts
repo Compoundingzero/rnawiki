@@ -229,6 +229,18 @@ export interface MedicineBackgroundContextView {
     spellingCountLabel: string
     source: RecordedSourceView
   }
+  /**
+   * What kind of material the substance is, and where it comes from.
+   *
+   * The part here is the registry's own statement rather than a guess from the row's name.
+   */
+  sourceMaterial?: {
+    substanceClassLabel: string
+    originLabel?: string
+    parentSubstance?: string
+    parts: string[]
+    source: RecordedSourceView
+  }
   supplementMarket?: {
     labelCountLabel: string
     categories: string[]
@@ -275,6 +287,7 @@ const SOURCE_KIND_LABELS: Record<BackgroundSource['kind'], string> = {
   NCBI_TAXONOMY: 'NCBI Taxonomy record',
   FDA_NDC: 'FDA National Drug Code directory',
   FDA_DRUGSFDA: 'Drugs@FDA application record',
+  FDA_UNII: 'FDA substance registry record',
 }
 
 const CONCORDANCE_LABELS = {
@@ -421,6 +434,24 @@ const CONSENSUS_FIELD_LABELS: Record<string, string> = {
   tMax: 'Time to peak level',
   proteinBinding: 'Bound to blood proteins',
   volumeOfDistribution: 'Distribution volume',
+}
+
+/**
+ * The registry writes its substance classes in camel case; a reader should not have to.
+ * An unrecognised class is shown as the registry wrote it rather than hidden.
+ */
+function substanceClassLabel(value: string): string {
+  const known: Record<string, string> = {
+    chemical: 'A defined chemical',
+    protein: 'A protein',
+    polymer: 'A polymer',
+    mixture: 'A mixture',
+    nucleicAcid: 'A nucleic acid',
+    structurallyDiverse: 'Material taken from an organism',
+    concept: 'A registry concept rather than a single substance',
+    specifiedSubstanceG1: 'A specified substance',
+  }
+  return known[value] ?? value
 }
 
 /** Application kinds are acronyms nobody should have to expand for themselves. */
@@ -801,6 +832,29 @@ export function medicineBackgroundContext(
       }
     : undefined
 
+  const material = background.sourceMaterial
+  const sourceMaterial = material
+    ? {
+        substanceClassLabel: substanceClassLabel(material.substanceClassAsRecorded),
+        ...(material.sourceMaterialTypeAsRecorded || material.sourceMaterialClassAsRecorded
+          ? {
+              originLabel: [
+                material.sourceMaterialTypeAsRecorded,
+                material.sourceMaterialClassAsRecorded,
+              ]
+                .filter((value): value is string => Boolean(value))
+                .map(sentenceCase)
+                .join(' · '),
+            }
+          : {}),
+        ...(material.parentSubstanceAsRecorded
+          ? { parentSubstance: sentenceCase(material.parentSubstanceAsRecorded) }
+          : {}),
+        parts: material.partsAsRecorded.map(sentenceCase),
+        source: sourceView(material.source),
+      }
+    : undefined
+
   const filed = background.supplementIngredient
   const supplementIngredient = filed
     ? {
@@ -976,6 +1030,7 @@ export function medicineBackgroundContext(
     ...(productListing ? { productListing } : {}),
     ...(regulatoryApproval ? { regulatoryApproval } : {}),
     ...(supplementIngredient ? { supplementIngredient } : {}),
+    ...(sourceMaterial ? { sourceMaterial } : {}),
     ...(labelPresence ? { labelPresence } : {}),
     ...(supplementMarket ? { supplementMarket } : {}),
     ...(composition ? { composition } : {}),

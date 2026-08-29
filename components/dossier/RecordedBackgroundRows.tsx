@@ -883,6 +883,41 @@ export function BackgroundProductListingBody({
  * A category is where the database put something, not a finding about it. That distinction carries
  * the whole row, because "non-nutrient/non-botanical" reads like a judgement and is a filing code.
  */
+/**
+ * What kind of material the substance is, and which part of which organism it comes from.
+ *
+ * The part is the registry's own statement. The taxonomy row infers one from the medicine's name;
+ * this is the register that the labels themselves are keyed to, saying so.
+ */
+export function BackgroundSourceMaterialBody({
+  material,
+}: {
+  material: NonNullable<MedicineBackgroundContextView['sourceMaterial']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">{material.substanceClassLabel}.</p>
+      {material.parentSubstance && (
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[#6E6E73]">Taken from</p>
+          <p className="mt-1 break-words text-[15px] leading-7 text-[#1D1D1F]">
+            {material.parentSubstance}
+          </p>
+        </div>
+      )}
+      <ChipList label="Part used" values={material.parts} />
+      {material.originLabel && (
+        <p className="text-sm leading-6 text-[#515154]">Registry origin: {material.originLabel}</p>
+      )}
+      <SourceLine source={material.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        This says what kind of material the substance is and where it comes from. It says nothing
+        about what it does. {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
 export function BackgroundSupplementIngredientBody({
   ingredient,
 }: {
