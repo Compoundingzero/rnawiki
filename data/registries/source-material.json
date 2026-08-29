@@ -16570,6 +16570,21 @@
    }
   }
  },
+ "butyloctyl": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "2EH13UN8D3",
+    "label": "Substance registry record for 2-BUTYLOCTYL O-HYDROXYBENZOATE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "butyrospermum-parkii-butter": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -30376,6 +30391,21 @@
     "kind": "FDA_UNII",
     "identifier": "W1WFA6001P",
     "label": "Substance registry record for DIENTAMOEBA FRAGILIS",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "diethylamino-hydroxybenzoyl-hexyl": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "ANQ870JD20",
+    "label": "Substance registry record for BENZOIC ACID, 2-(4-(DIETHYLAMINO)-2-HYDROXYBENZOYL)-, HEXYL ESTER",
     "retrievedAt": "2026-08-29"
    }
   }

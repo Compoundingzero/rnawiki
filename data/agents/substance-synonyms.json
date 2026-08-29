@@ -14,9 +14,9 @@
     "counterionCationTermCount": 18
   },
   "coverage": {
-    "considered": 9847,
+    "considered": 9853,
     "used": 2021,
-    "reason": "2021 of 9847 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 386 records ended up in a candidate group."
+    "reason": "2021 of 9853 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 386 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [
@@ -31,6 +31,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -46,6 +47,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -72,6 +74,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -87,6 +90,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -220,6 +224,7 @@
               "registryIdentifiers",
               "safety",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "supplementIngredient",
               "sourceMaterial"
@@ -262,6 +267,7 @@
             "name": "pilocarpus jaborandi leaf",
             "modulesHeld": [
               "registryIdentifiers",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -276,6 +282,7 @@
             "name": "pilocarpus jaborandii leaf",
             "modulesHeld": [
               "registryIdentifiers",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -301,6 +308,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "supplementIngredient"
             ],
@@ -314,6 +322,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "supplementIngredient"
@@ -339,6 +348,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "supplementIngredient",
@@ -473,6 +483,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "supplementIngredient",
@@ -513,6 +524,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "supplementIngredient"
             ],
@@ -556,6 +568,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "supplementIngredient",
               "sourceMaterial"
@@ -578,6 +591,7 @@
               "commonAdverseReactions",
               "recordedUses",
               "sourceConsensus",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval",
@@ -813,6 +827,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -854,6 +869,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -1035,6 +1051,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -1050,6 +1067,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -1081,6 +1099,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "regulatoryApproval"
             ],
@@ -1171,6 +1190,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval",
@@ -1189,6 +1209,7 @@
               "productVariants",
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "regulatoryApproval"
             ],
@@ -1428,6 +1449,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -1469,6 +1491,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "supplementIngredient",
               "sourceMaterial"
@@ -1508,6 +1531,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -1799,6 +1823,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -1815,6 +1840,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2020,6 +2046,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2035,6 +2062,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2061,6 +2089,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2076,6 +2105,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2103,6 +2133,7 @@
               "registryIdentifiers",
               "safety",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "supplementIngredient",
@@ -2119,6 +2150,7 @@
               "registryIdentifiers",
               "safety",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -2200,6 +2232,7 @@
             "name": "fragaria vesca fruit",
             "modulesHeld": [
               "registryIdentifiers",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2273,6 +2306,7 @@
               "anatomyTargets",
               "registryIdentifiers",
               "sourceConsensus",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval",
@@ -2295,6 +2329,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "regulatoryApproval"
             ],
@@ -2712,6 +2747,7 @@
             "name": "matricaria chamomilla",
             "modulesHeld": [
               "registryIdentifiers",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2728,6 +2764,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -2761,6 +2798,7 @@
               "pivotalResults",
               "registryIdentifiers",
               "sourceConsensus",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval",
@@ -2786,6 +2824,7 @@
               "populationStatements",
               "recordedUses",
               "sourceConsensus",
+              "supplementMarket",
               "labelPresence",
               "regulatoryApproval"
             ],
@@ -3064,6 +3103,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -3168,6 +3208,7 @@
               "productVariants",
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -3252,6 +3293,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "supplementIngredient"
             ],
@@ -3606,6 +3648,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "supplementIngredient",
@@ -3622,6 +3665,7 @@
               "registryIdentifiers",
               "safety",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -3649,6 +3693,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "supplementIngredient"
             ],
@@ -3663,6 +3708,7 @@
               "costContext",
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "supplementIngredient",
@@ -3755,6 +3801,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -3905,6 +3952,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -3973,6 +4021,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -3989,6 +4038,7 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
               "productListing",
@@ -6460,6 +6510,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "regulatoryApproval",
               "sourceMaterial"
             ],
@@ -6490,6 +6541,7 @@
               "populationStatements",
               "commonAdverseReactions",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -8077,6 +8129,7 @@
               "populationStatements",
               "commonAdverseReactions",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -9422,6 +9475,7 @@
               "populationStatements",
               "commonAdverseReactions",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval",
@@ -9441,6 +9495,7 @@
               "populationStatements",
               "commonAdverseReactions",
               "recordedUses",
+              "supplementMarket",
               "regulatoryApproval",
               "supplementIngredient",
               "sourceMaterial"
@@ -9973,6 +10028,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval",
@@ -9992,6 +10048,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "productListing",
               "regulatoryApproval",
               "sourceMaterial"
@@ -10287,6 +10344,7 @@
               "populationStatements",
               "recordedUses",
               "sourceConsensus",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval",
@@ -10307,6 +10365,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "regulatoryApproval",
               "sourceMaterial"
             ],
@@ -10438,6 +10497,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -10456,6 +10516,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "regulatoryApproval",
               "sourceMaterial"
             ],
@@ -10527,6 +10588,7 @@
               "populationStatements",
               "recordedUses",
               "sourceConsensus",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval"
@@ -10546,6 +10608,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "regulatoryApproval",
               "sourceMaterial"
             ],
@@ -10617,6 +10680,7 @@
               "populationStatements",
               "recordedUses",
               "sourceConsensus",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "regulatoryApproval"
@@ -10637,6 +10701,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "regulatoryApproval"
             ],
             "sourceIdentifiers": [
@@ -11597,6 +11662,7 @@
               "safety",
               "populationStatements",
               "recordedUses",
+              "supplementMarket",
               "regulatoryApproval",
               "sourceMaterial"
             ],
@@ -12681,6 +12747,7 @@
               "populationStatements",
               "commonAdverseReactions",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"
@@ -12832,6 +12899,7 @@
               "populationStatements",
               "commonAdverseReactions",
               "recordedUses",
+              "supplementMarket",
               "labelPresence",
               "productListing",
               "sourceMaterial"

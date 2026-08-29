@@ -44934,6 +44934,72 @@
    }
   }
  },
+ "butyloctyl": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "productListing": {
+   "productCount": 2,
+   "singleIngredientProductCount": 0,
+   "dosageFormsAsRecorded": [
+    "LOTION"
+   ],
+   "routesAsRecorded": [
+    "TOPICAL"
+   ],
+   "marketingCategoriesAsRecorded": [
+    "UNAPPROVED DRUG OTHER"
+   ],
+   "pharmacologicClassesAsRecorded": [],
+   "earliestMarketingStartDate": "20250904",
+   "sampleProductNdcs": [
+    "84755-0006",
+    "87565-0006"
+   ],
+   "source": {
+    "kind": "FDA_NDC",
+    "identifier": "84755-0006",
+    "label": "National Drug Code directory listing",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "diethylamino-hydroxybenzoyl-hexyl": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "productListing": {
+   "productCount": 5,
+   "singleIngredientProductCount": 0,
+   "dosageFormsAsRecorded": [
+    "ELIXIR",
+    "GEL",
+    "LOTION"
+   ],
+   "routesAsRecorded": [
+    "TOPICAL"
+   ],
+   "marketingCategoriesAsRecorded": [
+    "OTC MONOGRAPH DRUG",
+    "UNAPPROVED DRUG OTHER"
+   ],
+   "pharmacologicClassesAsRecorded": [],
+   "earliestMarketingStartDate": "20240901",
+   "sampleProductNdcs": [
+    "84755-0006",
+    "87565-0002",
+    "85940-307",
+    "87565-0006",
+    "84755-0002"
+   ],
+   "source": {
+    "kind": "FDA_NDC",
+    "identifier": "84755-0006",
+    "label": "National Drug Code directory listing",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "carbachol": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",

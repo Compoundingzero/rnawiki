@@ -6,6 +6,18 @@
  * clauses. Source medical wording is otherwise unchanged.
  */
 
+/**
+ * Slugs that name no medicine, so a row carrying one is an ingestion artifact rather than a record.
+ *
+ * The spreadsheet vocabulary below was added after a CSV header line reached production as a
+ * medicine: `data/drugs` held a row with slug `header` and name `Header`, and RNAWiki served a page
+ * for it at /d/header with every content field empty. The list had `unnamed` and `tbd` but not the
+ * word that actually got through, so nothing stopped it.
+ *
+ * Each addition is a word that describes a table rather than a substance. Words that could name a
+ * real one are deliberately absent, and the list is checked against the live corpus before anything
+ * joins it — `date` looks like spreadsheet vocabulary and is Phoenix dactylifera, the date palm.
+ */
 export const PUBLIC_PLACEHOLDER_MEDICINE_SLUGS = [
   'tbd',
   'tbc',
@@ -16,6 +28,22 @@ export const PUBLIC_PLACEHOLDER_MEDICINE_SLUGS = [
   'none',
   'not-available',
   'not-applicable',
+  'header',
+  'headers',
+  'column',
+  'columns',
+  'sheet',
+  'sheet1',
+  'worksheet',
+  'row',
+  'rows',
+  'field',
+  'fields',
+  'record',
+  'records',
+  'entry',
+  'entries',
+  'table',
 ] as const
 
 export const PUBLIC_PLACEHOLDER_MEDICINE_NAMES = [

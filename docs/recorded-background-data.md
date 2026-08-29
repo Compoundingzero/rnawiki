@@ -22,7 +22,7 @@ replaces judgement — cross-source consensus, supplement market counts, archive
 cost, biological identity — may attach to a curated record. `ALL_RECORDED_BACKGROUND` is the merged
 corpus; the merge and its precedence are pinned by `tests/unit/background-corpus-merge.test.ts`.
 
-The merged corpus covers **9,847 of 9,858 rows**. The four registries the corpus reads at runtime are
+The merged corpus covers **9,853 of 9,857 rows**. The four registries the corpus reads at runtime are
 version-controlled, because three of them were once gitignored and the deployed site served a third
 of the records this repository could produce while every local check passed.
 
@@ -308,6 +308,36 @@ The difficulty is collisions, and they are not spread evenly:
   exception. The rule refuses six correct rows along with the seven wrong ones, and that trade is
   the right way round: a page missing a lineage is a smaller failure than a page saying lithium is a
   moth.
+
+## A header line was a medicine
+
+`data/drugs` held a row with slug `header` and name `Header`: a CSV header line ingested as if it
+were a substance, 24 fields with every content field empty, served at /d/header. Eight independent
+sources were asked about it — the label archive, the product directory, the application register,
+the substance registry, the taxonomy, the supplement vocabulary, the compound database, the pricing
+file — and none recognised it. That unanimous silence is what identified it, not a guess about the
+word.
+
+The same scan flagged `Date`, and `Date` stayed: the supplement database files it as Date Palm and
+FDA's registry resolves it to _Phoenix dactylifera_. A rule that rejected spreadsheet-shaped words
+would have deleted a real botanical. Coverage answered a question a word list could not.
+
+The cause was that `PUBLIC_PLACEHOLDER_MEDICINE_SLUGS` — the guard that exists to catch exactly this
+— listed `unnamed` and `tbd` but not `header`. It now covers words that describe a table rather than
+a substance, every one checked against the live corpus first, and
+`tests/unit/ingestion-artifacts.test.ts` fails if any corpus row would be rejected by it.
+
+Three further rows were truncated ingredient names rather than substances. Two were completed on
+evidence and the original spelling kept as an alias, so the completion is recorded rather than
+substituted: `Butyloctyl` → **Butyloctyl Salicylate**, the only one of five registry candidates with
+a marketed product, and `Diethylamino Hydroxybenzoyl Hexyl` → **Diethylamino Hydroxybenzoyl Hexyl
+Benzoate**, the only real completion in the registry. Both matched a marketed product immediately
+afterwards, which is the check that they were right.
+
+`Ethylhexyl` was left alone. Its 69 registry candidates are led by Ethylhexyl Salicylate at 40
+marketed products and Ethylhexyl Methoxycinnamate at 36 — two common UV filters, four products
+apart. There is no likeliest completion there, and putting one substance's data on a page that may
+mean the other is the mis-attribution this record model exists to prevent.
 
 ## Bulk before polling, always
 
