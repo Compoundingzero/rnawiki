@@ -22,7 +22,7 @@ replaces judgement — cross-source consensus, supplement market counts, archive
 cost, biological identity — may attach to a curated record. `ALL_RECORDED_BACKGROUND` is the merged
 corpus; the merge and its precedence are pinned by `tests/unit/background-corpus-merge.test.ts`.
 
-The merged corpus covers **8,582 of 9,858 rows**. The four registries the corpus reads at runtime are
+The merged corpus covers **9,847 of 9,858 rows**. The four registries the corpus reads at runtime are
 version-controlled, because three of them were once gitignored and the deployed site served a third
 of the records this repository could produce while every local check passed.
 
@@ -309,15 +309,60 @@ The difficulty is collisions, and they are not spread evenly:
   the right way round: a page missing a lineage is a smaller failure than a page saying lithium is a
   moth.
 
+## Bulk before polling, always
+
+Two rate-limit incidents against the supplement label database had one cause, and it was never
+concurrency. It was the shape of the work: one keyword search per corpus row, 9,772 of them, most
+asking about names the database has never heard of. A run lock stopped a second copy and left that
+untouched.
+
+The database publishes its own vocabulary. `/v9/ingredient-groups?method=by_letter` returns every
+ingredient group starting with a letter, with its category and every label spelling — **27 requests
+for 6,467 groups and 78,788 spellings**, against 9,772 searches for the same information, most of it
+negative. Names the database does not hold are never asked about at all.
+
+And the reason none of it was visible:
+
+> **The refusal arrives as HTTP 200 with an error object in the body, not as 429.**
+
+Code checking `response.status === 429` saw a successful response containing an empty result,
+recorded "this ingredient has no marketed labels", and carried on. The circuit breaker never
+tripped because nothing ever looked like a failure. Runs appeared to progress while recording
+nothing, and names cached as answered had never been asked.
+
+The rule this produced, applied to every source since: **a bulk download beats an API, and where a
+source has one the API route is deleted rather than kept as a fallback.** Everything added in this
+pass is a bulk file — the product directory, the application register, the substance registry, the
+taxonomy, the pricing file. None of them can rate-limit anyone.
+
+## What the record now holds beyond the label
+
+| Module                 | Source                 | Rows  | What it answers                                                  |
+| ---------------------- | ---------------------- | ----- | ---------------------------------------------------------------- |
+| `productListing`       | openFDA NDC directory  | 5,996 | What is on the market, how it got there, its forms               |
+| `supplementIngredient` | DSLD vocabulary        | 3,887 | How the supplement database files and classifies it              |
+| `sourceMaterial`       | FDA substance registry | 5,644 | Chemical, protein or organism — and which part of which organism |
+| `biologicalIdentity`   | NCBI Taxonomy          | 3,013 | What organism it is and where classification places it           |
+| `regulatoryApproval`   | Drugs@FDA              | 2,505 | When a product containing it was first approved                  |
+| `costContext`          | CMS NADAC              | 626   | What a pharmacy pays to buy it                                   |
+
+Two of those carry a gate worth naming. `pharmacologicClassesAsRecorded` is read only from products
+declaring one active ingredient, because the directory attaches a combination's classes to the
+combination — a glyburide-and-metformin tablet carries both "Sulfonylurea" and "Biguanide", and
+reading either off it would file glyburide as a biguanide. And a recorded plant part must name the
+organism it is a part of: "leaf" alone states half a fact and invites a reader to supply the rest.
+
 ## Sources considered and not used
 
 Investigated against this corpus's actual gaps, with their licences read rather than assumed:
 
-- **Kew Medicinal Plant Names Services** holds plant part alongside 283,636 herbal and common names
-  — the single best fit for the botanical rows — and has no published licence, blocks `ClaudeBot` in
-  `robots.txt`, and reserves rights under EU DSM Article 4. Unlicensed and copyrighted is worse than
-  a stated restrictive licence, because there is nothing to comply with. Only a negotiated agreement
-  with Kew opens it.
+- **Kew Medicinal Plant Names Services** holds plant part alongside 283,636 herbal and common names,
+  has no published licence, blocks `ClaudeBot` in `robots.txt`, and reserves rights under EU DSM
+  Article 4. Unlicensed and copyrighted is worse than a stated restrictive licence, because there is
+  nothing to comply with. **Routed around rather than negotiated:** FDA's substance registry carries
+  the plant part, the parent organism and the material class as a US Government work, and carries it
+  better, because it is the registry the labels themselves are keyed to. 2,142 rows now hold a part
+  the registry states rather than one inferred from a name.
 - **DailyMed** carries SPLs that openFDA's endpoint drops — 75 of 90 allergenic SPLs — and is the
   only source of structured homeopathic potency. Its licence is contested: data.gov states ODbL 1.0
   for this service, NLM's policy states public domain with a carve-out for content submitted by
@@ -328,9 +373,13 @@ Investigated against this corpus's actual gaps, with their licences read rather 
 - **PubChem sections sourced from DrugBank (CC BY-NC), T3DB, KNApSAcK and NPASS** are dropped at
   parse time rather than filtered later.
 
-Six of the seventeen investigating agents failed to return structured output, so GBIF, ChEMBL,
-Wikidata/ATC, MeSH and USDA FoodData were **not** investigated. They remain open questions rather
-than rejected options.
+A first investigation lost six of seventeen agents to structured-output retry failures, leaving
+GBIF, ChEMBL, Wikidata/ATC, MeSH and USDA FoodData uninvestigated. The cause was the schema: eleven
+fields, several long free text, asked of agents that had just spent a hundred tool calls on
+research. Re-run with plain-text reports against a strict template — text cannot fail validation —
+**all twenty-five agents completed.** That investigation produced the bulk routes above, and its
+remaining recommendations (EMA, Health Canada, WHO Essential Medicines, ATC via NLM) are the next
+tranche rather than open questions.
 
 ## Every stored module reaches a reader
 
