@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync
 import { dirname, join } from 'node:path'
 
 import { normalizeContentName } from '@/lib/background/name-normalization'
+import { isRateLimitRefusal } from '@/lib/background/dsld-rate-limit'
 
 /**
  * Records what the supplement label database holds for each supplement ingredient in the corpus.
@@ -106,7 +107,16 @@ async function getJson(url: string): Promise<unknown | null> {
         await sleep(2000 * (attempt + 1))
         continue
       }
-      return (await response.json()) as unknown
+      const payload = (await response.json()) as unknown
+      // Refusal arrives as HTTP 200 with an error object. Read as a result it says "no marketed
+      // labels for this ingredient", which is how thousands of names were cached as answered when
+      // they had never been asked.
+      if (isRateLimitRefusal(payload)) {
+        lastLookupWasRateLimited = true
+        await sleep(RATE_LIMIT_BACKOFF_MS * (attempt + 1))
+        continue
+      }
+      return payload
     } catch {
       await sleep(1000 * (attempt + 1))
     }
