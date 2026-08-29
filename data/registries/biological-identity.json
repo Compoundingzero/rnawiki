@@ -19914,31 +19914,6 @@
    }
   }
  },
- "chenopodium": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Chenopodium",
-   "rankAsRecorded": "genus",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Caryophyllales",
-    "Amaranthaceae"
-   ],
-   "commonNamesAsRecorded": [],
-   "matchedOn": "SCIENTIFIC_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "3558",
-    "label": "NCBI Taxonomy record for Chenopodium",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
  "chenopodium-album": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -24682,31 +24657,6 @@
    }
   }
  },
- "cordyceps": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Cordyceps",
-   "rankAsRecorded": "genus",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Fungi",
-    "Ascomycota",
-    "Sordariomycetes",
-    "Hypocreales",
-    "Cordycipitaceae"
-   ],
-   "commonNamesAsRecorded": [],
-   "matchedOn": "SCIENTIFIC_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "45234",
-    "label": "NCBI Taxonomy record for Cordyceps",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
  "coriander": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -25296,34 +25246,6 @@
     "kind": "NCBI_TAXONOMY",
     "identifier": "39387",
     "label": "NCBI Taxonomy record for Gypsophila vaccaria",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
- "cowslip": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Primula veris",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Ericales",
-    "Primulaceae",
-    "Primula"
-   ],
-   "commonNamesAsRecorded": [
-    "cowslip"
-   ],
-   "matchedOn": "COMMON_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "170927",
-    "label": "NCBI Taxonomy record for Primula veris",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -35846,32 +35768,6 @@
    }
   }
  },
- "geotrichum-candidum": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Geotrichum candidum",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Fungi",
-    "Ascomycota",
-    "Dipodascomycetes",
-    "Dipodascales",
-    "Dipodascaceae",
-    "Geotrichum"
-   ],
-   "commonNamesAsRecorded": [],
-   "matchedOn": "SCIENTIFIC_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "1173061",
-    "label": "NCBI Taxonomy record for Geotrichum candidum",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
  "geranium-maculatum-root": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -36691,31 +36587,6 @@
     "kind": "NCBI_TAXONOMY",
     "identifier": "74614",
     "label": "NCBI Taxonomy record for Glycyrrhiza inflata",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
- "gnaphalium": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Gnaphalium",
-   "rankAsRecorded": "genus",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Asterales",
-    "Asteraceae"
-   ],
-   "commonNamesAsRecorded": [],
-   "matchedOn": "SCIENTIFIC_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "59428",
-    "label": "NCBI Taxonomy record for Gnaphalium",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -43508,32 +43379,6 @@
    }
   }
  },
- "khuskia-oryzae": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Nigrospora oryzae",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Fungi",
-    "Ascomycota",
-    "Sordariomycetes",
-    "Amphisphaeriales",
-    "Apiosporaceae",
-    "Nigrospora"
-   ],
-   "commonNamesAsRecorded": [],
-   "matchedOn": "COMMON_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "335854",
-    "label": "NCBI Taxonomy record for Nigrospora oryzae",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
  "kidney-bean": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -48277,34 +48122,6 @@
    }
   }
  },
- "lungwort": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Pulmonaria officinalis",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Boraginales",
-    "Boraginaceae",
-    "Pulmonaria"
-   ],
-   "commonNamesAsRecorded": [
-    "lungwort"
-   ],
-   "matchedOn": "COMMON_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "136616",
-    "label": "NCBI Taxonomy record for Pulmonaria officinalis",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
  "luo-han-guo": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -49439,35 +49256,6 @@
     "paradise apple"
    ],
    "partAsRecorded": "flower",
-   "matchedOn": "SCIENTIFIC_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "283210",
-    "label": "NCBI Taxonomy record for Malus pumila",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
- "malus-pumila-whole": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Malus pumila",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Rosales",
-    "Rosaceae",
-    "Malus"
-   ],
-   "commonNamesAsRecorded": [
-    "paradise apple"
-   ],
-   "partAsRecorded": "whole",
    "matchedOn": "SCIENTIFIC_NAME",
    "source": {
     "kind": "NCBI_TAXONOMY",
@@ -52497,36 +52285,6 @@
     "kind": "NCBI_TAXONOMY",
     "identifier": "28528",
     "label": "NCBI Taxonomy record for Pinus mugo",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
- "mugwort": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Artemisia vulgaris",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Asterales",
-    "Asteraceae",
-    "Artemisia"
-   ],
-   "commonNamesAsRecorded": [
-    "common mugwort",
-    "common wormwood",
-    "mugwort"
-   ],
-   "matchedOn": "COMMON_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "4220",
-    "label": "NCBI Taxonomy record for Artemisia vulgaris",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -72546,33 +72304,6 @@
    }
   }
  },
- "smilax-ornata-whole": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Smilax ornata",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Liliales",
-    "Smilacaceae",
-    "Smilax"
-   ],
-   "commonNamesAsRecorded": [],
-   "partAsRecorded": "whole",
-   "matchedOn": "SCIENTIFIC_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "3720834",
-    "label": "NCBI Taxonomy record for Smilax ornata",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
  "solanum-anguivi": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -74097,34 +73828,6 @@
     "kind": "NCBI_TAXONOMY",
     "identifier": "1286",
     "label": "NCBI Taxonomy record for Staphylococcus simulans",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
- "star-of-bethlehem": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Loncomelos narbonense",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Asparagales",
-    "Asparagaceae",
-    "Loncomelos"
-   ],
-   "commonNamesAsRecorded": [
-    "star-of-Bethlehem"
-   ],
-   "matchedOn": "COMMON_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "352820",
-    "label": "NCBI Taxonomy record for Loncomelos narbonense",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -78348,38 +78051,6 @@
     "kind": "NCBI_TAXONOMY",
     "identifier": "53873",
     "label": "NCBI Taxonomy record for Dipteryx odorata",
-    "retrievedAt": "2026-08-29"
-   }
-  }
- },
- "toothache-plant": {
-  "version": "medicine-background/v1",
-  "authoredAt": "2026-08-29",
-  "provenanceTier": "transcribed",
-  "biologicalIdentity": {
-   "scientificName": "Acmella oleracea",
-   "rankAsRecorded": "species",
-   "lineageAsRecorded": [
-    "Eukaryota",
-    "Viridiplantae",
-    "Streptophyta",
-    "Magnoliopsida",
-    "Asterales",
-    "Asteraceae",
-    "Acmella"
-   ],
-   "commonNamesAsRecorded": [
-    "Brazilian cress",
-    "Para cress",
-    "electric daisy",
-    "jambu",
-    "toothache plant"
-   ],
-   "matchedOn": "COMMON_NAME",
-   "source": {
-    "kind": "NCBI_TAXONOMY",
-    "identifier": "469459",
-    "label": "NCBI Taxonomy record for Acmella oleracea",
     "retrievedAt": "2026-08-29"
    }
   }

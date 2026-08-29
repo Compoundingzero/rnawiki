@@ -569,13 +569,43 @@ const MOLECULAR_FORMULA =
  * weighing 135 g/mol. 107 records across the corpus carried a number truncated this way.
  */
 const MOLECULAR_WEIGHT = new RegExp(
-  String.raw`molecular weight[^.;:]{0,30}?(?:is|of|[:=])\s*(?:approximately\s*|about\s*|~)?((?:${PRINTED_NUMBER})(?:\s*(?:g\s*\/\s*mol|daltons?|Da))?)`,
+  String.raw`molecular weight[^.;:]{0,30}?(?:is|of|[:=])\s*(?:approximately\s*|about\s*|~)?((?:${PRINTED_NUMBER})(?:\s*(?:g\s*\/\s*mol|kilodaltons?|kDa?|daltons?|Da))?)`,
   'iu',
 )
 
-/** Below this a "formula" match is an abbreviation; above it the pattern ran past the formula. */
-const MIN_MOLECULAR_WEIGHT = 30
-const MAX_MOLECULAR_WEIGHT = 200000
+/**
+ * The unit the label printed, in the label's own magnitude.
+ *
+ * This used to be the constant `'g/mol'`, stamped on every match whatever the sentence said, and the
+ * alternation above had no kilodalton branch — so "molecular weight of approximately 54 kilodaltons"
+ * matched the bare "54" and was recorded as 54 g/mol. Every one of the 296 protein rows carrying a
+ * weight was stamped that way, and 227 of them stated a weight a thousand times too small: a page
+ * said blinatumomab weighs 54 g/mol directly above an excerpt reading "54 kilodaltons". Follitropin,
+ * a 30 kDa hormone, was recorded at 31.
+ *
+ * The number is left exactly as printed rather than converted to grams per mole. Converting would
+ * put 54,000 on the page under an excerpt that says 54, and every number this corpus displays has to
+ * appear in the excerpt beneath it.
+ */
+function printedWeightUnit(matched: string): 'g/mol' | 'kDa' | 'Da' {
+  if (/kilodaltons?|kDa?\b/iu.test(matched)) return 'kDa'
+  if (/daltons?|\bDa\b/iu.test(matched)) return 'Da'
+  // No unit printed beside the number. Grams per mole is the convention for a bare molecular weight
+  // on a drug label, and it is the reading every such record already carried.
+  return 'g/mol'
+}
+
+/**
+ * Plausible ranges, per unit, because the same number means different things in each.
+ *
+ * A floor of one atomic mass unit is right for daltons and grams per mole — carbon is 12 and is a
+ * recorded medicine — and wrong for kilodaltons, where the smallest real value is a small peptide.
+ */
+const WEIGHT_RANGES: Record<'g/mol' | 'kDa' | 'Da', { min: number; max: number }> = {
+  'g/mol': { min: 30, max: 200000 },
+  Da: { min: 30, max: 200000 },
+  kDa: { min: 0.5, max: 1000 },
+}
 
 export function extractMolecularIdentity(
   artifact: LabelArtifact,
@@ -608,8 +638,10 @@ export function extractMolecularIdentity(
   const weightHit = findPattern(description, MOLECULAR_WEIGHT)
   if (weightHit?.numeric !== undefined) {
     const weight = weightHit.numeric
-    if (weight >= MIN_MOLECULAR_WEIGHT && weight <= MAX_MOLECULAR_WEIGHT) {
-      const value = toValue(weightHit, source, 'g/mol', weight)
+    const unit = printedWeightUnit(weightHit.matched)
+    const range = WEIGHT_RANGES[unit]
+    if (weight >= range.min && weight <= range.max) {
+      const value = toValue(weightHit, source, unit, weight)
       if (value) identity.molecularWeight = value
     }
   }

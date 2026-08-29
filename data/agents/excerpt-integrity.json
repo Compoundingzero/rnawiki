@@ -1,7 +1,7 @@
 {
   "agent": "excerpt-integrity",
   "version": "1.0.0",
-  "runDate": "2026-08-29",
+  "runDate": "2026-08-30",
   "seed": 20260828,
   "parameters": {
     "normalisationRules": 7,
@@ -9,8 +9,8 @@
     "independentOfEngine": true
   },
   "coverage": {
-    "considered": 9853,
-    "used": 3434,
+    "considered": 9855,
+    "used": 3440,
     "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
   },
   "output": {
@@ -1384,6 +1384,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "anakinra",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "andexanet-alfa",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
@@ -2578,6 +2584,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "becaplermin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "beclomethasone",
         "path": "pharmacokinetics.proteinBinding",
         "module": "pharmacokinetics",
@@ -3658,9 +3670,21 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "brolucizumab",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "brolucizumab-dbll",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "brolucizumab-dbll",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -3893,6 +3917,18 @@
       },
       {
         "slug": "cabozantinib-s-malate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "calaspargase-pegol",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "calaspargase-pegol-mknl",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -4187,6 +4223,12 @@
       },
       {
         "slug": "capivasertib",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "caplacizumab-yhdp",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -13186,6 +13228,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "insulin-degludec",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "insulin-detemir",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -13210,6 +13258,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "insulin-detemir",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "insulin-detemir-recombinant",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
@@ -13230,6 +13284,12 @@
       {
         "slug": "insulin-detemir-recombinant",
         "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "insulin-detemir-recombinant",
+        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -13264,9 +13324,21 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "insulin-glulisine",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "insulin-glulisine-recombinant",
         "path": "pharmacokinetics.bioavailability",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "insulin-glulisine-recombinant",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -13312,6 +13384,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "insulin-lispro-recombinant",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "insulin-recombinant-human",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -13332,6 +13410,12 @@
       {
         "slug": "insulin-susp-isophane-recombinant-human",
         "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "insulin-susp-isophane-recombinant-human",
+        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -16492,6 +16576,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "metreleptin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "metyrapone",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -19126,6 +19216,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "palifermin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "paliperidone",
         "path": "pharmacokinetics.tMax",
         "module": "pharmacokinetics",
@@ -19450,6 +19546,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "pegaspargase",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "pegcetacoplan",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -19474,9 +19576,21 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "pegfilgrastim",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "pegfilgrastim-apgf",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pegfilgrastim-apgf",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -19486,9 +19600,21 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "pegfilgrastim-bmez",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "pegfilgrastim-cbqv",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pegfilgrastim-cbqv",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -19498,15 +19624,39 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "pegfilgrastim-fpgk",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "pegfilgrastim-jmdb",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
         "state": "VERIFIED"
       },
       {
+        "slug": "pegfilgrastim-jmdb",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "pegfilgrastim-pbbk",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pegfilgrastim-pbbk",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pegfilgrastim-unne",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
         "state": "VERIFIED"
       },
       {
@@ -19577,6 +19727,12 @@
       },
       {
         "slug": "pegvaliase-pqpz",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "pegvisomant",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
@@ -24508,6 +24664,12 @@
         "state": "VERIFIED"
       },
       {
+        "slug": "tbo-filgrastim",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
         "slug": "tebentafusp",
         "path": "pharmacokinetics.halfLife",
         "module": "pharmacokinetics",
@@ -27840,6 +28002,12 @@
       {
         "slug": "vosoritide",
         "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "VERIFIED"
+      },
+      {
+        "slug": "vosoritide",
+        "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "VERIFIED"
       },
@@ -65113,8 +65281,8 @@
     "byModule": [
       {
         "module": "molecularIdentity",
-        "checked": 2032,
-        "verified": 2032,
+        "checked": 2060,
+        "verified": 2060,
         "numberAbsent": 0,
         "noExcerpt": 0,
         "verifiedShare": 1
@@ -65140,8 +65308,8 @@
     "statementsVerbatim": 16494,
     "adverseTermsChecked": 6009,
     "adverseTermsFound": 6009,
-    "totalChecked": 7355,
-    "totalVerified": 7355,
+    "totalChecked": 7383,
+    "totalVerified": 7383,
     "overallVerifiedShare": 1,
     "normalisationRules": [
       {
@@ -65175,7 +65343,7 @@
     ],
     "engineComparison": {
       "disagreements": [],
-      "recordsCompared": 9853,
+      "recordsCompared": 9855,
       "agreementRate": 1,
       "note": "This check is written independently of the background engine so that agreement means something. Where they differ, neither is assumed correct: either may be the stricter, and the difference is the finding."
     }

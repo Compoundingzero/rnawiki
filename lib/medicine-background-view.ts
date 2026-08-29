@@ -241,6 +241,17 @@ export interface MedicineBackgroundContextView {
     parts: string[]
     source: RecordedSourceView
   }
+  /**
+   * The substances this row's name is shared with, shown only when nothing could identify it.
+   *
+   * A reader learns that the name is incomplete and sees what it is between, which is more useful
+   * than a blank space and honest in a way a guess would not be.
+   */
+  nameFamily?: {
+    summary: string
+    members: Array<{ name: string; unii: string; marketLabel: string }>
+    moreCount: number
+  }
   supplementMarket?: {
     labelCountLabel: string
     categories: string[]
@@ -665,6 +676,15 @@ export function medicineBackgroundContext(
             ['ATC code', identifiers.atcCode],
             ['FDA UNII', identifiers.unii],
             ['RxNorm RxCUI', identifiers.rxcui],
+            ['ChEMBL', identifiers.chemblId],
+            ['ChEBI', identifiers.chebiId],
+            ['EMA substance number', identifiers.emaSubstanceId],
+            ['European Chemicals Agency EC number', identifiers.ecNumber],
+            ['NCBI Taxonomy', identifiers.ncbiTaxonomyId],
+            ['DrugBank', identifiers.drugBankId],
+            // A pointer to the WHO list entry rather than the international name itself, and
+            // labelled so a reader is not left thinking it is the name.
+            ['WHO INN list number', identifiers.innIdentifier],
           ] as const
         ).flatMap(([label, value]) => (value ? [{ label, value }] : [])),
         source: sourceView(identifiers.source),
@@ -829,6 +849,22 @@ export function medicineBackgroundContext(
             ? 'Matched on the scientific name this record is filed under.'
             : 'Matched on a common name the taxonomy records for this organism, and only where that name refers to one organism and no other.',
         source: sourceView(biology.source),
+      }
+    : undefined
+
+  const shared = background.nameFamily
+  const nameFamily = shared
+    ? {
+        summary: `${shared.memberCount.toLocaleString('en-US')} registered substances have a name beginning this way, so no source can say which one this record means.`,
+        members: shared.members.map((member) => ({
+          name: member.nameAsRecorded,
+          unii: member.unii,
+          marketLabel:
+            member.productCount > 0
+              ? countPhrase(member.productCount, 'listed product', 'listed products')
+              : 'no listed products',
+        })),
+        moreCount: Math.max(0, shared.memberCount - shared.members.length),
       }
     : undefined
 
@@ -1031,6 +1067,7 @@ export function medicineBackgroundContext(
     ...(regulatoryApproval ? { regulatoryApproval } : {}),
     ...(supplementIngredient ? { supplementIngredient } : {}),
     ...(sourceMaterial ? { sourceMaterial } : {}),
+    ...(nameFamily ? { nameFamily } : {}),
     ...(labelPresence ? { labelPresence } : {}),
     ...(supplementMarket ? { supplementMarket } : {}),
     ...(composition ? { composition } : {}),

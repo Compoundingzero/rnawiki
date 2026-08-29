@@ -157,7 +157,16 @@ const FIELD_SPECS: readonly FieldSpec[] = [
     // Molecular weight is recorded on molecular identity, which carries no route: the number is a
     // property of the substance as the source's description section prints it.
     routeAvailable: false,
-    units: [{ unit: 'g/mol', label: 'grams per mole', scale: 'log10', bins: LOG_BINS }],
+    // Three units, screened separately and never converted between. Labels print a protein's weight
+    // in kilodaltons and a small molecule's in grams per mole, and the same number means a thousand
+    // times more in one than the other. Recording the unit the label printed is what keeps the
+    // number identical to the excerpt beneath it; screening per unit is what keeps the two scales
+    // out of one histogram.
+    units: [
+      { unit: 'g/mol', label: 'grams per mole', scale: 'log10', bins: LOG_BINS },
+      { unit: 'kDa', label: 'kilodaltons', scale: 'log10', bins: LOG_BINS },
+      { unit: 'Da', label: 'daltons', scale: 'log10', bins: LOG_BINS },
+    ],
   },
 ]
 

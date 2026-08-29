@@ -27,7 +27,7 @@ import { RECORDED_BACKGROUND } from '../seed-data/background'
  * dropped rather than published.
  *
  * Usage:
- *   tsx scripts/background/build-extracted-background.ts <labelIndex.ndjson> [--limit=N]
+ *   tsx scripts/background/build-extracted-background.ts <labelIndex.ndjson> [--limit=N] [--retrieved-at=YYYY-MM-DD]
  *
  * The index is produced by scripts/background/index-openfda-labels.py from openFDA's bulk
  * `drug-label-*.json.zip` partitions (https://api.fda.gov/download.json) — one download and one
@@ -212,7 +212,21 @@ async function main() {
   const limitFlag = process.argv.find((value) => value.startsWith('--limit='))
   const limit = limitFlag ? Number(limitFlag.split('=')[1]) : Infinity
 
-  const retrievedAt = new Date().toISOString().slice(0, 10)
+  /**
+   * When the SOURCE was retrieved, which is not when this parser ran.
+   *
+   * Re-parsing a cached archive with a corrected pattern does not make the labels newer, and
+   * stamping today's date on every record would claim it did — while burying the actual change in
+   * an 80,000-line diff of dates. `--retrieved-at=` pins it to the archive's own download date.
+   */
+  const retrievedAtFlag = process.argv.find((value) => value.startsWith('--retrieved-at='))
+  const retrievedAt = retrievedAtFlag
+    ? retrievedAtFlag.slice('--retrieved-at='.length)
+    : new Date().toISOString().slice(0, 10)
+  if (!/^\d{4}-\d{2}-\d{2}$/u.test(retrievedAt)) {
+    console.error(`[extract] --retrieved-at must be YYYY-MM-DD, got "${retrievedAt}"`)
+    process.exit(1)
+  }
   const { names: index, identity } = await buildIndex(indexPath)
   const rows = loadMedicineRows()
   console.log(`[extract] ${rows.length} medicine rows · ${index.size} indexed label names`)

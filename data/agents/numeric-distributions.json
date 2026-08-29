@@ -1,11 +1,11 @@
 {
   "agent": "numeric-distributions",
   "version": "1.0.0",
-  "runDate": "2026-08-29",
+  "runDate": "2026-08-30",
   "seed": 20260828,
   "parameters": {
     "fields": 6,
-    "distributions": 7,
+    "distributions": 9,
     "logScaleBins": 12,
     "percentBins": 10,
     "minimumStratumSize": 12,
@@ -15,9 +15,9 @@
     "binEdgeBasis": "edges computed once per distribution and shared by all of its strata"
   },
   "coverage": {
-    "considered": 9853,
-    "used": 3370,
-    "reason": "3370 of 9853 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
+    "considered": 9855,
+    "used": 3379,
+    "reason": "3379 of 9855 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
   },
   "output": {
     "fields": [
@@ -3612,8 +3612,8 @@
       {
         "field": "molecularWeight",
         "label": "Recorded molecular weight",
-        "recordedValues": 3005,
-        "numericValues": 3005,
+        "recordedValues": 3033,
+        "numericValues": 3033,
         "displayOnlyValues": 0,
         "offUnitValues": [],
         "offUnitValueCount": 0,
@@ -3623,112 +3623,112 @@
             "unit": "g/mol",
             "label": "Recorded molecular weight, in grams per mole",
             "scale": "log10",
-            "scaleReason": "Recorded values run from 12.01 to 1.50e+5 grams per mole, a span of about 4.1 orders of magnitude. Split into 12 equal-width linear bins, 99.0 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "scaleReason": "Recorded values run from 12.01 to 34000 grams per mole, a span of about 3.5 orders of magnitude. Split into 12 equal-width linear bins, 98.3 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
             "binEdges": [
               12.011,
-              26.360592930413645,
-              57.85370573998617,
-              126.97177475045457,
-              278.6654956164273,
-              611.5883518188824,
-              1342.2555643393698,
-              2945.854012166577,
-              6465.278365427439,
-              14189.374004899044,
-              31141.479650365254,
-              68346.33821613847,
-              150000
+              23.2936464497067,
+              45.17475355290429,
+              87.61008556439798,
+              169.90744805308793,
+              329.5116163617128,
+              639.041469702867,
+              1239.3311183048486,
+              2403.5085258440404,
+              4661.26699191298,
+              9039.872226901067,
+              17531.561702102757,
+              34000
             ],
             "overall": {
               "dimension": "overall",
               "key": "overall",
               "label": "all recorded values in grams per mole",
               "summary": {
-                "count": 3005,
+                "count": 2636,
                 "min": 12.011,
-                "p25": 187.71,
-                "median": 321.6,
-                "p75": 492.52,
-                "max": 150000,
-                "robustScale": 218.53524000000004
+                "p25": 225.2575,
+                "median": 339.05,
+                "p75": 494.5,
+                "max": 34000,
+                "robustScale": 193.78263995999995
               },
               "histogram": [
                 {
                   "lowerBound": 12.011,
-                  "upperBound": 26.360592930413645,
+                  "upperBound": 23.2936464497067,
                   "upperInclusive": false,
-                  "count": 10
+                  "count": 8
                 },
                 {
-                  "lowerBound": 26.360592930413645,
-                  "upperBound": 57.85370573998617,
+                  "lowerBound": 23.2936464497067,
+                  "upperBound": 45.17475355290429,
                   "upperInclusive": false,
-                  "count": 49
+                  "count": 24
                 },
                 {
-                  "lowerBound": 57.85370573998617,
-                  "upperBound": 126.97177475045457,
+                  "lowerBound": 45.17475355290429,
+                  "upperBound": 87.61008556439798,
                   "upperInclusive": false,
-                  "count": 187
+                  "count": 58
                 },
                 {
-                  "lowerBound": 126.97177475045457,
-                  "upperBound": 278.6654956164273,
+                  "lowerBound": 87.61008556439798,
+                  "upperBound": 169.90744805308793,
                   "upperInclusive": false,
-                  "count": 953
+                  "count": 309
                 },
                 {
-                  "lowerBound": 278.6654956164273,
-                  "upperBound": 611.5883518188824,
+                  "lowerBound": 169.90744805308793,
+                  "upperBound": 329.5116163617128,
                   "upperInclusive": false,
-                  "count": 1333
+                  "count": 867
                 },
                 {
-                  "lowerBound": 611.5883518188824,
-                  "upperBound": 1342.2555643393698,
+                  "lowerBound": 329.5116163617128,
+                  "upperBound": 639.041469702867,
                   "upperInclusive": false,
-                  "count": 324
+                  "count": 1009
                 },
                 {
-                  "lowerBound": 1342.2555643393698,
-                  "upperBound": 2945.854012166577,
+                  "lowerBound": 639.041469702867,
+                  "upperBound": 1239.3311183048486,
                   "upperInclusive": false,
-                  "count": 54
+                  "count": 264
                 },
                 {
-                  "lowerBound": 2945.854012166577,
-                  "upperBound": 6465.278365427439,
+                  "lowerBound": 1239.3311183048486,
+                  "upperBound": 2403.5085258440404,
                   "upperInclusive": false,
-                  "count": 48
+                  "count": 51
                 },
                 {
-                  "lowerBound": 6465.278365427439,
-                  "upperBound": 14189.374004899044,
+                  "lowerBound": 2403.5085258440404,
+                  "upperBound": 4661.26699191298,
+                  "upperInclusive": false,
+                  "count": 25
+                },
+                {
+                  "lowerBound": 4661.26699191298,
+                  "upperBound": 9039.872226901067,
                   "upperInclusive": false,
                   "count": 18
                 },
                 {
-                  "lowerBound": 14189.374004899044,
-                  "upperBound": 31141.479650365254,
+                  "lowerBound": 9039.872226901067,
+                  "upperBound": 17531.561702102757,
                   "upperInclusive": false,
-                  "count": 16
+                  "count": 0
                 },
                 {
-                  "lowerBound": 31141.479650365254,
-                  "upperBound": 68346.33821613847,
-                  "upperInclusive": false,
-                  "count": 9
-                },
-                {
-                  "lowerBound": 68346.33821613847,
-                  "upperBound": 150000,
+                  "lowerBound": 17531.561702102757,
+                  "upperBound": 34000,
                   "upperInclusive": true,
-                  "count": 4
+                  "count": 3
                 }
               ],
               "logSpread": {
-                "medianAbsoluteDeviationLog10": 0.29891365136959874,
-                "spreadFactor": 1.9902775825673353
+                "medianAbsoluteDeviationLog10": 0.24963491480662267,
+                "spreadFactor": 1.7767851458834736
               }
             },
             "byRoute": {
@@ -3736,7 +3736,7 @@
               "strata": [],
               "valuesBelowMinimum": 0,
               "groupsBelowMinimum": 0,
-              "valuesWithoutKey": 3005,
+              "valuesWithoutKey": 2636,
               "note": "Recorded molecular weight is recorded on the molecular identity module, which carries no route. There is nothing to stratify on, so no route strata are published rather than a route being attached from elsewhere in the record."
             },
             "byProvenanceTier": {
@@ -3758,73 +3758,73 @@
                   "histogram": [
                     {
                       "lowerBound": 12.011,
-                      "upperBound": 26.360592930413645,
+                      "upperBound": 23.2936464497067,
                       "upperInclusive": false,
-                      "count": 10
+                      "count": 8
                     },
                     {
-                      "lowerBound": 26.360592930413645,
-                      "upperBound": 57.85370573998617,
+                      "lowerBound": 23.2936464497067,
+                      "upperBound": 45.17475355290429,
                       "upperInclusive": false,
-                      "count": 29
+                      "count": 23
                     },
                     {
-                      "lowerBound": 57.85370573998617,
-                      "upperBound": 126.97177475045457,
+                      "lowerBound": 45.17475355290429,
+                      "upperBound": 87.61008556439798,
                       "upperInclusive": false,
-                      "count": 127
+                      "count": 48
                     },
                     {
-                      "lowerBound": 126.97177475045457,
-                      "upperBound": 278.6654956164273,
+                      "lowerBound": 87.61008556439798,
+                      "upperBound": 169.90744805308793,
                       "upperInclusive": false,
-                      "count": 578
+                      "count": 273
                     },
                     {
-                      "lowerBound": 278.6654956164273,
-                      "upperBound": 611.5883518188824,
+                      "lowerBound": 169.90744805308793,
+                      "upperBound": 329.5116163617128,
                       "upperInclusive": false,
-                      "count": 734
+                      "count": 634
                     },
                     {
-                      "lowerBound": 611.5883518188824,
-                      "upperBound": 1342.2555643393698,
+                      "lowerBound": 329.5116163617128,
+                      "upperBound": 639.041469702867,
                       "upperInclusive": false,
-                      "count": 171
+                      "count": 512
                     },
                     {
-                      "lowerBound": 1342.2555643393698,
-                      "upperBound": 2945.854012166577,
+                      "lowerBound": 639.041469702867,
+                      "upperBound": 1239.3311183048486,
                       "upperInclusive": false,
-                      "count": 20
+                      "count": 145
                     },
                     {
-                      "lowerBound": 2945.854012166577,
-                      "upperBound": 6465.278365427439,
+                      "lowerBound": 1239.3311183048486,
+                      "upperBound": 2403.5085258440404,
                       "upperInclusive": false,
-                      "count": 24
+                      "count": 25
                     },
                     {
-                      "lowerBound": 6465.278365427439,
-                      "upperBound": 14189.374004899044,
+                      "lowerBound": 2403.5085258440404,
+                      "upperBound": 4661.26699191298,
                       "upperInclusive": false,
-                      "count": 7
+                      "count": 19
                     },
                     {
-                      "lowerBound": 14189.374004899044,
-                      "upperBound": 31141.479650365254,
+                      "lowerBound": 4661.26699191298,
+                      "upperBound": 9039.872226901067,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 9039.872226901067,
+                      "upperBound": 17531.561702102757,
                       "upperInclusive": false,
                       "count": 0
                     },
                     {
-                      "lowerBound": 31141.479650365254,
-                      "upperBound": 68346.33821613847,
-                      "upperInclusive": false,
-                      "count": 0
-                    },
-                    {
-                      "lowerBound": 68346.33821613847,
-                      "upperBound": 150000,
+                      "lowerBound": 17531.561702102757,
+                      "upperBound": 34000,
                       "upperInclusive": true,
                       "count": 0
                     }
@@ -3839,91 +3839,537 @@
                   "key": "extracted",
                   "label": "extracted: matched by the deterministic label parser",
                   "summary": {
-                    "count": 1305,
-                    "min": 31,
-                    "p25": 183.2,
-                    "median": 378.43,
-                    "p75": 545.63,
-                    "max": 150000,
-                    "robustScale": 266.43804599999993
+                    "count": 936,
+                    "min": 40.99,
+                    "p25": 303.26,
+                    "median": 416.58,
+                    "p75": 553.16,
+                    "max": 34000,
+                    "robustScale": 178.66812599999997
                   },
                   "histogram": [
                     {
                       "lowerBound": 12.011,
-                      "upperBound": 26.360592930413645,
+                      "upperBound": 23.2936464497067,
                       "upperInclusive": false,
                       "count": 0
                     },
                     {
-                      "lowerBound": 26.360592930413645,
-                      "upperBound": 57.85370573998617,
+                      "lowerBound": 23.2936464497067,
+                      "upperBound": 45.17475355290429,
                       "upperInclusive": false,
-                      "count": 20
+                      "count": 1
                     },
                     {
-                      "lowerBound": 57.85370573998617,
-                      "upperBound": 126.97177475045457,
+                      "lowerBound": 45.17475355290429,
+                      "upperBound": 87.61008556439798,
                       "upperInclusive": false,
-                      "count": 60
+                      "count": 10
                     },
                     {
-                      "lowerBound": 126.97177475045457,
-                      "upperBound": 278.6654956164273,
+                      "lowerBound": 87.61008556439798,
+                      "upperBound": 169.90744805308793,
                       "upperInclusive": false,
-                      "count": 375
+                      "count": 36
                     },
                     {
-                      "lowerBound": 278.6654956164273,
-                      "upperBound": 611.5883518188824,
+                      "lowerBound": 169.90744805308793,
+                      "upperBound": 329.5116163617128,
                       "upperInclusive": false,
-                      "count": 599
+                      "count": 233
                     },
                     {
-                      "lowerBound": 611.5883518188824,
-                      "upperBound": 1342.2555643393698,
+                      "lowerBound": 329.5116163617128,
+                      "upperBound": 639.041469702867,
                       "upperInclusive": false,
-                      "count": 153
+                      "count": 497
                     },
                     {
-                      "lowerBound": 1342.2555643393698,
-                      "upperBound": 2945.854012166577,
+                      "lowerBound": 639.041469702867,
+                      "upperBound": 1239.3311183048486,
                       "upperInclusive": false,
-                      "count": 34
+                      "count": 119
                     },
                     {
-                      "lowerBound": 2945.854012166577,
-                      "upperBound": 6465.278365427439,
+                      "lowerBound": 1239.3311183048486,
+                      "upperBound": 2403.5085258440404,
                       "upperInclusive": false,
-                      "count": 24
+                      "count": 26
                     },
                     {
-                      "lowerBound": 6465.278365427439,
-                      "upperBound": 14189.374004899044,
+                      "lowerBound": 2403.5085258440404,
+                      "upperBound": 4661.26699191298,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 4661.26699191298,
+                      "upperBound": 9039.872226901067,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 9039.872226901067,
+                      "upperBound": 17531.561702102757,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 17531.561702102757,
+                      "upperBound": 34000,
+                      "upperInclusive": true,
+                      "count": 3
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.19581033791926647,
+                    "spreadFactor": 1.56967715608354
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          },
+          {
+            "field": "molecularWeight",
+            "unit": "kDa",
+            "label": "Recorded molecular weight, in kilodaltons",
+            "scale": "log10",
+            "scaleReason": "Recorded values run from 4.10 to 750 kilodaltons, a span of about 2.3 orders of magnitude. Split into 12 equal-width linear bins, 18.9 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "binEdges": [
+              4.1,
+              6.32859019354866,
+              9.768549716556164,
+              15.078328766192659,
+              23.274283796299883,
+              35.925220535398054,
+              55.452682532047085,
+              85.59446411665375,
+              132.12006981236763,
+              203.93506785012536,
+              314.7857245163382,
+              485.8902071324896,
+              750
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in kilodaltons",
+              "summary": {
+                "count": 301,
+                "min": 4.1,
+                "p25": 100,
+                "median": 147,
+                "p75": 149,
+                "max": 750,
+                "robustScale": 3.1134599999999915
+              },
+              "histogram": [
+                {
+                  "lowerBound": 4.1,
+                  "upperBound": 6.32859019354866,
+                  "upperInclusive": false,
+                  "count": 11
+                },
+                {
+                  "lowerBound": 6.32859019354866,
+                  "upperBound": 9.768549716556164,
+                  "upperInclusive": false,
+                  "count": 0
+                },
+                {
+                  "lowerBound": 9.768549716556164,
+                  "upperBound": 15.078328766192659,
+                  "upperInclusive": false,
+                  "count": 0
+                },
+                {
+                  "lowerBound": 15.078328766192659,
+                  "upperBound": 23.274283796299883,
+                  "upperInclusive": false,
+                  "count": 13
+                },
+                {
+                  "lowerBound": 23.274283796299883,
+                  "upperBound": 35.925220535398054,
+                  "upperInclusive": false,
+                  "count": 7
+                },
+                {
+                  "lowerBound": 35.925220535398054,
+                  "upperBound": 55.452682532047085,
+                  "upperInclusive": false,
+                  "count": 13
+                },
+                {
+                  "lowerBound": 55.452682532047085,
+                  "upperBound": 85.59446411665375,
+                  "upperInclusive": false,
+                  "count": 26
+                },
+                {
+                  "lowerBound": 85.59446411665375,
+                  "upperBound": 132.12006981236763,
+                  "upperInclusive": false,
+                  "count": 19
+                },
+                {
+                  "lowerBound": 132.12006981236763,
+                  "upperBound": 203.93506785012536,
+                  "upperInclusive": false,
+                  "count": 209
+                },
+                {
+                  "lowerBound": 203.93506785012536,
+                  "upperBound": 314.7857245163382,
+                  "upperInclusive": false,
+                  "count": 1
+                },
+                {
+                  "lowerBound": 314.7857245163382,
+                  "upperBound": 485.8902071324896,
+                  "upperInclusive": false,
+                  "count": 0
+                },
+                {
+                  "lowerBound": 485.8902071324896,
+                  "upperBound": 750,
+                  "upperInclusive": true,
+                  "count": 2
+                }
+              ],
+              "logSpread": {
+                "medianAbsoluteDeviationLog10": 0.009133273685763967,
+                "spreadFactor": 1.0212528315696736
+              }
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 301,
+              "note": "Recorded molecular weight is recorded on the molecular identity module, which carries no route. There is nothing to stratify on, so no route strata are published rather than a route being attached from elsewhere in the record."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 301,
+                    "min": 4.1,
+                    "p25": 100,
+                    "median": 147,
+                    "p75": 149,
+                    "max": 750,
+                    "robustScale": 3.1134599999999915
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 4.1,
+                      "upperBound": 6.32859019354866,
                       "upperInclusive": false,
                       "count": 11
                     },
                     {
-                      "lowerBound": 14189.374004899044,
-                      "upperBound": 31141.479650365254,
+                      "lowerBound": 6.32859019354866,
+                      "upperBound": 9.768549716556164,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 9.768549716556164,
+                      "upperBound": 15.078328766192659,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 15.078328766192659,
+                      "upperBound": 23.274283796299883,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 23.274283796299883,
+                      "upperBound": 35.925220535398054,
+                      "upperInclusive": false,
+                      "count": 7
+                    },
+                    {
+                      "lowerBound": 35.925220535398054,
+                      "upperBound": 55.452682532047085,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 55.452682532047085,
+                      "upperBound": 85.59446411665375,
+                      "upperInclusive": false,
+                      "count": 26
+                    },
+                    {
+                      "lowerBound": 85.59446411665375,
+                      "upperBound": 132.12006981236763,
+                      "upperInclusive": false,
+                      "count": 19
+                    },
+                    {
+                      "lowerBound": 132.12006981236763,
+                      "upperBound": 203.93506785012536,
+                      "upperInclusive": false,
+                      "count": 209
+                    },
+                    {
+                      "lowerBound": 203.93506785012536,
+                      "upperBound": 314.7857245163382,
+                      "upperInclusive": false,
+                      "count": 1
+                    },
+                    {
+                      "lowerBound": 314.7857245163382,
+                      "upperBound": 485.8902071324896,
+                      "upperInclusive": false,
+                      "count": 0
+                    },
+                    {
+                      "lowerBound": 485.8902071324896,
+                      "upperBound": 750,
+                      "upperInclusive": true,
+                      "count": 2
+                    }
+                  ],
+                  "logSpread": {
+                    "medianAbsoluteDeviationLog10": 0.009133273685763967,
+                    "spreadFactor": 1.0212528315696736
+                  }
+                }
+              ],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 0,
+              "note": "Strata are how the value came to be recorded. A difference between the two is a difference between two differently-selected bodies of recorded values, and says nothing about whether either is right. Groups holding fewer than 12 values are counted but not published as strata of their own."
+            }
+          },
+          {
+            "field": "molecularWeight",
+            "unit": "Da",
+            "label": "Recorded molecular weight, in daltons",
+            "scale": "log10",
+            "scaleReason": "Recorded values run from 303.68 to 1.50e+5 daltons, a span of about 2.7 orders of magnitude. Split into 12 equal-width linear bins, 72.9 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
+            "binEdges": [
+              303.68,
+              509.20084198481595,
+              853.8115696721729,
+              1431.6437373993933,
+              2400.5341033524096,
+              4025.138259484691,
+              6749.222177406813,
+              11316.87834390853,
+              18975.777072437933,
+              31817.971755142127,
+              53351.35013161045,
+              89457.82536895009,
+              150000
+            ],
+            "overall": {
+              "dimension": "overall",
+              "key": "overall",
+              "label": "all recorded values in daltons",
+              "summary": {
+                "count": 96,
+                "min": 303.68,
+                "p25": 635.6,
+                "median": 4152.200000000001,
+                "p75": 15615.994999999999,
+                "max": 150000,
+                "robustScale": 5383.661598000001
+              },
+              "histogram": [
+                {
+                  "lowerBound": 303.68,
+                  "upperBound": 509.20084198481595,
+                  "upperInclusive": false,
+                  "count": 16
+                },
+                {
+                  "lowerBound": 509.20084198481595,
+                  "upperBound": 853.8115696721729,
+                  "upperInclusive": false,
+                  "count": 14
+                },
+                {
+                  "lowerBound": 853.8115696721729,
+                  "upperBound": 1431.6437373993933,
+                  "upperInclusive": false,
+                  "count": 5
+                },
+                {
+                  "lowerBound": 1431.6437373993933,
+                  "upperBound": 2400.5341033524096,
+                  "upperInclusive": false,
+                  "count": 8
+                },
+                {
+                  "lowerBound": 2400.5341033524096,
+                  "upperBound": 4025.138259484691,
+                  "upperInclusive": false,
+                  "count": 4
+                },
+                {
+                  "lowerBound": 4025.138259484691,
+                  "upperBound": 6749.222177406813,
+                  "upperInclusive": false,
+                  "count": 13
+                },
+                {
+                  "lowerBound": 6749.222177406813,
+                  "upperBound": 11316.87834390853,
+                  "upperInclusive": false,
+                  "count": 10
+                },
+                {
+                  "lowerBound": 11316.87834390853,
+                  "upperBound": 18975.777072437933,
+                  "upperInclusive": false,
+                  "count": 8
+                },
+                {
+                  "lowerBound": 18975.777072437933,
+                  "upperBound": 31817.971755142127,
+                  "upperInclusive": false,
+                  "count": 6
+                },
+                {
+                  "lowerBound": 31817.971755142127,
+                  "upperBound": 53351.35013161045,
+                  "upperInclusive": false,
+                  "count": 3
+                },
+                {
+                  "lowerBound": 53351.35013161045,
+                  "upperBound": 89457.82536895009,
+                  "upperInclusive": false,
+                  "count": 5
+                },
+                {
+                  "lowerBound": 89457.82536895009,
+                  "upperBound": 150000,
+                  "upperInclusive": true,
+                  "count": 4
+                }
+              ],
+              "logSpread": {
+                "medianAbsoluteDeviationLog10": 1.0457804260151158,
+                "spreadFactor": 11.11169791366681
+              }
+            },
+            "byRoute": {
+              "dimension": "route",
+              "strata": [],
+              "valuesBelowMinimum": 0,
+              "groupsBelowMinimum": 0,
+              "valuesWithoutKey": 96,
+              "note": "Recorded molecular weight is recorded on the molecular identity module, which carries no route. There is nothing to stratify on, so no route strata are published rather than a route being attached from elsewhere in the record."
+            },
+            "byProvenanceTier": {
+              "dimension": "provenanceTier",
+              "strata": [
+                {
+                  "dimension": "provenanceTier",
+                  "key": "extracted",
+                  "label": "extracted: matched by the deterministic label parser",
+                  "summary": {
+                    "count": 96,
+                    "min": 303.68,
+                    "p25": 635.6,
+                    "median": 4152.200000000001,
+                    "p75": 15615.994999999999,
+                    "max": 150000,
+                    "robustScale": 5383.661598000001
+                  },
+                  "histogram": [
+                    {
+                      "lowerBound": 303.68,
+                      "upperBound": 509.20084198481595,
                       "upperInclusive": false,
                       "count": 16
                     },
                     {
-                      "lowerBound": 31141.479650365254,
-                      "upperBound": 68346.33821613847,
+                      "lowerBound": 509.20084198481595,
+                      "upperBound": 853.8115696721729,
                       "upperInclusive": false,
-                      "count": 9
+                      "count": 14
                     },
                     {
-                      "lowerBound": 68346.33821613847,
+                      "lowerBound": 853.8115696721729,
+                      "upperBound": 1431.6437373993933,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 1431.6437373993933,
+                      "upperBound": 2400.5341033524096,
+                      "upperInclusive": false,
+                      "count": 8
+                    },
+                    {
+                      "lowerBound": 2400.5341033524096,
+                      "upperBound": 4025.138259484691,
+                      "upperInclusive": false,
+                      "count": 4
+                    },
+                    {
+                      "lowerBound": 4025.138259484691,
+                      "upperBound": 6749.222177406813,
+                      "upperInclusive": false,
+                      "count": 13
+                    },
+                    {
+                      "lowerBound": 6749.222177406813,
+                      "upperBound": 11316.87834390853,
+                      "upperInclusive": false,
+                      "count": 10
+                    },
+                    {
+                      "lowerBound": 11316.87834390853,
+                      "upperBound": 18975.777072437933,
+                      "upperInclusive": false,
+                      "count": 8
+                    },
+                    {
+                      "lowerBound": 18975.777072437933,
+                      "upperBound": 31817.971755142127,
+                      "upperInclusive": false,
+                      "count": 6
+                    },
+                    {
+                      "lowerBound": 31817.971755142127,
+                      "upperBound": 53351.35013161045,
+                      "upperInclusive": false,
+                      "count": 3
+                    },
+                    {
+                      "lowerBound": 53351.35013161045,
+                      "upperBound": 89457.82536895009,
+                      "upperInclusive": false,
+                      "count": 5
+                    },
+                    {
+                      "lowerBound": 89457.82536895009,
                       "upperBound": 150000,
                       "upperInclusive": true,
                       "count": 4
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.29817567295220737,
-                    "spreadFactor": 1.9868984590728482
+                    "medianAbsoluteDeviationLog10": 1.0457804260151158,
+                    "spreadFactor": 11.11169791366681
                   }
                 }
               ],
@@ -3945,12 +4391,12 @@
       "subcutaneous"
     ],
     "minimumStratumSize": 12,
-    "recordsWithAnyNumericValue": 3370
+    "recordsWithAnyNumericValue": 3379
   },
   "caveats": [
     "Every number here describes recorded values. It does not describe medicines, and it does not describe the people a value was measured in. A median recorded half-life is a fact about what source documents state, shaped first of all by which medicines happen to have a document with a pharmacokinetics section structured into this corpus.",
     "No percentile in this output is typical, normal or expected for any medicine. A value at the 5th or the 95th percentile of a stratum is an unremarkable recorded value that sits near the edge of the recorded values around it, and nothing follows from where it sits.",
-    "Of 6132 recorded values across these fields, 262 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
+    "Of 6160 recorded values across these fields, 262 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
     "A further 2 numeric values are recorded in a unit no distribution here accepts. They are named with their units beside each field and left out, because rescaling a recorded number would replace what the source printed with a number no source stated.",
     "Volume of distribution is published as two separate distributions and never as one: 569 values recorded in litres and 136 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
     "The route strata are the route text the source printed, lower-cased. They are not a controlled vocabulary, so a medicine given by more than one route appears under whichever single route its record states, and near-identical route wordings are separate strata.",

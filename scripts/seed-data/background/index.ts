@@ -45,6 +45,7 @@ import { PRODUCT_LISTING_BACKGROUND } from './product-listing'
 import { REGULATORY_APPROVAL_BACKGROUND } from './regulatory-approval'
 import { SUPPLEMENT_INGREDIENT_BACKGROUND } from './supplement-ingredient'
 import { SOURCE_MATERIAL_BACKGROUND } from './source-material'
+import { NAME_FAMILY_BACKGROUND } from './name-family'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -201,8 +202,29 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
   // around a botanical names service that cannot be used.
   for (const [slug, material] of Object.entries(SOURCE_MATERIAL_BACKGROUND)) {
     const existing = merged[slug]
-    if (existing?.sourceMaterial) continue
-    merged[slug] = existing ? { ...existing, sourceMaterial: material.sourceMaterial } : material
+    // Cross-references travel with the material record and fill rows the label path never reached.
+    // A record that already carries identifiers keeps them: those came from a label naming the
+    // substance alone, which is the stronger claim.
+    const identifiers =
+      !existing?.registryIdentifiers && material.registryIdentifiers
+        ? { registryIdentifiers: material.registryIdentifiers }
+        : {}
+
+    // A second line behind the identity-first resolution in the build script, and behind the
+    // engine's I_IDENTIFIER_DISAGREEMENT rule. If a record already names its substance and this
+    // material describes a different one, the material belongs to a different substance and is
+    // dropped rather than shown beside it. Nothing here can repair the mismatch — only refuse it.
+    const known = existing?.registryIdentifiers?.unii
+    const offered = material.registryIdentifiers?.unii
+    if (known && offered && known !== offered) continue
+
+    if (existing?.sourceMaterial) {
+      if (Object.keys(identifiers).length > 0) merged[slug] = { ...existing, ...identifiers }
+      continue
+    }
+    merged[slug] = existing
+      ? { ...existing, sourceMaterial: material.sourceMaterial, ...identifiers }
+      : material
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism
@@ -213,6 +235,18 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
   for (const [slug, presence] of Object.entries(LABEL_PRESENCE_BACKGROUND)) {
     const existing = merged[slug]
     merged[slug] = existing ? { ...existing, labelPresence: presence.labelPresence } : presence
+  }
+
+  // Last of all, and only where nothing identified the row: the substances its name is shared with.
+  // A row whose substance is known does not need to be told its name is ambiguous, and a row whose
+  // name is genuinely a stem is better served by the family than by a blank space or a guess.
+  for (const [slug, family] of Object.entries(NAME_FAMILY_BACKGROUND)) {
+    const existing = merged[slug]
+    if (existing?.sourceMaterial ?? existing?.biologicalIdentity ?? existing?.molecularIdentity) {
+      continue
+    }
+    if (existing?.nameFamily) continue
+    merged[slug] = existing ? { ...existing, nameFamily: family.nameFamily } : family
   }
 
   // Cross-source consensus attaches to whichever record exists, curated or extracted. It says what

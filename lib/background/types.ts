@@ -215,12 +215,37 @@ export interface RecordedPivotalResult {
   source: BackgroundSource
 }
 
+/**
+ * How a substance is addressed in the databases outside this one.
+ *
+ * Identifiers are pointers, not content. Recording a ChEMBL or DrugBank identifier is recording the
+ * address of a record, which is a fact from a public-domain registry, and says nothing about what
+ * those databases hold — a distinction that matters, because some of them are licensed in ways that
+ * would not permit copying their content here.
+ *
+ * `innIdentifier` is the WHO International Nonproprietary Name list number, not the name itself.
+ * That is a disappointment worth recording rather than papering over: the registry cross-references
+ * the INN entry by number, so it addresses the international name without stating it, and a reader
+ * outside the United States still has to follow the pointer to learn what the substance is called
+ * where they are.
+ */
 export interface RecordedRegistryIdentifiers {
   pubchemCid?: string
   casNumber?: string
   atcCode?: string
   unii?: string
   rxcui?: string
+  /** The WHO INN list entry number. A pointer to the international name, not the name. */
+  innIdentifier?: string
+  chemblId?: string
+  chebiId?: string
+  /** The European Medicines Agency's substance identifier. */
+  emaSubstanceId?: string
+  /** The European Chemicals Agency's EC number. */
+  ecNumber?: string
+  /** NCBI's taxonomy identifier, where the substance is an organism or comes from one. */
+  ncbiTaxonomyId?: string
+  drugBankId?: string
   source: BackgroundSource
 }
 
@@ -632,6 +657,35 @@ export interface RecordedSourceMaterial {
 }
 
 /**
+ * A name shared by several registered substances, recorded instead of guessed at.
+ *
+ * Some corpus rows are filed under a name that opens a family rather than naming a member of it.
+ * "Ethylhexyl" is the start of 69 registered substances, led by ethylhexyl salicylate on 40 marketed
+ * products and ethylhexyl methoxycinnamate on 36 — two common ultraviolet filters, four products
+ * apart. There is no likeliest one there, and putting either substance's data on the page would be
+ * the mis-attribution the whole record model exists to prevent.
+ *
+ * The third option is to record the ambiguity, which is both true and more useful than either
+ * alternative: a reader learns that the name is incomplete, sees which substances share it, and can
+ * tell which of them are actually on the market. A blank page teaches nothing and a guess teaches
+ * something false.
+ *
+ * `members` are ordered by marketed products, most first, because that is the order a reader wants
+ * and it is a count rather than an opinion.
+ */
+export interface RecordedNameFamily {
+  /** Registered substances whose name begins with this row's name. */
+  memberCount: number
+  members: Array<{
+    nameAsRecorded: string
+    unii: string
+    /** Listed products declaring this member as an active ingredient. */
+    productCount: number
+  }>
+  source: BackgroundSource
+}
+
+/**
  * Ranks at which a name identifies one organism rather than a group of them.
  *
  * A binomial is unambiguous by construction: nothing else is called "Withania somnifera". A bare
@@ -830,6 +884,7 @@ export const RECORDED_BACKGROUND_MODULES = [
   'regulatoryApproval',
   'supplementIngredient',
   'sourceMaterial',
+  'nameFamily',
 ] as const
 export type RecordedBackgroundModule = (typeof RECORDED_BACKGROUND_MODULES)[number]
 
@@ -867,4 +922,5 @@ export interface MedicineRecordedBackground {
   regulatoryApproval?: RecordedRegulatoryApproval
   supplementIngredient?: RecordedSupplementIngredient
   sourceMaterial?: RecordedSourceMaterial
+  nameFamily?: RecordedNameFamily
 }

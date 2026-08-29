@@ -34,6 +34,7 @@ const CORPUS_REGISTRIES = [
   { file: 'regulatory-approval.json', evidence: 'regulatoryApproval' },
   { file: 'supplement-ingredient.json', evidence: 'supplementIngredient' },
   { file: 'source-material.json', evidence: 'sourceMaterial' },
+  { file: 'name-family.json', evidence: 'nameFamily' },
 ] as const
 
 describe('registries the published corpus reads', () => {

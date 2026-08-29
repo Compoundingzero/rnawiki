@@ -65,7 +65,20 @@ function slotValue(
 describe('recorded numeric distributions on the real corpus', () => {
   it('reads a corpus large enough for the distributions to mean anything', () => {
     expect(CORPUS.length).toBeGreaterThan(2500)
-    expect(ALL_DISTRIBUTIONS.length).toBe(7)
+    // Named rather than counted. A bare total tells whoever trips it nothing about what changed,
+    // and it trips whenever a unit is declared — which happened when labels turned out to print
+    // protein weights in kilodaltons and the field needed screening at three scales, not one.
+    expect(ALL_DISTRIBUTIONS.map((entry) => `${entry.field}:${entry.unit}`).sort()).toEqual([
+      'bioavailability:%',
+      'halfLife:hours',
+      'molecularWeight:Da',
+      'molecularWeight:g/mol',
+      'molecularWeight:kDa',
+      'proteinBinding:%',
+      'tMax:hours',
+      'volumeOfDistribution:L',
+      'volumeOfDistribution:L/kg',
+    ])
   })
 
   it('reproduces itself exactly for a given seed and run date', () => {

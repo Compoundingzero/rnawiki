@@ -286,6 +286,19 @@ function validBackground(): MedicineRecordedBackground {
         retrievedAt: '2026-08-29',
       },
     },
+    nameFamily: {
+      memberCount: 3,
+      members: [
+        { nameAsRecorded: 'SYNTHETIC ONE', unii: 'AAA1111AAA', productCount: 4 },
+        { nameAsRecorded: 'SYNTHETIC TWO', unii: 'BBB2222BBB', productCount: 1 },
+      ],
+      source: {
+        kind: 'FDA_UNII',
+        identifier: 'AAA1111AAA',
+        label: 'Synthetic substance registry family',
+        retrievedAt: '2026-08-29',
+      },
+    },
     sourceMaterial: {
       substanceClassAsRecorded: 'structurallyDiverse',
       sourceMaterialClassAsRecorded: 'ORGANISM',
@@ -697,6 +710,39 @@ const ruleCases = {
       // A lineage is what places an organism. Without it the record names something and says
       // nothing about what it is.
       background.biologicalIdentity!.lineageAsRecorded = []
+    },
+  },
+  I_IDENTIFIER_DISAGREEMENT: {
+    mutate: (background) => {
+      // Two modules naming two different substances. The failure this catches is invisible from
+      // inside either module: both were transcribed correctly, from records of different
+      // substances. Found on "Aconite" — label declared the plant, name matched something else.
+      background.registryIdentifiers = {
+        unii: 'U0NQ8555JD',
+        source: {
+          kind: 'FDA_UNII',
+          identifier: 'U0NQ8555JD',
+          label: 'Substance registry record for ACONITUM NAPELLUS',
+          retrievedAt: '2026-08-29',
+        },
+      }
+      background.sourceMaterial = {
+        substanceClassAsRecorded: 'structurallyDiverse',
+        parentSubstanceAsRecorded: 'ACONITE',
+        partsAsRecorded: [],
+        source: {
+          kind: 'FDA_UNII',
+          identifier: 'KPD2N7348X',
+          label: 'Substance registry record for ACONITE',
+          retrievedAt: '2026-08-29',
+        },
+      }
+    },
+  },
+  I_NAME_FAMILY_NOT_AMBIGUOUS: {
+    mutate: (background) => {
+      // One member is an identification, not an ambiguity.
+      background.nameFamily!.members = background.nameFamily!.members.slice(0, 1)
     },
   },
   I_SOURCE_MATERIAL_UNCHECKABLE: {

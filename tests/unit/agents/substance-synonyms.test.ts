@@ -181,8 +181,18 @@ describe('substance synonym agent', () => {
       ]),
     )
     expect([...byKey.keys()]).toContain('alumina|aluminum-oxide')
-    expect([...byKey.keys()]).toContain('anemone-pulsatilla|pulsatilla-vulgaris')
     expect(byKey.get('alumina|aluminum-oxide')?.sharedKey).toBe('LMI26O6933')
+
+    // Asserted as membership rather than as an exact key, for the second time. Pinning
+    // 'anemone-pulsatilla|pulsatilla-vulgaris' broke when the corpus gained substance identifiers
+    // from the registry and a third synonym joined the group — which is the agent working, not
+    // failing. What the test should hold is that the two slugs land together, whoever else does.
+    const groupContaining = (slug: string) =>
+      DATASET.registryIdentifierGroups.find((group) =>
+        group.members.some((member) => member.slug === slug),
+      )
+    const pulsatilla = groupContaining('anemone-pulsatilla')
+    expect(pulsatilla?.members.map((member) => member.slug)).toContain('pulsatilla-vulgaris')
     // Aflibercept and its biosimilars were pinned here as a third example and stopped being a
     // group once the sixth biosimilar resolved: six records on one identifier is past the size a
     // naming variation explains, so the agent now rejects and counts it. The rejection is the

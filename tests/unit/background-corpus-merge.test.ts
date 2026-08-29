@@ -54,6 +54,7 @@ describe('recorded-background corpus merge', () => {
       'regulatoryApproval',
       'supplementIngredient',
       'sourceMaterial',
+      'nameFamily',
     ])
     for (const slug of Object.keys(RECORDED_BACKGROUND)) {
       const curatedKeys = new Set(Object.keys(RECORDED_BACKGROUND[slug]!))

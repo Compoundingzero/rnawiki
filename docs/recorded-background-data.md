@@ -61,7 +61,7 @@ The values themselves are public. The discipline around them is the product:
 ## Engine
 
 `runBackgroundIntelligence` (`lib/rna-intelligence/background-rules.ts`, version
-`rna-intelligence/background-2.3.0`) checks structure only: envelope version, source-identifier
+`rna-intelligence/background-2.4.0`) checks structure only: envelope version, source-identifier
 shapes per kind, ISO dates, excerpt length, number-in-excerpt, measurement context, plausibility
 ranges by value type, contiguous schedule steps, controlled vocabularies (jurisdictions,
 currencies, price types, anatomy regions), derivation equality, concordance/alternate pairing,
@@ -308,6 +308,50 @@ The difficulty is collisions, and they are not spread evenly:
   exception. The rule refuses six correct rows along with the seven wrong ones, and that trade is
   the right way round: a page missing a lineage is a smaller failure than a page saying lithium is a
   moth.
+
+### When two sources name different organisms
+
+A second source now reaches the same rows by a different route: the substance registry carries a
+taxonomy cross-reference on the record the row was _identified_ as, while the match above works from
+the row's _name_. Thirty-one rows ended up with two identifiers. That disagreement is not one thing:
+
+- **Retired** (12 rows) — the cross-reference is no longer a live node. Hepatitis C virus is 11103
+  in older records and 3052230 since the virus was renamed _Orthohepacivirus hominis_. Same
+  organism, stale pointer.
+- **A rank apart** (11 rows) — one sits above the other. The _Euphorbia_ genus above _Euphorbia
+  hirta_; _Zea mays_ above _Zea mays_ subsp. _mays_. Different precision, not disagreement.
+- **Genuinely different organisms** (12 rows) — two organisms in different parts of the tree that
+  share a name. Cowslip is _Primula veris_ in England and _Caltha palustris_, a different family,
+  in American usage. Lungwort is _Pulmonaria officinalis_, a flowering plant, or _Lobaria
+  pulmonaria_, a **lichen**. Mugwort is _Artemisia vulgaris_ or _Artemisia douglasiana_.
+
+The first two keep the recorded organism — it carries the lineage a reader sees — and drop the
+pointer, because a link that resolves to a different page than the organism beside it is worse than
+no link. The third drops the organism and keeps the pointer: it was matched from a name, a second
+identity-based source contradicts it, and the honest position is that this corpus does not know
+which plant the row means.
+
+`scripts/background/reconcile-organism-identity.ts` decides this and **must run after**
+`build-source-material.ts`, which regenerates the cross-references it prunes.
+
+This is deliberately not an engine rule. Telling a retired node from a different plant needs NCBI's
+node and merge tables; the engine is deterministic, self-contained code that has no access to them
+and must not acquire it. A rule that called all thirty-one a contradiction would be wrong about
+nineteen, and a rule may not be wrong in the direction of accusation. The engine checks only what an
+identifier can settle on its own: two _substance_ identifiers that differ name two different
+substances, because the registry issues one per substance and there is no hierarchy to be at
+different heights of.
+
+### Identity before name
+
+Where a product's own label declared which registered substance a row is, that identifier now
+selects the registry record and the row's name is not consulted. A name match is an inference from a
+string; a label is the product stating what is in it. They disagreed on **158 rows**. "Aconite" is
+the case to remember: the label declares _Aconitum napellus_, the plant, while the row's name matches
+a different registered substance called ACONITE. Both registry entries are real, so nothing was
+malformed and no per-module check could see it — the material of one substance was simply sitting on
+a page that meant another. Resolving by identity also reached **416 rows** whose declared substance
+no name in the registry matched.
 
 ## A header line was a medicine
 

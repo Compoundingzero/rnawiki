@@ -56,6 +56,47 @@ def substance_records(path):
             buffer = buffer[offset:]
 
 
+# Cross-reference systems worth keeping, and why each.
+#
+# These are IDENTIFIERS, not content: a number that addresses a record in another database. Keeping
+# DrugBank's identifier is not keeping DrugBank's data, and the identifier itself comes from a US
+# Government file. Systems whose identifiers say nothing a reader or a researcher could use are left
+# out rather than hoarded.
+#
+# INN matters more than it looks. The International Nonproprietary Name is the name a substance goes
+# by outside the United States, so it is what makes this corpus navigable from anywhere else.
+KEPT_CODE_SYSTEMS = {
+    "CAS",
+    "PUBCHEM",
+    "RXCUI",
+    "INN",
+    "ChEMBL",
+    "CHEBI",
+    "NCBI TAXONOMY",
+    "EPA CompTox",
+    "ECHA (EC/EINECS)",
+    "SMS_ID",
+    "DRUG BANK",
+    "NCI_THESAURUS",
+    "INCHIKEY",
+    "MERCK INDEX",
+}
+
+
+def codes_of(record):
+    """Cross-references, one per system, primary entries preferred."""
+    best = {}
+    for entry in record.get("codes") or []:
+        system = entry.get("code_system")
+        code = entry.get("code")
+        if not system or not code or system not in KEPT_CODE_SYSTEMS:
+            continue
+        # A system can carry several codes; the primary one is the substance's own.
+        if system not in best or entry.get("type") == "PRIMARY":
+            best[system] = {"code": code, "url": entry.get("url")}
+    return best
+
+
 def names_of(record):
     """Every name the registry records, preferred one first."""
     preferred = None
@@ -92,14 +133,17 @@ def main():
             entry = {
                 "unii": unii,
                 "preferredName": preferred,
-                # Capped: a handful of substances carry hundreds of names and RNAWiki matches on a
-                # normalized key rather than reading them.
-                "names": all_names[:40],
+                # Capped generously rather than tightly. At 40 the cap bit on 411 records, and the
+                # records it bit on are the most-named substances — the common drugs, whose ordinary
+                # name can sit past the fortieth synonym. Acetazolamide was unidentifiable for
+                # exactly this kind of reason.
+                "names": all_names[:200],
                 "substanceClass": record.get("substance_class"),
                 "part": [value for value in (diverse.get("part") or []) if value],
                 "parentSubstance": parent,
                 "sourceMaterialClass": diverse.get("source_material_class"),
                 "sourceMaterialType": diverse.get("source_material_type"),
+                "codes": codes_of(record),
             }
             out.write(json.dumps(entry, ensure_ascii=False))
             out.write("\n")

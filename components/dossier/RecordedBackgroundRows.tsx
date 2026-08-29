@@ -889,6 +889,49 @@ export function BackgroundProductListingBody({
  * The part is the registry's own statement. The taxonomy row infers one from the medicine's name;
  * this is the register that the labels themselves are keyed to, saying so.
  */
+/**
+ * The substances this row's name is shared with.
+ *
+ * Shown only where nothing could identify the row. The point is not to hedge: it is that the name
+ * itself does not pick one substance out, and a reader is better served knowing that and seeing the
+ * candidates than by a blank space or by a confident wrong answer.
+ */
+export function BackgroundNameFamilyBody({
+  family,
+}: {
+  family: NonNullable<MedicineBackgroundContextView['nameFamily']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">{family.summary}</p>
+      <ul className="grid min-w-0 gap-2.5">
+        {family.members.map((member) => (
+          <li
+            key={member.unii}
+            className="flex min-w-0 flex-wrap items-baseline justify-between gap-x-3 gap-y-1 rounded-2xl border border-black/[0.08] bg-white p-3.5"
+          >
+            <span className="min-w-0 break-words text-sm font-semibold leading-6 text-[#1D1D1F]">
+              {member.name}
+            </span>
+            <span className="shrink-0 text-sm leading-6 text-[#515154]">{member.marketLabel}</span>
+          </li>
+        ))}
+      </ul>
+      {family.moreCount > 0 && (
+        <p className="text-sm leading-6 text-[#515154]">
+          {family.moreCount.toLocaleString('en-US')} further registered substances share the name
+          and are not listed here.
+        </p>
+      )}
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        Nothing on this page is attributed to any one of these substances. Recording which of them
+        this record means is a decision for a person with the source in front of them.{' '}
+        {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
 export function BackgroundSourceMaterialBody({
   material,
 }: {

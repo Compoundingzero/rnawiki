@@ -21,6 +21,7 @@ import {
   BackgroundRecordedUsesBody,
   BackgroundSafetyBody,
   BackgroundSourceConsensusBody,
+  BackgroundNameFamilyBody,
   BackgroundSourceMaterialBody,
   BackgroundSupplementIngredientBody,
   BackgroundSupplementMarketBody,
@@ -458,6 +459,17 @@ export function MedicineRecordContextSections({
             preview="Each reading of a value, how many labels state it, and where the labels disagree."
           >
             <BackgroundSourceConsensusBody consensus={context.background.sourceConsensus} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.nameFamily && (
+          <BackgroundRow
+            id="what-this-name-can-mean"
+            tone="amber"
+            title="This name is shared by several substances"
+            preview="No source can say which one this record means, so the substances that share the name are listed instead."
+          >
+            <BackgroundNameFamilyBody family={context.background.nameFamily} />
           </BackgroundRow>
         )}
 

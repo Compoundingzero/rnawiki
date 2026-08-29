@@ -1,6 +1,6 @@
 /**
  * RNA Intelligence — Group I: recorded background validation, engine version
- * `rna-intelligence/background-2.3.0`.
+ * `rna-intelligence/background-2.4.0`.
  *
  * Deterministic structural checks over the `medicine-background/v1` envelope. The group's central
  * guarantee is mechanical provenance: a numeric value must literally appear inside the source
@@ -42,7 +42,7 @@ import {
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
 
-export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.3.0'
+export const BACKGROUND_ENGINE_VERSION = 'rna-intelligence/background-2.4.0'
 
 export const BACKGROUND_RULE_CODES = [
   'I_ENVELOPE_VERSION_INVALID',
@@ -105,6 +105,8 @@ export const BACKGROUND_RULE_CODES = [
   'I_APPROVAL_UNCHECKABLE',
   'I_SUPPLEMENT_INGREDIENT_UNCHECKABLE',
   'I_SOURCE_MATERIAL_UNCHECKABLE',
+  'I_NAME_FAMILY_NOT_AMBIGUOUS',
+  'I_IDENTIFIER_DISAGREEMENT',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -558,6 +560,16 @@ export function runBackgroundIntelligence(
       ['atcCode', identifiers.atcCode, /^[A-Z]\d{2}[A-Z]{2}\d{2}$/u],
       ['unii', identifiers.unii, /^[0-9A-Z]{10}$/u],
       ['rxcui', identifiers.rxcui, /^\d{1,10}$/u],
+      // Shapes for the identifiers the substance registry supplies. An identifier that does not
+      // look like one is a pointer to nothing, and a pointer to nothing is worse than no pointer.
+      ['chemblId', identifiers.chemblId, /^CHEMBL\d{1,10}$/u],
+      ['chebiId', identifiers.chebiId, /^(?:CHEBI:)?\d{1,10}$/u],
+      ['ecNumber', identifiers.ecNumber, /^\d{3}-\d{3}-\d$/u],
+      ['ncbiTaxonomyId', identifiers.ncbiTaxonomyId, /^[1-9]\d{0,8}$/u],
+      // DrugBank numbers a salt and a metabolite differently from a drug: DB00042, DBSALT002363.
+      ['drugBankId', identifiers.drugBankId, /^DB(?:SALT|CAT|MET)?\d{4,10}$/u],
+      ['emaSubstanceId', identifiers.emaSubstanceId, /^\d{6,15}$/u],
+      ['innIdentifier', identifiers.innIdentifier, /^\d{1,8}$/u],
     ]
     for (const [field, value, shape] of shapes) {
       if (value !== undefined && !shape.test(value)) {
@@ -631,13 +643,35 @@ export function runBackgroundIntelligence(
     if (molecular.molecularWeight) {
       checkRecordedValue('molecularIdentity.molecularWeight', molecular.molecularWeight)
       const weight = molecular.molecularWeight.numeric
-      // The floor is one atomic mass unit, not thirty. Carbon is 12, carbon monoxide 28, lithium
-      // 6.9, and all three are recorded medicines; a floor set for organic drugs refused them.
-      if (weight !== undefined && (weight < 1 || weight > 200000)) {
+      const weightUnit = molecular.molecularWeight.unit ?? 'g/mol'
+      /**
+       * Checked against the recorded unit, not against grams per mole.
+       *
+       * The floor for grams per mole and daltons is one atomic mass unit, not thirty: carbon is 12,
+       * carbon monoxide 28, lithium 6.9, and all three are recorded medicines. Kilodaltons are a
+       * different scale — a label printing "54 kilodaltons" records 54, and reading that against a
+       * range built for daltons would call every protein on the site implausible. The unit is
+       * printed in the message so a reader of the finding sees which scale was applied.
+       */
+      const plausible: Record<string, { min: number; max: number }> = {
+        'g/mol': { min: 1, max: 200000 },
+        Da: { min: 1, max: 200000 },
+        kDa: { min: 0.5, max: 1000 },
+      }
+      const range = plausible[weightUnit]
+      if (weight !== undefined && range && (weight < range.min || weight > range.max)) {
         flag(
           'I_MOLECULAR_WEIGHT_IMPLAUSIBLE',
           'molecularIdentity.molecularWeight',
-          `${weight} g/mol is outside the plausible range for a recorded medicine.`,
+          `${weight} ${weightUnit} is outside the plausible range for a recorded medicine.`,
+        )
+      }
+      // A unit nothing here knows how to bound cannot be checked, and must not pass as if it were.
+      if (weight !== undefined && !range) {
+        flag(
+          'I_MOLECULAR_WEIGHT_IMPLAUSIBLE',
+          'molecularIdentity.molecularWeight',
+          `"${weightUnit}" is not a molecular weight unit this engine can check.`,
         )
       }
     }
@@ -959,6 +993,7 @@ export function runBackgroundIntelligence(
       'regulatoryApproval',
       'supplementIngredient',
       'sourceMaterial',
+      'nameFamily',
     ])
     const otherModules = Object.entries(background).some(([key, value]) => {
       if (ENVELOPE_FIELDS.has(key)) return false
@@ -1218,6 +1253,116 @@ export function runBackgroundIntelligence(
       )
     }
   }
+
+  /**
+   * A recorded name family, which only says something when the name is genuinely shared.
+   *
+   * One member is not a family: it is an identification, and recording it as an ambiguity would tell
+   * a reader the name is unclear when the sources agree on what it means. The count and the list
+   * must also agree, since a reader counts what is shown.
+   */
+  const family = background.nameFamily
+  if (family) {
+    checkSource('nameFamily', family.source)
+    if (family.members.length < 2) {
+      flag(
+        'I_NAME_FAMILY_NOT_AMBIGUOUS',
+        'nameFamily.members',
+        `A name family needs at least two members to be a family; ${family.members.length} recorded.`,
+      )
+    }
+    if (family.memberCount < family.members.length) {
+      flag(
+        'I_NAME_FAMILY_NOT_AMBIGUOUS',
+        'nameFamily.memberCount',
+        `${family.memberCount} member(s) counted is fewer than the ${family.members.length} listed.`,
+      )
+    }
+    for (const [index, member] of family.members.entries()) {
+      if (!/^[A-Z0-9]{10}$/u.test(member.unii)) {
+        flag(
+          'I_NAME_FAMILY_NOT_AMBIGUOUS',
+          `nameFamily.members[${index}].unii`,
+          `"${member.unii}" is not a substance identifier, so this member cannot be checked.`,
+        )
+      }
+    }
+  }
+
+  /**
+   * Two modules on one record must not name two different substances.
+   *
+   * Every other rule here checks a module against its own source. This one checks modules against
+   * each other, because the failure it catches is invisible from inside either: each module was
+   * correctly transcribed from a real registry record, and the records are of different substances.
+   *
+   * It was found on "Aconite", where the product's own label declared ACONITUM NAPELLUS — the plant —
+   * while the row's name matched a different registered substance called ACONITE. Both entries are
+   * real. Reading the page, one would take the material description of one substance as belonging to
+   * the other. 158 records were in this state.
+   *
+   * A substance identifier names exactly one substance, so disagreement is decidable rather than a
+   * matter of judgement, and the record is refused rather than ranked.
+   */
+  /**
+   * Compared within a namespace and never across one. A substance identifier and a taxonomy
+   * identifier disagreeing means nothing — they number different things. Only two modules numbering
+   * the same kind of thing can contradict each other.
+   */
+  const compareWithin = (
+    namespace: string,
+    what: string,
+    claims: readonly (readonly [string, string | undefined])[],
+    shape: RegExp,
+  ) => {
+    const named = new Map<string, string>()
+    for (const [path, identifier] of claims) {
+      if (identifier && shape.test(identifier)) named.set(path, identifier)
+    }
+    const distinct = new Set(named.values())
+    if (distinct.size < 2) return
+    const stated = [...named].map(([path, id]) => `${path} names ${id}`).join('; ')
+    for (const path of named.keys()) {
+      flag(
+        'I_IDENTIFIER_DISAGREEMENT',
+        path,
+        `This record names ${distinct.size} different ${what}, so at least one part of it belongs to a different ${namespace}: ${stated}.`,
+      )
+    }
+  }
+
+  compareWithin(
+    'substance',
+    'substances',
+    [
+      ['registryIdentifiers.unii', background.registryIdentifiers?.unii],
+      [
+        'sourceMaterial.source.identifier',
+        background.sourceMaterial?.source.kind === 'FDA_UNII'
+          ? background.sourceMaterial.source.identifier
+          : undefined,
+      ],
+    ],
+    /^[A-Z0-9]{10}$/u,
+  )
+  /**
+   * Organism identifiers are deliberately NOT compared here, and the reason is the rule's own limit.
+   *
+   * Two substance identifiers that differ name two different substances: the registry issues one per
+   * substance and there is no hierarchy to be at different heights of. Two taxonomy identifiers that
+   * differ may name the same organism. NCBI retires and merges nodes — hepatitis C virus is 11103 in
+   * older records and 3052230 since the virus was renamed — and one may simply sit above the other,
+   * as the Euphorbia genus does above Euphorbia hirta. Deciding between those needs the taxonomy's
+   * own node and merge tables, which this engine has no access to and must not acquire: it is
+   * deterministic, self-contained code.
+   *
+   * Twenty-seven records disagreed on an organism. Nineteen were retired nodes or a rank apart. The
+   * other eight were genuinely different organisms sharing a common name — cowslip is Primula veris
+   * in England and Caltha palustris, a different family, elsewhere. A rule that called all
+   * twenty-seven a contradiction would be wrong about nineteen of them, and a rule is not allowed to
+   * be wrong in the direction of accusation. The reconciliation runs at build time instead, in
+   * `scripts/background/reconcile-organism-identity.ts`, where the tables are available.
+   */
 
   return {
     engineVersion: BACKGROUND_ENGINE_VERSION,
