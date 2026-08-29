@@ -2,6 +2,8 @@ import 'dotenv/config'
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 
+import { alternativeNames } from '@/lib/background/name-normalization'
+
 /**
  * Fetches chemical identity for corpus rows that no label source reaches.
  *
@@ -111,8 +113,13 @@ async function namesNeedingIdentity(): Promise<string[]> {
       if (!line.trim()) continue
       const record = JSON.parse(line) as { id?: string; name?: string }
       if (!record.id || !record.name || covered.has(record.id)) continue
-      const name = record.name.trim().replace(/\)+$/u, '')
-      if (name.length >= 3) names.push(name)
+      // Every name the title offers. A title written "Heroin (Diamorphine, Diacetylmorphine)" or
+      // "MDMA (3,4-Methylenedioxymethamphetamine)" carries the chemical name in the bracket, and
+      // asking a compound database for the whole string finds nothing.
+      for (const candidate of alternativeNames(record.name)) {
+        const name = candidate.trim().replace(/\)+$/u, '')
+        if (name.length >= 3) names.push(name)
+      }
     }
   }
   return [...new Set(names)]

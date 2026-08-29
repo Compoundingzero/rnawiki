@@ -9,8 +9,8 @@
     "independentOfEngine": true
   },
   "coverage": {
-    "considered": 9833,
-    "used": 3420,
+    "considered": 9847,
+    "used": 3434,
     "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
   },
   "output": {
@@ -32422,6 +32422,18 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
+        "slug": "2c-b",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "2c-b",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
         "slug": "2-cyclohexylethanamine",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -32465,6 +32477,18 @@
       },
       {
         "slug": "3-4-divanillyltetrahydrofuran",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "3-7-keto-dhea",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "3-7-keto-dhea",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -36461,6 +36485,18 @@
       },
       {
         "slug": "coumestrol-dimethyl-ether",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "covid-19-vaccine-mrna",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "covid-19-vaccine-mrna",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -40606,6 +40642,18 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
+        "slug": "heroin",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "heroin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
         "slug": "hesperitin",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -41890,6 +41938,18 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
+        "slug": "jwh-018",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "jwh-018",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
         "slug": "kaempferide",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -41993,6 +42053,18 @@
       },
       {
         "slug": "lactoferrin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "lamivudine-nevirapine-and-stavudine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "lamivudine-nevirapine-and-stavudine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -42634,6 +42706,18 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
+        "slug": "lsd",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "lsd",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
         "slug": "lucinactant",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -43138,6 +43222,18 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
+        "slug": "manganese-gluconate-unspecified-form",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "manganese-gluconate-unspecified-form",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
         "slug": "manganese-iodide",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -43301,6 +43397,18 @@
       },
       {
         "slug": "mcpa",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "mdma",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "mdma",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -45418,6 +45526,30 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
+        "slug": "ombitasvir-paritaprevir-ritonavir",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "ombitasvir-paritaprevir-ritonavir",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "omega-3-epa-dha",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "omega-3-epa-dha",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
         "slug": "orchid",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -46349,6 +46481,18 @@
       },
       {
         "slug": "phenacetin",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "phencyclidine",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "phencyclidine",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -48694,6 +48838,18 @@
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
       },
       {
+        "slug": "secretin-unspecified",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "secretin-unspecified",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
         "slug": "selank",
         "path": "molecularIdentity.molecularFormula",
         "module": "molecularIdentity",
@@ -49217,6 +49373,18 @@
       },
       {
         "slug": "sodium-phosphate",
+        "path": "molecularIdentity.molecularWeight",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "sodium-phosphate-monobasic-unspecified-form",
+        "path": "molecularIdentity.molecularFormula",
+        "module": "molecularIdentity",
+        "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
+      },
+      {
+        "slug": "sodium-phosphate-monobasic-unspecified-form",
         "path": "molecularIdentity.molecularWeight",
         "module": "molecularIdentity",
         "state": "TRANSCRIBED_NOT_EXCERPT_BOUND"
@@ -65007,7 +65175,7 @@
     ],
     "engineComparison": {
       "disagreements": [],
-      "recordsCompared": 9833,
+      "recordsCompared": 9847,
       "agreementRate": 1,
       "note": "This check is written independently of the background engine so that agreement means something. Where they differ, neither is assumed correct: either may be the stricter, and the difference is the finding."
     }
@@ -65016,7 +65184,7 @@
   "caveats": [
     "A verified binding proves transcription fidelity and nothing else. It does not say the source is correct, current, or applicable to any person; it says the number displayed here is the number that document prints.",
     "A value that fails this check is a question about this corpus, never a statement that the source is wrong.",
-    "3305 value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.",
+    "3333 value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.",
     "Only numerals are checked this way. A value whose display carries no number cannot be verified by this method and is counted apart rather than counted as passing.",
     "Consensus readings are verified when any one of the sources cited for them prints the reading. Excerpts stored for other contributing sources may be trimmed around a different part of the sentence, and requiring all of them would report a storage detail as a failure.",
     "The 7 normalisation rules are listed in the output so a third party can reproduce this check exactly. Loosening them would raise the pass rate without improving the corpus, which is why they are published rather than described.",

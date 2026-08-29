@@ -55,6 +55,41 @@ export function normalizeContentName(value: string): string {
 }
 
 /**
+ * Every name a printed title offers, including the ones normalization throws away.
+ *
+ * `normalizeIdentityName` and `normalizeContentName` both delete parentheticals, which is right
+ * when the bracket holds a salt form or a qualifier and wrong when it holds the answer. RNAWiki's
+ * titles for controlled substances are written as "Kratom (Mitragyna speciosa) and Mitragynine" and
+ * "Heroin (Diamorphine, Diacetylmorphine)" — the bracket carries the binomial a taxonomy could
+ * match and the chemical name a compound database could. Discarding it left those rows matching
+ * nothing at all.
+ *
+ * Returns the printed name first, then each alternative it contains, longest first so a caller
+ * trying them in order meets the most specific name before the most general. Nothing is invented:
+ * every string returned is a substring of what was printed.
+ */
+export function alternativeNames(printed: string): string[] {
+  const found: string[] = [printed]
+  const outside = printed.replace(/\([^)]*\)/gu, ' ')
+  const inside = [...printed.matchAll(/\(([^)]*)\)/gu)].map((match) => match[1] ?? '')
+
+  const pieces: string[] = []
+  for (const text of [outside, ...inside]) {
+    pieces.push(text)
+    // A title may join two names with a conjunction, a comma, a slash or a dash.
+    for (const part of text.split(/\s*(?:,|\/|\band\b|—|–)\s*/iu)) pieces.push(part)
+  }
+
+  for (const piece of pieces) {
+    const cleaned = piece.replace(/\s+/gu, ' ').trim()
+    // Three characters is the floor every matcher in this repository uses; a shorter fragment
+    // matches too much.
+    if (cleaned.length >= 3 && !found.includes(cleaned)) found.push(cleaned)
+  }
+  return found.sort((left, right) => right.length - left.length)
+}
+
+/**
  * How many distinct active substances a set of printed names describes.
  *
  * This is the number the attribution guarantee turns on: a substance-specific claim may only be

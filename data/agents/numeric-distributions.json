@@ -15,9 +15,9 @@
     "binEdgeBasis": "edges computed once per distribution and shared by all of its strata"
   },
   "coverage": {
-    "considered": 9833,
-    "used": 3356,
-    "reason": "3356 of 9833 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
+    "considered": 9847,
+    "used": 3370,
+    "reason": "3370 of 9847 records contribute at least one number to at least one distribution. The rest hold no pharmacokinetics measurement and no molecular weight, which is a statement about what has been structured into the corpus and about nothing else."
   },
   "output": {
     "fields": [
@@ -3612,8 +3612,8 @@
       {
         "field": "molecularWeight",
         "label": "Recorded molecular weight",
-        "recordedValues": 2991,
-        "numericValues": 2991,
+        "recordedValues": 3005,
+        "numericValues": 3005,
         "displayOnlyValues": 0,
         "offUnitValues": [],
         "offUnitValueCount": 0,
@@ -3644,13 +3644,13 @@
               "key": "overall",
               "label": "all recorded values in grams per mole",
               "summary": {
-                "count": 2991,
+                "count": 3005,
                 "min": 12.011,
-                "p25": 187.535,
-                "median": 322,
-                "p75": 492.56,
+                "p25": 187.71,
+                "median": 321.6,
+                "p75": 492.52,
                 "max": 150000,
-                "robustScale": 219.12828000000002
+                "robustScale": 218.53524000000004
               },
               "histogram": [
                 {
@@ -3669,25 +3669,25 @@
                   "lowerBound": 57.85370573998617,
                   "upperBound": 126.97177475045457,
                   "upperInclusive": false,
-                  "count": 186
+                  "count": 187
                 },
                 {
                   "lowerBound": 126.97177475045457,
                   "upperBound": 278.6654956164273,
                   "upperInclusive": false,
-                  "count": 947
+                  "count": 953
                 },
                 {
                   "lowerBound": 278.6654956164273,
                   "upperBound": 611.5883518188824,
                   "upperInclusive": false,
-                  "count": 1329
+                  "count": 1333
                 },
                 {
                   "lowerBound": 611.5883518188824,
                   "upperBound": 1342.2555643393698,
                   "upperInclusive": false,
-                  "count": 322
+                  "count": 324
                 },
                 {
                   "lowerBound": 1342.2555643393698,
@@ -3699,7 +3699,7 @@
                   "lowerBound": 2945.854012166577,
                   "upperBound": 6465.278365427439,
                   "upperInclusive": false,
-                  "count": 47
+                  "count": 48
                 },
                 {
                   "lowerBound": 6465.278365427439,
@@ -3727,8 +3727,8 @@
                 }
               ],
               "logSpread": {
-                "medianAbsoluteDeviationLog10": 0.2992450158821852,
-                "spreadFactor": 1.991796733864343
+                "medianAbsoluteDeviationLog10": 0.29891365136959874,
+                "spreadFactor": 1.9902775825673353
               }
             },
             "byRoute": {
@@ -3736,7 +3736,7 @@
               "strata": [],
               "valuesBelowMinimum": 0,
               "groupsBelowMinimum": 0,
-              "valuesWithoutKey": 2991,
+              "valuesWithoutKey": 3005,
               "note": "Recorded molecular weight is recorded on the molecular identity module, which carries no route. There is nothing to stratify on, so no route strata are published rather than a route being attached from elsewhere in the record."
             },
             "byProvenanceTier": {
@@ -3747,13 +3747,13 @@
                   "key": "transcribed",
                   "label": "transcribed: transcribed from a structured record",
                   "summary": {
-                    "count": 1686,
+                    "count": 1700,
                     "min": 12.011,
-                    "p25": 189.435,
+                    "p25": 190.1775,
                     "median": 299.45,
-                    "p75": 440,
+                    "p75": 440.47499999999997,
                     "max": 7165,
-                    "robustScale": 179.40201299999998
+                    "robustScale": 179.32788299999996
                   },
                   "histogram": [
                     {
@@ -3772,25 +3772,25 @@
                       "lowerBound": 57.85370573998617,
                       "upperBound": 126.97177475045457,
                       "upperInclusive": false,
-                      "count": 126
+                      "count": 127
                     },
                     {
                       "lowerBound": 126.97177475045457,
                       "upperBound": 278.6654956164273,
                       "upperInclusive": false,
-                      "count": 572
+                      "count": 578
                     },
                     {
                       "lowerBound": 278.6654956164273,
                       "upperBound": 611.5883518188824,
                       "upperInclusive": false,
-                      "count": 730
+                      "count": 734
                     },
                     {
                       "lowerBound": 611.5883518188824,
                       "upperBound": 1342.2555643393698,
                       "upperInclusive": false,
-                      "count": 169
+                      "count": 171
                     },
                     {
                       "lowerBound": 1342.2555643393698,
@@ -3802,7 +3802,7 @@
                       "lowerBound": 2945.854012166577,
                       "upperBound": 6465.278365427439,
                       "upperInclusive": false,
-                      "count": 23
+                      "count": 24
                     },
                     {
                       "lowerBound": 6465.278365427439,
@@ -3830,8 +3830,8 @@
                     }
                   ],
                   "logSpread": {
-                    "medianAbsoluteDeviationLog10": 0.27437349027198943,
-                    "spreadFactor": 1.880933711519337
+                    "medianAbsoluteDeviationLog10": 0.27430328146145405,
+                    "spreadFactor": 1.880629661041412
                   }
                 },
                 {
@@ -3945,12 +3945,12 @@
       "subcutaneous"
     ],
     "minimumStratumSize": 12,
-    "recordsWithAnyNumericValue": 3356
+    "recordsWithAnyNumericValue": 3370
   },
   "caveats": [
     "Every number here describes recorded values. It does not describe medicines, and it does not describe the people a value was measured in. A median recorded half-life is a fact about what source documents state, shaped first of all by which medicines happen to have a document with a pharmacokinetics section structured into this corpus.",
     "No percentile in this output is typical, normal or expected for any medicine. A value at the 5th or the 95th percentile of a stratum is an unremarkable recorded value that sits near the edge of the recorded values around it, and nothing follows from where it sits.",
-    "Of 6118 recorded values across these fields, 262 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
+    "Of 6132 recorded values across these fields, 262 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
     "A further 2 numeric values are recorded in a unit no distribution here accepts. They are named with their units beside each field and left out, because rescaling a recorded number would replace what the source printed with a number no source stated.",
     "Volume of distribution is published as two separate distributions and never as one: 569 values recorded in litres and 136 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
     "The route strata are the route text the source printed, lower-cased. They are not a controlled vocabulary, so a medicine given by more than one route appears under whichever single route its record states, and near-identical route wordings are separate strata.",

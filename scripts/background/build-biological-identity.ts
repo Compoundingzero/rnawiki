@@ -4,6 +4,7 @@ import { createInterface } from 'node:readline'
 import { join } from 'node:path'
 
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
+import { alternativeNames } from '@/lib/background/name-normalization'
 import { RANKS_NAMING_ONE_ORGANISM } from '@/lib/background/types'
 import type { MedicineRecordedBackground, RecordedBiologicalIdentity } from '@/lib/background/types'
 import { RECORDED_BACKGROUND } from '../seed-data/background'
@@ -253,12 +254,18 @@ async function main() {
   // and this corpus asks about a few thousand.
   const wanted = new Map<string, { slug: string; part?: string }[]>()
   for (const row of rows) {
-    const { organism, part } = splitPart(row.name)
-    if (organism.length < 4) continue
-    const held = wanted.get(organism)
-    const entry = { slug: row.slug, ...(part ? { part } : {}) }
-    if (held) held.push(entry)
-    else wanted.set(organism, [entry])
+    // Every name the title offers, not only the whole string. A title written
+    // "Kratom (Mitragyna speciosa) and Mitragynine" carries the binomial in the bracket, and the
+    // normalizations that strip parentheticals discard exactly the part a taxonomy can match.
+    for (const candidate of alternativeNames(row.name)) {
+      const { organism, part } = splitPart(candidate)
+      if (organism.length < 4) continue
+      const held = wanted.get(organism)
+      const entry = { slug: row.slug, ...(part ? { part } : {}) }
+      if (held) {
+        if (!held.some((existing) => existing.slug === row.slug)) held.push(entry)
+      } else wanted.set(organism, [entry])
+    }
   }
   console.log(`[taxonomy] ${rows.length} medicine row(s) · ${wanted.size} organism name(s) sought`)
 

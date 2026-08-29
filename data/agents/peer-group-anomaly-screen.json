@@ -11,9 +11,9 @@
     "minimumGroupSizeForAFlag": 20
   },
   "coverage": {
-    "considered": 9833,
+    "considered": 9847,
     "used": 1305,
-    "reason": "A medicine enters the screen once it records at least one of 5 pharmacokinetic quantities with both a parsed number and a unit. 8467 records carry no pharmacokinetics module at all, and a record with the module may still record none of these five quantities numerically."
+    "reason": "A medicine enters the screen once it records at least one of 5 pharmacokinetic quantities with both a parsed number and a unit. 8481 records carry no pharmacokinetics module at all, and a record with the module may still record none of these five quantities numerically."
   },
   "output": {
     "groupingBasis": "A peer group is the recorded route of administration, lower-cased with any parenthetical or clause-level detail dropped. A mechanism-class grouping exists in the tree only as a clustering agent that has to be run to produce one, so taking it would make every p-value here depend on the seed, cluster count and version of another agent, and would narrow the screen to records carrying mechanism text as well as a number.",
@@ -4547,7 +4547,7 @@
       "underpoweredGroupCount": 81
     },
     "excluded": {
-      "medicinesWithoutPharmacokinetics": 8467,
+      "medicinesWithoutPharmacokinetics": 8481,
       "displayOnlyValues": 262,
       "valuesWithoutRecordedUnit": 0
     }

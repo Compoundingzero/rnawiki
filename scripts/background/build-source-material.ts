@@ -3,7 +3,11 @@ import { createReadStream, readFileSync, readdirSync, writeFileSync } from 'node
 import { createInterface } from 'node:readline'
 import { join } from 'node:path'
 
-import { normalizeContentName, normalizeIdentityName } from '@/lib/background/name-normalization'
+import {
+  alternativeNames,
+  normalizeContentName,
+  normalizeIdentityName,
+} from '@/lib/background/name-normalization'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
 import type { MedicineRecordedBackground, RecordedSourceMaterial } from '@/lib/background/types'
 
@@ -75,8 +79,10 @@ async function main() {
   const rows = medicineRows()
   const wanted = new Set<string>()
   for (const row of rows) {
-    for (const key of [normalizeContentName(row.name), normalizeIdentityName(row.name)]) {
-      if (key.length >= 3) wanted.add(key)
+    for (const candidate of alternativeNames(row.name)) {
+      for (const key of [normalizeContentName(candidate), normalizeIdentityName(candidate)]) {
+        if (key.length >= 3) wanted.add(key)
+      }
     }
   }
   console.log(`[material] ${rows.length} medicine row(s) · ${wanted.size} name key(s) sought`)
@@ -126,8 +132,14 @@ async function main() {
   }
 
   for (const row of rows) {
-    const substance =
-      resolved.get(normalizeContentName(row.name)) ?? resolved.get(normalizeIdentityName(row.name))
+    // Alternatives are tried longest first, so the most specific name a title offers wins.
+    let substance: SubstanceLine | undefined
+    for (const candidate of alternativeNames(row.name)) {
+      substance =
+        resolved.get(normalizeContentName(candidate)) ??
+        resolved.get(normalizeIdentityName(candidate))
+      if (substance) break
+    }
     if (!substance) continue
     const substanceClass = substance.substanceClass?.trim()
     if (!substanceClass) {

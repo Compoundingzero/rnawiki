@@ -2,6 +2,7 @@ import 'dotenv/config'
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { alternativeNames } from '@/lib/background/name-normalization'
 import { MOLECULAR_FORMULA_SHAPE } from '@/lib/background/types'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
 import type { MedicineRecordedBackground } from '@/lib/background/types'
@@ -70,7 +71,12 @@ function main(): void {
   }
 
   for (const row of rows) {
-    const entry = cache[row.name.trim()] ?? cache[row.name.trim().replace(/\)+$/u, '')]
+    // Alternatives are tried longest first, so the most specific name a title offers wins.
+    let entry: CompoundIdentityEntry | undefined
+    for (const candidate of alternativeNames(row.name)) {
+      entry = cache[candidate.trim()] ?? cache[candidate.trim().replace(/\)+$/u, '')]
+      if (entry?.state === 'RECORDED') break
+    }
     if (!entry) {
       stats.noLookup += 1
       continue

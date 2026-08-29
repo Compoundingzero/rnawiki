@@ -224,6 +224,21 @@
    }
   }
  },
+ "3-7-keto-dhea": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "2334LJD2E9",
+    "label": "Substance registry record for 7-KETO-DEHYDROEPIANDROSTERONE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "3-hydroxy-1-methylguanine": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -1866,6 +1881,21 @@
     "kind": "FDA_UNII",
     "identifier": "1L4806J2QF",
     "label": "Substance registry record for 2-NAPHTHALENECARBOXYLIC ACID, 6-(4-METHOXY-3-TRICYCLO(3.3.1.(SUP 13,7))DEC-1-YLPHENYL)-",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "adapalene-benzoyl-peroxide": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "W9WZN9A0GM",
+    "label": "Substance registry record for ACANYA COMPONENT BENZOYL PEROXIDE",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -5093,6 +5123,21 @@
   }
  },
  "amivantamab": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "protein",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "0JSR7Z0NB6",
+    "label": "Substance registry record for AMIVANTAMAB",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "amivantamab-and-hyaluronidase-lpuj": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
   "provenanceTier": "transcribed",
@@ -8984,6 +9029,21 @@
    }
   }
  },
+ "atezolizumab-and-hyaluronidase-tqjs": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "protein",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "52CMI0WC3Y",
+    "label": "Substance registry record for 0INE2SFD9E",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "atidarsagene-autotemcel": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -11614,6 +11674,21 @@
   }
  },
  "bempedoic-acid": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "1EJ6Z6Q368",
+    "label": "Substance registry record for 8-Hydroxy-2,2,14,14-tetramethylpentadecanedioic acid",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "bempedoic-acid-ezetimibe": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
   "provenanceTier": "transcribed",
@@ -18939,6 +19014,21 @@
    }
   }
  },
+ "carbidopa-levodopa": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "46627O600J",
+    "label": "Substance registry record for (-)-3-(3,4-DIHYDROXYPHENYL)-L-ALANINE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "carbo-animalis": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -24125,6 +24215,21 @@
    }
   }
  },
+ "clavulanate": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "Q42OMW3AT8",
+    "label": "Substance registry record for 4-OXA-1-AZABICYCLO(3.2.0)HEPTANE-2-CARBOXYLIC ACID, 3-(2-HYDROXYETHYLIDENE)-7-OXO-, MONOPOTASSIUM SALT, (2R-(2.ALPHA.,3Z,5.ALPHA.))-",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "clematis-recta-flowering-top": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -25971,6 +26076,21 @@
     "kind": "FDA_UNII",
     "identifier": "79G218ZMB3",
     "label": "Substance registry record for CICUTA MAJOR WHOLE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "conjugated-estrogens-medroxyprogesterone": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "mixture",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "IU5QR144QX",
+    "label": "Substance registry record for CONJUGATED ESTROGENS",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -28993,6 +29113,21 @@
    }
   }
  },
+ "daratumumab-and-hyaluronidase-fihj": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "protein",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "4Z63YK6E0E",
+    "label": "Substance registry record for 3003-005",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "darbepoetin-alfa": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -29004,6 +29139,21 @@
     "kind": "FDA_UNII",
     "identifier": "15UQ94PT4P",
     "label": "Substance registry record for (30-L-ASPARAGINE-32-L-THREONINE-87-L-VALINE-88-L-ASPARAGINE-90-L-THREONINE)ERYTHROPOIETIN (HUMAN)",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "darunavir-and-ritonavir": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "O3J8G9O825",
+    "label": "Substance registry record for 2,4,7,12-TETRAAZATRIDECAN-13-OIC ACID, 10-HYDROXY-2-METHYL-5-(1-METHYLETHYL)-1-(2-(1-METHYLETHYL)-4-THIAZOLYL)-3,6-DIOXO-8,11-BIS(PHENYLMETHYL)-5-THIAZOLYLMETHYL ESTER (5S-(5R*,8R*,10R*,11R*))-",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -32471,6 +32621,21 @@
    }
   }
  },
+ "efgartigimod-alfa-and-hyaluronidase-qvfc": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "protein",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "961YV2O515",
+    "label": "Substance registry record for EFGARTIGIMOD",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "eflapegrastim": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -32883,6 +33048,21 @@
    }
   }
  },
+ "elagolix-estradiol-and-norethindrone-acetate-and-elagolix": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "9S44LIC7OJ",
+    "label": "Substance registry record for 17-Hydroxy-19-nor-17α-pregn-4-en-20-yn-3-one acetate",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "elapegademase": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -33147,6 +33327,21 @@
     "kind": "FDA_UNII",
     "identifier": "ZQH6VH092Z",
     "label": "Substance registry record for ACANTHOPANAX SENTICOSUS (ELEUTHERO) ROOT",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "elexacaftor-ivacaftor-tezacaftor": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "RRN67GMB0V",
+    "label": "Substance registry record for 3-PYRIDINECARBOXAMIDE, N-((1,3-DIMETHYL-1H-PYRAZOL-4-YL)SULFONYL)-6-(3-(3,3,3-TRIFLUORO-2,2-DIMETHYLPROPOXY)-1H-PYRAZOL-1-YL)-2-((4S)-2,2,4-TRIMETHYL-1-PYRROLIDINYL)-",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -40017,6 +40212,21 @@
    }
   }
  },
+ "ghb": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "30IW36W5B2",
+    "label": "Substance registry record for 4-HYDROXYBUTANOIC ACID",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "giant-puffball": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -40258,6 +40468,69 @@
     "kind": "FDA_UNII",
     "identifier": "8W75VCV53Q",
     "label": "Substance registry record for AMERICAN GINSENG",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "ginseng-oriental": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "structurallyDiverse",
+   "sourceMaterialClassAsRecorded": "ORGANISM",
+   "sourceMaterialTypeAsRecorded": "PLANT",
+   "parentSubstanceAsRecorded": "PANAX GINSENG WHOLE",
+   "partsAsRecorded": [
+    "rhizome",
+    "root"
+   ],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "CUQ3A77YXI",
+    "label": "Substance registry record for PANAX GINSENG ROOT",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "ginseng-panax": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "structurallyDiverse",
+   "sourceMaterialClassAsRecorded": "ORGANISM",
+   "sourceMaterialTypeAsRecorded": "PLANT",
+   "parentSubstanceAsRecorded": "PANAX GINSENG WHOLE",
+   "partsAsRecorded": [
+    "rhizome",
+    "root"
+   ],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "CUQ3A77YXI",
+    "label": "Substance registry record for PANAX GINSENG ROOT",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "ginseng-siberian": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "structurallyDiverse",
+   "sourceMaterialClassAsRecorded": "ORGANISM",
+   "sourceMaterialTypeAsRecorded": "PLANT",
+   "parentSubstanceAsRecorded": "PANAX GINSENG WHOLE",
+   "partsAsRecorded": [
+    "rhizome",
+    "root"
+   ],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "CUQ3A77YXI",
+    "label": "Substance registry record for PANAX GINSENG ROOT",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -41498,6 +41771,66 @@
   }
  },
  "griseofulvin": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "32HRV3E3D5",
+    "label": "Substance registry record for (1'S,6'R)-7-CHLORO-2',4,6-TRIMETHOXY-6'-METHYLSPIRO(BENZOFURAN-2(3H),1'-(2)CYCLOHEXENE)-3,4'-DIONE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "griseofulvin-microcrystalline": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "32HRV3E3D5",
+    "label": "Substance registry record for (1'S,6'R)-7-CHLORO-2',4,6-TRIMETHOXY-6'-METHYLSPIRO(BENZOFURAN-2(3H),1'-(2)CYCLOHEXENE)-3,4'-DIONE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "griseofulvin-microsize": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "32HRV3E3D5",
+    "label": "Substance registry record for (1'S,6'R)-7-CHLORO-2',4,6-TRIMETHOXY-6'-METHYLSPIRO(BENZOFURAN-2(3H),1'-(2)CYCLOHEXENE)-3,4'-DIONE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "griseofulvin-ultramicrocrystalline": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "32HRV3E3D5",
+    "label": "Substance registry record for (1'S,6'R)-7-CHLORO-2',4,6-TRIMETHOXY-6'-METHYLSPIRO(BENZOFURAN-2(3H),1'-(2)CYCLOHEXENE)-3,4'-DIONE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "griseofulvin-ultramicrosize": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
   "provenanceTier": "transcribed",
@@ -48442,6 +48775,21 @@
    }
   }
  },
+ "isotonitazene": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "ZFY1ZBQ8AV",
+    "label": "Substance registry record for ISO (OPIOID RECEPTOR AGONIST)",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "isotretinoin": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -48592,6 +48940,21 @@
     "kind": "FDA_UNII",
     "identifier": "13KFG30UBR",
     "label": "Substance registry record for DEER-ROOT POLLEN",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "ivacaftor-tezacaftor": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "8RW88Y506K",
+    "label": "Substance registry record for CYCLOPROPANECARBOXAMIDE, 1-(2,2-DIFLUORO-1,3-BENZODIOXOL-5-YL)-N-(1-((2R)-2,3-DIHYDROXYPROPYL)-6-FLUORO-2-(2-HYDROXY-1,1-DIMETHYLETHYL)-1H-INDOL-5-YL)-",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -49574,6 +49937,21 @@
    }
   }
  },
+ "jwh-018": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "G391998J57",
+    "label": "Substance registry record for 1-PENTYL-3-(1-NAPHTHOYL)INDOLE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "kaempferide": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -50000,6 +50378,21 @@
     "kind": "FDA_UNII",
     "identifier": "P29ZH1A35Z",
     "label": "Substance registry record for KRAMERIA LAPPACEA",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "kratom": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "EP479K822J",
+    "label": "Substance registry record for (-)-MITRAGYNINE",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -54245,6 +54638,21 @@
    }
   }
  },
+ "lutein-zeaxanthin": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "X72A60C9MT",
+    "label": "Substance registry record for (1R,4R)-4-((1E,3E,5E,7E,9E,11E,13E,15E,17E)-18-((4R)-4-HYDROXY-2,6,6-TRIMETHYL-1-CYCLOHEXEN-1-YL)-3,7,12,16-TETRAMETHYL-1,3,5,7,9,11,13,15,17-OCTADECANONAEN-1-YL)-3,5,5-TRIMETHYL-2-CYCLOHEXEN-1-OL",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "lutetium-lu-177-dotatate": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -57184,6 +57592,21 @@
    }
   }
  },
+ "mephedrone": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "8BA8T27317",
+    "label": "Substance registry record for 1-PROPANONE, 2-(METHYLAMINO)-1-(4-METHYLPHENYL)-",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "mephitis-mephitis-anal-gland-fluid": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -57556,6 +57979,21 @@
     "kind": "FDA_UNII",
     "identifier": "B2V233XGE7",
     "label": "Substance registry record for 19-NORPREGNA-1,3,5(10)-TRIEN-20-YN-17-OL, 3-METHOXY-, (17.ALPHA.)-",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "metformin-hydrochloride-sitagliptin": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "786Z46389E",
+    "label": "Substance registry record for 1,1-Dimethylbiguanide monohydrochloride",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -59027,6 +59465,21 @@
     "kind": "FDA_UNII",
     "identifier": "5JH60A416W",
     "label": "Substance registry record for ANOMA MORINGA WHOLE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "morning-glory": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "073830XH10",
+    "label": "Substance registry record for (8.BETA.)-9,10-DIDEHYDRO-6-METHYLERGOLINE-8-CARBOXAMIDE",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -61469,6 +61922,21 @@
    }
   }
  },
+ "nitrogen-nf": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "N762921K75",
+    "label": "Substance registry record for DINITROGEN",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "nitroglycerin": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -62065,6 +62533,21 @@
   }
  },
  "ocrelizumab": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "protein",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "A10SJL62JY",
+    "label": "Substance registry record for IMMUNOGLOBULIN G1, ANTI-(HUMAN CD20 (ANTIGEN)) (HUMAN-MOUSE MONOCLONAL 2H7 .GAMMA.1-CHAIN), DISULFIDE WITH HUMAN-MOUSE MONOCLONAL 2H7 .KAPPA.-CHAIN, DIMER",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "ocrelizumab-and-hyaluronidase-ocsq": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
   "provenanceTier": "transcribed",
@@ -62725,6 +63208,21 @@
    }
   }
  },
+ "ombitasvir-paritaprevir-ritonavir": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "2302768XJ8",
+    "label": "Substance registry record for ABT-267",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "omega-3-acid-ethyl-esters": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -62751,6 +63249,21 @@
     "kind": "FDA_UNII",
     "identifier": "F85N2YHE4E",
     "label": "Substance registry record for EPANOVA",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "omega-3-epa-dha": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "ZAD9OKH9JC",
+    "label": "Substance registry record for DOCOSAHEXAENOIC ACID",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -66736,6 +67249,21 @@
     "kind": "FDA_UNII",
     "identifier": "K16AIQ8CTM",
     "label": "Substance registry record for IMMUNOGLOBULIN G1, ANTI-(HUMAN NEU (RECEPTOR)) (HUMAN-MOUSE MONOCLONAL 2C4 HEAVY CHAIN), DISULFIDE WITH HUMAN-MOUSE MONOCLONAL 2C4 .KAPPA.-CHAIN, DIMER",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "pertuzumab-trastuzumab-and-hyaluronidase-zzxf": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "protein",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "P188ANX8CK",
+    "label": "Substance registry record for TRASTUZUMAB, LICENSE HOLDER UNSPECIFIED",
     "retrievedAt": "2026-08-29"
    }
   }
@@ -83606,6 +84134,21 @@
    }
   }
  },
+ "stenabolic": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "X5DCA09N30",
+    "label": "Substance registry record for 1-PYRROLIDINECARBOXYLIC ACID, 3-((((4-CHLOROPHENYL)METHYL)((5-NITRO-2-THIENYL)METHYL)AMINO)METHYL)-, ETHYL ESTER",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "stenotaphrum-secundatum-whole": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -89186,6 +89729,21 @@
    }
   }
  },
+ "tetrahydrocannabinol": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "7J8897W37S",
+    "label": "Substance registry record for (-)-.DELTA.1-3,4-TRANS-TETRAHYDROCANNABINOL",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "tetrahydrocannabivarin": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -90836,6 +91394,21 @@
   }
  },
  "trastuzumab": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "protein",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "P188ANX8CK",
+    "label": "Substance registry record for TRASTUZUMAB, LICENSE HOLDER UNSPECIFIED",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "trastuzumab-and-hyaluronidase-oysk": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
   "provenanceTier": "transcribed",
@@ -94945,6 +95518,21 @@
    }
   }
  },
+ "vitamin-k": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "mixture",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "A034SE7857",
+    "label": "Substance registry record for 2-METHYL-3-PHYTYL-1,4-NAPHTHOQUINONE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
  "vitex-agnus-castus-whole": {
   "version": "medicine-background/v1",
   "authoredAt": "2026-08-29",
@@ -96939,6 +97527,21 @@
     "kind": "FDA_UNII",
     "identifier": "R953O2RHZ5",
     "label": "Substance registry record for ZINC PYRITHIONE",
+    "retrievedAt": "2026-08-29"
+   }
+  }
+ },
+ "zinc-sulfate-heptahydrate-cupric-sulfate-manganese-sulfate-selenious-acid": {
+  "version": "medicine-background/v1",
+  "authoredAt": "2026-08-29",
+  "provenanceTier": "transcribed",
+  "sourceMaterial": {
+   "substanceClassAsRecorded": "chemical",
+   "partsAsRecorded": [],
+   "source": {
+    "kind": "FDA_UNII",
+    "identifier": "N57JI2K7WP",
+    "label": "Substance registry record for SULFURIC ACID, ZINC SALT (1:1), HEPTAHYDRATE",
     "retrievedAt": "2026-08-29"
    }
   }

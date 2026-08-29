@@ -9,8 +9,8 @@
     "queuePerRoute": 10
   },
   "coverage": {
-    "considered": 9833,
-    "used": 9833,
+    "considered": 9847,
+    "used": 9847,
     "reason": "Every record in the corpus is classified; a record holding nothing is still an entry, because an absence nobody counted is an absence nobody fixes."
   },
   "output": {
@@ -3135,9 +3135,10 @@
           "productVariants",
           "supplementMarket",
           "labelPresence",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 4,
+        "moduleCount": 5,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -5251,9 +5252,10 @@
           "productVariants",
           "supplementMarket",
           "labelPresence",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 4,
+        "moduleCount": 5,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -9998,11 +10000,12 @@
           "recordedUses",
           "supplementMarket",
           "labelPresence",
+          "biologicalIdentity",
           "productListing",
           "sourceMaterial",
           "registryIdentifiers"
         ],
-        "moduleCount": 6,
+        "moduleCount": 7,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -11337,9 +11340,10 @@
           "supplementMarket",
           "labelPresence",
           "regulatoryApproval",
+          "sourceMaterial",
           "costContext"
         ],
-        "moduleCount": 6,
+        "moduleCount": 7,
         "ingredientCount": 2,
         "ingredientsDocumented": 2,
         "provenanceTier": "extracted"
@@ -14362,9 +14366,10 @@
         "route": "LABEL_PRODUCT_ONLY",
         "modulesPresent": [
           "productVariants",
-          "labelPresence"
+          "labelPresence",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -15073,11 +15078,12 @@
         "route": "LABEL_ARCHIVE_PRESENCE",
         "modulesPresent": [
           "labelPresence",
+          "biologicalIdentity",
           "productListing",
           "sourceMaterial",
           "registryIdentifiers"
         ],
-        "moduleCount": 4,
+        "moduleCount": 5,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -15402,9 +15408,10 @@
         "route": "LABEL_PRODUCT_ONLY",
         "modulesPresent": [
           "productVariants",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -16758,9 +16765,10 @@
         "modulesPresent": [
           "productVariants",
           "labelPresence",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 3,
+        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -20583,9 +20591,10 @@
         "route": "LABEL_PRODUCT_ONLY",
         "modulesPresent": [
           "productVariants",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -20896,9 +20905,10 @@
           "interactionSignals",
           "safety",
           "populationStatements",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 7,
+        "moduleCount": 8,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -26974,9 +26984,10 @@
           "molecularIdentity",
           "populationStatements",
           "commonAdverseReactions",
-          "productVariants"
+          "productVariants",
+          "sourceMaterial"
         ],
-        "moduleCount": 7,
+        "moduleCount": 8,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -27857,9 +27868,10 @@
           "safety",
           "populationStatements",
           "productVariants",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 7,
+        "moduleCount": 8,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -32132,9 +32144,10 @@
           "interactionSignals",
           "populationStatements",
           "commonAdverseReactions",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 7,
+        "moduleCount": 8,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -41354,9 +41367,10 @@
         "route": "LABEL_PRODUCT_ONLY",
         "modulesPresent": [
           "productVariants",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -44777,9 +44791,10 @@
         "modulesPresent": [
           "productVariants",
           "labelPresence",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 3,
+        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -54527,10 +54542,11 @@
         "modulesPresent": [
           "recordedUses",
           "labelPresence",
+          "biologicalIdentity",
           "productListing",
           "sourceMaterial"
         ],
-        "moduleCount": 4,
+        "moduleCount": 5,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -54779,10 +54795,11 @@
         "modulesPresent": [
           "recordedUses",
           "labelPresence",
+          "biologicalIdentity",
           "productListing",
           "sourceMaterial"
         ],
-        "moduleCount": 4,
+        "moduleCount": 5,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -57913,11 +57930,12 @@
         "modulesPresent": [
           "recordedUses",
           "labelPresence",
+          "biologicalIdentity",
           "productListing",
           "supplementIngredient",
           "sourceMaterial"
         ],
-        "moduleCount": 5,
+        "moduleCount": 6,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -59222,9 +59240,10 @@
         "modulesPresent": [
           "productVariants",
           "labelPresence",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 3,
+        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -62334,10 +62353,11 @@
           "productListing",
           "regulatoryApproval",
           "supplementIngredient",
+          "sourceMaterial",
           "registryIdentifiers",
           "costContext"
         ],
-        "moduleCount": 12,
+        "moduleCount": 13,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "extracted"
@@ -67240,6 +67260,18 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "2c-b",
+        "name": "2c b",
+        "route": "COMPOUND_IDENTITY",
+        "modulesPresent": [
+          "molecularIdentity"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "2-cyclohexylethanamine",
         "name": "2 cyclohexylethanamine",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -67292,6 +67324,20 @@
           "supplementIngredient"
         ],
         "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "3-7-keto-dhea",
+        "name": "3 7 keto dhea",
+        "route": "SUPPLEMENT_INGREDIENT",
+        "modulesPresent": [
+          "molecularIdentity",
+          "supplementIngredient",
+          "sourceMaterial"
+        ],
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -72099,6 +72145,18 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "covid-19-vaccine-mrna",
+        "name": "covid 19 vaccine mrna",
+        "route": "COMPOUND_IDENTITY",
+        "modulesPresent": [
+          "molecularIdentity"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "creatine-alpha-ketoglutarate",
         "name": "creatine alpha ketoglutarate",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -76572,9 +76630,10 @@
         "route": "REGULATORY_APPROVAL",
         "modulesPresent": [
           "molecularIdentity",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -76585,9 +76644,10 @@
         "route": "REGULATORY_APPROVAL",
         "modulesPresent": [
           "molecularIdentity",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -76598,9 +76658,10 @@
         "route": "REGULATORY_APPROVAL",
         "modulesPresent": [
           "molecularIdentity",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -76932,6 +76993,18 @@
           "sourceMaterial"
         ],
         "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "heroin",
+        "name": "heroin",
+        "route": "COMPOUND_IDENTITY",
+        "modulesPresent": [
+          "molecularIdentity"
+        ],
+        "moduleCount": 1,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -78430,6 +78503,19 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "jwh-018",
+        "name": "jwh 018",
+        "route": "SOURCE_MATERIAL",
+        "modulesPresent": [
+          "molecularIdentity",
+          "sourceMaterial"
+        ],
+        "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "kaempferide",
         "name": "kaempferide",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -78549,6 +78635,19 @@
         "modulesPresent": [
           "molecularIdentity",
           "supplementIngredient"
+        ],
+        "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "lamivudine-nevirapine-and-stavudine",
+        "name": "lamivudine nevirapine and stavudine",
+        "route": "REGULATORY_APPROVAL",
+        "modulesPresent": [
+          "molecularIdentity",
+          "regulatoryApproval"
         ],
         "moduleCount": 2,
         "ingredientCount": 0,
@@ -79293,6 +79392,18 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "lsd",
+        "name": "lsd",
+        "route": "COMPOUND_IDENTITY",
+        "modulesPresent": [
+          "molecularIdentity"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "lucinactant",
         "name": "lucinactant",
         "route": "REGULATORY_APPROVAL",
@@ -79896,6 +80007,21 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "manganese-gluconate-unspecified-form",
+        "name": "manganese gluconate unspecified form",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "molecularIdentity",
+          "labelPresence",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "manganese-iodide",
         "name": "manganese iodide",
         "route": "LABEL_ARCHIVE_PRESENCE",
@@ -80085,6 +80211,18 @@
           "productListing"
         ],
         "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "mdma",
+        "name": "mdma",
+        "route": "COMPOUND_IDENTITY",
+        "modulesPresent": [
+          "molecularIdentity"
+        ],
+        "moduleCount": 1,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -82179,9 +82317,10 @@
         "route": "REGULATORY_APPROVAL",
         "modulesPresent": [
           "molecularIdentity",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -82546,6 +82685,34 @@
         "modulesPresent": [
           "molecularIdentity",
           "regulatoryApproval",
+          "sourceMaterial"
+        ],
+        "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "ombitasvir-paritaprevir-ritonavir",
+        "name": "ombitasvir paritaprevir ritonavir",
+        "route": "REGULATORY_APPROVAL",
+        "modulesPresent": [
+          "molecularIdentity",
+          "regulatoryApproval",
+          "sourceMaterial"
+        ],
+        "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "omega-3-epa-dha",
+        "name": "omega 3 epa dha",
+        "route": "SUPPLEMENT_INGREDIENT",
+        "modulesPresent": [
+          "molecularIdentity",
+          "supplementIngredient",
           "sourceMaterial"
         ],
         "moduleCount": 3,
@@ -83643,6 +83810,18 @@
           "sourceMaterial"
         ],
         "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "phencyclidine",
+        "name": "phencyclidine",
+        "route": "COMPOUND_IDENTITY",
+        "modulesPresent": [
+          "molecularIdentity"
+        ],
+        "moduleCount": 1,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -86385,6 +86564,21 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "secretin-unspecified",
+        "name": "secretin unspecified",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "molecularIdentity",
+          "labelPresence",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "selank",
         "name": "selank",
         "route": "MARKETED_PRODUCT_LISTING",
@@ -87008,6 +87202,21 @@
           "productListing",
           "regulatoryApproval",
           "supplementIngredient"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "sodium-phosphate-monobasic-unspecified-form",
+        "name": "sodium phosphate monobasic unspecified form",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "molecularIdentity",
+          "labelPresence",
+          "productListing",
+          "sourceMaterial"
         ],
         "moduleCount": 4,
         "ingredientCount": 0,
@@ -91713,9 +91922,10 @@
         "modulesPresent": [
           "composition",
           "supplementMarket",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 3,
+        "moduleCount": 4,
         "ingredientCount": 2,
         "ingredientsDocumented": 2,
         "provenanceTier": "transcribed"
@@ -99517,9 +99727,10 @@
         "modulesPresent": [
           "composition",
           "supplementMarket",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 3,
+        "moduleCount": 4,
         "ingredientCount": 2,
         "ingredientsDocumented": 2,
         "provenanceTier": "transcribed"
@@ -104088,10 +104299,11 @@
         "route": "SUPPLEMENT_MARKET",
         "modulesPresent": [
           "supplementMarket",
+          "biologicalIdentity",
           "supplementIngredient",
           "sourceMaterial"
         ],
-        "moduleCount": 3,
+        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -106421,10 +106633,11 @@
         "modulesPresent": [
           "supplementMarket",
           "labelPresence",
+          "biologicalIdentity",
           "productListing",
           "sourceMaterial"
         ],
-        "moduleCount": 4,
+        "moduleCount": 5,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -107379,9 +107592,10 @@
         "route": "LABEL_PHARMACOLOGY",
         "modulesPresent": [
           "composition",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 2,
         "ingredientsDocumented": 2,
         "provenanceTier": "extracted"
@@ -107418,9 +107632,10 @@
         "route": "LABEL_PHARMACOLOGY",
         "modulesPresent": [
           "composition",
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 2,
+        "moduleCount": 3,
         "ingredientCount": 2,
         "ingredientsDocumented": 2,
         "provenanceTier": "extracted"
@@ -107529,6 +107744,18 @@
           "sourceMaterial"
         ],
         "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "muscimol",
+        "name": "muscimol",
+        "route": "BIOLOGICAL_IDENTITY",
+        "modulesPresent": [
+          "biologicalIdentity"
+        ],
+        "moduleCount": 1,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -107943,6 +108170,20 @@
           "supplementIngredient"
         ],
         "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "heparin-bovine",
+        "name": "heparin bovine",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing"
+        ],
+        "moduleCount": 3,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -109262,6 +109503,21 @@
           "supplementIngredient"
         ],
         "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "comocladia-dentata-bark-leaf",
+        "name": "comocladia dentata bark leaf",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -113403,6 +113659,48 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "fibrinogen-human",
+        "name": "fibrinogen human",
+        "route": "BIOLOGICAL_IDENTITY",
+        "modulesPresent": [
+          "biologicalIdentity"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "human-hair",
+        "name": "human hair",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "human-milk",
+        "name": "human milk",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "fibrobacter-succinogenes",
         "name": "fibrobacter succinogenes",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -114480,6 +114778,62 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "ginseng-american",
+        "name": "ginseng american",
+        "route": "SUPPLEMENT_INGREDIENT",
+        "modulesPresent": [
+          "biologicalIdentity",
+          "supplementIngredient",
+          "sourceMaterial"
+        ],
+        "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "ginseng-oriental",
+        "name": "ginseng oriental",
+        "route": "SUPPLEMENT_INGREDIENT",
+        "modulesPresent": [
+          "biologicalIdentity",
+          "supplementIngredient",
+          "sourceMaterial"
+        ],
+        "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "ginseng-panax",
+        "name": "ginseng panax",
+        "route": "SUPPLEMENT_INGREDIENT",
+        "modulesPresent": [
+          "biologicalIdentity",
+          "supplementIngredient",
+          "sourceMaterial"
+        ],
+        "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "ginseng-siberian",
+        "name": "ginseng siberian",
+        "route": "SUPPLEMENT_INGREDIENT",
+        "modulesPresent": [
+          "biologicalIdentity",
+          "supplementIngredient",
+          "sourceMaterial"
+        ],
+        "moduleCount": 3,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "gladiolus-communis-whole",
         "name": "gladiolus communis whole",
         "route": "LABEL_ARCHIVE_PRESENCE",
@@ -114777,6 +115131,21 @@
           "supplementIngredient"
         ],
         "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "grindelia-camporum-flower-leaf",
+        "name": "grindelia camporum flower leaf",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -115775,6 +116144,21 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "serum-horse",
+        "name": "serum horse",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "horse-gram",
         "name": "horse gram",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -115967,36 +116351,6 @@
       {
         "slug": "human-coxsackievirus-b5",
         "name": "human coxsackievirus b5",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "biologicalIdentity",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 4,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "human-hair",
-        "name": "human hair",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "biologicalIdentity",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 4,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "human-milk",
-        "name": "human milk",
         "route": "LABEL_ARCHIVE_PRESENCE",
         "modulesPresent": [
           "labelPresence",
@@ -117489,6 +117843,19 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "kratom",
+        "name": "kratom",
+        "route": "BIOLOGICAL_IDENTITY",
+        "modulesPresent": [
+          "biologicalIdentity",
+          "sourceMaterial"
+        ],
+        "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "kudzu",
         "name": "kudzu",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -118086,6 +118453,36 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "lecithin-soybean",
+        "name": "lecithin soybean",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "soybean",
+        "name": "soybean",
+        "route": "SUPPLEMENT_INGREDIENT",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "supplementIngredient"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "ledum-palustre-whole",
         "name": "ledum palustre whole",
         "route": "LABEL_ARCHIVE_PRESENCE",
@@ -118403,6 +118800,21 @@
           "supplementIngredient"
         ],
         "moduleCount": 2,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "leuconostoc-radish-root-ferment-filtrate",
+        "name": "leuconostoc radish root ferment filtrate",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -127170,6 +127582,21 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "starch-rice",
+        "name": "starch rice",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "rice-bean",
         "name": "rice bean",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -128039,6 +128466,19 @@
           "sourceMaterial"
         ],
         "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "salvinorin-a",
+        "name": "salvinorin a",
+        "route": "BIOLOGICAL_IDENTITY",
+        "modulesPresent": [
+          "biologicalIdentity",
+          "sourceMaterial"
+        ],
+        "moduleCount": 2,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -129731,21 +130171,6 @@
           "sourceMaterial"
         ],
         "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "soybean",
-        "name": "soybean",
-        "route": "SUPPLEMENT_INGREDIENT",
-        "modulesPresent": [
-          "labelPresence",
-          "biologicalIdentity",
-          "productListing",
-          "supplementIngredient"
-        ],
-        "moduleCount": 4,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -133039,6 +133464,21 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "valeriana-officinalis-rhizome-root",
+        "name": "valeriana officinalis rhizome root",
+        "route": "LABEL_ARCHIVE_PRESENCE",
+        "modulesPresent": [
+          "labelPresence",
+          "biologicalIdentity",
+          "productListing",
+          "sourceMaterial"
+        ],
+        "moduleCount": 4,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "valeriana-officinalis-whole",
         "name": "valeriana officinalis whole",
         "route": "LABEL_ARCHIVE_PRESENCE",
@@ -134379,20 +134819,6 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "sodium-phosphate-monobasic-unspecified-form",
-        "name": "sodium phosphate monobasic unspecified form",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "sus-scrofa-ovary",
         "name": "sus scrofa ovary",
         "route": "LABEL_ARCHIVE_PRESENCE",
@@ -135292,20 +135718,6 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "valeriana-officinalis-rhizome-root",
-        "name": "valeriana officinalis rhizome root",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "retatrutide",
         "name": "retatrutide",
         "route": "MARKETED_PRODUCT_LISTING",
@@ -135571,20 +135983,6 @@
       {
         "slug": "cresol",
         "name": "cresol",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "comocladia-dentata-bark-leaf",
-        "name": "comocladia dentata bark leaf",
         "route": "LABEL_ARCHIVE_PRESENCE",
         "modulesPresent": [
           "labelPresence",
@@ -136632,20 +137030,6 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "lecithin-soybean",
-        "name": "lecithin soybean",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "human-chorionic-gonadotropin",
         "name": "human chorionic gonadotropin",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -137019,20 +137403,6 @@
       {
         "slug": "citrus-aurantium-fruit-rind",
         "name": "citrus aurantium fruit rind",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "serum-horse",
-        "name": "serum horse",
         "route": "LABEL_ARCHIVE_PRESENCE",
         "modulesPresent": [
           "labelPresence",
@@ -137470,20 +137840,6 @@
       {
         "slug": "sassafras-albidum-root-bark",
         "name": "sassafras albidum root bark",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "grindelia-camporum-flower-leaf",
-        "name": "grindelia camporum flower leaf",
         "route": "LABEL_ARCHIVE_PRESENCE",
         "modulesPresent": [
           "labelPresence",
@@ -138228,20 +138584,6 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "manganese-gluconate-unspecified-form",
-        "name": "manganese gluconate unspecified form",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "olibanum",
         "name": "olibanum",
         "route": "LABEL_ARCHIVE_PRESENCE",
@@ -138618,20 +138960,6 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "secretin-unspecified",
-        "name": "secretin unspecified",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "diphtherial-respiratory-pseudomembrane-human",
         "name": "diphtherial respiratory pseudomembrane human",
         "route": "LABEL_ARCHIVE_PRESENCE",
@@ -138800,36 +139128,8 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "starch-rice",
-        "name": "starch rice",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "saccharomyces-lysate",
         "name": "saccharomyces lysate",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing",
-          "sourceMaterial"
-        ],
-        "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "leuconostoc-radish-root-ferment-filtrate",
-        "name": "leuconostoc radish root ferment filtrate",
         "route": "LABEL_ARCHIVE_PRESENCE",
         "modulesPresent": [
           "labelPresence",
@@ -139715,19 +140015,6 @@
           "sourceMaterial"
         ],
         "moduleCount": 3,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "heparin-bovine",
-        "name": "heparin bovine",
-        "route": "LABEL_ARCHIVE_PRESENCE",
-        "modulesPresent": [
-          "labelPresence",
-          "productListing"
-        ],
-        "moduleCount": 2,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -143416,18 +143703,6 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "ombitasvir-paritaprevir-ritonavir",
-        "name": "ombitasvir paritaprevir ritonavir",
-        "route": "REGULATORY_APPROVAL",
-        "modulesPresent": [
-          "regulatoryApproval"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "leodopa",
         "name": "leodopa",
         "route": "REGULATORY_APPROVAL",
@@ -143444,9 +143719,10 @@
         "name": "elagolix estradiol and norethindrone acetate and elagolix",
         "route": "REGULATORY_APPROVAL",
         "modulesPresent": [
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 1,
+        "moduleCount": 2,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -143456,9 +143732,10 @@
         "name": "zinc sulfate heptahydrate cupric sulfate manganese sulfate selenious acid",
         "route": "REGULATORY_APPROVAL",
         "modulesPresent": [
-          "regulatoryApproval"
+          "regulatoryApproval",
+          "sourceMaterial"
         ],
-        "moduleCount": 1,
+        "moduleCount": 2,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -143490,18 +143767,6 @@
       {
         "slug": "omega-3acid-ethyl-esters",
         "name": "omega 3acid ethyl esters",
-        "route": "REGULATORY_APPROVAL",
-        "modulesPresent": [
-          "regulatoryApproval"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "lamivudine-nevirapine-and-stavudine",
-        "name": "lamivudine nevirapine and stavudine",
         "route": "REGULATORY_APPROVAL",
         "modulesPresent": [
           "regulatoryApproval"
@@ -143648,18 +143913,6 @@
       {
         "slug": "3-5-dimethoxytyramine",
         "name": "3 5 dimethoxytyramine",
-        "route": "SUPPLEMENT_INGREDIENT",
-        "modulesPresent": [
-          "supplementIngredient"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "3-7-keto-dhea",
-        "name": "3 7 keto dhea",
         "route": "SUPPLEMENT_INGREDIENT",
         "modulesPresent": [
           "supplementIngredient"
@@ -146966,55 +147219,6 @@
       {
         "slug": "ginkgolides",
         "name": "ginkgolides",
-        "route": "SUPPLEMENT_INGREDIENT",
-        "modulesPresent": [
-          "supplementIngredient"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "ginseng-american",
-        "name": "ginseng american",
-        "route": "SUPPLEMENT_INGREDIENT",
-        "modulesPresent": [
-          "supplementIngredient",
-          "sourceMaterial"
-        ],
-        "moduleCount": 2,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "ginseng-oriental",
-        "name": "ginseng oriental",
-        "route": "SUPPLEMENT_INGREDIENT",
-        "modulesPresent": [
-          "supplementIngredient"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "ginseng-panax",
-        "name": "ginseng panax",
-        "route": "SUPPLEMENT_INGREDIENT",
-        "modulesPresent": [
-          "supplementIngredient"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "ginseng-siberian",
-        "name": "ginseng siberian",
         "route": "SUPPLEMENT_INGREDIENT",
         "modulesPresent": [
           "supplementIngredient"
@@ -151168,18 +151372,6 @@
         "provenanceTier": "transcribed"
       },
       {
-        "slug": "omega-3-epa-dha",
-        "name": "omega 3 epa dha",
-        "route": "SUPPLEMENT_INGREDIENT",
-        "modulesPresent": [
-          "supplementIngredient"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
         "slug": "omega-5",
         "name": "omega 5",
         "route": "SUPPLEMENT_INGREDIENT",
@@ -154527,9 +154719,10 @@
         "name": "stenabolic",
         "route": "SUPPLEMENT_INGREDIENT",
         "modulesPresent": [
-          "supplementIngredient"
+          "supplementIngredient",
+          "sourceMaterial"
         ],
-        "moduleCount": 1,
+        "moduleCount": 2,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -154961,9 +155154,10 @@
         "name": "tetrahydrocannabinol",
         "route": "SUPPLEMENT_INGREDIENT",
         "modulesPresent": [
-          "supplementIngredient"
+          "supplementIngredient",
+          "sourceMaterial"
         ],
-        "moduleCount": 1,
+        "moduleCount": 2,
         "ingredientCount": 0,
         "ingredientsDocumented": 0,
         "provenanceTier": "transcribed"
@@ -156231,6 +156425,54 @@
         "provenanceTier": "transcribed"
       },
       {
+        "slug": "isotonitazene",
+        "name": "isotonitazene",
+        "route": "SOURCE_MATERIAL",
+        "modulesPresent": [
+          "sourceMaterial"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "lutein-zeaxanthin",
+        "name": "lutein zeaxanthin",
+        "route": "SOURCE_MATERIAL",
+        "modulesPresent": [
+          "sourceMaterial"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "mephedrone",
+        "name": "mephedrone",
+        "route": "SOURCE_MATERIAL",
+        "modulesPresent": [
+          "sourceMaterial"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
+        "slug": "morning-glory",
+        "name": "morning glory",
+        "route": "SOURCE_MATERIAL",
+        "modulesPresent": [
+          "sourceMaterial"
+        ],
+        "moduleCount": 1,
+        "ingredientCount": 0,
+        "ingredientsDocumented": 0,
+        "provenanceTier": "transcribed"
+      },
+      {
         "slug": "olpasiran",
         "name": "olpasiran",
         "route": "SOURCE_MATERIAL",
@@ -156257,18 +156499,6 @@
       {
         "slug": "psilocin",
         "name": "psilocin",
-        "route": "SOURCE_MATERIAL",
-        "modulesPresent": [
-          "sourceMaterial"
-        ],
-        "moduleCount": 1,
-        "ingredientCount": 0,
-        "ingredientsDocumented": 0,
-        "provenanceTier": "transcribed"
-      },
-      {
-        "slug": "salvinorin-a",
-        "name": "salvinorin a",
         "route": "SOURCE_MATERIAL",
         "modulesPresent": [
           "sourceMaterial"
@@ -156342,19 +156572,19 @@
       },
       {
         "route": "BIOLOGICAL_IDENTITY",
-        "records": 3,
+        "records": 7,
         "medianModuleCount": 2,
         "cannotSupply": "A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows."
       },
       {
         "route": "SOURCE_MATERIAL",
-        "records": 54,
+        "records": 58,
         "medianModuleCount": 2,
         "cannotSupply": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety."
       },
       {
         "route": "COMPOUND_IDENTITY",
-        "records": 21,
+        "records": 27,
         "medianModuleCount": 1,
         "cannotSupply": "A compound database states structure and nothing about use, effect or safety."
       },
@@ -156375,125 +156605,125 @@
       {
         "module": "recordedUses",
         "records": 2748,
-        "shareOfCorpus": 0.27946710057968066
+        "shareOfCorpus": 0.27906976744186046
       },
       {
         "module": "mechanism",
         "records": 1628,
-        "shareOfCorpus": 0.16556493440455608
+        "shareOfCorpus": 0.165329541992485
       },
       {
         "module": "pharmacokinetics",
         "records": 1366,
-        "shareOfCorpus": 0.13891996338858945
+        "shareOfCorpus": 0.13872245353914897
       },
       {
         "module": "molecularIdentity",
-        "records": 3059,
-        "shareOfCorpus": 0.311095291365809
+        "records": 3073,
+        "shareOfCorpus": 0.3120747435767239
       },
       {
         "module": "interactionSignals",
         "records": 689,
-        "shareOfCorpus": 0.07007017187023289
+        "shareOfCorpus": 0.06997054940591042
       },
       {
         "module": "safety",
         "records": 1508,
-        "shareOfCorpus": 0.15336113088579273
+        "shareOfCorpus": 0.15314308926576622
       },
       {
         "module": "populationStatements",
         "records": 1853,
-        "shareOfCorpus": 0.18844706600223737
+        "shareOfCorpus": 0.18817914085508278
       },
       {
         "module": "commonAdverseReactions",
         "records": 854,
-        "shareOfCorpus": 0.08685040170853249
+        "shareOfCorpus": 0.08672692190514877
       },
       {
         "module": "productVariants",
         "records": 2238,
-        "shareOfCorpus": 0.22760093562493644
+        "shareOfCorpus": 0.22727734335330557
       },
       {
         "module": "composition",
         "records": 35,
-        "shareOfCorpus": 0.003559442692972643
+        "shareOfCorpus": 0.0035543820452929825
       },
       {
         "module": "sourceConsensus",
         "records": 719,
-        "shareOfCorpus": 0.07312112274992373
+        "shareOfCorpus": 0.07301716258759013
       },
       {
         "module": "supplementMarket",
         "records": 1662,
-        "shareOfCorpus": 0.16902267873487237
+        "shareOfCorpus": 0.16878237026505535
       },
       {
         "module": "labelPresence",
         "records": 5939,
-        "shareOfCorpus": 0.6039865758161294
+        "shareOfCorpus": 0.6031278561998579
       },
       {
         "module": "biologicalIdentity",
-        "records": 2988,
-        "shareOfCorpus": 0.30387470761720736
+        "records": 3011,
+        "shareOfCorpus": 0.30577840966791914
       },
       {
         "module": "productListing",
         "records": 5996,
-        "shareOfCorpus": 0.6097833824875419
+        "shareOfCorpus": 0.6089164212450493
       },
       {
         "module": "regulatoryApproval",
         "records": 2505,
-        "shareOfCorpus": 0.2547543984541849
+        "shareOfCorpus": 0.2543922006702549
       },
       {
         "module": "supplementIngredient",
         "records": 3887,
-        "shareOfCorpus": 0.3953015356452761
+        "shareOfCorpus": 0.3947395145729664
       },
       {
         "module": "sourceMaterial",
-        "records": 5605,
-        "shareOfCorpus": 0.5700193226889048
+        "records": 5644,
+        "shareOfCorpus": 0.5731694932466741
       },
       {
         "module": "registryIdentifiers",
         "records": 2049,
-        "shareOfCorpus": 0.20837994508288415
+        "shareOfCorpus": 0.20808368030872346
       },
       {
         "module": "anatomyTargets",
         "records": 91,
-        "shareOfCorpus": 0.009254551001728872
+        "shareOfCorpus": 0.009241393317761755
       },
       {
         "module": "applicability",
         "records": 22,
-        "shareOfCorpus": 0.002237363978439947
+        "shareOfCorpus": 0.002234182999898446
       },
       {
         "module": "pivotalResults",
         "records": 18,
-        "shareOfCorpus": 0.0018305705278145023
+        "shareOfCorpus": 0.0018279679090078195
       },
       {
         "module": "titration",
         "records": 27,
-        "shareOfCorpus": 0.0027458557917217534
+        "shareOfCorpus": 0.0027419518635117294
       },
       {
         "module": "costContext",
         "records": 626,
-        "shareOfCorpus": 0.06366317502288213
+        "shareOfCorpus": 0.06357266172438306
       }
     ],
-    "recordsConsidered": 9833,
+    "recordsConsidered": 9847,
     "ingredientSlots": 60,
     "ingredientSlotsDocumented": 60
   },
@@ -156559,7 +156789,7 @@
       ]
     },
     {
-      "slug": "dwarf-morning-glory",
+      "slug": "dry-milk",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156569,7 +156799,7 @@
       ]
     },
     {
-      "slug": "cornflower",
+      "slug": "copper-alpha-ketoglutarate",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156579,7 +156809,17 @@
       ]
     },
     {
-      "slug": "bugbane",
+      "slug": "culvers-root",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The supplement label database files this as an ingredient and classifies it. It records no pharmacology for any ingredient, so none can come from here however the ingredient is classified. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "supplementIngredient"
+      ]
+    },
+    {
+      "slug": "aresaema",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156599,7 +156839,7 @@
       ]
     },
     {
-      "slug": "glucosinolates",
+      "slug": "glucose-polymer",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156609,7 +156849,7 @@
       ]
     },
     {
-      "slug": "morinda",
+      "slug": "monounsaturated-fatty-acid",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156619,7 +156859,7 @@
       ]
     },
     {
-      "slug": "histidine-alpha-ketoglutaric-acid",
+      "slug": "himalayan-salt",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156629,17 +156869,7 @@
       ]
     },
     {
-      "slug": "convolvulus-pluricaulis",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The supplement label database files this as an ingredient and classifies it. It records no pharmacology for any ingredient, so none can come from here however the ingredient is classified. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "supplementIngredient"
-      ]
-    },
-    {
-      "slug": "indian-cassia",
+      "slug": "common-zinnia",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by supplement ingredient. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156709,47 +156939,17 @@
       ]
     },
     {
+      "slug": "fibrinolysin",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "regulatoryApproval"
+      ]
+    },
+    {
       "slug": "dolutegravir-lamivudine-tenofovir-alafenamide",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "regulatoryApproval"
-      ]
-    },
-    {
-      "slug": "ranibizumab-hkdz",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "regulatoryApproval"
-      ]
-    },
-    {
-      "slug": "etanercept-ykro",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "regulatoryApproval"
-      ]
-    },
-    {
-      "slug": "phenylpropanolamine-polistirex",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "regulatoryApproval"
-      ]
-    },
-    {
-      "slug": "golimumab-sldi",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156769,7 +156969,7 @@
       ]
     },
     {
-      "slug": "technetium-tc-99m-gluceptate-kit",
+      "slug": "trolamine-polypeptide-oleate-condensate",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156779,7 +156979,7 @@
       ]
     },
     {
-      "slug": "ombitasvir-paritaprevir-ritonavir",
+      "slug": "technetium-tc-99m-polyphosphate-kit",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156789,7 +156989,7 @@
       ]
     },
     {
-      "slug": "lamivudine-nevirapine-and-stavudine",
+      "slug": "denosumab-adet",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156799,13 +156999,73 @@
       ]
     },
     {
-      "slug": "perfluoropolymethylisopropyl-ether",
+      "slug": "technetium-tc-99m-lidofenin-kit",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
       "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
       "sources": [
         "regulatoryApproval"
+      ]
+    },
+    {
+      "slug": "ardeparin",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "regulatoryApproval"
+      ]
+    },
+    {
+      "slug": "omega-3acid-ethyl-esters",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "regulatoryApproval"
+      ]
+    },
+    {
+      "slug": "pegfilgrastim-pccg",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by regulatory approval. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The application register records when a product containing this substance was approved and under what. It carries no prose, so nothing about how the substance works can come from it. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "regulatoryApproval"
+      ]
+    },
+    {
+      "slug": "fibrinogen-human",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by biological identity. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "biologicalIdentity"
+      ]
+    },
+    {
+      "slug": "muscimol",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by biological identity. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "biologicalIdentity"
+      ]
+    },
+    {
+      "slug": "isotonitazene",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "sourceMaterial"
       ]
     },
     {
@@ -156839,7 +157099,47 @@
       ]
     },
     {
-      "slug": "hydrolyzed-bovine-elastin",
+      "slug": "olpasiran",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "sourceMaterial"
+      ]
+    },
+    {
+      "slug": "morning-glory",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "sourceMaterial"
+      ]
+    },
+    {
+      "slug": "efalizumab",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "sourceMaterial"
+      ]
+    },
+    {
+      "slug": "lutein-zeaxanthin",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "sourceMaterial"
+      ]
+    },
+    {
+      "slug": "psilocin",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156859,87 +157159,7 @@
       ]
     },
     {
-      "slug": "5-meo-dmt",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "sourceMaterial"
-      ]
-    },
-    {
-      "slug": "salvinorin-a",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "sourceMaterial"
-      ]
-    },
-    {
-      "slug": "cuprous",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "sourceMaterial"
-      ]
-    },
-    {
-      "slug": "tozinameran",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "sourceMaterial"
-      ]
-    },
-    {
-      "slug": "cryptenamine",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by source material. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The substance registry states what kind of material this is and, where it comes from an organism, which organism and which part. It records nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "sourceMaterial"
-      ]
-    },
-    {
-      "slug": "colfosceril",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "A compound database states structure and nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "molecularIdentity"
-      ]
-    },
-    {
-      "slug": "metrizoate",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "A compound database states structure and nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "molecularIdentity"
-      ]
-    },
-    {
-      "slug": "mescaline",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "A compound database states structure and nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "molecularIdentity"
-      ]
-    },
-    {
-      "slug": "panobinostat",
+      "slug": "copanlisib",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156959,7 +157179,7 @@
       ]
     },
     {
-      "slug": "guanethidine",
+      "slug": "rimonabant",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156969,7 +157189,7 @@
       ]
     },
     {
-      "slug": "liotrix",
+      "slug": "heroin",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156979,7 +157199,7 @@
       ]
     },
     {
-      "slug": "psilocybin",
+      "slug": "mescaline",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -156989,7 +157209,27 @@
       ]
     },
     {
-      "slug": "benfluorex",
+      "slug": "terfenadine",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "A compound database states structure and nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "molecularIdentity"
+      ]
+    },
+    {
+      "slug": "doxacurium",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "A compound database states structure and nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "molecularIdentity"
+      ]
+    },
+    {
+      "slug": "panobinostat",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -157009,7 +157249,17 @@
       ]
     },
     {
-      "slug": "sanguinarine",
+      "slug": "2c-b",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by compound identity. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "A compound database states structure and nothing about use, effect or safety. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "molecularIdentity"
+      ]
+    },
+    {
+      "slug": "cetylpyridinium",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by other recorded context. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -157029,7 +157279,17 @@
       ]
     },
     {
-      "slug": "cetylpyridinium",
+      "slug": "sanguinarine",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 1 of the recordable modules, reached by other recorded context. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.5,
+      "basis": "The record holds identifiers, price or other context, but no source states what the medicine is, how it works, or what it is used for. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "recordedUses"
+      ]
+    },
+    {
+      "slug": "isopropyl",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 1 of the recordable modules, reached by other recorded context. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.5,
@@ -157059,16 +157319,6 @@
       ]
     },
     {
-      "slug": "isopropyl",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 1 of the recordable modules, reached by other recorded context. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.5,
-      "basis": "The record holds identifiers, price or other context, but no source states what the medicine is, how it works, or what it is used for. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "recordedUses"
-      ]
-    },
-    {
       "slug": "dolutegravir-emtricitabine-and-tenofovir-alafenamide",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
@@ -157081,28 +157331,6 @@
     },
     {
       "slug": "efavirenz-emtricitabine-and-tenofovir-alafenamide",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 2 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.3333333333333333,
-      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "composition",
-        "regulatoryApproval"
-      ]
-    },
-    {
-      "slug": "darunavir-and-ritonavir",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 2 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.3333333333333333,
-      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "composition",
-        "regulatoryApproval"
-      ]
-    },
-    {
-      "slug": "metformin-hydrochloride-sitagliptin",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157146,28 +157374,6 @@
       ]
     },
     {
-      "slug": "clavulanate",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 2 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.3333333333333333,
-      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "productVariants",
-        "labelPresence"
-      ]
-    },
-    {
-      "slug": "ocrelizumab-and-hyaluronidase-ocsq",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 2 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.3333333333333333,
-      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "productVariants",
-        "regulatoryApproval"
-      ]
-    },
-    {
       "slug": "thonzonium",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
@@ -157176,17 +157382,6 @@
       "sources": [
         "productVariants",
         "sourceMaterial"
-      ]
-    },
-    {
-      "slug": "conjugated-estrogens-medroxyprogesterone",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 2 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.3333333333333333,
-      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "productVariants",
-        "regulatoryApproval"
       ]
     },
     {
@@ -157209,6 +157404,39 @@
       "sources": [
         "productVariants",
         "regulatoryApproval"
+      ]
+    },
+    {
+      "slug": "sulfamethoxazole",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 2 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.3333333333333333,
+      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants",
+        "labelPresence"
+      ]
+    },
+    {
+      "slug": "hyaluronidase-nvhy",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 2 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.3333333333333333,
+      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants",
+        "regulatoryApproval"
+      ]
+    },
+    {
+      "slug": "serdexmethylphenidate",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 2 of the recordable modules, reached by label product only. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.3333333333333333,
+      "basis": "The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants",
+        "sourceMaterial"
       ]
     },
     {
@@ -157289,7 +157517,7 @@
       ]
     },
     {
-      "slug": "influenza-a-virus-a-hong-kong-2671-2019-ivr-208-antigen",
+      "slug": "hydrolyzed-bovine-elastin-base",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157300,7 +157528,7 @@
       ]
     },
     {
-      "slug": "heparin-bovine",
+      "slug": "hydrolysed-bovine-collagen-enzymatic",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157311,7 +157539,7 @@
       ]
     },
     {
-      "slug": "influenza-a-virus-a-victoria-2570-2019-ivr-215-hemagglutinin-antigen",
+      "slug": "influenza-b-virus-b-phuket-3073-2013-hemagglutinin-antigen",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157322,7 +157550,7 @@
       ]
     },
     {
-      "slug": "3500-mw",
+      "slug": "influenza-a-virus-a-thailand-8-2022-ivr-237-antigen",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157333,18 +157561,7 @@
       ]
     },
     {
-      "slug": "influenza-b-virus-b-washington-02-2019-antigen",
-      "reason": "COVERAGE_GAP",
-      "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
-      "priority": 0.3333333333333333,
-      "basis": "The archive records that published labels name this substance as an active ingredient, and how many of them name it alone. It does not say the product was approved or evaluated, and where no label names the substance alone there is no source its own data could come from. A thin record here reflects what the sources hold, not what is known about the medicine.",
-      "sources": [
-        "labelPresence",
-        "productListing"
-      ]
-    },
-    {
-      "slug": "influenza-a-virus-a-thailand-8-2022-ivr-237-hemagglutinin-antigen",
+      "slug": "mercurous",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157366,6 +157583,17 @@
       ]
     },
     {
+      "slug": "influenza-b-virus-b-washington-02-2019-antigen",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.3333333333333333,
+      "basis": "The archive records that published labels name this substance as an active ingredient, and how many of them name it alone. It does not say the product was approved or evaluated, and where no label names the substance alone there is no source its own data could come from. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "labelPresence",
+        "productListing"
+      ]
+    },
+    {
       "slug": "everlasting-extract",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
@@ -157377,7 +157605,7 @@
       ]
     },
     {
-      "slug": "influenza-a-virus-a-guangdong-maonan-swl1536-2019-cnic-1909-antigen",
+      "slug": "2000-mw",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157388,7 +157616,7 @@
       ]
     },
     {
-      "slug": "benzo-pyrene",
+      "slug": "hydrolyzed-porcine-collagen-enzymatic",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by label archive presence. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157454,7 +157682,7 @@
       ]
     },
     {
-      "slug": "tylophora-indica-whole",
+      "slug": "salvinorin-a",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by biological identity. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157466,6 +157694,28 @@
     },
     {
       "slug": "dysphania-ambrosioides-pollen",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 2 of the recordable modules, reached by biological identity. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.3333333333333333,
+      "basis": "A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "biologicalIdentity",
+        "sourceMaterial"
+      ]
+    },
+    {
+      "slug": "tylophora-indica-whole",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 2 of the recordable modules, reached by biological identity. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.3333333333333333,
+      "basis": "A taxonomy states what an organism is and where classification places it. It says nothing about use, effect or safety, and no source in this corpus does for these rows. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "biologicalIdentity",
+        "sourceMaterial"
+      ]
+    },
+    {
+      "slug": "kratom",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 2 of the recordable modules, reached by biological identity. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.3333333333333333,
@@ -157524,6 +157774,30 @@
     },
     {
       "slug": "darunavir-and-cobicistat",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 3 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.25,
+      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "productVariants",
+        "composition",
+        "regulatoryApproval"
+      ]
+    },
+    {
+      "slug": "darunavir-and-ritonavir",
+      "reason": "COVERAGE_GAP",
+      "question": "This record holds 3 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
+      "priority": 0.25,
+      "basis": "Prescription labelling covers pharmacology but states no price and no supplement context. A thin record here reflects what the sources hold, not what is known about the medicine.",
+      "sources": [
+        "composition",
+        "regulatoryApproval",
+        "sourceMaterial"
+      ]
+    },
+    {
+      "slug": "dapagliflozin-metformin",
       "reason": "COVERAGE_GAP",
       "question": "This record holds 3 of the recordable modules, reached by label pharmacology. Is there a source about this medicine that the corpus is not reading?",
       "priority": 0.25,
