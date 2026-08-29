@@ -39,6 +39,7 @@ import type {
   StudiedPopulation,
 } from './types'
 import { MEDICINE_BACKGROUND_VERSION, MOLECULAR_FORMULA_SHAPE } from './types'
+import { PRINTED_NUMBER, firstNumberIn } from './printed-numbers'
 
 /** The label fields the extractors read. Mirrors the openFDA drug/label record shape. */
 export interface LabelArtifact {
@@ -103,11 +104,6 @@ interface PatternHit {
   matched: string
 }
 
-function firstNumber(text: string): number | undefined {
-  const match = /(\d+(?:\.\d+)?)/u.exec(text.replace(/,(?=\d{3}\b)/gu, ''))
-  return match ? Number(match[1]) : undefined
-}
-
 /**
  * Runs one pattern across the sentences of a section and returns the first unambiguous hit.
  * A sentence that matches the pattern more than once is skipped: two candidate quantities in one
@@ -130,7 +126,7 @@ function findPattern(text: string | undefined, pattern: RegExp): PatternHit | nu
     if (!captured) continue
     return {
       display: captured,
-      numeric: firstNumber(captured),
+      numeric: firstNumberIn(captured),
       sentence,
       matched: match[0],
     }
@@ -160,17 +156,6 @@ function toValue(
 /* ------------------------------------------------------------------------------------------- */
 /* Pharmacokinetic patterns                                                                     */
 /* ------------------------------------------------------------------------------------------- */
-
-/**
- * A number as a label prints it, thousands separators included.
- *
- * Every quantity pattern below used `\d+(?:\.\d+)?`, which cannot match a separator and therefore
- * starts matching *after* one. On "the estimated apparent volume of distribution is 5,800 L" it
- * matched "800 L", and the engine's excerpt check passed it because "800" is a substring of "5800".
- * A reader would have been shown a number seven times too small with the correct sentence beside
- * it. Written once here so no pattern can drift back.
- */
-const PRINTED_NUMBER = String.raw`\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?`
 
 /** "half-life ... of 14 hours", "elimination half-life is approximately 3 to 5 hours". */
 const HALF_LIFE_HOURS = new RegExp(

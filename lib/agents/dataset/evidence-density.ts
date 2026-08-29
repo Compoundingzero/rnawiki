@@ -32,6 +32,9 @@ import type {
   RecordedValue,
 } from '@/lib/background/types'
 import { createRng, shuffleInPlace } from '@/lib/agents/core/rng'
+import { RECORDED_BACKGROUND_MODULES } from '@/lib/background/types'
+import type { RecordedBackgroundModule } from '@/lib/background/types'
+
 import {
   cleanSorted,
   quantileSorted,
@@ -46,30 +49,8 @@ import type {
   ReviewCandidate,
 } from '@/lib/agents/core/types'
 
-/**
- * Modules that carry recorded evidence, and therefore count toward breadth.
- *
- * `attribution` is deliberately absent: it records how many active substances the source document
- * declared, which qualifies the other modules rather than adding evidence of its own. Counting it
- * would let a record gain breadth by describing its own sources.
- */
-export const RECORDABLE_MODULES = [
-  'pharmacokinetics',
-  'titration',
-  'productVariants',
-  'costContext',
-  'anatomyTargets',
-  'applicability',
-  'pivotalResults',
-  'registryIdentifiers',
-  'mechanism',
-  'molecularIdentity',
-  'interactionSignals',
-  'safety',
-  'populationStatements',
-  'commonAdverseReactions',
-] as const
-export type RecordableModule = (typeof RECORDABLE_MODULES)[number]
+export const RECORDABLE_MODULES = RECORDED_BACKGROUND_MODULES
+export type RecordableModule = RecordedBackgroundModule
 
 /**
  * The four things that are observable about a record's evidence, each already normalised to [0,1]
@@ -339,6 +320,18 @@ function hasModule(background: MedicineRecordedBackground, module: RecordableMod
       return (background.populationStatements?.length ?? 0) > 0
     case 'commonAdverseReactions':
       return (background.commonAdverseReactions?.eventsAsRecorded.length ?? 0) > 0
+    case 'recordedUses':
+      return (background.recordedUses?.statements.length ?? 0) > 0
+    case 'sourceConsensus':
+      return (background.sourceConsensus?.fields.length ?? 0) > 0
+    case 'composition':
+      return (background.composition?.ingredients.length ?? 0) > 0
+    case 'supplementMarket':
+      return background.supplementMarket !== undefined
+    case 'labelPresence':
+      return background.labelPresence !== undefined
+    case 'biologicalIdentity':
+      return background.biologicalIdentity !== undefined
   }
 }
 

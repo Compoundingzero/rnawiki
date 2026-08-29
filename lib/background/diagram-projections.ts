@@ -19,6 +19,7 @@
  */
 
 import { ANATOMY_REGIONS, type AnatomyRegionCode } from './anatomy-regions'
+import { firstNumberIn } from './printed-numbers'
 import { STUDIED_POPULATIONS } from './types'
 import type {
   BackgroundSource,
@@ -245,12 +246,6 @@ export interface ExposureTimelineProjection {
   maxHours: number
 }
 
-/** Parses a leading number from a recorded display string, e.g. "24 to 36 hours" -> 24. */
-function leadingNumber(display: string): number | undefined {
-  const match = /(\d+(?:\.\d+)?)/u.exec(display.replace(/,(?=\d{3}\b)/gu, ''))
-  return match ? Number(match[1]) : undefined
-}
-
 /**
  * One medicine's recorded exposure landmarks on a single hour axis: time to peak, the half-life,
  * and the arithmetic five-half-life steady-state point. Returns null unless a numeric half-life
@@ -270,7 +265,7 @@ export function exposureTimeline(
   const tMax = pk.tMax
   const tMaxHours =
     tMax && tMax.unit?.toLowerCase().startsWith('hour')
-      ? (tMax.numeric ?? leadingNumber(tMax.display))
+      ? (tMax.numeric ?? firstNumberIn(tMax.display))
       : undefined
   if (tMax && typeof tMaxHours === 'number' && tMaxHours > 0) {
     markers.push({

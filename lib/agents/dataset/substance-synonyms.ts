@@ -35,6 +35,8 @@ import type {
   ReviewCandidate,
 } from '@/lib/agents/core/types'
 import type { BackgroundSource, MedicineRecordedBackground } from '@/lib/background/types'
+import { RECORDED_BACKGROUND_MODULES } from '@/lib/background/types'
+import type { RecordedBackgroundModule } from '@/lib/background/types'
 
 /* ------------------------------------------------------------------------------------------- */
 /* Salt, ester and counterion vocabulary                                                        */
@@ -186,24 +188,13 @@ export const SYNONYM_EVIDENCE_KINDS = [
  */
 export type SynonymEvidenceKind = (typeof SYNONYM_EVIDENCE_KINDS)[number]
 
-/** Recorded-background modules a record may hold, reported per member so a reviewer sees the stakes. */
-export const COMPARABLE_MODULE_KEYS = [
-  'pharmacokinetics',
-  'titration',
-  'productVariants',
-  'costContext',
-  'anatomyTargets',
-  'applicability',
-  'pivotalResults',
-  'registryIdentifiers',
-  'mechanism',
-  'molecularIdentity',
-  'interactionSignals',
-  'safety',
-  'populationStatements',
-  'commonAdverseReactions',
-] as const
-export type ComparableModuleKey = (typeof COMPARABLE_MODULE_KEYS)[number]
+/**
+ * Modules a record may hold, reported per member so a reviewer sees what a merge would affect.
+ * Taken from the envelope's own list rather than kept by hand, because the hand-kept copy was six
+ * modules out of date and understated the stakes of every merge question it asked.
+ */
+const COMPARABLE_MODULE_KEYS = RECORDED_BACKGROUND_MODULES
+export type ComparableModuleKey = RecordedBackgroundModule
 
 export interface SynonymGroupMember {
   slug: string

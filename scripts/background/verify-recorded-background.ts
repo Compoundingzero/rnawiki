@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import { numbersIn, statesNumber } from '@/lib/background/printed-numbers'
 
 import { RECORDED_BACKGROUND } from '../seed-data/background'
 import type { BackgroundSource, MedicineRecordedBackground } from '@/lib/background/types'
@@ -155,8 +156,11 @@ async function main() {
           // The dataset's promise is that every recorded number appears in the cited source.
           // A stitched or reformatted excerpt still verifies as long as the numbers hold; only
           // a source whose numbers changed under us counts as drift.
-          const numbers = excerpt.match(/\d+(?:\.\d+)?/gu) ?? []
-          if (numbers.length > 0 && numbers.every((token) => haystack.includes(token))) {
+          // Compared by value, not by substring. `includes` said a source still stated 5,800
+          // when it had changed to 800, which is precisely the blind spot that let 107 wrong
+          // numbers through the engine in the first place — the drift detector shared it.
+          const numbers = numbersIn(excerpt)
+          if (numbers.length > 0 && numbers.every((value) => statesNumber(haystack, value))) {
             state = 'numbers_current'
           } else {
             state = 'drifted'

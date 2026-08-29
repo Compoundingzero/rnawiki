@@ -663,6 +663,42 @@ export interface RecordedSourceConsensus {
   fields: RecordedFieldConsensus[]
 }
 
+/**
+ * Every reader-facing module the envelope declares, named once.
+ *
+ * Consumers that enumerate modules kept their own copies and the copies went stale. The coverage
+ * ledger called 691 records empty because it had never been told about recorded organisms. The
+ * evidence-density agent scored records on a denominator missing six modules, so a record rich in
+ * the newest ones reported as thin. Both were silent, and both were reporting a smaller corpus than
+ * the one that exists.
+ *
+ * A consumer that needs its own ordering or its own subset states that explicitly and is tested
+ * against this list, rather than maintaining a second one by hand.
+ */
+export const RECORDED_BACKGROUND_MODULES = [
+  'pharmacokinetics',
+  'titration',
+  'productVariants',
+  'costContext',
+  'anatomyTargets',
+  'applicability',
+  'pivotalResults',
+  'registryIdentifiers',
+  'mechanism',
+  'molecularIdentity',
+  'interactionSignals',
+  'safety',
+  'populationStatements',
+  'commonAdverseReactions',
+  'recordedUses',
+  'sourceConsensus',
+  'composition',
+  'supplementMarket',
+  'labelPresence',
+  'biologicalIdentity',
+] as const
+export type RecordedBackgroundModule = (typeof RECORDED_BACKGROUND_MODULES)[number]
+
 export interface MedicineRecordedBackground {
   version: typeof MEDICINE_BACKGROUND_VERSION
   /** ISO date this record was authored from fetched artifacts. */

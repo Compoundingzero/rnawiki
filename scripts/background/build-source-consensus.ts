@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import { printedSpan } from '@/lib/background/printed-numbers'
 import { execFileSync } from 'node:child_process'
 import { createReadStream, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { createInterface } from 'node:readline'
@@ -85,11 +86,14 @@ function readingKey(display: string, unit: string | undefined): string {
   return `${normalized}|${unit ?? ''}`
 }
 
-/** The numeric span a reading covers, for deciding whether two readings can both be true. */
+/**
+ * The numeric span a reading covers, for deciding whether two readings can both be true.
+ *
+ * Read whole: the local regex could not cross a thousands separator, so "5,800 L" became the span
+ * 5 to 800 and two readings that agreed were reported as disagreeing.
+ */
 function numericSpan(display: string): { low: number; high: number } | null {
-  const numbers = (display.match(/\d+(?:\.\d+)?/gu) ?? []).map(Number).filter(Number.isFinite)
-  if (numbers.length === 0) return null
-  return { low: Math.min(...numbers), high: Math.max(...numbers) }
+  return printedSpan(display)
 }
 
 interface Accumulated {

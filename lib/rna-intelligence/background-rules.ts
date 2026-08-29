@@ -33,6 +33,11 @@ import {
 } from '@/lib/background/types'
 import { isAnatomyRegionCode } from '@/lib/background/anatomy-regions'
 import {
+  numbersIn,
+  statesNumber,
+  withoutThousandsSeparators,
+} from '@/lib/background/printed-numbers'
+import {
   normalizedMonthlyUsdFromEntry,
   steadyStateNoteFromHalfLifeHours,
 } from '@/lib/background/derivations'
@@ -151,42 +156,18 @@ const FORBIDDEN_GUIDANCE = [
 ] as const
 
 function numberTokens(display: string): string[] {
-  return display.match(/\d+(?:\.\d+)?/gu) ?? []
+  return numbersIn(display).map((value) => String(value))
 }
 
-/**
- * Prepares text for number matching: collapses whitespace and removes thousands separators.
- *
- * The separator rule matches a whole separated number rather than any comma followed by three
- * digits. The looser form corrupted anything comma-delimited: in a pricing-file row ending
- * "...,43386028001,221.72208", it deleted the field separator and glued an eleven-digit product
- * code onto the price, so the price stopped existing as a number and a correct record was refused.
- */
+/** Collapses whitespace and removes thousands separators, so text can be searched for numbers. */
 function normalizeForMatch(text: string): string {
-  return text
-    .replace(/[\u00a0\s]+/gu, ' ')
-    .replace(/\b\d{1,3}(?:,\d{3})+\b/gu, (match) => match.replace(/,/gu, ''))
+  return withoutThousandsSeparators(text.replace(/[\u00a0\s]+/gu, ' '))
 }
 
-/**
- * Whether a displayed number appears in the excerpt AS A NUMBER.
- *
- * Substring matching said yes to "800" inside "5,800", and that is not hypothetical: elacestrant's
- * label reads "the estimated apparent volume of distribution is 5,800 L", the extractor's pattern
- * began matching after the thousands separator, and a recorded value of 800 L passed this check
- * with the correct sentence quoted beside it. A reader would have seen a number seven times too
- * small, under an excerpt that appeared to prove it.
- *
- * Compared by value rather than by characters, so a display of "0.5" still matches an excerpt
- * printing "0.50" — the same number written two ways is not the failure this guards against.
- */
+/** Whether the excerpt states this displayed number as a number rather than inside a longer one. */
 function excerptStatesNumber(haystack: string, token: string): boolean {
   const wanted = Number(token)
-  if (!Number.isFinite(wanted)) return haystack.includes(token)
-  for (const match of haystack.matchAll(/\d+(?:\.\d+)?/gu)) {
-    if (Number(match[0]) === wanted) return true
-  }
-  return false
+  return Number.isFinite(wanted) ? statesNumber(haystack, wanted) : haystack.includes(token)
 }
 
 export function runBackgroundIntelligence(
