@@ -38,6 +38,7 @@ export const COVERAGE_ROUTES = [
   'LABEL_PHARMACOLOGY',
   'LABEL_PRODUCT_ONLY',
   'SUPPLEMENT_MARKET',
+  'SUPPLEMENT_INGREDIENT',
   'LABEL_ARCHIVE_PRESENCE',
   'MARKETED_PRODUCT_LISTING',
   'REGULATORY_APPROVAL',
@@ -66,6 +67,7 @@ const MODULES = [
   'biologicalIdentity',
   'productListing',
   'regulatoryApproval',
+  'supplementIngredient',
   'registryIdentifiers',
   'anatomyTargets',
   'applicability',
@@ -147,6 +149,7 @@ function routeFor(
     return 'LABEL_PRODUCT_ONLY'
   }
   if (has(background, 'supplementMarket')) return 'SUPPLEMENT_MARKET'
+  if (has(background, 'supplementIngredient')) return 'SUPPLEMENT_INGREDIENT'
   if (has(background, 'labelPresence')) return 'LABEL_ARCHIVE_PRESENCE'
   if (has(background, 'productListing')) return 'MARKETED_PRODUCT_LISTING'
   if (has(background, 'regulatoryApproval')) return 'REGULATORY_APPROVAL'
@@ -166,6 +169,8 @@ const ROUTE_LIMITS: Readonly<Record<CoverageRoute, string>> = {
     'The product label was read but no source describes its substances alone, so no mechanism or pharmacokinetics can be recorded for them.',
   SUPPLEMENT_MARKET:
     'Supplement labels carry no mechanism, no pharmacokinetics and no evaluated efficacy claim, so none can be recorded however many products exist.',
+  SUPPLEMENT_INGREDIENT:
+    'The supplement label database files this as an ingredient and classifies it. It records no pharmacology for any ingredient, so none can come from here however the ingredient is classified.',
   LABEL_ARCHIVE_PRESENCE:
     'The archive records that published labels name this substance as an active ingredient, and how many of them name it alone. It does not say the product was approved or evaluated, and where no label names the substance alone there is no source its own data could come from.',
   MARKETED_PRODUCT_LISTING:

@@ -14,9 +14,9 @@
     "counterionCationTermCount": 18
   },
   "coverage": {
-    "considered": 8781,
+    "considered": 9819,
     "used": 2021,
-    "reason": "2021 of 8781 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 386 records ended up in a candidate group."
+    "reason": "2021 of 9819 records carry a well-formed UNII, which is the only field the stronger signal can group on; the rest are invisible to it and can only appear through the weaker shared-document signal. 386 records ended up in a candidate group."
   },
   "output": {
     "registryIdentifierGroups": [
@@ -112,7 +112,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:2b03d07c-ea4f-4663-bcc3-20ebdf83b7aa",
@@ -173,7 +174,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:34dea719-92b7-4b90-96fe-5270403e9b95"
@@ -211,7 +213,8 @@
               "registryIdentifiers",
               "safety",
               "recordedUses",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:38e1f158-1878-3b86-e063-6294a90a396f",
@@ -287,7 +290,8 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:e48e1672-4ccd-4f95-9fac-f3114e968e77"
@@ -300,7 +304,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:20cea5c6-8fdd-45f1-aa7f-fc744b2f275a"
@@ -324,7 +329,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:19ce6fa0-9427-68c1-e063-6294a90aa58c"
@@ -454,7 +460,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:cd87e8c5-9517-4c4a-aa21-1a686b1b200f"
@@ -467,7 +474,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:83fb3344-72e4-48ce-e053-2a91aa0ad667"
@@ -490,7 +498,8 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:d6edd874-495c-4eb5-bf3d-72c2ee41fc88"
@@ -532,7 +541,8 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:ded984ce-b8d1-40a0-b5ef-a5f528955332"
@@ -554,7 +564,8 @@
               "sourceConsensus",
               "labelPresence",
               "productListing",
-              "regulatoryApproval"
+              "regulatoryApproval",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:a906f8e1-6e1c-480a-8276-c01bc65dd3be"
@@ -771,7 +782,8 @@
               "recordedUses",
               "supplementMarket",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:ee624bf7-96df-424d-a669-01978991bccd"
@@ -1137,7 +1149,8 @@
               "recordedUses",
               "labelPresence",
               "productListing",
-              "regulatoryApproval"
+              "regulatoryApproval",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:acb7d02d-249b-4645-ac1b-8ff9a56dd244",
@@ -1202,7 +1215,8 @@
               "populationStatements",
               "recordedUses",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:9b517204-3d73-410f-aa86-741f29e51906",
@@ -1264,7 +1278,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:86cfeffd-8a17-2323-e053-2991aa0ace37"
@@ -1343,7 +1358,8 @@
               "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:85baedae-342c-1337-e053-2991aa0acb1c"
@@ -1420,7 +1436,8 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:080c91ec-4800-427c-8a44-33cb0d4c15d8"
@@ -1433,7 +1450,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:70685fd1-9336-44d3-b270-3b3afd7635ca"
@@ -1471,7 +1489,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:7ef497cf-a1bf-4381-935f-8a40326393df"
@@ -1704,7 +1723,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:81424969-b7d2-604a-e053-2991aa0af23a"
@@ -1743,7 +1763,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:7a3fbb5e-c99f-3b5f-e053-2a91aa0a17a8"
@@ -2038,7 +2059,8 @@
               "safety",
               "recordedUses",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:38e1867d-f3dc-a55c-e063-6294a90a82f2"
@@ -2078,7 +2100,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:813fe1f4-645f-9de4-e053-2a91aa0a6973"
@@ -2154,7 +2177,8 @@
               "registryIdentifiers",
               "recordedUses",
               "supplementMarket",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:4947cf4d-3ebd-4b66-9582-f141407aa300"
@@ -2170,7 +2194,8 @@
               "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:f2676cf2-f6fb-46b8-b723-5497f1655902",
@@ -2636,7 +2661,8 @@
               "registryIdentifiers",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:851978dd-d0dd-208c-e053-2a91aa0a30c5"
@@ -2650,7 +2676,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:724d4680-7a53-11e6-b1ab-424c58303031"
@@ -2964,7 +2991,8 @@
               "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:86a81564-7874-6012-e053-2991aa0a846c"
@@ -2978,7 +3006,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:3dead232-3110-e085-e063-6294a90a0926"
@@ -3062,7 +3091,8 @@
               "recordedUses",
               "supplementMarket",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:f9f0e853-6997-a49b-e053-6294a90aa4b8"
@@ -3134,7 +3164,8 @@
               "registryIdentifiers",
               "supplementMarket",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:84266aa8-b80c-a2a5-e053-2991aa0a68e0"
@@ -3157,7 +3188,8 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:3eacca8a-fefe-4ef1-b74d-e51e1024a991"
@@ -3178,7 +3210,8 @@
               "sourceConsensus",
               "labelPresence",
               "productListing",
-              "regulatoryApproval"
+              "regulatoryApproval",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:58d84ffa-4056-4e36-ad67-7bd4aef444a5",
@@ -3204,7 +3237,8 @@
               "recordedUses",
               "supplementMarket",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:b60f9c58-9908-6184-e053-2a95a90aa435"
@@ -3504,7 +3538,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:18556cf3-eda2-7144-e054-00144ff8d46c"
@@ -3543,7 +3578,8 @@
             "modulesHeld": [
               "registryIdentifiers",
               "recordedUses",
-              "labelPresence"
+              "labelPresence",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:401e3a7e-54be-47cc-88c3-a343f5cbbd10"
@@ -3557,7 +3593,8 @@
               "registryIdentifiers",
               "recordedUses",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:b8494d02-8a7d-47b4-80b0-b8ab51b625fd",
@@ -3603,7 +3640,8 @@
               "recordedUses",
               "supplementMarket",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:ac34fb4b-54f3-460a-b907-fd89db68235b"
@@ -3658,7 +3696,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:457d08eb-e812-8f12-e063-6294a90ab85f"
@@ -3686,7 +3725,8 @@
               "populationStatements",
               "recordedUses",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:26aba724-8990-def9-e063-6394a90a991d",
@@ -3706,7 +3746,8 @@
               "recordedUses",
               "labelPresence",
               "productListing",
-              "regulatoryApproval"
+              "regulatoryApproval",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:0d230fd8-2ea7-4dd6-a506-5f7804e539fc",
@@ -3813,7 +3854,8 @@
               "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:812b71ea-48f3-7e5e-e053-2a91aa0a7e57"
@@ -3853,7 +3895,8 @@
               "recordedUses",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:7d79baea-28c3-4d41-e053-2991aa0a5269"
@@ -4115,7 +4158,8 @@
               "recordedUses",
               "supplementMarket",
               "labelPresence",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:c1c28375-9b03-4590-9d39-ab28403da93d",
@@ -4180,7 +4224,8 @@
               "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:38c9693d-63a3-e991-e063-6294a90afb03"
@@ -4418,7 +4463,8 @@
               "supplementMarket",
               "labelPresence",
               "biologicalIdentity",
-              "productListing"
+              "productListing",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:1482f8a2-c2c0-45a1-8e90-b427227f0b28"
@@ -5115,7 +5161,8 @@
               "recordedUses",
               "supplementMarket",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:38dbc663-828c-9a31-e063-6394a90a3d53"
@@ -5987,7 +6034,8 @@
               "recordedUses",
               "supplementMarket",
               "labelPresence",
-              "biologicalIdentity"
+              "biologicalIdentity",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:25764f5a-378b-4103-81a1-2a6309e3e8e1"
@@ -9241,7 +9289,8 @@
               "recordedUses",
               "labelPresence",
               "productListing",
-              "regulatoryApproval"
+              "regulatoryApproval",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:5d9d0b24-e139-48bf-ab2d-536fb59cf8e0"
@@ -9257,7 +9306,8 @@
               "populationStatements",
               "commonAdverseReactions",
               "recordedUses",
-              "regulatoryApproval"
+              "regulatoryApproval",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:5d9d0b24-e139-48bf-ab2d-536fb59cf8e0"
@@ -9785,7 +9835,8 @@
               "recordedUses",
               "labelPresence",
               "productListing",
-              "regulatoryApproval"
+              "regulatoryApproval",
+              "supplementIngredient"
             ],
             "sourceIdentifiers": [
               "FDA_LABEL:3023cc56-ed4b-4e87-b3a1-81b20943f658"

@@ -217,6 +217,18 @@ export interface MedicineBackgroundContextView {
     marketingStatuses: string[]
     source: RecordedSourceView
   }
+  /**
+   * How the supplement label database files the ingredient, distinct from what is on sale.
+   *
+   * For many rows this is the only record any source holds, and it is a filing decision rather than
+   * a finding.
+   */
+  supplementIngredient?: {
+    groupName: string
+    categories: string[]
+    spellingCountLabel: string
+    source: RecordedSourceView
+  }
   supplementMarket?: {
     labelCountLabel: string
     categories: string[]
@@ -789,6 +801,20 @@ export function medicineBackgroundContext(
       }
     : undefined
 
+  const filed = background.supplementIngredient
+  const supplementIngredient = filed
+    ? {
+        groupName: filed.groupNameAsRecorded,
+        categories: filed.categoriesAsRecorded.map(sentenceCase),
+        spellingCountLabel: countPhrase(
+          filed.recordedSpellingCount,
+          'label spelling has been collected for it',
+          'label spellings have been collected for it',
+        ),
+        source: sourceView(filed.source),
+      }
+    : undefined
+
   const approved = background.regulatoryApproval
   const regulatoryApproval = approved
     ? {
@@ -949,6 +975,7 @@ export function medicineBackgroundContext(
     ...(biologicalIdentity ? { biologicalIdentity } : {}),
     ...(productListing ? { productListing } : {}),
     ...(regulatoryApproval ? { regulatoryApproval } : {}),
+    ...(supplementIngredient ? { supplementIngredient } : {}),
     ...(labelPresence ? { labelPresence } : {}),
     ...(supplementMarket ? { supplementMarket } : {}),
     ...(composition ? { composition } : {}),

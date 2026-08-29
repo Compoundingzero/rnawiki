@@ -43,6 +43,7 @@ import { ACQUISITION_COST_BACKGROUND } from './acquisition-cost'
 import { BIOLOGICAL_IDENTITY_BACKGROUND } from './biological-identity'
 import { PRODUCT_LISTING_BACKGROUND } from './product-listing'
 import { REGULATORY_APPROVAL_BACKGROUND } from './regulatory-approval'
+import { SUPPLEMENT_INGREDIENT_BACKGROUND } from './supplement-ingredient'
 
 export type RecordedBackgroundBySlug = Record<string, MedicineRecordedBackground>
 
@@ -180,6 +181,18 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
     merged[slug] = existing
       ? { ...existing, regulatoryApproval: approved.regulatoryApproval }
       : approved
+  }
+
+  // How the supplement database files the ingredient attaches to whatever record exists. This is
+  // the vocabulary match rather than a product count, and it reaches the rows a keyword search of
+  // product text never could: no product is named "18-Hydroxyeicosahexaenoic Acid", but the
+  // database holds it as a classified ingredient all the same.
+  for (const [slug, ingredient] of Object.entries(SUPPLEMENT_INGREDIENT_BACKGROUND)) {
+    const existing = merged[slug]
+    if (existing?.supplementIngredient) continue
+    merged[slug] = existing
+      ? { ...existing, supplementIngredient: ingredient.supplementIngredient }
+      : ingredient
   }
 
   // Archive presence attaches the same way, and for the same reason. A record with a mechanism

@@ -877,6 +877,34 @@ export function BackgroundProductListingBody({
   )
 }
 
+/**
+ * How the supplement label database files the ingredient.
+ *
+ * A category is where the database put something, not a finding about it. That distinction carries
+ * the whole row, because "non-nutrient/non-botanical" reads like a judgement and is a filing code.
+ */
+export function BackgroundSupplementIngredientBody({
+  ingredient,
+}: {
+  ingredient: NonNullable<MedicineBackgroundContextView['supplementIngredient']>
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-[15px] leading-7 text-[#1D1D1F]">
+        Filed as <span className="font-semibold">{ingredient.groupName}</span>.{' '}
+        {ingredient.spellingCountLabel}.
+      </p>
+      <ChipList label="How the database classifies it" values={ingredient.categories} />
+      <SourceLine source={ingredient.source} />
+      <p className="text-sm leading-6 text-[#6E6E73]">
+        A category is where the database files an ingredient, not a finding about it. The database
+        records no mechanism, no pharmacokinetics and no evaluated claim for any ingredient,
+        whatever it is classified as. {ROW_BOUNDARY}
+      </p>
+    </div>
+  )
+}
+
 export function BackgroundSupplementMarketBody({
   market,
 }: {

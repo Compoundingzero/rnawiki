@@ -103,6 +103,7 @@ export const BACKGROUND_RULE_CODES = [
   'I_PRODUCT_LISTING_UNCHECKABLE',
   'I_PRODUCT_LISTING_CLASS_UNATTRIBUTABLE',
   'I_APPROVAL_UNCHECKABLE',
+  'I_SUPPLEMENT_INGREDIENT_UNCHECKABLE',
 ] as const
 export type BackgroundRuleCode = (typeof BACKGROUND_RULE_CODES)[number]
 
@@ -953,6 +954,7 @@ export function runBackgroundIntelligence(
       // A product listing is transcribed too.
       'productListing',
       'regulatoryApproval',
+      'supplementIngredient',
     ])
     const otherModules = Object.entries(background).some(([key, value]) => {
       if (ENVELOPE_FIELDS.has(key)) return false
@@ -1149,6 +1151,35 @@ export function runBackgroundIntelligence(
         'I_APPROVAL_UNCHECKABLE',
         'regulatoryApproval.earliestOriginalApprovalDate',
         `"${approval.earliestOriginalApprovalDate}" is not a date as the register writes them.`,
+      )
+    }
+  }
+
+  /**
+   * A recorded supplement ingredient, checkable by the group identifier it was copied from.
+   */
+  const ingredient = background.supplementIngredient
+  if (ingredient) {
+    checkSource('supplementIngredient', ingredient.source)
+    if (ingredient.source.kind !== 'DSLD') {
+      flag(
+        'I_SUPPLEMENT_INGREDIENT_UNCHECKABLE',
+        'supplementIngredient.source',
+        `A supplement ingredient must cite the label database it was copied from, not "${ingredient.source.kind}".`,
+      )
+    }
+    if (!ingredient.groupNameAsRecorded.trim()) {
+      flag(
+        'I_SUPPLEMENT_INGREDIENT_UNCHECKABLE',
+        'supplementIngredient.groupNameAsRecorded',
+        'A supplement ingredient must carry the name the database files it under.',
+      )
+    }
+    if (ingredient.recordedSpellingCount < 0) {
+      flag(
+        'I_SUPPLEMENT_INGREDIENT_UNCHECKABLE',
+        'supplementIngredient.recordedSpellingCount',
+        'A count of recorded spellings cannot be negative.',
       )
     }
   }

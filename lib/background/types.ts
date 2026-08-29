@@ -576,6 +576,31 @@ export interface RecordedRegulatoryApproval {
 }
 
 /**
+ * How the supplement label database classifies an ingredient, and what it calls it.
+ *
+ * Distinct from `supplementMarket`, which counts products on sale. This is the database's record of
+ * the INGREDIENT: its canonical name, how the database classifies it, and how many label spellings
+ * it has collected for it.
+ *
+ * It reaches the rows nothing else could. A keyword search of product text cannot find
+ * "18-Hydroxyeicosahexaenoic Acid", because no product is named that — but the database holds it as
+ * an ingredient group, classified, with its spellings. 1,038 rows that carried nothing at all are
+ * ingredient groups in this vocabulary.
+ *
+ * A category is a filing decision by the database, not a finding about the substance. "Non-nutrient/
+ * non-botanical" says where the database put it, and nothing about what it does.
+ */
+export interface RecordedSupplementIngredient {
+  /** The database's own name for the ingredient. */
+  groupNameAsRecorded: string
+  /** How it classifies the ingredient: botanical, vitamin, mineral, amino acid, and so on. */
+  categoriesAsRecorded: string[]
+  /** Distinct spellings the database has collected from labels for this ingredient. */
+  recordedSpellingCount: number
+  source: BackgroundSource
+}
+
+/**
  * Ranks at which a name identifies one organism rather than a group of them.
  *
  * A binomial is unambiguous by construction: nothing else is called "Withania somnifera". A bare
@@ -772,6 +797,7 @@ export const RECORDED_BACKGROUND_MODULES = [
   'biologicalIdentity',
   'productListing',
   'regulatoryApproval',
+  'supplementIngredient',
 ] as const
 export type RecordedBackgroundModule = (typeof RECORDED_BACKGROUND_MODULES)[number]
 
@@ -807,4 +833,5 @@ export interface MedicineRecordedBackground {
   biologicalIdentity?: RecordedBiologicalIdentity
   productListing?: RecordedProductListing
   regulatoryApproval?: RecordedRegulatoryApproval
+  supplementIngredient?: RecordedSupplementIngredient
 }

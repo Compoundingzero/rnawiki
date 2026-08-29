@@ -42,3 +42,4 @@ data/registries/*
 !data/registries/biological-identity.json
 !data/registries/product-listing.json
 !data/registries/regulatory-approval.json
+!data/registries/supplement-ingredient.json

@@ -125,7 +125,12 @@ describe('evidence density on the recorded corpus', () => {
     const variants = new Map(
       CORPUS.map((entry) => [entry.slug, entry.background.productVariants?.length ?? 0]),
     )
-    const median = RUN.output.scoreDistribution?.median ?? 0
+    // Compared against the threshold the queue actually used, which is the median among records
+    // holding a marketed product entry rather than the corpus median. A corpus-wide median compares
+    // records of different kinds, and once thousands of rows carried a single transcribed count it
+    // fell below every eligible record and the queue silently emptied.
+    const median = RUN.parameters.queueCutoffAmongMarketedRecords as number
+    expect(median).toBeGreaterThan(0)
     expect((RUN.queue ?? []).length).toBeGreaterThan(0)
     for (const item of RUN.queue ?? []) {
       expect(item.reason).toBe('COVERAGE_GAP')

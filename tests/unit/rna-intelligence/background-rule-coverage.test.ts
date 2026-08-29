@@ -286,6 +286,17 @@ function validBackground(): MedicineRecordedBackground {
         retrievedAt: '2026-08-29',
       },
     },
+    supplementIngredient: {
+      groupNameAsRecorded: 'Synthetic Ingredient',
+      categoriesAsRecorded: ['non-nutrient/non-botanical'],
+      recordedSpellingCount: 7,
+      source: {
+        kind: 'DSLD',
+        identifier: '1027',
+        label: 'Synthetic ingredient group',
+        retrievedAt: '2026-08-29',
+      },
+    },
     regulatoryApproval: {
       applicationCount: 4,
       earliestOriginalApprovalDate: '19820101',
@@ -673,6 +684,11 @@ const ruleCases = {
       // A lineage is what places an organism. Without it the record names something and says
       // nothing about what it is.
       background.biologicalIdentity!.lineageAsRecorded = []
+    },
+  },
+  I_SUPPLEMENT_INGREDIENT_UNCHECKABLE: {
+    mutate: (background) => {
+      background.supplementIngredient!.groupNameAsRecorded = ''
     },
   },
   I_APPROVAL_UNCHECKABLE: {

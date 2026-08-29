@@ -336,6 +336,8 @@ function hasModule(background: MedicineRecordedBackground, module: RecordableMod
       return background.productListing !== undefined
     case 'regulatoryApproval':
       return background.regulatoryApproval !== undefined
+    case 'supplementIngredient':
+      return background.supplementIngredient !== undefined
   }
 }
 
@@ -388,7 +390,7 @@ function measureOne(entry: AgentCorpusEntry): MedicineEvidenceDensity {
   }
 }
 
-const AGENT_VERSION = '1.0.0'
+const AGENT_VERSION = '1.1.0'
 
 export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
   name: 'evidence-density',
@@ -517,6 +519,9 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
       retrievedAtRange: { oldest: corpusOldest, newest: corpusNewest },
     }
 
+    // Built before the run is assembled so the cutoff it used can be declared as a parameter.
+    const queue = buildQueue(input.corpus, perMedicine)
+
     return {
       agent: 'evidence-density',
       version: AGENT_VERSION,
@@ -531,6 +536,8 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
         corroborationSaturation: CORROBORATION_SATURATION,
         queueMarketedVariantThreshold: MARKETED_PRODUCT_VARIANTS,
         queueLowDensityQuantile: LOW_DENSITY_QUANTILE,
+        // The threshold actually applied, among records holding a marketed product entry.
+        queueCutoffAmongMarketedRecords: Number.isFinite(lastQueueCutoff) ? lastQueueCutoff : -1,
         singleModuleSampleSize: SINGLE_MODULE_SAMPLE_SIZE,
         queueSize: QUEUE_SIZE,
         documentIdentity: 'source kind plus source identifier',
@@ -544,7 +551,7 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
             : `${input.corpus.length - withAnyModule.length} records hold none of the ${RECORDABLE_MODULES.length} recordable modules. They are scored at zero and kept in the index, because a record the corpus holds nothing for is the finding, not a row to drop.`,
       },
       output,
-      queue: buildQueue(input.corpus, perMedicine),
+      queue,
       caveats: [
         'A density score describes a record in this corpus. It does not describe a medicine, and it does not describe the published evidence about a medicine. A low score means the corpus holds little here, and nothing more than that.',
         'A record with no entry in a module is a record where nobody has yet structured that module from a source. Absence here is neither a favourable nor an unfavourable finding about the medicine.',
@@ -574,6 +581,14 @@ export const evidenceDensityAgent: DatasetAgent<EvidenceDensityIndex> = {
  * unstructured, whereas a record citing one document needs new sourcing before anything can change.
  * That makes the queue an ordering by tractability, which is the only ordering the corpus supports.
  */
+/**
+ * The cutoff the last queue used, reported as a declared parameter.
+ *
+ * A threshold a reader cannot see is a threshold that can drift without anyone noticing, which is
+ * exactly how the queue emptied.
+ */
+let lastQueueCutoff = Number.NaN
+
 function buildQueue(
   corpus: readonly AgentCorpusEntry[],
   measured: readonly MedicineEvidenceDensity[],
@@ -584,15 +599,29 @@ function buildQueue(
     variantsBySlug.set(entry.slug, entry.background.productVariants?.length ?? 0)
     documentsBySlug.set(entry.slug, [...new Set(collectSources(entry.background).map(documentKey))])
   }
+  /**
+   * The cutoff is taken within the population the queue draws from, not across the whole corpus.
+   *
+   * A corpus-wide median compares records of different kinds. Once thousands of rows carried a
+   * single transcribed count — an archive presence, a taxonomy record — the median fell below every
+   * record that also holds a marketed product entry, and the queue silently emptied. An agent whose
+   * job is routing work returning nothing, because a threshold drifted under it, is the failure
+   * this dataset exists to prevent rather than an outcome.
+   *
+   * Among records holding a marketed product entry the comparison is meaningful: they are the same
+   * kind of record, and half of them being below the median of that group is true by construction.
+   */
+  const eligible = measured.filter(
+    (record) => (variantsBySlug.get(record.slug) ?? 0) >= MARKETED_PRODUCT_VARIANTS,
+  )
   const cutoff = quantileSorted(
-    cleanSorted(measured.map((record) => record.score)),
+    cleanSorted(eligible.map((record) => record.score)),
     LOW_DENSITY_QUANTILE,
   )
   if (!Number.isFinite(cutoff)) return []
 
   const candidates: ReviewCandidate[] = []
-  for (const record of measured) {
-    if ((variantsBySlug.get(record.slug) ?? 0) < MARKETED_PRODUCT_VARIANTS) continue
+  for (const record of eligible) {
     if (record.score > cutoff) continue
     const documents = documentsBySlug.get(record.slug) ?? []
     candidates.push({
@@ -600,11 +629,12 @@ function buildQueue(
       reason: 'COVERAGE_GAP',
       question: `The corpus records a marketed product entry for this medicine but holds ${record.moduleCount} of ${RECORDABLE_MODULES.length} background modules for it, across ${record.distinctSourceDocuments} distinct source ${record.distinctSourceDocuments === 1 ? 'document' : 'documents'}. Which further modules could be structured from the documents this record already cites?`,
       priority: (1 - record.score) * Math.max(documents.length, 1),
-      basis: `Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score ${record.score.toFixed(3)} is at or below the corpus median of ${cutoff.toFixed(3)}. This orders recording work against the corpus and carries no finding about the medicine.`,
+      basis: `Priority is one minus the density score multiplied by the number of source documents this record already cites, so a record with documents already fetched and little structured from them is asked about first. Density score ${record.score.toFixed(3)} is at or below the median of ${cutoff.toFixed(3)} among records that also hold a marketed product entry, which is the population this queue draws from. This orders recording work against the corpus and carries no finding about the medicine.`,
       sources: [...documents].sort().slice(0, 8),
     })
   }
 
+  lastQueueCutoff = cutoff
   return candidates
     .sort((left, right) => right.priority - left.priority || left.slug.localeCompare(right.slug))
     .slice(0, QUEUE_SIZE)

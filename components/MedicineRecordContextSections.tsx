@@ -21,6 +21,7 @@ import {
   BackgroundRecordedUsesBody,
   BackgroundSafetyBody,
   BackgroundSourceConsensusBody,
+  BackgroundSupplementIngredientBody,
   BackgroundSupplementMarketBody,
   BackgroundTitrationBody,
   RegistryIdentifierList,
@@ -500,6 +501,19 @@ export function MedicineRecordContextSections({
             preview="How many published labels name this as an active ingredient, and how many name it on its own."
           >
             <BackgroundLabelPresenceBody presence={context.background.labelPresence} />
+          </BackgroundRow>
+        )}
+
+        {context.background?.supplementIngredient && (
+          <BackgroundRow
+            id="supplement-ingredient-record"
+            tone="stone"
+            title="How the supplement database files it"
+            preview="The name the database uses, how it classifies the ingredient, and how many label spellings it has collected."
+          >
+            <BackgroundSupplementIngredientBody
+              ingredient={context.background.supplementIngredient}
+            />
           </BackgroundRow>
         )}
 
