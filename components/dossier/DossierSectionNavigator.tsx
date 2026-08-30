@@ -141,15 +141,21 @@ export function DossierSectionNavigator({ sections, medicineName }: DossierSecti
    * Opens the disclosure that contains the target before scrolling to it.
    *
    * Without this, a jump into a closed `<details>` scrolls to a collapsed element and the reader
-   * lands on the section heading with nothing under it, which reads as a broken link.
+   * lands on the section heading with nothing under it, which reads as a broken link. The target
+   * itself is opened too, because a background row is a `<details>` carrying its own anchor id.
    */
   const goToSection = useCallback((id: string) => {
     const target = document.getElementById(id)
     if (!target) return
-    let ancestor: HTMLElement | null = target.parentElement
-    while (ancestor) {
-      if (ancestor instanceof HTMLDetailsElement) ancestor.open = true
-      ancestor = ancestor.parentElement
+    /*
+     * Start at the target, not its parent. A background row IS a <details> with the anchor id on it,
+     * so opening only the ancestors leaves the destination itself collapsed and the reader lands on
+     * a closed summary — the exact broken-link feeling this function exists to prevent.
+     */
+    let node: HTMLElement | null = target
+    while (node) {
+      if (node instanceof HTMLDetailsElement) node.open = true
+      node = node.parentElement
     }
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
     target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })

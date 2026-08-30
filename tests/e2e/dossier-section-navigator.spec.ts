@@ -49,12 +49,16 @@ test('a reader can see which sections hold content before spending a click', asy
   const trigger = page.getByRole('button', { name: /Sections & feedback/i })
   await expect(trigger).toBeVisible()
 
-  /* The badge counts sections where recorded sources disagree, which is one on this fixture. */
-  await expect(trigger).toContainText('1')
+  /*
+   * Read while the panel is closed. The badge is deliberately hidden once the panel is open, because
+   * the count is a summons and the panel it summons you to is already showing the detail.
+   */
+  const closedBadgeText = (await trigger.textContent()) ?? ''
 
   const panel = await openNavigator(page)
   await expect(panel).toBeVisible()
-  await expect(panel).toContainText(name.slice(0, 9))
+  /* The record being navigated is named to assistive technology, not repeated in the visible text. */
+  await expect(panel).toHaveAttribute('aria-label', new RegExp(name.slice(0, 9), 'i'))
   await expect(panel).toContainText('sections hold recorded content')
 
   /* A module the fixture holds is offered as recorded. */
@@ -64,6 +68,17 @@ test('a reader can see which sections hold content before spending a click', asy
   /* A module the fixture does not hold says so in words about the corpus, not about the medicine. */
   const organism = panel.getByRole('button', { name: /What organism it is/i })
   await expect(organism).toContainText('Not documented here')
+
+  /*
+   * The badge counts SECTIONS a disagreement reaches, not disagreements, and one disagreement can
+   * legitimately reach more than one: a half-life two labels report differently belongs both to what
+   * happens after a dose and to what every label says. Asserted against the rendered rows rather
+   * than a hardcoded number, so the two can never drift apart without failing here.
+   */
+  /* exact, or the panel header's own summary line ("2 where sources differ") is counted as a row. */
+  const differingRows = await panel.getByText('Sources differ', { exact: true }).count()
+  expect(differingRows).toBeGreaterThan(0)
+  expect(closedBadgeText).toContain(String(differingRows))
 })
 
 test('a disagreement between sources is visible from the navigator', async ({ page }) => {
