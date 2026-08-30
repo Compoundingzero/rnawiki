@@ -156,8 +156,8 @@ function measure() {
   let consensusMultiReading = 0
   let consensusBelowUnanimity = 0
   let consensusNumericallyDisjoint = 0
-  let consensusDisjointAcrossUnits = 0
-  let consensusDisjointSameUnit = 0
+  const comparisonStates = new Map<string, number>()
+  const comparisonReasons = new Map<string, number>()
 
   /* -------------------------------------------------- measurement integrity */
   let numericPkValues = 0
@@ -212,14 +212,15 @@ function measure() {
       consensusFields += 1
       if (field.readings.length > 1) consensusMultiReading += 1
       if (field.agreementRate < 1) consensusBelowUnanimity += 1
-      if (field.numericallyDisjoint) {
-        consensusNumericallyDisjoint += 1
-        const units = new Set(
-          field.readings.map((reading) => unitOfReading(reading.display)).filter(Boolean),
-        )
-        if (units.size > 1) consensusDisjointAcrossUnits += 1
-        else consensusDisjointSameUnit += 1
-      }
+      if (field.numericallyDisjoint) consensusNumericallyDisjoint += 1
+      /*
+       * Read from the comparability contract rather than re-derived here. A field generated before
+       * the contract existed has no state, and is counted separately rather than guessed at.
+       */
+      const state = field.comparisonState
+      if (state) increment(comparisonStates, state)
+      else increment(comparisonStates, 'not_classified')
+      for (const reason of field.comparisonReasons ?? []) increment(comparisonReasons, reason)
     }
 
     /* measurement integrity: is a stored estimate actually its own dispersion? */
@@ -300,8 +301,8 @@ function measure() {
       consensusMultiReading,
       consensusBelowUnanimity,
       consensusNumericallyDisjoint,
-      consensusDisjointSameUnit,
-      consensusDisjointAcrossUnits,
+      comparisonStates: sortedCounts(comparisonStates),
+      comparisonReasons: sortedCounts(comparisonReasons),
     },
     measurementIntegrity: {
       numericPkValues,
@@ -555,7 +556,7 @@ function main() {
     `[audit] explicit non-establishment ${measurements.evidenceStates.explicitNonEstablishment}`,
   )
   console.log(
-    `[audit] disjoint consensus fields ${measurements.disagreement.consensusNumericallyDisjoint} (same unit ${measurements.disagreement.consensusDisjointSameUnit}, across units ${measurements.disagreement.consensusDisjointAcrossUnits})`,
+    `[audit] consensus comparison states ${JSON.stringify(measurements.disagreement.comparisonStates)}`,
   )
   console.log(
     `[audit] values equal to own dispersion ${measurements.measurementIntegrity.valuesEqualToOwnDispersion}`,
@@ -630,9 +631,15 @@ ${rows(m.corpus.curatedRecordsHoldingModule)}
 | Consensus fields | ${m.disagreement.consensusFields} |
 | Fields with more than one reading | ${m.disagreement.consensusMultiReading} |
 | Fields below unanimity | ${m.disagreement.consensusBelowUnanimity} |
-| Marked numerically disjoint | ${m.disagreement.consensusNumericallyDisjoint} |
-| — of which readings share a unit | ${m.disagreement.consensusDisjointSameUnit} |
-| — of which readings span units (not comparable) | ${m.disagreement.consensusDisjointAcrossUnits} |
+| Marked numerically disjoint (deprecated Boolean) | ${m.disagreement.consensusNumericallyDisjoint} |
+
+Comparison state, from the comparability contract:
+
+${rows(m.disagreement.comparisonStates)}
+
+Reasons:
+
+${rows(m.disagreement.comparisonReasons)}
 
 ## Measurement integrity
 

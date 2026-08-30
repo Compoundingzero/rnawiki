@@ -147,8 +147,11 @@ describe('a whole field, across all its readings', () => {
     expect(compareFieldReadings(['12 hours', '10 to 14 hours']).state).toBe('agree')
   })
 
-  it('reports a single reading as insufficient context rather than as agreement', () => {
-    expect(compareFieldReadings(['12 hours']).state).toBe('insufficient_context')
+  it('reports a single distinct reading as agreement', () => {
+    // A consensus field exists only where two or more documents stated the value, so one distinct
+    // reading means they all printed the same thing. Calling that "insufficient context" buried
+    // unanimous agreement in the same bucket as an unreadable unit.
+    expect(compareFieldReadings(['12 hours']).state).toBe('agree')
   })
 
   it('is order-independent', () => {

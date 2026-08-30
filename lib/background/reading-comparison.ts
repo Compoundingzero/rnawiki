@@ -152,6 +152,19 @@ export function compareFieldReadings(displays: readonly string[]): {
   state: ReadingComparisonState
   reasons: ReadingComparisonReason[]
 } {
+  /*
+   * One distinct reading is agreement, not absence of information.
+   *
+   * A consensus field exists only where two or more documents stated the value, so a field carrying
+   * a single distinct reading means every one of those documents printed the same thing -- which is
+   * the strongest agreement this corpus can observe. Reporting it as insufficient_context, as an
+   * earlier version of this function did, buried 1,288 of 1,670 fields in a state meaning "we could
+   * not tell" and made unanimous agreement indistinguishable from missing units.
+   */
+  if (displays.length === 1) {
+    return { state: 'agree', reasons: ['COMPATIBLE_VALUES_OVERLAP'] }
+  }
+
   const reasons = new Set<ReadingComparisonReason>()
   let sawDiffer = false
   let sawNotComparable = false
