@@ -89,6 +89,13 @@ export interface ReaderSummaryView {
   biggestLimit?: string
   /** Present only when the displayed limitation was derived from this exact reviewed field. */
   biggestLimitSourceFieldPath?: Extract<ReaderSummarySourceFieldPath, 'summary.mainLimitation'>
+  /** Which of the three first-screen states this record resolved to. */
+  usedForState?: ReaderUsedForState
+  /**
+   * Present exactly when `usedForState` is RECORDED_SOURCE_USE. The page must render `usedFor` as a
+   * quotation attributed to this source, never as RNAWiki's own sentence.
+   */
+  usedForSource?: ReaderRecordedUse
   /** A short use note, separated from the purpose when the stored purpose contains one. */
   practicalNote?: string
   /** Reserved for a concise stored safety warning when one is available to the builder. */
@@ -109,6 +116,12 @@ export interface ReaderMedicineLanguageContext {
   targetGene?: string
   targetProtein?: string
   trialIdentifiers?: readonly string[]
+  /**
+   * A source-linked use sentence from the recorded-background layer, offered only when RNAWiki
+   * cannot safely speak one in its own voice. Read from the INDICATIONS section, so it is already
+   * scoped to what a source says the medicine is for rather than to how it is taken.
+   */
+  recordedUse?: ReaderRecordedUse
 }
 
 export interface LegacyReaderSummaryInput extends ReaderMedicineLanguageContext {
@@ -481,13 +494,63 @@ function plainStoredResultSentence(
   return undefined
 }
 
+/** Which of the three first-screen states a record resolved to. */
+export type ReaderUsedForState = 'SAFE_PLAIN_USE' | 'RECORDED_SOURCE_USE' | 'NO_SAFE_USE_STATEMENT'
+
+/** A source-linked use sentence, offered when RNAWiki cannot speak one in its own voice. */
+export interface ReaderRecordedUse {
+  text: string
+  sourceLabel: string
+  sourceIdentifier: string
+  sourceHref?: string
+}
+
+/**
+ * Whether a recorded use may be shown as a quotation.
+ *
+ * An imperative is permitted here and nowhere else. The whole point of this state is that the words
+ * are visibly the source's, under a heading that says so, which is the same distinction the
+ * background engine already draws: a RecordedStatement matching its excerpt character for character
+ * is allowed to carry the label's own "patients should be monitored", because the source is
+ * speaking. What is refused is label furniture, which answers nothing, and a pure dosing direction,
+ * which is not an indication however it is framed.
+ */
+function quotableRecordedUse(text: string): boolean {
+  const trimmed = text.trim()
+  if (trimmed.length < 8) return false
+  if (FIRST_READ_LABEL_HEADING.test(trimmed)) return false
+  if (FIRST_READ_DOSING_INSTRUCTION.test(trimmed)) return false
+  if (FIRST_READ_LABEL_BOILERPLATE.test(trimmed)) return false
+  return true
+}
+
 function usedForSummary(
   selectedUse: string | null | undefined,
   context: ReaderMedicineLanguageContext,
-): { usedFor: string; practicalNote?: string } {
+): {
+  usedFor: string
+  usedForState: ReaderUsedForState
+  usedForSource?: ReaderRecordedUse
+  practicalNote?: string
+} {
   const stored = cleanText(selectedUse)
   if (!stored) {
-    return { usedFor: 'What this medicine is used or studied for is not explained here.' }
+    /*
+     * No stored use at all. A source-linked recorded use is still the better answer than silence, so
+     * the quotation state applies here too rather than only where a stored use was refused.
+     */
+    if (context.recordedUse && quotableRecordedUse(context.recordedUse.text)) {
+      return {
+        usedFor: context.recordedUse.text.trim(),
+        usedForState: 'RECORDED_SOURCE_USE',
+        usedForSource: context.recordedUse,
+      }
+    }
+    return {
+      usedFor:
+        'This record does not yet contain a safe, source-linked explanation of what this medicine is used or studied for.',
+      usedForState: 'NO_SAFE_USE_STATEMENT',
+    }
   }
 
   const [mainUse = '', ...noteParts] = removeStoredStudyIdentifiers(
@@ -520,15 +583,38 @@ function usedForSummary(
   plainUse = plainUse.replace(/^Used or studied for marketed for\s+/iu, 'Used for ')
   plainUse = plainUse.replace(/^Used for marketed for\s+/iu, 'Used for ')
 
-  const safeUse =
+  /*
+   * Three states, not two.
+   *
+   * The guard that stops RNAWiki speaking a copied instruction in its own voice was previously the
+   * end of the road: a refused line became a dead sentence, and a reader whose record held a
+   * perfectly good source-linked indication was told nothing. Refusing to speak is right; refusing
+   * to show the source is not.
+   */
+  const speakable =
     readerWordCount(plainUse) <= 28 &&
     isCompleteReaderFragment(plainUse) &&
     !FIRST_READ_FORBIDDEN_WORDING.test(plainUse) &&
     !FIRST_READ_MOLECULAR_MARKER.test(plainUse) &&
     !PCSK9_MARKER.test(plainUse) &&
     !statesReaderInstruction(plainUse)
-      ? ensureSentence(withoutOrphanedFootnoteMarker(plainUse))
-      : 'This page discusses a use that still needs a clear, short description.'
+
+  const quotable =
+    !speakable && context.recordedUse && quotableRecordedUse(context.recordedUse.text)
+      ? context.recordedUse
+      : undefined
+
+  const usedForState: ReaderUsedForState = speakable
+    ? 'SAFE_PLAIN_USE'
+    : quotable
+      ? 'RECORDED_SOURCE_USE'
+      : 'NO_SAFE_USE_STATEMENT'
+
+  const safeUse = speakable
+    ? ensureSentence(withoutOrphanedFootnoteMarker(plainUse))
+    : quotable
+      ? quotable.text.trim()
+      : 'This record does not yet contain a safe, source-linked explanation of what this medicine is used or studied for.'
   const note = simplifyCommonReaderTerms(noteParts.join('; '))
   const noteSentence = note ? ensureSentence(note.replace(/^used\s+/iu, 'It is used ')) : undefined
   const practicalNote =
@@ -542,7 +628,12 @@ function usedForSummary(
       ? noteSentence
       : undefined
 
-  return { usedFor: safeUse, ...(practicalNote ? { practicalNote } : {}) }
+  return {
+    usedFor: safeUse,
+    usedForState,
+    ...(quotable ? { usedForSource: quotable } : {}),
+    ...(practicalNote ? { practicalNote } : {}),
+  }
 }
 
 function explicitVerdictLimit(
@@ -636,6 +727,8 @@ export function buildLegacyReaderSummary(input: LegacyReaderSummaryInput): Reade
   const generatedPurpose = usedForSummary(selectedUse, input)
   const purpose = {
     usedFor: generatedPurpose.usedFor,
+    usedForState: generatedPurpose.usedForState,
+    ...(generatedPurpose.usedForSource ? { usedForSource: generatedPurpose.usedForSource } : {}),
     ...(generatedPurpose.practicalNote ? { practicalNote: generatedPurpose.practicalNote } : {}),
   }
   const whatStudiesFound =

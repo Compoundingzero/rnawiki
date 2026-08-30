@@ -223,7 +223,28 @@ def main():
     if presence_path:
         print("[index] also writing unfiltered presence stream to %s" % presence_path, flush=True)
 
-    zips = sorted(f for f in os.listdir(archive_dir) if f.endswith(".json.zip"))
+    # Both naming conventions are accepted. openFDA publishes
+    # "drug-label-0001-of-0014.json.zip"; scripts/ingest/download.ts deliberately renames each
+    # partition to "label-01.zip" as it saves it. Matching only the published name meant the
+    # indexer silently found nothing when pointed at the directory the project's own downloader
+    # produces. What is inside the zip is read from namelist()[0] either way, so the outer name
+    # never mattered except here.
+    zips = sorted(
+        f
+        for f in os.listdir(archive_dir)
+        if f.endswith(".json.zip") or (f.endswith(".zip") and "label" in f)
+    )
+    if not zips:
+        # Exiting 0 having done nothing is the failure this project already paid for once, when a
+        # rate-limited source answered with HTTP 200 and an error object and the pipeline recorded
+        # "no marketed labels" for thousands of substances. A run that indexes nothing is a failure
+        # and says so.
+        raise SystemExit(
+            "[index] no label partitions found in %s\n"
+            "        expected files ending .json.zip, or label*.zip as written by\n"
+            "        scripts/ingest/download.ts" % archive_dir
+        )
+    print("[index] %d label partition(s) found" % len(zips), flush=True)
     written = 0
     skipped = 0
     presence_written = 0
@@ -328,6 +349,11 @@ def main():
         presence_out.close()
         print("[index] presence stream: %d label(s)" % presence_written)
     print("[index] wrote %d labels, skipped %d" % (written, skipped))
+    if written == 0:
+        raise SystemExit(
+            "[index] indexed 0 labels from %d partition(s). Refusing to report success."
+            % len(zips)
+        )
 
 
 if __name__ == "__main__":
