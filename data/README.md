@@ -7,8 +7,17 @@ live mirror and may not match the website's current records or fields. Check `ge
 A successful scheduled export replaces this directory from the authoritative database. That lets
 readers inspect a dated copy of public medicine data and compare later exports over time.
 
-**Licence: CC BY-SA 4.0** (see [`LICENSE-DATA`](../LICENSE-DATA)). Use it, publish on it, build on
-it. Credit RNAWiki and share derivatives under the same terms.
+**Licence: CC BY 4.0** (see [`LICENSE-DATA`](../LICENSE-DATA)). Use it, publish on it, build on it.
+Credit RNAWiki and say which snapshot you used. There is no obligation to release your derivative
+under the same licence.
+
+What that covers is narrower than the directory: RNAWiki licenses its own selection, schema,
+structure and prose. It does not own, and cannot relicense, the cited papers, the third-party source
+documents or the manufacturer label passages quoted here, and the openFDA facts underneath much of
+this snapshot are US Government works that were never RNAWiki's to license in the first place.
+[`docs/data-licensing-policy.md`](../docs/data-licensing-policy.md) says exactly which is which,
+and why third-party data under a copyleft licence has to ship as a separate companion download
+rather than be folded into this one.
 
 ---
 

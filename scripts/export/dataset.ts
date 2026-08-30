@@ -38,6 +38,27 @@ const SHARD_SIZE = 1000
 const EXPORT_DIR = join(process.cwd(), 'data')
 const DRUGS_DIR = join(EXPORT_DIR, 'drugs')
 
+/**
+ * The one place the core dataset licence is written down, so every regenerated manifest agrees.
+ *
+ * WHY THIS IS A CONSTANT AND WHY IT SAYS CC BY. `LICENSE-DATA` has always carried the Creative
+ * Commons Attribution 4.0 International text and imposes no copyleft obligation at all, yet this
+ * manifest field, both READMEs and every manifest generated from it declared the copyleft variant
+ * instead. That is precisely the contradiction for which this project refuses to ingest ChEBI: a
+ * permissive licence file sitting beside a README claiming a stricter one, where a reader cannot
+ * tell from the outside which governs. A careful downstream user applying RNAWiki's own published
+ * standard to RNAWiki would have declined to use this dataset, and would have been right to. The
+ * legal text is what was actually granted, so the legal text wins.
+ *
+ * The identifier for the copyleft variant is deliberately absent from this whole file. The audit
+ * harness in `scripts/audit/denial-corpus/measure.ts` pattern-matches this file for a licence
+ * identifier and cannot tell a historical mention from a live declaration, so naming it even in a
+ * comment would report the exporter as declaring it. The history lives in
+ * `docs/data-licensing-policy.md`; `tests/unit/data-licence-consistency.test.ts` reads the real
+ * files from disk and fails if these declarations ever drift apart again.
+ */
+const CORE_DATASET_LICENCE = 'CC BY 4.0 — see LICENSE-DATA'
+
 /** Internal plumbing plus the superseded medicine-wide verdict, which has no safe public scope. */
 const OMITTED_PUBLIC_FIELDS = new Set([
   'searchVector',
@@ -290,7 +311,7 @@ async function main(): Promise<void> {
   const manifest: Manifest = {
     generatedAt: new Date().toISOString(),
     source: 'https://rnawiki.com',
-    licence: 'CC BY-SA 4.0 — see LICENSE-DATA',
+    licence: CORE_DATASET_LICENCE,
     counts,
     files,
   }

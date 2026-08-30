@@ -80,8 +80,13 @@ interpretability claims, mechanism and timeline claims, and scoped trial registr
 generated file has a SHA-256 in
 [`data/manifest.json`](data/manifest.json).
 
-**CC BY-SA 4.0.** Source identifiers, bindings and digests in a snapshot can help readers trace the
-stored record. They do not establish that every statement is correct or fully sourced.
+**CC BY 4.0.** Credit RNAWiki and the snapshot date; there is no obligation to license a derivative
+under the same terms. RNAWiki licenses its own selection, schema, structure and prose — not the
+papers, label passages and third-party source documents it cites.
+[`docs/data-licensing-policy.md`](docs/data-licensing-policy.md) sets out which is which.
+
+Source identifiers, bindings and digests in a snapshot can help readers trace the stored record.
+They do not establish that every statement is correct or fully sourced.
 
 `data/` is not a live mirror. Read `generatedAt` in the manifest before using it. The database is
 the authoritative source, and this directory is overwritten wholesale on every successful export.
@@ -138,7 +143,8 @@ iron-session · Vitest · Playwright. Deployed on Railway.
 
 ## Licence
 
-Code AGPL-3.0. Data CC BY-SA 4.0 — see `LICENSE` and `LICENSE-DATA`.
+Code AGPL-3.0. Data CC BY 4.0 — see `LICENSE`, `LICENSE-DATA` and
+[`docs/data-licensing-policy.md`](docs/data-licensing-policy.md).
 
 **RNAWiki is a public evidence record, not medical advice.** Talk to a clinician before changing any
 treatment.
