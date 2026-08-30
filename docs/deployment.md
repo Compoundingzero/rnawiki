@@ -126,6 +126,48 @@ certificate, obtain and verify that certificate out of band, store it securely, 
 `DATABASE_CA_CERT` secret and a read-only connection string in `DATASET_DATABASE_URL`; it fails if
 either is missing.
 
+### The certificate authenticates `localhost`, not the proxy
+
+Railway signs this database's certificate with a private CA and gives it exactly one identity:
+
+```
+subject=CN=localhost   issuer=CN=root-ca   X509v3 Subject Alternative Name: DNS:localhost
+```
+
+The public endpoint is a **TCP passthrough** — it forwards that certificate byte for byte instead of
+terminating TLS and presenting one named for the proxy. Confirmed by comparing the leaf offered on
+the public port against `/var/lib/postgresql/data/certs/server.crt` read over `railway ssh`: the
+SHA-256 fingerprints are identical. So an external client sees three outcomes:
+
+| Trust anchor       | Name checked   | Result                                         |
+| ------------------ | -------------- | ---------------------------------------------- |
+| system trust store | proxy hostname | fails — self-signed certificate in chain       |
+| pinned `root.crt`  | proxy hostname | fails — certificate is not valid for that host |
+| pinned `root.crt`  | `localhost`    | **verifies**                                   |
+
+Only the third can succeed, because it is the only name the certificate asserts. Set
+`PGSSLSERVERNAME=localhost` alongside `PGSSLROOTCERT`. This is not a relaxation: the signature chain
+and the asserted identity are both still checked, and the trust anchor is private to this database,
+so the handshake completes only with a server holding a key that CA signed.
+
+`db/ssl.ts` refuses `PGSSLSERVERNAME` unless `PGSSLROOTCERT` is also set — against the public trust
+store, accepting a name unrelated to the host dialled would sever the binding hostname verification
+exists to provide.
+
+Obtain the CA from inside Railway, never from the public endpoint:
+
+```bash
+railway ssh --service Postgres "cat /var/lib/postgresql/data/certs/root.crt" > postgres-ca.pem
+```
+
+Copy only `root.crt` (and `server.crt` for inspection). **Never copy `root.key` or `server.key`.** A
+certificate scraped from an unauthenticated public connection pins whatever answered, including an
+interceptor, and proves nothing.
+
+Note for `psql` and other libpq clients: libpq verifies against its `host` parameter and has no
+equivalent override, so this path works for the Node scripts in this repository. From a shell, reach
+the database over `railway ssh` instead.
+
 A full corpus load over the proxy takes a few minutes. It is safe to re-run: every write is an
 upsert keyed on slug, and the loader refuses to overwrite a curated dossier's narrative fields.
 
