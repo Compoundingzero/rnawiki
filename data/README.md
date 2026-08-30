@@ -7,8 +7,17 @@ live mirror and may not match the website's current records or fields. Check `ge
 A successful scheduled export replaces this directory from the authoritative database. That lets
 readers inspect a dated copy of public medicine data and compare later exports over time.
 
-**Licence: CC BY-SA 4.0** (see [`LICENSE-DATA`](../LICENSE-DATA)). Use it, publish on it, build on
-it. Credit RNAWiki and share derivatives under the same terms.
+**Licence: CC BY 4.0** (see [`LICENSE-DATA`](../LICENSE-DATA)). Use it, publish on it, build on it.
+Credit RNAWiki and say which snapshot you used. There is no obligation to release your derivative
+under the same licence.
+
+What that covers is narrower than the directory: RNAWiki licenses its own selection, schema,
+structure and prose. It does not own, and cannot relicense, the cited papers, the third-party source
+documents or the manufacturer label passages quoted here, and the openFDA facts underneath much of
+this snapshot are US Government works that were never RNAWiki's to license in the first place.
+[`docs/data-licensing-policy.md`](../docs/data-licensing-policy.md) says exactly which is which,
+and why third-party data under a copyleft licence has to ship as a separate companion download
+rather than be folded into this one.
 
 ---
 
@@ -33,11 +42,13 @@ requests. That is code, and it lives outside this directory.
 
 ## What is here
 
-| File                     | What it is                                                         |
-| ------------------------ | ------------------------------------------------------------------ |
-| `manifest.json`          | Export time, legacy row counts, and each generated file's SHA-256  |
-| `drugs.csv`              | Flat identity, regulatory, structure, trial-count, and URL columns |
-| `drugs/drugs-NNN.ndjson` | Repaired legacy records in the snapshot's medicine-wide shape      |
+| File                         | What it is                                                                                                                                                             |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `manifest.json`              | Export time, legacy row counts, and each generated file's SHA-256                                                                                                      |
+| `drugs.csv`                  | Flat identity, regulatory, structure, trial-count, and URL columns                                                                                                     |
+| `drugs/drugs-NNN.ndjson`     | Repaired legacy records in the snapshot's medicine-wide shape                                                                                                          |
+| `recorded-background.ndjson` | **The source-bound corpus.** Every recorded value with the exact fetched sentence it was read from, its population context, its source identity and its retrieval date |
+| `source-consensus.ndjson`    | Cross-source readings per field, with the comparability state                                                                                                          |
 
 Newline-delimited JSON, so you can stream it without loading 14 MB into memory:
 
@@ -182,3 +193,57 @@ inspect the identifiers and links actually stored with the medicine before relyi
 ## Not medical advice
 
 A public reference work. Nothing here is a recommendation to start, stop or change a treatment.
+
+## The recorded-background corpus
+
+`recorded-background.ndjson` is the part of this dataset that does not exist anywhere else. One JSON
+object per medicine, carrying the `medicine-background/v1` envelope exactly as stored.
+
+What makes it different from a scrape is that **every number arrives with the sentence it was read
+from**. A half-life is not `12`; it is `12 ± 5 hours`, with `populationContext`, the SPL set id, the
+retrieval date and the excerpt that printed it. A machine checked that the number appears in that
+sentence, by value rather than by substring.
+
+### What a missing field means
+
+Absent means no source in this corpus fills it. That is a fact about the corpus, never about the
+medicine. It does not mean zero, none, or safe.
+
+### Verified silence is not the same as no source read
+
+Two different absences, and the difference is the point:
+
+- A source **was** read and did not answer the question — someone looked, and the document is silent.
+- **No qualifying source was read.** Two thirds of this corpus is registry-derived rows with no
+  document behind them at all.
+
+Never add them together. `provenanceTier` on each row tells you which kind of record you are holding.
+
+### Disagreement is not the same as not-comparable
+
+`source-consensus.ndjson` carries a `comparisonState` per field:
+
+| State                  | Meaning                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------- |
+| `agree`                | The readings were comparable and their ranges overlap                           |
+| `differ`               | The readings were comparable and do **not** overlap — a real disagreement       |
+| `not_comparable`       | Comparing them would need a measurement no source stated, such as a body weight |
+| `insufficient_context` | Not enough was recorded to decide even that                                     |
+
+`0.5 L/kg` and `35.5 L` are **not** a disagreement. In a 70 kg adult the second is 0.51 L/kg, and no
+label printed a weight, so RNAWiki will not do that arithmetic on your behalf. Both readings are kept
+exactly as printed and neither is marked wrong.
+
+### A source count is not a count of experiments
+
+`sourceCount` counts **documents**, not independent measurements. A medicine is often covered by
+hundreds of labels because every manufacturer publishes its own, and they frequently print the same
+sentence. Thirty labels agreeing can be one sentence copied thirty times.
+
+### Citing it
+
+> RNAWiki recorded-background corpus, <generatedAt from manifest.json>, CC BY 4.0,
+> https://rnawiki.com
+
+Attribute RNAWiki and the snapshot date. The underlying source documents are not RNAWiki's to
+license: see `docs/data-licensing-policy.md`.

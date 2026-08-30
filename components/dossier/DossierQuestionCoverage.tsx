@@ -41,6 +41,14 @@ const coveragePresentation: Record<
     label: 'Awaiting review',
     className: 'border-[#F0D89A] bg-[#FFF8E7] text-[#8A4B00]',
   },
+  conflicting: {
+    label: 'Sources differ',
+    className: 'bg-[#A85B1F]/10 text-[#A85B1F]',
+  },
+  stale: {
+    label: 'Source needs rechecking',
+    className: 'bg-[#8A6D1F]/10 text-[#8A6D1F]',
+  },
 }
 
 function AnswerItem({

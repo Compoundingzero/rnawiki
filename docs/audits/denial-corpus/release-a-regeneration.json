@@ -1,0 +1,57 @@
+{
+  "archive": {
+    "manifest": "https://api.fda.gov/download.json",
+    "exportDate": "2026-08-28",
+    "labelPartitions": 14,
+    "sizeMb": 1770.9,
+    "labelsExamined": 262271,
+    "labelsIndexed": 80444,
+    "labelsSkipped": 181827,
+    "presenceStream": 87096
+  },
+  "before": {
+    "valuesEqualToOwnDispersion": 23,
+    "extractedRecords": 3256,
+    "consensusFields": 1626,
+    "consensusDisjoint": 234,
+    "recordsAtInteractionCap": 200,
+    "recordsAboveInteractionCap": 0,
+    "maxInteractionSignals": 12,
+    "hashes": {
+      "baseline.json": "e68157b555e6eec9ecc0747dfee879996f77a89e389266907d7a11417e9673f2",
+      "enzyme-and-transporter-documentation.json": "0a19553a5e5dc5057b14ba4a8b84e7f595026d9dac56da10a9f6d944f8fdd59c",
+      "extracted-background.generated.ts": "115d508be751926be60dd12e7424e067f0724a258541b581b3544cc68790e225",
+      "source-consensus.generated.ts": "c66438859ef0e0ca78077dee1656baf1f127e6812efe347cf4cca9e5de44b90d"
+    }
+  },
+  "after": {
+    "valuesEqualToOwnDispersion": 0,
+    "extractedRecords": 3276,
+    "consensusFields": 1670,
+    "comparisonStates": {
+      "agree": 1427,
+      "differ": 231,
+      "not_comparable": 12
+    },
+    "recordsAtFormerCap": 33,
+    "recordsAboveFormerCap": 466,
+    "maxInteractionSignals": 164,
+    "polarity": {
+      "asserted": 4439,
+      "negated": 7261,
+      "notRecorded": 7824
+    },
+    "hashes": {
+      "extracted-background.generated.ts": "797f52298881cfca0f9b8362fc11718a05ae62b1d3f8418f91ab72e06d1c8221",
+      "source-consensus.generated.ts": "583ceca998e6361dce1b7c31d3a2a478ed1b3a44d0130d2ae52a586c534443f1",
+      "baseline.json": "5ea328207ab7b1fce94bbcde37e36da6d7e4e5c48fd7c2b755a5ca382cfcba58"
+    },
+    "measurementDigest": "5ea328207ab7b1fce94bbcde37e36da6d7e4e5c48fd7c2b755a5ca382cfcba58"
+  },
+  "historicalTwentyThree": {
+    "rechecked": 23,
+    "storingADispersion": 0,
+    "exactMeanPredicted": 20,
+    "differentSentenceSameLabel": ["atovaquone", "choriogonadotropin-alfa", "rimantadine"]
+  }
+}

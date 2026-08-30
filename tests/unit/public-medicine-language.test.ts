@@ -639,4 +639,163 @@ describe('reader-facing medicine vocabulary', () => {
       { label: 'What this page covers', text: 'One identified use' },
     ])
   })
+
+  describe('the first screen never speaks an instruction in the site’s own voice', () => {
+    const NO_SAFE_USE =
+      'This record does not yet contain a safe, source-linked explanation of what this medicine is used or studied for.'
+
+    function usedFor(selectedUse: string, modality = 'Nutraceutical / Botanical'): string {
+      return buildLegacyReaderSummary({
+        medicineName: 'Example Substance',
+        modality,
+        trialIdentifiers: [],
+        selectedUse,
+      }).usedFor
+    }
+
+    // Each of these is a real stored indication, and each rendered as the answer to
+    // "What is it for?" in the site's own voice before the guard existed.
+    it.each([
+      ['Take 15 minutes before meals.', 'anisum'],
+      [
+        'Dissolve 5 pellets under the tongue once a day until symptons are relieved.',
+        'artemisia-cina-flower',
+      ],
+      [
+        'Apply a thin layer to cleansed face or affected areas morning and evening.',
+        'asiaticoside',
+      ],
+      [
+        'Spray the spray directly on your shoes or feet to make odors disappear quickly.',
+        'eucalyptus-globulus-leaf-oil',
+      ],
+    ])('refuses the copied instruction %j (%s)', (stored) => {
+      expect(usedFor(stored)).toBe(NO_SAFE_USE)
+    })
+
+    it('refuses an instruction on a medicine whose lead-in is "Used or studied for"', () => {
+      expect(usedFor('Take 15 minutes before meals', 'Small Molecule')).toBe(NO_SAFE_USE)
+    })
+
+    it.each([
+      'INDICATIONS Allergies.',
+      'INDICATIONS Late growth, fracture consolidation.',
+      'directions: FOR ORAL USE ONLY.',
+      'Condition listed above or as directed by the physician.',
+    ])('refuses the label furniture %j', (stored) => {
+      expect(usedFor(stored)).toBe(NO_SAFE_USE)
+    })
+
+    // The control that decides whether the guard is written correctly. This is a genuine FDA
+    // monograph sunscreen indication: it contains the words "as directed" and "Directions", and it
+    // is a real answer to "what is it for?". A case-insensitive heading match would delete it.
+    it('keeps a genuine monograph use that merely mentions directions', () => {
+      const stored =
+        'Helps prevent sunburn. If used as directed with other sun protection measures (see Directions), decreases the risk of skin cancer.'
+      expect(usedFor(stored)).not.toBe(NO_SAFE_USE)
+      expect(usedFor(stored)).toMatch(/prevent sunburn/iu)
+    })
+
+    it.each([
+      ['High blood pressure in adults', 'Small Molecule'],
+      ['Loss of appetite', 'Nutraceutical / Botanical'],
+    ])('keeps the ordinary use %j', (stored, modality) => {
+      expect(usedFor(stored, modality)).not.toBe(NO_SAFE_USE)
+    })
+
+    it('drops a footnote marker whose footnote is not on the page', () => {
+      // The disclaimer the marker points at is split off by the sentence split, so the marker would
+      // otherwise promise a qualification the reader can never reach.
+      const line = usedFor(
+        'Hives*; *Claims based on traditional homeopathic practice, not accepted medical evidence.',
+      )
+      expect(line).not.toMatch(/[*†‡]/u)
+      expect(line).toMatch(/hives/iu)
+    })
+
+    /**
+     * The third state. Refusing to speak a copied instruction is right; refusing to show the source
+     * is not. A record holding a source-linked indication now shows it as a quotation, attributed,
+     * rather than telling the reader nothing.
+     */
+    describe('the quoted source state', () => {
+      const RECORDED_USE = {
+        text: 'For the temporary relief of minor aches and pains.',
+        sourceLabel: 'FDA label for the example product',
+        sourceIdentifier: '00000000-0000-4000-8000-00000000e2e1',
+      }
+
+      function withRecordedUse(stored: string | undefined, recordedUse = RECORDED_USE) {
+        return buildLegacyReaderSummary({
+          medicineName: 'Example Substance',
+          modality: 'Nutraceutical / Botanical',
+          trialIdentifiers: [],
+          recordedUse,
+          ...(stored ? { selectedUse: stored } : {}),
+        })
+      }
+
+      it('quotes the source when RNAWiki cannot safely speak the stored use', () => {
+        const summary = withRecordedUse('Take 15 minutes before meals.')
+        expect(summary.usedForState).toBe('RECORDED_SOURCE_USE')
+        expect(summary.usedFor).toBe(RECORDED_USE.text)
+        expect(summary.usedForSource?.sourceIdentifier).toBe(RECORDED_USE.sourceIdentifier)
+      })
+
+      it('quotes the source when there is no stored use at all', () => {
+        const summary = withRecordedUse(undefined)
+        expect(summary.usedForState).toBe('RECORDED_SOURCE_USE')
+        expect(summary.usedFor).toBe(RECORDED_USE.text)
+      })
+
+      it('prefers a safe sentence of our own over the quotation when one exists', () => {
+        const summary = withRecordedUse('Loss of appetite')
+        expect(summary.usedForState).toBe('SAFE_PLAIN_USE')
+        expect(summary.usedForSource).toBeUndefined()
+      })
+
+      it('refuses a recorded use that is label furniture', () => {
+        const summary = withRecordedUse('Take 15 minutes before meals.', {
+          ...RECORDED_USE,
+          text: 'INDICATIONS AND USAGE See package insert.',
+        })
+        expect(summary.usedForState).toBe('NO_SAFE_USE_STATEMENT')
+      })
+
+      it('refuses a recorded use that is a dosing direction, however it is framed', () => {
+        const summary = withRecordedUse('Take 15 minutes before meals.', {
+          ...RECORDED_USE,
+          text: 'Adults take 2 capsules 3 times a day before meals.',
+        })
+        expect(summary.usedForState).toBe('NO_SAFE_USE_STATEMENT')
+      })
+
+      it('says so plainly when nothing safe is available, rather than showing an empty card', () => {
+        const summary = buildLegacyReaderSummary({
+          medicineName: 'Example Substance',
+          modality: 'Nutraceutical / Botanical',
+          trialIdentifiers: [],
+          selectedUse: 'Take 15 minutes before meals.',
+        })
+        expect(summary.usedForState).toBe('NO_SAFE_USE_STATEMENT')
+        expect(summary.usedFor).toBe(NO_SAFE_USE)
+      })
+
+      it('does not alter the stored source text', () => {
+        const recordedUse = { ...RECORDED_USE }
+        withRecordedUse('Take 15 minutes before meals.', recordedUse)
+        expect(recordedUse.text).toBe(RECORDED_USE.text)
+      })
+    })
+
+    it('screens the practical note as well as the use line', () => {
+      const summary = buildLegacyReaderSummary({
+        medicineName: 'Example Substance',
+        modality: 'Nutraceutical / Botanical',
+        trialIdentifiers: [],
+        selectedUse: 'Occasional sleeplessness; take 2 tablets once daily as directed by a doctor',
+      })
+      expect(summary.practicalNote).toBeUndefined()
+    })
+  })
 })

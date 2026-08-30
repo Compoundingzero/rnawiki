@@ -163,3 +163,75 @@ describe('role-aware dossier serialization', () => {
     expect(payload).toEqual(before)
   })
 })
+
+/**
+ * The public endpoint spreads the whole dossier and strips only what it is told to strip, so a
+ * stored field reaches an anonymous caller unless this serializer removes it. Two parts of
+ * `substitutes` may never leave: one names patient actions, the other weighs named alternative
+ * medicines against each other in RNAWiki's own voice.
+ */
+describe('the public serializer withholds the unpublishable parts of substitutes', () => {
+  function withSubstitutes(): DrugDossier {
+    return {
+      ...makeDossier(),
+      substitutes: {
+        summary: 'Other treatments recorded for the same goal.',
+        naturalFoods: [],
+        conventionalRx: [
+          {
+            name: 'Dolutegravir with abacavir and lamivudine',
+            class: 'Integrase strand transfer inhibitor plus two nucleoside analogues',
+            howItCompares:
+              'The comparator in registration trial GS-US-380-1489. At week 48, 93.0% of 315 participants were below 50 copies per millilitre against 92.4% of 314.',
+            typicalCost: 'No NADAC figure on this record',
+            prosAndCons:
+              'Pros: decades of accumulated data. Cons: abacavir requires HLA-B*5701 testing before use.',
+          },
+        ],
+        homeRemedies: [
+          {
+            name: 'Ask whether your weight is being tracked',
+            action: 'Request that body weight be recorded at each visit alongside the viral load.',
+            patientImpact:
+              'In the ADVANCE trial, mean increases of 6.4 kg were recorded at 48 weeks.',
+            clinicalPrecaution: 'Recorded precaution text.',
+          },
+        ],
+      },
+    }
+  }
+
+  it('returns no home-remedy entry, because every one of them names a patient action', () => {
+    const { drug } = serializePublicDossier(withSubstitutes())
+    expect(drug.substitutes?.homeRemedies).toEqual([])
+    expect(JSON.stringify(drug)).not.toContain('Request that body weight be recorded')
+  })
+
+  it('returns no pros-and-cons line, because it is the ranking the section disclaims', () => {
+    const { drug } = serializePublicDossier(withSubstitutes())
+    const [alternative] = drug.substitutes?.conventionalRx ?? []
+    expect(alternative).not.toHaveProperty('prosAndCons')
+    expect(JSON.stringify(drug)).not.toContain('HLA-B*5701')
+  })
+
+  it('keeps the recorded trial-comparator fact, which is about one programme', () => {
+    const { drug } = serializePublicDossier(withSubstitutes())
+    const [alternative] = drug.substitutes?.conventionalRx ?? []
+    expect(alternative?.howItCompares).toContain('GS-US-380-1489')
+    expect(alternative?.class).toContain('Integrase')
+    expect(alternative?.typicalCost).toBe('No NADAC figure on this record')
+  })
+
+  it('never mutates the stored dossier it was handed', () => {
+    const stored = withSubstitutes()
+    const before = JSON.stringify(stored)
+    serializePublicDossier(stored)
+    expect(JSON.stringify(stored)).toBe(before)
+    expect(stored.substitutes?.homeRemedies).toHaveLength(1)
+  })
+
+  it('serializes a dossier carrying no substitutes unchanged', () => {
+    const { drug } = serializePublicDossier(makeDossier())
+    expect(drug.substitutes).toBeUndefined()
+  })
+})

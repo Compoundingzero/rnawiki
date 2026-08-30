@@ -18,6 +18,7 @@
  */
 
 import type { AnatomyRegionCode } from './anatomy-regions'
+import type { ReadingComparisonReason, ReadingComparisonState } from './reading-comparison'
 
 export const MEDICINE_BACKGROUND_VERSION = 'medicine-background/v1' as const
 
@@ -835,10 +836,22 @@ export interface RecordedFieldConsensus {
   /** Share of sources stating the most-supported reading, in [0, 1]. */
   agreementRate: number
   /**
-   * True when at least two readings carry numbers whose ranges do not overlap. This marks a pair
-   * worth a person's attention; it is not a claim that either reading is wrong.
+   * True when at least two readings carry numbers whose ranges do not overlap.
+   *
+   * @deprecated Superseded by `comparisonState`, and misleading on its own: it was computed without
+   * consulting the unit, so a volume of 0.5 L/kg and one of 35.5 L were reported as disagreeing when
+   * the second is 0.51 L/kg in a 70 kg adult. Retained so records generated before the comparability
+   * contract existed still read, and still written so an old consumer keeps working, but no new
+   * reader-facing decision should be taken from it.
    */
   numericallyDisjoint: boolean
+  /**
+   * Whether the readings can be compared at all, and if so whether they agree. Absent on records
+   * generated before the contract existed; see `lib/background/reading-comparison.ts`.
+   */
+  comparisonState?: ReadingComparisonState
+  /** Why the comparison reached that state, for a reviewer and for the audit. */
+  comparisonReasons?: ReadingComparisonReason[]
 }
 
 export interface RecordedSourceConsensus {

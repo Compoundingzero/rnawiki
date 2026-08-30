@@ -31,6 +31,69 @@ function artifact(overrides: Partial<LabelArtifact> = {}): LabelArtifact {
   }
 }
 
+/**
+ * A label printing "mean ± SD" defeated a pattern that knew only ranges: the capture failed at the
+ * mean, the lazy prefix slid past it, and the group matched the standard deviation instead. The
+ * excerpt check passed every one of these, because the standard deviation really is in the
+ * sentence — number-in-excerpt proves a digit was read, never that it was the right digit.
+ *
+ * Every sentence below is quoted from the label that produced the wrong value.
+ */
+describe('label extraction: a dispersion is not the value', () => {
+  function halfLife(sentence: string) {
+    return extractPharmacokinetics(artifact({ sections: { pharmacokinetics: sentence } }), OPTIONS)
+      ?.halfLife
+  }
+
+  it('takes the mean, not the standard deviation, from "12 ± 5 hours"', () => {
+    // Recorded as 5 hours. Abiraterone's terminal half-life is 12.
+    expect(
+      halfLife(
+        'Elimination In patients with metastatic CRPC, the mean terminal half-life of abiraterone in plasma (mean ± SD) is 12 ± 5 hours.',
+      ),
+    ).toMatchObject({ display: '12 ± 5 hours', numeric: 12 })
+  })
+
+  it.each([
+    ['The half-life was 17 ± 4 hours.', '17 ± 4 hours', 17],
+    [
+      'The mean ± SD half-life for bempedoic acid in humans was 21 ± 11 hours at steady-state.',
+      '21 ± 11 hours',
+      21,
+    ],
+    ['The mean half-life of cevimeline is 5+/-1 hours.', '5+/-1 hours', 5],
+    ['The mean ± SD terminal half-life of bromelain is 12 ± 4.4 hours.', '12 ± 4.4 hours', 12],
+  ])('takes the mean from %j', (sentence, display, numeric) => {
+    expect(halfLife(sentence)).toMatchObject({ display, numeric })
+  })
+
+  it('takes the mean volume of distribution, not its dispersion', () => {
+    const pharmacokinetics = extractPharmacokinetics(
+      artifact({
+        sections: {
+          pharmacokinetics:
+            'The apparent steady-state volume of distribution (mean ± SD) is 19,669 ± 13,358 L.',
+        },
+      }),
+      OPTIONS,
+    )
+    // Recorded as 13,358 L, which is the standard deviation.
+    expect(pharmacokinetics!.volumeOfDistribution).toMatchObject({ numeric: 19669 })
+  })
+
+  it('leaves an ordinary range reading from its low end, as it always did', () => {
+    expect(halfLife('The elimination half-life is approximately 3 to 5 hours.')).toMatchObject({
+      display: '3 to 5 hours',
+      numeric: 3,
+    })
+  })
+
+  it('keeps the dispersion visible in the displayed value rather than discarding it', () => {
+    // The reader sees the spread the label printed; only the axis-bound number is the mean.
+    expect(halfLife('The half-life was 17 ± 4 hours.')!.display).toContain('±')
+  })
+})
+
 describe('label extraction: the excerpt guarantee', () => {
   it('stores the sentence each number was read out of, so the value is always in its excerpt', () => {
     const pharmacokinetics = extractPharmacokinetics(
@@ -692,5 +755,71 @@ describe('label extraction: short statements', () => {
       'Uses After a single oral dose the preparation relieves occasional joint discomfort in adults.',
     )
     expect(recorded?.statements.length).toBe(1)
+  })
+})
+
+/**
+ * The cap that used to sit here kept twelve counterparties, chosen by sorting the names and taking
+ * the first twelve. The discard rule was the alphabet, so the loss was systematic: P-glycoprotein
+ * sorts near the end and was deleted preferentially from the medicines whose labels characterised it
+ * most fully, and nothing in the record said a truncation had happened.
+ */
+describe('interaction signals are canonical evidence and are never capped', () => {
+  /** Thirteen enzymes in one sentence, plus P-gp in a second — fourteen, past the old cutoff. */
+  const MANY_COUNTERPARTIES = [
+    'In vitro, the drug is a substrate of CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6,',
+    'CYP2E1, CYP3A4, CYP3A5, CYP4A11, CYP2J2, and CYP1B1.',
+    'The drug is a substrate of P-gp.',
+  ].join(' ')
+
+  function signalsFrom(text: string) {
+    return extractInteractionSignals(artifact({ sections: { pharmacokinetics: text } }), OPTIONS)
+  }
+
+  it('keeps every counterparty the label names, past the former limit of twelve', () => {
+    const signals = signalsFrom(MANY_COUNTERPARTIES)
+    expect(signals.length).toBeGreaterThan(12)
+  })
+
+  it('keeps P-glycoprotein, which the alphabetical cut removed first', () => {
+    const names = signalsFrom(MANY_COUNTERPARTIES).map((signal) => signal.counterpartyAsRecorded)
+    expect(names).toContain('P-GP')
+    // It sorts after the enzymes, which is exactly why it used to be the one discarded.
+    expect(names.indexOf('P-GP')).toBeGreaterThan(11)
+  })
+
+  /**
+   * Keying identity on the counterparty alone discarded a second sentence about the same enzyme, so
+   * a label denying a role kept only whichever statement came first. That silently lost the denials
+   * this corpus exists to record.
+   */
+  it('keeps an assertion and a denial about the same counterparty as two findings', () => {
+    const signals = signalsFrom(
+      'The drug is a substrate of CYP3A4. The drug does not inhibit CYP3A4.',
+    )
+    const cyp3a4 = signals.filter((signal) => signal.counterpartyAsRecorded === 'CYP3A4')
+    expect(cyp3a4).toHaveLength(2)
+    expect(cyp3a4.map((signal) => signal.polarity).sort()).toEqual(['ASSERTED', 'NEGATED'])
+  })
+
+  it('still collapses the identical sentence read twice', () => {
+    const once = signalsFrom('The drug is a substrate of CYP3A4.')
+    const twice = signalsFrom(
+      'The drug is a substrate of CYP3A4. The drug is a substrate of CYP3A4.',
+    )
+    expect(twice).toHaveLength(once.length)
+  })
+
+  it('preserves polarity and the exact sentence on every kept signal', () => {
+    for (const signal of signalsFrom(MANY_COUNTERPARTIES)) {
+      expect(signal.source.excerpt).toContain(signal.counterpartyAsRecorded.replace('P-GP', 'P-gp'))
+      expect(signal.provenanceTier).toBe('extracted')
+    }
+  })
+
+  it('orders deterministically, so a rerun produces the same file', () => {
+    const first = signalsFrom(MANY_COUNTERPARTIES)
+    const second = signalsFrom(MANY_COUNTERPARTIES)
+    expect(JSON.stringify(second)).toBe(JSON.stringify(first))
   })
 })

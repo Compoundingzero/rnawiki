@@ -3608,3 +3608,256 @@ export const evidenceReviewTaskSourceDeltasRelations = relations(
     }),
   }),
 )
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Agent review memory                                                                              */
+/*                                                                                                  */
+/* The documented compounding advantage — "every accept, reject and correction a reviewer makes"    */
+/* — had no substrate. AgentInput carried no channel a decision could arrive through, ReviewCandidate*/
+/* had no identity to record one against, and the 2,005 items the agents emit landed in JSON files  */
+/* that no route reads and every rerun overwrites. A decision made on one was lost the moment the   */
+/* reviewer closed the file.                                                                        */
+/*                                                                                                  */
+/* These three tables are that substrate. The line they must hold is narrow and absolute: a recorded*/
+/* decision may change WHICH RECORDS REACH A HUMAN. It may never change a recorded value, resolve a */
+/* source disagreement, or assert anything about a medicine.                                        */
+/* ---------------------------------------------------------------------------------------------- */
+
+export const agentRunStatusEnum = pgEnum('agent_run_status', ['COMPLETED', 'FAILED'])
+
+/**
+ * Four outcomes rather than two, because the third carries the most information and a binary
+ * accept/reject destroys it.
+ *
+ * CORRECTION_NEEDED    the record is wrong and should be re-authored.
+ * NOT_A_PROBLEM        the screen was wrong to raise this; it is not worth a person's time.
+ * CONFIRMED_AS_RECORDED  "I read the excerpt. The value is extreme, and the source really prints it."
+ *                      Lanthanum carbonate really does have 0.002% bioavailability. This is a label
+ *                      saying "extreme and correct", which is exactly what an extremeness screen has
+ *                      no other way to learn, and folding it into NOT_A_PROBLEM throws that away.
+ * NEEDS_MORE_EVIDENCE  cannot be settled from what is recorded; needs a fresh artifact or a
+ *                      specialist. Not a verdict either way.
+ */
+export const agentQueueDecisionEnum = pgEnum('agent_queue_decision', [
+  'CORRECTION_NEEDED',
+  'NOT_A_PROBLEM',
+  'CONFIRMED_AS_RECORDED',
+  'NEEDS_MORE_EVIDENCE',
+])
+
+export const agentRuns = pgTable(
+  'agent_runs',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    agentName: varchar('agent_name', { length: 64 }).notNull(),
+    agentVersion: varchar('agent_version', { length: 16 }).notNull(),
+    /** Bumped only when the MEANING of the agent's reasons changes. See lib/agents/core/identity.ts. */
+    reasonSchemaVersion: varchar('reason_schema_version', { length: 16 }).notNull(),
+    corpusVersion: varchar('corpus_version', { length: 64 }).notNull(),
+    inputDigest: varchar('input_digest', { length: 64 }).notNull(),
+    outputDigest: varchar('output_digest', { length: 64 }).notNull(),
+    /** Supplied to the agent rather than read from a clock, so a rerun reproduces the run exactly. */
+    runDate: date('run_date').notNull(),
+    seed: integer('seed').notNull(),
+    recordsConsidered: integer('records_considered').notNull(),
+    recordsUsed: integer('records_used').notNull(),
+    candidatesEmitted: integer('candidates_emitted').notNull(),
+    status: agentRunStatusEnum('status').notNull(),
+    failureDetail: text('failure_detail'),
+    startedAt: timestamp('started_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('agent_runs_agent_idx').on(table.agentName, table.runDate),
+    check(
+      'agent_runs_digests',
+      sql`${table.inputDigest} ~ '^[0-9a-f]{64}$' and ${table.outputDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'agent_runs_failure_detail',
+      sql`${table.status} = 'COMPLETED' or nullif(btrim(${table.failureDetail}), '') is not null`,
+    ),
+  ],
+)
+
+export const agentReviewCandidates = pgTable(
+  'agent_review_candidates',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    /** Stable while the QUESTION is the same. Never derived from prose, counts or a patch version. */
+    candidateKey: varchar('candidate_key', { length: 64 }).notNull(),
+    /** Changes when the value, a source, the parser or the corpus changes. */
+    occurrenceKey: varchar('occurrence_key', { length: 64 }).notNull(),
+    runId: varchar('run_id', { length: 64 })
+      .notNull()
+      .references(() => agentRuns.id, { onDelete: 'cascade' }),
+    agentName: varchar('agent_name', { length: 64 }).notNull(),
+    subjectType: varchar('subject_type', { length: 24 }).notNull(),
+    subjectId: varchar('subject_id', { length: 160 }).notNull(),
+    fieldPath: varchar('field_path', { length: 200 }).notNull(),
+    reason: varchar('reason', { length: 48 }).notNull(),
+    /** The agent's own ranking key. Its meaning is agent-specific and stated in `basis`. */
+    priority: numeric('priority').notNull(),
+    basis: text('basis').notNull(),
+    /** Phrased as a question about the RECORD, never as a finding about the medicine. */
+    question: text('question').notNull(),
+    /** What the agent observed, kept so a reviewer sees the evidence rather than re-deriving it. */
+    evidence: jsonb('evidence').$type<Record<string, unknown>>(),
+    sourceIds: text('source_ids').array().notNull(),
+    firstSeenAt: timestamp('first_seen_at', { withTimezone: true }).notNull().defaultNow(),
+    lastSeenAt: timestamp('last_seen_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex('agent_review_candidates_occurrence_unique').on(table.occurrenceKey),
+    index('agent_review_candidates_candidate_idx').on(table.candidateKey),
+    index('agent_review_candidates_agent_idx').on(table.agentName, table.reason),
+    index('agent_review_candidates_subject_idx').on(table.subjectType, table.subjectId),
+    check(
+      'agent_review_candidates_keys',
+      sql`${table.candidateKey} ~ '^[0-9a-f]{64}$' and ${table.occurrenceKey} ~ '^[0-9a-f]{64}$'`,
+    ),
+  ],
+)
+
+export const agentQueueDecisions = pgTable(
+  'agent_queue_decisions',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    candidateKey: varchar('candidate_key', { length: 64 }).notNull(),
+    /** The exact observation judged. A later occurrence reopens rather than inheriting this. */
+    occurrenceKey: varchar('occurrence_key', { length: 64 }).notNull(),
+    decidedByUserId: varchar('decided_by_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    decision: agentQueueDecisionEnum('decision').notNull(),
+    /** Free prose is required on everything except NOT_A_PROBLEM, which needs no defence. */
+    explanation: text('explanation'),
+    /** Digest of the evidence the reviewer was actually shown, so the decision stays interpretable. */
+    evidenceDigest: varchar('evidence_digest', { length: 64 }).notNull(),
+    conflictsOfInterest: text('conflicts_of_interest'),
+    decidedAt: timestamp('decided_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    /* One decision per reviewer per observation. A changed observation is a new row, never an edit. */
+    uniqueIndex('agent_queue_decisions_reviewer_unique').on(
+      table.occurrenceKey,
+      table.decidedByUserId,
+    ),
+    index('agent_queue_decisions_candidate_idx').on(table.candidateKey, table.decidedAt),
+    index('agent_queue_decisions_reviewer_idx').on(table.decidedByUserId),
+    check(
+      'agent_queue_decisions_keys',
+      sql`${table.candidateKey} ~ '^[0-9a-f]{64}$' and ${table.occurrenceKey} ~ '^[0-9a-f]{64}$' and ${table.evidenceDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'agent_queue_decisions_explanation',
+      sql`${table.decision} = 'NOT_A_PROBLEM' or nullif(btrim(${table.explanation}), '') is not null`,
+    ),
+  ],
+)
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Engine findings                                                                                  */
+/*                                                                                                  */
+/* The engine computed 149 rules' worth of blocks and warnings, handed them to a reviewer, and       */
+/* persisted a 64-character hash. The WARNING list — the part where a human's agreement or           */
+/* disagreement carries information — was destroyed at the end of the request, so per-rule precision */
+/* was unmeasurable forever. This table is an audit record of checks. It is never the source of      */
+/* truth for a medicine fact.                                                                        */
+/* ---------------------------------------------------------------------------------------------- */
+
+export const engineFindings = pgTable(
+  'engine_findings',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    /** `background`, `evidence` or `molecular` — which of the three engines produced this. */
+    engineFamily: varchar('engine_family', { length: 32 }).notNull(),
+    engineVersion: varchar('engine_version', { length: 48 }).notNull(),
+    inputDigest: varchar('input_digest', { length: 64 }).notNull(),
+    subjectType: varchar('subject_type', { length: 24 }).notNull(),
+    subjectId: varchar('subject_id', { length: 160 }).notNull(),
+    /** The run this finding belongs to. Nullable only for rows written before runs existed. */
+    runId: varchar('run_id', { length: 64 }),
+    ruleCode: varchar('rule_code', { length: 64 }).notNull(),
+    level: varchar('level', { length: 16 }).notNull(),
+    fieldPath: varchar('field_path', { length: 200 }).notNull(),
+    message: text('message').notNull(),
+    /** Whether this finding blocked publication, warned, or only recorded a review impact. */
+    publicationEffect: varchar('publication_effect', { length: 24 }).notNull(),
+    corpusVersion: varchar('corpus_version', { length: 64 }).notNull(),
+    recordedAt: timestamp('recorded_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('engine_findings_run_idx').on(table.runId),
+    index('engine_findings_rule_idx').on(table.ruleCode, table.recordedAt),
+    index('engine_findings_subject_idx').on(table.subjectType, table.subjectId),
+    index('engine_findings_engine_idx').on(table.engineFamily, table.engineVersion),
+    check('engine_findings_input_digest', sql`${table.inputDigest} ~ '^[0-9a-f]{64}$'`),
+  ],
+)
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Engine validation runs                                                                           */
+/*                                                                                                  */
+/* `engine_findings` records what a check FOUND. On its own that leaves the most common outcome     */
+/* invisible: a record that passed with zero findings writes nothing, and is therefore              */
+/* indistinguishable from a record nobody ever checked. Per-rule precision is not computable from   */
+/* failures alone -- the denominator is the number of times a rule ran and stayed silent.           */
+/*                                                                                                  */
+/* So the run is the row, and findings hang off it. A passing run with zero findings is still a row.*/
+/* ---------------------------------------------------------------------------------------------- */
+
+export const engineRunStatusEnum = pgEnum('engine_run_status', ['PASSED', 'FAILED'])
+
+export const engineValidationRuns = pgTable(
+  'engine_validation_runs',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    subjectType: varchar('subject_type', { length: 24 }).notNull(),
+    subjectId: varchar('subject_id', { length: 160 }).notNull(),
+    /** `background` today. `evidence` and `molecular` reuse this table when they gain a live path. */
+    engineFamily: varchar('engine_family', { length: 32 }).notNull(),
+    engineVersion: varchar('engine_version', { length: 48 }).notNull(),
+    inputDigestAlgorithm: varchar('input_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    inputDigest: varchar('input_digest', { length: 64 }).notNull(),
+    /** Which generated corpus the validated input came from, so a run is traceable to a release. */
+    corpusVersion: varchar('corpus_version', { length: 64 }).notNull(),
+    status: engineRunStatusEnum('status').notNull(),
+    passed: boolean('passed').notNull(),
+    findingCount: integer('finding_count').notNull().default(0),
+    /** The command that produced the run, e.g. `apply:background`. */
+    operation: varchar('operation', { length: 64 }).notNull(),
+    validatedAt: timestamp('validated_at', { withTimezone: true }).notNull().defaultNow(),
+    /** Set only when the validated input was actually written onto the medicine row. */
+    appliedAt: timestamp('applied_at', { withTimezone: true }),
+  },
+  (table) => [
+    /*
+     * The idempotency rule. Re-running the apply command over an unchanged corpus must not create a
+     * second identical run, while a changed input or a new engine version must create a new one --
+     * so history accumulates on real change and not on repetition.
+     */
+    uniqueIndex('engine_validation_runs_identity').on(
+      table.subjectType,
+      table.subjectId,
+      table.engineFamily,
+      table.engineVersion,
+      table.inputDigest,
+    ),
+    index('engine_validation_runs_subject_idx').on(table.subjectType, table.subjectId),
+    index('engine_validation_runs_status_idx').on(table.status, table.validatedAt),
+    check(
+      'engine_validation_runs_digest',
+      sql`${table.inputDigestAlgorithm} = 'sha256' and ${table.inputDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'engine_validation_runs_status_agrees',
+      sql`(${table.status} = 'PASSED') = ${table.passed}`,
+    ),
+    check(
+      'engine_validation_runs_finding_count',
+      sql`${table.findingCount} >= 0 and (${table.passed} or ${table.findingCount} > 0)`,
+    ),
+  ],
+)

@@ -28,6 +28,8 @@ import { DossierAccountActionsGuard } from '@/components/dossier/DossierAccountA
 import { DossierEvidencePath, evidenceNodeAnchorId } from '@/components/dossier/DossierEvidencePath'
 import { DossierOtherProgrammes } from '@/components/dossier/DossierOtherProgrammes'
 import { DossierHeader } from '@/components/dossier/DossierHeader'
+import { DossierSectionNavigator } from '@/components/dossier/DossierSectionNavigator'
+import { dossierNavigatorSections } from '@/lib/dossier-navigator-sections'
 import { DossierNavigation } from '@/components/dossier/DossierNavigation'
 import { DossierOutcomeComparison } from '@/components/dossier/DossierOutcomeComparison'
 import { DossierQuestionCoverage } from '@/components/dossier/DossierQuestionCoverage'
@@ -1364,6 +1366,13 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
       : hasSafetyBackground
         ? '#safety-and-administration'
         : undefined
+  /*
+   * The floating navigator doubles as this record's coverage map. It is computed from the record
+   * rather than fixed, because two thirds of the corpus holds four modules and a fixed contents list
+   * would send those readers to twenty-one empty destinations.
+   */
+  const navigatorSections = dossierNavigatorSections(dossier)
+
   return (
     <div className="min-h-screen min-w-0 bg-[#F5F5F7] px-4 pb-20 pt-4 sm:px-8 sm:pt-6">
       <article className="mx-auto w-full max-w-[1180px] space-y-6">
@@ -2804,6 +2813,7 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
           </Link>
         </nav>
       </article>
+      <DossierSectionNavigator sections={navigatorSections} medicineName={dossier.name} />
     </div>
   )
 }

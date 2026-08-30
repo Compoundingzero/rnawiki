@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check:copy": "node scripts/quality/slop-scan.mjs",
+    "audit:denial-corpus": "tsx scripts/audit/denial-corpus/measure.ts",
     "check:medicine-content": "tsx scripts/apply-recorded-background.ts --check",
     "check:name-index": "tsx scripts/apply-name-index.ts --check",
     "apply:name-index": "tsx scripts/apply-name-index.ts",

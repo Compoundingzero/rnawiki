@@ -1,0 +1,278 @@
+{
+  "corpus": {
+    "recordsInMergedCorpus": 9855,
+    "recordsByProvenanceTier": {
+      "curated": 155,
+      "extracted": 3276,
+      "transcribed": 6424
+    },
+    "rowsHoldingModules": {
+      "anatomyTargets": 91,
+      "applicability": 22,
+      "biologicalIdentity": 2999,
+      "commonAdverseReactions": 859,
+      "composition": 35,
+      "costContext": 626,
+      "interactionSignals": 691,
+      "labelPresence": 5941,
+      "mechanism": 1632,
+      "molecularIdentity": 3103,
+      "nameFamily": 671,
+      "pharmacokinetics": 1391,
+      "pivotalResults": 18,
+      "populationStatements": 1857,
+      "productListing": 5998,
+      "productVariants": 2243,
+      "recordedUses": 2751,
+      "registryIdentifiers": 6741,
+      "regulatoryApproval": 2505,
+      "safety": 1510,
+      "sourceConsensus": 731,
+      "sourceMaterial": 7126,
+      "supplementIngredient": 3887,
+      "supplementMarket": 5350,
+      "titration": 27
+    },
+    "modulesPerRow": {
+      "min": 1,
+      "p25": 4,
+      "median": 5,
+      "p75": 7,
+      "max": 18,
+      "distribution": {
+        "1": 252,
+        "2": 1003,
+        "3": 1197,
+        "4": 1084,
+        "5": 1863,
+        "6": 1719,
+        "7": 649,
+        "8": 218,
+        "9": 193,
+        "10": 226,
+        "11": 291,
+        "12": 313,
+        "13": 381,
+        "14": 260,
+        "15": 146,
+        "16": 55,
+        "17": 3,
+        "18": 2
+      }
+    },
+    "rowsWithAnyClinicalModule": 3033,
+    "rowsWithNoClinicalModule": 6822,
+    "rowsWithAnyPharmacologyModule": 2105,
+    "rowsWithQuotableExcerpt": 3093,
+    "rowsWithNoQuotableExcerpt": 6762,
+    "curatedRecordsHoldingModule": {
+      "anatomyTargets": 91,
+      "applicability": 22,
+      "pharmacokinetics": 118,
+      "pivotalResults": 18,
+      "productVariants": 114,
+      "registryIdentifiers": 155,
+      "titration": 27
+    }
+  },
+  "evidenceStates": {
+    "interactionSignalsTotal": 19524,
+    "polarityAsserted": 4439,
+    "polarityNegated": 7261,
+    "polarityNotRecorded": 7824,
+    "populationStatementsTotal": 8144,
+    "explicitNonEstablishment": 1365
+  },
+  "disagreement": {
+    "consensusFields": 1670,
+    "consensusMultiReading": 382,
+    "consensusBelowUnanimity": 382,
+    "consensusNumericallyDisjoint": 231,
+    "comparisonStates": {
+      "agree": 1427,
+      "differ": 231,
+      "not_comparable": 12
+    },
+    "comparisonReasons": {
+      "COMPATIBLE_VALUES_DISJOINT": 231,
+      "COMPATIBLE_VALUES_OVERLAP": 1472,
+      "DENOMINATOR_MISMATCH": 14
+    }
+  },
+  "measurementIntegrity": {
+    "numericPkValues": 2928,
+    "excerptsContainingDispersion": 134,
+    "valuesEqualToOwnDispersion": 0,
+    "defects": []
+  },
+  "truncation": {
+    "formerInteractionSignalCap": 12,
+    "recordsAtFormerCap": 33,
+    "recordsAboveFormerCap": 466,
+    "maximumInteractionSignals": 164,
+    "recordsAtFormerCapSlugs": [
+      "afatinib",
+      "alfuzosin",
+      "aripiprazole-lauroxil",
+      "belinostat",
+      "bempedoic-acid",
+      "brentuximab-vedotin",
+      "carfilzomib",
+      "crisaborole",
+      "daridorexant",
+      "dienogest",
+      "eletriptan",
+      "estazolam",
+      "fidaxomicin",
+      "fosphenytoin",
+      "glycerol-phenylbutyrate",
+      "ivacaftor",
+      "lofexidine",
+      "midazolam",
+      "nepafenac",
+      "olodaterol",
+      "oritavancin",
+      "pasireotide",
+      "pasireotide-diaspartate",
+      "phenytoin",
+      "pramipexole",
+      "rabeprazole",
+      "ritlecitinib",
+      "saxagliptin",
+      "telisotuzumab-vedotin",
+      "telisotuzumab-vedotin-tllv",
+      "vorinostat",
+      "zolpidem",
+      "zonisamide"
+    ]
+  },
+  "publicBoundary": {
+    "recordsWithSubstitutes": 489,
+    "storedPatientActionEntries": 892,
+    "storedProsAndConsEntries": 1441,
+    "note": "Stored counts. The public serializer withholds both; see tests/unit/dossier-read-serializer.test.ts."
+  },
+  "agents": {
+    "generatedFiles": 10,
+    "byAgent": {
+      "adverse-reaction-term-structure": {
+        "version": "1.0.0",
+        "used": 854,
+        "considered": 9855,
+        "queue": 395
+      },
+      "coverage-ledger": {
+        "version": "1.2.0",
+        "used": 9855,
+        "considered": 9855,
+        "queue": 96
+      },
+      "enzyme-and-transporter-documentation": {
+        "version": "1.1.0",
+        "used": 689,
+        "considered": 9855,
+        "queue": 114
+      },
+      "evidence-density": {
+        "version": "1.1.0",
+        "used": 9855,
+        "considered": 9855,
+        "queue": 40
+      },
+      "excerpt-integrity": {
+        "version": "1.0.0",
+        "used": 3440,
+        "considered": 9855,
+        "queue": 0
+      },
+      "mechanism-text-grouping": {
+        "version": "1.0.0",
+        "used": 1625,
+        "considered": 9855,
+        "queue": 5
+      },
+      "numeric-distributions": {
+        "version": "1.0.0",
+        "used": 3379,
+        "considered": 9855,
+        "queue": 0
+      },
+      "peer-group-anomaly-screen": {
+        "version": "1.0.0",
+        "used": 1305,
+        "considered": 9855,
+        "queue": 119
+      },
+      "silence-ledger": {
+        "version": "1.0.0",
+        "used": 9855,
+        "considered": 9855,
+        "queue": 40
+      },
+      "substance-synonyms": {
+        "version": "1.1.0",
+        "used": 6711,
+        "considered": 9855,
+        "queue": 1196
+      }
+    },
+    "candidatesByReason": {
+      "ATTRIBUTION_SUSPECT": 40,
+      "COVERAGE_GAP": 650,
+      "POSSIBLE_DUPLICATE_SUBSTANCE": 1196,
+      "UNUSUAL_FOR_PEER_GROUP": 119
+    },
+    "totalCandidates": 2005
+  },
+  "molecular": {
+    "molecularPropertiesRecords": 144,
+    "withSmiles": 144,
+    "withStereochemistry": 0,
+    "withInchiKey": 144,
+    "legacyRows": 9857,
+    "legacySmilesPopulated": 3805,
+    "legacySmilesWithStereochemistry": 1065
+  },
+  "publicExport": {
+    "present": true,
+    "declaredLicence": "CC BY-SA 4.0 — see LICENSE-DATA",
+    "counts": {
+      "total": 9857,
+      "flagship": 489,
+      "curated": 9368,
+      "stub": 0,
+      "withStructure": 3204,
+      "withTrials": 6514,
+      "withPrice": 946,
+      "machineVerified": 3213,
+      "aliases": 16338
+    },
+    "files": 11,
+    "exporterMentionsRecordedBackground": true,
+    "exporterMentionsSourceConsensus": true
+  },
+  "licensing": {
+    "declarations": {
+      "LICENSE-DATA": [
+        "CC-BY-4.0 (legal text)"
+      ],
+      "README.md": [
+        "CC-BY-4.0 (declared)"
+      ],
+      "data/README.md": [
+        "CC-BY-4.0 (declared)"
+      ],
+      "data/manifest.json": [
+        "CC-BY-SA-4.0 (declared)"
+      ],
+      "scripts/export/dataset.ts": [
+        "CC-BY-4.0 (declared)"
+      ]
+    },
+    "consistent": false,
+    "distinctFamilies": [
+      "CC-BY-4.0",
+      "CC-BY-SA-4.0"
+    ]
+  }
+}

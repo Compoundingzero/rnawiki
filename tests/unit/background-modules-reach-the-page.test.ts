@@ -30,7 +30,20 @@ const SECTIONS_SOURCE = 'components/MedicineRecordContextSections.tsx'
  * is expressed to a reader through what is present rather than as a count of its own. The rest are
  * envelope bookkeeping. Every other field must reach a page.
  */
-const NOT_READER_FACING = new Set(['version', 'authoredAt', 'provenanceTier', 'attribution'])
+const NOT_READER_FACING = new Set([
+  'version',
+  'authoredAt',
+  'provenanceTier',
+  'attribution',
+  /*
+   * `driftedSources` reaches a reader, but not as a section of its own. It is the input that marks a
+   * question stale and puts "Source needs rechecking" on a navigator row, so its reader-facing form
+   * is a state on another section rather than a block of its own. Listing it here is the honest
+   * declaration; leaving it out would make an unreachable module look reachable, and adding a
+   * section for it would show a reader a list of source identifiers that answers no question.
+   */
+  'driftedSources',
+])
 
 /**
  * Envelope fields the view deliberately renames, declared rather than inferred.
@@ -82,7 +95,13 @@ describe('every stored module reaches a reader', () => {
     expect(block, 'MedicineBackgroundContextView declaration not found').toBeDefined()
     const viewFields = [...block!.matchAll(/^\s{2}(\w+)\??:/gmu)]
       .map((match) => match[1]!)
-      .filter((field) => !['authoredAt', 'provenanceNote'].includes(field))
+      /*
+       * `driftedSources` reaches a reader as a STATE on another section -- it marks a question stale
+       * and puts "Source needs rechecking" on a navigator row -- rather than as a block of its own.
+       * A section listing source identifiers would answer no question a reader has. Declared here so
+       * a genuinely unreachable module still fails this check.
+       */
+      .filter((field) => !['authoredAt', 'provenanceNote', 'driftedSources'].includes(field))
 
     const sections = readFileSync(SECTIONS_SOURCE, 'utf8')
     const missing = viewFields.filter(

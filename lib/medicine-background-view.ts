@@ -6,11 +6,14 @@
  */
 
 import { ANATOMY_REGIONS, isAnatomyRegionCode } from '@/lib/background/anatomy-regions'
+import type { ReadingComparisonState } from '@/lib/background/reading-comparison'
+import type { DossierQuestionIntent } from '@/lib/dossier-question-registry'
 import type {
   BackgroundProvenanceTier,
   BackgroundSource,
   MedicineRecordedBackground,
   RecordedComposition,
+  RecordedFieldConsensus,
   RecordedValue,
 } from '@/lib/background/types'
 
@@ -145,10 +148,16 @@ export interface MedicineBackgroundContextView {
   sourceConsensus?: {
     documentsExaminedLabel: string
     fields: Array<{
+      /** The stored field key, e.g. `halfLife`. Carried so the question layer can map it without
+       * guessing from the rendered label, which would re-point itself whenever copy changed. */
+      field: string
       fieldLabel: string
       agreementLabel: string
       /** Set when two readings carry numbers whose ranges do not overlap. Never says either is wrong. */
       disagreementNote?: string
+      /** Whether the readings were comparable at all, and if so whether they agree. */
+      comparisonState?: ReadingComparisonState
+      comparisonReasons?: readonly string[]
       readings: Array<{
         display: string
         supportLabel: string
@@ -156,6 +165,23 @@ export interface MedicineBackgroundContextView {
       }>
     }>
   }
+  /**
+   * Sources the freshness loop currently reports as no longer reproducing their recorded wording.
+   *
+   * Nothing populates this yet: `npm run verify:background` computes drift at run time and does not
+   * write it into the envelope, so no per-source drift reaches a page today and the stale question
+   * count is zero. The channel exists so that when drift IS recorded, a question can be marked stale
+   * from the source it actually depends on rather than from a dossier-wide flag. A stale state that
+   * cannot be traced to a source used by that question must never be emitted.
+   */
+  driftedSources?: readonly {
+    intent: DossierQuestionIntent
+    sourceIdentifier: string
+    sourceLabel: string
+    recordedAt: string
+    freshnessState: string
+    fieldPath: string
+  }[]
   /**
    * Where the medicine appears in the published drug-label archive.
    *
@@ -558,6 +584,35 @@ function money(currency: string, low: number, high?: number): string {
     : `${symbol}${format(low)}`
 }
 
+/**
+ * The sentence a reader sees about how a field's readings relate, or none when they simply agree.
+ *
+ * Falls back to the deprecated Boolean for records generated before the comparability contract
+ * existed, so an older envelope keeps its disagreement note instead of silently losing it.
+ */
+function comparisonNote(field: RecordedFieldConsensus): { disagreementNote?: string } {
+  const state = field.comparisonState ?? (field.numericallyDisjoint ? 'differ' : undefined)
+  if (state === 'differ') {
+    return {
+      disagreementNote:
+        'Two of these readings give numbers that do not overlap. Both are recorded as printed; neither is marked wrong here.',
+    }
+  }
+  if (state === 'not_comparable') {
+    return {
+      disagreementNote:
+        'These readings are recorded in units that cannot be compared without a measurement no source states, such as a body weight. They are kept as printed and are not treated as agreeing or disagreeing.',
+    }
+  }
+  if (state === 'insufficient_context') {
+    return {
+      disagreementNote:
+        'Not enough was recorded with these readings to tell whether they can be compared. They are kept as printed.',
+    }
+  }
+  return {}
+}
+
 export function medicineBackgroundContext(
   background: MedicineRecordedBackground | undefined,
 ): MedicineBackgroundContextView | undefined {
@@ -780,15 +835,21 @@ export function medicineBackgroundContext(
           'published labels were read for this medicine',
         ),
         fields: consensus.fields.map((field) => ({
+          field: field.field,
           fieldLabel: CONSENSUS_FIELD_LABELS[field.field] ?? field.field,
+          ...(field.comparisonState ? { comparisonState: field.comparisonState } : {}),
+          ...(field.comparisonReasons ? { comparisonReasons: field.comparisonReasons } : {}),
           agreementLabel: `${Math.round(field.agreementRate * 100)}% of the labels stating it give the most common reading`,
-          // Marked as something for a person to look at, never as a verdict on either reading.
-          ...(field.numericallyDisjoint
-            ? {
-                disagreementNote:
-                  'Two of these readings give numbers that do not overlap. Both are recorded as printed; neither is marked wrong here.',
-              }
-            : {}),
+          /*
+           * Marked as something for a person to look at, never as a verdict on either reading.
+           *
+           * `not_comparable` gets its own sentence rather than sharing the disagreement one. Two
+           * readings in incompatible units -- a volume in litres against one per kilogram -- are
+           * neither the same number nor different numbers, and calling that a disagreement invents
+           * a conflict the sources never had. Saying nothing at all would be worse still, because a
+           * reader would take the silence for agreement.
+           */
+          ...comparisonNote(field),
           readings: field.readings.map((reading) => ({
             display: reading.display,
             supportLabel: countPhrase(reading.sourceCount, 'label states it', 'labels state it'),

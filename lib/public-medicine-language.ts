@@ -89,6 +89,13 @@ export interface ReaderSummaryView {
   biggestLimit?: string
   /** Present only when the displayed limitation was derived from this exact reviewed field. */
   biggestLimitSourceFieldPath?: Extract<ReaderSummarySourceFieldPath, 'summary.mainLimitation'>
+  /** Which of the three first-screen states this record resolved to. */
+  usedForState?: ReaderUsedForState
+  /**
+   * Present exactly when `usedForState` is RECORDED_SOURCE_USE. The page must render `usedFor` as a
+   * quotation attributed to this source, never as RNAWiki's own sentence.
+   */
+  usedForSource?: ReaderRecordedUse
   /** A short use note, separated from the purpose when the stored purpose contains one. */
   practicalNote?: string
   /** Reserved for a concise stored safety warning when one is available to the builder. */
@@ -109,6 +116,12 @@ export interface ReaderMedicineLanguageContext {
   targetGene?: string
   targetProtein?: string
   trialIdentifiers?: readonly string[]
+  /**
+   * A source-linked use sentence from the recorded-background layer, offered only when RNAWiki
+   * cannot safely speak one in its own voice. Read from the INDICATIONS section, so it is already
+   * scoped to what a source says the medicine is for rather than to how it is taken.
+   */
+  recordedUse?: ReaderRecordedUse
 }
 
 export interface LegacyReaderSummaryInput extends ReaderMedicineLanguageContext {
@@ -205,6 +218,72 @@ function storedContextItem(
 const FIRST_READ_FIELD_MAX_WORDS = 32
 const FIRST_READ_FORBIDDEN_WORDING =
   /\b(?:audit|confidence interval|double-blind|endpoint|hazard ratio|odds ratio|open-label|percentage points?|phase\s*(?:3|III)|placebo|programme|randomi[sz]ed|record)\b|\bCI\b|\bNCT\d{8}\b|\b(?:ORION|VICTORION)[-\s]?\d+\b/iu
+
+/**
+ * An instruction aimed at the reader, standing where the page promises a use.
+ *
+ * Nothing matched here was written by RNAWiki: every one of these strings is copied from a stored
+ * indication. But the first screen prints it in the site's own voice, in the largest type on the
+ * page, under the heading "What is it for?" — and a reader cannot see quotation marks that are not
+ * there. An imperative in that position reads as this site telling them to do it, which is the one
+ * thing no phrasing is allowed to do.
+ *
+ * Matched after the "Used for" / "Used or studied for" lead-in that `usedForSummary` prepends, so
+ * the verb has to be the first thing the sentence offers as the use rather than a word inside one.
+ * "Used for high blood pressure" and "Used or studied for the treatment of anxiety" do not match.
+ */
+const FIRST_READ_DIRECTIVE_WORDING =
+  /\b(?:used|studied)\s+(?:or\s+studied\s+)?for\s+(?:take|takes|taking|apply|applies|applying|spray|sprays|rub|rubs|swallow|chew|dissolve|inhale|drink|shake|wet|wash|rinse|insert|instill|inject|avoid|repeat|store|keep|dilute|mix|massage|spread|cleanse)\b/iu
+
+/**
+ * A label section heading that survived extraction.
+ *
+ * Deliberately case-SENSITIVE. A heading survives in the capitals the label printed
+ * ("INDICATIONS Allergies", "DIRECTIONS FOR ORAL USE ONLY"), while the same word inside ordinary
+ * prose does not — and that difference is exactly what keeps a genuine monograph indication out of
+ * the guard. The sunscreen use "if used as directed with other sun protection measures (see
+ * Directions), decreases the risk of skin cancer and early skin aging" is a real answer to "what is
+ * it for?" and must survive; a case-insensitive match on "Directions" would delete it.
+ */
+const FIRST_READ_LABEL_HEADING =
+  /\b(?:INDICATIONS?|DIRECTIONS?|DOSAGE|PURPOSE|USES)\b(?:\s*(?:&|AND)\s*USAGE)?\s*[:.]?\s+\S/u
+
+/** Dispensing boilerplate that describes a package rather than a use. */
+const FIRST_READ_LABEL_BOILERPLATE =
+  /\b(?:directions?|indications?|dosage)\s*:|\bas directed by\b|\brx only\b|\bfor (?:oral|topical|external|rectal|vaginal|ophthalmic|otic|nasal|intravenous) use only\b|\bcondition listed above\b/iu
+
+/** A schedule or an amount, which is a dosing instruction wherever it stands on the first screen. */
+const FIRST_READ_DOSING_INSTRUCTION =
+  /\b(?:adults?|children|adolescents?)\s+take\s+\d|\btake\s+\d+\s*(?:drops?|capsules?|tablets?|pouch(?:es)?|sprays?|ml|mg)\b|\bapply\s+\d|\b\d+\s+drops?\s+(?:once|twice|three|four|\d)|\breapply as needed\b|\bmassage\s+(?:liberally|gently|into)\b/iu
+
+/**
+ * True when a first-screen line instructs the reader or prints label furniture instead of a use.
+ *
+ * Screens a line RNAWiki is about to speak in its own voice. It must never be run over a quoted
+ * excerpt: a label is allowed to say "take 15 minutes before meals", and quoting it inside an
+ * explicitly marked passage is the whole point of the corpus.
+ */
+function statesReaderInstruction(value: string): boolean {
+  return (
+    FIRST_READ_DIRECTIVE_WORDING.test(value) ||
+    FIRST_READ_LABEL_HEADING.test(value) ||
+    FIRST_READ_LABEL_BOILERPLATE.test(value) ||
+    FIRST_READ_DOSING_INSTRUCTION.test(value)
+  )
+}
+
+/**
+ * Removes a footnote marker whose footnote is not on the page.
+ *
+ * A stored indication routinely ends "…outdoor allergies.**" with the disclaimer it points at —
+ * "Claims based on traditional homeopathic practice, not accepted medical evidence." — later in the
+ * same string, where the sentence split or the word limit drops it. The marker then survives alone
+ * and promises a qualification the reader can never reach, which is worse than carrying neither:
+ * it tells them the claim is qualified and then withholds the qualification.
+ */
+function withoutOrphanedFootnoteMarker(value: string): string {
+  return value.replace(/\s*[*†‡]+(?=\s*[.!?]?\s*$)/u, '')
+}
 
 function escapeRegularExpression(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -415,13 +494,63 @@ function plainStoredResultSentence(
   return undefined
 }
 
+/** Which of the three first-screen states a record resolved to. */
+export type ReaderUsedForState = 'SAFE_PLAIN_USE' | 'RECORDED_SOURCE_USE' | 'NO_SAFE_USE_STATEMENT'
+
+/** A source-linked use sentence, offered when RNAWiki cannot speak one in its own voice. */
+export interface ReaderRecordedUse {
+  text: string
+  sourceLabel: string
+  sourceIdentifier: string
+  sourceHref?: string
+}
+
+/**
+ * Whether a recorded use may be shown as a quotation.
+ *
+ * An imperative is permitted here and nowhere else. The whole point of this state is that the words
+ * are visibly the source's, under a heading that says so, which is the same distinction the
+ * background engine already draws: a RecordedStatement matching its excerpt character for character
+ * is allowed to carry the label's own "patients should be monitored", because the source is
+ * speaking. What is refused is label furniture, which answers nothing, and a pure dosing direction,
+ * which is not an indication however it is framed.
+ */
+function quotableRecordedUse(text: string): boolean {
+  const trimmed = text.trim()
+  if (trimmed.length < 8) return false
+  if (FIRST_READ_LABEL_HEADING.test(trimmed)) return false
+  if (FIRST_READ_DOSING_INSTRUCTION.test(trimmed)) return false
+  if (FIRST_READ_LABEL_BOILERPLATE.test(trimmed)) return false
+  return true
+}
+
 function usedForSummary(
   selectedUse: string | null | undefined,
   context: ReaderMedicineLanguageContext,
-): { usedFor: string; practicalNote?: string } {
+): {
+  usedFor: string
+  usedForState: ReaderUsedForState
+  usedForSource?: ReaderRecordedUse
+  practicalNote?: string
+} {
   const stored = cleanText(selectedUse)
   if (!stored) {
-    return { usedFor: 'What this medicine is used or studied for is not explained here.' }
+    /*
+     * No stored use at all. A source-linked recorded use is still the better answer than silence, so
+     * the quotation state applies here too rather than only where a stored use was refused.
+     */
+    if (context.recordedUse && quotableRecordedUse(context.recordedUse.text)) {
+      return {
+        usedFor: context.recordedUse.text.trim(),
+        usedForState: 'RECORDED_SOURCE_USE',
+        usedForSource: context.recordedUse,
+      }
+    }
+    return {
+      usedFor:
+        'This record does not yet contain a safe, source-linked explanation of what this medicine is used or studied for.',
+      usedForState: 'NO_SAFE_USE_STATEMENT',
+    }
   }
 
   const [mainUse = '', ...noteParts] = removeStoredStudyIdentifiers(
@@ -454,14 +583,38 @@ function usedForSummary(
   plainUse = plainUse.replace(/^Used or studied for marketed for\s+/iu, 'Used for ')
   plainUse = plainUse.replace(/^Used for marketed for\s+/iu, 'Used for ')
 
-  const safeUse =
+  /*
+   * Three states, not two.
+   *
+   * The guard that stops RNAWiki speaking a copied instruction in its own voice was previously the
+   * end of the road: a refused line became a dead sentence, and a reader whose record held a
+   * perfectly good source-linked indication was told nothing. Refusing to speak is right; refusing
+   * to show the source is not.
+   */
+  const speakable =
     readerWordCount(plainUse) <= 28 &&
     isCompleteReaderFragment(plainUse) &&
     !FIRST_READ_FORBIDDEN_WORDING.test(plainUse) &&
     !FIRST_READ_MOLECULAR_MARKER.test(plainUse) &&
-    !PCSK9_MARKER.test(plainUse)
-      ? ensureSentence(plainUse)
-      : 'This page discusses a use that still needs a clear, short description.'
+    !PCSK9_MARKER.test(plainUse) &&
+    !statesReaderInstruction(plainUse)
+
+  const quotable =
+    !speakable && context.recordedUse && quotableRecordedUse(context.recordedUse.text)
+      ? context.recordedUse
+      : undefined
+
+  const usedForState: ReaderUsedForState = speakable
+    ? 'SAFE_PLAIN_USE'
+    : quotable
+      ? 'RECORDED_SOURCE_USE'
+      : 'NO_SAFE_USE_STATEMENT'
+
+  const safeUse = speakable
+    ? ensureSentence(withoutOrphanedFootnoteMarker(plainUse))
+    : quotable
+      ? quotable.text.trim()
+      : 'This record does not yet contain a safe, source-linked explanation of what this medicine is used or studied for.'
   const note = simplifyCommonReaderTerms(noteParts.join('; '))
   const noteSentence = note ? ensureSentence(note.replace(/^used\s+/iu, 'It is used ')) : undefined
   const practicalNote =
@@ -470,11 +623,17 @@ function usedForSummary(
     /\b(?:daily|dose|doses|drip|inject(?:ed|ion|ions)?|mouth|once|tablet|taken|twice|used|weekly)\b/iu.test(
       noteSentence,
     ) &&
-    !FIRST_READ_FORBIDDEN_WORDING.test(noteSentence)
+    !FIRST_READ_FORBIDDEN_WORDING.test(noteSentence) &&
+    !statesReaderInstruction(noteSentence)
       ? noteSentence
       : undefined
 
-  return { usedFor: safeUse, ...(practicalNote ? { practicalNote } : {}) }
+  return {
+    usedFor: safeUse,
+    usedForState,
+    ...(quotable ? { usedForSource: quotable } : {}),
+    ...(practicalNote ? { practicalNote } : {}),
+  }
 }
 
 function explicitVerdictLimit(
@@ -568,6 +727,8 @@ export function buildLegacyReaderSummary(input: LegacyReaderSummaryInput): Reade
   const generatedPurpose = usedForSummary(selectedUse, input)
   const purpose = {
     usedFor: generatedPurpose.usedFor,
+    usedForState: generatedPurpose.usedForState,
+    ...(generatedPurpose.usedForSource ? { usedForSource: generatedPurpose.usedForSource } : {}),
     ...(generatedPurpose.practicalNote ? { practicalNote: generatedPurpose.practicalNote } : {}),
   }
   const whatStudiesFound =

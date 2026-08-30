@@ -602,12 +602,17 @@ function conventionalAlternative(
   if (!item) return undefined
   const name = nonEmpty(item.name)
   if (!name) return undefined
+  // `prosAndCons` is deliberately not projected. The section around it states that the list is
+  // alphabetical and not a ranking, and a per-item "Pros: … Cons: …" line is exactly the ranking
+  // that copy disclaims — RNAWiki weighing named alternative medicines against each other in its
+  // own voice. `howItCompares` stays because it is overwhelmingly a recorded fact about one trial's
+  // own comparator arm, which is a statement about a single programme rather than a comparison this
+  // site is making.
   const alternative: MedicineAlternativeContextView = {
     name,
     className: nonEmpty(item.class),
     comparison: nonEmpty(item.howItCompares) ?? nonEmpty(item.comparisonToDrug),
     reportedCost: nonEmpty(item.typicalCost),
-    tradeoffs: nonEmpty(item.prosAndCons),
   }
   return Object.values(alternative).slice(1).some(Boolean) ? alternative : undefined
 }
