@@ -51,6 +51,7 @@ import {
 import type {
   BackgroundSource,
   DescriptiveLabelSection,
+  InteractionPolarity,
   InteractionRole,
   RecordedInteractionSignal,
 } from '@/lib/background/types'
@@ -72,6 +73,8 @@ export interface CounterpartyMention {
   name: string
   /** Absent when the recorded sentence stated more than one role and the parser attached none. */
   role?: InteractionRole
+  /** Whether the sentence asserted the role or denied it. Absent on pre-polarity records. */
+  polarity?: InteractionPolarity
   labelSection?: DescriptiveLabelSection
   /**
    * Whether the counterparty appears in the excerpt with exactly the recorded letter case. False
@@ -86,6 +89,25 @@ export interface CounterpartyMention {
 }
 
 /**
+ * One role, counted separately by whether the sentence asserted it or denied it.
+ *
+ * Roughly three quarters of the role-bearing sentences in this corpus are denials — "abacavir does
+ * not inhibit human CYP3A4, CYP2D6, or CYP2C9" is a real result from a real study. Adding a denial
+ * to the same counter as an assertion states the opposite of the source, which is the defect
+ * `polarity` was recorded to prevent; a tally without a polarity dimension reintroduces it one
+ * layer up.
+ *
+ * `polarityNotRecorded` exists because a record written before polarity was stored cannot be
+ * classified either way, and `lib/background/types.ts` is explicit that a role with unknown
+ * polarity may not be displayed as an assertion. It is never folded into the other two.
+ */
+export interface RolePolarityTally {
+  asserted: number
+  negated: number
+  polarityNotRecorded: number
+}
+
+/**
  * Roles recorded for one counterparty across the records naming it.
  *
  * `roleNotStated` is a first-class outcome rather than a gap. Interaction prose routinely names two
@@ -93,9 +115,9 @@ export interface CounterpartyMention {
  * the sentence is kept whole and no role is claimed.
  */
 export interface CounterpartyRoleTally {
-  substrate: number
-  inhibitor: number
-  inducer: number
+  substrate: RolePolarityTally
+  inhibitor: RolePolarityTally
+  inducer: RolePolarityTally
   roleNotStated: number
 }
 
@@ -267,20 +289,43 @@ function addSection(
   }
 }
 
-function addRole(tally: CounterpartyRoleTally, role: InteractionRole | undefined): void {
+function countPolarity(tally: RolePolarityTally, polarity: InteractionPolarity | undefined): void {
+  if (polarity === undefined) {
+    tally.polarityNotRecorded += 1
+    return
+  }
+  switch (polarity) {
+    case 'ASSERTED':
+      tally.asserted += 1
+      return
+    case 'NEGATED':
+      tally.negated += 1
+      return
+    default: {
+      const unhandled: never = polarity
+      throw new Error(`Unhandled interaction polarity: ${String(unhandled)}`)
+    }
+  }
+}
+
+function addRole(
+  tally: CounterpartyRoleTally,
+  role: InteractionRole | undefined,
+  polarity: InteractionPolarity | undefined,
+): void {
   if (role === undefined) {
     tally.roleNotStated += 1
     return
   }
   switch (role) {
     case 'SUBSTRATE':
-      tally.substrate += 1
+      countPolarity(tally.substrate, polarity)
       return
     case 'INHIBITOR':
-      tally.inhibitor += 1
+      countPolarity(tally.inhibitor, polarity)
       return
     case 'INDUCER':
-      tally.inducer += 1
+      countPolarity(tally.inducer, polarity)
       return
     default: {
       const unhandled: never = role
@@ -301,9 +346,12 @@ function compareStrings(left: string, right: string): number {
 
 export const enzymeDocumentationAgent: DatasetAgent<EnzymeDocumentationProfile> = {
   name: 'enzyme-and-transporter-documentation',
-  version: '1.0.0',
+  // 1.1.0 splits every role count by polarity. Before it, a label sentence denying a role was
+  // added to the same counter as one asserting it, and about two thirds of the published
+  // role-bearing counts were denials reported as assertions.
+  version: '1.1.0',
   description:
-    'Counts, per enzyme or transporter, how many medicine records name it, in which recorded roles, from which descriptive label section, and how concentrated that documentation is across counterparties.',
+    'Counts, per enzyme or transporter, how many medicine records name it, in which recorded roles and whether each was asserted or denied, from which descriptive label section, and how concentrated that documentation is across counterparties.',
 
   run(input: AgentInput): AgentRun<EnzymeDocumentationProfile> {
     const admitted: AdmittedMention[] = []
@@ -349,6 +397,9 @@ export const enzymeDocumentationAgent: DatasetAgent<EnzymeDocumentationProfile> 
             slug: entry.slug,
             name: entry.name,
             ...(signal.roleAsRecorded ? { role: signal.roleAsRecorded } : {}),
+            // Carried beside the role so a consumer of the JSON can tell an assertion from a
+            // denial. Without it the two are indistinguishable once the row leaves this agent.
+            ...(signal.polarity ? { polarity: signal.polarity } : {}),
             ...(signal.labelSection ? { labelSection: signal.labelSection } : {}),
             matchesSourceCasing: exactCase,
             sourceKind: signal.source.kind,
@@ -372,10 +423,15 @@ export const enzymeDocumentationAgent: DatasetAgent<EnzymeDocumentationProfile> 
 
     const profiles: CounterpartyDocumentationProfile[] = spellings.map((counterparty) => {
       const items = grouped.get(counterparty) ?? []
+      const emptyPolarityTally = (): RolePolarityTally => ({
+        asserted: 0,
+        negated: 0,
+        polarityNotRecorded: 0,
+      })
       const roles: CounterpartyRoleTally = {
-        substrate: 0,
-        inhibitor: 0,
-        inducer: 0,
+        substrate: emptyPolarityTally(),
+        inhibitor: emptyPolarityTally(),
+        inducer: emptyPolarityTally(),
         roleNotStated: 0,
       }
       const sections: CounterpartyLabelSectionTally = {
@@ -387,7 +443,7 @@ export const enzymeDocumentationAgent: DatasetAgent<EnzymeDocumentationProfile> 
       let matchingCase = 0
 
       for (const item of items) {
-        addRole(roles, item.signal.roleAsRecorded)
+        addRole(roles, item.signal.roleAsRecorded, item.signal.polarity)
         addSection(sections, item.signal.labelSection)
         if (item.signal.kind === 'ENZYME') kinds.enzyme += 1
         else kinds.transporter += 1

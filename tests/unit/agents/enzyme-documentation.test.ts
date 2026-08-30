@@ -241,7 +241,11 @@ describe('per-counterparty tallies', () => {
     let total = 0
     for (const profile of RUN.output.counterparties) {
       const { substrate, inhibitor, inducer, roleNotStated } = profile.roles
-      expect(substrate + inhibitor + inducer + roleNotStated).toBe(profile.medicinesRecording)
+      const roleTotal = [substrate, inhibitor, inducer].reduce(
+        (sum, tally) => sum + tally.asserted + tally.negated + tally.polarityNotRecorded,
+        0,
+      )
+      expect(roleTotal + roleNotStated).toBe(profile.medicinesRecording)
       const { clinicalPharmacology, pharmacokinetics, sectionNotStated } = profile.sections
       expect(clinicalPharmacology + pharmacokinetics + sectionNotStated).toBe(
         profile.medicinesRecording,
@@ -251,6 +255,50 @@ describe('per-counterparty tallies', () => {
       total += profile.medicinesRecording
     }
     expect(total).toBe(RUN.output.mentionsAdmitted)
+  })
+
+  /**
+   * The defect this separation exists to prevent. Roughly two thirds of the role-bearing counts in
+   * this profile are denials — "does not inhibit CYP3A4" — and a tally with one counter per role
+   * added them to the assertions, so the published number said the opposite of its own sources.
+   */
+  it('counts a denied role as a denial and never as an assertion', () => {
+    const denialsExist = RUN.output.counterparties.some((profile) =>
+      [profile.roles.substrate, profile.roles.inhibitor, profile.roles.inducer].some(
+        (tally) => tally.negated > 0,
+      ),
+    )
+    expect(denialsExist).toBe(true)
+
+    for (const profile of RUN.output.counterparties) {
+      for (const tally of [
+        profile.roles.substrate,
+        profile.roles.inhibitor,
+        profile.roles.inducer,
+      ]) {
+        expect(tally.asserted).toBeGreaterThanOrEqual(0)
+        expect(tally.negated).toBeGreaterThanOrEqual(0)
+        expect(tally.polarityNotRecorded).toBeGreaterThanOrEqual(0)
+      }
+      // Every role-bearing mention carries its polarity onto the row, so a consumer of the JSON
+      // can reconstruct the distinction rather than having to trust the tally.
+      for (const mention of profile.mentions) {
+        if (mention.role === undefined) expect(mention.polarity).toBeUndefined()
+      }
+    }
+  })
+
+  it('agrees with the mentions it publishes about which roles were denied', () => {
+    for (const profile of RUN.output.counterparties) {
+      const negatedMentions = profile.mentions.filter(
+        (mention) => mention.role !== undefined && mention.polarity === 'NEGATED',
+      ).length
+      const negatedTallied =
+        profile.roles.substrate.negated +
+        profile.roles.inhibitor.negated +
+        profile.roles.inducer.negated
+      expect(negatedTallied).toBe(negatedMentions)
+    }
   })
 
   it('reports the role-less share the parser refused to guess at', () => {
