@@ -206,6 +206,72 @@ const FIRST_READ_FIELD_MAX_WORDS = 32
 const FIRST_READ_FORBIDDEN_WORDING =
   /\b(?:audit|confidence interval|double-blind|endpoint|hazard ratio|odds ratio|open-label|percentage points?|phase\s*(?:3|III)|placebo|programme|randomi[sz]ed|record)\b|\bCI\b|\bNCT\d{8}\b|\b(?:ORION|VICTORION)[-\s]?\d+\b/iu
 
+/**
+ * An instruction aimed at the reader, standing where the page promises a use.
+ *
+ * Nothing matched here was written by RNAWiki: every one of these strings is copied from a stored
+ * indication. But the first screen prints it in the site's own voice, in the largest type on the
+ * page, under the heading "What is it for?" — and a reader cannot see quotation marks that are not
+ * there. An imperative in that position reads as this site telling them to do it, which is the one
+ * thing no phrasing is allowed to do.
+ *
+ * Matched after the "Used for" / "Used or studied for" lead-in that `usedForSummary` prepends, so
+ * the verb has to be the first thing the sentence offers as the use rather than a word inside one.
+ * "Used for high blood pressure" and "Used or studied for the treatment of anxiety" do not match.
+ */
+const FIRST_READ_DIRECTIVE_WORDING =
+  /\b(?:used|studied)\s+(?:or\s+studied\s+)?for\s+(?:take|takes|taking|apply|applies|applying|spray|sprays|rub|rubs|swallow|chew|dissolve|inhale|drink|shake|wet|wash|rinse|insert|instill|inject|avoid|repeat|store|keep|dilute|mix|massage|spread|cleanse)\b/iu
+
+/**
+ * A label section heading that survived extraction.
+ *
+ * Deliberately case-SENSITIVE. A heading survives in the capitals the label printed
+ * ("INDICATIONS Allergies", "DIRECTIONS FOR ORAL USE ONLY"), while the same word inside ordinary
+ * prose does not — and that difference is exactly what keeps a genuine monograph indication out of
+ * the guard. The sunscreen use "if used as directed with other sun protection measures (see
+ * Directions), decreases the risk of skin cancer and early skin aging" is a real answer to "what is
+ * it for?" and must survive; a case-insensitive match on "Directions" would delete it.
+ */
+const FIRST_READ_LABEL_HEADING =
+  /\b(?:INDICATIONS?|DIRECTIONS?|DOSAGE|PURPOSE|USES)\b(?:\s*(?:&|AND)\s*USAGE)?\s*[:.]?\s+\S/u
+
+/** Dispensing boilerplate that describes a package rather than a use. */
+const FIRST_READ_LABEL_BOILERPLATE =
+  /\b(?:directions?|indications?|dosage)\s*:|\bas directed by\b|\brx only\b|\bfor (?:oral|topical|external|rectal|vaginal|ophthalmic|otic|nasal|intravenous) use only\b|\bcondition listed above\b/iu
+
+/** A schedule or an amount, which is a dosing instruction wherever it stands on the first screen. */
+const FIRST_READ_DOSING_INSTRUCTION =
+  /\b(?:adults?|children|adolescents?)\s+take\s+\d|\btake\s+\d+\s*(?:drops?|capsules?|tablets?|pouch(?:es)?|sprays?|ml|mg)\b|\bapply\s+\d|\b\d+\s+drops?\s+(?:once|twice|three|four|\d)|\breapply as needed\b|\bmassage\s+(?:liberally|gently|into)\b/iu
+
+/**
+ * True when a first-screen line instructs the reader or prints label furniture instead of a use.
+ *
+ * Screens a line RNAWiki is about to speak in its own voice. It must never be run over a quoted
+ * excerpt: a label is allowed to say "take 15 minutes before meals", and quoting it inside an
+ * explicitly marked passage is the whole point of the corpus.
+ */
+function statesReaderInstruction(value: string): boolean {
+  return (
+    FIRST_READ_DIRECTIVE_WORDING.test(value) ||
+    FIRST_READ_LABEL_HEADING.test(value) ||
+    FIRST_READ_LABEL_BOILERPLATE.test(value) ||
+    FIRST_READ_DOSING_INSTRUCTION.test(value)
+  )
+}
+
+/**
+ * Removes a footnote marker whose footnote is not on the page.
+ *
+ * A stored indication routinely ends "…outdoor allergies.**" with the disclaimer it points at —
+ * "Claims based on traditional homeopathic practice, not accepted medical evidence." — later in the
+ * same string, where the sentence split or the word limit drops it. The marker then survives alone
+ * and promises a qualification the reader can never reach, which is worse than carrying neither:
+ * it tells them the claim is qualified and then withholds the qualification.
+ */
+function withoutOrphanedFootnoteMarker(value: string): string {
+  return value.replace(/\s*[*†‡]+(?=\s*[.!?]?\s*$)/u, '')
+}
+
 function escapeRegularExpression(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
@@ -459,8 +525,9 @@ function usedForSummary(
     isCompleteReaderFragment(plainUse) &&
     !FIRST_READ_FORBIDDEN_WORDING.test(plainUse) &&
     !FIRST_READ_MOLECULAR_MARKER.test(plainUse) &&
-    !PCSK9_MARKER.test(plainUse)
-      ? ensureSentence(plainUse)
+    !PCSK9_MARKER.test(plainUse) &&
+    !statesReaderInstruction(plainUse)
+      ? ensureSentence(withoutOrphanedFootnoteMarker(plainUse))
       : 'This page discusses a use that still needs a clear, short description.'
   const note = simplifyCommonReaderTerms(noteParts.join('; '))
   const noteSentence = note ? ensureSentence(note.replace(/^used\s+/iu, 'It is used ')) : undefined
@@ -470,7 +537,8 @@ function usedForSummary(
     /\b(?:daily|dose|doses|drip|inject(?:ed|ion|ions)?|mouth|once|tablet|taken|twice|used|weekly)\b/iu.test(
       noteSentence,
     ) &&
-    !FIRST_READ_FORBIDDEN_WORDING.test(noteSentence)
+    !FIRST_READ_FORBIDDEN_WORDING.test(noteSentence) &&
+    !statesReaderInstruction(noteSentence)
       ? noteSentence
       : undefined
 

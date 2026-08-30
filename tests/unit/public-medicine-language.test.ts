@@ -639,4 +639,88 @@ describe('reader-facing medicine vocabulary', () => {
       { label: 'What this page covers', text: 'One identified use' },
     ])
   })
+
+  describe('the first screen never speaks an instruction in the site’s own voice', () => {
+    const NEEDS_DESCRIPTION =
+      'This page discusses a use that still needs a clear, short description.'
+
+    function usedFor(selectedUse: string, modality = 'Nutraceutical / Botanical'): string {
+      return buildLegacyReaderSummary({
+        medicineName: 'Example Substance',
+        modality,
+        trialIdentifiers: [],
+        selectedUse,
+      }).usedFor
+    }
+
+    // Each of these is a real stored indication, and each rendered as the answer to
+    // "What is it for?" in the site's own voice before the guard existed.
+    it.each([
+      ['Take 15 minutes before meals.', 'anisum'],
+      [
+        'Dissolve 5 pellets under the tongue once a day until symptons are relieved.',
+        'artemisia-cina-flower',
+      ],
+      [
+        'Apply a thin layer to cleansed face or affected areas morning and evening.',
+        'asiaticoside',
+      ],
+      [
+        'Spray the spray directly on your shoes or feet to make odors disappear quickly.',
+        'eucalyptus-globulus-leaf-oil',
+      ],
+    ])('refuses the copied instruction %j (%s)', (stored) => {
+      expect(usedFor(stored)).toBe(NEEDS_DESCRIPTION)
+    })
+
+    it('refuses an instruction on a medicine whose lead-in is "Used or studied for"', () => {
+      expect(usedFor('Take 15 minutes before meals', 'Small Molecule')).toBe(NEEDS_DESCRIPTION)
+    })
+
+    it.each([
+      'INDICATIONS Allergies.',
+      'INDICATIONS Late growth, fracture consolidation.',
+      'directions: FOR ORAL USE ONLY.',
+      'Condition listed above or as directed by the physician.',
+    ])('refuses the label furniture %j', (stored) => {
+      expect(usedFor(stored)).toBe(NEEDS_DESCRIPTION)
+    })
+
+    // The control that decides whether the guard is written correctly. This is a genuine FDA
+    // monograph sunscreen indication: it contains the words "as directed" and "Directions", and it
+    // is a real answer to "what is it for?". A case-insensitive heading match would delete it.
+    it('keeps a genuine monograph use that merely mentions directions', () => {
+      const stored =
+        'Helps prevent sunburn. If used as directed with other sun protection measures (see Directions), decreases the risk of skin cancer.'
+      expect(usedFor(stored)).not.toBe(NEEDS_DESCRIPTION)
+      expect(usedFor(stored)).toMatch(/prevent sunburn/iu)
+    })
+
+    it.each([
+      ['High blood pressure in adults', 'Small Molecule'],
+      ['Loss of appetite', 'Nutraceutical / Botanical'],
+    ])('keeps the ordinary use %j', (stored, modality) => {
+      expect(usedFor(stored, modality)).not.toBe(NEEDS_DESCRIPTION)
+    })
+
+    it('drops a footnote marker whose footnote is not on the page', () => {
+      // The disclaimer the marker points at is split off by the sentence split, so the marker would
+      // otherwise promise a qualification the reader can never reach.
+      const line = usedFor(
+        'Hives*; *Claims based on traditional homeopathic practice, not accepted medical evidence.',
+      )
+      expect(line).not.toMatch(/[*†‡]/u)
+      expect(line).toMatch(/hives/iu)
+    })
+
+    it('screens the practical note as well as the use line', () => {
+      const summary = buildLegacyReaderSummary({
+        medicineName: 'Example Substance',
+        modality: 'Nutraceutical / Botanical',
+        trialIdentifiers: [],
+        selectedUse: 'Occasional sleeplessness; take 2 tablets once daily as directed by a doctor',
+      })
+      expect(summary.practicalNote).toBeUndefined()
+    })
+  })
 })
