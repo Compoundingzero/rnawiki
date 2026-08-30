@@ -1,0 +1,10 @@
+{
+  "measurementDigest": "94d7efd16abc6ea17ac2577ef5bf2c4ad8f59b8cc77eaee0ef4084e0b8682562",
+  "inputs": {
+    "scripts/seed-data/background/extracted-background.generated.ts": "115d508be751926be60dd12e7424e067f0724a258541b581b3544cc68790e225",
+    "scripts/seed-data/background/source-consensus.generated.ts": "c66438859ef0e0ca78077dee1656baf1f127e6812efe347cf4cca9e5de44b90d",
+    "scripts/seed-data/background/molecular-properties.generated.ts": "858fefc850cc20114641e37a0ae528040e52eaa0079f51872103e784315a3a07",
+    "data/manifest.json": "e41f95ffeeab69ccf8ded65e437197be9e7f9efe083b5366dda7b989b90b7505",
+    "LICENSE-DATA": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+  }
+}
