@@ -42,6 +42,11 @@ export interface DossierNavigatorSection {
   /** Plain-language label. Never a field name and never an enum. */
   label: string
   coverage: DossierSectionCoverage
+  /**
+   * Every problem this section carries. `coverage` collapses these to the one shown as the row's
+   * state; this keeps both so a section that is conflicting AND stale badges both.
+   */
+  issues?: readonly ('conflicting' | 'stale')[]
   /** Optional count shown beside the label, e.g. how many readings disagree. */
   count?: number
 }
@@ -87,6 +92,10 @@ export function DossierSectionNavigator({ sections, medicineName }: DossierSecti
   const withContent = useMemo(() => countWithContent(sections), [sections])
   const conflicting = useMemo(
     () => sections.filter((section) => section.coverage === 'conflicting').length,
+    [sections],
+  )
+  const stale = useMemo(
+    () => sections.filter((section) => section.issues?.includes('stale')).length,
     [sections],
   )
 
@@ -185,6 +194,7 @@ export function DossierSectionNavigator({ sections, medicineName }: DossierSecti
                 <p className="mt-0.5 text-[11px] leading-4 text-[#6E6E73]">
                   {withContent} of {sections.length} sections hold recorded content
                   {conflicting > 0 ? ` · ${conflicting} where sources differ` : ''}
+                  {stale > 0 ? ` · ${stale} needing a source recheck` : ''}
                 </p>
               </div>
               <button
@@ -235,6 +245,13 @@ export function DossierSectionNavigator({ sections, medicineName }: DossierSecti
                         </span>
                         <span className={`block text-[11px] leading-4 ${presentation.text}`}>
                           {presentation.label}
+                          {/* Both facts survive: a section can disagree AND need rechecking. */}
+                          {section.issues?.includes('stale') &&
+                            section.coverage === 'conflicting' && (
+                              <span className="ml-1.5 text-[#8A6D1F]">
+                                · {COVERAGE_PRESENTATION.stale.label}
+                              </span>
+                            )}
                         </span>
                       </span>
                     </button>

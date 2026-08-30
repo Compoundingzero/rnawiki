@@ -126,6 +126,7 @@ describe('the navigator reports coverage rather than assuming it', () => {
               documentsExaminedLabel: '31 published labels were read for this medicine',
               fields: [
                 {
+                  field: 'halfLife',
                   fieldLabel: 'Half-life',
                   agreementLabel: '97% of the labels stating it give the most common reading',
                   disagreementNote:
@@ -133,6 +134,7 @@ describe('the navigator reports coverage rather than assuming it', () => {
                   readings: [],
                 },
                 {
+                  field: 'volumeOfDistribution',
                   fieldLabel: 'Volume of distribution',
                   agreementLabel: '100% of the labels stating it give the most common reading',
                   readings: [],
@@ -163,6 +165,7 @@ describe('the navigator reports coverage rather than assuming it', () => {
               documentsExaminedLabel: '4 published labels were read for this medicine',
               fields: [
                 {
+                  field: 'halfLife',
                   fieldLabel: 'Half-life',
                   agreementLabel: '',
                   disagreementNote: 'x',

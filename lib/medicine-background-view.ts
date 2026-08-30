@@ -6,6 +6,8 @@
  */
 
 import { ANATOMY_REGIONS, isAnatomyRegionCode } from '@/lib/background/anatomy-regions'
+import type { ReadingComparisonState } from '@/lib/background/reading-comparison'
+import type { DossierQuestionIntent } from '@/lib/dossier-question-registry'
 import type {
   BackgroundProvenanceTier,
   BackgroundSource,
@@ -146,10 +148,16 @@ export interface MedicineBackgroundContextView {
   sourceConsensus?: {
     documentsExaminedLabel: string
     fields: Array<{
+      /** The stored field key, e.g. `halfLife`. Carried so the question layer can map it without
+       * guessing from the rendered label, which would re-point itself whenever copy changed. */
+      field: string
       fieldLabel: string
       agreementLabel: string
       /** Set when two readings carry numbers whose ranges do not overlap. Never says either is wrong. */
       disagreementNote?: string
+      /** Whether the readings were comparable at all, and if so whether they agree. */
+      comparisonState?: ReadingComparisonState
+      comparisonReasons?: readonly string[]
       readings: Array<{
         display: string
         supportLabel: string
@@ -157,6 +165,23 @@ export interface MedicineBackgroundContextView {
       }>
     }>
   }
+  /**
+   * Sources the freshness loop currently reports as no longer reproducing their recorded wording.
+   *
+   * Nothing populates this yet: `npm run verify:background` computes drift at run time and does not
+   * write it into the envelope, so no per-source drift reaches a page today and the stale question
+   * count is zero. The channel exists so that when drift IS recorded, a question can be marked stale
+   * from the source it actually depends on rather than from a dossier-wide flag. A stale state that
+   * cannot be traced to a source used by that question must never be emitted.
+   */
+  driftedSources?: readonly {
+    intent: DossierQuestionIntent
+    sourceIdentifier: string
+    sourceLabel: string
+    recordedAt: string
+    freshnessState: string
+    fieldPath: string
+  }[]
   /**
    * Where the medicine appears in the published drug-label archive.
    *
@@ -810,7 +835,10 @@ export function medicineBackgroundContext(
           'published labels were read for this medicine',
         ),
         fields: consensus.fields.map((field) => ({
+          field: field.field,
           fieldLabel: CONSENSUS_FIELD_LABELS[field.field] ?? field.field,
+          ...(field.comparisonState ? { comparisonState: field.comparisonState } : {}),
+          ...(field.comparisonReasons ? { comparisonReasons: field.comparisonReasons } : {}),
           agreementLabel: `${Math.round(field.agreementRate * 100)}% of the labels stating it give the most common reading`,
           /*
            * Marked as something for a person to look at, never as a verdict on either reading.

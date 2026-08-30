@@ -24,6 +24,7 @@
  */
 
 import type { DossierNavigatorSection } from '@/components/dossier/DossierSectionNavigator'
+import { buildQuestionIssueIndex } from './dossier-question-issues'
 import type {
   MedicineDossierViewModel,
   MedicineRecordContextView,
@@ -37,6 +38,8 @@ interface SectionCandidate {
   present: boolean
   /** How many independent readings disagree, when the section carries a consensus block. */
   conflictingReadings?: number
+  /** How many sources behind this section the freshness loop reports as drifted. */
+  staleSources?: number
   count?: number
 }
 
@@ -55,8 +58,22 @@ function isNonEmpty(value: unknown): boolean {
  * it navigates would be worse than one that showed no counts at all.
  */
 function countConflictingReadings(context: MedicineRecordContextView | undefined): number {
-  const fields = context?.background?.sourceConsensus?.fields ?? []
-  return fields.filter((field) => Boolean(field.disagreementNote)).length
+  /*
+   * Counted through the issue index rather than from `disagreementNote`, so the navigator and the
+   * question layer report the same conflicts. Only a comparable `differ` counts; a `not_comparable`
+   * field never appears as a conflict here for the same reason it never appears as one on a
+   * question -- comparing those readings would need a measurement no source stated.
+   */
+  return buildQuestionIssueIndex({
+    consensusFields: context?.background?.sourceConsensus?.fields,
+  }).conflicting.length
+}
+
+/** Sources the freshness loop reports as no longer reproducing their recorded wording. */
+function countStaleSources(context: MedicineRecordContextView | undefined): number {
+  return buildQuestionIssueIndex({
+    driftedSources: context?.background?.driftedSources,
+  }).stale.length
 }
 
 export function dossierNavigatorSections(
@@ -65,6 +82,7 @@ export function dossierNavigatorSections(
   const context: MedicineRecordContextView | undefined = dossier.medicineRecord
   const background = context?.background
   const conflicting = countConflictingReadings(context)
+  const stale = countStaleSources(context)
 
   const candidates: SectionCandidate[] = [
     /* The evidence layer, which is where a reviewed conclusion appears when one exists. */
@@ -153,6 +171,7 @@ export function dossierNavigatorSections(
       label: 'What every label says',
       present: isNonEmpty(background?.sourceConsensus),
       conflictingReadings: conflicting,
+      staleSources: stale,
     },
     {
       id: 'what-organism-it-is',
@@ -194,10 +213,28 @@ export function dossierNavigatorSections(
 
   return candidates.map((candidate) => {
     const conflictingHere = candidate.present && (candidate.conflictingReadings ?? 0) > 0
+    const staleHere = candidate.present && (candidate.staleSources ?? 0) > 0
+    /*
+     * A section can be both. `coverage` shows the disagreement, because it is about the recorded
+     * evidence rather than about our copy of a source, and `issues` keeps both so the row can badge
+     * both without either fact being lost.
+     */
+    const issues = [
+      ...(conflictingHere ? (['conflicting'] as const) : []),
+      ...(staleHere ? (['stale'] as const) : []),
+    ]
+    const coverage = conflictingHere
+      ? ('conflicting' as const)
+      : staleHere
+        ? ('stale' as const)
+        : candidate.present
+          ? ('answered' as const)
+          : ('not_documented' as const)
     return {
       id: candidate.id,
       label: candidate.label,
-      coverage: conflictingHere ? 'conflicting' : candidate.present ? 'answered' : 'not_documented',
+      coverage,
+      ...(issues.length > 0 ? { issues } : {}),
       ...(conflictingHere
         ? { count: candidate.conflictingReadings }
         : candidate.count !== undefined

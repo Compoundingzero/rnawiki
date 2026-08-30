@@ -5,6 +5,11 @@ import type {
   ProgrammeSourceClaimBindingView,
 } from '@/lib/medicine-dossier-view-model'
 import { publicApprovalStatusLabel, publicMedicineTypeLabel } from '@/lib/public-medicine-language'
+import {
+  buildQuestionIssueIndex,
+  primaryIssueCoverage,
+  type DossierQuestionIssue,
+} from '@/lib/dossier-question-issues'
 
 export type DossierQuestionIntent =
   | 'identity'
@@ -28,7 +33,15 @@ export type DossierQuestionIntent =
   | 'corrections'
 
 export type DossierQuestionCoverageState =
-  'answered' | 'not_yet_documented' | 'not_reported' | 'not_applicable' | 'awaiting_review'
+  | 'answered'
+  | 'not_yet_documented'
+  | 'not_reported'
+  | 'not_applicable'
+  | 'awaiting_review'
+  /** Recorded sources print different values that WERE comparable. Never inferred from a unit mismatch. */
+  | 'conflicting'
+  /** A source supporting this question no longer reproduces what was recorded from it. */
+  | 'stale'
 
 export interface DossierQuestionFact {
   label: string
@@ -50,6 +63,13 @@ export interface DossierQuestionPassage {
   intentLabel: string
   question: string
   coverage: DossierQuestionCoverageState
+  /**
+   * Every problem this question carries, not only the one shown as `coverage`.
+   *
+   * A question can be both conflicting and stale. `coverage` collapses that to one value for
+   * consumers that can show only one, and this array keeps both so the navigator can badge both.
+   */
+  issues?: readonly DossierQuestionIssue[]
   /** Fixed explanation sentence, present exactly when the question is not answered. */
   coverageNote?: string
   /** Self-contained lead naming the medicine and scope, present exactly when answered. */
@@ -1256,7 +1276,43 @@ export function buildDossierQuestionRegistry(
       nonEmpty(dossier.selectedProgrammeLabel) ??
       dossier.name,
   }
-  return QUESTION_DEFINITIONS.map((definition) =>
-    QUESTION_BUILDERS[definition.intent](definition, context),
-  )
+  /*
+   * Issues are applied after each question resolves, not inside the builders. A disagreement between
+   * sources is a property of the recorded evidence, not of how any one question was answered, so
+   * deriving it once and stamping it keeps every question consistent with every other.
+   */
+  const issueIndex = buildQuestionIssueIndex({
+    consensusFields: dossier.medicineRecord?.background?.sourceConsensus?.fields,
+    driftedSources: dossier.medicineRecord?.background?.driftedSources,
+  })
+
+  return QUESTION_DEFINITIONS.map((definition) => {
+    const passage = QUESTION_BUILDERS[definition.intent](definition, context)
+    const issues = issueIndex.byIntent.get(definition.intent)
+    if (!issues || issues.length === 0) return passage
+    const primary = primaryIssueCoverage(issues)
+    return {
+      ...passage,
+      issues,
+      /*
+       * A conflict or a drifted source overrides `answered`, because a reader told only "answered"
+       * would take the recorded value as settled when the sources behind it do not agree.
+       */
+      ...(primary ? { coverage: primary, coverageNote: ISSUE_NOTES[primary] } : {}),
+    }
+  })
+}
+
+/**
+ * Reader-facing wording for the two issue states.
+ *
+ * Both sentences do the same job: state the fact and stop. Neither says a recorded value is wrong,
+ * because neither the disagreement nor the drift establishes that, and saying so would be RNAWiki
+ * deciding something no source decided.
+ */
+const ISSUE_NOTES: Record<DossierQuestionIssue, string> = {
+  conflicting:
+    'Independent sources print different values here that can be compared directly. Every reading is kept exactly as printed. RNAWiki does not choose which source is right, and a disagreement is not proof that either one is wrong.',
+  stale:
+    'A source behind this answer no longer reproduces the wording it was recorded from, so it needs rechecking. The recorded statement is not automatically wrong; it has not yet been confirmed against the current source.',
 }
