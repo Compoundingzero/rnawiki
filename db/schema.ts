@@ -3775,6 +3775,8 @@ export const engineFindings = pgTable(
     inputDigest: varchar('input_digest', { length: 64 }).notNull(),
     subjectType: varchar('subject_type', { length: 24 }).notNull(),
     subjectId: varchar('subject_id', { length: 160 }).notNull(),
+    /** The run this finding belongs to. Nullable only for rows written before runs existed. */
+    runId: varchar('run_id', { length: 64 }),
     ruleCode: varchar('rule_code', { length: 64 }).notNull(),
     level: varchar('level', { length: 16 }).notNull(),
     fieldPath: varchar('field_path', { length: 200 }).notNull(),
@@ -3785,9 +3787,77 @@ export const engineFindings = pgTable(
     recordedAt: timestamp('recorded_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
+    index('engine_findings_run_idx').on(table.runId),
     index('engine_findings_rule_idx').on(table.ruleCode, table.recordedAt),
     index('engine_findings_subject_idx').on(table.subjectType, table.subjectId),
     index('engine_findings_engine_idx').on(table.engineFamily, table.engineVersion),
     check('engine_findings_input_digest', sql`${table.inputDigest} ~ '^[0-9a-f]{64}$'`),
+  ],
+)
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Engine validation runs                                                                           */
+/*                                                                                                  */
+/* `engine_findings` records what a check FOUND. On its own that leaves the most common outcome     */
+/* invisible: a record that passed with zero findings writes nothing, and is therefore              */
+/* indistinguishable from a record nobody ever checked. Per-rule precision is not computable from   */
+/* failures alone -- the denominator is the number of times a rule ran and stayed silent.           */
+/*                                                                                                  */
+/* So the run is the row, and findings hang off it. A passing run with zero findings is still a row.*/
+/* ---------------------------------------------------------------------------------------------- */
+
+export const engineRunStatusEnum = pgEnum('engine_run_status', ['PASSED', 'FAILED'])
+
+export const engineValidationRuns = pgTable(
+  'engine_validation_runs',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    subjectType: varchar('subject_type', { length: 24 }).notNull(),
+    subjectId: varchar('subject_id', { length: 160 }).notNull(),
+    /** `background` today. `evidence` and `molecular` reuse this table when they gain a live path. */
+    engineFamily: varchar('engine_family', { length: 32 }).notNull(),
+    engineVersion: varchar('engine_version', { length: 48 }).notNull(),
+    inputDigestAlgorithm: varchar('input_digest_algorithm', { length: 16 })
+      .notNull()
+      .default('sha256'),
+    inputDigest: varchar('input_digest', { length: 64 }).notNull(),
+    /** Which generated corpus the validated input came from, so a run is traceable to a release. */
+    corpusVersion: varchar('corpus_version', { length: 64 }).notNull(),
+    status: engineRunStatusEnum('status').notNull(),
+    passed: boolean('passed').notNull(),
+    findingCount: integer('finding_count').notNull().default(0),
+    /** The command that produced the run, e.g. `apply:background`. */
+    operation: varchar('operation', { length: 64 }).notNull(),
+    validatedAt: timestamp('validated_at', { withTimezone: true }).notNull().defaultNow(),
+    /** Set only when the validated input was actually written onto the medicine row. */
+    appliedAt: timestamp('applied_at', { withTimezone: true }),
+  },
+  (table) => [
+    /*
+     * The idempotency rule. Re-running the apply command over an unchanged corpus must not create a
+     * second identical run, while a changed input or a new engine version must create a new one --
+     * so history accumulates on real change and not on repetition.
+     */
+    uniqueIndex('engine_validation_runs_identity').on(
+      table.subjectType,
+      table.subjectId,
+      table.engineFamily,
+      table.engineVersion,
+      table.inputDigest,
+    ),
+    index('engine_validation_runs_subject_idx').on(table.subjectType, table.subjectId),
+    index('engine_validation_runs_status_idx').on(table.status, table.validatedAt),
+    check(
+      'engine_validation_runs_digest',
+      sql`${table.inputDigestAlgorithm} = 'sha256' and ${table.inputDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+    check(
+      'engine_validation_runs_status_agrees',
+      sql`(${table.status} = 'PASSED') = ${table.passed}`,
+    ),
+    check(
+      'engine_validation_runs_finding_count',
+      sql`${table.findingCount} >= 0 and (${table.passed} or ${table.findingCount} > 0)`,
+    ),
   ],
 )
