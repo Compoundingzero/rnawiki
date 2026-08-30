@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { compareFieldReadings } from '@/lib/background/reading-comparison'
+
 import { SOURCE_CONSENSUS } from '@/scripts/seed-data/background/source-consensus.generated'
 import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
@@ -77,21 +79,58 @@ describe('cross-source consensus', () => {
     }
   })
 
-  it('marks readings as non-overlapping only when their numeric spans truly are', () => {
-    const span = (display: string) => {
-      const numbers = (display.match(/\d+(?:\.\d+)?/gu) ?? []).map(Number)
-      return numbers.length ? { low: Math.min(...numbers), high: Math.max(...numbers) } : null
-    }
+  /**
+   * Rewritten when the comparability contract landed. The previous assertion compared the raw
+   * printed numbers with no regard for units, and was wrong in both directions.
+   *
+   * It missed real disagreements: carboplatin's half-life is "5 days" on thirteen labels and
+   * "2.6 to 5.9 hours" on a fourteenth, and 5 falls inside 2.6 to 5.9, so the raw check called them
+   * overlapping. It also invented false ones: melphalan's "0.5 L/kg" and "35.5 to 185.7 L" were
+   * reported as a conflict when the second is 0.51 L/kg in a 70 kg adult.
+   *
+   * The property that matters is that the recorded state agrees with the contract, so the check now
+   * asks the contract rather than re-deriving a weaker rule beside it.
+   */
+  it('records a comparison state that matches the comparability contract', () => {
     for (const [slug, consensus] of entries) {
       for (const field of consensus.fields) {
-        if (!field.numericallyDisjoint) continue
-        const spans = field.readings.map((reading) => span(reading.display)).filter(Boolean)
-        const anyDisjoint = spans.some((left, index) =>
-          spans
-            .slice(index + 1)
-            .some((right) => left!.high < right!.low || right!.high < left!.low),
+        const expected = compareFieldReadings(field.readings.map((reading) => reading.display))
+        expect(field.comparisonState, `${slug} ${field.field}`).toBe(expected.state)
+        // The deprecated Boolean must keep agreeing with the state it was superseded by.
+        expect(field.numericallyDisjoint, `${slug} ${field.field}`).toBe(
+          expected.state === 'differ',
         )
-        expect(anyDisjoint, `${slug} ${field.field}`).toBe(true)
+      }
+    }
+  })
+
+  it('never reports a disagreement without a genuinely comparable pair behind it', () => {
+    /*
+     * The reasons list describes every pair in the field, not only the pair that decided the state,
+     * so a field can legitimately differ on one pair and be denominator-mismatched on another. What
+     * must never happen is a field marked `differ` where NO pair was comparable and disjoint -- that
+     * would be a unit mismatch reported as a conflict, which is the defect this contract exists to
+     * end.
+     */
+    for (const [slug, consensus] of entries) {
+      for (const field of consensus.fields) {
+        if (field.comparisonState !== 'differ') continue
+        expect(field.comparisonReasons, `${slug} ${field.field}`).toContain(
+          'COMPATIBLE_VALUES_DISJOINT',
+        )
+      }
+    }
+  })
+
+  it('never reports not_comparable where every pair was in fact comparable', () => {
+    for (const [slug, consensus] of entries) {
+      for (const field of consensus.fields) {
+        if (field.comparisonState !== 'not_comparable') continue
+        const reasons = field.comparisonReasons ?? []
+        expect(
+          reasons.includes('DENOMINATOR_MISMATCH') || reasons.includes('UNIT_DIMENSION_MISMATCH'),
+          `${slug} ${field.field}`,
+        ).toBe(true)
       }
     }
   })

@@ -331,14 +331,6 @@ function measure() {
   }
 }
 
-/** Unit token at the end of a printed reading, used only to partition comparable readings. */
-function unitOfReading(display: string): string {
-  const trimmed = display.trim()
-  if (/%\s*$/u.test(trimmed)) return '%'
-  const match = /([A-Za-z/µ]+(?:\s*\/\s*[A-Za-z]+)?)\s*$/u.exec(trimmed)
-  return match ? match[1]!.replace(/\s+/gu, '').toLowerCase() : ''
-}
-
 /** Which modules the 155 hand-authored records actually hold. */
 function measureCuratedModuleHoldings(): Record<string, number> {
   const counts = new Map<string, number>()
