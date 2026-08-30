@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { printedSpan } from '@/lib/background/printed-numbers'
+import { compareFieldReadings } from '@/lib/background/reading-comparison'
 import { execFileSync } from 'node:child_process'
 import { createReadStream, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { createInterface } from 'node:readline'
@@ -84,16 +84,6 @@ function readingKey(display: string, unit: string | undefined): string {
     .replace(/\s+/gu, '')
     .replace(/hours?|hrs?\b/gu, 'h')
   return `${normalized}|${unit ?? ''}`
-}
-
-/**
- * The numeric span a reading covers, for deciding whether two readings can both be true.
- *
- * Read whole: the local regex could not cross a thousands separator, so "5,800 L" became the span
- * 5 to 800 and two readings that agreed were reported as disagreeing.
- */
-function numericSpan(display: string): { low: number; high: number } | null {
-  return printedSpan(display)
 }
 
 interface Accumulated {
@@ -242,20 +232,15 @@ async function main() {
       if (sourceCount < 2) continue
       multiSourceFields += 1
 
-      // Two readings can both be true when their numeric spans overlap; only genuinely disjoint
-      // spans are marked, and even then only as something for a person to look at.
-      const spans = ordered.map((entry) => numericSpan(entry.display)).filter(Boolean)
-      let numericallyDisjoint = false
-      for (let a = 0; a < spans.length && !numericallyDisjoint; a += 1) {
-        for (let b = a + 1; b < spans.length; b += 1) {
-          const left = spans[a]!
-          const right = spans[b]!
-          if (left.high < right.low || right.high < left.low) {
-            numericallyDisjoint = true
-            break
-          }
-        }
-      }
+      /*
+       * Comparability before comparison. The old rule computed a numeric span per reading and marked
+       * the field disjoint when two spans missed each other, without ever consulting the unit, so a
+       * volume of 0.5 L/kg and one of 35.5 L were published as a disagreement when the second is
+       * 0.51 L/kg in a 70 kg adult. Recording that sources differ is this corpus's product, which
+       * makes a false disagreement the most expensive error it can make.
+       */
+      const comparison = compareFieldReadings(ordered.map((entry) => entry.display))
+      const numericallyDisjoint = comparison.state === 'differ'
       if (numericallyDisjoint) disjointFields += 1
 
       const readingList: ConsensusReading[] = ordered
@@ -274,6 +259,8 @@ async function main() {
         readings: readingList,
         agreementRate: (ordered[0]?.count ?? 0) / sourceCount,
         numericallyDisjoint,
+        comparisonState: comparison.state,
+        comparisonReasons: comparison.reasons,
       })
     }
     if (fields.length === 0) continue

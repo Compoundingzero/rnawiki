@@ -11,6 +11,7 @@ import type {
   BackgroundSource,
   MedicineRecordedBackground,
   RecordedComposition,
+  RecordedFieldConsensus,
   RecordedValue,
 } from '@/lib/background/types'
 
@@ -558,6 +559,35 @@ function money(currency: string, low: number, high?: number): string {
     : `${symbol}${format(low)}`
 }
 
+/**
+ * The sentence a reader sees about how a field's readings relate, or none when they simply agree.
+ *
+ * Falls back to the deprecated Boolean for records generated before the comparability contract
+ * existed, so an older envelope keeps its disagreement note instead of silently losing it.
+ */
+function comparisonNote(field: RecordedFieldConsensus): { disagreementNote?: string } {
+  const state = field.comparisonState ?? (field.numericallyDisjoint ? 'differ' : undefined)
+  if (state === 'differ') {
+    return {
+      disagreementNote:
+        'Two of these readings give numbers that do not overlap. Both are recorded as printed; neither is marked wrong here.',
+    }
+  }
+  if (state === 'not_comparable') {
+    return {
+      disagreementNote:
+        'These readings are recorded in units that cannot be compared without a measurement no source states, such as a body weight. They are kept as printed and are not treated as agreeing or disagreeing.',
+    }
+  }
+  if (state === 'insufficient_context') {
+    return {
+      disagreementNote:
+        'Not enough was recorded with these readings to tell whether they can be compared. They are kept as printed.',
+    }
+  }
+  return {}
+}
+
 export function medicineBackgroundContext(
   background: MedicineRecordedBackground | undefined,
 ): MedicineBackgroundContextView | undefined {
@@ -782,13 +812,16 @@ export function medicineBackgroundContext(
         fields: consensus.fields.map((field) => ({
           fieldLabel: CONSENSUS_FIELD_LABELS[field.field] ?? field.field,
           agreementLabel: `${Math.round(field.agreementRate * 100)}% of the labels stating it give the most common reading`,
-          // Marked as something for a person to look at, never as a verdict on either reading.
-          ...(field.numericallyDisjoint
-            ? {
-                disagreementNote:
-                  'Two of these readings give numbers that do not overlap. Both are recorded as printed; neither is marked wrong here.',
-              }
-            : {}),
+          /*
+           * Marked as something for a person to look at, never as a verdict on either reading.
+           *
+           * `not_comparable` gets its own sentence rather than sharing the disagreement one. Two
+           * readings in incompatible units -- a volume in litres against one per kilogram -- are
+           * neither the same number nor different numbers, and calling that a disagreement invents
+           * a conflict the sources never had. Saying nothing at all would be worse still, because a
+           * reader would take the silence for agreement.
+           */
+          ...comparisonNote(field),
           readings: field.readings.map((reading) => ({
             display: reading.display,
             supportLabel: countPhrase(reading.sourceCount, 'label states it', 'labels state it'),
