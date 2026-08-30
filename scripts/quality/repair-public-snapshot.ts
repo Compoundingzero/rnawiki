@@ -147,7 +147,15 @@ function csvEscape(value: string): string {
 
 function main(): void {
   const manifest = JSON.parse(readFileSync(MANIFEST_PATH, 'utf8')) as Manifest
-  const shardEntries = manifest.files.filter((file) => file.path.endsWith('.ndjson'))
+  /*
+   * Medicine shards only. The manifest now lists three different NDJSON shapes — the medicine
+   * shards, `recorded-background.ndjson` (one envelope per medicine) and `source-consensus.ndjson`
+   * (one row per field reading). Selecting on the `.ndjson` extension swept all three into a loop
+   * that assumes a medicine record, and this script crashed on the first background envelope with
+   * `Cannot read properties of undefined (reading 'toLowerCase')` — the envelope has no `id`. The
+   * path prefix is what identifies a medicine shard; the extension never did.
+   */
+  const shardEntries = manifest.files.filter((file) => file.path.startsWith('data/drugs/'))
   const keptRecords: PublicRecord[] = []
   const shortLabelsBySlug = new Map<string, string>()
   let placeholdersRemoved = 0

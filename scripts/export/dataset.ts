@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { createHash } from 'node:crypto'
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { asc } from 'drizzle-orm'
 import { db } from '@/db'
@@ -58,6 +58,57 @@ const DRUGS_DIR = join(EXPORT_DIR, 'drugs')
  * files from disk and fails if these declarations ever drift apart again.
  */
 const CORE_DATASET_LICENCE = 'CC BY 4.0 — see LICENSE-DATA'
+
+/**
+ * The share of the corpus that may disappear between two exports before this refuses to publish.
+ *
+ * A scheduled job overwrites `data/` wholesale, so anything that makes the read return fewer rows —
+ * a half-applied migration, a replica that has not caught up, a connection that dropped mid-scan, an
+ * export role that lost a grant — publishes as a smaller dataset with a valid manifest and correct
+ * hashes. Every integrity check downstream passes, because the file genuinely matches its digest.
+ * Nothing distinguishes "the corpus shrank" from "the read failed" after the fact, which is why the
+ * comparison has to happen here, while the previous manifest is still on disk.
+ *
+ * A real corpus does not lose a hundredth of itself overnight. When one legitimately does — a large
+ * withdrawal of records — the operator passes `--allow-shrinkage`, which records the intent in the
+ * command rather than leaving the loss to be discovered by a reader.
+ */
+const MAX_SHRINKAGE = 0.01
+
+/** The previously published record count, or null when nothing has been published yet. */
+function previouslyPublishedTotal(): number | null {
+  const manifestPath = join(EXPORT_DIR, 'manifest.json')
+  if (!existsSync(manifestPath)) return null
+  try {
+    const total = JSON.parse(readFileSync(manifestPath, 'utf8'))?.counts?.total
+    return typeof total === 'number' && Number.isFinite(total) && total > 0 ? total : null
+  } catch {
+    // An unreadable manifest is not evidence about size. Let the export proceed and replace it.
+    return null
+  }
+}
+
+function assertCorpusDidNotShrink(rowCount: number): void {
+  const previous = previouslyPublishedTotal()
+  if (previous === null) return
+
+  const floor = Math.floor(previous * (1 - MAX_SHRINKAGE))
+  if (rowCount >= floor) return
+
+  if (process.argv.includes('--allow-shrinkage')) {
+    console.warn(
+      `[export] WARNING: publishing ${rowCount} records, down from ${previous}. Allowed by --allow-shrinkage.`,
+    )
+    return
+  }
+
+  throw new Error(
+    `Refusing to publish a shrunken corpus: ${rowCount} records, down from ${previous} ` +
+      `(floor ${floor}, tolerance ${MAX_SHRINKAGE * 100}%). A partial read and a genuine withdrawal ` +
+      `look identical once written, so this stops before overwriting the published dataset. ` +
+      `Check the database and the export role's grants. If the loss is real, re-run with --allow-shrinkage.`,
+  )
+}
 
 /** Internal plumbing plus the superseded medicine-wide verdict, which has no safe public scope. */
 const OMITTED_PUBLIC_FIELDS = new Set([
@@ -157,6 +208,10 @@ async function main(): Promise<void> {
   const rows = (drugRows as unknown as DrugRow[]).filter(
     (row) => !isPlaceholderMedicineIdentity({ slug: row.slug, name: row.name }),
   )
+  // Before the first destructive filesystem call on line 247, while the previous manifest still
+  // describes what is published.
+  assertCorpusDidNotShrink(rows.length)
+
   const publicDrugIds = new Set(rows.map((row) => row.id))
   const publicAliasRows = aliasRows.filter((row) => publicDrugIds.has(row.drugId))
 

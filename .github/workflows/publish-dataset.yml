@@ -8,6 +8,19 @@
 # DATABASE_CA_CERT must contain the certificate (or CA) that authenticates the public Postgres
 # endpoint. Missing trust material is a failed publication, never a silently skipped or
 # certificate-unverified export.
+#
+# WHY A SERVER NAME IS ALSO SET. Railway issues this database a certificate from a private CA
+# carrying exactly one identity, `CN=localhost` / `SAN: DNS:localhost`, and the public endpoint is a
+# TCP passthrough that forwards that same certificate rather than presenting one named for the
+# proxy. Verifying against the proxy hostname therefore fails on the name even though the chain is
+# good. PGSSLSERVERNAME tells db/ssl.ts which name to hold the certificate to; the chain is still
+# verified in full against the pinned CA, so only a server holding a key that CA signed can complete
+# the handshake. Override the repository secret if Railway ever reissues under a different name — a
+# mismatch fails the run loudly rather than downgrading the connection.
+#
+# The trust anchor must be read from inside Railway (`railway ssh` into the Postgres service,
+# /var/lib/postgresql/data/certs/root.crt). A certificate scraped from an unauthenticated public
+# connection would pin whatever answered and prove nothing.
 name: Publish dataset
 
 on:
@@ -51,11 +64,31 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATASET_DATABASE_URL }}
           PGSSLROOTCERT: ${{ runner.temp }}/rnawiki-postgres-ca.pem
+          PGSSLSERVERNAME: ${{ secrets.DATABASE_TLS_SERVER_NAME || 'localhost' }}
           SESSION_SECRET: 'unused-by-the-export-but-required-at-import-time-32'
         run: npx tsx scripts/export/dataset.ts
 
-      - name: Check generated reader copy
+      # Scans this repository's authored copy. The generated corpus in data/drugs is skipped: it is a
+      # projection of the live database, so an editorial fault there is a fault in the medicine
+      # records and is fixed through the review workflow. Blocking publication on it would freeze the
+      # public dataset while changing nothing on the site — the staleness this job exists to end. The
+      # skip prints a loud notice, and `npm run gate` still scans the corpus in full.
+      - name: Check authored reader copy
+        env:
+          SLOP_SCAN_SKIP_GENERATED_CORPUS: '1'
         run: npm run check:copy
+
+      # Recomputes every hash from the files as a downloader receives them, confirms the licence and
+      # the required artifacts, and re-reads each record to confirm no restricted field carries a
+      # value. Runs before the commit so a bad export is never pushed.
+      - name: Verify the export against its own manifest
+        run: npm run check:dataset-export
+
+      # The corpus gate the skipped lint arm cannot be: it reads every field of every record and
+      # fails if a page vouches for itself outside the recorded baseline, or if a baselined sentence
+      # was repaired without being struck from the list. Runs before the commit.
+      - name: Check the published corpus for self-certification
+        run: npx vitest run tests/unit/public-data-integrity.test.ts
 
       - name: Commit only if the data moved
         run: |

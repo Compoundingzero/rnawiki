@@ -45,7 +45,8 @@
     "enrich": "tsx scripts/enrich/run.ts",
     "export:dataset": "tsx scripts/export/dataset.ts",
     "repair:public-snapshot": "node --import tsx scripts/quality/repair-public-snapshot.ts",
-    "fold:merged": "tsx scripts/ingest/fold-merged.ts"
+    "fold:merged": "tsx scripts/ingest/fold-merged.ts",
+    "check:dataset-export": "tsx scripts/check/dataset-export.ts"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",

@@ -251,19 +251,44 @@ function extractPublicDataProse(src, file) {
 }
 
 /** Parse checked-in NDJSON and retain every string value for the two outright self-certifiers. */
+/**
+ * Recorded identity, which this scan must never police.
+ *
+ * A medicine's name and its trade names are transcribed from the source that prints them, and
+ * RNAWiki's rule is to record them exactly. The all-strings arm flagged the real over-the-counter
+ * brand `Honest Med Capsaicin Patch` as self-certifying editorial language. The only way to satisfy
+ * that complaint would be to alter a recorded product name, which is a data-integrity fault far
+ * worse than the tic being hunted. A brand is not a claim about RNAWiki's candour.
+ *
+ * Verbatim source excerpts are excluded for the same reason: a manufacturer writing "honestly" in a
+ * label is a fact about the label, not about this project's prose.
+ */
+const RECORDED_IDENTITY_KEYS = new Set([
+  'alias',
+  'brandName',
+  'excerpt',
+  'genericName',
+  'name',
+  'slug',
+  'textAsRecorded',
+  'tradeName',
+])
+
 function extractAllPublicDataStrings(src, file) {
   const out = []
-  const visit = (value) => {
+  const visit = (value, key = '') => {
     if (typeof value === 'string') {
-      out.push(value)
+      if (!RECORDED_IDENTITY_KEYS.has(key)) out.push(value)
       return
     }
     if (Array.isArray(value)) {
-      for (const entry of value) visit(entry)
+      // An array inherits its parent's key, so `aliases: [{ alias }]` and a bare string array of
+      // names are both judged as the field they belong to.
+      for (const entry of value) visit(entry, key)
       return
     }
     if (!value || typeof value !== 'object') return
-    for (const entry of Object.values(value)) visit(entry)
+    for (const [entryKey, entry] of Object.entries(value)) visit(entry, entryKey)
   }
 
   for (const [lineIndex, line] of src.split('\n').entries()) {
@@ -380,7 +405,25 @@ const publicFilesScanned = scanFiles(files, PATTERNS)
 const seedFilesScanned = explicitFiles
   ? 0
   : scanFiles(importedSeedFiles('scripts/seed-data'), SEED_COPY_PATTERNS)
-const publicDataFilesToScan = explicitFiles ? [] : publicDataFiles('data/drugs')
+/**
+ * Lets the publication workflow skip the generated corpus arm. Nothing else may set this.
+ *
+ * `data/drugs/*.ndjson` is not authored here — it is a projection of the live database, regenerated
+ * wholesale on every export. Editorial faults in it are faults in the medicine records, and the only
+ * place to fix them is the review workflow that writes those records; a lint gate over the mirror
+ * cannot fix anything, it can only refuse to mirror.
+ *
+ * That refusal is the problem. The publication job exists so the downloadable dataset matches the
+ * live site. Blocking it because the site's own prose has a tic does not improve the site — it
+ * freezes the public dataset at whatever it last held, which is precisely the staleness this job was
+ * built to end. The dataset then misrepresents the site, and the tic is still on the site.
+ *
+ * So the gate stays fully armed in `npm run gate`, where a person can act on it, and the publication
+ * job proceeds. The skip is announced loudly in the log so a run can never read as a clean pass.
+ */
+const skipGeneratedCorpus = process.env.SLOP_SCAN_SKIP_GENERATED_CORPUS === '1'
+const publicDataFilesToScan =
+  explicitFiles || skipGeneratedCorpus ? [] : publicDataFiles('data/drugs')
 const publicDataReaderPatterns = SEED_COPY_PATTERNS.filter(
   ({ id }) => !ALL_PUBLIC_DATA_STRING_PATTERN_IDS.has(id),
 )
@@ -416,6 +459,14 @@ console.log(
 if (!explicitFiles) {
   console.log(
     'seed exclusions: protected imported batches 19 and 20; protected batches 27–30 are not imported',
+  )
+}
+if (skipGeneratedCorpus) {
+  console.log(
+    'NOT SCANNED: data/drugs/*.ndjson, the generated corpus projection, skipped by ' +
+      'SLOP_SCAN_SKIP_GENERATED_CORPUS=1. This is NOT a clean result for that data. Its editorial ' +
+      'findings are recorded in docs/worklogs/production-dataset-publication.md and are fixed in the ' +
+      'medicine records through the review workflow, never by editing the export.',
   )
 }
 if (total > 0) process.exitCode = 1
