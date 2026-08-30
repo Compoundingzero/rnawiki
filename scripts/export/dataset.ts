@@ -85,8 +85,57 @@ interface Manifest {
     programmes: number
     currentProgrammePublications: number
   }
-  files: Array<{ path: string; rows: number; bytes: number; sha256: string }>
+  files: Array<{
+    path: string
+    rows: number
+    bytes: number
+    sha256: string
+    /** Bumped when a file's shape changes, so a consumer can tell a reshape from new rows. */
+    schemaVersion: string
+    mediaType: string
+    licence: string
+    description: string
+    limitations: string
+  }>
 }
+
+/** Metadata every artifact carries, so a downloader never has to guess what a file is. */
+const FILE_META = {
+  drugsNdjson: {
+    schemaVersion: 'drugs/1',
+    mediaType: 'application/x-ndjson',
+    licence: CORE_DATASET_LICENCE,
+    description: 'Legacy medicine-wide records in the snapshot shape.',
+    limitations:
+      'Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.',
+  },
+  drugsCsv: {
+    schemaVersion: 'drugs-csv/1',
+    mediaType: 'text/csv',
+    licence: CORE_DATASET_LICENCE,
+    description: 'Flat identity, regulatory, structure and URL columns.',
+    limitations:
+      'Deliberately flatter than the NDJSON. Use the NDJSON when you need nested detail.',
+  },
+  recordedBackground: {
+    schemaVersion: 'recorded-background/1',
+    mediaType: 'application/x-ndjson',
+    licence: CORE_DATASET_LICENCE,
+    description:
+      'The source-bound recorded-background corpus: every value with the exact fetched sentence it was read from, its population context, its source identity and retrieval date.',
+    limitations:
+      'A source count is not a count of independent experiments: many manufacturers publish the same sentence. An absent module means no source in this corpus fills it, which is a fact about the corpus and not about the medicine.',
+  },
+  sourceConsensus: {
+    schemaVersion: 'source-consensus/1',
+    mediaType: 'application/x-ndjson',
+    licence: CORE_DATASET_LICENCE,
+    description:
+      'Cross-source readings per field, with the comparability state: agree, differ, not_comparable or insufficient_context.',
+    limitations:
+      'differ means the readings were comparable and did not overlap. not_comparable means comparing them would need a measurement no source stated, such as a body weight. Neither reading is ever marked wrong.',
+  },
+} as const
 
 function sha256(text: string): string {
   return createHash('sha256').update(text).digest('hex')
@@ -218,6 +267,7 @@ async function main(): Promise<void> {
     const body = `${lines.join('\n')}\n`
     writeFileSync(join(DRUGS_DIR, name), body)
     files.push({
+      ...FILE_META.drugsNdjson,
       path: `data/drugs/${name}`,
       rows: slice.length,
       bytes: Buffer.byteLength(body),
@@ -302,11 +352,95 @@ async function main(): Promise<void> {
   const csvBody = `${csvLines.join('\n')}\n`
   writeFileSync(join(EXPORT_DIR, 'drugs.csv'), csvBody)
   files.push({
+    ...FILE_META.drugsCsv,
     path: 'data/drugs.csv',
     rows: rows.length,
     bytes: Buffer.byteLength(csvBody),
     sha256: sha256(csvBody),
   })
+
+  /*
+   * The recorded-background corpus, which is the asset this project actually has and which was
+   * absent from every bulk artifact it published. Until now the only way to get it was one row at a
+   * time through a rate-limited API.
+   *
+   * Emitted as its own NDJSON rather than folded into the drugs rows, because the envelope is deep
+   * and nesting it would make the flat file unreadable for the consumers who only want identity.
+   * Nothing is reshaped on the way out: what is written is the stored envelope, so every value
+   * arrives with the exact fetched sentence it was read from, its population context, its source
+   * identity and its retrieval date.
+   */
+  const backgroundLines: string[] = []
+  const consensusLines: string[] = []
+  let backgroundRows = 0
+  let consensusRows = 0
+  const comparisonStateCounts = new Map<string, number>()
+
+  for (const row of rows) {
+    const background = row.recordedBackground
+    if (!background) continue
+    backgroundRows += 1
+    backgroundLines.push(
+      stableJsonStringify({
+        id: row.id,
+        slug: row.slug,
+        name: row.name,
+        provenanceTier: background.provenanceTier ?? 'curated',
+        parserVersion: background.version,
+        recordedBackground: background,
+        url: `https://rnawiki.com/d/${row.slug}`,
+      }),
+    )
+
+    for (const field of background.sourceConsensus?.fields ?? []) {
+      consensusRows += 1
+      const state = field.comparisonState ?? 'not_classified'
+      comparisonStateCounts.set(state, (comparisonStateCounts.get(state) ?? 0) + 1)
+      consensusLines.push(
+        stableJsonStringify({
+          slug: row.slug,
+          field: field.field,
+          documentsExamined: background.sourceConsensus?.documentsExamined ?? 0,
+          sourceCount: field.sourceCount,
+          agreementRate: field.agreementRate,
+          comparisonState: field.comparisonState,
+          comparisonReasons: field.comparisonReasons,
+          readings: field.readings,
+        }),
+      )
+    }
+  }
+
+  if (backgroundRows === 0) {
+    // A successful export carrying none of the corpus is a failure wearing a green exit code.
+    throw new Error(
+      '[export] no recorded-background rows found. Refusing to publish an export without the corpus.',
+    )
+  }
+
+  const backgroundBody = `${backgroundLines.join('\n')}\n`
+  writeFileSync(join(EXPORT_DIR, 'recorded-background.ndjson'), backgroundBody)
+  files.push({
+    ...FILE_META.recordedBackground,
+    path: 'data/recorded-background.ndjson',
+    rows: backgroundRows,
+    bytes: Buffer.byteLength(backgroundBody),
+    sha256: sha256(backgroundBody),
+  })
+
+  const consensusBody = `${consensusLines.join('\n')}\n`
+  writeFileSync(join(EXPORT_DIR, 'source-consensus.ndjson'), consensusBody)
+  files.push({
+    ...FILE_META.sourceConsensus,
+    path: 'data/source-consensus.ndjson',
+    rows: consensusRows,
+    bytes: Buffer.byteLength(consensusBody),
+    sha256: sha256(consensusBody),
+  })
+
+  console.log(
+    `[export] recorded background ${backgroundRows} row(s) · consensus ${consensusRows} field(s) · states ${JSON.stringify(Object.fromEntries([...comparisonStateCounts.entries()].sort()))}`,
+  )
 
   const manifest: Manifest = {
     generatedAt: new Date().toISOString(),
