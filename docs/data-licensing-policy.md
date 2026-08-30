@@ -147,8 +147,8 @@ A user who wants both can combine them and accept the stricter terms. That has t
 decision, made with the licences visible, rather than a consequence of two files having been put in
 the same folder.
 
-The same reasoning applies to non-commercial and unlicensed material, which is stricter still: those
-are not merely a separate download but excluded. PubChem sections sourced from DrugBank (CC BY-NC)
+Non-commercial and unlicensed material is handled more strictly again: it is excluded outright
+rather than shipped as a companion. PubChem sections sourced from DrugBank (CC BY-NC)
 and similar non-commercial sources are dropped at parse time rather than filtered later, and sources
 with contested or absent licence terms are not ingested at all.
 

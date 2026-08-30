@@ -8,6 +8,10 @@ data/agents/
 # reads are version-controlled so they ship with the code; reformatting eighteen megabytes of
 # generated JSON would rewrite every line of every rebuild and tell a reviewer nothing.
 data/registries/
+# Generated audit measurements, written wholesale by scripts/audit/denial-corpus/measure.ts. The
+# whole point of the file is that its bytes change only when the corpus does, so reformatting it
+# would put a diff in front of a reviewer that means nothing.
+data/audits/
 package-lock.json
 test-results/
 playwright-report/
