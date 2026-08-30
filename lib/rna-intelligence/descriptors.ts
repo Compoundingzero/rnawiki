@@ -10,9 +10,13 @@
 //   - Hydrogen-bond donors and acceptors, rotatable bonds, heavy atoms and the Lipinski verdict
 //     are counts. They are exact for the structure as written.
 //   - Topological polar surface area is Ertl's method (Ertl, Rohde & Selzer, J. Med. Chem. 2000,
-//     43, 3714-3717), summing the published contribution of every nitrogen and oxygen environment.
-//     Aspirin returns 63.60 A^2 and caffeine 58.44 A^2 — the numbers PubChem prints, because they
-//     are the same table.
+//     43, 3714-3717), summing the published contribution of every nitrogen and oxygen environment
+//     and of the four sulfur environments listed in `ERTL_TPSA_CONTRIBUTIONS`. Aspirin returns
+//     63.60 A^2 and caffeine 58.44 A^2 — the numbers PubChem prints, because they are the same
+//     table. Sulfur environments outside those four, and every phosphorus environment, contribute
+//     nothing; see the note above the table for which ones and why. This is therefore close to
+//     PubChem's sum but is not a claim of parity with it, and the residuals are measured rather
+//     than asserted: `tests/unit/rna-intelligence/descriptors-tpsa.test.ts` pins each one.
 //   - logP is an estimate. It is the Wildman-Crippen atomic-contribution model (Wildman & Crippen,
 //     J. Chem. Inf. Comput. Sci. 1999, 39, 868-873) over a documented subset of that paper's 68
 //     atom types. The hydrocarbon types are exact — benzene returns 1.6866, toluene 1.9950,
@@ -25,7 +29,10 @@
 // Aromaticity follows the submitted SMILES notation: lowercase atoms are aromatic, uppercase atoms
 // are not, and no aromaticity perception runs. Caffeine written as
 // `Cn1cnc2c1C(=O)N(C)C(=O)N2C` returns 58.44 A^2; its fully Kekule spelling returns 56.22 A^2
-// because two nitrogens receive aliphatic rather than aromatic types. Tests cover both forms.
+// because two nitrogens receive aliphatic rather than aromatic types. Tests cover both forms. The
+// same gap opens on sulfur: a thiophene or thiazole sulfur written Kekule is two single bonds, so
+// it is priced as a sulfide at 25.30 rather than as an aromatic sulfur at 28.24, and every such
+// ring costs 2.94 A^2 against a value computed after aromaticity perception.
 //
 // Everything in this file is a pure function of its input. No clock, no randomness, no I/O.
 
@@ -112,8 +119,39 @@ export const WILDMAN_CRIPPEN_LOGP: Record<string, number> = {
 }
 
 /**
- * Ertl topological polar surface area contributions in square angstroms. This is the nitrogen and
- * oxygen sum used by PubChem and Veber's rule; sulfur and phosphorus are excluded.
+ * Ertl topological polar surface area contributions in square angstroms.
+ *
+ * PubChem's TPSA, and Veber's rule with it, sums nitrogen, oxygen **and** sulfur. An earlier
+ * version of this comment said the opposite and the code matched the comment, which cost a stored
+ * sulfur atom its entire contribution: alpha-lipoic acid came back 37.30 against PubChem's 87.9,
+ * short by exactly 2 x 25.30, and 66 of the 144 records in
+ * `scripts/seed-data/background/molecular-properties.generated.ts` disagreed with their stored
+ * PubChem value by more than half a square angstrom.
+ *
+ * Each sulfur value below was checked against those stored PubChem values before it was written
+ * here, by subtracting this module's own nitrogen-and-oxygen sum from PubChem's total for a record
+ * whose only unpriced atom was that sulfur:
+ *
+ *   sulfide    alpha-lipoic acid 87.9 - 37.30 = 50.60, two sulfurs, 25.30 each
+ *   sulfoxide  modafinil 79.4 - 60.16 = 19.24, one sulfur (79.37 against 79.4 once priced)
+ *   sulfone    taurine 88.8 - 80.39 = 8.41, one sulfur (88.77 against 88.8 once priced)
+ *   aromatic   duloxetine 49.5 - 21.26 = 28.24 and olanzapine 59.1 - 30.87 = 28.23
+ *
+ * Four published environments are deliberately absent, and an atom that matches none of the
+ * entries here contributes zero, which is Ertl's own rule for an unparameterised environment:
+ *
+ *   - Thiol S-H. The two corpus records that contain one, insulin lispro and insulin aspart, put
+ *     six free thiols each against stored PubChem totals of 2310 and 2350; this module's sum for
+ *     the same strings is 2290.49 and 2336.58, so PubChem's own figure leaves no room for a thiol
+ *     contribution of any size, let alone the one the paper lists. The evidence available here
+ *     contradicts pricing it, so it stays unpriced.
+ *   - Thiocarbonyl S=*, and aromatic sulfur carrying an oxide. No record in the corpus contains
+ *     either, so no value could be checked.
+ *   - Every phosphorus environment. The corpus holds exactly one phosphorus record, sitagliptin
+ *     phosphate monohydrate, and it does not reconcile: PubChem stores 156, and this module's
+ *     nitrogen-and-oxygen sum splits as 74.29 (base) + 77.76 (phosphoric acid) + 20.23 (water),
+ *     which no phosphorus contribution closes. One unreconcilable record cannot establish a
+ *     number, so phosphorus stays unpriced and this file says so rather than guessing.
  */
 export const ERTL_TPSA_CONTRIBUTIONS = {
   nitrogen: {
@@ -151,6 +189,12 @@ export const ERTL_TPSA_CONTRIBUTIONS = {
     hydroxyl: 20.23, // [OH]-*
     anion: 23.06, // [O-]-*
     aromatic: 13.14, // o(:*):*
+  },
+  sulfur: {
+    sulfide: 25.3, // S(-*)-*  — thioether, disulfide, and a Kekule-written thiophene sulfur
+    sulfoxide: 19.21, // S(-*)(-*)=*
+    sulfone: 8.38, // S(-*)(-*)(=*)=*
+    aromatic: 28.24, // s(:*):*  — only reachable from a lowercase sulfur in the submitted string
   },
 } as const
 
@@ -942,8 +986,8 @@ function hydrogenTypeOn(graph: MolecularGraph, index: number): string {
 }
 
 /**
- * Ertl contribution for one nitrogen or oxygen in square angstroms. Other elements contribute
- * zero to the N/O topological polar surface area.
+ * Ertl contribution for one nitrogen, oxygen or sulfur in square angstroms. Every other element,
+ * and every environment the table above deliberately leaves unpriced, contributes zero.
  */
 function tpsaContributionOf(graph: MolecularGraph, index: number): number {
   const atom = graph.atoms[index]
@@ -952,6 +996,7 @@ function tpsaContributionOf(graph: MolecularGraph, index: number): number {
   const hydrogens = atom.hydrogens
   const nitrogen = ERTL_TPSA_CONTRIBUTIONS.nitrogen
   const oxygen = ERTL_TPSA_CONTRIBUTIONS.oxygen
+  const sulfur = ERTL_TPSA_CONTRIBUTIONS.sulfur
   const threeRing = graph.inThreeMemberedRing[index] === true
 
   if (atom.element === 'N') {
@@ -999,6 +1044,39 @@ function tpsaContributionOf(graph: MolecularGraph, index: number): number {
     return threeRing ? oxygen.etherThreeRing : oxygen.ether
   }
 
+  if (atom.element === 'S') {
+    if (atom.aromatic) {
+      // The aromatic entry is `s(:*):*` — two ring bonds and nothing else. An aromatic sulfur
+      // carrying an oxide is a separate published environment this module does not price.
+      //
+      // This branch deliberately reads no hydrogen count, unlike every other branch here. The
+      // organic-subset filling rule shared with `smiles.ts` adds one delocalised electron to an
+      // aromatic atom's used valence, which lands correctly for a benzene carbon (2 + 1 against 4)
+      // and a pyridine nitrogen (2 + 1 against 3) and harmlessly for a furan oxygen (2 + 1 against
+      // a sole valence of 2, so nothing is added). A thiophene sulfur sits at 2 + 1 = 3 against
+      // sulfur's valences of 2, 4 and 6, takes the 4, and is handed a hydrogen it does not have:
+      // `parseSmiles('c1ccsc1')` returns C4H5S for a compound that is C4H4S. Testing hydrogens
+      // here would zero every aromatic sulfur on the strength of that artefact. The fix belongs in
+      // the shared valence rule, not in this branch.
+      if (atom.charge !== 0) return 0
+      return profile.aromatic >= 2 && profile.double === 0 ? sulfur.aromatic : 0
+    }
+    // A charged or hydrogen-bearing sulfur reaches no priced environment. Ertl parameterises the
+    // thiol and this module does not carry that value (see the table's note), and the paper lists
+    // no charged sulfur at all, so both fall through to zero rather than borrowing a neighbour's
+    // number. Unlike nitrogen and oxygen, sulfur has no separate three-membered-ring entry, so a
+    // thiirane sulfur is priced as the sulfide it is.
+    if (atom.charge !== 0 || hydrogens > 0) return 0
+    // Ordered widest first: the sulfone and sulfoxide patterns are the sulfide pattern plus one
+    // and two double bonds, so testing the double-bond count before the plain two-connected case
+    // keeps each environment distinct. The published patterns count bonds, not partner elements,
+    // so a sulfoximine double bond scores the same as the sulfoxide oxygen it usually is.
+    if (profile.single === 2 && profile.double === 2) return sulfur.sulfone
+    if (profile.single === 2 && profile.double === 1) return sulfur.sulfoxide
+    if (profile.single === 2 && profile.double === 0 && profile.triple === 0) return sulfur.sulfide
+    return 0
+  }
+
   return 0
 }
 
@@ -1018,7 +1096,10 @@ export interface MolecularDescriptors {
   molecularWeight: number
   /** Wildman-Crippen estimate. See this file's header before printing it as a measurement. */
   logP: number
-  /** Ertl topological polar surface area over nitrogen and oxygen, in square angstroms. */
+  /**
+   * Ertl topological polar surface area over nitrogen, oxygen and the priced sulfur environments,
+   * in square angstroms. See `ERTL_TPSA_CONTRIBUTIONS` for what is left unpriced.
+   */
   tpsa: number
   /** Lipinski's definition: every N-H and O-H. */
   hydrogenBondDonors: number
