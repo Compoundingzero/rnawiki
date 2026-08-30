@@ -31,6 +31,69 @@ function artifact(overrides: Partial<LabelArtifact> = {}): LabelArtifact {
   }
 }
 
+/**
+ * A label printing "mean ± SD" defeated a pattern that knew only ranges: the capture failed at the
+ * mean, the lazy prefix slid past it, and the group matched the standard deviation instead. The
+ * excerpt check passed every one of these, because the standard deviation really is in the
+ * sentence — number-in-excerpt proves a digit was read, never that it was the right digit.
+ *
+ * Every sentence below is quoted from the label that produced the wrong value.
+ */
+describe('label extraction: a dispersion is not the value', () => {
+  function halfLife(sentence: string) {
+    return extractPharmacokinetics(artifact({ sections: { pharmacokinetics: sentence } }), OPTIONS)
+      ?.halfLife
+  }
+
+  it('takes the mean, not the standard deviation, from "12 ± 5 hours"', () => {
+    // Recorded as 5 hours. Abiraterone's terminal half-life is 12.
+    expect(
+      halfLife(
+        'Elimination In patients with metastatic CRPC, the mean terminal half-life of abiraterone in plasma (mean ± SD) is 12 ± 5 hours.',
+      ),
+    ).toMatchObject({ display: '12 ± 5 hours', numeric: 12 })
+  })
+
+  it.each([
+    ['The half-life was 17 ± 4 hours.', '17 ± 4 hours', 17],
+    [
+      'The mean ± SD half-life for bempedoic acid in humans was 21 ± 11 hours at steady-state.',
+      '21 ± 11 hours',
+      21,
+    ],
+    ['The mean half-life of cevimeline is 5+/-1 hours.', '5+/-1 hours', 5],
+    ['The mean ± SD terminal half-life of bromelain is 12 ± 4.4 hours.', '12 ± 4.4 hours', 12],
+  ])('takes the mean from %j', (sentence, display, numeric) => {
+    expect(halfLife(sentence)).toMatchObject({ display, numeric })
+  })
+
+  it('takes the mean volume of distribution, not its dispersion', () => {
+    const pharmacokinetics = extractPharmacokinetics(
+      artifact({
+        sections: {
+          pharmacokinetics:
+            'The apparent steady-state volume of distribution (mean ± SD) is 19,669 ± 13,358 L.',
+        },
+      }),
+      OPTIONS,
+    )
+    // Recorded as 13,358 L, which is the standard deviation.
+    expect(pharmacokinetics!.volumeOfDistribution).toMatchObject({ numeric: 19669 })
+  })
+
+  it('leaves an ordinary range reading from its low end, as it always did', () => {
+    expect(halfLife('The elimination half-life is approximately 3 to 5 hours.')).toMatchObject({
+      display: '3 to 5 hours',
+      numeric: 3,
+    })
+  })
+
+  it('keeps the dispersion visible in the displayed value rather than discarding it', () => {
+    // The reader sees the spread the label printed; only the axis-bound number is the mean.
+    expect(halfLife('The half-life was 17 ± 4 hours.')!.display).toContain('±')
+  })
+})
+
 describe('label extraction: the excerpt guarantee', () => {
   it('stores the sentence each number was read out of, so the value is always in its excerpt', () => {
     const pharmacokinetics = extractPharmacokinetics(

@@ -64,4 +64,42 @@ describe('numbers as documents print them', () => {
     expect(statesNumber('anything', Number.NaN)).toBe(false)
     expect(statesNumber('anything', Number.POSITIVE_INFINITY)).toBe(false)
   })
+
+  describe('digits that belong to a name are not quantities', () => {
+    it('reads no quantity out of an uppercase identifier', () => {
+      // Each of these passed the excerpt check for a number the source never stated as a number.
+      expect(numbersIn('Pembrolizumab Q3W')).toEqual([])
+      expect(numbersIn('"groupId":"OG002"')).toEqual([])
+      expect(numbersIn('a substrate of CYP3A4')).toEqual([])
+      expect(numbersIn('NCT01866319')).toEqual([])
+      expect(numbersIn('vitamin B12')).toEqual([])
+      expect(numbersIn('COVID-19')).toEqual([])
+    })
+
+    it('reads no quantity out of a hyphenated compound word', () => {
+      expect(numbersIn('Dupilumab every-2-week arm, 224 participants: 37.9%')).toEqual([224, 37.9])
+    })
+
+    it('still reads a range whose hyphen follows a digit', () => {
+      expect(numbersIn('5-10 mg')).toEqual([5, 10])
+      expect(printedSpan('5-10 mg')).toEqual({ low: 5, high: 10 })
+    })
+
+    /**
+     * The counterexample the rule was written against. Ivabradine's FDA label really does print
+     * "reached in approximately1 hour" — the space is missing in the source document, not in the
+     * excerpt transcribed from it. A rule that skipped every letter-adjacent digit would refuse a
+     * correctly recorded value because a manufacturer dropped a space, so the discriminator is
+     * case: identifiers here are uppercase and prose is not.
+     */
+    it('keeps a quantity that a source glued to a lowercase word', () => {
+      const excerpt =
+        'peak plasma ivabradine concentrations are reached in approximately1 hour under fasting conditions'
+      expect(statesNumber(excerpt, 1)).toBe(true)
+    })
+
+    it('keeps a quantity written without a space before its unit', () => {
+      expect(numbersIn('10mg once daily')).toEqual([10])
+    })
+  })
 })

@@ -539,7 +539,7 @@ export function runBackgroundIntelligence(
         flag('I_VALUE_NOT_IN_EXCERPT', path, 'A numeric result must carry its fetched excerpt.')
       } else {
         const haystack = normalizeForMatch(excerpt)
-        const missing = tokens.filter((token) => !haystack.includes(token))
+        const missing = tokens.filter((token) => !excerptStatesNumber(haystack, token))
         if (missing.length > 0) {
           flag(
             'I_VALUE_NOT_IN_EXCERPT',
@@ -762,7 +762,7 @@ export function runBackgroundIntelligence(
     const excerpt = normalizeForMatch(adverse.source.excerpt ?? '').toLowerCase()
     const thresholdNumbers = numberTokens(adverse.thresholdAsRecorded)
     for (const token of thresholdNumbers) {
-      if (!excerpt.includes(token)) {
+      if (!excerptStatesNumber(excerpt, token)) {
         flag(
           'I_ADVERSE_THRESHOLD_NOT_IN_EXCERPT',
           'commonAdverseReactions.thresholdAsRecorded',
@@ -934,7 +934,7 @@ export function runBackgroundIntelligence(
         // agreeing sources checkable rather than asserted.
         const stated = reading.sources.some((source) => {
           const haystack = normalizeForMatch(source.excerpt ?? '')
-          return tokens.every((token) => haystack.includes(token))
+          return tokens.every((token) => excerptStatesNumber(haystack, token))
         })
         if (!stated) {
           flag(

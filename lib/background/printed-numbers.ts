@@ -24,6 +24,21 @@
  * 2. Numbers are compared BY VALUE, never as substrings. "800" must not match inside "5,800";
  *    "0.5" must still match "0.50", because the same number written two ways is not the failure
  *    being guarded against.
+ * 3. Digits fastened to a NAME are part of the name, not a quantity. A trial arm labelled "Q3W"
+ *    does not state the number three, the group identifier "OG002" does not state two, "CYP3A4"
+ *    states no numbers at all and "NCT01866319" is not eight hundred million. Reading them as
+ *    quantities cuts both ways and both ways are wrong: it invents tokens a recorded value must
+ *    then prove, and it lets a machine-readable excerpt appear to prove a number it never printed.
+ *
+ *    The discriminator is CASE, and it was chosen against a counterexample rather than from taste.
+ *    Identifiers in this corpus are uppercase by convention — UNII, NCT, CYP, arm and group codes.
+ *    Prose is not, and prose really does abut a quantity: ivabradine's FDA label prints "reached in
+ *    approximately1 hour", with the space missing in the source document itself. Skipping every
+ *    letter-adjacent digit would refuse that real value on the strength of someone else's typo.
+ *    So a digit run is skipped when an UPPERCASE letter precedes it, or a hyphen does with an
+ *    uppercase letter before that ("COVID-19"), or it sits inside a hyphenated compound word
+ *    ("every-2-week", a schedule). "5-10 mg" keeps both ends, because a digit precedes its hyphen.
+ *    A TRAILING letter is left alone, because "10mg" is a real quantity written without a space.
  */
 
 /**
@@ -57,10 +72,17 @@ export function withoutThousandsSeparators(text: string): string {
   return text.replace(/\b\d{1,3}(?:,\d{3})+\b/gu, (match) => match.replace(/,/gu, ''))
 }
 
-/** Every number a string states, in order, as numbers. */
+/** Every number a string states, in order, as numbers. Rule 3 above excludes digits inside names. */
 export function numbersIn(text: string): number[] {
   const found: number[] = []
   for (const match of text.matchAll(PRINTED_NUMBER_GLOBAL)) {
+    const index = match.index ?? 0
+    const before = index > 0 ? (text[index - 1] ?? '') : ''
+    const beforeThat = index > 1 ? (text[index - 2] ?? '') : ''
+    const after = text[index + match[0].length] ?? ''
+    if (/\p{Lu}/u.test(before)) continue
+    if (before === '-' && /\p{Lu}/u.test(beforeThat)) continue
+    if (before === '-' && after === '-' && /\p{L}/u.test(beforeThat)) continue
     const value = Number(match[0].replace(/,/gu, ''))
     if (Number.isFinite(value)) found.push(value)
   }

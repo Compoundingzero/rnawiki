@@ -157,28 +157,47 @@ function toValue(
 /* Pharmacokinetic patterns                                                                     */
 /* ------------------------------------------------------------------------------------------- */
 
+/**
+ * What may stand between two numbers inside ONE quantity: a range, or a dispersion.
+ *
+ * The dispersion arm is load-bearing, not cosmetic. A label printing "12 ± 5 hours" defeated a
+ * pattern that knew only ranges: the capture group failed at the mean, because " ± 5 hours" is not
+ * a range continuation, and the lazy prefix `[^.;]{0,60}?` then slid PAST the mean until the group
+ * could match "5 hours". The parser recorded the standard deviation as the half-life.
+ *
+ * The excerpt guarantee did not catch it and never could. `statesNumber` proves the recorded digit
+ * appears in the sentence, and 5 really does appear in "12 ± 5 hours". Number-in-excerpt is a
+ * transcription check, not a semantic one: it proves a digit was read, never that it was the right
+ * digit. Abiraterone's half-life was recorded as 5 hours from "the mean terminal half-life … is
+ * 12 ± 5 hours", and its volume of distribution as 13,358 L from "19,669 ± 13,358 L".
+ *
+ * With the dispersion recognised, the capture spans the whole quantity and `firstNumberIn` takes
+ * the mean. The dispersion stays in `display`, where a reader can see it.
+ */
+const QUANTITY_SPREAD = String.raw`\s*(?:to|-|–|±|\+/−|\+/-|\+-|−)\s*`
+
 /** "half-life ... of 14 hours", "elimination half-life is approximately 3 to 5 hours". */
 const HALF_LIFE_HOURS = new RegExp(
-  String.raw`half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*(?:hours?|hrs?|h)\b)`,
+  String.raw`half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:${QUANTITY_SPREAD}(?:${PRINTED_NUMBER}))?\s*(?:hours?|hrs?|h)\b)`,
   'iu',
 )
 const HALF_LIFE_DAYS = new RegExp(
-  String.raw`half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*days?\b)`,
+  String.raw`half-?life[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:${QUANTITY_SPREAD}(?:${PRINTED_NUMBER}))?\s*days?\b)`,
   'iu',
 )
 /** "bioavailability is approximately 89%", "absolute bioavailability of 40%". */
 const BIOAVAILABILITY = new RegExp(
-  String.raw`bioavailability[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*%)`,
+  String.raw`bioavailability[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:${QUANTITY_SPREAD}(?:${PRINTED_NUMBER}))?\s*%)`,
   'iu',
 )
 /** "peak plasma concentrations ... within 1 to 2 hours"; Tmax phrasing varies widely. */
 const TMAX_HOURS = new RegExp(
-  String.raw`(?:peak\s+(?:plasma\s+)?concentrations?|Tmax|T\s?max)[^.;]{0,80}?\b(?:is|was|of|at|within|after|occur(?:s|red)?(?:\s+at)?|reached(?:\s+(?:in|at|within))?|approximately|about|~)\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*(?:hours?|hrs?|h)\b)`,
+  String.raw`(?:peak\s+(?:plasma\s+)?concentrations?|Tmax|T\s?max)[^.;]{0,80}?\b(?:is|was|of|at|within|after|occur(?:s|red)?(?:\s+at)?|reached(?:\s+(?:in|at|within))?|approximately|about|~)\s*((?:${PRINTED_NUMBER})(?:${QUANTITY_SPREAD}(?:${PRINTED_NUMBER}))?\s*(?:hours?|hrs?|h)\b)`,
   'iu',
 )
 /** "is 87% bound to plasma proteins", "protein binding is greater than 99%". */
 const PROTEIN_BINDING = new RegExp(
-  String.raw`(?:protein[- ]bind\w*|bound to (?:human )?(?:plasma|serum) proteins?)[^.;]{0,60}?\b(?:is|was|of|approximately|about|~|>|greater than)?\s*((?:>\s*)?(?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*%)`,
+  String.raw`(?:protein[- ]bind\w*|bound to (?:human )?(?:plasma|serum) proteins?)[^.;]{0,60}?\b(?:is|was|of|approximately|about|~|>|greater than)?\s*((?:>\s*)?(?:${PRINTED_NUMBER})(?:${QUANTITY_SPREAD}(?:${PRINTED_NUMBER}))?\s*%)`,
   'iu',
 )
 /**
@@ -194,7 +213,7 @@ const FREE_FRACTION_SENTENCE = /\b(?:un-?bound|free fraction|free fractions)\b/i
  * would turn 0.14 L/kg into "0.14 L" and silently mis-state the value by orders of magnitude.
  */
 const VOLUME_OF_DISTRIBUTION = new RegExp(
-  String.raw`volume of distribution[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:\s*(?:to|-|–)\s*(?:${PRINTED_NUMBER}))?\s*(?:L|liters?|litres?)(?:\s*\/\s*kg)?)\b`,
+  String.raw`volume of distribution[^.;]{0,60}?\b(?:is|was|of|averages?|approximately|about|~)?\s*((?:${PRINTED_NUMBER})(?:${QUANTITY_SPREAD}(?:${PRINTED_NUMBER}))?\s*(?:L|liters?|litres?)(?:\s*\/\s*kg)?)\b`,
   'iu',
 )
 
