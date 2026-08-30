@@ -576,16 +576,16 @@
         "CC-BY-4.0 (legal text)"
       ],
       "README.md": [
-        "CC-BY-SA-4.0 (declared)"
+        "CC-BY-4.0 (declared)"
       ],
       "data/README.md": [
-        "CC-BY-SA-4.0 (declared)"
+        "CC-BY-4.0 (declared)"
       ],
       "data/manifest.json": [
         "CC-BY-SA-4.0 (declared)"
       ],
       "scripts/export/dataset.ts": [
-        "CC-BY-SA-4.0 (declared)"
+        "CC-BY-4.0 (declared)"
       ]
     },
     "consistent": false,
