@@ -108,30 +108,35 @@ FDA label as anomalous would publicly imply the label is mistaken.
 
 ## The agents
 
-Nine agents, run by `npx tsx scripts/agents/run-agents.ts`. Every run reports its coverage, and the
-queue column is work routed to people rather than changes made automatically.
+Ten agents, run by `npx tsx scripts/agents/run-agents.ts`. Every run reports its coverage, and the
+queue column is work routed to people rather than changes made automatically. The counts below are
+from the run of 2026-08-30 over 9,855 records at seed 20260828, and they are regenerated with the
+corpus rather than maintained by hand.
 
-| Agent                                  | What it computes                                                               | Used | Queue |
-| -------------------------------------- | ------------------------------------------------------------------------------ | ---- | ----- |
-| `silence-ledger`                       | Every record against 17 fixed questions as RECORDED, NOT_ESTABLISHED or SILENT | 3008 | 40    |
-| `mechanism-text-grouping`              | Groups of medicines whose recorded mechanism wording clusters together         | 1240 | 1     |
-| `peer-group-anomaly-screen`            | Conformal p-values for recorded numbers against their peer group               | 1026 | 96    |
-| `enzyme-and-transporter-documentation` | Per-counterparty documentation profiles, with role and label section           | 585  | 102   |
-| `substance-synonyms`                   | Records sharing a substance identifier, as merge candidates                    | 1868 | 178   |
-| `evidence-density`                     | How much of the schema each record holds, and how concentrated its sources are | 3008 | 40    |
-| `numeric-distributions`                | Distributions per quantity, strictly separated by unit                         | 1325 | 0     |
-| `adverse-reaction-term-structure`      | Reaction term profiles and pairs surviving a frequency-preserving null         | 656  | 324   |
-| `excerpt-integrity`                    | Independent per-value re-check that each number appears in its cited text      | 1433 | 0     |
+| Agent                                  | What it computes                                                                | Used | Queue |
+| -------------------------------------- | ------------------------------------------------------------------------------- | ---- | ----- |
+| `silence-ledger`                       | Every record against 17 fixed questions as RECORDED, NOT_ESTABLISHED or SILENT  | 9855 | 40    |
+| `mechanism-text-grouping`              | Groups of medicines whose recorded mechanism wording clusters together          | 1625 | 5     |
+| `peer-group-anomaly-screen`            | Conformal p-values for recorded numbers against their peer group                | 1305 | 119   |
+| `enzyme-and-transporter-documentation` | Per-counterparty profiles, by role, polarity and label section                  | 689  | 114   |
+| `substance-synonyms`                   | Records sharing a substance identifier, as merge candidates                     | 6711 | 1196  |
+| `evidence-density`                     | How much of the schema each record holds, and how concentrated its sources are  | 9855 | 40    |
+| `numeric-distributions`                | Distributions per quantity, strictly separated by unit                          | 3379 | 0     |
+| `adverse-reaction-term-structure`      | Reaction term profiles and pairs surviving a frequency-preserving null          | 854  | 395   |
+| `excerpt-integrity`                    | Independent per-value re-check that each number appears in its cited text       | 3440 | 0     |
+| `coverage-ledger`                      | Which route reached each record, and what that route structurally cannot supply | 9855 | 96    |
 
-Together they publish **7,451 addressable dataset instances**: 17 corpus-wide silence roll-ups, 48
-mechanism groups, 8 unit-separated anomaly screens over 90 peer-group calibrations, 36 counterparty
-profiles, 89 identity groups, 7 numeric distributions, 1,044 reaction-term profiles, 93 validated
-term pairs, 3 integrity roll-ups, and per-record entries for all 3,008 records in two ledgers.
-
-The single largest finding so far: **998 records carry an explicit source statement that pediatric
-safety or effectiveness was not established** — 2.6 times the 379 records where a pediatric
+The single largest finding so far: **1,291 records carry an explicit source statement that pediatric
+safety or effectiveness was not established** — 2.6 times the 500 records where a pediatric
 population is recorded as addressed, and a distinction that is invisible in every resource that
 treats absence and explicit non-establishment as the same blank.
+
+One qualification belongs beside that number, because the ledger classifies every record and not
+every record was read. The same question is SILENT on 8,064 records, and most of those are
+`transcribed` rows assembled from registry fields where no document was ever consulted. A SILENT
+pair on a record whose label WAS read is a verified absence — someone looked and the source did not
+answer. A SILENT pair on a record with no document behind it means only that nobody looked. Those
+two are different facts and adding them together would overstate the corpus by roughly three to one.
 
 ### What the silence ledger cannot yet distinguish
 
@@ -154,9 +159,24 @@ corroborated by ten or more independent sources.
 
 Nothing is resolved. Where readings differ they are all kept, each with its own excerpt, and none is
 preferred — because most apparent disagreement between labels is not error. Thirty labels put
-abiraterone's half-life at 5 hours and one at 18, and that one's excerpt says it is prolonged to
-approximately 18 hours in subjects with mild hepatic impairment. That is a different population, not
-a contradiction, and the excerpt is what makes it visible.
+abiraterone's terminal half-life at 12 hours and one at 18, and that one's excerpt says it is
+prolonged to approximately 18 hours in subjects with mild hepatic impairment. That is a different
+population, not a contradiction, and the excerpt is what makes it visible.
+
+> **This example was wrong here until 2026-08-30, and the way it was wrong is worth keeping.** The
+> document said thirty labels put the half-life at 5 hours. They do not. They print "the mean
+> terminal half-life of abiraterone in plasma (mean ± SD) is 12 ± 5 hours", and the extractor was
+> recording the standard deviation as the value — the capture group failed at the mean, and the lazy
+> prefix slid past it to the number that was followed by a unit. Every one of those readings passed
+> the excerpt check, because 5 really does appear in the sentence.
+>
+> `statesNumber` is a transcription check. It proves a digit was read out of the excerpt; it cannot
+> prove the digit was the right one. The parser now recognises a dispersion as part of one quantity
+> (`QUANTITY_SPREAD` in `lib/background/label-extraction.ts`) and takes the mean, with the spread
+> kept in the displayed value. **The stored corpus still carries 23 values equal to their own error
+> bar** — famciclovir's bioavailability as 8% where the label says 77 ± 8%, fingolimod's volume of
+> distribution as 260 L where the label says 1200 ± 260 L — and clearing them needs a regeneration
+> from the label archive, not an edit here.
 
 Built by `scripts/background/build-source-consensus.ts`; validated by Group I rules
 `I_CONSENSUS_READING_NOT_IN_EXCERPT`, `I_CONSENSUS_COUNT_INCONSISTENT` and
@@ -169,14 +189,39 @@ guarantee are copyable with effort. The cross-source concordance layer is expens
 it needs the full archive, normalised extraction and per-substance attribution before it exists at
 all. The induced structure on top of it only exists if that layer does.
 
-What is not copyable is the record of human judgement: every accept, reject and correction a
-reviewer makes. Those decisions are the training signal that sharpens the agents, which surface
-better candidates, which produce more decisions. A competitor starting today gets a snapshot; the
-loop is what accumulates.
+What would not be copyable is the record of human judgement: every accept, reject and correction a
+reviewer makes. Those decisions would be the training signal that sharpens the agents, which surface
+better candidates, which produce more decisions. A competitor starting today gets a snapshot; a loop
+is what accumulates.
+
+**That loop does not exist yet, and this paragraph is written in the conditional until it does.**
+Stated plainly, because it is the claim the strategy rests on and it was previously written as
+though it were built:
+
+- `AgentInput` is `{ corpus, seed, runDate }`. There is no channel through which a decision could
+  arrive, and no agent imports anything from the database.
+- `ReviewCandidate` has no stable identity — `{ slug, reason, question, priority, basis, sources }` —
+  so even an answered item has no key to record the answer against. Its `question` string embeds
+  run-specific counts, so it is not stable across corpus versions either.
+- No table anywhere in the schema is keyed by (rule code, entity, decision), and none records a
+  decision on an agent queue item. Group I findings are stored nowhere at all.
+- The 2,005 queue items land in `data/agents/*.json`, which no route reads and no page renders, and
+  every rerun overwrites them.
+
+So the loop is open at both ends: the queue does not reach a person, and a decision could not get
+back. Closing it needs three things and none of them weakens a boundary — a `candidateKey` that
+hashes the _subject_ of a question (agent, version, slug, reason, field path) rather than its prose;
+a table recording the decision, with at least four outcomes so that "I read the excerpt and the
+value is what the source prints" is distinguishable from "this is wrong"; and an optional
+`decisions` input used **only** for suppression, precision reporting and score calibration.
+
+The line that must hold when it is built: **a fitted parameter may change which records reach a
+human. It may never change a recorded value, resolve a source disagreement, or assert anything about
+a medicine.** Learning which candidates reviewers accept is legitimate. Learning a half-life is not.
 
 That is also why every agent's queue output is shaped as a question for a person rather than an
 automatic correction. The queue is not a chore the agents create — it is the mechanism by which the
-corpus gets better than its sources.
+corpus is intended to get better than its sources.
 
 ## Method choices that were rejected
 
@@ -185,7 +230,20 @@ Recorded because the reasons generalise, and because each of these is the obviou
 - **Chemical fingerprints (Morgan/ECFP, MACCS) from the recorded molecular formula.** Structurally
   impossible, not merely inaccurate: a formula is a multiset of element counts, while ECFP hashes
   each atom's expanded connectivity neighbourhood. Fingerprints need a connection table (SMILES or
-  InChI), and the corpus holds those for 144 medicines.
+  InChI).
+
+  **The count previously given here was wrong by a factor of 22, and the correction matters more
+  than the rejection.** This said the corpus holds a connection table for 144 medicines, which is
+  the size of `molecular-properties/v1` rather than of the corpus. `data/drugs.csv` carries a
+  populated `smiles` column on **3,204 of 9,857 rows**, and **1,370 of those carry stereochemistry**
+  — against **0 of the 144** in `molecular-properties/v1`, whose SMILES are PubChem connectivity
+  strings with the stereochemistry stripped. The legacy layer is the chemically richer one, which is
+  the reverse of how both layers are described.
+
+  The rejection of formula-derived fingerprints stands unchanged; you cannot get a fingerprint from
+  a formula. What does not survive is "we only have 144" as a reason to leave the chemical layer
+  alone, because it was the load-bearing argument and it was counting the wrong thing.
+
 - **Training word2vec or fastText on the mechanism corpus.** Around 10^5 tokens, three orders of
   magnitude below where those methods produce meaningful vectors. TF-IDF with a truncated basis is
   the right tool at this size; embeddings here would be confident-looking noise.
@@ -207,6 +265,11 @@ Recorded because the reasons generalise, and because each of these is the obviou
 ## Running agents
 
 Agents are pure functions of `(corpus, seed, runDate)`. Run them with
-`npx tsx scripts/agents/run-agents.ts`, which writes each agent's output to
-`scripts/seed-data/agents/` as generated TypeScript so a change in the corpus shows up as a diff
-rather than as a silent difference.
+`npx tsx scripts/agents/run-agents.ts`, which writes each agent's output to `data/agents/` as JSON —
+one file per agent, named for it — so a change in the corpus shows up as a diff rather than as a
+silent difference. Pass `--check` to run every agent and report without writing, and `--date=` to
+attribute the run to a fixed date rather than the clock.
+
+The boundary screen runs on every run and not only in tests: `run-agents.ts` passes each agent's
+authored strings through `findForbiddenPhrases` and exits non-zero on a violation, because the
+corpus changes and a string built from corpus content can cross a line no fixture would have caught.
