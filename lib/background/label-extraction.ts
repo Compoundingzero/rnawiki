@@ -693,8 +693,20 @@ const ROLE_PATTERNS: ReadonlyArray<readonly [InteractionRole, RegExp]> = [
   ['INDUCER', /\binducers?\b|\binduces?\b|\binduced\b|\binduction\b/iu],
 ]
 
-/** How many counterparties one record keeps, so a long interactions section stays readable. */
-const MAX_INTERACTION_SIGNALS = 12
+/*
+ * There is deliberately no cap here any more.
+ *
+ * The old rule kept twelve counterparties, chosen by sorting the names alphabetically and taking the
+ * first twelve. Because the discard rule was the alphabet, the loss was systematic rather than
+ * random: the signal-count histogram decayed smoothly to eleven and then spiked at exactly twelve,
+ * and P-glycoprotein -- the most thoroughly characterised efflux transporter in regulatory
+ * pharmacology -- sorts near the end and was therefore deleted preferentially from precisely the
+ * medicines whose labels characterised it most fully. Nothing in the record said a truncation had
+ * happened, so a reader and an agent both saw a short list that looked complete.
+ *
+ * A canonical evidence record keeps everything the source stated. A long list is a presentation
+ * problem, and it is solved where presentation is decided.
+ */
 
 /**
  * Records the metabolic and transport counterparties the label names, each with the sentence that
@@ -754,9 +766,26 @@ export function extractInteractionSignals(
       ]
 
       for (const [counterparty, kind] of found) {
-        // First mention wins, so the recorded sentence is the one that introduced the counterparty.
-        if (seen.has(counterparty)) continue
-        seen.set(counterparty, {
+        /*
+         * Identity is the whole statement, not just the name. Keying on the counterparty alone
+         * discarded a second sentence about the same enzyme, so a label stating "is a substrate of
+         * CYP3A4" in one place and "does not inhibit CYP3A4" in another kept only whichever came
+         * first -- silently losing exactly the denials this corpus exists to record. Two sentences
+         * making different statements about one counterparty are two findings.
+         *
+         * The source identifier and the excerpt are part of the key so the same sentence read twice
+         * collapses, while two different sentences never do.
+         */
+        const identity = [
+          counterparty,
+          role ?? 'ROLE_NOT_STATED',
+          polarity ?? 'POLARITY_NOT_RECORDED',
+          labelSection,
+          source.identifier,
+          excerpt,
+        ].join('\u001f')
+        if (seen.has(identity)) continue
+        seen.set(identity, {
           counterpartyAsRecorded: counterparty,
           kind,
           ...(role ? { roleAsRecorded: role } : {}),
@@ -769,9 +798,17 @@ export function extractInteractionSignals(
     }
   }
 
-  return [...seen.values()]
-    .sort((left, right) => left.counterpartyAsRecorded.localeCompare(right.counterpartyAsRecorded))
-    .slice(0, MAX_INTERACTION_SIGNALS)
+  /*
+   * Sorted for a stable diff, never to decide what survives. The sort key runs counterparty, then
+   * role, then polarity, so a record's signals land in the same order on every run regardless of
+   * which sentence the parser met first.
+   */
+  return [...seen.values()].sort(
+    (left, right) =>
+      left.counterpartyAsRecorded.localeCompare(right.counterpartyAsRecorded) ||
+      (left.roleAsRecorded ?? '').localeCompare(right.roleAsRecorded ?? '') ||
+      (left.polarity ?? '').localeCompare(right.polarity ?? ''),
+  )
 }
 
 /** Headings labels put in front of an indications section. */

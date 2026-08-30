@@ -260,9 +260,11 @@
     ]
   },
   "truncation": {
-    "interactionSignalCap": 12,
-    "recordsAtInteractionCap": 200,
-    "recordsAtInteractionCapSlugs": [
+    "formerInteractionSignalCap": 12,
+    "recordsAtFormerCap": 200,
+    "recordsAboveFormerCap": 0,
+    "maximumInteractionSignals": 12,
+    "recordsAtFormerCapSlugs": [
       "abacavir",
       "abemaciclib",
       "abrocitinib",

@@ -757,3 +757,69 @@ describe('label extraction: short statements', () => {
     expect(recorded?.statements.length).toBe(1)
   })
 })
+
+/**
+ * The cap that used to sit here kept twelve counterparties, chosen by sorting the names and taking
+ * the first twelve. The discard rule was the alphabet, so the loss was systematic: P-glycoprotein
+ * sorts near the end and was deleted preferentially from the medicines whose labels characterised it
+ * most fully, and nothing in the record said a truncation had happened.
+ */
+describe('interaction signals are canonical evidence and are never capped', () => {
+  /** Thirteen enzymes in one sentence, plus P-gp in a second — fourteen, past the old cutoff. */
+  const MANY_COUNTERPARTIES = [
+    'In vitro, the drug is a substrate of CYP1A2, CYP2A6, CYP2B6, CYP2C8, CYP2C9, CYP2C19, CYP2D6,',
+    'CYP2E1, CYP3A4, CYP3A5, CYP4A11, CYP2J2, and CYP1B1.',
+    'The drug is a substrate of P-gp.',
+  ].join(' ')
+
+  function signalsFrom(text: string) {
+    return extractInteractionSignals(artifact({ sections: { pharmacokinetics: text } }), OPTIONS)
+  }
+
+  it('keeps every counterparty the label names, past the former limit of twelve', () => {
+    const signals = signalsFrom(MANY_COUNTERPARTIES)
+    expect(signals.length).toBeGreaterThan(12)
+  })
+
+  it('keeps P-glycoprotein, which the alphabetical cut removed first', () => {
+    const names = signalsFrom(MANY_COUNTERPARTIES).map((signal) => signal.counterpartyAsRecorded)
+    expect(names).toContain('P-GP')
+    // It sorts after the enzymes, which is exactly why it used to be the one discarded.
+    expect(names.indexOf('P-GP')).toBeGreaterThan(11)
+  })
+
+  /**
+   * Keying identity on the counterparty alone discarded a second sentence about the same enzyme, so
+   * a label denying a role kept only whichever statement came first. That silently lost the denials
+   * this corpus exists to record.
+   */
+  it('keeps an assertion and a denial about the same counterparty as two findings', () => {
+    const signals = signalsFrom(
+      'The drug is a substrate of CYP3A4. The drug does not inhibit CYP3A4.',
+    )
+    const cyp3a4 = signals.filter((signal) => signal.counterpartyAsRecorded === 'CYP3A4')
+    expect(cyp3a4).toHaveLength(2)
+    expect(cyp3a4.map((signal) => signal.polarity).sort()).toEqual(['ASSERTED', 'NEGATED'])
+  })
+
+  it('still collapses the identical sentence read twice', () => {
+    const once = signalsFrom('The drug is a substrate of CYP3A4.')
+    const twice = signalsFrom(
+      'The drug is a substrate of CYP3A4. The drug is a substrate of CYP3A4.',
+    )
+    expect(twice).toHaveLength(once.length)
+  })
+
+  it('preserves polarity and the exact sentence on every kept signal', () => {
+    for (const signal of signalsFrom(MANY_COUNTERPARTIES)) {
+      expect(signal.source.excerpt).toContain(signal.counterpartyAsRecorded.replace('P-GP', 'P-gp'))
+      expect(signal.provenanceTier).toBe('extracted')
+    }
+  })
+
+  it('orders deterministically, so a rerun produces the same file', () => {
+    const first = signalsFrom(MANY_COUNTERPARTIES)
+    const second = signalsFrom(MANY_COUNTERPARTIES)
+    expect(JSON.stringify(second)).toBe(JSON.stringify(first))
+  })
+})

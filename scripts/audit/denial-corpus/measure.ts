@@ -147,6 +147,7 @@ function measure() {
   let polarityNotRecorded = 0
   let interactionSignalsTotal = 0
   const recordsAtInteractionCap: string[] = []
+  const interactionCounts: number[] = []
   let explicitNonEstablishment = 0
   let populationStatementsTotal = 0
 
@@ -163,7 +164,13 @@ function measure() {
   let excerptsContainingDispersion = 0
   const dispersionDefects: DispersionDefect[] = []
 
-  const INTERACTION_CAP = 12
+  /*
+   * 12 was the cap the extractor used to apply after sorting counterparty names alphabetically.
+   * It is no longer enforced, and the figure is kept here only so the audit can report how many
+   * records still sit at the old boundary -- which, until a regeneration runs, is every record the
+   * old rule truncated.
+   */
+  const FORMER_INTERACTION_CAP = 12
 
   for (const [slug, background] of entries) {
     const modules = heldModules(background)
@@ -186,7 +193,8 @@ function measure() {
     /* interaction polarity and truncation */
     const signals = background.interactionSignals ?? []
     interactionSignalsTotal += signals.length
-    if (signals.length === INTERACTION_CAP) recordsAtInteractionCap.push(slug)
+    if (signals.length > 0) interactionCounts.push(signals.length)
+    if (signals.length === FORMER_INTERACTION_CAP) recordsAtInteractionCap.push(slug)
     for (const signal of signals) {
       if (signal.polarity === 'NEGATED') explicitDenials += 1
       else if (signal.polarity === 'ASSERTED') polarityAsserted += 1
@@ -304,9 +312,16 @@ function measure() {
       ),
     },
     truncation: {
-      interactionSignalCap: INTERACTION_CAP,
-      recordsAtInteractionCap: recordsAtInteractionCap.length,
-      recordsAtInteractionCapSlugs: recordsAtInteractionCap.sort(),
+      formerInteractionSignalCap: FORMER_INTERACTION_CAP,
+      /*
+       * Records sitting exactly at the old boundary. Before regeneration this is the population the
+       * alphabetical cut truncated; after it, a record may legitimately hold twelve, so the number
+       * that matters is how many now hold MORE than twelve.
+       */
+      recordsAtFormerCap: recordsAtInteractionCap.length,
+      recordsAboveFormerCap: interactionCounts.filter((n) => n > FORMER_INTERACTION_CAP).length,
+      maximumInteractionSignals: interactionCounts.reduce((a, b) => Math.max(a, b), 0),
+      recordsAtFormerCapSlugs: recordsAtInteractionCap.sort(),
     },
     publicBoundary,
     agents,
@@ -546,7 +561,7 @@ function main() {
     `[audit] values equal to own dispersion ${measurements.measurementIntegrity.valuesEqualToOwnDispersion}`,
   )
   console.log(
-    `[audit] records at interaction cap ${measurements.truncation.recordsAtInteractionCap}`,
+    `[audit] interaction signals · at former cap ${measurements.truncation.recordsAtFormerCap} · above it ${measurements.truncation.recordsAboveFormerCap} · max ${measurements.truncation.maximumInteractionSignals}`,
   )
   console.log(
     `[audit] licence declarations consistent: ${measurements.licensing.consistent} ${JSON.stringify(measurements.licensing.distinctFamilies)}`,
@@ -642,8 +657,10 @@ ${
 
 | Fact | Value |
 | ---- | ----- |
-| Interaction-signal cap | ${m.truncation.interactionSignalCap} |
-| Records sitting exactly at the cap | ${m.truncation.recordsAtInteractionCap} |
+| Former interaction-signal cap (no longer enforced) | ${m.truncation.formerInteractionSignalCap} |
+| Records sitting exactly at the old boundary | ${m.truncation.recordsAtFormerCap} |
+| Records now holding more than the old boundary | ${m.truncation.recordsAboveFormerCap} |
+| Largest recorded signal count | ${m.truncation.maximumInteractionSignals} |
 
 ## Public boundary
 
