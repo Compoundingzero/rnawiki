@@ -3,6 +3,14 @@
 Ordered by dependency. Nothing here should start before Release A ships, because most of it consumes
 the repaired corpus and would otherwise be built against data that is about to change.
 
+## 0. Run the export from inside Railway
+
+The only Release A item that did not complete. `db/ssl.ts` requires a verified certificate and
+Railway's public proxy is self-signed, so the exporter cannot run against production from a
+developer machine. `npm run export:dataset` from inside the Railway environment or the scheduled
+export job writes `recorded-background.ndjson` and `source-consensus.ndjson` and regenerates the
+manifest, which also clears the last CC BY-SA declaration.
+
 ## 1. Regenerate all agent outputs against the repaired corpus
 
 The ten agents in `data/agents/` were last run against the pre-repair corpus. Their inputs have moved
@@ -27,26 +35,30 @@ stamps a `candidateKey` and `occurrenceKey` onto each emitted candidate and writ
 Nothing renders the queue today. Until it does, the loop is open at the reader's end even though the
 substrate exists.
 
-## 4. Persist deterministic engine findings
+## 4. ~~Persist deterministic engine findings~~ — DONE in Release A
 
-**Verified during Release A: the `engine_findings` table exists and nothing writes to it.**
-`scripts/apply-recorded-background.ts` prints findings to the console and discards them
-(`apply-recorded-background.ts:25`).
+Migration 0018 added `engine_validation_runs`; the run is the row and findings hang off it, so a
+passing record with zero findings is still recorded. Production holds 9,855 runs, all passed, all
+applied, 0 findings. Re-applying an unchanged corpus inserts nothing.
 
-Smallest honest path: record the run, not only the failures. A run that produces zero findings is
-itself the fact worth keeping, because per-rule precision cannot be computed from failures alone —
-the denominator is the number of times a rule ran and stayed silent.
+What remains is the _use_ of it: per-rule precision needs reviewer decisions, which is items 2 and 3
+above.
 
-## 5. Question-level `conflicting` and `stale`
+## 5. ~~Question-level `conflicting`~~ — DONE. `stale` needs a drift channel
 
-`DossierQuestionCoverageState` still lacks both. The inputs now exist and are better than they were:
+`conflicting` is live: 231 fields, all reachable from a question, 0 `not_comparable` shown as a
+conflict. `stale` is implemented and emits nothing, because `verify:background` computes drift at run
+time and does not write it into the envelope. Give it somewhere to write and the state lights up
+without further UI work.
+
+Historical note on the old text: The inputs now exist and are better than they were:
 `comparisonState` distinguishes a genuine `differ` (231 fields) from `not_comparable` (12), so the
 question layer can finally surface a real conflict without inheriting the old Boolean's false
 positives. `stale` needs per-question freshness, which is still dossier-level.
 
-## 6. `recordedBackground` in the public bulk export
+## 6. ~~`recordedBackground` in the public bulk export~~ — code DONE, artifacts pending item 0
 
-`scripts/export/dataset.ts` makes no reference to it. The 33.5 MB excerpt-bound corpus is still
+Historical note on the old text: The 33.5 MB excerpt-bound corpus is still
 absent from the only bulk artifact the project publishes, while remaining extractable one row at a
 time through a 60/min API.
 

@@ -1,4 +1,11 @@
-# Release A — status: NOT SHIPPED, gate not met
+# Release A — DEPLOYED 2026-08-30
+
+> **Superseded.** This page recorded why the release was held. All three blockers were completed and
+> the release deployed as `5faaa912` / deployment `0e395635-e062-4529-bd20-4925f753ec9f`. See
+> `release-a-production.md` for what production actually holds. The original reasoning is kept below
+> because the decision to hold was correct at the time.
+
+## Original status: NOT SHIPPED, gate not met
 
 The corpus is repaired and the repair is proved. The release is **not** deployed, because three of
 the eight items this release defined for itself are not done, and deploying against an unmet gate is

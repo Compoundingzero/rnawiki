@@ -1,0 +1,72 @@
+{
+  "release": "Release A",
+  "startingSha": "d65a3d57527d508a27e827956ce4a7393df40d54",
+  "finalBranchSha": "b6835e6ba6cbeed6c507ec5bf9fec6a5cff02171",
+  "mergedMainSha": "5faaa912efb0f91256eceedbc696759aa3c7ce8b",
+  "remoteMainBefore": "91ff8b0",
+  "deployment": {
+    "id": "0e395635-e062-4529-bd20-4925f753ec9f",
+    "status": "SUCCESS",
+    "createdAt": "2026-08-30T17:05:36.141Z",
+    "previousRelease": "e49912b3-6d0d-4ad8-9365-c525f296ce03",
+    "project": "RNAwiki / 328c5ae7-2ccb-4d37-8524-ba7029daddae",
+    "environment": "production / d92fd6a6-1f4c-4065-bddf-86d05c1b9495",
+    "service": "RNAwiki / ddd37771-3d3e-4db5-9eab-42fabca6a2cc"
+  },
+  "backup": {
+    "path": "~/rnawiki-ingest-data/backups/",
+    "sha256": "b913e2ad2a9a4a3d7f260168ba84c746469b73ed76f864541355e731480b9136",
+    "bytes": 11534336,
+    "format": "pg_dump custom, PostgreSQL 18.6",
+    "verified": "pg_restore --list reads it: 632 TOC entries, 54 TABLE DATA entries"
+  },
+  "migrations": ["0017_agent_review_memory", "0018_engine_validation_runs"],
+  "productionBefore": {
+    "drugs": 9859,
+    "withRecordedBackground": 155,
+    "migrations": 17,
+    "engineRuns": null
+  },
+  "productionAfter": {
+    "drugs": 9859,
+    "withRecordedBackground": 9855,
+    "migrations": 19,
+    "engineRuns": 9855,
+    "engineRunsPassed": 9855,
+    "engineRunsApplied": 9855,
+    "engineFindings": 0,
+    "tiers": {
+      "transcribed": 6424,
+      "extracted": 3276,
+      "curated": 155
+    },
+    "comparisonStates": {
+      "agree": 1427,
+      "differ": 231,
+      "not_comparable": 12
+    },
+    "maxInteractionSignals": 164,
+    "recordsAboveOldCap": 466,
+    "polarity": {
+      "negated": 7261,
+      "asserted": 4439,
+      "notRecorded": 7824
+    }
+  },
+  "questionIssues": {
+    "conflictingFields": 231,
+    "recordsWithConflict": 173,
+    "unreachableDifferFields": 0,
+    "notComparableShownAsConflict": 0,
+    "staleQuestions": 0
+  },
+  "tests": {
+    "unit": 1787,
+    "unitFiles": 130,
+    "exportIntegration": 13,
+    "enginePersistenceIntegration": 8
+  },
+  "remaining": [
+    "export artifacts in data/ not regenerated from production: db/ssl.ts requires a verified certificate and Railway's public proxy is self-signed"
+  ]
+}
