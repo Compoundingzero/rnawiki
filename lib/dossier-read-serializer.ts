@@ -6,7 +6,13 @@
 // array would falsely say that RNAWiki recorded no workflow, while an omitted field plus explicit
 // access metadata says that the field was intentionally withheld.
 
-import type { CommentUser, DrugDossier, MolecularSchema } from '@/lib/types'
+import type {
+  CommentUser,
+  ConventionalSubstitute,
+  DrugDossier,
+  DrugSubstitutes,
+  MolecularSchema,
+} from '@/lib/types'
 
 export type PublicMolecularSchema = Omit<MolecularSchema, 'laboratoryWorkflow'>
 
@@ -95,11 +101,57 @@ function omitLaboratoryWorkflow(schema: MolecularSchema): PublicMolecularSchema 
   return copy as PublicMolecularSchema
 }
 
+/**
+ * Removes the two parts of `substitutes` that no public surface may carry.
+ *
+ * `homeRemedies` does not describe remedies. Its `action` field addresses the reader in the
+ * imperative — "Request that body weight be recorded at each visit", "If you are admitted to
+ * hospital while taking dabigatran, say so explicitly" — across 892 recorded entries. That is a
+ * patient action named in RNAWiki's own voice, which no phrasing makes permissible. It reaches no
+ * page, because the dossier view model never projected it, so this endpoint was its only exit.
+ *
+ * `prosAndCons` weighs named alternative medicines against each other in RNAWiki's own voice
+ * ("Pros: decades of accumulated data … Cons: abacavir requires HLA-B*5701 testing"). The
+ * surrounding section is careful — it is titled "Other medical treatments for the same goal" and
+ * states that the list is alphabetical and not a ranking — but a per-item pros-and-cons line IS the
+ * ranking that copy disclaims.
+ *
+ * What stays is deliberate. `howItCompares` is overwhelmingly a recorded fact about one trial's own
+ * comparator arm ("the comparator in registration trial GS-US-380-1489; 93.0% of 315 against 92.4%
+ * of 314"), which is a statement about a single programme rather than a comparison RNAWiki is
+ * making. `class` and `typicalCost` are recorded identity and recorded price.
+ *
+ * The stored rows are not modified. Authoring keeps whatever a curator wrote; the public boundary
+ * decides what leaves.
+ */
+function omitUnpublishableSubstitutes(substitutes: DrugSubstitutes): DrugSubstitutes {
+  return {
+    ...substitutes,
+    homeRemedies: [],
+    conventionalRx: substitutes.conventionalRx.map((entry) => {
+      const copy: Partial<ConventionalSubstitute> = { ...entry }
+      delete copy.prosAndCons
+      return copy as ConventionalSubstitute
+    }),
+  }
+}
+
 /** Serialize a dossier for an anonymous/public consumer. */
 export function serializePublicDossier(dossier: DrugDossier): PublicDossierReadPayload {
-  const drug: PublicDrugDossier = dossier.molecularSchema
-    ? { ...dossier, molecularSchema: omitLaboratoryWorkflow(dossier.molecularSchema) }
+  const withoutWorkflow: DrugDossier = dossier.molecularSchema
+    ? {
+        ...dossier,
+        molecularSchema: omitLaboratoryWorkflow(dossier.molecularSchema) as MolecularSchema,
+      }
     : { ...dossier }
+  const drug: PublicDrugDossier = (
+    withoutWorkflow.substitutes
+      ? {
+          ...withoutWorkflow,
+          substitutes: omitUnpublishableSubstitutes(withoutWorkflow.substitutes),
+        }
+      : withoutWorkflow
+  ) as PublicDrugDossier
 
   return {
     drug,
