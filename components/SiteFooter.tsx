@@ -6,6 +6,7 @@ import { AnalyticsPreferencesButton } from '@/components/GoogleAnalytics'
 
 const FOOTER_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: '/browse', label: 'Browse all medicines' },
+  { href: '/datasets', label: 'Public datasets' },
   { href: '/how-it-works', label: 'How this works' },
   { href: '/editorial-policy', label: 'Editorial policy' },
   { href: '/review-queue', label: 'Review queue' },

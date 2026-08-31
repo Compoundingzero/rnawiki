@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 
+import { PUBLIC_DATASET_IDS } from '@/lib/public-datasets'
 import { listIndexableContributorProfilesForSitemap } from '@/lib/queries/users'
 import { loadMedicineSitemapIndexabilityReports } from '@/lib/seo/publication-indexability'
 
@@ -18,6 +19,12 @@ const siteOrigin = (() => {
 const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: `${siteOrigin}/`, changeFrequency: 'daily', priority: 1 },
   { url: `${siteOrigin}/browse`, changeFrequency: 'daily', priority: 0.8 },
+  { url: `${siteOrigin}/datasets`, changeFrequency: 'weekly', priority: 0.7 },
+  ...PUBLIC_DATASET_IDS.map((dataset) => ({
+    url: `${siteOrigin}/datasets/${dataset}`,
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  })),
   { url: `${siteOrigin}/how-it-works`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${siteOrigin}/editorial-policy`, changeFrequency: 'monthly', priority: 0.6 },
 ]

@@ -123,6 +123,17 @@ describe('generated sitemap behavior', () => {
       changeFrequency: 'monthly',
       priority: 0.4,
     })
+    expect(
+      entries
+        .map((entry) => new URL(entry.url).pathname)
+        .filter((pathname) => pathname === '/datasets' || pathname.startsWith('/datasets/')),
+    ).toEqual([
+      '/datasets',
+      '/datasets/enzyme-transporter-negatives',
+      '/datasets/source-consensus',
+      '/datasets/silence-ledger',
+      '/datasets/coverage-ledger',
+    ])
     expect(entries.some((entry) => entry.url.includes('?'))).toBe(false)
     expect(entries.some((entry) => /review-queue|history/.test(entry.url))).toBe(false)
     expect(entries.some((entry) => /\/about$|\/corrections$/.test(entry.url))).toBe(false)

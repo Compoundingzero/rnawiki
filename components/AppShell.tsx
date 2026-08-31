@@ -37,8 +37,9 @@ function FeedbackButton() {
 function SessionAwareApp({ children }: { children: ReactNode }) {
   const { isLoadingUser, refreshUser, sessionActionLocked } = useApp()
   const pathname = usePathname()
-  const dossierKeepsReadingAvailable = pathname.startsWith('/d/')
-  const lockWholeShell = sessionActionLocked && !dossierKeepsReadingAvailable
+  const isDossierView = pathname.startsWith('/d/')
+  const publicReadingStaysAvailable = isDossierView || pathname.startsWith('/datasets')
+  const lockWholeShell = sessionActionLocked && !publicReadingStaysAvailable
 
   return (
     <>
@@ -53,7 +54,7 @@ function SessionAwareApp({ children }: { children: ReactNode }) {
           {children}
         </main>
 
-        {!dossierKeepsReadingAvailable && <FeedbackButton />}
+        {!isDossierView && <FeedbackButton />}
 
         <SiteFooter />
 
