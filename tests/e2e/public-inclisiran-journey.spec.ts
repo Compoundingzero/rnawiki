@@ -582,7 +582,9 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await expect(page.locator('main')).not.toContainText('anhydrous acetonitrile')
 
   const { content } = await openAdvancedEvidence(page)
-  await expect(content.getByRole('heading', { level: 2 })).toBeVisible()
+  await expect(
+    content.getByRole('heading', { level: 2, name: 'The question being answered' }),
+  ).toBeVisible()
   const evidenceNavigation = content.getByRole('navigation', {
     name: 'Medicine dossier sections',
   })
