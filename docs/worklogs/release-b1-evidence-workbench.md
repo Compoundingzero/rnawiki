@@ -127,18 +127,32 @@ product test failed. The worklog was formatted and the complete gate then passed
   `2e4501b434d802bfcfba36294ee90f92bbba8441e8e15d430ad2b0637be60c8d`. `pg_restore --list`
   passed. Two superseded plain-text transfer attempts were deleted; only the validated custom
   archive remains.
-- Restored the custom archive into an explicitly named local disposable database. Its starting
-  state was 20 applied migrations (through 0019), 9,859 medicine rows and zero agent decisions.
-  Migration 0020 applied successfully in that earlier rehearsal. Migration 0021 was added later and
-  remains subject to the final 0020+0021 restored-backup replay. A separate representative upgrade
-  test proved that
-  migration 0020 rejects a legacy explanation-less decision without fabricating text, and succeeds
-  only after explicit reviewer-authored remediation; that test database was dropped.
+- Replayed all 22 migrations twice from an empty PostgreSQL 18 database. The second pass was a no-op;
+  all nine B1 columns and all four append-only triggers were present. The disposable database was
+  dropped.
+- Restored the custom archive into an explicitly named local disposable database. Its starting state
+  was 20 applied migrations (through 0019), 9,859 medicine rows, four pre-existing agent-run rows,
+  zero active agent pointers, zero agent occurrences and zero agent decisions. Migrations 0020 and
+  0021 both applied; a second migration pass was a no-op and the medicine-table digest did not
+  change.
+- Applied the exact source-consensus transition twice. The first pass updated the 734 expected rows;
+  the second updated zero and reported all 734 already current. The medicine row count and the hash
+  of every field other than `recorded_background.sourceConsensus` stayed unchanged.
+- Imported the ten current agent runs twice. The first import created 3,123 occurrences, 3,123 run
+  memberships and ten current pointers with zero decisions; the second created or changed zero. The
+  restored database then held 14 total run rows, ten current runs, 3,123 occurrences and zero
+  decisions. Lane counts were ordinary 1,258, biotech 547, chemist 1,199 and quantitative 119. No
+  historical pre-repair digest became current and the medicine-table digest did not change.
+- The final replay removed both task-created databases. Only the three pre-existing local databases
+  remained, the archive hash stayed
+  `2e4501b434d802bfcfba36294ee90f92bbba8441e8e15d430ad2b0637be60c8d`, and both stashes were
+  unchanged. A separate representative upgrade test also proved that migration 0020 rejects a
+  legacy explanation-less decision without fabricating text, and succeeds only after explicit
+  reviewer-authored remediation; that test database was dropped.
 
 ## Measurements still to record
 
 - Current production agent-run, candidate, occurrence and real decision counts before and after
   activation.
 - Public dataset reader row counts and the final six-question audience coverage report.
-- Final current-package import replay against the restored custom backup, full gate, CI,
-  deployment, rollback evidence and direct production verification.
+- Full gate, CI, deployment, rollback evidence and direct production verification.
