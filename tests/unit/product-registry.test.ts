@@ -16,7 +16,20 @@ for (const [key, product] of Object.entries(PRODUCT_REGISTRY)) {
   }
 }
 
-describe('product identity', () => {
+const productRegistryPresent = Object.keys(PRODUCT_REGISTRY).length > 0
+const substanceRegistryPresent = Object.keys(SUBSTANCE_REGISTRY).length > 0
+const generatedRegistriesPresent = productRegistryPresent && substanceRegistryPresent
+
+describe('generated registry fixtures', () => {
+  it('loads both archive-derived registries or neither', () => {
+    // These builder outputs are deliberately ignored because they are regenerated from the
+    // preserved label archive. A clean checkout therefore has neither file; a builder workspace
+    // must never test a half-generated product/substance pair.
+    expect(productRegistryPresent).toBe(substanceRegistryPresent)
+  })
+})
+
+describe.runIf(generatedRegistriesPresent)('product identity', () => {
   it('gives each well-known combination exactly one identity', () => {
     // Every one of these had no page at all before, because the corpus aggregated by moiety.
     const expected: ReadonlyArray<readonly [string, readonly string[]]> = [
@@ -89,7 +102,7 @@ describe('product identity', () => {
   })
 })
 
-describe('substance registry', () => {
+describe.runIf(generatedRegistriesPresent)('substance registry', () => {
   it('records ingredients rather than products, keyed by concept', () => {
     for (const [key, substance] of Object.entries(SUBSTANCE_REGISTRY)) {
       expect(substance.ingredientRxcui, key).toBe(key)
