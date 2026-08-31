@@ -3,7 +3,7 @@
 Generated deterministically from the checked-in public snapshot by
 `scripts/audit/four-audience-evidence-coverage.ts`.
 
-**Snapshot generated:** 2026-08-31T10:41:37.548Z
+**Snapshot generated:** 2026-08-31T23:07:00.238Z
 
 **Measurement digest:** `dc5189d25ce7084020023023fd0ad256cb4ce8220ef397bb881e3728362fe381`
 

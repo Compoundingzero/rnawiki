@@ -13,151 +13,165 @@
     "machineVerified": 3213,
     "aliases": 27859,
     "programmes": 0,
-    "currentProgrammePublications": 0
+    "currentProgrammePublications": 0,
+    "agentRuns": 10,
+    "agentCandidates": 3123,
+    "agentFindings": 42607
   },
   "files": [
     {
-      "schemaVersion": "drugs/1",
-      "mediaType": "application/x-ndjson",
-      "licence": "CC BY 4.0 — see LICENSE-DATA",
-      "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
       "path": "data/drugs/drugs-001.ndjson",
       "rows": 1000,
       "bytes": 10223080,
-      "sha256": "409fd1bf420e668ffe942087524b91340c0e54ce620fe7d6cc805fbd071fa480"
-    },
-    {
+      "sha256": "409fd1bf420e668ffe942087524b91340c0e54ce620fe7d6cc805fbd071fa480",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-002.ndjson",
       "rows": 1000,
       "bytes": 9663465,
-      "sha256": "3bc4d11934b4ae88e497521cf5c2be14ab4ab4b2302d99b02caf9579c85d6fe5"
-    },
-    {
+      "sha256": "3bc4d11934b4ae88e497521cf5c2be14ab4ab4b2302d99b02caf9579c85d6fe5",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-003.ndjson",
       "rows": 1000,
       "bytes": 10358904,
-      "sha256": "4632bdb4035fd437bd72ac83bd004e35e586b2e4b85f661482c263268f7a39f5"
-    },
-    {
+      "sha256": "4632bdb4035fd437bd72ac83bd004e35e586b2e4b85f661482c263268f7a39f5",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-004.ndjson",
       "rows": 1000,
       "bytes": 14030285,
-      "sha256": "cdf87621e89221568d35ac1a95e03f6510a812b38aa1eb396906ea2ee909daca"
-    },
-    {
+      "sha256": "cdf87621e89221568d35ac1a95e03f6510a812b38aa1eb396906ea2ee909daca",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-005.ndjson",
       "rows": 1000,
       "bytes": 9277335,
-      "sha256": "80bbeb588ec185847e36c5cb09dc0c0b71e95a8200268992fab3310ef5083e87"
-    },
-    {
+      "sha256": "80bbeb588ec185847e36c5cb09dc0c0b71e95a8200268992fab3310ef5083e87",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-006.ndjson",
       "rows": 1000,
       "bytes": 12048149,
-      "sha256": "341b2433a565982655183ba4b17e338551907395777f92194e665edca4f9a83e"
-    },
-    {
+      "sha256": "341b2433a565982655183ba4b17e338551907395777f92194e665edca4f9a83e",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-007.ndjson",
       "rows": 1000,
       "bytes": 12663808,
-      "sha256": "86b188b285e6ff1103026e1f6bdecb7e45f10b1d64232541d5f906977bb0a6cd"
-    },
-    {
+      "sha256": "86b188b285e6ff1103026e1f6bdecb7e45f10b1d64232541d5f906977bb0a6cd",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-008.ndjson",
       "rows": 1000,
       "bytes": 10814399,
-      "sha256": "b62b101b4f325192383e2cbef5d680a299eba45231355110be53c2eb2689dd75"
-    },
-    {
+      "sha256": "b62b101b4f325192383e2cbef5d680a299eba45231355110be53c2eb2689dd75",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-009.ndjson",
       "rows": 1000,
       "bytes": 9735458,
-      "sha256": "b9de1ec5bb2adb35f2ef5de9f19e4f7227bb0d679dd76e655fa4f4b9db614b81"
-    },
-    {
+      "sha256": "b9de1ec5bb2adb35f2ef5de9f19e4f7227bb0d679dd76e655fa4f4b9db614b81",
       "schemaVersion": "drugs/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
+    },
+    {
       "path": "data/drugs/drugs-010.ndjson",
       "rows": 857,
       "bytes": 10637016,
-      "sha256": "f38d596609ba44715b436875816ed9058828edd5bfb8dbc6d3417a8c91eadeba"
+      "sha256": "f38d596609ba44715b436875816ed9058828edd5bfb8dbc6d3417a8c91eadeba",
+      "schemaVersion": "drugs/1",
+      "mediaType": "application/x-ndjson",
+      "licence": "CC BY 4.0 — see LICENSE-DATA",
+      "description": "Legacy medicine-wide records in the snapshot shape.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none."
     },
     {
+      "path": "data/drugs.csv",
+      "rows": 9857,
+      "bytes": 2280298,
+      "sha256": "4524645969755966e24aefb2870076c9f6f72ebc7ebda70674ca2d351fb41703",
       "schemaVersion": "drugs-csv/1",
       "mediaType": "text/csv",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Flat identity, regulatory, structure and URL columns.",
-      "limitations": "Deliberately flatter than the NDJSON. Use the NDJSON when you need nested detail.",
-      "path": "data/drugs.csv",
-      "rows": 9857,
-      "bytes": 2280298,
-      "sha256": "4524645969755966e24aefb2870076c9f6f72ebc7ebda70674ca2d351fb41703"
+      "limitations": "Deliberately flatter than the NDJSON. Use the NDJSON when you need nested detail."
     },
     {
+      "path": "data/recorded-background.ndjson",
+      "rows": 9855,
+      "bytes": 63198719,
+      "sha256": "6e75d1aba939c64528205c463c717fd476fb7b985b87fa827f6817d6f51668fb",
       "schemaVersion": "recorded-background/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "The source-bound recorded-background corpus, including complete cross-source reading groups, explicit structured-context status, and source excerpts.",
-      "limitations": "A source count is not a count of independent experiments. Consensus population/formulation context is explicitly unknown until structurally extracted, so distinct readings are not source conflicts. An absent module means only that this corpus does not fill it.",
-      "path": "data/recorded-background.ndjson",
-      "rows": 9855,
-      "bytes": 63198719,
-      "sha256": "6e75d1aba939c64528205c463c717fd476fb7b985b87fa827f6817d6f51668fb"
+      "limitations": "A source count is not a count of independent experiments. Consensus population/formulation context is explicitly unknown until structurally extracted, so distinct readings are not source conflicts. An absent module means only that this corpus does not fill it."
     },
     {
+      "path": "data/source-consensus.ndjson",
+      "rows": 1681,
+      "bytes": 14659400,
+      "sha256": "e2142e79e7fe5ac3399f8487efce00acd8353e6844cf1ad469a278e2b5673da9",
       "schemaVersion": "source-consensus/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Complete cross-source readings per field, including printed value, unit, explicit structured-context status, comparison reasons, and every represented source record.",
-      "limitations": "Current label parsing does not structurally extract population or formulation context. Distinct otherwise-comparable readings are therefore insufficient_context, never differ; agree may mean printed-reading agreement only. Source records are complete but are not independent-experiment counts.",
-      "path": "data/source-consensus.ndjson",
-      "rows": 1681,
-      "bytes": 14659400,
-      "sha256": "e2142e79e7fe5ac3399f8487efce00acd8353e6844cf1ad469a278e2b5673da9"
+      "limitations": "Current label parsing does not structurally extract population or formulation context. Distinct otherwise-comparable readings are therefore insufficient_context, never differ; agree may mean printed-reading agreement only. Source records are complete but are not independent-experiment counts."
+    },
+    {
+      "path": "data/agents/current/manifest.json",
+      "rows": 10,
+      "bytes": 83130,
+      "sha256": "5015cb31ed65ca48a824e8581f034d522e321fb53da3685e71933d1ba1e1cfaf",
+      "schemaVersion": "rnawiki-current-agent-manifest/v1",
+      "mediaType": "application/json",
+      "licence": "CC BY 4.0 — see LICENSE-DATA",
+      "description": "Manifest for the current deterministic detector runs used by the bounded public dataset projections and private evidence-review queue.",
+      "limitations": "The manifest describes detector output, not medical findings. Its nested hashes cover the exact run artifacts; public readers expose only allowlisted projections and never the review queue."
     }
   ]
 }
