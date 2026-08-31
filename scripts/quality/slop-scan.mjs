@@ -1,6 +1,8 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { findPublicCopyFindings } from './public-copy-policy.mjs'
+
 /**
  * Scans user-visible prose for the tics that make text read as machine-written.
  *
@@ -105,14 +107,6 @@ const SEED_COPY_PATTERNS = [
   },
 ]
 
-// These two tics are editorial in any public dataset string, including technical identity fields
-// that today's dossier UI does not project. Other seed rules remain limited to reader-copy paths
-// so legitimate scientific terms in raw source and molecular fields do not create false alarms.
-const ALL_PUBLIC_DATA_STRING_PATTERN_IDS = new Set([
-  'seed: self-certified honest language',
-  'seed: self-certified plainly language',
-])
-
 // These files contain user-owned work outside this cleanup. Keep the exclusion explicit so the
 // default copy gate cannot silently start policing or rewriting them.
 const PROTECTED_SEED_COPY_FILES = new Set([
@@ -122,64 +116,6 @@ const PROTECTED_SEED_COPY_FILES = new Set([
   'enriched-batch-28.ts',
   'enriched-batch-29.ts',
   'enriched-batch-30.ts',
-])
-
-// These keys hold editorial copy rendered to readers. Deliberately omit raw label language,
-// molecular fields, technical audit details, and source citations: their terminology is not a
-// useful signal for this narrow style gate.
-const PUBLIC_DATA_READER_COPY_KEYS = new Set([
-  'name',
-  'tradeName',
-  'patientFriendlyIndication',
-  'laymanHowItWorks',
-  'anatomicalSite',
-  'synthesisCostPerDose',
-  'retailPricePerDoseOrYear',
-  'markupEstimate',
-  'synthesisComplexity',
-  'conditionExplainer',
-  'whyItMatters',
-  'whoTakesThis',
-  'clinicalGoals',
-  'title',
-  'laymanDesc',
-  'laymanSummary',
-  'strictlyMeasured',
-  'unsupportedInferences',
-  'whatFailedInitially',
-  'realWorldOutcome',
-  'description',
-  'safetyProfile',
-  'q',
-  'a',
-  'auditNote',
-  'summary',
-  'howItCompares',
-  'comparisonToDrug',
-  'prosAndCons',
-  'biologicalMechanism',
-  'mechanism',
-  'dailyUsage',
-  'action',
-  'patientImpact',
-  'clinicalPrecaution',
-  'openPatentNotes',
-])
-
-// Programme publications mix reader summaries with source records and machine identifiers. Scan
-// only the fields the public programme view renders as prose; generic keys such as `text` and
-// `indication` would otherwise pull raw source material into this style gate.
-const PROGRAMME_EVIDENCE_READER_COPY_PATHS = new Set([
-  'programmeEvidence.selectedSummary.text',
-  'programmeEvidence.programmes.*.title',
-  'programmeEvidence.programmes.*.targetPopulation',
-  'programmeEvidence.programmes.*.indication',
-  'programmeEvidence.programmes.*.currentPublication.publicLabel',
-  'programmeEvidence.programmes.*.currentPublication.oneSentenceReason',
-  'programmeEvidence.programmes.*.currentPublication.indicationScope',
-  'programmeEvidence.programmes.*.currentPublication.populationScope',
-  'programmeEvidence.programmes.*.currentPublication.trialScope',
-  'programmeEvidence.programmes.*.currentPublication.outcomeScope',
 ])
 
 /** Pull reader-facing prose out of a source or Markdown file, skipping code and comments. */
@@ -218,139 +154,6 @@ function publicDataFiles(root) {
     .sort()
 }
 
-/** Parse checked-in NDJSON and retain only values from explicitly reader-facing copy fields. */
-function extractPublicDataProse(src, file) {
-  const out = []
-  const visit = (value, path) => {
-    if (typeof value === 'string') {
-      const key = path.at(-1) ?? ''
-      const isReaderCopy =
-        PUBLIC_DATA_READER_COPY_KEYS.has(key) ||
-        PROGRAMME_EVIDENCE_READER_COPY_PATHS.has(path.join('.'))
-      if (isReaderCopy && value.length >= 12) out.push(value)
-      return
-    }
-    if (Array.isArray(value)) {
-      for (const entry of value) visit(entry, [...path, '*'])
-      return
-    }
-    if (!value || typeof value !== 'object') return
-    for (const [childKey, entry] of Object.entries(value)) visit(entry, [...path, childKey])
-  }
-
-  for (const [lineIndex, line] of src.split('\n').entries()) {
-    if (!line.trim()) continue
-    try {
-      visit(JSON.parse(line), [])
-    } catch (error) {
-      const detail = error instanceof Error ? error.message : String(error)
-      throw new Error(`Cannot parse ${file}:${lineIndex + 1}: ${detail}`)
-    }
-  }
-  return out.join('\n')
-}
-
-/** Parse checked-in NDJSON and retain every string value for the two outright self-certifiers. */
-/**
- * Recorded identity, which this scan must never police.
- *
- * A medicine's name and its trade names are transcribed from the source that prints them, and
- * RNAWiki's rule is to record them exactly. The all-strings arm flagged the real over-the-counter
- * brand `Honest Med Capsaicin Patch` as self-certifying editorial language. The only way to satisfy
- * that complaint would be to alter a recorded product name, which is a data-integrity fault far
- * worse than the tic being hunted. A brand is not a claim about RNAWiki's candour.
- *
- * Verbatim source excerpts are excluded for the same reason: a manufacturer writing "honestly" in a
- * label is a fact about the label, not about this project's prose.
- */
-const RECORDED_IDENTITY_KEYS = new Set([
-  'alias',
-  'brandName',
-  'excerpt',
-  'genericName',
-  'name',
-  'slug',
-  'textAsRecorded',
-  'tradeName',
-])
-
-function extractAllPublicDataStrings(src, file) {
-  const out = []
-  const visit = (value, key = '') => {
-    if (typeof value === 'string') {
-      if (!RECORDED_IDENTITY_KEYS.has(key)) out.push(value)
-      return
-    }
-    if (Array.isArray(value)) {
-      // An array inherits its parent's key, so `aliases: [{ alias }]` and a bare string array of
-      // names are both judged as the field they belong to.
-      for (const entry of value) visit(entry, key)
-      return
-    }
-    if (!value || typeof value !== 'object') return
-    for (const [entryKey, entry] of Object.entries(value)) visit(entry, entryKey)
-  }
-
-  for (const [lineIndex, line] of src.split('\n').entries()) {
-    if (!line.trim()) continue
-    try {
-      visit(JSON.parse(line))
-    } catch (error) {
-      const detail = error instanceof Error ? error.message : String(error)
-      throw new Error(`Cannot parse ${file}:${lineIndex + 1}: ${detail}`)
-    }
-  }
-  return out.join('\n')
-}
-
-/** Keep path-aware export coverage testable even while the checked-in snapshot has no programmes. */
-function verifyProgrammeEvidenceReaderCopyCoverage() {
-  const expected = [
-    'Selected summary sentinel',
-    'Programme title sentinel',
-    'Target population sentinel',
-    'Programme indication sentinel',
-    'Public label sentinel',
-    'One sentence reason sentinel',
-    'Indication scope sentinel',
-    'Population scope sentinel',
-    'Trial scope sentinel',
-    'Outcome scope sentinel',
-  ]
-  const fixture = {
-    programmeEvidence: {
-      selectedSummary: { text: expected[0] },
-      programmes: [
-        {
-          title: expected[1],
-          targetPopulation: expected[2],
-          indication: expected[3],
-          currentPublication: {
-            publicLabel: expected[4],
-            oneSentenceReason: expected[5],
-            indicationScope: expected[6],
-            populationScope: expected[7],
-            trialScope: expected[8],
-            outcomeScope: expected[9],
-            sourceText: 'Raw source sentinel must stay outside reader copy',
-          },
-        },
-      ],
-    },
-  }
-  const prose = extractPublicDataProse(JSON.stringify(fixture), '<programme-reader-copy-fixture>')
-  for (const sentinel of expected) {
-    if (!prose.includes(sentinel)) {
-      throw new Error(`Public-data copy scan omitted programme reader field: ${sentinel}`)
-    }
-  }
-  if (prose.includes('Raw source sentinel')) {
-    throw new Error('Public-data copy scan included raw programme source text')
-  }
-}
-
-verifyProgrammeEvidenceReaderCopyCoverage()
-
 /** Resolve the seed groups that a fresh/default database seed actually imports. */
 function importedSeedFiles(root) {
   const index = readFileSync(join(root, 'index.ts'), 'utf8')
@@ -372,6 +175,11 @@ const files = explicitFiles
     ]
 const hits = new Map()
 
+function addHit(id, hit) {
+  if (!hits.has(id)) hits.set(id, [])
+  hits.get(id).push(hit)
+}
+
 function scanFiles(filesToScan, patterns, extract = extractProse) {
   let scanned = 0
   for (const file of filesToScan) {
@@ -389,11 +197,40 @@ function scanFiles(filesToScan, patterns, extract = extractProse) {
       while ((m = re.exec(prose)) !== null) {
         const start = Math.max(0, m.index - 45)
         const context = prose.slice(start, m.index + m[0].length + 45).replace(/\s+/g, ' ')
-        if (!hits.has(id)) hits.set(id, [])
-        hits.get(id).push({
+        addHit(id, {
           file: file.replace(/^.*\/(?=(components|app|lib|scripts))/, ''),
           match: m[0],
           context,
+        })
+      }
+    }
+  }
+  return scanned
+}
+
+/** Scan generated medicine records without concatenating values or losing their JSON paths. */
+function scanGeneratedMedicineFiles(filesToScan) {
+  let scanned = 0
+  for (const file of filesToScan) {
+    const src = readFileSync(file, 'utf8')
+    scanned += 1
+    for (const [lineIndex, line] of src.split('\n').entries()) {
+      if (!line.trim()) continue
+      let record
+      try {
+        record = JSON.parse(line)
+      } catch (error) {
+        const detail = error instanceof Error ? error.message : String(error)
+        throw new Error(`Cannot parse ${file}:${lineIndex + 1}: ${detail}`)
+      }
+
+      for (const finding of findPublicCopyFindings(record)) {
+        const context = finding.match.replace(/\s+/g, ' ')
+        addHit('corpus: self-certified editorial claim', {
+          file: `${file}:${lineIndex + 1}`,
+          location: `${finding.recordId} ${finding.path}`,
+          match: finding.match,
+          context: context.length > 180 ? `${context.slice(0, 177)}…` : context,
         })
       }
     }
@@ -405,48 +242,21 @@ const publicFilesScanned = scanFiles(files, PATTERNS)
 const seedFilesScanned = explicitFiles
   ? 0
   : scanFiles(importedSeedFiles('scripts/seed-data'), SEED_COPY_PATTERNS)
-/**
- * Lets the publication workflow skip the generated corpus arm. Nothing else may set this.
- *
- * `data/drugs/*.ndjson` is not authored here — it is a projection of the live database, regenerated
- * wholesale on every export. Editorial faults in it are faults in the medicine records, and the only
- * place to fix them is the review workflow that writes those records; a lint gate over the mirror
- * cannot fix anything, it can only refuse to mirror.
- *
- * That refusal is the problem. The publication job exists so the downloadable dataset matches the
- * live site. Blocking it because the site's own prose has a tic does not improve the site — it
- * freezes the public dataset at whatever it last held, which is precisely the staleness this job was
- * built to end. The dataset then misrepresents the site, and the tic is still on the site.
- *
- * So the gate stays fully armed in `npm run gate`, where a person can act on it, and the publication
- * job proceeds. The skip is announced loudly in the log so a run can never read as a clean pass.
- */
-const skipGeneratedCorpus = process.env.SLOP_SCAN_SKIP_GENERATED_CORPUS === '1'
-const publicDataFilesToScan =
-  explicitFiles || skipGeneratedCorpus ? [] : publicDataFiles('data/drugs')
-const publicDataReaderPatterns = SEED_COPY_PATTERNS.filter(
-  ({ id }) => !ALL_PUBLIC_DATA_STRING_PATTERN_IDS.has(id),
-)
-const publicDataFilesScanned = scanFiles(
-  publicDataFilesToScan,
-  publicDataReaderPatterns,
-  extractPublicDataProse,
-)
-scanFiles(
-  publicDataFilesToScan,
-  SEED_COPY_PATTERNS.filter(({ id }) => ALL_PUBLIC_DATA_STRING_PATTERN_IDS.has(id)),
-  extractAllPublicDataStrings,
-)
+const publicDataFilesScanned = explicitFiles
+  ? 0
+  : scanGeneratedMedicineFiles(publicDataFiles('data/drugs'))
 
 const sorted = [...hits.entries()].sort((a, b) => b[1].length - a[1].length)
 const configuredPatternCount = explicitFiles
   ? PATTERNS.length
-  : PATTERNS.length + SEED_COPY_PATTERNS.length
+  : PATTERNS.length + SEED_COPY_PATTERNS.length + 1
 let total = 0
 for (const [id, list] of sorted) {
   total += list.length
   console.log(`\n${String(list.length).padStart(4)}  ${id}`)
-  for (const h of list.slice(0, 4)) console.log(`      ${h.file}  …${h.context}…`)
+  for (const h of list.slice(0, 4)) {
+    console.log(`      ${h.file}${h.location ? `  ${h.location}` : ''}  …${h.context}…`)
+  }
   if (list.length > 4) console.log(`      … and ${list.length - 4} more`)
 }
 console.log(
@@ -459,14 +269,6 @@ console.log(
 if (!explicitFiles) {
   console.log(
     'seed exclusions: protected imported batches 19 and 20; protected batches 27–30 are not imported',
-  )
-}
-if (skipGeneratedCorpus) {
-  console.log(
-    'NOT SCANNED: data/drugs/*.ndjson, the generated corpus projection, skipped by ' +
-      'SLOP_SCAN_SKIP_GENERATED_CORPUS=1. This is NOT a clean result for that data. Its editorial ' +
-      'findings are recorded in docs/worklogs/production-dataset-publication.md and are fixed in the ' +
-      'medicine records through the review workflow, never by editing the export.',
   )
 }
 if (total > 0) process.exitCode = 1

@@ -235,19 +235,21 @@
   },
   "publicExport": {
     "present": true,
-    "declaredLicence": "CC BY-SA 4.0 — see LICENSE-DATA",
+    "declaredLicence": "CC BY 4.0 — see LICENSE-DATA",
     "counts": {
       "total": 9857,
       "flagship": 489,
       "curated": 9368,
       "stub": 0,
       "withStructure": 3204,
-      "withTrials": 6514,
+      "withTrials": 6513,
       "withPrice": 946,
       "machineVerified": 3213,
-      "aliases": 16338
+      "aliases": 27859,
+      "programmes": 0,
+      "currentProgrammePublications": 0
     },
-    "files": 11,
+    "files": 13,
     "exporterMentionsRecordedBackground": true,
     "exporterMentionsSourceConsensus": true
   },
@@ -263,16 +265,15 @@
         "CC-BY-4.0 (declared)"
       ],
       "data/manifest.json": [
-        "CC-BY-SA-4.0 (declared)"
+        "CC-BY-4.0 (declared)"
       ],
       "scripts/export/dataset.ts": [
         "CC-BY-4.0 (declared)"
       ]
     },
-    "consistent": false,
+    "consistent": true,
     "distinctFamilies": [
-      "CC-BY-4.0",
-      "CC-BY-SA-4.0"
+      "CC-BY-4.0"
     ]
   }
 }

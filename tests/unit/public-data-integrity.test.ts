@@ -201,35 +201,8 @@ describe('generated public snapshot integrity', () => {
     }
   })
 
-  /**
-   * Self-certification in the published corpus, held to a baseline that can only shrink.
-   *
-   * WHAT THIS REPLACED, AND WHY IT WAS NOT A REAL CHECK. The previous version matched the bare words
-   * `honest`, `honestly` and `plainly` anywhere in any string and asserted zero. It passed for one
-   * reason: the committed snapshot was a thin projection carrying almost none of the prose it claimed
-   * to police. Shard 001 was 1.1 MB and held 0 populated `commonQuestions[].a`, 0
-   * `keyAudits[].technicalDetails` and 0 `substitutes.summary`. The same shard exported from
-   * production is 9.2 MB and holds 193, 260 and 35 of them. The assertion had never once run against
-   * the fields it named, so "any public string field" was true only of a file with almost no public
-   * strings in it.
-   *
-   * WHAT THE WORD MATCH ACTUALLY CATCHES. Against the real corpus it produces 358 matches, of which
-   * 342 are the word used correctly: "No binding affinity can honestly be stated, because no target
-   * has been established" is this project refusing to overstate, which is the house style rather than
-   * a breach of it. Only 16 are the tic the rule exists for — a page vouching for itself, as in
-   * "saying so plainly is what makes the sceptical pages elsewhere worth reading". A check that
-   * cannot tell those apart can only be satisfied by deleting careful writing.
-   *
-   * So the rule is self-reference, not vocabulary, and the 16 that exist today are enumerated below.
-   * They are live site copy that predates this test; repairing them edits medicine records and
-   * belongs in the review workflow, not in an exporter or a lint rule. Coverage is strictly wider
-   * than before: every field of every record is now genuinely checked, and a seventeenth instance —
-   * or any edit to one of these sentences — fails.
-   *
-   * DO NOT REGENERATE THIS LIST FROM THE DATA. That would absorb new violations silently and turn a
-   * ratchet into a rubber stamp. Entries come out only when the underlying record is repaired.
-   */
-  const SELF_CERTIFYING_BASELINE: ReadonlyArray<readonly [string, string]> = [
+  /** Exact regression strings paid down in Release A.1; this list is not an allowed baseline. */
+  const LEGACY_SELF_CERTIFYING_COPY: ReadonlyArray<readonly [string, string]> = [
     [
       'buspirone',
       'This is the flattest mechanism statement of any drug in this file, and it is also the most honest.',
@@ -263,6 +236,10 @@ describe('generated public snapshot integrity', () => {
       'They do, and this page records that plainly: nineteen randomised double-blind trials in 1,125 people, pooled, showed favourable hydration, elasticity and wrinkle results against placebo.',
     ],
     [
+      'collagen-peptides',
+      'The pooled skin evidence is positive and this page records that plainly, with its surrogate endpoints and funding concentration stated',
+    ],
+    [
       'fondaparinux',
       'Nobody has published a full account of the decision, so the honest answer is that the evidence and the label diverge and this page reports both.',
     ],
@@ -287,45 +264,26 @@ describe('generated public snapshot integrity', () => {
     ['tirzepatide', 'Absence of a figure is the honest state of the record.'],
   ]
 
-  it('adds no new self-certifying sentence to the published corpus', () => {
-    const sentencePattern = /[^.!?]*\b(?:honest(?:ly)?|plainly)\b[^.!?]*[.!?]/gi
-    const selfReference =
-      /\b(?:this|the)\s+(?:page|file|record|entry|dossier)\b|\bsaying so\b|\bwe\b|\bRNAWiki\b|\brecords (?:that|it)\b/i
-
-    const key = (id: string, sentence: string) => `${id}\u001f${sentence}`
-    const baseline = new Set(SELF_CERTIFYING_BASELINE.map(([id, sentence]) => key(id, sentence)))
-    const found: string[] = []
-
-    const visit = (value: unknown, id: string): void => {
-      if (typeof value === 'string') {
-        for (const sentence of value.match(sentencePattern) ?? []) {
-          const trimmed = sentence.trim()
-          if (selfReference.test(trimmed)) found.push(key(id, trimmed))
+  it('does not restore any repaired self-certifying narrative', () => {
+    const unrepaired: string[] = []
+    for (const [id, oldCopy] of LEGACY_SELF_CERTIFYING_COPY) {
+      const record = records.find((candidate) => candidate.id === id)
+      expect(record, `${id} must be present`).toBeDefined()
+      const visit = (value: unknown): void => {
+        if (typeof value === 'string') {
+          if (value.includes(oldCopy)) unrepaired.push(`${id}: ${oldCopy}`)
+          return
         }
-        return
+        if (Array.isArray(value)) {
+          for (const entry of value) visit(entry)
+          return
+        }
+        if (!value || typeof value !== 'object') return
+        for (const entry of Object.values(value as Record<string, unknown>)) visit(entry)
       }
-      if (Array.isArray(value)) {
-        for (const entry of value) visit(entry, id)
-        return
-      }
-      if (!value || typeof value !== 'object') return
-      for (const entry of Object.values(value as Record<string, unknown>)) visit(entry, id)
+      visit(record)
     }
-
-    for (const record of records) visit(record, record.id)
-
-    const readable = (entry: string) => entry.replace('\u001f', ': ')
-    expect(
-      found.filter((entry) => !baseline.has(entry)).map(readable),
-      'a page must not vouch for itself',
-    ).toEqual([])
-
-    // The other direction, so paid-down debt cannot be carried quietly: a repaired record must be
-    // struck from the baseline.
-    expect(
-      [...baseline].filter((entry) => !found.includes(entry)).map(readable),
-      'these were repaired — remove them from the baseline',
-    ).toEqual([])
+    expect(unrepaired).toEqual([])
   })
 
   it('publishes the repaired chlorpromazine target summary', () => {

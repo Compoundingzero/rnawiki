@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { asc } from 'drizzle-orm'
 import { db } from '@/db'
 import { drugAliases, drugs } from '@/db/schema'
@@ -35,7 +35,28 @@ import { extractPatientFriendlyIndication } from '@/scripts/ingest/normalise'
  */
 
 const SHARD_SIZE = 1000
-const EXPORT_DIR = join(process.cwd(), 'data')
+
+/**
+ * Publication writes to the repository's `data/` directory. Integration tests use an explicit
+ * disposable output directory so exercising the exporter can neither compare a fixture database
+ * to the production-backed manifest nor replace checked-in artifacts.
+ */
+function exportDirectoryFromArguments(args: readonly string[]): string {
+  let outputDirectory: string | undefined
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index]!
+    if (argument === '--allow-shrinkage') continue
+    if (argument !== '--output-dir') throw new TypeError(`Unknown export argument: ${argument}`)
+    const value = args[index + 1]
+    if (!value?.trim()) throw new TypeError('--output-dir requires a path.')
+    if (outputDirectory) throw new TypeError('--output-dir may be provided only once.')
+    outputDirectory = resolve(process.cwd(), value)
+    index += 1
+  }
+  return outputDirectory ?? join(process.cwd(), 'data')
+}
+
+const EXPORT_DIR = exportDirectoryFromArguments(process.argv.slice(2))
 const DRUGS_DIR = join(EXPORT_DIR, 'drugs')
 
 /**

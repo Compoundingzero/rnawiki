@@ -1,19 +1,91 @@
 import { execFileSync } from 'node:child_process'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+
+import { db } from '@/db'
+import { drugs } from '@/db/schema'
+import type { MedicineRecordedBackground } from '@/lib/background/types'
 
 /**
  * The recorded-background corpus is the asset this project has, and it was absent from every bulk
  * artifact it published — reachable only one row at a time through a rate-limited API. These tests
  * pin that it is now published, and that publishing it did not carry anything restricted out with it.
  *
- * The exporter writes into `data/`, which is committed, so this suite runs it against a disposable
- * database into a temporary directory and restores nothing: it asserts over what the run produced.
+ * Production publication writes into committed `data/`. This suite instead passes an explicit
+ * empty temporary output directory while it runs against a disposable database. The production
+ * shrinkage guard remains armed, the checked-in dataset is never a test output, and the temporary
+ * fixture export is removed when the suite finishes.
  */
 
-const EXPORT_DIR = join(process.cwd(), 'data')
+const EXPORT_DIR = mkdtempSync(join(tmpdir(), 'rnawiki-dataset-export-'))
+const EXPORT_COMMAND = ['tsx', 'scripts/export/dataset.ts', '--output-dir', EXPORT_DIR] as const
+const FIXTURE_ID = 'dataset-export-recorded-background-fixture'
+const FIXTURE_SOURCE = {
+  kind: 'FDA_LABEL',
+  identifier: 'DATASET-EXPORT-INTEGRATION',
+  label: 'Dataset export integration label',
+  locator: 'section 12.3',
+  retrievedAt: '2026-08-31',
+  excerpt: 'The mean elimination half-life was 10 hours.',
+} as const
+const FIXTURE_BACKGROUND: MedicineRecordedBackground = {
+  version: 'medicine-background/v1',
+  authoredAt: '2026-08-31',
+  pharmacokinetics: {
+    routeAsRecorded: 'oral',
+    halfLife: {
+      display: '10 hours',
+      numeric: 10,
+      unit: 'hours',
+      populationContext: 'adults after one oral dose',
+      source: FIXTURE_SOURCE,
+    },
+  },
+  interactionSignals: [
+    {
+      counterpartyAsRecorded: 'CYP3A4',
+      kind: 'ENZYME',
+      polarity: 'NEGATED',
+      labelSection: 'clinical_pharmacology',
+      source: {
+        ...FIXTURE_SOURCE,
+        locator: 'section 12.2',
+        excerpt: 'The medicine does not inhibit CYP3A4.',
+      },
+    },
+  ],
+  sourceConsensus: {
+    documentsExamined: 2,
+    fields: [
+      {
+        field: 'halfLife',
+        sourceCount: 2,
+        agreementRate: 1,
+        numericallyDisjoint: false,
+        comparisonState: 'agree',
+        readings: [
+          {
+            display: '10 hours',
+            numeric: 10,
+            unit: 'hours',
+            sourceCount: 2,
+            sources: [
+              FIXTURE_SOURCE,
+              {
+                ...FIXTURE_SOURCE,
+                identifier: 'DATASET-EXPORT-INTEGRATION-SECONDARY',
+                label: 'Dataset export integration secondary label',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+}
 let manifest: {
   licence: string
   files: Array<{
@@ -26,10 +98,40 @@ let manifest: {
   }>
 }
 
-beforeAll(() => {
-  execFileSync('npx', ['tsx', 'scripts/export/dataset.ts'], { stdio: 'pipe' })
+beforeAll(async () => {
+  await db
+    .insert(drugs)
+    .values({
+      id: FIXTURE_ID,
+      slug: FIXTURE_ID,
+      name: 'Dataset export recorded-background fixture',
+      sponsor: 'Integration test',
+      modality: 'Small Molecule',
+      approvalStatus: 'FDA Approved',
+      indication: 'Integration-test fixture',
+      auditConfidence: 'Moderate / Debated',
+      confidenceScore: 50,
+      recordedBackground: FIXTURE_BACKGROUND,
+    })
+    .onConflictDoUpdate({
+      target: drugs.id,
+      set: { recordedBackground: FIXTURE_BACKGROUND },
+    })
+
+  execFileSync('npx', [...EXPORT_COMMAND], { stdio: 'pipe' })
   manifest = JSON.parse(readFileSync(join(EXPORT_DIR, 'manifest.json'), 'utf8'))
 }, 300_000)
+
+afterAll(() => {
+  rmSync(EXPORT_DIR, { recursive: true, force: true })
+})
+
+function exportedPath(manifestPath: string): string {
+  if (!manifestPath.startsWith('data/')) {
+    throw new Error(`Unexpected dataset manifest path: ${manifestPath}`)
+  }
+  return join(EXPORT_DIR, manifestPath.slice('data/'.length))
+}
 
 function artifact(path: string) {
   const entry = manifest.files.find((file) => file.path === path)
@@ -38,7 +140,7 @@ function artifact(path: string) {
 }
 
 function lines(path: string): string[] {
-  return readFileSync(join(process.cwd(), path), 'utf8').trim().split('\n').filter(Boolean)
+  return readFileSync(exportedPath(path), 'utf8').trim().split('\n').filter(Boolean)
 }
 
 describe('the corpus is in the export', () => {
@@ -46,7 +148,7 @@ describe('the corpus is in the export', () => {
     const entry = artifact('data/recorded-background.ndjson')
     expect(entry.rows).toBeGreaterThan(0)
     expect(entry.schemaVersion).toBe('recorded-background/1')
-    expect(existsSync(join(process.cwd(), entry.path))).toBe(true)
+    expect(existsSync(exportedPath(entry.path))).toBe(true)
   })
 
   it('publishes the cross-source layer with its comparability state', () => {
@@ -107,7 +209,7 @@ describe('publishing the corpus carries nothing restricted with it', () => {
      * workflow was ever recorded. So the assertion is on the operational detail itself.
      */
     for (const file of manifest.files) {
-      const body = readFileSync(join(process.cwd(), file.path), 'utf8')
+      const body = readFileSync(exportedPath(file.path), 'utf8')
       expect(body, file.path).not.toContain('reagentsAndBuffer')
       expect(body, file.path).not.toContain('"phase":"Synthesis"')
       expect(body, file.path).not.toContain('"stepNumber"')
@@ -141,7 +243,7 @@ describe('the manifest describes exactly what was written', () => {
 
   it('matches every recorded hash, byte count and row count to the file on disk', () => {
     for (const file of manifest.files) {
-      const body = readFileSync(join(process.cwd(), file.path), 'utf8')
+      const body = readFileSync(exportedPath(file.path), 'utf8')
       expect(createHash('sha256').update(body).digest('hex'), file.path).toBe(file.sha256)
       expect(Buffer.byteLength(body), file.path).toBe(file.bytes)
       if (file.path.endsWith('.ndjson')) {
@@ -162,7 +264,7 @@ describe('the manifest describes exactly what was written', () => {
 describe('the export is reproducible', () => {
   it('produces identical content hashes when run twice', () => {
     const before = manifest.files.map((file) => `${file.path}:${file.sha256}`).sort()
-    execFileSync('npx', ['tsx', 'scripts/export/dataset.ts'], { stdio: 'pipe' })
+    execFileSync('npx', [...EXPORT_COMMAND], { stdio: 'pipe' })
     const after = (
       JSON.parse(readFileSync(join(EXPORT_DIR, 'manifest.json'), 'utf8')) as typeof manifest
     ).files

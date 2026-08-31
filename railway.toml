@@ -15,12 +15,19 @@ builder = "NIXPACKS"
 # It runs from inside Railway's network against the private database host, which is the only place
 # the connection needs no public TLS trust anchor (see db/ssl.ts).
 #
+# Release A.1 temporarily runs the exact copy-repair dry-run/apply/dry-run sequence here. The
+# repair locks all fifteen rows, accepts only the seventeen dated expected values (or their exact
+# replacements), and writes only after every precondition passes. Remove these three one-time
+# commands after production reports `wouldApply=0 alreadyApplied=17` and the corrected export is
+# verified; leaving a dated expected-value guard in the permanent deploy path would eventually
+# reject a legitimate later editorial change.
+#
 # `apply:name-index` writes the searchable-name index into `drug_aliases` for the same reason.
 # Search already knew how to use aliases; it had almost none, because only a full ingest wrote any
 # and a seeded database wrote none at all. Measured against the label archive, 78% of brand names
 # printed on real labels returned nothing. Shipping the index with the deploy means a reader who
 # types the name on their box finds the medicine wherever the data is applied.
-preDeployCommand = "npm run db:migrate && npm run apply:background && npm run apply:name-index"
+preDeployCommand = "npm run db:migrate && npm run check:release-a1-copy && npm run apply:release-a1-copy && npm run check:release-a1-copy && npm run apply:background && npm run apply:name-index"
 
 healthcheckPath = "/healthz"
 healthcheckTimeout = 120

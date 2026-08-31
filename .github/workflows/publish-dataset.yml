@@ -68,14 +68,9 @@ jobs:
           SESSION_SECRET: 'unused-by-the-export-but-required-at-import-time-32'
         run: npx tsx scripts/export/dataset.ts
 
-      # Scans this repository's authored copy. The generated corpus in data/drugs is skipped: it is a
-      # projection of the live database, so an editorial fault there is a fault in the medicine
-      # records and is fixed through the review workflow. Blocking publication on it would freeze the
-      # public dataset while changing nothing on the site — the staleness this job exists to end. The
-      # skip prints a loud notice, and `npm run gate` still scans the corpus in full.
-      - name: Check authored reader copy
-        env:
-          SLOP_SCAN_SKIP_GENERATED_CORPUS: '1'
+      # Runs the same authored, imported-seed and generated-corpus copy contract as local `gate` and
+      # CI. A production export with an editorial self-certification must stop before it is committed.
+      - name: Check public copy
         run: npm run check:copy
 
       # Recomputes every hash from the files as a downloader receives them, confirms the licence and
@@ -83,12 +78,6 @@ jobs:
       # value. Runs before the commit so a bad export is never pushed.
       - name: Verify the export against its own manifest
         run: npm run check:dataset-export
-
-      # The corpus gate the skipped lint arm cannot be: it reads every field of every record and
-      # fails if a page vouches for itself outside the recorded baseline, or if a baselined sentence
-      # was repaired without being struck from the list. Runs before the commit.
-      - name: Check the published corpus for self-certification
-        run: npx vitest run tests/unit/public-data-integrity.test.ts
 
       - name: Commit only if the data moved
         run: |
