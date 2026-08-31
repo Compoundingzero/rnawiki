@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -49,6 +50,26 @@ describe('copy-gate wiring', () => {
       expect(source).not.toContain('SLOP_SCAN_SKIP_GENERATED_CORPUS')
     }
     expect(publication).not.toContain('public-data-integrity.test.ts')
+  })
+
+  it('distinguishes established evidence phrases from generic pivotal puffery', () => {
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        [
+          'scripts/quality/slop-scan.mjs',
+          'tests/fixtures/copy-gate/established-medical-phrases.md',
+        ],
+        { cwd: root, stdio: 'pipe' },
+      ),
+    ).not.toThrow()
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        ['scripts/quality/slop-scan.mjs', 'tests/fixtures/copy-gate/generic-puffery.md'],
+        { cwd: root, stdio: 'pipe' },
+      ),
+    ).toThrow()
   })
 
   it('exposes paired dry-run and apply commands for both exact repair utilities', () => {

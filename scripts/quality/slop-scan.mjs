@@ -52,7 +52,12 @@ const PATTERNS = [
   { id: 'hedge: may potentially', re: /\b(may|might|could) potentially\b/gi },
   { id: 'hedge: helps to / designed to', re: /\b(helps? to|is designed to|aims? to)\b/gi },
   { id: 'comprehensive/extensive', re: /\b(comprehensive(ly)?|extensive(ly)?)\b/gi },
-  { id: 'crucial/vital/pivotal', re: /\b(crucial(ly)?|vital(ly)?|pivotal)\b/gi },
+  {
+    id: 'crucial/vital/pivotal',
+    // These are generic intensifiers except in established evidence phrases. Match the puffery,
+    // not technical terms such as pivotal endpoint, pivotal clinical trial, or vital signs.
+    re: /\b(?:crucial(?:ly)?|vitally|vital(?!\s+signs?\b)|pivotal(?!\s+(?:clinical\s+)?(?:trial|study|endpoint|result)s?\b))\b/gi,
+  },
   {
     id: 'revolutionary/groundbreaking',
     re: /\b(revolutionar\w+|ground[- ]?breaking|transformative|paradigm[- ]shift\w*)\b/gi,
