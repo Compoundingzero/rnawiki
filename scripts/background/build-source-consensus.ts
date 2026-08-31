@@ -1,5 +1,4 @@
 import 'dotenv/config'
-import { compareFieldReadings } from '@/lib/background/reading-comparison'
 import { execFileSync } from 'node:child_process'
 import { createReadStream, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { createInterface } from 'node:readline'
@@ -7,6 +6,11 @@ import { join } from 'node:path'
 
 import { extractPharmacokinetics, type LabelArtifact } from '@/lib/background/label-extraction'
 import { normalizeContentName as normalizeName } from '@/lib/background/name-normalization'
+import {
+  compareConsensusReadings,
+  normalizedConsensusPrintedReading,
+  STRUCTURALLY_UNEXTRACTED_POPULATION_CONTEXT,
+} from '@/lib/background/source-consensus-comparison'
 import type {
   BackgroundSource,
   ConsensusReading,
@@ -29,15 +33,17 @@ import type {
  * Where two readings disagree, both are kept with their own excerpts and neither is preferred. The
  * dominant failure mode for a dataset like this is false conflict — most apparent numeric
  * disagreement between labels is a genuine difference in population or formulation, fed against
- * fasted or immediate against extended release, not one label being wrong. Marking a pair as
- * numerically disjoint says a person should look, and says nothing about which reading is right.
+ * fasted or immediate against extended release, not one label being wrong. Until those contexts are
+ * structurally extracted, distinct otherwise-comparable readings are `insufficient_context`; only
+ * a disjoint pair with one matching structured context may become `differ`.
  *
  * Only documents declaring a single active substance are read, for the same reason the rest of the
  * pipeline requires it: a combination product's pharmacokinetics section describes its substances
  * together and belongs to none of them individually.
  *
  * Usage:
- *   tsx scripts/background/build-source-consensus.ts <labelIndex.ndjson>
+ *   tsx scripts/background/build-source-consensus.ts <labelIndex.ndjson> \
+ *     --retrieved-at=YYYY-MM-DD
  */
 
 interface IndexedLabel {
@@ -60,38 +66,34 @@ const CONSENSUS_FIELDS = [
 ] as const
 type ConsensusField = (typeof CONSENSUS_FIELDS)[number]
 
-/** Sources kept per distinct reading. The count reported is always the full count. */
-const MAX_SOURCES_PER_READING = 4
-/** Readings kept per field, most-supported first. */
-const MAX_READINGS_PER_FIELD = 5
-/**
- * Documents read per medicine. Some medicines have hundreds of labels and the marginal document
- * adds nothing once agreement is established, while the generated file would grow without bound.
- * The number examined is reported so the cap is visible rather than silent.
- */
-const MAX_DOCUMENTS_PER_MEDICINE = 60
-
 /**
  * A reading's identity for grouping. Two labels stating "5 to 7 hours" and "5-7 hours" have said
  * the same thing, and treating them as different readings would manufacture disagreement out of
  * typography.
  */
-function readingKey(display: string, unit: string | undefined): string {
-  const normalized = display
-    .toLowerCase()
-    .replace(/–|—|−/gu, '-')
-    .replace(/\s*(?:to|-)\s*/gu, '-')
-    .replace(/\s+/gu, '')
-    .replace(/hours?|hrs?\b/gu, 'h')
-  return `${normalized}|${unit ?? ''}`
+function readingKey(display: string, unit: string | undefined, populationContext: string): string {
+  return `${normalizedConsensusPrintedReading(display, unit)}|${populationContext.trim().toLocaleLowerCase('en-US')}`
 }
 
 interface Accumulated {
   display: string
   numeric?: number
   unit?: string
+  populationContext: string
   sources: BackgroundSource[]
   count: number
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/u
+
+function retrievedAtArgument(args: readonly string[]): string {
+  const values = args
+    .filter((value) => value.startsWith('--retrieved-at='))
+    .map((value) => value.slice('--retrieved-at='.length))
+  if (values.length !== 1 || !ISO_DATE.test(values[0] ?? '')) {
+    throw new Error('Exactly one --retrieved-at=YYYY-MM-DD argument is required.')
+  }
+  return values[0]!
 }
 
 function loadMedicineNames(): Map<string, { slug: string; name: string }> {
@@ -124,8 +126,9 @@ function serialize(dataset: Record<string, RecordedSourceConsensus>): string {
 //
 // What every published label in the corpus states for a field, rather than what one of them
 // states. Readings that differ are all kept, each with its own excerpt, and none is preferred:
-// most apparent disagreement between labels is a real difference in population or formulation,
-// and choosing between them is a judgement this record presents rather than makes.
+// most apparent disagreement between labels can be a real difference in population or formulation.
+// The generator therefore calls distinct readings insufficient_context until comparable structured
+// context exists; choosing between readings is a judgement this record presents rather than makes.
 
 import type { RecordedSourceConsensus } from '@/lib/background/types'
 
@@ -136,12 +139,15 @@ ${entries}
 }
 
 async function main() {
-  const [indexPath] = process.argv.slice(2).filter((value) => !value.startsWith('--'))
+  const args = process.argv.slice(2)
+  const [indexPath] = args.filter((value) => !value.startsWith('--'))
   if (!indexPath || !existsSync(indexPath)) {
-    console.error('Usage: tsx scripts/background/build-source-consensus.ts <labelIndex.ndjson>')
+    console.error(
+      'Usage: tsx scripts/background/build-source-consensus.ts <labelIndex.ndjson> --retrieved-at=YYYY-MM-DD',
+    )
     process.exit(1)
   }
-  const retrievedAt = new Date().toISOString().slice(0, 10)
+  const retrievedAt = retrievedAtArgument(args)
   const medicines = loadMedicineNames()
   console.log(`[consensus] ${medicines.size} distinct medicine names`)
 
@@ -172,9 +178,7 @@ async function main() {
     }
     if (!matched) continue
 
-    const seen = examined.get(matched.slug) ?? 0
-    if (seen >= MAX_DOCUMENTS_PER_MEDICINE) continue
-    examined.set(matched.slug, seen + 1)
+    examined.set(matched.slug, (examined.get(matched.slug) ?? 0) + 1)
 
     const artifact: LabelArtifact = {
       setId: label.setId,
@@ -197,16 +201,24 @@ async function main() {
       const value = pharmacokinetics[field]
       if (!value) continue
       const byReading = forMedicine.get(field) ?? new Map<string, Accumulated>()
-      const key = readingKey(value.display, value.unit)
+      /*
+       * The parser found the value in this exact sentence, but did not structurally extract a
+       * population or formulation from it. Repeating one generic phrase here used to make every
+       * pair look context-compatible. Persist the limitation explicitly and let the final
+       * comparison fail closed instead.
+       */
+      const populationContext = STRUCTURALLY_UNEXTRACTED_POPULATION_CONTEXT
+      const key = readingKey(value.display, value.unit, populationContext)
       const existing = byReading.get(key)
       if (existing) {
         existing.count += 1
-        if (existing.sources.length < MAX_SOURCES_PER_READING) existing.sources.push(value.source)
+        existing.sources.push(value.source)
       } else {
         byReading.set(key, {
           display: value.display,
           ...(value.numeric !== undefined ? { numeric: value.numeric } : {}),
           ...(value.unit ? { unit: value.unit } : {}),
+          populationContext,
           sources: [value.source],
           count: 1,
         })
@@ -233,25 +245,23 @@ async function main() {
       multiSourceFields += 1
 
       /*
-       * Comparability before comparison. The old rule computed a numeric span per reading and marked
-       * the field disjoint when two spans missed each other, without ever consulting the unit, so a
-       * volume of 0.5 L/kg and one of 35.5 L were published as a disagreement when the second is
-       * 0.51 L/kg in a 70 kg adult. Recording that sources differ is this corpus's product, which
-       * makes a false disagreement the most expensive error it can make.
+       * Comparability before comparison. Unit and denominator mismatches remain not_comparable. A
+       * pair whose numeric spans are otherwise comparable still cannot agree or differ clinically
+       * until one matching population/formulation context has been structurally extracted. One
+       * normalized printed reading may remain agree, but that is printed-reading agreement only.
        */
-      const comparison = compareFieldReadings(ordered.map((entry) => entry.display))
+      const comparison = compareConsensusReadings(ordered)
       const numericallyDisjoint = comparison.state === 'differ'
       if (numericallyDisjoint) disjointFields += 1
 
-      const readingList: ConsensusReading[] = ordered
-        .slice(0, MAX_READINGS_PER_FIELD)
-        .map((entry) => ({
-          display: entry.display,
-          ...(entry.numeric !== undefined ? { numeric: entry.numeric } : {}),
-          ...(entry.unit ? { unit: entry.unit } : {}),
-          sourceCount: entry.count,
-          sources: entry.sources,
-        }))
+      const readingList: ConsensusReading[] = ordered.map((entry) => ({
+        display: entry.display,
+        ...(entry.numeric !== undefined ? { numeric: entry.numeric } : {}),
+        ...(entry.unit ? { unit: entry.unit } : {}),
+        populationContext: entry.populationContext,
+        sourceCount: entry.count,
+        sources: entry.sources,
+      }))
 
       fields.push({
         field,
@@ -281,7 +291,7 @@ async function main() {
     `[consensus] read ${documentsRead} documents · ${documentsUsed} carried pharmacokinetics`,
   )
   console.log(
-    `[consensus] ${Object.keys(dataset).length} medicines with a multi-source field · ${multiSourceFields} such fields · ${disjointFields} carry readings that do not overlap`,
+    `[consensus] ${Object.keys(dataset).length} medicines with a multi-source field · ${multiSourceFields} such fields · ${disjointFields} final comparable fields differ`,
   )
   console.log(`[consensus] wrote ${outPath}`)
 }

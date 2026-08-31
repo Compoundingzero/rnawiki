@@ -9,6 +9,7 @@ import {
   developmentProgrammes,
   drugs,
   evidenceNodes,
+  evidenceReviewTaskSourceDeltas,
   evidenceReviewTasks,
   evidenceSources,
   programmeContributionSourceTaskResolutions,
@@ -345,7 +346,7 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
     expect(completed).toBe(true)
   })
 
-  it('atomically advances exact trial cache fields only for an unpublished empty programme', async () => {
+  it('keeps scheduled exact registry changes pending without rewriting programme or trial facts', async () => {
     const key = randomUUID().replaceAll('-', '').slice(0, 10)
     const drugId = `ct-advance-drug-${key}`
     const medicineSlug = `ct-advance-medicine-${key}`
@@ -375,6 +376,39 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
           store,
         })
 
+        const readMedicalFacts = async () => {
+          const [programme, trial] = await Promise.all([
+            outerTransaction
+              .select({
+                sponsor: developmentProgrammes.sponsor,
+                status: developmentProgrammes.status,
+                highestPhaseReached: developmentProgrammes.highestPhaseReached,
+                startDate: developmentProgrammes.startDate,
+                endDate: developmentProgrammes.endDate,
+              })
+              .from(developmentProgrammes)
+              .where(eq(developmentProgrammes.id, created.records.programmeId)),
+            outerTransaction
+              .select({
+                title: programmeTrials.title,
+                phase: programmeTrials.phase,
+                status: programmeTrials.status,
+                resultsStatus: programmeTrials.resultsStatus,
+                enrolment: programmeTrials.enrolment,
+                enrolmentType: programmeTrials.enrolmentType,
+                startDate: programmeTrials.startDate,
+                primaryCompletionDate: programmeTrials.primaryCompletionDate,
+                completionDate: programmeTrials.completionDate,
+                registrySnapshotId: programmeTrials.registrySnapshotId,
+                lastVerifiedAt: programmeTrials.lastVerifiedAt,
+              })
+              .from(programmeTrials)
+              .where(eq(programmeTrials.id, created.records.trialId)),
+          ])
+          return { programme, trial }
+        }
+        const baselineMedicalFacts = await readMedicalFacts()
+
         const monitored = await monitorClinicalTrialsSource({
           database,
           adapter: new ClinicalTrialsGovAdapter(
@@ -391,24 +425,12 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
           status: 'SUCCEEDED',
           changedFieldCount: 2,
           highestImpact: 'LOW_RISK_EXACT_DATA',
-          currentSnapshotId: monitored.snapshotId,
-          pendingSnapshotId: null,
-          reviewTaskIds: [],
+          currentSnapshotId: created.records.snapshotId,
+          pendingSnapshotId: monitored.snapshotId,
         })
+        expect(monitored.reviewTaskIds).toHaveLength(1)
         expect(monitored.snapshotId).not.toBe(created.records.snapshotId)
-        expect(
-          await outerTransaction
-            .select()
-            .from(programmeTrials)
-            .where(eq(programmeTrials.id, created.records.trialId)),
-        ).toEqual([
-          expect.objectContaining({
-            status: 'ACTIVE_NOT_RECRUITING',
-            enrolment: 52,
-            registrySnapshotId: monitored.snapshotId,
-            lastVerifiedAt: changedAt,
-          }),
-        ])
+        expect(await readMedicalFacts()).toEqual(baselineMedicalFacts)
         expect(
           await outerTransaction
             .select()
@@ -416,8 +438,8 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
             .where(eq(developmentProgrammes.id, created.records.programmeId)),
         ).toEqual([
           expect.objectContaining({
-            status: 'ACTIVE',
-            updateStatus: 'CURRENT',
+            status: 'RECRUITING',
+            updateStatus: 'REVIEW_REQUIRED',
           }),
         ])
         const snapshots = await outerTransaction
@@ -434,10 +456,37 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
         })
         expect(
           await outerTransaction
-            .select({ id: evidenceReviewTasks.id })
+            .select({
+              id: evidenceReviewTasks.id,
+              impactLevel: evidenceReviewTasks.impactLevel,
+              reason: evidenceReviewTasks.reason,
+            })
             .from(evidenceReviewTasks)
-            .where(eq(evidenceReviewTasks.programmeId, created.records.programmeId)),
-        ).toEqual([])
+            .where(eq(evidenceReviewTasks.id, monitored.reviewTaskIds[0]!)),
+        ).toEqual([
+          expect.objectContaining({
+            impactLevel: 'LOW_RISK_EXACT_DATA',
+            reason: expect.stringContaining(
+              'A person must confirm the exact update before RNAWiki changes linked material.',
+            ),
+          }),
+        ])
+        expect(
+          await outerTransaction
+            .select({
+              action: evidenceReviewTaskSourceDeltas.action,
+              baselineSnapshotId: evidenceReviewTaskSourceDeltas.baselineSnapshotId,
+              pendingSnapshotId: evidenceReviewTaskSourceDeltas.pendingSnapshotId,
+            })
+            .from(evidenceReviewTaskSourceDeltas)
+            .where(eq(evidenceReviewTaskSourceDeltas.reviewTaskId, monitored.reviewTaskIds[0]!)),
+        ).toEqual([
+          {
+            action: 'CANONICAL_REFRESH',
+            baselineSnapshotId: created.records.snapshotId,
+            pendingSnapshotId: monitored.snapshotId,
+          },
+        ])
 
         const mixedChangeAt = new Date('2026-08-25T01:00:00.000Z')
         const mixedChange = await monitorClinicalTrialsSource({
@@ -458,22 +507,11 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
         })
         expect(mixedChange).toMatchObject({
           highestImpact: 'INTERPRETIVE_REVIEW_REQUIRED',
-          currentSnapshotId: monitored.snapshotId,
+          currentSnapshotId: created.records.snapshotId,
           pendingSnapshotId: mixedChange.snapshotId,
         })
         expect(mixedChange.reviewTaskIds).toHaveLength(1)
-        expect(
-          await outerTransaction
-            .select()
-            .from(programmeTrials)
-            .where(eq(programmeTrials.id, created.records.trialId)),
-        ).toEqual([
-          expect.objectContaining({
-            status: 'ACTIVE_NOT_RECRUITING',
-            enrolment: 52,
-            registrySnapshotId: monitored.snapshotId,
-          }),
-        ])
+        expect(await readMedicalFacts()).toEqual(baselineMedicalFacts)
         expect(
           await outerTransaction
             .select({ reason: evidenceReviewTasks.reason })
@@ -481,7 +519,7 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
             .where(eq(evidenceReviewTasks.id, mixedChange.reviewTaskIds[0]!)),
         ).toEqual([
           expect.objectContaining({
-            reason: expect.stringContaining('other registry content changed'),
+            reason: expect.stringContaining('other details in the registry record'),
           }),
         ])
 
@@ -494,7 +532,7 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
     expect(completed).toBe(true)
   })
 
-  it('keeps a changed snapshot pending when reviewed programme data would be affected', async () => {
+  it('keeps exact source changes pending even when the programme has unrelated reviewed data', async () => {
     const key = randomUUID().replaceAll('-', '').slice(0, 10)
     const drugId = `ct-review-block-drug-${key}`
     const medicineSlug = `ct-review-block-medicine-${key}`
@@ -548,12 +586,12 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
 
         expect(monitored).toMatchObject({
           status: 'SUCCEEDED',
-          highestImpact: 'INTERPRETIVE_REVIEW_REQUIRED',
+          highestImpact: 'LOW_RISK_EXACT_DATA',
           currentSnapshotId: created.records.snapshotId,
           pendingSnapshotId: monitored.snapshotId,
         })
         expect(monitored.reviewTaskIds).toHaveLength(1)
-        expect(monitored.affectedSurfacePaths).toContain('PROGRAMME_SUMMARY:claims')
+        expect(monitored.affectedSurfacePaths).toEqual([])
         expect(
           await outerTransaction
             .select()
@@ -584,8 +622,9 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
         expect(tasks).toEqual([
           expect.objectContaining({
             triggerSnapshotId: monitored.snapshotId,
+            impactLevel: 'LOW_RISK_EXACT_DATA',
             status: 'OPEN',
-            reason: expect.stringContaining('saved claims'),
+            reason: expect.stringContaining('A person must confirm the exact update'),
           }),
         ])
 
@@ -606,7 +645,7 @@ describe('ClinicalTrials.gov programme onboarding persistence', () => {
           status: 'SUCCEEDED',
           currentSnapshotId: created.records.snapshotId,
           pendingSnapshotId: superseding.snapshotId,
-          highestImpact: 'INTERPRETIVE_REVIEW_REQUIRED',
+          highestImpact: 'LOW_RISK_EXACT_DATA',
         })
         expect(superseding.reviewTaskIds).toHaveLength(1)
         expect(superseding.reviewTaskIds[0]).not.toBe(firstTaskId)

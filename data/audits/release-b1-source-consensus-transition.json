@@ -1,0 +1,3679 @@
+{
+  "schema": "release-b1-source-consensus-transition/v1",
+  "baselineCommit": "911a2d76fa8de531cff3eb9a31fbe5d01a73cacf",
+  "corpusPath": "data/recorded-background.ndjson",
+  "boundary": "sourceConsensus-only",
+  "changedRows": 734,
+  "changes": [
+    {
+      "slug": "abacavir",
+      "expectedDigest": "b6566096dbc3a08a7376b98fd1fe7466cc621d7967c83c3bc9f76ae323e18c90",
+      "desiredDigest": "22aab5ee101e4e5f3298e07e15b25184ea85149a95df8c03521f0a7f8e811408"
+    },
+    {
+      "slug": "abiraterone",
+      "expectedDigest": "00315bdbe6b64adf2e757e9ee8ee768d751403207e28fe51e452953b2996869e",
+      "desiredDigest": "a27883a080c3a03d76b0f4befa80a070945aa01ecf0648f82163ad49ac6d6fb1"
+    },
+    {
+      "slug": "abrocitinib",
+      "expectedDigest": "8388fafe670d8c1ff1e364199be2bb0d00c06fbe235496f95e9e222e30771363",
+      "desiredDigest": "ece689598210658c694af3b5af7e84fb99f0f76df4e5d7e6c10e2f3e3a4a49cf"
+    },
+    {
+      "slug": "acalabrutinib",
+      "expectedDigest": "6311186f096a0ccab0178541942a6610d9b39f8cf358f636b2f166fd5066bb96",
+      "desiredDigest": "3a7a29211176dc906557a0d8eab1bccd79373c52d5f4a63a10a9e7112c290608"
+    },
+    {
+      "slug": "acamprosate",
+      "expectedDigest": "dca78943132e132c3194313abb4f5630f89381c196757bd71e08b1fc79d41cec",
+      "desiredDigest": "06b4037a33c7947cd5aec31c20e25c1aabe131649c84557c367438f371cc5b3f"
+    },
+    {
+      "slug": "acarbose",
+      "expectedDigest": "bead9c6c4cb43b1a41089b3324c0dc462779aed71d2eab57c6a13a0d9465d534",
+      "desiredDigest": "2e9444b7639c55b9ee63bb7f1848f0e1bee58949e26144723e27ad7a6cb39155"
+    },
+    {
+      "slug": "acebutolol",
+      "expectedDigest": "76aff23d701972e0734b27e2228e2aa2ca0841da2cd99f32fab5a0ad5e4e2c70",
+      "desiredDigest": "3b320fcb256258d5cb9c42269f3efdafa820b7057437682a29c586fed6617319"
+    },
+    {
+      "slug": "acetylcysteine",
+      "expectedDigest": "c3f2bbbdcf827690a003ec429c17957befb07c84ccb65c46feddcb24702a992e",
+      "desiredDigest": "ff9a45e2dd4e84c44de0ffb35515e39d173393a9a940f3910abafbfb200e9af0"
+    },
+    {
+      "slug": "acitretin",
+      "expectedDigest": "ef9e0b3b367365410950b545f32e1f393ad592b540f1e70d6ea87682d46c4e0d",
+      "desiredDigest": "bcc2bee262471049763afd902e3b3f5c7e396cd123716dc0c8d375dcaabeba4c"
+    },
+    {
+      "slug": "acyclovir",
+      "expectedDigest": "0977021404599231db5cd08fbe6224557f3f338c3028786a34352a2f9f312a5b",
+      "desiredDigest": "9c0e601dc0b73aebfde8ea8303b3782fa9ac3cd59939167d58899a507987ea0c"
+    },
+    {
+      "slug": "adalimumab-adaz",
+      "expectedDigest": "663149688a48ba1151de3ba61038be4c0aa15e32c7648939e2ccf4cd597284a5",
+      "desiredDigest": "539b3daca898cfe33aef9cbc96c897b7b538c2d35a89cc9f63eacab5dbf2c1dc"
+    },
+    {
+      "slug": "adalimumab-aqvh",
+      "expectedDigest": "5035be244ce3a82e7ef8123b17897d8a7222ed4e625555b8702608d3f639fd78",
+      "desiredDigest": "ee14f5fd3226183f54a7beb451a5ccd6047415c5d7a90a395826261761c41527"
+    },
+    {
+      "slug": "adalimumab-atto",
+      "expectedDigest": "e535f4ef0866c139295bcea895548af2ba103343262c4f047dcb4950d998f879",
+      "desiredDigest": "b791607acdd141355466f06eadf05c3c1a4aff3335b419069c4cab597a529ef6"
+    },
+    {
+      "slug": "adalimumab-bwwd",
+      "expectedDigest": "ea0ae4e04c0670bfab96b8bdfae10a67c943edf16baf7d59858ee68203da85df",
+      "desiredDigest": "58ec9716afa2f90335ea15f26cb2a50a9aeb3113ed407ea5fa59aa665fa7af1a"
+    },
+    {
+      "slug": "adalimumab-ryvk",
+      "expectedDigest": "576346046a0052efce4ac4f6f3e0ce451908cf3fd3ff57304f17f4e9e2f9723a",
+      "desiredDigest": "468f38dd488d200fad851a2441b29327c18e148daa882ef413f914a6ef54831f"
+    },
+    {
+      "slug": "adapalene",
+      "expectedDigest": "c5bd40d457d4613116467aacbda0f24b8483ee3d7504176cdad476e1b951f9a6",
+      "desiredDigest": "29bc711a6b2e2de8cbdd698ecff56890b748be9f6e3159f2e9e2fdb4b82d06af"
+    },
+    {
+      "slug": "adefovir-dipivoxil",
+      "expectedDigest": "21218c9592f7243e63c9b2231235b0d58d87168f1b8298fbb0dc67f901998a74",
+      "desiredDigest": "cb65a81bbec9ed262e960142c01e25a7033cf486c157fff20ec7cd4dc3e56959"
+    },
+    {
+      "slug": "albendazole",
+      "expectedDigest": "5251ed0fd395ee39b430ad009956dccdabd71b71bfa3deb12dbdaf61b52d9971",
+      "desiredDigest": "f95ada676961e90cb6678fbbc054ce5f0470b58cc7fbfc80886ac03304c6d1bd"
+    },
+    {
+      "slug": "albuterol",
+      "expectedDigest": "8ed696499f1cd99cf501873411135b87b5235943ca6f5533f9ed1e233f9a8960",
+      "desiredDigest": "5ac98ebdcc8e108f561ea5f028745c88455e19e0a51569268094c9381a192168"
+    },
+    {
+      "slug": "alemtuzumab",
+      "expectedDigest": "625b30f98180b23651a5eeed6acc9ac1096395c754d1adb96a14f6b7d0ca9fb3",
+      "desiredDigest": "e6dfa22094eb2dda0bb81f5b8e4245dc48b2da8c797624f32f9b0f1dc85c38be"
+    },
+    {
+      "slug": "alendronate",
+      "expectedDigest": "4107e57ff1b3a1d55a1918eb5d706f3d5a0e6e63d7aefb6411cf991f97c0ca0a",
+      "desiredDigest": "ae6498289fcb0a7dec668c43005141f0d5e238f8825b842ca3b91195a5317be5"
+    },
+    {
+      "slug": "alfuzosin",
+      "expectedDigest": "4877ff4463f5f28f5dc7cf5d464f3962affbac0fab06f7543c26669f045efed7",
+      "desiredDigest": "82150daae9bb4c433697df6b48f1cb3b5940a6b98d94650843fcdfc6a18e46c3"
+    },
+    {
+      "slug": "alirocumab",
+      "expectedDigest": "b899865e6813bcb8449b1f341f9962dfc7c71cc7a754ebd29acde54cfc15ca36",
+      "desiredDigest": "9388bf2eea1f0f41de03c2c61c46067b075421ec67494bc3da7904ab21eaf0ad"
+    },
+    {
+      "slug": "allopurinol",
+      "expectedDigest": "294262916c86d623c0174a7c8dfc663905cb6e2c9b7319c6dd79e4a1c0bded40",
+      "desiredDigest": "361d24e6b18997d469f2b19a204adc48f7f112a989654d4d37a58534e6a91adf"
+    },
+    {
+      "slug": "almotriptan",
+      "expectedDigest": "78bd46bdddf0669c42a5d7ff259585474246f947e22c8335c2117c8aa27220c1",
+      "desiredDigest": "dd05ec2c3fceca202074dc82e0f02e138e04f5171f07fc110e3ab645d4e619bb"
+    },
+    {
+      "slug": "alogliptin",
+      "expectedDigest": "bf8c06e48bf5e209ff25c9faa2e037d787dbaef613ac047d64cbac4784396b5a",
+      "desiredDigest": "23c12a74135308349e83f7101546b7d6d5542b761585d57c84b658a6dd835f66"
+    },
+    {
+      "slug": "alosetron",
+      "expectedDigest": "8bf628917ad8953ee277207cc16e7138fcbe0553b328db10779e18f58d84b0fd",
+      "desiredDigest": "17e50004f48b5e45fd9b328a13ecd3da0ccfded1f665a55c7bdfb2e870b22618"
+    },
+    {
+      "slug": "alpelisib",
+      "expectedDigest": "58f59688fdb0019606e2e2c92e38851d9107aba0fd85683afa786a9e67c7656e",
+      "desiredDigest": "4af894f73a9a995d42371290897c63b68f0de8ef71d2e9ac7f617a450841606a"
+    },
+    {
+      "slug": "alprazolam",
+      "expectedDigest": "66b3d3db0c8e17b0a23fc402232f83e635f702edc7c1b7115e717d44bd6e6c9f",
+      "desiredDigest": "6a8725ad19c379dcd811fc4e667c3e2485592ed8305efd56e19ec513fe60d7f5"
+    },
+    {
+      "slug": "alvimopan",
+      "expectedDigest": "d0f366af842b8f03c176d0d3356809c0086ebff0bf2133cce80a8ec59d5aa7dd",
+      "desiredDigest": "52a120c444a037f987f28656a16e6d140748286941a33313581f2987af126996"
+    },
+    {
+      "slug": "amantadine",
+      "expectedDigest": "2679d8931215db5ab7ab3df34843a5c0404382e914fc4160957de9390041eafe",
+      "desiredDigest": "c2407c6271bbd60892516e6513315148afa638648f62605ff8acc3867f940651"
+    },
+    {
+      "slug": "ambrisentan",
+      "expectedDigest": "2183686c01385aba7268a27f7565e0d999a55d2b65cfb8065048f0ae42cb55a0",
+      "desiredDigest": "e17c3f5ddcaedc9ccf8ac24309d51cc74df2fdd14e6540817b374d88eaba0580"
+    },
+    {
+      "slug": "amikacin",
+      "expectedDigest": "41d1d5105507bec83e4e4870b6fa5523c902bdabd73fd4502b104e08146ce7f5",
+      "desiredDigest": "81469b3ef86a9e3465b68d6a247c3b2ab85580bb6bac1e608cb41f412ff30c44"
+    },
+    {
+      "slug": "amiloride",
+      "expectedDigest": "333ee0dee7d35f17325e85055d2a51d62f8d4b77b8807d6e317a7028054190a1",
+      "desiredDigest": "25cff8592c4e6505eac04dcdff6b5ceebcb80d569662d70dbbcedee6d05af747"
+    },
+    {
+      "slug": "aminocaproic-acid",
+      "expectedDigest": "28957d0652712d4c307c644375340c30094d8a55928fb7f59f1a72baa0ce3f7a",
+      "desiredDigest": "f24a84396c3f3f2673651766736ee5e914e0057d134220c2ce2a8c5bf1d9b3f3"
+    },
+    {
+      "slug": "aminolevulinic-acid",
+      "expectedDigest": "e9aab7b85bd5a9fda19eb9cb9b1f219e32b5bec879147b5829ffbe251965a6ff",
+      "desiredDigest": "d6b425f88efb072decffc69b46038e82db728d1f508f5e4608c54449efffeb16"
+    },
+    {
+      "slug": "aminophylline",
+      "expectedDigest": "ef9d25c3c410b78128b3967b2338f92112f7d6404c01ad88aa760f6cad7e5c66",
+      "desiredDigest": "1097eae1b2a275f99458e5f6bbde5a35c904186334da76f3a7593c0fa5326a79"
+    },
+    {
+      "slug": "amiodarone",
+      "expectedDigest": "85ad9f266c0e0d442ebdc086d4318c73d42b39f4618fdab798511a764624f6bd",
+      "desiredDigest": "d7aaa08ca49dd14965d544d9827235130a6b32dc1e6f31f4963e0734d31ad1d0"
+    },
+    {
+      "slug": "amlodipine",
+      "expectedDigest": "405d2e412d02d164c61f9f7eb58f44a9a21ea5676e4350e6bda35612c2792a82",
+      "desiredDigest": "2cb59967b37d87d13f0040dfb0cdbb4dbf62c12282c6ea19cd91f0f277c3fdc7"
+    },
+    {
+      "slug": "amoxapine",
+      "expectedDigest": "550603a8c7d3127675e6c3370a24f8cf11bf99ed5b15c9dd558fc3adb25ae53f",
+      "desiredDigest": "e82a1d387fd7687a05129c3a598f1005564bef5c9a39f86c8a0d03e3e3cda8fa"
+    },
+    {
+      "slug": "amoxicillin",
+      "expectedDigest": "204a8238f935a6a7f1009f21afac68ab1b29e04d90c5966895582d60e2839125",
+      "desiredDigest": "96ba8b19d184c94cb07a7af28401bc031815ba06825c770afe840376db935e5c"
+    },
+    {
+      "slug": "amphetamine",
+      "expectedDigest": "8baac14bbbd9342678ad2beb584a5226280ba43a516de32ea83034dda5eb5dfe",
+      "desiredDigest": "55bbe9a2e22ad40087beaae7246eb464fa4268cf316039ff0acdd55fc5ce8bc9"
+    },
+    {
+      "slug": "amphotericin-b",
+      "expectedDigest": "f162e907fc0b2b23f218b8750f418e1d04c7b2b9dbcafc2c606c7a19a685da53",
+      "desiredDigest": "01e080fd215adbc897d95c3349b38e417aab5e85f28a4ba1e3738a5cd6272a99"
+    },
+    {
+      "slug": "anagrelide",
+      "expectedDigest": "a19e2df6f18415526de2a78bf5a8d940f1445f4aa3fa2dcba9b793acf98a18f2",
+      "desiredDigest": "53742ee342b64b6c2931342fc516cab142b75b5a45165a25c31c863e96eeeb9d"
+    },
+    {
+      "slug": "anastrozole",
+      "expectedDigest": "29ee76264aebf2ab33385dd063e6be5cb8b4765d88acd52aa7a38b96fa948ccd",
+      "desiredDigest": "976df8827a11962dbf1fb6eb525ae3025eb88838b1c76227779cbd6fa992ed91"
+    },
+    {
+      "slug": "anidulafungin",
+      "expectedDigest": "236cb88e361c695558d52c2f9f38259a26e58850891ec6f42a2bc6935df50562",
+      "desiredDigest": "a5fe044b3017e7399553908ee89cc8392a5d155cd3142539664b1dd4b38000f8"
+    },
+    {
+      "slug": "apixaban",
+      "expectedDigest": "0800d1196235bb1a2d51a56c48bc42556b3bf3fbd1a74cbe6d2737c04c9f4380",
+      "desiredDigest": "c41ad019c1940536750ac5291e12533e9429ccc496509fb58a22c5874621ee8d"
+    },
+    {
+      "slug": "apomorphine",
+      "expectedDigest": "2c18861c0085da05be6f5a2db918c069c0bf835f9a13ff907f6fcebe43963094",
+      "desiredDigest": "83abd49b0ef434284b9c6aa56e35d5f8d7722575ec96000827548b07297bbd69"
+    },
+    {
+      "slug": "aprepitant",
+      "expectedDigest": "c420c2e2e1f0085b95bc39e1a61f714f0b06b1fc2adc9bbc77591e02496ac936",
+      "desiredDigest": "5d3fb7fecd5ee343e347402e0c7127f36552e9475ca7330b204030004ca1f440"
+    },
+    {
+      "slug": "arformoterol",
+      "expectedDigest": "3f701d144068a71deb8312a1d09cbc2b902fbf8894b04caaa4a5e2ac4fcb0bf1",
+      "desiredDigest": "b9985564506211137c27494ce9920821fe2ef390a15eb24791b77688b68a5a00"
+    },
+    {
+      "slug": "argatroban",
+      "expectedDigest": "a1e35bf9989bbf0a8522c92decc2552aaa17889ee954dde539482258331850e2",
+      "desiredDigest": "4c9c4ed341c790263cb1da80e599ed95668c830e8aa6e489c2f8f5f5228c5bbc"
+    },
+    {
+      "slug": "aripiprazole",
+      "expectedDigest": "f344eac18618b38811c957796f52ee114d3b8ee076b39ab7af7f704efae10812",
+      "desiredDigest": "1465afbc7e4a0129945717a77473dbf68be6b4a26a12e91fe0d3e5dfc6d1825e"
+    },
+    {
+      "slug": "aripiprazole-lauroxil",
+      "expectedDigest": "2a30bc8d598c85ea639830385b574d44a4b2a29fc61c55d25fc485553f51b2c8",
+      "desiredDigest": "2178e0a512d19a4e5f534666957ea0f994f15c4e005433e505c03f229e255cc2"
+    },
+    {
+      "slug": "armodafinil",
+      "expectedDigest": "38716296d3b240b765be86b9d51d0e7ac31f8319965a24ab71fda382488cc69c",
+      "desiredDigest": "e9590edaa7fd9f9db7072839595e3433b855b9672db2ab0614c6181bcf8db66e"
+    },
+    {
+      "slug": "arsenic-trioxide",
+      "expectedDigest": "9a50525d62e05b2332d74a2da494fc762a28853a3e718221804966fbe90532da",
+      "desiredDigest": "1b6f92418a8808062595eef4daf979e6dd523bbd4ecb690063b4c00aa2987483"
+    },
+    {
+      "slug": "asenapine",
+      "expectedDigest": "181520ba536d8c554814e595a06e2bac4f7ce7f5b17d7e1f19deea1f68a22134",
+      "desiredDigest": "cb058b8b48a6f2d7cee3d35879b9596896737329c8a6f3adca2565f575ea4589"
+    },
+    {
+      "slug": "atazanavir",
+      "expectedDigest": "94f7a16e1075d13ca12fab5cc3becfb3bf334f879496ae0b05bce84ae0b049b0",
+      "desiredDigest": "4a0cf6492a221b395589d5cd8b45f6ab3c1cc5f2f67c5446b22c9fb975ce3c1f"
+    },
+    {
+      "slug": "atenolol",
+      "expectedDigest": "7a69ca9a6e111c7d152b02bfa640e47e98ad5218ec0fce39ec8375ee26319650",
+      "desiredDigest": "4920a33173e02f4f98f5fb3ffc6b563f2d01702d7bc6b0c42aff34edea845079"
+    },
+    {
+      "slug": "atomoxetine",
+      "expectedDigest": "9e25f95a4c0b2ab7425c70a0af8ceb75f36a3927f7715a68896350baab5a6c7a",
+      "desiredDigest": "eb3f27a9f59117076665e0bc09d36e5532ed4b3042351b3142a54f10905a9c8e"
+    },
+    {
+      "slug": "atorvastatin",
+      "expectedDigest": "d3d96b0388dc742a9ec9f0b12cac8c8190ef8267e0c945e71e42dc139edd30f6",
+      "desiredDigest": "6504c45e65dc15b7faebb4afa40f9ce485e37c88dd7725d7963fe8a6fa9b05ce"
+    },
+    {
+      "slug": "atovaquone",
+      "expectedDigest": "1ed44aa7f619b5baa52962fc11ed857ba9b11defee2917cbcf49b326e5616125",
+      "desiredDigest": "e02bde8debc772ee068cfd220ec6bf9b199e199f4e525c362e3d958df8cf3a2a"
+    },
+    {
+      "slug": "atropine",
+      "expectedDigest": "a8cfc20d8f481458ed04a91c8edff7b170b0f89c437d94b6986674b3f416713c",
+      "desiredDigest": "2cca96beb5ee338e038d19f81044aa500c94a65612124fdeba5453f3c69b4744"
+    },
+    {
+      "slug": "auranofin",
+      "expectedDigest": "0a66fb930ca33552064c4e1120da1ec2a573d58a89901427e1e783273bf1c54e",
+      "desiredDigest": "ce996fe4d49d6524501b11500b503ce302a653665d29e09112d2691efb81e51b"
+    },
+    {
+      "slug": "axitinib",
+      "expectedDigest": "48d6ee8ab30244480a9a7fe722a2af03dcab86fbc706bbe93e87287a60ae8cfd",
+      "desiredDigest": "ed11f52956967851e6c5e19cfd4203a27315747f49aa8418ed07ec772e091cb6"
+    },
+    {
+      "slug": "azacitidine",
+      "expectedDigest": "7bc045a00dbe1044eb326d000fff5906ed27183ac6c88b2a40c9fb48a92c6292",
+      "desiredDigest": "e41ed570ed369b01cde8ea53063de35db6bc7edfed6bfd8197fc547520a85c17"
+    },
+    {
+      "slug": "azathioprine",
+      "expectedDigest": "02b23df646b85e6bd6f7e5ae87e57dcf42a61e717dc2932e29ecca90eb2ee28e",
+      "desiredDigest": "2259d70821a9f0044e34450bcd21d414bac5d98e5ff0e05eb8661a2dba6cecec"
+    },
+    {
+      "slug": "azelastine",
+      "expectedDigest": "6b1681d77dbca62908bfd2818daba8f69e38b56a9e13117afb76b5404021abbc",
+      "desiredDigest": "3e9d2c21bf912ffc248f0dd4d13c0babbd751973288c44b93cafefafbc6e4326"
+    },
+    {
+      "slug": "azilsartan-kamedoxomil",
+      "expectedDigest": "02d34a03e71f8a8414ab3deb0791a34f368ed3e201074a00b0b9174f76cf9ebc",
+      "desiredDigest": "bcdd9a4e911d962f6ae6fa25a26a08405fb46fa093d708edfd6fbe3013e46b73"
+    },
+    {
+      "slug": "azithromycin",
+      "expectedDigest": "12dd2e15d20c9ac27d2f82c1b1c28974117574451d0e7ed7d90018b9b3b93303",
+      "desiredDigest": "2459287213450ee9d237725e17348ed2dd2c47d2247672d46acc7dc774e26cfc"
+    },
+    {
+      "slug": "aztreonam",
+      "expectedDigest": "ca8cb778f1938139742646405365e6e3ef28edab65f9d3455e6f5d2ae8abb19c",
+      "desiredDigest": "f6aec761012c1cdce165a39550baf3a07c285f680025f1b71a353dbffaed4136"
+    },
+    {
+      "slug": "baclofen",
+      "expectedDigest": "a1b6c01d905129f1ad903598f4274da25adeb91bd7cac8cb9514b211f47ff7d1",
+      "desiredDigest": "ce0b41c684b3ed194b2e8f31b061a19fed8e325c859956c4b786dea26dca03dc"
+    },
+    {
+      "slug": "benazepril",
+      "expectedDigest": "ebdfd183725bf7cf73f5ca7bb691b969f269db02668d69afe4e28dbbc8661793",
+      "desiredDigest": "79020e664df6cf08c92f8b9b267e7ff012c68891d411b7bb37002a9ced07a3d0"
+    },
+    {
+      "slug": "bendamustine",
+      "expectedDigest": "d34135b08a46de9fcec68d3283b4f17432c2f2c2cbf78792a9356f306bdda3a1",
+      "desiredDigest": "41d5fb85aff5879a985b19e16144f232c1eecd05d352d162ddc1de4082046fa0"
+    },
+    {
+      "slug": "bepotastine-besilate",
+      "expectedDigest": "890510cb1eba61ae7d517faddbd8b1acb70d81cc79d3b57bffc5c13121117be2",
+      "desiredDigest": "a92cfbaa95b8015405e99ec234d96f6fbe93d472cc49c0f4fc8dc4ac3fa8634c"
+    },
+    {
+      "slug": "betaxolol",
+      "expectedDigest": "d99d1a4a04d5773a6344bfdfff63f248b968522d2ecd872f5fad09dcf8cec86f",
+      "desiredDigest": "63dc8553af767c033dad60033cdb5229214897817d38a11e53cd65bde6db9311"
+    },
+    {
+      "slug": "bevacizumab-maly",
+      "expectedDigest": "7186a1e9e9a7abe1cee7295e1c74cded441696959464c93516306757c848f25e",
+      "desiredDigest": "25a3c69dc63cccb353226379b8bd3a5573d331b528bf808f34f9f29a3b317cd4"
+    },
+    {
+      "slug": "bexagliflozin",
+      "expectedDigest": "a3471bf52f0176a955b1c491d78167bd8c2f6d6746da89561d1d5b35b7b0ac0b",
+      "desiredDigest": "763d256767b27c0607f8a5ecd33d91217d7e65138b8ed512f9d0176a07c0b8f4"
+    },
+    {
+      "slug": "bimatoprost",
+      "expectedDigest": "f9db50ca0a986f17c33d058c7e73e5360aea9e5a76fdf79ab41643421b1e15a9",
+      "desiredDigest": "2cf8b3ca44d2a2683f46d84a0387190a2f81c22e2e82e031e07fe7d7584b385c"
+    },
+    {
+      "slug": "birch-triterpenes",
+      "expectedDigest": "56f1e9968ec4cd3f57304bc3a40affa35a66ca6183bc96eac8a8bf92ba54786e",
+      "desiredDigest": "0c1f2d9455599460f7ddc71a3bee347d583e5a17d7cd37cd3c867c4070bf5f78"
+    },
+    {
+      "slug": "bisoprolol",
+      "expectedDigest": "23a0cbd53bce248a08c9b1007819c5110b6c3187f6890c1a3acea7e1bef7234f",
+      "desiredDigest": "e7c1b9ad95a030655951a8c2e40e689b5c373349212bf0bf0f27e23845bbd122"
+    },
+    {
+      "slug": "bivalirudin",
+      "expectedDigest": "4a75e5d3d10d4fb2a6a04715237567ac284144d785760b3dab434697cee68674",
+      "desiredDigest": "b04fbbc6bc1cd40ca661004c7f03d6535fb5785dec47fbb8c9ee3e21ace41ad2"
+    },
+    {
+      "slug": "bleomycin",
+      "expectedDigest": "d4b76fc39352d481237282876304b9e9fae410a9bbae5cd9356af4e5516e5c1f",
+      "desiredDigest": "5f523260e946c69065045b5d7f0376c0753ee35813faf7adaacb21fdb5dfd4f0"
+    },
+    {
+      "slug": "bortezomib",
+      "expectedDigest": "4d83e7e226925adae329706b91d00a2fbf6763e454e1b083aa9ca184f3dceabe",
+      "desiredDigest": "b4a91da49662b5d8dbf86776ee7e26c0f9d7e4e443ba019990f5ba053b429c1e"
+    },
+    {
+      "slug": "bosentan",
+      "expectedDigest": "d7e2e3b4f09d86109df9c94a04df5db82b10f0476059e15f87520afdd1c8364a",
+      "desiredDigest": "7004a8e55b4d1973041d0c6c79b11b0f142f9b1f8ff2d8fe3b9fd93af4459b15"
+    },
+    {
+      "slug": "bosutinib",
+      "expectedDigest": "1c85552048dc0e433c57543aeb082b26937a4d99e7fbc4535e26367ee8b8f85e",
+      "desiredDigest": "b273633fbfaf088a9a472ad1e3a0353707b181cd9b6d50254d1db8ed5b7f9af3"
+    },
+    {
+      "slug": "brexpiprazole",
+      "expectedDigest": "0b63104287934936486fadfda6d3cb27f722de3a457d356d3ddd3b11eaa634a5",
+      "desiredDigest": "eaa5494506ca2b7d703c25b3690352c7bcbf865157d17662fd4bcb3f3a34352e"
+    },
+    {
+      "slug": "brimonidine",
+      "expectedDigest": "daeedb2ff402c3e17e87d0c5abd160bd7cf340a9fd71962bf6b1d4be92819049",
+      "desiredDigest": "186d3dcacfb382358c14a553f49e388e14d2d0558c590c14504a3e9c98f2a88c"
+    },
+    {
+      "slug": "brincidofovir",
+      "expectedDigest": "5cd37125f255923fac361df90b82e8174673ce492d580b2092e9141041a27129",
+      "desiredDigest": "89dad97ad0f44db6d2bc848dec2e8e7996ed5397721bf5f3b62bec3e3e9f33aa"
+    },
+    {
+      "slug": "brinzolamide",
+      "expectedDigest": "8f0f81c7f122304e436b8d29ab1564dfaf6d5e07175b52928a38fca172694b26",
+      "desiredDigest": "43013763b9bae4b7b7f76dbfa7342fa508df16edc9322aa9196259df45b43ddf"
+    },
+    {
+      "slug": "brivaracetam",
+      "expectedDigest": "3b6d20b35c97e4b8f3dcac44b7863150678e024d0d91f3606ef8221e79ce7232",
+      "desiredDigest": "c1ca579b5b5b60b90dce6f4eaec80752ef0814a4bb356c2422b9644b9b3c4541"
+    },
+    {
+      "slug": "bromocriptine",
+      "expectedDigest": "29f7a400715b0142ff438ebe8f8a9f735eb1f4ce3b8aa7896014b83d9be865b0",
+      "desiredDigest": "d696d870ae6c2c2a344514aa73ef9bc4b351b9f0f3b652e0172ce4d50162f8f6"
+    },
+    {
+      "slug": "budesonide",
+      "expectedDigest": "eb086f3437fc4461082602cc74b8f48c40a508397d0246553ab2ed1c5e844c7d",
+      "desiredDigest": "90d856de074b44b3b4cbe9864420cb0826872b603e0925b1c85d2b425bf876bf"
+    },
+    {
+      "slug": "bumetanide",
+      "expectedDigest": "c1628021213a0d9a0a9574fe1e5d9794c2cf3e979c4536a02332fd9ae7bb97d8",
+      "desiredDigest": "24d8f2611a53806282968c67343d06120523efcc583be2eda728b0e181a86965"
+    },
+    {
+      "slug": "bupivacaine",
+      "expectedDigest": "7fe8f184c19eb1383d6ecd8c64041ca83951e3831d995fbf490d1d6160ad05c4",
+      "desiredDigest": "77e414d6bb40bef2680a562fb4f33541df64293852aa34337b5780499a80bc9b"
+    },
+    {
+      "slug": "buprenorphine",
+      "expectedDigest": "28a051b70acef309154a492c4c8da2d0aff1687589e64d08bab468d669dfd949",
+      "desiredDigest": "8d74b75d67294ce02b69a1df117c706a03c2138d13abb6e7b63ca61baa654b8d"
+    },
+    {
+      "slug": "bupropion",
+      "expectedDigest": "72254de9f78cbd9604a0232a697f8742a3b1db93ead8a2888fa217f0407513be",
+      "desiredDigest": "0040a1bd1db3b3162f31c01b580703f8336a5d3afedcc0e4c928ee3b13427dc6"
+    },
+    {
+      "slug": "buspirone",
+      "expectedDigest": "2a6f9030ae83e54e5275babcd72562de86ca9c2fc92d1da488e1d395e0ad9282",
+      "desiredDigest": "be5c17691b188a90bed0c7bda7584941fe33d6adce956dbfdc8ac6c0e17748d0"
+    },
+    {
+      "slug": "butorphanol",
+      "expectedDigest": "5524fbba4797fc63c3531163c734c010a8aea51adce147c55ef8778014f2d934",
+      "desiredDigest": "f57b07a05949493e69f75a60108cc1391b209f0d22bc969ad8e4fbb722d11a03"
+    },
+    {
+      "slug": "cabergoline",
+      "expectedDigest": "2f590b12bda315d7a19bdd099fad12d9b1ed3a4a4a5af399bfc27473128fe65e",
+      "desiredDigest": "1d2deb7514419a654a2bff192e81c7778172a7aef315062fb7363bbe81df4f55"
+    },
+    {
+      "slug": "cabozantinib",
+      "expectedDigest": "f1008309b815b7a6677a441e7959233d95f24b7a10ab6d5c88838e89d4dd966e",
+      "desiredDigest": "1c94d8be397e2eb5452bf9d2cffb2868494c0d1182d4e1880a73ceb7d658d725"
+    },
+    {
+      "slug": "caffeine",
+      "expectedDigest": "b4d66889351432c044cd783efa8897e7e3eeea752693951f9ecb6790d3a9e010",
+      "desiredDigest": "b2ee410c56a1894903249910e45764d281e25ff8f47a40a0fe7a9fe41799a19f"
+    },
+    {
+      "slug": "calcitonin-salmon",
+      "expectedDigest": "12127abefcd80e4a4dcea36ac309d06604286cc66a1f475b9780e45649adf22c",
+      "desiredDigest": "bd0b7d63952c7ea3811d78a80771c857c0a97bb3252b9f1c4a5cdd6c887ea64c"
+    },
+    {
+      "slug": "calcitriol",
+      "expectedDigest": "d0e45e11281cbc66dd0f8ad8e2a1a28b3fe4bf360bddce29a3cc4200a9f1a0dc",
+      "desiredDigest": "1fcadc5333927d41a57fcd5392011ca7c5c6e62c488133eca381a94d38d27e60"
+    },
+    {
+      "slug": "calcium-oxybate",
+      "expectedDigest": "cc3d03ff095eff385b23d2913dff8e40fd3999c89c2a40c912feed8cccb25bdf",
+      "desiredDigest": "eb1a8d8456a646502e512ceef01778617e6c964c9a824b92998d63751b15e9ed"
+    },
+    {
+      "slug": "canagliflozin",
+      "expectedDigest": "93561c7b812ea23367caee45f979b3cea95a9d95a1a00c0d7047b03ad34fbf31",
+      "desiredDigest": "847a3fd05e3050135e3716609cf5149fd0d6699b31290cea17821ba680683feb"
+    },
+    {
+      "slug": "candesartan-cilexetil",
+      "expectedDigest": "431998dc76845cc5dee31a337b477af8d542bccd5cbe3e8ba678b87b6bc82d6d",
+      "desiredDigest": "9d1edeaf30222d128aa822dfd2391f63a0a295b4e88c1e9e230fd0a49e2fcf8b"
+    },
+    {
+      "slug": "cangrelor",
+      "expectedDigest": "83208c53c29ac1b9f777f34a32f1885a883f577885e7070bb7e7d833d7739692",
+      "desiredDigest": "18f9b09444881a41f1ca2b4ba9a2c593f65f2b84b3c1b4f93745c6a53f6e2935"
+    },
+    {
+      "slug": "capecitabine",
+      "expectedDigest": "47d9ac86eefab95d5b8442449853af269cfe3d42d6a991d9b12c282545c5f6ca",
+      "desiredDigest": "aeda8edb28a94cf9d770d1ebcfdb7905dae5603ad91f53875cc2e3941c62f82e"
+    },
+    {
+      "slug": "captopril",
+      "expectedDigest": "c23061c834f36b1a0e3b477067373764484eb4dc76fa38f128a5e5871e9a40df",
+      "desiredDigest": "9630ebf1f25d548199c5f9b8f2ef0f2d82817655f64686cade4ee699f43f3640"
+    },
+    {
+      "slug": "carbamazepine",
+      "expectedDigest": "9d7dbbc119830f10d01340fa3bdb17ee49ddb76928c5f1d4da0bdfdda696b42c",
+      "desiredDigest": "8b0b1ef84b5e90b4de8aaadb84ebbd95fb5df2829bacae2b333c340a85b0f27b"
+    },
+    {
+      "slug": "carbinoxamine",
+      "expectedDigest": "04241ed24c335cfb529faa2e977d7ea55c9123af22da91cba32850f6139d343d",
+      "desiredDigest": "4497795feab397370fb2a598253c384229f8c9fee381856df447b52276db01d8"
+    },
+    {
+      "slug": "carboplatin",
+      "expectedDigest": "b77006503bd21a50574fa85579a7373b2c6cfb523bebb537de12b7a949a0a2d2",
+      "desiredDigest": "68c464ab5ce78ac2ce33ce5d61c4680fe0edd1bc3d8e158b33597ed7a5c4961d"
+    },
+    {
+      "slug": "carglumic-acid",
+      "expectedDigest": "c082219edefe9b7d818203be8f2124194f4793d175adc302897d39aa793758e5",
+      "desiredDigest": "2871167a4d6712bfd1c46423a41229e714a55d0fc577fe545956e16d0b84d487"
+    },
+    {
+      "slug": "carisoprodol",
+      "expectedDigest": "b4b094e0ef2aee5183f3abb676ba4f373d828d81154eae55542cd9f7ab94696b",
+      "desiredDigest": "13a56eb87694ebebc8ef64975c69b92d12333148d9d9c60e094a450ffd063677"
+    },
+    {
+      "slug": "carvedilol",
+      "expectedDigest": "c1d55b6c1fc41890094a9b1ca5d8e591a09d4bb45894ecd47153bd185e3472c2",
+      "desiredDigest": "393f94caf9f68eb0a985a998230184966852a7f782a1e60dde13210ebf872998"
+    },
+    {
+      "slug": "caspofungin",
+      "expectedDigest": "a67e3b04f393efbb3740c800e21285f671d94aedd760ad8ca7c9f0e753b1d21a",
+      "desiredDigest": "41d574383194ef1d1bd6f3aa274b8f0ab4ea899930857080d5701dbf90a2aa55"
+    },
+    {
+      "slug": "cefaclor",
+      "expectedDigest": "9b59c6527c6f8057db54e8c669e8cdf06b203537fee942563d08de3a664fdb6a",
+      "desiredDigest": "e8cead9e0d7919d627a885e649e9029d9db90d97a44edaeef302593bb8f9fcab"
+    },
+    {
+      "slug": "cefazolin",
+      "expectedDigest": "8ae1580b56f9fd8aad90b86999decccbdbfb2238c5fa56d07875fedf151749ca",
+      "desiredDigest": "81775c2efaeb9b1270823fbbcbf43f8ff20468db8069aab3482dc133f37d36be"
+    },
+    {
+      "slug": "cefdinir",
+      "expectedDigest": "3f17f1d0089d93fb0bbc890b4a6dbd074d75328021f3361daf57387328020a89",
+      "desiredDigest": "3c5888c3ecdde213a5c951c1a25c26aaf7d8c0c37a1e95dd2cddb7a149758bbd"
+    },
+    {
+      "slug": "cefepime",
+      "expectedDigest": "9debea29e19a549a3b1e4b26dc65f230e4fb51f1c2f4ecaf970e7121daea38e2",
+      "desiredDigest": "ce2516c8208cab2d9e99d744ac4779ce07029ba2e7186fba7233329abcc2af1e"
+    },
+    {
+      "slug": "cefixime",
+      "expectedDigest": "58091fe8fbb1149166a0c9c1cd467490bfa69f432c2d9b15cb89774c42c4a6b6",
+      "desiredDigest": "0d0df6f6b1efabddac1dec9b11bd818bc978fb286fdf2833700b43ce83151999"
+    },
+    {
+      "slug": "cefotaxime",
+      "expectedDigest": "ac92113e81e8ccdb2cc482f215e164b522d8b0c5fcd88ead79e6aabdd89e7f86",
+      "desiredDigest": "46ee7032eeb6fa69efdd4b4bd02712a3d6bea9ab7fa1d8299151c15d93125eae"
+    },
+    {
+      "slug": "cefotetan",
+      "expectedDigest": "e5cc67f0bb44aa9532598a6f3c9b13a3da121977956cd2da8030aa6d9a9e62b2",
+      "desiredDigest": "9061dff68efaa7014e2d7bf12085b52e2fa76f03c4d9d44fc5a1a2968aa8f458"
+    },
+    {
+      "slug": "cefpodoxime-proxetil",
+      "expectedDigest": "b6a1df99dfe632eb7f17c9a86d03b2167e2107f52753d1498a48bb96700ca411",
+      "desiredDigest": "8b072cfd602a998083e04968ae82bfbd20383d13f3f4524adba7f83bfa9ecb08"
+    },
+    {
+      "slug": "cefprozil",
+      "expectedDigest": "b07b5e2e43e480e8482bee019092ab44d3c9d568e731a32b6b895d0a261743fb",
+      "desiredDigest": "f164a8455f229a19777880e5313c46479bd3464d0c2819b646ed5a7088a3ce1d"
+    },
+    {
+      "slug": "ceftazidime",
+      "expectedDigest": "fe8d5ed2f880fd59bc2b57532a5dafa09d7b0e55154bf6775d5f9a5e9c1eed84",
+      "desiredDigest": "e88f9ed58d21791c72542ba52cda0be9ad018b2c2393fc6cbfbadeabd8a578a1"
+    },
+    {
+      "slug": "ceftriaxone",
+      "expectedDigest": "32d8bdf462a7289e69682bc994649db880c7f8dca7ede676d59574cd48bea7c3",
+      "desiredDigest": "3505989a7fbcfea16889a64e0b43c344558cf4764c19405edbff9836382b05ce"
+    },
+    {
+      "slug": "celecoxib",
+      "expectedDigest": "40a3cfce9fb45bd857641de34fda618080611f876c69d3f5c9239605a98a83f4",
+      "desiredDigest": "05e2ee4a78209589c64c71448e0bd8c42337f6e4e4d054a4aa003c3b0c5c214c"
+    },
+    {
+      "slug": "cetirizine",
+      "expectedDigest": "e007aee34c429e9957957dfa2dbae27103c49e7007644e7ad652c6ddd10185e3",
+      "desiredDigest": "f3018c31b711c385dccaae738533837517896eb55bbc333f1ad83cabf8ee0cfb"
+    },
+    {
+      "slug": "cetrorelix",
+      "expectedDigest": "88a97608969617e91970adf069a07a111637476ddc21be5c0d4d39d336eee3f4",
+      "desiredDigest": "a395f120767eb43059eb8e4de8a6b20ffb40213b6b35a11926e8dfd9db0ff806"
+    },
+    {
+      "slug": "cevimeline",
+      "expectedDigest": "938b9e609acddb5bc78409e57ce1c1826a9975f848ccabf22ee7baaa926df0d0",
+      "desiredDigest": "4a33f09de8a4f713b36345fde6c403160c2da92dce8aee65b8cacc0497b9f8d9"
+    },
+    {
+      "slug": "chlordiazepoxide",
+      "expectedDigest": "ca89dcb61967e13bb9a5a8267408671e9d9f4912f1c2e974a983cffbeee243eb",
+      "desiredDigest": "6646a514946598ce7e17ee791ed5c71e018f70947ec7b4591679d67c0061fe8a"
+    },
+    {
+      "slug": "chlorthalidone",
+      "expectedDigest": "98496919fec1ba67946ab143d5e363e0a9e75aba40764b04cea3cf297e995698",
+      "desiredDigest": "85c86a03528df1ed1f3730caa8a83932697202e86c9739d94f8ab3752a103067"
+    },
+    {
+      "slug": "ciclesonide",
+      "expectedDigest": "6169e568cdc84b98a915a913685bc0bcf980f7decfff0e8fd8cef959d45bcb9e",
+      "desiredDigest": "b7d27144fb0817f2ee1ff57ee77a3b878a83a328fd1ede02aa375e0d41b3acfb"
+    },
+    {
+      "slug": "ciclopirox",
+      "expectedDigest": "d88d6db3acae170ecb472d5caa6059fbb71cc5ffdb955daf48643a522550f67e",
+      "desiredDigest": "44c561c84f11161800f8165eda0ed10c03f0e8e652f2f75b4ac09f84da0bd7b3"
+    },
+    {
+      "slug": "cilostazol",
+      "expectedDigest": "283ed951d7c5e700ccadd71c45d8b3aee2397ff4a8f30e353e400696bc9527b5",
+      "desiredDigest": "84574b6db388460dde0fdf1c8a08097286f87f63372ce29ad7ef89ce7b6be830"
+    },
+    {
+      "slug": "cimetidine",
+      "expectedDigest": "7ba65dc287dec1b1cecf353a5987ef1dec2732ee5879269360727f3cbf47fb15",
+      "desiredDigest": "1924cd22efa2529e0ed1bd00ae5b88136145c4401f997cecd35ce37592388130"
+    },
+    {
+      "slug": "cinacalcet",
+      "expectedDigest": "01629e9f51e6e47e8419fe206e5a1ddaa556848437119a2077a104cf61d6ca3f",
+      "desiredDigest": "6f4b502448089585b826278af7cc1c4fb1b41dc4176ba293dfb1ea4f14844645"
+    },
+    {
+      "slug": "ciprofloxacin",
+      "expectedDigest": "cf91a6b75ebd99d4dd15e06e4cfee11f4466bd5da43c6b767212418f114a2198",
+      "desiredDigest": "9b21cc1d8110fba6ad8a697fa6fede55150d5e5ba150d06b886c4915c24f70f4"
+    },
+    {
+      "slug": "cisplatin",
+      "expectedDigest": "bd5f38c48a12c61b7f88774417675a369711cc946ff69571123e296fd1907ffd",
+      "desiredDigest": "ef008ac9b976c8562b75be898d1633c56bdc67efc72310d0caddf527d6d8cc86"
+    },
+    {
+      "slug": "citalopram",
+      "expectedDigest": "e3dec99b61c56513623202ee5604932ed2ddb0b89fd8dd5cfbc91c9487d3775e",
+      "desiredDigest": "89b6afe7134f338d55faacf13525798d79d432ee814fc22d77d0cfe236f7f888"
+    },
+    {
+      "slug": "cladribine",
+      "expectedDigest": "0eac0adab91a85f529138deefc632ac873191ac1e3337ceee5b6dd5628d781a9",
+      "desiredDigest": "d8e5628b91375d9eb6e35e0367712ed9cdfdf25c4e7c0b3ffc98e8ec256300f4"
+    },
+    {
+      "slug": "clarithromycin",
+      "expectedDigest": "df25cfa64c5c53dad60f260c4cd5581f757713b390f45fc39f097c0df149f9c5",
+      "desiredDigest": "9c8066018de8e720aaf735e7e228cd7f631a8bab9f54ef8afd595b3e03539ce7"
+    },
+    {
+      "slug": "clindamycin",
+      "expectedDigest": "b931749ce19840b63f814e944afab4192151e6892ff02673c8716eba54ddbfd8",
+      "desiredDigest": "7efd1c8ad0ef71c5edc2894f9be34e7de1578da3dd24422d7612cc31525e4b44"
+    },
+    {
+      "slug": "clobazam",
+      "expectedDigest": "328fc91707b7835cc40d7ceab8ec0c63cbf98a01ac8fb5d3377c83f69cae17d9",
+      "desiredDigest": "5f12f21d07f712ea9ab5add1f534add2091794acbb42997e2f7ef078fb60a6c6"
+    },
+    {
+      "slug": "clofarabine",
+      "expectedDigest": "a52d15051c722488cfaf3ac471bc611acfaddf6e1a46d73433f4321df95ecf58",
+      "desiredDigest": "6a448dbebf92e516788433c1b3fc177ccf8eb29bdb7e917b401806ec55f2ad82"
+    },
+    {
+      "slug": "clomipramine",
+      "expectedDigest": "0d3600ebeecb38fd47e0a2d4f8ec49dceb8bc1bbbec7f8c100c6f8e15f88f496",
+      "desiredDigest": "85f59583bba63880463de569bdfc3ee6a3449a94160ec4c14a9b60814da942f9"
+    },
+    {
+      "slug": "clonazepam",
+      "expectedDigest": "b21f87540813d00a143a942aeaf75c4a369bf5535ed77a053159f4f1ddac294f",
+      "desiredDigest": "e06e76a41c6c1e265ec52f02cd8bec623497ecff4d696a8d5fab1c5e9ac47854"
+    },
+    {
+      "slug": "clonidine",
+      "expectedDigest": "94d538c8f4e4e4bd8933e568bf63fcec568a00f4842f76ba773c835acfb421a4",
+      "desiredDigest": "78edb27f6e0282f99bf7d01c2cc4c7853c181db36dba38fa2f4ef1c84852d160"
+    },
+    {
+      "slug": "clopidogrel",
+      "expectedDigest": "01bed2c923b54843591d9a6c2e3952d50a14040c300ea98f7cde11eb4867e87a",
+      "desiredDigest": "097b6c4f49e24fa1ccc9593301957b2bd22b02fa6bcc326bde9546877c5a4b9c"
+    },
+    {
+      "slug": "clopidogrel-bisulfate",
+      "expectedDigest": "fbc011edb8a12aea66dd76e96f119ed8b23288c9d1a9f3020b33588d6915d16f",
+      "desiredDigest": "75a1ae2f3d94ae396446716b1e35d4f3579e4b89a9043e19c181bdeab454beee"
+    },
+    {
+      "slug": "clorazepate",
+      "expectedDigest": "6f1076e6d52978540014d684304ca2bc67a7acc6363fde046a0dba320bcd49af",
+      "desiredDigest": "014bb8dd2411487c55b573abf26ad1eb6bb31a5a84d1bf2dcfb3b0d91f443938"
+    },
+    {
+      "slug": "clozapine",
+      "expectedDigest": "7db0c66eec39a3a2bae4f852fc9a71d05fae713accb337c2358af8362beb69f7",
+      "desiredDigest": "682e36897bfcd2e6c6a4b1c458d6ee7357266fd2f412fd93a6225f2bbd7c66da"
+    },
+    {
+      "slug": "cocaine",
+      "expectedDigest": "934e6ec81fb01a249e90a70f87ccffb5f0cba2eae236cb38dd0b5df46f3a17bd",
+      "desiredDigest": "62d0240c111541ad1fa4e2998de2c5a6679629ac1b18b3d8dc4edfdda6b44d49"
+    },
+    {
+      "slug": "codeine",
+      "expectedDigest": "cc182b6fcecbfc9e8e5222a9f11dd2ccce9af057e57101eec739542abe5492b7",
+      "desiredDigest": "fb86d2844d6746c82742040d54a0e2faf24506d688b8a3fc6ae83659500b3b84"
+    },
+    {
+      "slug": "colchicine",
+      "expectedDigest": "fcb61763061dc8e3d780ab6f1820307275b1f8add7f0365455148588e91f35f9",
+      "desiredDigest": "cc8d15fd9e2fe1dc2ea3d4135dcc1507634578e6640e0a29d18555bdcbe744f2"
+    },
+    {
+      "slug": "colistimethate",
+      "expectedDigest": "cf5b3fe067633446e62d6eb3c44947abfdae7d40a9bfd0bb3fc637006aa1b4aa",
+      "desiredDigest": "24f0905d7cba5d4c473ef146caaf66d31803c7719d68254b360375949931244e"
+    },
+    {
+      "slug": "cyclobenzaprine",
+      "expectedDigest": "7ef0ebb0689ec62eee45a73b6af62b7162e3b20cca3a9732e13b477233db1e1c",
+      "desiredDigest": "af07ebe6cef05d1117175aae4bd597ad1e9ef0a43a750efe82837dca391c5ea8"
+    },
+    {
+      "slug": "cyclophosphamide",
+      "expectedDigest": "26954bdd8f4caa669f11c805c9fdaeb77754630bbcd2a630cd4bbd812c2c4222",
+      "desiredDigest": "773aed3761f2abd66a06a7f715f5b90d9f555fcb318138469eea4f6e7a9d99f1"
+    },
+    {
+      "slug": "cyclosporine",
+      "expectedDigest": "30fed64d5654249eee61415ccb8f0d06ef7071ee4d4674726cfbe9a53770e101",
+      "desiredDigest": "8b1964fefffa38f6d3c294f2e4556016990c426220ad5314e2d0a13141351189"
+    },
+    {
+      "slug": "cysteamine",
+      "expectedDigest": "3084e9a376336a9e55ed78d1ca0f1a914a3b1e39d2de4b437f60a3daa354fdc9",
+      "desiredDigest": "abbd6b42019a17ef1f927a9eda528f04fd9d6c51f58eed8145e3703add5e864a"
+    },
+    {
+      "slug": "cytarabine",
+      "expectedDigest": "0e3432e45ecd03235d07c54c8a7458382a65d95cea0ca1620b98e536f6a345fa",
+      "desiredDigest": "00cd8d2da3ec2a09ca8907355116f0c29c9ac9a31531679123d25a8e8dd9e84a"
+    },
+    {
+      "slug": "dabigatran-etexilate",
+      "expectedDigest": "03d2ee5e98ea24f47a1a951ecc4af612c18522b28887e04ad3428c73243eb159",
+      "desiredDigest": "219a678c1f6aed8fe3bc8da2d8f2a0e6674e2f688ec229394d6bbcf2993f046c"
+    },
+    {
+      "slug": "dacarbazine",
+      "expectedDigest": "8b007ffe4698e20ab0cefd04df9a6282d8c9a8d1f22c8a2dfb822110efed9d24",
+      "desiredDigest": "31de56f9646b14c3da8d06f316854372c860f3163037c4d9ddfdfa4a3358988e"
+    },
+    {
+      "slug": "dalbavancin",
+      "expectedDigest": "bd4e61ef994c6319188f62dfcf38d909e4da95917d4b32a3bd30fca6d3d3eedc",
+      "desiredDigest": "61aac9bd0d143c840bdb360f6becc2ae627311faa6ffd423553cab23db6fc7f3"
+    },
+    {
+      "slug": "dalfampridine",
+      "expectedDigest": "3f392dac91c05e031e6c4fab3e2c4e2711719bc70deeecccdf65de2e458b74f2",
+      "desiredDigest": "4dc014ff36f292cf21eb614296d90eae7e05be32166a219f3ee8d0a6ab55a13e"
+    },
+    {
+      "slug": "danazol",
+      "expectedDigest": "ae7b04f47ee6324e1400911801c67d56c3921e05249e436658c7123aad0ba076",
+      "desiredDigest": "6461dac2438db1bf82eb6c7434a7250edd5eb96cd5dfc3b8571bec839ac1e384"
+    },
+    {
+      "slug": "dantrolene",
+      "expectedDigest": "97df4a14bcec3c675db60cab61d4dee957620d14d7d640ab0aef21b33d11d381",
+      "desiredDigest": "af391a72a6f01d5208cc5b89f4e6a9158ab16cbe7c4e14a632d383d8741a8791"
+    },
+    {
+      "slug": "dapagliflozin",
+      "expectedDigest": "22a32543d8b68441a51b0ec957b7c3666f305850c58a8667c54f405b4e0f1fda",
+      "desiredDigest": "11f3dedda3491e5cb2fbae61b5e6e4822ab90beef765483874f372ecb6aa794f"
+    },
+    {
+      "slug": "daptomycin",
+      "expectedDigest": "557d173c3ee756bcb04973c5c89627dd4afcd3156637b78e1b4166e6ea0a0c72",
+      "desiredDigest": "2d5d53d38841593f2ab210d9323dc3697f95f3e804be9974ea2099bd277be0e8"
+    },
+    {
+      "slug": "darifenacin",
+      "expectedDigest": "5afcc43d27a5f15505214d0e517682a5c12a59a49cd9ce6b067b5662d0873c97",
+      "desiredDigest": "aaa11c260db3862507e7e700a334e124635daf4a750ddc23edd6690293d5ebbc"
+    },
+    {
+      "slug": "darunavir",
+      "expectedDigest": "eeba86f7d17ceec08b84982e2eeca4922c463a4106c7a6b196bb4654799e39c8",
+      "desiredDigest": "003d02207dbe99cc67536743f10de5ebc9fb9d15266759e727e730be7c9704fc"
+    },
+    {
+      "slug": "dasatinib",
+      "expectedDigest": "7da809a371115fdefebc5d1f273d7c1e8e0ca7c323fffe807e255150164774db",
+      "desiredDigest": "a8af3cdb7278b51fc56bc838368f9de490e92d0abd7794235313e0156b0f878b"
+    },
+    {
+      "slug": "daunorubicin",
+      "expectedDigest": "7ef50ad8fce941a89d9f9326a827ca1c8294754ffefdbf69d8b520382a10a9ce",
+      "desiredDigest": "fccafd930c8b9d0e65b901923546b793f6b307c910a469c4647b55ae52c0123f"
+    },
+    {
+      "slug": "deferasirox",
+      "expectedDigest": "a5bd4f2a3c9187a02367f621a50e9b0f9d009e25fba47183fc0464a3d11a8b51",
+      "desiredDigest": "a11ddb970fabfc8546dd0c6af8f48c7311f1f15b8aeec355e2e1d33b14967490"
+    },
+    {
+      "slug": "deferiprone",
+      "expectedDigest": "775970ea41af908af8e879447b513d0a5e16b41faad3acefef77eedaa9d35ecf",
+      "desiredDigest": "5aa10853505572fe075dcd711bbf31263408d28e1c69c1a31c05cfa3b1022152"
+    },
+    {
+      "slug": "deflazacort",
+      "expectedDigest": "3faa617c6b0a6f8bc693e2c700f29b1017f6cc94b90304b3058882fbb1737065",
+      "desiredDigest": "a9fb0843662f4622ca5a27fc2164fce29aa234d7921ce46ec8103890889e3ecf"
+    },
+    {
+      "slug": "demeclocycline",
+      "expectedDigest": "0431070aab77a314da8d09d89e94a54f6bb21e1fe000bd6f61e1efe645194875",
+      "desiredDigest": "b785ca1254940000dcf73f317dfb0657c34002bb8f4ab62371b69fc7c594d831"
+    },
+    {
+      "slug": "denosumab",
+      "expectedDigest": "13c3d6dcfccace1f791d97102dd6774087d5193d095346ee9e04e6af110b1627",
+      "desiredDigest": "38dc9ef6351f54b5c0baf60c370a920cd21ee976b7512b878ee7455ffb371cdb"
+    },
+    {
+      "slug": "denosumab-bmwo",
+      "expectedDigest": "8ff29f44022bc4f3a5ad1cc6a54cf0c66997ab18da39c5efe2c03f2ab0579b1c",
+      "desiredDigest": "f5b22d3f2163a5d9f579c70a19e85bd677047c61d985f48f3413aeeee67aa728"
+    },
+    {
+      "slug": "denosumab-desu",
+      "expectedDigest": "2f3d18c2eafe3dbeec343b9b99eb05eb851a3c3846b075ad368221b40690e136",
+      "desiredDigest": "a0c6b1c76f083a4d079ea2e239782739f2a0a7f4a82ff158eba0ac806c9b3f8d"
+    },
+    {
+      "slug": "denosumab-kyqq",
+      "expectedDigest": "b437b7d74243798a9fd1166650e70a873ccf9548d1a5fdb9497c8562d39f1eb6",
+      "desiredDigest": "d74d277e2a3677b4d37d3e16903ee180985c2704f7fbb7557b8cf012caa364e6"
+    },
+    {
+      "slug": "denosumab-mobz",
+      "expectedDigest": "3e8f67087e5592ec271983d3672973c6e43851211b5470e5b02eef2310438058",
+      "desiredDigest": "f35b712380c7d3448e3a8e41ab20205213ab600e68ed87a6be61ba4eb8a7500c"
+    },
+    {
+      "slug": "denosumab-qbde",
+      "expectedDigest": "3879f795d9f1e0ec4cb02a4532f7d96f184bdcbdb59233aa46f9cd217878f9a1",
+      "desiredDigest": "151ffac3118009faf6b7ed3c6a940d25a84a2a02fffbbffcd3b3f5fa10f1b016"
+    },
+    {
+      "slug": "desloratadine",
+      "expectedDigest": "e5f4bad1d83030bd82d787c2d80599b0ea56505c2dc228e3ec77e83d572baa08",
+      "desiredDigest": "c4bad19719622fee850f632462491af94e63d83e2334fe46d8401bbcddda574a"
+    },
+    {
+      "slug": "desmopressin",
+      "expectedDigest": "c9ee6a71607f804cd0240a54359af364c6288954569e21aca9c0515ba2ff832c",
+      "desiredDigest": "61a3fad5e70893ac0b6e6336a4765cc9ed698392780891a5d8b330c93bdda29b"
+    },
+    {
+      "slug": "desoximetasone",
+      "expectedDigest": "eb811d72cc51526d87f371463bda656035f6e99588c4ed0029dbc0c9bab57ea5",
+      "desiredDigest": "f76599265a0640a3fd20b1f02e4b9f242d3ca3d88b15dd33e2ef60821447ba84"
+    },
+    {
+      "slug": "desvenlafaxine",
+      "expectedDigest": "ffe9cf56d0740cc4ccf5a24acb9f3998f00e58ba29b001ef8543a9f2f6042b25",
+      "desiredDigest": "9221461b258cc56031b246a9e8e51c4abe6bfa3b8f97abacf74c427bde901195"
+    },
+    {
+      "slug": "dexlansoprazole",
+      "expectedDigest": "1830064645f766092b023b2181e3af132695c976715124e209472b84b29fc5fa",
+      "desiredDigest": "b1a86a2bb55002bbe57a84219884a13864eb8dc008bcfe6f481a96dfcf4818e6"
+    },
+    {
+      "slug": "dexmedetomidine",
+      "expectedDigest": "cdf5ee15713d5306d86402ec60c5c3edea699d7ca234bd51c845fdb154de036f",
+      "desiredDigest": "43ee69301ec17fd364d41073bd83574d0c5828dc478aed9cf285aea3769ce2f6"
+    },
+    {
+      "slug": "dexmethylphenidate",
+      "expectedDigest": "51d253baafe9c733f014e3083b8460f0498499c9ee8f96721b4cd29009e73c7e",
+      "desiredDigest": "07c40ef516a46e459685630c5b79ca40615c8cf556c5155438916b6a644bb45d"
+    },
+    {
+      "slug": "dexrazoxane",
+      "expectedDigest": "beaac235650340560aa0f1d3b687f642ae20f9bc8e50d97cc876a0e888dcdcb6",
+      "desiredDigest": "8fd10982074d39cae014f76314b8d3d85ca169bf896a783849e638e7c1bddba6"
+    },
+    {
+      "slug": "dextroamphetamine",
+      "expectedDigest": "85bfa1c00c00f5637b5096ce0835aed1bdf43ffd788a68c52041448fd00c9e25",
+      "desiredDigest": "7ff86bdb4c36423deb092149cbe38a263c4229c8a1ff0b8b2b4afcddfdd95383"
+    },
+    {
+      "slug": "diazepam",
+      "expectedDigest": "b512450a697f105880db24f8e9a1a9cb20602d42d312d5ff51ff54558b3fc425",
+      "desiredDigest": "d54fac2e5c6d3295c1e08674b7609370336faed3380c6824bb99e02f700a50ce"
+    },
+    {
+      "slug": "diazoxide",
+      "expectedDigest": "9c8de592cba9cdcc7c847d31f595e9db9e68b9dd4fa923bbacda1ffdb6765e87",
+      "desiredDigest": "aac821ef02c502e115f2ffb0f5892c3aeb8f797ea97523495531fe96b15f674d"
+    },
+    {
+      "slug": "dichlorphenamide",
+      "expectedDigest": "6e902f05d591c21ac32c15db9d40a09be43fa31318957e1eddeaacf2de174603",
+      "desiredDigest": "7755a9441a92accaae87921614e0300ddaec3fb082e7a4c3bcde2f1e7f63be52"
+    },
+    {
+      "slug": "diclofenac",
+      "expectedDigest": "d25246032e654719a10f9fd0fa4015ca4fdd6615f85741df7c29b27efeb0e179",
+      "desiredDigest": "9feaa1b6632296d67a464a6a60a10f49c318843f808893330beb345b6004286c"
+    },
+    {
+      "slug": "diclofenac-epolamine",
+      "expectedDigest": "9b3cd1c2671a1def126fd56ad77df565337d0f89709dfd7950ce9596cf46a37d",
+      "desiredDigest": "7e43769be29a11b1eba03eca3c62ec87f877ef24a2240c5aad7f298d4fb9a4a6"
+    },
+    {
+      "slug": "dicloxacillin",
+      "expectedDigest": "57e8e3d414cdc5b07edd33ad84c9c97f15ecdfd51e8175b40c6372e0a95709e2",
+      "desiredDigest": "810b04f059597d7711bf482657e2d8e9322f947badb621743a6f703bd9eb96ef"
+    },
+    {
+      "slug": "dicyclomine",
+      "expectedDigest": "ea410ee775cb91b889375d64d34b9e27490dce2fc506995c761abecc65d724cb",
+      "desiredDigest": "e4002ef8718a6647cb5a66868c65204a97e07d7931a9de45cbf8f8f23a7c358e"
+    },
+    {
+      "slug": "diethylpropion",
+      "expectedDigest": "33154896eb76330b9902a195f77905f2180936513635212a83227d70cfde1f9b",
+      "desiredDigest": "0c60b408546e4298326233611a2bfb10b7aa21823dbdbaab06055dbf2d9c37b7"
+    },
+    {
+      "slug": "digoxin",
+      "expectedDigest": "6a27f07c17ca8c217b26a4f5c0bc5f98de18868a5252708108fe58bb9cbb9100",
+      "desiredDigest": "a1ef94967535104114f974c036da2e9d7d91bf6eb72531c1c914add053530350"
+    },
+    {
+      "slug": "dihydroergotamine",
+      "expectedDigest": "2b3181d5618944ceed1e71aec4eda365caac26a267361c52ec5d1a2a554af979",
+      "desiredDigest": "8705cd425fe3ec68a6486febdc4caf548af19fde8d6d86abd68943771085c732"
+    },
+    {
+      "slug": "diltiazem",
+      "expectedDigest": "326ae4455a4a4e1ee840e5ba22a9ad02b338f2e438c13d81861bf4e3fa345f1e",
+      "desiredDigest": "fbdc81292a8dd176c2dd2c10c59cb7b8f3808f5a7db62526acc513e13b9e2dce"
+    },
+    {
+      "slug": "dimethyl",
+      "expectedDigest": "7e5faa0f04f94b6bc1a90658f1ff519fb09115c4f7e4b39711001935f3d72f66",
+      "desiredDigest": "178486e6f4ee86ead0b2518408ac84158b62da8d4256b9f0248093be8bb0f745"
+    },
+    {
+      "slug": "dipyridamole",
+      "expectedDigest": "22bee871a63230988f5c66eef074340c8fcea39bff01eb534eb89fd3bf2ba1cd",
+      "desiredDigest": "b638f20a67e164d55c39fce3e5a9516c4968a86b23ec1257e7f170fb7b797d31"
+    },
+    {
+      "slug": "disopyramide",
+      "expectedDigest": "c9290966880c5655c3d2181e7c92e331d7c097e403e9fed1f621e579c05ae09e",
+      "desiredDigest": "1c8f4d45fb66b99d0ee46516912f76eb8848b42e54400529354a4ba87160e9d9"
+    },
+    {
+      "slug": "divalproex",
+      "expectedDigest": "cb3cbcdd5fb0b585ca89527ba29a024df18ba7019752fbab6ee147837362492e",
+      "desiredDigest": "8bd9971ff8be104aec74e0737df0acaa4c96c1682f099b5254c9f9f6a365a80e"
+    },
+    {
+      "slug": "docetaxel",
+      "expectedDigest": "575ec426216c848d07e03290e4592e7a5251f4192e43a0c2cc49a83eae9c00cc",
+      "desiredDigest": "f3298034924d255217f8fed60c0690aa6cb19f8147bca316f52b934beb438207"
+    },
+    {
+      "slug": "dofetilide",
+      "expectedDigest": "007f2a959448ace3c9bfb016eafa782425dac4de234b57e3c2d0e5ef29ae379d",
+      "desiredDigest": "19afbc73a1c9d68af76e3866024a348e067c28ac0cfc8ba5a5ef4d33e87e8dab"
+    },
+    {
+      "slug": "dolutegravir",
+      "expectedDigest": "01bef736655703800f274ce422677a9470e7b2b4c48893ec362a91a16b911b94",
+      "desiredDigest": "d0065be442a3547175c4124cc178790529a3916c724c9e77c0f5d68887dbd606"
+    },
+    {
+      "slug": "donepezil",
+      "expectedDigest": "e954867870eef33b4e1698514b049300d92e32e68ece6ffa1df5f9dbb35b5499",
+      "desiredDigest": "1916ac6464766572593eb0e1aa23d38baad45df12514ffce1ed18163dd695141"
+    },
+    {
+      "slug": "dopamine",
+      "expectedDigest": "d5fed9bcd92af1862fd7f6f459bf738201482f2a34b167ef6a6911c95d897169",
+      "desiredDigest": "78eae6be7b343e4554930ecea1e7297674a479c27743eb321757b0a5a9b331e6"
+    },
+    {
+      "slug": "doravirine",
+      "expectedDigest": "72abe38622ec286ea96c990069492fe2ece9c2e211c08895b1df2e34f5acb40b",
+      "desiredDigest": "0b61e0600d992e35f2a816ea6f8911d80d4ce82f848c9db3d459c7928a27bf64"
+    },
+    {
+      "slug": "doxazosin",
+      "expectedDigest": "0eb98a608c1e85b0313737db7ef77619455e3deaf8a21df04b611a8f6e79ab77",
+      "desiredDigest": "b541da938a42ba31a5c888aad4f3d7de40c76001a4b00d44a7aa560d585cb9cf"
+    },
+    {
+      "slug": "doxepin",
+      "expectedDigest": "c9fa660a08a6b028629e4386fffa1e9c6d35e13b04f59d3d7137525cfb74effb",
+      "desiredDigest": "c863fde06a2b6751cf99bab79ef8fe527365668fca2cf4d595abd6f51d95c8f1"
+    },
+    {
+      "slug": "doxercalciferol",
+      "expectedDigest": "6b02fd6ee0013e12f3ba4b1303ec631c4792c6d0fe68b44ac6cee9533ec6d340",
+      "desiredDigest": "df6627eab4e8f45b783d429ef642bde401443f351eb0ac509fde74bbaa80cd0f"
+    },
+    {
+      "slug": "doxorubicin",
+      "expectedDigest": "5241a3fc679110caeba3abfca5fbb986ee104c9ed8e14aeeb4a1849913f7fd11",
+      "desiredDigest": "b5ec22f25137037555907d81885f27bb56260cf00821486b530e43f4406e4278"
+    },
+    {
+      "slug": "doxycycline",
+      "expectedDigest": "f38261ef2ccf1932ba6e67ccf3e02440e5103553005e17eed1ed2a695b019601",
+      "desiredDigest": "3e41463105a597c4b031f249fdae070898f351288b665489bcbd4502fac56d5f"
+    },
+    {
+      "slug": "dronabinol",
+      "expectedDigest": "f89753cf68791584381e8afeec8fe8334358bb33245bcac6fb0ecfa2d3000c99",
+      "desiredDigest": "a9b4c67b6f4071f4e6f874e8815c7b510ee13da2c18c2b9cda911232a6048bdf"
+    },
+    {
+      "slug": "dronedarone",
+      "expectedDigest": "dbbfdfb6423eb1dc59684f461c035a85b0379ca183ecb615ea69642b4627fbc6",
+      "desiredDigest": "bd9b6dec57de95cd7e1a8dfbfe6f5e17ad3e36c8e4dc75a93d7903df589e8900"
+    },
+    {
+      "slug": "droxidopa",
+      "expectedDigest": "06a1320556640374b4edded39c5ff521b353bdea50c9c066c104bb0d8d168ca8",
+      "desiredDigest": "00182c0c080f6d759e34f35c3e8c158d7cf064ae87db3458557bcdc60da1ad7c"
+    },
+    {
+      "slug": "dulaglutide",
+      "expectedDigest": "aa0a14e8efc6d4dd57e8f6fe185bb655f51f78052f713369f21c637058538b24",
+      "desiredDigest": "42b9a96856d6fe15003749ff23bb0d481d5a87bb77721fdf4e49e57fbe4604d4"
+    },
+    {
+      "slug": "duloxetine",
+      "expectedDigest": "2cc414e2d0e41e28b7d76d0fb424f6baafe64f41d3b06b1438df82557d21c128",
+      "desiredDigest": "1c8536e795f37ea69b41eecf60fb425047670ddb171c97d3df7766dc212a1942"
+    },
+    {
+      "slug": "dutasteride",
+      "expectedDigest": "cb37f6c4430fe6abf9a8b793416d6b3f0581f333fff8bcf59fe37e27f47a5848",
+      "desiredDigest": "5650b14509b48160084dc33d8ef4af4bafdec573f581316fa97ef2d0db901d9e"
+    },
+    {
+      "slug": "edaravone",
+      "expectedDigest": "d5f21494f6c93c56746101538fccf405cb394c738aa8f93209bbafca7245cca3",
+      "desiredDigest": "82466f154347c6a436f66c3ca135b66fc7fc462b39c20f27dbb22c2f2c83b109"
+    },
+    {
+      "slug": "efavirenz",
+      "expectedDigest": "4b97c833c1fb6b4e4d1d0740027d7bf57abc56b970fdcb0fae514904a896144a",
+      "desiredDigest": "3d1e5396e202daccf1a84af5e7997c367db7b373ba3a9b55d80e4b2fe920bad4"
+    },
+    {
+      "slug": "eflapegrastim-xnst",
+      "expectedDigest": "96352a217fe64c7ae393a57cb820d6a09e8bc861b0037dbfb41b870b8e662b1b",
+      "desiredDigest": "3192b500eb9898b8bac478955ac4d07added0610dbd31a215f5d0a2fa2f01495"
+    },
+    {
+      "slug": "eletriptan",
+      "expectedDigest": "9b43bf11eaed6878fdc198fe8f4835a80f386289b217f9c5ffcf75652ae6aa23",
+      "desiredDigest": "3f5097dd51907af609d175cb4b20182d1f5bdc57191d312a7777ea8a0e6a6c69"
+    },
+    {
+      "slug": "eltrombopag",
+      "expectedDigest": "2ff56b3b17ca4eab36c29ef4eb2324166c06bf9d08820facd360eaf8fc26da96",
+      "desiredDigest": "12d5a738fbd0cd0545dfa7b9970e4bcbff27904b098a21f932c30abedeaa1506"
+    },
+    {
+      "slug": "empagliflozin",
+      "expectedDigest": "2d94c1c2a2239514f5cdd623252ce9159b81d6d88b8e35f3e83b525ca9a80256",
+      "desiredDigest": "576512e2b3fa31186d3383a7f48b18f9cf9c9a8eba4bb4fc6d8da2e33c9c912b"
+    },
+    {
+      "slug": "emtricitabine",
+      "expectedDigest": "c98704fa81a7ef9bc2659972a243375516c17bf1b1ab58a2ade76119c0fbfed9",
+      "desiredDigest": "8283797620fe8ccfb49124da3c3114cda71edb789bcb33e5d95bd7943ea261d0"
+    },
+    {
+      "slug": "enalapril",
+      "expectedDigest": "f2b735c994eb3c1f714a4f83e0be0ade02a34a77c61725258b1bd324a437ae03",
+      "desiredDigest": "489b1b9e3c9e9289059b122d219bac8a334ea5faf979358f726df0371fd6f3e7"
+    },
+    {
+      "slug": "enoxaparin",
+      "expectedDigest": "721539c5624cb0544baa971c172c281b43b3ecc00376eceb0beba1afc896f762",
+      "desiredDigest": "53a6ce3af57a60b0cb42b3c7b778afab2b37d77b5f73058d8fd7a5337faa99d6"
+    },
+    {
+      "slug": "entacapone",
+      "expectedDigest": "bd0ab84c6c43c9094ec9898855d4c6ba17316571cd60356e5aae5b9756012454",
+      "desiredDigest": "7ace8dbe2f57a6a0eab6bd0fb0aff3660a1f108f59f44a8101848d85a69977aa"
+    },
+    {
+      "slug": "entecavir",
+      "expectedDigest": "10e607625a364518bfdfb1891c484fe93fa0ebd61608d42ee689f01543890802",
+      "desiredDigest": "b7111210c44d876ec7449ee676baa49fa2f1810a4ff1c86fc5c29cce507fe5a3"
+    },
+    {
+      "slug": "ephedrine",
+      "expectedDigest": "0a22ca95351f9e55892822f189c211ee86cb4f441cd3c972fcbe894ec4d67668",
+      "desiredDigest": "baa52aea0acf0471f8bafe07ed588013674e3780de0dc63a3f90ccba619b32a2"
+    },
+    {
+      "slug": "eplerenone",
+      "expectedDigest": "b238972a63fc2f919f8e429d0f4404b60c826223e4f3bf4a6c15156310455ab7",
+      "desiredDigest": "4163791869a126b992edcd63fdc575b888069186b8fdc5fdb02c460f8081651d"
+    },
+    {
+      "slug": "eptifibatide",
+      "expectedDigest": "9b44b8c7abfa3caa38fd8f691d93f27c91116bbbf2feea3a1fb8d16adbc06c48",
+      "desiredDigest": "2ecece04862f051804789a5907bfff220a4d9b574422fc699d7c33769078d80f"
+    },
+    {
+      "slug": "eribulin",
+      "expectedDigest": "3a8ca48ea748d43c88f1944429c9c6d6894e12177e1842a0cc94a214b168014a",
+      "desiredDigest": "b1b645232d7609d7f50215f5e7393b8ff83050e9315269273473f57bb9c40e2e"
+    },
+    {
+      "slug": "erlotinib",
+      "expectedDigest": "354307646de9089016e59a6a55918b34e7d13bcadb53f751b54a008e2da41fbf",
+      "desiredDigest": "deabbfbbbc5884c169efac7967c746006c874fa0237f00def35b5f343ff29db9"
+    },
+    {
+      "slug": "ertapenem",
+      "expectedDigest": "99b5b42dc23daf47e2c1ec5b6c2f94d62bfbd20d65fb0b252393454f7ae16792",
+      "desiredDigest": "b8458f1c966ad25a567174b7dc13d3e61c2cda6a8ec6714df9f062c273de4943"
+    },
+    {
+      "slug": "escitalopram",
+      "expectedDigest": "8eedd8e5c4bb59cabe7bcf4db350be519e06ab0563a799d1dc49f5b68b2b0aed",
+      "desiredDigest": "50d10563624c786b0018eb7ca242f26af570d2139f927dd2bd34aae81636d5a2"
+    },
+    {
+      "slug": "eslicarbazepine",
+      "expectedDigest": "bd1397ade701f24f016cc1b6845fe644a304e576f1d8a3bb361a8a881b8da2c6",
+      "desiredDigest": "c585aa87b05920510d656a9219c2b35e5ce980b36f3a1a041e98751b6393caeb"
+    },
+    {
+      "slug": "esmolol",
+      "expectedDigest": "f1c05706b37c75931131735f3f22018a38a834e40a061436a2875f6e87259bf1",
+      "desiredDigest": "b46f0c6105ebb15d489b9fef1e53092e696fedbc4e4218c84d9150f4c8e05ead"
+    },
+    {
+      "slug": "esomeprazole",
+      "expectedDigest": "967cdadc7b3a1cba8d0ada363f3ed362066081791107a6822d51bfae9fadb5a0",
+      "desiredDigest": "ab79f058cc36c15ca692e938758be054efce820957fa60f2990690fa8e45dde3"
+    },
+    {
+      "slug": "estazolam",
+      "expectedDigest": "7738607ef38cde41c50d5329325d294682d4b76194167d3e3179502e61373bed",
+      "desiredDigest": "a3a8769921655ce3d88c32c88b57d06e25e155ba5e25096a0197dc170dfbd5ee"
+    },
+    {
+      "slug": "estradiol",
+      "expectedDigest": "7149163d2abdac5776b1d90b75fcfdb7993ac7b5451e617a428a888bd086bfaa",
+      "desiredDigest": "e218403b4b1357ecd885e689d42a1bcaa419de29aeb41f3c6b9e9a473585045c"
+    },
+    {
+      "slug": "eszopiclone",
+      "expectedDigest": "07fb87d851ff1ca4fb5c5a706b512c0d4e112acafa84541fa87df9a665c0aef7",
+      "desiredDigest": "599fe8d5c167420832deee6bd19b78d79386786985d4f6371f1acd6f689bf107"
+    },
+    {
+      "slug": "etodolac",
+      "expectedDigest": "ad8220fa830ce1f6a409f6132cc44013b87660b7b51198fd0d747e2b6babafbf",
+      "desiredDigest": "f1312086a16613f5629b08dcb18b922622c442b8a6902d1526b08df46d794ced"
+    },
+    {
+      "slug": "etoposide",
+      "expectedDigest": "79097c4d8f5d09021b530f9992a949c828fe6508bf7e1e64e3c9b54698e5d903",
+      "desiredDigest": "35970d8626a44329e89aa91da65266f8ec4f5daf77a9249f63b10759f3ca94f7"
+    },
+    {
+      "slug": "etravirine",
+      "expectedDigest": "b93c4c96366ce54c876f892445a3edbb16e606cbfa88bc587f806db3fecac91b",
+      "desiredDigest": "328df48a8dd64f3014aea91cc4fc998128c58df2662da9d05110b15520de78b1"
+    },
+    {
+      "slug": "everolimus",
+      "expectedDigest": "712c008ccd1c325c8614d37051a57ec4ac46840970550b23643ca821c9d11f07",
+      "desiredDigest": "f9a1d5639a0937c0e1a962ae653f4f7d9d99e1563a71159974307523d4912b7f"
+    },
+    {
+      "slug": "exemestane",
+      "expectedDigest": "d4aeea8eb3d4c814f0870ee61fc15b62b2af2a1fc06cba093056dcce7b54d40d",
+      "desiredDigest": "0f97287f9e0763a28ee9905f5c8042f03005f9cbdc3d842d683a8d0f474c71f6"
+    },
+    {
+      "slug": "exenatide",
+      "expectedDigest": "ffb3414b2927d63ca070e3cbad73fa409b03515901cea7e605e34cf074047064",
+      "desiredDigest": "9e0aeb87c37ba29025726a0aadcf371c55d95229d8ddb69f09ebc2564e81ba21"
+    },
+    {
+      "slug": "ezetimibe",
+      "expectedDigest": "8828640fcd2e49bc73326b5e6f63ce8e1ba2e34fdf4caa3ee3d5a49ea513a7f4",
+      "desiredDigest": "7abd49a4a608380a8aea8c87f045bb45ef932cbf97db776cbb03e8181050b7fc"
+    },
+    {
+      "slug": "famciclovir",
+      "expectedDigest": "a330c25f0ad385dde48ab58def4f29f83862c183b62f6fb8674c1fc5b3c6d1db",
+      "desiredDigest": "d428f924bc240475c41d379eac5c19595813ab54960f76ca2016b06beaf986e9"
+    },
+    {
+      "slug": "famotidine",
+      "expectedDigest": "b56ab95afddc8e3d6f1a1b9ef8f4dc11d253fc8c6783462382c937729280fdf7",
+      "desiredDigest": "1ae07a0bf76c129210d15fcd66fc8f6b5b1153291d520125d76bd4b20f2a6b3b"
+    },
+    {
+      "slug": "febuxostat",
+      "expectedDigest": "3aa1f665449a67cc1ef6506601486d8b8d8d8e5327a685036bb34cc1f3f09985",
+      "desiredDigest": "a99186cffbe332b015e4a6388968aa67290058a501edac0096527b75d1c6c27d"
+    },
+    {
+      "slug": "felbamate",
+      "expectedDigest": "acc2233d9ea838c74ab4a17442d3e3393f54bb88ab306abeea86e6eea116b241",
+      "desiredDigest": "a73a35d8ab2b08860726fcf6e9e94c9809ae8403ff1b70744be37e248fc21ea5"
+    },
+    {
+      "slug": "felodipine",
+      "expectedDigest": "b8eb12d4356327dfbdef2bc903c82449dce6344406624ac06e782fd1aafcf116",
+      "desiredDigest": "ce13224eb4cff54402d0250d21089b1ec41daa7b4a044e4c6883d00401c4b059"
+    },
+    {
+      "slug": "fenofibrate",
+      "expectedDigest": "f57be949e40c1d2526de910bd0252635d4c075b6b4b4d31e52909b2d8e84cdd0",
+      "desiredDigest": "8e07f391ff7de1f933468a0b5aa5f2850102c21cb9b0b7680eec45d834883eaf"
+    },
+    {
+      "slug": "fenofibric-acid",
+      "expectedDigest": "49e802b30e6aeeab9a98b6e25178cf039ece038a0f7a096c86fe3085c720b7b4",
+      "desiredDigest": "8684ed7499bb367c7a3ef5ba4d5031846171c856bde2b3b1a9f804bd278f4820"
+    },
+    {
+      "slug": "fenoprofen",
+      "expectedDigest": "b23d2ed334f9267a5d62ef2a32cd3c9b4396af028a5d65ef2d3a2007057ac234",
+      "desiredDigest": "8816d518bcf5fa076998d82716700bae67d4bd4c02f3ef6b51af5873ea81b193"
+    },
+    {
+      "slug": "fentanyl",
+      "expectedDigest": "e66a81a7852344fcdb94eda5cb9af54994b96038f57322a6263f8f6b44e6acbc",
+      "desiredDigest": "27a1acee8e54966bc911b614784ba5e53542f342e6e764fa1c8f67f93399ae48"
+    },
+    {
+      "slug": "ferric",
+      "expectedDigest": "7be73e3b5451ba678e21cf40c7cafe12afb6e79b1ef34de629dde51857e45c49",
+      "desiredDigest": "5f25fd38c7efd532f21966625839ce4dccc6c1b34d30bbf75bcddc5508ff1e66"
+    },
+    {
+      "slug": "ferric-carboxymaltose",
+      "expectedDigest": "4ba8cf3070d72f7e88d0239c804511c45a4a12f41fbe97a9f0617ded2aa6ebff",
+      "desiredDigest": "07957268aaaa3a88badf672b5aef12b759aa7c6c42aea8d5afd413e424d847b5"
+    },
+    {
+      "slug": "ferumoxytol",
+      "expectedDigest": "9f2189f47182fbde62f565fed39fcab2f8471e266ab0860c49c2560c1a590700",
+      "desiredDigest": "36e90835a4cd9a155fae63e11f570c0e1963f4dfd01abdebb576b71484b80b28"
+    },
+    {
+      "slug": "fesoterodine",
+      "expectedDigest": "4661b2c6e8bfe918c2019db69378df084805b1100d9cf22548df6f6eb5b85b44",
+      "desiredDigest": "9697c9dfae5ff6d85d117f57244ade9854e9105c5f684650256f381f2831c97b"
+    },
+    {
+      "slug": "filgrastim",
+      "expectedDigest": "9cd3627727ec71c8e6888222f0eca8cc8d7677de56daa686fd16026135c2e42c",
+      "desiredDigest": "37645f50556e8a0daebdccc3a28673fd652a21bf86f7ce7a2eda339ea60887e3"
+    },
+    {
+      "slug": "filgrastim-txid",
+      "expectedDigest": "026ec49ffb38f9ec26bce89b1f79d67ec4a2a0893d172c9b614d0a284d0dd30d",
+      "desiredDigest": "330f9263e4624532b8835f9f4f1f01c2efad98d196e7cfa238638ce690fe7400"
+    },
+    {
+      "slug": "finasteride",
+      "expectedDigest": "52b287be82295f7928786765dbebda93fefb82797ef64b2056930e32bbe8874f",
+      "desiredDigest": "e55bd1494686b6840ab114927ad23b9e45793ce359bb0864de6f01c3eef41166"
+    },
+    {
+      "slug": "fingolimod",
+      "expectedDigest": "af7e8022115d15aa5dbb6affb394dcd2fc147059fb5394990d6d002b3120f8e9",
+      "desiredDigest": "2eaa28777002d8c19e7841e4ca97aeab5f530340409d4bc059ada8707d7a272b"
+    },
+    {
+      "slug": "flecainide",
+      "expectedDigest": "9d7044f7d627074899e0b8544ce6c7b6bd0ee88766c5b7c64dad651082dd952f",
+      "desiredDigest": "3deed4b3f507254c6ed457e78dc144afb92342e4e0d8c3ef2a8acfe72670dd7f"
+    },
+    {
+      "slug": "fluconazole",
+      "expectedDigest": "fc47f830b6ae9760b0aeb55cbf3c3b55d7046a888cdb5310a412121110f3f828",
+      "desiredDigest": "e6d28903ebafe3286f6fa7d03a4a64147ca2940df762d6f118eb2747689a5551"
+    },
+    {
+      "slug": "flucytosine",
+      "expectedDigest": "8061186106b7be0c290dcbaae39bf408c754c247a952d89081b78458316908d8",
+      "desiredDigest": "3251837dfa4f82096e6e254d06555202a14dfba6ac5efc60a7c4c00498a9fd24"
+    },
+    {
+      "slug": "fludarabine",
+      "expectedDigest": "77ae84feb8cb70a8c09609ded3b353fae91c6f5e2c597d47effe378183664f93",
+      "desiredDigest": "6011f7049414963f58a386cac33a8613f20c2b83ac81fb5ed061e26b5f1f4c84"
+    },
+    {
+      "slug": "flumazenil",
+      "expectedDigest": "7e16c28061f7c3eeb0a413d8dd3c091a631752d4e76eae568ff42be64f3d2cec",
+      "desiredDigest": "bf3489a11341d5f06ef7004b882fff728f3cf037e9496d6d951b690bce41928e"
+    },
+    {
+      "slug": "flunisolide",
+      "expectedDigest": "08988f7f494a594d8b9ff16125f96462030e032e6732d3484f0b98602707b0f1",
+      "desiredDigest": "57e439e50ee1eb1c9a5f32490a032cc4fbe9d2646e77750f2db2c6ac5c1c8928"
+    },
+    {
+      "slug": "fluoxetine",
+      "expectedDigest": "9ebb2aa2f7e3f9d97cfcc40b9f8f6390dd5c860e45397dc4b3b1d43a2f8a757e",
+      "desiredDigest": "052b484d27c4d6c59c68939443feea617981436b9658c21d620ecf06b73f49f4"
+    },
+    {
+      "slug": "flurbiprofen",
+      "expectedDigest": "21e670a1752083490c431dc0af3abbcd7f0975a49ea2991b82da007c761d5aeb",
+      "desiredDigest": "b49855c51f0f7112b2b914a2726772213e01bed8527101ac219fa181c30d8aeb"
+    },
+    {
+      "slug": "flutamide",
+      "expectedDigest": "51a13f0243a33f92746e1718ba1002a2dece1981ad683c226e4aa44cd3c906e7",
+      "desiredDigest": "05e1de5acbf77e0671ec895175103889f4103a87787148db50ed29360fc7096b"
+    },
+    {
+      "slug": "fluvastatin",
+      "expectedDigest": "d1d56cbba453c968cdc9c4932977d91c74ac045504c19d2a93c30e91df9c8882",
+      "desiredDigest": "800bb8aa9db8361604e7272807cdef6040a8449bdb9d8ec35e33df8aa0a2e36c"
+    },
+    {
+      "slug": "fluvoxamine",
+      "expectedDigest": "b92b80ce8a6eda42cd9ef63aedd3afe2a6c1c3ff1670b50f9a6980251d93e8fc",
+      "desiredDigest": "b1a63512ceb9e2306a133f5c62def2318d97bc6aec42365a850a8acb5c1cc483"
+    },
+    {
+      "slug": "fomepizole",
+      "expectedDigest": "ad83a43632e6977097fff38045d8428ca6fc9bb1298b2f37ae1c42461c5769b0",
+      "desiredDigest": "03abaa66169204601a42107b5bc9a593ae258bfab2606a5f0aa66b6d2a3769dc"
+    },
+    {
+      "slug": "fondaparinux",
+      "expectedDigest": "ad2dbe867b0819a00c9be3729c0f2673c09a40e90f4418add9955c6d877dc624",
+      "desiredDigest": "2bb377c0bc36c925baa3849b270ccfa1ba5fd0854d8e43687d44887a4fdb97f0"
+    },
+    {
+      "slug": "formoterol",
+      "expectedDigest": "597f051ce3a7f0e65ab009d14079f7296b396b092790a66837ee120b5c20d776",
+      "desiredDigest": "4c2280ec98976e7acc123cf2cd414e1bf2c1193f28dbd8440859592a5b01b63a"
+    },
+    {
+      "slug": "fosamprenavir",
+      "expectedDigest": "d3350c94f7325e691b3f174e08a6d73e88fa7dd17537cf2506b9e2496b360220",
+      "desiredDigest": "2c241b53765a8f70ddeccff0a79fd74aa653830bd96df337f31e52c60a7675e0"
+    },
+    {
+      "slug": "fosaprepitant-dimeglumine",
+      "expectedDigest": "5ef1390c4c7bc810e1a32a4dffe7ed279d3a1840350f795cb0ac4ca1339f83e3",
+      "desiredDigest": "264522b8c96adba618dff3a48d5fd3b8c1a58ea7d0b35b616a381d2f4dbfc109"
+    },
+    {
+      "slug": "foscarnet",
+      "expectedDigest": "48d456ae996ac91af41545bd7c7336947621b042c0a027b54d7037d1cec42c5e",
+      "desiredDigest": "8c18225c853f894d175b8531afc01a53e32ddd6eaa6350a93feac01150dc91e1"
+    },
+    {
+      "slug": "fosfomycin",
+      "expectedDigest": "13fec4eca9963516162da78f071bc25353d1c4bdb5f25c15d8061e1ba67fc2ec",
+      "desiredDigest": "98479306639e28976f0be95f9125a187c6634b82f5aaf9a0f427d63b937678b2"
+    },
+    {
+      "slug": "fosinopril",
+      "expectedDigest": "3f4b849edfbdeb3458dadfa273c5d68e0053b849e1b58ab7ec2a68667b4287e6",
+      "desiredDigest": "014cba7c72a2e123219eb2c4702083b096037347779ce1a83f66d0da108b9397"
+    },
+    {
+      "slug": "fosphenytoin",
+      "expectedDigest": "908db1f9cc7e4b111cd00eab8b1fb6883b7bcb6ab26cca2c1a7a2af7e14f9800",
+      "desiredDigest": "22586696f0da91f6e1b9ca4b4e805399ea4326a00e114a5f12a9c8553474ac64"
+    },
+    {
+      "slug": "frovatriptan",
+      "expectedDigest": "1154aca3dc7699461ca90bd13655e93f0b0ddb54fc34ce40e645db87242319bb",
+      "desiredDigest": "67d9e0fe80fc0f8cb34d04a27c3afbeb9a7ae18945f2c4c8fa74de309113f5fb"
+    },
+    {
+      "slug": "fulvestrant",
+      "expectedDigest": "be66c1ddb9ebfc3b02d03d51f5ce4febd61f4e4795b28d5f3a43eb23cc2a7eff",
+      "desiredDigest": "8ca37059a08e0e4856f1cbb4298b904c5d6ce57074425e7f24fcb0c332282d82"
+    },
+    {
+      "slug": "furosemide",
+      "expectedDigest": "77e23c65fdbedeab8abaf27d943e69ef78109f907a17b1e8facccee2bf115f2a",
+      "desiredDigest": "c6bf3762a2e62d881bb6471b65de0b91b19c3f835ea2c187b9be82bd0ae2406f"
+    },
+    {
+      "slug": "gabapentin",
+      "expectedDigest": "447ff11535a5aae40c07b6c4576ff0da84b349cdeeaaa0f4df41e3af5ac1f1e6",
+      "desiredDigest": "c87fd55475f5b1147c3812e57de775bd33a5a1a4b164533211f2fb49cfebfd17"
+    },
+    {
+      "slug": "gadobenate-dimeglumine",
+      "expectedDigest": "1c31c55ba42674c2743f1c724fc73089accf6f2ed3ba3baedd4d50743513ef06",
+      "desiredDigest": "7082ec4ffc4884464fbe561b6684951e7da02522c64823927e1adf61bd4f8ec7"
+    },
+    {
+      "slug": "gadobutrol",
+      "expectedDigest": "2e45dbd264c353e5e022188dba30d5cfed39aade743329aa635d235b9edfeb64",
+      "desiredDigest": "29215b4566cb73a593083a979eacb0e9ae99f81bbc48ecd9c79a366f347c6b75"
+    },
+    {
+      "slug": "gadopiclenol",
+      "expectedDigest": "311e51be36aa17cfdd96af6fd42dac9c01bd295306f783bd0263b011a0ae2838",
+      "desiredDigest": "2cdc2cc8bdf502d63cb7ee30c0fd1f9dfdc1772f1f95237c78455c2c24bfa0e3"
+    },
+    {
+      "slug": "gadoterate",
+      "expectedDigest": "9ca5cd0e794b1b4623d81b403496910b0491fe96070b378925a80b63c605b5b3",
+      "desiredDigest": "1b6961818beb04c013592dc37ae5d0fc8f22312a0f43e5a1496b918ba876ba04"
+    },
+    {
+      "slug": "gadoteridol",
+      "expectedDigest": "d51111742163b29a9dd058d77a18e601cd079da11ddf4209dec7a0fc146fd797",
+      "desiredDigest": "ad1ef0486b5af3a41deb1245ea75b1e0e71e4fdde433b6033f8324b4a614de40"
+    },
+    {
+      "slug": "galantamine",
+      "expectedDigest": "e19b020ac21ac50c937e8822c9e981090ec3a2d1fcb4ed700e33ae028a3022db",
+      "desiredDigest": "dee8fa9648d7e0934a953ce6e2f7980047540795e4d4f00270d5fe80150192fd"
+    },
+    {
+      "slug": "ganciclovir",
+      "expectedDigest": "74032550f615a0332d0021b284a5a1e2f9125f623efe393ef090048516fce9ba",
+      "desiredDigest": "e96c3b7464e6a4314eae67c21791e8779c05022b3804179bc8438479acadd05b"
+    },
+    {
+      "slug": "ganirelix",
+      "expectedDigest": "4efb891374189042c1888b4638bee85380c54e8e11299faa61b8bf9bdb962d26",
+      "desiredDigest": "715e01564f89e31ad67857ca33fd7dfd0f8e950a885d2fcc075303d2a30f5ac8"
+    },
+    {
+      "slug": "gefitinib",
+      "expectedDigest": "be53966d0b3ad1e9e34a8c35524b7b162afa051bd134bfb760a07ce140a3904e",
+      "desiredDigest": "e44393b5a768b6fc78ecb546ef7b443664121720959a4629576cd0d4cad85582"
+    },
+    {
+      "slug": "gemcitabine",
+      "expectedDigest": "b71104319d87fa5cc9f85f315d1f39076d72ec8de115cb9acb7bd192e12c4764",
+      "desiredDigest": "d4bbd68e2bb9dad7959da2c27b0cba5dc66e32a7b51843f9cd07442e15edc8f1"
+    },
+    {
+      "slug": "gemfibrozil",
+      "expectedDigest": "03563ff88f2a3034c4f4209b9468ebcaa1c988c3ef7a0fd859218547ec465de1",
+      "desiredDigest": "cd2bcd56a27c1a4c2ef581acb6dff9ce428c24879b4ed917be46fd8cb7574b45"
+    },
+    {
+      "slug": "glimepiride",
+      "expectedDigest": "73a1ae7be00b543935f26598dbe86b06c40d5bae903205b8e86d8e5d694ec2bd",
+      "desiredDigest": "73dfe815fc5e99b6641cb6a11edf3ded4ea0a5d7b98f8e29cfd35c913c492afd"
+    },
+    {
+      "slug": "glipizide",
+      "expectedDigest": "c4255817751a334f9c0654a760eb6231e27b7852d241aed2c2df0e6390bfd476",
+      "desiredDigest": "03f56cd1082e424b049112c671d2931c16dc5055fc617a12d411b42da05467a9"
+    },
+    {
+      "slug": "glucagon",
+      "expectedDigest": "f73f0fd784e6b1f04adf3460926be77e9951088f66e370f6dfcb686785090274",
+      "desiredDigest": "8bd398514f0106d24d1c6565c56bc87ddb8c6afe466b01729645342f4794e379"
+    },
+    {
+      "slug": "glyburide",
+      "expectedDigest": "56bbbe3914e51494bee4d4c52f8ad28e12cd9aaf51c491198add5cff5aad6559",
+      "desiredDigest": "85decf21f215ad10a0198fa6dd3c0c46fd49cc4c72f969fd96486e2498129986"
+    },
+    {
+      "slug": "glycerol-phenylbutyrate",
+      "expectedDigest": "440a900d9082b36d65d6fd2fa20dcb62fcd4ae556465bf4ebda1bed22ee8269a",
+      "desiredDigest": "17b2f948f87eecc6580710119409d332e0c382c5a5c154fa4194691d087ce0d8"
+    },
+    {
+      "slug": "glycopyrrolate",
+      "expectedDigest": "5713b6ead93ec4391e2e5114a76bb9e94528f1254e77fc8c35846413731999f1",
+      "desiredDigest": "c88a4a5ed5d4756f33001ed7e5235e2150b354e3c3624162629c3e928948f5e9"
+    },
+    {
+      "slug": "goserelin",
+      "expectedDigest": "6db10c44b605795de6c694e2f5b37eeccb15ecc42e7b58f5203bf4776f45247a",
+      "desiredDigest": "acfdb9b664fc054ebde2507563f9eaa88d356346cd93d93be4e0a37626d61a5a"
+    },
+    {
+      "slug": "granisetron",
+      "expectedDigest": "c5fcdbaabfa318716eb4a74c4f0e2f9bbc51f1a863d4f238628643223eff60b0",
+      "desiredDigest": "cd01e6f29bcc857a826e6238818e358ddf04fe9f3ad23efc8216c85e3fee0993"
+    },
+    {
+      "slug": "griseofulvin",
+      "expectedDigest": "fd02b8002577704bcf2ad6b66d32e9373f876e7fb5d4e99b5ebf3ab527f77629",
+      "desiredDigest": "5c7b68f8af7afd41686217c25685219912b0b3d2b0c87068fa7058a6b33aae0c"
+    },
+    {
+      "slug": "guanfacine",
+      "expectedDigest": "9867ec82171b6b3b7a0eae3bde3e2bd2c3f3d1bd598ddb42a72cc0bed051000a",
+      "desiredDigest": "e669f409482e2916cb5006907c7ff6d900e300f0f7a2f3dc06b73c22420029c9"
+    },
+    {
+      "slug": "heparin",
+      "expectedDigest": "df0b02a99cb02cbcbf454cefc50969fbdc15e4be924c00b0a056aa2cce3e5474",
+      "desiredDigest": "fcd9bd30c4de2074545d5174218f6d6b671cbfda058d54a7ebd1fe39bac23c3b"
+    },
+    {
+      "slug": "hydralazine",
+      "expectedDigest": "0186c94be6dbb0b0d4df786af91ebdc1934692c83d435e2c21ee41b62bd9e74b",
+      "desiredDigest": "cad0c4f22bcf17b73085b23b0e4c5752ba58b156e6c7a8257188c763fd17f719"
+    },
+    {
+      "slug": "hydrochlorothiazide",
+      "expectedDigest": "29ace31aa5738f21d0a712fecc51c3ec4669b8de3b4d25f1ab88bd776d83ceb6",
+      "desiredDigest": "e67813e4235630096436961f567cde8ba7042b57f45ecb463e359dce807f4949"
+    },
+    {
+      "slug": "hydrocodone",
+      "expectedDigest": "064c26fcb3bc6a46915c71b07aaf4a34c2bd3a09bc42c6a093f88cce3241c3a9",
+      "desiredDigest": "4d7ba2869c2fbe99b1f9157f56e9bee5d7bb496b6d62064d4b21a52cf6eb2036"
+    },
+    {
+      "slug": "hydromorphone",
+      "expectedDigest": "dd503f03d109ade130a061545aab343c1f30de5ab8a08ec9d5c5c572c4d2d500",
+      "desiredDigest": "25bbe2161e69b9f67b1d3a4d458ba29450041d40b2b8a257e176714a3fc4765a"
+    },
+    {
+      "slug": "hydroxychloroquine",
+      "expectedDigest": "16152d233a6e430e019075154610ab731a195a4d43c7ce17f92f09fc36ab8121",
+      "desiredDigest": "dd4bc881c890d7d0e601856f09d8cb41d0c475576a81461f397c2cac9c597540"
+    },
+    {
+      "slug": "hyoscyamine",
+      "expectedDigest": "8e3c18d7969297455bef4ed02160d19298d7ba5f78c7196226c1578a9bcbe0f6",
+      "desiredDigest": "60b2f31b62bb0bfeec90e61b29ce5ec7c5b0785516da81d2c1bec4652f090fdb"
+    },
+    {
+      "slug": "ibandronate",
+      "expectedDigest": "8813d61a5ace7c2b80fd141d5aa97df3293ae38e4981ba952ee45cc48ca6a380",
+      "desiredDigest": "e7e80a37e4faa522c48c0c4b4394fbf6727d17d91d49b8c06f1810b2a4477ec0"
+    },
+    {
+      "slug": "ibuprofen",
+      "expectedDigest": "375d46800e60794f7a97b65ee08fba480724160051628513b76a013631df429a",
+      "desiredDigest": "33c63d72755be60fa9381a7d0fbc0587fd5af2a67804fe528fc2cf8a02f055bd"
+    },
+    {
+      "slug": "ibutilide",
+      "expectedDigest": "5abe848e91d7a1daedbc76fd56dd6fd933ad520e3e48350ce913056ab317b019",
+      "desiredDigest": "eab1b13d1261b76ea267efba9450f426215ad1f1a394a386274d2182663c40b5"
+    },
+    {
+      "slug": "icatibant",
+      "expectedDigest": "bf16d6525167b2154e4ac3c79f83a8c9d77f0b470e2190efd60e15c60fc42c0f",
+      "desiredDigest": "d5eca3c1ff2e39f3f4e10df6db932eb8999961b9c2868283503ad1c7b125f634"
+    },
+    {
+      "slug": "icosapent-ethyl",
+      "expectedDigest": "a1df701b089b8e5cfea19e967434bda9980b34a351e9e3410173056198ce95ed",
+      "desiredDigest": "a25b6491607ff49b64c7409b7d1b87f461eb9f866b4c635ef2b65a239f90e624"
+    },
+    {
+      "slug": "idarubicin",
+      "expectedDigest": "a1f1c845fe99c789a29ed5a3a1a1223b5b78d699381a30d7f6da530bb1946089",
+      "desiredDigest": "5730de2d24cecc90449d4152047dcaa156db7e90576eef03f2014fdde784c9e7"
+    },
+    {
+      "slug": "ifosfamide",
+      "expectedDigest": "33234ea47157fddf9074d7ce39b0c2526797e9e3ef1d299cedfbdf5bb630bbcd",
+      "desiredDigest": "de009cd716da3cd92ca1e9076218f10e671caebef70418c0b5b17f88d030c9c1"
+    },
+    {
+      "slug": "iloperidone",
+      "expectedDigest": "4b321af1902bea12252be71141b7f2a6f70eeaac4dbabde1e3b4dcc232fcf71d",
+      "desiredDigest": "2de57a096470a9f939ff5702f4d1a0d820fbbf19fc8b877a3718ef31109e414b"
+    },
+    {
+      "slug": "imatinib",
+      "expectedDigest": "fdca2c254802789eafd2d6dc7cc111549876c13bd4903afd31f3a7c420543c19",
+      "desiredDigest": "4cfb8320618da968e72b0d183fd74d846149ce41cfea6e74c0b8d9bfbe06b02c"
+    },
+    {
+      "slug": "imiquimod",
+      "expectedDigest": "b4104235f5acd3843c39e4a15901e8967165b23f52e9064c2386e048c98b4c4b",
+      "desiredDigest": "e6102d2175f7197e3a2d806b55b666230a8b0908619696db1bf05b0bb54c260b"
+    },
+    {
+      "slug": "indapamide",
+      "expectedDigest": "85f5482abfb84e4330700e2881439970789d5bc792e9d6cc13f571e5c1375a77",
+      "desiredDigest": "1b82c2c5acccaf4df0bac4a7b020a15554950afe153a40a5eeaabe7f62762ec5"
+    },
+    {
+      "slug": "indigotindisulfonate",
+      "expectedDigest": "dd78f0d0011137f12129660078a7297e540e937fb0394fc354cb262e9a933b00",
+      "desiredDigest": "d741fbd38b392e8ccb491c6658c6a89e0d8566a4ae51a7573e4ec9a397eacab6"
+    },
+    {
+      "slug": "indium-in-111-oxyquinoline",
+      "expectedDigest": "45f819f078528b931cc498ff97d7a709813dede6cb3973245cc688a353a911da",
+      "desiredDigest": "7cca69dba70cc9649b96c2c6adc3949d7ba6bc77601b169729b32632f82e603e"
+    },
+    {
+      "slug": "indomethacin",
+      "expectedDigest": "ddf3dd6307b8c8398ed6ecd9deb7efe855a08ca37e45acbe430aebce1006b587",
+      "desiredDigest": "8bac8d4c0b0261c15facb4681359ec1150c88997e089efe187f996e6e0084d4e"
+    },
+    {
+      "slug": "infliximab",
+      "expectedDigest": "4b938aa87e9470610390b1a8ecf5c0672db57a53e03b113575146e5ce6f90422",
+      "desiredDigest": "9077b6f9bab288645d7b34d3e3cbf5855ac3ffc9d5b4c19678c6511f6ca0e148"
+    },
+    {
+      "slug": "infliximab-dyyb",
+      "expectedDigest": "15ea7071c8c90fe073389871ed22554d683b45ac3b0a8a49ab93be217c1bb75e",
+      "desiredDigest": "d3c8c628b43721c717acfa80fc6d31956aa038e729ce6c4257d55bcd4ec3ae7d"
+    },
+    {
+      "slug": "insulin-aspart",
+      "expectedDigest": "c848aaee3b598cca6cb8a553b932a4f5971411fc070b60e2fc4aeb0a1c4693a8",
+      "desiredDigest": "604df3defb1ff448c6b470adcc19f5ba0cd387458808d8fc48d72f5b6049853f"
+    },
+    {
+      "slug": "insulin-degludec",
+      "expectedDigest": "16f47c8728834ac61d6304fc9ad09d2932182b8076da276121c171194e8c8002",
+      "desiredDigest": "e1f8ce95a031d52a37511a6d64f603e0e847cdf3b8ceeb38de5d24e87d4a7760"
+    },
+    {
+      "slug": "insulin-detemir",
+      "expectedDigest": "984b8f9eac8c9d09eef616f042a217697de07204e9f4a104a4a22b6df36516bb",
+      "desiredDigest": "61de254bded3e872e27e35e08cbf31e9c907815a003132b1f87e5bb19ec9ee3d"
+    },
+    {
+      "slug": "insulin-human",
+      "expectedDigest": "1001a1ef5a87ecf06ed824582374302d314a90e6d2478371a6faa1daa911d811",
+      "desiredDigest": "180fb29f021327aeb3803a70f1d1366321da8a1c74bc926d4561c0fd7f6f657e"
+    },
+    {
+      "slug": "insulin-lispro",
+      "expectedDigest": "a591411b6e693aaf554b8db06224740b7dff34271c41a745e19d371b9fedb5e0",
+      "desiredDigest": "baf4418d7e3ad556c57feb8c4ad429f3645620415708fc47ea6c1d5ed174d7cd"
+    },
+    {
+      "slug": "insulin-lispro-aabc",
+      "expectedDigest": "89dca956899a7f29438a9e10d05463687a316e243aa532ec52299dc3a701d0b8",
+      "desiredDigest": "26e61c66410c03184f320a8017794cd738466ac046a8e0d3809ecc65a34b1cff"
+    },
+    {
+      "slug": "iodixanol",
+      "expectedDigest": "bbdb0835e086393c3a4262b0782231c4e25e08dc570ae59c96effb5ea8129341",
+      "desiredDigest": "82ed8ab0b813a9aeef448e112e3a41c7e800c01716d5c704376a9a2f8cd112d9"
+    },
+    {
+      "slug": "iohexol",
+      "expectedDigest": "f59d319bf9919022b9fb596107f1e63a86e03c606eb799d5a90dd738f7df6bf3",
+      "desiredDigest": "7abd09d7c3dee3bea4c5e44ecad05b907813395e7a72517d60b1b3c4d0300cef"
+    },
+    {
+      "slug": "iopamidol",
+      "expectedDigest": "522fee636e9fba759f0279faf7be6a3b6d15ccfdc23b96928d6a141ece68f27e",
+      "desiredDigest": "d73c3e7dcf01275bfb8e2d4d0478e206c1146e22d96c1a7f64a25841a063d0a1"
+    },
+    {
+      "slug": "ioversol",
+      "expectedDigest": "d11b2cb4c6931c80937a882e8d912b465345df0f626bff71899ca5ed23a44238",
+      "desiredDigest": "1deb281c2b656d218c85606ccf744fd4f5235ea693a06baba4e7aa52fe3ad5e8"
+    },
+    {
+      "slug": "irbesartan",
+      "expectedDigest": "63e6114a1492c2f5c8f50869af4a6679086dcf01316788887824b770626b242f",
+      "desiredDigest": "236e105bc4d41ed1caf1acfe3d340ced9e35f57bf9214f20d9fab3c2b043497e"
+    },
+    {
+      "slug": "irinotecan",
+      "expectedDigest": "0633d84976fd131fb103bf246d8444f1de29d031c005241cf2d3f21ba1bc119a",
+      "desiredDigest": "ba61f891854d35c3adca73d933c3f0dd9effcf99ac2bc9ea62c3757bb04a4f93"
+    },
+    {
+      "slug": "iron-dextran",
+      "expectedDigest": "4b08663f51d85bb0be05c48682d24de5c7bc5ae66faa27cb1c9543abe90ddfea",
+      "desiredDigest": "7f7a1efe42757c873760e012431e098e49bd472621bb58c9ca47972547d7e96b"
+    },
+    {
+      "slug": "iron-sucrose",
+      "expectedDigest": "a00b9aacd00d9f0018a2e6668bff24764059c5f691a120ff0f6bd835cd4c7431",
+      "desiredDigest": "a35cd15015d0c8cabb9e9d26674eebe9932d95a7332c7c0cbf407fa935cfebfd"
+    },
+    {
+      "slug": "isosorbide-dinitrate",
+      "expectedDigest": "7e0651fc5c613ba14e78565115930c5c70d463de614a2f4db4e2fd23f4f15f88",
+      "desiredDigest": "b353fa3c0bd4fec0e65315b2bb3bd0760d155857dca75a026a3d137ceff02a24"
+    },
+    {
+      "slug": "isosorbide-mononitrate",
+      "expectedDigest": "3163704ffb3b6a76e64f5f72b22c93a72b3bfe22fbbfb1cf3185b720764aa3e9",
+      "desiredDigest": "0c6d3b0f1f8f85f4fcc44cd08b34bad4c9c6218faf320d8d72e94ed023069d0b"
+    },
+    {
+      "slug": "isotretinoin",
+      "expectedDigest": "33e84570865ed1c161b02cd8e8b53b0c303d8e58a936ba771596b90765a16df4",
+      "desiredDigest": "e0af4d90cb6b73733aefa97da9e6fd2e4f842ee81b42da0da0ca5e32005e0c16"
+    },
+    {
+      "slug": "isradipine",
+      "expectedDigest": "4ce0696181eacb48ec6f8b358e151d25b15c18e069d78cdc4f037101c728865b",
+      "desiredDigest": "3589f4ecb568e2870cf310d577ba18b610c7a64c00b42552a4a723da918ab09c"
+    },
+    {
+      "slug": "itraconazole",
+      "expectedDigest": "79daeffe5c09ae40064a134ee23ac1f64ae36f1aafe5a128886bae8e241f5667",
+      "desiredDigest": "e33bddde029dc59f1421c2d30f4216d8b224fb24eb9914f30eb21a91e1d9ce59"
+    },
+    {
+      "slug": "ivabradine",
+      "expectedDigest": "38e23d7d177587d870b6d3b844f4183eb7ee56fec4cad4f2b1c4913b1bcd45dc",
+      "desiredDigest": "8d40179abf90dd209f7d41183a3e994c5c1d1fb93d99af97729f4135252fc0f7"
+    },
+    {
+      "slug": "ivermectin",
+      "expectedDigest": "9c01327779dd3a4731c7ec3992f38853e99b1166fc877670eea7cad0f51c99dc",
+      "desiredDigest": "2d6d7baf38527165a957c507f0a59eaeebfa98d68196fc614e3eda6c97c09540"
+    },
+    {
+      "slug": "ketoconazole",
+      "expectedDigest": "91bf5292376f3adb2137b46d6e0a940d53e834bfae3248e5891d52651fefecd6",
+      "desiredDigest": "81224a7aa23f9673f0b50a7430caeb2d5caf3a5916d52ba560ff02b13c0796a5"
+    },
+    {
+      "slug": "ketoprofen",
+      "expectedDigest": "3266ab5ab1a512d718861f0cde252ecb001407986ee1f410e190fa491165248e",
+      "desiredDigest": "ab53b600d530c30c828b8c026f08052ebe38c029e3fa1c9fb52c9f1e697c61eb"
+    },
+    {
+      "slug": "ketorolac",
+      "expectedDigest": "033a76ec0312500db005ca4175fb571641dee847e7f4c6673f180d3ca124fabd",
+      "desiredDigest": "b7fef43774e8585494e3083b969ebcbd6accaeb3f13b15745bdd35e7ead32b6e"
+    },
+    {
+      "slug": "labetalol",
+      "expectedDigest": "43a66adaa5b627d1e1c2c59807d520baaad31494aa234241d5d715f4222c7e37",
+      "desiredDigest": "31cf243b667fe35c11c9e551649273c4abc09c73a652387710353b71243605ec"
+    },
+    {
+      "slug": "lacosamide",
+      "expectedDigest": "f3a4148889caa7b504ea3dcf90d053cad4c26911bfa32f23b5eb476003ddf814",
+      "desiredDigest": "2ae52a02e75a051195ef422e869c40fba44fef02d54802902bb20ed9aa3092a7"
+    },
+    {
+      "slug": "lamivudine",
+      "expectedDigest": "5145cc6239df612b28a7504d98b3ce3902f02e987eb4027b51bf92d40d5ea003",
+      "desiredDigest": "c97285e0be57ff571338bc2ddd5b0d4e94bf882f480f2b2d399720bda8683746"
+    },
+    {
+      "slug": "lamotrigine",
+      "expectedDigest": "70ebaa53d2b2665e2dd2c69e86cd9870d02e977450aa5cd4b248decb3624b0d9",
+      "desiredDigest": "3f545b6130e3c853ead2e657b56513c4867431138d4e540deba48131bb5ea9ee"
+    },
+    {
+      "slug": "lanreotide",
+      "expectedDigest": "f3279e7fd13ef2cd884a747d0427868f83984271e3fd8e564f7e26d7c26336a8",
+      "desiredDigest": "7eed070b3852baec0da85b3819ac765a1643516a5e530fade1af154821416bed"
+    },
+    {
+      "slug": "lansoprazole",
+      "expectedDigest": "12d876b2a9bb7d0a0e844ead25e6a4d57f1a6921dc08ac2bc810e7244d0e9f70",
+      "desiredDigest": "44f3f2e426d469fb6711bcdce736446f7bdc91f1df71e2f42f434b2b6f9e4aeb"
+    },
+    {
+      "slug": "lanthanum-carbonate",
+      "expectedDigest": "4fad751893bec8ce133caa4b418cebac822228333ca665c11ce69d55f35dacb4",
+      "desiredDigest": "ae290b511a671e621e696f3da522dfa342e31557110c854147577e31f96aee81"
+    },
+    {
+      "slug": "larotrectinib",
+      "expectedDigest": "ec1a479f2d2a73d498ed5e01e6b7619b366f5ac64c62c87d8d0c8ce7403c6933",
+      "desiredDigest": "47a2369f19867ae4c3b2fc494ffc53ea839b2e4ede83bbd4aa27c9a47b81e5d7"
+    },
+    {
+      "slug": "latanoprost",
+      "expectedDigest": "04f50f4e4a44e73e7aa0022f7ddd0b1780e74bc1e97488f63a86f4f15e9723f9",
+      "desiredDigest": "96f93e18bab2a054b896e4b4f39843e3992a82a661ed062d6d0bfc6e204fa6e5"
+    },
+    {
+      "slug": "leflunomide",
+      "expectedDigest": "7dac1efe10d71b7c5c9075cd171fea38dbb49957fe54cac09c3180aeb2688f8a",
+      "desiredDigest": "1be77fff884f17289a707a0d964910da5206023a187f62250792a1e89e649350"
+    },
+    {
+      "slug": "lenalidomide",
+      "expectedDigest": "1006ff380d06dcea506ca349743bb603a78091888c38b60e3117f7e2e2c165a0",
+      "desiredDigest": "ff2350b40aa6cd476ac1eb92699e94ead41d27c4fe1c94bc7dcf2fa128f328d0"
+    },
+    {
+      "slug": "letrozole",
+      "expectedDigest": "63c721352c8678f87fd18ca42abe9cec1a492a71007e9569d4c7b925d72a272a",
+      "desiredDigest": "62c31f8e5a647b7982a062095966705a62425928fa6819c271443c10bb3454b9"
+    },
+    {
+      "slug": "leucovorin",
+      "expectedDigest": "b684019722cf00a56cc2f84e9daa3fd608bf98c5e8c409a039be4a105f21b90d",
+      "desiredDigest": "342d9ea8dd276113d8cea98ff33f302aba6253697e3f47f668de0d3ce523e1f9"
+    },
+    {
+      "slug": "leuprolide",
+      "expectedDigest": "acebc1a94abe74c2d4140d67729f4010c7f4b96c59c5641a39761c0e76766745",
+      "desiredDigest": "a6ca03c4d90b6cfcefd904dd5c057158caee66b3a2596d2e3e64bbbcaa4b7401"
+    },
+    {
+      "slug": "levetiracetam",
+      "expectedDigest": "d22c056a6773812757e78ac27e5888d1db09f0095f0be9be0938581842f0d6a0",
+      "desiredDigest": "977b8d8bd903124b29d44650cef310e68248fabfe11e1e8a03e9b8219bcacc5f"
+    },
+    {
+      "slug": "levocarnitine",
+      "expectedDigest": "eb5645130f3ad40a4a56e46593421937f19f434f8b5d711d66c21ec2a2b892bf",
+      "desiredDigest": "cabac453167b13214d34894391871f7408ecfd846e73b6db282b2ffa69064967"
+    },
+    {
+      "slug": "levodopa",
+      "expectedDigest": "a8d9f268bd41e8ffce4f8005af7a5429f3598f7f8b27d8c8413b2ed749fba3db",
+      "desiredDigest": "70599ec727600a803dd3df0ee8d63dac670ee4018b27f691180a754f75b92771"
+    },
+    {
+      "slug": "levofloxacin",
+      "expectedDigest": "85b8b6e862cacf7c990d940f1b43170d4f2765188ed479281fa10a9ef97730fc",
+      "desiredDigest": "fd4cb9cb8bee5dfc1abab96bca6f38aeb251bd16137d9a93c804384e9413aaa9"
+    },
+    {
+      "slug": "levoleucovorin",
+      "expectedDigest": "292d8ecad7dfb036dcc181b04e84acbb2f001bb09f0c401d7b847628726f29bf",
+      "desiredDigest": "1cf7e462eb28bceea5c52a13a8547e4587ee6b9cc28f3629f075f65dac1de903"
+    },
+    {
+      "slug": "levonorgestrel",
+      "expectedDigest": "6a09b7532832ca2c6c8e1ab6b4afb64335155af7075f542249a7dbd392bcc7c5",
+      "desiredDigest": "b170a5e818afef6476f2314b8ca052329efdd280fea7986319594e091c63a6c0"
+    },
+    {
+      "slug": "levorphanol",
+      "expectedDigest": "2ed123d46bf25e5b7292231e65339be6c6aacc92eb5312d8cd1b0fb49ec9d603",
+      "desiredDigest": "659f405c848e82070ecc2b00b7913cf6f445acbb6ad632071efa3ec7649c31ac"
+    },
+    {
+      "slug": "levothyroxine",
+      "expectedDigest": "a76fdb4466dd663ca61fae5203ded7ac1592bcc0527cf4c2dbbf0c2d11a72b2b",
+      "desiredDigest": "9007fb2045431a6ce5cf8e7ed85d25c8a0a0c15f77442f850f9ba6c7c7eb766f"
+    },
+    {
+      "slug": "lidocaine",
+      "expectedDigest": "803d159ad0173c1ef02d4d6811d2354957192ad7e2bac93783de0eb800f2773a",
+      "desiredDigest": "98cda04d07c84d82b2919914ce82d6952576606bf69d6b57d86c8fb614fef897"
+    },
+    {
+      "slug": "linagliptin",
+      "expectedDigest": "c6e914d61cb3c3aed4d7552f1a9a032b4aab70e421d497931987348ee75a074a",
+      "desiredDigest": "bf72932bc06736486cdd6402973e48de245f82f6532e12828eb46ac0d281c419"
+    },
+    {
+      "slug": "lincomycin",
+      "expectedDigest": "8bb4dece03ac630b7e691a1df525631df56037e89829145f718bbd4a293dea66",
+      "desiredDigest": "40a907f72717178b3446324dd16f42d6376748baf71e57b8dc0f3041ee95d46d"
+    },
+    {
+      "slug": "linezolid",
+      "expectedDigest": "ec41c8ab9e735be4c6a44682fe20d82fc4465344bfce12ec27eb3764b62d862f",
+      "desiredDigest": "22223f20704bc70bed5f1562e2b9b369853a5bb11e0873d405755c9e040aafb7"
+    },
+    {
+      "slug": "liothyronine",
+      "expectedDigest": "da34a888f8cf1dc3152c3673465abb999c87f31be57e252ae6861a31ba19b6c6",
+      "desiredDigest": "bf83ffd021720fa6907b9d62240030530fca5f3bd9e3f12b901d2a3c1bee9b5f"
+    },
+    {
+      "slug": "liraglutide",
+      "expectedDigest": "a41d6ac3850444a98ae2d617dcfc57a271505cd01edaa46abdc2095ca3261096",
+      "desiredDigest": "f574f682355ef1af3bb3c8b74c69ceeb5ff6561f0c073c484659200c9d7a255a"
+    },
+    {
+      "slug": "lisdexamfetamine",
+      "expectedDigest": "8bc16751dd59cbc4e4c34383c6dd026b02c901162d92254e3523122e37e1ef86",
+      "desiredDigest": "d2d3ccdeca107c97f1e8d9a97162912d7bb9c49a9e63d7f56dfd48f1398d0132"
+    },
+    {
+      "slug": "lisinopril",
+      "expectedDigest": "f36adccaf198fe3469d29db49638395549a1343d5788a1e39d8d472aa65e3926",
+      "desiredDigest": "0401b5ed9b02d4c954e02c288fea97b7518f7f38e1bb712c4f170d235deaea79"
+    },
+    {
+      "slug": "lithium",
+      "expectedDigest": "97b0817c5c966268bdc7da69edee7665cf687b87c7c7a8bade5e4ecbb51386d3",
+      "desiredDigest": "73d2b60986f0f2f435903a4f3f6c075496244583a33454d7c769a980872d3791"
+    },
+    {
+      "slug": "lithium-carbonate",
+      "expectedDigest": "af519b048fee3a6a473986849d6f734d2a0b05694b8a07fab60ba412ca8c0fb9",
+      "desiredDigest": "4fc117bf1810c580a9ccacf6bec60d341d9db5ef999a0d5d49a733d705a53af5"
+    },
+    {
+      "slug": "lofexidine",
+      "expectedDigest": "2cc5d4cb2b754ac6937c326bc691bd8fb9cf05ac3bd302c9a517dfc6fac0d6c0",
+      "desiredDigest": "90db13d01f3a7e74beb16e7cfe2938e5031d1e39348e36297ab45a59fc369a06"
+    },
+    {
+      "slug": "lomitapide",
+      "expectedDigest": "793b9a470ea427aaaced9f674b0c7ae944dcb80117bef6d171d12d248485ec6e",
+      "desiredDigest": "d17c1dbb2be7d200aacc19d9fecb147bb0b3e1abaa5f8b8cd1d9aa58e22d64fb"
+    },
+    {
+      "slug": "lomustine",
+      "expectedDigest": "b37a05467df71749bdaaea9d5d800661647e7f114e25392d215d7d3b5b250a22",
+      "desiredDigest": "37891f005f609b4f9b7daf3c4021168bb949a279908572aa5a5a835c0db5709f"
+    },
+    {
+      "slug": "loperamide",
+      "expectedDigest": "0c720c8122730d215f1b9339860677ffe2e9069549926c1b421238bd4dbf4424",
+      "desiredDigest": "f7e14091f320e6d26901a078f7bcbdfc2ba4c158274f139d33bf8b6e5dcbbd82"
+    },
+    {
+      "slug": "lorazepam",
+      "expectedDigest": "8321712c5d8020d3d3c0e593c3af5754e99ea4bdc34f4669d2ea2975b5511fa4",
+      "desiredDigest": "702fa532cf1868ef6dec7757cbbf02c8742338eafca3bc2345613e4234837ad3"
+    },
+    {
+      "slug": "lorlatinib",
+      "expectedDigest": "2480ec797f5e93ca80ffa74470ceb637f1f19254ae7a6538cd27582ee0a37301",
+      "desiredDigest": "e3ace2c9ad3ce458dcbd6335055626fe823a42284d57e47d5b81d9a3d2ef13d7"
+    },
+    {
+      "slug": "losartan",
+      "expectedDigest": "0a9469cfcc60bdbcd65072bfb4637f7dbf1362976e468dd387ee44374c0a966a",
+      "desiredDigest": "0621eb416c670e88c1dec7c84b2f6a4972254eaecce6aaea78a452bff4276b84"
+    },
+    {
+      "slug": "lovastatin",
+      "expectedDigest": "aa5ac9048dc08718f5c7489ac487dfea7ac99368e0d1f3c817f3278649a4cac3",
+      "desiredDigest": "16803e4380a4214407b38e6c4b7e48042b3647172cf35fd23830cebb6c9cb02a"
+    },
+    {
+      "slug": "lubiprostone",
+      "expectedDigest": "f66355d37e5e87336bb31b48d3a7baa610b66673eb2ab2247a8585c933a2336f",
+      "desiredDigest": "eadabad6435a450e5503bbfad0e5906a25436a6e2d80f2c4c7448b66d8927995"
+    },
+    {
+      "slug": "luliconazole",
+      "expectedDigest": "1117ad3166ef56c6e18b94508ab4a68da1f5c12d1c3470d145ec32569731d94f",
+      "desiredDigest": "0abbc63ebab9746377b77727737242c3e728c915bb81687460558ec8127eca4a"
+    },
+    {
+      "slug": "lusutrombopag",
+      "expectedDigest": "d13ad751260a5d6f0b2626126f0f60dd66cbf492d0d0374dd83915f678e002d9",
+      "desiredDigest": "892793edd82bb6e9463980b0202df0dbc76361fd71d3925a8c2cb25758d7d6f3"
+    },
+    {
+      "slug": "macimorelin",
+      "expectedDigest": "0a30cee134ab0b9e55acf2599f0c4b55d7f50a259c3472186a3a6b2c247dbd43",
+      "desiredDigest": "4367768474972a19ba9011100ff471f51e0f97336c3deec20c82da38e817cb02"
+    },
+    {
+      "slug": "macitentan",
+      "expectedDigest": "a44141c4a4f5fd8df29cb5337579e4fab4068c431ad329003da17a79ce811a1d",
+      "desiredDigest": "edcf0c3fa83f537d0c2a79d0dc4a2d36a56682f36e4d80e126b57b5415d4ee2f"
+    },
+    {
+      "slug": "magnesium",
+      "expectedDigest": "c70faf6ed49c61685795077d80f4d0d2cb0a900578664a76471943021970a012",
+      "desiredDigest": "a3774a20904946e38bed9c4eee3b7be00af2181e2483bbe5396276753dabc121"
+    },
+    {
+      "slug": "mannitol",
+      "expectedDigest": "f85015667d29c09247deb479f0ce8db5ca2a23e1a0e50c8e840e961c9fd3dfe3",
+      "desiredDigest": "b7adb082c1b1b6f5750070f6ce6e2b5b23fdbc916eefa270006d5b15fc8ab315"
+    },
+    {
+      "slug": "maraviroc",
+      "expectedDigest": "566192612107e4fdab6d2fdbb058b34d7662d9c609be7ea57bbebba0cb893865",
+      "desiredDigest": "5a1ac808f2321a7c96b4c9c746ca474e022709b7c91d209b4838791761479aae"
+    },
+    {
+      "slug": "margetuximab-cmkb",
+      "expectedDigest": "6b8f63749495fa18182697c1551edb3566c5350e48457311e365b8705b087dab",
+      "desiredDigest": "a5d38f6d321ea38a468a9ddeb021ba307c382babeae4bd692ba369a30f8cbbdb"
+    },
+    {
+      "slug": "meclizine",
+      "expectedDigest": "04c553698814cb86d6631764c558c7cc41e98edeb394eb54e8f111fa40bf3f43",
+      "desiredDigest": "1e07b02d5e523e46822ec98afe5d00232d41056922ff254f585ce6c90b94c954"
+    },
+    {
+      "slug": "medroxyprogesterone",
+      "expectedDigest": "e900482c93b83847c982aaa501a6ce99e1ad97a6617575142f2504e2b559ad4a",
+      "desiredDigest": "48763e71d148278362077577968ded4b2f052c7a946517ab673c36ae12dc1914"
+    },
+    {
+      "slug": "mefenamic-acid",
+      "expectedDigest": "5843b4affc20b48024f720e69bc131078cc6b29662e65723007a085725a15f02",
+      "desiredDigest": "5ea24fd9e02a00d83a695f95f7ab965e3d3aec10f1d74770d41075be571b825d"
+    },
+    {
+      "slug": "mefloquine",
+      "expectedDigest": "4ae84c89bfce3874437474d088c03f6021cbbfac5cfcfd45e38715b3b6da6e93",
+      "desiredDigest": "a8f83c16284ec7f59ea26cc3579f5ded6942fe539af087bae45f9b75014e5a2e"
+    },
+    {
+      "slug": "megestrol",
+      "expectedDigest": "df5e5e800158d653bbaf15074f8bbea6aba199ace9f94d5d967683957f9f356e",
+      "desiredDigest": "cfa9a10188b4035f893052f46efeca283894ddf8c3309345c6263ff9b5193040"
+    },
+    {
+      "slug": "meloxicam",
+      "expectedDigest": "e9e3fb99a4724e874aaa4a5d9043e98b41e389a64b9a240bd29e828daff2803d",
+      "desiredDigest": "52b4d39a57affcbb96fe8a60fabee1773c349499eb43b1989816dc5e83b27c3e"
+    },
+    {
+      "slug": "melphalan",
+      "expectedDigest": "ed51da638c644508de895d8c798953826a6b4ebd8abbd228f0a628aaa05cb33d",
+      "desiredDigest": "11e53a6986cdbbb257e969dfa5f28b6e30ec2fabf18bd568c3cbfd33357e4985"
+    },
+    {
+      "slug": "memantine",
+      "expectedDigest": "02c300340a30617265e63f5f8423116c26f16f79b4c6b7b478b03d415152a76c",
+      "desiredDigest": "7dddaf0e394ceaba87911b3d16d24b98e05cd17bd19e2eeafdfff6fefefc0ec0"
+    },
+    {
+      "slug": "meperidine",
+      "expectedDigest": "c9d45225ca177cebb64c3117f72302dbf94d60297cb8a2e2431c323d04c80bd1",
+      "desiredDigest": "6a28f39b5f6350df136ae536c8685b4735e9c66b44816c17a1cb0263feeb91d1"
+    },
+    {
+      "slug": "mercaptopurine",
+      "expectedDigest": "d7f1ec4c1999330ec7e2df1edbf605831dc0777d5020aebdf22feb9c595ccd44",
+      "desiredDigest": "019712272259e809d6f8160705a47451e39696785eb60476b2399eb3a266465e"
+    },
+    {
+      "slug": "meropenem",
+      "expectedDigest": "af2f07a95d1a4fb178f5079466e9118c8224ec51fc13d94a83c294f4ef4dfd6e",
+      "desiredDigest": "adbc53be91d36e2860a3fde2eb2232b98801c47fb1bb2e37acb35eac143bb85f"
+    },
+    {
+      "slug": "mesalamine",
+      "expectedDigest": "0399d10615870f747a97aca51188fa1c2a3ad1d255a36d7d8bf57c23d45d8d07",
+      "desiredDigest": "73d33a593817261348928707dbd7bc9783d2eea564d5e0f16b9b422b00026bd7"
+    },
+    {
+      "slug": "mesna",
+      "expectedDigest": "6bd8e02f2c0182f0548b0922acba02f598ec6a05e855d797041aa4581e54ded1",
+      "desiredDigest": "350e2956cbc75d1566633937336d51de56b428d41f163761116e0e208d6072d1"
+    },
+    {
+      "slug": "metaxalone",
+      "expectedDigest": "89b93f155f4ec90c3c138f546311638040c3d5b7477b5145e6e99365f74acfee",
+      "desiredDigest": "ebb63e2b061b5e3f413dc4f854e0b6037f8c847d61fe1467de51b37a6e83b333"
+    },
+    {
+      "slug": "metformin",
+      "expectedDigest": "56437c96c111b54b285cbfc67e343316cf062901c259a707579db51a08a248f5",
+      "desiredDigest": "76d696b7a37492c9c0513f89fea2ced7d04946454efd2a84817bc2aa5034dc0f"
+    },
+    {
+      "slug": "methadone",
+      "expectedDigest": "f31e9d4665b336b4d12744884573a954dfe6a0446189d8a927595c87a4e1232b",
+      "desiredDigest": "b78d79e41f24debad01fdb998adbe9d69f6f32933588ad8649298ef579c5de58"
+    },
+    {
+      "slug": "methamphetamine",
+      "expectedDigest": "ffcfb804218f19f2fdf768368fdb7397c3213e365451bbe55e32bc728474f27b",
+      "desiredDigest": "5ca58abb4bf1ac50a4ec92175b414d472c4fda70b4e87f29e2cba405c166dd84"
+    },
+    {
+      "slug": "methazolamide",
+      "expectedDigest": "3d1f47cb99de2fff927e3ce746a68789e24cbda0a266cddcb5c8fa52a46359eb",
+      "desiredDigest": "8a98988ec9257086f21a49466d50ba40d0879463b1e261062f5b5294d814dbfa"
+    },
+    {
+      "slug": "methocarbamol",
+      "expectedDigest": "8bc496b80aeef717d25eaa240a8f807bee12fbdc90b2f3ef993c8f96c9dcf5d3",
+      "desiredDigest": "cdd05a5535dd197c66590d303d17747f20699b57c3675a3b01722bd7d19d1c66"
+    },
+    {
+      "slug": "methohexital",
+      "expectedDigest": "69bbb810197f96e33af2f54b412a74c569daa5e25bbd7beda61f1da39919e1c2",
+      "desiredDigest": "1ff7e3b2b6ecc16057c229d89df0200f9e2f22ec618f5e4afe6b52f1972c1164"
+    },
+    {
+      "slug": "methotrexate",
+      "expectedDigest": "83959290aaf1a9096af15f9564474bc4d7be1b10941624db9350506451bed19b",
+      "desiredDigest": "ac9407b1ab858f8eb584e02c8095e9e29018317b73fea9c51f62d3bc39e7e27a"
+    },
+    {
+      "slug": "methylene-blue",
+      "expectedDigest": "486096a58e76b060d25ec129785d8c6a429047bcdf6afd5cbb0dc245c7fbec18",
+      "desiredDigest": "d36c9202d936d150f343ef0ecfce8105563f3ba7c7ec7e21c31c7ebd63593de3"
+    },
+    {
+      "slug": "methylergonovine",
+      "expectedDigest": "e39309ee769ae21c9465def77907d4692514efb78c4f5622ae629ca6590d6779",
+      "desiredDigest": "fb38fe55531e081d6316a65cd16e92907043226b5d59ccdfb302ea66f817f888"
+    },
+    {
+      "slug": "methylphenidate",
+      "expectedDigest": "bd10cfe3487953c3fdbf52a48d2bb0bf0a00b840fbb04eabbea6fa1c12a4e5d7",
+      "desiredDigest": "e2cdd317476656051873500c194196a8f79abd5c75cab274eb1bbada01d95408"
+    },
+    {
+      "slug": "metoclopramide",
+      "expectedDigest": "393e44759fd1df9b87ce04cf373d7ce0132ec2d739b240933fc582166bef1ead",
+      "desiredDigest": "ad59e4692b17d16896de14492027ef0da65e42343eb5a6183c7eaf8f79f5208d"
+    },
+    {
+      "slug": "metoprolol",
+      "expectedDigest": "1ed3a176011e04d219bf593d0f18fe01a892683757721cb67e436ee7df560478",
+      "desiredDigest": "3503f205a081cb46b9faeb36d0a40e5410e687ccc9b00a41ec3212be472144ca"
+    },
+    {
+      "slug": "metronidazole",
+      "expectedDigest": "e9356557ed508e35cc676ab0409e7f5093477753191fba1bbf1c50802c86d09f",
+      "desiredDigest": "a0eb3220310fdd234da988ea7c3f01a4b49d743e1aab659c4cd8fca491b1b000"
+    },
+    {
+      "slug": "metyrapone",
+      "expectedDigest": "7268391173e2c5ec31b57c07090629c15e42ddf65986513cc9ff16d6aa4ad3c8",
+      "desiredDigest": "3981a4f823cf82ca35a9dbb67097e925a924545822758f257abee6d6bccde996"
+    },
+    {
+      "slug": "mexiletine",
+      "expectedDigest": "9aa204db5c0a723486f1821a85bd48a5c3cecf694074f1f9ffc5f51a493367d2",
+      "desiredDigest": "8f5257b204a67d380b134f38160347bebd524c2ea98eb0c69f5d479aaba0e5df"
+    },
+    {
+      "slug": "micafungin",
+      "expectedDigest": "b8d4ea67302e636c6bfab0256d736b064d09990787ae4bed687aa69f4252afda",
+      "desiredDigest": "2026af338420b4a264dfe5dcbf1c907581018bcc5ad550c435f6f17e70570c4f"
+    },
+    {
+      "slug": "midazolam",
+      "expectedDigest": "ad2f0108e8c40aa714d24fd970c6a7fc23d1267ef40906af3338a3bc5ceb6211",
+      "desiredDigest": "8803025856ddb413ab3ebe15cbd1eecf717606298392490917d203aaa3f68bfa"
+    },
+    {
+      "slug": "midodrine",
+      "expectedDigest": "cc6f384f9e331307abdbf96908d7e4ad2b39fe8932c02d3e8e23646eeb44207d",
+      "desiredDigest": "4cd7aa1e3cfab032faf9dc1032fb51218038632bc37781db880f5c3b40526a48"
+    },
+    {
+      "slug": "mifepristone",
+      "expectedDigest": "075a0f76dd5234dac4705c4d7831b9bfc2fb523e40462c9bf8b73833453f5dd0",
+      "desiredDigest": "c348e0eef06ca960a0ef35e2b86e44fc89e58b98335ab38bed20849d028477ca"
+    },
+    {
+      "slug": "miglitol",
+      "expectedDigest": "90752877d58adcfb6aa6173baa98a9c10461a5e901ae99ed3b1f770bebe151e9",
+      "desiredDigest": "03859ae6025b546c80eb6fb134f105e8377fa3d28e9bad22391284d3f394f2f8"
+    },
+    {
+      "slug": "miglustat",
+      "expectedDigest": "22abd993971a79797cdfe2b7922c8e232c7fa95f048be8298bb3e706f1ac21e4",
+      "desiredDigest": "3658d55566cca4e13c0fdabc29b38461b6c57013f7260613b7d8e5df83c1e94e"
+    },
+    {
+      "slug": "milnacipran",
+      "expectedDigest": "70cbfda6ec08a7ca77808f802eaa514cf54b0e9abc69ef28fa3406099e79332c",
+      "desiredDigest": "cc23ddff5e2c9dbea5dc7b6404476fcef03235ee5ae4825b8d40bdf249b8b813"
+    },
+    {
+      "slug": "minocycline",
+      "expectedDigest": "6cbbd765d7c8e7090b003c949c6e8e422bb5439fa24fb75266a3debb9fc2f864",
+      "desiredDigest": "2d26d7fc1d199c778a4cc9d549f27c4924a91ac20907b491a1d216a2ae2e162d"
+    },
+    {
+      "slug": "minoxidil",
+      "expectedDigest": "8b644834e9756075188b19f2e428ccc1713b9efea65bf1d236a3a72e61ca1665",
+      "desiredDigest": "7f29e0ac4de5c674947745d1e3a5136894265bf72bf34ebe68318e989b7551fa"
+    },
+    {
+      "slug": "mirabegron",
+      "expectedDigest": "059a97376024aa539ac9949039f347dd812c456de3adad93ead59fb62a0e25c3",
+      "desiredDigest": "87029e4613ff8871b754b0bb6c2f2f2a581fdb38489fa63b359ba90ce64dfc77"
+    },
+    {
+      "slug": "mirtazapine",
+      "expectedDigest": "287fd74d84393c7f17e7026724fe79fe1c42c419590e057fc6d5eb5ecd33eed2",
+      "desiredDigest": "0949ae1a47e9161e676a816e804e32dd9938bb9f45b39b4bea83a2b0244163e9"
+    },
+    {
+      "slug": "misoprostol",
+      "expectedDigest": "25a6ea5f5b893b9f5addcfd7f305d448f6b8582bcb134847c1cee9d3d6adf74d",
+      "desiredDigest": "143f089dc6d4d493833dc189c55364837f033da1eba191556f5039c9ecb28c62"
+    },
+    {
+      "slug": "mitapivat",
+      "expectedDigest": "b79c466498ca4e177c54bb0d8d3090bd03cb8e920cd8848c9b8a7f6c67de35e1",
+      "desiredDigest": "a8ac8c0f2cd873fb2f7dbe793aba2b13a9f6be1b3b4c7b84a70c1519c6addc81"
+    },
+    {
+      "slug": "mitotane",
+      "expectedDigest": "c104a510690014e4eb60e3f35bb8817339531abd946d63c6e016b370988f0b78",
+      "desiredDigest": "f428b3dd08d885773eeca2c7f2f47fcbc15391289e372f82a2c76873de56f992"
+    },
+    {
+      "slug": "mitoxantrone",
+      "expectedDigest": "bbe5a709c51dd8eb1e43fe93426fbbbbf76b30ccd90a38e02c73016bb0104475",
+      "desiredDigest": "051eeb8434e7dcb9c76f5a4b4631d0656fb902532ff3d97325c63d638dd7bbf4"
+    },
+    {
+      "slug": "modafinil",
+      "expectedDigest": "6e7b92a93699c009906b66fea7b420c23bf930ea55dc8e7bb1cf8fb1ab1329f5",
+      "desiredDigest": "1e67a538c15eb21524dc47a08453bf9287c788cafc65dfba3095f37d0df63ac4"
+    },
+    {
+      "slug": "moexipril",
+      "expectedDigest": "af03289635b2b150c1d33bea5d11038e9ffde1c87585b704740d9c7369cb9a33",
+      "desiredDigest": "53a912d71c62792c81208c40f9f9690abb6a3331a1e5ed33965a49437f4c7d7c"
+    },
+    {
+      "slug": "montelukast",
+      "expectedDigest": "d18fb2641c31ff3a67efe75f1b460ca0713280735d71eef76cffdf02bd4d7f6b",
+      "desiredDigest": "de2b219f939426a5302b4ce874f5e1e7fa87ef916424f6f04db20d095d3dc31f"
+    },
+    {
+      "slug": "morphine",
+      "expectedDigest": "20a7e6875349a657b5e2a0d8bf814dab91c62d64fa73e7ad52ee13c16819de61",
+      "desiredDigest": "a6e08a9dc712318444a2ca067bd5b7f34689eabd72ef099f9fe96b01db5babfa"
+    },
+    {
+      "slug": "motixafortide",
+      "expectedDigest": "575cb0b633279acf1abf50d678e528c80251228e21e84974945e6b0b5148f230",
+      "desiredDigest": "e5b297fd82ad5dbf7b720b87d582da7bbe7bb620cc72e8fe473390158321c260"
+    },
+    {
+      "slug": "moxifloxacin",
+      "expectedDigest": "5a50ef13cba1228845f25bb070dc697445e585ffc265ee53070968641dc69fd3",
+      "desiredDigest": "8e37ca7e25b8bdfbe440cea8b6ec0d7635804bff24f7362b81c98ccd1d5de4f1"
+    },
+    {
+      "slug": "mycophenolate-mofetil",
+      "expectedDigest": "88c10ecfbe902101dd82e1da219e347ff2007b5d15e37ce6b68b4e062f94d054",
+      "desiredDigest": "e5479aa26ff07dd95c1a9f98bb748df1060d3be40c0254c9adf3db0a8c496833"
+    },
+    {
+      "slug": "mycophenolic-acid",
+      "expectedDigest": "db1462f04278814c956fe6c20caada6d8e7c437c439e06eb2f5e8309956a040c",
+      "desiredDigest": "6657c5a6113c98e48606f150a87361026da7169d5674c44733c1f3bf769fe946"
+    },
+    {
+      "slug": "nabumetone",
+      "expectedDigest": "2f2b9a81ec1f7c0b660b82716c1ce45484e0df5cfb947310c322b8cf79dbaa1a",
+      "desiredDigest": "f7b4b38451c76a79f85a1c447e3d6445fd66284e55133eec747d23f5c3e9e99d"
+    },
+    {
+      "slug": "nadolol",
+      "expectedDigest": "c7a5732e40676d0420f829261df2ecb7720d2e8fb1c251c54ef2e3f69b320804",
+      "desiredDigest": "fff5abd0fe09da66a250ba18de5345f6f3bbde2534d788561a95473859489d96"
+    },
+    {
+      "slug": "nafcillin",
+      "expectedDigest": "9e0beb191ff54c7e5b403ed9c4e8109f64225c74daf94b4e41d97087d15b8d69",
+      "desiredDigest": "3f571f29f64b8b3c33710c8a66f7182ef6d04afb16657c106c43bbd5252baeb1"
+    },
+    {
+      "slug": "naftifine",
+      "expectedDigest": "dfd696fc9edaf2da1a13aaf441317bb93b93143b8eb8655e270e5a6122978848",
+      "desiredDigest": "c39f47e455ab84b92b06e75c343200b38060168eee0595ceffb1c362280e09c2"
+    },
+    {
+      "slug": "nalbuphine",
+      "expectedDigest": "c0ad748c0dcc85ab76316eda93e2d3fd0b693bf33917dc256d59099ffa132e27",
+      "desiredDigest": "2c57935be85a2f9a1e2e4465ff339e772579e49e2b5880314807da7d89134fe3"
+    },
+    {
+      "slug": "nalmefene",
+      "expectedDigest": "b3b21587625ec2622d1f79dc16b3593aa81607418614f3dc25ef6750d2270617",
+      "desiredDigest": "3a7ff4519dce2c5207a944074635c17fa77a454d8d9e52009c35e93c9d0e0984"
+    },
+    {
+      "slug": "naloxone",
+      "expectedDigest": "752e5f80326978716151ed5f4f91f628a5648a87452807412f91ff4ab78ec95b",
+      "desiredDigest": "9ef4ad5f924470859483ca7ffff78d4e1576954ddf69b7721da6388e4e11fa4c"
+    },
+    {
+      "slug": "naltrexone",
+      "expectedDigest": "3e28d8686f3ff2eb9585d52fb14d0c7651f6b91cecb6df55c47d081a8db9a5b0",
+      "desiredDigest": "ac312d74fc4655c33d0527b184417328c67644ed26d5aee6b61c7a819a3b29cc"
+    },
+    {
+      "slug": "naproxen",
+      "expectedDigest": "716b15c70546198047fd4b790157c21f465f7a39ecb87116ddedd5199e9f855e",
+      "desiredDigest": "37ef8e5ca99ecf7adaa638c813257f33bd842ad408d965e504527d6652cf88c7"
+    },
+    {
+      "slug": "naratriptan",
+      "expectedDigest": "84791bfc166d38ebc23c884fa7c5b6a4d0ceb2414f67fdc72587381b143ead62",
+      "desiredDigest": "c1ebb5358c34c8802f516730336c5bfc203693bbb0b7add8d0d7256dc7bb296e"
+    },
+    {
+      "slug": "nateglinide",
+      "expectedDigest": "b4f525e1749c91fdc7886aaa121e5512d91b193493ef826774885f95502863e7",
+      "desiredDigest": "0daa40e19068ad169ae13d363b12b9f5aa94cb794feaaefeb80414b89574878f"
+    },
+    {
+      "slug": "nebivolol",
+      "expectedDigest": "9bcc1e1a2e25c243932178c7314e51cd07d5889665f2c8577ed2bca2cb538118",
+      "desiredDigest": "232f30bbbf8c68ae7956e9774f9d618b17d9bba8051bb8e2b068002043de3d9a"
+    },
+    {
+      "slug": "nefazodone",
+      "expectedDigest": "8da1a7923b3766dc18d9c7a3a0c9adbc6543d1a2cf0abf2499054469036c75ad",
+      "desiredDigest": "9276f7ceb3b2bae5aa8fce82c5b29d10d2be13faffba9eccb2eb569b35f5eb86"
+    },
+    {
+      "slug": "nelarabine",
+      "expectedDigest": "5a5060c0a01e6faacd7980af2002081c48410e70f3c66aea9592a48a91c75b21",
+      "desiredDigest": "77bfcb2fc091436ab25680cbd0c46f5a8e74524a4da1205bbc131da765743207"
+    },
+    {
+      "slug": "neostigmine-methylsulfate",
+      "expectedDigest": "54a16598b5ac29a97518fce0f02934903b4bc66685207d11c6713768c3b4fe2c",
+      "desiredDigest": "533f415eac58887ccf7dfc241048cf9d65dd7d0f39414c15ebedad8e4c971c4d"
+    },
+    {
+      "slug": "nevirapine",
+      "expectedDigest": "3e1f48b6ae1f4ec0840fe6dec3d697a460c0acd6d2b89483f6a8e32ab4d21f86",
+      "desiredDigest": "7ef79f67f37df5e8a014adba6fa0c2378e9b026ea2497784c0700e880e968422"
+    },
+    {
+      "slug": "niacin",
+      "expectedDigest": "67115b3f6ac1c6b95a273d430f9a36e45d3a36cae472d9cd3b4d8e5be732b051",
+      "desiredDigest": "da4c095b9a2a0780c23c713831963ee8964bfc54455530bf38cd9b3d36582761"
+    },
+    {
+      "slug": "nicardipine",
+      "expectedDigest": "0454ce0d8192e3101f5d42bc1aea71198477431c821f9a2c40ee528580998deb",
+      "desiredDigest": "f31feb03f2648603cc056fb1bc231fcd550bffb9d1fc0c9d5bfb5f813e282629"
+    },
+    {
+      "slug": "nifedipine",
+      "expectedDigest": "b786e21a66138defbfdc24c0df86eb52057130dc0c7aa8215b04affe106ddd16",
+      "desiredDigest": "b0e79f34d9389a98a0df330d2d51345bc6af3fbcd125318935c0da07aafe4aa2"
+    },
+    {
+      "slug": "nilotinib",
+      "expectedDigest": "0ef40d9f102f6f9a2f7edeeb847446180c2a5dae6f668348081ec865421ea0bf",
+      "desiredDigest": "0bd1c49017aa14dea5a56ed6864ab86b7113b6037d06a775eef97cbca136d3b6"
+    },
+    {
+      "slug": "nimodipine",
+      "expectedDigest": "0128faa6023a8b6d5bc99e6fc03eef384411304b7549c774e7129d639a6fcdae",
+      "desiredDigest": "9dcc672ae7c797c85c37723b67d923ef4bee17fc8b71a2028ad5c02c8e7c2a50"
+    },
+    {
+      "slug": "nintedanib",
+      "expectedDigest": "102a4cb7b4c072e705db4a921a60d12350bfcdbd5555746d5a6072ea20b96c4d",
+      "desiredDigest": "2bd9653135c3780f1427fe0b33e7813eb7eff9a974bc3969b14023e1e2c1f483"
+    },
+    {
+      "slug": "nisoldipine",
+      "expectedDigest": "f2c56e46b523a69afe51dedc2cc4f1ba14eb4b88615cc95e843fe6a1f55bcb5a",
+      "desiredDigest": "4f4bad85ec73e43ed68dce20b7ecc3ee39b459ce4bd59e770f5f38292fba6152"
+    },
+    {
+      "slug": "nitazoxanide",
+      "expectedDigest": "a60336a77bf2404ab54fd5b3e857a0cdac7982b7c0a8b2d8a74dca05f5b5dbe6",
+      "desiredDigest": "5683493b23405674ee1a659f5f49d60fc60cdb376329bf14a261afe196332873"
+    },
+    {
+      "slug": "nitisinone",
+      "expectedDigest": "147cdb5c133e0e90ccb21af2da908dc097bd290ca4dbe7b5bfa233d976eda26e",
+      "desiredDigest": "611197dbb9a56eac7c89ddedd9fbbfda0846e13fd6393484355dc483a423fc15"
+    },
+    {
+      "slug": "nitrofurantoin",
+      "expectedDigest": "f44d48412cc17e8af9da6e1e16ce598bef170988c6961f44c5f80bc18878adf7",
+      "desiredDigest": "f021b661cdfb8d8602142278e30b0b2796b510c63e2dc6d87792ddf869d362e5"
+    },
+    {
+      "slug": "nitrofurantoin-macrocrystalline",
+      "expectedDigest": "9686905360e59e8698249b97a18662281fee52f9c9e352e983a3b0fe46068bb0",
+      "desiredDigest": "de50262f6d71ae8d66380dab868aa8b0669f2e68d5f77fbfd12f414c34ca24f9"
+    },
+    {
+      "slug": "nitroglycerin",
+      "expectedDigest": "15d482b2718b0eefe5f94cbca12403b3f64eff777bd52595003dcc56b4cf8602",
+      "desiredDigest": "d07cfd8cddfde77b3d9f5cefb1cdea9f0d3328db0394302f960aa7885d57935e"
+    },
+    {
+      "slug": "nizatidine",
+      "expectedDigest": "521ae3e05082f9cd5c1ca63ab9947fbd8558bb2fe9a702056ba293d5612094ff",
+      "desiredDigest": "06b691d320c0faec124450a93a1efad0bd8b794d444712661398a1854b136fa9"
+    },
+    {
+      "slug": "norepinephrine",
+      "expectedDigest": "7cb74796f9f8ac60094362b05583e11ef116af8aaf73b83a4d1cf5e094bd9830",
+      "desiredDigest": "9adc8f22724d69de530e4c5421078df4df732bd1a8fd9f15bf7c66d568ee8ea3"
+    },
+    {
+      "slug": "norethindrone",
+      "expectedDigest": "56e90cfafcbfcdd6639b3f49967bfd7ad9969e9c0b69c138f79539a7e56b1b66",
+      "desiredDigest": "df2b19a67dd0da5c60c66cfd22c5cc536ed185a7e8ef0105d74c123ec458b0d1"
+    },
+    {
+      "slug": "octreotide",
+      "expectedDigest": "a37e9cf2cde39c36847c203a47180da7dcac145d3520377988bdb5b4899fbe18",
+      "desiredDigest": "de69d600cb3278ad197dc5c41681144dfcc4fdd6f5307d886b3d7e7575a93b16"
+    },
+    {
+      "slug": "odevixibat",
+      "expectedDigest": "7f608d5461b557f648abf4377e00163af73a335c1ec186f5881c0d7eb2fb8802",
+      "desiredDigest": "45d3c918272a0f7c6ed75b6b9580fbbdd63f89e0b49bf2df70c8b54c99da2340"
+    },
+    {
+      "slug": "ofloxacin",
+      "expectedDigest": "289ea00a89295c7ce0729255b58514643a282a4b62408b856c0335d167929d1d",
+      "desiredDigest": "bb3715eea03f607d35c2895de542656d1f560cfd0bf740c7c3957f9b1f19be50"
+    },
+    {
+      "slug": "olanzapine",
+      "expectedDigest": "c255d6ab8cf64b87ecc8b68233cd79b75229947190904cf934b7da1fd3fe833f",
+      "desiredDigest": "aa061bf5e40bc7a595b2839c0856ed76c9b58d21001d631bdf8de16ba81f6a29"
+    },
+    {
+      "slug": "olmesartan-medoxomil",
+      "expectedDigest": "ef639d0f96714562f2b015314a316906a93991531453b721be62744c6c76117b",
+      "desiredDigest": "b981b71792c72957da0974c97c25e1346ba7b52cac6ee910c5517f9eb9faeb5a"
+    },
+    {
+      "slug": "olopatadine",
+      "expectedDigest": "4956c980aa3c2b6531d28786af06d92bdafa3124949a7491508a230af58d72e6",
+      "desiredDigest": "41eea5158ecd1d206704bd440c257d4b173603752ab10488740f07165358a3f3"
+    },
+    {
+      "slug": "omeprazole",
+      "expectedDigest": "31598a115f1e9f8f6e0f7563d75a39d8f5391b6bba801dedd3498245cb5f9b4d",
+      "desiredDigest": "f8c72a507324f9523b6f5f5a67742016331035645b1eefd1139d203c6d4ba169"
+    },
+    {
+      "slug": "ondansetron",
+      "expectedDigest": "60f3ac486a26a529c095b5d7454d0513a691b1ffcc210cec90da25f8a425d1fb",
+      "desiredDigest": "8972d2ef411f19ef922799e45cbb27cbfcb62dcedd710d7aeb1864c8d692c174"
+    },
+    {
+      "slug": "orlistat",
+      "expectedDigest": "60520722fbab892b5341b42c0bd3d9271c3a3cf6e300908ab5ad77d596919dbd",
+      "desiredDigest": "d6cbeb0e76d67fe9d8694fcb0f1db2ce4dd9245dd2c660c625edda1c2693167c"
+    },
+    {
+      "slug": "oseltamivir",
+      "expectedDigest": "040ca623b2eebbcd27fd973feeafbc1097f3ad641741d2f7c490262b1dcf13da",
+      "desiredDigest": "fa84cb8d4456a9b5fdd0749c6eb6da06af7002236da789cbd5d5ed5d95e367f3"
+    },
+    {
+      "slug": "oxacillin",
+      "expectedDigest": "f05d99e220d466ac7a4ddbb1e9b9877961a06ba50035ccd64b1b068881859eb6",
+      "desiredDigest": "cf103811a411aa5f755320581e1126f263c9fca7297f0e8d9bdffcf51dfe0ce9"
+    },
+    {
+      "slug": "oxaliplatin",
+      "expectedDigest": "94ab7a29d361d8ad88ae5600dfc04a1901920331758dd5896d750d42149f82d9",
+      "desiredDigest": "b54447eb596b196110011bb66940739ca3cb1430b3db6f28bac21abded506174"
+    },
+    {
+      "slug": "oxaprozin",
+      "expectedDigest": "b58c3993e59b27ecfae63f5c17f2504858d678d4b25efeb7ee672a943f6044e5",
+      "desiredDigest": "0744e1d1d216dd3374c1605b0805c8955f783aba54d798fbf57b6c5aeb345966"
+    },
+    {
+      "slug": "oxazepam",
+      "expectedDigest": "5e7ba7479a532cffa5f36aa5613e96128c2c5141e0dcff5ae7b05abc20a424aa",
+      "desiredDigest": "1ef7adfcd5ee40f67098b225420a5fb8f45de20e895a87e3ae7d71856b08b86a"
+    },
+    {
+      "slug": "oxcarbazepine",
+      "expectedDigest": "7f7de65a836dcf386d9a6882f8a6961b2ea04ed4a220d245b5826927ad69c2f4",
+      "desiredDigest": "a08d6501296bce34fefb8d7c8f8b3178a6468503bce9aeec46579a64fb7f395b"
+    },
+    {
+      "slug": "oxybutynin",
+      "expectedDigest": "fe7dccb934af902ac0423d92bef3fffa40300a74909f1bb295eb18791ae97691",
+      "desiredDigest": "f32bd3f24b7935072c020b746a9c38a809b1eafb61fefab366995abb06268342"
+    },
+    {
+      "slug": "oxycodone",
+      "expectedDigest": "7172995f0964cff6221f3487cdf42d2931f45512c666aae66c90ef0f9ab0eb09",
+      "desiredDigest": "a968acf09be3f0974282ea406daa41d67c813bb77b8c9d4ce851ed4ac09d61e9"
+    },
+    {
+      "slug": "oxymorphone",
+      "expectedDigest": "c48c3596d360ce0f0f58c0910b9dbcbbe659679b40701415109b641ab8559830",
+      "desiredDigest": "b7808e6dcd052871de64d5a9894aaff38bdb35d4c28f6f97c9f22e125d8bb76e"
+    },
+    {
+      "slug": "paclitaxel",
+      "expectedDigest": "9b1a6beb3c8ca06a49a1a46a679cf2f128d8938958e5147dd6ccb062424dfd09",
+      "desiredDigest": "ea16b4f2cb8152cfd58a2855db592d33c96d0fa146df71d07ae06a295be8ce50"
+    },
+    {
+      "slug": "palbociclib",
+      "expectedDigest": "17e14555b19b0147a3ba93091ce8e063bdb2ddf022ab00ef265fca44ac61f97e",
+      "desiredDigest": "68433e9d6484cb2c1db3d8154b2f5b81e523ca1318afd82fda308037f9afc2ae"
+    },
+    {
+      "slug": "paliperidone",
+      "expectedDigest": "0cecfb57b0b019fb85ca1813759d0be3368a5c4d82984a946a3be06708041bb3",
+      "desiredDigest": "6eff051cf3d2e5c314193872e367f62d90488669357b1eaad3e9a7107e7d0f4b"
+    },
+    {
+      "slug": "palonosetron",
+      "expectedDigest": "ddf6e639238ea14a61035800a207fe150dfc038f2cb5cd1be557d81d4af39d23",
+      "desiredDigest": "23c13dd9a5dd8a15c51d497e314b6e418dc50325f8ae2be313697ed31d51a1db"
+    },
+    {
+      "slug": "pamidronate",
+      "expectedDigest": "3997575753bad1f7906200c9dfc2b5d936609444574004f8b4f507e098683504",
+      "desiredDigest": "5051c25635d534ca60fc3f5f3a9ac4a82aeb806b5a94d4ff869f2f24848466ee"
+    },
+    {
+      "slug": "pantoprazole",
+      "expectedDigest": "7f1e9f1f5bc1e927b4c76bf091d668d05199e136f0011a94f8886d3232ee46af",
+      "desiredDigest": "9e05ac6658ddd915e0eb8eb0ab8fd2690dfe6a65a6abb28bb54229424934c694"
+    },
+    {
+      "slug": "paricalcitol",
+      "expectedDigest": "402960ee089b01c222dac943958d8833a1bbd2bc4f69c859ee7d3afa2c43f398",
+      "desiredDigest": "b6c14d210c517e74955eaf7277af6d7f0a51c750b88f527496b866c9ce072e50"
+    },
+    {
+      "slug": "paroxetine",
+      "expectedDigest": "316ec78245564235a2ed6a8ab4d36eb7a458a85b1a390174365c40e93ffa3002",
+      "desiredDigest": "41ebefa2f916e1d0d57a8b26276247ff093fb259086d37974706071e9c2e9aa0"
+    },
+    {
+      "slug": "pazopanib",
+      "expectedDigest": "482087784484ae680e4234b8889268c3f6e8c7055b0e308605abbaf2c1d85f44",
+      "desiredDigest": "3c29a80ca8be141f0c7f40d5b69c9f6fa438307d9230987d93eaff0db9da15ee"
+    },
+    {
+      "slug": "pegcetacoplan",
+      "expectedDigest": "2ffc7da0375152d361bea699bc91efe56daec1d232bda4d2cc6b8cab1453944d",
+      "desiredDigest": "7f6cc05710b5a17523b3e4ef232e9e2c3101f7a3cd5c47343d3fbc3459acf465"
+    },
+    {
+      "slug": "pegfilgrastim",
+      "expectedDigest": "e1392a936187490edafd17169eee3a838b39b75234545f111b123d3dde38c7c9",
+      "desiredDigest": "5c83395d07885bbab99f4136cd082c360671317e6fdb3951f58f20bc899157d4"
+    },
+    {
+      "slug": "pegfilgrastim-cbqv",
+      "expectedDigest": "7f06a2e460629e27ab0590d62f338c4cd8efb70cf54f9dd7765d7291f42f0261",
+      "desiredDigest": "411de8c4c9d16b9b2547c7ec2314ac24d6c189165cf3fc2543f734087ea2352d"
+    },
+    {
+      "slug": "pemetrexed",
+      "expectedDigest": "3667b034396fd8790643128ca90d3abf7e1a402dbc8e3713f77c0b1256966f59",
+      "desiredDigest": "44e465a526b7480cbc9fa71927c77f805522614ab5b070a6bfcd5ada8738e2b6"
+    },
+    {
+      "slug": "penciclovir",
+      "expectedDigest": "b1344cd87b878676bcd80c00d8e82e47b428927acddbae324a9b2aaf996f667c",
+      "desiredDigest": "d3aa7fbaa066c69bbdd682e8f3a7ad0d298db22f8b8f45d7f6f8de2732fb6f08"
+    },
+    {
+      "slug": "penicillamine",
+      "expectedDigest": "aa5fd10420f2e664ee90e1d52509453bc2ba48f931fdd1cb3298723520822287",
+      "desiredDigest": "154f47369019040950ff65b333cf47638330659c201aa20089f6998c8b1da48a"
+    },
+    {
+      "slug": "pentamidine",
+      "expectedDigest": "3da8faa21808306211f83549b5b2dd2edc1405b626d8472645f227cac1b37c1e",
+      "desiredDigest": "1e37ce988b8ecc58dbb37eb3509d1a517883d20ac3d9ac5a32880bf7da85a479"
+    },
+    {
+      "slug": "pentobarbital",
+      "expectedDigest": "f3fa84ee24028432d8df3c62fa23e096e6a4959dd5f7c1e563501c56226ef7b3",
+      "desiredDigest": "1bab63b2e71dba7295b73ee8954a4a9401fc8113c5c2526904a94c48bd647088"
+    },
+    {
+      "slug": "pentoxifylline",
+      "expectedDigest": "ed81747da8ef11e8152afba90aab11515ed7f7d78eb63a8ee55d03ce5bed5108",
+      "desiredDigest": "762a44cb5e610a5f989d8b670bdf9cdaacc9808ecc9fe316822e8d926ff23aa0"
+    },
+    {
+      "slug": "perampanel",
+      "expectedDigest": "414ba88af176dae1e0170c0e49c4e001cb0e6a32d50369e2e9de623b11a01863",
+      "desiredDigest": "74deafd9322eb3cbb78db90e1e4511ea551cb47638d8fa89a05bddb7c01356a8"
+    },
+    {
+      "slug": "perphenazine",
+      "expectedDigest": "75c0572734961853a54b96e4b94822878dfc9137dae423c9c103495714fc6b06",
+      "desiredDigest": "8965c70433bd28481d8d8029c6a987f5370c0910a5188b853e9d676baea46faa"
+    },
+    {
+      "slug": "phendimetrazine",
+      "expectedDigest": "e433536ecdc479c24874df27c806b4ab592f7b260fb7eadf7df6d107d4b7bdb6",
+      "desiredDigest": "9041ab11255c6b7161799908dbd9311120615068fb9e0444c8d1405303502003"
+    },
+    {
+      "slug": "phenelzine",
+      "expectedDigest": "27a72c8405d8cf8d338dff7217ebfa442ae2e77aca0ea5bd81bd2ebf57086258",
+      "desiredDigest": "51de89bfcb04bd2f6a7252d0e402c9a7690c34e4e5fc6a9d407d4a954bd0105f"
+    },
+    {
+      "slug": "phenobarbital",
+      "expectedDigest": "c061e7bf397bd5cda99a310337fb1a1d04c7d094b2f637459889303b669428be",
+      "desiredDigest": "2baca7830d22d02647d3a38782b23cafac9345ceac76a958541db55982674018"
+    },
+    {
+      "slug": "phenoxybenzamine",
+      "expectedDigest": "4c6c4e76578cde88c45856bc65bb7f88888b41eb1e199d13a42b1feab777002f",
+      "desiredDigest": "6d0b97c754885437e3a92f6cf3bc644acec510daed1d23bfb716db7a325ebe9f"
+    },
+    {
+      "slug": "phentermine",
+      "expectedDigest": "05e5c376ad4e0ae8a929806af0ca9bceae7f743c1e82709e3272014a9129b8fb",
+      "desiredDigest": "b87a1b2eeaf0ec653f06839bd8721e0a679706ce37556be9f9dc770a96ec9562"
+    },
+    {
+      "slug": "phenylephrine",
+      "expectedDigest": "47e7abb55abfe11a6046b7cd6e74a5a4569f7da2cb4b4431aea595d403ce4aec",
+      "desiredDigest": "0d492c1e99e5196e1ababf7cbf35a35b11f2e9ed8f3209c398dafd439694ed10"
+    },
+    {
+      "slug": "phenytoin",
+      "expectedDigest": "f7ae700244922b45fc5c54be9a4b7ec315261eaeb96f75e9bc3cea53a591719f",
+      "desiredDigest": "02a9c67650008e34c887d008292dc3ebe300212c5720ee734072978752784179"
+    },
+    {
+      "slug": "pilocarpine",
+      "expectedDigest": "2ac28dc10329ef0ff5184efc7d446fc2f9979bf1a90469e23b96bdbe1a7267c4",
+      "desiredDigest": "c5ad6a771a129ad0f1ba9926716792b7e6383dfe94b2f359f525bfc2fd75b845"
+    },
+    {
+      "slug": "pimavanserin",
+      "expectedDigest": "69cd548c39a754ba7a136ae8f0501a965f5aba5565677214f5c113cfb43d1eed",
+      "desiredDigest": "dde6b48302c06f28a5d41ee87b10d7bd5e1e239c8afec955d581b2e79b7f485f"
+    },
+    {
+      "slug": "pimecrolimus",
+      "expectedDigest": "f274a38d516c18e8f796748e24b7c479a5f791d88e077352920363b65511cd1e",
+      "desiredDigest": "323ba4516484c5865192adf7a68bbf3664ee392c9ee733ff5b79dd942f129927"
+    },
+    {
+      "slug": "pimozide",
+      "expectedDigest": "42c5e02542fae84135df0649453b0650eed67d43281c40e3c42b54e45bf45687",
+      "desiredDigest": "12220a2b2b0e01205d5565a3daa502b0aa2cc6c1ba0a9a935824b6e71452be30"
+    },
+    {
+      "slug": "pindolol",
+      "expectedDigest": "c0cafb1be4620b6e07f33605d56e8413a8b3102f9bd6ab7e86cd63ab00a51850",
+      "desiredDigest": "afc96f47ed5c1c4c9c247d4427611411da9adb52baece35bbdcd25c957df2c20"
+    },
+    {
+      "slug": "pioglitazone",
+      "expectedDigest": "d0e5d5b2527adec886d4f94d741bed1bbe3df63309fb122846942239078e541f",
+      "desiredDigest": "a0d48748168f440774b810bcbbcb57cedf123daa3df9703b7f167c7e0263985b"
+    },
+    {
+      "slug": "pirfenidone",
+      "expectedDigest": "9dfd915f0e986453ba0df46a60e5dc839ab0d6c8d8339b8e627726a9854cddcc",
+      "desiredDigest": "65e8272e1c8455da82ac14bceadf4ecfec32b619efcdc6ff33041c95344865bb"
+    },
+    {
+      "slug": "piroxicam",
+      "expectedDigest": "17817e87046d4cc5a8801edc335965b6845d0d78a56c199500b2a7eaec351ed3",
+      "desiredDigest": "5296d3683014309b346e468def8e488e80621a8a9ff9f240768584c08f649315"
+    },
+    {
+      "slug": "pitavastatin",
+      "expectedDigest": "54277db45830a412d295be35cb0c244caa627045f7e9ba8f1328d7c0391baa57",
+      "desiredDigest": "1286548f407465d79d11e1673adc9afd40f4f2009c27ecd9d62204ce05e06efd"
+    },
+    {
+      "slug": "plazomicin",
+      "expectedDigest": "4c7181303420ae3fe9af2747054dfd0b64ebeb9ddf6b63ec40e998880b814591",
+      "desiredDigest": "feb7e99ded454092ef17c20500f58435256c2dead83cb1173fa8844f06814387"
+    },
+    {
+      "slug": "plerixafor",
+      "expectedDigest": "18af8ff1e985410185d7217a6587d74ab5563d0a2e3138845bf051131e668333",
+      "desiredDigest": "ddc58932a260e649d1e49e7b002b8bbafc80cb938466cda5a0d30d868a4e078b"
+    },
+    {
+      "slug": "podofilox",
+      "expectedDigest": "f470b8075d550598a3796dbf121f0fc585cfeaff5a87c7c378850908de8da556",
+      "desiredDigest": "df951a9cdc25ef6df0a0d41b60a23c7a545a9d74dd3d0ea8615a56dd30703b7b"
+    },
+    {
+      "slug": "pomalidomide",
+      "expectedDigest": "391eaba1bf1a78ab19525c98a69f5f4503a27915310bd63778e7c396a43be0a2",
+      "desiredDigest": "7784b2a8719e7c7c16d1b82a91e423d994618c3c32d1df99c6df7b47748645bb"
+    },
+    {
+      "slug": "ponesimod",
+      "expectedDigest": "a6730bd37881d646bfce95da93a67b3acf05987377aa3bdce3e01df34d929e5a",
+      "desiredDigest": "2752c3b84c41f2d9531c3abe409c1a2793f00b764ae8062d3061de5cff5782ff"
+    },
+    {
+      "slug": "posaconazole",
+      "expectedDigest": "18582fd7e06180c1e07bf6defa82d74fc06dcc10a9bb85f0f158b2a9b0b9781d",
+      "desiredDigest": "c964bfe2231aa6ff5f9d9b02166dca22f7b6248b340e96eb984a4be19a5e7be7"
+    },
+    {
+      "slug": "pralatrexate",
+      "expectedDigest": "85a393c509f2945b16a4daa9a260c1bfe70648d8a6cddd13c5fb9c745f52c0c7",
+      "desiredDigest": "c364712eae6322f21c92e9883d8b20602765f4fe786f913d825be62871cf6a94"
+    },
+    {
+      "slug": "pralsetinib",
+      "expectedDigest": "b5dcc43cd8a1d7633a7cadd1191622907915791627fd491af7f2bc475c60cf8d",
+      "desiredDigest": "2ebac22347293aed72a98305f2a6bf61ba7b31679172d56edb7b1d9d3d1fdaff"
+    },
+    {
+      "slug": "prasugrel",
+      "expectedDigest": "df713e04f2c2c9d9f940dd3739c031f5325f34e042d25c8deac90d9e0e724ce9",
+      "desiredDigest": "c16518c6cd644899e62be9dcee1a77327231fe1e76b05773cc6afe5e4438ca2b"
+    },
+    {
+      "slug": "pravastatin",
+      "expectedDigest": "32a9b7a0dc5a9967cf21d0dd3b4e040e9893ed9a1be661b59f82ce2a3a3157ca",
+      "desiredDigest": "da937def6bcb55fb3d94ab17651c1a699df69d8cd73f02ec1348cf2c077009ab"
+    },
+    {
+      "slug": "praziquantel",
+      "expectedDigest": "20105f41f8c2752699c86e1b6540b72c8ae68f44a73493782bb29ddf3d94fd20",
+      "desiredDigest": "ee24457aac09e3e8a0d828538cfe284f7977f5981e2dbf99536fa45391a731db"
+    },
+    {
+      "slug": "prednisolone",
+      "expectedDigest": "cb8a502d608d6a79cbf5dc82dc3f6e52b3a49ea5aa66bba06d7444853ea33044",
+      "desiredDigest": "ba00fa5335514dea87e605100adfbc26c516589b3a6a47e25a11792bb73b2277"
+    },
+    {
+      "slug": "prednisone",
+      "expectedDigest": "65cf41b8c7fb98677349d5d94626aa36f328f2e5f46d9e1fa8652ac7d88667a5",
+      "desiredDigest": "818338066c8f46827c54e4b216de80d850247e823faebb7d3024b595411f95bc"
+    },
+    {
+      "slug": "pregabalin",
+      "expectedDigest": "0ea06e71776c5c0b88cd1cdce3c51730454586d2f99367f48a98131b4fe0dd91",
+      "desiredDigest": "93e2ef56a14eff53a3281de38abde9b754d1592b1f344d427c79c33867af18f5"
+    },
+    {
+      "slug": "primaquine",
+      "expectedDigest": "3861720877ed67874b7ceccf8e0dfcbca554ebed11ae6893491ba2255daa2996",
+      "desiredDigest": "3f8a10b19c23579bf8f2fb7642e991febe99a8a1bcfefe8a04d4d5ce0a7de37a"
+    },
+    {
+      "slug": "procainamide",
+      "expectedDigest": "020628119158cb2bbd92c34753119e915629b6d96a860cf58d591a55383f9e26",
+      "desiredDigest": "7a4f10d55e9e8352323e41a24b0445bd26e2c60fcf2b6fc6ad248fee66f01d81"
+    },
+    {
+      "slug": "progesterone",
+      "expectedDigest": "cc06a69ab19415757188249680136dc3f8f6d05be3425b37741788c6cc9c1ca8",
+      "desiredDigest": "48b0fe4437b40a4f41d0640cbebe1fc16248ceb65df7578aec49e54fda213a5f"
+    },
+    {
+      "slug": "promethazine",
+      "expectedDigest": "298fc71f69c612f70b6feb7bb145909628ed1f9a8c945f889b49bbc85de3470a",
+      "desiredDigest": "e79a8629beb1118177cd9a661810e596c8d1aeb484c86c8a3304e5ddd5e986c2"
+    },
+    {
+      "slug": "propafenone",
+      "expectedDigest": "2c0d31936e2862eba67acc0c86ed84aeb60dbdfb6168201e2ce4f222609fe6c8",
+      "desiredDigest": "a36531b838c078c0fcf3a78972ce1053c779217d0a51a89113b77368ea398b2b"
+    },
+    {
+      "slug": "propofol",
+      "expectedDigest": "11f81aed5f48626d197ac6349a8da19b86f4181e345b3170fe1bfc4a701b74bf",
+      "desiredDigest": "6e79368b5d9a176ae23571e4fd8f01ab8e6062c853ef5e7e806ae594bf5f9585"
+    },
+    {
+      "slug": "propranolol",
+      "expectedDigest": "a1de98be567ec6d794020e4ed189b1d1097a4ecdd4cfe849be36c0cad3777917",
+      "desiredDigest": "812c37f87a928f77d88fe687e1ee68c3b08fa4f69eba27bd6ba9509c9b46c696"
+    },
+    {
+      "slug": "prucalopride",
+      "expectedDigest": "dbc495c4559513b97d50af7f30c39749bd6ca30d9cb1fe52d48f28a0768782b1",
+      "desiredDigest": "12f0944262e86d3e764f030d349f17970f923541c32f3e4daaac1f01178a0a8f"
+    },
+    {
+      "slug": "pyrazinamide",
+      "expectedDigest": "7e20bd82ade8841213d3d05224c3bdb1929356df9c08913a2feff177b9e02e4c",
+      "desiredDigest": "b4c89ab092809d66f3e9e2bfe4fa258d68c19100774b9228413372a19fe049ea"
+    },
+    {
+      "slug": "pyrimethamine",
+      "expectedDigest": "881ffa97fea4398b8991348d58d4613904fc0c67b8ee2eac67b906dbdd4d279f",
+      "desiredDigest": "b044bac5c5dd9fc2e1422761668a03cdb38a79ee594b7aade7fd63d7f75b2146"
+    },
+    {
+      "slug": "quetiapine",
+      "expectedDigest": "f65e333d48dddcc29b41e3f8e2d427bf3634d244491cda1a05ccddbc1d30ba1c",
+      "desiredDigest": "8998136e4d8d37f49a117b00bf9d621874b30a64dfab21e053d0e482167fbd8e"
+    },
+    {
+      "slug": "quinapril",
+      "expectedDigest": "2ccdff2dc394ba230974003edd7f3edcba5b12b29a286bc8acddc92ee2ae875c",
+      "desiredDigest": "6541e92a12c3d898bedce55e7d637bf4682c2456068ceb4b977895b84be00ea4"
+    },
+    {
+      "slug": "quinine-sulphate",
+      "expectedDigest": "dd14c379dd5812f66580d8aeda46d892b11762ca68b01fbb24dc425aa61176fc",
+      "desiredDigest": "e75386221a91625a9dd36673ccc735e34a3c03c9e7e0e5189ec0131c0276dabb"
+    },
+    {
+      "slug": "rabeprazole",
+      "expectedDigest": "f1276d3249117974c706f5ffc230396f5d2500d1409cccf96f775ed434f5a0a0",
+      "desiredDigest": "720f3172b60111ad582a8830fd24c379feefa6bb894b2765a9794384286e998b"
+    },
+    {
+      "slug": "raloxifene",
+      "expectedDigest": "905b2f060e3be4b191be40480fe75e72c64e1a9cc5b45c4ba46e65fb9cfc1870",
+      "desiredDigest": "d58e34b838aea8142bfa3c17342f9b3eaeb296a8d3c136bff19c43f1edf042c9"
+    },
+    {
+      "slug": "raltegravir",
+      "expectedDigest": "27c19a58119a653285c9d037c5098f54099e5e71c8ec4b26b4fffd7c921291d1",
+      "desiredDigest": "edf3070b153f0e49e3fc5fe442345ab05b1a06b1c87c9a3594419df8cc4ffe8c"
+    },
+    {
+      "slug": "ramelteon",
+      "expectedDigest": "e856d4f44f9fc925c2c3f7873fe800743f5953e4cea519e63372f8f41eb93990",
+      "desiredDigest": "ee1f3a55b58cb0f54e676bb9555901286e90c5e7e6219f14ea49d7c60cce870b"
+    },
+    {
+      "slug": "ramipril",
+      "expectedDigest": "b01e3cb747356f08512719ebf8458784eeacd1540c85707ce3e05cda7ebc1cc4",
+      "desiredDigest": "b0496f24596b465ce288d4b33fa2288b6a735acfeffc535a42cd6d47aabda8f7"
+    },
+    {
+      "slug": "ranibizumab-eqrn",
+      "expectedDigest": "2dd4cf29378bdbfd46f5b0964037fcf6c165891a5a276e3720f23ebea3fd2671",
+      "desiredDigest": "6ae9bf0c44ba3aac806d52ad9a6b6249474ac75f6bbc9a6e36f67fd566613a47"
+    },
+    {
+      "slug": "ranibizumab-nuna",
+      "expectedDigest": "e88b4591c3fafb6eab563145bb6f2c9a4c6e18bbf2cd9f84eb2e54d7242df2fc",
+      "desiredDigest": "a45cfe015802401653fbe45babaeb49f496362c2845c09898fc837ffc14dde5f"
+    },
+    {
+      "slug": "ranitidine",
+      "expectedDigest": "d45bd529c7b71ca762a05abf84d7fd1b20ba909635e4d7a756af96ca57861bd7",
+      "desiredDigest": "223ae6ea14c95bfcdc8b52c13575eec4025e25ae9386ab2a751d469b8529a22d"
+    },
+    {
+      "slug": "ranolazine",
+      "expectedDigest": "dfb76c2d80adf8654cebdc1208809b6d91b3e51778bf2ce967f58472b6912ead",
+      "desiredDigest": "100d327e2b92560b90be446f60b005745d621267d25151b680bffb2adbf01beb"
+    },
+    {
+      "slug": "rasagiline",
+      "expectedDigest": "e57cdfa645c707597c57202fbbc2621b814760e56763f82ee1a21af68ca340fe",
+      "desiredDigest": "b238338cf282adad7496f063a4a35cc750ba720f2c284f308a04007232da93c6"
+    },
+    {
+      "slug": "regadenoson",
+      "expectedDigest": "52f07752fa74c29a0ab346e45fd26387f176f3505e2df2503ec2341ab3f30f2a",
+      "desiredDigest": "41b4c7ba10981e199154b7772d4456573a9ba9841d1ee26d1161ace757baffed"
+    },
+    {
+      "slug": "remifentanil",
+      "expectedDigest": "bda4849ea62da0acc518501ca77f6b40b030ac5762a9479a349914a76994c894",
+      "desiredDigest": "25d60737dae3b4886c23fecbfd14645463d28488fbcc9c8beb790d7b37304d82"
+    },
+    {
+      "slug": "repaglinide",
+      "expectedDigest": "ecd5f1436b297ba471c0d552fc75c9942df8756254550df0f9421493fe345ed4",
+      "desiredDigest": "a0ddda67a9bc98d54e3b4e150e23c5c591bf6beb5e60c96107923ba3b94cee2e"
+    },
+    {
+      "slug": "ribavirin",
+      "expectedDigest": "6b8b70ebab9a98e96f983cdf1af1fa80acffc82ff0b153bcbd858330515b195f",
+      "desiredDigest": "d97b3777264e407d8f9e825b7569af851ea1af4271d7de64b3f0fe382660dee9"
+    },
+    {
+      "slug": "rifabutin",
+      "expectedDigest": "90c5476b449b63c116e100e7b1b6f6004e53c6ab29718acea2f6010a90a19436",
+      "desiredDigest": "2dbf01ebc8c9c1ef76e51b7c270ad5f7ecaacc5e7b289afb5af3a9937e1d4525"
+    },
+    {
+      "slug": "rifampin",
+      "expectedDigest": "9ee5f2e2d2d56fff950524c0260d6f8b066088cfae1471152c9f7b1b4d52dca7",
+      "desiredDigest": "5e702281a587a35f9e6ecb757d2db6d7196517aa0b1d8974bffe46c25738c6e2"
+    },
+    {
+      "slug": "rifapentine",
+      "expectedDigest": "8405e87e178cabcb49f8b1ee17b646ac51bc45c63c51aa43375788570a37f9a1",
+      "desiredDigest": "0130f03f716d9b1df2abecce68afb224d932073bba66cc432bb73ccff81eecd3"
+    },
+    {
+      "slug": "rifaximin",
+      "expectedDigest": "666c2444e5d743fc416bdbe797c68de060dabdf920c91794813eb792b53714f7",
+      "desiredDigest": "5bfc0b2065778bcd4b0d32782b0c1b83a21234e0954fd6481b77e842692709e8"
+    },
+    {
+      "slug": "rilpivirine",
+      "expectedDigest": "197674e1cf5e1e2ad8015aa474bfb22d1587a6cad443f9d66dcce4e2cf0667d4",
+      "desiredDigest": "95870565eedb6b7931a44a819bf2594eda3ef3f64100111b4e5e0f4b9891da6a"
+    },
+    {
+      "slug": "riluzole",
+      "expectedDigest": "26453b29d802a68ac4a06896330a984832720a585fb57d6e3773979b8852d07e",
+      "desiredDigest": "5358914bf602541137cf324fb0515c7772f8e425c6a01e78986060bc928790df"
+    },
+    {
+      "slug": "rimegepant",
+      "expectedDigest": "5ddec7031c98a7386dad06feb830c851f26a7d33ce94df3828c28563526f46de",
+      "desiredDigest": "9bc90b4115c70fbcb5e40a346678579a3b330e5b59fe284f05d9db40fbd896b4"
+    },
+    {
+      "slug": "risedronate",
+      "expectedDigest": "b61fe5a01b58ee83f0893817fd97f4538f6c900766d49db51b3ed16d9a9f43d2",
+      "desiredDigest": "fc49cf75751d6766765262fc46eb1ab8f8efbfa3eee6558180ffa65fdb537005"
+    },
+    {
+      "slug": "risperidone",
+      "expectedDigest": "9a0afe27468e3b7c1449946f5fe497e5168dade20961dcdb126c20e828bd89ba",
+      "desiredDigest": "43122b167df402d3c189fcdb3ae8c2a6b7fecb165e1f1e2af5af36f9caf07e32"
+    },
+    {
+      "slug": "ritlecitinib",
+      "expectedDigest": "df723f5e60e8f13fe61a4810288dc4f5877ed6bc1107e2935b5b219172ca2085",
+      "desiredDigest": "39c6c43387b35a90a8c9d5a9e62dd1e0756e7557674ee51493e91c0affe3cd1c"
+    },
+    {
+      "slug": "ritonavir",
+      "expectedDigest": "d40ff177d2a9b3e60e228ab2131006086e7df24b6068eeb638b88a14b09632f6",
+      "desiredDigest": "e6a2aafa290c7ecdc990686d22332f486ba1ca63a14fddb631c830862c288f78"
+    },
+    {
+      "slug": "rivaroxaban",
+      "expectedDigest": "235a8e0964a7dcea314170c7e32501f68aaa8db1cfef02c7936cc24b978993b2",
+      "desiredDigest": "4e27b22df486a825b1950c3f32aa5ec917a204e945f5a53cfcca16f517557298"
+    },
+    {
+      "slug": "rivastigmine",
+      "expectedDigest": "d2584ebeb0998ad0ef74c75834f18601b035b0f283d2b0f3ff633449803b8a19",
+      "desiredDigest": "3868079d5a0c164a71355a91413c213d157f891b2840d2c4a4c8f7fb94e2f093"
+    },
+    {
+      "slug": "rizatriptan",
+      "expectedDigest": "8c7d473c8a064459da71b9daac3defc222cc0d580411f94cf1a188320656a93d",
+      "desiredDigest": "748c2c616c6db55e3d7418f459762e7524935584e5ec4ae939c9362bdb64fb34"
+    },
+    {
+      "slug": "roflumilast",
+      "expectedDigest": "14a43cf17bc576beddfccb80da5328c7f15e7c99d81d87344fbc14296fece6cd",
+      "desiredDigest": "599bb68b31bb40d0a9c117b592891e4699cb49dce491e8436ef36810e32e0a9e"
+    },
+    {
+      "slug": "ropinirole",
+      "expectedDigest": "fecb40f96d3aa12160a1e15effc87f46610d146a0a6ad3b7527f094965d221ae",
+      "desiredDigest": "8a740f1485caacf4f03c3b377a39c6d4cb4314762bf9e096d91068d521c081e1"
+    },
+    {
+      "slug": "ropivacaine",
+      "expectedDigest": "965ff39f377ef073069d90486e9ca268632ca89a49b38925721f22ab4155674a",
+      "desiredDigest": "c67a38b7865cd34940212dda87051ef36b9d62bbdb25f91867c7fc6942887d6b"
+    },
+    {
+      "slug": "rosuvastatin",
+      "expectedDigest": "514e976f8ba729c671ea420708b17e46bf2b5e19f01a760166da5d83d203deaf",
+      "desiredDigest": "bed56bfbe9f6a5380b7f05c109ea8b89391920c59b856c842e53282551ffb17d"
+    },
+    {
+      "slug": "rufinamide",
+      "expectedDigest": "5b545530c2a2453d356d8b76041ad31351a090a887ab43e331d241f584220a34",
+      "desiredDigest": "e571483deab456f82158b6c9064db09fe6522dd8b2ff5ef1005275ceb7f5b004"
+    },
+    {
+      "slug": "ruxolitinib",
+      "expectedDigest": "d81f3d96796d5cac5ea8028ea25cf742695753e7c8db3b6e80765db04da220e5",
+      "desiredDigest": "d6e6b1bf85d5ef3783f38f7977c4ad36a41b9cd7d2e1746911c5c160c4993f4c"
+    },
+    {
+      "slug": "saxagliptin",
+      "expectedDigest": "bd5a663fd30af4d5070e983538d0557fdf62c3673e4cfba64e910796c6c53465",
+      "desiredDigest": "32dca0592d7048f9414fa9d33708c212d08cd1510a33f24d96af0efd9c0aa8b8"
+    },
+    {
+      "slug": "scopolamine",
+      "expectedDigest": "2220caf07ec9d487ec49816abc729afaa959844fa4cec76cd9dea64e84fb6f3f",
+      "desiredDigest": "ed8752f23ab1b28a387b1f83c49e3d682bde63e34c3990f8edc983d61be2c9fc"
+    },
+    {
+      "slug": "selexipag",
+      "expectedDigest": "4d6dfe9b03676bb9c93004b2d75ac5cde3e32882d3bd56145b7cb29bb37127b3",
+      "desiredDigest": "633b4078a64600c026aaddcba0c40c039c9dcf646e01e91558ca655195cbce6d"
+    },
+    {
+      "slug": "semaglutide",
+      "expectedDigest": "847ddffb2a734a349ac317b287a1abb1a2b1e8937843217f496d6af09722b189",
+      "desiredDigest": "894bff83052d8d25dc6cf625e432c5cf2847320c99478875137579cf37be044d"
+    },
+    {
+      "slug": "sepiapterin",
+      "expectedDigest": "2e0ed6b7ab3d70ea1b0dedcc92b22f06757c9bdc18796505d67f0168645fbb52",
+      "desiredDigest": "588059949719a7fa39a62ea3d09109a5386c78831abc531513bbcbd3ebc57775"
+    },
+    {
+      "slug": "sertraline",
+      "expectedDigest": "0a6c4fcad855dc4060d20ec87ac9e669ccf8a7cc9e5cae808e318eb63a90ea4b",
+      "desiredDigest": "fd1a1270c02cfa7e11ccbe86543cefc9473f4f7793788e25d8261483f9cd98f5"
+    },
+    {
+      "slug": "sevelamer",
+      "expectedDigest": "ce6727ab6c7869df432bed8729718864f28fd096a3d39795ca22060bf0d6d1b1",
+      "desiredDigest": "b401e25b9503b2d73ede6896e0f8f0763289e174e41279c269e7095c348fcb7b"
+    },
+    {
+      "slug": "sevelamer-carbonate",
+      "expectedDigest": "d0bc18f2464451b659b7423df69a9162a1ca5339f0e7d1a69d527bf7e7780721",
+      "desiredDigest": "606ce4a3b58073e509602f477a37d7861aa2f6b4b3b2c1b6e98c81f08e6097da"
+    },
+    {
+      "slug": "sevoflurane",
+      "expectedDigest": "31beaefa50b461478071bb0d1a51ff462201577948a009b566a36e26188eb7fb",
+      "desiredDigest": "82fc7c28778a33eca4ec086ae167340777753ec4d204e5c863981e1ad9a491eb"
+    },
+    {
+      "slug": "sildenafil",
+      "expectedDigest": "734e3ae65a29986e8c919fd8d4b2b405a8109aa9397bbba4c52ac9ba0b89eb8d",
+      "desiredDigest": "deb8f879a7e63e0421180d71d4156d5488d96c8b049003c7e215cc4adb18a31d"
+    },
+    {
+      "slug": "silodosin",
+      "expectedDigest": "3303a53ddd04f3639be1858ca7850be22f9bf04ebfc2898b50d6ccbe9fcdb0ee",
+      "desiredDigest": "10e51e687b4680f7c4601507fc8df460b86864961e9e1456cebf1f51f4955096"
+    },
+    {
+      "slug": "simvastatin",
+      "expectedDigest": "1694a219c67d2d3de1f36cc6816267f837227594bf79dd8ef872c9dcb4958eda",
+      "desiredDigest": "8255960475ae7f1a5a22857bd477db01ce373fcddc7bd37039545b5b79ea70e8"
+    },
+    {
+      "slug": "sirolimus",
+      "expectedDigest": "5cd43afdc3cf82ed1c274e433953038310a62e0b48b3e02cae471a0bdcb191ff",
+      "desiredDigest": "4dabf5afea5aa820ada0b996ae53d069db68e69e1161673a04e5d454546cea95"
+    },
+    {
+      "slug": "sitagliptin",
+      "expectedDigest": "07ec6666d61ff09829f79bf1806ece65e81c88b065a678c8feca4b89e47ce04a",
+      "desiredDigest": "4f078d909164e685218f8b421e4812b6c5975e70d2ffc705fd99f359cd02e122"
+    },
+    {
+      "slug": "sodium-ferric-gluconate-complex",
+      "expectedDigest": "d9eb901726e1f07f9b793375247b8e9b3863a22d48cf54f540fd2a26175523ea",
+      "desiredDigest": "4993120a5a2e4bee6d1c3b9aa80f32ab8db2ab1e717fc87482ea9f7edbfd35b8"
+    },
+    {
+      "slug": "sodium-nitroprusside",
+      "expectedDigest": "0c767ab928de7c8ffc82544c7bb90f1e61f7693b31b501962238dc9c873190cf",
+      "desiredDigest": "73ef1bfb34943f6292fdc3046847ae0b8ee6975123a21735e2f41dc04662be4b"
+    },
+    {
+      "slug": "solifenacin",
+      "expectedDigest": "d2c171f8eeb0351bdb51168cc68400c72022ccff06953654e719d89e6c2e0071",
+      "desiredDigest": "aa60eae3de1725bf128381d115b71516d5738cf97db74a6d54e1d692c652c8ab"
+    },
+    {
+      "slug": "somatropin",
+      "expectedDigest": "e736f82991c086bb3416af8e298b2389580a52350a9b6cd137c495ae60636ee3",
+      "desiredDigest": "d15628ec051d06315cab173e299d3c837e2c94456a607f59786847097b97974c"
+    },
+    {
+      "slug": "sorafenib",
+      "expectedDigest": "72807bbd649b37109d011b65b189f53e00f0648e6f5ad248d693971fc9af3e71",
+      "desiredDigest": "be46443a6a2f4a0eb8cf06c88d38a93b5792107fd81b2130d8e823df1a947b79"
+    },
+    {
+      "slug": "sotalol",
+      "expectedDigest": "6204de47d2af2f79973ad26e8a2f7265dd382f4d137622f1350fc47ce279307c",
+      "desiredDigest": "ace2424b7bc9d8463a1281439003802c7cb34ac20c75beedf0730d1400e9e0f7"
+    },
+    {
+      "slug": "spironolactone",
+      "expectedDigest": "75c2f00bb2fd462a83c58340e844c8ff6f5258243d4f06883fe6da3d9ad09450",
+      "desiredDigest": "7952db4396488fc1f8d7ee860d2116e67173925f55b9b5f4140bbf5f9507c59e"
+    },
+    {
+      "slug": "sugammadex",
+      "expectedDigest": "bf40cb03078f8fa6170cd0b7727ff599a84a0f4b6910232e42ea369b26d4be3c",
+      "desiredDigest": "649e4380c9a9cedf5c52c062d451e4f05be8f5c9b7b67c58563e947988585c0d"
+    },
+    {
+      "slug": "sulfacetamide",
+      "expectedDigest": "89f85a77fede03f9ca972e0b5b02ac8da35475c7cd9608c5cc1f0f8a33031239",
+      "desiredDigest": "e05e7e46c134ac5e9ad7cf344f6c2317b866fb5dbc60c1eab1e163c77ddaaccb"
+    },
+    {
+      "slug": "sulfadiazine",
+      "expectedDigest": "59f1457a44476f473b10fd4d0269d3c332bc37cb0bc4eaafe5cdafa92af4997c",
+      "desiredDigest": "578eb2a129e54b829af25ef9a6eb9bcd79ac3075dd52f9ead21a2fafb5dc6e90"
+    },
+    {
+      "slug": "sulfasalazine",
+      "expectedDigest": "43a844dd7bcbe3eafb5afe00af4d2bd9b67c552686f03f8dd2d92bcdca5995a6",
+      "desiredDigest": "7fe13bfc6e83a75776601f481aea456b3eea042b7e5233d9a07df19514094b14"
+    },
+    {
+      "slug": "sumatriptan",
+      "expectedDigest": "357b5b344616812bdffbf6622790c8c6193c995459a2305ca3f4a384277422a2",
+      "desiredDigest": "d6161f68ec6cfcfa177344be0235cfc0ad396ba8a7f61067bb134272327ebd06"
+    },
+    {
+      "slug": "suzetrigine",
+      "expectedDigest": "dde28f5d266355fa0f69a0f71aec76b17159ff206eb150995f36628827323132",
+      "desiredDigest": "988c70d45f09177269404fd09a8d31565251f994ab973df4a37df0dc4d440144"
+    },
+    {
+      "slug": "tacrolimus",
+      "expectedDigest": "44bdd834e33e788606b2dbf3df6c6082556e6a85d85aa5aa4e60b4bd8b6e2a35",
+      "desiredDigest": "15800e93d40bb72c0de609bd1a22a173582a480bee9f294d0e68ae579d553842"
+    },
+    {
+      "slug": "tadalafil",
+      "expectedDigest": "9cb79f7897ec0b83cddc66c509b593580510647e42038c9a4711d138a0057fba",
+      "desiredDigest": "646329d686a13dbcfef973a54d83f4bf4e24bbc35dd94905c216192a8d6ac393"
+    },
+    {
+      "slug": "tafasitamab-cxix",
+      "expectedDigest": "62a5f2af01f791d548dd58a8be0c351dea132e20526bf255210309e6a77bd961",
+      "desiredDigest": "d2d423ea3f824c1d79d594b24546f7d9a09bc540f736b864a2f5feb0c4714358"
+    },
+    {
+      "slug": "tafenoquine",
+      "expectedDigest": "82f3d6635ec08c48234a72890b66c4d434ab3b880d0f31d67d277fded2175291",
+      "desiredDigest": "dd2083682125a3184fb2657eb5b9f00cdd24653731d079dc7b8fd9966cb7db8f"
+    },
+    {
+      "slug": "talazoparib",
+      "expectedDigest": "b500a40ffd172b04eb9ec66fab72d2159d70999d04d5be707fdab2c9e7163f9f",
+      "desiredDigest": "7f1671ceca9972e9a03f9a7e6ba8856c29c3eba4635307272632686297d2be4b"
+    },
+    {
+      "slug": "tamoxifen",
+      "expectedDigest": "439b2b275f86513ecc8cb566db85a51d887e6a0dc6d9712a7ec356c470b00e89",
+      "desiredDigest": "abcc67127f45b6e6e1cf78311d2bee5a1c1bcf8db9d075903dba7c0519e3dc27"
+    },
+    {
+      "slug": "tamsulosin",
+      "expectedDigest": "90d1db9ab4ed21b92a266529bcf815b2252a619aa33a7343f660abaa866b720d",
+      "desiredDigest": "9633abd789893684aa162f4090a820ea57d72569d05816a8c0c39d4ea1d4fa9e"
+    },
+    {
+      "slug": "tapentadol",
+      "expectedDigest": "4efc0dbb6103aaf485f5c045b4b1001171548bf17f674d4b2699ba85cf18fcfd",
+      "desiredDigest": "d67262247567d4dce8d41847070157487e8e54f61afe66fea2a922adae9f2c9f"
+    },
+    {
+      "slug": "tasimelteon",
+      "expectedDigest": "871ddd1e9ce9f06ae46f04b2b4f4d31e0ab69c1ee0d66311572b5c85c3374067",
+      "desiredDigest": "a32e21843e798894d300fc9906d52210e8103be0ac4a54bbd033439f73164e93"
+    },
+    {
+      "slug": "tazarotene",
+      "expectedDigest": "8bc4193eb291a9756588a22ac028ec4dae54461418ed9f6b63e0f76b52186381",
+      "desiredDigest": "a3e59403dfd6e3272f91d6442ae67c7a162ae0313cfa1086bef1fcbd392077de"
+    },
+    {
+      "slug": "technetium-tc-99m-sestamibi",
+      "expectedDigest": "736eafb28e8a7739c64b00b079538434d8a3c0aa852d153b8e515867ea84a11a",
+      "desiredDigest": "147c2a0cc2e6965331e9503af187a2cdd343aa1cf6f503b5e7ebae6891ace7bd"
+    },
+    {
+      "slug": "telmisartan",
+      "expectedDigest": "cdb7efb1d9172b92f90fb4fd7c635899b058b3c77f8e58dbb4f1d50f979b72d0",
+      "desiredDigest": "05b5570d451f3cd97d7826ee3de65510a4e1cd2647a31e54f110ac8369f5b931"
+    },
+    {
+      "slug": "telotristat-ethyl",
+      "expectedDigest": "6ae65bc2ea264f2774a79f97ecb442fb464873d2d5c79dc7aad9464d58d00bee",
+      "desiredDigest": "48804dd177745afe48548869e56624657b0be1dfa82a883cfa0327ae04fbe668"
+    },
+    {
+      "slug": "temozolomide",
+      "expectedDigest": "67fd4c5107e8df77f19fb9467307e2f4997f5175632345afc6517ec9c4000ede",
+      "desiredDigest": "c026f3b4fd79048bf93cadf8a6ebbcb3894ae3388825783b732f14697066545b"
+    },
+    {
+      "slug": "tenapanor",
+      "expectedDigest": "5732e1618e085be01d48ec699ead7a924949ef304c001ba259f303178a10ce77",
+      "desiredDigest": "ad224729b5f5eca0f11c501cd4b9559aaa611013e813c5b28f5937dc66959b7d"
+    },
+    {
+      "slug": "tenofovir-disoproxil",
+      "expectedDigest": "7756b5937b81c2894e2e09d1ff6b37b294abfc3356a204f1d9e44b99acfe9652",
+      "desiredDigest": "453e23df8c0d4aa0eacca705f72dedfb27e04360be93bfaa2f1f3d8eea5fc4ad"
+    },
+    {
+      "slug": "terazosin",
+      "expectedDigest": "da3b65f8b145f1f47e6d3834491f2893e2ca623337213d6de7958acb84b27a47",
+      "desiredDigest": "f95bb7fae32367c01b383dbecee3613155c07faa170f0630888e31c5eda68e80"
+    },
+    {
+      "slug": "terbinafine",
+      "expectedDigest": "2b5b0fdb0a723495911b5987574ef4f2020fb562d989ddcf083c2bcf08da7dcc",
+      "desiredDigest": "d6b33889578e6ad84168dbd4b530b8b8038d17b663605cb249577388643c81c8"
+    },
+    {
+      "slug": "terbutaline",
+      "expectedDigest": "6cda531239cfd86f1a5859c154592cb9f842de50413ef4135d8458d9c880bfc1",
+      "desiredDigest": "c6a0cbdf7d3bb2cdda92ff298e10c1ebad908bcf65cbc3a38312ee7acda4fbbd"
+    },
+    {
+      "slug": "terconazole",
+      "expectedDigest": "3f5911b6fe67d67aeda547995b8b888b7eb67d433b5e6426612fb23474bddbd9",
+      "desiredDigest": "b4999312e1fb299a863631d52f6777e426d5e010dcddece2f66f103efdf5c2cf"
+    },
+    {
+      "slug": "teriflunomide",
+      "expectedDigest": "cfdc3e525dcad0900a176502b7f0bdcfc3811d705f74cfba0ae5219f07bb123c",
+      "desiredDigest": "2d548c52776f648e9e0192c57cb2e850b74e74d77db9e8c99e4b6e21b589c516"
+    },
+    {
+      "slug": "teriparatide",
+      "expectedDigest": "fb506b4e7e98619c511ed2f7c6404b8627d3d8b5bac898df72de33e403a6a97d",
+      "desiredDigest": "ebbdeba7ee17a3804b463145d40b9d788d1ecb7370fa82b37e51edff376f13ac"
+    },
+    {
+      "slug": "tesamorelin",
+      "expectedDigest": "4390a8b339e8c43f75b4af0fa6b9512bdd271348a25376fbc386df28138e7bd2",
+      "desiredDigest": "3ebcb9a48de7c358e4352229ab7a5154abcaef61ac4d0a096f00bc0a547c8c55"
+    },
+    {
+      "slug": "tetrabenazine",
+      "expectedDigest": "fc0e6843ef6fff486657d821462cb9cdf100bb0d46c201895432eaef37710945",
+      "desiredDigest": "24cb73f58b56f0232b4cca6e468546e96790309ad6022b8cde249c3c4bf38673"
+    },
+    {
+      "slug": "tetrakis-copper-tetrafluoroborate",
+      "expectedDigest": "558fe02777e04eaf9f0e3f36c818253e51e8f587b7bc05ed7262533fff6e9a08",
+      "desiredDigest": "9edd6f690acbc86d4944b1f01fa65437a7d648ddda97ef2426be78ed6ac7260e"
+    },
+    {
+      "slug": "theophylline",
+      "expectedDigest": "a44521afbcef2e36d0947ab9142e0bf9a7e9e176762a3dbfc68730ed4036c836",
+      "desiredDigest": "e692a4eae33f9de3c017236e6bae83c0012074813ae342383a6d351f48945144"
+    },
+    {
+      "slug": "thiotepa",
+      "expectedDigest": "7678d3fb2fa7e890977e13ed1ca0bc9863c8f059f9649bf2f7b87c4c89158fb5",
+      "desiredDigest": "3fe60fe5856a7b924ae715dcb35a87338ed82001349d21da4933e804a634256c"
+    },
+    {
+      "slug": "tiagabine",
+      "expectedDigest": "8e85ca787a319e12c7484c4e6b52c5f3f527d5a5fa9fee3e62d2cf5ccf802ec7",
+      "desiredDigest": "94819f51469fa5f1f9907c2d34ac9c6ee9658168948bea18774ad991d2c992b2"
+    },
+    {
+      "slug": "ticagrelor",
+      "expectedDigest": "6880ca0878e36a767c1457b0d9ea2ddf76aa845b3b5a6f9b57f887079232fa20",
+      "desiredDigest": "39c2658447c547be8ba38a682d655e905c44301c61035a15533b8e876cfd7a01"
+    },
+    {
+      "slug": "tigecycline",
+      "expectedDigest": "9409167d1fd8e72f17b72c692fa563d9d09e4e6c11d0ef8353c3d88cbda8ce6e",
+      "desiredDigest": "559cee5f5298f3590e6529f16f56a4b829f0fa3e942184caa643954050b41652"
+    },
+    {
+      "slug": "timolol",
+      "expectedDigest": "5b7dd5dfb0160d5b20b4ba8147e67635554662ce8e0bf4521b488c709674fbac",
+      "desiredDigest": "5189e21f1540bc5ff722056263f097c3af16f52e6f181f1fe924b69d99b69bf1"
+    },
+    {
+      "slug": "tinidazole",
+      "expectedDigest": "9c73a47b7245167f8923c6f8f1207708e9ad5d67878013684de485d2c1edf99d",
+      "desiredDigest": "13f289e8ec86bb335f61e06a46a2068e388f66cb967bd43ca2e7f65b9e7d9668"
+    },
+    {
+      "slug": "tiopronin",
+      "expectedDigest": "17ae99cc8414a1190c340e09d1c2923c2dc5cb28e09d8c2a1ceb9c25a2ca9280",
+      "desiredDigest": "d93a61d666cac35286fa3d374a349918f6e31ae05fabaeabcbd8140cbbf8ec85"
+    },
+    {
+      "slug": "tirofiban",
+      "expectedDigest": "200825b85ed13da142cf4700ce31b57e29b84d43ca86144b4e58856f8da5749b",
+      "desiredDigest": "9171a8c5a812294536469118bd32f01a97f723c89040a4dcec4289525cb6da1f"
+    },
+    {
+      "slug": "tirzepatide",
+      "expectedDigest": "c0ac8b0f1c6e9207572536bd6702ed41f64bef0d38ffa292e2e17badbf909169",
+      "desiredDigest": "b124494458b45a342c89df247a9aa45c49131b7a8950b649ece19b30bbed2df1"
+    },
+    {
+      "slug": "tizanidine",
+      "expectedDigest": "3ec733a1bc15b4e78e74b6733248e9c2edc5017bf0ed4a8061db1398be8fbf0a",
+      "desiredDigest": "c6c4d9af7675f22196c96dca625b5c0f997d7589f694d169a1d554a0949ad406"
+    },
+    {
+      "slug": "tobramycin",
+      "expectedDigest": "c78e4bbffe485d1b70de0fd7c5f156c3440ce5e7ccebef28ec8ac0ff7dc254fe",
+      "desiredDigest": "16668078f2ea1bdc0870ba3dc264390acebcf9b1ab5f7b7ba908302685a87e43"
+    },
+    {
+      "slug": "tocilizumab",
+      "expectedDigest": "31875f2bd333fdcc5b1c24e7b2c4ac929e2929e051109b0fc3070db9391908aa",
+      "desiredDigest": "51d07196e129f80c2878115d723ea8f3aca507e945fea237606e41572eff823f"
+    },
+    {
+      "slug": "tocilizumab-aazg",
+      "expectedDigest": "4de067212e3cb3b3a3e0d8b3983c81e2dc51ca0b39aed4a93d168066cd07f11c",
+      "desiredDigest": "e9e30811472925d162005035740ac6141bfa772fb454b660ad44524afbd25f04"
+    },
+    {
+      "slug": "tofacitinib",
+      "expectedDigest": "196d30a7eaf48df76250fe721777d3dde2a88a145b2ac6167836f15a1d840894",
+      "desiredDigest": "dbd33b82eb09846bf468aef1128d3fa6fdeea35281f0a24a1777278051c61bc5"
+    },
+    {
+      "slug": "tolcapone",
+      "expectedDigest": "e5be79e10bde69b9f8f92466aa403eee3f560d348afda177e19eeeca339b7d12",
+      "desiredDigest": "5fd9ded893c767db680379e471e9cb7ea775f02dd40bb4376855619727fa4c0b"
+    },
+    {
+      "slug": "tolterodine",
+      "expectedDigest": "91b2793d58a2f37ece7e375e53df4b510cea581143af9cfc3fc2f71d95148735",
+      "desiredDigest": "2be6efb387cac7c70dae496eabe3e7ab61023d12f94d41b008b3a0e1231dcc9b"
+    },
+    {
+      "slug": "tolvaptan",
+      "expectedDigest": "197abe33a165d8a6a3db31058d608943c136099bf5f5baebc75b5d6109d84229",
+      "desiredDigest": "2432916cb927abe99071fc11ac655753dd0662b31578d9901fe42df2287c1a5d"
+    },
+    {
+      "slug": "topiramate",
+      "expectedDigest": "a81a2307ade1d25568344a48723e2a9b5855f50725e264b5da9b0b8ae2f206e4",
+      "desiredDigest": "04acc7a1aa2fa4bb4a4f61c39f45d694242c2985272b07ad8e9407fec6355fb8"
+    },
+    {
+      "slug": "topotecan",
+      "expectedDigest": "ee2fdfdcb8a1b94ab58d10b56cbb2748793c0a44d1119acc152916e870fcdf44",
+      "desiredDigest": "92f421d7215d7710e425346bf1cbfd661efc9306b885fce075625f7ef5d4faba"
+    },
+    {
+      "slug": "toremifene",
+      "expectedDigest": "6d46904f5abcdf99c66a814c13c48ef0873904851c5d8491808e365669fa1742",
+      "desiredDigest": "813789b36438f5a07de0185cba7b58a54a864118c6406692753884c9447dd422"
+    },
+    {
+      "slug": "torsemide",
+      "expectedDigest": "62b807f9ca801519cfb8d6d3daf289792e7e15e11dff79ad426161f4708eb7d0",
+      "desiredDigest": "9e5c88486d5a7c60100dae2182baa0274c6d0ba297a5dbcdd0502a8e38c3d2f2"
+    },
+    {
+      "slug": "trabectedin",
+      "expectedDigest": "b90f85752aed3be46bfc8683ce729602d84737ee674e903e78502c8777b5e7ed",
+      "desiredDigest": "19f6052dee7e9f64bd1f02ab530458368fdc451466c1aaecaf930250aca51670"
+    },
+    {
+      "slug": "tramadol",
+      "expectedDigest": "31af13f13c1a4248c066ca8bd722e39e631a3d6f8da7757da886f5573b3bb54b",
+      "desiredDigest": "87874b0ff9bed9b20f784493240093c1d78a643e67ec0f7faab802b03a1b79db"
+    },
+    {
+      "slug": "trandolapril",
+      "expectedDigest": "05c1e45f33cb5c52817adc802c5069c23394267e367a6d0143e6c8fb5d779a69",
+      "desiredDigest": "d00e76bfbecda2a4f98dd3b6bbc4c896e516eb053f5bf7624762c3fa9ea13720"
+    },
+    {
+      "slug": "tranexamic-acid",
+      "expectedDigest": "a3889938fcdaa3b21b68c2f13e50ab185c967676a05c632afc9d1c29bdf7c0fe",
+      "desiredDigest": "9a05f09e1302edba6c6e1448b3d7f81781e420768da2f078abd899204e8ba656"
+    },
+    {
+      "slug": "trazodone",
+      "expectedDigest": "924b84aa8f855853379206caa66f7656675b09a2440915829e2eacb8d6837457",
+      "desiredDigest": "7911b24b0c1031bd38c521e89462f4c88dc27aa50b802398655a1cc79c0a958f"
+    },
+    {
+      "slug": "treprostinil",
+      "expectedDigest": "7e298bf7f6e50da02134939fcf23ab486b1238d73d745b86be53b0fc7adf6880",
+      "desiredDigest": "8b6d4042460c4b1be5b50061704dac70d8b751df008828ec147b8fb1e94a2c0a"
+    },
+    {
+      "slug": "tretinoin",
+      "expectedDigest": "ce4493b732c1b8e96b0b2db0ea6ff98bda9d0aba55d33541289f0adffbf36472",
+      "desiredDigest": "253ca3088eb4d2f85afd754235f989eb932d77952c4e15b840f9f923e96305ee"
+    },
+    {
+      "slug": "triamcinolone-acetonide",
+      "expectedDigest": "280daa93db043e98aff7e5394dea5d5b15a82fcff73c1d5391a37d2a1061d00b",
+      "desiredDigest": "157aea4ee8e8fa705e98df15307be6e01cb9bdae1c1c87f7486ac128b7431f66"
+    },
+    {
+      "slug": "triazolam",
+      "expectedDigest": "418950d6ca9b1a6a597203d26f88284a39196a919d1f08bf8fb4ec51099521f3",
+      "desiredDigest": "f1f4611836852dccc32eda323f4e1cf2f622cb4df23a5ba86c398d430362410a"
+    },
+    {
+      "slug": "trilaciclib",
+      "expectedDigest": "ad7520fe039f2cfeb2f011ce2c19cdc4a57e5cc66348e7554bbbf5fd28aa773b",
+      "desiredDigest": "b917a0c747bff688dfbd8f8d13cc04b207882fcaf941b4b5aa6dfd05d865ce69"
+    },
+    {
+      "slug": "trimethobenzamide",
+      "expectedDigest": "371f5bdb53b4291df417fa66845b51b39257ff073288c0f415268e1a3d630d98",
+      "desiredDigest": "f11dd1694e10504e90eaa9c8d9681235225248f72cee5ab71fb3e73a02dde9a1"
+    },
+    {
+      "slug": "trimethoprim",
+      "expectedDigest": "122294c74135515bde558e13070adba775a1e40f21472a26a57cd0b6374a17db",
+      "desiredDigest": "8de741a9a6607241b95aabdf66ee94d89e160041de36deea02b8e032b455d366"
+    },
+    {
+      "slug": "ulipristal",
+      "expectedDigest": "2b0ac06ef4eb901f4135c907ac914e778ba694cfa3fe0bef0121c2e90338b29d",
+      "desiredDigest": "e8089da22a6cff22aa3d01e757e0ca56b634f967af2b6c9764b2b034c89bd8bc"
+    },
+    {
+      "slug": "umeclidinium",
+      "expectedDigest": "12ef9a5bf92c2c09b90111cab43b329ce21977509b54766f3c6b7e4e17750783",
+      "desiredDigest": "dcad25660333a64a0e889bf56a14b8fc88a643238fd6395d513ae202e597011e"
+    },
+    {
+      "slug": "uridine-triacetate",
+      "expectedDigest": "b1a4a01f24c79a9e647976d9af1822c1e3836a57a3f95026e928994d0e42139f",
+      "desiredDigest": "84090ba05f0635a23fc3709001b3be564c45d8d924ab4c2fd20df5c5a4b85ab4"
+    },
+    {
+      "slug": "ustekinumab",
+      "expectedDigest": "5daf0b2f2fbbc9b74f73c75663d076b674930054f3a886c1e5f4542836e26421",
+      "desiredDigest": "338d408f6d96cea41dedf270c650ab0238024c6b97137e9410bbdbc11e86e462"
+    },
+    {
+      "slug": "ustekinumab-aauz",
+      "expectedDigest": "c3720190c9a2f2920f3fbea587500eea555ff2270229c1ba38e8016ec71f167a",
+      "desiredDigest": "fe8d8bf35e51a41723055eac6d32cd78f3b94d8c091574555cf574722d320e9f"
+    },
+    {
+      "slug": "ustekinumab-aekn",
+      "expectedDigest": "67cd5c0e2ecf04a065e48109c7bdacb4970cc7958d79aff1e1d1282dcd076706",
+      "desiredDigest": "22c54bbbd1dc6b097ea9e0b449d06fd3ce946d449d1322d8df24193872e7a27f"
+    },
+    {
+      "slug": "ustekinumab-ttwe",
+      "expectedDigest": "19960ece22eb932973d1c41854c332ce66a12cd9ef34fbcc6203094934990ec2",
+      "desiredDigest": "a55f7b4eef8214601843dfe449558624fdf673cc36a3d15a6fe194dc7eb2ad34"
+    },
+    {
+      "slug": "valacyclovir",
+      "expectedDigest": "a583b5a43bb90a5e0a293c04578f7cc4cdcd3614aae1f99ae9109eb394a9e66c",
+      "desiredDigest": "f24a860947276bce5bb07f8ee981bfb3307bae5ba6e8a9ef7376f5df36813511"
+    },
+    {
+      "slug": "valganciclovir",
+      "expectedDigest": "aee7a360d9584282d5e7e0d8a985c9c349ec492b352544c41e0a8e7516037487",
+      "desiredDigest": "93003b0932f4a506a24adda1ab0ef31e112e65fc4f71842b2e2fd6c6286871ca"
+    },
+    {
+      "slug": "valproate",
+      "expectedDigest": "f070939a20d3ad5448db5aaa9b856272b12bdcdb4ed5a6663c94824672452794",
+      "desiredDigest": "faddc755ea610f9a3736a2a8170dfbcac64642155ac92915b5378f452e62ac6e"
+    },
+    {
+      "slug": "valproic-acid",
+      "expectedDigest": "52b9f77096a2de777cc14331d256bb251588305cf53264a97b7b40f44e8095ad",
+      "desiredDigest": "4d3a329e6b9b47eb49b308937b85bcf7d8ae1e0a53094e1313a060d176ff522e"
+    },
+    {
+      "slug": "valsartan",
+      "expectedDigest": "23496576cd883313ff16d579c768c801d2c34942dfa43c69e14442c58d5614d9",
+      "desiredDigest": "089342f0063e558092123a1fa46b3e508ee12586028f237b279aaaf4e9845588"
+    },
+    {
+      "slug": "vancomycin",
+      "expectedDigest": "87044567e2f6c707fc70c340a81c445d9a793a0ca30a40429d5a68320880438c",
+      "desiredDigest": "a23e5de933e4a70d682209231e00e58dd37fb4e9bdd9f67f4e885106a31ea127"
+    },
+    {
+      "slug": "vardenafil",
+      "expectedDigest": "8fa07c4627e30d57e00cd053bd7efc7e103e3cdf5810e56bd1c6753660b62241",
+      "desiredDigest": "0cec5a805bb8ff7f0178062c99fbe3ab060cf5307702c5e7be667215ff0f96f9"
+    },
+    {
+      "slug": "varenicline",
+      "expectedDigest": "40e2cf1309ed67b0ed787d70ed63be8cb85000f205e687c749da14510681f0ce",
+      "desiredDigest": "757394a0706ac6fd7bb62548b10e1793f08be1169351325f6ac22033e25104e3"
+    },
+    {
+      "slug": "venlafaxine",
+      "expectedDigest": "f6b7f0c4942d65d71f83b4bbc80c19b4a81d17ad21db5fa46dfec1576d93bb8c",
+      "desiredDigest": "c9f7a5a0c8f02ca373e3d4bde595ae6532e0f938583502919f064c7890473526"
+    },
+    {
+      "slug": "vepdegestrant",
+      "expectedDigest": "d26d9bcc13c21d519c0d2f664cf8d44565e9727551e91e5662060f1c448e786d",
+      "desiredDigest": "963f78db98d1d70613670fdb7ea465b6902fa049201745fcce9bffaea1b53145"
+    },
+    {
+      "slug": "verapamil",
+      "expectedDigest": "9989a1cae4ebfbad7e00dd915ff0cd6335b15e90e6af94139ddadc8c6d141faa",
+      "desiredDigest": "9335a89765d89b239771801afbacb10f32d8f8ae2b2b907fbbe571141c30cc31"
+    },
+    {
+      "slug": "vigabatrin",
+      "expectedDigest": "37d0b4de71a36d0dd7f3679b68be2c6a173c21408d2f7d416003ede9977af4ff",
+      "desiredDigest": "155dd2cc2f004f918a6434cfaabe547be0e32e2b2e8c87c8035f704d94800c7b"
+    },
+    {
+      "slug": "vilazodone",
+      "expectedDigest": "7d851319d09e7255630687a88d2799b1a6573f2df15f77e58f56def2612c7e80",
+      "desiredDigest": "0c8d70d4d5893e4c5abd2c1cd9d505f1cc193dcc4f648098212dc4fb01d69938"
+    },
+    {
+      "slug": "vinorelbine",
+      "expectedDigest": "2601309395107f729a91404c3904832d0bc1e24972d0abf9acd4c2d49a56c991",
+      "desiredDigest": "bb0923140f9aa9fb46929e0133dc0b3b4803e20047ae9801a84c477ff1f80897"
+    },
+    {
+      "slug": "voriconazole",
+      "expectedDigest": "de2def2da046381ba478a709e0fb7ee712364027aae426eed307784d7f2b593b",
+      "desiredDigest": "53abc9da1df0b1519643442639d355f878e454db5b51bd2eb1c281023e41b1de"
+    },
+    {
+      "slug": "vortioxetine",
+      "expectedDigest": "6bc76bada0437cfa811d85b5423cfc340a3ccec9c46f5744db733334651d392a",
+      "desiredDigest": "a4b29477b79af7e140bb3f4340a143c8011bfce26ab6574482533464d14a7682"
+    },
+    {
+      "slug": "warfarin",
+      "expectedDigest": "1f5310379380a33e257015fcbe62510f5f1db0e82ea727998ccf329a7d981e3e",
+      "desiredDigest": "3abee03c0b48cadeeed16b59a105d91f97b3497ff0442f2a5dd940a247e23fb7"
+    },
+    {
+      "slug": "zafirlukast",
+      "expectedDigest": "6cd184d09bca9307bed46ad7bf49d239d0413aef3f9b7e8f963d7b4ce1638d5d",
+      "desiredDigest": "c1c0d05835b1e2a619c01e4678e1b46f5ed350dd48fec7be3bd7b9e6c47f12e0"
+    },
+    {
+      "slug": "zaleplon",
+      "expectedDigest": "bc3cf366144f9e4a453002a430c65b2c0295ae1c848bfe30af26a36a8a3f8f2c",
+      "desiredDigest": "439f8a310ac2a29f771b2fd6172de837414790430256fb8f71393f1cef6b0308"
+    },
+    {
+      "slug": "zanamivir",
+      "expectedDigest": "786b77ae0dc320a3e22f08995e3fa54e105bb1583f5d793f10373a8d38b99b64",
+      "desiredDigest": "cc8c261d5b42e3734b2e08a21cdea4c0deff970560ab92e7f536c3c7ec921999"
+    },
+    {
+      "slug": "zavegepant",
+      "expectedDigest": "09fdab80b4cc8794d683a8759b2fd23a6a7c01e102ede5485ba5ee384c2930f2",
+      "desiredDigest": "d3b7c411e50fbb53fb6abf48c06f3de81a94f383897d0f93829891f6e76bd6c3"
+    },
+    {
+      "slug": "zenocutuzumab",
+      "expectedDigest": "178e1fb67aeb7bc4ef1456a8242804cbb06572a205943ae4721d799fdc9b5c30",
+      "desiredDigest": "d004b5acb46e0232345bcb6cc0a19ea32f017f55bba4e1a78081dfce8df33797"
+    },
+    {
+      "slug": "zidovudine",
+      "expectedDigest": "65fbff701e2a05ee29c5ca2917ead97589d47066855a983aca3fae780c320bde",
+      "desiredDigest": "42151a798f081a0557dbce564e855061aa0979ee46c3bf4dd47661be494879b5"
+    },
+    {
+      "slug": "zileuton",
+      "expectedDigest": "f415dcfad6a5cbbc05799f0791a4bb9eb74d9f2609e71885d3414e3a2525d849",
+      "desiredDigest": "ae125f71b1a1563ebf6e4fe96744578bf683defb46440d607eb3ddb152654bfd"
+    },
+    {
+      "slug": "ziprasidone",
+      "expectedDigest": "cd0a55f63f4d76409f68955b1725287b134d765b9d39363f4df1c84d14a28270",
+      "desiredDigest": "886c88e24e52f39f0912280ae6aa3040215535ec0199919cd5f07127d7b2f220"
+    },
+    {
+      "slug": "zoledronic-acid",
+      "expectedDigest": "09a1211176965b42be83969dd8820c19d973f3d3d7dddee3202d4f335c291668",
+      "desiredDigest": "4fc09c38f923513b6ce029762cc0c2d6e3be776920e7b56cae1c2af4fd03e9ae"
+    },
+    {
+      "slug": "zolmitriptan",
+      "expectedDigest": "2cc1ffb08952cdb88b07197be425fc495f3e0918d382a408706ad65ceee83ff7",
+      "desiredDigest": "06e627b8fbce950e9238a7fd27a8be08aa920c99bab84e7b2a02305cf3641df8"
+    },
+    {
+      "slug": "zolpidem",
+      "expectedDigest": "5236c157aeb3afc8211353824b34484dd4222f8ec874bd3fb455263d9b7511d4",
+      "desiredDigest": "ca358e3366c0c76a8a5635911fe992791b254309be89e3d290d9c7713ccbf979"
+    },
+    {
+      "slug": "zonisamide",
+      "expectedDigest": "de37f84cf33b5aed2892d32ca82755526a4c43855d405ed57b5d746358756f5b",
+      "desiredDigest": "1fb2b3178ac33ead7fb43f877a0720fe594201544237a29eb77e926a59cdcfef"
+    }
+  ]
+}

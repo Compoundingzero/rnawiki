@@ -74,6 +74,10 @@ export interface BackgroundSource {
   identifier: string
   label: string
   locator?: string
+  /** Source-controlled document or release version, when the artifact records one explicitly. */
+  version?: string
+  /** Source-controlled effective date, when distinct from RNAWiki's retrieval date. */
+  effectiveDate?: string
   /** ISO date the source artifact was fetched during authoring. */
   retrievedAt: string
   /** Exact fetched text containing the value, at most 400 characters. */
@@ -808,12 +812,14 @@ export interface RecordedComposition {
  * A medicine is often covered by many labels — gabapentin by more than four hundred — because each
  * manufacturer publishes its own. Keeping only one discards the fact that the others agree, which
  * is the strongest thing the corpus can say about a value and the thing no other public resource
- * reports. Sources are capped for size, and the count is the full count regardless.
+ * reports. Every retained source is published: `sourceCount` and `sources.length` must agree.
  */
 export interface ConsensusReading {
   display: string
   numeric?: number
   unit?: string
+  /** Structured context, or an explicit statement that population/formulation was not extracted. */
+  populationContext: string
   sourceCount: number
   sources: BackgroundSource[]
 }
@@ -836,18 +842,17 @@ export interface RecordedFieldConsensus {
   /** Share of sources stating the most-supported reading, in [0, 1]. */
   agreementRate: number
   /**
-   * True when at least two readings carry numbers whose ranges do not overlap.
+   * True only when the final context-aware comparison state is `differ`.
    *
    * @deprecated Superseded by `comparisonState`, and misleading on its own: it was computed without
-   * consulting the unit, so a volume of 0.5 L/kg and one of 35.5 L were reported as disagreeing when
-   * the second is 0.51 L/kg in a 70 kg adult. Retained so records generated before the comparability
-   * contract existed still read, and still written so an old consumer keeps working, but no new
-   * reader-facing decision should be taken from it.
+   * consulting the unit or structured population context. Retained so records generated before the
+   * comparability contract existed still read, and still written as exactly
+   * `comparisonState === 'differ'` so an old consumer fails closed with the current contract.
    */
   numericallyDisjoint: boolean
   /**
    * Whether the readings can be compared at all, and if so whether they agree. Absent on records
-   * generated before the contract existed; see `lib/background/reading-comparison.ts`.
+   * generated before the contract existed; see `lib/background/source-consensus-comparison.ts`.
    */
   comparisonState?: ReadingComparisonState
   /** Why the comparison reached that state, for a reviewer and for the audit. */

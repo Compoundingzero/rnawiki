@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
-import { compareFieldReadings } from '@/lib/background/reading-comparison'
+import {
+  compareConsensusReadings,
+  STRUCTURALLY_UNEXTRACTED_POPULATION_CONTEXT,
+} from '@/lib/background/source-consensus-comparison'
 
 import { SOURCE_CONSENSUS } from '@/scripts/seed-data/background/source-consensus.generated'
 import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
@@ -36,14 +39,33 @@ describe('cross-source consensus', () => {
     for (const [slug, consensus] of entries) {
       for (const field of consensus.fields) {
         const summed = field.readings.reduce((total, reading) => total + reading.sourceCount, 0)
-        // Readings are capped for size, so the sum may be below the total but never above it.
-        expect(summed, `${slug} ${field.field}`).toBeLessThanOrEqual(field.sourceCount)
+        expect(summed, `${slug} ${field.field}`).toBe(field.sourceCount)
+        for (const reading of field.readings) {
+          expect(reading.sources.length, `${slug} ${field.field} ${reading.display}`).toBe(
+            reading.sourceCount,
+          )
+          expect(
+            reading.populationContext.trim(),
+            `${slug} ${field.field} ${reading.display}`,
+          ).not.toBe('')
+        }
         expect(field.agreementRate).toBeCloseTo(
           field.readings[0]!.sourceCount / field.sourceCount,
           9,
         )
       }
     }
+  })
+
+  it('retains the full archive tail instead of the former document and source ceilings', () => {
+    const maximumDocuments = Math.max(...entries.map(([, value]) => value.documentsExamined))
+    const maximumSources = Math.max(
+      ...entries.flatMap(([, value]) =>
+        value.fields.flatMap((field) => field.readings.map((reading) => reading.sources.length)),
+      ),
+    )
+    expect(maximumDocuments).toBeGreaterThan(60)
+    expect(maximumSources).toBeGreaterThan(4)
   })
 
   it('states every reading in the excerpt of a source cited for it', () => {
@@ -94,11 +116,32 @@ describe('cross-source consensus', () => {
   it('records a comparison state that matches the comparability contract', () => {
     for (const [slug, consensus] of entries) {
       for (const field of consensus.fields) {
-        const expected = compareFieldReadings(field.readings.map((reading) => reading.display))
+        const expected = compareConsensusReadings(field.readings)
         expect(field.comparisonState, `${slug} ${field.field}`).toBe(expected.state)
         // The deprecated Boolean must keep agreeing with the state it was superseded by.
         expect(field.numericallyDisjoint, `${slug} ${field.field}`).toBe(
           expected.state === 'differ',
+        )
+      }
+    }
+  })
+
+  it('publishes the unextracted context explicitly and never turns it into disagreement', () => {
+    for (const [slug, consensus] of entries) {
+      for (const field of consensus.fields) {
+        for (const reading of field.readings) {
+          expect(reading.populationContext, `${slug} ${field.field}`).toBe(
+            STRUCTURALLY_UNEXTRACTED_POPULATION_CONTEXT,
+          )
+        }
+        if (field.readings.length > 1 && field.comparisonState !== 'not_comparable') {
+          expect(field.comparisonState, `${slug} ${field.field}`).toBe('insufficient_context')
+          expect(field.comparisonReasons, `${slug} ${field.field}`).toEqual([
+            'STRUCTURED_CONTEXT_MISSING',
+          ])
+        }
+        expect(field.numericallyDisjoint, `${slug} ${field.field}`).toBe(
+          field.comparisonState === 'differ',
         )
       }
     }

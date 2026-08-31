@@ -45,6 +45,8 @@ export const READING_COMPARISON_REASONS = [
   'DENOMINATOR_MISMATCH',
   /** A unit or a number could not be read, so comparability itself is undecidable. */
   'CONTEXT_MISSING',
+  /** Distinct printed readings lack one matching, structurally extracted population context. */
+  'STRUCTURED_CONTEXT_MISSING',
 ] as const
 export type ReadingComparisonReason = (typeof READING_COMPARISON_REASONS)[number]
 

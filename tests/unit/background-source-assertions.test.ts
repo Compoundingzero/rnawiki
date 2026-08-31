@@ -216,12 +216,16 @@ describe('recorded-background source assertion bindings', () => {
       identifier: 'ABC-123',
       label: 'Example label',
       locator: 'section 12',
+      version: 'label-revision-7',
+      effectiveDate: '2026-07-15',
       retrievedAt: '2026-08-01',
       excerpt: 'The value is 10 mg.',
     }
     const sourceInSecondOrder = {
       excerpt: 'The value is 10 mg.',
       retrievedAt: '2026-08-01',
+      effectiveDate: '2026-07-15',
+      version: 'label-revision-7',
       locator: 'section 12',
       label: 'Example label',
       identifier: 'ABC-123',
@@ -258,6 +262,8 @@ describe('recorded-background source assertion bindings', () => {
     expect(firstBinding).toEqual(secondBinding)
     expect(firstBinding.sourceLabel).toBe('Example label')
     expect(firstBinding.sourceLocator).toBe('section 12')
+    expect(firstBinding.version).toBe('label-revision-7')
+    expect(firstBinding.effectiveDate).toBe('2026-07-15')
   })
 
   it('changes the binding when any exact assertion coordinate or content changes', () => {
@@ -298,13 +304,29 @@ describe('recorded-background source assertion bindings', () => {
           ),
         ),
       ),
+      oneBinding(
+        mechanism(
+          statement(
+            'The value is 10 mg.',
+            source('assertion', 'The value is 10 mg.', { version: 'label-revision-2' }),
+          ),
+        ),
+      ),
+      oneBinding(
+        mechanism(
+          statement(
+            'The value is 10 mg.',
+            source('assertion', 'The value is 10 mg.', { effectiveDate: '2026-08-04' }),
+          ),
+        ),
+      ),
       oneBinding(background({ recordedUses: { statements: [statement()] } })),
       oneBinding(mechanism(), 'different-slug'),
     ]
 
     expect(new Set(bindings.map((binding) => binding.bindingId)).size).toBe(bindings.length)
     expect(bindings[0]?.assertionDigest).not.toBe(bindings[1]?.assertionDigest)
-    expect(bindings[0]?.sourcePath).not.toBe(bindings[7]?.sourcePath)
+    expect(bindings[0]?.sourcePath).not.toBe(bindings[9]?.sourcePath)
   })
 
   it('canonicalizes source fetch identities without merging unlike kinds', () => {

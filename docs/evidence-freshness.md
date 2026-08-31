@@ -46,26 +46,24 @@ articles into these snapshots.
 3. It compares the new snapshot with the previously checked snapshot.
 4. It finds the stored statements and page sections that depend on a changed source.
 5. It records the check result, next due time and retry information.
-6. If the change may affect meaning, safety or a conclusion, it leaves the public version unchanged
-   and creates a source-review task.
+6. If anything changed, it leaves the public version unchanged and creates a source-review task.
+   Exact registry fields retain a lower review impact; they are not applied by the monitor.
 
 Delivery retries are safe: the same observation key reuses the same monitor run and snapshot.
 Failures and retry times are stored separately from evidence. A failed check does not erase the last
 known source version and is never treated as a negative scientific result.
 
-### The narrow automatic-refresh case
+### Review-only change boundary
 
-A newly onboarded, unpublished registry programme may have only a study card and no medical
-interpretation. For that limited case, the monitor may refresh exact registry fields such as
-recruitment status, phase, enrolment, dates, sponsor and the linked snapshot. It does so only when:
+Every changed registry snapshot stays pending, including an exact change to recruitment status,
+phase, enrolment, dates, sponsor or results-posted state on an unpublished programme. The monitor
+records the immutable snapshot, normalized delta, freshness state and review task. It does not copy
+the changed values into `programme_trials` or the medical fields of `development_programmes`.
 
-- the programme has no public conclusion;
-- it has no claims, evidence-chain answers, study assessments, dependent page fields, contribution
-  proposals or open review work; and
-- nothing outside the permitted exact registry fields changed.
-
-If any condition is false, the new snapshot stays pending for human review. The monitor never writes
-a claim, evidence-chain answer, programme conclusion or public publication pointer.
+An all-exact delta is labelled `LOW_RISK_EXACT_DATA` and may enter the existing human-reviewed
+`SOURCE_REFRESH` workflow. An interpretive or unclassified change requires scientific revision.
+Neither path moves the accepted snapshot or public facts until its separate review and publication
+requirements pass.
 
 ### What readers see for programme freshness
 

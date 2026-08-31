@@ -41,6 +41,51 @@ function contentForHash(value: unknown): unknown {
   )
 }
 
+function objectRecord(value: unknown): Record<string, unknown> | null {
+  return value !== null && typeof value === 'object' && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null
+}
+
+function deleteNestedField(value: Record<string, unknown>, path: readonly string[]): void {
+  let cursor: Record<string, unknown> | null = value
+  const parents: Array<{ parent: Record<string, unknown>; key: string }> = []
+  for (const part of path.slice(0, -1)) {
+    if (!cursor) return
+    parents.push({ parent: cursor, key: part })
+    cursor = objectRecord(cursor[part])
+  }
+  if (!cursor) return
+  delete cursor[path.at(-1)!]
+  for (const { parent, key } of parents.reverse()) {
+    const nested = objectRecord(parent[key])
+    if (nested && Object.keys(nested).length === 0) delete parent[key]
+    else break
+  }
+}
+
+/** Everything in the submitted registry record that is not one of the normalized exact fields. */
+function unclassifiedContent(value: unknown): unknown {
+  const projected = structuredClone(contentForHash(value))
+  const record = objectRecord(projected)
+  if (!record) return projected
+  const exactPaths = [
+    ['hasResults'],
+    ['protocolSection', 'identificationModule', 'nctId'],
+    ['protocolSection', 'statusModule', 'overallStatus'],
+    ['protocolSection', 'statusModule', 'startDateStruct', 'date'],
+    ['protocolSection', 'statusModule', 'primaryCompletionDateStruct', 'date'],
+    ['protocolSection', 'statusModule', 'completionDateStruct', 'date'],
+    ['protocolSection', 'sponsorCollaboratorsModule', 'leadSponsor', 'name'],
+    ['protocolSection', 'sponsorCollaboratorsModule', 'leadSponsor', 'class'],
+    ['protocolSection', 'designModule', 'phases'],
+    ['protocolSection', 'designModule', 'enrollmentInfo', 'count'],
+    ['protocolSection', 'designModule', 'enrollmentInfo', 'type'],
+  ] as const
+  for (const path of exactPaths) deleteNestedField(record, path)
+  return record
+}
+
 function hashPayload(value: unknown): string {
   // ClinicalTrials.gov's derivedSection contains service-generated browse data and a daily
   // version-holder date. It is useful to retain in the immutable snapshot, but it is not a change
@@ -161,29 +206,27 @@ export class ClinicalTrialsGovAdapter implements EvidenceSourceAdapter {
       current.contentHash,
     )
 
-    // The registry payload contains much more than the small set of fields we can safely copy as
-    // exact facts (for example outcomes, interventions, eligibility and posted results). A changed
-    // content hash with no normalized-field difference must therefore never be treated as "no
-    // change". Keep the exact hashes as the before/after values and route the unclassified record
-    // change to a person. This deliberately favours a visible review task over silently missing a
-    // medically meaningful update.
+    // The registry payload contains much more than the exact fields above (for example outcomes,
+    // interventions, eligibility and posted results). Compare that remainder independently so an
+    // exact status change cannot hide a simultaneous unclassified medical change.
     if (
       previous !== null &&
-      previous.contentHash !== current.contentHash &&
-      normalized.changes.length === 0
+      stableJsonStringify(unclassifiedContent(previous.payload)) !==
+        stableJsonStringify(unclassifiedContent(current.payload))
     ) {
       return {
         changed: true,
         previousHash: previous.contentHash,
         currentHash: current.contentHash,
         changes: [
+          ...normalized.changes,
           {
             path: 'trial.registryRecord',
             before: previous.contentHash,
             after: current.contentHash,
-            risk: 'INTERPRETIVE_REVIEW_REQUIRED',
+            risk: 'INTERPRETIVE_REVIEW_REQUIRED' as const,
           },
-        ],
+        ].sort((left, right) => left.path.localeCompare(right.path)),
       }
     }
 

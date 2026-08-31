@@ -12,11 +12,13 @@ then atomically:
 2. computes a normalized field-level diff from the prior observed snapshot;
 3. resolves claims citing that source and their programme dependencies;
 4. advances current/pending freshness pointers;
-5. creates a deterministic, de-duplicated review task for any non-low-risk impact; and
+5. creates a deterministic, de-duplicated review task for every changed source snapshot; and
 6. completes the observable monitor run.
 
-Interpretive changes leave the existing current snapshot in place and put the new snapshot in
-`pendingSnapshotId`. The service never updates claims, evidence nodes, verdict revisions, programme
+Every change leaves the existing current snapshot in place and puts the new snapshot in
+`pendingSnapshotId`. Exact registry deltas retain the lower `LOW_RISK_EXACT_DATA` impact so the
+reviewed canonical-refresh path can handle them without inventing prose. The service never updates
+trial facts, programme facts, claims, evidence nodes, verdict revisions, programme
 current-publication pointers, or public prose. A separate reviewed publication workflow must resolve
 the task and publish atomically.
 
@@ -62,5 +64,6 @@ the result array, and does not prevent remaining due sources from running. The p
 when any item failed or when the due query/batch itself failed. `IN_PROGRESS` leased runs are
 reported separately and do not fail the batch. Limits are capped at 100 rows and concurrency at 10.
 
-The scheduled entrypoint calls only the source monitor. It does not write claims, evidence nodes,
-verdict revisions, publication pointers, or public prose, and it never promotes a pending snapshot.
+The scheduled entrypoint calls only the source monitor. It does not write trial or programme facts,
+claims, evidence nodes, verdict revisions, publication pointers, or public prose, and it never
+promotes a changed snapshot. Its only programme-row write is the operational freshness status.

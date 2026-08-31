@@ -125,6 +125,35 @@ describe('ClinicalTrialsGovAdapter', () => {
     })
   })
 
+  it('does not let an exact field change hide a simultaneous unclassified change', async () => {
+    const beforePayload = study('RECRUITING', 120) as Record<string, unknown>
+    const afterBase = study('COMPLETED', 128) as Record<string, unknown>
+    const afterPayload = {
+      ...afterBase,
+      protocolSection: {
+        ...(afterBase.protocolSection as Record<string, unknown>),
+        outcomesModule: {
+          primaryOutcomes: [{ measure: 'A simultaneous unclassified outcome change' }],
+        },
+      },
+    }
+    const payloads = [beforePayload, afterPayload]
+    const adapter = new ClinicalTrialsGovAdapter(
+      async () => response(payloads.shift()),
+      () => new Date('2026-08-22T00:00:00Z'),
+    )
+
+    const before = await adapter.fetch(identifier)
+    const after = await adapter.fetch(identifier)
+    const diff = await adapter.diff(before, after)
+
+    expect(diff.changes.map(({ path, risk }) => ({ path, risk }))).toEqual([
+      { path: 'trial.enrollment.count', risk: 'LOW_RISK_EXACT' },
+      { path: 'trial.overallStatus', risk: 'LOW_RISK_EXACT' },
+      { path: 'trial.registryRecord', risk: 'INTERPRETIVE_REVIEW_REQUIRED' },
+    ])
+  })
+
   it('reports a missing registry record as structured source unavailability', async () => {
     const adapter = new ClinicalTrialsGovAdapter(async () => new Response(null, { status: 404 }))
 

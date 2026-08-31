@@ -8,6 +8,7 @@ const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
   scripts: Record<string, string>
 }
 const worker = readFileSync(join(root, 'scripts/source-sync-worker.ts'), 'utf8')
+const programmeMonitor = readFileSync(join(root, 'lib/evidence/source-monitor-drizzle.ts'), 'utf8')
 const deployer = readFileSync(join(root, 'scripts/deploy-source-sync.ts'), 'utf8')
 const railway = readFileSync(join(root, 'railway.source-sync.toml'), 'utf8')
 const deploymentDocs = readFileSync(join(root, 'docs/deployment.md'), 'utf8')
@@ -29,6 +30,12 @@ describe('private source-sync worker wiring', () => {
     expect(worker).not.toMatch(/fetchCounts[^\n]*process\.exitCode/u)
     expect(worker).not.toMatch(/assertionCounts[^\n]*process\.exitCode/u)
     expect(worker).not.toMatch(/candidatesEmitted[^\n]*process\.exitCode/u)
+  })
+
+  it('has no scheduled projection that rewrites programme trial facts', () => {
+    expect(worker).toContain('monitorClinicalTrialsSource')
+    expect(programmeMonitor).not.toContain('advanceExactSourceCache')
+    expect(programmeMonitor).not.toMatch(/\.update\(programmeTrials\)/u)
   })
 
   it('mirrors the persistent Railway service configuration without web-only commands', () => {

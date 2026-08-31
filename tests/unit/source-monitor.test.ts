@@ -335,27 +335,44 @@ describe('runSourceMonitor', () => {
     })
   })
 
-  it('de-duplicates snapshots and does not fetch again for scheduler redelivery', async () => {
+  it('de-duplicates snapshots, leaves exact changes pending, and does not fetch again for redelivery', async () => {
     const first = sourceSnapshot('RECRUITING', '2026-08-22T00:00:00.000Z')
     const changed = sourceSnapshot('COMPLETED', '2026-08-23T00:00:00.000Z')
     const repository = new MemoryMonitorRepository()
     const adapter = new QueueAdapter([first, changed, changed])
 
-    await run(repository, adapter, 'day-1', new Date('2026-08-22Z'))
+    const baseline = await run(repository, adapter, 'day-1', new Date('2026-08-22Z'))
     const second = await run(repository, adapter, 'day-2', new Date('2026-08-23Z'))
     const replay = await run(repository, adapter, 'day-2', new Date('2026-08-23T00:01:00Z'))
     const sameHashNewRun = await run(repository, adapter, 'day-3', new Date('2026-08-24Z'))
 
-    expect(second).toMatchObject({ changedFieldCount: 1, highestImpact: 'LOW_RISK_EXACT_DATA' })
+    expect(second).toMatchObject({
+      changedFieldCount: 1,
+      highestImpact: 'LOW_RISK_EXACT_DATA',
+      currentSnapshotId: baseline.snapshotId,
+      pendingSnapshotId: second.snapshotId,
+    })
+    expect(second.currentSnapshotId).not.toBe(second.snapshotId)
+    expect(second.reviewTaskIds).toHaveLength(1)
     expect(replay).toMatchObject({
       disposition: 'IDEMPOTENT_REPLAY',
       snapshotInserted: false,
     })
-    expect(sameHashNewRun).toMatchObject({ changedFieldCount: 0, snapshotInserted: false })
+    expect(sameHashNewRun).toMatchObject({
+      changedFieldCount: 0,
+      snapshotInserted: false,
+      highestImpact: 'LOW_RISK_EXACT_DATA',
+      currentSnapshotId: second.currentSnapshotId,
+      pendingSnapshotId: second.snapshotId,
+    })
     expect(adapter.fetchCalls).toBe(3)
     expect(repository.runs.size).toBe(3)
     expect(repository.snapshots.size).toBe(2)
-    expect(repository.tasks.size).toBe(0)
+    expect(repository.tasks.size).toBe(1)
+    expect(repository.tasks.get(second.reviewTaskIds[0]!)).toMatchObject({
+      impactLevel: 'LOW_RISK_EXACT_DATA',
+      status: 'OPEN',
+    })
   })
 
   it('holds a changed snapshot pending and creates one durable task for affected claims', async () => {

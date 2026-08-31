@@ -4,7 +4,10 @@ import { and, asc, desc, eq, gt, inArray, isNotNull, sql } from 'drizzle-orm'
 
 import { db } from '@/db'
 import {
+  agentCurrentRuns,
+  agentQueueDecisions,
   agentReviewCandidates,
+  agentRunCandidates,
   agentRuns,
   backgroundAssertionChecks,
   backgroundSourceBindings,
@@ -14,6 +17,7 @@ import {
   sourceSnapshots,
 } from '@/db/schema'
 import { candidateKey, occurrenceKey, valueDigest } from '@/lib/agents/core/identity'
+import { buildAgentLiveDecisionContext } from '@/lib/agents/core/live-decision-context'
 import type { StaleSourceSummary } from '@/lib/dossier-question-issues'
 import { stableJsonStringify } from '@/lib/stable-json'
 
@@ -39,8 +43,9 @@ import type { MedicineRecordedBackground } from './types'
 
 export const BACKGROUND_ASSERTION_CHECKER_VERSION = 'background-assertion/1.0.0' as const
 export const BACKGROUND_DRIFT_AGENT = 'source-drift-monitor' as const
-export const BACKGROUND_DRIFT_AGENT_VERSION = '1.0.0' as const
+export const BACKGROUND_DRIFT_AGENT_VERSION = '2.0.0' as const
 export const BACKGROUND_DRIFT_REASON_SCHEMA_VERSION = '1' as const
+export const BACKGROUND_DRIFT_EVIDENCE_IDENTITY_VERSION = '2' as const
 
 const PAGE_SIZE = 250
 
@@ -53,6 +58,7 @@ interface CurrentBackgroundRow {
 export interface PreparedBackgroundBinding {
   drugId: string
   recordedBackgroundDigest: string
+  provenanceTier?: string
   binding: BackgroundSourceAssertionBinding
 }
 
@@ -85,6 +91,12 @@ export interface BackgroundFreshnessRunSummary {
   assertionCounts: Record<SourceAssertionResult, number>
   candidatesEmitted: number
   stoppedAtRuntimeBound: boolean
+}
+
+export interface CurrentBackgroundDriftState {
+  checks: readonly PersistedBackgroundAssertionCheck[]
+  currentBindingCount: number
+  currentEnvelopeDigest: string
 }
 
 function sha256(value: string): string {
@@ -247,6 +259,7 @@ async function bindingsForSourceKeys(
       group.bindings.push({
         drugId: row.id,
         recordedBackgroundDigest: envelopeDigest,
+        provenanceTier: row.recordedBackground.provenanceTier ?? 'curated',
         binding,
       })
       bySource.set(binding.sourceKey, group)
@@ -351,6 +364,8 @@ export async function persistBackgroundSourceAttempt(input: {
       sourceKey: prepared.binding.sourceKey,
       sourceLabel: prepared.binding.sourceLabel,
       sourceLocator: prepared.binding.sourceLocator ?? null,
+      sourceVersion: prepared.binding.version ?? null,
+      sourceEffectiveDate: prepared.binding.effectiveDate ?? null,
       sourceRetrievedAt: parsedRecordedAt(prepared.binding.retrievedAt),
       sourceExcerpt: prepared.binding.excerpt,
       assertionDigest: prepared.binding.assertionDigest,
@@ -372,6 +387,8 @@ export async function persistBackgroundSourceAttempt(input: {
         sourceKey: backgroundSourceBindings.sourceKey,
         sourceLabel: backgroundSourceBindings.sourceLabel,
         sourceLocator: backgroundSourceBindings.sourceLocator,
+        sourceVersion: backgroundSourceBindings.sourceVersion,
+        sourceEffectiveDate: backgroundSourceBindings.sourceEffectiveDate,
         sourceRetrievedAt: backgroundSourceBindings.sourceRetrievedAt,
         sourceExcerpt: backgroundSourceBindings.sourceExcerpt,
         assertionDigest: backgroundSourceBindings.assertionDigest,
@@ -593,10 +610,110 @@ export async function persistBackgroundSourceAttempt(input: {
   })
 }
 
+const CURRENT_DRIFT_QUERY_BATCH_SIZE = 250
+
+/**
+ * Resolves the latest decisive assertion for every binding in the exact current medicine
+ * envelopes. Failed fetches have no assertion row, so they cannot clear an earlier confirmed
+ * drift. The returned set is complete across the corpus, independent of the network batch that
+ * happened to run immediately before it.
+ */
+export async function currentUnresolvedBackgroundDriftState(): Promise<CurrentBackgroundDriftState> {
+  const preparedById = new Map<string, PreparedBackgroundBinding>()
+  const envelopeDigests = new Set<string>()
+
+  await visitCurrentBackgrounds((row) => {
+    const envelopeDigest = recordedBackgroundDigest(row.recordedBackground)
+    envelopeDigests.add(envelopeDigest)
+    for (const binding of collectBackgroundSourceAssertionBindings(
+      row.slug,
+      row.recordedBackground,
+    )) {
+      const prepared: PreparedBackgroundBinding = {
+        drugId: row.id,
+        recordedBackgroundDigest: envelopeDigest,
+        provenanceTier: row.recordedBackground.provenanceTier ?? 'curated',
+        binding,
+      }
+      preparedById.set(persistedBackgroundBindingId(prepared), prepared)
+    }
+  })
+
+  const latestByBinding = new Map<
+    string,
+    {
+      id: string
+      bindingId: string
+      fetchId: string
+      sourceId: string
+      sourceSnapshotId: string
+      sourceContentHash: string
+      result: SourceAssertionResult
+      checkedAt: Date
+    }
+  >()
+  const bindingIds = [...preparedById.keys()].sort()
+  for (let offset = 0; offset < bindingIds.length; offset += CURRENT_DRIFT_QUERY_BATCH_SIZE) {
+    const batch = bindingIds.slice(offset, offset + CURRENT_DRIFT_QUERY_BATCH_SIZE)
+    const rows = await db
+      .select({
+        id: backgroundAssertionChecks.id,
+        bindingId: backgroundAssertionChecks.bindingId,
+        fetchId: backgroundAssertionChecks.fetchId,
+        sourceId: backgroundAssertionChecks.sourceId,
+        sourceSnapshotId: backgroundAssertionChecks.sourceSnapshotId,
+        sourceContentHash: sourceSnapshots.contentHash,
+        result: backgroundAssertionChecks.result,
+        checkedAt: backgroundAssertionChecks.checkedAt,
+      })
+      .from(backgroundAssertionChecks)
+      .innerJoin(
+        sourceSnapshots,
+        eq(sourceSnapshots.id, backgroundAssertionChecks.sourceSnapshotId),
+      )
+      .where(inArray(backgroundAssertionChecks.bindingId, batch))
+      .orderBy(
+        asc(backgroundAssertionChecks.bindingId),
+        desc(backgroundAssertionChecks.checkedAt),
+        desc(backgroundAssertionChecks.id),
+      )
+    for (const row of rows) {
+      if (!latestByBinding.has(row.bindingId)) latestByBinding.set(row.bindingId, row)
+    }
+  }
+
+  const checks = [...latestByBinding.values()]
+    .filter((row) => row.result === 'DRIFTED')
+    .map((row): PersistedBackgroundAssertionCheck => {
+      const binding = preparedById.get(row.bindingId)
+      if (!binding) throw new Error(`Current background binding disappeared: ${row.bindingId}`)
+      return {
+        id: row.id,
+        persistedBindingId: row.bindingId,
+        binding,
+        fetchId: row.fetchId,
+        sourceId: row.sourceId,
+        sourceSnapshotId: row.sourceSnapshotId,
+        sourceContentHash: row.sourceContentHash,
+        result: row.result,
+        checkedAt: row.checkedAt,
+      }
+    })
+    .sort((left, right) => left.persistedBindingId.localeCompare(right.persistedBindingId))
+
+  return {
+    checks,
+    currentBindingCount: preparedById.size,
+    currentEnvelopeDigest: sha256(stableJsonStringify([...envelopeDigests].sort())),
+  }
+}
+
 export async function persistBackgroundDriftCandidateRun(input: {
   jobKey: string
   startedAt: Date
   checks: readonly PersistedBackgroundAssertionCheck[]
+  recordsConsidered?: number
+  currentEnvelopeDigest?: string
 }): Promise<number> {
   const observations = input.checks
     .map((check) => ({
@@ -607,11 +724,13 @@ export async function persistBackgroundDriftCandidateRun(input: {
     }))
     .sort((left, right) => left.bindingId.localeCompare(right.bindingId))
   const inputDigest = sha256(stableJsonStringify(observations))
-  const corpusVersion = sha256(
-    stableJsonStringify(
-      [...new Set(input.checks.map((check) => check.binding.recordedBackgroundDigest))].sort(),
-    ),
-  )
+  const corpusVersion =
+    input.currentEnvelopeDigest ??
+    sha256(
+      stableJsonStringify(
+        [...new Set(input.checks.map((check) => check.binding.recordedBackgroundDigest))].sort(),
+      ),
+    )
   const drifted = input.checks.filter((check) => check.result === 'DRIFTED')
   const candidateRows = drifted.map((check) => {
     const binding = check.binding.binding
@@ -623,16 +742,56 @@ export async function persistBackgroundDriftCandidateRun(input: {
       fieldPath: binding.fieldPath,
       reason: 'SOURCE_DRIFT',
     })
-    const stableOccurrenceKey = occurrenceKey(stableCandidateKey, {
-      valueDigest: valueDigest({
-        assertionDigest: binding.assertionDigest,
+    const sourceReading = {
+      sourceKey: binding.sourceKey,
+      kind: binding.sourceIdentity.kind,
+      identifier: binding.sourceIdentity.identifier,
+      label: binding.sourceLabel,
+      ...(binding.sourceLocator ? { locator: binding.sourceLocator } : {}),
+      ...(binding.version ? { version: binding.version } : {}),
+      ...(binding.effectiveDate ? { effectiveDate: binding.effectiveDate } : {}),
+      retrievedAt: binding.retrievedAt,
+      excerpt: binding.excerpt,
+    }
+    const sourceSnapshotDigests = [valueDigest(sourceReading)]
+    const observation = {
+      freshnessState: 'DRIFTED',
+      recordedAssertion: {
+        persistedBindingId: check.persistedBindingId,
+        fieldPath: binding.fieldPath,
+        sourcePath: binding.sourcePath,
         recordedBackgroundDigest: check.binding.recordedBackgroundDigest,
-      }),
-      sourceDigests: [`${binding.sourceKey}:sha256:${check.sourceContentHash}`],
-      parserVersion: BACKGROUND_ASSERTION_CHECKER_VERSION,
-      // Exact envelope identity, not a global corpus timestamp or retry identity.
-      corpusVersion: check.binding.recordedBackgroundDigest,
+        assertionDigest: binding.assertionDigest,
+        questionIntent: binding.questionIntent ?? null,
+      },
+      confirmedSourceSnapshot: {
+        sourceSnapshotId: check.sourceSnapshotId,
+        sourceContentHash: check.sourceContentHash,
+        checkerVersion: BACKGROUND_ASSERTION_CHECKER_VERSION,
+      },
+    }
+    const candidateScopeDigest = valueDigest({ observation, sourceSnapshotDigests })
+    const stableOccurrenceKey = occurrenceKey(stableCandidateKey, {
+      valueDigest: valueDigest(observation),
+      sourceDigests: sourceSnapshotDigests,
+      parserVersion: BACKGROUND_DRIFT_EVIDENCE_IDENTITY_VERSION,
+      // Candidate-local exact binding and snapshot identity. A retry or unrelated corpus change is
+      // deliberately absent, so neither can reopen a reviewed occurrence.
+      corpusVersion: candidateScopeDigest,
     })
+    const evidence = {
+      schema: 'agent-decision-evidence/v1',
+      agent: BACKGROUND_DRIFT_AGENT,
+      reasonSchemaVersion: BACKGROUND_DRIFT_REASON_SCHEMA_VERSION,
+      evidenceIdentityVersion: BACKGROUND_DRIFT_EVIDENCE_IDENTITY_VERSION,
+      candidateScopeDigest,
+      subject: { type: 'medicine', id: binding.slug },
+      fieldPath: binding.fieldPath,
+      reason: 'SOURCE_DRIFT',
+      observation,
+      sourceReadings: [sourceReading],
+    }
+    const evidenceDigest = valueDigest(evidence)
     return {
       id: stableOccurrenceKey,
       candidateKey: stableCandidateKey,
@@ -646,25 +805,31 @@ export async function persistBackgroundDriftCandidateRun(input: {
       basis:
         'A successful deterministic fetch no longer reproduced the exact recorded source assertion.',
       question: `Does the current source still support the recorded assertion at ${binding.fieldPath}?`,
-      evidence: {
-        bindingId: check.persistedBindingId,
+      evidence,
+      evidenceDigest,
+      sourceSnapshotDigests,
+      sourceIds: [binding.sourceKey] as string[],
+      audienceLane: 'ordinary' as const,
+      severity: 'high' as const,
+      provenanceTier: check.binding.provenanceTier ?? 'curated',
+      agentVersion: BACKGROUND_DRIFT_AGENT_VERSION,
+      reasonSchemaVersion: BACKGROUND_DRIFT_REASON_SCHEMA_VERSION,
+      firstSeenAt: check.checkedAt,
+      lastSeenAt: check.checkedAt,
+      detectorObservation: {
         assertionCheckId: check.id,
         fetchId: check.fetchId,
+        checkedAt: check.checkedAt.toISOString(),
         sourceSnapshotId: check.sourceSnapshotId,
         sourceContentHash: check.sourceContentHash,
-        recordedBackgroundDigest: check.binding.recordedBackgroundDigest,
-        assertionDigest: binding.assertionDigest,
-        result: check.result,
       },
-      sourceIds: [binding.sourceKey] as string[],
-      lastSeenAt: check.checkedAt,
-    } as const
+    }
   })
   const outputDigest = sha256(
     stableJsonStringify(candidateRows.map((candidate) => candidate.occurrenceKey).sort()),
   )
   const runId = sha256(
-    ['background-drift-agent-run/v1', input.jobKey, inputDigest, outputDigest].join('\u001f'),
+    ['background-drift-agent-run/v2', input.jobKey, inputDigest, outputDigest].join('\u001f'),
   )
   const runRow = {
     id: runId,
@@ -676,7 +841,7 @@ export async function persistBackgroundDriftCandidateRun(input: {
     outputDigest,
     runDate: input.startedAt.toISOString().slice(0, 10),
     seed: 0,
-    recordsConsidered: input.checks.length,
+    recordsConsidered: input.recordsConsidered ?? input.checks.length,
     recordsUsed: input.checks.length,
     candidatesEmitted: candidateRows.length,
     status: 'COMPLETED' as const,
@@ -709,8 +874,58 @@ export async function persistBackgroundDriftCandidateRun(input: {
       .limit(1)
     assertPersistedFields('agent_runs', runId, persistedRunRows[0], runRow)
 
+    const candidateSubjectSlugs = [
+      ...new Set(candidateRows.map((candidate) => candidate.subjectId)),
+    ].sort()
+    const liveMedicines =
+      candidateSubjectSlugs.length === 0
+        ? []
+        : await tx
+            .select({ slug: drugs.slug, recordedBackground: drugs.recordedBackground })
+            .from(drugs)
+            .where(inArray(drugs.slug, candidateSubjectSlugs))
+            .orderBy(asc(drugs.slug))
+            .for('share')
+
+    const candidateKeys = candidateRows.map((candidate) => candidate.candidateKey)
+    const priorCandidates =
+      candidateKeys.length === 0
+        ? []
+        : await tx
+            .select({
+              candidateKey: agentReviewCandidates.candidateKey,
+              occurrenceKey: agentReviewCandidates.occurrenceKey,
+              runId: agentReviewCandidates.runId,
+              firstSeenAt: agentReviewCandidates.firstSeenAt,
+            })
+            .from(agentReviewCandidates)
+            .where(inArray(agentReviewCandidates.candidateKey, candidateKeys))
+    const priorByCandidate = new Map<string, typeof priorCandidates>()
+    for (const prior of priorCandidates) {
+      priorByCandidate.set(prior.candidateKey, [
+        ...(priorByCandidate.get(prior.candidateKey) ?? []),
+        prior,
+      ])
+    }
+    const priorDecisions =
+      candidateKeys.length === 0
+        ? []
+        : await tx
+            .select({
+              candidateKey: agentQueueDecisions.candidateKey,
+              decidedAt: agentQueueDecisions.decidedAt,
+            })
+            .from(agentQueueDecisions)
+            .where(inArray(agentQueueDecisions.candidateKey, candidateKeys))
+    const decidedCandidates = new Set(
+      priorDecisions
+        .filter((row) => row.decidedAt.getTime() <= input.startedAt.getTime())
+        .map((row) => row.candidateKey),
+    )
+
     for (const candidate of candidateRows) {
-      const candidateRow = { ...candidate, runId }
+      const { detectorObservation, ...candidateValues } = candidate
+      const candidateRow = { ...candidateValues, runId }
       await tx.insert(agentReviewCandidates).values(candidateRow).onConflictDoNothing()
       const persistedCandidateRows = await tx
         .select({
@@ -726,6 +941,8 @@ export async function persistBackgroundDriftCandidateRun(input: {
           basis: agentReviewCandidates.basis,
           question: agentReviewCandidates.question,
           evidence: agentReviewCandidates.evidence,
+          evidenceDigest: agentReviewCandidates.evidenceDigest,
+          sourceSnapshotDigests: agentReviewCandidates.sourceSnapshotDigests,
           sourceIds: agentReviewCandidates.sourceIds,
         })
         .from(agentReviewCandidates)
@@ -748,22 +965,95 @@ export async function persistBackgroundDriftCandidateRun(input: {
           priority: candidate.priority,
           basis: candidate.basis,
           question: candidate.question,
+          evidenceDigest: candidate.evidenceDigest,
+          sourceSnapshotDigests: candidate.sourceSnapshotDigests,
           sourceIds: candidate.sourceIds,
         },
       )
-      const persistedEvidence = persistedCandidate?.evidence as Record<string, unknown> | undefined
       assertPersistedFields(
         'agent_review_candidates.evidence',
         candidate.occurrenceKey,
-        persistedEvidence,
-        {
-          bindingId: candidate.evidence.bindingId,
-          sourceSnapshotId: candidate.evidence.sourceSnapshotId,
-          sourceContentHash: candidate.evidence.sourceContentHash,
-          recordedBackgroundDigest: candidate.evidence.recordedBackgroundDigest,
-          assertionDigest: candidate.evidence.assertionDigest,
-          result: candidate.evidence.result,
-        },
+        persistedCandidate?.evidence as Record<string, unknown> | undefined,
+        candidate.evidence,
+      )
+
+      const prior = (priorByCandidate.get(candidate.candidateKey) ?? []).filter(
+        (row) => row.runId !== runId && row.firstSeenAt.getTime() <= input.startedAt.getTime(),
+      )
+      const exact = prior.some((row) => row.occurrenceKey === candidate.occurrenceKey)
+      const occurrenceState = exact ? 'unchanged' : prior.length > 0 ? 'reopened' : 'new'
+      const liveDecisionContext = buildAgentLiveDecisionContext({
+        candidateKey: candidate.candidateKey,
+        occurrenceKey: candidate.occurrenceKey,
+        evidenceDigest: candidate.evidenceDigest,
+        subjectId: candidate.subjectId,
+        fieldPath: candidate.fieldPath,
+        evidence: candidate.evidence,
+        medicines: liveMedicines,
+      })
+      const rankingFeatures = {
+        schema: 'agent-ranking-features/v1',
+        agentPriority: 1,
+        publicVisibility: true,
+        severityWeight: 3,
+        deterministicBlock: false,
+        confirmedSourceDrift: true,
+        sourceDisagreement: false,
+        highValueCoverageGap: false,
+        changedOccurrence: occurrenceState === 'reopened',
+        occurrenceState,
+        sourceChanged: true,
+        neverReviewed: !decidedCandidates.has(candidate.candidateKey),
+        calibration: 'INSUFFICIENT_REVIEW_HISTORY',
+        corpusDigest: corpusVersion,
+        detectorObservation,
+        liveDecisionContextDigest: liveDecisionContext.digest,
+        liveStoredFieldState: liveDecisionContext.storedField.state,
+        liveSourceBindingsComplete: liveDecisionContext.allSourcesBound,
+      }
+      const membershipRow = {
+        runId,
+        candidateKey: candidate.candidateKey,
+        occurrenceKey: candidate.occurrenceKey,
+        priority: candidate.priority,
+        basis: candidate.basis,
+        question: candidate.question,
+        evidenceDigest: candidate.evidenceDigest,
+        audienceLane: candidate.audienceLane,
+        severity: candidate.severity,
+        provenanceTier: candidate.provenanceTier,
+        rankingFeatures,
+        observedAt: candidate.lastSeenAt,
+      }
+      await tx.insert(agentRunCandidates).values(membershipRow).onConflictDoNothing()
+      const persistedMembership = await tx
+        .select({
+          runId: agentRunCandidates.runId,
+          candidateKey: agentRunCandidates.candidateKey,
+          occurrenceKey: agentRunCandidates.occurrenceKey,
+          priority: agentRunCandidates.priority,
+          basis: agentRunCandidates.basis,
+          question: agentRunCandidates.question,
+          evidenceDigest: agentRunCandidates.evidenceDigest,
+          audienceLane: agentRunCandidates.audienceLane,
+          severity: agentRunCandidates.severity,
+          provenanceTier: agentRunCandidates.provenanceTier,
+          rankingFeatures: agentRunCandidates.rankingFeatures,
+          observedAt: agentRunCandidates.observedAt,
+        })
+        .from(agentRunCandidates)
+        .where(
+          and(
+            eq(agentRunCandidates.runId, runId),
+            eq(agentRunCandidates.occurrenceKey, candidate.occurrenceKey),
+          ),
+        )
+        .limit(1)
+      assertPersistedFields(
+        'agent_run_candidates',
+        `${runId}/${candidate.occurrenceKey}`,
+        persistedMembership[0],
+        membershipRow,
       )
       await tx
         .update(agentReviewCandidates)
@@ -772,14 +1062,30 @@ export async function persistBackgroundDriftCandidateRun(input: {
         })
         .where(eq(agentReviewCandidates.occurrenceKey, candidate.occurrenceKey))
     }
+
+    // Activate only after the complete unresolved set is immutable. An older overlapping job may
+    // not replace a pointer published by a newer job.
+    await tx.execute(sql`
+      insert into ${agentCurrentRuns} (agent_name, run_id)
+      values (${BACKGROUND_DRIFT_AGENT}, ${runId})
+      on conflict (agent_name) do update
+        set run_id = excluded.run_id, activated_at = now()
+        where ${agentCurrentRuns.runId} <> excluded.run_id
+          and (
+            select started_at from ${agentRuns}
+            where id = ${agentCurrentRuns.runId}
+          ) <= ${input.startedAt}
+    `)
   })
   return candidateRows.length
 }
 
 /**
- * Bounded production loop. It scans the current envelopes twice in small pages: once to choose the
- * least-recently-attempted source identities, then to retain only exact bindings for that small
- * set. Network work is outside transactions and failures are persisted as fetch results only.
+ * Bounded production loop. Network work is limited to the least-recently-attempted source batch
+ * and happens outside transactions. Activation then performs one paged database reconciliation
+ * across every exact current binding, so a small fetch batch can never hide an unresolved drift
+ * from an earlier batch. Failures remain fetch results only and therefore preserve the last
+ * successful decisive assertion.
  */
 export async function runBackgroundFreshness(
   options: {
@@ -852,10 +1158,13 @@ export async function runBackgroundFreshness(
     }
   }
   await Promise.all(Array.from({ length: Math.min(concurrency, groups.length) }, () => worker()))
+  const currentDriftState = await currentUnresolvedBackgroundDriftState()
   const candidatesEmitted = await persistBackgroundDriftCandidateRun({
     jobKey,
     startedAt,
-    checks: allChecks,
+    checks: currentDriftState.checks,
+    recordsConsidered: currentDriftState.currentBindingCount,
+    currentEnvelopeDigest: currentDriftState.currentEnvelopeDigest,
   })
 
   return {

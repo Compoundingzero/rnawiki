@@ -42,6 +42,10 @@ export interface BackgroundSourceAssertionBinding {
   /** Display metadata copied from the exact bound BackgroundSource, never re-read from a mutable row. */
   sourceLabel: string
   sourceLocator?: string
+  /** Exact source-controlled revision identifier, when the bound source records one. */
+  version?: string
+  /** Exact source-controlled effective date, distinct from RNAWiki's retrieval date. */
+  effectiveDate?: string
   retrievedAt: string
   excerpt: string
   /** SHA-256 of the complete assertion object, including all of its recorded values and sources. */
@@ -245,6 +249,8 @@ export function collectBackgroundSourceAssertionBindings(
         sourceKey,
         sourceLabel: value.label,
         sourceLocator: value.locator ?? null,
+        ...(value.version ? { version: value.version } : {}),
+        ...(value.effectiveDate ? { effectiveDate: value.effectiveDate } : {}),
         retrievedAt: value.retrievedAt,
         excerpt: value.excerpt,
         assertionDigest,

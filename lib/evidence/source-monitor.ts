@@ -3,7 +3,6 @@ import { createHash } from 'node:crypto'
 import {
   EvidenceSourceFetchError,
   type EvidenceSourceAdapter,
-  type NormalizedFact,
   type SourceDiff,
   type SourceFieldChange,
   type SourceIdentifier,
@@ -143,21 +142,6 @@ export interface NewStoredSourceReviewTaskDelta {
   createdAt: Date
 }
 
-export interface ExactSourceCacheAdvanceInput {
-  programmeId: string
-  sourceId: string
-  snapshotId: string
-  adapterKey: string
-  normalizedFacts: NormalizedFact[]
-  verifiedAt: Date
-}
-
-export interface ExactSourceCacheAdvanceResult {
-  disposition: 'ADVANCED' | 'REVIEW_REQUIRED' | 'NOT_APPLICABLE'
-  blockingReasons: string[]
-  affectedSurfacePaths: string[]
-}
-
 export interface SourceMonitorTransaction {
   ensureMonitorRun(run: SourceMonitorRunRecord, createdAt: Date): Promise<void>
   getMonitorRunForUpdate(runId: string): Promise<SourceMonitorRunRecord | null>
@@ -207,13 +191,6 @@ export interface SourceMonitorTransaction {
     snapshotId: string,
     monitorRunId: string,
   ): Promise<StoredEvidenceReviewTask[]>
-  /**
-   * Optional provider-specific cache projection. It may update only exact source-backed fields,
-   * and must return REVIEW_REQUIRED instead when reviewed/dependent records make that unsafe.
-   */
-  advanceExactSourceCache?(
-    input: ExactSourceCacheAdvanceInput,
-  ): Promise<ExactSourceCacheAdvanceResult>
 }
 
 export interface SourceMonitorRepository {
@@ -507,22 +484,6 @@ function sourceReviewTaskDelta(args: {
     deltaDigestAlgorithm: 'sha256',
     deltaDigest: createHash('sha256').update(stableJsonStringify(payload), 'utf8').digest('hex'),
     createdAt: args.createdAt,
-  }
-}
-
-async function normalizeForExactCache(
-  adapter: EvidenceSourceAdapter,
-  snapshot: SourceSnapshot,
-): Promise<NormalizedFact[]> {
-  try {
-    return await adapter.normalize(snapshot)
-  } catch (error) {
-    throw new AdapterContractError(
-      'SOURCE_NORMALIZE_FAILED',
-      error instanceof Error ? error.message : 'The adapter could not normalize current facts.',
-      true,
-      { cause: error },
-    )
   }
 }
 
@@ -898,32 +859,7 @@ async function completeSuccess(
       affectedClaimIds.length === 0
         ? []
         : await transaction.listDependencies(input.programmeId, affectedClaimIds)
-    let affectedSurfacePaths = uniqueSorted(dependencies.map(taskSurfacePath))
-
-    let exactCacheAdvance: ExactSourceCacheAdvanceResult = {
-      disposition: 'NOT_APPLICABLE',
-      blockingReasons: [],
-      affectedSurfacePaths: [],
-    }
-    if (
-      reviewChanges.length > 0 &&
-      reviewChanges.every((change) => change.risk === 'LOW_RISK_EXACT') &&
-      freshness.pendingSnapshotId === null &&
-      transaction.advanceExactSourceCache
-    ) {
-      exactCacheAdvance = await transaction.advanceExactSourceCache({
-        programmeId: input.programmeId,
-        sourceId: input.sourceId,
-        snapshotId: stored.id,
-        adapterKey: input.adapter.key,
-        normalizedFacts: await normalizeForExactCache(input.adapter, fetched),
-        verifiedAt: now,
-      })
-      affectedSurfacePaths = uniqueSorted([
-        ...affectedSurfacePaths,
-        ...exactCacheAdvance.affectedSurfacePaths,
-      ])
-    }
+    const affectedSurfacePaths = uniqueSorted(dependencies.map(taskSurfacePath))
 
     let highestImpact: ReviewImpactLevel | null = null
     for (const change of reviewChanges) {
@@ -940,18 +876,9 @@ async function completeSuccess(
     if (affectedClaimIds.length > 0) {
       highestImpact = maxImpact(highestImpact, 'INTERPRETIVE_REVIEW_REQUIRED')
     }
-    if (exactCacheAdvance.disposition === 'REVIEW_REQUIRED') {
-      highestImpact = maxImpact(highestImpact, 'INTERPRETIVE_REVIEW_REQUIRED')
-    }
-    // Never let a later exact diff clear an older pending interpretive review.
-    if (freshness.pendingSnapshotId && reviewChanges.length > 0) {
-      highestImpact = maxImpact(highestImpact, 'INTERPRETIVE_REVIEW_REQUIRED')
-    }
-
-    const reviewImpact =
-      reviewChanges.length > 0 && highestImpact !== null && highestImpact !== 'LOW_RISK_EXACT_DATA'
-        ? highestImpact
-        : null
+    // Every observed source change is review work. Exact registry fields are lower-risk and can use
+    // the reviewed canonical-refresh path, but the scheduled monitor never writes them itself.
+    const reviewImpact = reviewChanges.length > 0 ? highestImpact : null
     const requiresReview = reviewImpact !== null
     const alreadyPendingThisSnapshot = freshness.pendingSnapshotId === stored.id
     const reviewTaskId =
@@ -967,7 +894,7 @@ async function completeSuccess(
         monitorRunId: runId,
         impactLevel: reviewImpact,
         status: 'OPEN',
-        reason: reviewReason(reviewChanges, reviewImpact, exactCacheAdvance.blockingReasons),
+        reason: reviewReason(reviewChanges, reviewImpact),
         affectedClaimIds,
         affectedSurfacePaths,
         createdAt: now,
@@ -1096,9 +1023,8 @@ async function completeSuccess(
  *
  * Fetching happens outside a database transaction; all snapshot/freshness/task state changes are
  * committed atomically afterward. The deterministic run, snapshot, and task IDs make scheduler
- * redelivery safe. No claim, evidence node, verdict, or current publication is ever updated here.
- * A provider-specific repository may refresh exact registry cache fields only when it proves that
- * the programme has no reviewed or dependent evidence graph; otherwise the snapshot stays pending.
+ * redelivery safe. No claim, evidence node, trial fact, programme fact, verdict, or current
+ * publication is ever updated here. Every changed snapshot stays pending for human review.
  */
 export async function runSourceMonitor(input: RunSourceMonitorInput): Promise<SourceMonitorResult> {
   const maxAttempts = input.maxAttempts ?? 3

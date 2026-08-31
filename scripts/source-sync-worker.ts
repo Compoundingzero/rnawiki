@@ -8,7 +8,8 @@ import { monitorClinicalTrialsSource } from '@/lib/evidence/source-monitor-drizz
 
 /**
  * The one private Railway cron entry point. Both workloads are deterministic, bounded and write
- * observations/review work only. Neither one authors or rewrites medical content.
+ * observations/review work only. Changed registry snapshots remain pending; neither workload
+ * authors or rewrites programme, trial, or medicine content.
  */
 async function main(): Promise<void> {
   try {
