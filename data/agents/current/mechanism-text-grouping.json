@@ -6,7 +6,7 @@
     "commit": "5eeb35fb85f19c5caef2c9d62d45150d2eb7b340",
     "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf"
   },
-  "inputDigest": "1484740de4677d0f17c52d228ae562ebb4fe3133a3d921b8a61923fe7ec8e56d",
+  "inputDigest": "760be79d2636a83652395bca36516820c0213d18900b749f979e96d5c907e129",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -38,7 +38,7 @@
         "mode": "FIXED",
         "seed": 20260828
       },
-      "cacheDigest": "sha256:8966239e72319ba029fa78313a840d486bb5a8919a4a72fb366994e57d240241",
+      "cacheDigest": "sha256:740d9759189d3504445a48878a1f7a7fcb33e2eb6b75d7d78d8cb6e2fb7e64f9",
       "reasonCodes": [
         "COVERAGE_GAP"
       ],
@@ -72,15 +72,15 @@
     "node": {
       "neurodeId": "mechanism-text-grouping",
       "neurodeVersion": "1.2.0",
-      "contractCacheDigest": "sha256:8966239e72319ba029fa78313a840d486bb5a8919a4a72fb366994e57d240241",
+      "contractCacheDigest": "sha256:740d9759189d3504445a48878a1f7a7fcb33e2eb6b75d7d78d8cb6e2fb7e64f9",
       "category": "CROSS_SOURCE_RELATION",
       "inputSchemaId": "rnawiki/agent-corpus/v1",
       "outputSchemaId": "rnawiki/agent-run/mechanism-text-grouping/v1",
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_e7dc84c1275b06e5c20adb44bf3bf5ae7954ece5c46ce30bdb9ef0d02022eea9",
-      "inputDigest": "sha256:fa19e2e53b32df3d9d8b6e448fd2d4e5d1bdd0dc159d10b91379771892e213e5",
+      "cacheKey": "neurode_cache_4ff174de5979cc61053e6e8611ac095114ebd5cf894df1935ff841ffd2df87c6",
+      "inputDigest": "sha256:443eb798a38762e642492eb748175c987cd9c1b5df1c75a649c58382a7e35d76",
       "inputDigestComplete": true,
       "outputDigest": "sha256:19346af1a5ec5443dadb9339082edd8c27dbf4a26626be03cab15c2bd6f48949",
       "recordsConsidered": 9855,

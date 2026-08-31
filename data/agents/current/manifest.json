@@ -42,15 +42,15 @@
       {
         "neurodeId": "adverse-reaction-term-structure",
         "neurodeVersion": "1.1.0",
-        "contractCacheDigest": "sha256:2875b1fc64e4699ff7a1ae64bb20365e8e814e614572ddc84c412be69e691635",
+        "contractCacheDigest": "sha256:78d900238436c8e420d65e63ac6decdfbe62ca7b5d82631ac40c2685c5829a2f",
         "category": "CROSS_SOURCE_RELATION",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/adverse-reaction-term-structure/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_2b9a886b91d103f0eac752110de09b1da9eb531e89169136697f78e7b1d18194",
-        "inputDigest": "sha256:32b996188be0700f4b81ac360fa23cab127a6cec92b18cacdbbafac871c389b7",
+        "cacheKey": "neurode_cache_000d9a755ceeb389e1c31e4d28e169bcabc4eda6035a081270bc77d8e7f4931d",
+        "inputDigest": "sha256:8499e47b119159f5ab9cc287d25caf2ec7abdfe30061af8c9fc5e372c0586474",
         "inputDigestComplete": true,
         "outputDigest": "sha256:f2b645286e82deb5601e176511d854f5f0d84da4d8875bcce5546fac12df13a6",
         "recordsConsidered": 9855,
@@ -65,15 +65,15 @@
       {
         "neurodeId": "coverage-ledger",
         "neurodeVersion": "1.4.0",
-        "contractCacheDigest": "sha256:b5734a4fed5b74e88b012ece1f7c0f082008f373e20e1514a5aff9b815d1751f",
+        "contractCacheDigest": "sha256:a8d20fa91684da7c8f0c521e5f3722b3b236211fef11171fb15d3bd8a88bcda0",
         "category": "COVERAGE_DETECTOR",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/coverage-ledger/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_0f6c2148de3c020ad8a1ed5e6b88fd097bf77d63ac9bfbcf5c92ca370220b731",
-        "inputDigest": "sha256:2641b3e987640414fe8bffbe921c2fd7d945d81b6543e1cb5142553d15d6b1b4",
+        "cacheKey": "neurode_cache_a38b434a44e31e96ae07dc0dcd0113d99d515abc6ad55f55e0ea4ead7fb4f61b",
+        "inputDigest": "sha256:ea32944630ee01b0afc173905df9b1bcd4d0b5022d0f58d2a699be5c8bc41b4e",
         "inputDigestComplete": true,
         "outputDigest": "sha256:eeb36accee5601a14977b94299f4587fb97bc09e68a5a532c23367cd236b5a73",
         "recordsConsidered": 9855,
@@ -88,15 +88,15 @@
       {
         "neurodeId": "enzyme-and-transporter-documentation",
         "neurodeVersion": "1.3.0",
-        "contractCacheDigest": "sha256:d795bfa36e69024e0d8cbcd340af556d8efe2168a6aae4c63f8cf9fe1d47031b",
+        "contractCacheDigest": "sha256:74fa67c9717366e0aace331898239860421328559bcda824fa394e7405dd88b0",
         "category": "DATA_QUALITY_DETECTOR",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/enzyme-and-transporter-documentation/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_1463b25182f616b6b2885489edac489262ff0ea2cf5e9acc4a93bb5dda9b4888",
-        "inputDigest": "sha256:996ab1081ae4604a87c4fe4d15407f2e91e0c9d393b4570684a105b2339f6d12",
+        "cacheKey": "neurode_cache_5bd9d3b935777bd86767ccd827f4b47cef329d9fb2589dc5c0b2f15b5a0333a2",
+        "inputDigest": "sha256:829537423f27933175409a5d5df54e0e77d121eab30ae98ad72a3cc81465bcfb",
         "inputDigestComplete": true,
         "outputDigest": "sha256:aad3d23a268a0dc4398144d5ab6a66f7d492c7ec306ed09662bf08b19f8af136",
         "recordsConsidered": 9855,
@@ -112,15 +112,15 @@
       {
         "neurodeId": "evidence-density",
         "neurodeVersion": "1.4.0",
-        "contractCacheDigest": "sha256:252bebe3f25370ba320a1877086c6bcc2c5bcd4d595a7b402f1374ea7091ada3",
+        "contractCacheDigest": "sha256:5c199f1f17aafdafcb8a1428f38dde9180096a324dfbbb87a5f67fa2c66c5cfe",
         "category": "PRIORITIZATION_FEATURE",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/evidence-density/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_f79f0848694492a3cfb39945ad435e81c95050ec46d91931f0709ed131dc2bbb",
-        "inputDigest": "sha256:7e6fe0065aac3ce9eed50b402096fcd08edf5dcc793518a79e62d7a95c54344a",
+        "cacheKey": "neurode_cache_1f7632aa62ff2b30c65b465e84edbad0cbcb309b9e67c1a49612167084b95557",
+        "inputDigest": "sha256:33d17c6002087464e3860635582748b9de75b7204d96f3ec47e56cc547ae9f9e",
         "inputDigestComplete": true,
         "outputDigest": "sha256:1a7b7e825c6c39476ef9d69e22f13e9db1c099fbef2c8bf6894c26d501da63f7",
         "recordsConsidered": 9855,
@@ -135,15 +135,15 @@
       {
         "neurodeId": "excerpt-integrity",
         "neurodeVersion": "1.2.0",
-        "contractCacheDigest": "sha256:f748398e89dfdaee2f5fe4b0879c2bdbdb64be947aed186d60c292e865ea452a",
+        "contractCacheDigest": "sha256:25fd8db37229f56194449b1794dd0acf70b79fa44dcc484b30b398de0a121634",
         "category": "STRUCTURAL_VALIDATOR",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/excerpt-integrity/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_7a9506baf08d03f9aa84e584523496d35a47b89a82609aed0435a8c42bce7f7c",
-        "inputDigest": "sha256:3382082359dcd4d19a57d8d6d0eafd31319dae465bdc9b662ab335dd15538ef8",
+        "cacheKey": "neurode_cache_106d9e2904be684bdc02f206168d2970f742d65e58d85bd532e5dc7660b2db8d",
+        "inputDigest": "sha256:4980c4ae1ab401341768dc9de323d439628f8eeab47c5a73675e659b5e5d713a",
         "inputDigestComplete": true,
         "outputDigest": "sha256:0b1bfae3b10109269b32b454dbc7241225aadf9d6e82243c03d9fdabf1f886ac",
         "recordsConsidered": 9855,
@@ -156,15 +156,15 @@
       {
         "neurodeId": "mechanism-text-grouping",
         "neurodeVersion": "1.2.0",
-        "contractCacheDigest": "sha256:8966239e72319ba029fa78313a840d486bb5a8919a4a72fb366994e57d240241",
+        "contractCacheDigest": "sha256:740d9759189d3504445a48878a1f7a7fcb33e2eb6b75d7d78d8cb6e2fb7e64f9",
         "category": "CROSS_SOURCE_RELATION",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/mechanism-text-grouping/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_e7dc84c1275b06e5c20adb44bf3bf5ae7954ece5c46ce30bdb9ef0d02022eea9",
-        "inputDigest": "sha256:fa19e2e53b32df3d9d8b6e448fd2d4e5d1bdd0dc159d10b91379771892e213e5",
+        "cacheKey": "neurode_cache_4ff174de5979cc61053e6e8611ac095114ebd5cf894df1935ff841ffd2df87c6",
+        "inputDigest": "sha256:443eb798a38762e642492eb748175c987cd9c1b5df1c75a649c58382a7e35d76",
         "inputDigestComplete": true,
         "outputDigest": "sha256:19346af1a5ec5443dadb9339082edd8c27dbf4a26626be03cab15c2bd6f48949",
         "recordsConsidered": 9855,
@@ -179,15 +179,15 @@
       {
         "neurodeId": "numeric-distributions",
         "neurodeVersion": "1.0.0",
-        "contractCacheDigest": "sha256:fd4fc0cf56dbb18f44108a296b0b7baca4c08c293183be9fa974c4669c477d97",
+        "contractCacheDigest": "sha256:c01c7b1c217eba29ce847d8a79c0e6777fc2b255bb7e98cdf41ebee631587e33",
         "category": "PUBLIC_AGGREGATE",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/numeric-distributions/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_469df86e070e11902de65a949ac069f9615d848e05dda9f83e4857fed5668a10",
-        "inputDigest": "sha256:30730e24bb469a31bd65ccf0a0576c4d61c702948dcd52302cf2caed69292a1c",
+        "cacheKey": "neurode_cache_73e822f6d3fc576a4d13f71627b6fbeab5c587455f80303ae6ac161f1a4c92a6",
+        "inputDigest": "sha256:d004fe37494f3c9c7685a8032b31c01e6fbb2f178a0f4e8efc9e6ca6c7fb246b",
         "inputDigestComplete": true,
         "outputDigest": "sha256:0ab5b292fbd423137db378de694a9f1a59c577ef9261401555cb021dfe1f251e",
         "recordsConsidered": 9855,
@@ -200,15 +200,15 @@
       {
         "neurodeId": "peer-group-anomaly-screen",
         "neurodeVersion": "1.1.0",
-        "contractCacheDigest": "sha256:a2ee9a400e316e28b7c1de4680389047eca9641c7faedb0bda6dfd3bb4e813aa",
+        "contractCacheDigest": "sha256:1fd2d7bee0e773f557d96955c730fcb0c555943d5a03908f8bdb72542607796b",
         "category": "PRIORITIZATION_FEATURE",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/peer-group-anomaly-screen/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_78b6f8db98bb63675d0965381a757490cec79175a9b0da29aeaedb121f44fda5",
-        "inputDigest": "sha256:59ec201df1eb8b2b84b84e05a7ce216ebde4beb084ad5caeb277109444ad1c06",
+        "cacheKey": "neurode_cache_8b542303e41fe20328688c5436cf3c6613b728a77d2d1062a648d21733075e68",
+        "inputDigest": "sha256:6c807d8ab49815e7c62bc847011f9175eaffc25f7b0fb00ca0b349458cf3a4e5",
         "inputDigestComplete": true,
         "outputDigest": "sha256:b743feb2ccdfbf495213f5678c8197d9950614c4e5a7b70aea85d2232c56fe6b",
         "recordsConsidered": 9855,
@@ -223,15 +223,15 @@
       {
         "neurodeId": "silence-ledger",
         "neurodeVersion": "1.2.0",
-        "contractCacheDigest": "sha256:376a3629e79124ddd3b755f945590d70f076ead1fd82ffcc21ca9cffff1f3cda",
+        "contractCacheDigest": "sha256:b7a6f6858b4a9dacbff33cc57c9a6e3fa404a4eb316535a29af01a1520a02ae9",
         "category": "COVERAGE_DETECTOR",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/silence-ledger/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_11b7922932ec04695042ec1eb0f6c08e2b8ccf214e3628e5973d1d4f0018ad94",
-        "inputDigest": "sha256:23a69b20c2234c6fe1bcecfb4ed1f09ed8e5be3f8a06ba89c07d631cad4b2933",
+        "cacheKey": "neurode_cache_f86e5f866d0d1cba1abf4397560a735eba46cd4c0d96076e8948be0e2bab9a5a",
+        "inputDigest": "sha256:5726f668db0145412f716a4e53c84c94bfbd2097d5b36b6b8a87dc0675b7d15f",
         "inputDigestComplete": true,
         "outputDigest": "sha256:31a5fc98ca5f3c42049bbe36cf8198da6e0869b6c214f507c6ab903f47e50276",
         "recordsConsidered": 9855,
@@ -246,15 +246,15 @@
       {
         "neurodeId": "substance-synonyms",
         "neurodeVersion": "1.2.0",
-        "contractCacheDigest": "sha256:070c86ca9805f3d9b6ea65311cf3f86963846b9daa0e59221849bbf53ae41c15",
+        "contractCacheDigest": "sha256:4bcb9a742b7ae562023c133de90ae2f3d9a950e006632d1187ec70cfb9bfe86f",
         "category": "CROSS_SOURCE_RELATION",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/substance-synonyms/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_7f4ee3b31b7014317dba7adb1889b532a2c4bb1ed28d9c64cbcc124891b033e3",
-        "inputDigest": "sha256:d62e63125888aa8b4a0287c0e079cc33c27ce6856f025c9fb90783852cd25abd",
+        "cacheKey": "neurode_cache_46723c1a0dedeceeafd01d189254fb105d75b8a88c5835500b0710bc738fe18a",
+        "inputDigest": "sha256:631ca8b83998d2f036735a713b5686d973bfc53973748ef2c57c3836e11505de",
         "inputDigestComplete": true,
         "outputDigest": "sha256:974977e8d03e643f47669e35f38edd3925e4d2fce0a004facb88cdc7147c2ea4",
         "recordsConsidered": 9855,
@@ -267,7 +267,7 @@
         "failureCode": null
       }
     ],
-    "runId": "neurode_run_08b46f86c6c958945a75dfd75e5e104120528f19963c8203c5ae0c0b2397ea74"
+    "runId": "neurode_run_af69ff964f42ef93ad1d2c4c11edb1843c5d765d74e8e3a70f1e1c9d54358856"
   },
   "artifacts": [
     {
@@ -307,9 +307,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "6e32fbcfc5505186a8d95f3c08cf785f750bfd78132852f691c2c4fa6c216dc8",
-      "inputDigest": "0ee5a304b8dfa282b06259bb923db1cd1efecef472f21d5954056e5d0a773e32",
-      "outputDigest": "10f2275274280124b77f034c59e022fe9c88860561614dfd54b6e191b8dd3780",
+      "implementationDigest": "1396a1783436167901724be587ceb97bde93c821d0db800f4561a0fbe9acb303",
+      "inputDigest": "676675c78aa271653bac56a44af2d5c772a114e4bd0cb7c50d56c7faf714b8d5",
+      "outputDigest": "14ade6bbc9e60b76abbf2b6e33cd897cf29e84a0bd998560fe2244abc6f7c29a",
       "candidateCount": 40,
       "availableCandidateCount": 147981,
       "candidateSelectionMode": "sampled",
@@ -372,7 +372,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:376a3629e79124ddd3b755f945590d70f076ead1fd82ffcc21ca9cffff1f3cda",
+        "cacheDigest": "sha256:b7a6f6858b4a9dacbff33cc57c9a6e3fa404a4eb316535a29af01a1520a02ae9",
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
@@ -440,9 +440,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "0d19e888847fd6ad9c5f8bb3477e0a4821f16aa9d748025b8cab473f5ec89ec5",
-      "inputDigest": "1484740de4677d0f17c52d228ae562ebb4fe3133a3d921b8a61923fe7ec8e56d",
-      "outputDigest": "5beb3194d52490bdc6a26401361b5768d479d360f07fded0e76c6fc2ff272a7d",
+      "implementationDigest": "2f40591169d4f0d995989f4ab0af8702378f8ad556597f6f5acf00cf49731069",
+      "inputDigest": "760be79d2636a83652395bca36516820c0213d18900b749f979e96d5c907e129",
+      "outputDigest": "f3cdd27b8d02bf96ccd852c23335c0561dd63b99cd5632a8ebefe98ef2f129f1",
       "candidateCount": 5,
       "availableCandidateCount": 5,
       "candidateSelectionMode": "complete",
@@ -495,7 +495,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:8966239e72319ba029fa78313a840d486bb5a8919a4a72fb366994e57d240241",
+        "cacheDigest": "sha256:740d9759189d3504445a48878a1f7a7fcb33e2eb6b75d7d78d8cb6e2fb7e64f9",
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
@@ -563,9 +563,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "bfba80901a45b93ec88470c0ef5c0b5553827d7056123441f6a4b08f5a8575c7",
-      "inputDigest": "a39b4301ceb0ec967ae24c98547849d77774eb45ee82f27277d89e1e64ba1b28",
-      "outputDigest": "8dd0c109b705760472e5cb46a2337fd2e43e426b33ec640834fe4fe917e371e2",
+      "implementationDigest": "1a0083faad2d7c0d316c9dfde46916455ccf40c145f23fc2d8e0d8d5a2c7655c",
+      "inputDigest": "3886c4bfb37e2aec10a2b8d1f6f661c4e42a1b3840b9bdf830e80ce51504b32f",
+      "outputDigest": "491887162760ef3a6d6e527701ee59134c426db29ed8c1868d84e7f33e11f616",
       "candidateCount": 119,
       "availableCandidateCount": 119,
       "candidateSelectionMode": "complete",
@@ -627,7 +627,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:a2ee9a400e316e28b7c1de4680389047eca9641c7faedb0bda6dfd3bb4e813aa",
+        "cacheDigest": "sha256:1fd2d7bee0e773f557d96955c730fcb0c555943d5a03908f8bdb72542607796b",
         "reasonCodes": [
           "UNUSUAL_FOR_PEER_GROUP"
         ],
@@ -695,9 +695,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "4ab5cd4cc80a12987c74619d3e9face3eea902f25a1a7843b4632b81a9948102",
-      "inputDigest": "e28d41d3ad27cba41796ef3248d13024e68524d7e1a3832b52ee3440715f3ac5",
-      "outputDigest": "fc0ef8206aa088d1c49d7f9e4a2877772164a268380b0102d3ca0ea082ce672b",
+      "implementationDigest": "e2fb5ff32c027209132fd2a31683ff66292c531282321b1e739eeecf4aa886bd",
+      "inputDigest": "7f507ef18a8790710c371f316f4154dd06fb31ae4d4023157e3cc71de714bb63",
+      "outputDigest": "33ea62f0867a2ba4b1d3016b8234bd9e3a3ce268e36e91cf743ca835b40842f6",
       "candidateCount": 144,
       "availableCandidateCount": 144,
       "candidateSelectionMode": "complete",
@@ -753,7 +753,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:d795bfa36e69024e0d8cbcd340af556d8efe2168a6aae4c63f8cf9fe1d47031b",
+        "cacheDigest": "sha256:74fa67c9717366e0aace331898239860421328559bcda824fa394e7405dd88b0",
         "reasonCodes": [
           "ATTRIBUTION_SUSPECT",
           "COVERAGE_GAP"
@@ -823,9 +823,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "a28a63d8595fdf8cceeec125393ba7bf3e630a2dfb7ee07b301f5b78b18cd0ab",
-      "inputDigest": "bbdae85053fcb3f5858aba80cd2e8b81bcb7c57b6667c3ab770fda446cd65d7b",
-      "outputDigest": "b3225ec160067c6d55bd9438c0b5f3935e7165dce68dbd2655cc159d54d60e3d",
+      "implementationDigest": "a6d88b23683da9b14e88438dc929a74378e226d8a894c1bb265ff4cbd9c108d3",
+      "inputDigest": "16b5290235754df220c9bc233cee5f1d43e67f209b7cfdbd9f0246d684f3457b",
+      "outputDigest": "111ef0ca081c2a0dae7e95d1bfcffdfb1d792f6790260ca063f8e6fb7e2b2c98",
       "candidateCount": 1199,
       "availableCandidateCount": 1199,
       "candidateSelectionMode": "complete",
@@ -886,7 +886,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:070c86ca9805f3d9b6ea65311cf3f86963846b9daa0e59221849bbf53ae41c15",
+        "cacheDigest": "sha256:4bcb9a742b7ae562023c133de90ae2f3d9a950e006632d1187ec70cfb9bfe86f",
         "reasonCodes": [
           "POSSIBLE_DUPLICATE_SUBSTANCE"
         ],
@@ -954,9 +954,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "efe3fddfdb5b1939b55e7e0e7b8a1cc6e4fdeadca09e28717b6ebceaa26ee461",
-      "inputDigest": "c8e984dc31cc1da1c1f097f7a59191ab321128df4bfed7d9962ca8072572168b",
-      "outputDigest": "a387b58c7141637c2527758b3ed64ffb3a5b3a224fe5729e5079fc10f1c86a03",
+      "implementationDigest": "ea919ffa9c210abde6c4bd2754319597c8efa9cebf308d22fdaf879bedbcfbef",
+      "inputDigest": "daa7384a03a9950a643da13c743e7201fda23dd148c635cda673d32a28e58573",
+      "outputDigest": "e16d9bf87228deabf5adf4c13547afc9fc90fd26b887008ee9da617759e592ba",
       "candidateCount": 1122,
       "availableCandidateCount": 1122,
       "candidateSelectionMode": "complete",
@@ -1010,7 +1010,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:252bebe3f25370ba320a1877086c6bcc2c5bcd4d595a7b402f1374ea7091ada3",
+        "cacheDigest": "sha256:5c199f1f17aafdafcb8a1428f38dde9180096a324dfbbb87a5f67fa2c66c5cfe",
         "reasonCodes": [
           "COVERAGE_GAP"
         ],
@@ -1078,9 +1078,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "70b30a28f866f37f3edc8a3222b14394ca7e08b5029b34feb55f90b03950272f",
-      "inputDigest": "b93db26d18f7388025abca44ad98405f261368271f6d9e9a7d755ba6d3253c2d",
-      "outputDigest": "ab96b3a4fa2e013b6ee0077d8c7928925fa1b5e129110229018c14138f858b89",
+      "implementationDigest": "529a9eb2b3756ee29ccc4b75abef4d44f8eb8db9bab93b12a72e37332e75b22d",
+      "inputDigest": "86b0bb3e6b1cee9d89d56eaecc3cc18a716ac888306b305c853c7a89ad74cb8a",
+      "outputDigest": "774b7452e3493fbaebf23f1d0d8a0ef04e7691472345c697414e6e71abbabbed",
       "candidateCount": 0,
       "availableCandidateCount": 0,
       "candidateSelectionMode": "complete",
@@ -1133,7 +1133,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:fd4fc0cf56dbb18f44108a296b0b7baca4c08c293183be9fa974c4669c477d97",
+        "cacheDigest": "sha256:c01c7b1c217eba29ce847d8a79c0e6777fc2b255bb7e98cdf41ebee631587e33",
         "reasonCodes": [],
         "visibility": "PRIVATE",
         "medicalBoundary": {
@@ -1198,9 +1198,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "9c07453780b61b54ef855665f7c6dcc574318bc5e5cefc223adfe275275b7b2a",
-      "inputDigest": "a4ef74151a3887a13e28aa2024a6265345d972373e0b068b77ecf3f6ce88f3c7",
-      "outputDigest": "1863b301ff8209684d7381987d3611848d9651916da6b4a5c48055323aa2a772",
+      "implementationDigest": "dc86afe6470292daefc883693d5f34e80389a7843ad25a9e39661cb7670eaf13",
+      "inputDigest": "ac2b2d8c3d3f40c1e802d475d30c9dd348a325ea6dfbe32558f61b4ab20e0dbf",
+      "outputDigest": "23513da965cf7e4d4d7693584d6a168b943964840b74adac8f0f8c3de28dd743",
       "candidateCount": 398,
       "availableCandidateCount": 398,
       "candidateSelectionMode": "complete",
@@ -1256,7 +1256,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:2875b1fc64e4699ff7a1ae64bb20365e8e814e614572ddc84c412be69e691635",
+        "cacheDigest": "sha256:78d900238436c8e420d65e63ac6decdfbe62ca7b5d82631ac40c2685c5829a2f",
         "reasonCodes": [
           "ATTRIBUTION_SUSPECT",
           "COVERAGE_GAP"
@@ -1326,9 +1326,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "df08fef2b85ca9e59df15a9b9a3cd7b71368e3d950c12066833cd76aaa8bde78",
-      "inputDigest": "2c49cfe68785507b641931e8a98f66d84c7103c1a745ac86fd35d6d506e373d6",
-      "outputDigest": "a024b88bef589a7af1212f7fcffc04747e9b9b585fa7287abb267d4a62b4ad1c",
+      "implementationDigest": "dc7d7d19cc9a26dbfaaa94ab86c750f17f3ca424c3170be1b1b4ddd856c045dc",
+      "inputDigest": "17da9211b7044c93fd9bd5deb30caaeaf3a3a0c39ffda2930cc6f9b897cea58d",
+      "outputDigest": "097ae38c345f3b57848550f788d6349c6144634fb2359ce63f71cae8af3929b5",
       "candidateCount": 0,
       "availableCandidateCount": 0,
       "candidateSelectionMode": "complete",
@@ -1385,7 +1385,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:f748398e89dfdaee2f5fe4b0879c2bdbdb64be947aed186d60c292e865ea452a",
+        "cacheDigest": "sha256:25fd8db37229f56194449b1794dd0acf70b79fa44dcc484b30b398de0a121634",
         "reasonCodes": [
           "ATTRIBUTION_SUSPECT"
         ],
@@ -1454,9 +1454,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "f156ff8c914316871ff05da7b3c41bbcfb733deca6929e5911d0c5168cf0ea36",
-      "inputDigest": "337b5e57d1972de4ec70e4538d726374007e86579d3c0ee66807072b198b3122",
-      "outputDigest": "4649c99bd27eff7a98dc43ccfa85b01cd19aa60af3e2db6a2efda786152d8ed5",
+      "implementationDigest": "116602494114cb25ccadbe41349b8d49dcd7b87ae5e0e4407cff4e35d683343e",
+      "inputDigest": "5cf1feb612bc97fd5de6d88cc6af639c4f56c72352fed3e1c47532a641df5e45",
+      "outputDigest": "e25cf7fc5785f88957034142d9f5dc6024eced364e739d4b5b3cbf8f9af7a159",
       "candidateCount": 96,
       "availableCandidateCount": 9700,
       "candidateSelectionMode": "sampled",
@@ -1513,7 +1513,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:b5734a4fed5b74e88b012ece1f7c0f082008f373e20e1514a5aff9b815d1751f",
+        "cacheDigest": "sha256:a8d20fa91684da7c8f0c521e5f3722b3b236211fef11171fb15d3bd8a88bcda0",
         "reasonCodes": [
           "COVERAGE_GAP"
         ],

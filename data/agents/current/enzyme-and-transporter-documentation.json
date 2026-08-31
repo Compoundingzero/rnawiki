@@ -6,7 +6,7 @@
     "commit": "5eeb35fb85f19c5caef2c9d62d45150d2eb7b340",
     "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf"
   },
-  "inputDigest": "e28d41d3ad27cba41796ef3248d13024e68524d7e1a3832b52ee3440715f3ac5",
+  "inputDigest": "7f507ef18a8790710c371f316f4154dd06fb31ae4d4023157e3cc71de714bb63",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -38,7 +38,7 @@
         "mode": "FIXED",
         "seed": 20260828
       },
-      "cacheDigest": "sha256:d795bfa36e69024e0d8cbcd340af556d8efe2168a6aae4c63f8cf9fe1d47031b",
+      "cacheDigest": "sha256:74fa67c9717366e0aace331898239860421328559bcda824fa394e7405dd88b0",
       "reasonCodes": [
         "ATTRIBUTION_SUSPECT",
         "COVERAGE_GAP"
@@ -73,15 +73,15 @@
     "node": {
       "neurodeId": "enzyme-and-transporter-documentation",
       "neurodeVersion": "1.3.0",
-      "contractCacheDigest": "sha256:d795bfa36e69024e0d8cbcd340af556d8efe2168a6aae4c63f8cf9fe1d47031b",
+      "contractCacheDigest": "sha256:74fa67c9717366e0aace331898239860421328559bcda824fa394e7405dd88b0",
       "category": "DATA_QUALITY_DETECTOR",
       "inputSchemaId": "rnawiki/agent-corpus/v1",
       "outputSchemaId": "rnawiki/agent-run/enzyme-and-transporter-documentation/v1",
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_1463b25182f616b6b2885489edac489262ff0ea2cf5e9acc4a93bb5dda9b4888",
-      "inputDigest": "sha256:996ab1081ae4604a87c4fe4d15407f2e91e0c9d393b4570684a105b2339f6d12",
+      "cacheKey": "neurode_cache_5bd9d3b935777bd86767ccd827f4b47cef329d9fb2589dc5c0b2f15b5a0333a2",
+      "inputDigest": "sha256:829537423f27933175409a5d5df54e0e77d121eab30ae98ad72a3cc81465bcfb",
       "inputDigestComplete": true,
       "outputDigest": "sha256:aad3d23a268a0dc4398144d5ab6a66f7d492c7ec306ed09662bf08b19f8af136",
       "recordsConsidered": 9855,

@@ -6,7 +6,7 @@
     "commit": "5eeb35fb85f19c5caef2c9d62d45150d2eb7b340",
     "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf"
   },
-  "inputDigest": "337b5e57d1972de4ec70e4538d726374007e86579d3c0ee66807072b198b3122",
+  "inputDigest": "5cf1feb612bc97fd5de6d88cc6af639c4f56c72352fed3e1c47532a641df5e45",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -45,7 +45,7 @@
         "mode": "FIXED",
         "seed": 20260828
       },
-      "cacheDigest": "sha256:b5734a4fed5b74e88b012ece1f7c0f082008f373e20e1514a5aff9b815d1751f",
+      "cacheDigest": "sha256:a8d20fa91684da7c8f0c521e5f3722b3b236211fef11171fb15d3bd8a88bcda0",
       "reasonCodes": [
         "COVERAGE_GAP"
       ],
@@ -79,15 +79,15 @@
     "node": {
       "neurodeId": "coverage-ledger",
       "neurodeVersion": "1.4.0",
-      "contractCacheDigest": "sha256:b5734a4fed5b74e88b012ece1f7c0f082008f373e20e1514a5aff9b815d1751f",
+      "contractCacheDigest": "sha256:a8d20fa91684da7c8f0c521e5f3722b3b236211fef11171fb15d3bd8a88bcda0",
       "category": "COVERAGE_DETECTOR",
       "inputSchemaId": "rnawiki/agent-corpus/v1",
       "outputSchemaId": "rnawiki/agent-run/coverage-ledger/v1",
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_0f6c2148de3c020ad8a1ed5e6b88fd097bf77d63ac9bfbcf5c92ca370220b731",
-      "inputDigest": "sha256:2641b3e987640414fe8bffbe921c2fd7d945d81b6543e1cb5142553d15d6b1b4",
+      "cacheKey": "neurode_cache_a38b434a44e31e96ae07dc0dcd0113d99d515abc6ad55f55e0ea4ead7fb4f61b",
+      "inputDigest": "sha256:ea32944630ee01b0afc173905df9b1bcd4d0b5022d0f58d2a699be5c8bc41b4e",
       "inputDigestComplete": true,
       "outputDigest": "sha256:eeb36accee5601a14977b94299f4587fb97bc09e68a5a532c23367cd236b5a73",
       "recordsConsidered": 9855,

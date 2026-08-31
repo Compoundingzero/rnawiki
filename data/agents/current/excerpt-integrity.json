@@ -6,7 +6,7 @@
     "commit": "5eeb35fb85f19c5caef2c9d62d45150d2eb7b340",
     "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf"
   },
-  "inputDigest": "2c49cfe68785507b641931e8a98f66d84c7103c1a745ac86fd35d6d506e373d6",
+  "inputDigest": "17da9211b7044c93fd9bd5deb30caaeaf3a3a0c39ffda2930cc6f9b897cea58d",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -45,7 +45,7 @@
         "mode": "FIXED",
         "seed": 20260828
       },
-      "cacheDigest": "sha256:f748398e89dfdaee2f5fe4b0879c2bdbdb64be947aed186d60c292e865ea452a",
+      "cacheDigest": "sha256:25fd8db37229f56194449b1794dd0acf70b79fa44dcc484b30b398de0a121634",
       "reasonCodes": [
         "ATTRIBUTION_SUSPECT"
       ],
@@ -79,15 +79,15 @@
     "node": {
       "neurodeId": "excerpt-integrity",
       "neurodeVersion": "1.2.0",
-      "contractCacheDigest": "sha256:f748398e89dfdaee2f5fe4b0879c2bdbdb64be947aed186d60c292e865ea452a",
+      "contractCacheDigest": "sha256:25fd8db37229f56194449b1794dd0acf70b79fa44dcc484b30b398de0a121634",
       "category": "STRUCTURAL_VALIDATOR",
       "inputSchemaId": "rnawiki/agent-corpus/v1",
       "outputSchemaId": "rnawiki/agent-run/excerpt-integrity/v1",
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_7a9506baf08d03f9aa84e584523496d35a47b89a82609aed0435a8c42bce7f7c",
-      "inputDigest": "sha256:3382082359dcd4d19a57d8d6d0eafd31319dae465bdc9b662ab335dd15538ef8",
+      "cacheKey": "neurode_cache_106d9e2904be684bdc02f206168d2970f742d65e58d85bd532e5dc7660b2db8d",
+      "inputDigest": "sha256:4980c4ae1ab401341768dc9de323d439628f8eeab47c5a73675e659b5e5d713a",
       "inputDigestComplete": true,
       "outputDigest": "sha256:0b1bfae3b10109269b32b454dbc7241225aadf9d6e82243c03d9fdabf1f886ac",
       "recordsConsidered": 9855,
