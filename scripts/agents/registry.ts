@@ -26,10 +26,7 @@ export const AGENT_REVIEW_SEVERITIES = ['low', 'medium', 'high', 'blocking'] as 
 export type AgentReviewSeverity = (typeof AGENT_REVIEW_SEVERITIES)[number]
 
 export type AgentOutputConsumer =
-  | 'review_queue'
-  | 'public_dataset'
-  | 'documented_internal_report'
-  | 'experimental'
+  'review_queue' | 'public_dataset' | 'documented_internal_report' | 'experimental'
 
 export interface RegisteredDatasetAgent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- registry nodes have different outputs
@@ -140,7 +137,10 @@ export const REGISTERED_DATASET_AGENTS: readonly RegisteredDatasetAgent[] = [
     findingCount: (output) => {
       const quantities = objectAt(output, 'quantities')
       return Array.isArray(quantities)
-        ? quantities.reduce((count, quantity) => count + arrayLength(objectAt(quantity, 'flags')), 0)
+        ? quantities.reduce(
+            (count, quantity) => count + arrayLength(objectAt(quantity, 'flags')),
+            0,
+          )
         : 0
     },
   },
@@ -208,10 +208,7 @@ export const REGISTERED_DATASET_AGENTS: readonly RegisteredDatasetAgent[] = [
     findingCount: (output) => {
       const fields = objectAt(output, 'fields')
       return Array.isArray(fields)
-        ? fields.reduce(
-            (count, field) => count + arrayLength(objectAt(field, 'distributions')),
-            0,
-          )
+        ? fields.reduce((count, field) => count + arrayLength(objectAt(field, 'distributions')), 0)
         : 0
     },
   },

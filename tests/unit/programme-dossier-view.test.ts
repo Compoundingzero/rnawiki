@@ -837,9 +837,7 @@ describe('published programme dossier mapping', () => {
         ]),
     )
     expect(specialistRecords.get('biotech')).toEqual(
-      expect.arrayContaining(
-        view.keyOutcomes.map((outcome) => `biotech-outcome-${outcome.id}`),
-      ),
+      expect.arrayContaining(view.keyOutcomes.map((outcome) => `biotech-outcome-${outcome.id}`)),
     )
     expect(specialistRecords.get('quantitative')).toEqual(
       expect.arrayContaining(

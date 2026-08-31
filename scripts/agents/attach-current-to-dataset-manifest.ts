@@ -39,10 +39,7 @@ function sha256(bytes: Buffer): string {
   return createHash('sha256').update(bytes).digest('hex')
 }
 
-function expectedEntry(input: {
-  bytes: Buffer
-  agentRuns: number
-}): z.infer<typeof fileSchema> {
+function expectedEntry(input: { bytes: Buffer; agentRuns: number }): z.infer<typeof fileSchema> {
   return {
     path: CURRENT_AGENT_MANIFEST_RELATIVE_PATH,
     rows: input.agentRuns,
@@ -104,9 +101,7 @@ function main(): void {
     ...manifest,
     counts: { ...manifest.counts, ...expectedCounts },
     files: [
-      ...manifest.files.filter(
-        (entry) => entry.path !== CURRENT_AGENT_MANIFEST_RELATIVE_PATH,
-      ),
+      ...manifest.files.filter((entry) => entry.path !== CURRENT_AGENT_MANIFEST_RELATIVE_PATH),
       expected,
     ],
   }

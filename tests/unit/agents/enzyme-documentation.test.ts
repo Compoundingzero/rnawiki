@@ -215,9 +215,7 @@ describe('every admitted mention is answerable to its own sentence', () => {
 
   it('routes every withheld reading to a person instead of dropping it', () => {
     const attribution = (RUN.queue ?? []).filter((item) => item.reason === 'ATTRIBUTION_SUSPECT')
-    expect(
-      attribution.reduce((sum, item) => sum + item.evidence.sourceReadings.length, 0),
-    ).toBe(
+    expect(attribution.reduce((sum, item) => sum + item.evidence.sourceReadings.length, 0)).toBe(
       RUN.output.mentionsWithheldCounterpartyNotInExcerpt +
         RUN.output.mentionsWithheldExcerptFailedScreen,
     )

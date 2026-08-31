@@ -63,7 +63,8 @@ function corpus(corpusFile: string): AgentCorpusEntry[] {
 
 function assertExistingMatches(files: ReadonlyMap<string, string>): void {
   const expected = [...files.keys()].sort()
-  if (!existsSync(OUT_DIR)) throw new Error('data/agents/current does not exist; run without --check')
+  if (!existsSync(OUT_DIR))
+    throw new Error('data/agents/current does not exist; run without --check')
   const actual = readdirSync(OUT_DIR)
     .filter((name) => name.endsWith('.json'))
     .sort()
@@ -75,7 +76,8 @@ function assertExistingMatches(files: ReadonlyMap<string, string>): void {
   const changed = expected.filter(
     (path) => readFileSync(join(OUT_DIR, path), 'utf8') !== files.get(path),
   )
-  if (changed.length > 0) throw new Error(`Current agent artifacts are stale: ${changed.join(', ')}`)
+  if (changed.length > 0)
+    throw new Error(`Current agent artifacts are stale: ${changed.join(', ')}`)
 }
 
 async function main(): Promise<void> {
@@ -86,10 +88,9 @@ async function main(): Promise<void> {
     (checkOnly ? existing?.runDate : undefined) ??
     new Date().toISOString().slice(0, 10)
   const corpusCommit =
-    flag('corpus-commit') ??
-    (checkOnly ? existing?.corpusCommit : undefined) ??
-    currentCommit()
-  const corpusFile = flag('corpus-file') ?? join(process.cwd(), 'data', 'recorded-background.ndjson')
+    flag('corpus-commit') ?? (checkOnly ? existing?.corpusCommit : undefined) ?? currentCommit()
+  const corpusFile =
+    flag('corpus-file') ?? join(process.cwd(), 'data', 'recorded-background.ndjson')
 
   const input = { corpus: corpus(corpusFile), corpusCommit, runDate }
   console.log(
