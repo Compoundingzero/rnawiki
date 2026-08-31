@@ -179,17 +179,17 @@
       {
         "neurodeId": "numeric-distributions",
         "neurodeVersion": "1.0.0",
-        "contractCacheDigest": "sha256:c01c7b1c217eba29ce847d8a79c0e6777fc2b255bb7e98cdf41ebee631587e33",
+        "contractCacheDigest": "sha256:e0138f7af96646ce9bf66006cc05c681736f81c05054981426b2e8fa159e8805",
         "category": "PUBLIC_AGGREGATE",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/numeric-distributions/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_73e822f6d3fc576a4d13f71627b6fbeab5c587455f80303ae6ac161f1a4c92a6",
-        "inputDigest": "sha256:d004fe37494f3c9c7685a8032b31c01e6fbb2f178a0f4e8efc9e6ca6c7fb246b",
+        "cacheKey": "neurode_cache_81bc971d09832a05902d5c403c12c6e143cf1016a1ea88ca47ffecfc9d33f8e0",
+        "inputDigest": "sha256:451305911cef2e92d410597108d0eb635797985dd126e499079bda32441386f3",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:0ab5b292fbd423137db378de694a9f1a59c577ef9261401555cb021dfe1f251e",
+        "outputDigest": "sha256:4c12d9309e354b90b4d6f77a20e0297c503dff09c1b93bc36124a0794797e98d",
         "recordsConsidered": 9855,
         "recordsUsed": 3396,
         "reasonCodes": [],
@@ -267,7 +267,7 @@
         "failureCode": null
       }
     ],
-    "runId": "neurode_run_af69ff964f42ef93ad1d2c4c11edb1843c5d765d74e8e3a70f1e1c9d54358856"
+    "runId": "neurode_run_b67c572b289d772d3951c3ffa52b8fc7ac9f359e4d7e511358a1e614c4deb5d4"
   },
   "artifacts": [
     {
@@ -1078,9 +1078,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "529a9eb2b3756ee29ccc4b75abef4d44f8eb8db9bab93b12a72e37332e75b22d",
-      "inputDigest": "86b0bb3e6b1cee9d89d56eaecc3cc18a716ac888306b305c853c7a89ad74cb8a",
-      "outputDigest": "774b7452e3493fbaebf23f1d0d8a0ef04e7691472345c697414e6e71abbabbed",
+      "implementationDigest": "d0a807b71d65ecc311981aeed286d4d3aa3b776aec577e840f43c38355a8e6be",
+      "inputDigest": "304e8306eae67035e759a103b74c447494582e76f6dcfa85064bfe751a991136",
+      "outputDigest": "f43302a92c3a649c9907691682b944666c4c644e3e422860266d949044992177",
       "candidateCount": 0,
       "availableCandidateCount": 0,
       "candidateSelectionMode": "complete",
@@ -1133,7 +1133,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:c01c7b1c217eba29ce847d8a79c0e6777fc2b255bb7e98cdf41ebee631587e33",
+        "cacheDigest": "sha256:e0138f7af96646ce9bf66006cc05c681736f81c05054981426b2e8fa159e8805",
         "reasonCodes": [],
         "visibility": "PRIVATE",
         "medicalBoundary": {

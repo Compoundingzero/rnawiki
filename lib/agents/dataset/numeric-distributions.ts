@@ -363,6 +363,18 @@ function hasNumber(entry: CollectedValue): boolean {
   return typeof entry.value.numeric === 'number' && Number.isFinite(entry.value.numeric)
 }
 
+/**
+ * V8 delegates transcendental functions such as log10 and exponentiation to its host math
+ * implementation. Adjacent Node releases can therefore differ by one final binary digit even
+ * when the inputs are identical. Those machine-level differences have no meaning in a corpus
+ * distribution, but they do change JSON bytes and their audit digests. Publish fourteen
+ * significant decimal digits so the same recorded corpus has one portable representation.
+ */
+function portableFloat(value: number): number {
+  if (!Number.isFinite(value) || value === 0) return value
+  return Number(value.toPrecision(14))
+}
+
 /* ------------------------------------------------------------------------------------------- */
 /* Binning                                                                                      */
 /* ------------------------------------------------------------------------------------------- */
@@ -393,7 +405,7 @@ export function computeBinEdges(values: readonly number[], spec: UnitSpec): numb
   const upperLog = Math.log10(highest)
   const edges: number[] = []
   for (let index = 0; index <= spec.bins; index += 1) {
-    edges.push(10 ** (lowerLog + ((upperLog - lowerLog) * index) / spec.bins))
+    edges.push(portableFloat(10 ** (lowerLog + ((upperLog - lowerLog) * index) / spec.bins)))
   }
   // Rounding in the exponentiation can land the outer edges a hair inside the data; pinning them
   // to the observed extremes keeps every value inside the axis it is drawn on.
@@ -469,7 +481,14 @@ function buildStratum(
   if (logs.length === 0) return stratum
   const mad = medianAbsoluteDeviation(logs)
   if (!Number.isFinite(mad)) return stratum
-  return { ...stratum, logSpread: { medianAbsoluteDeviationLog10: mad, spreadFactor: 10 ** mad } }
+  const portableMad = portableFloat(mad)
+  return {
+    ...stratum,
+    logSpread: {
+      medianAbsoluteDeviationLog10: portableMad,
+      spreadFactor: portableFloat(10 ** portableMad),
+    },
+  }
 }
 
 function stratify(

@@ -4,7 +4,7 @@
     "scripts/seed-data/background/extracted-background.generated.ts": "797f52298881cfca0f9b8362fc11718a05ae62b1d3f8418f91ab72e06d1c8221",
     "scripts/seed-data/background/source-consensus.generated.ts": "a8218d586c6ec47557c2b6b6b3addfa20a3708272fed1262ad170d0c0504c881",
     "scripts/seed-data/background/molecular-properties.generated.ts": "858fefc850cc20114641e37a0ae528040e52eaa0079f51872103e784315a3a07",
-    "data/manifest.json": "4fcf7eb756b6e60cc4c3dc6760c3f128e1b89b99b82abaf332d0b7e00f073172",
+    "data/manifest.json": "f3a666d649d61365ec23e04162d6d8e9f179ce93210c516b489901491569abf9",
     "LICENSE-DATA": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
   }
 }

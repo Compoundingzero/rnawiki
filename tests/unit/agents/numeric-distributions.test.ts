@@ -137,6 +137,18 @@ describe('recorded numeric distributions on the real corpus', () => {
       expect(distribution.binEdges[distribution.binEdges.length - 1]).toBe(100)
     }
   })
+
+  it('publishes portable decimal values for transcendental calculations', () => {
+    const halfLife = ALL_DISTRIBUTIONS.find(
+      (distribution) => distribution.field === 'halfLife' && distribution.unit === 'hours',
+    )
+    expect(halfLife?.binEdges[1]).toBe(0.73164750704292)
+    expect(halfLife?.binEdges.at(-2)).toBe(306.70507018735)
+
+    const spread = halfLife?.overall?.logSpread
+    expect(spread?.medianAbsoluteDeviationLog10).toBe(0.58629596137865)
+    expect(spread?.spreadFactor).toBe(3.8574114154504)
+  })
 })
 
 describe('the correctness property: units, bin counts, and display-only values', () => {

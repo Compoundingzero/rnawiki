@@ -6,7 +6,7 @@
     "commit": "5eeb35fb85f19c5caef2c9d62d45150d2eb7b340",
     "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf"
   },
-  "inputDigest": "86b0bb3e6b1cee9d89d56eaecc3cc18a716ac888306b305c853c7a89ad74cb8a",
+  "inputDigest": "304e8306eae67035e759a103b74c447494582e76f6dcfa85064bfe751a991136",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -38,7 +38,7 @@
         "mode": "FIXED",
         "seed": 20260828
       },
-      "cacheDigest": "sha256:c01c7b1c217eba29ce847d8a79c0e6777fc2b255bb7e98cdf41ebee631587e33",
+      "cacheDigest": "sha256:e0138f7af96646ce9bf66006cc05c681736f81c05054981426b2e8fa159e8805",
       "reasonCodes": [],
       "visibility": "PRIVATE",
       "medicalBoundary": {
@@ -69,17 +69,17 @@
     "node": {
       "neurodeId": "numeric-distributions",
       "neurodeVersion": "1.0.0",
-      "contractCacheDigest": "sha256:c01c7b1c217eba29ce847d8a79c0e6777fc2b255bb7e98cdf41ebee631587e33",
+      "contractCacheDigest": "sha256:e0138f7af96646ce9bf66006cc05c681736f81c05054981426b2e8fa159e8805",
       "category": "PUBLIC_AGGREGATE",
       "inputSchemaId": "rnawiki/agent-corpus/v1",
       "outputSchemaId": "rnawiki/agent-run/numeric-distributions/v1",
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_73e822f6d3fc576a4d13f71627b6fbeab5c587455f80303ae6ac161f1a4c92a6",
-      "inputDigest": "sha256:d004fe37494f3c9c7685a8032b31c01e6fbb2f178a0f4e8efc9e6ca6c7fb246b",
+      "cacheKey": "neurode_cache_81bc971d09832a05902d5c403c12c6e143cf1016a1ea88ca47ffecfc9d33f8e0",
+      "inputDigest": "sha256:451305911cef2e92d410597108d0eb635797985dd126e499079bda32441386f3",
       "inputDigestComplete": true,
-      "outputDigest": "sha256:0ab5b292fbd423137db378de694a9f1a59c577ef9261401555cb021dfe1f251e",
+      "outputDigest": "sha256:4c12d9309e354b90b4d6f77a20e0297c503dff09c1b93bc36124a0794797e98d",
       "recordsConsidered": 9855,
       "recordsUsed": 3396,
       "reasonCodes": [],
@@ -133,17 +133,17 @@
               "scaleReason": "Recorded values run from 0.400 to 561 hours, a span of about 3.1 orders of magnitude. Split into 12 equal-width linear bins, 90.8 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
               "binEdges": [
                 0.4,
-                0.731647507042923,
-                1.3382701864053101,
-                2.447855114083283,
-                4.47741772955326,
-                8.189728799543563,
-                14.979986648859201,
-                27.40017471793527,
-                50.11817381229467,
-                91.67209231827317,
-                167.67914452518318,
-                306.7050701873507,
+                0.73164750704292,
+                1.3382701864053,
+                2.4478551140833,
+                4.4774177295533,
+                8.1897287995436,
+                14.979986648859,
+                27.400174717935,
+                50.118173812295,
+                91.672092318273,
+                167.67914452518,
+                306.70507018735,
                 561
               ],
               "overall": {
@@ -162,80 +162,80 @@
                 "histogram": [
                   {
                     "lowerBound": 0.4,
-                    "upperBound": 0.731647507042923,
+                    "upperBound": 0.73164750704292,
                     "upperInclusive": false,
                     "count": 16
                   },
                   {
-                    "lowerBound": 0.731647507042923,
-                    "upperBound": 1.3382701864053101,
+                    "lowerBound": 0.73164750704292,
+                    "upperBound": 1.3382701864053,
                     "upperInclusive": false,
                     "count": 43
                   },
                   {
-                    "lowerBound": 1.3382701864053101,
-                    "upperBound": 2.447855114083283,
+                    "lowerBound": 1.3382701864053,
+                    "upperBound": 2.4478551140833,
                     "upperInclusive": false,
                     "count": 93
                   },
                   {
-                    "lowerBound": 2.447855114083283,
-                    "upperBound": 4.47741772955326,
+                    "lowerBound": 2.4478551140833,
+                    "upperBound": 4.4774177295533,
                     "upperInclusive": false,
                     "count": 117
                   },
                   {
-                    "lowerBound": 4.47741772955326,
-                    "upperBound": 8.189728799543563,
+                    "lowerBound": 4.4774177295533,
+                    "upperBound": 8.1897287995436,
                     "upperInclusive": false,
                     "count": 144
                   },
                   {
-                    "lowerBound": 8.189728799543563,
-                    "upperBound": 14.979986648859201,
+                    "lowerBound": 8.1897287995436,
+                    "upperBound": 14.979986648859,
                     "upperInclusive": false,
                     "count": 144
                   },
                   {
-                    "lowerBound": 14.979986648859201,
-                    "upperBound": 27.40017471793527,
+                    "lowerBound": 14.979986648859,
+                    "upperBound": 27.400174717935,
                     "upperInclusive": false,
                     "count": 138
                   },
                   {
-                    "lowerBound": 27.40017471793527,
-                    "upperBound": 50.11817381229467,
+                    "lowerBound": 27.400174717935,
+                    "upperBound": 50.118173812295,
                     "upperInclusive": false,
                     "count": 96
                   },
                   {
-                    "lowerBound": 50.11817381229467,
-                    "upperBound": 91.67209231827317,
+                    "lowerBound": 50.118173812295,
+                    "upperBound": 91.672092318273,
                     "upperInclusive": false,
                     "count": 35
                   },
                   {
-                    "lowerBound": 91.67209231827317,
-                    "upperBound": 167.67914452518318,
+                    "lowerBound": 91.672092318273,
+                    "upperBound": 167.67914452518,
                     "upperInclusive": false,
                     "count": 18
                   },
                   {
-                    "lowerBound": 167.67914452518318,
-                    "upperBound": 306.7050701873507,
+                    "lowerBound": 167.67914452518,
+                    "upperBound": 306.70507018735,
                     "upperInclusive": false,
                     "count": 8
                   },
                   {
-                    "lowerBound": 306.7050701873507,
+                    "lowerBound": 306.70507018735,
                     "upperBound": 561,
                     "upperInclusive": true,
                     "count": 3
                   }
                 ],
                 "logSpread": {
-                  "medianAbsoluteDeviationLog10": 0.586295961378645,
-                  "spreadFactor": 3.8574114154503105
+                  "medianAbsoluteDeviationLog10": 0.58629596137865,
+                  "spreadFactor": 3.8574114154504
                 }
               },
               "byRoute": {
@@ -257,80 +257,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 23
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 41
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 60
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 81
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 103
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 92
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 59
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 24
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 2
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.5362976896796832,
-                      "spreadFactor": 3.437935224230897
+                      "medianAbsoluteDeviationLog10": 0.53629768967968,
+                      "spreadFactor": 3.4379352242309
                     }
                   },
                   {
@@ -349,80 +349,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 12
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 28
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 31
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 18
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 16
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 17
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 7
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.5769776366788559,
-                      "spreadFactor": 3.775527489312924
+                      "medianAbsoluteDeviationLog10": 0.57697763667886,
+                      "spreadFactor": 3.775527489313
                     }
                   },
                   {
@@ -441,80 +441,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 7
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 14
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 8
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 1
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.5934107851391552,
-                      "spreadFactor": 3.921125884051907
+                      "medianAbsoluteDeviationLog10": 0.59341078513916,
+                      "spreadFactor": 3.921125884052
                     }
                   },
                   {
@@ -533,80 +533,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.4463070715714184,
-                      "spreadFactor": 2.794519031086429
+                      "medianAbsoluteDeviationLog10": 0.44630707157142,
+                      "spreadFactor": 2.7945190310864
                     }
                   },
                   {
@@ -625,80 +625,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.5335135493081355,
-                      "spreadFactor": 3.4159660779935375
+                      "medianAbsoluteDeviationLog10": 0.53351354930814,
+                      "spreadFactor": 3.4159660779936
                     }
                   },
                   {
@@ -717,80 +717,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.4306688208545672,
-                      "spreadFactor": 2.695683006422792
+                      "medianAbsoluteDeviationLog10": 0.43066882085457,
+                      "spreadFactor": 2.6956830064228
                     }
                   }
                 ],
@@ -818,80 +818,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 15
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 41
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 87
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 108
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 118
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 127
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 127
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 84
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 33
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 17
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 8
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 3
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.6081246619410243,
-                      "spreadFactor": 4.056249512427353
+                      "medianAbsoluteDeviationLog10": 0.60812466194102,
+                      "spreadFactor": 4.0562495124273
                     }
                   },
                   {
@@ -910,80 +910,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.4,
-                        "upperBound": 0.731647507042923,
+                        "upperBound": 0.73164750704292,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 0.731647507042923,
-                        "upperBound": 1.3382701864053101,
+                        "lowerBound": 0.73164750704292,
+                        "upperBound": 1.3382701864053,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 1.3382701864053101,
-                        "upperBound": 2.447855114083283,
+                        "lowerBound": 1.3382701864053,
+                        "upperBound": 2.4478551140833,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 2.447855114083283,
-                        "upperBound": 4.47741772955326,
+                        "lowerBound": 2.4478551140833,
+                        "upperBound": 4.4774177295533,
                         "upperInclusive": false,
                         "count": 9
                       },
                       {
-                        "lowerBound": 4.47741772955326,
-                        "upperBound": 8.189728799543563,
+                        "lowerBound": 4.4774177295533,
+                        "upperBound": 8.1897287995436,
                         "upperInclusive": false,
                         "count": 26
                       },
                       {
-                        "lowerBound": 8.189728799543563,
-                        "upperBound": 14.979986648859201,
+                        "lowerBound": 8.1897287995436,
+                        "upperBound": 14.979986648859,
                         "upperInclusive": false,
                         "count": 17
                       },
                       {
-                        "lowerBound": 14.979986648859201,
-                        "upperBound": 27.40017471793527,
+                        "lowerBound": 14.979986648859,
+                        "upperBound": 27.400174717935,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 27.40017471793527,
-                        "upperBound": 50.11817381229467,
+                        "lowerBound": 27.400174717935,
+                        "upperBound": 50.118173812295,
                         "upperInclusive": false,
                         "count": 12
                       },
                       {
-                        "lowerBound": 50.11817381229467,
-                        "upperBound": 91.67209231827317,
+                        "lowerBound": 50.118173812295,
+                        "upperBound": 91.672092318273,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 91.67209231827317,
-                        "upperBound": 167.67914452518318,
+                        "lowerBound": 91.672092318273,
+                        "upperBound": 167.67914452518,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 167.67914452518318,
-                        "upperBound": 306.7050701873507,
+                        "lowerBound": 167.67914452518,
+                        "upperBound": 306.70507018735,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 306.7050701873507,
+                        "lowerBound": 306.70507018735,
                         "upperBound": 561,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.40475168596169764,
-                      "spreadFactor": 2.5395202835765462
+                      "medianAbsoluteDeviationLog10": 0.4047516859617,
+                      "spreadFactor": 2.5395202835766
                     }
                   }
                 ],
@@ -1021,17 +1021,17 @@
               "scaleReason": "Recorded values run from 0.150 to 168 hours, a span of about 3.0 orders of magnitude. Split into 12 equal-width linear bins, 93.5 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
               "binEdges": [
                 0.15,
-                0.26927297027109215,
-                0.4833862167907766,
-                0.8677522825557233,
-                1.557748230555331,
-                2.796396619841148,
-                5.0199601592044525,
-                9.011597218076849,
-                16.177196998655102,
-                29.04054590992304,
-                52.13222703639333,
-                93.58533080624368,
+                0.26927297027109,
+                0.48338621679078,
+                0.86775228255572,
+                1.5577482305553,
+                2.7963966198411,
+                5.0199601592045,
+                9.0115972180768,
+                16.177196998655,
+                29.040545909923,
+                52.132227036393,
+                93.585330806244,
                 168
               ],
               "overall": {
@@ -1050,80 +1050,80 @@
                 "histogram": [
                   {
                     "lowerBound": 0.15,
-                    "upperBound": 0.26927297027109215,
+                    "upperBound": 0.26927297027109,
                     "upperInclusive": false,
                     "count": 7
                   },
                   {
-                    "lowerBound": 0.26927297027109215,
-                    "upperBound": 0.4833862167907766,
+                    "lowerBound": 0.26927297027109,
+                    "upperBound": 0.48338621679078,
                     "upperInclusive": false,
                     "count": 1
                   },
                   {
-                    "lowerBound": 0.4833862167907766,
-                    "upperBound": 0.8677522825557233,
+                    "lowerBound": 0.48338621679078,
+                    "upperBound": 0.86775228255572,
                     "upperInclusive": false,
                     "count": 23
                   },
                   {
-                    "lowerBound": 0.8677522825557233,
-                    "upperBound": 1.557748230555331,
+                    "lowerBound": 0.86775228255572,
+                    "upperBound": 1.5577482305553,
                     "upperInclusive": false,
                     "count": 133
                   },
                   {
-                    "lowerBound": 1.557748230555331,
-                    "upperBound": 2.796396619841148,
+                    "lowerBound": 1.5577482305553,
+                    "upperBound": 2.7963966198411,
                     "upperInclusive": false,
                     "count": 108
                   },
                   {
-                    "lowerBound": 2.796396619841148,
-                    "upperBound": 5.0199601592044525,
+                    "lowerBound": 2.7963966198411,
+                    "upperBound": 5.0199601592045,
                     "upperInclusive": false,
                     "count": 91
                   },
                   {
-                    "lowerBound": 5.0199601592044525,
-                    "upperBound": 9.011597218076849,
+                    "lowerBound": 5.0199601592045,
+                    "upperBound": 9.0115972180768,
                     "upperInclusive": false,
                     "count": 25
                   },
                   {
-                    "lowerBound": 9.011597218076849,
-                    "upperBound": 16.177196998655102,
+                    "lowerBound": 9.0115972180768,
+                    "upperBound": 16.177196998655,
                     "upperInclusive": false,
                     "count": 16
                   },
                   {
-                    "lowerBound": 16.177196998655102,
-                    "upperBound": 29.04054590992304,
+                    "lowerBound": 16.177196998655,
+                    "upperBound": 29.040545909923,
                     "upperInclusive": false,
                     "count": 17
                   },
                   {
-                    "lowerBound": 29.04054590992304,
-                    "upperBound": 52.13222703639333,
+                    "lowerBound": 29.040545909923,
+                    "upperBound": 52.132227036393,
                     "upperInclusive": false,
                     "count": 6
                   },
                   {
-                    "lowerBound": 52.13222703639333,
-                    "upperBound": 93.58533080624368,
+                    "lowerBound": 52.132227036393,
+                    "upperBound": 93.585330806244,
                     "upperInclusive": false,
                     "count": 1
                   },
                   {
-                    "lowerBound": 93.58533080624368,
+                    "lowerBound": 93.585330806244,
                     "upperBound": 168,
                     "upperInclusive": true,
                     "count": 3
                   }
                 ],
                 "logSpread": {
-                  "medianAbsoluteDeviationLog10": 0.4463070715714185,
-                  "spreadFactor": 2.79451903108643
+                  "medianAbsoluteDeviationLog10": 0.44630707157142,
+                  "spreadFactor": 2.7945190310864
                 }
               },
               "byRoute": {
@@ -1145,80 +1145,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.15,
-                        "upperBound": 0.26927297027109215,
+                        "upperBound": 0.26927297027109,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 0.26927297027109215,
-                        "upperBound": 0.4833862167907766,
+                        "lowerBound": 0.26927297027109,
+                        "upperBound": 0.48338621679078,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.4833862167907766,
-                        "upperBound": 0.8677522825557233,
+                        "lowerBound": 0.48338621679078,
+                        "upperBound": 0.86775228255572,
                         "upperInclusive": false,
                         "count": 18
                       },
                       {
-                        "lowerBound": 0.8677522825557233,
-                        "upperBound": 1.557748230555331,
+                        "lowerBound": 0.86775228255572,
+                        "upperBound": 1.5577482305553,
                         "upperInclusive": false,
                         "count": 112
                       },
                       {
-                        "lowerBound": 1.557748230555331,
-                        "upperBound": 2.796396619841148,
+                        "lowerBound": 1.5577482305553,
+                        "upperBound": 2.7963966198411,
                         "upperInclusive": false,
                         "count": 88
                       },
                       {
-                        "lowerBound": 2.796396619841148,
-                        "upperBound": 5.0199601592044525,
+                        "lowerBound": 2.7963966198411,
+                        "upperBound": 5.0199601592045,
                         "upperInclusive": false,
                         "count": 69
                       },
                       {
-                        "lowerBound": 5.0199601592044525,
-                        "upperBound": 9.011597218076849,
+                        "lowerBound": 5.0199601592045,
+                        "upperBound": 9.0115972180768,
                         "upperInclusive": false,
                         "count": 13
                       },
                       {
-                        "lowerBound": 9.011597218076849,
-                        "upperBound": 16.177196998655102,
+                        "lowerBound": 9.0115972180768,
+                        "upperBound": 16.177196998655,
                         "upperInclusive": false,
                         "count": 9
                       },
                       {
-                        "lowerBound": 16.177196998655102,
-                        "upperBound": 29.04054590992304,
+                        "lowerBound": 16.177196998655,
+                        "upperBound": 29.040545909923,
                         "upperInclusive": false,
                         "count": 9
                       },
                       {
-                        "lowerBound": 29.04054590992304,
-                        "upperBound": 52.13222703639333,
+                        "lowerBound": 29.040545909923,
+                        "upperBound": 52.132227036393,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 52.13222703639333,
-                        "upperBound": 93.58533080624368,
+                        "lowerBound": 52.132227036393,
+                        "upperBound": 93.585330806244,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 93.58533080624368,
+                        "lowerBound": 93.585330806244,
                         "upperBound": 168,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.36032821098230017,
-                      "spreadFactor": 2.292599593050435
+                      "medianAbsoluteDeviationLog10": 0.3603282109823,
+                      "spreadFactor": 2.2925995930504
                     }
                   },
                   {
@@ -1237,80 +1237,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.15,
-                        "upperBound": 0.26927297027109215,
+                        "upperBound": 0.26927297027109,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 0.26927297027109215,
-                        "upperBound": 0.4833862167907766,
+                        "lowerBound": 0.26927297027109,
+                        "upperBound": 0.48338621679078,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.4833862167907766,
-                        "upperBound": 0.8677522825557233,
+                        "lowerBound": 0.48338621679078,
+                        "upperBound": 0.86775228255572,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 0.8677522825557233,
-                        "upperBound": 1.557748230555331,
+                        "lowerBound": 0.86775228255572,
+                        "upperBound": 1.5577482305553,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 1.557748230555331,
-                        "upperBound": 2.796396619841148,
+                        "lowerBound": 1.5577482305553,
+                        "upperBound": 2.7963966198411,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 2.796396619841148,
-                        "upperBound": 5.0199601592044525,
+                        "lowerBound": 2.7963966198411,
+                        "upperBound": 5.0199601592045,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 5.0199601592044525,
-                        "upperBound": 9.011597218076849,
+                        "lowerBound": 5.0199601592045,
+                        "upperBound": 9.0115972180768,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 9.011597218076849,
-                        "upperBound": 16.177196998655102,
+                        "lowerBound": 9.0115972180768,
+                        "upperBound": 16.177196998655,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 16.177196998655102,
-                        "upperBound": 29.04054590992304,
+                        "lowerBound": 16.177196998655,
+                        "upperBound": 29.040545909923,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 29.04054590992304,
-                        "upperBound": 52.13222703639333,
+                        "lowerBound": 29.040545909923,
+                        "upperBound": 52.132227036393,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 52.13222703639333,
-                        "upperBound": 93.58533080624368,
+                        "lowerBound": 52.132227036393,
+                        "upperBound": 93.585330806244,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 93.58533080624368,
+                        "lowerBound": 93.585330806244,
                         "upperBound": 168,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.9188988130383731,
-                      "spreadFactor": 8.296574417876037
+                      "medianAbsoluteDeviationLog10": 0.91889881303837,
+                      "spreadFactor": 8.296574417876
                     }
                   }
                 ],
@@ -1338,80 +1338,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.15,
-                        "upperBound": 0.26927297027109215,
+                        "upperBound": 0.26927297027109,
                         "upperInclusive": false,
                         "count": 7
                       },
                       {
-                        "lowerBound": 0.26927297027109215,
-                        "upperBound": 0.4833862167907766,
+                        "lowerBound": 0.26927297027109,
+                        "upperBound": 0.48338621679078,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.4833862167907766,
-                        "upperBound": 0.8677522825557233,
+                        "lowerBound": 0.48338621679078,
+                        "upperBound": 0.86775228255572,
                         "upperInclusive": false,
                         "count": 21
                       },
                       {
-                        "lowerBound": 0.8677522825557233,
-                        "upperBound": 1.557748230555331,
+                        "lowerBound": 0.86775228255572,
+                        "upperBound": 1.5577482305553,
                         "upperInclusive": false,
                         "count": 114
                       },
                       {
-                        "lowerBound": 1.557748230555331,
-                        "upperBound": 2.796396619841148,
+                        "lowerBound": 1.5577482305553,
+                        "upperBound": 2.7963966198411,
                         "upperInclusive": false,
                         "count": 87
                       },
                       {
-                        "lowerBound": 2.796396619841148,
-                        "upperBound": 5.0199601592044525,
+                        "lowerBound": 2.7963966198411,
+                        "upperBound": 5.0199601592045,
                         "upperInclusive": false,
                         "count": 72
                       },
                       {
-                        "lowerBound": 5.0199601592044525,
-                        "upperBound": 9.011597218076849,
+                        "lowerBound": 5.0199601592045,
+                        "upperBound": 9.0115972180768,
                         "upperInclusive": false,
                         "count": 17
                       },
                       {
-                        "lowerBound": 9.011597218076849,
-                        "upperBound": 16.177196998655102,
+                        "lowerBound": 9.0115972180768,
+                        "upperBound": 16.177196998655,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 16.177196998655102,
-                        "upperBound": 29.04054590992304,
+                        "lowerBound": 16.177196998655,
+                        "upperBound": 29.040545909923,
                         "upperInclusive": false,
                         "count": 16
                       },
                       {
-                        "lowerBound": 29.04054590992304,
-                        "upperBound": 52.13222703639333,
+                        "lowerBound": 29.040545909923,
+                        "upperBound": 52.132227036393,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 52.13222703639333,
-                        "upperBound": 93.58533080624368,
+                        "lowerBound": 52.132227036393,
+                        "upperBound": 93.585330806244,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 93.58533080624368,
+                        "lowerBound": 93.585330806244,
                         "upperBound": 168,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.4463070715714185,
-                      "spreadFactor": 2.79451903108643
+                      "medianAbsoluteDeviationLog10": 0.44630707157142,
+                      "spreadFactor": 2.7945190310864
                     }
                   },
                   {
@@ -1430,80 +1430,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.15,
-                        "upperBound": 0.26927297027109215,
+                        "upperBound": 0.26927297027109,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.26927297027109215,
-                        "upperBound": 0.4833862167907766,
+                        "lowerBound": 0.26927297027109,
+                        "upperBound": 0.48338621679078,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 0.4833862167907766,
-                        "upperBound": 0.8677522825557233,
+                        "lowerBound": 0.48338621679078,
+                        "upperBound": 0.86775228255572,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 0.8677522825557233,
-                        "upperBound": 1.557748230555331,
+                        "lowerBound": 0.86775228255572,
+                        "upperBound": 1.5577482305553,
                         "upperInclusive": false,
                         "count": 19
                       },
                       {
-                        "lowerBound": 1.557748230555331,
-                        "upperBound": 2.796396619841148,
+                        "lowerBound": 1.5577482305553,
+                        "upperBound": 2.7963966198411,
                         "upperInclusive": false,
                         "count": 21
                       },
                       {
-                        "lowerBound": 2.796396619841148,
-                        "upperBound": 5.0199601592044525,
+                        "lowerBound": 2.7963966198411,
+                        "upperBound": 5.0199601592045,
                         "upperInclusive": false,
                         "count": 19
                       },
                       {
-                        "lowerBound": 5.0199601592044525,
-                        "upperBound": 9.011597218076849,
+                        "lowerBound": 5.0199601592045,
+                        "upperBound": 9.0115972180768,
                         "upperInclusive": false,
                         "count": 8
                       },
                       {
-                        "lowerBound": 9.011597218076849,
-                        "upperBound": 16.177196998655102,
+                        "lowerBound": 9.0115972180768,
+                        "upperBound": 16.177196998655,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 16.177196998655102,
-                        "upperBound": 29.04054590992304,
+                        "lowerBound": 16.177196998655,
+                        "upperBound": 29.040545909923,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 29.04054590992304,
-                        "upperBound": 52.13222703639333,
+                        "lowerBound": 29.040545909923,
+                        "upperBound": 52.132227036393,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 52.13222703639333,
-                        "upperBound": 93.58533080624368,
+                        "lowerBound": 52.132227036393,
+                        "upperBound": 93.585330806244,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 93.58533080624368,
+                        "lowerBound": 93.585330806244,
                         "upperBound": 168,
                         "upperInclusive": true,
                         "count": 3
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.3289129561812099,
-                      "spreadFactor": 2.1326174387541914
+                      "medianAbsoluteDeviationLog10": 0.32891295618121,
+                      "spreadFactor": 2.1326174387542
                     }
                   }
                 ],
@@ -2618,17 +2618,17 @@
               "scaleReason": "Recorded values run from 0.560 to 92800 litres, a span of about 5.2 orders of magnitude. Split into 12 equal-width linear bins, 99.0 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
               "binEdges": [
                 0.56,
-                1.5245254875202987,
-                4.150317789462508,
-                11.298687948829459,
-                30.75917455987313,
-                83.73775998502234,
-                227.96490958040013,
-                620.6041337778217,
-                1689.5121778656178,
-                4599.472101128681,
-                12521.45079876645,
-                34087.983720448006,
+                1.5245254875203,
+                4.1503177894625,
+                11.298687948829,
+                30.759174559873,
+                83.737759985022,
+                227.9649095804,
+                620.60413377782,
+                1689.5121778656,
+                4599.4721011287,
+                12521.450798766,
+                34087.983720448,
                 92800
               ],
               "overall": {
@@ -2647,80 +2647,80 @@
                 "histogram": [
                   {
                     "lowerBound": 0.56,
-                    "upperBound": 1.5245254875202987,
+                    "upperBound": 1.5245254875203,
                     "upperInclusive": false,
                     "count": 9
                   },
                   {
-                    "lowerBound": 1.5245254875202987,
-                    "upperBound": 4.150317789462508,
+                    "lowerBound": 1.5245254875203,
+                    "upperBound": 4.1503177894625,
                     "upperInclusive": false,
                     "count": 73
                   },
                   {
-                    "lowerBound": 4.150317789462508,
-                    "upperBound": 11.298687948829459,
+                    "lowerBound": 4.1503177894625,
+                    "upperBound": 11.298687948829,
                     "upperInclusive": false,
                     "count": 138
                   },
                   {
-                    "lowerBound": 11.298687948829459,
-                    "upperBound": 30.75917455987313,
+                    "lowerBound": 11.298687948829,
+                    "upperBound": 30.759174559873,
                     "upperInclusive": false,
                     "count": 67
                   },
                   {
-                    "lowerBound": 30.75917455987313,
-                    "upperBound": 83.73775998502234,
+                    "lowerBound": 30.759174559873,
+                    "upperBound": 83.737759985022,
                     "upperInclusive": false,
                     "count": 66
                   },
                   {
-                    "lowerBound": 83.73775998502234,
-                    "upperBound": 227.96490958040013,
+                    "lowerBound": 83.737759985022,
+                    "upperBound": 227.9649095804,
                     "upperInclusive": false,
                     "count": 94
                   },
                   {
-                    "lowerBound": 227.96490958040013,
-                    "upperBound": 620.6041337778217,
+                    "lowerBound": 227.9649095804,
+                    "upperBound": 620.60413377782,
                     "upperInclusive": false,
                     "count": 64
                   },
                   {
-                    "lowerBound": 620.6041337778217,
-                    "upperBound": 1689.5121778656178,
+                    "lowerBound": 620.60413377782,
+                    "upperBound": 1689.5121778656,
                     "upperInclusive": false,
                     "count": 40
                   },
                   {
-                    "lowerBound": 1689.5121778656178,
-                    "upperBound": 4599.472101128681,
+                    "lowerBound": 1689.5121778656,
+                    "upperBound": 4599.4721011287,
                     "upperInclusive": false,
                     "count": 25
                   },
                   {
-                    "lowerBound": 4599.472101128681,
-                    "upperBound": 12521.45079876645,
+                    "lowerBound": 4599.4721011287,
+                    "upperBound": 12521.450798766,
                     "upperInclusive": false,
                     "count": 10
                   },
                   {
-                    "lowerBound": 12521.45079876645,
-                    "upperBound": 34087.983720448006,
+                    "lowerBound": 12521.450798766,
+                    "upperBound": 34087.983720448,
                     "upperInclusive": false,
                     "count": 2
                   },
                   {
-                    "lowerBound": 34087.983720448006,
+                    "lowerBound": 34087.983720448,
                     "upperBound": 92800,
                     "upperInclusive": true,
                     "count": 1
                   }
                 ],
                 "logSpread": {
-                  "medianAbsoluteDeviationLog10": 1.179971713714326,
-                  "spreadFactor": 15.134626710113672
+                  "medianAbsoluteDeviationLog10": 1.1799717137143,
+                  "spreadFactor": 15.134626710113
                 }
               },
               "byRoute": {
@@ -2742,80 +2742,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.56,
-                        "upperBound": 1.5245254875202987,
+                        "upperBound": 1.5245254875203,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 1.5245254875202987,
-                        "upperBound": 4.150317789462508,
+                        "lowerBound": 1.5245254875203,
+                        "upperBound": 4.1503177894625,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 4.150317789462508,
-                        "upperBound": 11.298687948829459,
+                        "lowerBound": 4.1503177894625,
+                        "upperBound": 11.298687948829,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 11.298687948829459,
-                        "upperBound": 30.75917455987313,
+                        "lowerBound": 11.298687948829,
+                        "upperBound": 30.759174559873,
                         "upperInclusive": false,
                         "count": 30
                       },
                       {
-                        "lowerBound": 30.75917455987313,
-                        "upperBound": 83.73775998502234,
+                        "lowerBound": 30.759174559873,
+                        "upperBound": 83.737759985022,
                         "upperInclusive": false,
                         "count": 49
                       },
                       {
-                        "lowerBound": 83.73775998502234,
-                        "upperBound": 227.96490958040013,
+                        "lowerBound": 83.737759985022,
+                        "upperBound": 227.9649095804,
                         "upperInclusive": false,
                         "count": 73
                       },
                       {
-                        "lowerBound": 227.96490958040013,
-                        "upperBound": 620.6041337778217,
+                        "lowerBound": 227.9649095804,
+                        "upperBound": 620.60413377782,
                         "upperInclusive": false,
                         "count": 46
                       },
                       {
-                        "lowerBound": 620.6041337778217,
-                        "upperBound": 1689.5121778656178,
+                        "lowerBound": 620.60413377782,
+                        "upperBound": 1689.5121778656,
                         "upperInclusive": false,
                         "count": 30
                       },
                       {
-                        "lowerBound": 1689.5121778656178,
-                        "upperBound": 4599.472101128681,
+                        "lowerBound": 1689.5121778656,
+                        "upperBound": 4599.4721011287,
                         "upperInclusive": false,
                         "count": 21
                       },
                       {
-                        "lowerBound": 4599.472101128681,
-                        "upperBound": 12521.45079876645,
+                        "lowerBound": 4599.4721011287,
+                        "upperBound": 12521.450798766,
                         "upperInclusive": false,
                         "count": 9
                       },
                       {
-                        "lowerBound": 12521.45079876645,
-                        "upperBound": 34087.983720448006,
+                        "lowerBound": 12521.450798766,
+                        "upperBound": 34087.983720448,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 34087.983720448006,
+                        "lowerBound": 34087.983720448,
                         "upperBound": 92800,
                         "upperInclusive": true,
                         "count": 1
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.7408360686900456,
-                      "spreadFactor": 5.505998245775444
+                      "medianAbsoluteDeviationLog10": 0.74083606869005,
+                      "spreadFactor": 5.5059982457755
                     }
                   },
                   {
@@ -2834,80 +2834,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.56,
-                        "upperBound": 1.5245254875202987,
+                        "upperBound": 1.5245254875203,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 1.5245254875202987,
-                        "upperBound": 4.150317789462508,
+                        "lowerBound": 1.5245254875203,
+                        "upperBound": 4.1503177894625,
                         "upperInclusive": false,
                         "count": 42
                       },
                       {
-                        "lowerBound": 4.150317789462508,
-                        "upperBound": 11.298687948829459,
+                        "lowerBound": 4.1503177894625,
+                        "upperBound": 11.298687948829,
                         "upperInclusive": false,
                         "count": 68
                       },
                       {
-                        "lowerBound": 11.298687948829459,
-                        "upperBound": 30.75917455987313,
+                        "lowerBound": 11.298687948829,
+                        "upperBound": 30.759174559873,
                         "upperInclusive": false,
                         "count": 18
                       },
                       {
-                        "lowerBound": 30.75917455987313,
-                        "upperBound": 83.73775998502234,
+                        "lowerBound": 30.759174559873,
+                        "upperBound": 83.737759985022,
                         "upperInclusive": false,
                         "count": 9
                       },
                       {
-                        "lowerBound": 83.73775998502234,
-                        "upperBound": 227.96490958040013,
+                        "lowerBound": 83.737759985022,
+                        "upperBound": 227.9649095804,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 227.96490958040013,
-                        "upperBound": 620.6041337778217,
+                        "lowerBound": 227.9649095804,
+                        "upperBound": 620.60413377782,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 620.6041337778217,
-                        "upperBound": 1689.5121778656178,
+                        "lowerBound": 620.60413377782,
+                        "upperBound": 1689.5121778656,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 1689.5121778656178,
-                        "upperBound": 4599.472101128681,
+                        "lowerBound": 1689.5121778656,
+                        "upperBound": 4599.4721011287,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 4599.472101128681,
-                        "upperBound": 12521.45079876645,
+                        "lowerBound": 4599.4721011287,
+                        "upperBound": 12521.450798766,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 12521.45079876645,
-                        "upperBound": 34087.983720448006,
+                        "lowerBound": 12521.450798766,
+                        "upperBound": 34087.983720448,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 34087.983720448006,
+                        "lowerBound": 34087.983720448,
                         "upperBound": 92800,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.39751671857924575,
-                      "spreadFactor": 2.497564533426315
+                      "medianAbsoluteDeviationLog10": 0.39751671857925,
+                      "spreadFactor": 2.4975645334263
                     }
                   },
                   {
@@ -2926,80 +2926,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.56,
-                        "upperBound": 1.5245254875202987,
+                        "upperBound": 1.5245254875203,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 1.5245254875202987,
-                        "upperBound": 4.150317789462508,
+                        "lowerBound": 1.5245254875203,
+                        "upperBound": 4.1503177894625,
                         "upperInclusive": false,
                         "count": 22
                       },
                       {
-                        "lowerBound": 4.150317789462508,
-                        "upperBound": 11.298687948829459,
+                        "lowerBound": 4.1503177894625,
+                        "upperBound": 11.298687948829,
                         "upperInclusive": false,
                         "count": 53
                       },
                       {
-                        "lowerBound": 11.298687948829459,
-                        "upperBound": 30.75917455987313,
+                        "lowerBound": 11.298687948829,
+                        "upperBound": 30.759174559873,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 30.75917455987313,
-                        "upperBound": 83.73775998502234,
+                        "lowerBound": 30.759174559873,
+                        "upperBound": 83.737759985022,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 83.73775998502234,
-                        "upperBound": 227.96490958040013,
+                        "lowerBound": 83.737759985022,
+                        "upperBound": 227.9649095804,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 227.96490958040013,
-                        "upperBound": 620.6041337778217,
+                        "lowerBound": 227.9649095804,
+                        "upperBound": 620.60413377782,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 620.6041337778217,
-                        "upperBound": 1689.5121778656178,
+                        "lowerBound": 620.60413377782,
+                        "upperBound": 1689.5121778656,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 1689.5121778656178,
-                        "upperBound": 4599.472101128681,
+                        "lowerBound": 1689.5121778656,
+                        "upperBound": 4599.4721011287,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 4599.472101128681,
-                        "upperBound": 12521.45079876645,
+                        "lowerBound": 4599.4721011287,
+                        "upperBound": 12521.450798766,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 12521.45079876645,
-                        "upperBound": 34087.983720448006,
+                        "lowerBound": 12521.450798766,
+                        "upperBound": 34087.983720448,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 34087.983720448006,
+                        "lowerBound": 34087.983720448,
                         "upperBound": 92800,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.2773746574413023,
-                      "spreadFactor": 1.8939768112082396
+                      "medianAbsoluteDeviationLog10": 0.2773746574413,
+                      "spreadFactor": 1.8939768112082
                     }
                   }
                 ],
@@ -3027,80 +3027,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.56,
-                        "upperBound": 1.5245254875202987,
+                        "upperBound": 1.5245254875203,
                         "upperInclusive": false,
                         "count": 9
                       },
                       {
-                        "lowerBound": 1.5245254875202987,
-                        "upperBound": 4.150317789462508,
+                        "lowerBound": 1.5245254875203,
+                        "upperBound": 4.1503177894625,
                         "upperInclusive": false,
                         "count": 70
                       },
                       {
-                        "lowerBound": 4.150317789462508,
-                        "upperBound": 11.298687948829459,
+                        "lowerBound": 4.1503177894625,
+                        "upperBound": 11.298687948829,
                         "upperInclusive": false,
                         "count": 127
                       },
                       {
-                        "lowerBound": 11.298687948829459,
-                        "upperBound": 30.75917455987313,
+                        "lowerBound": 11.298687948829,
+                        "upperBound": 30.759174559873,
                         "upperInclusive": false,
                         "count": 61
                       },
                       {
-                        "lowerBound": 30.75917455987313,
-                        "upperBound": 83.73775998502234,
+                        "lowerBound": 30.759174559873,
+                        "upperBound": 83.737759985022,
                         "upperInclusive": false,
                         "count": 60
                       },
                       {
-                        "lowerBound": 83.73775998502234,
-                        "upperBound": 227.96490958040013,
+                        "lowerBound": 83.737759985022,
+                        "upperBound": 227.9649095804,
                         "upperInclusive": false,
                         "count": 89
                       },
                       {
-                        "lowerBound": 227.96490958040013,
-                        "upperBound": 620.6041337778217,
+                        "lowerBound": 227.9649095804,
+                        "upperBound": 620.60413377782,
                         "upperInclusive": false,
                         "count": 59
                       },
                       {
-                        "lowerBound": 620.6041337778217,
-                        "upperBound": 1689.5121778656178,
+                        "lowerBound": 620.60413377782,
+                        "upperBound": 1689.5121778656,
                         "upperInclusive": false,
                         "count": 36
                       },
                       {
-                        "lowerBound": 1689.5121778656178,
-                        "upperBound": 4599.472101128681,
+                        "lowerBound": 1689.5121778656,
+                        "upperBound": 4599.4721011287,
                         "upperInclusive": false,
                         "count": 25
                       },
                       {
-                        "lowerBound": 4599.472101128681,
-                        "upperBound": 12521.45079876645,
+                        "lowerBound": 4599.4721011287,
+                        "upperBound": 12521.450798766,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 12521.45079876645,
-                        "upperBound": 34087.983720448006,
+                        "lowerBound": 12521.450798766,
+                        "upperBound": 34087.983720448,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 34087.983720448006,
+                        "lowerBound": 34087.983720448,
                         "upperBound": 92800,
                         "upperInclusive": true,
                         "count": 1
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 1.1952424294285109,
-                      "spreadFactor": 15.676258972460303
+                      "medianAbsoluteDeviationLog10": 1.1952424294285,
+                      "spreadFactor": 15.67625897246
                     }
                   },
                   {
@@ -3119,80 +3119,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.56,
-                        "upperBound": 1.5245254875202987,
+                        "upperBound": 1.5245254875203,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 1.5245254875202987,
-                        "upperBound": 4.150317789462508,
+                        "lowerBound": 1.5245254875203,
+                        "upperBound": 4.1503177894625,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 4.150317789462508,
-                        "upperBound": 11.298687948829459,
+                        "lowerBound": 4.1503177894625,
+                        "upperBound": 11.298687948829,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 11.298687948829459,
-                        "upperBound": 30.75917455987313,
+                        "lowerBound": 11.298687948829,
+                        "upperBound": 30.759174559873,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 30.75917455987313,
-                        "upperBound": 83.73775998502234,
+                        "lowerBound": 30.759174559873,
+                        "upperBound": 83.737759985022,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 83.73775998502234,
-                        "upperBound": 227.96490958040013,
+                        "lowerBound": 83.737759985022,
+                        "upperBound": 227.9649095804,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 227.96490958040013,
-                        "upperBound": 620.6041337778217,
+                        "lowerBound": 227.9649095804,
+                        "upperBound": 620.60413377782,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 620.6041337778217,
-                        "upperBound": 1689.5121778656178,
+                        "lowerBound": 620.60413377782,
+                        "upperBound": 1689.5121778656,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 1689.5121778656178,
-                        "upperBound": 4599.472101128681,
+                        "lowerBound": 1689.5121778656,
+                        "upperBound": 4599.4721011287,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 4599.472101128681,
-                        "upperBound": 12521.45079876645,
+                        "lowerBound": 4599.4721011287,
+                        "upperBound": 12521.450798766,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 12521.45079876645,
-                        "upperBound": 34087.983720448006,
+                        "lowerBound": 12521.450798766,
+                        "upperBound": 34087.983720448,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 34087.983720448006,
+                        "lowerBound": 34087.983720448,
                         "upperBound": 92800,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.8786671219551964,
-                      "spreadFactor": 7.562530199853288
+                      "medianAbsoluteDeviationLog10": 0.8786671219552,
+                      "spreadFactor": 7.5625301998534
                     }
                   }
                 ],
@@ -3210,17 +3210,17 @@
               "scaleReason": "Recorded values run from 0.040 to 84 litres per kilogram, a span of about 3.3 orders of magnitude. Split into 12 equal-width linear bins, 84.2 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
               "binEdges": [
                 0.04,
-                0.07566788571263826,
-                0.14314072320552218,
-                0.270778897108496,
-                0.5122316659949978,
-                0.9689871790225945,
-                1.8330302779823362,
-                3.467538139554323,
-                6.559531991200272,
-                12.408647925963415,
-                23.47340382775413,
-                44.40457095312761,
+                0.075667885712638,
+                0.14314072320552,
+                0.2707788971085,
+                0.512231665995,
+                0.96898717902259,
+                1.8330302779823,
+                3.4675381395543,
+                6.5595319912003,
+                12.408647925963,
+                23.473403827754,
+                44.404570953128,
                 84
               ],
               "overall": {
@@ -3239,80 +3239,80 @@
                 "histogram": [
                   {
                     "lowerBound": 0.04,
-                    "upperBound": 0.07566788571263826,
+                    "upperBound": 0.075667885712638,
                     "upperInclusive": false,
                     "count": 2
                   },
                   {
-                    "lowerBound": 0.07566788571263826,
-                    "upperBound": 0.14314072320552218,
+                    "lowerBound": 0.075667885712638,
+                    "upperBound": 0.14314072320552,
                     "upperInclusive": false,
                     "count": 10
                   },
                   {
-                    "lowerBound": 0.14314072320552218,
-                    "upperBound": 0.270778897108496,
+                    "lowerBound": 0.14314072320552,
+                    "upperBound": 0.2707788971085,
                     "upperInclusive": false,
                     "count": 12
                   },
                   {
-                    "lowerBound": 0.270778897108496,
-                    "upperBound": 0.5122316659949978,
+                    "lowerBound": 0.2707788971085,
+                    "upperBound": 0.512231665995,
                     "upperInclusive": false,
                     "count": 18
                   },
                   {
-                    "lowerBound": 0.5122316659949978,
-                    "upperBound": 0.9689871790225945,
+                    "lowerBound": 0.512231665995,
+                    "upperBound": 0.96898717902259,
                     "upperInclusive": false,
                     "count": 23
                   },
                   {
-                    "lowerBound": 0.9689871790225945,
-                    "upperBound": 1.8330302779823362,
+                    "lowerBound": 0.96898717902259,
+                    "upperBound": 1.8330302779823,
                     "upperInclusive": false,
                     "count": 21
                   },
                   {
-                    "lowerBound": 1.8330302779823362,
-                    "upperBound": 3.467538139554323,
+                    "lowerBound": 1.8330302779823,
+                    "upperBound": 3.4675381395543,
                     "upperInclusive": false,
                     "count": 21
                   },
                   {
-                    "lowerBound": 3.467538139554323,
-                    "upperBound": 6.559531991200272,
+                    "lowerBound": 3.4675381395543,
+                    "upperBound": 6.5595319912003,
                     "upperInclusive": false,
                     "count": 15
                   },
                   {
-                    "lowerBound": 6.559531991200272,
-                    "upperBound": 12.408647925963415,
+                    "lowerBound": 6.5595319912003,
+                    "upperBound": 12.408647925963,
                     "upperInclusive": false,
                     "count": 14
                   },
                   {
-                    "lowerBound": 12.408647925963415,
-                    "upperBound": 23.47340382775413,
+                    "lowerBound": 12.408647925963,
+                    "upperBound": 23.473403827754,
                     "upperInclusive": false,
                     "count": 6
                   },
                   {
-                    "lowerBound": 23.47340382775413,
-                    "upperBound": 44.40457095312761,
+                    "lowerBound": 23.473403827754,
+                    "upperBound": 44.404570953128,
                     "upperInclusive": false,
                     "count": 2
                   },
                   {
-                    "lowerBound": 44.40457095312761,
+                    "lowerBound": 44.404570953128,
                     "upperBound": 84,
                     "upperInclusive": true,
                     "count": 2
                   }
                 ],
                 "logSpread": {
-                  "medianAbsoluteDeviationLog10": 0.6894513467038198,
-                  "spreadFactor": 4.891604622230612
+                  "medianAbsoluteDeviationLog10": 0.68945134670382,
+                  "spreadFactor": 4.8916046222306
                 }
               },
               "byRoute": {
@@ -3334,80 +3334,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.04,
-                        "upperBound": 0.07566788571263826,
+                        "upperBound": 0.075667885712638,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.07566788571263826,
-                        "upperBound": 0.14314072320552218,
+                        "lowerBound": 0.075667885712638,
+                        "upperBound": 0.14314072320552,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 0.14314072320552218,
-                        "upperBound": 0.270778897108496,
+                        "lowerBound": 0.14314072320552,
+                        "upperBound": 0.2707788971085,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 0.270778897108496,
-                        "upperBound": 0.5122316659949978,
+                        "lowerBound": 0.2707788971085,
+                        "upperBound": 0.512231665995,
                         "upperInclusive": false,
                         "count": 7
                       },
                       {
-                        "lowerBound": 0.5122316659949978,
-                        "upperBound": 0.9689871790225945,
+                        "lowerBound": 0.512231665995,
+                        "upperBound": 0.96898717902259,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 0.9689871790225945,
-                        "upperBound": 1.8330302779823362,
+                        "lowerBound": 0.96898717902259,
+                        "upperBound": 1.8330302779823,
                         "upperInclusive": false,
                         "count": 13
                       },
                       {
-                        "lowerBound": 1.8330302779823362,
-                        "upperBound": 3.467538139554323,
+                        "lowerBound": 1.8330302779823,
+                        "upperBound": 3.4675381395543,
                         "upperInclusive": false,
                         "count": 16
                       },
                       {
-                        "lowerBound": 3.467538139554323,
-                        "upperBound": 6.559531991200272,
+                        "lowerBound": 3.4675381395543,
+                        "upperBound": 6.5595319912003,
                         "upperInclusive": false,
                         "count": 7
                       },
                       {
-                        "lowerBound": 6.559531991200272,
-                        "upperBound": 12.408647925963415,
+                        "lowerBound": 6.5595319912003,
+                        "upperBound": 12.408647925963,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 12.408647925963415,
-                        "upperBound": 23.47340382775413,
+                        "lowerBound": 12.408647925963,
+                        "upperBound": 23.473403827754,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 23.47340382775413,
-                        "upperBound": 44.40457095312761,
+                        "lowerBound": 23.473403827754,
+                        "upperBound": 44.404570953128,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 44.40457095312761,
+                        "lowerBound": 44.404570953128,
                         "upperBound": 84,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.6071294756789094,
-                      "spreadFactor": 4.046965253909562
+                      "medianAbsoluteDeviationLog10": 0.60712947567891,
+                      "spreadFactor": 4.0469652539096
                     }
                   },
                   {
@@ -3426,80 +3426,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.04,
-                        "upperBound": 0.07566788571263826,
+                        "upperBound": 0.075667885712638,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 0.07566788571263826,
-                        "upperBound": 0.14314072320552218,
+                        "lowerBound": 0.075667885712638,
+                        "upperBound": 0.14314072320552,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 0.14314072320552218,
-                        "upperBound": 0.270778897108496,
+                        "lowerBound": 0.14314072320552,
+                        "upperBound": 0.2707788971085,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 0.270778897108496,
-                        "upperBound": 0.5122316659949978,
+                        "lowerBound": 0.2707788971085,
+                        "upperBound": 0.512231665995,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 0.5122316659949978,
-                        "upperBound": 0.9689871790225945,
+                        "lowerBound": 0.512231665995,
+                        "upperBound": 0.96898717902259,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 0.9689871790225945,
-                        "upperBound": 1.8330302779823362,
+                        "lowerBound": 0.96898717902259,
+                        "upperBound": 1.8330302779823,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 1.8330302779823362,
-                        "upperBound": 3.467538139554323,
+                        "lowerBound": 1.8330302779823,
+                        "upperBound": 3.4675381395543,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 3.467538139554323,
-                        "upperBound": 6.559531991200272,
+                        "lowerBound": 3.4675381395543,
+                        "upperBound": 6.5595319912003,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 6.559531991200272,
-                        "upperBound": 12.408647925963415,
+                        "lowerBound": 6.5595319912003,
+                        "upperBound": 12.408647925963,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 12.408647925963415,
-                        "upperBound": 23.47340382775413,
+                        "lowerBound": 12.408647925963,
+                        "upperBound": 23.473403827754,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 23.47340382775413,
-                        "upperBound": 44.40457095312761,
+                        "lowerBound": 23.473403827754,
+                        "upperBound": 44.404570953128,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 44.40457095312761,
+                        "lowerBound": 44.404570953128,
                         "upperBound": 84,
                         "upperInclusive": true,
                         "count": 1
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.4210534427270467,
-                      "spreadFactor": 2.6366558233067723
+                      "medianAbsoluteDeviationLog10": 0.42105344272705,
+                      "spreadFactor": 2.6366558233068
                     }
                   }
                 ],
@@ -3527,80 +3527,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.04,
-                        "upperBound": 0.07566788571263826,
+                        "upperBound": 0.075667885712638,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 0.07566788571263826,
-                        "upperBound": 0.14314072320552218,
+                        "lowerBound": 0.075667885712638,
+                        "upperBound": 0.14314072320552,
                         "upperInclusive": false,
                         "count": 9
                       },
                       {
-                        "lowerBound": 0.14314072320552218,
-                        "upperBound": 0.270778897108496,
+                        "lowerBound": 0.14314072320552,
+                        "upperBound": 0.2707788971085,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 0.270778897108496,
-                        "upperBound": 0.5122316659949978,
+                        "lowerBound": 0.2707788971085,
+                        "upperBound": 0.512231665995,
                         "upperInclusive": false,
                         "count": 15
                       },
                       {
-                        "lowerBound": 0.5122316659949978,
-                        "upperBound": 0.9689871790225945,
+                        "lowerBound": 0.512231665995,
+                        "upperBound": 0.96898717902259,
                         "upperInclusive": false,
                         "count": 21
                       },
                       {
-                        "lowerBound": 0.9689871790225945,
-                        "upperBound": 1.8330302779823362,
+                        "lowerBound": 0.96898717902259,
+                        "upperBound": 1.8330302779823,
                         "upperInclusive": false,
                         "count": 18
                       },
                       {
-                        "lowerBound": 1.8330302779823362,
-                        "upperBound": 3.467538139554323,
+                        "lowerBound": 1.8330302779823,
+                        "upperBound": 3.4675381395543,
                         "upperInclusive": false,
                         "count": 19
                       },
                       {
-                        "lowerBound": 3.467538139554323,
-                        "upperBound": 6.559531991200272,
+                        "lowerBound": 3.4675381395543,
+                        "upperBound": 6.5595319912003,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 6.559531991200272,
-                        "upperBound": 12.408647925963415,
+                        "lowerBound": 6.5595319912003,
+                        "upperBound": 12.408647925963,
                         "upperInclusive": false,
                         "count": 12
                       },
                       {
-                        "lowerBound": 12.408647925963415,
-                        "upperBound": 23.47340382775413,
+                        "lowerBound": 12.408647925963,
+                        "upperBound": 23.473403827754,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 23.47340382775413,
-                        "upperBound": 44.40457095312761,
+                        "lowerBound": 23.473403827754,
+                        "upperBound": 44.404570953128,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 44.40457095312761,
+                        "lowerBound": 44.404570953128,
                         "upperBound": 84,
                         "upperInclusive": true,
                         "count": 2
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.6513546518727474,
-                      "spreadFactor": 4.480790633977391
+                      "medianAbsoluteDeviationLog10": 0.65135465187275,
+                      "spreadFactor": 4.4807906339774
                     }
                   },
                   {
@@ -3619,80 +3619,80 @@
                     "histogram": [
                       {
                         "lowerBound": 0.04,
-                        "upperBound": 0.07566788571263826,
+                        "upperBound": 0.075667885712638,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 0.07566788571263826,
-                        "upperBound": 0.14314072320552218,
+                        "lowerBound": 0.075667885712638,
+                        "upperBound": 0.14314072320552,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 0.14314072320552218,
-                        "upperBound": 0.270778897108496,
+                        "lowerBound": 0.14314072320552,
+                        "upperBound": 0.2707788971085,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 0.270778897108496,
-                        "upperBound": 0.5122316659949978,
+                        "lowerBound": 0.2707788971085,
+                        "upperBound": 0.512231665995,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 0.5122316659949978,
-                        "upperBound": 0.9689871790225945,
+                        "lowerBound": 0.512231665995,
+                        "upperBound": 0.96898717902259,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 0.9689871790225945,
-                        "upperBound": 1.8330302779823362,
+                        "lowerBound": 0.96898717902259,
+                        "upperBound": 1.8330302779823,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 1.8330302779823362,
-                        "upperBound": 3.467538139554323,
+                        "lowerBound": 1.8330302779823,
+                        "upperBound": 3.4675381395543,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 3.467538139554323,
-                        "upperBound": 6.559531991200272,
+                        "lowerBound": 3.4675381395543,
+                        "upperBound": 6.5595319912003,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 6.559531991200272,
-                        "upperBound": 12.408647925963415,
+                        "lowerBound": 6.5595319912003,
+                        "upperBound": 12.408647925963,
                         "upperInclusive": false,
                         "count": 2
                       },
                       {
-                        "lowerBound": 12.408647925963415,
-                        "upperBound": 23.47340382775413,
+                        "lowerBound": 12.408647925963,
+                        "upperBound": 23.473403827754,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 23.47340382775413,
-                        "upperBound": 44.40457095312761,
+                        "lowerBound": 23.473403827754,
+                        "upperBound": 44.404570953128,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 44.40457095312761,
+                        "lowerBound": 44.404570953128,
                         "upperBound": 84,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.6929100374824685,
-                      "spreadFactor": 4.930716553808626
+                      "medianAbsoluteDeviationLog10": 0.69291003748247,
+                      "spreadFactor": 4.9307165538086
                     }
                   }
                 ],
@@ -3721,17 +3721,17 @@
               "scaleReason": "Recorded values run from 12.01 to 34000 grams per mole, a span of about 3.5 orders of magnitude. Split into 12 equal-width linear bins, 98.3 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
               "binEdges": [
                 12.011,
-                23.2936464497067,
-                45.17475355290429,
-                87.61008556439798,
-                169.9074480530879,
-                329.5116163617128,
-                639.041469702867,
-                1239.3311183048486,
-                2403.5085258440404,
-                4661.26699191298,
-                9039.872226901067,
-                17531.561702102757,
+                23.293646449707,
+                45.174753552904,
+                87.610085564398,
+                169.90744805309,
+                329.51161636171,
+                639.04146970287,
+                1239.3311183048,
+                2403.508525844,
+                4661.266991913,
+                9039.8722269011,
+                17531.561702103,
                 34000
               ],
               "overall": {
@@ -3750,80 +3750,80 @@
                 "histogram": [
                   {
                     "lowerBound": 12.011,
-                    "upperBound": 23.2936464497067,
+                    "upperBound": 23.293646449707,
                     "upperInclusive": false,
                     "count": 8
                   },
                   {
-                    "lowerBound": 23.2936464497067,
-                    "upperBound": 45.17475355290429,
+                    "lowerBound": 23.293646449707,
+                    "upperBound": 45.174753552904,
                     "upperInclusive": false,
                     "count": 24
                   },
                   {
-                    "lowerBound": 45.17475355290429,
-                    "upperBound": 87.61008556439798,
+                    "lowerBound": 45.174753552904,
+                    "upperBound": 87.610085564398,
                     "upperInclusive": false,
                     "count": 62
                   },
                   {
-                    "lowerBound": 87.61008556439798,
-                    "upperBound": 169.9074480530879,
+                    "lowerBound": 87.610085564398,
+                    "upperBound": 169.90744805309,
                     "upperInclusive": false,
                     "count": 310
                   },
                   {
-                    "lowerBound": 169.9074480530879,
-                    "upperBound": 329.5116163617128,
+                    "lowerBound": 169.90744805309,
+                    "upperBound": 329.51161636171,
                     "upperInclusive": false,
                     "count": 866
                   },
                   {
-                    "lowerBound": 329.5116163617128,
-                    "upperBound": 639.041469702867,
+                    "lowerBound": 329.51161636171,
+                    "upperBound": 639.04146970287,
                     "upperInclusive": false,
                     "count": 1010
                   },
                   {
-                    "lowerBound": 639.041469702867,
-                    "upperBound": 1239.3311183048486,
+                    "lowerBound": 639.04146970287,
+                    "upperBound": 1239.3311183048,
                     "upperInclusive": false,
                     "count": 264
                   },
                   {
-                    "lowerBound": 1239.3311183048486,
-                    "upperBound": 2403.5085258440404,
+                    "lowerBound": 1239.3311183048,
+                    "upperBound": 2403.508525844,
                     "upperInclusive": false,
                     "count": 51
                   },
                   {
-                    "lowerBound": 2403.5085258440404,
-                    "upperBound": 4661.26699191298,
+                    "lowerBound": 2403.508525844,
+                    "upperBound": 4661.266991913,
                     "upperInclusive": false,
                     "count": 25
                   },
                   {
-                    "lowerBound": 4661.26699191298,
-                    "upperBound": 9039.872226901067,
+                    "lowerBound": 4661.266991913,
+                    "upperBound": 9039.8722269011,
                     "upperInclusive": false,
                     "count": 18
                   },
                   {
-                    "lowerBound": 9039.872226901067,
-                    "upperBound": 17531.561702102757,
+                    "lowerBound": 9039.8722269011,
+                    "upperBound": 17531.561702103,
                     "upperInclusive": false,
                     "count": 0
                   },
                   {
-                    "lowerBound": 17531.561702102757,
+                    "lowerBound": 17531.561702103,
                     "upperBound": 34000,
                     "upperInclusive": true,
                     "count": 3
                   }
                 ],
                 "logSpread": {
-                  "medianAbsoluteDeviationLog10": 0.2507542216019247,
-                  "spreadFactor": 1.781370358909023
+                  "medianAbsoluteDeviationLog10": 0.25075422160192,
+                  "spreadFactor": 1.781370358909
                 }
               },
               "byRoute": {
@@ -3853,80 +3853,80 @@
                     "histogram": [
                       {
                         "lowerBound": 12.011,
-                        "upperBound": 23.2936464497067,
+                        "upperBound": 23.293646449707,
                         "upperInclusive": false,
                         "count": 8
                       },
                       {
-                        "lowerBound": 23.2936464497067,
-                        "upperBound": 45.17475355290429,
+                        "lowerBound": 23.293646449707,
+                        "upperBound": 45.174753552904,
                         "upperInclusive": false,
                         "count": 23
                       },
                       {
-                        "lowerBound": 45.17475355290429,
-                        "upperBound": 87.61008556439798,
+                        "lowerBound": 45.174753552904,
+                        "upperBound": 87.610085564398,
                         "upperInclusive": false,
                         "count": 48
                       },
                       {
-                        "lowerBound": 87.61008556439798,
-                        "upperBound": 169.9074480530879,
+                        "lowerBound": 87.610085564398,
+                        "upperBound": 169.90744805309,
                         "upperInclusive": false,
                         "count": 273
                       },
                       {
-                        "lowerBound": 169.9074480530879,
-                        "upperBound": 329.5116163617128,
+                        "lowerBound": 169.90744805309,
+                        "upperBound": 329.51161636171,
                         "upperInclusive": false,
                         "count": 633
                       },
                       {
-                        "lowerBound": 329.5116163617128,
-                        "upperBound": 639.041469702867,
+                        "lowerBound": 329.51161636171,
+                        "upperBound": 639.04146970287,
                         "upperInclusive": false,
                         "count": 512
                       },
                       {
-                        "lowerBound": 639.041469702867,
-                        "upperBound": 1239.3311183048486,
+                        "lowerBound": 639.04146970287,
+                        "upperBound": 1239.3311183048,
                         "upperInclusive": false,
                         "count": 145
                       },
                       {
-                        "lowerBound": 1239.3311183048486,
-                        "upperBound": 2403.5085258440404,
+                        "lowerBound": 1239.3311183048,
+                        "upperBound": 2403.508525844,
                         "upperInclusive": false,
                         "count": 25
                       },
                       {
-                        "lowerBound": 2403.5085258440404,
-                        "upperBound": 4661.26699191298,
+                        "lowerBound": 2403.508525844,
+                        "upperBound": 4661.266991913,
                         "upperInclusive": false,
                         "count": 19
                       },
                       {
-                        "lowerBound": 4661.26699191298,
-                        "upperBound": 9039.872226901067,
+                        "lowerBound": 4661.266991913,
+                        "upperBound": 9039.8722269011,
                         "upperInclusive": false,
                         "count": 13
                       },
                       {
-                        "lowerBound": 9039.872226901067,
-                        "upperBound": 17531.561702102757,
+                        "lowerBound": 9039.8722269011,
+                        "upperBound": 17531.561702103,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 17531.561702102757,
+                        "lowerBound": 17531.561702103,
                         "upperBound": 34000,
                         "upperInclusive": true,
                         "count": 0
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.274410792732927,
-                      "spreadFactor": 1.8810952757863335
+                      "medianAbsoluteDeviationLog10": 0.27441079273293,
+                      "spreadFactor": 1.8810952757863
                     }
                   },
                   {
@@ -3945,80 +3945,80 @@
                     "histogram": [
                       {
                         "lowerBound": 12.011,
-                        "upperBound": 23.2936464497067,
+                        "upperBound": 23.293646449707,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 23.2936464497067,
-                        "upperBound": 45.17475355290429,
+                        "lowerBound": 23.293646449707,
+                        "upperBound": 45.174753552904,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 45.17475355290429,
-                        "upperBound": 87.61008556439798,
+                        "lowerBound": 45.174753552904,
+                        "upperBound": 87.610085564398,
                         "upperInclusive": false,
                         "count": 14
                       },
                       {
-                        "lowerBound": 87.61008556439798,
-                        "upperBound": 169.9074480530879,
+                        "lowerBound": 87.610085564398,
+                        "upperBound": 169.90744805309,
                         "upperInclusive": false,
                         "count": 37
                       },
                       {
-                        "lowerBound": 169.9074480530879,
-                        "upperBound": 329.5116163617128,
+                        "lowerBound": 169.90744805309,
+                        "upperBound": 329.51161636171,
                         "upperInclusive": false,
                         "count": 233
                       },
                       {
-                        "lowerBound": 329.5116163617128,
-                        "upperBound": 639.041469702867,
+                        "lowerBound": 329.51161636171,
+                        "upperBound": 639.04146970287,
                         "upperInclusive": false,
                         "count": 498
                       },
                       {
-                        "lowerBound": 639.041469702867,
-                        "upperBound": 1239.3311183048486,
+                        "lowerBound": 639.04146970287,
+                        "upperBound": 1239.3311183048,
                         "upperInclusive": false,
                         "count": 119
                       },
                       {
-                        "lowerBound": 1239.3311183048486,
-                        "upperBound": 2403.5085258440404,
+                        "lowerBound": 1239.3311183048,
+                        "upperBound": 2403.508525844,
                         "upperInclusive": false,
                         "count": 26
                       },
                       {
-                        "lowerBound": 2403.5085258440404,
-                        "upperBound": 4661.26699191298,
+                        "lowerBound": 2403.508525844,
+                        "upperBound": 4661.266991913,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 4661.26699191298,
-                        "upperBound": 9039.872226901067,
+                        "lowerBound": 4661.266991913,
+                        "upperBound": 9039.8722269011,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 9039.872226901067,
-                        "upperBound": 17531.561702102757,
+                        "lowerBound": 9039.8722269011,
+                        "upperBound": 17531.561702103,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 17531.561702102757,
+                        "lowerBound": 17531.561702103,
                         "upperBound": 34000,
                         "upperInclusive": true,
                         "count": 3
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.1962078558327657,
-                      "spreadFactor": 1.5711145688738208
+                      "medianAbsoluteDeviationLog10": 0.19620785583277,
+                      "spreadFactor": 1.5711145688738
                     }
                   }
                 ],
@@ -4036,17 +4036,17 @@
               "scaleReason": "Recorded values run from 4.10 to 750 kilodaltons, a span of about 2.3 orders of magnitude. Split into 12 equal-width linear bins, 18.8 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
               "binEdges": [
                 4.1,
-                6.32859019354866,
-                9.768549716556164,
-                15.078328766192659,
-                23.27428379629988,
-                35.925220535398054,
-                55.452682532047085,
-                85.59446411665375,
-                132.12006981236763,
-                203.93506785012536,
-                314.7857245163381,
-                485.8902071324896,
+                6.3285901935487,
+                9.7685497165562,
+                15.078328766193,
+                23.2742837963,
+                35.925220535398,
+                55.452682532047,
+                85.594464116654,
+                132.12006981237,
+                203.93506785013,
+                314.78572451634,
+                485.89020713249,
                 750
               ],
               "overall": {
@@ -4065,80 +4065,80 @@
                 "histogram": [
                   {
                     "lowerBound": 4.1,
-                    "upperBound": 6.32859019354866,
+                    "upperBound": 6.3285901935487,
                     "upperInclusive": false,
                     "count": 11
                   },
                   {
-                    "lowerBound": 6.32859019354866,
-                    "upperBound": 9.768549716556164,
+                    "lowerBound": 6.3285901935487,
+                    "upperBound": 9.7685497165562,
                     "upperInclusive": false,
                     "count": 0
                   },
                   {
-                    "lowerBound": 9.768549716556164,
-                    "upperBound": 15.078328766192659,
+                    "lowerBound": 9.7685497165562,
+                    "upperBound": 15.078328766193,
                     "upperInclusive": false,
                     "count": 0
                   },
                   {
-                    "lowerBound": 15.078328766192659,
-                    "upperBound": 23.27428379629988,
+                    "lowerBound": 15.078328766193,
+                    "upperBound": 23.2742837963,
                     "upperInclusive": false,
                     "count": 13
                   },
                   {
-                    "lowerBound": 23.27428379629988,
-                    "upperBound": 35.925220535398054,
+                    "lowerBound": 23.2742837963,
+                    "upperBound": 35.925220535398,
                     "upperInclusive": false,
                     "count": 7
                   },
                   {
-                    "lowerBound": 35.925220535398054,
-                    "upperBound": 55.452682532047085,
+                    "lowerBound": 35.925220535398,
+                    "upperBound": 55.452682532047,
                     "upperInclusive": false,
                     "count": 13
                   },
                   {
-                    "lowerBound": 55.452682532047085,
-                    "upperBound": 85.59446411665375,
+                    "lowerBound": 55.452682532047,
+                    "upperBound": 85.594464116654,
                     "upperInclusive": false,
                     "count": 26
                   },
                   {
-                    "lowerBound": 85.59446411665375,
-                    "upperBound": 132.12006981236763,
+                    "lowerBound": 85.594464116654,
+                    "upperBound": 132.12006981237,
                     "upperInclusive": false,
                     "count": 19
                   },
                   {
-                    "lowerBound": 132.12006981236763,
-                    "upperBound": 203.93506785012536,
+                    "lowerBound": 132.12006981237,
+                    "upperBound": 203.93506785013,
                     "upperInclusive": false,
                     "count": 212
                   },
                   {
-                    "lowerBound": 203.93506785012536,
-                    "upperBound": 314.7857245163381,
+                    "lowerBound": 203.93506785013,
+                    "upperBound": 314.78572451634,
                     "upperInclusive": false,
                     "count": 1
                   },
                   {
-                    "lowerBound": 314.7857245163381,
-                    "upperBound": 485.8902071324896,
+                    "lowerBound": 314.78572451634,
+                    "upperBound": 485.89020713249,
                     "upperInclusive": false,
                     "count": 0
                   },
                   {
-                    "lowerBound": 485.8902071324896,
+                    "lowerBound": 485.89020713249,
                     "upperBound": 750,
                     "upperInclusive": true,
                     "count": 2
                   }
                 ],
                 "logSpread": {
-                  "medianAbsoluteDeviationLog10": 0.009133273685763967,
-                  "spreadFactor": 1.0212528315696736
+                  "medianAbsoluteDeviationLog10": 0.009133273685764,
+                  "spreadFactor": 1.0212528315697
                 }
               },
               "byRoute": {
@@ -4168,80 +4168,80 @@
                     "histogram": [
                       {
                         "lowerBound": 4.1,
-                        "upperBound": 6.32859019354866,
+                        "upperBound": 6.3285901935487,
                         "upperInclusive": false,
                         "count": 11
                       },
                       {
-                        "lowerBound": 6.32859019354866,
-                        "upperBound": 9.768549716556164,
+                        "lowerBound": 6.3285901935487,
+                        "upperBound": 9.7685497165562,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 9.768549716556164,
-                        "upperBound": 15.078328766192659,
+                        "lowerBound": 9.7685497165562,
+                        "upperBound": 15.078328766193,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 15.078328766192659,
-                        "upperBound": 23.27428379629988,
+                        "lowerBound": 15.078328766193,
+                        "upperBound": 23.2742837963,
                         "upperInclusive": false,
                         "count": 13
                       },
                       {
-                        "lowerBound": 23.27428379629988,
-                        "upperBound": 35.925220535398054,
+                        "lowerBound": 23.2742837963,
+                        "upperBound": 35.925220535398,
                         "upperInclusive": false,
                         "count": 7
                       },
                       {
-                        "lowerBound": 35.925220535398054,
-                        "upperBound": 55.452682532047085,
+                        "lowerBound": 35.925220535398,
+                        "upperBound": 55.452682532047,
                         "upperInclusive": false,
                         "count": 13
                       },
                       {
-                        "lowerBound": 55.452682532047085,
-                        "upperBound": 85.59446411665375,
+                        "lowerBound": 55.452682532047,
+                        "upperBound": 85.594464116654,
                         "upperInclusive": false,
                         "count": 26
                       },
                       {
-                        "lowerBound": 85.59446411665375,
-                        "upperBound": 132.12006981236763,
+                        "lowerBound": 85.594464116654,
+                        "upperBound": 132.12006981237,
                         "upperInclusive": false,
                         "count": 19
                       },
                       {
-                        "lowerBound": 132.12006981236763,
-                        "upperBound": 203.93506785012536,
+                        "lowerBound": 132.12006981237,
+                        "upperBound": 203.93506785013,
                         "upperInclusive": false,
                         "count": 212
                       },
                       {
-                        "lowerBound": 203.93506785012536,
-                        "upperBound": 314.7857245163381,
+                        "lowerBound": 203.93506785013,
+                        "upperBound": 314.78572451634,
                         "upperInclusive": false,
                         "count": 1
                       },
                       {
-                        "lowerBound": 314.7857245163381,
-                        "upperBound": 485.8902071324896,
+                        "lowerBound": 314.78572451634,
+                        "upperBound": 485.89020713249,
                         "upperInclusive": false,
                         "count": 0
                       },
                       {
-                        "lowerBound": 485.8902071324896,
+                        "lowerBound": 485.89020713249,
                         "upperBound": 750,
                         "upperInclusive": true,
                         "count": 2
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 0.009133273685763967,
-                      "spreadFactor": 1.0212528315696736
+                      "medianAbsoluteDeviationLog10": 0.009133273685764,
+                      "spreadFactor": 1.0212528315697
                     }
                   }
                 ],
@@ -4259,17 +4259,17 @@
               "scaleReason": "Recorded values run from 303.68 to 1.50e+5 daltons, a span of about 2.7 orders of magnitude. Split into 12 equal-width linear bins, 72.9 percent of them would fall in the first bin alone, so the bins are equal width in log base 10 instead.",
               "binEdges": [
                 303.68,
-                509.20084198481595,
-                853.8115696721729,
-                1431.6437373993933,
-                2400.5341033524096,
-                4025.138259484691,
-                6749.222177406813,
-                11316.87834390853,
-                18975.777072437933,
-                31817.971755142127,
-                53351.35013161045,
-                89457.82536895009,
+                509.20084198482,
+                853.81156967217,
+                1431.6437373994,
+                2400.5341033524,
+                4025.1382594847,
+                6749.2221774068,
+                11316.878343909,
+                18975.777072438,
+                31817.971755142,
+                53351.35013161,
+                89457.82536895,
                 150000
               ],
               "overall": {
@@ -4288,80 +4288,80 @@
                 "histogram": [
                   {
                     "lowerBound": 303.68,
-                    "upperBound": 509.20084198481595,
+                    "upperBound": 509.20084198482,
                     "upperInclusive": false,
                     "count": 16
                   },
                   {
-                    "lowerBound": 509.20084198481595,
-                    "upperBound": 853.8115696721729,
+                    "lowerBound": 509.20084198482,
+                    "upperBound": 853.81156967217,
                     "upperInclusive": false,
                     "count": 14
                   },
                   {
-                    "lowerBound": 853.8115696721729,
-                    "upperBound": 1431.6437373993933,
+                    "lowerBound": 853.81156967217,
+                    "upperBound": 1431.6437373994,
                     "upperInclusive": false,
                     "count": 5
                   },
                   {
-                    "lowerBound": 1431.6437373993933,
-                    "upperBound": 2400.5341033524096,
+                    "lowerBound": 1431.6437373994,
+                    "upperBound": 2400.5341033524,
                     "upperInclusive": false,
                     "count": 8
                   },
                   {
-                    "lowerBound": 2400.5341033524096,
-                    "upperBound": 4025.138259484691,
+                    "lowerBound": 2400.5341033524,
+                    "upperBound": 4025.1382594847,
                     "upperInclusive": false,
                     "count": 4
                   },
                   {
-                    "lowerBound": 4025.138259484691,
-                    "upperBound": 6749.222177406813,
+                    "lowerBound": 4025.1382594847,
+                    "upperBound": 6749.2221774068,
                     "upperInclusive": false,
                     "count": 13
                   },
                   {
-                    "lowerBound": 6749.222177406813,
-                    "upperBound": 11316.87834390853,
+                    "lowerBound": 6749.2221774068,
+                    "upperBound": 11316.878343909,
                     "upperInclusive": false,
                     "count": 10
                   },
                   {
-                    "lowerBound": 11316.87834390853,
-                    "upperBound": 18975.777072437933,
+                    "lowerBound": 11316.878343909,
+                    "upperBound": 18975.777072438,
                     "upperInclusive": false,
                     "count": 8
                   },
                   {
-                    "lowerBound": 18975.777072437933,
-                    "upperBound": 31817.971755142127,
+                    "lowerBound": 18975.777072438,
+                    "upperBound": 31817.971755142,
                     "upperInclusive": false,
                     "count": 6
                   },
                   {
-                    "lowerBound": 31817.971755142127,
-                    "upperBound": 53351.35013161045,
+                    "lowerBound": 31817.971755142,
+                    "upperBound": 53351.35013161,
                     "upperInclusive": false,
                     "count": 3
                   },
                   {
-                    "lowerBound": 53351.35013161045,
-                    "upperBound": 89457.82536895009,
+                    "lowerBound": 53351.35013161,
+                    "upperBound": 89457.82536895,
                     "upperInclusive": false,
                     "count": 5
                   },
                   {
-                    "lowerBound": 89457.82536895009,
+                    "lowerBound": 89457.82536895,
                     "upperBound": 150000,
                     "upperInclusive": true,
                     "count": 4
                   }
                 ],
                 "logSpread": {
-                  "medianAbsoluteDeviationLog10": 1.0457804260151158,
-                  "spreadFactor": 11.11169791366681
+                  "medianAbsoluteDeviationLog10": 1.0457804260151,
+                  "spreadFactor": 11.111697913666
                 }
               },
               "byRoute": {
@@ -4391,80 +4391,80 @@
                     "histogram": [
                       {
                         "lowerBound": 303.68,
-                        "upperBound": 509.20084198481595,
+                        "upperBound": 509.20084198482,
                         "upperInclusive": false,
                         "count": 16
                       },
                       {
-                        "lowerBound": 509.20084198481595,
-                        "upperBound": 853.8115696721729,
+                        "lowerBound": 509.20084198482,
+                        "upperBound": 853.81156967217,
                         "upperInclusive": false,
                         "count": 14
                       },
                       {
-                        "lowerBound": 853.8115696721729,
-                        "upperBound": 1431.6437373993933,
+                        "lowerBound": 853.81156967217,
+                        "upperBound": 1431.6437373994,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 1431.6437373993933,
-                        "upperBound": 2400.5341033524096,
+                        "lowerBound": 1431.6437373994,
+                        "upperBound": 2400.5341033524,
                         "upperInclusive": false,
                         "count": 8
                       },
                       {
-                        "lowerBound": 2400.5341033524096,
-                        "upperBound": 4025.138259484691,
+                        "lowerBound": 2400.5341033524,
+                        "upperBound": 4025.1382594847,
                         "upperInclusive": false,
                         "count": 4
                       },
                       {
-                        "lowerBound": 4025.138259484691,
-                        "upperBound": 6749.222177406813,
+                        "lowerBound": 4025.1382594847,
+                        "upperBound": 6749.2221774068,
                         "upperInclusive": false,
                         "count": 13
                       },
                       {
-                        "lowerBound": 6749.222177406813,
-                        "upperBound": 11316.87834390853,
+                        "lowerBound": 6749.2221774068,
+                        "upperBound": 11316.878343909,
                         "upperInclusive": false,
                         "count": 10
                       },
                       {
-                        "lowerBound": 11316.87834390853,
-                        "upperBound": 18975.777072437933,
+                        "lowerBound": 11316.878343909,
+                        "upperBound": 18975.777072438,
                         "upperInclusive": false,
                         "count": 8
                       },
                       {
-                        "lowerBound": 18975.777072437933,
-                        "upperBound": 31817.971755142127,
+                        "lowerBound": 18975.777072438,
+                        "upperBound": 31817.971755142,
                         "upperInclusive": false,
                         "count": 6
                       },
                       {
-                        "lowerBound": 31817.971755142127,
-                        "upperBound": 53351.35013161045,
+                        "lowerBound": 31817.971755142,
+                        "upperBound": 53351.35013161,
                         "upperInclusive": false,
                         "count": 3
                       },
                       {
-                        "lowerBound": 53351.35013161045,
-                        "upperBound": 89457.82536895009,
+                        "lowerBound": 53351.35013161,
+                        "upperBound": 89457.82536895,
                         "upperInclusive": false,
                         "count": 5
                       },
                       {
-                        "lowerBound": 89457.82536895009,
+                        "lowerBound": 89457.82536895,
                         "upperBound": 150000,
                         "upperInclusive": true,
                         "count": 4
                       }
                     ],
                     "logSpread": {
-                      "medianAbsoluteDeviationLog10": 1.0457804260151158,
-                      "spreadFactor": 11.11169791366681
+                      "medianAbsoluteDeviationLog10": 1.0457804260151,
+                      "spreadFactor": 11.111697913666
                     }
                   }
                 ],
