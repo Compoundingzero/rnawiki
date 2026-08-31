@@ -25,10 +25,12 @@ import {
 import { CitationExportPanel } from '@/components/dossier/CitationExportPanel'
 import { DossierEvidenceIntroduction } from '@/components/dossier/DossierEvidenceIntroduction'
 import { DossierAccountActionsGuard } from '@/components/dossier/DossierAccountActionsGuard'
+import { DossierAudienceLensSelector } from '@/components/dossier/DossierAudienceLensSelector'
 import { DossierEvidencePath, evidenceNodeAnchorId } from '@/components/dossier/DossierEvidencePath'
 import { DossierOtherProgrammes } from '@/components/dossier/DossierOtherProgrammes'
 import { DossierHeader } from '@/components/dossier/DossierHeader'
 import { DossierSectionNavigator } from '@/components/dossier/DossierSectionNavigator'
+import { dossierAudienceLensProjections } from '@/lib/dossier-audience-lenses'
 import { dossierNavigatorSections } from '@/lib/dossier-navigator-sections'
 import { DossierNavigation } from '@/components/dossier/DossierNavigation'
 import { DossierOutcomeComparison } from '@/components/dossier/DossierOutcomeComparison'
@@ -1372,6 +1374,7 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
    * would send those readers to twenty-one empty destinations.
    */
   const navigatorSections = dossierNavigatorSections(dossier)
+  const audienceLenses = dossierAudienceLensProjections(dossier)
 
   return (
     <div className="min-h-screen min-w-0 bg-[#F5F5F7] px-4 pb-20 pt-4 sm:px-8 sm:pt-6">
@@ -1408,6 +1411,8 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
           }
         >
           <div className="mt-8 space-y-10 pt-3 sm:mt-10 sm:pt-5">
+            <DossierAudienceLensSelector projections={audienceLenses} />
+
             <DossierEvidenceIntroduction dossier={dossier} />
 
             <DossierResearchQuestion dossier={dossier} />

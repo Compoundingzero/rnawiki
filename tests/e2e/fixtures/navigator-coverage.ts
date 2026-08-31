@@ -66,6 +66,7 @@ const RECORDED_BACKGROUND: MedicineRecordedBackground = {
         readings: [
           {
             display: '12 hours',
+            populationContext: 'healthy adults',
             sourceCount: 30,
             sources: [
               {
@@ -79,6 +80,7 @@ const RECORDED_BACKGROUND: MedicineRecordedBackground = {
           },
           {
             display: '18 hours',
+            populationContext: 'subjects with mild hepatic impairment',
             sourceCount: 1,
             sources: [
               {

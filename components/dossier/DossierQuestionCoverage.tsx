@@ -138,7 +138,9 @@ export function DossierQuestionCoverage({ dossier }: { dossier: MedicineDossierV
   if (questions.length === 0) return null
 
   const sources = new Map(dossier.sources.map((source) => [source.id, source]))
-  const answeredCount = questions.filter((passage) => passage.coverage === 'answered').length
+  const answeredCount = questions.filter(
+    (passage) => Boolean(passage.answerLead) || passage.items.length > 0,
+  ).length
 
   return (
     <section
@@ -170,7 +172,7 @@ export function DossierQuestionCoverage({ dossier }: { dossier: MedicineDossierV
 
       <div className="mt-6 divide-y divide-black/[0.08] border-y border-black/[0.08]">
         {questions.map((passage) => {
-          const coverage = coveragePresentation[passage.coverage]
+          const coverageStates = passage.issues?.length ? passage.issues : [passage.coverage]
           return (
             <details key={passage.id} id={passage.id} className="group/question scroll-mt-24">
               <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0071E3] focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden">
@@ -183,10 +185,18 @@ export function DossierQuestionCoverage({ dossier }: { dossier: MedicineDossierV
                   </span>
                 </span>
                 <span className="flex shrink-0 items-center gap-2.5">
-                  <span
-                    className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold leading-4 ${coverage.className}`}
-                  >
-                    {coverage.label}
+                  <span className="flex max-w-48 flex-wrap justify-end gap-1">
+                    {coverageStates.map((state) => {
+                      const coverage = coveragePresentation[state]
+                      return (
+                        <span
+                          key={state}
+                          className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold leading-4 ${coverage.className}`}
+                        >
+                          {coverage.label}
+                        </span>
+                      )
+                    })}
                   </span>
                   <span
                     aria-hidden="true"
@@ -197,25 +207,24 @@ export function DossierQuestionCoverage({ dossier }: { dossier: MedicineDossierV
                 </span>
               </summary>
               <div className="pb-5">
-                {passage.coverage === 'answered' ? (
-                  <>
-                    {passage.answerLead && (
-                      <p className="max-w-2xl text-base leading-7 text-[#515154]">
-                        {passage.answerLead}
-                      </p>
-                    )}
-                    {passage.items.length > 0 && (
-                      <ul className="mt-4 divide-y divide-black/[0.07] rounded-2xl bg-[#F5F5F7] p-4 sm:p-5">
-                        {passage.items.map((item) => (
-                          <AnswerItem key={item.id} item={item} sources={sources} />
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                ) : (
+                {passage.coverageNote && (
                   <p className="max-w-2xl text-base leading-7 text-[#515154]">
                     {passage.coverageNote}
                   </p>
+                )}
+                {passage.answerLead && (
+                  <p
+                    className={`max-w-2xl text-base leading-7 text-[#515154] ${passage.coverageNote ? 'mt-3' : ''}`}
+                  >
+                    {passage.answerLead}
+                  </p>
+                )}
+                {passage.items.length > 0 && (
+                  <ul className="mt-4 divide-y divide-black/[0.07] rounded-2xl bg-[#F5F5F7] p-4 sm:p-5">
+                    {passage.items.map((item) => (
+                      <AnswerItem key={item.id} item={item} sources={sources} />
+                    ))}
+                  </ul>
                 )}
                 <p className="mt-3 font-mono text-[11px] leading-5 text-[#6E6E73]">
                   <a

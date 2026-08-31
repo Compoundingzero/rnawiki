@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
+import {
+  countDossierSectionsWithContent,
+  dossierSectionHasContent,
+} from '@/components/dossier/DossierSectionNavigator'
 import { dossierNavigatorSections } from '@/lib/dossier-navigator-sections'
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
 
@@ -184,11 +188,48 @@ describe('the navigator reports coverage rather than assuming it', () => {
   })
 
   it('emits only states it can actually determine', () => {
-    // stale and restricted exist in the type because the evidence model distinguishes them, but this
-    // projection cannot determine either yet. Emitting one would be a confident wrong answer.
+    // A dossier-wide timestamp cannot identify which exact assertion drifted. Restricted content is
+    // absent from this public view altogether, so neither state may be guessed here.
     const sections = dossierNavigatorSections(dossier({ freshness: 'stale' }))
     expect(sections.some((section) => section.coverage === 'stale')).toBe(false)
     expect(sections.some((section) => section.coverage === 'restricted')).toBe(false)
+  })
+
+  it('keeps exact persisted drift reachable and counted as recorded content', () => {
+    const sections = dossierNavigatorSections(
+      dossier({
+        medicineRecord: {
+          conventionalAlternatives: [],
+          commonQuestions: [],
+          communityNotes: [],
+          background: {
+            authoredAt: '2026-08-31',
+            sourceConsensus: {
+              documentsExaminedLabel: 'One saved source was checked',
+              fields: [],
+            },
+            driftedSources: [
+              {
+                bindingId: `background_binding_${'a'.repeat(64)}`,
+                assertionCheckId: 'b'.repeat(64),
+                intent: 'measurement',
+                sourceIdentifier: 'source-1',
+                sourceLabel: 'Saved source',
+                recordedAt: '2026-08-31',
+                freshnessState: 'drifted',
+                fieldPath: 'pharmacokinetics.halfLife',
+              },
+            ],
+          },
+        },
+      }),
+    )
+    const consensus = sections.find((section) => section.id === 'what-every-label-says')
+
+    expect(consensus?.coverage).toBe('stale')
+    expect(consensus?.issues).toEqual(['stale'])
+    expect(consensus && dossierSectionHasContent(consensus)).toBe(true)
+    expect(countDossierSectionsWithContent(sections)).toBe(1)
   })
 
   it('gives every section a unique anchor, so no two rows fight over the same destination', () => {

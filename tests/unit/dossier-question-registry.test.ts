@@ -262,6 +262,47 @@ const UNIVERSE_IDS = [
   'q-corrections',
 ]
 
+function dossierWithMeasurementIssues({ conflict }: { conflict: boolean }) {
+  const view = dossier()
+  view.medicineRecord = {
+    ...view.medicineRecord,
+    background: {
+      authoredAt: '2026-08-31',
+      pharmacokinetics: { routeAsRecorded: 'Oral', values: [] },
+      ...(conflict
+        ? {
+            sourceConsensus: {
+              documentsExaminedLabel: 'Two saved sources were compared',
+              fields: [
+                {
+                  field: 'halfLife',
+                  fieldLabel: 'Half-life',
+                  agreementLabel: 'The saved sources print different readings',
+                  comparisonState: 'differ' as const,
+                  comparisonReasons: ['COMPATIBLE_VALUES_DISJOINT'],
+                  readings: [],
+                },
+              ],
+            },
+          }
+        : {}),
+      driftedSources: [
+        {
+          bindingId: `background_binding_${'a'.repeat(64)}`,
+          assertionCheckId: 'b'.repeat(64),
+          intent: 'measurement',
+          sourceIdentifier: 'source-outcome',
+          sourceLabel: 'Outcome source',
+          recordedAt: '2026-08-31',
+          freshnessState: 'drifted',
+          fieldPath: 'keyOutcomes.outcome-1',
+        },
+      ],
+    },
+  }
+  return view
+}
+
 describe('controlled dossier question registry', () => {
   it('asks the same fixed question universe of every record, with unique anchors', () => {
     const questions = buildDossierQuestionRegistry(dossier())
@@ -422,6 +463,63 @@ describe('controlled dossier question registry', () => {
     expect(applicability?.items[0]?.facts[0]?.value).toBe('adults aged 18 or older')
   })
 
+  it('keeps every deduplicated answer item and every recorded eligibility criterion', () => {
+    const view = dossier()
+    const outcomeSources = Array.from({ length: 5 }, (_, index) => ({
+      id: `source-outcome-${index + 1}`,
+      label: `Outcome source ${index + 1}`,
+      href: `https://example.test/outcome-${index + 1}`,
+      freshness: 'current' as const,
+    }))
+    view.sources = [...view.sources, ...outcomeSources]
+    view.keyOutcomes = outcomeSources.map((source, index) => ({
+      id: `outcome-${index + 1}`,
+      label: `Recorded outcome ${index + 1}`,
+      state: 'measured' as const,
+      claimNature: 'measured' as const,
+      endpoint: `Endpoint ${index + 1}`,
+      numericValue: String(index + 1),
+      numericUnit: 'units',
+      sourceIds: [source.id],
+      sourceClaimBindings: [
+        {
+          sourceId: source.id,
+          claimId: `outcome-${index + 1}`,
+          relationship: 'SUPPORTS' as const,
+          statement: `The source records outcome ${index + 1}.`,
+        },
+      ],
+    }))
+    view.medicineRecord = {
+      ...view.medicineRecord,
+      background: {
+        authoredAt: '2026-08-31',
+        applicability: {
+          trialIdentifier: 'NCT00000001',
+          included: Array.from({ length: 8 }, (_, index) => `included criterion ${index + 1}`),
+          excluded: Array.from({ length: 8 }, (_, index) => `excluded criterion ${index + 1}`),
+          source: {
+            kindLabel: 'ClinicalTrials.gov record',
+            label: 'Synthetic registry record',
+            identifier: 'NCT00000001',
+            href: 'https://clinicaltrials.gov/study/NCT00000001',
+            retrievedAt: '2026-08-31',
+          },
+        },
+      },
+    }
+
+    const byId = new Map(
+      buildDossierQuestionRegistry(view).map((question) => [question.id, question]),
+    )
+
+    expect(byId.get('q-measurement')?.items).toHaveLength(5)
+    expect(byId.get('q-results-magnitude')?.items).toHaveLength(5)
+    expect(byId.get('q-applicability')?.items[0]?.facts).toHaveLength(8)
+    expect(byId.get('q-applicability')?.items[1]?.facts).toHaveLength(8)
+    expect(byId.get('q-applicability')?.items[1]?.facts.at(-1)?.value).toBe('excluded criterion 8')
+  })
+
   it('server-renders the universe with honest state badges and no special SEO schema', () => {
     const html = renderToStaticMarkup(
       React.createElement(DossierQuestionCoverage, { dossier: dossier() }),
@@ -439,5 +537,58 @@ describe('controlled dossier question registry', () => {
     expect(html).toContain('Link to this question: #q-measurement')
     expect(html).not.toMatch(/Universal Clinical Question Universe|Q-20|FAQPage|QAPage/iu)
     expect(html).not.toContain('An outcome whose source is not on the page')
+  })
+
+  it('keeps a recorded answer, every source binding and both issue explanations when sources differ and drift', () => {
+    const view = dossierWithMeasurementIssues({ conflict: true })
+    const measurement = buildDossierQuestionRegistry(view).find(
+      (question) => question.id === 'q-measurement',
+    )
+
+    expect(measurement?.coverage).toBe('conflicting')
+    expect(measurement?.issues).toEqual(['conflicting', 'stale'])
+    expect(measurement?.answerLead).toBeTruthy()
+    expect(measurement?.items[0]?.heading).toBe('Recorded blood measurement')
+    expect(measurement?.items[0]?.sourceBindings).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          sourceId: 'source-outcome',
+          relationship: 'SUPPORTS',
+        }),
+      ]),
+    )
+    expect(measurement?.coverageNote).toContain('Independent sources print different values')
+    expect(measurement?.coverageNote).toContain('needs rechecking')
+
+    const html = renderToStaticMarkup(
+      React.createElement(DossierQuestionCoverage, { dossier: view }),
+    )
+    expect(html).toContain('Sources differ')
+    expect(html).toContain('Source needs rechecking')
+    expect(html).toContain('Independent sources print different values')
+    expect(html).toContain('needs rechecking')
+    expect(html).toContain('12.4 percentage points')
+    expect(html).toContain('Source 1: Outcome source')
+    expect(html).toContain('The study recorded this measurement at week 48.')
+  })
+
+  it('counts a source-bound stale passage as answered while keeping the recheck state visible', () => {
+    const view = dossierWithMeasurementIssues({ conflict: false })
+    const questions = buildDossierQuestionRegistry(view)
+    const measurement = questions.find((question) => question.id === 'q-measurement')
+    const recordedAnswerCount = questions.filter(
+      (question) => Boolean(question.answerLead) || question.items.length > 0,
+    ).length
+
+    expect(measurement?.coverage).toBe('stale')
+    expect(measurement?.items).not.toHaveLength(0)
+
+    const html = renderToStaticMarkup(
+      React.createElement(DossierQuestionCoverage, { dossier: view }),
+    )
+    expect(html).toContain(`${recordedAnswerCount} of ${UNIVERSE_IDS.length} answered`)
+    expect(html).toContain('Source needs rechecking')
+    expect(html).toContain('12.4 percentage points')
+    expect(html).toContain('Source 1: Outcome source')
   })
 })

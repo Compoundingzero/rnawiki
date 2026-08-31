@@ -70,7 +70,7 @@ export interface DossierQuestionPassage {
    * consumers that can show only one, and this array keeps both so the navigator can badge both.
    */
   issues?: readonly DossierQuestionIssue[]
-  /** Fixed explanation sentence, present exactly when the question is not answered. */
+  /** Fixed explanation of an absence or evidence issue; an issue note may accompany an answer. */
   coverageNote?: string
   /** Self-contained lead naming the medicine and scope, present exactly when answered. */
   answerLead?: string
@@ -173,8 +173,6 @@ const QUESTION_DEFINITIONS: readonly QuestionDefinition[] = [
   },
 ]
 
-const MAX_ITEMS_PER_QUESTION = 3
-
 /**
  * How far the selected record has come through review. `reviewed_publication` is the only state
  * that may answer evidence questions; the other states resolve those questions honestly.
@@ -264,7 +262,6 @@ function deduplicateItems(
     if (!key || seen.has(key)) continue
     seen.add(key)
     result.push(item)
-    if (result.length === MAX_ITEMS_PER_QUESTION) break
   }
   return result
 }
@@ -719,9 +716,10 @@ function applicabilityQuestion(
       id: 'q-applicability-included',
       heading: 'Included, as the study register records it',
       summary: applicability.studiedGroup,
-      facts: applicability.included
-        .slice(0, MAX_ITEMS_PER_QUESTION * 2)
-        .map((criterion, index) => ({ label: `Criterion ${index + 1}`, value: criterion })),
+      facts: applicability.included.map((criterion, index) => ({
+        label: `Criterion ${index + 1}`,
+        value: criterion,
+      })),
       sourceBindings: [],
     },
     ...(applicability.excluded.length > 0
@@ -729,9 +727,10 @@ function applicabilityQuestion(
           {
             id: 'q-applicability-excluded',
             heading: 'Excluded, as the study register records it',
-            facts: applicability.excluded
-              .slice(0, MAX_ITEMS_PER_QUESTION * 2)
-              .map((criterion, index) => ({ label: `Criterion ${index + 1}`, value: criterion })),
+            facts: applicability.excluded.map((criterion, index) => ({
+              label: `Criterion ${index + 1}`,
+              value: criterion,
+            })),
             sourceBindings: [],
           },
         ]
@@ -1298,7 +1297,12 @@ export function buildDossierQuestionRegistry(
        * A conflict or a drifted source overrides `answered`, because a reader told only "answered"
        * would take the recorded value as settled when the sources behind it do not agree.
        */
-      ...(primary ? { coverage: primary, coverageNote: ISSUE_NOTES[primary] } : {}),
+      ...(primary
+        ? {
+            coverage: primary,
+            coverageNote: issues.map((issue) => ISSUE_NOTES[issue]).join(' '),
+          }
+        : {}),
     }
   })
 }

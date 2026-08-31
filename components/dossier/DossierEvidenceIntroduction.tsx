@@ -1,4 +1,4 @@
-import { FlaskConical, HeartPulse, Sparkles } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
 
@@ -21,18 +21,14 @@ function plainCardLabel(dossier: MedicineDossierViewModel): string {
     : 'Everyday explanation'
 }
 
-/** Orientation before the detailed record: one question, one plain explanation, three depth links. */
+/** Orientation before the detailed record: one question and one plain explanation. */
 export function DossierEvidenceIntroduction({ dossier }: { dossier: MedicineDossierViewModel }) {
   const finding = dossier.readerSummary.whatStudiesFound
   const limit = dossier.readerSummary.biggestLimit ?? dossier.mainLimitation
-  const hasStudies = dossier.keyOutcomes.length > 0 || dossier.studies.length > 0
-  const hasMechanism =
-    dossier.mechanismSteps.length > 0 ||
-    Boolean(dossier.mechanismSummary.where || dossier.mechanismSummary.change)
 
   return (
     <div className="space-y-6">
-      <div className="flex min-w-0 flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div className="min-w-0">
         <header className="max-w-2xl space-y-1.5">
           <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#0A66D8]">
             Behind the answer
@@ -45,42 +41,6 @@ export function DossierEvidenceIntroduction({ dossier }: { dossier: MedicineDoss
             need them.
           </p>
         </header>
-
-        <nav aria-label="Evidence reading depth" className="shrink-0">
-          <ul className="inline-flex max-w-full flex-wrap items-center gap-1 rounded-2xl border border-black/[0.08] bg-white p-1 text-xs font-semibold">
-            <li>
-              <a
-                href="#everyday-evidence-explanation"
-                className="inline-flex min-h-10 items-center gap-1.5 rounded-xl bg-emerald-50 px-3 text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8]"
-              >
-                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-                Everyday explanation
-              </a>
-            </li>
-            {hasStudies && (
-              <li>
-                <a
-                  href="#study-measurements"
-                  className="inline-flex min-h-10 items-center gap-1.5 rounded-xl px-3 text-[#424245] hover:bg-[#F5F5F7] hover:text-[#0A66D8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8]"
-                >
-                  <HeartPulse className="h-3.5 w-3.5" aria-hidden="true" />
-                  Clinical view
-                </a>
-              </li>
-            )}
-            {hasMechanism && (
-              <li>
-                <a
-                  href="#mechanism-map"
-                  className="inline-flex min-h-10 items-center gap-1.5 rounded-xl px-3 text-[#424245] hover:bg-[#F5F5F7] hover:text-[#0A66D8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66D8]"
-                >
-                  <FlaskConical className="h-3.5 w-3.5" aria-hidden="true" />
-                  Biotech &amp; discovery
-                </a>
-              </li>
-            )}
-          </ul>
-        </nav>
       </div>
 
       <section

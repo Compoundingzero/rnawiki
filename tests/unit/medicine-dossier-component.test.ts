@@ -244,6 +244,15 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html.indexOf('data-testid="ten-second-answer"')).toBeLessThan(
       html.indexOf('See how we know'),
     )
+    const disclosureTriggerIndex = html.indexOf('See how we know')
+    const disclosureContentIndex = html.indexOf('id="advanced-evidence-content"')
+    const audienceLensIndex = html.indexOf('data-testid="dossier-audience-lenses"')
+    const exactSourceBindingIndex = html.indexOf('Exact source binding')
+    expect(disclosureContentIndex).toBeGreaterThan(disclosureTriggerIndex)
+    expect(audienceLensIndex).toBeGreaterThan(disclosureContentIndex)
+    expect(exactSourceBindingIndex).toBeGreaterThan(audienceLensIndex)
+    expect(html.slice(0, disclosureContentIndex)).not.toContain('Choose a reading lens')
+    expect(html.slice(0, disclosureContentIndex)).not.toContain('Exact source binding')
     expect(html).not.toContain('data-testid="dossier-local-navigation"')
     expect(html.indexOf('See how we know')).toBeLessThan(html.indexOf('Behind the answer'))
     expect(html).not.toContain('data-testid="main-takeaway-card"')

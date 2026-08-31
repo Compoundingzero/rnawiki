@@ -16,11 +16,9 @@
  * - `not_documented` — no source in this corpus fills this section. A fact about the corpus, never
  *   about the medicine, and the reader-facing wording says exactly that.
  *
- * `stale` and `restricted` are in the type because the states exist in the evidence model, but this
- * projection does not yet emit them: per-question freshness is dossier-level today, and restricted
- * material is withheld at the serializer so the view model never sees it. Emitting a state this
- * function cannot actually determine would be the kind of confident wrong answer the whole record
- * model exists to prevent.
+ * `stale` is emitted only from a persisted, exact source binding whose assertion check confirmed
+ * drift. Dossier-level freshness never qualifies. `restricted` is not emitted because restricted
+ * material is withheld at the serializer, so the view model cannot determine it.
  */
 
 import type { DossierNavigatorSection } from '@/components/dossier/DossierSectionNavigator'

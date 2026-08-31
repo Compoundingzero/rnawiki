@@ -13,6 +13,8 @@ function syntheticBackground(): MedicineRecordedBackground {
     kind: 'FDA_LABEL' as const,
     identifier: '00afce9b-48c9-487a-a738-e359c005c707',
     label: 'Synthetic medicine label',
+    version: 'label-revision-7',
+    effectiveDate: '2026-08-15',
     retrievedAt: '2026-08-27',
     excerpt: 'Synthetic label wording: absolute bioavailability is approximately 89% in adults.',
   }
@@ -158,6 +160,10 @@ describe('recorded background layer', () => {
     expect(bioavailability!.source.href).toBe(
       'https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=00afce9b-48c9-487a-a738-e359c005c707',
     )
+    expect(bioavailability!.source).toMatchObject({
+      version: 'label-revision-7',
+      effectiveDate: '2026-08-15',
+    })
 
     const halfLife = values.find((value) => value.label === 'Half-life')
     expect(halfLife!.concordanceLabel).toBe('Sources disagree — both readings shown')
@@ -165,6 +171,8 @@ describe('recorded background layer', () => {
     expect(halfLife!.discrepantAlternate!.source.href).toBe(
       'https://pubmed.ncbi.nlm.nih.gov/33881682/',
     )
+    expect(halfLife!.discrepantAlternate!.source).not.toHaveProperty('version')
+    expect(halfLife!.discrepantAlternate!.source).not.toHaveProperty('effectiveDate')
 
     expect(view!.pharmacokinetics!.steadyStateNote).toBe(steadyStateNoteFromHalfLifeHours(168))
     expect(view!.titration!.basisLabel).toContain('as stated on the product label')
@@ -207,6 +215,35 @@ describe('recorded background layer', () => {
         authoredAt: '2026-08-27',
       }),
     ).toBeUndefined()
+  })
+
+  it('retains the exact registry source for a name-family ambiguity', () => {
+    const view = medicineBackgroundContext({
+      version: 'medicine-background/v1',
+      authoredAt: '2026-08-31',
+      nameFamily: {
+        memberCount: 2,
+        members: [
+          { nameAsRecorded: 'Example base', unii: 'BASE123', productCount: 3 },
+          { nameAsRecorded: 'Example salt', unii: 'SALT456', productCount: 2 },
+        ],
+        source: {
+          kind: 'FDA_UNII',
+          identifier: 'BASE123',
+          label: 'FDA substance registry results for Example',
+          version: 'registry-snapshot-2026-08',
+          effectiveDate: '2026-08-30',
+          retrievedAt: '2026-08-31',
+        },
+      },
+    })
+
+    expect(view?.nameFamily?.source).toMatchObject({
+      identifier: 'BASE123',
+      version: 'registry-snapshot-2026-08',
+      effectiveDate: '2026-08-30',
+      retrievedAt: '2026-08-31',
+    })
   })
 
   it('fails the engine when a displayed number is missing from its excerpt', () => {

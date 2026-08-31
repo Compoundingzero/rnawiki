@@ -74,11 +74,20 @@ const COVERAGE_PRESENTATION: Record<
   restricted: { dot: 'bg-[#C7C7CC]', text: 'text-[#8E8E93]', label: 'Not published here' },
 }
 
+/** A recorded answer stays useful and reachable while its source is waiting for rechecking. */
+export function dossierSectionHasContent(section: DossierNavigatorSection): boolean {
+  return (
+    section.coverage === 'answered' ||
+    section.coverage === 'conflicting' ||
+    section.coverage === 'stale'
+  )
+}
+
 /** Sections a reader can actually go somewhere useful from. Drives the badge on the closed button. */
-function countWithContent(sections: readonly DossierNavigatorSection[]): number {
-  return sections.filter(
-    (section) => section.coverage === 'answered' || section.coverage === 'conflicting',
-  ).length
+export function countDossierSectionsWithContent(
+  sections: readonly DossierNavigatorSection[],
+): number {
+  return sections.filter(dossierSectionHasContent).length
 }
 
 export function DossierSectionNavigator({ sections, medicineName }: DossierSectionNavigatorProps) {
@@ -89,7 +98,7 @@ export function DossierSectionNavigator({ sections, medicineName }: DossierSecti
   const triggerRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
 
-  const withContent = useMemo(() => countWithContent(sections), [sections])
+  const withContent = useMemo(() => countDossierSectionsWithContent(sections), [sections])
   const conflicting = useMemo(
     () => sections.filter((section) => section.coverage === 'conflicting').length,
     [sections],
@@ -213,8 +222,7 @@ export function DossierSectionNavigator({ sections, medicineName }: DossierSecti
             <ul className="p-1.5">
               {sections.map((section) => {
                 const presentation = COVERAGE_PRESENTATION[section.coverage]
-                const reachable =
-                  section.coverage === 'answered' || section.coverage === 'conflicting'
+                const reachable = dossierSectionHasContent(section)
                 const isActive = activeId === section.id
                 return (
                   <li key={section.id}>

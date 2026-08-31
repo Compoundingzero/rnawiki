@@ -1,0 +1,202 @@
+{
+  "schema": "four-audience-evidence-contract/v1",
+  "canonicalRecord": "MedicineDossierViewModel",
+  "projectionBuilder": "dossierAudienceLensProjections",
+  "projectionSelector": "DossierAudienceLensSelector",
+  "questionRegistry": "buildDossierQuestionRegistry",
+  "questionIssueContract": "buildQuestionIssueIndex",
+  "projectionRowKinds": {
+    "medical_evidence": "Requires at least one exact source binding that resolves against the canonical dossier; otherwise the row becomes an explicit not-recorded coverage gap.",
+    "identity": "Reserved only for the selected medicine record key or selected programme routing key. Scientific, chemical, composition, regulatory, and naming claims require an exact source binding as medical/evidence rows.",
+    "operational": "May describe RNAWiki review, correction, or freshness state without presenting it as medical evidence.",
+    "missing": "Names absent coverage without reproducing an unresolved medical or evidence claim."
+  },
+  "lenses": [
+    {
+      "id": "ordinary",
+      "label": "Ordinary reader",
+      "mayChange": ["starting anchor", "navigation order", "field grouping", "disclosure depth"],
+      "mustPreserve": [
+        "claims",
+        "measurements",
+        "limitations",
+        "source bindings",
+        "source excerpts"
+      ]
+    },
+    {
+      "id": "biotech",
+      "label": "Biotech researcher",
+      "mayChange": ["starting anchor", "navigation order", "field grouping", "disclosure depth"],
+      "mustPreserve": [
+        "claims",
+        "measurements",
+        "limitations",
+        "source bindings",
+        "source excerpts"
+      ]
+    },
+    {
+      "id": "chemist",
+      "label": "Chemist",
+      "mayChange": ["starting anchor", "navigation order", "field grouping", "disclosure depth"],
+      "mustPreserve": [
+        "claims",
+        "measurements",
+        "limitations",
+        "source bindings",
+        "source excerpts"
+      ]
+    },
+    {
+      "id": "quantitative",
+      "label": "Physicist or quantitative scientist",
+      "mayChange": ["starting anchor", "navigation order", "field grouping", "disclosure depth"],
+      "mustPreserve": [
+        "claims",
+        "measurements",
+        "limitations",
+        "source bindings",
+        "source excerpts"
+      ]
+    }
+  ],
+  "ordinaryQuestions": [
+    {
+      "id": "purpose",
+      "prompt": "What is this medicine used or studied for?",
+      "questionIntents": ["purpose"],
+      "eligibilityRule": "source_bound_recorded_use_or_source_bound_reviewed_scope",
+      "recordedBackgroundFields": ["recordedUses.statements[].textAsRecorded"],
+      "publishedProgrammeFields": ["conclusion.scope.indication"]
+    },
+    {
+      "id": "people-result",
+      "prompt": "What happened to people in the cited study or label?",
+      "questionIntents": ["bottom-line", "measurement"],
+      "eligibilityRule": "source_bound_pivotal_result_or_source_bound_reviewed_outcome",
+      "recordedBackgroundFields": [
+        "pivotalResults[].trialIdentifier",
+        "pivotalResults[].endpointAsRecorded",
+        "pivotalResults[].activeResultAsRecorded",
+        "pivotalResults[].timepointAsRecorded"
+      ],
+      "publishedProgrammeFields": ["keyOutcomes[]", "conclusion.scope.outcome"]
+    },
+    {
+      "id": "result-magnitude",
+      "prompt": "How large was the measured result?",
+      "questionIntents": ["results-magnitude"],
+      "eligibilityRule": "source_bound_numeric_pivotal_result_or_source_bound_reviewed_magnitude",
+      "recordedBackgroundFields": [
+        "pivotalResults[].activeResultAsRecorded",
+        "pivotalResults[].differenceAsRecorded"
+      ],
+      "publishedProgrammeFields": ["keyOutcomes[].numericValue", "keyOutcomes[].numericUnit"]
+    },
+    {
+      "id": "harm-or-limitation",
+      "prompt": "What important harm or limitation was recorded?",
+      "questionIntents": ["harms", "meaning-limitations"],
+      "eligibilityRule": "source_bound_serious_harm_or_source_bound_reviewed_limitation",
+      "recordedBackgroundFields": [
+        "safety.boxedWarning.textAsRecorded",
+        "safety.contraindications[].textAsRecorded"
+      ],
+      "publishedProgrammeFields": ["dynamicModules.safety", "mainLimitation", "evidenceNodes[]"]
+    },
+    {
+      "id": "applicability",
+      "prompt": "Who might this evidence not apply to?",
+      "questionIntents": ["applicability"],
+      "eligibilityRule": "source_bound_study_applicability",
+      "recordedBackgroundFields": [
+        "applicability.trialIdentifier",
+        "applicability.includedAsRecorded[]",
+        "applicability.excludedAsRecorded[]"
+      ],
+      "publishedProgrammeFields": ["medicineRecord.background.applicability"]
+    },
+    {
+      "id": "unknown-conflicting-stale",
+      "prompt": "What is unknown, conflicting or stale?",
+      "questionIntents": ["unknowns"],
+      "issueStates": ["conflicting", "stale"],
+      "eligibilityRule": "source_bound_reviewed_unknown_or_mapped_comparable_conflict_or_exact_confirmed_drift",
+      "recordedBackgroundFields": ["sourceConsensus.fields[]"],
+      "publishedProgrammeFields": ["conclusion.whatRemainsUnknown[]"],
+      "freshnessFields": [
+        "driftedSources[].bindingId",
+        "driftedSources[].assertionCheckId",
+        "driftedSources[].intent",
+        "driftedSources[].fieldPath"
+      ]
+    }
+  ],
+  "specialistMeasures": {
+    "chemistryIdentity": {
+      "viewModelFields": [
+        "medicineRecord.background.molecularIdentity",
+        "medicineRecord.molecular"
+      ],
+      "rule": "at_least_one_recorded_formula_weight_structure_or_sequence"
+    },
+    "quantitativeUncertainty": {
+      "viewModelFields": [
+        "keyOutcomes[].uncertaintyInterval",
+        "medicineRecord.background.pivotalResults[].uncertainty"
+      ],
+      "rule": "uncertainty_must_be_printed_by_the_source"
+    },
+    "sourceConflict": {
+      "viewModelFields": ["medicineRecord.background.sourceConsensus.fields[]"],
+      "rule": "comparisonState_must_equal_differ",
+      "excludedStates": ["not_comparable", "insufficient_context"]
+    },
+    "staleExactBindings": {
+      "viewModelFields": ["medicineRecord.background.driftedSources[]"],
+      "rule": "exact_binding_and_successful_assertion_check_must_confirm_drift"
+    },
+    "sourceRead": {
+      "headlineRule": "at_least_one_qualifying_source_excerpt",
+      "separateRule": "at_least_one_qualifying_source_object",
+      "warning": "A registry pointer without an excerpt is not a clinical source read."
+    }
+  },
+  "coverageSemantics": {
+    "registryEntry": "A question exists for navigation and may carry a non-answer state. It is not a clinical answer.",
+    "sourceBoundEligibility": "The checked-in corpus holds the complete fields and qualifying source identity required by the named rule.",
+    "notObservable": "The checked-in public snapshot omits the runtime contract needed to measure this value; absence must not be reported as zero.",
+    "allSix": "A record counts only when every one of the six source-bound eligibility rules is met."
+  },
+  "visibleProvenance": {
+    "perRecord": [
+      "canonical field",
+      "scope",
+      "projection row type",
+      "observed or derived status",
+      "exact source binding or explicit absence"
+    ],
+    "perSource": [
+      "direct source link when recorded",
+      "identifier",
+      "source version or explicit not recorded state",
+      "source effective date or explicit not recorded state",
+      "freshness or explicit not recorded state",
+      "retrieval and verification dates when recorded",
+      "snapshot hash when recorded"
+    ]
+  },
+  "invariants": [
+    "Every lens projects one canonical MedicineDossierViewModel.",
+    "Selecting a lens changes the grouped projection panel; the complete canonical dossier remains available below it.",
+    "A lens may not rewrite, summarize differently, or resolve a claim or source.",
+    "A medical or evidence claim without an exact resolved source binding is represented as a not-recorded coverage gap and is not counted as answered in the projection.",
+    "A producer cannot make claim-bearing output source-exempt by choosing the identity row kind; the only identity rows are closed routing-key constructors for the selected medicine and programme.",
+    "sourceBoundMedicalEvidenceRecords counts only medical or evidence rows with at least one resolved source; identity, operational, and missing rows are excluded.",
+    "A question registry entry is not counted as an answer unless its evidence eligibility rule is met.",
+    "not_comparable is never counted as source conflict.",
+    "A failed or unreachable fetch is never counted as stale.",
+    "A source drift never changes medical content automatically."
+  ]
+}

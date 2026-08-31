@@ -817,6 +817,95 @@ test('search-first homepage opens Inclisiran and exposes evidence lineage access
   await expectNoHorizontalOverflow(page, 'Inclisiran public history')
 })
 
+test('selects all four audience projections with keyboard and mobile-safe controls', async ({
+  page,
+}) => {
+  const fixture = requireNormalizedFixture()
+  await page.goto(normalizedDossierUrl(fixture))
+
+  const lensPanel = page.getByTestId('dossier-audience-lenses')
+  await expect(lensPanel).toBeAttached()
+  await expect(lensPanel).toBeHidden()
+  await expect(lensPanel.getByText('Exact source binding').first()).toBeHidden()
+  const { content } = await openAdvancedEvidence(page)
+  const lensSelector = content.getByRole('group', { name: 'Choose a reading lens' })
+  await expect(lensSelector).toBeVisible()
+  const lenses = lensSelector.getByRole('radio')
+  await expect(lenses).toHaveCount(4)
+  await expect(lensSelector.getByLabel('Ordinary reader')).toBeChecked()
+
+  const canonicalPath = new URL(page.url()).pathname
+  const projection = page.getByTestId('dossier-audience-projection')
+  const ordinaryGlossary = projection.getByTestId('ordinary-reader-glossary')
+  const confidenceIntervalControl = ordinaryGlossary.locator(
+    'summary[data-glossary-term="confidence-interval"]',
+  )
+  const confidenceIntervalDefinition = ordinaryGlossary.locator(
+    '[data-glossary-definition="confidence-interval"]',
+  )
+  await expect(confidenceIntervalControl).toHaveAccessibleName('Explain Confidence interval')
+  await expect(confidenceIntervalDefinition).toBeHidden()
+  await confidenceIntervalControl.focus()
+  await expect(confidenceIntervalControl).toBeFocused()
+  await confidenceIntervalControl.press('Enter')
+  await expect(confidenceIntervalDefinition).toBeVisible()
+  await expect(confidenceIntervalDefinition).toHaveText(
+    'A range that shows how precise the study’s measured answer is. A wider range means the answer is less precise.',
+  )
+  const cases = [
+    {
+      label: 'Ordinary reader',
+      lens: 'ordinary',
+      heading: '1. What is this medicine used or studied for?',
+    },
+    {
+      label: 'Biotech researcher',
+      lens: 'biotech',
+      heading: 'Programme, indication and study population',
+    },
+    {
+      label: 'Chemist',
+      lens: 'chemist',
+      heading: 'Represented entity and composition',
+    },
+    {
+      label: 'Physicist or quantitative scientist',
+      lens: 'quantitative',
+      heading: 'Measurements and context',
+    },
+  ] as const
+
+  for (const projectionCase of cases) {
+    const lens = lensSelector.getByLabel(projectionCase.label)
+    await lens.focus()
+    await lens.press('Space')
+    await expect(lens).toBeChecked()
+    await expect(projection).toHaveAttribute('data-selected-audience-lens', projectionCase.lens)
+    await expect(projection.getByRole('heading', { name: projectionCase.heading })).toBeVisible()
+    await expect(projection.getByText('Canonical field').first()).toBeVisible()
+    await expect(projection.getByText('Observed or derived status').first()).toBeVisible()
+    await expect(projection.getByText('Exact source binding').first()).toBeVisible()
+    expect(new URL(page.url()).pathname).toBe(canonicalPath)
+  }
+
+  const ordinary = lensSelector.getByLabel('Ordinary reader')
+  await ordinary.focus()
+  await expect(ordinary).toBeFocused()
+  await ordinary.press('ArrowRight')
+  await expect(lensSelector.getByLabel('Biotech researcher')).toBeChecked()
+  await expect(projection).toHaveAttribute('data-selected-audience-lens', 'biotech')
+
+  await page.setViewportSize({ width: 320, height: 800 })
+  await expect(lensSelector).toBeVisible()
+  for (const label of cases.map((item) => item.label)) {
+    const control = lensSelector.locator('label').filter({ hasText: label })
+    const box = await control.boundingBox()
+    expect(box?.height ?? 0).toBeGreaterThanOrEqual(44)
+    expect((box?.x ?? 0) + (box?.width ?? 0)).toBeLessThanOrEqual(320)
+  }
+  await expectNoHorizontalOverflow(page, 'Inclisiran audience projections at 320px')
+})
+
 test('signed-out readers are asked to authenticate before suggesting a correction', async ({
   page,
 }) => {
@@ -1723,6 +1812,20 @@ test('keeps the static first read clear and contained in a touch-sized view', as
     await expect(evidenceControl).toHaveAttribute('aria-expanded', 'true')
     await expect(page.locator('#advanced-evidence-content')).toBeVisible()
     await expectNoHorizontalOverflow(page, 'Touch-opened evidence')
+
+    const glossary = page.getByTestId('ordinary-reader-glossary')
+    const ldlControl = glossary.locator('summary[data-glossary-term="ldl-cholesterol"]')
+    const ldlDefinition = glossary.locator('[data-glossary-definition="ldl-cholesterol"]')
+    await expect(ldlControl).toHaveAccessibleName('Explain LDL cholesterol')
+    await expect(ldlDefinition).toBeHidden()
+    const ldlControlBox = await ldlControl.boundingBox()
+    expect(ldlControlBox?.height ?? 0).toBeGreaterThanOrEqual(44)
+    await ldlControl.tap()
+    await expect(ldlDefinition).toBeVisible()
+    await expect(ldlDefinition).toHaveText(
+      'A blood test result often called “bad cholesterol.” It does not by itself show how a person feels or functions.',
+    )
+    await expectNoHorizontalOverflow(page, 'Touch-opened ordinary-reader definition')
 
     const backgroundControl = page.locator('summary[aria-controls="medicine-background-content"]')
     await expect(backgroundControl).toHaveAttribute('aria-expanded', 'false')

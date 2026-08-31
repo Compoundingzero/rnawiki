@@ -22,6 +22,10 @@ export interface RecordedSourceView {
   label: string
   identifier: string
   href?: string
+  /** Exact source-controlled revision identifier; absent when the source records none. */
+  version?: string
+  /** Exact source-controlled effective date; distinct from RNAWiki's retrieval date. */
+  effectiveDate?: string
   retrievedAt: string
   excerpt?: string
 }
@@ -269,6 +273,7 @@ export interface MedicineBackgroundContextView {
     summary: string
     members: Array<{ name: string; unii: string; marketLabel: string }>
     moreCount: number
+    source: RecordedSourceView
   }
   supplementMarket?: {
     labelCountLabel: string
@@ -382,6 +387,8 @@ function sourceView(source: BackgroundSource): RecordedSourceView {
     label: source.label,
     identifier: source.identifier,
     href: sourceHref(source),
+    ...(source.version ? { version: source.version } : {}),
+    ...(source.effectiveDate ? { effectiveDate: source.effectiveDate } : {}),
     retrievedAt: source.retrievedAt,
     excerpt: source.excerpt,
   }
@@ -919,6 +926,7 @@ export function medicineBackgroundContext(
               : 'no listed products',
         })),
         moreCount: Math.max(0, shared.memberCount - shared.members.length),
+        source: sourceView(shared.source),
       }
     : undefined
 

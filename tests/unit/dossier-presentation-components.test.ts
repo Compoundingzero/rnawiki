@@ -2,7 +2,9 @@ import * as React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
+import { DossierEvidenceIntroduction } from '@/components/dossier/DossierEvidenceIntroduction'
 import { DossierHeader } from '@/components/dossier/DossierHeader'
+import { DossierAudienceLensSelector } from '@/components/dossier/DossierAudienceLensSelector'
 import { DossierEvidencePath, evidenceNodeAnchorId } from '@/components/dossier/DossierEvidencePath'
 import { DossierNavigation } from '@/components/dossier/DossierNavigation'
 import { DossierResearchQuestion } from '@/components/dossier/DossierResearchQuestion'
@@ -11,6 +13,7 @@ import {
   TenSecondAnswer,
 } from '@/components/dossier/TenSecondAnswer'
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
+import { dossierAudienceLensProjections } from '@/lib/dossier-audience-lenses'
 
 // Next preserves JSX for its compiler; this direct server render uses the classic runtime.
 ;(globalThis as typeof globalThis & { React: typeof React }).React = React
@@ -80,6 +83,14 @@ function renderHeader(view: MedicineDossierViewModel): string {
   return renderToStaticMarkup(React.createElement(DossierHeader, { dossier: view }))
 }
 
+function renderAudienceLenses(view: MedicineDossierViewModel): string {
+  return renderToStaticMarkup(
+    React.createElement(DossierAudienceLensSelector, {
+      projections: dossierAudienceLensProjections(view),
+    }),
+  )
+}
+
 function renderAnswer(view: MedicineDossierViewModel, mechanismPreviewAllowed = false): string {
   return renderToStaticMarkup(
     React.createElement(TenSecondAnswer, { dossier: view, mechanismPreviewAllowed }),
@@ -109,6 +120,79 @@ describe('dossier presentation components', () => {
     expect(html).not.toContain('role="tab"')
     expect(html).not.toContain('aria-selected')
     expect(html).not.toContain('<button')
+  })
+
+  it('renders one selectable four-audience projection over the same record', () => {
+    const view = dossier()
+    view.medicineRecord.background = {
+      authoredAt: '2026-08-31',
+      recordedUses: {
+        statements: [
+          {
+            text: 'Exact recorded use statement.',
+            source: {
+              kindLabel: 'FDA label',
+              label: 'Exact label source',
+              identifier: 'label-123',
+              href: 'https://example.test/label-123',
+              version: 'revision-7',
+              effectiveDate: '2026-08-15',
+              retrievedAt: '2026-08-31',
+            },
+          },
+          {
+            text: 'Second exact recorded use statement.',
+            source: {
+              kindLabel: 'FDA label',
+              label: 'Unversioned label source',
+              identifier: 'label-unversioned',
+              href: 'https://example.test/label-unversioned',
+              retrievedAt: '2026-08-31',
+            },
+          },
+        ],
+      },
+    }
+    const header = renderHeader(view)
+    const projection = renderAudienceLenses(view)
+    const introduction = renderToStaticMarkup(
+      React.createElement(DossierEvidenceIntroduction, { dossier: view }),
+    )
+
+    expect(header).not.toContain('data-testid="dossier-audience-lenses"')
+    expect(projection.match(/data-testid="dossier-audience-lenses"/gu)).toHaveLength(1)
+    expect(projection).toContain('aria-label="Choose a reading lens"')
+    expect(projection).toContain('Ordinary reader')
+    expect(projection).toContain('Biotech researcher')
+    expect(projection).toContain('Chemist')
+    expect(projection).toContain('Physicist or quantitative scientist')
+    expect(projection.match(/type="radio"/gu)).toHaveLength(4)
+    expect(projection).toContain('data-audience-lens="ordinary"')
+    expect(projection).toContain('data-selected-audience-lens="ordinary"')
+    expect(projection).toContain('1. What is this medicine used or studied for?')
+    expect(projection).toContain('6. What is unknown, conflicting or stale?')
+    expect(projection).toContain('Canonical field')
+    expect(projection).toContain('Projection record type')
+    expect(projection).toContain('Medical or evidence record')
+    expect(projection).toContain('Explicit coverage gap')
+    expect(projection).toContain('Observed or derived status')
+    expect(projection).toContain('Exact source binding')
+    expect(projection).toContain('href="https://example.test/label-123"')
+    expect(projection).toContain('Identifier:')
+    expect(projection).toContain('label-123')
+    expect(projection).toContain('Source version:')
+    expect(projection).toContain('revision-7')
+    expect(projection).toContain('Source effective date:')
+    expect(projection).toContain('2026-08-15')
+    expect(projection).toMatch(/Source version: <\/dt><dd[^>]*>Not recorded<\/dd>/u)
+    expect(projection).toMatch(/Source effective date: <\/dt><dd[^>]*>Not recorded<\/dd>/u)
+    expect(projection).toContain('Freshness:')
+    expect(projection).toContain('Not recorded for this source')
+    expect(projection).toContain('href="#what-it-is"')
+    expect(projection).not.toContain('role="tab"')
+    expect(projection).not.toContain('aria-selected')
+    expect(introduction).not.toContain('Evidence reading depth')
+    expect(introduction).not.toContain('data-audience-lens=')
   })
 
   it('does not give unpublished or general research a reviewed-green status treatment', () => {
