@@ -1,0 +1,410 @@
+{
+  "explanation": "The robots can now point to a suspicious medicine fact, show the exact sentence they read, and remember what a person decided.",
+  "schema": "rnawiki-release-b1-evidence-workbench-audit/v1",
+  "release": "Release B1",
+  "reportDate": "2026-09-01",
+  "status": "complete",
+  "git": {
+    "startingSha": "911a2d76fa8de531cff3eb9a31fbe5d01a73cacf",
+    "finalBranchSha": "5f9c59a4752561850ac125401d3e09794616b8a0",
+    "testedReleaseSha": "5f9c59a4752561850ac125401d3e09794616b8a0",
+    "immutablePublishedCorpusSha": "91a275f3bd1d3e72b25a3e6593c2e89a2c65cc98",
+    "mergedMainSha": "6e234c6cea25c2337b202cb2dfb52988ee01772f"
+  },
+  "backup": {
+    "path": "~/rnawiki-backups/release-b1-20260901.pRTNXH/rnawiki-pre-b1.pgcustom",
+    "format": "pg_dump custom, PostgreSQL 18.6",
+    "bytes": 20642251,
+    "sha256": "2e4501b434d802bfcfba36294ee90f92bbba8441e8e15d430ad2b0637be60c8d",
+    "verified": "pg_restore --list reads 717 TOC entries"
+  },
+  "migrations": {
+    "productionCount": 22,
+    "latest": "0021_source_binding_revisions",
+    "b1": ["0020_agent_review_workbench", "0021_source_binding_revisions"],
+    "fromZero": "passed_twice_second_noop",
+    "restoredProduction": "passed_twice_second_noop",
+    "additiveAndAppendOnly": true
+  },
+  "sourceConsensusTransition": {
+    "expectedRows": 734,
+    "firstApplyRows": 734,
+    "replayApplyRows": 0,
+    "replayAlreadyCurrentRows": 734,
+    "medicineRowsBefore": 9859,
+    "medicineRowsAfter": 9859,
+    "fieldsAllowedToChange": ["recorded_background.sourceConsensus"],
+    "protectedFieldDigestUnchanged": true
+  },
+  "agents": {
+    "historical": {
+      "package": "data/audits/agents/pre-release-a/manifest.json",
+      "runs": 10,
+      "runDate": "2026-08-30",
+      "records": 9855,
+      "candidates": 2005,
+      "referencedOutputBytes": 52276208,
+      "historicalPreRepair": true,
+      "eligibleForActiveReview": false,
+      "importedIntoProductionReviewQueue": false,
+      "individualContinuity": "not_exactly_measurable_legacy_candidates_are_unkeyed"
+    },
+    "current": {
+      "manifest": "data/agents/current/manifest.json",
+      "runs": 10,
+      "runDate": "2026-08-31",
+      "seed": 20260828,
+      "records": 9855,
+      "corpusCommit": "91a275f3bd1d3e72b25a3e6593c2e89a2c65cc98",
+      "corpusDigest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf",
+      "candidates": 3123,
+      "findings": 42607,
+      "historicalPreRepair": false,
+      "eligibleForActiveReview": true,
+      "determinism": "runner_twice_and_checked_in_regeneration_passed",
+      "candidateCountsByAgent": {
+        "silence-ledger": 40,
+        "mechanism-text-grouping": 5,
+        "peer-group-anomaly-screen": 119,
+        "enzyme-and-transporter-documentation": 144,
+        "substance-synonyms": 1199,
+        "evidence-density": 1122,
+        "numeric-distributions": 0,
+        "adverse-reaction-term-structure": 398,
+        "excerpt-integrity": 0,
+        "coverage-ledger": 96
+      },
+      "candidateCountsByReason": {
+        "ATTRIBUTION_SUSPECT": 59,
+        "COVERAGE_GAP": 1746,
+        "POSSIBLE_DUPLICATE_SUBSTANCE": 1199,
+        "UNUSUAL_FOR_PEER_GROUP": 119
+      },
+      "declaredSampling": {
+        "silence-ledger": { "selected": 40, "eligible": 147981 },
+        "coverage-ledger": { "selected": 96, "eligible": 9700 }
+      }
+    }
+  },
+  "productionReviewMemory": {
+    "totalAgentRunRows": 27,
+    "currentRunPointers": 11,
+    "currentPackagePointers": 10,
+    "sourceDriftMonitorCurrentPointers": 1,
+    "conceptualOccurrences": 3123,
+    "allMemberships": 6246,
+    "currentPackageMemberships": 3123,
+    "reopenedOccurrences": 0,
+    "decisions": 0,
+    "correctionDraftsCreatedByVerification": 0,
+    "occurrenceStates": { "new": 0, "reopened": 0, "unchanged": 3123 },
+    "audienceLanes": { "ordinary": 1258, "biotech": 547, "chemist": 1199, "quantitative": 119 },
+    "severity": { "low": 1127, "medium": 738, "high": 1258, "blocking": 0 },
+    "provenanceTier": { "curated": 41, "extracted": 2461, "transcribed": 621 },
+    "releaseDeploymentImport": {
+      "newOccurrences": 0,
+      "newMemberships": 3123,
+      "changedCurrentPointers": 10,
+      "inventedDecisions": 0
+    },
+    "manualFinalPackageReplay": {
+      "runs": 10,
+      "candidates": 3123,
+      "newOccurrences": 0,
+      "newMemberships": 0,
+      "changedCurrentPointers": 0,
+      "inventedDecisions": 0
+    }
+  },
+  "reviewWorkbench": {
+    "route": "/review-queue/agents",
+    "public": false,
+    "authorizedRoles": ["steward", "admin"],
+    "anonymousProductionPageStatus": 404,
+    "anonymousProductionApiStatus": 401,
+    "publicReviewQueueDatasetStatus": 404,
+    "decisionOutcomes": [
+      "CORRECTION_NEEDED",
+      "NOT_A_PROBLEM",
+      "CONFIRMED_AS_RECORDED",
+      "NEEDS_MORE_EVIDENCE"
+    ],
+    "appendOnly": true,
+    "evidenceSnapshotLocked": true,
+    "staleDecisionRejected": true,
+    "serverDeterminesReviewer": true,
+    "directMedicineWrite": false,
+    "liveSignedProductionDecisionCreated": false,
+    "liveSignedProductionLimitation": "No signed steward session was available from the release environment; automated authorization tests cover ordinary, steward, and administrator roles."
+  },
+  "calibration": {
+    "active": false,
+    "reason": "zero_genuine_production_decisions",
+    "display": "Not enough review history to calibrate this reason.",
+    "minimumDataPolicy": {
+      "stratum": ["agent", "agentVersion", "reasonSchemaVersion", "reason", "provenanceTier"],
+      "realDecisionEvents": 30,
+      "representedOutcomeClasses": 2,
+      "eventsPerRepresentedOutcomeClass": 5,
+      "separatelyReviewedFitterRequired": true,
+      "timeSplitEvaluationRequired": true
+    },
+    "allowedFutureEffects": [
+      "queue_order",
+      "unchanged_reviewed_occurrence_suppression",
+      "workload_estimates"
+    ],
+    "forbiddenEffects": [
+      "medicine_content",
+      "source_content",
+      "source_winner",
+      "freshness_state",
+      "conflict_state",
+      "publication",
+      "verdict"
+    ]
+  },
+  "neurodes": {
+    "definition": "A typed, versioned, independently testable deterministic detector or transformation node whose output is reproducible and whose medical boundary is explicit.",
+    "registeredCurrentNodes": 10,
+    "runtimeLlm": false,
+    "medicalClaimOutput": false,
+    "graphChecks": [
+      "duplicate_ids",
+      "missing_dependencies",
+      "ambiguous_dependencies",
+      "cycles",
+      "complete_input_digest_for_cache",
+      "unexpected_zero_input",
+      "deterministic_ordering",
+      "resource_cleanup"
+    ]
+  },
+  "publicDatasets": {
+    "index": "/datasets",
+    "licence": "CC BY 4.0",
+    "pages": [
+      {
+        "id": "enzyme-transporter-negatives",
+        "route": "/datasets/enzyme-transporter-negatives",
+        "rows": 8024
+      },
+      { "id": "source-consensus", "route": "/datasets/source-consensus", "rows": 1681 },
+      { "id": "silence-ledger", "route": "/datasets/silence-ledger", "rows": 167535 },
+      { "id": "coverage-ledger", "route": "/datasets/coverage-ledger", "rows": 9855 }
+    ],
+    "sourceConsensus": {
+      "fields": 1681,
+      "readings": 2214,
+      "completeSourceRecords": 49134,
+      "comparisonStates": {
+        "agree": 1282,
+        "differ": 0,
+        "not_comparable": 12,
+        "insufficient_context": 387
+      }
+    },
+    "restrictedFieldsExposed": false,
+    "sourceWinnerSelected": false,
+    "mobile320HorizontalOverflow": false,
+    "keyboardReachable": true
+  },
+  "audienceCoverage": {
+    "denominator": 9855,
+    "ordinary": {
+      "purpose": { "eligibleRecords": 2751, "measurementState": "exact_for_checked_in_snapshot" },
+      "peopleResult": {
+        "eligibleRecords": 18,
+        "measurementState": "exact_for_checked_in_snapshot"
+      },
+      "resultMagnitude": {
+        "eligibleRecords": 18,
+        "measurementState": "exact_for_checked_in_snapshot"
+      },
+      "harmOrLimitation": {
+        "eligibleRecords": 1510,
+        "measurementState": "exact_for_checked_in_snapshot"
+      },
+      "applicability": {
+        "eligibleRecords": 22,
+        "measurementState": "exact_for_checked_in_snapshot"
+      },
+      "unknownConflictingStale": {
+        "observedLowerBoundRecords": 0,
+        "measurementState": "partial_lower_bound"
+      },
+      "recordsEligibleForFirstFive": 0,
+      "recordsEligibleForAllSix": 0,
+      "allSixMeasurementState": "exact_zero_because_first_five_intersection_is_empty"
+    },
+    "biotech": {
+      "sourceBoundUseRecords": 2751,
+      "sourceBoundMechanismRecords": 1632,
+      "sourceBoundPivotalResultRecords": 18,
+      "sourceBoundApplicabilityRecords": 22,
+      "recordsWithAllFour": 0
+    },
+    "chemistry": {
+      "identityUnionRecords": 4307,
+      "shareOfCorpus": 0.437037,
+      "stereochemistryRepairedByB1": false
+    },
+    "quantitative": {
+      "pivotalResultRecords": 18,
+      "pivotalResults": 22,
+      "recordsWithPrintedUncertainty": 14,
+      "resultsWithPrintedUncertainty": 15,
+      "shareOfPivotalResults": 0.681818
+    },
+    "sourceRead": {
+      "recordsWithQualifyingExcerpt": 3093,
+      "recordsWithoutQualifyingExcerpt": 6762,
+      "recordsWithQualifyingSourceObject": 9855,
+      "recordsWithoutQualifyingSourceObject": 0
+    },
+    "exactStaleBindings": {
+      "measurementState": "not_observable_in_checked_in_public_snapshot",
+      "confirmedBindings": null
+    }
+  },
+  "sourceSync": {
+    "service": "RNA Intelligence Source Sync",
+    "deploymentId": "60dda7bc-2b1c-4365-bd02-4d1e74ee9029",
+    "deploymentStatus": "SUCCESS",
+    "commit": "411b2116e5c9d8502f3a91dc5447345db09fc468",
+    "private": true,
+    "publicDomain": false,
+    "schedule": "0 */6 * * *",
+    "startCommand": "node --import tsx scripts/source-sync-worker.ts",
+    "run": {
+      "startedAt": "2026-08-31T22:30:44.238Z",
+      "completedAt": "2026-08-31T22:31:18.013Z",
+      "selectedSourceIdentities": 25,
+      "processedSourceIdentities": 25,
+      "fetchesSucceeded": 25,
+      "fetchesSelected": 25,
+      "assertionChecksCurrent": 57,
+      "assertionChecksDrifted": 0,
+      "sourceDriftCandidates": 0
+    },
+    "persistedStateAfterRunAndPublication": {
+      "bindings": 967,
+      "fetches": 150,
+      "snapshots": 150,
+      "assertionChecks": {
+        "CURRENT": 947,
+        "NUMBERS_CURRENT": 20,
+        "DRIFTED": 0
+      }
+    },
+    "medicineDigestsAfterRunAndPublication": {
+      "safeFull": "505d868da82942a2408c609e2954b8e5",
+      "excludingSourceConsensus": "d57353af9d5c17602a2c22d31bfcf01f"
+    },
+    "temporaryFailureIsDrift": false,
+    "automaticMedicalRewrite": false
+  },
+  "tests": {
+    "testedSha": "5f9c59a4752561850ac125401d3e09794616b8a0",
+    "typecheck": "passed",
+    "lint": "passed_with_two_preexisting_ignored_script_warnings",
+    "copyGate": {
+      "status": "passed",
+      "findings": 0,
+      "publicAndDocsFiles": 323,
+      "importedSeedFiles": 39,
+      "publicDataFiles": 10
+    },
+    "datasetArtifacts": { "passed": 14, "total": 14, "publicMedicineRows": 9857 },
+    "recordedBackgroundRecords": 9855,
+    "unit": { "status": "passed", "tests": 2021, "files": 149 },
+    "integration": { "status": "passed", "tests": 146, "files": 23 },
+    "seo": { "status": "passed", "tests": 190, "files": 20 },
+    "build": "passed",
+    "e2e": { "status": "passed", "tests": 26 },
+    "gate": "passed",
+    "ci": {
+      "runId": 33448460086,
+      "status": "SUCCESS",
+      "sha": "5f9c59a4752561850ac125401d3e09794616b8a0",
+      "url": "https://github.com/Compoundingzero/rnawiki/actions/runs/33448460086"
+    },
+    "nodePortability": { "node20": "passed", "node26": "passed", "byteIdentical": true }
+  },
+  "deployments": {
+    "web": {
+      "id": "2db6952a-8e08-4875-a8bb-3dce9dbe8f1a",
+      "status": "SUCCESS",
+      "commit": "6e234c6cea25c2337b202cb2dfb52988ee01772f",
+      "durationSeconds": 16,
+      "image": "sha256:928e884036d809226c74a8f46a0ad583360569a375c9efb2e4b15d64e20398f6",
+      "health": "passed",
+      "directLiveVerification": {
+        "healthStatus": 200,
+        "datasetApiStatuses": {
+          "enzyme-transporter-negatives": 200,
+          "source-consensus": 200,
+          "silence-ledger": 200,
+          "coverage-ledger": 200
+        },
+        "anonymousWorkbenchPageStatus": 404,
+        "anonymousWorkbenchApiStatus": 401,
+        "publicReviewQueueDatasetStatus": 404,
+        "sourceConsensusPage": "verified_counts_excerpts_and_source_links"
+      }
+    },
+    "sourceSync": {
+      "id": "60dda7bc-2b1c-4365-bd02-4d1e74ee9029",
+      "status": "SUCCESS",
+      "commit": "411b2116e5c9d8502f3a91dc5447345db09fc468"
+    },
+    "rollbackTargets": {
+      "preB1WebDeployment": "df550e60-054d-4fea-b77a-4d6fc4d236d7",
+      "preB1SourceSyncDeployment": "c729e9b9-1a9a-436e-a9a3-fb00f845544e"
+    }
+  },
+  "datasetPublication": {
+    "status": "SUCCESS",
+    "failedReproducibilityAttempt": {
+      "workflowRunId": 33446806501,
+      "url": "https://github.com/Compoundingzero/rnawiki/actions/runs/33446806501",
+      "status": "BLOCKED_BEFORE_PUSH",
+      "sourceConsensusRows": 1681,
+      "differentRowPositions": 614,
+      "payloadSetsIdentical": true,
+      "cause": "source-consensus rows lacked a stable slug-and-field publication order",
+      "fix": "sort by slug and field and pin the order with a regression test"
+    },
+    "successfulWorkflow": {
+      "workflowRunId": 33449182747,
+      "url": "https://github.com/Compoundingzero/rnawiki/actions/runs/33449182747",
+      "status": "SUCCESS",
+      "duration": "13m59s",
+      "immutableCorpusCommit": "91a275f3bd1d3e72b25a3e6593c2e89a2c65cc98",
+      "derivedEvidenceCommit": "6e234c6cea25c2337b202cb2dfb52988ee01772f"
+    },
+    "directProductionVerification": "passed"
+  },
+  "safety": {
+    "runtimeLlm": false,
+    "automaticMedicalFactWriting": false,
+    "automaticSourceWinnerSelection": false,
+    "automaticVerdictCreation": false,
+    "automaticCorrectionPublication": false,
+    "publicPatientActionLeakage": 0,
+    "publicNamedTreatmentProsAndConsLeakage": 0,
+    "publicLaboratoryWorkflowLeakage": 0,
+    "preexistingStashesTouched": false,
+    "openFdaArchiveOrHashesTouched": false,
+    "b1RehearsalDatabasesRemaining": 0
+  },
+  "limitations": [
+    "Zero genuine production decisions means calibration is inactive.",
+    "Legacy candidate-by-candidate continuity is not exactly measurable because historical candidates are unkeyed.",
+    "No signed steward session was available for a direct live production decision; automated signed-role tests cover authorization and no reviewer event was fabricated.",
+    "Exact stale bindings are not observable in the checked-in public snapshot.",
+    "Population and formulation context are not structurally complete, leaving 387 source-consensus fields insufficient_context.",
+    "No record answers all six ordinary-reader questions, and specialist coverage remains sparse.",
+    "ClinicalTrials.gov posted results, chemistry identity expansion, and interactive evidence visuals remain future releases and were not started."
+  ]
+}
