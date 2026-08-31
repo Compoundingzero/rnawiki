@@ -29,6 +29,7 @@ import {
 } from '@/lib/agents/core/cluster'
 import { cosine, fitTfIdf, transform, type SparseVector } from '@/lib/agents/core/text'
 import type { AgentInput, AgentRun, DatasetAgent, ReviewCandidate } from '@/lib/agents/core/types'
+import { reviewEvidence, reviewEvidenceSource } from '@/lib/agents/core/evidence'
 
 /**
  * Cluster counts the run tries before choosing one. Declared as a constant rather than an argument
@@ -53,8 +54,6 @@ const TERMS_PER_GROUP = 8
  * ordinary members.
  */
 const WEAK_ATTACHMENT_COSINE = 0.1
-
-const MAX_QUEUE_LENGTH = 25
 
 /** One point of the cluster-count sweep, kept so the choice of k can be checked rather than trusted. */
 export interface MechanismGroupSweepPoint {
@@ -153,7 +152,7 @@ function round(value: number, digits: number): number {
 
 export const mechanismGroupingAgent: DatasetAgent<MechanismGroupingDataset> = {
   name: 'mechanism-text-grouping',
-  version: '1.0.0',
+  version: '1.2.0',
   description:
     'Groups medicines whose recorded mechanism statements use similar wording, and describes each group by the terms that distinguish it.',
 
@@ -306,14 +305,34 @@ export const mechanismGroupingAgent: DatasetAgent<MechanismGroupingDataset> = {
           left.member.cosineToCentroid - right.member.cosineToCentroid ||
           (left.member.slug < right.member.slug ? -1 : 1),
       )
-      .slice(0, MAX_QUEUE_LENGTH)
       .map(({ group, member }) => ({
         slug: member.slug,
+        fieldPath: 'mechanism.statements',
         reason: 'COVERAGE_GAP' as const,
         question: `The recorded mechanism wording for this record sits at cosine ${member.cosineToCentroid.toFixed(3)} from the nearest induced group of wording. Is the recorded statement the full text the source section prints?`,
         priority: round(1 - member.cosineToCentroid, 6),
         basis: `Cosine of the record's mechanism vector to the centroid of ${group.groupId}, under term frequency-inverse document frequency over ${model.vocabulary.size} terms and spherical k-means at ${chosenClusterCount} groups, seed ${input.seed}. A low value describes the wording on file, not the medicine.`,
         sources: mechanismSourceIdentifiers(statementsBySlug.get(member.slug) ?? []),
+        evidence: reviewEvidence(
+          {
+            recordedValues: (statementsBySlug.get(member.slug) ?? []).map(
+              (statement) => statement.textAsRecorded,
+            ),
+            grouping: {
+              groupId: group.groupId,
+              cosineToCentroid: member.cosineToCentroid,
+              terms: group.terms,
+            },
+          },
+          (statementsBySlug.get(member.slug) ?? []).map((statement) =>
+            reviewEvidenceSource(statement.source),
+          ),
+          {
+            recordedValues: (statementsBySlug.get(member.slug) ?? []).map(
+              (statement) => statement.textAsRecorded,
+            ),
+          },
+        ),
       }))
 
     const silhouettes = sweep.map((point) => point.silhouette)

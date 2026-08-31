@@ -25,6 +25,7 @@
  */
 
 import type { MedicineRecordedBackground } from '@/lib/background/types'
+import type { BackgroundSourceKind } from '@/lib/background/types'
 
 export interface AgentCorpusEntry {
   slug: string
@@ -70,6 +71,15 @@ export interface AgentRun<TOutput> {
   output: TOutput
   /** Items a person should look at, most important first. Never an automatic correction. */
   queue?: readonly ReviewCandidate[]
+  /**
+   * Required when `queue` is a deterministic sample rather than the full candidate universe.
+   *
+   * Sampling can keep an operational queue bounded, but it must never make the omitted work
+   * invisible. The complete compact index names every eligible candidate, while the exact corpus
+   * identity and agent output make any indexed candidate reproducible without storing thousands of
+   * duplicate source excerpts in the active queue.
+   */
+  queueSelection?: ReviewQueueSelectionAudit
   /** Honest limitations a reader of the dataset needs, in plain language. */
   caveats: readonly string[]
 }
@@ -94,6 +104,12 @@ export type ReviewReason = (typeof REVIEW_REASONS)[number]
  */
 export interface ReviewCandidate {
   slug: string
+  /**
+   * Stable semantic location of the question inside the record. This is identity-bearing and must
+   * never be reconstructed from `question` prose. Dynamic members use a stable recorded key (for
+   * example a reaction term or silence-question id), not an array offset or a ranking score.
+   */
+  fieldPath: string
   reason: ReviewReason
   question: string
   /** Ranking key, higher first. Its meaning is agent-specific and stated in `basis`. */
@@ -101,6 +117,60 @@ export interface ReviewCandidate {
   basis: string
   /** Source identifiers a reviewer needs in order to check the item. */
   sources: readonly string[]
+  /** Exact observation and source snapshots shown to the reviewer. */
+  evidence: ReviewCandidateEvidence
+}
+
+/** Stable, compact identity for every candidate in a sampled queue's complete universe. */
+export interface ReviewCandidateIndexEntry {
+  slug: string
+  fieldPath: string
+  reason: ReviewReason
+  priority: number
+}
+
+/** Explicit audit trail for a bounded deterministic queue. */
+export interface ReviewQueueSelectionAudit {
+  mode: 'sampled'
+  availableCandidates: number
+  retainedCandidates: number
+  selectionRule: string
+  seed: number
+  /**
+   * How the exact candidate can be reconstructed from this run's output and declared corpus.
+   * This is reader-facing provenance, not executable medical logic.
+   */
+  retrieval: string
+  completeCandidateIndex: readonly ReviewCandidateIndexEntry[]
+}
+
+export const REVIEW_CANDIDATE_EVIDENCE_SCHEMA = 'agent-review-evidence/v2' as const
+
+/** One immutable source reading behind a candidate. No source is selected as the winner. */
+export interface ReviewEvidenceSource {
+  sourceKey: string
+  kind: BackgroundSourceKind
+  identifier: string
+  label: string
+  locator?: string
+  version?: string
+  effectiveDate?: string
+  retrievedAt: string
+  excerpt?: string
+}
+
+/**
+ * Evidence is operational review context, not a scientific finding. `observation` holds everything
+ * useful for explaining why the detector routed the row. `identityObservation` is the smaller,
+ * candidate-local subset whose change genuinely makes a prior human decision stale. Corpus-wide
+ * counts, percentiles and scores belong only in `observation`; otherwise an unrelated corpus edit
+ * would reopen every reviewed occurrence.
+ */
+export interface ReviewCandidateEvidence {
+  schema: typeof REVIEW_CANDIDATE_EVIDENCE_SCHEMA
+  observation: Record<string, unknown>
+  identityObservation: Record<string, unknown>
+  sourceReadings: readonly ReviewEvidenceSource[]
 }
 
 export interface DatasetAgent<TOutput> {
@@ -148,7 +218,20 @@ export function findForbiddenPhrases(text: string): string[] {
 }
 
 /** Keys whose values are quoted from a source and are therefore not the agent's words. */
-const QUOTED_KEYS = new Set(['excerpt', 'textAsRecorded', 'display', 'sources', 'source'])
+const QUOTED_KEYS = new Set([
+  'excerpt',
+  'textAsRecorded',
+  'display',
+  'recordedValue',
+  'recordedValues',
+  'sources',
+  'source',
+  'sourceKey',
+  'identifier',
+  'label',
+  'locator',
+  'retrievedAt',
+])
 
 /**
  * Every string in a value that the agent composed itself, with quoted source text left out.

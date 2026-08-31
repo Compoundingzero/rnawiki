@@ -34,6 +34,7 @@ import {
   minimumCalibrationSize,
   mondrianConformal,
 } from '@/lib/agents/core/conformal'
+import { reviewEvidence, reviewEvidenceSource } from '@/lib/agents/core/evidence'
 import { robustSummary } from '@/lib/agents/core/statistics'
 import type {
   AgentCorpusEntry,
@@ -70,11 +71,13 @@ const FIELD_LABELS: Record<ScreenedField, string> = {
 const ALPHA = 0.05
 
 const AGENT_NAME = 'peer-group-anomaly-screen'
-const AGENT_VERSION = '1.0.0'
+const AGENT_VERSION = '1.1.0'
 
 export interface PeerAnomalySourceRef {
   kind: BackgroundSourceKind
   identifier: string
+  label: string
+  locator?: string
   retrievedAt: string
   /** The fetched wording the number was read out of, when the record carries one. */
   excerpt?: string
@@ -235,6 +238,8 @@ function collectScreenedValues(entry: AgentCorpusEntry): {
       source: {
         kind: recorded.source.kind,
         identifier: recorded.source.identifier,
+        label: recorded.source.label,
+        ...(recorded.source.locator ? { locator: recorded.source.locator } : {}),
         retrievedAt: recorded.source.retrievedAt,
         ...(recorded.source.excerpt ? { excerpt: recorded.source.excerpt } : {}),
       },
@@ -377,13 +382,50 @@ function reviewCandidate(flag: PeerAnomalyFlag, expectedFalseFlags: number): Rev
       : `${flag.positionRelativeToGroupMedian} the median of`
   return {
     slug: flag.slug,
+    fieldPath: `pharmacokinetics.${flag.field}`,
     reason: 'UNUSUAL_FOR_PEER_GROUP',
     // A question about the record, answerable by reading the source sentence beside it. It asks
     // what the source says, never what the value ought to be.
     question: `Recorded ${flag.fieldLabel} for ${flag.name} is "${flag.display}", with the population context recorded as "${flag.populationContext}". It sits ${direction} the ${flag.groupSize} recorded ${flag.fieldLabel} values in the ${flag.group} peer group. Does the fetched excerpt on this record state this figure, in this unit, for this population, and is the ${flag.group} group the right set of recorded values to read it beside?`,
     priority: 1 - flag.pValue,
     basis: `Group-conditional split-conformal p-value ${flag.pValue.toFixed(4)} within the ${flag.group} peer group, from ${flag.calibrationSize} calibration values whose smallest reachable p-value is ${flag.resolutionLimit.toFixed(4)}. The recorded value is ${formatNumber(flag.numeric)} ${flag.unit} against a group median of ${formatNumber(flag.medianOfRecordedGroupValues)} ${flag.unit}. About ${expectedFalseFlags.toFixed(1)} flags in this screen are expected to look this unusual by chance alone.`,
-    sources: [`${flag.source.kind} ${flag.source.identifier}`],
+    sources: [`${flag.source.kind}:${flag.source.identifier}`],
+    evidence: reviewEvidence(
+      {
+        recordedValue: {
+          display: flag.display,
+          numeric: flag.numeric,
+          unit: flag.unit,
+          populationContext: flag.populationContext,
+        },
+        peerScreen: {
+          group: flag.group,
+          groupSize: flag.groupSize,
+          pValue: flag.pValue,
+          nonconformity: flag.nonconformity,
+          medianOfRecordedGroupValues: flag.medianOfRecordedGroupValues,
+        },
+      },
+      [
+        reviewEvidenceSource({
+          kind: flag.source.kind,
+          identifier: flag.source.identifier,
+          label: flag.source.label,
+          ...(flag.source.locator ? { locator: flag.source.locator } : {}),
+          retrievedAt: flag.source.retrievedAt,
+          ...(flag.source.excerpt ? { excerpt: flag.source.excerpt } : {}),
+        }),
+      ],
+      {
+        recordedValue: {
+          display: flag.display,
+          numeric: flag.numeric,
+          unit: flag.unit,
+          populationContext: flag.populationContext,
+        },
+        peerGroup: flag.group,
+      },
+    ),
   }
 }
 

@@ -1091,6 +1091,8 @@ export const backgroundSourceBindings = pgTable(
     sourceKey: varchar('source_key', { length: 480 }).notNull(),
     sourceLabel: text('source_label').notNull(),
     sourceLocator: text('source_locator'),
+    sourceVersion: text('source_version'),
+    sourceEffectiveDate: text('source_effective_date'),
     sourceRetrievedAt: timestamp('source_retrieved_at', { withTimezone: true }).notNull(),
     sourceExcerpt: text('source_excerpt').notNull(),
     assertionDigest: varchar('assertion_digest', { length: 71 }).notNull(),
@@ -1140,6 +1142,17 @@ export const backgroundSourceBindings = pgTable(
         ))
         and nullif(btrim(${table.sourceExcerpt}), '') is not null
         and char_length(${table.sourceExcerpt}) <= 400`,
+    ),
+    check(
+      'background_source_bindings_source_revision_copy',
+      sql`(${table.sourceVersion} is null or (
+          nullif(btrim(${table.sourceVersion}), '') is not null
+          and char_length(${table.sourceVersion}) <= 2000
+        ))
+        and (${table.sourceEffectiveDate} is null or (
+          nullif(btrim(${table.sourceEffectiveDate}), '') is not null
+          and char_length(${table.sourceEffectiveDate}) <= 2000
+        ))`,
     ),
     check(
       'background_source_bindings_question_intent',
@@ -3955,6 +3968,18 @@ export const evidenceReviewTaskSourceDeltasRelations = relations(
 /* ---------------------------------------------------------------------------------------------- */
 
 export const agentRunStatusEnum = pgEnum('agent_run_status', ['COMPLETED', 'FAILED'])
+export const agentAudienceLaneEnum = pgEnum('agent_audience_lane', [
+  'ordinary',
+  'biotech',
+  'chemist',
+  'quantitative',
+])
+export const agentReviewSeverityEnum = pgEnum('agent_review_severity', [
+  'low',
+  'medium',
+  'high',
+  'blocking',
+])
 
 /**
  * Four outcomes rather than two, because the third carries the most information and a binary
@@ -4016,11 +4041,11 @@ export const agentReviewCandidates = pgTable(
     id: varchar('id', { length: 64 }).primaryKey(),
     /** Stable while the QUESTION is the same. Never derived from prose, counts or a patch version. */
     candidateKey: varchar('candidate_key', { length: 64 }).notNull(),
-    /** Changes when the value, a source, the parser or the corpus changes. */
+    /** Changes when the value, a source, the parser or candidate-local evidence scope changes. */
     occurrenceKey: varchar('occurrence_key', { length: 64 }).notNull(),
     runId: varchar('run_id', { length: 64 })
       .notNull()
-      .references(() => agentRuns.id, { onDelete: 'cascade' }),
+      .references(() => agentRuns.id, { onDelete: 'restrict' }),
     agentName: varchar('agent_name', { length: 64 }).notNull(),
     subjectType: varchar('subject_type', { length: 24 }).notNull(),
     subjectId: varchar('subject_id', { length: 160 }).notNull(),
@@ -4033,12 +4058,28 @@ export const agentReviewCandidates = pgTable(
     question: text('question').notNull(),
     /** What the agent observed, kept so a reviewer sees the evidence rather than re-deriving it. */
     evidence: jsonb('evidence').$type<Record<string, unknown>>(),
+    /** Digest of the canonical evidence object shown in the workbench. Null only on legacy rows. */
+    evidenceDigest: varchar('evidence_digest', { length: 64 }),
+    /** Exact source snapshots behind this occurrence; source ordering never changes identity. */
+    sourceSnapshotDigests: text('source_snapshot_digests')
+      .array()
+      .notNull()
+      .default(sql`ARRAY[]::text[]`),
     sourceIds: text('source_ids').array().notNull(),
+    audienceLane: agentAudienceLaneEnum('audience_lane'),
+    severity: agentReviewSeverityEnum('severity'),
+    provenanceTier: varchar('provenance_tier', { length: 24 }),
+    agentVersion: varchar('candidate_agent_version', { length: 16 }),
+    reasonSchemaVersion: varchar('candidate_reason_schema_version', { length: 16 }),
     firstSeenAt: timestamp('first_seen_at', { withTimezone: true }).notNull().defaultNow(),
     lastSeenAt: timestamp('last_seen_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
     uniqueIndex('agent_review_candidates_occurrence_unique').on(table.occurrenceKey),
+    uniqueIndex('agent_review_candidates_candidate_occurrence_unique').on(
+      table.candidateKey,
+      table.occurrenceKey,
+    ),
     index('agent_review_candidates_candidate_idx').on(table.candidateKey),
     index('agent_review_candidates_agent_idx').on(table.agentName, table.reason),
     index('agent_review_candidates_subject_idx').on(table.subjectType, table.subjectId),
@@ -4046,7 +4087,59 @@ export const agentReviewCandidates = pgTable(
       'agent_review_candidates_keys',
       sql`${table.candidateKey} ~ '^[0-9a-f]{64}$' and ${table.occurrenceKey} ~ '^[0-9a-f]{64}$'`,
     ),
+    check(
+      'agent_review_candidates_evidence_digest',
+      sql`${table.evidenceDigest} is null or ${table.evidenceDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
   ],
+)
+
+/** Immutable membership of an occurrence in a run; score and wording live here, not in identity. */
+export const agentRunCandidates = pgTable(
+  'agent_run_candidates',
+  {
+    runId: varchar('run_id', { length: 64 }).notNull(),
+    candidateKey: varchar('candidate_key', { length: 64 }).notNull(),
+    occurrenceKey: varchar('occurrence_key', { length: 64 }).notNull(),
+    priority: numeric('priority').notNull(),
+    basis: text('basis').notNull(),
+    question: text('question').notNull(),
+    evidenceDigest: varchar('evidence_digest', { length: 64 }).notNull(),
+    /** Run-scoped routing may change without making the underlying evidence a new occurrence. */
+    audienceLane: agentAudienceLaneEnum('audience_lane').notNull(),
+    severity: agentReviewSeverityEnum('severity').notNull(),
+    provenanceTier: varchar('provenance_tier', { length: 24 }).notNull(),
+    /** Explicit, interpretable ordering inputs. They may order work and may never change facts. */
+    rankingFeatures: jsonb('ranking_features').$type<Record<string, unknown>>().notNull(),
+    observedAt: timestamp('observed_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.runId, table.occurrenceKey] }),
+    foreignKey({ columns: [table.runId], foreignColumns: [agentRuns.id] }).onDelete('restrict'),
+    foreignKey({
+      columns: [table.candidateKey, table.occurrenceKey],
+      foreignColumns: [agentReviewCandidates.candidateKey, agentReviewCandidates.occurrenceKey],
+    }).onDelete('restrict'),
+    index('agent_run_candidates_candidate_idx').on(table.candidateKey, table.runId),
+    check('agent_run_candidates_evidence_digest', sql`${table.evidenceDigest} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'agent_run_candidates_copy',
+      sql`nullif(btrim(${table.basis}), '') is not null and nullif(btrim(${table.question}), '') is not null`,
+    ),
+  ],
+)
+
+/** Mutable operational pointer only; every run and occurrence it points at remains append-only. */
+export const agentCurrentRuns = pgTable(
+  'agent_current_runs',
+  {
+    agentName: varchar('agent_name', { length: 64 }).primaryKey(),
+    runId: varchar('run_id', { length: 64 })
+      .notNull()
+      .references(() => agentRuns.id, { onDelete: 'restrict' }),
+    activatedAt: timestamp('activated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [uniqueIndex('agent_current_runs_run_unique').on(table.runId)],
 )
 
 export const agentQueueDecisions = pgTable(
@@ -4060,7 +4153,7 @@ export const agentQueueDecisions = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: 'restrict' }),
     decision: agentQueueDecisionEnum('decision').notNull(),
-    /** Free prose is required on everything except NOT_A_PROBLEM, which needs no defence. */
+    /** A plain explanation is required for every outcome, including why a flag is not a defect. */
     explanation: text('explanation'),
     /** Digest of the evidence the reviewer was actually shown, so the decision stays interpretable. */
     evidenceDigest: varchar('evidence_digest', { length: 64 }).notNull(),
@@ -4068,8 +4161,8 @@ export const agentQueueDecisions = pgTable(
     decidedAt: timestamp('decided_at', { withTimezone: true }).notNull().defaultNow(),
   },
   (table) => [
-    /* One decision per reviewer per observation. A changed observation is a new row, never an edit. */
-    uniqueIndex('agent_queue_decisions_reviewer_unique').on(
+    /* Reversals are new events; this index supports history without suppressing later decisions. */
+    index('agent_queue_decisions_reviewer_occurrence_idx').on(
       table.occurrenceKey,
       table.decidedByUserId,
     ),
@@ -4081,8 +4174,12 @@ export const agentQueueDecisions = pgTable(
     ),
     check(
       'agent_queue_decisions_explanation',
-      sql`${table.decision} = 'NOT_A_PROBLEM' or nullif(btrim(${table.explanation}), '') is not null`,
+      sql`nullif(btrim(${table.explanation}), '') is not null`,
     ),
+    foreignKey({
+      columns: [table.candidateKey, table.occurrenceKey],
+      foreignColumns: [agentReviewCandidates.candidateKey, agentReviewCandidates.occurrenceKey],
+    }).onDelete('restrict'),
   ],
 )
 

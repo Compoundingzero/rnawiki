@@ -21,11 +21,16 @@
  */
 
 import type { AgentInput, AgentRun, DatasetAgent, ReviewCandidate } from '@/lib/agents/core/types'
+import { reviewEvidence, reviewEvidenceSource } from '@/lib/agents/core/evidence'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
-import type { MedicineRecordedBackground, RecordedValue } from '@/lib/background/types'
+import type {
+  BackgroundSource,
+  MedicineRecordedBackground,
+  RecordedValue,
+} from '@/lib/background/types'
 
 const AGENT_NAME = 'excerpt-integrity'
-const AGENT_VERSION = '1.0.0'
+const AGENT_VERSION = '1.2.0'
 
 /**
  * Numeral forms that mean the same quantity but do not match as substrings.
@@ -121,6 +126,9 @@ export interface IntegrityEntry {
   path: string
   module: string
   state: IntegrityState
+  /** Exact displayed value and its source snapshot, retained for an answerable review item. */
+  recordedValue: string
+  source: BackgroundSource
   /** Numerals the display commits to that the excerpt does not print. */
   missingNumerals?: string[]
 }
@@ -273,6 +281,8 @@ export const excerptIntegrityAgent: DatasetAgent<ExcerptIntegrityDataset> = {
           path,
           module,
           state,
+          recordedValue: value.display,
+          source: value.source,
           ...(missing.length > 0 ? { missingNumerals: missing } : {}),
         })
       }
@@ -355,14 +365,27 @@ export const excerptIntegrityAgent: DatasetAgent<ExcerptIntegrityDataset> = {
 
     const queue: ReviewCandidate[] = entries
       .filter((entry) => entry.state === 'NUMBER_ABSENT')
-      .slice(0, 60)
       .map((entry) => ({
         slug: entry.slug,
+        fieldPath: entry.path,
         reason: 'ATTRIBUTION_SUSPECT' as const,
         question: `The value recorded at ${entry.path} shows ${(entry.missingNumerals ?? []).join(', ')}, which this check could not find in the excerpt stored beside it. Does the fetched source print that figure, and is the stored excerpt the passage it came from?`,
         priority: 1,
         basis: `Independent numeral check after ${NUMERAL_NORMALISATION_RULES.length} normalisation rules. A miss here is a transcription question about this corpus, not a statement about the source.`,
-        sources: [entry.path],
+        sources: [`${entry.source.kind}:${entry.source.identifier}`],
+        evidence: reviewEvidence(
+          {
+            integrityState: entry.state,
+            recordedValue: entry.recordedValue,
+            missingNumerals: entry.missingNumerals ?? [],
+          },
+          [reviewEvidenceSource(entry.source)],
+          {
+            integrityState: entry.state,
+            recordedValue: entry.recordedValue,
+            missingNumerals: entry.missingNumerals ?? [],
+          },
+        ),
       }))
 
     return {
@@ -392,7 +415,7 @@ export const excerptIntegrityAgent: DatasetAgent<ExcerptIntegrityDataset> = {
         overallVerifiedShare: totalChecked > 0 ? totalVerified / totalChecked : 1,
         normalisationRules: NUMERAL_NORMALISATION_RULES,
         engineComparison: {
-          disagreements: disagreements.slice(0, 40),
+          disagreements,
           recordsCompared: input.corpus.length,
           agreementRate:
             input.corpus.length > 0

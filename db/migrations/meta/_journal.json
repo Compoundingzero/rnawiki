@@ -141,6 +141,20 @@
       "when": 1788162784158,
       "tag": "0019_recorded_background_freshness",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1788189562825,
+      "tag": "0020_agent_review_workbench",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1788203368069,
+      "tag": "0021_source_binding_revisions",
+      "breakpoints": true
     }
   ]
 }

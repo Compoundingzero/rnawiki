@@ -13,6 +13,7 @@ import {
   canManageInternalReview,
   INTERNAL_REVIEW_ROLE_EXPLANATION,
 } from '@/lib/internal-review-policy'
+import { AGENT_REVIEW_ROLE_EXPLANATION, canReviewAgentEvidence } from '@/lib/agent-review-policy'
 import type { CommentUser } from '@/lib/types'
 
 export interface SessionData {
@@ -135,6 +136,15 @@ export async function requireInternalReviewer(): Promise<CommentUser> {
   const user = await requireUser()
   if (!canManageInternalReview(user)) {
     throw new AuthError('forbidden', INTERNAL_REVIEW_ROLE_EXPLANATION)
+  }
+  return user
+}
+
+/** Agent evidence decisions use an explicit steward/admin capability, never a client-supplied role. */
+export async function requireAgentReviewer(): Promise<CommentUser> {
+  const user = await requireUser()
+  if (!canReviewAgentEvidence(user)) {
+    throw new AuthError('forbidden', AGENT_REVIEW_ROLE_EXPLANATION)
   }
   return user
 }

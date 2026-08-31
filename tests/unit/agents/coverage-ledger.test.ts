@@ -77,6 +77,15 @@ describe('coverage ledger', () => {
     }
   })
 
+  it('publishes the complete eligible universe beside its bounded seeded sample', () => {
+    const selectable = run.output.entries.filter((entry) => entry.route !== 'CURATED').length
+    expect(run.queueSelection?.mode).toBe('sampled')
+    expect(run.queueSelection?.availableCandidates).toBe(selectable)
+    expect(run.queueSelection?.retainedCandidates).toBe(run.queue?.length)
+    expect(run.queueSelection?.completeCandidateIndex).toHaveLength(selectable)
+    expect(run.queueSelection?.retrieval).toContain('run.output.entries')
+  })
+
   it('is deterministic: the same corpus and seed reproduce the run exactly', () => {
     const again = coverageLedgerAgent.run({ corpus: CORPUS, seed: SEED, runDate: RUN_DATE })
     expect(JSON.stringify(again)).toBe(JSON.stringify(run))

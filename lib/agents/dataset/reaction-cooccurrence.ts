@@ -51,6 +51,7 @@
 
 import { createRng, type Rng } from '@/lib/agents/core/rng'
 import { benjaminiHochberg, hypergeometricUpperTail } from '@/lib/agents/core/statistics'
+import { reviewEvidence, reviewEvidenceSource } from '@/lib/agents/core/evidence'
 import {
   findForbiddenPhrases,
   type AgentInput,
@@ -94,6 +95,8 @@ export interface TermListing {
   matchesSourceCasing: boolean
   sourceKind: BackgroundSource['kind']
   sourceIdentifier: string
+  sourceLabel: string
+  sourceLocator?: string
   retrievedAt: string
   /** The fetched wording the list was read from; it contains the term verbatim. */
   excerpt: string
@@ -370,7 +373,7 @@ function swapRandomise(
 
 export const reactionCooccurrenceAgent: DatasetAgent<ReactionTermStructure> = {
   name: 'adverse-reaction-term-structure',
-  version: '1.0.0',
+  version: '1.1.0',
   description:
     'Counts, per adverse-reaction term, how many labels print it in their most-common list and at which recorded thresholds, and reports which pairs of terms are printed together more often than each term’s own frequency across the corpus accounts for.',
 
@@ -454,6 +457,8 @@ export const reactionCooccurrenceAgent: DatasetAgent<ReactionTermStructure> = {
           matchesSourceCasing: exactCase,
           sourceKind: recorded.source.kind,
           sourceIdentifier: recorded.source.identifier,
+          sourceLabel: recorded.source.label,
+          ...(recorded.source.locator ? { sourceLocator: recorded.source.locator } : {}),
           retrievedAt: recorded.source.retrievedAt,
           excerpt,
         })
@@ -705,6 +710,7 @@ function buildQueue(
   for (const item of withheld) {
     candidates.push({
       slug: item.slug,
+      fieldPath: `commonAdverseReactions.eventsAsRecorded[${JSON.stringify(foldTerm(item.termAsRecorded))}]`,
       reason: 'ATTRIBUTION_SUSPECT',
       question:
         item.reason === 'NOT_IN_EXCERPT'
@@ -713,6 +719,11 @@ function buildQueue(
       priority: 1000,
       basis: 'A term that fails its own excerpt is withheld from every count in this dataset.',
       sources: [`${item.source.kind}:${item.source.identifier}`],
+      evidence: reviewEvidence(
+        { issueCode: item.reason, recordedValue: item.termAsRecorded },
+        [reviewEvidenceSource(item.source)],
+        { issueCode: item.reason, recordedValue: item.termAsRecorded },
+      ),
     })
   }
 
@@ -722,11 +733,16 @@ function buildQueue(
       for (const listing of profile.listings) {
         candidates.push({
           slug: listing.slug,
+          fieldPath: `commonAdverseReactions.eventsAsRecorded[${JSON.stringify(profile.term)}]`,
           reason: 'COVERAGE_GAP',
           question: `Is "${listing.termAsRecorded}" one event term as this label prints it, or several the parser left joined in one string?`,
           priority: profile.labelsPrintingTerm,
           basis: `Records carrying this exact joined term: ${profile.labelsPrintingTerm}. The term is counted as one term everywhere in this dataset until a person settles that.`,
           sources: [`${listing.sourceKind}:${listing.sourceIdentifier}`],
+          evidence: listingEvidence(listing, {
+            issueCode: 'POSSIBLY_JOINED_TERMS',
+            labelsPrintingTerm: profile.labelsPrintingTerm,
+          }),
         })
       }
       continue
@@ -742,11 +758,17 @@ function buildQueue(
     for (const listing of profile.listings) {
       candidates.push({
         slug: listing.slug,
+        fieldPath: `commonAdverseReactions.eventsAsRecorded[${JSON.stringify(profile.term)}]`,
         reason: 'COVERAGE_GAP',
         question: `This record's term is recorded as "${listing.termAsRecorded}", which begins with "${shorter.term}" — a term ${degreeOf.get(shorter.term) ?? 0} labels print on its own. Is the longer string the event name this label printed, or the shorter term with surrounding label text attached?`,
         priority: degreeOf.get(shorter.term) ?? 0,
         basis: `Labels printing the shorter term on its own: ${degreeOf.get(shorter.term) ?? 0}. The two are counted as separate terms and are never merged by this agent.`,
         sources: [`${listing.sourceKind}:${listing.sourceIdentifier}`],
+        evidence: listingEvidence(listing, {
+          issueCode: 'POSSIBLY_ATTACHED_LABEL_TEXT',
+          shorterRecordedTerm: shorter.term,
+          labelsPrintingShorterTerm: degreeOf.get(shorter.term) ?? 0,
+        }),
       })
     }
   }
@@ -757,6 +779,38 @@ function buildQueue(
       compareStrings(left.reason, right.reason) ||
       compareStrings(left.slug, right.slug) ||
       compareStrings(left.question, right.question),
+  )
+}
+
+function listingEvidence(
+  listing: TermListing,
+  detail: Record<string, unknown>,
+): ReviewCandidate['evidence'] {
+  const identityDetail =
+    detail.issueCode === 'POSSIBLY_ATTACHED_LABEL_TEXT'
+      ? { issueCode: detail.issueCode, shorterRecordedTerm: detail.shorterRecordedTerm }
+      : { issueCode: detail.issueCode }
+  return reviewEvidence(
+    {
+      ...detail,
+      recordedValue: listing.termAsRecorded,
+      thresholdAsRecorded: listing.thresholdAsRecorded,
+    },
+    [
+      reviewEvidenceSource({
+        kind: listing.sourceKind,
+        identifier: listing.sourceIdentifier,
+        label: listing.sourceLabel,
+        ...(listing.sourceLocator ? { locator: listing.sourceLocator } : {}),
+        retrievedAt: listing.retrievedAt,
+        excerpt: listing.excerpt,
+      }),
+    ],
+    {
+      ...identityDetail,
+      recordedValue: listing.termAsRecorded,
+      thresholdAsRecorded: listing.thresholdAsRecorded,
+    },
   )
 }
 

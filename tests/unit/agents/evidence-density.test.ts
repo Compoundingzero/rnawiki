@@ -145,6 +145,36 @@ describe('evidence density on the recorded corpus', () => {
     for (let index = 1; index < priorities.length; index += 1) {
       expect(priorities[index]!).toBeLessThanOrEqual(priorities[index - 1]!)
     }
+    const eligible = RUN.output.perMedicine.filter(
+      (record) => (variants.get(record.slug) ?? 0) >= 1 && record.score <= median,
+    )
+    expect(RUN.queue).toHaveLength(eligible.length)
+    expect(RUN.queueSelection).toBeUndefined()
+    expect(RUN.caveats.join(' ')).toContain(
+      `median density of ${median.toFixed(3)} among records holding a marketed product entry`,
+    )
+  })
+
+  it('reports an empty eligible population without leaking state from a previous run', () => {
+    const corpusWithoutMarketedProducts = CORPUS.slice(0, 12).map((entry) => ({
+      ...entry,
+      background: { ...entry.background, productVariants: undefined },
+    }))
+    const first = evidenceDensityAgent.run({
+      corpus: corpusWithoutMarketedProducts,
+      seed: 20260828,
+      runDate: '2026-08-28',
+    })
+    const second = evidenceDensityAgent.run({
+      corpus: corpusWithoutMarketedProducts,
+      seed: 20260828,
+      runDate: '2026-08-28',
+    })
+
+    expect(first.queue).toEqual([])
+    expect(first.parameters.queueCutoffAmongMarketedRecords).toBe(-1)
+    expect(first.caveats.join(' ')).toContain('no eligible population')
+    expect(second).toEqual(first)
   })
 
   it('states the variant proxy is unavailable rather than quietly ranking on a flat field', () => {

@@ -29,8 +29,15 @@
  * identifiers so a reviewer can go back to the fetched artifact, and nothing more.
  */
 
-import type { AgentInput, AgentRun, DatasetAgent, ReviewCandidate } from '@/lib/agents/core/types'
+import type {
+  AgentInput,
+  AgentRun,
+  DatasetAgent,
+  ReviewCandidate,
+  ReviewCandidateIndexEntry,
+} from '@/lib/agents/core/types'
 import { createRng, shuffleInPlace } from '@/lib/agents/core/rng'
+import { recordedBackgroundSources, reviewEvidence } from '@/lib/agents/core/evidence'
 import type {
   BackgroundSource,
   MedicineRecordedBackground,
@@ -437,9 +444,6 @@ export function silenceQuestionForPopulation(population: StudiedPopulation): Sil
 const QUEUE_QUESTION_LIMIT = 5
 /** How many records are queued per gap question, so one question cannot fill the whole queue. */
 const QUEUE_PER_QUESTION_LIMIT = 8
-/** Source identifiers carried on a candidate, enough to find the record's documents again. */
-const QUEUE_SOURCE_LIMIT = 5
-
 function percent(share: number): string {
   return `${(share * 100).toFixed(1)}%`
 }
@@ -450,7 +454,7 @@ function percent(share: number): string {
 
 export const silenceLedgerAgent: DatasetAgent<SilenceLedger> = {
   name: 'silence-ledger',
-  version: '1.0.0',
+  version: '1.2.0',
   description:
     'Classifies every record against a fixed question set as recorded, stated not established, or silent, and counts where the corpus holds no answer.',
 
@@ -563,7 +567,7 @@ export const silenceLedgerAgent: DatasetAgent<SilenceLedger> = {
       { recorded: 0, notEstablished: 0, silent: 0 },
     )
 
-    const queue = buildQueue(medicines, rollUp, questionCount, rng)
+    const queueSelection = buildQueue(input.corpus, medicines, rollUp, questionCount, rng)
 
     return {
       agent: silenceLedgerAgent.name,
@@ -598,25 +602,43 @@ export const silenceLedgerAgent: DatasetAgent<SilenceLedger> = {
           mixedRecordedStates,
         },
       },
-      queue,
+      queue: queueSelection.queue,
+      queueSelection:
+        queueSelection.completeCandidateIndex.length > queueSelection.queue.length
+          ? {
+              mode: 'sampled',
+              availableCandidates: queueSelection.completeCandidateIndex.length,
+              retainedCandidates: queueSelection.queue.length,
+              selectionRule: `Order questions by descending positive gap score and retain the first ${QUEUE_QUESTION_LIMIT}; within each retained question, rank silent records by addressed share times other-question coverage after a deterministic seed-${input.seed} tie shuffle and retain the first ${QUEUE_PER_QUESTION_LIMIT}.`,
+              seed: input.seed,
+              retrieval:
+                'Each indexed identity can be reconstructed exactly by re-running this agent against the corpus commit and digest declared by its enclosing artifact; run.output.medicines and run.output.rollUp hold the complete medicine-question states and ranking inputs.',
+              completeCandidateIndex: queueSelection.completeCandidateIndex,
+            }
+          : undefined,
       caveats: buildCaveats(total, extractedRecords, rollUp),
     }
   },
 }
 
 function buildQueue(
+  corpus: AgentInput['corpus'],
   medicines: readonly MedicineSilenceLedger[],
   rollUp: readonly SilenceQuestionRollUp[],
   questionCount: number,
   rng: ReturnType<typeof createRng>,
-): ReviewCandidate[] {
+): { queue: ReviewCandidate[]; completeCandidateIndex: ReviewCandidateIndexEntry[] } {
   const candidates: ReviewCandidate[] = []
-  const gapQuestions = rollUp
-    .filter((question) => question.gapScore > 0)
-    .slice(0, QUEUE_QUESTION_LIMIT)
+  const completeCandidateIndex: ReviewCandidateIndexEntry[] = []
+  const backgroundBySlug = new Map(corpus.map((entry) => [entry.slug, entry.background]))
+  const gapQuestions = rollUp.filter((question) => question.gapScore > 0)
 
-  for (const question of gapQuestions) {
-    const forQuestion: Array<{ candidate: ReviewCandidate; priority: number }> = []
+  for (const [questionRank, question] of gapQuestions.entries()) {
+    const forQuestion: Array<{
+      ledger: MedicineSilenceLedger
+      entry: SilenceLedgerEntry
+      priority: number
+    }> = []
 
     for (const ledger of medicines) {
       const entry = ledger.entries.find((item) => item.questionId === question.questionId)
@@ -629,20 +651,10 @@ function buildQueue(
       const otherAnswered = ledger.recorded + ledger.notEstablished
       const otherShare = questionCount > 1 ? otherAnswered / (questionCount - 1) : 0
       const priority = question.addressedShare * otherShare
-
       forQuestion.push({
+        ledger,
+        entry,
         priority,
-        candidate: {
-          slug: ledger.slug,
-          reason: 'COVERAGE_GAP',
-          question: `${question.prompt} This record holds no answer, while ${question.recorded + question.notEstablished} of ${question.medicines} records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.`,
-          priority,
-          basis: `Silent on a question ${percent(question.addressedShare)} of records answer, in a record that answers ${otherAnswered} of the other ${questionCount - 1} questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.`,
-          sources: distinct(ledger.entries.flatMap((item) => item.sources)).slice(
-            0,
-            QUEUE_SOURCE_LIMIT,
-          ),
-        },
       })
     }
 
@@ -651,12 +663,60 @@ function buildQueue(
     // of every run.
     shuffleInPlace(forQuestion, rng)
     forQuestion.sort((left, right) => right.priority - left.priority)
-    for (const item of forQuestion.slice(0, QUEUE_PER_QUESTION_LIMIT)) {
-      candidates.push(item.candidate)
+    for (const [recordRank, item] of forQuestion.entries()) {
+      const fieldPath = `silenceQuestions.${question.questionId}`
+      completeCandidateIndex.push({
+        slug: item.ledger.slug,
+        fieldPath,
+        reason: 'COVERAGE_GAP',
+        priority: item.priority,
+      })
+      if (questionRank >= QUEUE_QUESTION_LIMIT || recordRank >= QUEUE_PER_QUESTION_LIMIT) continue
+
+      const background = backgroundBySlug.get(item.ledger.slug)
+      const sourceReadings = background ? recordedBackgroundSources(background) : []
+      const otherAnswered = item.ledger.recorded + item.ledger.notEstablished
+      candidates.push({
+        slug: item.ledger.slug,
+        fieldPath,
+        reason: 'COVERAGE_GAP',
+        question: `${question.prompt} This record holds no answer, while ${question.recorded + question.notEstablished} of ${question.medicines} records in the corpus hold one. Check whether a source already fetched for this record states it in a section the extractor did not read.`,
+        priority: item.priority,
+        basis: `Silent on a question ${percent(question.addressedShare)} of records answer, in a record that answers ${otherAnswered} of the other ${questionCount - 1} questions; ranked on those two shares, with ties broken by a seeded shuffle so the queue is not ordered by slug. Silence is a property of the documents recorded here, not of the medicine, and not a sign that anything is wrong with the record.`,
+        sources: sourceReadings.map((source) => source.sourceKey),
+        evidence: reviewEvidence(
+          {
+            questionId: question.questionId,
+            state: item.entry.state,
+            recordCoverage: {
+              recorded: item.ledger.recorded,
+              notEstablished: item.ledger.notEstablished,
+              silent: item.ledger.silent,
+            },
+            corpusCoverage: {
+              recorded: question.recorded,
+              notEstablished: question.notEstablished,
+              silent: question.silent,
+              medicines: question.medicines,
+            },
+          },
+          sourceReadings,
+          { questionId: question.questionId, state: item.entry.state },
+        ),
+      })
     }
   }
 
-  return candidates.sort((left, right) => right.priority - left.priority)
+  completeCandidateIndex.sort(
+    (left, right) =>
+      right.priority - left.priority ||
+      (left.fieldPath < right.fieldPath ? -1 : left.fieldPath > right.fieldPath ? 1 : 0) ||
+      (left.slug < right.slug ? -1 : left.slug > right.slug ? 1 : 0),
+  )
+  return {
+    queue: candidates.sort((left, right) => right.priority - left.priority),
+    completeCandidateIndex,
+  }
 }
 
 function buildCaveats(

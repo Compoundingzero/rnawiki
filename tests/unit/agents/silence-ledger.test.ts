@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import type { AgentCorpusEntry, AgentRun } from '@/lib/agents/core/types'
-import { findForbiddenPhrases } from '@/lib/agents/core/types'
+import type { AgentCorpusEntry } from '@/lib/agents/core/types'
+import { authoredStrings, findForbiddenPhrases } from '@/lib/agents/core/types'
 import {
   SILENCE_QUESTIONS,
   SILENCE_QUESTION_IDS,
@@ -9,7 +9,6 @@ import {
   SILENCE_STATES,
   silenceLedgerAgent,
   silenceQuestionForPopulation,
-  type SilenceLedger,
 } from '@/lib/agents/dataset/silence-ledger'
 import { STUDIED_POPULATIONS } from '@/lib/background/types'
 import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
@@ -27,18 +26,6 @@ const SEED = 20260828
 const RUN_DATE = '2026-08-28'
 
 const run = silenceLedgerAgent.run({ corpus: CORPUS, seed: SEED, runDate: RUN_DATE })
-
-/** Every string the run puts in front of a reader, including nested queue and roll-up text. */
-function collectStrings(value: unknown, out: string[] = []): string[] {
-  if (typeof value === 'string') {
-    out.push(value)
-  } else if (Array.isArray(value)) {
-    for (const item of value) collectStrings(item, out)
-  } else if (value !== null && typeof value === 'object') {
-    for (const item of Object.values(value)) collectStrings(item, out)
-  }
-  return out
-}
 
 describe('silence ledger question set', () => {
   it('is fixed, versioned, and free of duplicate questions', () => {
@@ -186,6 +173,17 @@ describe('silence ledger review queue', () => {
       expect(entry?.state, `${candidate.slug} ${String(questionId)}`).toBe('SILENT')
     }
   })
+
+  it('publishes every eligible silent pair beside its bounded seeded sample', () => {
+    const eligible = run.output.rollUp
+      .filter((question) => question.gapScore > 0)
+      .reduce((sum, question) => sum + question.silent, 0)
+    expect(run.queueSelection?.mode).toBe('sampled')
+    expect(run.queueSelection?.availableCandidates).toBe(eligible)
+    expect(run.queueSelection?.retainedCandidates).toBe(run.queue?.length)
+    expect(run.queueSelection?.completeCandidateIndex).toHaveLength(eligible)
+    expect(run.queueSelection?.retrieval).toContain('run.output.medicines')
+  })
 })
 
 describe('silence ledger discipline', () => {
@@ -218,7 +216,7 @@ describe('silence ledger discipline', () => {
   })
 
   it('keeps every reader-facing string clear of advice and of claims about medicines', () => {
-    const strings = collectStrings(run as AgentRun<SilenceLedger>)
+    const strings = authoredStrings(run)
     expect(strings.length).toBeGreaterThan(100)
     for (const text of strings) {
       expect(findForbiddenPhrases(text), text).toEqual([])

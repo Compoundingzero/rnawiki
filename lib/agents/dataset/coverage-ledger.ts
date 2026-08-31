@@ -17,14 +17,21 @@
  * nothing here should be read as ranking medicines by how much is known about them.
  */
 
-import type { AgentInput, AgentRun, DatasetAgent, ReviewCandidate } from '@/lib/agents/core/types'
+import type {
+  AgentInput,
+  AgentRun,
+  DatasetAgent,
+  ReviewCandidate,
+  ReviewCandidateIndexEntry,
+} from '@/lib/agents/core/types'
 import { createRng, shuffleInPlace } from '@/lib/agents/core/rng'
+import { recordedBackgroundSources, reviewEvidence } from '@/lib/agents/core/evidence'
 import type { MedicineRecordedBackground } from '@/lib/background/types'
 
 const AGENT_NAME = 'coverage-ledger'
 // 1.1.0 knows about recorded organisms, which 691 records held while the ledger called them empty.
 // 1.2.0 knows about marketed product listings.
-const AGENT_VERSION = '1.2.0'
+const AGENT_VERSION = '1.4.0'
 
 /**
  * How a record came to be filled.
@@ -257,24 +264,65 @@ export const coverageLedgerAgent: DatasetAgent<CoverageLedgerDataset> = {
     // of a corpus this size is not simply a sample of the letter A.
     const rng = createRng(input.seed)
     const queue: ReviewCandidate[] = []
+    const completeCandidateIndex: ReviewCandidateIndexEntry[] = []
+    const backgroundBySlug = new Map(input.corpus.map((entry) => [entry.slug, entry.background]))
     for (const route of COVERAGE_ROUTES) {
       if (route === 'CURATED') continue
       const scoped = entries.filter((entry) => entry.route === route)
       if (scoped.length === 0) continue
-      const thinnest = shuffleInPlace([...scoped], rng)
-        .sort((left, right) => left.moduleCount - right.moduleCount)
-        .slice(0, QUEUE_PER_ROUTE)
-      for (const entry of thinnest) {
+      const ranked = shuffleInPlace([...scoped], rng).sort(
+        (left, right) => left.moduleCount - right.moduleCount,
+      )
+      for (const [rank, entry] of ranked.entries()) {
+        const fieldPath = `recordedBackground.coverage.${route}`
+        const priority = 1 / (entry.moduleCount + 1)
+        completeCandidateIndex.push({
+          slug: entry.slug,
+          fieldPath,
+          reason: 'COVERAGE_GAP',
+          priority,
+        })
+        if (rank >= QUEUE_PER_ROUTE) continue
+        const background = backgroundBySlug.get(entry.slug)
+        const sourceReadings = background ? recordedBackgroundSources(background) : []
         queue.push({
           slug: entry.slug,
+          fieldPath,
           reason: 'COVERAGE_GAP',
           question: `This record holds ${entry.moduleCount} of the recordable modules, reached by ${route.toLowerCase().replace(/_/gu, ' ')}. Is there a source about this medicine that the corpus is not reading?`,
-          priority: 1 / (entry.moduleCount + 1),
+          priority,
           basis: `${ROUTE_LIMITS[route]} A thin record here reflects what the sources hold, not what is known about the medicine.`,
-          sources: entry.modulesPresent,
+          sources: sourceReadings.map((source) => source.sourceKey),
+          evidence: reviewEvidence(
+            {
+              route,
+              recordedModules: entry.modulesPresent,
+              moduleCount: entry.moduleCount,
+              ingredientCount: entry.ingredientCount,
+              ingredientsDocumented: entry.ingredientsDocumented,
+              provenanceTier: entry.provenanceTier,
+            },
+            sourceReadings,
+            {
+              route,
+              recordedModules: entry.modulesPresent,
+              moduleCount: entry.moduleCount,
+              ingredientCount: entry.ingredientCount,
+              ingredientsDocumented: entry.ingredientsDocumented,
+              provenanceTier: entry.provenanceTier,
+            },
+          ),
         })
       }
     }
+
+    const sortedQueue = queue.sort((left, right) => right.priority - left.priority)
+    completeCandidateIndex.sort(
+      (left, right) =>
+        right.priority - left.priority ||
+        (left.fieldPath < right.fieldPath ? -1 : left.fieldPath > right.fieldPath ? 1 : 0) ||
+        (left.slug < right.slug ? -1 : left.slug > right.slug ? 1 : 0),
+    )
 
     return {
       agent: AGENT_NAME,
@@ -300,7 +348,20 @@ export const coverageLedgerAgent: DatasetAgent<CoverageLedgerDataset> = {
         ingredientSlots,
         ingredientSlotsDocumented,
       },
-      queue: queue.sort((left, right) => right.priority - left.priority),
+      queue: sortedQueue,
+      queueSelection:
+        completeCandidateIndex.length > sortedQueue.length
+          ? {
+              mode: 'sampled',
+              availableCandidates: completeCandidateIndex.length,
+              retainedCandidates: sortedQueue.length,
+              selectionRule: `For every non-curated route, sort all eligible records by ascending module count after a deterministic seed-${input.seed} shuffle, then retain the first ${QUEUE_PER_ROUTE}.`,
+              seed: input.seed,
+              retrieval:
+                'Each indexed identity can be reconstructed exactly by re-running this agent against the corpus commit and digest declared by its enclosing artifact; run.output.entries holds its route and module observations.',
+              completeCandidateIndex,
+            }
+          : undefined,
       caveats: [
         'A route describes which source reached a record, not the quality of the medicine. A record on the compound-identity route holds a formula because that is all a compound database has, not because less is known about it.',
         'Every route has limits it cannot pass, and they are stated per route rather than left to inference. A supplement record will never carry a mechanism however many products list the ingredient, because supplement labels do not have one.',

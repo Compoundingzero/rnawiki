@@ -41,6 +41,7 @@
 
 import { median } from '@/lib/agents/core/statistics'
 import { createRng } from '@/lib/agents/core/rng'
+import { reviewEvidence, reviewEvidenceSource } from '@/lib/agents/core/evidence'
 import {
   findForbiddenPhrases,
   type AgentInput,
@@ -83,6 +84,12 @@ export interface CounterpartyMention {
   matchesSourceCasing: boolean
   sourceKind: BackgroundSource['kind']
   sourceIdentifier: string
+  sourceLabel: string
+  sourceLocator?: string
+  /** Source-controlled document or release version, when the recorded source provides one. */
+  sourceVersion?: string
+  /** Source-controlled effective date, when recorded separately from the fetch date. */
+  sourceEffectiveDate?: string
   retrievedAt: string
   /** The fetched wording the counterparty was read from; it contains the counterparty verbatim. */
   excerpt: string
@@ -349,7 +356,9 @@ export const enzymeDocumentationAgent: DatasetAgent<EnzymeDocumentationProfile> 
   // 1.1.0 splits every role count by polarity. Before it, a label sentence denying a role was
   // added to the same counter as one asserting it, and about two thirds of the published
   // role-bearing counts were denials reported as assertions.
-  version: '1.1.0',
+  // 1.3.0 carries the recorded source version and effective date through every admitted mention so
+  // the public reader can show either the exact metadata or an explicit absence.
+  version: '1.3.0',
   description:
     'Counts, per enzyme or transporter, how many medicine records name it, in which recorded roles and whether each was asserted or denied, from which descriptive label section, and how concentrated that documentation is across counterparties.',
 
@@ -404,6 +413,12 @@ export const enzymeDocumentationAgent: DatasetAgent<EnzymeDocumentationProfile> 
             matchesSourceCasing: exactCase,
             sourceKind: signal.source.kind,
             sourceIdentifier: signal.source.identifier,
+            sourceLabel: signal.source.label,
+            ...(signal.source.locator ? { sourceLocator: signal.source.locator } : {}),
+            ...(signal.source.version ? { sourceVersion: signal.source.version } : {}),
+            ...(signal.source.effectiveDate
+              ? { sourceEffectiveDate: signal.source.effectiveDate }
+              : {}),
             retrievedAt: signal.source.retrievedAt,
             excerpt,
           },
@@ -593,10 +608,18 @@ function buildQueue(
     )
   }
 
+  const withheldGroups = new Map<string, WithheldMention[]>()
   for (const item of withheld) {
+    const key = `${item.slug}\u001f${item.counterparty}\u001f${item.reason}`
+    withheldGroups.set(key, [...(withheldGroups.get(key) ?? []), item])
+  }
+  for (const items of withheldGroups.values()) {
+    const item = items[0]!
     const sameProblem = withheldPerCounterparty.get(item.counterparty) ?? 1
+    const sourceReadings = items.map((entry) => reviewEvidenceSource(entry.source))
     candidates.push({
       slug: item.slug,
+      fieldPath: `interactionSignals.counterparty[${JSON.stringify(item.counterparty)}]`,
       reason: 'ATTRIBUTION_SUSPECT',
       question:
         item.reason === 'NOT_IN_EXCERPT'
@@ -604,21 +627,57 @@ function buildQueue(
           : `The sentence recorded for ${item.counterparty} on this record reads as advice rather than description. Which label section is it actually from?`,
       priority: sameProblem,
       basis: `Records in the corpus with the same unresolved recorded spelling: ${sameProblem}. A repeated parse gap ranks above a one-off.`,
-      sources: [`${item.source.kind}:${item.source.identifier}`],
+      sources: [...new Set(sourceReadings.map((source) => source.sourceKey))].sort(),
+      evidence: reviewEvidence(
+        { issueCode: item.reason, recordedValue: item.counterparty },
+        sourceReadings,
+        { issueCode: item.reason, recordedValue: item.counterparty },
+      ),
     })
   }
 
   for (const profile of profiles) {
     if (profile.longerRecordedSpellings.length === 0) continue
     const longer = profile.longerRecordedSpellings.join(', ')
+    const mentionsBySlug = new Map<string, CounterpartyMention[]>()
     for (const mention of profile.mentions) {
+      mentionsBySlug.set(mention.slug, [...(mentionsBySlug.get(mention.slug) ?? []), mention])
+    }
+    for (const mentions of mentionsBySlug.values()) {
+      const mention = mentions[0]!
+      const sourceReadings = mentions.map((reading) =>
+        reviewEvidenceSource({
+          kind: reading.sourceKind,
+          identifier: reading.sourceIdentifier,
+          label: reading.sourceLabel,
+          ...(reading.sourceLocator ? { locator: reading.sourceLocator } : {}),
+          ...(reading.sourceVersion ? { version: reading.sourceVersion } : {}),
+          ...(reading.sourceEffectiveDate ? { effectiveDate: reading.sourceEffectiveDate } : {}),
+          retrievedAt: reading.retrievedAt,
+          excerpt: reading.excerpt,
+        }),
+      )
       candidates.push({
         slug: mention.slug,
+        fieldPath: `interactionSignals.counterparty[${JSON.stringify(profile.counterparty)}]`,
         reason: 'COVERAGE_GAP',
         question: `This record's counterparty is recorded as ${profile.counterparty}. Other records write longer spellings beginning with it (${longer}). Is ${profile.counterparty} the complete name in this record's sentence?`,
         priority: profile.medicinesRecording,
         basis: `Records carrying the shorter recorded spelling: ${profile.medicinesRecording}. The two spellings are not assumed to name the same counterparty.`,
-        sources: [`${mention.sourceKind}:${mention.sourceIdentifier}`],
+        sources: [...new Set(sourceReadings.map((source) => source.sourceKey))].sort(),
+        evidence: reviewEvidence(
+          {
+            issueCode: 'PREFIX_RECORDED_SPELLING',
+            recordedValue: profile.counterparty,
+            recordedValues: profile.longerRecordedSpellings,
+          },
+          sourceReadings,
+          {
+            issueCode: 'PREFIX_RECORDED_SPELLING',
+            recordedValue: profile.counterparty,
+            recordedValues: profile.longerRecordedSpellings,
+          },
+        ),
       })
     }
   }

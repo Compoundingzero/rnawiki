@@ -9,7 +9,11 @@ import {
   herfindahlIndex,
   type CounterpartyDocumentationProfile,
 } from '@/lib/agents/dataset/enzyme-documentation'
-import { findForbiddenPhrases, type AgentCorpusEntry } from '@/lib/agents/core/types'
+import {
+  authoredStrings,
+  findForbiddenPhrases,
+  type AgentCorpusEntry,
+} from '@/lib/agents/core/types'
 import { ALL_RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
 
 /**
@@ -56,16 +60,6 @@ function declaredInterfaces(code: string): Array<{ name: string; properties: str
   return found
 }
 
-/** Every string the dataset would show a reader, including the source excerpts it republishes. */
-function collectStrings(value: unknown, into: string[]): string[] {
-  if (typeof value === 'string') into.push(value)
-  else if (Array.isArray(value)) for (const item of value) collectStrings(item, into)
-  else if (value && typeof value === 'object') {
-    for (const item of Object.values(value)) collectStrings(item, into)
-  }
-  return into
-}
-
 /** Every plain object in the output tree, so each row can be inspected on its own. */
 function collectObjects(
   value: unknown,
@@ -109,7 +103,7 @@ describe('enzyme and transporter documentation agent', () => {
   it('keeps every reader-facing string clear of advice and of invented values', () => {
     const strings = [
       enzymeDocumentationAgent.description,
-      ...collectStrings(RUN, []),
+      ...authoredStrings(RUN),
       ...Object.values(RUN.parameters).map((value) => String(value)),
     ]
     expect(strings.length).toBeGreaterThan(4000)
@@ -221,7 +215,9 @@ describe('every admitted mention is answerable to its own sentence', () => {
 
   it('routes every withheld reading to a person instead of dropping it', () => {
     const attribution = (RUN.queue ?? []).filter((item) => item.reason === 'ATTRIBUTION_SUSPECT')
-    expect(attribution.length).toBe(
+    expect(
+      attribution.reduce((sum, item) => sum + item.evidence.sourceReadings.length, 0),
+    ).toBe(
       RUN.output.mentionsWithheldCounterpartyNotInExcerpt +
         RUN.output.mentionsWithheldExcerptFailedScreen,
     )
@@ -229,6 +225,44 @@ describe('every admitted mention is answerable to its own sentence', () => {
       expect(item.sources.length).toBeGreaterThan(0)
       expect(item.question.endsWith('?')).toBe(true)
     }
+  })
+
+  it('carries source version metadata through an admitted sentence', () => {
+    const run = enzymeDocumentationAgent.run({
+      corpus: [
+        {
+          slug: 'versioned-source',
+          name: 'Versioned source',
+          background: {
+            version: 'medicine-background/v1',
+            authoredAt: '2026-08-30',
+            interactionSignals: [
+              {
+                counterpartyAsRecorded: 'CYP3A4',
+                kind: 'ENZYME',
+                roleAsRecorded: 'SUBSTRATE',
+                polarity: 'ASSERTED',
+                source: {
+                  kind: 'FDA_LABEL',
+                  identifier: 'versioned-label',
+                  label: 'Versioned label',
+                  version: 'revision-7',
+                  effectiveDate: '2026-08-15',
+                  retrievedAt: '2026-08-30',
+                  excerpt: 'CYP3A4 was the enzyme recorded for this measured pathway.',
+                },
+              },
+            ],
+          },
+        },
+      ],
+      seed: SEED,
+      runDate: RUN_DATE,
+    })
+    expect(run.output.counterparties[0]?.mentions[0]).toMatchObject({
+      sourceVersion: 'revision-7',
+      sourceEffectiveDate: '2026-08-15',
+    })
   })
 })
 

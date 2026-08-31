@@ -34,6 +34,7 @@ import type {
   DatasetAgent,
   ReviewCandidate,
 } from '@/lib/agents/core/types'
+import { recordedBackgroundSources, reviewEvidence } from '@/lib/agents/core/evidence'
 import type { BackgroundSource, MedicineRecordedBackground } from '@/lib/background/types'
 import { RECORDED_BACKGROUND_MODULES } from '@/lib/background/types'
 import type { RecordedBackgroundModule } from '@/lib/background/types'
@@ -703,27 +704,56 @@ function basisFor(group: SynonymCandidateGroup): string {
   return `${strength} ${counts} Matching fields are not proof of one substance, and fields that do not match are not proof of two. Priority ranks the shared identifier signal above the shared document signal, then by how many recorded fields both records hold.`
 }
 
-function candidatesFor(group: SynonymCandidateGroup): ReviewCandidate[] {
+function candidatesFor(
+  group: SynonymCandidateGroup,
+  bySlug: ReadonlyMap<string, AgentCorpusEntry>,
+): ReviewCandidate[] {
   const overlap = group.comparisons.length
   const base = group.evidence === 'SHARED_REGISTRY_IDENTIFIER' ? 1000 : 0
   const sources = [
     ...new Set(group.members.flatMap((member) => [...member.sourceIdentifiers])),
   ].sort()
-  return group.members.map((member) => ({
-    slug: member.slug,
-    reason: 'POSSIBLE_DUPLICATE_SUBSTANCE' as const,
-    question: questionFor(group, member.slug),
-    priority: base + overlap,
-    basis: basisFor(group),
-    sources,
-  }))
+  const memberIdentity = group.members
+    .map((member) => member.slug)
+    .sort()
+    .join(',')
+  return group.members.map((member) => {
+    const sourceReadings = group.members.flatMap((groupMember) => {
+      const entry = bySlug.get(groupMember.slug)
+      return entry ? recordedBackgroundSources(entry.background) : []
+    })
+    return {
+      slug: member.slug,
+      fieldPath: `identity.synonymCandidates.${group.evidence}[${JSON.stringify(memberIdentity)}]`,
+      reason: 'POSSIBLE_DUPLICATE_SUBSTANCE' as const,
+      question: questionFor(group, member.slug),
+      priority: base + overlap,
+      basis: basisFor(group),
+      sources,
+      evidence: reviewEvidence(
+        {
+          evidenceKind: group.evidence,
+          recordedValue: group.sharedKey,
+          members: group.members,
+          comparisons: group.comparisons,
+        },
+        sourceReadings,
+        {
+          evidenceKind: group.evidence,
+          recordedValue: group.sharedKey,
+          members: group.members,
+          comparisons: group.comparisons,
+        },
+      ),
+    }
+  })
 }
 
 export const substanceSynonymAgent: DatasetAgent<SubstanceSynonymDataset> = {
   name: 'substance-synonyms',
   // 1.1.0 reports the identifiers rejected for holding too many records, which were previously
   // dropped without a count.
-  version: '1.1.0',
+  version: '1.2.0',
   description:
     'Groups records that carry the same substance identifier, and separately records structured from the same source document, and asks a person whether each group names one substance.',
 
@@ -903,7 +933,7 @@ export const substanceSynonymAgent: DatasetAgent<SubstanceSynonymDataset> = {
     /* --- Queue and reporting. ------------------------------------------------------------- */
 
     const queue = [...registryIdentifierGroups, ...sharedDocumentGroups]
-      .flatMap(candidatesFor)
+      .flatMap((group) => candidatesFor(group, bySlug))
       .sort(
         (left, right) =>
           right.priority - left.priority ||

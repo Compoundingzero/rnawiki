@@ -102,7 +102,10 @@ describe('cross-tab account reconciliation', () => {
     expect(context).toContain('sessionActionLocked: !isSessionReconciled')
     expect(shell).toContain('inert={lockWholeShell ? true : undefined}')
     expect(shell).toContain("pathname.startsWith('/d/')")
-    expect(shell).toContain('!dossierKeepsReadingAvailable && <FeedbackButton />')
+    expect(shell).toContain(
+      "const publicReadingStaysAvailable = isDossierView || pathname.startsWith('/datasets')",
+    )
+    expect(shell).toContain('!isDossierView && <FeedbackButton />')
     const dossierGuard = source('components/dossier/DossierAccountActionsGuard.tsx')
     expect(dossierGuard).toContain('inert={sessionActionLocked ? true : undefined}')
     expect(dossierGuard).toContain('Reading stays available')

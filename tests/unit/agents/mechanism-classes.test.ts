@@ -140,6 +140,12 @@ describe('mechanism text grouping', () => {
     }
     const priorities = (run.queue ?? []).map((candidate) => candidate.priority)
     expect([...priorities].sort((left, right) => right - left)).toEqual(priorities)
+    expect(run.queue).toHaveLength(
+      run.output.groups.flatMap((group) =>
+        group.members.filter((member) => member.cosineToCentroid < 0.1),
+      ).length,
+    )
+    expect(run.queueSelection).toBeUndefined()
   })
 
   it('keeps every reader-facing string clear of advice and of claims about medicines', () => {

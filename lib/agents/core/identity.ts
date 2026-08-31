@@ -11,8 +11,8 @@
  * agent, which reason, which record, which field — and deliberately nothing else.
  *
  * `occurrenceKey` answers **"is this the same observation as before?"** It changes whenever the
- * stored value, the source behind it, the parser or the agent's reasoning changes. A decision is
- * recorded against an occurrence; a suppression is looked up by candidate.
+ * stored value, the source behind it, or the declared evidence-identity semantics changes. A
+ * decision is recorded against an occurrence; a suppression is looked up by candidate.
  *
  * Together they give the behaviour a reviewer expects: answer a question once and it stays answered,
  * but if the underlying source moves, it comes back with the change visible.
@@ -68,9 +68,13 @@ export interface CandidateObservation {
    * agent saw. Sorted before hashing so source ordering never invents a new occurrence.
    */
   sourceDigests: readonly string[]
-  /** The parser or extractor version that produced the value, when one applies. */
+  /** The parser, extractor or detector evidence-identity version relevant to this observation. */
   parserVersion: string
-  /** The corpus the agent ran over, so a corpus rebuild is visible as a new observation. */
+  /**
+   * Digest of the candidate-local corpus slice relevant to this observation. The global corpus
+   * digest belongs on the run; using it here would reopen every decision after an unrelated row
+   * changed.
+   */
   corpusVersion: string
 }
 
@@ -117,8 +121,9 @@ export function candidateKey(subject: CandidateSubject): string {
 /**
  * The identity of one observation of that question.
  *
- * Changing any of the value, the sources behind it, the parser or the corpus produces a new
- * occurrence, which is what causes a previously answered item to reopen with the change visible.
+ * Changing any of the value, the sources behind it, the parser or its relevant local corpus slice
+ * produces a new occurrence, which is what causes a previously answered item to reopen with the
+ * change visible.
  */
 export function occurrenceKey(candidate: string, observation: CandidateObservation): string {
   return sha256Hex([

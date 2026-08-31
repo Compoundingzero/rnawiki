@@ -45,6 +45,10 @@ describe('excerpt integrity over the real corpus', () => {
     expect(RUN.output.totalChecked).toBeGreaterThan(5000)
     expect(RUN.output.overallVerifiedShare).toBeGreaterThan(0.99)
     expect(RUN.output.statementsChecked).toBeGreaterThan(10000)
+    expect(RUN.queue).toHaveLength(
+      RUN.output.entries.filter((entry) => entry.state === 'NUMBER_ABSENT').length,
+    )
+    expect(RUN.queueSelection).toBeUndefined()
   })
 
   it('is deterministic', () => {
