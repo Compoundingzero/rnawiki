@@ -586,7 +586,14 @@ describe('durable exact source freshness', () => {
     expect(stale[0]?.assertionCheckId).toBe(retryDriftCheck.id)
 
     const activeDrift = await currentUnresolvedBackgroundDriftState()
-    expect(activeDrift.checks[0]?.id).toBe(retryDriftCheck.id)
+    expect(activeDrift.checks.map((check) => check.id).sort()).toEqual(
+      [retryDriftCheck.id, secondDriftCheck.id].sort(),
+    )
+    expect(
+      activeDrift.checks.find(
+        (check) => check.persistedBindingId === retryDriftCheck.persistedBindingId,
+      )?.id,
+    ).toBe(retryDriftCheck.id)
     await persistBackgroundDriftCandidateRun({
       jobKey: backgroundFreshnessJobKey(attemptedAt, 'unreachable-agent-state'),
       startedAt: attemptedAt,

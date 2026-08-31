@@ -9,6 +9,7 @@ import {
   developmentProgrammes,
   evidenceNodeClaims,
   evidenceNodes,
+  evidenceReviewTaskSourceDeltas,
   evidenceReviewTasks,
   evidenceSources,
   programmeContributionImplementations,
@@ -1468,6 +1469,7 @@ export async function buildLockedProgrammeVerdictProposal(
     .orderBy(asc(evidenceReviewTasks.id))
     .for('share')
   let boundSourceReviewTask: typeof evidenceReviewTasks.$inferSelect | null = null
+  let boundSourceReviewDelta: typeof evidenceReviewTaskSourceDeltas.$inferSelect | null = null
   if (contributionImplementation?.sourceReviewTaskId) {
     const boundTask = reviewTaskRows.find(
       (task) => task.id === contributionImplementation.sourceReviewTaskId,
@@ -1484,6 +1486,30 @@ export async function buildLockedProgrammeVerdictProposal(
       )
     }
     boundSourceReviewTask = boundTask
+    const deltaRows = await tx
+      .select()
+      .from(evidenceReviewTaskSourceDeltas)
+      .where(
+        eq(
+          evidenceReviewTaskSourceDeltas.reviewTaskId,
+          contributionImplementation.sourceReviewTaskId,
+        ),
+      )
+      .limit(1)
+      .for('share')
+    const delta = deltaRows[0] ?? null
+    if (
+      delta &&
+      (delta.programmeId !== programme.id ||
+        delta.sourceId !== boundTask.sourceId ||
+        delta.pendingSnapshotId !== boundTask.triggerSnapshotId)
+    ) {
+      throw new ProgrammeVerdictProposalError(
+        'invalid_contribution_implementation',
+        'The monitored source task has a mismatched immutable field-level delta.',
+      )
+    }
+    boundSourceReviewDelta = delta
   }
   const relevantSurfacePaths = new Set(
     dependencyRows.flatMap((row) => [
@@ -1890,7 +1916,16 @@ export async function buildLockedProgrammeVerdictProposal(
             type: 'SOURCE',
             id: boundSourceReviewTask.sourceId,
           },
-          changedFields: uniqueSorted(boundSourceReviewTask.affectedSurfacePaths),
+          // A SOURCE change must name fields on the source itself. The parser-derived delta is
+          // authoritative when present; affectedSurfacePaths names downstream review targets and
+          // may correctly be empty when a registry source does not support a reviewed claim.
+          // Keep the task paths only as a compatibility fallback for legacy task-bound
+          // corrections that predate persisted structured source deltas.
+          changedFields: uniqueSorted(
+            boundSourceReviewDelta
+              ? boundSourceReviewDelta.changedTrialFields.map((change) => change.path)
+              : boundSourceReviewTask.affectedSurfacePaths,
+          ),
           snapshotId: boundSourceReviewTask.triggerSnapshotId,
         },
       ]
@@ -1980,6 +2015,23 @@ export async function buildLockedProgrammeVerdictProposal(
           reason: boundSourceReviewTask.reason,
           affectedClaimIds: uniqueSorted(boundSourceReviewTask.affectedClaimIds),
           affectedSurfacePaths: uniqueSorted(boundSourceReviewTask.affectedSurfacePaths),
+          sourceDelta: boundSourceReviewDelta
+            ? {
+                schemaVersion: boundSourceReviewDelta.schemaVersion,
+                action: boundSourceReviewDelta.action,
+                baselineSnapshotId: boundSourceReviewDelta.baselineSnapshotId,
+                pendingSnapshotId: boundSourceReviewDelta.pendingSnapshotId,
+                adapterKey: boundSourceReviewDelta.adapterKey,
+                changedTrialFields: boundSourceReviewDelta.changedTrialFields,
+                affectedClaimIds: uniqueSorted(boundSourceReviewDelta.affectedClaimIds),
+                affectedInterpretability: boundSourceReviewDelta.affectedInterpretability,
+                affectedSurfacePaths: uniqueSorted(boundSourceReviewDelta.affectedSurfacePaths),
+                scientificRevisionRequirements:
+                  boundSourceReviewDelta.scientificRevisionRequirements,
+                deltaDigestAlgorithm: boundSourceReviewDelta.deltaDigestAlgorithm,
+                deltaDigest: boundSourceReviewDelta.deltaDigest,
+              }
+            : null,
         }
       : null,
     trialLinks: trialIds,

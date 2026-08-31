@@ -53,6 +53,7 @@ import {
 } from '@/lib/queries/programme-contributions'
 import { prepareDraftProgrammePresentation } from '@/lib/queries/programme-presentation'
 import { createProgrammeVerdictDraftFromCurrentPublication } from '@/lib/queries/programme-verdict-drafts'
+import { buildLockedProgrammeVerdictProposal } from '@/lib/queries/programme-verdict-proposal'
 import {
   prepareProgrammeVerdictProposal,
   publishProgrammeVerdictRevision,
@@ -938,6 +939,23 @@ describe('task-bound source refresh rebinding', () => {
     if (implementation.outcome !== 'CANONICAL_CANDIDATE') {
       throw new Error('Expected an exact source refresh to create a canonical candidate.')
     }
+    const lockedProposal = await db.transaction((tx) =>
+      buildLockedProgrammeVerdictProposal(tx, implementation.revisionId),
+    )
+    expect(lockedProposal.engineInput.changes).toEqual([
+      {
+        entity: { type: 'SOURCE', id: fixture.sourceId },
+        changedFields: [
+          'trial.completionDate',
+          'trial.enrollment.count',
+          'trial.hasResults',
+          'trial.overallStatus',
+          'trial.primaryCompletionDate',
+          'trial.startDate',
+        ],
+        snapshotId: fixture.pendingSnapshotId,
+      },
+    ])
 
     const [candidateTrials, candidateScopes, candidateClaims, allClaimsBeforePublication] =
       await Promise.all([
