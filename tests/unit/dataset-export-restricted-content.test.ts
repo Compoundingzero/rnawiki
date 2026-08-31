@@ -83,4 +83,17 @@ describe('published dataset row counts', () => {
       ),
     ).toThrow(/does not match rnawiki-current-agent-manifest\/v1/u)
   })
+
+  it('does not let the current agent manifest opt out by declaring another media type', () => {
+    expect(() =>
+      publishedRowCount(
+        {
+          path: 'data/agents/current/manifest.json',
+          mediaType: 'application/x-ndjson',
+          schemaVersion: 'rnawiki-current-agent-manifest/v1',
+        },
+        Buffer.from('{"schema":"rnawiki-current-agent-manifest/v1","artifacts":[]}\n'),
+      ),
+    ).toThrow(/must declare application\/json/u)
+  })
 })

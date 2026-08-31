@@ -125,17 +125,15 @@ export function publishedRowCount(
   body: Buffer,
 ): number {
   const text = body.toString('utf8')
-  if (file.mediaType === 'text/csv') {
-    const lines = text.trim().split('\n')
-    return Math.max(0, lines.length - 1)
-  }
-  if (file.mediaType === 'application/x-ndjson') {
-    return text.split('\n').filter((line) => line.length > 0).length
-  }
-  if (
-    file.mediaType === 'application/json' &&
-    file.schemaVersion === 'rnawiki-current-agent-manifest/v1'
-  ) {
+  if (file.path === 'data/agents/current/manifest.json') {
+    if (
+      file.mediaType !== 'application/json' ||
+      file.schemaVersion !== 'rnawiki-current-agent-manifest/v1'
+    ) {
+      throw new TypeError(
+        `${file.path} must declare application/json and rnawiki-current-agent-manifest/v1`,
+      )
+    }
     const parsed = JSON.parse(text) as unknown
     if (
       parsed === null ||
@@ -147,6 +145,13 @@ export function publishedRowCount(
       throw new TypeError(`${file.path} does not match rnawiki-current-agent-manifest/v1`)
     }
     return ((parsed as Record<string, unknown>).artifacts as unknown[]).length
+  }
+  if (file.mediaType === 'text/csv') {
+    const lines = text.trim().split('\n')
+    return Math.max(0, lines.length - 1)
+  }
+  if (file.mediaType === 'application/x-ndjson') {
+    return text.split('\n').filter((line) => line.length > 0).length
   }
   throw new TypeError(
     `${file.path} has no row-count contract for ${file.mediaType ?? 'an undeclared media type'} (${file.schemaVersion ?? 'an undeclared schema'})`,
