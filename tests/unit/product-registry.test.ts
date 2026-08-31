@@ -1,3 +1,6 @@
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
+
 import { describe, expect, it } from 'vitest'
 
 import { PRODUCT_REGISTRY, SUBSTANCE_REGISTRY } from '@/scripts/seed-data/background/registries'
@@ -16,8 +19,9 @@ for (const [key, product] of Object.entries(PRODUCT_REGISTRY)) {
   }
 }
 
-const productRegistryPresent = Object.keys(PRODUCT_REGISTRY).length > 0
-const substanceRegistryPresent = Object.keys(SUBSTANCE_REGISTRY).length > 0
+const registryDir = join(process.cwd(), 'data', 'registries')
+const productRegistryPresent = existsSync(join(registryDir, 'product-registry.json'))
+const substanceRegistryPresent = existsSync(join(registryDir, 'substance-registry.json'))
 const generatedRegistriesPresent = productRegistryPresent && substanceRegistryPresent
 
 describe('generated registry fixtures', () => {
