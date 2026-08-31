@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { restrictedContentIn } from '../../scripts/check/dataset-export'
+import { publishedRowCount, restrictedContentIn } from '../../scripts/check/dataset-export'
 
 /**
  * The published dataset check reports a leak only when a restricted field carries something.
@@ -44,5 +44,43 @@ describe('restricted content in the published dataset', () => {
     // is not disclosing it, which a substring scan over the file could never distinguish.
     expect(restrictedContentIn({ note: 'homeRemedies and prosAndCons are withheld' })).toEqual([])
     expect(restrictedContentIn({ indication: 'for the relief of symptoms' })).toEqual([])
+  })
+})
+
+describe('published dataset row counts', () => {
+  it('counts current agent artifacts rather than formatted JSON lines', () => {
+    const body = Buffer.from(
+      `${JSON.stringify(
+        {
+          schema: 'rnawiki-current-agent-manifest/v1',
+          artifacts: [{ agentId: 'one' }, { agentId: 'two' }],
+        },
+        null,
+        2,
+      )}\n`,
+    )
+    expect(
+      publishedRowCount(
+        {
+          path: 'data/agents/current/manifest.json',
+          mediaType: 'application/json',
+          schemaVersion: 'rnawiki-current-agent-manifest/v1',
+        },
+        body,
+      ),
+    ).toBe(2)
+  })
+
+  it('fails closed when a JSON entry does not match its declared row schema', () => {
+    expect(() =>
+      publishedRowCount(
+        {
+          path: 'data/agents/current/manifest.json',
+          mediaType: 'application/json',
+          schemaVersion: 'rnawiki-current-agent-manifest/v1',
+        },
+        Buffer.from('{"schema":"something-else","artifacts":[]}\n'),
+      ),
+    ).toThrow(/does not match rnawiki-current-agent-manifest\/v1/u)
   })
 })

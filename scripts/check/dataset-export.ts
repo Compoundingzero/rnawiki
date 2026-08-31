@@ -94,6 +94,7 @@ interface ManifestFile {
   sha256: string
   licence?: string
   schemaVersion?: string
+  mediaType?: string
 }
 
 interface Manifest {
@@ -110,6 +111,47 @@ interface Manifest {
 
 const failures: string[] = []
 const fail = (message: string) => failures.push(message)
+
+/**
+ * Return the published record count represented by one manifest entry.
+ *
+ * A formatted JSON document is not line-delimited data. Counting its physical lines made the
+ * current-agent manifest look like 1,553 records even though its declared rows are the ten agent
+ * artifacts. JSON row semantics therefore stay explicit and schema-bound instead of silently
+ * treating whitespace as data.
+ */
+export function publishedRowCount(
+  file: Pick<ManifestFile, 'path' | 'mediaType' | 'schemaVersion'>,
+  body: Buffer,
+): number {
+  const text = body.toString('utf8')
+  if (file.mediaType === 'text/csv') {
+    const lines = text.trim().split('\n')
+    return Math.max(0, lines.length - 1)
+  }
+  if (file.mediaType === 'application/x-ndjson') {
+    return text.split('\n').filter((line) => line.length > 0).length
+  }
+  if (
+    file.mediaType === 'application/json' &&
+    file.schemaVersion === 'rnawiki-current-agent-manifest/v1'
+  ) {
+    const parsed = JSON.parse(text) as unknown
+    if (
+      parsed === null ||
+      typeof parsed !== 'object' ||
+      Array.isArray(parsed) ||
+      (parsed as Record<string, unknown>).schema !== 'rnawiki-current-agent-manifest/v1' ||
+      !Array.isArray((parsed as Record<string, unknown>).artifacts)
+    ) {
+      throw new TypeError(`${file.path} does not match rnawiki-current-agent-manifest/v1`)
+    }
+    return ((parsed as Record<string, unknown>).artifacts as unknown[]).length
+  }
+  throw new TypeError(
+    `${file.path} has no row-count contract for ${file.mediaType ?? 'an undeclared media type'} (${file.schemaVersion ?? 'an undeclared schema'})`,
+  )
+}
 
 function consensusCompletenessProblems(
   value: unknown,
@@ -286,15 +328,25 @@ function main(): void {
       fail(`${file.path} declares licence ${JSON.stringify(file.licence)}`)
     }
 
+    if (typeof file.rows === 'number') {
+      try {
+        const rows = publishedRowCount(file, body)
+        if (rows !== file.rows) {
+          fail(`${file.path} holds ${rows} rows, manifest says ${file.rows}`)
+        }
+      } catch (error) {
+        fail(
+          `${file.path} row count cannot be verified: ${error instanceof Error ? error.message : String(error)}`,
+        )
+      }
+    }
+
     if (file.path.endsWith('.ndjson')) {
       const lines = body
         .toString('utf8')
         .split('\n')
         .filter((line) => line.length > 0)
 
-      if (typeof file.rows === 'number' && lines.length !== file.rows) {
-        fail(`${file.path} holds ${lines.length} lines, manifest says ${file.rows}`)
-      }
       if (file.path.startsWith('data/drugs/')) totalRows += lines.length
 
       let leaks = 0

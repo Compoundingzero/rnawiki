@@ -13,6 +13,8 @@ import {
   removeEmptyObjectShells,
 } from '@/lib/public-data-integrity'
 
+import { publishedRowCount } from '../../scripts/check/dataset-export'
+
 interface SnapshotRecord {
   id: string
   name: string
@@ -25,7 +27,14 @@ interface SnapshotRecord {
 
 interface Manifest {
   counts: { total: number }
-  files: Array<{ path: string; rows: number; bytes: number; sha256: string }>
+  files: Array<{
+    path: string
+    rows: number
+    bytes: number
+    sha256: string
+    mediaType?: string
+    schemaVersion?: string
+  }>
 }
 
 const manifest = JSON.parse(
@@ -92,9 +101,7 @@ describe('generated public snapshot integrity', () => {
   it('matches every manifest row count, byte count, and digest', () => {
     for (const file of manifest.files) {
       const body = readFileSync(join(process.cwd(), file.path))
-      const rows = file.path.endsWith('.csv')
-        ? body.toString('utf8').trim().split('\n').length - 1
-        : body.toString('utf8').trim().split('\n').length
+      const rows = publishedRowCount(file, body)
       expect(rows, `${file.path} row count`).toBe(file.rows)
       expect(body.byteLength, `${file.path} byte count`).toBe(file.bytes)
       expect(createHash('sha256').update(body).digest('hex'), `${file.path} digest`).toBe(
