@@ -8,6 +8,7 @@ const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
   scripts: Record<string, string>
 }
 const worker = readFileSync(join(root, 'scripts/source-sync-worker.ts'), 'utf8')
+const deployer = readFileSync(join(root, 'scripts/deploy-source-sync.ts'), 'utf8')
 const railway = readFileSync(join(root, 'railway.source-sync.toml'), 'utf8')
 const deploymentDocs = readFileSync(join(root, 'docs/deployment.md'), 'utf8')
 
@@ -47,5 +48,24 @@ describe('private source-sync worker wiring', () => {
     expect(railway).toContain('Custom Config Path must be `/railway.source-sync.toml`')
     expect(deploymentDocs).toContain('`/railway.source-sync.toml`')
     expect(deploymentDocs).not.toContain('railway up --config')
+  })
+
+  it('isolates CLI uploads from the web config without copying local secrets', () => {
+    expect(packageJson.scripts['deploy:source-sync']).toBe(
+      'node --import tsx scripts/deploy-source-sync.ts',
+    )
+    expect(packageJson.scripts['check:source-sync-deploy']).toBe(
+      'node --import tsx scripts/deploy-source-sync.ts --check',
+    )
+    expect(deployer).toContain("git('status', '--porcelain')")
+    expect(deployer).toContain("['archive', '--format=tar', '--output', archivePath, 'HEAD']")
+    expect(deployer).toContain("readFileSync(join(stagingRoot, 'railway.source-sync.toml')")
+    expect(deployer).toContain("writeFileSync(join(stagingRoot, 'railway.toml'), workerConfig)")
+    expect(deployer).toContain("'--path-as-root'")
+    expect(deployer).toContain("arguments_[0] === '--check'")
+    expect(deployer).toContain("const SERVICE = 'RNA Intelligence Source Sync'")
+    expect(deployer).toContain('rmSync(stagingParent, { recursive: true, force: true })')
+    expect(deployer).not.toContain("join(repoRoot, '.env')")
+    expect(deployer).not.toContain("'--no-gitignore'")
   })
 })

@@ -1,7 +1,8 @@
 [build]
 builder = "NIXPACKS"
-# Railway service setting: Custom Config Path must be `/railway.source-sync.toml`. The CLI has no
-# per-upload config-path flag; without the service-level path a root upload reads the web config.
+# Railway service setting: Custom Config Path must be `/railway.source-sync.toml` for a repository
+# deployment. Railway's CLI uploader still reads `railway.toml` from the upload root; use
+# `npm run deploy:source-sync`, which stages a clean committed tree with this file at that root.
 # This service runs a bounded TypeScript worker, not the Next.js web process.
 # Type-check the worker image without requiring web-only authentication secrets or npm's
 # production-mode warning on every successful cron deployment.

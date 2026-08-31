@@ -15,11 +15,10 @@ source-check schedule, required environment variables and recovery steps.
 
 ## What a deploy does
 
-`railway.toml` sets `preDeployCommand = "npm run db:migrate && npm run apply:background"`, so
-migrations and the recorded-background dataset both land in a throwaway container **before** the
-new version takes traffic. Without the migration step, a deploy that adds a column serves 500s
-from the moment it starts until someone remembers to migrate by hand; without the dataset step, a
-deploy that adds records shows nothing until someone remembers to load them.
+`railway.toml` runs migration, recorded-background application and the searchable-name index in a
+throwaway container **before** the new version takes traffic. Without the migration step, a deploy
+that adds a column serves 500s from the moment it starts until someone remembers to migrate by hand;
+without the data steps, a deploy can serve code whose required corpus or aliases have not landed.
 
 `apply:background` validates every envelope with the background engine before writing and fails
 the deploy on any finding, so invalid data cannot reach a live page. It writes only
@@ -49,10 +48,16 @@ rewrites medical content.
 ### Persistent Railway service configuration
 
 [`railway.source-sync.toml`](../railway.source-sync.toml) is this service's config-as-code file. In
-Railway's service settings, **Custom Config Path** must be the absolute repository path
-`/railway.source-sync.toml`. The CLI has no per-upload config-path flag, and the file intentionally
-has no service `name` field. The service setting is what prevents a targeted repository-root upload
-from applying the web service's default `/railway.toml` to this worker.
+Railway's service settings, **Custom Config Path** is the absolute repository path
+`/railway.source-sync.toml`; that is the defence for a future repository-connected deployment.
+
+Railway CLI uploads are different: measured on 2026-08-31, `railway up --service ...` ignored the
+persisted custom path and consumed the upload root's `/railway.toml`. That was the cause of the
+recurring false Source Sync failures: the private cron service attempted the web build and failed on
+the intentionally absent `SESSION_SECRET`. Never call bare `railway up` for this service.
+`npm run deploy:source-sync` archives clean committed `HEAD` into a temporary directory, places the
+worker config at that archive root, uploads it with `--path-as-root`, and removes the temporary tree
+in a `finally` block. It cannot include `.env`, uncommitted files or the checkout's web config.
 
 The required persistent settings are:
 
@@ -66,14 +71,15 @@ The required persistent settings are:
 | `deploy.restartPolicyType`       | `ON_FAILURE`                                      |
 | `deploy.restartPolicyMaxRetries` | `1`                                               |
 
-Before uploading, inspect the exact service in Railway and read back **Custom Config Path**. After
-uploading, inspect the deployment details: each value above must show that it came from
-`/railway.source-sync.toml`. Also confirm that the service still has no domain:
+Before uploading, inspect the exact service in Railway and read back **Custom Config Path**. Then use
+only the isolated deploy command. After uploading, inspect the deployment details: the CLI metadata
+will call the staged file `/railway.toml`, so verify the values rather than trusting that label. Also
+confirm that the service still has no domain:
 
 ```bash
 railway environment config --json
 railway service list --json
-railway up --service "RNA Intelligence Source Sync" --detach
+npm run deploy:source-sync
 railway deployment list --service "RNA Intelligence Source Sync" --json
 ```
 

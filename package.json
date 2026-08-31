@@ -38,6 +38,8 @@
     "draft:successor-bundle": "tsx scripts/create-successor-programme-verdict-draft.ts",
     "sync:clinical-trials": "tsx scripts/sync-clinical-trials.ts",
     "sync:sources": "node --import tsx scripts/source-sync-worker.ts",
+    "deploy:source-sync": "node --import tsx scripts/deploy-source-sync.ts",
+    "check:source-sync-deploy": "node --import tsx scripts/deploy-source-sync.ts --check",
     "test:unit": "vitest run tests/unit",
     "test:integration": "tsx scripts/with-disposable-database.ts -- npm run test:integration:raw",
     "test:integration:raw": "vitest run tests/integration",

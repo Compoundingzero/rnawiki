@@ -1,12 +1,11 @@
-# Release A.1 implementation and preproduction worklog
+# Release A.1 implementation and production worklog
 
 **Date:** 2026-08-31
-**Status:** implementation and preproduction; this is not a production deployment record
+**Status:** released and directly production-verified
 
-This worklog records the Release A.1 changes and the gates that must be completed before release. It
-does not copy counts from the Release A handoff and does not claim that a migration, worker run,
-dataset publication or public page has been verified in production. Production results belong here
-only after direct measurement, with the deployed commit and UTC time recorded beside them.
+This worklog records the Release A.1 changes, complete release gate, deployment and direct production
+measurements. Counts below came from the 2026-08-31 production deployment, worker run and published
+snapshot; they are not copied from the Release A handoff.
 
 ## Release scope
 
@@ -35,9 +34,12 @@ The repository and prior release audits showed four distinct gaps:
 - The reader contract could represent question-level `stale`, but no exact persisted current
   binding supplied it.
 
-The Railway source-check service was identified by its exact display name, **RNA Intelligence Source
-Sync**. Its service-level **Custom Config Path** must be `/railway.source-sync.toml`; the CLI has no
-per-upload config-path flag, and the setting must be read back before a targeted upload.
+The Railway source-check service was identified by exact display name and service ID: **RNA
+Intelligence Source Sync** (`aeb98ffa-9ad8-46da-9b38-0f6de81eea9d`). Its recurring false failure was
+also identified precisely. A CLI upload consumed the web `/railway.toml`, ran the Next.js build and
+failed because the private worker correctly has no `SESSION_SECRET`. The persisted Custom Config
+Path is `/railway.source-sync.toml`, but Railway CLI uploads were observed to ignore it. Release A.1
+therefore ships an isolated clean-HEAD deploy command that stages the worker file at the upload root.
 
 ## A. Public-copy gate
 
@@ -147,11 +149,12 @@ JSON summary, releases the database pool and exits.
 - cron `0 */6 * * *`; and
 - `ON_FAILURE` with one retry.
 
-Railway must show `/railway.source-sync.toml` as **RNA Intelligence Source Sync**'s Custom Config
-Path before upload, and deployment details must attribute these values to that file. The service
-remains private with no domain. Background drift and handled background fetch failures are
-successful operational runs; ClinicalTrials item failures and fatal worker/persistence errors exit
-non-zero and receive the configured retry.
+Railway shows `/railway.source-sync.toml` as **RNA Intelligence Source Sync**'s Custom Config Path.
+For a CLI upload, `npm run deploy:source-sync` archives clean committed `HEAD`, puts that same worker
+config at the temporary upload root and uses `--path-as-root`; a bare `railway up` is not permitted.
+The service remains private with no domain. Background drift and handled background fetch failures
+are successful operational runs; ClinicalTrials item failures and fatal worker/persistence errors
+exit non-zero and receive the configured retry.
 
 ## Executable coverage added
 
@@ -171,36 +174,75 @@ for the complete gate.
 
 ## Preproduction gates
 
-Complete these against the intended release commit before deployment:
+Completed against release commit `d3b9f469631244d051e4ae7f446f6df9b61fdb5c` before deployment:
 
-- [ ] Confirm the working tree contains only intended Release A.1 changes and both pre-existing
+- [x] Confirm the working tree contains only intended Release A.1 changes and both pre-existing
       stashes remain untouched.
-- [ ] Run the exact repair dry-runs; apply only against expected values and confirm a second apply is
+- [x] Run the exact repair dry-runs; apply only against expected values and confirm a second apply is
       a no-op.
-- [ ] Run `npm run check:copy` against the full checked-in export.
-- [ ] Run `npm run gate`, including disposable-database integration and end-to-end tests.
-- [ ] Run `npx drizzle-kit check` and migration tests from a clean database.
-- [ ] Review focused commits and push without force or history rewriting.
-- [ ] Read back the worker's Custom Config Path and confirm the deployment uses the source-sync file
-      and has no domain.
-- [ ] Confirm deployment reaches terminal `SUCCESS`; a queued build is not a deployment result.
+- [x] Run `npm run check:copy` against the full checked-in export: 0 findings.
+- [x] Run `npm run gate`: 1,874 unit, 128 integration and 21 browser tests passed; both disposable
+      databases were dropped.
+- [x] Run `npx drizzle-kit check` and migration tests from clean disposable databases.
+- [x] Review focused commits and push without force or history rewriting.
+- [x] Read back the worker's Custom Config Path and confirm the deployment carries the exact worker
+      build, migration, start, schedule and retry values and has no domain.
+- [x] Confirm both web and worker deployments reach terminal `SUCCESS`.
 
-## Production verification to record after deployment
+## Production verification
 
-Do not fill this section from historical counts. Record the deployed commit, UTC time and direct
-observations for each item:
+### Deployment identity and guarded medical-copy repair
 
-- web and worker migration completion;
-- exact Railway service settings, six-hour schedule and terminal worker summary;
-- persisted binding, fetch and assertion history counts by status without exposing source bodies or
-  credentials;
-- no assertion rows for failed fetches;
-- no stale question without a current-envelope exact binding and latest successful `DRIFTED` check;
-- deterministic `SOURCE_DRIFT` candidates for confirmed drift only;
-- no automatic change to `drugs.recorded_background`, conclusions or publication pointers;
-- full public-copy gate in the dataset publication job; and
-- public health, search, dataset manifest and representative dossier checks.
+- Web deployment `8d62334d-ae52-45d8-a40e-61fc770ef815` reached `SUCCESS` on release commit
+  `d3b9f469631244d051e4ae7f446f6df9b61fdb5c` on 2026-08-31 UTC. Railway resolved
+  `/railway.toml`, Nixpacks, `/healthz` and the intended pre-deploy command.
+- Migration `0019_recorded_background_freshness.sql` completed before the web process started.
+- The first production copy dry-run reported `repairs=17 wouldApply=17 alreadyApplied=0`; the guarded
+  transaction updated exactly 15 medicines; the second dry-run reported
+  `wouldApply=0 alreadyApplied=17`. It accepted no unclassified value.
+- The same pre-deploy revalidated 9,855 recorded-background envelopes with engine
+  `rna-intelligence/background-2.4.0`: 0 failures, 0 new runs and 0 new findings.
+- Public `https://rnawiki.com/healthz` returned `ok`. Public caffeine API copy contains the exact
+  replacement and not the old self-certification; public search returned five results including
+  caffeine.
 
-If production verification fails, stop the private worker where necessary, preserve all immutable
-history and deploy a corrected forward version. Do not delete freshness rows, weaken TLS, edit a
-source excerpt or rewrite medical content to make a check pass.
+### Durable worker and immutable history
+
+- **RNA Intelligence Source Sync** deployment `41adc411-a485-4e53-a21c-6ca60fa59507` reached
+  `SUCCESS`. It type-checked with `./node_modules/.bin/tsc --noEmit`, ran only migration at
+  pre-deploy, starts `node --import tsx scripts/source-sync-worker.ts`, has cron `0 */6 * * *`, one
+  `ON_FAILURE` retry and no public domain.
+- A preceding upload `ab442b94-6b74-4821-8179-99a1fe081de6` exposed Railway CLI's custom-path bug and
+  was stopped during build. It has no deployment-container logs and made no database change.
+- The manually triggered bounded run executed from `2026-08-31T10:38:34.237Z` to
+  `2026-08-31T10:38:40.281Z`. ClinicalTrials selected 0 due sources. Recorded background saw 5,845
+  current source identities, selected and processed 25, and bound 214 exact assertions.
+- The run persisted 25 successful fetches and 214 checks: 195 `CURRENT`, 19 `NUMBERS_CURRENT`, 0
+  `DRIFTED`; it emitted 0 `SOURCE_DRIFT` candidates and did not hit the runtime bound. There were 0
+  failed fetches, so no assertion row could be attached to a failed attempt. With no confirmed
+  drift, production question-level `stale` remains empty.
+- The worker summary was the sanitized `rnawiki-source-sync/v1` contract; it printed no fetched body,
+  source excerpt, URL credential or environment value.
+
+### Production-backed publication and corpus measurements
+
+- GitHub workflow run `33383491462` completed successfully. It exported production, ran the same
+  complete `npm run check:copy` policy (0 findings), verified all 13 artifacts, and committed bot
+  snapshot `e1c69c5d74ee08213ad32d5209c01d307a2a7843`.
+- The snapshot has 9,857 public medicine rows, 9,855 recorded-background envelopes and 1,670
+  consensus fields under CC BY 4.0. The exact snapshot repair check reports
+  `wouldApply=0 alreadyApplied=17 filesChanged=0`.
+- `recorded-background.ndjson` retained SHA-256
+  `d8d5a182cd24cff997520205a966bf66de96303211dbd24fda61627870eed0eb` before and after the worker.
+  Freshness did not rewrite any recorded medical value.
+- The current audit digest is `9bec36d3648101055f39948cc7586e5a65bcca6ddddb39affc8bd4a367d42cf3`:
+  consensus is 1,427 agree, 231 differ and 12 not-comparable; values equal to their own dispersion are
+  0; 466 records exceed the former twelve-interaction cap; maximum interaction count is 164; licence
+  declarations are consistently CC BY 4.0.
+- Both pre-existing stashes remain untouched. No local production database was created, no
+  production credential was printed, and the preserved openFDA archive and hashes were untouched.
+
+No freshness path writes `drugs.recorded_background`, a conclusion or a publication pointer. A
+future verification failure must still preserve immutable history and deploy a corrected forward
+version; it must never delete freshness rows, weaken TLS, edit a source excerpt or rewrite medical
+content to make a check pass.
