@@ -182,6 +182,20 @@ describe('the corpus is in the export', () => {
     }
   })
 
+  it('uses the same stable row order as the checked-in consensus snapshot', () => {
+    const rows = lines('data/source-consensus.ndjson').map((line) => JSON.parse(line))
+    const rowKeys = rows.map((row) => `${row.slug}:${row.field}`)
+    const expectedKeys = [...rows]
+      .sort(
+        (left, right) =>
+          String(left.slug).localeCompare(String(right.slug)) ||
+          String(left.field).localeCompare(String(right.field)),
+      )
+      .map((row) => `${row.slug}:${row.field}`)
+
+    expect(rowKeys).toEqual(expectedKeys)
+  })
+
   it('keeps every value bound to the sentence it was read from', () => {
     const rows = lines('data/recorded-background.ndjson').map((line) => JSON.parse(line))
     const withPk = rows.find((row) => row.recordedBackground?.pharmacokinetics?.halfLife)

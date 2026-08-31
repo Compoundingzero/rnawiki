@@ -507,7 +507,7 @@ async function main(): Promise<void> {
    * identity and its retrieval date.
    */
   const backgroundLines: string[] = []
-  const consensusLines: string[] = []
+  const consensusLines: Array<{ slug: string; field: string; line: string }> = []
   let backgroundRows = 0
   let consensusRows = 0
   const comparisonStateCounts = new Map<string, number>()
@@ -532,8 +532,10 @@ async function main(): Promise<void> {
       consensusRows += 1
       const state = field.comparisonState ?? 'not_classified'
       comparisonStateCounts.set(state, (comparisonStateCounts.get(state) ?? 0) + 1)
-      consensusLines.push(
-        stableJsonStringify({
+      consensusLines.push({
+        slug: row.slug,
+        field: field.field,
+        line: stableJsonStringify({
           slug: row.slug,
           field: field.field,
           documentsExamined: background.sourceConsensus?.documentsExamined ?? 0,
@@ -543,7 +545,7 @@ async function main(): Promise<void> {
           comparisonReasons: field.comparisonReasons,
           readings: field.readings,
         }),
-      )
+      })
     }
   }
 
@@ -564,7 +566,10 @@ async function main(): Promise<void> {
     sha256: sha256(backgroundBody),
   })
 
-  const consensusBody = `${consensusLines.join('\n')}\n`
+  consensusLines.sort(
+    (left, right) => left.slug.localeCompare(right.slug) || left.field.localeCompare(right.field),
+  )
+  const consensusBody = `${consensusLines.map(({ line }) => line).join('\n')}\n`
   writeFileSync(join(EXPORT_DIR, 'source-consensus.ndjson'), consensusBody)
   files.push({
     ...FILE_META.sourceConsensus,
