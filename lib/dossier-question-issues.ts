@@ -63,13 +63,17 @@ export interface ConflictingFieldSummary {
 
 /** One source whose current verification no longer reproduces what was recorded from it. */
 export interface StaleSourceSummary {
+  /** Exact content-addressed binding in background_source_bindings. */
+  bindingId: string
+  /** Exact persisted successful assertion check that confirmed the drift. */
+  assertionCheckId: string
   intent: DossierQuestionIntent
   sourceIdentifier: string
   sourceLabel: string
   /** When the value was last recorded from this source. */
   recordedAt: string
-  /** What the freshness loop currently reports: `drifted`, `unreachable`, and so on. */
-  freshnessState: string
+  /** Failures never enter this contract; only a successful exact assertion check can say drifted. */
+  freshnessState: 'drifted'
   /** The field or claim the drifted source supports. */
   fieldPath: string
 }
@@ -174,7 +178,18 @@ export function buildQuestionIssueIndex(input: QuestionIssueInput): QuestionIssu
     })
   }
 
-  const stale = [...(input.driftedSources ?? [])]
+  /* This boundary can receive deserialized data despite the narrow TypeScript type. Fail closed:
+   * an operational state, a hand-built object, or a legacy dossier-wide flag is not an exact
+   * persisted source assertion and must never make a question stale. */
+  const stale = (input.driftedSources ?? []).filter(
+    (entry) =>
+      entry.freshnessState === 'drifted' &&
+      /^background_binding_[0-9a-f]{64}$/u.test(entry.bindingId) &&
+      /^[0-9a-f]{64}$/u.test(entry.assertionCheckId) &&
+      entry.fieldPath.trim().length > 0 &&
+      entry.sourceIdentifier.trim().length > 0 &&
+      entry.sourceLabel.trim().length > 0,
+  )
   for (const entry of stale) add(entry.intent, 'stale')
 
   /* Sorted so a rerun produces the same order and a diff means the record changed. */

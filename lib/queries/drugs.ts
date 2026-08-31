@@ -33,6 +33,7 @@ import {
   programmeVerdictScopeSnapshots,
 } from '@/db/schema'
 import { rowToDossier, type DrugRow } from '@/lib/dossier'
+import { currentBackgroundDriftSummaries } from '@/lib/background/source-freshness'
 import {
   cleanPublicLabelFields,
   PUBLIC_PLACEHOLDER_MEDICINE_NAMES,
@@ -150,8 +151,15 @@ export async function getDrugBySlug(
   const row = await getPublicDrugRowBySlug(slug)
   if (!row) return null
 
-  const notes = await listNotesForDrug(row.id, viewerUserId)
-  return rowToDossier(row, { notes })
+  const [notes, driftedSources] = await Promise.all([
+    listNotesForDrug(row.id, viewerUserId),
+    currentBackgroundDriftSummaries({
+      drugId: row.id,
+      slug: row.slug,
+      background: row.recordedBackground,
+    }),
+  ])
+  return rowToDossier(row, { notes, driftedSources })
 }
 
 async function getPublicDrugRowBySlug(slug: string): Promise<DrugRow | null> {
@@ -170,7 +178,13 @@ async function getPublicDrugRowBySlug(slug: string): Promise<DrugRow | null> {
  */
 export async function getPublicDrugBySlug(slug: string): Promise<DrugDossier | null> {
   const row = await getPublicDrugRowBySlug(slug)
-  return row ? rowToDossier(row) : null
+  if (!row) return null
+  const driftedSources = await currentBackgroundDriftSummaries({
+    drugId: row.id,
+    slug: row.slug,
+    background: row.recordedBackground,
+  })
+  return rowToDossier(row, { driftedSources })
 }
 
 /** Lean identity for generated social cards; avoids loading the dossier's JSONB sections. */

@@ -761,7 +761,7 @@ export function medicineRecordContext(drug: DrugDossier): MedicineRecordContextV
 
   return {
     condition: conditionContext(drug),
-    background: medicineBackgroundContext(drug.recordedBackground),
+    background: medicineBackgroundContext(drug.recordedBackground, drug.sourceFreshness),
     safetyAndAdministration: safetyAdministrationContext(drug),
     pricing: pricingContext(drug),
     alternativesSummary: nonEmpty(substitutes?.summary),

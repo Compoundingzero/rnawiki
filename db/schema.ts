@@ -19,7 +19,7 @@ import {
   type AnyPgColumn,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
-import type { MedicineRecordedBackground } from '@/lib/background/types'
+import { BACKGROUND_SOURCE_KINDS, type MedicineRecordedBackground } from '@/lib/background/types'
 import type {
   AuditPoint,
   ClinicalTrialRecord,
@@ -257,6 +257,27 @@ export const contributionReviewStatusEnum = pgEnum(
   'contribution_review_status',
   CONTRIBUTION_REVIEW_STATUSES,
 )
+
+/** The recorded-background source vocabulary is shared with the immutable envelope contract. */
+export const backgroundSourceKindEnum = pgEnum('background_source_kind', BACKGROUND_SOURCE_KINDS)
+
+/**
+ * A fetch is an operational observation, not an assertion verdict. In particular, an unreachable
+ * or unsupported source is never evidence that the recorded assertion drifted.
+ */
+export const backgroundSourceFetchStatusEnum = pgEnum('background_source_fetch_status', [
+  'SUCCEEDED',
+  'UNREACHABLE',
+  'UNSUPPORTED',
+  'FAILED',
+])
+
+/** Only a successful fetch can produce one of these deterministic assertion results. */
+export const backgroundAssertionResultEnum = pgEnum('background_assertion_result', [
+  'CURRENT',
+  'NUMBERS_CURRENT',
+  'DRIFTED',
+])
 
 // ---------------------------------------------------------------------------
 // users
@@ -964,7 +985,9 @@ export const evidenceSources = pgTable(
   {
     id: varchar('id', { length: 64 }).primaryKey(),
     sourceType: evidenceSourceTypeEnum('source_type').notNull().default('UNKNOWN'),
-    externalIdentifier: varchar('external_identifier', { length: 400 }),
+    // Background freshness stores its canonical KIND:identifier key here; 480 accommodates the
+    // 400-character kind-specific identifier plus the longest controlled kind namespace.
+    externalIdentifier: varchar('external_identifier', { length: 480 }),
     canonicalLocator: text('canonical_locator').notNull(),
     title: text('title'),
     publisher: varchar('publisher', { length: 300 }),
@@ -1030,6 +1053,257 @@ export const sourceSnapshots = pgTable(
     check(
       'source_snapshots_previous_not_self',
       sql`${table.previousSnapshotId} is null or ${table.previousSnapshotId} <> ${table.id}`,
+    ),
+  ],
+)
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Recorded-background source freshness                                                            */
+/*                                                                                                  */
+/* These are append-only observations of the existing medicine-background/v1 envelope. They may    */
+/* raise a review candidate; they must never update the envelope or select replacement medical text. */
+/* A binding is exact, a fetch is operational, and an assertion check exists only for a successful  */
+/* immutable source snapshot. Keeping those concepts separate makes network failure unable to become */
+/* source drift.                                                                                     */
+/* ---------------------------------------------------------------------------------------------- */
+
+/**
+ * One content-addressed assertion in the exact recorded-background envelope from which it came.
+ * Re-deriving current bindings from `drugs.recorded_background` is what determines whether this
+ * historical row is still applicable; no mutable "current" flag is stored here.
+ */
+export const backgroundSourceBindings = pgTable(
+  'background_source_bindings',
+  {
+    id: varchar('id', { length: 96 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    recordedBackgroundDigest: varchar('recorded_background_digest', { length: 71 }).notNull(),
+    fieldPath: varchar('field_path', { length: 1000 }).notNull(),
+    sourcePath: varchar('source_path', { length: 1000 }).notNull(),
+    sourceId: varchar('source_id', { length: 64 })
+      .notNull()
+      .references(() => evidenceSources.id, { onDelete: 'restrict' }),
+    sourceKind: backgroundSourceKindEnum('source_kind').notNull(),
+    sourceIdentifier: varchar('source_identifier', { length: 400 }).notNull(),
+    /** Canonical, kind-namespaced fetch identity: `${sourceKind}:${sourceIdentifier}`. */
+    sourceKey: varchar('source_key', { length: 480 }).notNull(),
+    sourceLabel: text('source_label').notNull(),
+    sourceLocator: text('source_locator'),
+    sourceRetrievedAt: timestamp('source_retrieved_at', { withTimezone: true }).notNull(),
+    sourceExcerpt: text('source_excerpt').notNull(),
+    assertionDigest: varchar('assertion_digest', { length: 71 }).notNull(),
+    /** Null is deliberate: an unmapped assertion can never make a reader question stale. */
+    questionIntent: varchar('question_intent', { length: 32 }),
+    bindingSchema: varchar('binding_schema', { length: 40 }).notNull(),
+    boundAt: timestamp('bound_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    unique('background_source_bindings_assertion_scope_unique').on(
+      table.id,
+      table.sourceId,
+      table.sourceKey,
+      table.assertionDigest,
+    ),
+    index('background_source_bindings_drug_envelope_idx').on(
+      table.drugId,
+      table.recordedBackgroundDigest,
+    ),
+    index('background_source_bindings_source_idx').on(table.sourceKey, table.boundAt),
+    check(
+      'background_source_bindings_id_format',
+      sql`${table.id} ~ '^background_binding_[0-9a-f]{64}$'`,
+    ),
+    check(
+      'background_source_bindings_digests',
+      sql`${table.recordedBackgroundDigest} ~ '^sha256:[0-9a-f]{64}$'
+        and ${table.assertionDigest} ~ '^sha256:[0-9a-f]{64}$'`,
+    ),
+    check(
+      'background_source_bindings_paths',
+      sql`nullif(btrim(${table.fieldPath}), '') is not null
+        and nullif(btrim(${table.sourcePath}), '') is not null`,
+    ),
+    check(
+      'background_source_bindings_source_identity',
+      sql`nullif(btrim(${table.sourceIdentifier}), '') is not null
+        and ${table.sourceKey} = ${table.sourceKind}::text || ':' || ${table.sourceIdentifier}`,
+    ),
+    check(
+      'background_source_bindings_source_copy',
+      sql`nullif(btrim(${table.sourceLabel}), '') is not null
+        and char_length(${table.sourceLabel}) <= 2000
+        and (${table.sourceLocator} is null or (
+          nullif(btrim(${table.sourceLocator}), '') is not null
+          and char_length(${table.sourceLocator}) <= 2000
+        ))
+        and nullif(btrim(${table.sourceExcerpt}), '') is not null
+        and char_length(${table.sourceExcerpt}) <= 400`,
+    ),
+    check(
+      'background_source_bindings_question_intent',
+      sql`${table.questionIntent} is null or ${table.questionIntent} in (
+        'identity', 'purpose', 'regulatory-status', 'bottom-line', 'evidence-scope',
+        'measurement', 'results-magnitude', 'meaning-limitations', 'applicability', 'harms',
+        'mechanism', 'evidence-certainty', 'programme-history', 'failure-analysis', 'unknowns',
+        'sources', 'review-provenance', 'freshness', 'corrections'
+      )`,
+    ),
+    check(
+      'background_source_bindings_schema',
+      sql`${table.bindingSchema} = 'background-source-binding/v1'`,
+    ),
+  ],
+)
+
+/**
+ * One bounded attempt to fetch a kind-namespaced source. A successful attempt must point at the
+ * immutable content snapshot it observed. Every other status is persisted without a snapshot and
+ * is therefore structurally ineligible for assertion comparison.
+ */
+export const backgroundSourceFetches = pgTable(
+  'background_source_fetches',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    sourceId: varchar('source_id', { length: 64 })
+      .notNull()
+      .references(() => evidenceSources.id, { onDelete: 'restrict' }),
+    sourceKind: backgroundSourceKindEnum('source_kind').notNull(),
+    sourceIdentifier: varchar('source_identifier', { length: 400 }).notNull(),
+    sourceKey: varchar('source_key', { length: 480 }).notNull(),
+    status: backgroundSourceFetchStatusEnum('status').notNull(),
+    sourceSnapshotId: varchar('source_snapshot_id', { length: 64 }),
+    fetcherVersion: varchar('fetcher_version', { length: 48 }).notNull(),
+    attemptedAt: timestamp('attempted_at', { withTimezone: true }).notNull(),
+    completedAt: timestamp('completed_at', { withTimezone: true }).notNull(),
+    /** Stable, non-secret machine category such as HTTP_503, TIMEOUT, or NO_ADAPTER. */
+    failureCode: varchar('failure_code', { length: 64 }),
+    /** Sanitized operational detail; never a URL containing credentials or an environment value. */
+    failureDetail: text('failure_detail'),
+  },
+  (table) => [
+    unique('background_source_fetches_observation_scope_unique').on(
+      table.id,
+      table.sourceId,
+      table.sourceKey,
+      table.sourceSnapshotId,
+      table.status,
+    ),
+    foreignKey({
+      name: 'background_source_fetches_snapshot_source_fk',
+      columns: [table.sourceSnapshotId, table.sourceId],
+      foreignColumns: [sourceSnapshots.id, sourceSnapshots.sourceId],
+    }).onDelete('restrict'),
+    index('background_source_fetches_source_completed_idx').on(table.sourceKey, table.completedAt),
+    index('background_source_fetches_status_completed_idx').on(table.status, table.completedAt),
+    check('background_source_fetches_id_format', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'background_source_fetches_source_identity',
+      sql`nullif(btrim(${table.sourceIdentifier}), '') is not null
+        and ${table.sourceKey} = ${table.sourceKind}::text || ':' || ${table.sourceIdentifier}`,
+    ),
+    check(
+      'background_source_fetches_version',
+      sql`nullif(btrim(${table.fetcherVersion}), '') is not null`,
+    ),
+    check(
+      'background_source_fetches_time_order',
+      sql`${table.completedAt} >= ${table.attemptedAt}`,
+    ),
+    check(
+      'background_source_fetches_result_shape',
+      sql`(${table.status} = 'SUCCEEDED'
+          and ${table.sourceSnapshotId} is not null
+          and ${table.failureCode} is null
+          and ${table.failureDetail} is null)
+        or (${table.status} in ('UNREACHABLE', 'UNSUPPORTED', 'FAILED')
+          and ${table.sourceSnapshotId} is null
+          and nullif(btrim(${table.failureCode}), '') is not null
+          and nullif(btrim(${table.failureDetail}), '') is not null)`,
+    ),
+  ],
+)
+
+/**
+ * A deterministic verdict about one exact binding against one successful fetch. The redundant
+ * scope columns are intentional: the composite foreign keys make it impossible to associate a
+ * binding with another source, or to evaluate it against another fetch's snapshot.
+ */
+export const backgroundAssertionChecks = pgTable(
+  'background_assertion_checks',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    bindingId: varchar('binding_id', { length: 96 }).notNull(),
+    bindingAssertionDigest: varchar('binding_assertion_digest', { length: 71 }).notNull(),
+    fetchId: varchar('fetch_id', { length: 64 }).notNull(),
+    sourceId: varchar('source_id', { length: 64 }).notNull(),
+    sourceKey: varchar('source_key', { length: 480 }).notNull(),
+    sourceSnapshotId: varchar('source_snapshot_id', { length: 64 }).notNull(),
+    /** Fixed to SUCCEEDED and included in the fetch FK so failed fetches cannot be checked. */
+    fetchStatus: backgroundSourceFetchStatusEnum('fetch_status').notNull().default('SUCCEEDED'),
+    result: backgroundAssertionResultEnum('result').notNull(),
+    checkerVersion: varchar('checker_version', { length: 48 }).notNull(),
+    details: jsonb('details')
+      .$type<Record<string, unknown>>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    checkedAt: timestamp('checked_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex('background_assertion_checks_observation_unique').on(
+      table.bindingId,
+      table.fetchId,
+      table.checkerVersion,
+    ),
+    foreignKey({
+      name: 'background_assertion_checks_binding_scope_fk',
+      columns: [table.bindingId, table.sourceId, table.sourceKey, table.bindingAssertionDigest],
+      foreignColumns: [
+        backgroundSourceBindings.id,
+        backgroundSourceBindings.sourceId,
+        backgroundSourceBindings.sourceKey,
+        backgroundSourceBindings.assertionDigest,
+      ],
+    }).onDelete('restrict'),
+    foreignKey({
+      name: 'background_assertion_checks_fetch_scope_fk',
+      columns: [
+        table.fetchId,
+        table.sourceId,
+        table.sourceKey,
+        table.sourceSnapshotId,
+        table.fetchStatus,
+      ],
+      foreignColumns: [
+        backgroundSourceFetches.id,
+        backgroundSourceFetches.sourceId,
+        backgroundSourceFetches.sourceKey,
+        backgroundSourceFetches.sourceSnapshotId,
+        backgroundSourceFetches.status,
+      ],
+    }).onDelete('restrict'),
+    foreignKey({
+      name: 'background_assertion_checks_snapshot_source_fk',
+      columns: [table.sourceSnapshotId, table.sourceId],
+      foreignColumns: [sourceSnapshots.id, sourceSnapshots.sourceId],
+    }).onDelete('restrict'),
+    index('background_assertion_checks_binding_checked_idx').on(table.bindingId, table.checkedAt),
+    index('background_assertion_checks_result_checked_idx').on(table.result, table.checkedAt),
+    check('background_assertion_checks_id_format', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'background_assertion_checks_digest',
+      sql`${table.bindingAssertionDigest} ~ '^sha256:[0-9a-f]{64}$'`,
+    ),
+    check('background_assertion_checks_successful_fetch', sql`${table.fetchStatus} = 'SUCCEEDED'`),
+    check(
+      'background_assertion_checks_version',
+      sql`nullif(btrim(${table.checkerVersion}), '') is not null`,
+    ),
+    check(
+      'background_assertion_checks_details',
+      sql`jsonb_typeof(${table.details}) = 'object'
+        and (${table.result} <> 'DRIFTED' or ${table.details} <> '{}'::jsonb)`,
     ),
   ],
 )
@@ -3029,6 +3303,7 @@ export const drugsRelations = relations(drugs, ({ many }) => ({
   revisions: many(revisions),
   aliases: many(drugAliases),
   programmes: many(developmentProgrammes),
+  backgroundSourceBindings: many(backgroundSourceBindings),
 }))
 
 export const drugAliasesRelations = relations(drugAliases, ({ one }) => ({
@@ -3150,6 +3425,8 @@ export const developmentProgrammesRelations = relations(developmentProgrammes, (
 
 export const evidenceSourcesRelations = relations(evidenceSources, ({ many }) => ({
   snapshots: many(sourceSnapshots),
+  backgroundBindings: many(backgroundSourceBindings),
+  backgroundFetches: many(backgroundSourceFetches),
   programmeTrials: many(programmeTrials),
   programmeFreshnessStates: many(programmeFreshnessStates),
   monitorRuns: many(evidenceMonitorRuns),
@@ -3162,7 +3439,61 @@ export const sourceSnapshotsRelations = relations(sourceSnapshots, ({ one, many 
     references: [evidenceSources.id],
   }),
   claimLinks: many(claimSourceLinks),
+  backgroundFetches: many(backgroundSourceFetches),
+  backgroundAssertionChecks: many(backgroundAssertionChecks),
 }))
+
+export const backgroundSourceBindingsRelations = relations(
+  backgroundSourceBindings,
+  ({ one, many }) => ({
+    drug: one(drugs, {
+      fields: [backgroundSourceBindings.drugId],
+      references: [drugs.id],
+    }),
+    source: one(evidenceSources, {
+      fields: [backgroundSourceBindings.sourceId],
+      references: [evidenceSources.id],
+    }),
+    assertionChecks: many(backgroundAssertionChecks),
+  }),
+)
+
+export const backgroundSourceFetchesRelations = relations(
+  backgroundSourceFetches,
+  ({ one, many }) => ({
+    source: one(evidenceSources, {
+      fields: [backgroundSourceFetches.sourceId],
+      references: [evidenceSources.id],
+    }),
+    snapshot: one(sourceSnapshots, {
+      fields: [backgroundSourceFetches.sourceSnapshotId],
+      references: [sourceSnapshots.id],
+    }),
+    assertionChecks: many(backgroundAssertionChecks),
+  }),
+)
+
+export const backgroundAssertionChecksRelations = relations(
+  backgroundAssertionChecks,
+  ({ one }) => ({
+    binding: one(backgroundSourceBindings, {
+      fields: [backgroundAssertionChecks.bindingId],
+      references: [backgroundSourceBindings.id],
+    }),
+    fetch: one(backgroundSourceFetches, {
+      fields: [backgroundAssertionChecks.fetchId],
+      references: [backgroundSourceFetches.id],
+    }),
+    source: one(evidenceSources, {
+      fields: [backgroundAssertionChecks.sourceId],
+      references: [evidenceSources.id],
+    }),
+    snapshot: one(sourceSnapshots, {
+      fields: [backgroundAssertionChecks.sourceSnapshotId],
+      references: [sourceSnapshots.id],
+    }),
+  }),
+)
 
 export const claimsRelations = relations(claims, ({ one, many }) => ({
   programme: one(developmentProgrammes, {

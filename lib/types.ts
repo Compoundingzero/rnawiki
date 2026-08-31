@@ -261,6 +261,11 @@ export interface DrugDossier {
   pricing?: PricingTransparency
   /** medicine-background/v1 envelope of recorded label/registry facts; see lib/background/types. */
   recordedBackground?: import('./background/types').MedicineRecordedBackground
+  /**
+   * Operational state derived from exact persisted source bindings. Kept outside the immutable
+   * recorded envelope so a failed fetch or a checker run can never rewrite medical content.
+   */
+  sourceFreshness?: readonly import('./dossier-question-issues').StaleSourceSummary[]
   substitutes?: DrugSubstitutes
   molecularSchema?: MolecularSchema
   auditPointsCount: {

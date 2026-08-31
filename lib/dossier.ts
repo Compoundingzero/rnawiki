@@ -12,6 +12,7 @@ import type {
   DrugModality,
   MeasuredVsInferredSummary,
 } from '@/lib/types'
+import type { StaleSourceSummary } from '@/lib/dossier-question-issues'
 
 /**
  * A `drugs` row as every query in this codebase selects it: all columns except the generated
@@ -73,6 +74,8 @@ export interface RowToDossierOptions {
   /** Community notes for this drug. Left undefined when the caller did not load them, which is
    *  different from a drug that genuinely has none (an empty array). */
   notes?: CommunityNote[]
+  /** Exact persisted drift checks for bindings in this row's current recorded envelope. */
+  driftedSources?: readonly StaleSourceSummary[]
 }
 
 export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDossier {
@@ -104,6 +107,7 @@ export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDoss
     confidenceScore: row.confidenceScore,
     pricing: row.pricing ?? undefined,
     recordedBackground: row.recordedBackground ?? undefined,
+    sourceFreshness: opts?.driftedSources,
     substitutes: row.substitutes ?? undefined,
     molecularSchema: row.molecularSchema ?? undefined,
     auditPointsCount: countAuditPoints(row.keyAudits),

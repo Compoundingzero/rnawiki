@@ -7,7 +7,7 @@
 
 import { ANATOMY_REGIONS, isAnatomyRegionCode } from '@/lib/background/anatomy-regions'
 import type { ReadingComparisonState } from '@/lib/background/reading-comparison'
-import type { DossierQuestionIntent } from '@/lib/dossier-question-registry'
+import type { StaleSourceSummary } from '@/lib/dossier-question-issues'
 import type {
   BackgroundProvenanceTier,
   BackgroundSource,
@@ -168,20 +168,12 @@ export interface MedicineBackgroundContextView {
   /**
    * Sources the freshness loop currently reports as no longer reproducing their recorded wording.
    *
-   * Nothing populates this yet: `npm run verify:background` computes drift at run time and does not
-   * write it into the envelope, so no per-source drift reaches a page today and the stale question
-   * count is zero. The channel exists so that when drift IS recorded, a question can be marked stale
-   * from the source it actually depends on rather than from a dossier-wide flag. A stale state that
-   * cannot be traced to a source used by that question must never be emitted.
+   * Loaded outside the immutable envelope from an exact persisted binding plus a successful
+   * assertion check. A failed fetch has no assertion check, and a historical binding that no longer
+   * matches the current envelope cannot enter this list. This keeps stale question-level and
+   * source-traceable rather than turning it into a dossier-wide operational flag.
    */
-  driftedSources?: readonly {
-    intent: DossierQuestionIntent
-    sourceIdentifier: string
-    sourceLabel: string
-    recordedAt: string
-    freshnessState: string
-    fieldPath: string
-  }[]
+  driftedSources?: readonly StaleSourceSummary[]
   /**
    * Where the medicine appears in the published drug-label archive.
    *
@@ -615,6 +607,7 @@ function comparisonNote(field: RecordedFieldConsensus): { disagreementNote?: str
 
 export function medicineBackgroundContext(
   background: MedicineRecordedBackground | undefined,
+  driftedSources: readonly StaleSourceSummary[] = [],
 ): MedicineBackgroundContextView | undefined {
   if (!background || background.version !== 'medicine-background/v1') return undefined
 
@@ -1115,6 +1108,7 @@ export function medicineBackgroundContext(
 
   const view: MedicineBackgroundContextView = {
     authoredAt: background.authoredAt,
+    ...(driftedSources.length > 0 ? { driftedSources: [...driftedSources] } : {}),
     ...(mechanism ? { mechanism } : {}),
     ...(molecularIdentity ? { molecularIdentity } : {}),
     ...(interactionSignals ? { interactionSignals } : {}),

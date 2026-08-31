@@ -80,6 +80,8 @@ export const REVIEW_REASONS = [
   'POSSIBLE_DUPLICATE_SUBSTANCE',
   'ATTRIBUTION_SUSPECT',
   'COVERAGE_GAP',
+  /** A successful exact source assertion check no longer reproduces the recorded assertion. */
+  'SOURCE_DRIFT',
 ] as const
 export type ReviewReason = (typeof REVIEW_REASONS)[number]
 

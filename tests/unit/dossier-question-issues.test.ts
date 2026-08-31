@@ -4,6 +4,7 @@ import {
   buildQuestionIssueIndex,
   primaryIssueCoverage,
   CONSENSUS_FIELD_TO_INTENT,
+  type StaleSourceSummary,
 } from '@/lib/dossier-question-issues'
 
 /**
@@ -117,13 +118,15 @@ describe('a disagreement with nowhere to go is reported, not invented', () => {
 
 describe('staleness is traced to the source the question depends on', () => {
   const drift = {
+    bindingId: `background_binding_${'a'.repeat(64)}`,
+    assertionCheckId: 'b'.repeat(64),
     intent: 'measurement' as const,
     sourceIdentifier: 'set-9',
     sourceLabel: 'Example label',
     recordedAt: '2026-08-28',
-    freshnessState: 'drifted',
+    freshnessState: 'drifted' as const,
     fieldPath: 'pharmacokinetics.halfLife',
-  }
+  } satisfies StaleSourceSummary
 
   it('marks only the question its source supports', () => {
     const index = buildQuestionIssueIndex({ driftedSources: [drift] })
@@ -145,6 +148,17 @@ describe('staleness is traced to the source the question depends on', () => {
   it('marks nothing when no source has drifted', () => {
     expect(buildQuestionIssueIndex({ driftedSources: [] }).byIntent.size).toBe(0)
   })
+
+  it.each([
+    ['unreachable fetch state', { ...drift, freshnessState: 'unreachable' }],
+    ['missing binding identity', { ...drift, bindingId: '' }],
+    ['missing assertion-check identity', { ...drift, assertionCheckId: '' }],
+  ])('fails closed for a runtime %s', (_label, malformed) => {
+    const input = [malformed] as unknown as readonly StaleSourceSummary[]
+    const index = buildQuestionIssueIndex({ driftedSources: input })
+    expect(index.byIntent.size).toBe(0)
+    expect(index.stale).toEqual([])
+  })
 })
 
 describe('a question can carry both problems at once', () => {
@@ -152,11 +166,13 @@ describe('a question can carry both problems at once', () => {
     consensusFields: [field()],
     driftedSources: [
       {
+        bindingId: `background_binding_${'c'.repeat(64)}`,
+        assertionCheckId: 'd'.repeat(64),
         intent: 'measurement' as const,
         sourceIdentifier: 'set-9',
         sourceLabel: 'Example label',
         recordedAt: '2026-08-28',
-        freshnessState: 'drifted',
+        freshnessState: 'drifted' as const,
         fieldPath: 'pharmacokinetics.halfLife',
       },
     ],
