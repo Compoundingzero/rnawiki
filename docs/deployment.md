@@ -9,7 +9,7 @@ source-check schedule, required environment variables and recovery steps.
 | -------------------- | -------------------------------------------------------------- |
 | Project              | **RNAwiki** (`328c5ae7-2ccb-4d37-8524-ba7029daddae`)           |
 | Web service          | **RNAwiki** — capital R-N-A, and the CLI is case-sensitive     |
-| Source-check service | **RNAwiki source sync** — scheduled worker, not a web server   |
+| Source-check service | **RNA Intelligence Source Sync** — private scheduled worker    |
 | Database             | **Postgres** service, private host `postgres.railway.internal` |
 | Domain               | https://rnawiki.com                                            |
 
@@ -31,34 +31,87 @@ The healthcheck is `/healthz`, which returns a bare `200 ok` and deliberately **
 database**. Liveness and readiness are different questions: a transient database blip must not roll
 back an otherwise-good deploy.
 
-## Scheduled ClinicalTrials.gov checks
+## Scheduled source checks
 
-The separate source-check service uses [`railway.source-sync.toml`](../railway.source-sync.toml).
-Railway starts it every six hours with a bounded batch of 25 records and four concurrent requests:
+The exact Railway display name is **RNA Intelligence Source Sync**. It is one private cron service,
+not a web server, and it must have no public or custom domain. Its entry point runs two independent,
+bounded workloads in sequence:
 
-```text
-npm run sync:clinical-trials -- --limit 25 --concurrency 4
+1. at most 25 due ClinicalTrials.gov programme sources with four concurrent requests; then
+2. at most 25 least-recently-attempted recorded-background source identities with four concurrent
+   requests and a 20-minute runtime bound.
+
+An ordinary failed ClinicalTrials item is persisted before the background workload starts. The two
+histories remain separate: programme monitoring can create a source-review task, while confirmed
+recorded-background drift can create a `SOURCE_DRIFT` candidate. Neither workload automatically
+rewrites medical content.
+
+### Persistent Railway service configuration
+
+[`railway.source-sync.toml`](../railway.source-sync.toml) is this service's config-as-code file. In
+Railway's service settings, **Custom Config Path** must be the absolute repository path
+`/railway.source-sync.toml`. The CLI has no per-upload config-path flag, and the file intentionally
+has no service `name` field. The service setting is what prevents a targeted repository-root upload
+from applying the web service's default `/railway.toml` to this worker.
+
+The required persistent settings are:
+
+| Path                             | Exact value                                       |
+| -------------------------------- | ------------------------------------------------- |
+| `build.builder`                  | `NIXPACKS`                                        |
+| `build.buildCommand`             | `./node_modules/.bin/tsc --noEmit`                |
+| `deploy.preDeployCommand`        | `node --import tsx db/migrate.ts`                 |
+| `deploy.startCommand`            | `node --import tsx scripts/source-sync-worker.ts` |
+| `deploy.cronSchedule`            | `0 */6 * * *`                                     |
+| `deploy.restartPolicyType`       | `ON_FAILURE`                                      |
+| `deploy.restartPolicyMaxRetries` | `1`                                               |
+
+Before uploading, inspect the exact service in Railway and read back **Custom Config Path**. After
+uploading, inspect the deployment details: each value above must show that it came from
+`/railway.source-sync.toml`. Also confirm that the service still has no domain:
+
+```bash
+railway environment config --json
+railway service list --json
+railway up --service "RNA Intelligence Source Sync" --detach
+railway deployment list --service "RNA Intelligence Source Sync" --json
 ```
 
-The web service is the normal migration owner. The worker repeats the same migration command as a
-pre-deploy guard because Railway may deploy the two services independently. A worker version never
-starts until the additive migration chain for that version has completed; do not remove this guard
-or replace it with a manually timed deployment assumption.
+The detached upload only proves a build was queued. Do not report the worker deployed until its
+newest deployment reaches terminal `SUCCESS`; investigate `FAILED` or `CRASHED` before continuing.
 
-The worker selects only due ClinicalTrials.gov sources, prints one JSON summary, closes its database
-pool and exits. Exit code `0` means every selected source was checked or safely replayed. A non-zero
-exit means at least one source failed, so Railway records a failed cron run and retries the process
-once. Configure a Railway deployment-failure notification for this service; without that external
-notification, failures are logged but nobody is paged.
+The web service is the normal migration owner. The worker repeats the direct migration command as a
+pre-deploy guard because Railway may deploy the services independently. New worker code never starts
+against an older schema. Direct Node and TypeScript commands also keep npm's production-config
+warning out of successful cron logs.
 
-This is deliberately narrower than “monitoring every source.” At present, scheduled checks support
-ClinicalTrials.gov records with an NCT identifier. Papers, regulatory records and sponsor pages are
-stored as sources but are not checked by this worker.
+### Worker result and retry semantics
 
-After each deployment, confirm both the schedule and a successful worker exit in Railway. The JSON
-summary includes selected, succeeded, replayed and failed counts. A zero selected count is healthy:
-it means no registered source was due. Repeated failures or any record past its stored
-`next_check_due_at` need operator attention.
+The worker prints one `rnawiki-source-sync/v1` JSON summary, closes its database pool and exits. The
+summary contains ClinicalTrials counts and times plus recorded-background source, binding, fetch,
+assertion, candidate and runtime-bound counts. It never prints fetched source bodies or environment
+values.
+
+Exit behavior is deliberate:
+
+- A ClinicalTrials batch with one or more failed items exits non-zero after the background workload
+  has run. Railway retries the whole idempotent worker once.
+- Recorded-background `UNREACHABLE`, `UNSUPPORTED` and `FAILED` fetches are persisted operational
+  outcomes, not drift, and do not by themselves make the process fail.
+- Recorded-background `DRIFTED` checks are persisted review items and also do not make the process
+  fail.
+- An unhandled worker, database or persistence error exits non-zero and receives the same one retry.
+
+This distinction stops handled recorded-background provider failures and confirmed drift from
+appearing as recurring deployment failures. Configure a Railway deployment/runtime-failure
+notification for this service; without an external notification, terminal failures are logged but
+nobody is paged.
+
+After each deployment, confirm the six-hour schedule, terminal deployment success and a completed
+worker summary. Zero selected ClinicalTrials records is healthy when none is due. Zero selected
+background sources is healthy when there is no current excerpt-bearing source to schedule.
+`UNSUPPORTED` is expected for source kinds without an adapter; repeated `UNREACHABLE` or `FAILED`
+outcomes and any programme record past `next_check_due_at` need operator attention.
 
 To add the first real programme/source pair for an existing medicine, always preview before writing:
 
@@ -225,11 +278,19 @@ older image does not understand those proposals. Do not delete or rewrite them t
 application image appear compatible; stop private review/source-refresh writes and deploy a
 corrected forward migration.
 
+Migration 0019 adds append-only recorded-background bindings, fetch attempts and assertion checks;
+the Release A.1 application adds the `SOURCE_DRIFT` candidate reason used by the private worker. An
+older image does not read question-level background drift, but its medical envelopes remain
+unchanged. Before an incompatible rollback, stop **RNA Intelligence Source Sync** and preserve
+evidence sources, snapshots, bindings, fetches, checks, agent runs and candidates. Leave the additive
+schema and audit rows in place; do not delete history or edit a medicine merely to make an older
+worker start. Deploy a corrected forward version before restarting the schedule.
+
 ## After a deploy
 
 ```bash
 curl -sI https://rnawiki.com/healthz          # 200
 curl -s https://rnawiki.com/api/search?q=metf # returns Metformin
 railway logs --service RNAwiki | tail -20     # migrations ran, server ready
-# In Railway, also inspect the latest `RNAwiki source sync` cron run and its JSON summary.
+# Also inspect the latest `RNA Intelligence Source Sync` cron run and its JSON summary.
 ```

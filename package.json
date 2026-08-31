@@ -37,6 +37,7 @@
     "draft:first-publication": "tsx scripts/create-first-programme-verdict-draft.ts",
     "draft:successor-bundle": "tsx scripts/create-successor-programme-verdict-draft.ts",
     "sync:clinical-trials": "tsx scripts/sync-clinical-trials.ts",
+    "sync:sources": "node --import tsx scripts/source-sync-worker.ts",
     "test:unit": "vitest run tests/unit",
     "test:integration": "tsx scripts/with-disposable-database.ts -- npm run test:integration:raw",
     "test:integration:raw": "vitest run tests/integration",

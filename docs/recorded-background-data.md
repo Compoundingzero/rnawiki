@@ -89,26 +89,55 @@ never does.
 - `npx tsx scripts/background/fetch-medicine-sources.ts <outDir> <slug[:query]> …` — fetch
   authoring artifacts.
 
-## Keeping it current — the freshness loop
+## Keeping it current — durable source assertions
 
-`npm run verify:background` re-fetches every cited source and mechanically re-checks the stored
-excerpts against the source's current text. No model sits anywhere in this loop. Each excerpt
-resolves to one of five states:
+`npm run verify:background` is the bounded, database-backed freshness command. It derives bindings
+from every excerpt-bearing `BackgroundSource` in the current `drugs.recorded_background` envelopes,
+selects the least recently attempted source identities and checks at most 25 of them with four
+concurrent requests and a 20-minute runtime bound. The limits can be changed within the guarded
+ranges with `--limit`, `--concurrency` and `--max-runtime-minutes`. No model sits anywhere in this
+loop.
 
-- `current` — the excerpt still appears verbatim in the live source.
-- `numbers_current` — the excerpt was stitched or the source was reformatted, but every recorded
-  number still appears in the live source. The dataset's promise holds.
-- `drifted` — a recorded number no longer appears in the live source. This is a work item: the
-  output names the exact slug, module path and source so a person re-authors that entry from a
-  fresh artifact. Drift never rewrites anything automatically.
-- `unreachable` — the source could not be fetched on this run.
-- `unverifiable_kind` — the source kind has no stable machine-readable endpoint (NICE/BNF, NADAC,
-  EMA, DOIs); those entries rely on the authoring-time artifact.
+One source can support many fields. The fetch identity is therefore the canonical, kind-namespaced
+`sourceKey`, while each supported assertion receives its own content-addressed binding. The binding
+contains the medicine slug, exact field and source paths, source identity, label, optional locator,
+recorded retrieval date and excerpt, plus a digest of the complete assertion and the complete
+recorded-background envelope. A changed value, excerpt, path or source produces a different binding;
+a historical check cannot transfer to it.
 
-The script exits non-zero on drift (pass `--report-only` to just report), so it can run on a
-schedule beside the ClinicalTrials source-sync worker and page the operator the same way. This is
-what keeps the dataset self-updating without generated prose: sources move, the loop detects the
-exact entry that moved, and a person re-records it.
+Migration 0019 makes the history durable and append-only:
+
+- `background_source_bindings` records the exact source-to-field relationship and its explicit
+  reader-question intent. An unknown path is stored without an intent and cannot mark a question
+  stale.
+- `background_source_fetches` records every attempt as `SUCCEEDED`, `UNREACHABLE`, `UNSUPPORTED` or
+  `FAILED`. A successful attempt points to an immutable, content-addressed `source_snapshot`.
+- `background_assertion_checks` exists only for a successful fetch of the exact bound source. Its
+  result is `CURRENT`, `NUMBERS_CURRENT` or `DRIFTED`.
+
+`CURRENT` means the normalized current text still contains the recorded excerpt.
+`NUMBERS_CURRENT` means formatting or sentence order changed, but every number in the recorded
+excerpt remains present by numeric value: 800 cannot match inside 5,800. `DRIFTED` means neither
+check holds. JSON APIs are parsed first so comparison uses decoded text values rather than escaped
+response bytes. The fetched body is used only in-process; the database keeps its SHA-256 content
+hash, source locator and non-secret response metadata rather than a second full source copy.
+
+Network, HTTP and timeout failures are `UNREACHABLE`; an absent adapter is `UNSUPPORTED`; malformed,
+empty or unreadable successful responses are `FAILED`. None is source drift, none creates an
+assertion check and none creates or clears a stale question. A later successful `CURRENT` or
+`NUMBERS_CURRENT` check clears an earlier drift for the same exact binding. A changed envelope starts
+unknown until its new binding has a successful check.
+
+Confirmed `DRIFTED` checks create deterministic `SOURCE_DRIFT` candidates in the existing candidate
+memory. They do not rewrite a medicine value, choose another source, resolve a disagreement or move
+a publication pointer. The public dossier marks only the explicitly mapped question stale, and only
+when the latest successful check for a binding matching the current envelope is `DRIFTED`. A person
+must inspect the candidate and author any correction through the normal reviewed workflow.
+
+The private Railway worker runs this loop together with the bounded ClinicalTrials.gov monitor. Its
+exact service configuration, retry semantics and deployment checks are in
+[`deployment.md`](deployment.md); the two independent freshness contracts are in
+[`evidence-freshness.md`](evidence-freshness.md).
 
 ## The companion dataset: computed molecular properties
 

@@ -1,17 +1,21 @@
 [build]
 builder = "NIXPACKS"
+# Railway service setting: Custom Config Path must be `/railway.source-sync.toml`. The CLI has no
+# per-upload config-path flag; without the service-level path a root upload reads the web config.
 # This service runs a bounded TypeScript worker, not the Next.js web process.
-# Type-check the worker image without requiring web-only authentication secrets.
-buildCommand = "npm run typecheck"
+# Type-check the worker image without requiring web-only authentication secrets or npm's
+# production-mode warning on every successful cron deployment.
+buildCommand = "./node_modules/.bin/tsc --noEmit"
 
 [deploy]
 # The web service is the normal migration owner. This guard is repeated here because Railway can
 # deploy the scheduled worker independently; new worker code must never start against an older
 # schema.
-preDeployCommand = "npm run db:migrate"
-# ClinicalTrials.gov observations are bounded and idempotent. The process releases its database
-# pool and exits after every batch so Railway can schedule the next run cleanly.
-startCommand = "npm run sync:clinical-trials -- --limit 25 --concurrency 4"
+preDeployCommand = "node --import tsx db/migrate.ts"
+# ClinicalTrials.gov and recorded-background observations are bounded and idempotent. The process
+# releases its database pool and exits after every batch so Railway can schedule the next run
+# cleanly. Direct Node commands avoid npm's production-config warning being reported as a cron error.
+startCommand = "node --import tsx scripts/source-sync-worker.ts"
 cronSchedule = "0 */6 * * *"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 1
