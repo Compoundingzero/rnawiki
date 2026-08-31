@@ -1,0 +1,1075 @@
+{
+  "title": "Competitive dataset and reader audit, 2026",
+  "auditedAt": "2026-08-31",
+  "method": "Expert desk review of first-party public documentation; no participant testing and no proprietary prose collection.",
+  "definitions": {
+    "linked": "Direct the reader to the authoritative or useful external record without treating the destination as an RNAWiki endorsement.",
+    "imported": "Ingest bounded fields with the upstream database, record identifier, version or update date, retrieval time, rights decision, and raw-artifact digest.",
+    "projected": "Compute a deterministic view from imported fields without inventing or rewriting a medical conclusion.",
+    "excluded": "Do not store or reproduce the named content or capability.",
+    "deferred": "Do not implement until a separately reviewed pipeline and acceptance gate exist."
+  },
+  "nonReplacementStatement": "RNAWiki organizes source-bound medicine facts, uncertainty, disagreement, and change history. It is not a clinician, regulator, approved label, literature index, chemical registry, trial registry, supplement-testing laboratory, symptom checker, or personalized interaction or dosing tool.",
+  "resources": [
+    {
+      "id": "drugs-com",
+      "name": "Drugs.com",
+      "officialUrls": [
+        {
+          "label": "Editorial policy",
+          "url": "https://www.drugs.com/support/editorial-policy.html"
+        },
+        {
+          "label": "Terms",
+          "url": "https://www.drugs.com/support/terms.html"
+        }
+      ],
+      "audience": ["consumers", "health professionals"],
+      "questions": [
+        "medicine use and dosage",
+        "interactions",
+        "pill identification",
+        "lived experience"
+      ],
+      "sourceType": "Secondary reference aggregation with separately presented user-generated reviews.",
+      "evidenceRole": "secondary",
+      "granularity": ["drug", "condition", "interaction pair", "pill", "user review"],
+      "provenance": "Its editorial policy identifies external data providers; each field still requires provider-level attribution before reuse.",
+      "freshness": "Editorial maintenance follows source updates; reported errors have a stated review target of 48 hours.",
+      "editorialProcess": "Professional editorial oversight and external reference providers; community reviews remain separate from reviewed drug information.",
+      "access": {
+        "api": "No public content API identified in the official pages reviewed.",
+        "bulk": "No public bulk dataset identified.",
+        "license": "Terms prohibit automated extraction, scraping, mining, and dataset creation."
+      },
+      "readerProduct": {
+        "clarity": "High task clarity for common medicine questions.",
+        "depth": "Broad monograph and interaction depth.",
+        "chemistry": "Limited.",
+        "visuals": "Pill images and compact reference tables.",
+        "tools": "Interaction checker, pill identifier, and drug/condition search.",
+        "corrections": "Public error-reporting route with a stated response target.",
+        "contributions": "User ratings and reviews, visibly separate from reviewed reference material."
+      },
+      "rnawiki": {
+        "links": "Link a relevant medicine or tool page when it answers the reader's next question.",
+        "lessons": "Use direct task routes and keep lived experience separate from reviewed evidence.",
+        "nonReplacement": "RNAWiki does not reproduce Drugs.com content or replace its interaction and identification tools.",
+        "disposition": {
+          "linked": ["medicine pages", "relevant tool pages"],
+          "imported": [],
+          "projected": [],
+          "excluded": ["prose", "tables", "images", "tool logic", "ratings", "reviews"],
+          "deferred": ["any future licensed integration"]
+        }
+      }
+    },
+    {
+      "id": "medlineplus",
+      "name": "MedlinePlus",
+      "officialUrls": [
+        { "label": "About", "url": "https://medlineplus.gov/about/" },
+        {
+          "label": "Review and update",
+          "url": "https://medlineplus.gov/about/general/reviewandupdate/"
+        },
+        {
+          "label": "Developer services",
+          "url": "https://medlineplus.gov/about/developers/webservices/"
+        },
+        {
+          "label": "Content reuse",
+          "url": "https://medlineplus.gov/about/using/usingcontent/"
+        }
+      ],
+      "audience": ["patients", "families", "general public"],
+      "questions": ["medicines", "supplements", "conditions", "tests", "genetics"],
+      "sourceType": "Consumer-health portal mixing NLM-authored federal material with separately copyrighted supplier material.",
+      "evidenceRole": "mixed secondary",
+      "granularity": ["health topic", "medicine", "supplement", "test", "genetic topic"],
+      "provenance": "Pages identify source and review context; ASHP drug monographs are a distinct copyrighted content class.",
+      "freshness": "Review dates and update practices are public and vary by topic and supplying source.",
+      "editorialProcess": "NLM selection and review apply to its own topic material; supplier content retains its own editorial ownership.",
+      "access": {
+        "api": "MedlinePlus Connect and public web services are available.",
+        "bulk": "XML files are available for eligible content.",
+        "license": "Most federal material is public domain, but ASHP drug information and other marked third-party content are not reusable without permission."
+      },
+      "readerProduct": {
+        "clarity": "Strong plain-language and multilingual orientation.",
+        "depth": "Moderate, with links to deeper sources.",
+        "chemistry": "Minimal.",
+        "visuals": "Accessible illustrations and video where relevant.",
+        "tools": "Topic search, encyclopedia, dictionary, and developer services.",
+        "corrections": "Review dates and public feedback routes support revision.",
+        "contributions": "No open public editing."
+      },
+      "rnawiki": {
+        "links": "Link the relevant consumer-health page.",
+        "lessons": "Use question-led summaries, familiar definitions, and explicit language support.",
+        "nonReplacement": "RNAWiki does not replace NLM consumer education or ASHP monographs.",
+        "disposition": {
+          "linked": ["health topics", "medicine and supplement pages"],
+          "imported": [
+            "eligible NLM-authored public-domain summary fields or XML after content-level rights classification"
+          ],
+          "projected": ["source-bound language and topic availability"],
+          "excluded": ["ASHP monograph text", "marked third-party content"],
+          "deferred": ["broader MedlinePlus content ingestion"]
+        }
+      }
+    },
+    {
+      "id": "mayo-clinic",
+      "name": "Mayo Clinic",
+      "officialUrls": [
+        {
+          "label": "Health-information policy",
+          "url": "https://www.mayoclinic.org/about-this-site/health-information-policy"
+        },
+        {
+          "label": "Terms",
+          "url": "https://www.mayoclinic.org/about-this-site/terms-conditions-use-policy"
+        }
+      ],
+      "audience": ["general readers", "patients"],
+      "questions": ["symptoms", "conditions", "tests", "procedures", "medicines", "supplements"],
+      "sourceType": "Professionally authored and medically reviewed health editorial.",
+      "evidenceRole": "secondary",
+      "granularity": ["topic", "symptom", "test", "procedure", "drug", "supplement"],
+      "provenance": "Sources, authorship, and medical-review context are governed by the health-information policy.",
+      "freshness": "Rapidly changing topics are reviewed at least every two years, the library is assessed annually, and factual corrections are generally targeted within 30 days.",
+      "editorialProcess": "Qualified editorial and medical review under Mayo Clinic's published policy.",
+      "access": {
+        "api": "No public content API identified.",
+        "bulk": "No public bulk dataset identified.",
+        "license": "Terms reserve site content for limited personal use."
+      },
+      "readerProduct": {
+        "clarity": "Strong patient-facing clarity.",
+        "depth": "Layered moderate-to-high explanatory depth.",
+        "chemistry": "Minimal.",
+        "visuals": "Polished diagrams and video.",
+        "tools": "Symptom and health-topic navigation.",
+        "corrections": "Formal feedback and correction policy.",
+        "contributions": "No open public editing."
+      },
+      "rnawiki": {
+        "links": "Link a relevant Mayo Clinic topic as optional context.",
+        "lessons": "Use answer-first structure, local definitions, and progressive depth.",
+        "nonReplacement": "RNAWiki is not Mayo Clinic's clinical editorial service.",
+        "disposition": {
+          "linked": ["relevant health topics"],
+          "imported": [],
+          "projected": [],
+          "excluded": ["proprietary prose", "illustrations", "video", "interactive tools"],
+          "deferred": ["licensed integration"]
+        }
+      }
+    },
+    {
+      "id": "webmd",
+      "name": "WebMD",
+      "officialUrls": [
+        {
+          "label": "Editorial policy",
+          "url": "https://www.webmd.com/about-webmd-policies/about-editorial-policy"
+        },
+        {
+          "label": "Corrections policy",
+          "url": "https://www.webmd.com/about-webmd-policies/webmd-corrections-policies"
+        },
+        { "label": "Drug directory", "url": "https://www.webmd.com/drugs/2/index" },
+        {
+          "label": "Terms",
+          "url": "https://www.webmd.com/about-webmd-policies/about-terms-and-conditions-of-use"
+        }
+      ],
+      "audience": ["consumers"],
+      "questions": [
+        "symptoms",
+        "conditions",
+        "medicines",
+        "interactions",
+        "practical health decisions"
+      ],
+      "sourceType": "Original secondary editorial and licensed reference content, plus separately presented user reviews.",
+      "evidenceRole": "secondary",
+      "granularity": ["topic", "medicine", "symptom", "interaction", "user review"],
+      "provenance": "Original content uses author, medical-review, and source signals; licensed drug content and user reviews remain distinct.",
+      "freshness": "Review and update dates are shown where applicable; material corrections are targeted within 60 days.",
+      "editorialProcess": "Published editorial and medical-review policy with separate community content.",
+      "access": {
+        "api": "No public content API identified.",
+        "bulk": "No public bulk dataset identified.",
+        "license": "Terms restrict copying and reuse."
+      },
+      "readerProduct": {
+        "clarity": "High consumer familiarity and task orientation.",
+        "depth": "Broad, moderate-depth coverage.",
+        "chemistry": "Limited.",
+        "visuals": "Extensive video, slideshow, and illustration content.",
+        "tools": "Symptom checker, interaction checker, and pill identification.",
+        "corrections": "Public policy with a material-correction target.",
+        "contributions": "User reviews are accepted and presented separately."
+      },
+      "rnawiki": {
+        "links": "Link relevant consumer pages or tools when useful.",
+        "lessons": "Use familiar question paths and visibly separate editorial evidence from community experience.",
+        "nonReplacement": "RNAWiki does not replace WebMD's consumer tools or editorial service.",
+        "disposition": {
+          "linked": ["relevant topics", "relevant tools"],
+          "imported": [],
+          "projected": [],
+          "excluded": ["prose", "media", "tool logic", "user-generated content"],
+          "deferred": ["licensed integration"]
+        }
+      }
+    },
+    {
+      "id": "fda",
+      "name": "FDA",
+      "officialUrls": [
+        { "label": "Mission", "url": "https://www.fda.gov/about-fda/what-we-do" },
+        {
+          "label": "Website policies",
+          "url": "https://www.fda.gov/about-fda/about-website/website-policies"
+        },
+        { "label": "Drug resources", "url": "https://www.fda.gov/drugs/resources-drugs" }
+      ],
+      "audience": ["patients", "clinicians", "industry", "researchers", "general public"],
+      "questions": ["approval", "safety", "recalls", "labeling", "regulatory action"],
+      "sourceType": "US regulator and government publisher.",
+      "evidenceRole": "primary regulatory",
+      "granularity": [
+        "regulatory action",
+        "application",
+        "product",
+        "label",
+        "safety communication",
+        "enforcement record"
+      ],
+      "provenance": "Authority belongs to the specific programme and dated record, not a generic FDA label.",
+      "freshness": "Publication and correction are programme-specific; official records and communications are dated.",
+      "editorialProcess": "Scientific, legal, and regulatory review varies by programme and action type.",
+      "access": {
+        "api": "Programme-specific APIs exist, including openFDA.",
+        "bulk": "Programme-specific downloads exist.",
+        "license": "Federal material is generally public domain unless noted; submitted or third-party artifacts require separate rights treatment. FDA recommends linking because pages change."
+      },
+      "readerProduct": {
+        "clarity": "Variable across programmes.",
+        "depth": "Authoritative regulatory depth.",
+        "chemistry": "Context-dependent.",
+        "visuals": "Programme-dependent documents, tables, and public communications.",
+        "tools": "Regulatory searches, recalls, and safety communications.",
+        "corrections": "Dated official updates and programme contact channels.",
+        "contributions": "Public comment and adverse-event reporting exist but are not public editing of regulatory conclusions."
+      },
+      "rnawiki": {
+        "links": "Link the exact FDA action, communication, or record.",
+        "lessons": "Show authority, programme, action date, and status without flattening distinct regulatory records.",
+        "nonReplacement": "RNAWiki is not the regulator and cannot replace an FDA action or approved label.",
+        "disposition": {
+          "linked": ["exact regulatory records", "safety communications"],
+          "imported": ["bounded public regulatory facts and identifiers"],
+          "projected": ["bound regulatory timelines and counts"],
+          "excluded": ["wholesale third-party documents", "fields with unresolved rights"],
+          "deferred": ["programme-specific sources without a field contract"]
+        }
+      }
+    },
+    {
+      "id": "drugs-at-fda",
+      "name": "Drugs@FDA",
+      "officialUrls": [
+        {
+          "label": "About Drugs@FDA",
+          "url": "https://www.fda.gov/drugs/drug-approvals-and-databases/about-drugsfda"
+        },
+        {
+          "label": "Data files",
+          "url": "https://www.fda.gov/drugs/drug-approvals-and-databases/drugsfda-data-files"
+        }
+      ],
+      "audience": ["professionals", "researchers", "industry", "general public"],
+      "questions": [
+        "whether and when a product was approved",
+        "application history",
+        "applicable regulatory documents"
+      ],
+      "sourceType": "FDA approval database.",
+      "evidenceRole": "primary regulatory",
+      "granularity": [
+        "application",
+        "product",
+        "active ingredient",
+        "sponsor",
+        "action",
+        "regulatory document"
+      ],
+      "provenance": "Application numbers, product numbers, sponsors, and action dates provide durable bindings.",
+      "freshness": "The searchable database is updated daily; data files are updated each weekday.",
+      "editorialProcess": "The records reflect FDA's regulatory application and action process.",
+      "access": {
+        "api": "A derived Drugs@FDA endpoint is available through openFDA.",
+        "bulk": "FDA publishes downloadable data files.",
+        "license": "Government facts are generally public domain; submitted documents need artifact-level rights care."
+      },
+      "readerProduct": {
+        "clarity": "Moderate-to-low for novice readers.",
+        "depth": "High regulatory depth.",
+        "chemistry": "Limited.",
+        "visuals": "Document- and table-heavy.",
+        "tools": "Application/product search and bulk download.",
+        "corrections": "Official database updates reflect regulatory corrections and actions.",
+        "contributions": "Sponsor submissions enter through the regulatory process; no public wiki editing."
+      },
+      "rnawiki": {
+        "links": "Link the exact application, product, action, and document.",
+        "lessons": "Keep application, product, action, and label identities separate.",
+        "nonReplacement": "RNAWiki cannot declare approval or replace review packages and approved labels.",
+        "disposition": {
+          "linked": ["application and action records", "regulatory documents"],
+          "imported": [
+            "application identifiers",
+            "product identifiers",
+            "ingredient",
+            "sponsor",
+            "action type and date"
+          ],
+          "projected": ["approval history and status views"],
+          "excluded": ["wholesale review packages", "submitted content without a rights decision"],
+          "deferred": []
+        }
+      }
+    },
+    {
+      "id": "dailymed",
+      "name": "DailyMed",
+      "officialUrls": [
+        {
+          "label": "About DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/about-dailymed.cfm"
+        },
+        {
+          "label": "REST services",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/app-support-web-services.cfm"
+        },
+        {
+          "label": "Bulk downloads",
+          "url": "https://www.dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm"
+        }
+      ],
+      "audience": ["clinicians", "patients", "researchers", "developers"],
+      "questions": [
+        "current in-use labeling",
+        "warnings",
+        "dosage",
+        "label sections",
+        "packaging",
+        "NDCs"
+      ],
+      "sourceType": "Repository of submitted Structured Product Labeling.",
+      "evidenceRole": "primary submitted record",
+      "granularity": ["SPL set", "SPL version", "section", "package", "NDC"],
+      "provenance": "SETID, version, effective time, and labeler bind each record.",
+      "freshness": "Daily, weekly, monthly, and full releases are available.",
+      "editorialProcess": "NLM does not review label content before publication; content may differ from FDA-approved labeling and may include unapproved products.",
+      "access": {
+        "api": "Public REST API v2.",
+        "bulk": "Daily, weekly, monthly, and full SPL downloads.",
+        "license": "Use structured facts and bounded excerpts only after content-level rights checks; do not assume government hosting transfers rights in submitted label text."
+      },
+      "readerProduct": {
+        "clarity": "Moderate.",
+        "depth": "Very high label depth.",
+        "chemistry": "Limited.",
+        "visuals": "Label and package images where submitted.",
+        "tools": "Label search, section navigation, API, and downloads.",
+        "corrections": "Revised SPL submissions and support channels; no open editing.",
+        "contributions": "Labeling companies submit SPL records."
+      },
+      "rnawiki": {
+        "links": "Link the exact SETID and version.",
+        "lessons": "Expose version and effective time, and keep in-use labeling distinct from FDA approval.",
+        "nonReplacement": "RNAWiki is not the current label and cannot convert DailyMed presence into approval.",
+        "disposition": {
+          "linked": ["exact SPL record"],
+          "imported": [
+            "SETID",
+            "version",
+            "effective time",
+            "labeler",
+            "section identifiers",
+            "package and NDC facts",
+            "bounded source assertions"
+          ],
+          "projected": ["label version history", "freshness and section diffs"],
+          "excluded": [
+            "wholesale label prose",
+            "label and package images without asset-level permission"
+          ],
+          "deferred": ["new clinical interpretations of label text"]
+        }
+      }
+    },
+    {
+      "id": "openfda",
+      "name": "openFDA",
+      "officialUrls": [
+        { "label": "Drug APIs", "url": "https://open.fda.gov/apis/drug/" },
+        { "label": "Drugs@FDA endpoint", "url": "https://open.fda.gov/apis/drug/drugsfda/" },
+        { "label": "Downloads", "url": "https://open.fda.gov/apis/downloads/" },
+        { "label": "Terms", "url": "https://open.fda.gov/terms/" }
+      ],
+      "audience": ["developers", "researchers"],
+      "questions": [
+        "machine-queryable FDA labels",
+        "events",
+        "enforcement",
+        "NDC",
+        "Drugs@FDA-derived records"
+      ],
+      "sourceType": "Government API transport and harmonization layer.",
+      "evidenceRole": "derived transport, not independent evidence",
+      "granularity": ["endpoint report", "label", "application", "product"],
+      "provenance": "Retain the original FDA dataset identity and openFDA harmonization metadata.",
+      "freshness": "Cadence is endpoint-specific; use download metadata and retrieval timestamps rather than assuming real-time completeness.",
+      "editorialProcess": "Government data processing and harmonization, not an independent medical editorial review.",
+      "access": {
+        "api": "Public REST APIs.",
+        "bulk": "Public JSON downloads.",
+        "license": "CC0 unless an identified exception applies; terms document privacy, limitation, and attribution considerations."
+      },
+      "readerProduct": {
+        "clarity": "Developer-oriented.",
+        "depth": "High structured depth.",
+        "chemistry": "Low.",
+        "visuals": "Few reader-facing visuals.",
+        "tools": "Query documentation, examples, APIs, and downloads.",
+        "corrections": "Dataset issue channels; no public record editing.",
+        "contributions": "Source programmes supply the underlying data."
+      },
+      "rnawiki": {
+        "links": "Link the endpoint documentation and underlying FDA record.",
+        "lessons": "Treat openFDA as transport and make harmonization limits visible.",
+        "nonReplacement": "RNAWiki must not present openFDA normalization as validation or a second agreeing source.",
+        "disposition": {
+          "linked": ["underlying FDA record", "endpoint documentation"],
+          "imported": ["allowlisted endpoint records and identifiers with raw artifact hashes"],
+          "projected": ["counts", "recency", "cross-endpoint joins with explicit limitations"],
+          "excluded": [
+            "fields without a stable source binding",
+            "records covered by an exception that forbids planned reuse"
+          ],
+          "deferred": []
+        }
+      }
+    },
+    {
+      "id": "nccih",
+      "name": "NCCIH",
+      "officialUrls": [
+        { "label": "Health information", "url": "https://www.nccih.nih.gov/health" },
+        { "label": "Herbs at a Glance", "url": "https://www.nccih.nih.gov/health/herbsataglance" }
+      ],
+      "audience": ["general public", "health professionals"],
+      "questions": [
+        "evidence",
+        "uncertainty",
+        "safety",
+        "complementary approaches",
+        "herbs",
+        "supplements"
+      ],
+      "sourceType": "Federal evidence summaries alongside primary research and programme material.",
+      "evidenceRole": "mixed, primarily secondary for health fact sheets",
+      "granularity": ["topic", "herb", "supplement", "intervention"],
+      "provenance": "Fact sheets cite research and identify review/update context.",
+      "freshness": "Page-level review/update context exists; no uniform machine freshness contract was identified for the health library.",
+      "editorialProcess": "Federal scientific and subject-matter review in NCCIH's publishing context.",
+      "access": {
+        "api": "No general public health-content API identified.",
+        "bulk": "No general bulk health-content feed identified.",
+        "license": "Content-level rights and third-party material must be checked before any structured ingestion."
+      },
+      "readerProduct": {
+        "clarity": "High public clarity.",
+        "depth": "Moderate evidence depth.",
+        "chemistry": "Minimal.",
+        "visuals": "Explanatory graphics and fact-sheet presentation.",
+        "tools": "Topic and herb directories plus evidence-literacy modules.",
+        "corrections": "Page updates and feedback routes; no uniform public correction SLA identified.",
+        "contributions": "No public editing."
+      },
+      "rnawiki": {
+        "links": "Link the exact NCCIH topic or herb page.",
+        "lessons": "Put what the evidence shows, what remains uncertain, and safety boundaries close together.",
+        "nonReplacement": "RNAWiki does not replace NCCIH evidence summaries, supplement regulation, or individualized advice.",
+        "disposition": {
+          "linked": ["health topics", "herb and supplement fact sheets"],
+          "imported": [],
+          "projected": [],
+          "excluded": ["unreviewed structured extraction", "third-party assets without permission"],
+          "deferred": [
+            "structured fact-sheet ingestion with claim-scope, citation, version, and rights rules"
+          ]
+        }
+      }
+    },
+    {
+      "id": "consumerlab",
+      "name": "ConsumerLab",
+      "officialUrls": [
+        { "label": "Methods", "url": "https://www.consumerlab.com/methods/" },
+        {
+          "label": "Trust and funding",
+          "url": "https://www.consumerlab.com/answers/can-i-trust-consumerlabcom-how-are-its-tests-paid-for/trust-consumerlab/"
+        },
+        { "label": "Agreement", "url": "https://www.consumerlab.com/agreement/" }
+      ],
+      "audience": ["consumers", "professionals selecting supplements"],
+      "questions": [
+        "product identity",
+        "strength",
+        "contamination",
+        "quality criteria",
+        "ingredient evidence"
+      ],
+      "sourceType": "Independent product testing plus secondary evidence review.",
+      "evidenceRole": "mixed primary testing and secondary review",
+      "granularity": ["branded product", "lot or test", "ingredient", "category"],
+      "provenance": "Methods and funding are described publicly; detailed test results remain proprietary.",
+      "freshness": "Tests and reviews update by programme and product category rather than a public dataset cadence.",
+      "editorialProcess": "Proprietary laboratory and editorial processes funded through subscriptions and certification programmes.",
+      "access": {
+        "api": "No public API.",
+        "bulk": "No public bulk feed.",
+        "license": "Agreement prohibits scraping, text/data mining, and dataset use."
+      },
+      "readerProduct": {
+        "clarity": "High product-choice clarity.",
+        "depth": "Deep testing and review detail behind subscription access.",
+        "chemistry": "Analytical testing is central.",
+        "visuals": "Proprietary comparison tables and certification seals.",
+        "tools": "Product comparisons, search, and certification/testing programmes.",
+        "corrections": "Updates occur through the proprietary review and membership process.",
+        "contributions": "Manufacturers may participate in certification; readers do not edit results."
+      },
+      "rnawiki": {
+        "links": "Link the service only as an external product-testing resource.",
+        "lessons": "Distinguish marketed label claims from independently measured product quality.",
+        "nonReplacement": "RNAWiki is not a supplement-testing laboratory or subscription product-review service.",
+        "disposition": {
+          "linked": ["service home or relevant public overview"],
+          "imported": [],
+          "projected": [],
+          "excluded": ["test results", "rankings", "prose", "tables", "seals", "scraped metadata"],
+          "deferred": ["separately licensed integration"]
+        }
+      }
+    },
+    {
+      "id": "medscape",
+      "name": "Medscape",
+      "officialUrls": [
+        {
+          "label": "Editorial policies",
+          "url": "https://www.medscape.com/public/editorialpolicies"
+        },
+        {
+          "label": "Clinical database",
+          "url": "https://help.medscape.com/hc/en-us/articles/5019897522061-Tell-me-about-Medscape-s-Clinical-Database"
+        },
+        {
+          "label": "Drug and disease editorial disclosure",
+          "url": "https://help.medscape.com/hc/en-us/articles/360001560571-Reference-Drugs-Diseases-disclosure-separation-of-advertising-from-editorial-and-editorial-process"
+        }
+      ],
+      "audience": ["clinicians"],
+      "questions": [
+        "dosing",
+        "indications",
+        "interactions",
+        "disease reference",
+        "calculators",
+        "news",
+        "CME"
+      ],
+      "sourceType": "Proprietary professional reference using licensed databases and expert editorial.",
+      "evidenceRole": "secondary professional",
+      "granularity": ["drug", "disease", "procedure", "interaction", "calculator"],
+      "provenance": "Author, reviewer, reference, and database attribution vary by module.",
+      "freshness": "Medscape states that drug-reference changes follow new FDA approvals within 48 hours; other modules have their own update dates and review cycles.",
+      "editorialProcess": "PharmD and medical editorial processes with documented separation of advertising and editorial content.",
+      "access": {
+        "api": "No public content API identified.",
+        "bulk": "No public bulk licence identified.",
+        "license": "Drug and disease reference content is proprietary."
+      },
+      "readerProduct": {
+        "clarity": "Efficient for clinicians, not optimized for novice readers.",
+        "depth": "High professional depth.",
+        "chemistry": "Limited.",
+        "visuals": "Dense tables, images, and professional reference layouts.",
+        "tools": "Dosing and interaction tools, calculators, search, news, and CME.",
+        "corrections": "Expert editorial and feedback routes; no public editing.",
+        "contributions": "Expert authorship and professional submissions, not an open wiki."
+      },
+      "rnawiki": {
+        "links": "Link relevant professional material where permitted and useful.",
+        "lessons": "Keep exact professional detail quickly retrievable without making it the patient default.",
+        "nonReplacement": "RNAWiki is not clinical decision support or a dosing calculator.",
+        "disposition": {
+          "linked": ["relevant professional reference pages"],
+          "imported": [],
+          "projected": [],
+          "excluded": [
+            "monographs",
+            "dosing tables",
+            "tool logic",
+            "images",
+            "proprietary taxonomies"
+          ],
+          "deferred": ["licensed professional integration"]
+        }
+      }
+    },
+    {
+      "id": "rxlist",
+      "name": "RxList",
+      "officialUrls": [
+        { "label": "About", "url": "https://www.rxlist.com/about_us/info.htm" },
+        {
+          "label": "Editorial policy",
+          "url": "https://www.rxlist.com/rxlist_editorial_policy/info.htm"
+        }
+      ],
+      "audience": ["consumers", "patients", "caregivers"],
+      "questions": ["drug descriptions", "indications", "dosage", "side effects", "interactions"],
+      "sourceType": "WebMD-owned secondary drug reference compiled from FDA and licensed drug-information sources.",
+      "evidenceRole": "secondary",
+      "granularity": ["medicine", "brand", "drug class", "interaction"],
+      "provenance": "About and editorial pages identify source and reviewer roles.",
+      "freshness": "The editorial policy describes at least annual medical review.",
+      "editorialProcess": "Review by licensed healthcare providers.",
+      "access": {
+        "api": "No public API identified.",
+        "bulk": "No public bulk programme identified.",
+        "license": "Content is proprietary under site terms."
+      },
+      "readerProduct": {
+        "clarity": "Consumer-oriented.",
+        "depth": "Substantial monograph depth.",
+        "chemistry": "Limited.",
+        "visuals": "Drug and pill imagery.",
+        "tools": "Drug index and interaction-oriented navigation.",
+        "corrections": "Healthcare-provider review and feedback routes; no public editing.",
+        "contributions": "No open editing."
+      },
+      "rnawiki": {
+        "links": "Link a relevant RxList drug page as optional context.",
+        "lessons": "Use predictable, question-shaped drug-section navigation.",
+        "nonReplacement": "RNAWiki does not replace an approved label or licensed drug monograph.",
+        "disposition": {
+          "linked": ["relevant drug pages"],
+          "imported": [],
+          "projected": [],
+          "excluded": ["prose", "tables", "images", "licensed reference fields"],
+          "deferred": ["licensed integration"]
+        }
+      }
+    },
+    {
+      "id": "ncbi",
+      "name": "NCBI",
+      "officialUrls": [
+        { "label": "About", "url": "https://www.ncbi.nlm.nih.gov/home/about/" },
+        { "label": "APIs", "url": "https://www.ncbi.nlm.nih.gov/home/develop/api/" },
+        { "label": "Policies", "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/" }
+      ],
+      "audience": ["biomedical researchers", "clinicians", "data engineers", "general public"],
+      "questions": [
+        "literature",
+        "sequences",
+        "genes",
+        "chemicals",
+        "books",
+        "biomedical database discovery"
+      ],
+      "sourceType": "Federal information infrastructure containing multiple independent primary and secondary databases.",
+      "evidenceRole": "database-specific",
+      "granularity": ["database", "record", "accession", "version", "contributor"],
+      "provenance": "The exact database, accession, version, and contributor are required; NCBI alone is insufficient provenance.",
+      "freshness": "Database-specific.",
+      "editorialProcess": "Curation, submission, review, and correction are database-specific.",
+      "access": {
+        "api": "E-utilities and other database-specific APIs.",
+        "bulk": "Database-specific downloads and FTP services.",
+        "license": "Copyright and reuse vary across databases and records; there is no safe blanket NCBI reuse assumption."
+      },
+      "readerProduct": {
+        "clarity": "Expert clarity varies by database.",
+        "depth": "Extremely high.",
+        "chemistry": "Database-specific; PubChem is audited separately.",
+        "visuals": "Database-specific viewers and visualizations.",
+        "tools": "Entrez, BLAST, viewers, APIs, and downloads.",
+        "corrections": "Provider- and database-specific.",
+        "contributions": "Deposits, registered submissions, or curation depending on database."
+      },
+      "rnawiki": {
+        "links": "Link the exact database record and accession.",
+        "lessons": "Expose accession, version, contributor, and database rather than a generic institutional badge.",
+        "nonReplacement": "RNAWiki cannot replace the underlying NCBI database or archive.",
+        "disposition": {
+          "linked": ["exact records and accessions"],
+          "imported": ["allowlisted fields from a named database with a recorded rights decision"],
+          "projected": ["database-specific deterministic summaries with exact inputs"],
+          "excluded": [
+            "generic NCBI provenance",
+            "fields without database-specific rights and semantics"
+          ],
+          "deferred": ["new database integrations without a source contract"]
+        }
+      }
+    },
+    {
+      "id": "pubmed",
+      "name": "PubMed",
+      "officialUrls": [
+        { "label": "About", "url": "https://pubmed.ncbi.nlm.nih.gov/about/" },
+        { "label": "Downloads", "url": "https://pubmed.ncbi.nlm.nih.gov/download/" },
+        {
+          "label": "MEDLINE journal selection",
+          "url": "https://www.nlm.nih.gov/medline/medline_journal_selection.html"
+        }
+      ],
+      "audience": ["researchers", "clinicians", "general public"],
+      "questions": ["which biomedical literature exists", "how to find and identify an article"],
+      "sourceType": "Bibliographic index and discovery service.",
+      "evidenceRole": "index, not evidence or critical appraisal",
+      "granularity": [
+        "citation",
+        "article identity",
+        "PMID",
+        "journal",
+        "author",
+        "identifier",
+        "index term"
+      ],
+      "provenance": "The journal and publisher own the article context; NLM supplies indexing and links.",
+      "freshness": "Updated daily.",
+      "editorialProcess": "MEDLINE journal selection and NLM indexing improve discovery but do not validate each article's conclusion.",
+      "access": {
+        "api": "NCBI E-utilities.",
+        "bulk": "Annual baseline and daily update files.",
+        "license": "Citation metadata can be reused selectively; abstract and full-text copyright varies and must be checked item by item."
+      },
+      "readerProduct": {
+        "clarity": "Strong for literature search, especially for professional users.",
+        "depth": "Deep citation and indexing detail.",
+        "chemistry": "None as a primary layer.",
+        "visuals": "Minimal native visualization.",
+        "tools": "Advanced search, filters, citation export, APIs, and publisher links.",
+        "corrections": "Correction and retraction links reflect publisher and database updates.",
+        "contributions": "Publishers and repositories deposit records; readers do not directly edit citations."
+      },
+      "rnawiki": {
+        "links": "Link the PMID and, where appropriate, the publisher record.",
+        "lessons": "Make search scope and filters visible, and distinguish discovery from evidence judgment.",
+        "nonReplacement": "RNAWiki is not PubMed, the full article, or a substitute for critical appraisal.",
+        "disposition": {
+          "linked": ["PMID", "publisher article or lawful full-text location"],
+          "imported": [
+            "permitted citation identifiers and metadata",
+            "correction and retraction relationships"
+          ],
+          "projected": ["transparent literature counts and search views"],
+          "excluded": [
+            "unlicensed abstracts",
+            "unlicensed full text",
+            "inferred evidence quality from indexing"
+          ],
+          "deferred": ["broad literature extraction", "automated evidence interpretation"]
+        }
+      }
+    },
+    {
+      "id": "pubchem",
+      "name": "PubChem",
+      "officialUrls": [
+        { "label": "About", "url": "https://pubchem.ncbi.nlm.nih.gov/docs/about" },
+        { "label": "Data sources", "url": "https://pubchem.ncbi.nlm.nih.gov/docs/data-sources" },
+        { "label": "PUG-REST", "url": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest" },
+        { "label": "Downloads", "url": "https://pubchem.ncbi.nlm.nih.gov/docs/downloads" }
+      ],
+      "audience": ["researchers", "developers", "educators"],
+      "questions": [
+        "chemical identity",
+        "structure",
+        "properties",
+        "bioassays",
+        "linked safety information"
+      ],
+      "sourceType": "Aggregated chemical repository receiving primary and secondary contributor records and normalizing compound identities.",
+      "evidenceRole": "mixed aggregation with source-level provenance",
+      "granularity": [
+        "substance SID",
+        "compound CID",
+        "assay AID",
+        "property",
+        "contributing source"
+      ],
+      "provenance": "Contributor identity and source section must remain attached to each imported field.",
+      "freshness": "Updates follow contributor releases and PubChem processing; no single scientific review date applies to every property.",
+      "editorialProcess": "Contributor submissions plus automated standardization and substance-to-compound normalization.",
+      "access": {
+        "api": "PUG-REST and related services.",
+        "bulk": "Public downloads.",
+        "license": "Licences vary by contributing source; allowlist public/permissive fields and exclude non-commercial or unclear sources."
+      },
+      "readerProduct": {
+        "clarity": "Moderate for general readers.",
+        "depth": "Exceptional chemistry depth.",
+        "chemistry": "Core product strength.",
+        "visuals": "2D and 3D structures, spectra, and linked chemical views.",
+        "tools": "Name, structure, and similarity search plus APIs and downloads.",
+        "corrections": "Contributor and PubChem support routes.",
+        "contributions": "Registered data contributors submit source records."
+      },
+      "rnawiki": {
+        "links": "Link the exact CID, SID, AID, or contributor record.",
+        "lessons": "Keep normalized identity, contributor assertion, property method, and rights provenance distinct.",
+        "nonReplacement": "RNAWiki is not a chemical authority, contributor database, or laboratory measurement.",
+        "disposition": {
+          "linked": ["CID", "SID", "AID", "contributor record"],
+          "imported": ["allowlisted public/permissive identity, structure, and property fields"],
+          "projected": ["calculated descriptors and comparisons with method and version"],
+          "excluded": [
+            "non-commercial sources",
+            "unclear-licence sources",
+            "unattributed aggregate prose"
+          ],
+          "deferred": ["new contributor sources pending rights review"]
+        }
+      }
+    },
+    {
+      "id": "clinicaltrials-gov",
+      "name": "ClinicalTrials.gov",
+      "officialUrls": [
+        { "label": "About", "url": "https://clinicaltrials.gov/about" },
+        {
+          "label": "API",
+          "url": "https://clinicaltrials.gov/data-about-studies/learn-about-api"
+        },
+        { "label": "Terms", "url": "https://clinicaltrials.gov/about-site/terms-conditions" },
+        {
+          "label": "Quality-control criteria",
+          "url": "https://clinicaltrials.gov/submit-studies/prs-help/protocol-registration-quality-control-review-criteria"
+        }
+      ],
+      "audience": ["patients", "families", "researchers", "sponsors", "policymakers"],
+      "questions": [
+        "trial purpose",
+        "status",
+        "eligibility",
+        "sites",
+        "design",
+        "submitted results"
+      ],
+      "sourceType": "Sponsor or investigator-submitted trial registry with limited NLM quality-control review.",
+      "evidenceRole": "primary submitted registry record, not scientific validation",
+      "granularity": ["NCT study", "arm", "outcome", "sponsor", "site", "record history"],
+      "provenance": "NCT ID, responsible party, submission date, posting date, and history are essential.",
+      "freshness": "Records expose first-posted and last-update dates and history; responsible parties submit updates.",
+      "editorialProcess": "NLM QC checks record format and apparent validity under public criteria, not scientific merit or truth of the conclusions.",
+      "access": {
+        "api": "Public API v2.",
+        "bulk": "Public record downloads and API pagination.",
+        "license": "Information is generally public domain, subject to the third-party and trademark caveats in the terms."
+      },
+      "readerProduct": {
+        "clarity": "Mixed consumer and professional clarity.",
+        "depth": "High registry depth.",
+        "chemistry": "Minimal.",
+        "visuals": "Structured tables and location-oriented discovery.",
+        "tools": "Search, filters, downloads, API, and record history.",
+        "corrections": "Responsible-party updates plus NLM QC; no public wiki editing.",
+        "contributions": "Authorized responsible parties submit and maintain records."
+      },
+      "rnawiki": {
+        "links": "Link the exact NCT record and history.",
+        "lessons": "Show record status, sponsor responsibility, update history, and QC boundary together.",
+        "nonReplacement": "RNAWiki is not the trial registry, peer review, informed consent, or advice about joining a study.",
+        "disposition": {
+          "linked": ["NCT record", "record history"],
+          "imported": [
+            "registration identifiers",
+            "status",
+            "phase",
+            "design",
+            "sponsor",
+            "eligibility",
+            "sites",
+            "submission and posting dates"
+          ],
+          "projected": ["bounded trial counts", "status filters", "timelines"],
+          "excluded": ["automatic scientific validation", "automatic medical conclusions"],
+          "deferred": ["interpretation of posted trial results"]
+        }
+      }
+    }
+  ],
+  "fieldCrosswalk": [
+    {
+      "field": "Canonical medicine name, ingredient, and public identifiers",
+      "sources": ["FDA", "Drugs@FDA", "DailyMed", "openFDA", "PubChem"],
+      "disposition": ["imported"],
+      "rule": "Store the exact database and application, SETID, CID, or other record identifier plus retrieval time and artifact digest; never alter a recorded trade name because of a style rule."
+    },
+    {
+      "field": "Brand/product, route, strength, package, and NDC variants",
+      "sources": ["Drugs@FDA", "DailyMed", "openFDA"],
+      "disposition": ["imported", "projected"],
+      "rule": "Preserve application/product or SPL set/version/package provenance and never imply every DailyMed record is FDA-approved."
+    },
+    {
+      "field": "Approval status, action date, sponsor, and regulatory history",
+      "sources": ["FDA", "Drugs@FDA"],
+      "disposition": ["imported", "projected", "linked"],
+      "rule": "Bind every fact to the exact application/action; RNAWiki never grants or infers approval."
+    },
+    {
+      "field": "Label indications, dosage, contraindications, warnings, and adverse reactions",
+      "sources": ["FDA", "Drugs@FDA", "DailyMed"],
+      "disposition": ["imported", "linked"],
+      "rule": "Import bounded structured facts or short verification excerpts with label version and section; never merge in-use labeling with approval or automatically rewrite medical copy after drift."
+    },
+    {
+      "field": "Mechanism, pharmacokinetics, and interaction assertions",
+      "sources": [
+        "exact permitted source documents",
+        "commercial references as outbound links only"
+      ],
+      "disposition": ["imported", "linked", "deferred"],
+      "rule": "Require an exact source assertion and preserve population, route, measurement, and uncertainty; do not ingest commercial interaction conclusions or produce personalized advice."
+    },
+    {
+      "field": "Chemical identity, structure, formula, mass, and computed properties",
+      "sources": ["PubChem"],
+      "disposition": ["imported", "projected", "linked"],
+      "rule": "Store CID/SID, contributor, licence, property method/version, and retrieval time; exclude non-commercial and unclear-source sections."
+    },
+    {
+      "field": "Trial registration, phase, design, recruitment status, sponsor, eligibility, and sites",
+      "sources": ["ClinicalTrials.gov"],
+      "disposition": ["imported", "projected", "linked"],
+      "rule": "Bind to NCT ID and record history; label status as sponsor-submitted registry data rather than verified clinical truth."
+    },
+    {
+      "field": "Posted trial results",
+      "sources": ["ClinicalTrials.gov"],
+      "disposition": ["deferred"],
+      "rule": "Do not generate efficacy, safety, or programme verdicts automatically; limited NLM QC is not scientific validation."
+    },
+    {
+      "field": "Literature identity and discovery",
+      "sources": ["PubMed", "named NCBI databases"],
+      "disposition": ["imported", "linked", "projected"],
+      "rule": "Keep PMID/accession, publisher or database, dates, and correction/retraction links; indexing is not evidence quality."
+    },
+    {
+      "field": "Abstracts, articles, books, and source prose",
+      "sources": ["PubMed", "NCBI", "publishers", "editorial resources"],
+      "disposition": ["excluded"],
+      "rule": "Exclude unless the exact item has a compatible licence; government hosting or indexing does not transfer third-party rights."
+    },
+    {
+      "field": "Supplement evidence summaries",
+      "sources": ["NCCIH"],
+      "disposition": ["linked", "deferred"],
+      "rule": "A future import must preserve claim scope, citation, review date, version, and content-specific rights."
+    },
+    {
+      "field": "Branded supplement quality and testing",
+      "sources": ["ConsumerLab"],
+      "disposition": ["linked", "excluded"],
+      "rule": "No scraping, transcription of test results, rankings, seals, or inferred pass/fail fields."
+    },
+    {
+      "field": "Patient-facing explanation and navigation",
+      "sources": ["MedlinePlus", "Mayo Clinic", "WebMD", "Drugs.com", "NCCIH", "RxList"],
+      "disposition": ["linked", "excluded"],
+      "rule": "Learn from product patterns but author RNAWiki copy independently from permitted factual sources; do not closely paraphrase proprietary prose."
+    },
+    {
+      "field": "Professional dosing, interaction, calculator, and pill-identification tools",
+      "sources": ["Drugs.com", "WebMD", "Medscape", "RxList"],
+      "disposition": ["linked", "excluded"],
+      "rule": "Do not reproduce proprietary logic or imply individualized clinical guidance."
+    },
+    {
+      "field": "User ratings, reviews, and community experience",
+      "sources": ["Drugs.com", "WebMD"],
+      "disposition": ["excluded"],
+      "rule": "Community experience is not reviewed evidence or source consensus and must not enter candidate memory."
+    },
+    {
+      "field": "Source agreement, freshness, and review candidates",
+      "sources": ["all imported sources with exact field bindings"],
+      "disposition": ["projected"],
+      "rule": "Compare like-for-like assertions only; not_comparable is not disagreement, network failure is not drift, and confirmed persisted drift creates a review item without rewriting medical content."
+    },
+    {
+      "field": "Images, diagrams, videos, seals, and proprietary visualizations",
+      "sources": ["all resources"],
+      "disposition": ["linked", "excluded"],
+      "rule": "Reuse only with asset-level provenance and compatible licence; public availability is not a reuse grant."
+    }
+  ],
+  "strategy": {
+    "linked": [
+      "All sixteen resources may be linked when the exact destination helps the reader.",
+      "Commercial and consumer-editorial links are contextual destinations, not authority badges."
+    ],
+    "imported": [
+      "FDA and Drugs@FDA regulatory facts",
+      "DailyMed and openFDA bounded structured records",
+      "Public or permissively licensed PubChem fields with contributor provenance",
+      "ClinicalTrials.gov registration, status, design, sponsor, eligibility, site, and history fields",
+      "Narrowly permitted PubMed and named-NCBI metadata",
+      "Eligible NLM-authored MedlinePlus fields only after content-level rights classification"
+    ],
+    "projected": [
+      "deterministic counts",
+      "timelines",
+      "freshness states",
+      "like-for-like source agreement",
+      "chemical-property displays with method/version",
+      "bounded search and audience views"
+    ],
+    "excluded": [
+      "proprietary prose, tables, images, and tool logic",
+      "commercial formulary and decision-support content",
+      "user ratings and reviews",
+      "ConsumerLab results, rankings, and seals",
+      "unlicensed abstracts and full text",
+      "records or fields with unresolved reuse rights"
+    ],
+    "deferred": [
+      "ClinicalTrials.gov posted-results interpretation",
+      "structured NCCIH fact-sheet ingestion",
+      "broad literature extraction and automated interpretation",
+      "commercial licensed integrations"
+    ]
+  },
+  "safetyRules": [
+    "A source drift is a review item and never rewrites medical content automatically.",
+    "A temporary network failure is not source drift.",
+    "not_comparable is not source disagreement.",
+    "A machine transport or index is not an independent agreeing source.",
+    "No imported field may lose its exact source, version or update context, retrieval time, and rights decision."
+  ]
+}
