@@ -1,0 +1,153 @@
+{
+  "schema": "four-audience-evidence-coverage/v1",
+  "contractSchema": "four-audience-evidence-contract/v1",
+  "measurementDigest": "dc5189d25ce7084020023023fd0ad256cb4ce8220ef397bb881e3728362fe381",
+  "generatedFrom": {
+    "snapshotGeneratedAt": "2026-08-31T10:41:37.548Z",
+    "inputs": {
+      "data/drugs.csv": "4524645969755966e24aefb2870076c9f6f72ebc7ebda70674ca2d351fb41703",
+      "data/drugs/*.ndjson": "aa9aafc10f9bb7a90bafdcf8ba31bed8254d1b79300aaf1a596f9760d021d4bf",
+      "data/manifest.json": "f5a020f6fa61c988b5e594a555b31edc75c708893b8bb5f62b0b7de2008c6783",
+      "data/recorded-background.ndjson": "6e75d1aba939c64528205c463c717fd476fb7b985b87fa827f6817d6f51668fb",
+      "data/source-consensus.ndjson": "e2142e79e7fe5ac3399f8487efce00acd8353e6844cf1ad469a278e2b5673da9",
+      "docs/product/four-audience-evidence-contract.json": "d3496d980db3d4e9ca2474cdf95684743ad5c550bea571aabffec3ec668a7e73"
+    }
+  },
+  "denominators": {
+    "publicMedicineRows": 9857,
+    "recordedBackgroundRecords": 9855,
+    "publicRowsOutsideRecordedBackground": 2
+  },
+  "registryBoundary": {
+    "ordinaryQuestions": 6,
+    "fixedRegistryPairs": 59130,
+    "observedSourceBoundEligiblePairs": 4319,
+    "note": "A fixed question entry can be an explicit non-answer. Registry pairs are never counted as clinical answers."
+  },
+  "ordinaryQuestions": [
+    {
+      "id": "purpose",
+      "prompt": "What is this medicine used or studied for?",
+      "questionIntents": ["purpose"],
+      "eligibilityRule": "source_bound_recorded_use_or_source_bound_reviewed_scope",
+      "measurementState": "exact_for_checked_in_snapshot",
+      "observedEligibleRecords": 2751,
+      "notEligibleRecords": 7104,
+      "shareOfRecordedBackgroundCorpus": 0.279148
+    },
+    {
+      "id": "people-result",
+      "prompt": "What happened to people in the cited study or label?",
+      "questionIntents": ["bottom-line", "measurement"],
+      "eligibilityRule": "source_bound_pivotal_result_or_source_bound_reviewed_outcome",
+      "measurementState": "exact_for_checked_in_snapshot",
+      "observedEligibleRecords": 18,
+      "notEligibleRecords": 9837,
+      "shareOfRecordedBackgroundCorpus": 0.001826
+    },
+    {
+      "id": "result-magnitude",
+      "prompt": "How large was the measured result?",
+      "questionIntents": ["results-magnitude"],
+      "eligibilityRule": "source_bound_numeric_pivotal_result_or_source_bound_reviewed_magnitude",
+      "measurementState": "exact_for_checked_in_snapshot",
+      "observedEligibleRecords": 18,
+      "notEligibleRecords": 9837,
+      "shareOfRecordedBackgroundCorpus": 0.001826
+    },
+    {
+      "id": "harm-or-limitation",
+      "prompt": "What important harm or limitation was recorded?",
+      "questionIntents": ["harms", "meaning-limitations"],
+      "eligibilityRule": "source_bound_serious_harm_or_source_bound_reviewed_limitation",
+      "measurementState": "exact_for_checked_in_snapshot",
+      "observedEligibleRecords": 1510,
+      "notEligibleRecords": 8345,
+      "shareOfRecordedBackgroundCorpus": 0.153222
+    },
+    {
+      "id": "applicability",
+      "prompt": "Who might this evidence not apply to?",
+      "questionIntents": ["applicability"],
+      "eligibilityRule": "source_bound_study_applicability",
+      "measurementState": "exact_for_checked_in_snapshot",
+      "observedEligibleRecords": 22,
+      "notEligibleRecords": 9833,
+      "shareOfRecordedBackgroundCorpus": 0.002232
+    },
+    {
+      "id": "unknown-conflicting-stale",
+      "prompt": "What is unknown, conflicting or stale?",
+      "questionIntents": ["unknowns"],
+      "eligibilityRule": "source_bound_reviewed_unknown_or_mapped_comparable_conflict_or_exact_confirmed_drift",
+      "measurementState": "partial_lower_bound",
+      "observedEligibleRecords": 0,
+      "notEligibleRecords": null,
+      "shareOfRecordedBackgroundCorpus": 0
+    }
+  ],
+  "allSixOrdinaryQuestions": {
+    "recordsEligibleForFirstFive": 0,
+    "observedEligibleForAllSix": 0,
+    "measurementState": "exact_zero",
+    "note": "No record meets the first five rules, so the all-six count is exactly zero even though runtime stale bindings are not exported."
+  },
+  "chemistryIdentity": {
+    "sourceBoundBackgroundRecords": 3103,
+    "legacyMolecularRecords": 3258,
+    "legacySmilesRecords": 3204,
+    "legacyFormulaRecords": 3258,
+    "unionRecords": 4307,
+    "shareOfRecordedBackgroundCorpus": 0.437037
+  },
+  "biotechResearchCoverage": {
+    "sourceBoundRecordedUseRecords": 2751,
+    "sourceBoundMechanismRecords": 1632,
+    "sourceBoundPivotalResultRecords": 18,
+    "sourceBoundApplicabilityRecords": 22,
+    "recordsWithUseMechanismResultAndApplicability": 0,
+    "shareOfRecordedBackgroundCorpus": 0
+  },
+  "quantitativeUncertainty": {
+    "pivotalResultRecords": 18,
+    "pivotalResults": 22,
+    "recordsWithPrintedUncertainty": 14,
+    "resultsWithPrintedUncertainty": 15,
+    "shareOfPivotalResults": 0.681818
+  },
+  "sourceConflict": {
+    "comparableDifferFields": 0,
+    "recordsWithComparableDifference": 0,
+    "comparisonStates": {
+      "agree": 1282,
+      "differ": 0,
+      "not_comparable": 12,
+      "insufficient_context": 387,
+      "not_classified": 0
+    },
+    "notComparableFieldsExcluded": 12,
+    "unmappedDifferFields": []
+  },
+  "staleExactBindings": {
+    "measurementState": "not_observable_in_checked_in_public_snapshot",
+    "projectionRecordsObserved": 0,
+    "confirmedExactBindings": null,
+    "recordsWithConfirmedDrift": null,
+    "note": "The checked-in public snapshot does not export the runtime driftedSources projection. Absence is not reported as zero."
+  },
+  "sourceRead": {
+    "recordsWithQualifyingSourceExcerpt": 3093,
+    "noSourceExcerptRead": 6762,
+    "recordsWithQualifyingSourceRecorded": 9855,
+    "noQualifyingSourceRecorded": 0,
+    "note": "A qualifying source object without a quotable excerpt remains provenance, but it is not counted as a clinical source read."
+  },
+  "limitations": [
+    "The report measures the checked-in public snapshot, not scientific knowledge outside the sources RNAWiki recorded.",
+    "The source-bound eligibility counts are not claims that every eligible field is already rendered as an answered registry passage.",
+    "The snapshot has 0 current programme publications; the recorded-background rules therefore provide the observable ordinary-question evidence in this run.",
+    "Question-level stale is database-backed runtime state and is not observable in this checked-in public snapshot unless driftedSources is explicitly exported.",
+    "A registry pointer without a source excerpt never counts as a clinical source read.",
+    "not_comparable remains separate from source conflict."
+  ]
+}

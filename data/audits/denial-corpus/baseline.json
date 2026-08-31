@@ -27,7 +27,7 @@
       "registryIdentifiers": 6741,
       "regulatoryApproval": 2505,
       "safety": 1510,
-      "sourceConsensus": 731,
+      "sourceConsensus": 734,
       "sourceMaterial": 7126,
       "supplementIngredient": 3887,
       "supplementMarket": 5350,
@@ -46,11 +46,11 @@
         "4": 1084,
         "5": 1863,
         "6": 1719,
-        "7": 649,
+        "7": 648,
         "8": 218,
-        "9": 193,
-        "10": 226,
-        "11": 291,
+        "9": 194,
+        "10": 225,
+        "11": 292,
         "12": 313,
         "13": 381,
         "14": 260,
@@ -84,19 +84,19 @@
     "explicitNonEstablishment": 1365
   },
   "disagreement": {
-    "consensusFields": 1670,
-    "consensusMultiReading": 382,
-    "consensusBelowUnanimity": 382,
-    "consensusNumericallyDisjoint": 231,
+    "consensusFields": 1681,
+    "consensusMultiReading": 399,
+    "consensusBelowUnanimity": 399,
+    "consensusNumericallyDisjoint": 0,
     "comparisonStates": {
-      "agree": 1427,
-      "differ": 231,
+      "agree": 1282,
+      "insufficient_context": 387,
       "not_comparable": 12
     },
     "comparisonReasons": {
-      "COMPATIBLE_VALUES_DISJOINT": 231,
-      "COMPATIBLE_VALUES_OVERLAP": 1472,
-      "DENOMINATOR_MISMATCH": 14
+      "COMPATIBLE_VALUES_OVERLAP": 1287,
+      "DENOMINATOR_MISMATCH": 12,
+      "STRUCTURED_CONTEXT_MISSING": 387
     }
   },
   "measurementIntegrity": {
@@ -247,9 +247,12 @@
       "machineVerified": 3213,
       "aliases": 27859,
       "programmes": 0,
-      "currentProgrammePublications": 0
+      "currentProgrammePublications": 0,
+      "agentRuns": 10,
+      "agentCandidates": 3123,
+      "agentFindings": 42607
     },
-    "files": 13,
+    "files": 14,
     "exporterMentionsRecordedBackground": true,
     "exporterMentionsSourceConsensus": true
   },

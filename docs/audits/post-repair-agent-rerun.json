@@ -1,0 +1,156 @@
+{
+  "schema": "rnawiki-post-repair-agent-audit/v1",
+  "generatedAt": "2026-08-31T00:00:00.000Z",
+  "runDate": "2026-08-31",
+  "seed": 20260828,
+  "corpus": {
+    "commit": "5eeb35fb85f19c5caef2c9d62d45150d2eb7b340",
+    "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf",
+    "records": 9855
+  },
+  "historical": {
+    "package": "data/audits/agents/pre-release-a/manifest.json",
+    "historical_pre_repair": true,
+    "eligible_for_active_review": false,
+    "runDate": "2026-08-30",
+    "candidates": 2005
+  },
+  "current": {
+    "manifest": "data/agents/current/manifest.json",
+    "historical_pre_repair": false,
+    "eligible_for_active_review": true,
+    "agents": 10,
+    "candidates": 3123,
+    "findings": 42607,
+    "determinism": {
+      "status": "passed",
+      "rule": "The runner executes every registered agent twice in memory and writes only when every output byte matches. The checked-in package also passed --check."
+    },
+    "medicalBoundaryViolations": 0
+  },
+  "comparisonByAgent": [
+    { "agent": "silence-ledger", "historicalCandidates": 40, "currentCandidates": 40, "delta": 0 },
+    {
+      "agent": "mechanism-text-grouping",
+      "historicalCandidates": 5,
+      "currentCandidates": 5,
+      "delta": 0
+    },
+    {
+      "agent": "peer-group-anomaly-screen",
+      "historicalCandidates": 119,
+      "currentCandidates": 119,
+      "delta": 0
+    },
+    {
+      "agent": "enzyme-and-transporter-documentation",
+      "historicalCandidates": 114,
+      "currentCandidates": 144,
+      "delta": 30
+    },
+    {
+      "agent": "substance-synonyms",
+      "historicalCandidates": 1196,
+      "currentCandidates": 1199,
+      "delta": 3
+    },
+    {
+      "agent": "evidence-density",
+      "historicalCandidates": 40,
+      "currentCandidates": 1122,
+      "delta": 1082
+    },
+    {
+      "agent": "numeric-distributions",
+      "historicalCandidates": 0,
+      "currentCandidates": 0,
+      "delta": 0
+    },
+    {
+      "agent": "adverse-reaction-term-structure",
+      "historicalCandidates": 395,
+      "currentCandidates": 398,
+      "delta": 3
+    },
+    { "agent": "excerpt-integrity", "historicalCandidates": 0, "currentCandidates": 0, "delta": 0 },
+    { "agent": "coverage-ledger", "historicalCandidates": 96, "currentCandidates": 96, "delta": 0 }
+  ],
+  "comparisonByReason": [
+    {
+      "reason": "ATTRIBUTION_SUSPECT",
+      "historicalCandidates": 40,
+      "currentCandidates": 59,
+      "delta": 19
+    },
+    {
+      "reason": "COVERAGE_GAP",
+      "historicalCandidates": 650,
+      "currentCandidates": 1746,
+      "delta": 1096
+    },
+    {
+      "reason": "POSSIBLE_DUPLICATE_SUBSTANCE",
+      "historicalCandidates": 1196,
+      "currentCandidates": 1199,
+      "delta": 3
+    },
+    {
+      "reason": "UNUSUAL_FOR_PEER_GROUP",
+      "historicalCandidates": 119,
+      "currentCandidates": 119,
+      "delta": 0
+    }
+  ],
+  "identityHardening": {
+    "rawPostRepairRowsBeforeSemanticAggregation": 2230,
+    "conceptualCandidatesAfterSourceAggregation": 2041,
+    "duplicateSourceRowsAggregated": 189,
+    "sourceReadingsDiscarded": 0,
+    "completeQueueCandidatesAfterTruncationAudit": 3123,
+    "additionalPreviouslyCappedEvidenceDensityCandidates": 1082,
+    "explanation": "Multiple source readings for one medicine/counterparty question are one conceptual candidate with every reading retained in its evidence snapshot. A later queue-completeness audit removed the evidence-density presentation cap, adding 1,082 exact candidates; the two intentionally sampled ledgers declare their available counts and carry a complete compact candidate index."
+  },
+  "individualContinuity": {
+    "candidatesRemovedByRepair": {
+      "status": "not_exactly_measurable",
+      "reason": "Legacy rows have no fieldPath, candidate key, occurrence key, value digest, source snapshot digest or reason-schema version. Assigning current identities retrospectively would invent audit history."
+    },
+    "newlyDiscoveredCandidates": {
+      "status": "not_exactly_measurable",
+      "netCurrentMinusHistorical": 1118,
+      "reason": "The net increase is measured, but an unkeyed removed row and an unkeyed new row cannot be paired safely."
+    },
+    "sourceChangedCandidates": {
+      "status": "not_exactly_measurable",
+      "reason": "Legacy candidates store source labels/identifiers but no source snapshot digest."
+    },
+    "valueChangedCandidates": {
+      "status": "not_exactly_measurable",
+      "reason": "Legacy candidates store no canonical current-value digest."
+    }
+  },
+  "reasonCodesWithNoCurrentOccurrence": ["SOURCES_DISAGREE", "SOURCE_DRIFT"],
+  "outputsWithNoConsumer": [],
+  "consumerClassification": {
+    "publicDataset": ["silence-ledger", "enzyme-and-transporter-documentation", "coverage-ledger"],
+    "reviewQueue": [
+      "silence-ledger",
+      "mechanism-text-grouping",
+      "peer-group-anomaly-screen",
+      "enzyme-and-transporter-documentation",
+      "substance-synonyms",
+      "evidence-density",
+      "adverse-reaction-term-structure",
+      "excerpt-integrity",
+      "coverage-ledger"
+    ],
+    "documentedInternalReportOnly": ["numeric-distributions"],
+    "experimental": []
+  },
+  "limitations": [
+    "A changed queue count is not itself a defect or correction.",
+    "No historical occurrence was activated or assigned a post-hoc identity.",
+    "A candidate is a question about the recorded corpus, never a medicine finding.",
+    "Zero excerpt-integrity candidates is explicitly valid because a clean integrity detector should emit no work."
+  ]
+}

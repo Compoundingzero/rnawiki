@@ -110,20 +110,20 @@ FDA label as anomalous would publicly imply the label is mistaken.
 
 Ten agents, run by `npx tsx scripts/agents/run-agents.ts`. Every run reports its coverage, and the
 queue column is work routed to people rather than changes made automatically. The counts below are
-from the run of 2026-08-30 over 9,855 records at seed 20260828, and they are regenerated with the
+from the run of 2026-08-31 over 9,855 records at seed 20260828, and they are regenerated with the
 corpus rather than maintained by hand.
 
 | Agent                                  | What it computes                                                                | Used | Queue |
 | -------------------------------------- | ------------------------------------------------------------------------------- | ---- | ----- |
 | `silence-ledger`                       | Every record against 17 fixed questions as RECORDED, NOT_ESTABLISHED or SILENT  | 9855 | 40    |
-| `mechanism-text-grouping`              | Groups of medicines whose recorded mechanism wording clusters together          | 1625 | 5     |
-| `peer-group-anomaly-screen`            | Conformal p-values for recorded numbers against their peer group                | 1305 | 119   |
-| `enzyme-and-transporter-documentation` | Per-counterparty profiles, by role, polarity and label section                  | 689  | 114   |
-| `substance-synonyms`                   | Records sharing a substance identifier, as merge candidates                     | 6711 | 1196  |
-| `evidence-density`                     | How much of the schema each record holds, and how concentrated its sources are  | 9855 | 40    |
-| `numeric-distributions`                | Distributions per quantity, strictly separated by unit                          | 3379 | 0     |
-| `adverse-reaction-term-structure`      | Reaction term profiles and pairs surviving a frequency-preserving null          | 854  | 395   |
-| `excerpt-integrity`                    | Independent per-value re-check that each number appears in its cited text       | 3440 | 0     |
+| `mechanism-text-grouping`              | Groups of medicines whose recorded mechanism wording clusters together          | 1629 | 5     |
+| `peer-group-anomaly-screen`            | Conformal p-values for recorded numbers against their peer group                | 1333 | 119   |
+| `enzyme-and-transporter-documentation` | Per-counterparty profiles, by role, polarity and label section                  | 691  | 144   |
+| `substance-synonyms`                   | Records sharing a substance identifier, as merge candidates                     | 6713 | 1199  |
+| `evidence-density`                     | How much of the schema each record holds, and how concentrated its sources are  | 9855 | 1122  |
+| `numeric-distributions`                | Distributions per quantity, strictly separated by unit                          | 3396 | 0     |
+| `adverse-reaction-term-structure`      | Reaction term profiles and pairs surviving a frequency-preserving null          | 859  | 398   |
+| `excerpt-integrity`                    | Independent per-value re-check that each number appears in its cited text       | 3456 | 0     |
 | `coverage-ledger`                      | Which route reached each record, and what that route structurally cannot supply | 9855 | 96    |
 
 The single largest finding so far: **1,291 records carry an explicit source statement that pediatric
@@ -131,12 +131,15 @@ safety or effectiveness was not established** — 2.6 times the 500 records wher
 population is recorded as addressed, and a distinction that is invisible in every resource that
 treats absence and explicit non-establishment as the same blank.
 
-One qualification belongs beside that number, because the ledger classifies every record and not
-every record was read. The same question is SILENT on 8,064 records, and most of those are
-`transcribed` rows assembled from registry fields where no document was ever consulted. A SILENT
-pair on a record whose label WAS read is a verified absence — someone looked and the source did not
-answer. A SILENT pair on a record with no document behind it means only that nobody looked. Those
-two are different facts and adding them together would overstate the corpus by roughly three to one.
+One qualification belongs beside that number, because the ledger classifies every record and does
+not itself persist a section-read event for an absent field. The public reader therefore never uses
+an unrelated or answer-bearing excerpt elsewhere in a medicine envelope as proof that a silent
+question was read. A source must be both named on the exact ledger occurrence and attached to the
+exact question field or statement collection. Current `SILENT` occurrences name no sources, so the
+snapshot yields 0 `SOURCE_READ_NO_ANSWER` rows and 147,981 `NO_QUALIFYING_SOURCE_READ` rows; 1,365
+explicit `NOT_ESTABLISHED` rows remain separate. A future source kind without a canonical adapter
+and an exact source record without an excerpt have their own states, but only after the ledger
+persists that exact question-and-source binding.
 
 ### What the silence ledger cannot yet distinguish
 
@@ -153,15 +156,22 @@ The largest single gain in the corpus, and the dataset hardest for anyone else t
 
 The extraction pipeline picks one label per medicine and discards the rest. Gabapentin is covered by
 more than four hundred published labels because every manufacturer publishes its own, metoprolol by
-over three hundred, and roughly 48,000 such documents were being thrown away. Reading all of them
-lifts the pharmacokinetic evidence base from 947 documents to 14,058 and gives 375 records a field
-corroborated by ten or more independent sources.
+over three hundred, and roughly 48,000 such documents were being thrown away. The uncapped
+2026-08-30 regeneration read 80,444 archive documents, found pharmacokinetic content in 22,286,
+and gives 400 records a field represented by ten or more source records.
 
-Nothing is resolved. Where readings differ they are all kept, each with its own excerpt, and none is
-preferred — because most apparent disagreement between labels is not error. Thirty labels put
-abiraterone's terminal half-life at 12 hours and one at 18, and that one's excerpt says it is
-prolonged to approximately 18 hours in subjects with mild hepatic impairment. That is a different
-population, not a contradiction, and the excerpt is what makes it visible.
+Nothing is resolved. Every distinct printed reading is kept with its own excerpt and none is
+preferred. The deterministic parser does not yet turn population or formulation prose into a
+structured comparison key, so every generated reading says that context is structurally
+unextracted and unknown. Distinct otherwise-comparable readings are therefore
+`insufficient_context`, never `differ`. A single normalized printed reading may remain `agree`, but
+that means only that the source documents print the same reading; it is not clinical-context
+equivalence. Unit and denominator mismatches remain `not_comparable`.
+
+Thirty labels put abiraterone's terminal half-life at 12 hours and one at 18, and that one's excerpt
+says it is prolonged to approximately 18 hours in subjects with mild hepatic impairment. The
+excerpts make the likely context difference visible to a reviewer, but until that context is
+structured the dataset does not publish the pair as a contradiction.
 
 > **This example was wrong here until 2026-08-30, and the way it was wrong is worth keeping.** The
 > document said thirty labels put the half-life at 5 hours. They do not. They print "the mean
@@ -173,14 +183,21 @@ population, not a contradiction, and the excerpt is what makes it visible.
 > `statesNumber` is a transcription check. It proves a digit was read out of the excerpt; it cannot
 > prove the digit was the right one. The parser now recognises a dispersion as part of one quantity
 > (`QUANTITY_SPREAD` in `lib/background/label-extraction.ts`) and takes the mean, with the spread
-> kept in the displayed value. **The stored corpus still carries 23 values equal to their own error
-> bar** — famciclovir's bioavailability as 8% where the label says 77 ± 8%, fingolimod's volume of
-> distribution as 260 L where the label says 1200 ± 260 L — and clearing them needs a regeneration
-> from the label archive, not an edit here.
+> kept in the displayed value. Release A regenerated the archive-backed corpus and rechecked all 23
+> affected values individually. The current audit reports **0 values equal to their own dispersion**;
+> for example, famciclovir now retains 77 ± 8% and fingolimod retains 1200 ± 260 L rather than the
+> error term alone.
 
 Built by `scripts/background/build-source-consensus.ts`; validated by Group I rules
 `I_CONSENSUS_READING_NOT_IN_EXCERPT`, `I_CONSENSUS_COUNT_INCONSISTENT` and
-`I_CONSENSUS_AGREEMENT_INVALID`.
+`I_CONSENSUS_AGREEMENT_INVALID`. The generated and public v2 artifacts retain every distinct
+reading and every represented source record: 1,681 fields, 2,214 reading groups and 49,134 source
+records in this snapshot. The largest medicine has 972 matching archive documents and the largest
+reading group has 404 sources, explicit regression measurements against the former 60-document,
+five-reading and four-source ceilings. Those source records are not independent experiments. The
+current context-aware states are 1,282 `agree`, 0 `differ`, 12 `not_comparable`, and 387
+`insufficient_context`. The totals are regenerated with the artifact rather than copied forward
+from the older context-blind comparison.
 
 ## Why this compounds
 
@@ -194,26 +211,31 @@ reviewer makes. Those decisions would be the training signal that sharpens the a
 better candidates, which produce more decisions. A competitor starting today gets a snapshot; a loop
 is what accumulates.
 
-**That loop does not exist yet, and this paragraph is written in the conditional until it does.**
-Stated plainly, because it is the claim the strategy rests on and it was previously written as
-though it were built:
+Release B1 closes the human-decision loop without putting decisions into medical content. Current
+post-repair outputs receive a stable conceptual candidate key and an evidence-bound occurrence key,
+are imported idempotently into the migration-0017 memory tables, and reach stewards or
+administrators at `/review-queue/agents`. The four exact outcomes are append-only and lock the
+occurrence plus evidence snapshot that the reviewer saw. A changed value or source creates a new
+occurrence; score-only movement and wording-only changes do not.
 
-- `AgentInput` is `{ corpus, seed, runDate }`. There is no channel through which a decision could
-  arrive, and no agent imports anything from the database.
-- `ReviewCandidate` has no stable identity — `{ slug, reason, question, priority, basis, sources }` —
-  so even an answered item has no key to record the answer against. Its `question` string embeds
-  run-specific counts, so it is not stable across corpus versions either.
-- No table anywhere in the schema is keyed by (rule code, entity, decision), and none records a
-  decision on an agent queue item. Group I findings are stored nowhere at all.
-- The 2,005 queue items land in `data/agents/*.json`, which no route reads and no page renders, and
-  every rerun overwrites them.
+Historical pre-repair files remain audit evidence and are never activated. Decisions are not fed
+back into detector output and cannot rewrite a medicine, source excerpt, disagreement or freshness
+state. At zero real production decisions, calibration remains inactive. The only allowed future
+feedback effects are unchanged-reviewed suppression, empirical precision reporting and queue
+ordering after the documented minimum-data policy is met.
 
-So the loop is open at both ends: the queue does not reach a person, and a decision could not get
-back. Closing it needs three things and none of them weakens a boundary — a `candidateKey` that
-hashes the _subject_ of a question (agent, version, slug, reason, field path) rather than its prose;
-a table recording the decision, with at least four outcomes so that "I read the excerpt and the
-value is what the source prints" is distinguishable from "this is wrong"; and an optional
-`decisions` input used **only** for suppression, precision reporting and score calibration.
+### Calibration activation floor
+
+Release B1 does not fit or apply a calibration model. Its queue shows the exact sentence “Not
+enough review history to calibrate this reason.” while calibration is inactive; zero production
+decisions must never be presented as fitted precision.
+
+The declared minimum is a reporting and activation floor, not permission to fit automatically. One
+exact agent + agent version + reason-schema version + reason + provenance-tier stratum must hold at
+least 30 real decision events, with at least five events in each of at least two outcome classes.
+Even after those floors are met, calibration remains inactive until a separately reviewed
+deterministic fitter and time-split evaluator exist. Review outcomes may eventually reorder work;
+they may never change medical content, choose a source, or publish a correction.
 
 The line that must hold when it is built: **a fitted parameter may change which records reach a
 human. It may never change a recorded value, resolve a source disagreement, or assert anything about

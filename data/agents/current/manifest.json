@@ -1,0 +1,1553 @@
+{
+  "schema": "rnawiki-current-agent-manifest/v1",
+  "historicalPreRepair": false,
+  "eligibleForActiveReview": true,
+  "corpusCommit": "5eeb35fb85f19c5caef2c9d62d45150d2eb7b340",
+  "corpusDigest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf",
+  "generatedAt": "2026-08-31T00:00:00.000Z",
+  "runDate": "2026-08-31",
+  "seed": 20260828,
+  "records": 9855,
+  "neurodeRunManifest": {
+    "schema": "rnawiki/neurode-run-manifest/v1",
+    "status": "SUCCEEDED",
+    "failureCode": null,
+    "requestedNeurodeIds": [
+      "adverse-reaction-term-structure",
+      "coverage-ledger",
+      "enzyme-and-transporter-documentation",
+      "evidence-density",
+      "excerpt-integrity",
+      "mechanism-text-grouping",
+      "numeric-distributions",
+      "peer-group-anomaly-screen",
+      "silence-ledger",
+      "substance-synonyms"
+    ],
+    "plannedNeurodeIds": [
+      "adverse-reaction-term-structure",
+      "coverage-ledger",
+      "enzyme-and-transporter-documentation",
+      "evidence-density",
+      "excerpt-integrity",
+      "mechanism-text-grouping",
+      "numeric-distributions",
+      "peer-group-anomaly-screen",
+      "silence-ledger",
+      "substance-synonyms"
+    ],
+    "startedAt": "2026-08-31T00:00:00.000Z",
+    "completedAt": "2026-08-31T00:00:00.000Z",
+    "nodes": [
+      {
+        "neurodeId": "adverse-reaction-term-structure",
+        "neurodeVersion": "1.1.0",
+        "contractCacheDigest": "sha256:2875b1fc64e4699ff7a1ae64bb20365e8e814e614572ddc84c412be69e691635",
+        "category": "CROSS_SOURCE_RELATION",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/adverse-reaction-term-structure/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_2b9a886b91d103f0eac752110de09b1da9eb531e89169136697f78e7b1d18194",
+        "inputDigest": "sha256:32b996188be0700f4b81ac360fa23cab127a6cec92b18cacdbbafac871c389b7",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:f2b645286e82deb5601e176511d854f5f0d84da4d8875bcce5546fac12df13a6",
+        "recordsConsidered": 9855,
+        "recordsUsed": 859,
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "coverage-ledger",
+        "neurodeVersion": "1.4.0",
+        "contractCacheDigest": "sha256:b5734a4fed5b74e88b012ece1f7c0f082008f373e20e1514a5aff9b815d1751f",
+        "category": "COVERAGE_DETECTOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/coverage-ledger/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_0f6c2148de3c020ad8a1ed5e6b88fd097bf77d63ac9bfbcf5c92ca370220b731",
+        "inputDigest": "sha256:2641b3e987640414fe8bffbe921c2fd7d945d81b6543e1cb5142553d15d6b1b4",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:eeb36accee5601a14977b94299f4587fb97bc09e68a5a532c23367cd236b5a73",
+        "recordsConsidered": 9855,
+        "recordsUsed": 9855,
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "enzyme-and-transporter-documentation",
+        "neurodeVersion": "1.3.0",
+        "contractCacheDigest": "sha256:d795bfa36e69024e0d8cbcd340af556d8efe2168a6aae4c63f8cf9fe1d47031b",
+        "category": "DATA_QUALITY_DETECTOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/enzyme-and-transporter-documentation/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_1463b25182f616b6b2885489edac489262ff0ea2cf5e9acc4a93bb5dda9b4888",
+        "inputDigest": "sha256:996ab1081ae4604a87c4fe4d15407f2e91e0c9d393b4570684a105b2339f6d12",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:aad3d23a268a0dc4398144d5ab6a66f7d492c7ec306ed09662bf08b19f8af136",
+        "recordsConsidered": 9855,
+        "recordsUsed": 691,
+        "reasonCodes": [
+          "ATTRIBUTION_SUSPECT",
+          "COVERAGE_GAP"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "evidence-density",
+        "neurodeVersion": "1.4.0",
+        "contractCacheDigest": "sha256:252bebe3f25370ba320a1877086c6bcc2c5bcd4d595a7b402f1374ea7091ada3",
+        "category": "PRIORITIZATION_FEATURE",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/evidence-density/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_f79f0848694492a3cfb39945ad435e81c95050ec46d91931f0709ed131dc2bbb",
+        "inputDigest": "sha256:7e6fe0065aac3ce9eed50b402096fcd08edf5dcc793518a79e62d7a95c54344a",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:1a7b7e825c6c39476ef9d69e22f13e9db1c099fbef2c8bf6894c26d501da63f7",
+        "recordsConsidered": 9855,
+        "recordsUsed": 9855,
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "excerpt-integrity",
+        "neurodeVersion": "1.2.0",
+        "contractCacheDigest": "sha256:f748398e89dfdaee2f5fe4b0879c2bdbdb64be947aed186d60c292e865ea452a",
+        "category": "STRUCTURAL_VALIDATOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/excerpt-integrity/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_7a9506baf08d03f9aa84e584523496d35a47b89a82609aed0435a8c42bce7f7c",
+        "inputDigest": "sha256:3382082359dcd4d19a57d8d6d0eafd31319dae465bdc9b662ab335dd15538ef8",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:0b1bfae3b10109269b32b454dbc7241225aadf9d6e82243c03d9fdabf1f886ac",
+        "recordsConsidered": 9855,
+        "recordsUsed": 3456,
+        "reasonCodes": [],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "mechanism-text-grouping",
+        "neurodeVersion": "1.2.0",
+        "contractCacheDigest": "sha256:8966239e72319ba029fa78313a840d486bb5a8919a4a72fb366994e57d240241",
+        "category": "CROSS_SOURCE_RELATION",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/mechanism-text-grouping/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_e7dc84c1275b06e5c20adb44bf3bf5ae7954ece5c46ce30bdb9ef0d02022eea9",
+        "inputDigest": "sha256:fa19e2e53b32df3d9d8b6e448fd2d4e5d1bdd0dc159d10b91379771892e213e5",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:19346af1a5ec5443dadb9339082edd8c27dbf4a26626be03cab15c2bd6f48949",
+        "recordsConsidered": 9855,
+        "recordsUsed": 1629,
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "numeric-distributions",
+        "neurodeVersion": "1.0.0",
+        "contractCacheDigest": "sha256:fd4fc0cf56dbb18f44108a296b0b7baca4c08c293183be9fa974c4669c477d97",
+        "category": "PUBLIC_AGGREGATE",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/numeric-distributions/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_469df86e070e11902de65a949ac069f9615d848e05dda9f83e4857fed5668a10",
+        "inputDigest": "sha256:30730e24bb469a31bd65ccf0a0576c4d61c702948dcd52302cf2caed69292a1c",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:0ab5b292fbd423137db378de694a9f1a59c577ef9261401555cb021dfe1f251e",
+        "recordsConsidered": 9855,
+        "recordsUsed": 3396,
+        "reasonCodes": [],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "peer-group-anomaly-screen",
+        "neurodeVersion": "1.1.0",
+        "contractCacheDigest": "sha256:a2ee9a400e316e28b7c1de4680389047eca9641c7faedb0bda6dfd3bb4e813aa",
+        "category": "PRIORITIZATION_FEATURE",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/peer-group-anomaly-screen/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_78b6f8db98bb63675d0965381a757490cec79175a9b0da29aeaedb121f44fda5",
+        "inputDigest": "sha256:59ec201df1eb8b2b84b84e05a7ce216ebde4beb084ad5caeb277109444ad1c06",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:b743feb2ccdfbf495213f5678c8197d9950614c4e5a7b70aea85d2232c56fe6b",
+        "recordsConsidered": 9855,
+        "recordsUsed": 1333,
+        "reasonCodes": [
+          "UNUSUAL_FOR_PEER_GROUP"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "silence-ledger",
+        "neurodeVersion": "1.2.0",
+        "contractCacheDigest": "sha256:376a3629e79124ddd3b755f945590d70f076ead1fd82ffcc21ca9cffff1f3cda",
+        "category": "COVERAGE_DETECTOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/silence-ledger/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_11b7922932ec04695042ec1eb0f6c08e2b8ccf214e3628e5973d1d4f0018ad94",
+        "inputDigest": "sha256:23a69b20c2234c6fe1bcecfb4ed1f09ed8e5be3f8a06ba89c07d631cad4b2933",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:31a5fc98ca5f3c42049bbe36cf8198da6e0869b6c214f507c6ab903f47e50276",
+        "recordsConsidered": 9855,
+        "recordsUsed": 9855,
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      },
+      {
+        "neurodeId": "substance-synonyms",
+        "neurodeVersion": "1.2.0",
+        "contractCacheDigest": "sha256:070c86ca9805f3d9b6ea65311cf3f86963846b9daa0e59221849bbf53ae41c15",
+        "category": "CROSS_SOURCE_RELATION",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/substance-synonyms/v1",
+        "dependencyIds": [],
+        "status": "SUCCEEDED",
+        "cacheStatus": "DISABLED",
+        "cacheKey": "neurode_cache_7f4ee3b31b7014317dba7adb1889b532a2c4bb1ed28d9c64cbcc124891b033e3",
+        "inputDigest": "sha256:d62e63125888aa8b4a0287c0e079cc33c27ce6856f025c9fb90783852cd25abd",
+        "inputDigestComplete": true,
+        "outputDigest": "sha256:974977e8d03e643f47669e35f38edd3925e4d2fce0a004facb88cdc7147c2ea4",
+        "recordsConsidered": 9855,
+        "recordsUsed": 6713,
+        "reasonCodes": [
+          "POSSIBLE_DUPLICATE_SUBSTANCE"
+        ],
+        "startedAt": "2026-08-31T00:00:00.000Z",
+        "completedAt": "2026-08-31T00:00:00.000Z",
+        "failureCode": null
+      }
+    ],
+    "runId": "neurode_run_08b46f86c6c958945a75dfd75e5e104120528f19963c8203c5ae0c0b2397ea74"
+  },
+  "artifacts": [
+    {
+      "agentId": "silence-ledger",
+      "agentVersion": "1.2.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/silence-ledger.json",
+      "dependencies": [
+        "recorded-background",
+        "source-coverage"
+      ],
+      "sourceRequirements": [
+        "recorded source reads by fixed question set"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/silence-ledger.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "6e32fbcfc5505186a8d95f3c08cf785f750bfd78132852f691c2c4fa6c216dc8",
+      "inputDigest": "0ee5a304b8dfa282b06259bb923db1cd1efecef472f21d5954056e5d0a773e32",
+      "outputDigest": "10f2275274280124b77f034c59e022fe9c88860561614dfd54b6e191b8dd3780",
+      "candidateCount": 40,
+      "availableCandidateCount": 147981,
+      "candidateSelectionMode": "sampled",
+      "findingCount": 9855,
+      "candidateReasons": [
+        "COVERAGE_GAP"
+      ],
+      "consumers": [
+        "review_queue",
+        "public_dataset"
+      ],
+      "limitations": [
+        "SILENT means no source in this corpus, in the sections that were read, states an answer. It is a fact about the documents recorded here and never a fact about the medicine.",
+        "A record silent on a question is not evidence that no answer exists, and it is not evidence of safety or of danger in either direction. A label that never states a pediatric half-life is a label that never states one, nothing more.",
+        "Section scoping is a real limit. A fact can sit in a section the extractor does not read, so every silence count should be read as \"not recorded from the sections read\" rather than \"not stated anywhere\".",
+        "Silence on the boxed-warning question is the clearest case of this: 9249 of 9855 records hold no boxed-warning statement, which means no recorded document contributed one, not that no boxed warning exists.",
+        "Only the 6 population questions can show NOT_ESTABLISHED, because only population statements carry a source-stated evidence state. On the other 11 questions a source sentence saying something was never determined, if one was printed, arrives here as a plain absence and is counted as SILENT.",
+        "3276 of 9855 records were produced by the deterministic label parser rather than assembled by a person. The parser reads a fixed set of sections, so its silences are more often a limit of the parser than of the source; the roll-up splits recorded and silent counts by tier so the two are never added together blindly.",
+        "RECORDED on a population question merges two different answers: a source reporting a finding in the group, and a source that only raises the group without settling safety or effectiveness for it. 88% of recorded population answers here are the second kind, so a high recorded share on those questions is not a high share of settled answers. Entries of the second kind carry mentionedWithoutFinding and the roll-up counts them in recordedMentionOnly.",
+        "Where the recorded statements for one population disagree, one saying a group was studied and another saying the question was not established, the entry counts as RECORDED and is marked as holding mixed states. The disagreement is recorded and is not settled here.",
+        "Counts are over the records this corpus holds, which is neither every medicine nor every revision of every document. The recorded share of a question is a property of this corpus on this run date.",
+        "The review queue is one seeded sample of the records tied at the top of each question, not the canonical worst forty. Priorities tie in large groups, so a different seed surfaces different records and a record absent from the queue has not been ruled out.",
+        "A queued item is not a claim that a record is wrong. Many silences are correct, because sources genuinely do not state many of these things; the queue only marks where a person looking again is most likely to find something."
+      ],
+      "allowZeroCandidates": false,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "COVERAGE_DETECTOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/silence-ledger/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-19d3ef993f0b",
+            "schemaId": "rnawiki/agent-dependency/19d3ef993f0bbc029cbdac2ac0e3ca61eefe460f3e6c5a0396242ed159fd5bcf/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-dependency-source-coverage-629beff45497",
+            "schemaId": "rnawiki/agent-dependency/629beff45497fb97ccee66c9aee602e3774371ee628edf158fcd81001f815528/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-recorded-source-reads-by-fixed-quest-606f62e8db16",
+            "schemaId": "rnawiki/agent-source/606f62e8db16739b7dcbecf1d4a71b1dc4b88602f721c3b4a6af990b57d6cb53/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:376a3629e79124ddd3b755f945590d70f076ead1fd82ffcc21ca9cffff1f3cda",
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "visibility": "PUBLIC",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "public_dataset",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/silence-ledger.json",
+        "tests": [
+          "tests/unit/agents/silence-ledger.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "silence-ledger",
+        "version": "1.2.0",
+        "purpose": "Classifies every record against a fixed question set as recorded, stated not established, or silent, and counts where the corpus holds no answer."
+      }
+    },
+    {
+      "agentId": "mechanism-text-grouping",
+      "agentVersion": "1.2.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/mechanism-text-grouping.json",
+      "dependencies": [
+        "recorded-background.mechanism"
+      ],
+      "sourceRequirements": [
+        "source-bound recorded mechanism statements"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/mechanism-classes.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "0d19e888847fd6ad9c5f8bb3477e0a4821f16aa9d748025b8cab473f5ec89ec5",
+      "inputDigest": "1484740de4677d0f17c52d228ae562ebb4fe3133a3d921b8a61923fe7ec8e56d",
+      "outputDigest": "5beb3194d52490bdc6a26401361b5768d479d360f07fded0e76c6fc2ff272a7d",
+      "candidateCount": 5,
+      "availableCandidateCount": 5,
+      "candidateSelectionMode": "complete",
+      "findingCount": 48,
+      "candidateReasons": [
+        "COVERAGE_GAP"
+      ],
+      "consumers": [
+        "review_queue",
+        "documented_internal_report"
+      ],
+      "limitations": [
+        "A group here is a set of medicines whose recorded mechanism wording clusters together under the stated method, parameters and seed. It is not a pharmacological class and must never be given a class name; the output has no field for one, and the only honest description of a group is the terms that distinguish it.",
+        "Two medicines appearing in one group is a statement about two documents. Nothing in this dataset pairs, ranks or links one medicine to another, and no such relation may be read out of the membership lists.",
+        "The vocabulary, the inverse document frequencies and therefore the whole basis are computed from this corpus. Adding or removing medicines shifts every vector, so groups from two different corpus versions are not comparable and a group id means nothing outside the run that produced it.",
+        "The grouping reflects how mechanism statements are written as much as what they describe. Two medicines whose recorded mechanisms are the same but whose label sections use different prose will not group together, and two whose sections share vocabulary for unrelated reasons may.",
+        "Separation is weak throughout the sweep: the sampled silhouette ran from 0.0447 to 0.0922, where 0 means groups overlap as much as they separate. The chosen cluster count is the best of a poorly separated set, not evidence that the corpus falls into distinct groups.",
+        "The best silhouette fell at 48, the largest cluster count swept, so a finer grouping might score higher. The swept range is a declared parameter of this version and is not extended silently.",
+        "3 records with recorded mechanism text could not be placed and are listed in full rather than assigned to a nearest group.",
+        "Medicines with no recorded mechanism statement are absent from every group. That absence is a gap in the corpus and says nothing about the medicine."
+      ],
+      "allowZeroCandidates": false,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "CROSS_SOURCE_RELATION",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/mechanism-text-grouping/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-mechanism-a6524a66fcb9",
+            "schemaId": "rnawiki/agent-dependency/a6524a66fcb92c5051dc0da253938f91782994107e5b19e098c8c7428613de9a/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-source-bound-recorded-mechanism-stat-7586485ded8e",
+            "schemaId": "rnawiki/agent-source/7586485ded8e7ef9e91a35b0f27e27a827dcdf59fa34a06dfd03a57b5bb4415c/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:8966239e72319ba029fa78313a840d486bb5a8919a4a72fb366994e57d240241",
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "visibility": "PRIVATE",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "documented_internal_report",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/mechanism-text-grouping.json",
+        "tests": [
+          "tests/unit/agents/mechanism-classes.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "mechanism-text-grouping",
+        "version": "1.2.0",
+        "purpose": "Groups medicines whose recorded mechanism statements use similar wording, and describes each group by the terms that distinguish it."
+      }
+    },
+    {
+      "agentId": "peer-group-anomaly-screen",
+      "agentVersion": "1.1.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/peer-group-anomaly-screen.json",
+      "dependencies": [
+        "recorded-background.pharmacokinetics"
+      ],
+      "sourceRequirements": [
+        "source-bound recorded values with units and population context"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/peer-anomaly.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "bfba80901a45b93ec88470c0ef5c0b5553827d7056123441f6a4b08f5a8575c7",
+      "inputDigest": "a39b4301ceb0ec967ae24c98547849d77774eb45ee82f27277d89e1e64ba1b28",
+      "outputDigest": "8dd0c109b705760472e5cb46a2337fd2e43e426b33ec640834fe4fe917e371e2",
+      "candidateCount": 119,
+      "availableCandidateCount": 119,
+      "candidateSelectionMode": "complete",
+      "findingCount": 119,
+      "candidateReasons": [
+        "UNUSUAL_FOR_PEER_GROUP"
+      ],
+      "consumers": [
+        "review_queue",
+        "documented_internal_report"
+      ],
+      "limitations": [
+        "A peer group is the recorded route of administration, lower-cased with any parenthetical or clause-level detail dropped. A mechanism-class grouping exists in the tree only as a clustering agent that has to be run to produce one, so taking it would make every p-value here depend on the seed, cluster count and version of another agent, and would narrow the screen to records carrying mechanism text as well as a number. Two records share a group because they state the same route, which is a weaker resemblance than a shared mechanism and puts, for example, an extended-release oral record beside an immediate-release one.",
+        "A flag marks a recorded value that sits far from the other recorded values in its group. It is a pointer to read the source excerpt beside the value, never a judgement about the medicine, the value or the source that carries it.",
+        "Sitting far from a peer group says nothing about whether a value is faithful to its source. This corpus holds recorded values that are extreme and also exactly what their sources print — a recorded bioavailability of 0.002% and a recorded terminal half-life of 561 hours both appear here, and each matches the excerpt stored beside it. A flag asks a reviewer to read that excerpt; a value that matches it has been confirmed, not faulted.",
+        "This run performed 2928 tests at a threshold of 0.05 and selected 119 values. If every recorded value were exactly what its source states, about 146.4 would still be expected to look this unusual purely by chance. That figure is at least as large as the number of values actually selected, so the flag list as a whole cannot be told apart from chance. Read it as an order in which to read records, not as a set of findings.",
+        "Each quantity is screened once per recorded unit, so values recorded in L are never placed beside values recorded in L/kg, and neither are hours beside minutes. Those pairs share a name and are not the same quantity.",
+        "81 peer groups across all screens hold fewer than 20 recorded values and so cannot produce a p-value at or below 0.05 however far out a member sits. Their silence is a limit of the screen, not a statement about those records.",
+        "270 recorded values for these quantities carry no parsed number and were left out entirely; a value that reads \"about five days\" with no hour figure never becomes a coordinate. A further 0 carried a number with no recorded unit and were left out for the same reason.",
+        "Peer values were measured in different populations and study conditions — single dose, healthy adults, renal impairment — and the population context is carried on every row but is not part of the grouping. A value can sit far out because its population context differs from its group's. On extracted records that context is usually the parser's own phrase rather than a described population, so for most rows it tells a reviewer where to look rather than what was measured.",
+        "A value the source states as a range is compared using the first number it prints, which is the low end of that range. A row whose display shows a range is therefore positioned by its lower bound, and a reviewer reading the row against a group median should read the display rather than the position.",
+        "A recorded value at or below zero cannot be placed on the log scale used for the distance and is scored as maximally unusual rather than dropped. That does not guarantee it is flagged: several such values in one group tie at the same score, and a tie at the top of a small group can still leave every one of them above the threshold.",
+        "The screen has no randomised step, so the recorded seed 20260828 does not change its output.",
+        "half-life recorded in hours: Benjamini-Hochberg at 0.05 would require a p-value at or below 5.85e-5 across 855 tests, but the largest peer group here cannot produce one below 0.0018. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "bioavailability recorded in %: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.17e-4 across 426 tests, but the largest peer group here cannot produce one below 0.0034. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "time to peak recorded concentration recorded in hours: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.16e-4 across 431 tests, but the largest peer group here cannot produce one below 0.0027. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "protein binding recorded in %: Benjamini-Hochberg at 0.05 would require a p-value at or below 1.04e-4 across 479 tests, but the largest peer group here cannot produce one below 0.0029. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "volume of distribution recorded in L: Benjamini-Hochberg at 0.05 would require a p-value at or below 8.49e-5 across 589 tests, but the largest peer group here cannot produce one below 0.0034. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead.",
+        "volume of distribution recorded in L/kg: Benjamini-Hochberg at 0.05 would require a p-value at or below 3.42e-4 across 146 tests, but the largest peer group here cannot produce one below 0.0114. Items are therefore selected at an uncorrected threshold and the expected number of chance flags is reported instead."
+      ],
+      "allowZeroCandidates": true,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "PRIORITIZATION_FEATURE",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/peer-group-anomaly-screen/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-pharmacokinetics-d42aad762250",
+            "schemaId": "rnawiki/agent-dependency/d42aad762250fb3ad08e79ae0d3b894f74da05502660ded55ac12574a2b54e96/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-source-bound-recorded-values-with-un-2dcc43cb71a8",
+            "schemaId": "rnawiki/agent-source/2dcc43cb71a811f70a1a2dbe0c7b1e0a050ab2e8afad45cf38ea41bb4761da60/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:a2ee9a400e316e28b7c1de4680389047eca9641c7faedb0bda6dfd3bb4e813aa",
+        "reasonCodes": [
+          "UNUSUAL_FOR_PEER_GROUP"
+        ],
+        "visibility": "PRIVATE",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "documented_internal_report",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/peer-group-anomaly-screen.json",
+        "tests": [
+          "tests/unit/agents/peer-anomaly.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "peer-group-anomaly-screen",
+        "version": "1.1.0",
+        "purpose": "Finds recorded pharmacokinetic values that sit far from the other recorded values in their peer group, and queues each one for a person to read against its source."
+      }
+    },
+    {
+      "agentId": "enzyme-and-transporter-documentation",
+      "agentVersion": "1.3.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/enzyme-and-transporter-documentation.json",
+      "dependencies": [
+        "recorded-background.interactionSignals"
+      ],
+      "sourceRequirements": [
+        "descriptive source excerpts naming the recorded counterparty"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/enzyme-documentation.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "4ab5cd4cc80a12987c74619d3e9face3eea902f25a1a7843b4632b81a9948102",
+      "inputDigest": "e28d41d3ad27cba41796ef3248d13024e68524d7e1a3832b52ee3440715f3ac5",
+      "outputDigest": "fc0ef8206aa088d1c49d7f9e4a2877772164a268380b0102d3ca0ea082ce672b",
+      "candidateCount": 144,
+      "availableCandidateCount": 144,
+      "candidateSelectionMode": "complete",
+      "findingCount": 36,
+      "candidateReasons": [
+        "ATTRIBUTION_SUSPECT",
+        "COVERAGE_GAP"
+      ],
+      "consumers": [
+        "review_queue",
+        "public_dataset"
+      ],
+      "limitations": [
+        "A recorded role is a mechanistic statement copied from a descriptive label section. It is not a clinical interaction, and nothing in this dataset describes what happens when a person is exposed to two medicines at once.",
+        "This dataset holds no relation between one medicine and another. Counts are per counterparty; the medicines naming a counterparty are listed with their sentences and are never paired, ranked against each other or compared.",
+        "ICH M12 states that no potency classification system exists for transporters or for non-CYP enzymes, so no strong, moderate or weak vocabulary is applied to any counterparty here. The tallies count records, not strength.",
+        "A counterparty with a high count is one that labels document often. Documentation frequency is not importance: US labelling asks for some enzymes to be characterised far more routinely than others, and that requirement is part of what these counts measure.",
+        "40.0% of admitted mentions carry no role. The sentence named more than one role and the parser left the question open rather than attaching a guess, so a role tally is a count of sentences that settled the question, not of medicines for which it is settled.",
+        "Recorded spellings are counted separately and never merged. P-GP, PGP and P-GLYCOPROTEIN are three entries in this dataset because they are three strings in the corpus; whether they name one thing is a question for a person, and prefix relationships are reported as questions rather than resolved.",
+        "A mention is admitted only when its excerpt contains the recorded counterparty, tolerating letter case alone. Every other reading of the corpus, including the mentions withheld for that reason, is in the review queue and is not represented in any count above.",
+        "9164 of 9855 records name no enzyme or transporter at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+        "19370 of 19370 admitted mentions come from records the deterministic label parser produced, where no person chose the value or wrote its measurement context. The sentence is stored with each one so a reader can check it.",
+        "The uniform reference for concentration allocates the same 19370 mentions over the same 36 counterparties by chance. Labels are not written that way, so the reference shows only that the observed spread is not a consequence of how many mentions there are."
+      ],
+      "allowZeroCandidates": false,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "DATA_QUALITY_DETECTOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/enzyme-and-transporter-documentation/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-interactionsigna-fdf44e5823ca",
+            "schemaId": "rnawiki/agent-dependency/fdf44e5823ca07881831d7fe06278df6c2c75d9e9049bb13cfc517b7f7f75a3a/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-descriptive-source-excerpts-naming-t-20b954a56f88",
+            "schemaId": "rnawiki/agent-source/20b954a56f88f479a630bedd037c750ca24be87da923e275245e0cea5c526483/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:d795bfa36e69024e0d8cbcd340af556d8efe2168a6aae4c63f8cf9fe1d47031b",
+        "reasonCodes": [
+          "ATTRIBUTION_SUSPECT",
+          "COVERAGE_GAP"
+        ],
+        "visibility": "PUBLIC",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "public_dataset",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/enzyme-and-transporter-documentation.json",
+        "tests": [
+          "tests/unit/agents/enzyme-documentation.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "enzyme-and-transporter-documentation",
+        "version": "1.3.0",
+        "purpose": "Counts, per enzyme or transporter, how many medicine records name it, in which recorded roles and whether each was asserted or denied, from which descriptive label section, and how concentrated that documentation is across counterparties."
+      }
+    },
+    {
+      "agentId": "substance-synonyms",
+      "agentVersion": "1.2.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/substance-synonyms.json",
+      "dependencies": [
+        "recorded-background.registryIdentifiers",
+        "recorded-background.sources"
+      ],
+      "sourceRequirements": [
+        "recorded identifiers and all side-by-side source readings"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/substance-synonyms.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "a28a63d8595fdf8cceeec125393ba7bf3e630a2dfb7ee07b301f5b78b18cd0ab",
+      "inputDigest": "bbdae85053fcb3f5858aba80cd2e8b81bcb7c57b6667c3ab770fda446cd65d7b",
+      "outputDigest": "b3225ec160067c6d55bd9438c0b5f3935e7165dce68dbd2655cc159d54d60e3d",
+      "candidateCount": 1199,
+      "availableCandidateCount": 1199,
+      "candidateSelectionMode": "complete",
+      "findingCount": 571,
+      "candidateReasons": [
+        "POSSIBLE_DUPLICATE_SUBSTANCE"
+      ],
+      "consumers": [
+        "review_queue",
+        "documented_internal_report"
+      ],
+      "limitations": [
+        "A group is a question, not a conclusion. Nothing here has been merged, cross-linked or changed, and no group states that two names are one substance.",
+        "The UNII on a record was read from a source at authoring time. This agent did not resolve it against the substance registry, so a wrongly recorded identifier produces a wrong group and a missing one hides a real pair.",
+        "Names separated by a salt, ester, hydrate or counterion word are excluded and counted. The word list is fixed, so a salt form named by a word outside it would not be detected, and a reviewer should read the names as well as the counts.",
+        "Sharing a source document is weak evidence. It is reported only for records whose source declared a single active substance and whose recorded names contain one another, and even then it catches originator and biosimilar naming as readily as it catches a true duplicate.",
+        "Both filters on the document signal are lexical, so two genuine synonyms recorded under unrelated names are not found by it at all.",
+        "The document signal reports pairs and never chains them. Two records that share no document are never placed in one group by way of a third record, so a record can appear in more than one pair and each pair stands or falls on its own.",
+        "Field comparison reports whether recorded readings match. It never selects a reading, and a field that does not match is not a finding that either record is wrong.",
+        "Readings in different units are marked as not comparable and are left in their recorded units. Nothing here converts between them.",
+        "Records that agree on every compared field are not thereby one substance, and records that differ are not thereby two."
+      ],
+      "allowZeroCandidates": true,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "CROSS_SOURCE_RELATION",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/substance-synonyms/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-registryidentifi-af8f26583e4b",
+            "schemaId": "rnawiki/agent-dependency/af8f26583e4b506f5ad67e45b25e1458584e4bfdbdddc06693e2af7e79529ed6/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-dependency-recorded-background-sources-51d0ac8dab7c",
+            "schemaId": "rnawiki/agent-dependency/51d0ac8dab7c0dc181f8fd828cf9714b4fdb9afa50511ead6e79b71c03363ca4/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-recorded-identifiers-and-all-side-by-d8ba26535214",
+            "schemaId": "rnawiki/agent-source/d8ba265352141b7935d65ff13a337b8c238fec57f7cf33dd8862e09ebfbd7069/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:070c86ca9805f3d9b6ea65311cf3f86963846b9daa0e59221849bbf53ae41c15",
+        "reasonCodes": [
+          "POSSIBLE_DUPLICATE_SUBSTANCE"
+        ],
+        "visibility": "PRIVATE",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "documented_internal_report",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/substance-synonyms.json",
+        "tests": [
+          "tests/unit/agents/substance-synonyms.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "substance-synonyms",
+        "version": "1.2.0",
+        "purpose": "Groups records that carry the same substance identifier, and separately records structured from the same source document, and asks a person whether each group names one substance."
+      }
+    },
+    {
+      "agentId": "evidence-density",
+      "agentVersion": "1.4.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/evidence-density.json",
+      "dependencies": [
+        "recorded-background"
+      ],
+      "sourceRequirements": [
+        "all source attachments in each recorded envelope"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/evidence-density.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "efe3fddfdb5b1939b55e7e0e7b8a1cc6e4fdeadca09e28717b6ebceaa26ee461",
+      "inputDigest": "c8e984dc31cc1da1c1f097f7a59191ab321128df4bfed7d9962ca8072572168b",
+      "outputDigest": "a387b58c7141637c2527758b3ed64ffb3a5b3a224fe5729e5079fc10f1c86a03",
+      "candidateCount": 1122,
+      "availableCandidateCount": 1122,
+      "candidateSelectionMode": "complete",
+      "findingCount": 9855,
+      "candidateReasons": [
+        "COVERAGE_GAP"
+      ],
+      "consumers": [
+        "review_queue",
+        "documented_internal_report"
+      ],
+      "limitations": [
+        "A density score describes a record in this corpus. It does not describe a medicine, and it does not describe the published evidence about a medicine. A low score means the corpus holds little here, and nothing more than that.",
+        "A record with no entry in a module is a record where nobody has yet structured that module from a source. Absence here is neither a favourable nor an unfavourable finding about the medicine.",
+        "The weighting is a stated convention chosen for this index, not a measured quantity. Each component is published beside the score so a different weighting can be applied to the same components.",
+        "Two documents count as one when they share a source kind and identifier. A document that was revised between two fetch dates therefore still counts once, so corroboration may be reported slightly higher than it is.",
+        "The retrieval dates are the dates source artifacts were fetched during authoring. They say when the corpus last looked, not when the source last changed.",
+        "The coverage queue was designed to rank widely marketed medicines first, using the count of recorded product variants as the proxy. This corpus cannot express that: the largest number of product variants on any record is 2, and the largest number of distinct jurisdictions on any record is 1, so the module reports little more than whether a marketed product entry was recorded at all. The queue is instead ordered by how much already-cited source material a record has left unstructured, and it does not rank medicines by prominence.",
+        "The queue cutoff is the median density of 0.553 among records holding a marketed product entry, chosen and stated in advance rather than tuned against the length of queue it produces.",
+        "Records assembled by the deterministic label parser and records assembled by a person are measured on the same scale here. The scale does not distinguish the two kinds of work; the provenance tier on each value does.",
+        "Values recorded as displayed text with no parsed number are counted separately rather than penalised as missing. A source that prints no number is recorded faithfully when no number is stored."
+      ],
+      "allowZeroCandidates": false,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "PRIORITIZATION_FEATURE",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/evidence-density/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-19d3ef993f0b",
+            "schemaId": "rnawiki/agent-dependency/19d3ef993f0bbc029cbdac2ac0e3ca61eefe460f3e6c5a0396242ed159fd5bcf/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-all-source-attachments-in-each-recor-be5dbdab901b",
+            "schemaId": "rnawiki/agent-source/be5dbdab901b9101b27229cd150257237e69a78104a6637a8fbef9271384469d/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:252bebe3f25370ba320a1877086c6bcc2c5bcd4d595a7b402f1374ea7091ada3",
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "visibility": "PRIVATE",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "documented_internal_report",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/evidence-density.json",
+        "tests": [
+          "tests/unit/agents/evidence-density.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "evidence-density",
+        "version": "1.4.0",
+        "purpose": "Measures how much of the recordable background schema each medicine record holds, how many source documents it rests on, and how many records depend on a single document."
+      }
+    },
+    {
+      "agentId": "numeric-distributions",
+      "agentVersion": "1.0.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/numeric-distributions.json",
+      "dependencies": [
+        "recorded-background.numeric-values"
+      ],
+      "sourceRequirements": [
+        "recorded values with explicit units"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/numeric-distributions.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "70b30a28f866f37f3edc8a3222b14394ca7e08b5029b34feb55f90b03950272f",
+      "inputDigest": "b93db26d18f7388025abca44ad98405f261368271f6d9e9a7d755ba6d3253c2d",
+      "outputDigest": "ab96b3a4fa2e013b6ee0077d8c7928925fa1b5e129110229018c14138f858b89",
+      "candidateCount": 0,
+      "availableCandidateCount": 0,
+      "candidateSelectionMode": "complete",
+      "findingCount": 9,
+      "candidateReasons": [],
+      "consumers": [
+        "documented_internal_report"
+      ],
+      "limitations": [
+        "Every number here describes recorded values. It does not describe medicines, and it does not describe the people a value was measured in. A median recorded half-life is a fact about what source documents state, shaped first of all by which medicines happen to have a document with a pharmacokinetics section structured into this corpus.",
+        "No percentile in this output is typical, normal or expected for any medicine. A value at the 5th or the 95th percentile of a stratum is an unremarkable recorded value that sits near the edge of the recorded values around it, and nothing follows from where it sits.",
+        "Of 6239 recorded values across these fields, 270 carry no parsed number and are absent from every summary and every histogram here, while still being counted in each field's recorded total. A source printing \"about five days\" with no hour figure is recorded exactly that way; it is not a missing value and it is not converted into one.",
+        "A further 2 numeric values are recorded in a unit no distribution here accepts. They are named with their units beside each field and left out, because rescaling a recorded number would replace what the source printed with a number no source stated.",
+        "Volume of distribution is published as two separate distributions and never as one: 589 values recorded in litres and 146 recorded in litres per kilogram. Converting between them would need a body weight no source stated, so no stratum here mixes them and none is derived from the other.",
+        "The route strata are the route text the source printed, lower-cased. They are not a controlled vocabulary, so a medicine given by more than one route appears under whichever single route its record states, and near-identical route wordings are separate strata.",
+        "A route stratum is a group of recorded values, not a group of medicines and not a group of doses. Differences between route strata reflect which medicines have a structured record for that route as much as anything about the routes.",
+        "The two provenance tiers are two different kinds of work on differently-selected documents, not two samples of one population. A distributional difference between them is a fact about how the corpus was built, and it does not indicate that values in either tier are wrong.",
+        "Each field slot contributes at most one value per medicine record. Alternative readings held in the source-consensus module are not counted here; including them would weight the distribution toward medicines that happen to have many published labels.",
+        "Bin edges span the full range of each distribution and are shared by all of its strata so that two histograms can be read against each other. A stratum whose values occupy a narrow part of the range therefore shows empty bins at both ends, which is the shared axis and not a gap in the data.",
+        "Groups holding fewer than 12 values are counted but not published as strata, because a quartile over a handful of values reads as a distribution while resting on two or three records."
+      ],
+      "allowZeroCandidates": true,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "PUBLIC_AGGREGATE",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/numeric-distributions/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-numeric-values-467e6fdea2de",
+            "schemaId": "rnawiki/agent-dependency/467e6fdea2de62b821a7244d65480b5f8b779e115d319c1ebc530b9feab8b7e9/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-recorded-values-with-explicit-units-7b87410e5db7",
+            "schemaId": "rnawiki/agent-source/7b87410e5db7d0507e430949e5b6df591a798d43f3c5e89aee2e4a4d01b742b6/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:fd4fc0cf56dbb18f44108a296b0b7baca4c08c293183be9fa974c4669c477d97",
+        "reasonCodes": [],
+        "visibility": "PRIVATE",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "COMPUTED_STATISTIC"
+        },
+        "consumers": [
+          "documented_internal_report"
+        ],
+        "outputPath": "data/agents/current/numeric-distributions.json",
+        "tests": [
+          "tests/unit/agents/numeric-distributions.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "numeric-distributions",
+        "version": "1.0.0",
+        "purpose": "Publishes the robust distribution of every numeric value the recorded corpus holds, overall and split by recorded route and by how the value was recorded, keeping each unit as its own distribution and counting the values that carry no number at all."
+      }
+    },
+    {
+      "agentId": "adverse-reaction-term-structure",
+      "agentVersion": "1.1.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/adverse-reaction-term-structure.json",
+      "dependencies": [
+        "recorded-background.commonAdverseReactions"
+      ],
+      "sourceRequirements": [
+        "source excerpts containing every recorded reaction term"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/reaction-cooccurrence.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "9c07453780b61b54ef855665f7c6dcc574318bc5e5cefc223adfe275275b7b2a",
+      "inputDigest": "a4ef74151a3887a13e28aa2024a6265345d972373e0b068b77ecf3f6ce88f3c7",
+      "outputDigest": "1863b301ff8209684d7381987d3611848d9651916da6b4a5c48055323aa2a772",
+      "candidateCount": 398,
+      "availableCandidateCount": 398,
+      "candidateSelectionMode": "complete",
+      "findingCount": 1168,
+      "candidateReasons": [
+        "COVERAGE_GAP"
+      ],
+      "consumers": [
+        "review_queue",
+        "documented_internal_report"
+      ],
+      "limitations": [
+        "These are event terms exactly as labels print them, not a coded vocabulary. \"Nausea\" and \"feeling sick\" are two terms here and stay two terms. The only normalisation applied is trimming surrounding whitespace, folding letter case, and counting a term once when one label prints it twice in its own list; no synonym table, stemming or medical coding is used.",
+        "A count of how many labels print a term measures how often the term is REPORTED. That is driven by how many products exist, how they were studied and what each sponsor tabulated, not by how often the event happens. No number in this dataset is an incidence, a frequency or a risk, and none may be presented as one.",
+        "Each label keeps the threshold it printed. A term listed at 1% or more on one label and at 20% or more on another has not been measured the same way twice, so those labels are never pooled into a rate; the thresholds are reported as the exact strings the labels used and are never parsed into numbers or averaged.",
+        "A validated pair is a statement about how a body of labels is worded: two terms are printed in the same list more often than each term’s own frequency accounts for. It is not a statement about two events occurring together in a person, and it is not a rate.",
+        "This dataset holds no relation between one medicine and another. Structure is computed over reaction terms; the labels printing a term are listed individually with their own thresholds and sentences, and are never paired, ranked against each other or compared.",
+        "8996 of 9855 records have no most-common adverse reaction sentence in their recorded sources at all. That is an absence of recorded text in the sources fetched for those records. It is neither reassurance nor alarm about the medicines concerned.",
+        "Raw co-occurrence is mostly a restatement of how common each term is: of the 10 leading pairs by raw count, 9 survive the frequency-preserving test. The validated set is the one to read; the raw leaders are shown only so the difference is visible.",
+        "11325 pairs were tested and 220 validated at a false discovery rate of 0.01, so roughly 2.2 of them are expected to be false. A single pair is not evidence on its own.",
+        "The analytic null holds each term’s frequency fixed but treats every label list as the same size. The seeded reference preserves both each term’s frequency and each label’s list length and reruns the whole procedure 25 times, validating a median of 0 pairs and at most 0, against 220 in the recorded corpus.",
+        "6038 of 6038 admitted term listings come from records the deterministic label parser produced, where no person chose the terms or checked how the sentence was split. The sentence is stored with every listing so a reader can check it, and joined or truncated-looking terms are in the review queue rather than repaired here.",
+        "Terms printed on fewer than 5 labels are profiled but never paired: the frequency-preserving test cannot reach the reporting threshold for them at any co-occurrence count, so pairing them would weaken every other pair without being able to report one of their own."
+      ],
+      "allowZeroCandidates": false,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "CROSS_SOURCE_RELATION",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/adverse-reaction-term-structure/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-commonadverserea-36a426803071",
+            "schemaId": "rnawiki/agent-dependency/36a426803071ccca486ed193c0885ca5fcc1d9a40ed826cf017db897f9f93059/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-source-excerpts-containing-every-rec-06689821de22",
+            "schemaId": "rnawiki/agent-source/06689821de2205fa53466c92eeab084fb90e30c506582e61d5de483a684f876a/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:2875b1fc64e4699ff7a1ae64bb20365e8e814e614572ddc84c412be69e691635",
+        "reasonCodes": [
+          "ATTRIBUTION_SUSPECT",
+          "COVERAGE_GAP"
+        ],
+        "visibility": "PRIVATE",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "documented_internal_report",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/adverse-reaction-term-structure.json",
+        "tests": [
+          "tests/unit/agents/reaction-cooccurrence.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "adverse-reaction-term-structure",
+        "version": "1.1.0",
+        "purpose": "Counts, per adverse-reaction term, how many labels print it in their most-common list and at which recorded thresholds, and reports which pairs of terms are printed together more often than each term’s own frequency across the corpus accounts for."
+      }
+    },
+    {
+      "agentId": "excerpt-integrity",
+      "agentVersion": "1.2.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/excerpt-integrity.json",
+      "dependencies": [
+        "recorded-background",
+        "background-engine"
+      ],
+      "sourceRequirements": [
+        "exact value/excerpt source binding"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/excerpt-integrity.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "df08fef2b85ca9e59df15a9b9a3cd7b71368e3d950c12066833cd76aaa8bde78",
+      "inputDigest": "2c49cfe68785507b641931e8a98f66d84c7103c1a745ac86fd35d6d506e373d6",
+      "outputDigest": "a024b88bef589a7af1212f7fcffc04747e9b9b585fa7287abb267d4a62b4ad1c",
+      "candidateCount": 0,
+      "availableCandidateCount": 0,
+      "candidateSelectionMode": "complete",
+      "findingCount": 11091,
+      "candidateReasons": [],
+      "consumers": [
+        "review_queue",
+        "documented_internal_report"
+      ],
+      "limitations": [
+        "A verified binding proves transcription fidelity and nothing else. It does not say the source is correct, current, or applicable to any person; it says the number displayed here is the number that document prints.",
+        "A value that fails this check is a question about this corpus, never a statement that the source is wrong.",
+        "3331 value(s) were transcribed from a structured record and have no sentence to quote, so they are outside this check entirely rather than counted as failures. The engine holds them to a different requirement: the record identifier that makes them reproducible.",
+        "Only numerals are checked this way. A value whose display carries no number cannot be verified by this method and is counted apart rather than counted as passing.",
+        "Consensus readings are verified when any one of the sources cited for them prints the reading. Excerpts stored for other contributing sources may be trimmed around a different part of the sentence, and requiring all of them would report a storage detail as a failure.",
+        "The 7 normalisation rules are listed in the output so a third party can reproduce this check exactly. Loosening them would raise the pass rate without improving the corpus, which is why they are published rather than described.",
+        "Statement modules are held to a stricter rule than numerals: the recorded text must equal the stored excerpt, because a quoted statement has no separate value to check."
+      ],
+      "allowZeroCandidates": true,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "STRUCTURAL_VALIDATOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/excerpt-integrity/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-background-engine-7d40d968a457",
+            "schemaId": "rnawiki/agent-dependency/7d40d968a457ea0a8ea685b2ef562e0044db9f5626ad4071d17c4704b90f9161/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-dependency-recorded-background-19d3ef993f0b",
+            "schemaId": "rnawiki/agent-dependency/19d3ef993f0bbc029cbdac2ac0e3ca61eefe460f3e6c5a0396242ed159fd5bcf/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-exact-value-excerpt-source-binding-3154463b68b2",
+            "schemaId": "rnawiki/agent-source/3154463b68b28cf2d36cf30baa05cfa9f0763047932789b41d15b2a8927bc3bd/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:f748398e89dfdaee2f5fe4b0879c2bdbdb64be947aed186d60c292e865ea452a",
+        "reasonCodes": [
+          "ATTRIBUTION_SUSPECT"
+        ],
+        "visibility": "PRIVATE",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "documented_internal_report",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/excerpt-integrity.json",
+        "tests": [
+          "tests/unit/agents/excerpt-integrity.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "excerpt-integrity",
+        "version": "1.2.0",
+        "purpose": "Independently re-checks that every displayed number appears in the source text cited for it, and reports where that check disagrees with the background engine."
+      }
+    },
+    {
+      "agentId": "coverage-ledger",
+      "agentVersion": "1.4.0",
+      "reasonSchemaVersion": "1",
+      "evidenceIdentityVersion": "1",
+      "path": "data/agents/current/coverage-ledger.json",
+      "dependencies": [
+        "recorded-background",
+        "source-coverage"
+      ],
+      "sourceRequirements": [
+        "all recorded source attachments and provenance tier"
+      ],
+      "implementationFiles": [
+        "lib/agents/core/cluster.ts",
+        "lib/agents/core/conformal.ts",
+        "lib/agents/core/evidence.ts",
+        "lib/agents/core/identity.ts",
+        "lib/agents/core/rng.ts",
+        "lib/agents/core/statistics.ts",
+        "lib/agents/core/text.ts",
+        "lib/agents/core/types.ts",
+        "lib/agents/dataset/coverage-ledger.ts",
+        "lib/background/anatomy-regions.ts",
+        "lib/background/derivations.ts",
+        "lib/background/printed-numbers.ts",
+        "lib/background/types.ts",
+        "lib/neurodes/contracts.ts",
+        "lib/neurodes/graph.ts",
+        "lib/neurodes/registry.ts",
+        "lib/neurodes/run-manifest.ts",
+        "lib/neurodes/runner.ts",
+        "lib/rna-intelligence/background-rules.ts",
+        "lib/stable-json.ts",
+        "scripts/agents/current-run.ts",
+        "scripts/agents/registry.ts"
+      ],
+      "implementationDigest": "f156ff8c914316871ff05da7b3c41bbcfb733deca6929e5911d0c5168cf0ea36",
+      "inputDigest": "337b5e57d1972de4ec70e4538d726374007e86579d3c0ee66807072b198b3122",
+      "outputDigest": "4649c99bd27eff7a98dc43ccfa85b01cd19aa60af3e2db6a2efda786152d8ed5",
+      "candidateCount": 96,
+      "availableCandidateCount": 9700,
+      "candidateSelectionMode": "sampled",
+      "findingCount": 9855,
+      "candidateReasons": [
+        "COVERAGE_GAP"
+      ],
+      "consumers": [
+        "review_queue",
+        "public_dataset"
+      ],
+      "limitations": [
+        "A route describes which source reached a record, not the quality of the medicine. A record on the compound-identity route holds a formula because that is all a compound database has, not because less is known about it.",
+        "Every route has limits it cannot pass, and they are stated per route rather than left to inference. A supplement record will never carry a mechanism however many products list the ingredient, because supplement labels do not have one.",
+        "Module counts are not comparable across routes. Eight modules from prescription labelling and eight from a supplement database describe different things, and adding them together would measure nothing.",
+        "A thin record is a question, not a verdict. Many are thin because the corpus reads a source that does not cover them, which is a gap in reading rather than in knowledge.",
+        "The queue is one seeded sample of the thinnest records on each route, not a ranking of the whole corpus; a record absent from it has not been ruled out."
+      ],
+      "allowZeroCandidates": false,
+      "neurodeContract": {
+        "owner": "RNAWiki maintainers",
+        "category": "COVERAGE_DETECTOR",
+        "inputSchemaId": "rnawiki/agent-corpus/v1",
+        "outputSchemaId": "rnawiki/agent-run/coverage-ledger/v1",
+        "dependencies": [],
+        "sourceRequirements": [
+          {
+            "id": "agent-dependency-recorded-background-19d3ef993f0b",
+            "schemaId": "rnawiki/agent-dependency/19d3ef993f0bbc029cbdac2ac0e3ca61eefe460f3e6c5a0396242ed159fd5bcf/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-dependency-source-coverage-629beff45497",
+            "schemaId": "rnawiki/agent-dependency/629beff45497fb97ccee66c9aee602e3774371ee628edf158fcd81001f815528/v1",
+            "origin": "AUTHORED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          },
+          {
+            "id": "agent-source-all-recorded-source-attachments-and-d2b8e546a6d8",
+            "schemaId": "rnawiki/agent-source/d2b8e546a6d8d11878acffcfb40b46194e608365ac043456e6bdcedb9e08acda/v1",
+            "origin": "FETCHED",
+            "visibility": "PRIVATE",
+            "requiredForCompleteInput": true
+          }
+        ],
+        "inputContent": {
+          "authored": "READ_ONLY",
+          "fetched": "READ_ONLY"
+        },
+        "seedPolicy": {
+          "mode": "FIXED",
+          "seed": 20260828
+        },
+        "cacheDigest": "sha256:b5734a4fed5b74e88b012ece1f7c0f082008f373e20e1514a5aff9b815d1751f",
+        "reasonCodes": [
+          "COVERAGE_GAP"
+        ],
+        "visibility": "PUBLIC",
+        "medicalBoundary": {
+          "llmRuntime": false,
+          "authorsMedicalClaims": false,
+          "rewritesMedicalContent": false,
+          "selectsSources": false,
+          "resolvesSourceDisagreements": false,
+          "changesMedicalConclusions": false,
+          "namesPatientActions": false,
+          "outputKind": "HUMAN_REVIEW_ITEM"
+        },
+        "consumers": [
+          "public_dataset",
+          "review_queue"
+        ],
+        "outputPath": "data/agents/current/coverage-ledger.json",
+        "tests": [
+          "tests/unit/agents/coverage-ledger.test.ts"
+        ],
+        "limitations": [
+          "Coverage is bounded to the checked-in recorded-background corpus and the declared source requirements."
+        ],
+        "allowZeroInput": false,
+        "id": "coverage-ledger",
+        "version": "1.4.0",
+        "purpose": "Records which source reached each medicine, how much it holds, and what that source structurally cannot supply."
+      }
+    }
+  ],
+  "totals": {
+    "candidates": 3123,
+    "findings": 42607
+  }
+}

@@ -28,7 +28,8 @@ python3 scripts/background/index-openfda-labels.py ~/rnawiki-ingest-data/openfda
         ~/rnawiki-ingest-data/label-index.ndjson /tmp/medicine-rows.json \
         --presence=~/rnawiki-ingest-data/label-presence.ndjson
 npx tsx scripts/background/build-extracted-background.ts ~/rnawiki-ingest-data/label-index.ndjson
-npx tsx scripts/background/build-source-consensus.ts ~/rnawiki-ingest-data/label-index.ndjson
+npx tsx scripts/background/build-source-consensus.ts ~/rnawiki-ingest-data/label-index.ndjson \
+  --retrieved-at=2026-08-30
 npm run check:medicine-content
 npm run audit:denial-corpus
 ```
@@ -52,6 +53,11 @@ npm run audit:denial-corpus
 Consensus comparison states, from the unit-aware contract: **agree 1,427 · differ 231 ·
 not_comparable 12.** The pre-repair Boolean reported 234 disjoint; that number was wrong in both
 directions and the two are not comparable as a like-for-like.
+
+> Historical measurement only. Release B1 subsequently found that unit comparability was not enough:
+> the parser had not structurally extracted population or formulation context. The B1 artifact
+> retains these readings but moves distinct otherwise-comparable pairs to `insufficient_context`.
+> Its current generated counts are the release source of truth.
 
 ## The 23 historical records
 
