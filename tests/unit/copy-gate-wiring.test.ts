@@ -35,13 +35,13 @@ describe('copy-gate wiring', () => {
   it('uses the same copy command in the local release gate, CI and dataset publication', () => {
     expect(packageJson.scripts['check:copy']).toBe('node scripts/quality/slop-scan.mjs')
     expect(packageJson.scripts.gate).toContain('npm run check:copy')
-    expect(ci).toMatch(/- name: Check public copy\s+run: npm run check:copy/)
+    expect(ci).toMatch(/- name: Run the complete release gate\s+run: npm run gate/)
     expect(publication).toMatch(/- name: Check public copy\s+run: npm run check:copy/)
     expectInOrder(publication, [
       '- name: Export the corpus',
       '- name: Check public copy',
       '- name: Verify the export against its own manifest',
-      '- name: Commit only if the data moved',
+      '- name: Commit derived data only if it moved',
     ])
   })
 

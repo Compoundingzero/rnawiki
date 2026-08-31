@@ -5,22 +5,20 @@ builder = "NIXPACKS"
 # Migrations run before the new container takes traffic. Without this, a deploy that adds a column
 # serves 500s from the moment it starts until someone remembers to run the migration by hand.
 #
-# The recorded-background dataset is version-controlled TypeScript, so it ships with the code for
-# the same reason: otherwise a deploy that adds records shows nothing until someone remembers to
-# load them. `apply:background` validates every envelope with the background engine before it
-# writes anything and fails the deploy if any envelope has a finding, so invalid data can never
-# reach a live page. It writes only `drugs.recorded_background`, keyed by slug, skips slugs with
-# no row, and is idempotent — re-running writes the same values.
-#
-# It runs from inside Railway's network against the private database host, which is the only place
-# the connection needs no public TLS trust anchor (see db/ssl.ts).
+# Medical evidence is never written by the automatic deployment hook. A reviewed corpus transition
+# is a separate operator action with exact expected-value digests, row locks, and an idempotent
+# replay check; see `apply:b1-source-consensus-transition` and docs/deployment.md.
 #
 # `apply:name-index` writes the searchable-name index into `drug_aliases` for the same reason.
 # Search already knew how to use aliases; it had almost none, because only a full ingest wrote any
 # and a seeded database wrote none at all. Measured against the label archive, 78% of brand names
 # printed on real labels returned nothing. Shipping the index with the deploy means a reader who
 # types the name on their box finds the medicine wherever the data is applied.
-preDeployCommand = "npm run db:migrate && npm run apply:background && npm run apply:name-index"
+#
+# `agents:import` activates only the checked, post-repair package. It writes append-only run,
+# occurrence and membership records plus the mutable current-run pointer; an identical replay is a
+# no-op and it never writes a medicine fact.
+preDeployCommand = "npm run db:migrate && npm run apply:name-index && npm run agents:import"
 
 healthcheckPath = "/healthz"
 healthcheckTimeout = 120

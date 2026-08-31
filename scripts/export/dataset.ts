@@ -80,32 +80,20 @@ const DRUGS_DIR = join(EXPORT_DIR, 'drugs')
  */
 const CORE_DATASET_LICENCE = 'CC BY 4.0 — see LICENSE-DATA'
 
-/**
- * The share of the corpus that may disappear between two exports before this refuses to publish.
- *
- * A scheduled job overwrites `data/` wholesale, so anything that makes the read return fewer rows —
- * a half-applied migration, a replica that has not caught up, a connection that dropped mid-scan, an
- * export role that lost a grant — publishes as a smaller dataset with a valid manifest and correct
- * hashes. Every integrity check downstream passes, because the file genuinely matches its digest.
- * Nothing distinguishes "the corpus shrank" from "the read failed" after the fact, which is why the
- * comparison has to happen here, while the previous manifest is still on disk.
- *
- * A real corpus does not lose a hundredth of itself overnight. When one legitimately does — a large
- * withdrawal of records — the operator passes `--allow-shrinkage`, which records the intent in the
- * command rather than leaving the loss to be discovered by a reader.
- */
-const MAX_SHRINKAGE = 0.01
-
 /** The previously published record count, or null when nothing has been published yet. */
 function previouslyPublishedTotal(): number | null {
   const manifestPath = join(EXPORT_DIR, 'manifest.json')
   if (!existsSync(manifestPath)) return null
   try {
     const total = JSON.parse(readFileSync(manifestPath, 'utf8'))?.counts?.total
-    return typeof total === 'number' && Number.isFinite(total) && total > 0 ? total : null
-  } catch {
-    // An unreadable manifest is not evidence about size. Let the export proceed and replace it.
-    return null
+    if (!Number.isSafeInteger(total) || total < 1) {
+      throw new Error('counts.total is not a positive safe integer')
+    }
+    return total
+  } catch (error) {
+    throw new Error(
+      `Refusing to replace an unreadable prior manifest at ${manifestPath}: ${error instanceof Error ? error.message : String(error)}`,
+    )
   }
 }
 
@@ -113,8 +101,7 @@ function assertCorpusDidNotShrink(rowCount: number): void {
   const previous = previouslyPublishedTotal()
   if (previous === null) return
 
-  const floor = Math.floor(previous * (1 - MAX_SHRINKAGE))
-  if (rowCount >= floor) return
+  if (rowCount >= previous) return
 
   if (process.argv.includes('--allow-shrinkage')) {
     console.warn(
@@ -124,8 +111,8 @@ function assertCorpusDidNotShrink(rowCount: number): void {
   }
 
   throw new Error(
-    `Refusing to publish a shrunken corpus: ${rowCount} records, down from ${previous} ` +
-      `(floor ${floor}, tolerance ${MAX_SHRINKAGE * 100}%). A partial read and a genuine withdrawal ` +
+    `Refusing to publish a shrunken corpus: ${rowCount} records, down from ${previous}. ` +
+      `Even one silently missing medicine is forbidden: a partial read and a genuine withdrawal ` +
       `look identical once written, so this stops before overwriting the published dataset. ` +
       `Check the database and the export role's grants. If the loss is real, re-run with --allow-shrinkage.`,
   )
@@ -171,6 +158,79 @@ interface Manifest {
   }>
 }
 
+type CoreManifest = Omit<Manifest, 'generatedAt'>
+
+const DERIVED_MANIFEST_COUNT_KEYS = ['agentRuns', 'agentCandidates', 'agentFindings'] as const
+const DERIVED_MANIFEST_FILE = 'data/agents/current/manifest.json'
+
+/**
+ * A published manifest may also contain the derived-agent attachment added after the corpus commit.
+ * Compare only the core fields this exporter owns. When those are byte-for-byte equivalent, keeping
+ * the prior manifest preserves both its truthful generation time and its still-valid derived links.
+ */
+function priorManifestHasSameCore(prior: unknown, next: CoreManifest): boolean {
+  if (!prior || typeof prior !== 'object' || Array.isArray(prior)) return false
+  const record = prior as Record<string, unknown>
+  const allowedTopLevelKeys = new Set(['generatedAt', 'source', 'licence', 'counts', 'files'])
+  if (Object.keys(record).some((key) => !allowedTopLevelKeys.has(key))) return false
+  if (typeof record.generatedAt !== 'string' || !record.generatedAt.trim()) return false
+  if (!record.counts || typeof record.counts !== 'object' || Array.isArray(record.counts))
+    return false
+  if (!Array.isArray(record.files)) return false
+
+  const priorCounts = record.counts as Record<string, unknown>
+  const coreCountKeys = new Set(Object.keys(next.counts))
+  const derivedCountKeys = new Set<string>(DERIVED_MANIFEST_COUNT_KEYS)
+  if (
+    Object.keys(priorCounts).some((key) => !coreCountKeys.has(key) && !derivedCountKeys.has(key))
+  ) {
+    return false
+  }
+  const presentDerivedCountKeys = DERIVED_MANIFEST_COUNT_KEYS.filter(
+    (key) => priorCounts[key] !== undefined,
+  )
+  if (
+    presentDerivedCountKeys.some(
+      (key) => !Number.isSafeInteger(priorCounts[key]) || Number(priorCounts[key]) < 0,
+    )
+  ) {
+    return false
+  }
+  const coreCounts = Object.fromEntries(
+    Object.keys(next.counts).map((key) => [key, priorCounts[key]]),
+  )
+  const corePaths = new Set(next.files.map((file) => file.path))
+  const coreFiles: Manifest['files'] = []
+  let derivedFileCount = 0
+  for (const file of record.files) {
+    if (!file || typeof file !== 'object' || Array.isArray(file)) return false
+    const path = (file as { path?: unknown }).path
+    if (typeof path !== 'string') return false
+    if (corePaths.has(path)) coreFiles.push(file as Manifest['files'][number])
+    else if (path === DERIVED_MANIFEST_FILE) derivedFileCount += 1
+    else return false
+  }
+  const hasAnyDerivedCounts = presentDerivedCountKeys.length > 0
+  const hasCompleteDerivedCounts =
+    presentDerivedCountKeys.length === DERIVED_MANIFEST_COUNT_KEYS.length
+  if (
+    (hasAnyDerivedCounts && !hasCompleteDerivedCounts) ||
+    derivedFileCount > 1 ||
+    (derivedFileCount === 1) !== hasCompleteDerivedCounts
+  ) {
+    return false
+  }
+
+  return (
+    stableJsonStringify({
+      source: record.source,
+      licence: record.licence,
+      counts: coreCounts,
+      files: coreFiles,
+    }) === stableJsonStringify(next)
+  )
+}
+
 /** Metadata every artifact carries, so a downloader never has to guess what a file is. */
 const FILE_META = {
   drugsNdjson: {
@@ -190,22 +250,22 @@ const FILE_META = {
       'Deliberately flatter than the NDJSON. Use the NDJSON when you need nested detail.',
   },
   recordedBackground: {
-    schemaVersion: 'recorded-background/1',
+    schemaVersion: 'recorded-background/2',
     mediaType: 'application/x-ndjson',
     licence: CORE_DATASET_LICENCE,
     description:
-      'The source-bound recorded-background corpus: every value with the exact fetched sentence it was read from, its population context, its source identity and retrieval date.',
+      'The source-bound recorded-background corpus, including complete cross-source reading groups, explicit structured-context status, and source excerpts.',
     limitations:
-      'A source count is not a count of independent experiments: many manufacturers publish the same sentence. An absent module means no source in this corpus fills it, which is a fact about the corpus and not about the medicine.',
+      'A source count is not a count of independent experiments. Consensus population/formulation context is explicitly unknown until structurally extracted, so distinct readings are not source conflicts. An absent module means only that this corpus does not fill it.',
   },
   sourceConsensus: {
-    schemaVersion: 'source-consensus/1',
+    schemaVersion: 'source-consensus/2',
     mediaType: 'application/x-ndjson',
     licence: CORE_DATASET_LICENCE,
     description:
-      'Cross-source readings per field, with the comparability state: agree, differ, not_comparable or insufficient_context.',
+      'Complete cross-source readings per field, including printed value, unit, explicit structured-context status, comparison reasons, and every represented source record.',
     limitations:
-      'differ means the readings were comparable and did not overlap. not_comparable means comparing them would need a measurement no source stated, such as a body weight. Neither reading is ever marked wrong.',
+      'Current label parsing does not structurally extract population or formulation context. Distinct otherwise-comparable readings are therefore insufficient_context, never differ; agree may mean printed-reading agreement only. Source records are complete but are not independent-experiment counts.',
   },
 } as const
 
@@ -229,7 +289,7 @@ async function main(): Promise<void> {
   const rows = (drugRows as unknown as DrugRow[]).filter(
     (row) => !isPlaceholderMedicineIdentity({ slug: row.slug, name: row.name }),
   )
-  // Before the first destructive filesystem call on line 247, while the previous manifest still
+  // Check before the first destructive filesystem call below, while the previous manifest still
   // describes what is published.
   assertCorpusDidNotShrink(rows.length)
 
@@ -518,14 +578,22 @@ async function main(): Promise<void> {
     `[export] recorded background ${backgroundRows} row(s) · consensus ${consensusRows} field(s) · states ${JSON.stringify(Object.fromEntries([...comparisonStateCounts.entries()].sort()))}`,
   )
 
-  const manifest: Manifest = {
-    generatedAt: new Date().toISOString(),
+  const coreManifest: CoreManifest = {
     source: 'https://rnawiki.com',
     licence: CORE_DATASET_LICENCE,
     counts,
     files,
   }
-  writeFileSync(join(EXPORT_DIR, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`)
+  const manifestPath = join(EXPORT_DIR, 'manifest.json')
+  const priorManifest = existsSync(manifestPath)
+    ? (JSON.parse(readFileSync(manifestPath, 'utf8')) as unknown)
+    : null
+  if (priorManifestHasSameCore(priorManifest, coreManifest)) {
+    console.log('[export] core corpus unchanged; preserving the published manifest byte-for-byte')
+  } else {
+    const manifest: Manifest = { generatedAt: new Date().toISOString(), ...coreManifest }
+    writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
+  }
 
   const totalBytes = files.reduce((sum, file) => sum + file.bytes, 0)
   console.log(`\n[export] done · ${files.length} files · ${(totalBytes / 1e6).toFixed(1)} MB`)

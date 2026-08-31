@@ -15,16 +15,36 @@ source-check schedule, required environment variables and recovery steps.
 
 ## What a deploy does
 
-`railway.toml` runs migration, recorded-background application and the searchable-name index in a
-throwaway container **before** the new version takes traffic. Without the migration step, a deploy
-that adds a column serves 500s from the moment it starts until someone remembers to migrate by hand;
-without the data steps, a deploy can serve code whose required corpus or aliases have not landed.
+`railway.toml` runs migration, the searchable-name index and the idempotent current-agent import in
+a throwaway container **before** the new version takes traffic. A deployment never writes medical
+evidence. Without the migration step, a deploy that adds a column serves 500s from the moment it
+starts until someone remembers to migrate by hand; without the remaining data steps, a deploy can
+serve code whose aliases or current review occurrences have not landed.
 
-`apply:background` validates every envelope with the background engine before writing and fails
-the deploy on any finding, so invalid data cannot reach a live page. It writes only
-`drugs.recorded_background`, keyed by slug, skips slugs with no row, and is idempotent. It runs
-inside Railway's network against the private database host — the one place the connection needs no
-public TLS trust anchor (see `db/ssl.ts`, which deliberately offers no verification bypass).
+Release B1 deliberately removed `apply:background` from this automatic hook. The complete
+source-consensus regeneration changes only `recordedBackground.sourceConsensus` on 734 known rows,
+but it is still medical evidence and therefore requires a separate reviewed operator transition.
+The transition also fails closed on comparison context: the parser records population/formulation
+context as structurally unextracted, so distinct same-unit readings are `insufficient_context`
+rather than source conflicts; `agree` can mean printed-reading agreement only.
+`check:b1-source-consensus-transition` compares the checked corpus with the immutable A.1 commit,
+proves that no other field moved, and verifies an exact expected and desired digest for every row.
+After the release backup, restored-backup rehearsal and full green gate, the operator runs:
+
+```bash
+RELEASE_B1_SOURCE_CONSENSUS_APPLY=apply-reviewed-source-consensus-only \
+npm run apply:b1-source-consensus-transition
+```
+
+The command locks all 734 rows in one transaction and validates every current digest before the
+first update. A mismatch rolls back the whole transition. Run the same command a second time and
+require `0 applied`; it accepts only the exact old value or exact desired value. It never runs from
+Railway pre-deploy, dataset publication, Source Sync or an agent.
+
+`agents:import` accepts only the checked-in post-repair package and exact manifest hashes. It records
+immutable runs, occurrences and run membership, then moves the per-agent current pointer in the same
+transaction. Replaying an unchanged package creates nothing; missing medicine subjects stop the
+deploy. Human decisions remain separate, append-only rows, and the importer never updates `drugs`.
 
 The healthcheck is `/healthz`, which returns a bare `200 ok` and deliberately **does not touch the
 database**. Liveness and readiness are different questions: a transient database blip must not roll
@@ -43,7 +63,9 @@ bounded workloads in sequence:
 An ordinary failed ClinicalTrials item is persisted before the background workload starts. The two
 histories remain separate: programme monitoring can create a source-review task, while confirmed
 recorded-background drift can create a `SOURCE_DRIFT` candidate. Neither workload automatically
-rewrites medical content.
+rewrites medical content. Every changed ClinicalTrials.gov snapshot, including an exact registry
+delta, remains pending for the reviewed source-refresh workflow; the cron never updates programme or
+trial facts.
 
 ### Persistent Railway service configuration
 
@@ -239,7 +261,9 @@ runtime only. Any DB-backed route without a dynamic segment must declare:
 export const dynamic = 'force-dynamic'
 ```
 
-Currently: `app/page.tsx`, `app/browse/page.tsx`, `app/review-queue/page.tsx`, `app/sitemap.ts`.
+Currently: `app/page.tsx`, `app/browse/page.tsx`, `app/datasets/page.tsx`,
+`app/datasets/[dataset]/page.tsx`, `app/review-queue/page.tsx`,
+`app/review-queue/agents/page.tsx`, and `app/sitemap.ts`.
 Miss one and the production build fails while passing perfectly on your machine.
 
 ## Rolling back
@@ -262,6 +286,21 @@ verification for a backup.
 
 `pg_dump` will refuse if your client is older than the server (Railway runs Postgres 18); a JSON
 export through `psql` is version-agnostic and this database is small enough for it.
+
+For a release migration, use a PostgreSQL 18 custom-format archive as the primary backup and prove
+that the archive directory is readable before deployment:
+
+```bash
+# Run PostgreSQL 18 pg_dump against the purpose-limited backup connection.
+pg_dump -Fc --no-owner --no-acl --dbname="$BACKUP_DATABASE_URL" > rnawiki-pre-release.pgcustom
+pg_restore --list rnawiki-pre-release.pgcustom >/dev/null
+shasum -a 256 rnawiki-pre-release.pgcustom
+```
+
+When the database is reachable only inside Railway, create the custom archive inside the Postgres
+service, transfer it without decoding through a terminal, validate it locally with PostgreSQL 18
+`pg_restore --list`, and then remove only the exact temporary in-service file. Never copy a private
+certificate key and never print the connection URL.
 
 Migration 0010 deserves an extra publication stop even though it preserves legacy rows. It adds
 digest-bound mechanism/timeline tables and replaces the dependency-surface enum and publication
@@ -291,6 +330,20 @@ unchanged. Before an incompatible rollback, stop **RNA Intelligence Source Sync*
 evidence sources, snapshots, bindings, fetches, checks, agent runs and candidates. Leave the additive
 schema and audit rows in place; do not delete history or edit a medicine merely to make an older
 worker start. Deploy a corrected forward version before restarting the schedule.
+
+Migration 0020 adds current-run pointers and immutable per-run candidate membership, strengthens
+candidate/decision evidence constraints, and makes agent decisions append-only. It explicitly
+refuses to migrate a legacy decision whose explanation is absent; an operator must review that row
+rather than inventing an explanation. Before an incompatible rollback, stop current-agent imports,
+the private agent workbench and Source Sync, preserve all agent runs, occurrences, memberships,
+decisions and freshness records, and leave the additive schema in place. An older image must not be
+used to mutate these tables. Deploy a corrected forward version before any private writer resumes.
+
+The B1 source-consensus transition is a separate data change, not migration 0020. Its rollback is
+also explicit: use the verified pre-B1 PostgreSQL 18 archive or a separately reviewed reverse
+transition whose desired values exactly match the 734 A.1 digests. Do not put a reverse medical-data
+write into a deploy hook and do not overwrite a row whose digest differs from either reviewed
+snapshot.
 
 ## After a deploy
 

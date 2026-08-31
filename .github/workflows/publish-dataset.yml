@@ -39,8 +39,29 @@ permissions:
 jobs:
   export:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+      SESSION_SECRET: publication-gate-session-secret-0123456789
+      SITE_URL: http://localhost:3000
+      CI: 'true'
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -49,6 +70,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Install the pinned database certificate
         env:
@@ -68,6 +92,64 @@ jobs:
           SESSION_SECRET: 'unused-by-the-export-but-required-at-import-time-32'
         run: npx tsx scripts/export/dataset.ts
 
+      - name: Reject unexpected corpus outputs
+        run: npm run check:publication-worktree -- --phase=corpus
+
+      # The derived agent package must name a commit that already contains the exact corpus bytes
+      # it read. Keep this first commit local until every downstream check passes, then push both
+      # commits together at the end of the job.
+      - name: Commit the immutable corpus snapshot locally
+        run: |
+          git config user.name 'rnawiki-bot'
+          git config user.email 'bot@rnawiki.com'
+          git add --all -- ':(glob)data/drugs/drugs-[0-9][0-9][0-9].ndjson'
+          git add -- data/drugs.csv data/manifest.json data/recorded-background.ndjson data/source-consensus.ndjson
+          if ! git diff --cached --quiet; then
+            ROWS=$(python3 -c "import json;print(json.load(open('data/manifest.json'))['counts']['total'])")
+            git commit -m "Publish corpus snapshot: ${ROWS} medicines
+
+            Regenerated from the live database by .github/workflows/publish-dataset.yml.
+            This commit is the immutable input identity for the derived agent package."
+            echo "CORPUS_CHANGED=true" >> "$GITHUB_ENV"
+            echo "CORPUS_COMMIT=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          else
+            # Reuse the content commit and run date already proven by the current package. Pointing
+            # an unchanged corpus at the latest derived commit would change the manifest every day
+            # and create an endless chain of clock-only publication commits.
+            EXISTING_CORPUS_COMMIT=$(node -p "require('./data/agents/current/manifest.json').corpusCommit")
+            test -n "$EXISTING_CORPUS_COMMIT"
+            echo "CORPUS_CHANGED=false" >> "$GITHUB_ENV"
+            echo "CORPUS_COMMIT=$EXISTING_CORPUS_COMMIT" >> "$GITHUB_ENV"
+          fi
+          npm run check:publication-worktree -- --phase=clean
+
+      # The public dataset readers consume deterministic projections from the current detector
+      # package. Rebuild it from the export just produced, then attach its root manifest (whose
+      # nested hashes cover every run artifact) to the public dataset manifest.
+      - name: Rebuild current deterministic datasets
+        run: |
+          if [ "$CORPUS_CHANGED" = "true" ]; then
+            RUN_DATE="$(date -u +%F)"
+          else
+            RUN_DATE=$(node -p "require('./data/agents/current/manifest.json').runDate")
+          fi
+          test -n "$RUN_DATE"
+          npm run agents:run -- --date="$RUN_DATE" --corpus-commit="$CORPUS_COMMIT" --corpus-file=data/recorded-background.ndjson
+          npm run attach:agent-datasets
+          npm run agents:check
+          npm run check:agent-datasets
+
+      - name: Measure the four audience projections
+        run: |
+          npx tsx scripts/audit/four-audience-evidence-coverage.ts --write
+          npm run check:four-audience-coverage
+
+      # `audit:denial-corpus` is deliberately a deterministic writer even when called by `gate`.
+      # Generate and commit its three tracked reports before gating so the second run is a clean
+      # byte-for-byte verification rather than an uncommitted publication side effect.
+      - name: Refresh the denial-corpus audit
+        run: npm run audit:denial-corpus
+
       # Runs the same authored, imported-seed and generated-corpus copy contract as local `gate` and
       # CI. A production export with an editorial self-certification must stop before it is committed.
       - name: Check public copy
@@ -79,19 +161,53 @@ jobs:
       - name: Verify the export against its own manifest
         run: npm run check:dataset-export
 
-      - name: Commit only if the data moved
-        run: |
-          git config user.name 'rnawiki-bot'
-          git config user.email 'bot@rnawiki.com'
-          git add data/
-          if git diff --cached --quiet; then
-            echo "No change in the corpus since the last export."
-            exit 0
-          fi
-          ROWS=$(python3 -c "import json;print(json.load(open('data/manifest.json'))['counts']['total'])")
-          git commit -m "Publish dataset: ${ROWS} medicines
+      - name: Reject unexpected derived outputs
+        run: npm run check:publication-worktree -- --phase=derived
 
-          Regenerated from the live database by .github/workflows/publish-dataset.yml.
-          data/ is a snapshot and is overwritten wholesale on every export; edits happen at
-          rnawiki.com, never here."
-          git push
+      - name: Commit derived data only if it moved
+        run: |
+          git add -- \
+            data/agents/current/adverse-reaction-term-structure.json \
+            data/agents/current/coverage-ledger.json \
+            data/agents/current/enzyme-and-transporter-documentation.json \
+            data/agents/current/evidence-density.json \
+            data/agents/current/excerpt-integrity.json \
+            data/agents/current/manifest.json \
+            data/agents/current/mechanism-text-grouping.json \
+            data/agents/current/numeric-distributions.json \
+            data/agents/current/peer-group-anomaly-screen.json \
+            data/agents/current/silence-ledger.json \
+            data/agents/current/substance-synonyms.json \
+            data/audits/denial-corpus/baseline.json \
+            data/audits/denial-corpus/baseline.md \
+            data/audits/denial-corpus/input-manifest.json \
+            data/manifest.json \
+            docs/product/four-audience-evidence-coverage.json \
+            docs/product/four-audience-evidence-coverage.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish derived evidence datasets
+
+            Rebuilt deterministically from corpus commit ${CORPUS_COMMIT}."
+          fi
+          echo "PUBLICATION_COMMIT=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          npm run check:publication-worktree -- --phase=clean
+
+      # A push made by GITHUB_TOKEN does not reliably trigger the push workflow. Publication must
+      # therefore prove the exact same release contract itself before any generated commit reaches
+      # main or Railway.
+      - name: Run the complete release gate
+        run: |
+          test "$(git rev-parse HEAD)" = "$PUBLICATION_COMMIT"
+          npm run gate
+          test "$(git rev-parse HEAD)" = "$PUBLICATION_COMMIT"
+          npm run check:publication-worktree -- --phase=clean
+
+      - name: Push only after the complete gate
+        run: |
+          test "$(git rev-parse HEAD)" = "$PUBLICATION_COMMIT"
+          npm run check:publication-worktree -- --phase=clean
+          if [ "$PUBLICATION_COMMIT" = "$GITHUB_SHA" ]; then
+            echo "No change in the corpus or derived datasets."
+          else
+            git push origin "$PUBLICATION_COMMIT:$GITHUB_REF_NAME"
+          fi

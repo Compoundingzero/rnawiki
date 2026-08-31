@@ -3,6 +3,13 @@ import { createHash } from 'node:crypto'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import {
+  compareConsensusReadings,
+  type ConsensusComparableReading,
+} from '@/lib/background/source-consensus-comparison'
+
+import { loadCurrentAgentPackage } from '../agents/load-current-package'
+
 /**
  * Checks the published dataset in `data/` against its own manifest, without a database.
  *
@@ -30,6 +37,7 @@ const REQUIRED_PATHS = [
   'data/drugs.csv',
   'data/recorded-background.ndjson',
   'data/source-consensus.ndjson',
+  'data/agents/current/manifest.json',
 ]
 
 /**
@@ -91,12 +99,138 @@ interface ManifestFile {
 interface Manifest {
   generatedAt: string
   licence: string
-  counts?: { total?: number }
+  counts?: {
+    total?: number
+    agentRuns?: number
+    agentCandidates?: number
+    agentFindings?: number
+  }
   files: ManifestFile[]
 }
 
 const failures: string[] = []
 const fail = (message: string) => failures.push(message)
+
+function consensusCompletenessProblems(
+  value: unknown,
+  lineNumber: number,
+): {
+  problems: string[]
+  documentsExamined: number
+  maxSourcesInReading: number
+} {
+  const context = `data/source-consensus.ndjson line ${lineNumber}`
+  if (value === null || typeof value !== 'object' || Array.isArray(value)) {
+    return {
+      problems: [`${context} is not an object`],
+      documentsExamined: 0,
+      maxSourcesInReading: 0,
+    }
+  }
+  const row = value as Record<string, unknown>
+  const readings = Array.isArray(row.readings) ? row.readings : []
+  const problems: string[] = []
+  if (!Array.isArray(row.readings)) problems.push(`${context}.readings is not an array`)
+  if (
+    !Array.isArray(row.comparisonReasons) ||
+    row.comparisonReasons.some((reason) => typeof reason !== 'string')
+  ) {
+    problems.push(`${context}.comparisonReasons is not a string array`)
+  }
+  if (
+    !['agree', 'differ', 'not_comparable', 'insufficient_context'].includes(
+      String(row.comparisonState),
+    )
+  ) {
+    problems.push(`${context}.comparisonState is not a declared v2 state`)
+  }
+  let represented = 0
+  let maxSourcesInReading = 0
+  const comparableReadings: ConsensusComparableReading[] = []
+  for (const [readingIndex, candidate] of readings.entries()) {
+    const readingContext = `${context}.readings[${readingIndex}]`
+    if (candidate === null || typeof candidate !== 'object' || Array.isArray(candidate)) {
+      problems.push(`${readingContext} is not an object`)
+      continue
+    }
+    const reading = candidate as Record<string, unknown>
+    const sources = Array.isArray(reading.sources) ? reading.sources : []
+    if (!Number.isInteger(reading.sourceCount) || Number(reading.sourceCount) < 1) {
+      problems.push(`${readingContext}.sourceCount is not a positive integer`)
+      continue
+    }
+    represented += Number(reading.sourceCount)
+    maxSourcesInReading = Math.max(maxSourcesInReading, sources.length)
+    if (sources.length !== reading.sourceCount) {
+      problems.push(
+        `${readingContext} declares ${String(reading.sourceCount)} sources but retains ${sources.length}`,
+      )
+    }
+    if (typeof reading.populationContext !== 'string' || !reading.populationContext.trim()) {
+      problems.push(`${readingContext}.populationContext is blank or absent`)
+    }
+    if (
+      typeof reading.display === 'string' &&
+      reading.display.trim() &&
+      typeof reading.populationContext === 'string' &&
+      reading.populationContext.trim() &&
+      (reading.unit === undefined || typeof reading.unit === 'string')
+    ) {
+      comparableReadings.push({
+        display: reading.display,
+        ...(typeof reading.unit === 'string' ? { unit: reading.unit } : {}),
+        populationContext: reading.populationContext,
+      })
+    } else if (typeof reading.display !== 'string' || !reading.display.trim()) {
+      problems.push(`${readingContext}.display is blank or absent`)
+    }
+    for (const [sourceIndex, sourceCandidate] of sources.entries()) {
+      const source =
+        sourceCandidate !== null &&
+        typeof sourceCandidate === 'object' &&
+        !Array.isArray(sourceCandidate)
+          ? (sourceCandidate as Record<string, unknown>)
+          : null
+      if (
+        !source ||
+        ['kind', 'identifier', 'label', 'retrievedAt', 'excerpt'].some(
+          (key) => typeof source[key] !== 'string' || !(source[key] as string).trim(),
+        )
+      ) {
+        problems.push(`${readingContext}.sources[${sourceIndex}] is incomplete`)
+      }
+    }
+  }
+  if (!Number.isInteger(row.sourceCount) || represented !== row.sourceCount) {
+    problems.push(
+      `${context} declares ${String(row.sourceCount)} sources but reading groups represent ${represented}`,
+    )
+  }
+  if (comparableReadings.length === readings.length && comparableReadings.length > 0) {
+    const expected = compareConsensusReadings(comparableReadings)
+    if (row.comparisonState !== expected.state) {
+      problems.push(
+        `${context}.comparisonState is ${String(row.comparisonState)} but the context-aware contract requires ${expected.state}`,
+      )
+    }
+    const actualReasons = Array.isArray(row.comparisonReasons)
+      ? [...row.comparisonReasons].sort()
+      : []
+    if (JSON.stringify(actualReasons) !== JSON.stringify(expected.reasons)) {
+      problems.push(
+        `${context}.comparisonReasons do not match the context-aware contract (${expected.reasons.join(', ')})`,
+      )
+    }
+  }
+  return {
+    problems,
+    documentsExamined:
+      typeof row.documentsExamined === 'number' && Number.isFinite(row.documentsExamined)
+        ? row.documentsExamined
+        : 0,
+    maxSourcesInReading,
+  }
+}
 
 function main(): void {
   if (!existsSync(MANIFEST_PATH)) {
@@ -122,6 +256,8 @@ function main(): void {
 
   let verified = 0
   let totalRows = 0
+  let maximumConsensusDocuments = 0
+  let maximumConsensusSources = 0
 
   for (const file of manifest.files) {
     const absolute = join(process.cwd(), file.path)
@@ -163,11 +299,24 @@ function main(): void {
 
       let leaks = 0
       let firstLeak = ''
-      for (const line of lines) {
-        const found = restrictedContentIn(JSON.parse(line))
+      for (const [lineIndex, line] of lines.entries()) {
+        const parsed = JSON.parse(line) as unknown
+        const found = restrictedContentIn(parsed)
         if (found.length > 0) {
           leaks += found.length
           if (!firstLeak) firstLeak = found[0]!
+        }
+        if (file.path === 'data/source-consensus.ndjson') {
+          const completeness = consensusCompletenessProblems(parsed, lineIndex + 1)
+          for (const problem of completeness.problems) fail(problem)
+          maximumConsensusDocuments = Math.max(
+            maximumConsensusDocuments,
+            completeness.documentsExamined,
+          )
+          maximumConsensusSources = Math.max(
+            maximumConsensusSources,
+            completeness.maxSourcesInReading,
+          )
         }
       }
       if (leaks > 0) {
@@ -178,9 +327,43 @@ function main(): void {
     verified += 1
   }
 
+  const backgroundEntry = manifest.files.find(
+    (file) => file.path === 'data/recorded-background.ndjson',
+  )
+  const consensusEntry = manifest.files.find((file) => file.path === 'data/source-consensus.ndjson')
+  if (backgroundEntry?.schemaVersion !== 'recorded-background/2') {
+    fail('data/recorded-background.ndjson must declare recorded-background/2')
+  }
+  if (consensusEntry?.schemaVersion !== 'source-consensus/2') {
+    fail('data/source-consensus.ndjson must declare source-consensus/2')
+  }
+  if (maximumConsensusDocuments <= 60 || maximumConsensusSources <= 4) {
+    fail(
+      `source-consensus completeness ratchet failed (max documents ${maximumConsensusDocuments}, max sources/reading ${maximumConsensusSources})`,
+    )
+  }
+
   const declaredTotal = manifest.counts?.total
   if (typeof declaredTotal === 'number' && totalRows > 0 && totalRows !== declaredTotal) {
     fail(`medicine shards hold ${totalRows} records, manifest counts.total says ${declaredTotal}`)
+  }
+
+  try {
+    const currentAgents = loadCurrentAgentPackage()
+    const expected = {
+      agentRuns: currentAgents.manifest.artifacts.length,
+      agentCandidates: currentAgents.manifest.totals.candidates,
+      agentFindings: currentAgents.manifest.totals.findings,
+    }
+    for (const [key, value] of Object.entries(expected)) {
+      if (manifest.counts?.[key as keyof typeof expected] !== value) {
+        fail(`manifest counts.${key} does not match the current agent package (${value})`)
+      }
+    }
+  } catch (error) {
+    fail(
+      `current agent package is invalid: ${error instanceof Error ? error.message : String(error)}`,
+    )
   }
 
   console.log(

@@ -36,7 +36,11 @@ jobs:
       SITE_URL: http://localhost:3000
       CI: 'true'
     steps:
+      # The checked agent package names the immutable corpus commit it read. The release gate
+      # verifies those exact historical bytes, so a one-commit shallow checkout is insufficient.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -49,20 +53,11 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Check public copy
-        run: npm run check:copy
-
-      - name: Check formatting
-        run: npm run format
-
-      - name: Check migration metadata
-        run: npx drizzle-kit check
+      # Keep CI on the exact same release contract developers run locally. This includes the copy,
+      # medicine, denial-corpus, current-agent, import-contract, public-dataset, audience-coverage,
+      # SEO, migration, unit, integration, build and browser gates.
+      - name: Run the complete release gate
+        run: npm run gate
 
       - name: Ensure schema generation is clean
         run: |
@@ -72,15 +67,3 @@ jobs:
             git status --short --untracked-files=all -- db/schema.ts db/migrations/
             exit 1
           fi
-
-      - name: Unit tests
-        run: npm run test:unit
-
-      - name: PostgreSQL integration tests
-        run: npm run test:integration
-
-      - name: Production build
-        run: npm run build
-
-      - name: Production browser journeys
-        run: npm run test:e2e
