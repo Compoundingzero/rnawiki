@@ -787,7 +787,6 @@ export function programmeEvidenceMedicineDossierView(
 
   const outcomeClaims = selected.claims
     .filter((claim) => claim.endpoint || claim.outcomeType || claim.numericValue)
-    .slice(0, 5)
 
   return normalizedMedicineDossierView(drug, {
     selected: {

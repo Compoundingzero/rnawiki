@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 
 import { MedicineDossierV2 } from '@/components/MedicineDossierV2'
 import { AppProvider } from '@/components/app-context'
+import { dossierAudienceLensProjections } from '@/lib/dossier-audience-lenses'
 import type { ProgrammeEvidenceReadModel } from '@/lib/evidence/types'
 import { programmeEvidenceMedicineDossierView } from '@/lib/programme-dossier-view'
 import type { DrugDossier } from '@/lib/types'
@@ -801,7 +802,7 @@ describe('published programme dossier mapping', () => {
     expect(incomplete.summaryEvidence?.['summary.mainLimitation']).toBeUndefined()
   })
 
-  it('limits the reviewed outcome list to five stored claims', () => {
+  it('retains every eligible outcome in the canonical view and both specialist projections', () => {
     const manyOutcomes = model(true)
     const template = manyOutcomes.selectedProgramme!.claims[0]!
     manyOutcomes.selectedProgramme!.claims = Array.from({ length: 6 }, (_, index) => ({
@@ -817,14 +818,34 @@ describe('published programme dossier mapping', () => {
       new Date('2026-08-22T12:00:00.000Z'),
     )
 
-    expect(view.keyOutcomes).toHaveLength(5)
+    expect(view.keyOutcomes).toHaveLength(6)
     expect(view.keyOutcomes.map((outcome) => outcome.id)).toEqual([
       'claim-1',
       'claim-2',
       'claim-3',
       'claim-4',
       'claim-5',
+      'claim-6',
     ])
+
+    const specialistRecords = new Map(
+      dossierAudienceLensProjections(view)
+        .filter((projection) => projection.lens === 'biotech' || projection.lens === 'quantitative')
+        .map((projection) => [
+          projection.lens,
+          projection.sections.flatMap((section) => section.records).map((record) => record.id),
+        ]),
+    )
+    expect(specialistRecords.get('biotech')).toEqual(
+      expect.arrayContaining(
+        view.keyOutcomes.map((outcome) => `biotech-outcome-${outcome.id}`),
+      ),
+    )
+    expect(specialistRecords.get('quantitative')).toEqual(
+      expect.arrayContaining(
+        view.keyOutcomes.map((outcome) => `quantitative-outcome-${outcome.id}`),
+      ),
+    )
   })
 
   it('keeps the evidence-chain question plain and the professional taxonomy separate', () => {
