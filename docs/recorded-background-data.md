@@ -564,3 +564,57 @@ show what a label says about children; none of them show how much of the corpus 
 question at all. Silence and a stated negative are counted separately and never merge into one bar,
 because "the source says effectiveness was not established" and "the source says nothing" are
 different facts about the evidence.
+
+## The curated gap
+
+The corpus has three tiers, and for one class of row they were built in the wrong order. The
+deterministic label extractor (`scripts/background/build-extracted-background.ts`) skips every slug
+the hand-authored corpus already covers. That is the right rule — a parser must never overwrite a
+person's judgement — but nothing ever came back to ask the narrower question: does a curated
+envelope have a _gap_ the same extractor could fill?
+
+It did, and the gap sat on the most-read pages in the corpus. Not one of the 155 curated records
+carried a mechanism, recorded uses, safety statements, population statements or common adverse
+reactions. Metformin has 390 published labels, 316 of which name it as their only active substance,
+and its page stated none of the five while thousands of thinner rows stated all five from the same
+archive.
+
+`scripts/background/build-curated-gap-extraction.ts` runs the same extraction over exactly those
+rows. It imports `extractRowBackground` from the extracted-tier builder rather than reimplementing
+it, so the name matching, the identity resolution and the attribution rules are the same code path:
+a substance-specific module is still read only from a label declaring exactly one active substance,
+and a product-level module only from a label naming the product. The result is written to
+`data/registries/curated-gap-extraction.json`, keyed by slug, and
+`scripts/seed-data/background/index.ts` attaches it module by module.
+
+**A curator's module always wins.** The rule is enforced twice, and the first enforcement is the one
+that matters: a module the curated envelope already holds is discarded at build time and never
+written to the registry at all, so there is nothing in the file that could replace curated work even
+if the merge tried to. The merge then attaches a module only where the envelope has none.
+
+Three further boundaries keep a parser's output honest inside a person's record:
+
+- **The envelope stays curated; each attached value stays extracted.** The record is still mostly a
+  person's work and says so, while every value the parser supplied carries
+  `provenanceTier: 'extracted'` and quotes the label sentence it was read from, with that label's
+  set id. The page labels those values individually.
+- **A module with nowhere to put a tier is refused.** `productVariants` and `registryIdentifiers`
+  carry a source but no per-value `provenanceTier`, so attaching either would place an unmarked
+  machine-read value inside a curated record. They stay in the extracted tier, where the whole
+  envelope is marked.
+- **Envelope fields are never taken from the extraction.** `version`, `authoredAt` and `attribution`
+  belong to the curated record. An `attribution` counting one extraction source would be a false
+  statement about a record whose other values came from sources a person chose.
+
+Nothing is written that the background engine has not passed twice — once on the registry value
+alone, once on the envelope the merge will actually produce — and a module implicated in a finding
+is dropped rather than repaired. `tests/unit/background-corpus-merge.test.ts` pins the precedence,
+and `npm run check:medicine-content` validates every merged envelope.
+
+One knock-on effect is worth stating plainly. The attachment runs before the registry fallbacks, so
+their `if (existing?.x) continue` guards defer to it — which is the right precedence, because a
+value read out of a label sentence naming this substance alone is a stronger claim than a record
+assembled from the best available label. The visible consequence is that 50 curated rows stop
+showing `nameFamily`. That module attaches only "where nothing identified the row", and a molecular
+formula read from the row's own label identifies it, so the fallback is no longer the best thing the
+page can say.

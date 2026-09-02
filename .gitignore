@@ -45,3 +45,4 @@ data/registries/*
 !data/registries/supplement-ingredient.json
 !data/registries/source-material.json
 !data/registries/name-family.json
+!data/registries/curated-gap-extraction.json

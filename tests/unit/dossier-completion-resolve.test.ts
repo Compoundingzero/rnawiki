@@ -57,7 +57,7 @@ function input(overrides: Partial<CompletionInput> & { background?: Partial<Medi
       recordedBackground:
         background === null
           ? null
-          : ({ version: 'medicine-background/v1', authoredAt: '2026-08-28', ...(background ?? {}) } as MedicineRecordedBackground),
+          : ({ version: 'medicine-background/v1', authoredAt: '2026-08-28', provenanceTier: 'extracted', ...(background ?? {}) } as MedicineRecordedBackground),
       legacyTrials: [],
       keyAudits: [],
       sourceProvenance: ['openFDA NDC Directory'],
@@ -178,6 +178,18 @@ describe('dossier completion resolver', () => {
     expect(safety.basis).toContain('were not read')
     const noLabel = assessDossierCompletion(input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }))
     expect(noLabel.sections.find((s) => s.sectionId === 'mechanism')?.basis).toContain('No label in the openFDA archive')
+    const curated = assessDossierCompletion(
+      input({
+        background: { provenanceTier: 'curated' },
+        labels: [{ setId: 'set-1', declared: 1, sections: ['mechanism_of_action'], productTypes: [] }],
+        registrySearch: registrySearch([]),
+        literatureSearch: literatureSearch(0),
+      }),
+    )
+    const curatedMechanism = curated.sections.find((s) => s.sectionId === 'mechanism')!
+    expect(curatedMechanism.state).toBe('BLOCKED_HUMAN_REVIEW')
+    expect(curatedMechanism.basis).toContain('has not been run')
+    expect(curated.status).toBe('INCOMPLETE')
     const combinationOnly = assessDossierCompletion(
       input({ labels: [{ setId: 'set-2', declared: 2, sections: ['mechanism_of_action'], productTypes: [] }], registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }),
     )

@@ -304,11 +304,29 @@ class Resolver {
       labelsWithReadSection: withSection.length,
     }
     if (withSection.length > 0) {
+      // The label extractor produces the extracted and transcribed tiers. A hand-curated envelope
+      // was never passed through it, so an absent module there is an unread section, not a
+      // section the extractor read and found empty.
+      const tier = this.input.drug.recordedBackground?.provenanceTier
+      const extractorRan = tier === 'extracted' || tier === 'transcribed'
+      if (!extractorRan) {
+        return {
+          sectionId,
+          state: 'BLOCKED_HUMAN_REVIEW',
+          basisKind: 'LABEL_ARCHIVE_SEARCH',
+          basis: `${withSection.length} label(s) ${substanceSpecific ? 'about this entity alone ' : 'naming this entity '}carry the read section(s) ${this.readSectionsClause(sections)}, but this record was hand-curated and the deterministic label extractor has not been run for it, so those sections have not been read into the record.`,
+          sourceRefs: labelRefs(withSection),
+          counts,
+          humanReadSuggested: true,
+          blockedReason:
+            'Run the curated-gap label extraction for this record, or have a person read the named label set and record the statement through the normal reviewed workflow.',
+        }
+      }
       return {
         sectionId,
         state: 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH',
         basisKind: 'LABEL_SECTION_READ_NO_QUALIFYING_STATEMENT',
-        basis: `${withSection.length} label(s) ${substanceSpecific ? 'about this entity alone ' : 'naming this entity '}carry the read section(s) ${this.readSectionsClause(sections)}; the deterministic extractor recorded no qualifying statement from them. A person reading the named label set could add one.`,
+        basis: `${withSection.length} label(s) ${substanceSpecific ? 'about this entity alone ' : 'naming this entity '}carry the read section(s) ${this.readSectionsClause(sections)}; the deterministic extractor read them and recorded no statement that met its rules. A person reading the named label set could add one.`,
         sourceRefs: labelRefs(withSection),
         counts,
         humanReadSuggested: true,
@@ -830,9 +848,9 @@ class Resolver {
 
   trialResults(): SectionAssessment {
     const id: DossierSectionId = 'trial-results'
-    const pivotal = this.hit('pivotalResults')
-    if (pivotal) {
-      return this.recorded(id, pivotal, 'EXACT_SOURCE_BACKED', `${Array.isArray(pivotal.value) ? pivotal.value.length : 1} main-study result(s) recorded with the exact sentence each figure was read from.`)
+    const mainStudy = this.hit('pivotalResults')
+    if (mainStudy) {
+      return this.recorded(id, mainStudy, 'EXACT_SOURCE_BACKED', `${Array.isArray(mainStudy.value) ? mainStudy.value.length : 1} main-study result(s) recorded with the exact sentence each figure was read from.`)
     }
     const search = this.input.registrySearch
     if (!search) return this.searchPending(id, 'exact-name pass over the ClinicalTrials.gov snapshot')
