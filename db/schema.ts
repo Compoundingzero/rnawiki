@@ -20,10 +20,7 @@ import {
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
 import { BACKGROUND_SOURCE_KINDS, type MedicineRecordedBackground } from '@/lib/background/types'
-import {
-  DOSSIER_COMPLETION_STATUSES,
-  type SectionAssessment,
-} from '@/lib/dossier-completion/types'
+import { DOSSIER_COMPLETION_STATUSES, type SectionAssessment } from '@/lib/dossier-completion/types'
 import {
   ENTITY_CLASSES,
   INVENTORY_RESOLUTION_STATES,
@@ -4505,6 +4502,126 @@ export const dossierCompletionReviewDecisions = pgTable(
     check(
       'dossier_completion_review_decisions_digest',
       sql`${table.assessmentInputDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+  ],
+)
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Semantic reading units: one row per recorded reading, and the corrections people file against  */
+/* what a query returned.                                                                          */
+/*                                                                                                  */
+/* A unit is a projection, never an authored record. Its text is source wording or a fixed template */
+/* over stored fields, its sources are the exact ones behind that reading, and an absence is stored */
+/* as its own row rather than as a missing one. Nothing here decides what a medicine does; the      */
+/* projector in lib/semantic/units.ts is the only writer and is pure.                               */
+/*                                                                                                  */
+/* The two enum lists below mirror UNIT_KINDS and UNIT_ASSERTIONS in lib/semantic/units.ts BY HAND, */
+/* for the same reason the modality lists are mirrored: this file must not pull node:crypto into    */
+/* any bundle that imports the schema. tests/unit/semantic-units.test.ts fails when they drift.     */
+/* ---------------------------------------------------------------------------------------------- */
+
+export const evidenceUnitKindEnum = pgEnum('evidence_unit_kind', [
+  'RECORDED_VALUE',
+  'RECORDED_STATEMENT',
+  'POPULATION_STATEMENT',
+  'ADVERSE_REACTION_LIST',
+  'CONSENSUS_READING',
+  'SEARCH_RESULT',
+  'SECTION_STATE',
+])
+
+export const evidenceUnitAssertionEnum = pgEnum('evidence_unit_assertion', [
+  'ASSERTED',
+  'NEGATED',
+  'ABSENT',
+])
+
+export const evidenceReadingUnits = pgTable(
+  'evidence_reading_units',
+  {
+    /** SHA-256 over the reading's exact content, so equal content re-projects to the same row. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    canonicalSlug: varchar('canonical_slug', { length: 128 }).notNull(),
+    unitKind: evidenceUnitKindEnum('unit_kind').notNull(),
+    assertion: evidenceUnitAssertionEnum('assertion').notNull(),
+    /** One of the twenty dossier completion sections. */
+    sectionId: varchar('section_id', { length: 64 }).notNull(),
+    /** Path into the recorded envelope, the completion assessment, or the recorded search. */
+    fieldPath: text('field_path').notNull(),
+    populationScope: text('population_scope'),
+    formulationScope: text('formulation_scope'),
+    /** Source wording or a fixed structural rendering. Never prose composed about a medicine. */
+    text: text('text').notNull(),
+    sourceRefs: jsonb('source_refs')
+      .$type<Array<Record<string, string>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    comparisonState: varchar('comparison_state', { length: 24 }),
+    projectorVersion: varchar('projector_version', { length: 64 }).notNull(),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+
+    // Generated full-text column. BARE, UNQUALIFIED column name on purpose — see the same note on
+    // `drugs.searchVector`; interpolating the column here reintroduces TS7022 under strict mode.
+    // "text" stays quoted because it is also a type name.
+    searchVector: tsvector('search_vector').generatedAlwaysAs(
+      sql`to_tsvector('english', coalesce("text", ''))`,
+    ),
+  },
+  (table) => [
+    index('evidence_reading_units_drug_idx').on(table.drugId),
+    index('evidence_reading_units_section_idx').on(table.sectionId),
+    index('evidence_reading_units_kind_idx').on(table.unitKind),
+    index('evidence_reading_units_search_idx').using('gin', table.searchVector),
+    check('evidence_reading_units_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('evidence_reading_units_content_digest', sql`${table.contentDigest} ~ '^[0-9a-f]{64}$'`),
+    check('evidence_reading_units_text', sql`nullif(btrim(${table.text}), '') is not null`),
+    check(
+      'evidence_reading_units_comparison_state',
+      sql`${table.comparisonState} is null or ${table.comparisonState} in ('agree', 'differ', 'not_comparable', 'insufficient_context')`,
+    ),
+  ],
+)
+
+/**
+ * Append-only. One row is one person saying a query returned the wrong reading, or missed a
+ * recorded absence. Nothing here changes a unit: a correction is evidence about the retrieval, and
+ * the projector stays the only writer of units.
+ */
+export const resultDebuggerCorrections = pgTable(
+  'result_debugger_corrections',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    query: text('query').notNull(),
+    reviewerUserId: varchar('reviewer_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    /** The unit ids the query actually returned, in returned order. */
+    returnedUnitIds: jsonb('returned_unit_ids')
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** The unit that should have come back, when the reviewer names one. */
+    expectedUnitId: varchar('expected_unit_id', { length: 64 }),
+    /** True when the right answer is a recorded absence rather than any returned reading. */
+    expectedAbsence: boolean('expected_absence').notNull().default(false),
+    reason: text('reason').notNull(),
+    engineVersion: varchar('engine_version', { length: 64 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('result_debugger_corrections_created_idx').on(table.createdAt),
+    check('result_debugger_corrections_query', sql`nullif(btrim(${table.query}), '') is not null`),
+    check(
+      'result_debugger_corrections_reason',
+      sql`nullif(btrim(${table.reason}), '') is not null`,
+    ),
+    check(
+      'result_debugger_corrections_expected_unit',
+      sql`${table.expectedUnitId} is null or ${table.expectedUnitId} ~ '^[0-9a-f]{64}$'`,
     ),
   ],
 )

@@ -66,9 +66,13 @@
     "export:dataset": "tsx scripts/export/dataset.ts",
     "repair:public-snapshot": "node --import tsx scripts/quality/repair-public-snapshot.ts",
     "fold:merged": "tsx scripts/ingest/fold-merged.ts",
-    "check:dataset-export": "tsx scripts/check/dataset-export.ts"
+    "check:dataset-export": "tsx scripts/check/dataset-export.ts",
+    "semantic:project": "tsx scripts/semantic/project-units.ts",
+    "semantic:benchmark": "tsx scripts/semantic/benchmark.ts",
+    "semantic:query": "tsx scripts/semantic/query.ts"
   },
   "dependencies": {
+    "@huggingface/transformers": "4.2.0",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/postcss": "^4.3.3",
     "bcryptjs": "^2.4.3",

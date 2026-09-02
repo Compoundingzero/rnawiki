@@ -1,0 +1,129 @@
+{
+  "projectorVersion": "semantic-units/v1",
+  "records": 9852,
+  "recordsWithoutAssessment": 0,
+  "units": 273110,
+  "byKind": {
+    "RECORDED_VALUE": 9093,
+    "RECORDED_STATEMENT": 35332,
+    "POPULATION_STATEMENT": 8818,
+    "ADVERSE_REACTION_LIST": 909,
+    "CONSENSUS_READING": 2214,
+    "SEARCH_RESULT": 19704,
+    "SECTION_STATE": 197040
+  },
+  "byAssertion": {
+    "ASSERTED": 136970,
+    "NEGATED": 8868,
+    "ABSENT": 127272
+  },
+  "bySection": {
+    "identity": {
+      "ASSERTED": 9852,
+      "NEGATED": 0,
+      "ABSENT": 0
+    },
+    "regulatory-status": {
+      "ASSERTED": 9852,
+      "NEGATED": 0,
+      "ABSENT": 0
+    },
+    "recorded-uses": {
+      "ASSERTED": 8752,
+      "NEGATED": 0,
+      "ABSENT": 6940
+    },
+    "mechanism": {
+      "ASSERTED": 7019,
+      "NEGATED": 0,
+      "ABSENT": 8062
+    },
+    "pharmacokinetics": {
+      "ASSERTED": 4862,
+      "NEGATED": 0,
+      "ABSENT": 8424
+    },
+    "molecular-identity": {
+      "ASSERTED": 9982,
+      "NEGATED": 0,
+      "ABSENT": 5529
+    },
+    "safety-statements": {
+      "ASSERTED": 5581,
+      "NEGATED": 0,
+      "ABSENT": 8210
+    },
+    "population-statements": {
+      "ASSERTED": 9356,
+      "NEGATED": 1458,
+      "ABSENT": 7856
+    },
+    "adverse-reactions": {
+      "ASSERTED": 1818,
+      "NEGATED": 0,
+      "ABSENT": 8943
+    },
+    "interaction-signals": {
+      "ASSERTED": 13689,
+      "NEGATED": 7410,
+      "ABSENT": 9077
+    },
+    "product-variants": {
+      "ASSERTED": 8612,
+      "NEGATED": 0,
+      "ABSENT": 1240
+    },
+    "cost-context": {
+      "ASSERTED": 626,
+      "NEGATED": 0,
+      "ABSENT": 9226
+    },
+    "source-consensus": {
+      "ASSERTED": 2948,
+      "NEGATED": 0,
+      "ABSENT": 9118
+    },
+    "biological-identity": {
+      "ASSERTED": 2999,
+      "NEGATED": 0,
+      "ABSENT": 6853
+    },
+    "supplement-market": {
+      "ASSERTED": 6380,
+      "NEGATED": 0,
+      "ABSENT": 3472
+    },
+    "trial-registry": {
+      "ASSERTED": 13421,
+      "NEGATED": 0,
+      "ABSENT": 6283
+    },
+    "trial-results": {
+      "ASSERTED": 2431,
+      "NEGATED": 0,
+      "ABSENT": 7421
+    },
+    "trial-eligibility": {
+      "ASSERTED": 3569,
+      "NEGATED": 0,
+      "ABSENT": 6283
+    },
+    "literature-search": {
+      "ASSERTED": 15221,
+      "NEGATED": 0,
+      "ABSENT": 4483
+    },
+    "reviewed-conclusion": {
+      "ASSERTED": 0,
+      "NEGATED": 0,
+      "ABSENT": 9852
+    }
+  },
+  "unchangedRecords": 9080,
+  "changedRecords": 772,
+  "unitsInserted": 6800,
+  "unitsDeleted": 3897,
+  "unitsForNonCanonicalRecords": 0,
+  "inputDigest": "261c8f0819b1cf9cfb4e274ae18207ae5eeb22e496dc6029c314c7e36e2f68fe",
+  "check": false
+}
