@@ -244,6 +244,11 @@ main session.
   affected curated rows.
 - `/review-queue/completion` and `/review-queue/search-indexing` are reachable by URL only; neither
   is linked from `/review-queue`. Linking them is a one-line owner decision.
+- The browse pager gained numbered jump links (first, last, every tenth page, a two-page window)
+  because the live orphan audit found 6,807 dossiers reachable only through a chain of more than
+  twelve `next` links; with the jumps every page is within four hops of `/browse`. This extends an
+  existing control rather than adding a page; the stride and window are one-line values in
+  `lib/browse-pagination.ts`.
 
 ## Verification record
 
@@ -280,6 +285,37 @@ identity resolution as the page; `/d/abalone` carries a unique description and a
 
 The corpus publication chain ran end to end: export, snapshot commit `c895392`, `agents:run`
 (2026-09-02), manifest attachment, and every check.
+
+## Deployment record (2026-09-02, Asia/Singapore evening)
+
+- PR #8 merged into `main` as `edd0453` after CI passed on `91cbd30` (the first two CI runs failed
+  because the peer-group anomaly artifact regenerated with different last-bit floats on the x86
+  runner; emitted numbers are now rounded to fourteen significant digits, as the numeric
+  distributions agent already did).
+- Railway deployment `07722f64` failed in `preDeployCommand`: migrations 0022 and 0023 applied
+  (production at 24), the name index wrote 11,521 alias rows, and `agents:import` then refused
+  because production's recorded background differed from the checked corpus for the 145
+  curated-gap records. `npm run apply:background` was run against production over
+  certificate-verified TLS (9,855 envelopes validated, 765 changed, zero findings) and the same
+  commit was redeployed as `ba9b4bdf`, which succeeded. The previous deployment kept serving
+  throughout.
+- Production data steps, all over verified TLS from this machine: `inventory:apply` (9,859
+  resolutions, 5 `MERGED` ledger rows), `completion:match-trials` (3,569 entities matched 224,946
+  registrations), `completion:pubmed:import` (9,852 records), `completion:run` (9,852 complete, 0
+  incomplete; `completion:check` reported 0 changed), `semantic:project` (273,110 units).
+  `data/inventory/*` was regenerated from production because the deploy's name-index step gave
+  production more aliases than the working copy held; the accounting is unchanged.
+- Live verification: `/sitemap.xml` lists 9,863 URLs including 9,852 dossiers and no redirect or
+  gone slug; `/d/tbd` answers 410; `/d/coenzyme-q-10` redirects permanently to `/d/coenzyme-q10`;
+  `/d/abalone` is `index, follow` with a unique description, canonical link, JSON-LD
+  `dateModified` and the completeness section; `/api/drugs/metformin` carries the same COMPLETE
+  assessment as the page; the two new dataset pages and their API endpoints serve; `/llms.txt`
+  describes the state vocabulary.
+- IndexNow: submitted from the production container at 2026-09-02T12:48:47Z, one batch of 9,852
+  URLs, HTTP 200, zero rejected (`docs/audits/discovery/indexnow-submissions.ndjson`). Every
+  canonical dossier is therefore `SUBMITTED_FOR_DISCOVERY`. `CRAWLED_OBSERVED`,
+  `INDEXED_OBSERVED` and `CITED_OR_RETRIEVED_OBSERVED` remain `NOT_OBSERVABLE` until crawler logs
+  and a Search Console reading exist; a sitemap or IndexNow submission is not proof of indexing.
 
 ## Release and resume commands
 
