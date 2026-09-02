@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
-import { parseBrowsePage } from '@/lib/browse-pagination'
+import { browsePageLinks, parseBrowsePage } from '@/lib/browse-pagination'
 import { listDrugs, type DossierDepth } from '@/lib/queries/drugs'
 import { getPublicMedicineProjections } from '@/lib/queries/public-medicine-projection'
 import {
@@ -392,9 +392,29 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
               <span />
             )}
 
-            <span className="text-[11px] font-semibold text-[#6E6E73] tabular-nums">
-              Page {filters.page.toLocaleString('en-GB')} of {lastPage.toLocaleString('en-GB')}
-            </span>
+            {/* Numbered jumps keep every page a few hops from the first, so a crawler that follows
+                links reaches every record; `next` alone put the last page 165 hops away. */}
+            <ol
+              aria-label={`Page ${filters.page.toLocaleString('en-GB')} of ${lastPage.toLocaleString('en-GB')}`}
+              className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] font-semibold tabular-nums text-[#6E6E73]"
+            >
+              {browsePageLinks(filters.page, lastPage).map((page) => (
+                <li key={page}>
+                  {page === filters.page ? (
+                    <span aria-current="page" className="px-1 text-[#1D1D1F]">
+                      {page.toLocaleString('en-GB')}
+                    </span>
+                  ) : (
+                    <Link
+                      href={browseHref({ ...filters, page })}
+                      className="inline-flex min-h-8 items-center px-1 text-[#0071E3] hover:text-[#0077ED] transition"
+                    >
+                      {page.toLocaleString('en-GB')}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ol>
 
             {filters.page < lastPage ? (
               <Link
