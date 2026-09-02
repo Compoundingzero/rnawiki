@@ -205,7 +205,26 @@ main session.
   reads and identity warnings; `POST /api/completion-review` records an append-only decision bound to
   the exact assessment digest; stale digests are refused. A decision never changes public content.
 
-### W7 Semantic engine (in progress at the time of writing; see the JSON ledger)
+### W7 Semantic engine (done; no vector index by rule)
+
+- Migration `0023_semantic_reading_units`: `evidence_reading_units` (unit id is the SHA-256 of the
+  exact content; kinds RECORDED_VALUE, RECORDED_STATEMENT, POPULATION_STATEMENT,
+  ADVERSE_REACTION_LIST, CONSENSUS_READING, SEARCH_RESULT, SECTION_STATE; assertions ASSERTED,
+  NEGATED, ABSENT; GIN index over a generated tsvector) and the append-only
+  `result_debugger_corrections` table.
+- `scripts/semantic/project-units.ts` projected 273,110 units for the 9,852 canonical records;
+  `--check` reports 0 changed on a re-run. Absences are units too: every terminal absence state
+  becomes an ABSENT unit carrying the assessment's basis sentence, and a source-stated
+  "not established" becomes NEGATED.
+- Lexical baseline (PostgreSQL full-text search at unit level) with deterministic scope gates
+  (exact entity match, population and formulation words, refusal of two-medicine or ambiguous
+  queries) and retrieval-free absence and boundary lookups. Template-generated benchmark of 1,943
+  queries over a 2,000-unit pool, seed 20260902: gated recall@5 0.933 lexical against 0.956 for a
+  local dense model (`Xenova/bge-small-en-v1.5`, CPU). The pass rule for a pgvector shadow index
+  (dense ahead by at least 5 points) was not met, and `vector` is not installed locally, so no
+  vector migration exists. `docs/semantic-engine.md` records both reasons and the commands.
+- `POST /api/result-debugger` records genuine steward corrections only; the table holds 0 rows and
+  nothing synthetic was inserted.
 
 ### W8 Testing and release verification
 
@@ -228,4 +247,60 @@ main session.
 
 ## Verification record
 
-Pending the final gate run; interim results are listed per workstream above.
+`npm run gate` on `dde8bfc` (2026-09-02, local, disposable databases created and dropped):
+
+| Step                                            | Result                                                     |
+| ----------------------------------------------- | ---------------------------------------------------------- |
+| typecheck, lint, check:copy                     | pass (0 copy hits across 348 public/docs files)            |
+| check:medicine-content                          | pass, 9,855 envelopes, 0 findings                          |
+| audit:denial-corpus, agents:check, import:check | pass against the regenerated 2026-09-02 agent package      |
+| check:agent-datasets, four-audience, consensus  | pass                                                       |
+| check:dataset-export                            | pass, 25 files, 9,857 records, largest file 64.6 MB        |
+| check:seo                                       | pass, 24 files, 265 tests                                  |
+| format, drizzle-kit check                       | pass                                                       |
+| test:unit                                       | pass, 163 files, 2,238 tests                               |
+| test:integration                                | pass, 26 files, 167 tests                                  |
+| build                                           | pass                                                       |
+| test:e2e                                        | 26 of 27 passed; the identity dataset page overflowed by   |
+|                                                 | 2 px at 320 px (a 64-character digest); fixed with a       |
+|                                                 | break-anywhere rule for unbroken tokens and re-run (below) |
+
+Browser checks against the working database on 2026-09-02: `/d/metformin` renders "How complete
+this record is" with 159 items, no link to any other record and a closed technical disclosure; no
+horizontal overflow at 375 px or 320 px; `/d/tbd` answers 410 with `noindex`; `/d/coenzyme-q-10`
+redirects permanently to `/d/coenzyme-q10`; `/sitemap.xml` lists 9,852 dossiers and 9,863 URLs
+with no redirect or gone slug; `/api/drugs/metformin` carries the same completion assessment and
+identity resolution as the page; `/d/abalone` carries a unique description and a JSON-LD
+`dateModified`.
+
+The corpus publication chain ran end to end: export, snapshot commit `c895392`, `agents:run`
+(2026-09-02), manifest attachment, and every check.
+
+## Release and resume commands
+
+Nothing has been written to production. The exact sequence, in order:
+
+```bash
+# 1. Merge or deploy the branch; Railway applies migrations 0022 and 0023 in preDeployCommand.
+# 2. Against production (from inside Railway, or with PGSSLROOTCERT pinned), in this order:
+npm run apply:background          # attaches the curated-gap modules (validated, only recorded_background)
+npm run inventory:apply           # writes inventory_resolutions and the 5 MERGED ledger rows
+npm run completion:match-trials   # needs the local snapshot; or copy source_search_records from the working copy
+npm run completion:pubmed:import  # same
+npm run completion:run            # assesses all canonical records; --check must then report 0 changed
+npm run semantic:project          # optional: projects evidence-reading units
+# 3. Discovery, once the deployment serves the new sitemap:
+npx tsx scripts/discovery/submit-indexnow.ts             # dry run: counts only
+npx tsx scripts/discovery/submit-indexnow.ts --submit --json
+npx tsx scripts/discovery/monitor-discovery.ts --origin https://rnawiki.com --resume
+npm run audit:search -- --origin https://rnawiki.com --orphan-audit --max-urls 12000
+```
+
+The registry snapshot and PubMed records live on this machine under
+`/Users/admin/rnawiki-ingest-data`; the simplest production path for `source_search_records` is
+`pg_dump --table=source_search_records` from `rnawiki_corpus_completion` restored into production,
+because the rows are content-addressed and idempotent.
+
+Discovery states: every canonical dossier is `DISCOVERY_READY` in code. `SUBMITTED_FOR_DISCOVERY`,
+`CRAWLED_OBSERVED`, `INDEXED_OBSERVED` and `CITED_OR_RETRIEVED_OBSERVED` are `NOT_OBSERVABLE` until
+the deployment, the IndexNow submission and a Search Console reading exist.

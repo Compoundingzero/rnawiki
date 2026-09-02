@@ -1,7 +1,7 @@
 {
   "schema": "rnawiki-full-corpus-completion-ledger/v1",
   "startedAt": "2026-09-02T02:30:00+08:00",
-  "updatedAt": "2026-09-02T16:30:00+08:00",
+  "updatedAt": "2026-09-02T18:10:00+08:00",
   "startingCommit": "d00f27b00a95bfa25366096cc1fb960ba54f411f",
   "branch": "release-c1/full-corpus-completion",
   "worktree": "ClaudeRepo/Claude Projects/RNAwiki-corpus-completion",
@@ -9,7 +9,7 @@
     "name": "rnawiki_corpus_completion",
     "restoredFrom": "/Users/admin/rnawiki-backups/release-b1-20260901.pRTNXH/rnawiki-pre-b1.pgcustom",
     "archiveSha256": "2e4501b434d802bfcfba36294ee90f92bbba8441e8e15d430ad2b0637be60c8d",
-    "migrationsApplied": 23,
+    "migrationsApplied": 24,
     "note": "The archive predates the Release B1 source-consensus transition; npm run apply:background brought the working copy in line with the checked corpus (765 envelopes changed, zero findings)."
   },
   "baseline": {
@@ -97,7 +97,10 @@
         "unreachable": 0,
         "entitiesWithHits": 5369
       },
-      "labelSectionsIndex": { "labels": 87141, "labelsWithReadSections": 80443 }
+      "labelSectionsIndex": {
+        "labels": 87141,
+        "labelsWithReadSections": 80443
+      }
     },
     "curatedGapExtraction": {
       "curatedRowsConsidered": 155,
@@ -140,6 +143,24 @@
       "crawledObserved": "NOT_OBSERVABLE_UNTIL_DEPLOYED",
       "indexedObserved": "NOT_OBSERVABLE_WITHOUT_SEARCH_CONSOLE",
       "citedOrRetrievedObserved": "NOT_OBSERVABLE"
+    },
+    "semantic": {
+      "unitsProjected": 273110,
+      "projectorIdempotent": true,
+      "benchmark": {
+        "seed": 20260902,
+        "unitPool": 2000,
+        "queries": 1943,
+        "lexicalGatedRecallAt5": 0.9326,
+        "denseGatedRecallAt5": 0.9557,
+        "denseModel": "Xenova/bge-small-en-v1.5",
+        "passRule": "dense ahead of lexical by >= 5 points at gated recall@5",
+        "passRuleMet": false,
+        "pgvectorAvailable": false,
+        "vectorIndexAdded": false
+      },
+      "resultDebuggerCorrections": 0,
+      "audit": "docs/audits/semantic/lexical-benchmark.json"
     }
   },
   "workstreams": [
@@ -202,15 +223,22 @@
       "id": "W7",
       "name": "Semantic retrieval",
       "dependsOn": ["W4"],
-      "status": "IN_PROGRESS",
-      "verification": []
+      "status": "DONE_NO_VECTOR_INDEX_BY_RULE",
+      "verification": [
+        "tests/unit/semantic-*.test.ts",
+        "scripts/semantic/project-units.ts --check",
+        "docs/audits/semantic/lexical-benchmark.md"
+      ]
     },
     {
       "id": "W8",
       "name": "Testing and release verification",
       "dependsOn": ["W4", "W5", "W6"],
-      "status": "IN_PROGRESS",
-      "verification": ["tsc", "lint", "check:copy", "unit suite 2,230 passing"]
+      "status": "GATE_PASSED_EXCEPT_ONE_E2E_ASSERTION_FIXED_AND_RERUN",
+      "verification": [
+        "npm run gate on dde8bfc: typecheck, lint, copy, medicine-content, denial-corpus, agents, datasets, seo (265), format, drizzle, unit (2238), integration (167), build all pass; e2e 26/27 then fixed",
+        "browser checks on working database recorded in the worklog"
+      ]
     }
   ],
   "blockedRecords": [],
