@@ -38,6 +38,7 @@ function section(
     state,
     stateLabel: SECTION_STATE_LABELS[state],
     terminal: isTerminalSectionState(state),
+    basisKind: 'RECORDED_MODULE',
     basis: `Basis sentence for ${id}.`,
     sourceRefs: [],
     humanReadSuggested: false,

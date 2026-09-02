@@ -2051,6 +2051,7 @@ describe('MedicineDossierV2 server markup', () => {
               state: 'EXACT_STRUCTURED_SOURCE_DATA',
               stateLabel: 'Recorded as structured source data',
               terminal: true,
+              basisKind: 'REGISTRY_IDENTIFIER',
               basis: 'Identity rests on one recorded registry identifier.',
               sourceRefs: [{ kind: 'UNII', identifier: 'TR046Y3K1G' }],
               humanReadSuggested: false,
