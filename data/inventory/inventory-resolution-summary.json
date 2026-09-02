@@ -1,0 +1,41 @@
+{
+  "resolverVersion": "inventory-resolution/v1",
+  "inputDigest": "aed21330f73e948d3b15afd0e590e8c7768b7a4758af1692642c96ce11717618",
+  "originalInventoryCount": 9859,
+  "byStatus": {
+    "CANONICAL_ENTITY": 9852,
+    "ALIAS_OF_CANONICAL_ENTITY": 0,
+    "DUPLICATE_OF_CANONICAL_ENTITY": 5,
+    "HISTORICAL_REDIRECT": 0,
+    "INVALID_IDENTITY_GONE": 2,
+    "MANUAL_IDENTITY_REVIEW_REQUIRED": 0
+  },
+  "byEntityClass": {
+    "APPROVED_MEDICINE": 2624,
+    "APPROVED_BIOLOGIC": 496,
+    "INVESTIGATIONAL_MEDICINE": 391,
+    "OFF_LABEL_OR_COMPOUNDED": 128,
+    "WITHDRAWN_MEDICINE": 29,
+    "CONTROLLED_NO_APPROVED_USE": 21,
+    "COMBINATION_PRODUCT": 21,
+    "BOTANICAL_OR_ORGANISM_PREPARATION": 2758,
+    "SUPPLEMENT_INGREDIENT": 3025,
+    "MARKETED_PRODUCT_INGREDIENT": 359,
+    "REGISTRY_ONLY_IDENTITY": 5,
+    "PLACEHOLDER": 2
+  },
+  "canonicalEntities": 9852,
+  "aliasesOrDuplicatesRedirected": 5,
+  "historicalRedirects": 0,
+  "justifiedGoneIdentities": 2,
+  "manualReviewRequired": 0,
+  "accountingBalanced": true,
+  "warningCounts": {
+    "SHARED_REGISTRY_IDENTIFIER": 5389,
+    "ALIAS_SHADOWED_BY_CANONICAL_SLUG": 373,
+    "SALT_OR_HYDRATE_FORM_OF_ANOTHER_RECORD": 0,
+    "NO_RECORDED_BACKGROUND": 2,
+    "NAME_ONLY_IDENTITY": 50,
+    "DUPLICATE_HOLDS_UNMERGED_MODULES": 1
+  }
+}
