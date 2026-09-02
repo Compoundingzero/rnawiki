@@ -1,0 +1,114 @@
+{
+  "schema": "rnawiki-full-corpus-completion-ledger/v1",
+  "startedAt": "2026-09-02T02:30:00+08:00",
+  "startingCommit": "d00f27b00a95bfa25366096cc1fb960ba54f411f",
+  "branch": "release-c1/full-corpus-completion",
+  "worktree": "ClaudeRepo/Claude Projects/RNAwiki-corpus-completion",
+  "workingDatabase": {
+    "name": "rnawiki_corpus_completion",
+    "restoredFrom": "/Users/admin/rnawiki-backups/release-b1-20260901.pRTNXH/rnawiki-pre-b1.pgcustom",
+    "archiveSha256": "2e4501b434d802bfcfba36294ee90f92bbba8441e8e15d430ad2b0637be60c8d",
+    "migrationsApplied": 22
+  },
+  "baseline": {
+    "recomputedAt": "2026-09-02",
+    "rawInventoryRecords": 9859,
+    "publicFilterRows": 9857,
+    "placeholderIdentities": 2,
+    "uniqueCanonicalEntities": "PENDING_RESOLVER",
+    "aliases": 27859,
+    "redirects": 0,
+    "unresolvedIdentities": "PENDING_RESOLVER",
+    "exactSourceObjects": { "evidenceSources": 100, "sourceSnapshots": 100, "backgroundFetches": 100 },
+    "exactSourceBindings": 751,
+    "assertionChecks": 751,
+    "exactExcerpts": "PENDING_PROJECTION",
+    "rowsWithQuotableExcerpt": 3093,
+    "structuredSourcePointers": 6741,
+    "approvedMedicines": 3141,
+    "investigationalMedicines": 391,
+    "supplements": 6149,
+    "botanicalsOrOrganisms": 2999,
+    "combinationProducts": 35,
+    "biologics": 849,
+    "registryOnlyIdentities": "PENDING_RESOLVER",
+    "recordsWithLegacyTrials": 6515,
+    "legacyTrialRows": 31232,
+    "recordsWithPostedTrialResults": "NOT_OBSERVABLE",
+    "recordedPivotalResults": 18,
+    "applicabilityRecords": 22,
+    "programmes": 0,
+    "currentProgrammePublications": 0,
+    "publishedEvidenceReadings": 0,
+    "reviewedProgrammeConclusions": 0,
+    "genuineReviewDecisions": 0,
+    "indexableDossiersLive": 165,
+    "sitemapDossiersLive": 165,
+    "sitemapUrlsLive": 174,
+    "noindexDossiersLive": 9692,
+    "robotsBlockedDossiers": 0,
+    "orphanDossiers": "PENDING_CRAWL_AUDIT",
+    "recordedBackgroundEnvelopes": 9855,
+    "engineValidationRuns": 9855
+  },
+  "workstreams": [
+    {
+      "id": "W1",
+      "name": "Canonical inventory and identity resolution",
+      "dependsOn": [],
+      "status": "IN_PROGRESS",
+      "verification": []
+    },
+    {
+      "id": "W2",
+      "name": "Source registry and ingestion (registry snapshot, auditable searches)",
+      "dependsOn": ["W1"],
+      "status": "NOT_STARTED",
+      "verification": []
+    },
+    {
+      "id": "W3",
+      "name": "Evidence-reading architecture and database migrations",
+      "dependsOn": ["W1"],
+      "status": "NOT_STARTED",
+      "verification": []
+    },
+    {
+      "id": "W4",
+      "name": "Dossier completion and rendering",
+      "dependsOn": ["W2", "W3"],
+      "status": "NOT_STARTED",
+      "verification": []
+    },
+    {
+      "id": "W5",
+      "name": "SEO, GEO and crawler discovery",
+      "dependsOn": ["W1", "W3"],
+      "status": "NOT_STARTED",
+      "verification": []
+    },
+    {
+      "id": "W6",
+      "name": "Review workflows (identity review, completion review, result debugger capture)",
+      "dependsOn": ["W3"],
+      "status": "NOT_STARTED",
+      "verification": []
+    },
+    {
+      "id": "W7",
+      "name": "Semantic retrieval (units, lexical baseline, absence lookups, dense benchmark)",
+      "dependsOn": ["W4"],
+      "status": "NOT_STARTED",
+      "verification": []
+    },
+    {
+      "id": "W8",
+      "name": "Testing and release verification",
+      "dependsOn": ["W4", "W5", "W6"],
+      "status": "NOT_STARTED",
+      "verification": []
+    }
+  ],
+  "blockedRecords": [],
+  "externalActions": []
+}
