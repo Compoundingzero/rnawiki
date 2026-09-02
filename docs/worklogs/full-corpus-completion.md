@@ -283,6 +283,16 @@ The corpus publication chain ran end to end: export, snapshot commit `c895392`, 
 
 ## Release and resume commands
 
+Pre-release production backup, taken over certificate-verified TLS (CA read from the database
+container at `/var/lib/postgresql/data/certs/root.crt`, pinned locally at
+`/Users/admin/rnawiki-backups/railway/postgres-root.crt`; `sslmode=verify-ca` for `pg_dump`,
+`PGSSLSERVERNAME=localhost` for the application scripts):
+`/Users/admin/rnawiki-backups/release-c1-20260902/rnawiki-pre-c1.pgcustom`, 27,151,440 bytes,
+64 table-data entries, SHA-256
+`4823527c9768a0d71407e46bb3c7a941a5a051b46f4da930a75ece54e4c0975c`. Production held 22 applied
+migrations and 9,859 medicine rows at that moment. Pull request:
+https://github.com/Compoundingzero/rnawiki/pull/8.
+
 Nothing has been written to production. The exact sequence, in order:
 
 ```bash
