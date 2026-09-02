@@ -23,9 +23,7 @@ const DOSE_PATTERN =
   /\b\d+(?:[.,]\d+)?\s*(?:mg|mcg|µg|ug|g|kg|ml|l|iu|units?|%|mmol|meq|mg\/kg|mg\/ml|mcg\/ml|mg\/m2)\b/giu
 
 export function normalizeInterventionName(value: string): string {
-  return normalizeContentName(value.replace(DOSE_PATTERN, ' '))
-    .replace(/\s+/gu, ' ')
-    .trim()
+  return normalizeContentName(value.replace(DOSE_PATTERN, ' ')).replace(/\s+/gu, ' ').trim()
 }
 
 /** Keys shorter than this match too much by accident (initialisms, fragments) and are refused. */
@@ -35,7 +33,11 @@ export interface EntityMatchNames {
   drugId: string
   canonicalSlug: string
   /** Each key with the corpus name it came from and how that name is recorded. */
-  keys: ReadonlyArray<{ key: string; name: string; via: 'name' | 'inn' | 'salt_form' | 'common_name' | 'brand' | 'duplicate_record' }>
+  keys: ReadonlyArray<{
+    key: string
+    name: string
+    via: 'name' | 'inn' | 'salt_form' | 'common_name' | 'brand' | 'duplicate_record'
+  }>
 }
 
 export interface RegistryStudySummary {
@@ -95,9 +97,15 @@ type RawStudy = {
       studyType?: string
       phases?: string[]
       enrollmentInfo?: { count?: number; type?: string }
-      designInfo?: { allocation?: string; primaryPurpose?: string; maskingInfo?: { masking?: string } }
+      designInfo?: {
+        allocation?: string
+        primaryPurpose?: string
+        maskingInfo?: { masking?: string }
+      }
     }
-    armsInterventionsModule?: { interventions?: Array<{ type?: string; name?: string; otherNames?: string[] }> }
+    armsInterventionsModule?: {
+      interventions?: Array<{ type?: string; name?: string; otherNames?: string[] }>
+    }
     outcomesModule?: { primaryOutcomes?: Array<{ measure?: string; timeFrame?: string }> }
     eligibilityModule?: {
       sex?: string
@@ -116,7 +124,10 @@ function text(value: unknown): string | null {
   return typeof value === 'string' && value.trim() ? value.trim() : null
 }
 
-export function summarizeStudy(raw: unknown, matchedInterventionNames: string[]): RegistryStudySummary | null {
+export function summarizeStudy(
+  raw: unknown,
+  matchedInterventionNames: string[],
+): RegistryStudySummary | null {
   const study = raw as RawStudy
   const protocol = study.protocolSection
   const nctId = text(protocol?.identificationModule?.nctId)
@@ -192,7 +203,10 @@ export function interventionNames(raw: unknown): string[] {
  */
 export class RegistryMatcher {
   private readonly wanted = new Map<string, EntityMatchNames[]>()
-  private readonly matches = new Map<string, Map<string, { study: RegistryStudySummary; keys: Set<string> }>>()
+  private readonly matches = new Map<
+    string,
+    Map<string, { study: RegistryStudySummary; keys: Set<string> }>
+  >()
   private readonly keyHits = new Map<string, Map<string, number>>()
 
   constructor(entities: readonly EntityMatchNames[]) {

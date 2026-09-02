@@ -83,12 +83,14 @@ export async function loadInventoryRows(): Promise<{
       registryIdentifiers: Object.fromEntries(
         (['pubchemCid', 'casNumber', 'unii', 'rxcui', 'ncbiTaxonomyId'] as const)
           .map((key) => [key, stringOrNull(registry[key])] as const)
-          .filter((entry): entry is readonly [typeof entry[0], string] => entry[1] !== null),
+          .filter((entry): entry is readonly [(typeof entry)[0], string] => entry[1] !== null),
       ),
       biologicalIdentityTaxonomyId: stringOrNull(row.taxonomy_id),
       supplementIngredientGroupId: stringOrNull(row.dsld_group),
       fdaApplicationNumber: stringOrNull(row.fda_application),
-      sampleProductNdcs: Array.isArray(row.ndcs) ? row.ndcs.filter((v): v is string => typeof v === 'string') : [],
+      sampleProductNdcs: Array.isArray(row.ndcs)
+        ? row.ndcs.filter((v): v is string => typeof v === 'string')
+        : [],
       sampleLabelSetIds: Array.isArray(row.label_ids)
         ? row.label_ids.filter((v): v is string => typeof v === 'string')
         : [],
@@ -98,7 +100,12 @@ export async function loadInventoryRows(): Promise<{
     select old_slug, target_drug_id, reason, rationale from medicine_slug_redirects order by old_slug
   `)
   const ledger = (
-    ledgerResult.rows as Array<{ old_slug: string; target_drug_id: string; reason: string; rationale: string }>
+    ledgerResult.rows as Array<{
+      old_slug: string
+      target_drug_id: string
+      reason: string
+      rationale: string
+    }>
   ).map((row) => ({
     oldSlug: row.old_slug,
     targetDrugId: row.target_drug_id,
@@ -108,7 +115,9 @@ export async function loadInventoryRows(): Promise<{
   return { rows, ledger }
 }
 
-export function renderInventoryArtifacts(result: ReturnType<typeof resolveInventory>): Map<string, string> {
+export function renderInventoryArtifacts(
+  result: ReturnType<typeof resolveInventory>,
+): Map<string, string> {
   const files = new Map<string, string>()
   files.set(
     'inventory-resolution.ndjson',

@@ -147,7 +147,9 @@ async function main(): Promise<void> {
       )
     }
     if (checkpoint.completedAt) {
-      console.log(`[ct-snapshot] ${snapshotId} already complete: ${checkpoint.studiesWritten} studies`)
+      console.log(
+        `[ct-snapshot] ${snapshotId} already complete: ${checkpoint.studiesWritten} studies`,
+      )
       return
     }
     console.log(
@@ -193,7 +195,8 @@ async function main(): Promise<void> {
 
     checkpoint.pagesFetched += 1
     checkpoint.studiesWritten += studies.length
-    checkpoint.totalCount = typeof page.totalCount === 'number' ? page.totalCount : checkpoint.totalCount
+    checkpoint.totalCount =
+      typeof page.totalCount === 'number' ? page.totalCount : checkpoint.totalCount
     checkpoint.nextPageToken = page.nextPageToken ?? null
     pagesThisRun += 1
 

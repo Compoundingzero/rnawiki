@@ -27,7 +27,9 @@ describe('current agent release wiring', () => {
     expect(railway).not.toContain(
       'preDeployCommand = "npm run db:migrate && npm run apply:background',
     )
-    expect(packageJson.scripts.gate).toContain('npm run check:b1-source-consensus-transition')
+    // The Release B1 transition guard compared the corpus with an immutable A.1 commit; it was
+    // retired from the gate once the corpus legitimately moved past that release.
+    expect(packageJson.scripts.gate).not.toContain('npm run check:b1-source-consensus-transition')
   })
 
   it('runs one complete local release gate in CI', () => {

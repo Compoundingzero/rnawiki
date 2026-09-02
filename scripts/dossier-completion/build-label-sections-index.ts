@@ -161,7 +161,9 @@ async function main(): Promise<void> {
   }
 
   if (entries.size === 0) {
-    throw new Error(`No labels found at ${presencePath} or ${labelIndexPath}. Refusing to write an empty index.`)
+    throw new Error(
+      `No labels found at ${presencePath} or ${labelIndexPath}. Refusing to write an empty index.`,
+    )
   }
 
   const index: LabelSectionsIndex = {

@@ -9,7 +9,9 @@ import {
 } from '@/lib/inventory/resolve'
 import { ENTITY_CLASSES, INVENTORY_RESOLUTION_STATES } from '@/lib/inventory/types'
 
-function row(overrides: Partial<InventoryRowInput> & Pick<InventoryRowInput, 'id' | 'name'>): InventoryRowInput {
+function row(
+  overrides: Partial<InventoryRowInput> & Pick<InventoryRowInput, 'id' | 'name'>,
+): InventoryRowInput {
   return {
     slug: overrides.id,
     tradeName: null,
@@ -30,7 +32,12 @@ function row(overrides: Partial<InventoryRowInput> & Pick<InventoryRowInput, 'id
 }
 
 const CORPUS: InventoryRowInput[] = [
-  row({ id: 'coenzyme-q10', name: 'Coenzyme Q10', dossierDepth: 'flagship', backgroundModules: ['authoredAt', 'version'] }),
+  row({
+    id: 'coenzyme-q10',
+    name: 'Coenzyme Q10',
+    dossierDepth: 'flagship',
+    backgroundModules: ['authoredAt', 'version'],
+  }),
   row({
     id: 'coenzyme-q-10',
     name: 'Coenzyme Q-10',
@@ -117,7 +124,10 @@ describe('inventory resolution', () => {
     expect(tartrate.attributionWarnings.map((w) => w.code)).toContain(
       'SALT_OR_HYDRATE_FORM_OF_ANOTHER_RECORD',
     )
-    expect(tartrate.attributionWarnings.find((w) => w.code === 'SALT_OR_HYDRATE_FORM_OF_ANOTHER_RECORD')?.relatedSlugs).toEqual(['metoprolol'])
+    expect(
+      tartrate.attributionWarnings.find((w) => w.code === 'SALT_OR_HYDRATE_FORM_OF_ANOTHER_RECORD')
+        ?.relatedSlugs,
+    ).toEqual(['metoprolol'])
   })
 
   it('retires placeholders as gone and follows the owner-curated ledger', () => {
@@ -166,16 +176,25 @@ describe('inventory resolution', () => {
       'COMBINATION_PRODUCT',
     )
     expect(
-      classifyEntity({ ...base, approvalStatus: 'Non-FDA / Dietary Supplement', backgroundModules: ['biologicalIdentity'] })
-        .entityClass,
+      classifyEntity({
+        ...base,
+        approvalStatus: 'Non-FDA / Dietary Supplement',
+        backgroundModules: ['biologicalIdentity'],
+      }).entityClass,
     ).toBe('BOTANICAL_OR_ORGANISM_PREPARATION')
     expect(
-      classifyEntity({ ...base, approvalStatus: 'Non-FDA / Dietary Supplement', backgroundModules: ['supplementMarket'] })
-        .entityClass,
+      classifyEntity({
+        ...base,
+        approvalStatus: 'Non-FDA / Dietary Supplement',
+        backgroundModules: ['supplementMarket'],
+      }).entityClass,
     ).toBe('SUPPLEMENT_INGREDIENT')
     expect(
-      classifyEntity({ ...base, approvalStatus: 'Non-FDA / Dietary Supplement', backgroundModules: ['sourceMaterial'] })
-        .entityClass,
+      classifyEntity({
+        ...base,
+        approvalStatus: 'Non-FDA / Dietary Supplement',
+        backgroundModules: ['sourceMaterial'],
+      }).entityClass,
     ).toBe('REGISTRY_ONLY_IDENTITY')
     expect(classifyEntity({ ...base, isPlaceholder: true }).entityClass).toBe('PLACEHOLDER')
   })

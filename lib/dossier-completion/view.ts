@@ -114,21 +114,19 @@ export function dossierCompletionAssessmentView(
       (left, right) =>
         (SECTION_ORDER.get(left.sectionId) ?? 999) - (SECTION_ORDER.get(right.sectionId) ?? 999),
     )
-    .map(
-      (section): DossierCompletionSectionView => ({
-        id: section.sectionId,
-        label: SECTION_LABELS[section.sectionId],
-        state: section.state,
-        stateLabel: SECTION_STATE_LABELS[section.state],
-        terminal: isTerminalSectionState(section.state),
-        basisKind: section.basisKind,
-        basis: section.basis,
-        sourceRefs: section.sourceRefs,
-        counts: section.counts,
-        humanReadSuggested: section.humanReadSuggested === true,
-        blockedReason: section.blockedReason,
-      }),
-    )
+    .map((section): DossierCompletionSectionView => ({
+      id: section.sectionId,
+      label: SECTION_LABELS[section.sectionId],
+      state: section.state,
+      stateLabel: SECTION_STATE_LABELS[section.state],
+      terminal: isTerminalSectionState(section.state),
+      basisKind: section.basisKind,
+      basis: section.basis,
+      sourceRefs: section.sourceRefs,
+      counts: section.counts,
+      humanReadSuggested: section.humanReadSuggested === true,
+      blockedReason: section.blockedReason,
+    }))
   return {
     status: stored.status,
     statusCopy: COMPLETION_STATUS_COPY[stored.status],

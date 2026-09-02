@@ -58,7 +58,8 @@ export function pubmedQuery(name: string): string {
 }
 
 async function main(): Promise<void> {
-  const inventoryPath = flag('inventory') ?? join(process.cwd(), 'data', 'inventory', 'inventory-resolution.ndjson')
+  const inventoryPath =
+    flag('inventory') ?? join(process.cwd(), 'data', 'inventory', 'inventory-resolution.ndjson')
   const dataDir = process.env.RNAWIKI_INGEST_DATA ?? join(process.cwd(), 'tmp')
   const outPath = flag('out') ?? join(dataDir, 'pubmed', 'clinical-trial-searches.ndjson')
   const limit = Number(flag('limit') ?? Number.POSITIVE_INFINITY)
@@ -66,7 +67,15 @@ async function main(): Promise<void> {
   const entities = readFileSync(inventoryPath, 'utf8')
     .split('\n')
     .filter((line) => line.trim())
-    .map((line) => JSON.parse(line) as { originalRecordId: string; originalSlug: string; originalName: string; resolutionStatus: string })
+    .map(
+      (line) =>
+        JSON.parse(line) as {
+          originalRecordId: string
+          originalSlug: string
+          originalName: string
+          resolutionStatus: string
+        },
+    )
     .filter((row) => row.resolutionStatus === 'CANONICAL_ENTITY')
     .sort((left, right) => left.originalSlug.localeCompare(right.originalSlug))
 
@@ -82,7 +91,9 @@ async function main(): Promise<void> {
       done.set(record.drugId, record)
     }
   }
-  const pending = entities.filter((entity) => done.get(entity.originalRecordId)?.status !== 'SUCCEEDED')
+  const pending = entities.filter(
+    (entity) => done.get(entity.originalRecordId)?.status !== 'SUCCEEDED',
+  )
   console.log(
     `[pubmed] ${entities.length} canonical entities · ${entities.length - pending.length} already searched · ${pending.length} pending`,
   )
@@ -172,10 +183,14 @@ async function main(): Promise<void> {
     appendFileSync(outPath, `${JSON.stringify(record)}\n`)
     processed += 1
     if (processed % 250 === 0) {
-      console.log(`[pubmed] ${processed}/${pending.length} this run (${entity.originalSlug}: ${record.status} ${record.resultCount ?? ''})`)
+      console.log(
+        `[pubmed] ${processed}/${pending.length} this run (${entity.originalSlug}: ${record.status} ${record.resultCount ?? ''})`,
+      )
     }
   }
-  console.log(`[pubmed] finished this run: ${processed} searched; ${pending.length - processed} still pending`)
+  console.log(
+    `[pubmed] finished this run: ${processed} searched; ${pending.length - processed} still pending`,
+  )
 }
 
 main().catch((error: unknown) => {

@@ -18,9 +18,7 @@ export interface InventoryResolutionView {
   resolverVersion: string
 }
 
-function toResolutionView(
-  row: typeof inventoryResolutions.$inferSelect,
-): InventoryResolutionView {
+function toResolutionView(row: typeof inventoryResolutions.$inferSelect): InventoryResolutionView {
   return {
     resolutionStatus: row.resolutionStatus,
     entityClass: row.entityClass,
@@ -64,7 +62,10 @@ export async function loadCompletionSurfaces(drugIds?: readonly string[]): Promi
 }> {
   const resolutionRows =
     drugIds && drugIds.length > 0
-      ? await db.select().from(inventoryResolutions).where(inArray(inventoryResolutions.drugId, [...drugIds]))
+      ? await db
+          .select()
+          .from(inventoryResolutions)
+          .where(inArray(inventoryResolutions.drugId, [...drugIds]))
       : await db.select().from(inventoryResolutions)
   const assessmentRows =
     drugIds && drugIds.length > 0

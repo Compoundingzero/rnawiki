@@ -39,7 +39,9 @@ async function main(): Promise<void> {
   }
   try {
     let written = 0
-    for (const record of [...latest.values()].sort((a, b) => a.canonicalSlug.localeCompare(b.canonicalSlug))) {
+    for (const record of [...latest.values()].sort((a, b) =>
+      a.canonicalSlug.localeCompare(b.canonicalSlug),
+    )) {
       const sourceIdentifier = `pubmed/eutils esearch (${record.filter}) ${record.requestedAt.slice(0, 10)}`
       const id = createHash('sha256')
         .update(`source-search/v1|${record.drugId}|${PUBMED_SEARCH_KIND}|${sourceIdentifier}`)
@@ -55,13 +57,17 @@ async function main(): Promise<void> {
         resultCount: record.status === 'SUCCEEDED' ? record.resultCount : null,
         matched: [],
         responseDigest: record.responseDigest,
-        error: record.status === 'SUCCEEDED' ? null : record.error ?? 'unknown failure',
+        error: record.status === 'SUCCEEDED' ? null : (record.error ?? 'unknown failure'),
       }
       await db
         .insert(sourceSearchRecords)
         .values(values)
         .onConflictDoUpdate({
-          target: [sourceSearchRecords.drugId, sourceSearchRecords.searchKind, sourceSearchRecords.sourceIdentifier],
+          target: [
+            sourceSearchRecords.drugId,
+            sourceSearchRecords.searchKind,
+            sourceSearchRecords.sourceIdentifier,
+          ],
           set: {
             query: values.query,
             requestedAt: values.requestedAt,
@@ -75,7 +81,9 @@ async function main(): Promise<void> {
       written += 1
     }
     const succeeded = [...latest.values()].filter((r) => r.status === 'SUCCEEDED').length
-    console.log(`[pubmed-import] ${written} record(s) processed · ${succeeded} succeeded · ${written - succeeded} failed/unreachable`)
+    console.log(
+      `[pubmed-import] ${written} record(s) processed · ${succeeded} succeeded · ${written - succeeded} failed/unreachable`,
+    )
   } finally {
     await closeDatabasePool()
   }

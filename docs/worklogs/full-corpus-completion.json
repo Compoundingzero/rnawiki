@@ -19,7 +19,11 @@
     "placeholderIdentities": 2,
     "aliases": 27859,
     "redirects": 0,
-    "exactSourceObjects": { "evidenceSources": 100, "sourceSnapshots": 100, "backgroundFetches": 100 },
+    "exactSourceObjects": {
+      "evidenceSources": 100,
+      "sourceSnapshots": 100,
+      "backgroundFetches": 100
+    },
     "exactSourceBindings": 751,
     "assertionChecks": 751,
     "exactExcerpts": 56696,
@@ -139,14 +143,75 @@
     }
   },
   "workstreams": [
-    { "id": "W1", "name": "Canonical inventory and identity resolution", "dependsOn": [], "status": "DONE", "verification": ["tests/unit/inventory-resolution.test.ts", "scripts/inventory/resolve-inventory.ts --check"] },
-    { "id": "W2", "name": "Source registry and ingestion (registry snapshot, auditable searches, curated-gap extraction)", "dependsOn": ["W1"], "status": "DONE", "verification": ["npm run check:medicine-content", "tests/unit/background-corpus-merge.test.ts"] },
-    { "id": "W3", "name": "Evidence-reading architecture and database migrations", "dependsOn": ["W1"], "status": "DONE", "verification": ["npx drizzle-kit check", "npm run db:migrate (0022, 0023)"] },
-    { "id": "W4", "name": "Dossier completion and rendering", "dependsOn": ["W2", "W3"], "status": "DONE", "verification": ["tests/unit/dossier-completion-resolve.test.ts", "tests/unit/dossier-completion-component.test.ts", "scripts/dossier-completion/run-completion.ts --check"] },
-    { "id": "W5", "name": "SEO, GEO and crawler discovery", "dependsOn": ["W1", "W3"], "status": "DONE_PENDING_DEPLOYMENT", "verification": ["npm run check:seo", "tests/unit/discovery-*.test.ts"] },
-    { "id": "W6", "name": "Review workflows", "dependsOn": ["W3"], "status": "DONE", "verification": ["tests/unit/completion-review-policy.test.ts", "tests/integration/completion-review.test.ts"] },
-    { "id": "W7", "name": "Semantic retrieval", "dependsOn": ["W4"], "status": "IN_PROGRESS", "verification": [] },
-    { "id": "W8", "name": "Testing and release verification", "dependsOn": ["W4", "W5", "W6"], "status": "IN_PROGRESS", "verification": ["tsc", "lint", "check:copy", "unit suite 2,230 passing"] }
+    {
+      "id": "W1",
+      "name": "Canonical inventory and identity resolution",
+      "dependsOn": [],
+      "status": "DONE",
+      "verification": [
+        "tests/unit/inventory-resolution.test.ts",
+        "scripts/inventory/resolve-inventory.ts --check"
+      ]
+    },
+    {
+      "id": "W2",
+      "name": "Source registry and ingestion (registry snapshot, auditable searches, curated-gap extraction)",
+      "dependsOn": ["W1"],
+      "status": "DONE",
+      "verification": [
+        "npm run check:medicine-content",
+        "tests/unit/background-corpus-merge.test.ts"
+      ]
+    },
+    {
+      "id": "W3",
+      "name": "Evidence-reading architecture and database migrations",
+      "dependsOn": ["W1"],
+      "status": "DONE",
+      "verification": ["npx drizzle-kit check", "npm run db:migrate (0022, 0023)"]
+    },
+    {
+      "id": "W4",
+      "name": "Dossier completion and rendering",
+      "dependsOn": ["W2", "W3"],
+      "status": "DONE",
+      "verification": [
+        "tests/unit/dossier-completion-resolve.test.ts",
+        "tests/unit/dossier-completion-component.test.ts",
+        "scripts/dossier-completion/run-completion.ts --check"
+      ]
+    },
+    {
+      "id": "W5",
+      "name": "SEO, GEO and crawler discovery",
+      "dependsOn": ["W1", "W3"],
+      "status": "DONE_PENDING_DEPLOYMENT",
+      "verification": ["npm run check:seo", "tests/unit/discovery-*.test.ts"]
+    },
+    {
+      "id": "W6",
+      "name": "Review workflows",
+      "dependsOn": ["W3"],
+      "status": "DONE",
+      "verification": [
+        "tests/unit/completion-review-policy.test.ts",
+        "tests/integration/completion-review.test.ts"
+      ]
+    },
+    {
+      "id": "W7",
+      "name": "Semantic retrieval",
+      "dependsOn": ["W4"],
+      "status": "IN_PROGRESS",
+      "verification": []
+    },
+    {
+      "id": "W8",
+      "name": "Testing and release verification",
+      "dependsOn": ["W4", "W5", "W6"],
+      "status": "IN_PROGRESS",
+      "verification": ["tsc", "lint", "check:copy", "unit suite 2,230 passing"]
+    }
   ],
   "blockedRecords": [],
   "externalActions": [

@@ -705,14 +705,28 @@ function canonicalRecordJsonLdGraph(
   const recordedIdentifiers = drug.recordedBackground?.registryIdentifiers
   const identifiers: PropertyValueJsonLd[] = []
   if (recordedIdentifiers?.pubchemCid && /^[1-9]\d{0,15}$/.test(recordedIdentifiers.pubchemCid)) {
-    identifiers.push({ '@type': 'PropertyValue', propertyID: 'PubChem CID', value: recordedIdentifiers.pubchemCid })
-    medicine.sameAs = [`https://pubchem.ncbi.nlm.nih.gov/compound/${recordedIdentifiers.pubchemCid}`]
+    identifiers.push({
+      '@type': 'PropertyValue',
+      propertyID: 'PubChem CID',
+      value: recordedIdentifiers.pubchemCid,
+    })
+    medicine.sameAs = [
+      `https://pubchem.ncbi.nlm.nih.gov/compound/${recordedIdentifiers.pubchemCid}`,
+    ]
   }
   if (recordedIdentifiers?.unii && /^[0-9A-Z]{10}$/.test(recordedIdentifiers.unii)) {
-    identifiers.push({ '@type': 'PropertyValue', propertyID: 'FDA UNII', value: recordedIdentifiers.unii })
+    identifiers.push({
+      '@type': 'PropertyValue',
+      propertyID: 'FDA UNII',
+      value: recordedIdentifiers.unii,
+    })
   }
   if (recordedIdentifiers?.casNumber && /^\d{2,7}-\d{2}-\d$/.test(recordedIdentifiers.casNumber)) {
-    identifiers.push({ '@type': 'PropertyValue', propertyID: 'CAS Registry Number', value: recordedIdentifiers.casNumber })
+    identifiers.push({
+      '@type': 'PropertyValue',
+      propertyID: 'CAS Registry Number',
+      value: recordedIdentifiers.casNumber,
+    })
   }
   if (identifiers.length > 0) medicine.identifier = identifiers
 

@@ -108,16 +108,32 @@ function identitySources(row: InventoryRowInput): IdentitySource[] {
   const sources: IdentitySource[] = []
   const registry = row.registryIdentifiers
   if (registry.unii) {
-    sources.push({ kind: 'UNII', identifier: registry.unii, path: 'recordedBackground.registryIdentifiers.unii' })
+    sources.push({
+      kind: 'UNII',
+      identifier: registry.unii,
+      path: 'recordedBackground.registryIdentifiers.unii',
+    })
   }
   if (registry.casNumber) {
-    sources.push({ kind: 'CAS', identifier: registry.casNumber, path: 'recordedBackground.registryIdentifiers.casNumber' })
+    sources.push({
+      kind: 'CAS',
+      identifier: registry.casNumber,
+      path: 'recordedBackground.registryIdentifiers.casNumber',
+    })
   }
   if (registry.pubchemCid) {
-    sources.push({ kind: 'PUBCHEM_CID', identifier: registry.pubchemCid, path: 'recordedBackground.registryIdentifiers.pubchemCid' })
+    sources.push({
+      kind: 'PUBCHEM_CID',
+      identifier: registry.pubchemCid,
+      path: 'recordedBackground.registryIdentifiers.pubchemCid',
+    })
   }
   if (registry.rxcui) {
-    sources.push({ kind: 'RXCUI', identifier: registry.rxcui, path: 'recordedBackground.registryIdentifiers.rxcui' })
+    sources.push({
+      kind: 'RXCUI',
+      identifier: registry.rxcui,
+      path: 'recordedBackground.registryIdentifiers.rxcui',
+    })
   }
   const taxonomy = registry.ncbiTaxonomyId ?? row.biologicalIdentityTaxonomyId
   if (taxonomy) {
@@ -144,10 +160,18 @@ function identitySources(row: InventoryRowInput): IdentitySource[] {
     })
   }
   for (const ndc of [...row.sampleProductNdcs].sort()) {
-    sources.push({ kind: 'FDA_NDC', identifier: ndc, path: 'recordedBackground.productListing.sampleProductNdcs' })
+    sources.push({
+      kind: 'FDA_NDC',
+      identifier: ndc,
+      path: 'recordedBackground.productListing.sampleProductNdcs',
+    })
   }
   for (const setId of [...row.sampleLabelSetIds].sort()) {
-    sources.push({ kind: 'FDA_LABEL_SET', identifier: setId, path: 'recordedBackground.labelPresence.sampleLabelIds' })
+    sources.push({
+      kind: 'FDA_LABEL_SET',
+      identifier: setId,
+      path: 'recordedBackground.labelPresence.sampleLabelIds',
+    })
   }
   return sources
 }
@@ -173,13 +197,17 @@ export function resolveInventory(
   inputRows: readonly InventoryRowInput[],
   ledger: readonly RedirectLedgerRow[],
 ): InventoryResolutionResult {
-  const rows = [...inputRows].sort((left, right) => (left.slug < right.slug ? -1 : left.slug > right.slug ? 1 : 0))
+  const rows = [...inputRows].sort((left, right) =>
+    left.slug < right.slug ? -1 : left.slug > right.slug ? 1 : 0,
+  )
   const byId = new Map(rows.map((row) => [row.id, row]))
   const bySlug = new Map(rows.map((row) => [row.slug, row]))
   // Owner-curated rows decide first. Rows this resolver wrote on an earlier run are re-derived from
   // the same exact-name rule, so the artifact keeps saying "duplicate" rather than "historical".
   const ledgerByOldSlug = new Map(
-    ledger.filter((entry) => !isResolverAuthoredLedgerRow(entry)).map((entry) => [entry.oldSlug, entry]),
+    ledger
+      .filter((entry) => !isResolverAuthoredLedgerRow(entry))
+      .map((entry) => [entry.oldSlug, entry]),
   )
   const resolverLedgerByOldSlug = new Map(
     ledger.filter(isResolverAuthoredLedgerRow).map((entry) => [entry.oldSlug, entry]),
@@ -228,7 +256,9 @@ export function resolveInventory(
 
   const resolutions: InventoryResolution[] = rows.map((row) => {
     const isPlaceholder = placeholder.get(row.id) === true
-    const aliases = [...new Set(row.aliases.map((entry) => entry.alias.trim()).filter(Boolean))].sort()
+    const aliases = [
+      ...new Set(row.aliases.map((entry) => entry.alias.trim()).filter(Boolean)),
+    ].sort()
     const sources = identitySources(row)
     const classification = classifyEntity({
       slug: row.slug,
@@ -263,7 +293,9 @@ export function resolveInventory(
       } else {
         status = 'HISTORICAL_REDIRECT'
         canonical = target
-        evidence.push(`owner-curated identity ledger (${entry.reason}): "${row.slug}" -> "${target.slug}"`)
+        evidence.push(
+          `owner-curated identity ledger (${entry.reason}): "${row.slug}" -> "${target.slug}"`,
+        )
       }
     } else if (!SLUG_SHAPE.test(row.slug)) {
       status = 'MANUAL_IDENTITY_REVIEW_REQUIRED'
@@ -286,13 +318,26 @@ export function resolveInventory(
         evidence.push('a resolver-written redirect ledger row already records this duplicate')
       }
       for (const source of sources) {
-        const shared = winner.registryIdentifiers[source.kind === 'UNII' ? 'unii' : source.kind === 'PUBCHEM_CID' ? 'pubchemCid' : source.kind === 'CAS' ? 'casNumber' : source.kind === 'RXCUI' ? 'rxcui' : 'ncbiTaxonomyId']
+        const shared =
+          winner.registryIdentifiers[
+            source.kind === 'UNII'
+              ? 'unii'
+              : source.kind === 'PUBCHEM_CID'
+                ? 'pubchemCid'
+                : source.kind === 'CAS'
+                  ? 'casNumber'
+                  : source.kind === 'RXCUI'
+                    ? 'rxcui'
+                    : 'ncbiTaxonomyId'
+          ]
         if (shared && shared === source.identifier) {
           evidence.push(`both records carry ${source.kind} ${source.identifier}`)
         }
       }
       const unmerged = row.backgroundModules.filter(
-        (module) => !winner.backgroundModules.includes(module) && !['version', 'authoredAt', 'provenanceTier'].includes(module),
+        (module) =>
+          !winner.backgroundModules.includes(module) &&
+          !['version', 'authoredAt', 'provenanceTier'].includes(module),
       )
       if (unmerged.length > 0) {
         warnings.push({
@@ -350,10 +395,16 @@ export function resolveInventory(
         }
       }
       if (row.backgroundModules.length === 0) {
-        warnings.push({ code: 'NO_RECORDED_BACKGROUND', detail: 'no recorded-background envelope on this row' })
+        warnings.push({
+          code: 'NO_RECORDED_BACKGROUND',
+          detail: 'no recorded-background envelope on this row',
+        })
       }
       if (sources.length === 0) {
-        warnings.push({ code: 'NAME_ONLY_IDENTITY', detail: 'no registry identifier is recorded on this row' })
+        warnings.push({
+          code: 'NAME_ONLY_IDENTITY',
+          detail: 'no registry identifier is recorded on this row',
+        })
       }
     }
 

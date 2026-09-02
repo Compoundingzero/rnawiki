@@ -59,7 +59,11 @@ interface DrugRow {
   trials: Array<{ trialId?: string; phase?: string; endpointStatus?: string }> | null
   key_audits: Array<{ evidenceSource?: string; doi?: string }> | null
   source_provenance: string[] | null
-  molecular_schema: { smilesString?: string; chemicalFormula?: string; sequence5to3?: string } | null
+  molecular_schema: {
+    smilesString?: string
+    chemicalFormula?: string
+    sequence5to3?: string
+  } | null
   aliases: Array<{ alias: string; kind: string }>
 }
 
@@ -86,10 +90,15 @@ interface SearchRow {
 function registryDate(file: string): string {
   const path = join(process.cwd(), 'data', 'registries', file)
   if (!existsSync(path)) return 'unknown'
-  const parsed = JSON.parse(readFileSync(path, 'utf8')) as Record<string, { authoredAt?: string }> | Array<{ background?: { authoredAt?: string } }>
+  const parsed = JSON.parse(readFileSync(path, 'utf8')) as
+    Record<string, { authoredAt?: string }> | Array<{ background?: { authoredAt?: string } }>
   const dates = Array.isArray(parsed)
-    ? parsed.map((row) => row.background?.authoredAt).filter((d): d is string => typeof d === 'string')
-    : Object.values(parsed).map((row) => row.authoredAt).filter((d): d is string => typeof d === 'string')
+    ? parsed
+        .map((row) => row.background?.authoredAt)
+        .filter((d): d is string => typeof d === 'string')
+    : Object.values(parsed)
+        .map((row) => row.authoredAt)
+        .filter((d): d is string => typeof d === 'string')
   return dates.sort().at(-1) ?? 'unknown'
 }
 
@@ -135,12 +144,20 @@ function searchInput(row: SearchRow | undefined): SearchRecordInput | null {
 }
 
 function emptyStateCounts(): Record<SectionState, number> {
-  return Object.fromEntries(SECTION_STATES.map((state) => [state, 0])) as Record<SectionState, number>
+  return Object.fromEntries(SECTION_STATES.map((state) => [state, 0])) as Record<
+    SectionState,
+    number
+  >
 }
 
 async function main(): Promise<void> {
   const checkOnly = process.argv.includes('--check')
-  const onlySlugs = new Set((flag('slugs') ?? '').split(',').map((s) => s.trim()).filter(Boolean))
+  const onlySlugs = new Set(
+    (flag('slugs') ?? '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean),
+  )
   const limit = Number(flag('limit') ?? Number.POSITIVE_INFINITY)
   const dataDir = process.env.RNAWIKI_INGEST_DATA ?? join(process.cwd(), 'tmp')
   const indexPath = flag('label-index') ?? join(dataDir, 'label-sections-index.json')
@@ -148,13 +165,15 @@ async function main(): Promise<void> {
   const outDir = join(process.cwd(), 'docs', 'audits', 'dossier-completion')
 
   const labelIndex = JSON.parse(readFileSync(indexPath, 'utf8')) as LabelSectionsIndex
-  if (labelIndex.schema !== 'rnawiki-label-sections-index/v1') throw new Error('unexpected label index schema')
+  if (labelIndex.schema !== 'rnawiki-label-sections-index/v1')
+    throw new Error('unexpected label index schema')
   // The curated-gap builder runs the label extractor over every hand-curated record and writes this
   // registry (scripts/background/build-curated-gap-extraction.ts). Its presence means the extractor
   // has been run for the curated tier; without it, a curated record's label sections are unread.
   const curatedGapPath = join(process.cwd(), 'data', 'registries', 'curated-gap-extraction.json')
   const curatedGapExtractionBuilt =
-    existsSync(curatedGapPath) && Object.keys(JSON.parse(readFileSync(curatedGapPath, 'utf8')) as object).length > 0
+    existsSync(curatedGapPath) &&
+    Object.keys(JSON.parse(readFileSync(curatedGapPath, 'utf8')) as object).length > 0
   const labelLookup = buildLabelLookup(labelIndex)
   const archives: CompletionInput['archives'] = {
     labelArchive: registryDate('label-presence.json'),
@@ -168,39 +187,55 @@ async function main(): Promise<void> {
   }
 
   try {
-    const [drugResult, resolutionResult, searchResult, programmeResult, existingResult] = await Promise.all([
-      db.execute(sql`
+    const [drugResult, resolutionResult, searchResult, programmeResult, existingResult] =
+      await Promise.all([
+        db.execute(sql`
         select d.id, d.slug, d.name, d.dossier_depth, d.modality, d.approval_status, d.recorded_background,
           d.trials, d.key_audits, d.source_provenance, d.molecular_schema,
           coalesce((select jsonb_agg(jsonb_build_object('alias', a.alias, 'kind', a.kind) order by a.alias)
                     from drug_aliases a where a.drug_id = d.id), '[]'::jsonb) as aliases
         from drugs d order by d.slug
       `),
-      db.execute(sql`
+        db.execute(sql`
         select drug_id, resolution_status, entity_class, canonical_drug_id, identity_sources, attribution_warnings
         from inventory_resolutions
       `),
-      db.execute(sql`
+        db.execute(sql`
         select distinct on (drug_id, search_kind) drug_id, search_kind, source_identifier, requested_at, status, result_count, matched, error
         from source_search_records
         order by drug_id, search_kind, (status = 'SUCCEEDED') desc, requested_at desc
       `),
-      db.execute(sql`
+        db.execute(sql`
         select p.drug_id, count(*)::int as total,
           count(*) filter (where exists (select 1 from programme_current_publications c where c.programme_id = p.id))::int as published
         from development_programmes p group by p.drug_id
       `),
-      db.execute(sql`select drug_id, input_digest, status from dossier_completion_assessments`),
-    ])
+        db.execute(sql`select drug_id, input_digest, status from dossier_completion_assessments`),
+      ])
     const drugs = drugResult.rows as unknown as DrugRow[]
-    const resolutions = new Map((resolutionResult.rows as unknown as ResolutionRow[]).map((row) => [row.drug_id, row]))
+    const resolutions = new Map(
+      (resolutionResult.rows as unknown as ResolutionRow[]).map((row) => [row.drug_id, row]),
+    )
     const searches = new Map<string, SearchRow>()
-    for (const row of searchResult.rows as unknown as SearchRow[]) searches.set(`${row.drug_id}|${row.search_kind}`, row)
+    for (const row of searchResult.rows as unknown as SearchRow[])
+      searches.set(`${row.drug_id}|${row.search_kind}`, row)
     const programmes = new Map(
-      (programmeResult.rows as unknown as Array<{ drug_id: string; total: number; published: number }>).map((row) => [row.drug_id, row]),
+      (
+        programmeResult.rows as unknown as Array<{
+          drug_id: string
+          total: number
+          published: number
+        }>
+      ).map((row) => [row.drug_id, row]),
     )
     const existing = new Map(
-      (existingResult.rows as unknown as Array<{ drug_id: string; input_digest: string; status: string }>).map((row) => [row.drug_id, row]),
+      (
+        existingResult.rows as unknown as Array<{
+          drug_id: string
+          input_digest: string
+          status: string
+        }>
+      ).map((row) => [row.drug_id, row]),
     )
     const drugsById = new Map(drugs.map((drug) => [drug.id, drug]))
     const duplicatesByCanonical = new Map<string, DrugRow[]>()
@@ -213,8 +248,12 @@ async function main(): Promise<void> {
       duplicatesByCanonical.set(resolution.canonical_drug_id, list)
     }
 
-    const canonical = drugs.filter((drug) => resolutions.get(drug.id)?.resolution_status === 'CANONICAL_ENTITY')
-    const selected = canonical.filter((drug) => onlySlugs.size === 0 || onlySlugs.has(drug.slug)).slice(0, limit)
+    const canonical = drugs.filter(
+      (drug) => resolutions.get(drug.id)?.resolution_status === 'CANONICAL_ENTITY',
+    )
+    const selected = canonical
+      .filter((drug) => onlySlugs.size === 0 || onlySlugs.has(drug.slug))
+      .slice(0, limit)
     console.log(
       `[completion] ${selected.length} canonical record(s) to assess · label index ${labelIndex.labels} labels (sha ${labelIndex.labelIndexSha256?.slice(0, 12) ?? 'none'}) · archives ${JSON.stringify(archives)}`,
     )
@@ -231,7 +270,9 @@ async function main(): Promise<void> {
         const names = [
           drug.name,
           ...duplicates.map((duplicate) => duplicate.name),
-          ...drug.aliases.filter((alias) => alias.kind === 'salt_form' || alias.kind === 'inn').map((alias) => alias.alias),
+          ...drug.aliases
+            .filter((alias) => alias.kind === 'salt_form' || alias.kind === 'inn')
+            .map((alias) => alias.alias),
         ]
         const programme = programmes.get(drug.id)
         const input: CompletionInput = {
@@ -245,8 +286,15 @@ async function main(): Promise<void> {
             recordedBackground: drug.recorded_background,
             legacyTrials: (drug.trials ?? [])
               .filter((trial) => typeof trial.trialId === 'string')
-              .map((trial) => ({ trialId: trial.trialId!, phase: trial.phase, endpointStatus: trial.endpointStatus })),
-            keyAudits: (drug.key_audits ?? []).map((audit) => ({ evidenceSource: audit.evidenceSource, doi: audit.doi })),
+              .map((trial) => ({
+                trialId: trial.trialId!,
+                phase: trial.phase,
+                endpointStatus: trial.endpointStatus,
+              })),
+            keyAudits: (drug.key_audits ?? []).map((audit) => ({
+              evidenceSource: audit.evidenceSource,
+              doi: audit.doi,
+            })),
             sourceProvenance: drug.source_provenance ?? [],
             molecularSchema: drug.molecular_schema
               ? {
@@ -261,7 +309,10 @@ async function main(): Promise<void> {
             identitySources: resolution.identity_sources,
             attributionWarnings: resolution.attribution_warnings,
           },
-          duplicateRecords: duplicates.map((duplicate) => ({ slug: duplicate.slug, recordedBackground: duplicate.recorded_background })),
+          duplicateRecords: duplicates.map((duplicate) => ({
+            slug: duplicate.slug,
+            recordedBackground: duplicate.recorded_background,
+          })),
           labels: labelsFor(names, labelLookup),
           readLabelSections: labelIndex.readSections,
           archives,
@@ -278,7 +329,12 @@ async function main(): Promise<void> {
       assessments.push(...chunkAssessments)
       for (const assessment of chunkAssessments) {
         const prior = existing.get(assessment.drugId)
-        if (prior && prior.input_digest === assessment.inputDigest && prior.status === assessment.status) unchanged += 1
+        if (
+          prior &&
+          prior.input_digest === assessment.inputDigest &&
+          prior.status === assessment.status
+        )
+          unchanged += 1
         else changed += 1
       }
       if (!checkOnly) {
@@ -311,13 +367,19 @@ async function main(): Promise<void> {
         )
       }
       if ((start + CHUNK) % 1000 === 0 || start + CHUNK >= selected.length) {
-        console.log(`[completion] ${Math.min(start + CHUNK, selected.length)}/${selected.length} assessed`)
+        console.log(
+          `[completion] ${Math.min(start + CHUNK, selected.length)}/${selected.length} assessed`,
+        )
       }
     }
 
     const byState = emptyStateCounts()
-    const bySection = Object.fromEntries(DOSSIER_SECTION_IDS.map((id) => [id, emptyStateCounts()])) as Record<DossierSectionId, Record<SectionState, number>>
-    const nonTerminalBySection = Object.fromEntries(DOSSIER_SECTION_IDS.map((id) => [id, 0])) as Record<DossierSectionId, number>
+    const bySection = Object.fromEntries(
+      DOSSIER_SECTION_IDS.map((id) => [id, emptyStateCounts()]),
+    ) as Record<DossierSectionId, Record<SectionState, number>>
+    const nonTerminalBySection = Object.fromEntries(
+      DOSSIER_SECTION_IDS.map((id) => [id, 0]),
+    ) as Record<DossierSectionId, number>
     let complete = 0
     let humanRead = 0
     for (const assessment of assessments) {
@@ -329,7 +391,11 @@ async function main(): Promise<void> {
       }
       for (const id of assessment.nonTerminalSectionIds) nonTerminalBySection[id] += 1
     }
-    const summary: DossierCompletionSummary & { inputDigest: string; assessedAt: string; check: boolean } = {
+    const summary: DossierCompletionSummary & {
+      inputDigest: string
+      assessedAt: string
+      check: boolean
+    } = {
       resolverVersion: DOSSIER_COMPLETION_RESOLVER_VERSION,
       assessedRecords: assessments.length,
       complete,
@@ -338,7 +404,9 @@ async function main(): Promise<void> {
       bySection,
       nonTerminalBySection,
       humanReadSuggestedRecords: humanRead,
-      inputDigest: createHash('sha256').update(assessments.map((a) => a.inputDigest).join('\n')).digest('hex'),
+      inputDigest: createHash('sha256')
+        .update(assessments.map((a) => a.inputDigest).join('\n'))
+        .digest('hex'),
       assessedAt: new Date().toISOString().slice(0, 10),
       check: checkOnly,
     }
@@ -350,9 +418,23 @@ async function main(): Promise<void> {
       writeFileSync(join(outDir, 'summary.json'), `${JSON.stringify(summary, null, 2)}\n`)
       const incomplete = assessments
         .filter((a) => a.status !== 'COMPLETE')
-        .map((a) => stableJsonStringify({ slug: a.canonicalSlug, entityClass: a.entityClass, nonTerminal: a.nonTerminalSectionIds, blocked: a.sections.filter((s) => s.blockedReason).map((s) => ({ section: s.sectionId, reason: s.blockedReason })) }))
-      writeFileSync(join(outDir, 'incomplete.ndjson'), incomplete.length > 0 ? `${incomplete.join('\n')}\n` : '')
-      console.log(`[completion] wrote ${outDir}/summary.json and incomplete.ndjson (${incomplete.length} rows)`)
+        .map((a) =>
+          stableJsonStringify({
+            slug: a.canonicalSlug,
+            entityClass: a.entityClass,
+            nonTerminal: a.nonTerminalSectionIds,
+            blocked: a.sections
+              .filter((s) => s.blockedReason)
+              .map((s) => ({ section: s.sectionId, reason: s.blockedReason })),
+          }),
+        )
+      writeFileSync(
+        join(outDir, 'incomplete.ndjson'),
+        incomplete.length > 0 ? `${incomplete.join('\n')}\n` : '',
+      )
+      console.log(
+        `[completion] wrote ${outDir}/summary.json and incomplete.ndjson (${incomplete.length} rows)`,
+      )
     }
     if (checkOnly && changed > 0) {
       process.exitCode = 1

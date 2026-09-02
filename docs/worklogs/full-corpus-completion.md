@@ -40,7 +40,7 @@ semantic engine.
   Book, 14 label zips (hashes in `archive-hashes.txt`), the 1.6 GB `label-index.ndjson` (87,096
   labels with their read sections) and `label-presence.ndjson`.
 - Production (Railway project `RNAwiki`): web service `RNAwiki`, worker `RNA Intelligence Source
-  Sync`, `Postgres`; all `SUCCESS`. Production sets `INDEXNOW_ENABLED=true` with a key, and
+Sync`, `Postgres`; all `SUCCESS`. Production sets `INDEXNOW_ENABLED=true` with a key, and
   `SITE_URL=https://rnawiki.com`; the crawl guard passes through `RAILWAY_ENVIRONMENT_NAME`. No
   production write, deploy or variable change has been made by this mission.
 - No local embedding model (no `ollama`, no `torch`, no `sentence_transformers`) and no `pgvector`
@@ -50,41 +50,41 @@ semantic engine.
 
 Source: the restored production copy above unless marked otherwise.
 
-| Metric                                          | Value                                                   |
-| ----------------------------------------------- | ------------------------------------------------------- |
-| Raw inventory records (`drugs` rows)            | 9,859                                                   |
-| Rows passing the public placeholder filter      | 9,857                                                   |
-| Placeholder identities (`tbd`, `header`)        | 2                                                       |
-| Unique canonical entities                       | pending the inventory resolver (provisional 9,852)      |
-| Aliases (`drug_aliases`)                        | 27,859 (brand 24,216; salt_form 3,596; inn 47)          |
-| Owner-curated redirects                         | 0                                                       |
-| Unresolved identities                           | pending the resolver                                    |
-| Exact source objects                            | 100 evidence sources; 100 source snapshots; 100 fetches |
-| Exact source bindings / assertion checks        | 751 / 751                                               |
-| Exact excerpts                                  | pending projection (3,093 rows hold a quotable excerpt) |
-| Structured source pointers                      | 6,741 rows with registry identifiers                    |
-| Approved medicines (FDA, accelerated, EMA)      | 3,141                                                   |
-| Investigational (phase 2/3, pre-clinical)       | 391                                                     |
-| Supplements (`Non-FDA / Dietary Supplement`)    | 6,149                                                   |
-| Botanicals / organisms (biological identity)    | 2,999                                                   |
-| Combination products (recorded composition)     | 35                                                      |
-| Biologics (protein, mAb, peptide, RNA, gene)    | 849                                                     |
-| Registry-only identities                        | pending the resolver                                    |
-| Records with legacy trial rows                  | 6,515 (31,232 trial rows)                               |
-| Records with posted trial results               | NOT_OBSERVABLE in the legacy shape; pending registry    |
-| Recorded pivotal results                        | 18                                                      |
-| Applicability records                           | 22                                                      |
-| Programmes / current publications               | 0 / 0                                                   |
-| Published evidence readings                     | 0                                                       |
-| Reviewed programme conclusions                  | 0                                                       |
-| Genuine review decisions                        | 0 (no verdict, contribution or agent-queue decisions)   |
-| Indexable dossiers (live sitemap, 2026-09-02)   | 165                                                     |
-| Sitemap dossiers (live)                         | 165 of 174 URLs                                         |
-| Noindex dossiers (live policy)                  | 9,692                                                   |
-| Robots-blocked dossiers                         | 0 (`/api/` and `/healthz` only)                         |
-| Orphan dossiers                                 | pending the crawl audit                                 |
-| Recorded-background envelopes                   | 9,855 (6,424 transcribed; 3,276 extracted; 155 curated) |
-| Engine validation runs                          | 9,855                                                   |
+| Metric                                        | Value                                                   |
+| --------------------------------------------- | ------------------------------------------------------- |
+| Raw inventory records (`drugs` rows)          | 9,859                                                   |
+| Rows passing the public placeholder filter    | 9,857                                                   |
+| Placeholder identities (`tbd`, `header`)      | 2                                                       |
+| Unique canonical entities                     | pending the inventory resolver (provisional 9,852)      |
+| Aliases (`drug_aliases`)                      | 27,859 (brand 24,216; salt_form 3,596; inn 47)          |
+| Owner-curated redirects                       | 0                                                       |
+| Unresolved identities                         | pending the resolver                                    |
+| Exact source objects                          | 100 evidence sources; 100 source snapshots; 100 fetches |
+| Exact source bindings / assertion checks      | 751 / 751                                               |
+| Exact excerpts                                | pending projection (3,093 rows hold a quotable excerpt) |
+| Structured source pointers                    | 6,741 rows with registry identifiers                    |
+| Approved medicines (FDA, accelerated, EMA)    | 3,141                                                   |
+| Investigational (phase 2/3, pre-clinical)     | 391                                                     |
+| Supplements (`Non-FDA / Dietary Supplement`)  | 6,149                                                   |
+| Botanicals / organisms (biological identity)  | 2,999                                                   |
+| Combination products (recorded composition)   | 35                                                      |
+| Biologics (protein, mAb, peptide, RNA, gene)  | 849                                                     |
+| Registry-only identities                      | pending the resolver                                    |
+| Records with legacy trial rows                | 6,515 (31,232 trial rows)                               |
+| Records with posted trial results             | NOT_OBSERVABLE in the legacy shape; pending registry    |
+| Recorded pivotal results                      | 18                                                      |
+| Applicability records                         | 22                                                      |
+| Programmes / current publications             | 0 / 0                                                   |
+| Published evidence readings                   | 0                                                       |
+| Reviewed programme conclusions                | 0                                                       |
+| Genuine review decisions                      | 0 (no verdict, contribution or agent-queue decisions)   |
+| Indexable dossiers (live sitemap, 2026-09-02) | 165                                                     |
+| Sitemap dossiers (live)                       | 165 of 174 URLs                                         |
+| Noindex dossiers (live policy)                | 9,692                                                   |
+| Robots-blocked dossiers                       | 0 (`/api/` and `/healthz` only)                         |
+| Orphan dossiers                               | pending the crawl audit                                 |
+| Recorded-background envelopes                 | 9,855 (6,424 transcribed; 3,276 extracted; 155 curated) |
+| Engine validation runs                        | 9,855                                                   |
 
 Live checks on 2026-09-02: `/d/1000-mw` returns 200 with `noindex, follow`; `/d/inclisiran`
 returns 200 with `index, follow`; `/r/{slug}` and `/c/{slug}` return 301 to `/d/{slug}`;

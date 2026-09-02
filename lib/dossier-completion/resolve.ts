@@ -164,7 +164,10 @@ function isPresent(value: unknown): boolean {
 }
 
 /** Collect every recorded source object beneath a module value, de-duplicated and bounded. */
-function collectSourceRefs(value: unknown, refs = new Map<string, SectionSourceRef>()): SectionSourceRef[] {
+function collectSourceRefs(
+  value: unknown,
+  refs = new Map<string, SectionSourceRef>(),
+): SectionSourceRef[] {
   const visit = (node: unknown): void => {
     if (!node || typeof node !== 'object') return
     if (Array.isArray(node)) {
@@ -230,7 +233,9 @@ class Resolver {
     const own = input.drug.recordedBackground
     const consider = (background: Background | null, ownerSlug: string, onDuplicate: boolean) => {
       if (!background) return
-      for (const [moduleKey, value] of Object.entries(background) as Array<[BackgroundModule, unknown]>) {
+      for (const [moduleKey, value] of Object.entries(background) as Array<
+        [BackgroundModule, unknown]
+      >) {
         if (!isPresent(value) || this.hits.has(moduleKey)) continue
         this.hits.set(moduleKey, { module: moduleKey, value, ownerSlug, onDuplicate })
       }
@@ -369,7 +374,9 @@ class Resolver {
 
   identity(): SectionAssessment {
     const { resolution, drug } = this.input
-    const shared = resolution.attributionWarnings.some((w) => w.code === 'SHARED_REGISTRY_IDENTIFIER')
+    const shared = resolution.attributionWarnings.some(
+      (w) => w.code === 'SHARED_REGISTRY_IDENTIFIER',
+    )
     const sharedNote = shared
       ? ' A registry identifier on this record also appears on other records in this corpus; records are kept separate and are not linked.'
       : ''
@@ -383,7 +390,12 @@ class Resolver {
         state: 'EXACT_STRUCTURED_SOURCE_DATA',
         basisKind: 'REGISTRY_IDENTIFIER',
         basis: `Identity rests on ${resolution.identitySources.length} recorded registry identifier(s) of kind ${[...new Set(resolution.identitySources.map((s) => s.kind))].join(', ')}.${sharedNote}`,
-        sourceRefs: refs.length > 0 ? refs : resolution.identitySources.slice(0, MAX_REFS).map((s) => ({ kind: s.kind, identifier: s.identifier })),
+        sourceRefs:
+          refs.length > 0
+            ? refs
+            : resolution.identitySources
+                .slice(0, MAX_REFS)
+                .map((s) => ({ kind: s.kind, identifier: s.identifier })),
         counts: { registryIdentifiers: resolution.identitySources.length },
       }
     }
@@ -405,7 +417,8 @@ class Resolver {
       basisKind: 'NOT_YET_RUN',
       basis: 'No registry identifier, ingest provenance or audit source is recorded for this name.',
       sourceRefs: [],
-      blockedReason: 'A person must record at least one registry identifier or a source for this identity.',
+      blockedReason:
+        'A person must record at least one registry identifier or a source for this identity.',
     }
   }
 
@@ -439,7 +452,9 @@ class Resolver {
         state: 'EXACT_STRUCTURED_SOURCE_DATA',
         basisKind: 'LEGACY_RECORD_FIELD',
         basis: `Status "${this.input.drug.approvalStatus}" as classified by the ingest rules from ${this.input.drug.sourceProvenance.join('; ')}; no structured registry module is recorded.`,
-        sourceRefs: this.input.drug.sourceProvenance.slice(0, MAX_REFS).map((label) => ({ kind: 'INGEST_PROVENANCE', identifier: label })),
+        sourceRefs: this.input.drug.sourceProvenance
+          .slice(0, MAX_REFS)
+          .map((label) => ({ kind: 'INGEST_PROVENANCE', identifier: label })),
         humanReadSuggested: true,
       }
     }
@@ -493,12 +508,13 @@ class Resolver {
 
   pharmacokinetics(): SectionAssessment {
     const consensus = this.hit('sourceConsensus')?.value as
-      | { fields?: Array<{ field?: string; comparisonState?: string }> }
-      | undefined
+      { fields?: Array<{ field?: string; comparisonState?: string }> } | undefined
     const differing = (consensus?.fields ?? []).filter(
       (field) =>
         field.comparisonState === 'differ' &&
-        ['halfLife', 'bioavailability', 'tMax', 'proteinBinding', 'volumeOfDistribution'].includes(field.field ?? ''),
+        ['halfLife', 'bioavailability', 'tMax', 'proteinBinding', 'volumeOfDistribution'].includes(
+          field.field ?? '',
+        ),
     )
     const base = this.substanceSection(
       'pharmacokinetics',
@@ -528,7 +544,12 @@ class Resolver {
     const id: DossierSectionId = 'molecular-identity'
     const hit = this.hit('molecularIdentity')
     if (hit) {
-      return this.recorded(id, hit, 'EXACT_STRUCTURED_SOURCE_DATA', 'Molecular formula and weight recorded from the named compound or label record.')
+      return this.recorded(
+        id,
+        hit,
+        'EXACT_STRUCTURED_SOURCE_DATA',
+        'Molecular formula and weight recorded from the named compound or label record.',
+      )
     }
     const schema = this.input.drug.molecularSchema
     if (schema && (schema.smilesString || schema.chemicalFormula || schema.sequence5to3)) {
@@ -546,7 +567,8 @@ class Resolver {
         sectionId: id,
         state: 'NOT_APPLICABLE',
         basisKind: 'ENTITY_CLASS_RULE',
-        basis: 'This record is an organism or a preparation of one; it has no single molecular structure to record.',
+        basis:
+          'This record is an organism or a preparation of one; it has no single molecular structure to record.',
         sourceRefs: [],
       }
     }
@@ -601,7 +623,8 @@ class Resolver {
         notEstablished: statements.filter((s) => s.state === 'NOT_ESTABLISHED').length,
         statementOnly: statements.filter((s) => s.state === 'STATEMENT_ONLY').length,
       }
-      const allNotEstablished = counts.notEstablished > 0 && counts.studied === 0 && counts.statementOnly === 0
+      const allNotEstablished =
+        counts.notEstablished > 0 && counts.studied === 0 && counts.statementOnly === 0
       return this.recorded(
         'population-statements',
         hit,
@@ -612,7 +635,13 @@ class Resolver {
     }
     return this.labelAbsence(
       'population-statements',
-      ['use_in_specific_populations', 'pregnancy', 'pediatric_use', 'geriatric_use', 'nursing_mothers'],
+      [
+        'use_in_specific_populations',
+        'pregnancy',
+        'pediatric_use',
+        'geriatric_use',
+        'nursing_mothers',
+      ],
       false,
       ' Supplement-database ingredient records carry no population statements.',
     )
@@ -700,7 +729,8 @@ class Resolver {
       sectionId: id,
       state: 'NOT_APPLICABLE',
       basisKind: 'ENTITY_CLASS_RULE',
-      basis: 'The acquisition cost file covers pharmacy-dispensed drug products; this record is not one.',
+      basis:
+        'The acquisition cost file covers pharmacy-dispensed drug products; this record is not one.',
       sourceRefs: [],
     }
   }
@@ -714,7 +744,8 @@ class Resolver {
         agree: fields.filter((f) => f.comparisonState === 'agree').length,
         differ: fields.filter((f) => f.comparisonState === 'differ').length,
         notComparable: fields.filter((f) => f.comparisonState === 'not_comparable').length,
-        insufficientContext: fields.filter((f) => f.comparisonState === 'insufficient_context').length,
+        insufficientContext: fields.filter((f) => f.comparisonState === 'insufficient_context')
+          .length,
       }
       return this.recorded(
         id,
@@ -749,9 +780,15 @@ class Resolver {
     const id: DossierSectionId = 'biological-identity'
     const hit = this.hit('biologicalIdentity')
     if (hit) {
-      return this.recorded(id, hit, 'EXACT_STRUCTURED_SOURCE_DATA', 'Scientific name and lineage recorded from the NCBI Taxonomy record the name resolved to.')
+      return this.recorded(
+        id,
+        hit,
+        'EXACT_STRUCTURED_SOURCE_DATA',
+        'Scientific name and lineage recorded from the NCBI Taxonomy record the name resolved to.',
+      )
     }
-    const material = this.hit('sourceMaterial')?.value as { substanceClassAsRecorded?: string } | undefined
+    const material = this.hit('sourceMaterial')?.value as
+      { substanceClassAsRecorded?: string } | undefined
     const organismLike = material?.substanceClassAsRecorded === 'structurallyDiverse'
     if (organismLike) {
       return {
@@ -776,7 +813,12 @@ class Resolver {
     for (const moduleKey of ['supplementMarket', 'supplementIngredient'] as const) {
       const hit = this.hit(moduleKey)
       if (hit) {
-        return this.recorded(id, hit, 'EXACT_STRUCTURED_SOURCE_DATA', 'Ingredient group and marketed-label counts recorded from the NIH Dietary Supplement Label Database.')
+        return this.recorded(
+          id,
+          hit,
+          'EXACT_STRUCTURED_SOURCE_DATA',
+          'Ingredient group and marketed-label counts recorded from the NIH Dietary Supplement Label Database.',
+        )
       }
     }
     return {
@@ -792,16 +834,24 @@ class Resolver {
     const search = this.input.registrySearch
     if (!search || search.status !== 'SUCCEEDED') return null
     const envelope = search.matched[0]
-    return envelope && typeof envelope === 'object' ? (envelope as RegistryMatchEnvelope) : { totalMatchedStudies: search.resultCount ?? 0, studies: [] }
+    return envelope && typeof envelope === 'object'
+      ? (envelope as RegistryMatchEnvelope)
+      : { totalMatchedStudies: search.resultCount ?? 0, studies: [] }
   }
 
-  private searchUnavailable(sectionId: DossierSectionId, search: SearchRecordInput, what: string): SectionAssessment {
+  private searchUnavailable(
+    sectionId: DossierSectionId,
+    search: SearchRecordInput,
+    what: string,
+  ): SectionAssessment {
     return {
       sectionId,
       state: 'SOURCE_UNAVAILABLE',
       basisKind: 'SOURCE_FETCH_HISTORY',
       basis: `The ${what} could not be completed: ${search.error ?? 'no error recorded'} (${search.status.toLowerCase()} on ${search.requestedAt.slice(0, 10)}). The failed attempt is recorded; nothing was inferred from it.`,
-      sourceRefs: [{ kind: 'SEARCH', identifier: search.sourceIdentifier, retrievedAt: search.requestedAt }],
+      sourceRefs: [
+        { kind: 'SEARCH', identifier: search.sourceIdentifier, retrievedAt: search.requestedAt },
+      ],
     }
   }
 
@@ -819,15 +869,23 @@ class Resolver {
   trialRegistry(): SectionAssessment {
     const id: DossierSectionId = 'trial-registry'
     const search = this.input.registrySearch
-    if (!search) return this.searchPending(id, 'exact-name pass over the ClinicalTrials.gov snapshot')
-    if (search.status !== 'SUCCEEDED') return this.searchUnavailable(id, search, 'ClinicalTrials.gov snapshot pass')
+    if (!search)
+      return this.searchPending(id, 'exact-name pass over the ClinicalTrials.gov snapshot')
+    if (search.status !== 'SUCCEEDED')
+      return this.searchUnavailable(id, search, 'ClinicalTrials.gov snapshot pass')
     const envelope = this.registryEnvelope()!
     const total = envelope.totalMatchedStudies ?? search.resultCount ?? 0
     const refs: SectionSourceRef[] = [
-      { kind: 'CLINICALTRIALS_SNAPSHOT', identifier: search.sourceIdentifier, retrievedAt: search.requestedAt },
-      ...(envelope.studies ?? []).slice(0, MAX_REFS - 1).flatMap((study) =>
-        study.nctId ? [{ kind: 'CLINICALTRIALS', identifier: study.nctId }] : [],
-      ),
+      {
+        kind: 'CLINICALTRIALS_SNAPSHOT',
+        identifier: search.sourceIdentifier,
+        retrievedAt: search.requestedAt,
+      },
+      ...(envelope.studies ?? [])
+        .slice(0, MAX_REFS - 1)
+        .flatMap((study) =>
+          study.nctId ? [{ kind: 'CLINICALTRIALS', identifier: study.nctId }] : [],
+        ),
     ]
     const legacy = this.input.drug.legacyTrials.length
     if (total > 0) {
@@ -837,7 +895,11 @@ class Resolver {
         basisKind: 'CLINICALTRIALS_SNAPSHOT_EXACT_MATCH',
         basis: `${total} registration(s) in the ClinicalTrials.gov snapshot name this entity exactly as a registered intervention. Registration is a registry fact; it says nothing about results.`,
         sourceRefs: refs,
-        counts: { matchedRegistrations: total, storedRegistrations: envelope.storedStudies ?? 0, legacyTrialPointers: legacy },
+        counts: {
+          matchedRegistrations: total,
+          storedRegistrations: envelope.storedStudies ?? 0,
+          legacyTrialPointers: legacy,
+        },
       }
     }
     return {
@@ -854,25 +916,44 @@ class Resolver {
     const id: DossierSectionId = 'trial-results'
     const mainStudy = this.hit('pivotalResults')
     if (mainStudy) {
-      return this.recorded(id, mainStudy, 'EXACT_SOURCE_BACKED', `${Array.isArray(mainStudy.value) ? mainStudy.value.length : 1} main-study result(s) recorded with the exact sentence each figure was read from.`)
+      return this.recorded(
+        id,
+        mainStudy,
+        'EXACT_SOURCE_BACKED',
+        `${Array.isArray(mainStudy.value) ? mainStudy.value.length : 1} main-study result(s) recorded with the exact sentence each figure was read from.`,
+      )
     }
     const search = this.input.registrySearch
-    if (!search) return this.searchPending(id, 'exact-name pass over the ClinicalTrials.gov snapshot')
-    if (search.status !== 'SUCCEEDED') return this.searchUnavailable(id, search, 'ClinicalTrials.gov snapshot pass')
+    if (!search)
+      return this.searchPending(id, 'exact-name pass over the ClinicalTrials.gov snapshot')
+    if (search.status !== 'SUCCEEDED')
+      return this.searchUnavailable(id, search, 'ClinicalTrials.gov snapshot pass')
     const envelope = this.registryEnvelope()!
     const total = envelope.totalMatchedStudies ?? search.resultCount ?? 0
-    const posted = envelope.withPostedResults ?? (envelope.studies ?? []).filter((s) => s.hasResults).length
+    const posted =
+      envelope.withPostedResults ?? (envelope.studies ?? []).filter((s) => s.hasResults).length
     const postedRefs = (envelope.studies ?? [])
       .filter((s) => s.hasResults && s.nctId)
       .slice(0, MAX_REFS)
-      .map((s) => ({ kind: 'CLINICALTRIALS', identifier: s.nctId!, retrievedAt: s.resultsFirstPostDate ?? undefined }))
+      .map((s) => ({
+        kind: 'CLINICALTRIALS',
+        identifier: s.nctId!,
+        retrievedAt: s.resultsFirstPostDate ?? undefined,
+      }))
     if (total === 0) {
       return {
         sectionId: id,
         state: 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH',
         basisKind: 'CLINICALTRIALS_SNAPSHOT_NO_EXACT_MATCH',
-        basis: 'No exactly matching registration exists in the snapshot, so no posted result can be pointed to.',
-        sourceRefs: [{ kind: 'CLINICALTRIALS_SNAPSHOT', identifier: search.sourceIdentifier, retrievedAt: search.requestedAt }],
+        basis:
+          'No exactly matching registration exists in the snapshot, so no posted result can be pointed to.',
+        sourceRefs: [
+          {
+            kind: 'CLINICALTRIALS_SNAPSHOT',
+            identifier: search.sourceIdentifier,
+            retrievedAt: search.requestedAt,
+          },
+        ],
         counts: { matchedRegistrations: 0, withPostedResults: 0 },
       }
     }
@@ -882,7 +963,13 @@ class Resolver {
         state: 'RESULTS_NOT_POSTED',
         basisKind: 'CLINICALTRIALS_SNAPSHOT_EXACT_MATCH',
         basis: `None of the ${total} exactly matching registration(s) reports posted results in the snapshot. Unposted results are not a negative finding.`,
-        sourceRefs: [{ kind: 'CLINICALTRIALS_SNAPSHOT', identifier: search.sourceIdentifier, retrievedAt: search.requestedAt }],
+        sourceRefs: [
+          {
+            kind: 'CLINICALTRIALS_SNAPSHOT',
+            identifier: search.sourceIdentifier,
+            retrievedAt: search.requestedAt,
+          },
+        ],
         counts: { matchedRegistrations: total, withPostedResults: 0 },
       }
     }
@@ -901,11 +988,18 @@ class Resolver {
     const id: DossierSectionId = 'trial-eligibility'
     const applicability = this.hit('applicability')
     if (applicability) {
-      return this.recorded(id, applicability, 'EXACT_SOURCE_BACKED', 'Main-study eligibility recorded with the exact source sentence.')
+      return this.recorded(
+        id,
+        applicability,
+        'EXACT_SOURCE_BACKED',
+        'Main-study eligibility recorded with the exact source sentence.',
+      )
     }
     const search = this.input.registrySearch
-    if (!search) return this.searchPending(id, 'exact-name pass over the ClinicalTrials.gov snapshot')
-    if (search.status !== 'SUCCEEDED') return this.searchUnavailable(id, search, 'ClinicalTrials.gov snapshot pass')
+    if (!search)
+      return this.searchPending(id, 'exact-name pass over the ClinicalTrials.gov snapshot')
+    if (search.status !== 'SUCCEEDED')
+      return this.searchUnavailable(id, search, 'ClinicalTrials.gov snapshot pass')
     const envelope = this.registryEnvelope()!
     const studies = envelope.studies ?? []
     const total = envelope.totalMatchedStudies ?? search.resultCount ?? 0
@@ -914,18 +1008,31 @@ class Resolver {
         sectionId: id,
         state: 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH',
         basisKind: 'CLINICALTRIALS_SNAPSHOT_NO_EXACT_MATCH',
-        basis: 'No exactly matching registration exists in the snapshot, so no enrolment criteria can be pointed to.',
-        sourceRefs: [{ kind: 'CLINICALTRIALS_SNAPSHOT', identifier: search.sourceIdentifier, retrievedAt: search.requestedAt }],
+        basis:
+          'No exactly matching registration exists in the snapshot, so no enrolment criteria can be pointed to.',
+        sourceRefs: [
+          {
+            kind: 'CLINICALTRIALS_SNAPSHOT',
+            identifier: search.sourceIdentifier,
+            retrievedAt: search.requestedAt,
+          },
+        ],
         counts: { matchedRegistrations: 0 },
       }
     }
-    const withEligibility = studies.filter((s) => s.eligibility && (s.eligibility.sex || s.eligibility.minimumAge || s.eligibility.stdAges?.length))
+    const withEligibility = studies.filter(
+      (s) =>
+        s.eligibility &&
+        (s.eligibility.sex || s.eligibility.minimumAge || s.eligibility.stdAges?.length),
+    )
     return {
       sectionId: id,
       state: 'EXACT_STRUCTURED_SOURCE_DATA',
       basisKind: 'CLINICALTRIALS_SNAPSHOT_EXACT_MATCH',
       basis: `Structured registry eligibility (sex, age range, standard age groups, healthy volunteers) is recorded for ${withEligibility.length} of ${Math.min(total, studies.length)} stored matching registration(s). These describe who a study set out to enrol, not who benefited.`,
-      sourceRefs: withEligibility.slice(0, MAX_REFS).flatMap((s) => (s.nctId ? [{ kind: 'CLINICALTRIALS', identifier: s.nctId }] : [])),
+      sourceRefs: withEligibility
+        .slice(0, MAX_REFS)
+        .flatMap((s) => (s.nctId ? [{ kind: 'CLINICALTRIALS', identifier: s.nctId }] : [])),
       counts: { matchedRegistrations: total, withStructuredEligibility: withEligibility.length },
     }
   }
@@ -934,9 +1041,14 @@ class Resolver {
     const id: DossierSectionId = 'literature-search'
     const search = this.input.literatureSearch
     if (!search) return this.searchPending(id, 'PubMed clinical-trial search')
-    if (search.status !== 'SUCCEEDED') return this.searchUnavailable(id, search, 'PubMed clinical-trial search')
+    if (search.status !== 'SUCCEEDED')
+      return this.searchUnavailable(id, search, 'PubMed clinical-trial search')
     const count = search.resultCount ?? 0
-    const ref: SectionSourceRef = { kind: 'PUBMED_SEARCH', identifier: search.sourceIdentifier, retrievedAt: search.requestedAt }
+    const ref: SectionSourceRef = {
+      kind: 'PUBMED_SEARCH',
+      identifier: search.sourceIdentifier,
+      retrievedAt: search.requestedAt,
+    }
     if (count === 0) {
       return {
         sectionId: id,
@@ -978,14 +1090,16 @@ class Resolver {
         basis: `${total} development programme(s) are defined but none has a published reviewed conclusion.`,
         sourceRefs: [],
         counts: { programmes: total, published: 0 },
-        blockedReason: 'Qualified reviewers must review and publish a programme conclusion; software cannot author one.',
+        blockedReason:
+          'Qualified reviewers must review and publish a programme conclusion; software cannot author one.',
       }
     }
     return {
       sectionId: id,
       state: 'NOT_APPLICABLE',
       basisKind: 'NO_PROGRAMME_DEFINED',
-      basis: 'RNAWiki conclusions belong to one defined development programme. No programme has been defined for this record, so there is no use for which a conclusion could be reviewed.',
+      basis:
+        'RNAWiki conclusions belong to one defined development programme. No programme has been defined for this record, so there is no use for which a conclusion could be reviewed.',
       sourceRefs: [],
       counts: { programmes: 0, published: 0 },
     }
@@ -996,19 +1110,33 @@ class Resolver {
       this.identity(),
       this.regulatoryStatus(),
       this.recordedUses(),
-      this.substanceSection('mechanism', 'mechanism', ['mechanism_of_action', 'clinical_pharmacology'], (value) => {
-        const record = value as { statement?: unknown; targets?: unknown[] }
-        return { detail: 'Mechanism statement recorded verbatim from the named label, with every named target present in the excerpt.', counts: { targets: Array.isArray(record.targets) ? record.targets.length : 0 } }
-      }),
+      this.substanceSection(
+        'mechanism',
+        'mechanism',
+        ['mechanism_of_action', 'clinical_pharmacology'],
+        (value) => {
+          const record = value as { statement?: unknown; targets?: unknown[] }
+          return {
+            detail:
+              'Mechanism statement recorded verbatim from the named label, with every named target present in the excerpt.',
+            counts: { targets: Array.isArray(record.targets) ? record.targets.length : 0 },
+          }
+        },
+      ),
       this.pharmacokinetics(),
       this.molecularIdentity(),
       this.safetyStatements(),
       this.populationStatements(),
       this.adverseReactions(),
-      this.substanceSection('interaction-signals', 'interactionSignals', ['clinical_pharmacology', 'pharmacokinetics'], (value) => ({
-        detail: `${Array.isArray(value) ? value.length : 0} enzyme or transporter signal(s) recorded from descriptive label sections only; the regulated interactions section is never read.`,
-        counts: { signals: Array.isArray(value) ? value.length : 0 },
-      })),
+      this.substanceSection(
+        'interaction-signals',
+        'interactionSignals',
+        ['clinical_pharmacology', 'pharmacokinetics'],
+        (value) => ({
+          detail: `${Array.isArray(value) ? value.length : 0} enzyme or transporter signal(s) recorded from descriptive label sections only; the regulated interactions section is never read.`,
+          counts: { signals: Array.isArray(value) ? value.length : 0 },
+        }),
+      ),
       this.productVariants(),
       this.costContext(),
       this.sourceConsensus(),
@@ -1025,8 +1153,12 @@ class Resolver {
       if (!section) throw new Error(`section ${id} was not assessed`)
       return section
     })
-    const nonTerminal = ordered.filter((section) => !isTerminalSectionState(section.state)).map((s) => s.sectionId)
-    const humanRead = ordered.filter((section) => section.humanReadSuggested).map((s) => s.sectionId)
+    const nonTerminal = ordered
+      .filter((section) => !isTerminalSectionState(section.state))
+      .map((s) => s.sectionId)
+    const humanRead = ordered
+      .filter((section) => section.humanReadSuggested)
+      .map((s) => s.sectionId)
     return {
       drugId: this.input.drug.id,
       canonicalSlug: this.input.drug.slug,

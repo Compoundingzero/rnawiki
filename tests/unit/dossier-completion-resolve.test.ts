@@ -12,7 +12,11 @@ import {
   TERMINAL_SECTION_STATES,
   isTerminalSectionState,
 } from '@/lib/dossier-completion/types'
-import { SECTION_LABELS, SECTION_STATE_LABELS, dossierCompletionAssessmentView } from '@/lib/dossier-completion/view'
+import {
+  SECTION_LABELS,
+  SECTION_STATE_LABELS,
+  dossierCompletionAssessmentView,
+} from '@/lib/dossier-completion/view'
 import { findForbiddenPhrases } from '@/lib/agents/core/types'
 
 const READ_SECTIONS = [
@@ -42,9 +46,16 @@ const ARCHIVES: CompletionInput['archives'] = {
   substanceRegistry: '2026-08-29',
 }
 
-const SOURCE = { kind: 'FDA_LABEL', identifier: 'set-1', label: 'Example label', retrievedAt: '2026-08-28' }
+const SOURCE = {
+  kind: 'FDA_LABEL',
+  identifier: 'set-1',
+  label: 'Example label',
+  retrievedAt: '2026-08-28',
+}
 
-function input(overrides: Partial<CompletionInput> & { background?: Partial<MedicineRecordedBackground> | null }): CompletionInput {
+function input(
+  overrides: Partial<CompletionInput> & { background?: Partial<MedicineRecordedBackground> | null },
+): CompletionInput {
   const { background, ...rest } = overrides
   return {
     drug: {
@@ -57,7 +68,12 @@ function input(overrides: Partial<CompletionInput> & { background?: Partial<Medi
       recordedBackground:
         background === null
           ? null
-          : ({ version: 'medicine-background/v1', authoredAt: '2026-08-28', provenanceTier: 'extracted', ...(background ?? {}) } as MedicineRecordedBackground),
+          : ({
+              version: 'medicine-background/v1',
+              authoredAt: '2026-08-28',
+              provenanceTier: 'extracted',
+              ...(background ?? {}),
+            } as MedicineRecordedBackground),
       legacyTrials: [],
       keyAudits: [],
       sourceProvenance: ['openFDA NDC Directory'],
@@ -65,7 +81,9 @@ function input(overrides: Partial<CompletionInput> & { background?: Partial<Medi
     },
     resolution: {
       entityClass: 'APPROVED_MEDICINE',
-      identitySources: [{ kind: 'UNII', identifier: 'ABC123', path: 'recordedBackground.registryIdentifiers.unii' }],
+      identitySources: [
+        { kind: 'UNII', identifier: 'ABC123', path: 'recordedBackground.registryIdentifiers.unii' },
+      ],
       attributionWarnings: [],
     },
     duplicateRecords: [],
@@ -80,7 +98,9 @@ function input(overrides: Partial<CompletionInput> & { background?: Partial<Medi
   }
 }
 
-const registrySearch = (studies: Array<{ nctId: string; hasResults: boolean }>): CompletionInput['registrySearch'] => ({
+const registrySearch = (
+  studies: Array<{ nctId: string; hasResults: boolean }>,
+): CompletionInput['registrySearch'] => ({
   status: 'SUCCEEDED',
   sourceIdentifier: 'clinicaltrials.gov/api/v2 studies snapshot 2026-09-01T09:00:05 sha256:abc',
   requestedAt: '2026-09-02T00:00:00.000Z',
@@ -91,7 +111,10 @@ const registrySearch = (studies: Array<{ nctId: string; hasResults: boolean }>):
       totalMatchedStudies: studies.length,
       storedStudies: studies.length,
       withPostedResults: studies.filter((s) => s.hasResults).length,
-      studies: studies.map((s) => ({ ...s, eligibility: { sex: 'ALL', minimumAge: '18 Years', stdAges: ['ADULT'] } })),
+      studies: studies.map((s) => ({
+        ...s,
+        eligibility: { sex: 'ALL', minimumAge: '18 Years', stdAges: ['ADULT'] },
+      })),
     },
   ],
 })
@@ -117,8 +140,15 @@ describe('dossier completion resolver', () => {
   it('stays incomplete while a search is pending and completes once both searches are recorded', () => {
     const pending = assessDossierCompletion(input({}))
     expect(pending.status).toBe('INCOMPLETE')
-    expect(pending.nonTerminalSectionIds).toEqual(['trial-registry', 'trial-results', 'trial-eligibility', 'literature-search'])
-    const searched = assessDossierCompletion(input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }))
+    expect(pending.nonTerminalSectionIds).toEqual([
+      'trial-registry',
+      'trial-results',
+      'trial-eligibility',
+      'literature-search',
+    ])
+    const searched = assessDossierCompletion(
+      input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }),
+    )
     expect(searched.status).toBe('COMPLETE')
     expect(searched.nonTerminalSectionIds).toEqual([])
     expect(searched.terminalSectionCount).toBe(searched.applicableSectionCount)
@@ -141,18 +171,32 @@ describe('dossier completion resolver', () => {
     expect(states['trial-registry']).toBe('EXACT_STRUCTURED_SOURCE_DATA')
     expect(states['trial-results']).toBe('EXACT_STRUCTURED_SOURCE_DATA')
     expect(states['trial-eligibility']).toBe('EXACT_STRUCTURED_SOURCE_DATA')
-    expect(withResults.sections.find((s) => s.sectionId === 'trial-results')?.basis).toContain('have not been read')
-    const unposted = assessDossierCompletion(
-      input({ registrySearch: registrySearch([{ nctId: 'NCT00000001', hasResults: false }]), literatureSearch: literatureSearch(0) }),
+    expect(withResults.sections.find((s) => s.sectionId === 'trial-results')?.basis).toContain(
+      'have not been read',
     )
-    expect(unposted.sections.find((s) => s.sectionId === 'trial-results')?.state).toBe('RESULTS_NOT_POSTED')
+    const unposted = assessDossierCompletion(
+      input({
+        registrySearch: registrySearch([{ nctId: 'NCT00000001', hasResults: false }]),
+        literatureSearch: literatureSearch(0),
+      }),
+    )
+    expect(unposted.sections.find((s) => s.sectionId === 'trial-results')?.state).toBe(
+      'RESULTS_NOT_POSTED',
+    )
   })
 
   it('records an unreachable search as unavailable rather than as absence', () => {
     const assessment = assessDossierCompletion(
       input({
         registrySearch: registrySearch([]),
-        literatureSearch: { status: 'UNREACHABLE', sourceIdentifier: 'pubmed', requestedAt: '2026-09-02T00:00:00.000Z', resultCount: null, error: 'HTTP 503', matched: [] },
+        literatureSearch: {
+          status: 'UNREACHABLE',
+          sourceIdentifier: 'pubmed',
+          requestedAt: '2026-09-02T00:00:00.000Z',
+          resultCount: null,
+          error: 'HTTP 503',
+          matched: [],
+        },
       }),
     )
     const literature = assessment.sections.find((s) => s.sectionId === 'literature-search')!
@@ -164,7 +208,14 @@ describe('dossier completion resolver', () => {
   it('distinguishes a read label section with no statement from no label at all', () => {
     const withSection = assessDossierCompletion(
       input({
-        labels: [{ setId: 'set-1', declared: 1, sections: ['indications_and_usage', 'mechanism_of_action'], productTypes: ['HUMAN PRESCRIPTION DRUG'] }],
+        labels: [
+          {
+            setId: 'set-1',
+            declared: 1,
+            sections: ['indications_and_usage', 'mechanism_of_action'],
+            productTypes: ['HUMAN PRESCRIPTION DRUG'],
+          },
+        ],
         registrySearch: registrySearch([]),
         literatureSearch: literatureSearch(0),
       }),
@@ -177,13 +228,19 @@ describe('dossier completion resolver', () => {
     const safety = withSection.sections.find((s) => s.sectionId === 'safety-statements')!
     expect(safety.basisKind).toBe('LABEL_ARCHIVE_SEARCH')
     expect(safety.basis).toContain('were not read')
-    const noLabel = assessDossierCompletion(input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }))
-    expect(noLabel.sections.find((s) => s.sectionId === 'mechanism')?.basis).toContain('No label in the openFDA archive')
+    const noLabel = assessDossierCompletion(
+      input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }),
+    )
+    expect(noLabel.sections.find((s) => s.sectionId === 'mechanism')?.basis).toContain(
+      'No label in the openFDA archive',
+    )
     const curated = assessDossierCompletion(
       input({
         background: { provenanceTier: 'curated' },
         labelExtractorRan: false,
-        labels: [{ setId: 'set-1', declared: 1, sections: ['mechanism_of_action'], productTypes: [] }],
+        labels: [
+          { setId: 'set-1', declared: 1, sections: ['mechanism_of_action'], productTypes: [] },
+        ],
         registrySearch: registrySearch([]),
         literatureSearch: literatureSearch(0),
       }),
@@ -193,9 +250,17 @@ describe('dossier completion resolver', () => {
     expect(curatedMechanism.basis).toContain('has not been run')
     expect(curated.status).toBe('INCOMPLETE')
     const combinationOnly = assessDossierCompletion(
-      input({ labels: [{ setId: 'set-2', declared: 2, sections: ['mechanism_of_action'], productTypes: [] }], registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }),
+      input({
+        labels: [
+          { setId: 'set-2', declared: 2, sections: ['mechanism_of_action'], productTypes: [] },
+        ],
+        registrySearch: registrySearch([]),
+        literatureSearch: literatureSearch(0),
+      }),
     )
-    expect(combinationOnly.sections.find((s) => s.sectionId === 'mechanism')?.basis).toContain('none is about it alone')
+    expect(combinationOnly.sections.find((s) => s.sectionId === 'mechanism')?.basis).toContain(
+      'none is about it alone',
+    )
   })
 
   it('reads recorded modules as source-backed and reports source-stated non-establishment and conflict', () => {
@@ -204,7 +269,13 @@ describe('dossier completion resolver', () => {
         background: {
           mechanism: { statement: { textAsRecorded: 'x', source: SOURCE }, targets: [] } as never,
           populationStatements: [
-            { population: 'PEDIATRIC', state: 'NOT_ESTABLISHED', textAsRecorded: 'Safety and effectiveness in pediatric patients have not been established.', source: SOURCE },
+            {
+              population: 'PEDIATRIC',
+              state: 'NOT_ESTABLISHED',
+              textAsRecorded:
+                'Safety and effectiveness in pediatric patients have not been established.',
+              source: SOURCE,
+            },
           ] as never,
           sourceConsensus: { fields: [{ field: 'halfLife', comparisonState: 'differ' }] } as never,
           pharmacokinetics: { halfLife: { display: '2 h', source: SOURCE } } as never,
@@ -218,7 +289,9 @@ describe('dossier completion resolver', () => {
     expect(states['population-statements']).toBe('SOURCE_STATED_NOT_ESTABLISHED')
     expect(states['source-consensus']).toBe('SOURCE_CONFLICT')
     expect(states.pharmacokinetics).toBe('SOURCE_CONFLICT')
-    expect(assessment.sections.find((s) => s.sectionId === 'mechanism')?.sourceRefs).toEqual([SOURCE])
+    expect(assessment.sections.find((s) => s.sectionId === 'mechanism')?.sourceRefs).toEqual([
+      SOURCE,
+    ])
   })
 
   it('credits a merged duplicate record and says where the module lives', () => {
@@ -230,7 +303,11 @@ describe('dossier completion resolver', () => {
             recordedBackground: {
               version: 'medicine-background/v1',
               authoredAt: '2026-08-28',
-              supplementMarket: { labelCount: 4, categoriesAsRecorded: ['botanical'], source: { ...SOURCE, kind: 'DSLD', identifier: 'g1' } } as never,
+              supplementMarket: {
+                labelCount: 4,
+                categoriesAsRecorded: ['botanical'],
+                source: { ...SOURCE, kind: 'DSLD', identifier: 'g1' },
+              } as never,
             } as MedicineRecordedBackground,
           },
         ],
@@ -245,10 +322,18 @@ describe('dossier completion resolver', () => {
   })
 
   it('treats the reviewed conclusion as not applicable without a programme and blocked with an unpublished one', () => {
-    const none = assessDossierCompletion(input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }))
-    expect(none.sections.find((s) => s.sectionId === 'reviewed-conclusion')?.state).toBe('NOT_APPLICABLE')
+    const none = assessDossierCompletion(
+      input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }),
+    )
+    expect(none.sections.find((s) => s.sectionId === 'reviewed-conclusion')?.state).toBe(
+      'NOT_APPLICABLE',
+    )
     const unpublished = assessDossierCompletion(
-      input({ programmes: { total: 1, published: 0 }, registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }),
+      input({
+        programmes: { total: 1, published: 0 },
+        registrySearch: registrySearch([]),
+        literatureSearch: literatureSearch(0),
+      }),
     )
     const section = unpublished.sections.find((s) => s.sectionId === 'reviewed-conclusion')!
     expect(section.state).toBe('BLOCKED_HUMAN_REVIEW')
@@ -258,14 +343,27 @@ describe('dossier completion resolver', () => {
 
   it('applies entity-class rules for organisms, biologics and unpriced records', () => {
     const organismBase = input({
-      resolution: { entityClass: 'BOTANICAL_OR_ORGANISM_PREPARATION', identitySources: [], attributionWarnings: [] },
-      background: { biologicalIdentity: { scientificName: 'Haliotis corrugata', source: { kind: 'NCBI_TAXONOMY', identifier: '6453' } } as never },
+      resolution: {
+        entityClass: 'BOTANICAL_OR_ORGANISM_PREPARATION',
+        identitySources: [],
+        attributionWarnings: [],
+      },
+      background: {
+        biologicalIdentity: {
+          scientificName: 'Haliotis corrugata',
+          source: { kind: 'NCBI_TAXONOMY', identifier: '6453' },
+        } as never,
+      },
       registrySearch: registrySearch([]),
       literatureSearch: literatureSearch(0),
     })
     const organism = assessDossierCompletion({
       ...organismBase,
-      drug: { ...organismBase.drug, approvalStatus: 'Non-FDA / Dietary Supplement', modality: 'Nutraceutical / Botanical' },
+      drug: {
+        ...organismBase.drug,
+        approvalStatus: 'Non-FDA / Dietary Supplement',
+        modality: 'Nutraceutical / Botanical',
+      },
     })
     const states = Object.fromEntries(organism.sections.map((s) => [s.sectionId, s.state]))
     expect(states['molecular-identity']).toBe('NOT_APPLICABLE')
@@ -274,13 +372,22 @@ describe('dossier completion resolver', () => {
     expect(states.identity).toBe('EXACT_STRUCTURED_SOURCE_DATA')
     expect(organism.sections.find((s) => s.sectionId === 'identity')?.humanReadSuggested).toBe(true)
     const antibody = assessDossierCompletion(
-      input({ drug: { ...input({}).drug, modality: 'Monoclonal Antibody (mAb)' }, registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) }),
+      input({
+        drug: { ...input({}).drug, modality: 'Monoclonal Antibody (mAb)' },
+        registrySearch: registrySearch([]),
+        literatureSearch: literatureSearch(0),
+      }),
     )
-    expect(antibody.sections.find((s) => s.sectionId === 'molecular-identity')?.state).toBe('NOT_APPLICABLE')
+    expect(antibody.sections.find((s) => s.sectionId === 'molecular-identity')?.state).toBe(
+      'NOT_APPLICABLE',
+    )
   })
 
   it('is deterministic and produces a stable digest that ignores request clocks', () => {
-    const first = input({ registrySearch: registrySearch([]), literatureSearch: literatureSearch(0) })
+    const first = input({
+      registrySearch: registrySearch([]),
+      literatureSearch: literatureSearch(0),
+    })
     const second = input({
       registrySearch: { ...registrySearch([])!, requestedAt: '2026-09-03T00:00:00.000Z' },
       literatureSearch: { ...literatureSearch(0)!, requestedAt: '2026-09-03T00:00:00.000Z' },
@@ -294,13 +401,24 @@ describe('dossier completion resolver', () => {
   it('writes reader-facing basis sentences that pass the boundary screen and never name a patient action', () => {
     const variants = [
       input({}),
-      input({ registrySearch: registrySearch([{ nctId: 'NCT00000002', hasResults: true }]), literatureSearch: literatureSearch(2) }),
-      input({ labels: [{ setId: 'set-1', declared: 1, sections: READ_SECTIONS, productTypes: [] }] }),
+      input({
+        registrySearch: registrySearch([{ nctId: 'NCT00000002', hasResults: true }]),
+        literatureSearch: literatureSearch(2),
+      }),
+      input({
+        labels: [{ setId: 'set-1', declared: 1, sections: READ_SECTIONS, productTypes: [] }],
+      }),
     ]
     for (const variant of variants) {
-      const view = dossierCompletionAssessmentView({ ...assessDossierCompletion(variant), contentChangedAt: '2026-09-02T00:00:00.000Z', assessedAt: '2026-09-02T00:00:00.000Z' })
+      const view = dossierCompletionAssessmentView({
+        ...assessDossierCompletion(variant),
+        contentChangedAt: '2026-09-02T00:00:00.000Z',
+        assessedAt: '2026-09-02T00:00:00.000Z',
+      })
       for (const section of view.sections) {
-        expect(findForbiddenPhrases(`${section.basis} ${section.stateLabel} ${section.label}`)).toEqual([])
+        expect(
+          findForbiddenPhrases(`${section.basis} ${section.stateLabel} ${section.label}`),
+        ).toEqual([])
       }
       expect(findForbiddenPhrases(view.statusCopy)).toEqual([])
     }

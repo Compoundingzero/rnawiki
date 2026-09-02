@@ -61,7 +61,10 @@ export function classifyEntity(input: EntityClassInput): EntityClassDecision {
     }
   }
   if (input.approvalStatus === 'Withdrawn from Market') {
-    return { entityClass: 'WITHDRAWN_MEDICINE', rule: 'rule-3: approval status Withdrawn from Market' }
+    return {
+      entityClass: 'WITHDRAWN_MEDICINE',
+      rule: 'rule-3: approval status Withdrawn from Market',
+    }
   }
   if (input.approvalStatus === 'Controlled / No Approved Use') {
     return {
@@ -71,7 +74,10 @@ export function classifyEntity(input: EntityClassInput): EntityClassDecision {
   }
   if (APPROVED_STATUSES.has(input.approvalStatus)) {
     return BIOLOGIC_MODALITIES.has(input.modality)
-      ? { entityClass: 'APPROVED_BIOLOGIC', rule: 'rule-5: approved status with a biologic modality' }
+      ? {
+          entityClass: 'APPROVED_BIOLOGIC',
+          rule: 'rule-5: approved status with a biologic modality',
+        }
       : { entityClass: 'APPROVED_MEDICINE', rule: 'rule-6: approved status' }
   }
   if (INVESTIGATIONAL_STATUSES.has(input.approvalStatus)) {
@@ -104,5 +110,8 @@ export function classifyEntity(input: EntityClassInput): EntityClassDecision {
       rule: 'rule-11: recorded label presence, product listing or regulatory application',
     }
   }
-  return { entityClass: 'REGISTRY_ONLY_IDENTITY', rule: 'rule-12: no product, supplement or organism module' }
+  return {
+    entityClass: 'REGISTRY_ONLY_IDENTITY',
+    rule: 'rule-12: no product, supplement or organism module',
+  }
 }

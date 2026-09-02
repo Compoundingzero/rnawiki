@@ -62,7 +62,10 @@ async function loadEntities(): Promise<EntityMatchNames[]> {
     order by r.canonical_slug, r.drug_id
   `)
   const rows = result.rows as unknown as EntityRow[]
-  const byCanonical = new Map<string, EntityMatchNames & { keys: EntityMatchNames['keys'][number][] }>()
+  const byCanonical = new Map<
+    string,
+    EntityMatchNames & { keys: EntityMatchNames['keys'][number][] }
+  >()
   for (const row of rows) {
     const canonicalId = row.canonical_drug_id
     const entity =
@@ -74,18 +77,26 @@ async function loadEntities(): Promise<EntityMatchNames[]> {
     const push = (name: string, via: EntityMatchNames['keys'][number]['via']) => {
       const key = normalizeInterventionName(name)
       if (key.length < MINIMUM_MATCH_KEY_LENGTH) return
-      if (!entity.keys.some((existing) => existing.key === key)) entity.keys.push({ key, name, via })
+      if (!entity.keys.some((existing) => existing.key === key))
+        entity.keys.push({ key, name, via })
     }
     push(row.name, isDuplicate ? 'duplicate_record' : 'name')
     for (const alias of row.aliases) {
       if (alias.owners !== 1) continue
-      if (alias.kind === 'brand' || alias.kind === 'inn' || alias.kind === 'salt_form' || alias.kind === 'common_name') {
+      if (
+        alias.kind === 'brand' ||
+        alias.kind === 'inn' ||
+        alias.kind === 'salt_form' ||
+        alias.kind === 'common_name'
+      ) {
         push(alias.alias, isDuplicate ? 'duplicate_record' : alias.kind)
       }
     }
     byCanonical.set(canonicalId, entity)
   }
-  return [...byCanonical.values()].sort((left, right) => left.canonicalSlug.localeCompare(right.canonicalSlug))
+  return [...byCanonical.values()].sort((left, right) =>
+    left.canonicalSlug.localeCompare(right.canonicalSlug),
+  )
 }
 
 async function main(): Promise<void> {
@@ -158,7 +169,9 @@ async function main(): Promise<void> {
       }
       const responseDigest = createHash('sha256').update(stableJsonStringify(matched)).digest('hex')
       const id = createHash('sha256')
-        .update(`source-search/v1|${result.drugId}|${CLINICALTRIALS_SEARCH_KIND}|${sourceIdentifier}`)
+        .update(
+          `source-search/v1|${result.drugId}|${CLINICALTRIALS_SEARCH_KIND}|${sourceIdentifier}`,
+        )
         .digest('hex')
       if (dryRun) continue
       await db
@@ -177,7 +190,11 @@ async function main(): Promise<void> {
           error: null,
         })
         .onConflictDoUpdate({
-          target: [sourceSearchRecords.drugId, sourceSearchRecords.searchKind, sourceSearchRecords.sourceIdentifier],
+          target: [
+            sourceSearchRecords.drugId,
+            sourceSearchRecords.searchKind,
+            sourceSearchRecords.sourceIdentifier,
+          ],
           set: {
             query: stableJsonStringify(query),
             status: 'SUCCEEDED',
