@@ -3,10 +3,10 @@
   "historicalPreRepair": false,
   "eligibleForActiveReview": true,
   "corpus": {
-    "commit": "91a275f3bd1d3e72b25a3e6593c2e89a2c65cc98",
-    "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf"
+    "commit": "c895392b989822ee0ecff6d5ba43a3df50d97116",
+    "digest": "072fc25e5f61161491aed8850562f112b35fd4773ab87e1d9e2552dc4078962e"
   },
-  "inputDigest": "17da9211b7044c93fd9bd5deb30caaeaf3a3a0c39ffda2930cc6f9b897cea58d",
+  "inputDigest": "f2fcee8e456ecc2bc9a40ba8bacadbc7c3e345ffc53dce36279d91a872b3df4e",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -86,15 +86,15 @@
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_106d9e2904be684bdc02f206168d2970f742d65e58d85bd532e5dc7660b2db8d",
-      "inputDigest": "sha256:4980c4ae1ab401341768dc9de323d439628f8eeab47c5a73675e659b5e5d713a",
+      "cacheKey": "neurode_cache_890f2e15f3d6a05fd3a0fcba911cfde74ce97d90af91d7d92d12199117d36afe",
+      "inputDigest": "sha256:23f3c1eed7d6ec4ce8ba0f5f34a7f33a35c6a652b7c1fd1f2965f9c8a828e14b",
       "inputDigestComplete": true,
-      "outputDigest": "sha256:0b1bfae3b10109269b32b454dbc7241225aadf9d6e82243c03d9fdabf1f886ac",
+      "outputDigest": "sha256:006f35cd74036792569a4126c4386c3dc4c15476d8eca99f721f4e5266c570ce",
       "recordsConsidered": 9855,
-      "recordsUsed": 3456,
+      "recordsUsed": 3465,
       "reasonCodes": [],
-      "startedAt": "2026-08-31T00:00:00.000Z",
-      "completedAt": "2026-08-31T00:00:00.000Z",
+      "startedAt": "2026-09-02T00:00:00.000Z",
+      "completedAt": "2026-09-02T00:00:00.000Z",
       "failureCode": null
     }
   },
@@ -111,7 +111,7 @@
   "run": {
     "agent": "excerpt-integrity",
     "version": "1.2.0",
-    "runDate": "2026-08-31",
+    "runDate": "2026-09-02",
     "seed": 20260828,
     "parameters": {
       "normalisationRules": 7,
@@ -120,7 +120,7 @@
     },
     "coverage": {
       "considered": 9855,
-      "used": 3456,
+      "used": 3465,
       "reason": "Every recorded value carrying a numeral was checked, across 3 modules. Values with no numeral in their display have nothing to verify this way and are counted separately."
     },
     "output": {
@@ -2054,6 +2054,20 @@
           }
         },
         {
+          "slug": "acetaminophen",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "151.16",
+          "source": {
+            "excerpt": "Acetaminophen has a molecular weight of 151.16.",
+            "identifier": "6d763554-913d-4bed-9efd-b9c9b936a2f4",
+            "kind": "FDA_LABEL",
+            "label": "Acetaminophen label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "acetic-acid",
           "path": "molecularIdentity.molecularWeight",
           "module": "molecularIdentity",
@@ -2533,6 +2547,34 @@
           }
         },
         {
+          "slug": "acyclovir",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C8H11N5O3",
+          "source": {
+            "excerpt": "The chemical name of acyclovir is 2-amino-1,9-dihydro-9-[(2-hydroxyethoxy) methyl]-6 H -purin-6-one; it has the following structural formula: Acyclovir is a white, crystalline powder with the molecular formula C 8 H 11 N 5 O 3 and a molecular weight of 225.",
+            "identifier": "103f29b8-2c13-4917-a446-59d3246d48d1",
+            "kind": "FDA_LABEL",
+            "label": "Acyclovir label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "acyclovir",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "225",
+          "source": {
+            "excerpt": "The chemical name of acyclovir is 2-amino-1,9-dihydro-9-[(2-hydroxyethoxy) methyl]-6 H -purin-6-one; it has the following structural formula: Acyclovir is a white, crystalline powder with the molecular formula C 8 H 11 N 5 O 3 and a molecular weight of 225.",
+            "identifier": "103f29b8-2c13-4917-a446-59d3246d48d1",
+            "kind": "FDA_LABEL",
+            "label": "Acyclovir label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "adagrasib",
           "path": "pharmacokinetics.halfLife",
           "module": "pharmacokinetics",
@@ -2675,6 +2717,20 @@
             "label": "FDA prescribing information: IDACIO (adalimumab-aacf)",
             "locator": "Section 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "adalimumab",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "148 kilodaltons",
+          "source": {
+            "excerpt": "It consists of 1330 amino acids and has a molecular weight of approximately 148 kilodaltons.",
+            "identifier": "cd0e7af2-7704-49ce-bde9-f645294b6788",
+            "kind": "FDA_LABEL",
+            "label": "Adalimumab label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -3567,6 +3623,20 @@
             "label": "FDA prescribing information: Albuterol Sulfate HFA inhalation aerosol",
             "locator": "Section 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "albuterol",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "576.7",
+          "source": {
+            "excerpt": "Albuterol sulfate has the chemical name α 1 -[( tert -butylamino) methyl]-4-hydroxy- m -xylene-α,α'-diol sulfate (2:1) (salt), and has the following chemical structure: The molecular weight of albuterol sulfate is 576.7, and the empirical formula is (C 13 H 21 NO 3 ) 2 •H 2 SO 4 .",
+            "identifier": "8c278b6f-d32b-b750-e053-2995a90ad7e9",
+            "kind": "FDA_LABEL",
+            "label": "Albuterol label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -5320,6 +5390,34 @@
           }
         },
         {
+          "slug": "amitriptyline",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C20H23N∙HCl",
+          "source": {
+            "excerpt": "Its molecular formula is C 20 H 23 N ∙ HCl and its structural formula is: Amitriptyline HCl, a dibenzocycloheptadiene derivative, has a molecular weight of 313.87.",
+            "identifier": "4e0f3b15-3621-48a1-9f2b-b0a373920360",
+            "kind": "FDA_LABEL",
+            "label": "Amitriptyline label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "amitriptyline",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "313.87",
+          "source": {
+            "excerpt": "Its molecular formula is C 20 H 23 N ∙ HCl and its structural formula is: Amitriptyline HCl, a dibenzocycloheptadiene derivative, has a molecular weight of 313.87.",
+            "identifier": "4e0f3b15-3621-48a1-9f2b-b0a373920360",
+            "kind": "FDA_LABEL",
+            "label": "Amitriptyline label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "amitrole",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -5503,6 +5601,34 @@
           }
         },
         {
+          "slug": "amlodipine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C20H25CIN2O5•C6H6O3S",
+          "source": {
+            "excerpt": "Its empirical formula is C 20 H 25 CIN 2 O 5 •C 6 H 6 O 3 S, and its structural formula is: Amlodipine Besylate, USP is a white crystalline powder with a molecular weight of 567.1.",
+            "identifier": "1a24433f-4464-4c6d-9456-ed1ce38e8ec4",
+            "kind": "FDA_LABEL",
+            "label": "Amlodipine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "amlodipine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "567.1",
+          "source": {
+            "excerpt": "Its empirical formula is C 20 H 25 CIN 2 O 5 •C 6 H 6 O 3 S, and its structural formula is: Amlodipine Besylate, USP is a white crystalline powder with a molecular weight of 567.1.",
+            "identifier": "1a24433f-4464-4c6d-9456-ed1ce38e8ec4",
+            "kind": "FDA_LABEL",
+            "label": "Amlodipine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "amodiaquine",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -5626,6 +5752,34 @@
             "label": "FDA prescribing information: amoxicillin and clavulanate potassium for oral suspension",
             "locator": "Section 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "amoxicillin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C16H19N3O5S",
+          "source": {
+            "excerpt": "It may be represented structurally as: The amoxicillin molecular formula is C 16 H 19 N 3 O 5 S●3H 2 O, and the molecular weight is 419.45.",
+            "identifier": "6a3d1af5-6e93-4f06-8d82-1c87290c46aa",
+            "kind": "FDA_LABEL",
+            "label": "Amoxicillin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "amoxicillin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "419.45",
+          "source": {
+            "excerpt": "It may be represented structurally as: The amoxicillin molecular formula is C 16 H 19 N 3 O 5 S●3H 2 O, and the molecular weight is 419.45.",
+            "identifier": "6a3d1af5-6e93-4f06-8d82-1c87290c46aa",
+            "kind": "FDA_LABEL",
+            "label": "Amoxicillin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -5923,6 +6077,34 @@
             "label": "FDA label for anastrozole tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "anastrozole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H19N5",
+          "source": {
+            "excerpt": "Its molecular formula is C 17 H 19 N 5 and its structural formula is: Anastrozole is an off-white powder with a molecular weight of 293.4.",
+            "identifier": "aabd8f88-2b52-4d43-8dc6-61605988c4dc",
+            "kind": "FDA_LABEL",
+            "label": "Anastrozole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "anastrozole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "293.4",
+          "source": {
+            "excerpt": "Its molecular formula is C 17 H 19 N 5 and its structural formula is: Anastrozole is an off-white powder with a molecular weight of 293.4.",
+            "identifier": "aabd8f88-2b52-4d43-8dc6-61605988c4dc",
+            "kind": "FDA_LABEL",
+            "label": "Anastrozole label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -6436,6 +6618,34 @@
             "label": "FDA prescribing information: apixaban tablets",
             "locator": "Section 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "apixaban",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C25H25N5O4",
+          "source": {
+            "excerpt": "Its molecular formula is C 25 H 25 N 5 O 4 , which corresponds to a molecular weight of 459.5.",
+            "identifier": "33a9046a-41cc-46c1-becc-2ff4d7d71538",
+            "kind": "FDA_LABEL",
+            "label": "Apixaban label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "apixaban",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "459.5",
+          "source": {
+            "excerpt": "Its molecular formula is C 25 H 25 N 5 O 4 , which corresponds to a molecular weight of 459.5.",
+            "identifier": "33a9046a-41cc-46c1-becc-2ff4d7d71538",
+            "kind": "FDA_LABEL",
+            "label": "Apixaban label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -6999,6 +7209,34 @@
             "label": "FDA label for aripiprazole tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "aripiprazole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C23H27Cl2N3O2",
+          "source": {
+            "excerpt": "The empirical formula is C 23 H 27 Cl 2 N 3 O 2 and its molecular weight is 448.39.",
+            "identifier": "d8183eaf-0093-4720-b8ed-20e570697511",
+            "kind": "FDA_LABEL",
+            "label": "Aripiprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "aripiprazole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "448.39",
+          "source": {
+            "excerpt": "The empirical formula is C 23 H 27 Cl 2 N 3 O 2 and its molecular weight is 448.39.",
+            "identifier": "d8183eaf-0093-4720-b8ed-20e570697511",
+            "kind": "FDA_LABEL",
+            "label": "Aripiprazole label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -7858,6 +8096,20 @@
             "label": "FDA prescribing information: Atorvastatin calcium tablets",
             "locator": "Section 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "atorvastatin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "1231.46 g/mol",
+          "source": {
+            "excerpt": "The empirical formula of atorvastatin calcium propylene glycol solvate is C 66 H 68 CaF 2 N 4 O 10 * C 3 H 8 O 2 and its molecular weight is 1231.46 g/mol.",
+            "identifier": "09c6c750-ae05-459f-83e8-4a9e4fd85212",
+            "kind": "FDA_LABEL",
+            "label": "Atorvastatin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -9169,6 +9421,34 @@
             "label": "FDA prescribing information: Azithromycin tablets",
             "locator": "Section 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "azithromycin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C38H72N2O12",
+          "source": {
+            "excerpt": "Its molecular formula is C38H72N2O12, and its molecular weight is 749.00.",
+            "identifier": "7ab854bf-eb04-42c4-a403-096b60581bb4",
+            "kind": "FDA_LABEL",
+            "label": "Azithromycin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "azithromycin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "749.00",
+          "source": {
+            "excerpt": "Its molecular formula is C38H72N2O12, and its molecular weight is 749.00.",
+            "identifier": "7ab854bf-eb04-42c4-a403-096b60581bb4",
+            "kind": "FDA_LABEL",
+            "label": "Azithromycin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -13910,6 +14190,48 @@
           }
         },
         {
+          "slug": "budesonide",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "2.3 hours",
+          "source": {
+            "excerpt": "In asthmatic children 4 to 6 years of age, the terminal half-life of budesonide after nebulization is 2.3 hours, and the systemic clearance is 0.5 L/min, which is approximately 50% greater than in healthy adults after adjustment for differences in weight.",
+            "identifier": "87048fa9-3391-4f30-801d-b96ca0132f56",
+            "kind": "FDA_LABEL",
+            "label": "Budesonide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "budesonide",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "3 L/kg",
+          "source": {
+            "excerpt": "Distribution: In asthmatic children 4 to 6 years of age, the volume of distribution at steady-state of budesonide was 3 L/kg, approximately the same as in healthy adults.",
+            "identifier": "87048fa9-3391-4f30-801d-b96ca0132f56",
+            "kind": "FDA_LABEL",
+            "label": "Budesonide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "budesonide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "430.5",
+          "source": {
+            "excerpt": "The empirical formula of budesonide is C 25 H 34 O 6 and its molecular weight is 430.5.",
+            "identifier": "87048fa9-3391-4f30-801d-b96ca0132f56",
+            "kind": "FDA_LABEL",
+            "label": "Budesonide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "bulevirtide",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -14110,6 +14432,34 @@
           }
         },
         {
+          "slug": "buprenorphine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C29H41NO4",
+          "source": {
+            "excerpt": "The structural formula is: The molecular weight of buprenorphine is 467.64; the empirical formula is C 29 H 41 NO 4 .",
+            "identifier": "186e3be6-8bc0-4bb9-96f5-429d53632f45",
+            "kind": "FDA_LABEL",
+            "label": "Buprenorphine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "buprenorphine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "467.64",
+          "source": {
+            "excerpt": "The structural formula is: The molecular weight of buprenorphine is 467.64; the empirical formula is C 29 H 41 NO 4 .",
+            "identifier": "186e3be6-8bc0-4bb9-96f5-429d53632f45",
+            "kind": "FDA_LABEL",
+            "label": "Buprenorphine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "bupropion",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -14182,6 +14532,34 @@
             "label": "FDA prescribing information: Bupropion Hydrochloride XL extended-release tablets",
             "locator": "Section 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "bupropion",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C13H18ClNO•HCl",
+          "source": {
+            "excerpt": "The molecular formula is C 13 H 18 ClNO•HCl.",
+            "identifier": "d5469d64-5e74-4b7a-b4cd-551665f6adaa",
+            "kind": "FDA_LABEL",
+            "label": "Bupropion label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "bupropion",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "276.2",
+          "source": {
+            "excerpt": "The molecular weight is 276.2.",
+            "identifier": "d5469d64-5e74-4b7a-b4cd-551665f6adaa",
+            "kind": "FDA_LABEL",
+            "label": "Bupropion label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -14959,6 +15337,34 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Cadmium Iodide",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "caffeine",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "36%",
+          "source": {
+            "excerpt": "In adults, the mean plasma protein binding in vitro is reported to be approximately 36%.",
+            "identifier": "baf9f88a-776a-44e7-82cc-8f0ca419572f",
+            "kind": "FDA_LABEL",
+            "label": "Caffeine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "caffeine",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "0.8 to 0.9 L/kg",
+          "source": {
+            "excerpt": "The mean volume of distribution of caffeine in infants (0.8 to 0.9 L/kg) is slightly higher than that in adults (0.6 L/kg).",
+            "identifier": "baf9f88a-776a-44e7-82cc-8f0ca419572f",
+            "kind": "FDA_LABEL",
+            "label": "Caffeine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -16867,6 +17273,20 @@
           }
         },
         {
+          "slug": "carbamazepine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "236.27",
+          "source": {
+            "excerpt": "Its molecular weight is 236.27.",
+            "identifier": "be478f3c-40f6-47cc-8ab9-f420a9372b1c",
+            "kind": "FDA_LABEL",
+            "label": "Carbamazepine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "carbenicillin",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -17862,6 +18282,34 @@
             "label": "FDA label for carvedilol tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "carvedilol",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C24H26N2O4",
+          "source": {
+            "excerpt": "Carvedilol is a white to off-white powder with a molecular weight of 406.5 and a molecular formula of C 24 H 26 N 2 O 4 .",
+            "identifier": "fe462198-32ae-4f6c-befc-acb97fb017c9",
+            "kind": "FDA_LABEL",
+            "label": "Carvedilol label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "carvedilol",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "406.5",
+          "source": {
+            "excerpt": "Carvedilol is a white to off-white powder with a molecular weight of 406.5 and a molecular formula of C 24 H 26 N 2 O 4 .",
+            "identifier": "fe462198-32ae-4f6c-befc-acb97fb017c9",
+            "kind": "FDA_LABEL",
+            "label": "Carvedilol label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -18971,6 +19419,34 @@
           }
         },
         {
+          "slug": "celecoxib",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H14F3N3O2S",
+          "source": {
+            "excerpt": "Its molecular formula is C 17 H 14 F 3 N 3 O 2 S, and it has the following chemical structure: Celecoxib is a white or almost white crystalline powder with a pKa of about 11 (sulfonamide moiety).",
+            "identifier": "806e5f8a-f986-4f88-ba3e-8265f86afa48",
+            "kind": "FDA_LABEL",
+            "label": "Celecoxib label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "celecoxib",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "381.38",
+          "source": {
+            "excerpt": "The molecular weight is 381.38.",
+            "identifier": "806e5f8a-f986-4f88-ba3e-8265f86afa48",
+            "kind": "FDA_LABEL",
+            "label": "Celecoxib label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "cellulase",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -19273,6 +19749,34 @@
             "label": "FDA label for cephalexin capsules (openFDA)",
             "locator": "12.3 Pharmacokinetics — Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "cephalexin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C16H17N3O4S•H2O",
+          "source": {
+            "excerpt": "Cephalexin has the molecular formula C 16 H 17 N 3 O 4 S•H 2 O and the molecular weight is 365.41.",
+            "identifier": "864d2046-b2c8-415c-814b-512bc4901c76",
+            "kind": "FDA_LABEL",
+            "label": "Cephalexin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "cephalexin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "365.41",
+          "source": {
+            "excerpt": "Cephalexin has the molecular formula C 16 H 17 N 3 O 4 S•H 2 O and the molecular weight is 365.41.",
+            "identifier": "864d2046-b2c8-415c-814b-512bc4901c76",
+            "kind": "FDA_LABEL",
+            "label": "Cephalexin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -19735,6 +20239,62 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Cetearyl Ethylhexanoate",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "cetirizine",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "0.06 hour",
+          "source": {
+            "excerpt": "Peak concentrations were reached at 0.06 hour (range 0.03 to 0.07 hour) and 0.03 hour (range 0.03 to 2.00 hour) for cetirizine hydrochloride 5 mg and 10 mg IV injection, respectively.",
+            "identifier": "f33e859d-ebc9-4d4f-a57d-204c48760d20",
+            "kind": "FDA_LABEL",
+            "label": "Cetirizine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "cetirizine",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "93%",
+          "source": {
+            "excerpt": "Distribution The mean plasma protein binding of cetirizine is 93%, independent of concentration in the range of 25-1000 ng/mL, which includes the therapeutic plasma levels observed.",
+            "identifier": "f33e859d-ebc9-4d4f-a57d-204c48760d20",
+            "kind": "FDA_LABEL",
+            "label": "Cetirizine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "cetirizine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C21H25ClN2O3•2HCl",
+          "source": {
+            "excerpt": "Cetirizine hydrochloride is a racemic compound with an empirical formula of C 21 H 25 ClN 2 O 3 •2HCl.",
+            "identifier": "f33e859d-ebc9-4d4f-a57d-204c48760d20",
+            "kind": "FDA_LABEL",
+            "label": "Cetirizine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "cetirizine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "461.82",
+          "source": {
+            "excerpt": "The molecular weight is 461.82 and the chemical structure is shown below: Cetirizine hydrochloride is a white, crystalline powder and is water soluble.",
+            "identifier": "f33e859d-ebc9-4d4f-a57d-204c48760d20",
+            "kind": "FDA_LABEL",
+            "label": "Cetirizine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -21728,6 +22288,62 @@
           }
         },
         {
+          "slug": "ciprofloxacin",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "70 to 80%",
+          "source": {
+            "excerpt": "The absolute bioavailability of oral ciprofloxacin is within a range of 70 to 80% with no substantial loss by first pass metabolism.",
+            "identifier": "f406e796-17d9-4465-b8a7-00d966a4ba74",
+            "kind": "FDA_LABEL",
+            "label": "Ciprofloxacin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ciprofloxacin",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "5 to 6 hours",
+          "source": {
+            "excerpt": "Excretion The serum elimination half-life is approximately 5 to 6 hours and the total clearance is around 35 L/hr.",
+            "identifier": "f406e796-17d9-4465-b8a7-00d966a4ba74",
+            "kind": "FDA_LABEL",
+            "label": "Ciprofloxacin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ciprofloxacin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H18FN3O3",
+          "source": {
+            "excerpt": "Its empirical formula is C 17 H 18 FN 3 O 3 and its chemical structure is: Ciprofloxacin is a faint to light yellow crystalline powder with a molecular weight of 331.4.",
+            "identifier": "f406e796-17d9-4465-b8a7-00d966a4ba74",
+            "kind": "FDA_LABEL",
+            "label": "Ciprofloxacin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ciprofloxacin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "331.4",
+          "source": {
+            "excerpt": "Its empirical formula is C 17 H 18 FN 3 O 3 and its chemical structure is: Ciprofloxacin is a faint to light yellow crystalline powder with a molecular weight of 331.4.",
+            "identifier": "f406e796-17d9-4465-b8a7-00d966a4ba74",
+            "kind": "FDA_LABEL",
+            "label": "Ciprofloxacin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "cisapride",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -22464,6 +23080,34 @@
           }
         },
         {
+          "slug": "clindamycin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C18H34ClN2O8PS",
+          "source": {
+            "excerpt": "It has a molecular weight of 504.95, and the molecular formula is C 18 H 34 ClN 2 O 8 PS.",
+            "identifier": "0423007f-28fa-4159-bf58-9174626d2347",
+            "kind": "FDA_LABEL",
+            "label": "Clindamycin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "clindamycin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "504.95",
+          "source": {
+            "excerpt": "It has a molecular weight of 504.95, and the molecular formula is C 18 H 34 ClN 2 O 8 PS.",
+            "identifier": "0423007f-28fa-4159-bf58-9174626d2347",
+            "kind": "FDA_LABEL",
+            "label": "Clindamycin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "clioquinol",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -22957,6 +23601,20 @@
             "label": "FDA label for clopidogrel tablets (openFDA)",
             "locator": "12.3 Pharmacokinetics — Elimination",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "clopidogrel",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "419.9",
+          "source": {
+            "excerpt": "The molecular formula of clopidogrel bisulfate is C 16 H 16 ClNO 2 S•H 2 SO 4 and its molecular weight is 419.9.",
+            "identifier": "4cd07a3c-9673-4aa0-b76a-d79df2399ee1",
+            "kind": "FDA_LABEL",
+            "label": "Clopidogrel label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -23600,6 +24258,20 @@
           }
         },
         {
+          "slug": "codeine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "750.85 g/mol",
+          "source": {
+            "excerpt": "Its molecular formula is (C 18 H 21 NO 3 ) 2 • H 2 SO 4 • 3H 2 O and its molecular weight is 750.85 g/mol.",
+            "identifier": "5819bdf7-300e-45b8-8f3a-447b53656293",
+            "kind": "FDA_LABEL",
+            "label": "Codeine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "codeine-polistirex",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -23904,6 +24576,34 @@
             "label": "FDA label for colchicine tablets (openFDA)",
             "locator": "12.3 Pharmacokinetics — Elimination/Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "colchicine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C22H25NO6",
+          "source": {
+            "excerpt": "11 DESCRIPTION Colchicine is an alkaloid chemically described as (S)N-(5,6,7,9-tetrahydro-1,2,3, 10-tetramethoxy-9-oxobenzo [alpha] heptalen-7-yl) acetamide with a molecular formula of C 22 H 25 NO 6 and a molecular weight of 399.4.",
+            "identifier": "d010a735-1a20-23fe-e053-2995a90abe0f",
+            "kind": "FDA_LABEL",
+            "label": "Colchicine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "colchicine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "399.4",
+          "source": {
+            "excerpt": "11 DESCRIPTION Colchicine is an alkaloid chemically described as (S)N-(5,6,7,9-tetrahydro-1,2,3, 10-tetramethoxy-9-oxobenzo [alpha] heptalen-7-yl) acetamide with a molecular formula of C 22 H 25 NO 6 and a molecular weight of 399.4.",
+            "identifier": "d010a735-1a20-23fe-e053-2995a90abe0f",
+            "kind": "FDA_LABEL",
+            "label": "Colchicine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -26964,6 +27664,34 @@
           }
         },
         {
+          "slug": "dapagliflozin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C21H25ClO6",
+          "source": {
+            "excerpt": "The empirical formula is C 21 H 25 ClO 6 and the molecular weight is 408.88.",
+            "identifier": "08baca21-e39e-4e61-961f-d89432fe8007",
+            "kind": "FDA_LABEL",
+            "label": "Dapagliflozin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "dapagliflozin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "408.88",
+          "source": {
+            "excerpt": "The empirical formula is C 21 H 25 ClO 6 and the molecular weight is 408.88.",
+            "identifier": "08baca21-e39e-4e61-961f-d89432fe8007",
+            "kind": "FDA_LABEL",
+            "label": "Dapagliflozin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "dapagliflozin-2-3-butanediol",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -29952,6 +30680,34 @@
           }
         },
         {
+          "slug": "dexamethasone",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C22H29FO5",
+          "source": {
+            "excerpt": "It has a molecular formula of C 22 H 29 FO 5 and a molecular weight of 392.47 g/mol.",
+            "identifier": "7514e6b8-c33f-4fbf-8810-ef520e1eb4bd",
+            "kind": "FDA_LABEL",
+            "label": "Dexamethasone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "dexamethasone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "392.47 g/mol",
+          "source": {
+            "excerpt": "It has a molecular formula of C 22 H 29 FO 5 and a molecular weight of 392.47 g/mol.",
+            "identifier": "7514e6b8-c33f-4fbf-8810-ef520e1eb4bd",
+            "kind": "FDA_LABEL",
+            "label": "Dexamethasone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "dexchlorpheniramine",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -30796,6 +31552,34 @@
           }
         },
         {
+          "slug": "diclofenac",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C14H10Cl2NNaO2",
+          "source": {
+            "excerpt": "Its molecular formula is C 14 H 10 Cl 2 NNaO 2 and it has the following structural formula: Each 1 mL of solution contains 16.05 mg of diclofenac sodium.",
+            "identifier": "0379c918-1717-40ab-81cc-268116950fd5",
+            "kind": "FDA_LABEL",
+            "label": "Diclofenac label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "diclofenac",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "318.14",
+          "source": {
+            "excerpt": "The molecular weight is 318.14.",
+            "identifier": "0379c918-1717-40ab-81cc-268116950fd5",
+            "kind": "FDA_LABEL",
+            "label": "Diclofenac label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "diclofenac-epolamine",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -31359,6 +32143,34 @@
           }
         },
         {
+          "slug": "digoxin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C41H64O14",
+          "source": {
+            "excerpt": "Its molecular formula is C 41 H 64 O 14 , its molecular weight is 780.95, and its structural formula is: Digoxin exists as clear to white odorless crystals or white, odorless crystalline powder that melts with decomposition above 230°C.",
+            "identifier": "28f2c2cd-e58c-aea2-e063-6394a90a73e7",
+            "kind": "FDA_LABEL",
+            "label": "Digoxin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "digoxin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "780.95",
+          "source": {
+            "excerpt": "Its molecular formula is C 41 H 64 O 14 , its molecular weight is 780.95, and its structural formula is: Digoxin exists as clear to white odorless crystals or white, odorless crystalline powder that melts with decomposition above 230°C.",
+            "identifier": "28f2c2cd-e58c-aea2-e063-6394a90a73e7",
+            "kind": "FDA_LABEL",
+            "label": "Digoxin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "dihomo-gamma-linolenic-acid",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -31655,6 +32467,20 @@
             "label": "FDA label for diltiazem hydrochloride extended-release capsules (openFDA)",
             "locator": "clinical_pharmacology Pharmacokinetics and Metabolism",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "diltiazem",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "450.98",
+          "source": {
+            "excerpt": "It has a molecular weight of 450.98.",
+            "identifier": "73b3607a-99d0-44d8-92ef-0074684c9d7d",
+            "kind": "FDA_LABEL",
+            "label": "Diltiazem label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -33766,6 +34592,34 @@
           }
         },
         {
+          "slug": "doxycycline",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C22H24N2O8•H2O",
+          "source": {
+            "excerpt": "ets and 18 mg enteric coated pellets) that together provide a dose of 40 mg of anhydrous doxycycline (C 22 H 24 N 2 O 8 ) The structural formula of doxycycline, USP is: with an empirical formula of C 22 H 24 N 2 O 8 •H 2 O and a molecular weight of 462.45.",
+            "identifier": "81c5a7fc-3fe0-40b2-bae0-c79eb0b27697",
+            "kind": "FDA_LABEL",
+            "label": "Doxycycline label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "doxycycline",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "462.45",
+          "source": {
+            "excerpt": "together provide a dose of 40 mg of anhydrous doxycycline (C 22 H 24 N 2 O 8 ) The structural formula of doxycycline, USP is: with an empirical formula of C 22 H 24 N 2 O 8 •H 2 O and a molecular weight of 462.45.",
+            "identifier": "81c5a7fc-3fe0-40b2-bae0-c79eb0b27697",
+            "kind": "FDA_LABEL",
+            "label": "Doxycycline label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "dromostanolone",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -34105,6 +34959,20 @@
           }
         },
         {
+          "slug": "dulaglutide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "63 kilodaltons",
+          "source": {
+            "excerpt": "The overall molecular weight of dulaglutide is approximately 63 kilodaltons.",
+            "identifier": "6088c732-afa1-4fee-9206-22e52baf4731",
+            "kind": "FDA_LABEL",
+            "label": "Dulaglutide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "duloxetine",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -34267,6 +35135,20 @@
             "label": "FDA label for DUPIXENT (dupilumab) injection (openFDA)",
             "locator": "clinical_pharmacology 12.3 Elimination",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "dupilumab",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "147 kDa",
+          "source": {
+            "excerpt": "Dupilumab has an approximate molecular weight of 147 kDa.",
+            "identifier": "595f437d-2729-40bb-9c62-c8ece1f82780",
+            "kind": "FDA_LABEL",
+            "label": "Dupilumab label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -36691,6 +37573,34 @@
             "label": "FDA label for SYNJARDY (empagliflozin and metformin) (openFDA)",
             "locator": "12.3 Pharmacokinetics — Empagliflozin, Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "empagliflozin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C23H27ClO7",
+          "source": {
+            "excerpt": "Its molecular formula is C 23 H 27 ClO 7 and the molecular weight is 450.91.",
+            "identifier": "5777b8a8-ada6-4950-8548-43a1de11f075",
+            "kind": "FDA_LABEL",
+            "label": "Empagliflozin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "empagliflozin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "450.91",
+          "source": {
+            "excerpt": "Its molecular formula is C 23 H 27 ClO 7 and the molecular weight is 450.91.",
+            "identifier": "5777b8a8-ada6-4950-8548-43a1de11f075",
+            "kind": "FDA_LABEL",
+            "label": "Empagliflozin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -39449,6 +40359,34 @@
           }
         },
         {
+          "slug": "escitalopram",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C20H21FN2O•C2H2O4",
+          "source": {
+            "excerpt": "Escitalopram oxalate is designated S-(+)-1-[3(dimethyl-amino)propyl]-1-( p -fluorophenyl)-5-phthalancarbonitrile oxalate with the following structural formula: The molecular formula is C 20 H 21 FN 2 O • C 2 H 2 O 4 and the molecular weight is 414.40.",
+            "identifier": "10b25a10-c5e7-479b-a9f5-7eeafd802323",
+            "kind": "FDA_LABEL",
+            "label": "Escitalopram label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "escitalopram",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "414.40",
+          "source": {
+            "excerpt": "Escitalopram oxalate is designated S-(+)-1-[3(dimethyl-amino)propyl]-1-( p -fluorophenyl)-5-phthalancarbonitrile oxalate with the following structural formula: The molecular formula is C 20 H 21 FN 2 O • C 2 H 2 O 4 and the molecular weight is 414.40.",
+            "identifier": "10b25a10-c5e7-479b-a9f5-7eeafd802323",
+            "kind": "FDA_LABEL",
+            "label": "Escitalopram label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "esketamine",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -39655,6 +40593,62 @@
             "identifier": "6bb9921c-a0f9-309f-e053-2a91aa0a1e5e",
             "kind": "FDA_LABEL",
             "label": "Esmolol label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "esomeprazole",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "10%",
+          "source": {
+            "excerpt": "Digoxin Concomitant administration of omeprazole 20 mg once daily and digoxin in healthy subjects increased the bioavailability of digoxin by 10% (30% in two subjects) [see Drug Interactions (7) ].",
+            "identifier": "9354958c-e997-41c8-8605-23f0a58993c0",
+            "kind": "FDA_LABEL",
+            "label": "Esomeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "esomeprazole",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "16 L",
+          "source": {
+            "excerpt": "The apparent volume of distribution at steady state in healthy subjects is approximately 16 L.",
+            "identifier": "9354958c-e997-41c8-8605-23f0a58993c0",
+            "kind": "FDA_LABEL",
+            "label": "Esomeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "esomeprazole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H18N3O3SNa",
+          "source": {
+            "excerpt": "Its empirical formula is C 17 H 18 N 3 O 3 SNa with molecular weight of 367.4 g/mol (sodium salt) and 345.4 g/mol (parent compound).",
+            "identifier": "9354958c-e997-41c8-8605-23f0a58993c0",
+            "kind": "FDA_LABEL",
+            "label": "Esomeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "esomeprazole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "367.4 g/mol",
+          "source": {
+            "excerpt": "Its empirical formula is C 17 H 18 N 3 O 3 SNa with molecular weight of 367.4 g/mol (sodium salt) and 345.4 g/mol (parent compound).",
+            "identifier": "9354958c-e997-41c8-8605-23f0a58993c0",
+            "kind": "FDA_LABEL",
+            "label": "Esomeprazole label",
             "retrievedAt": "2026-08-30"
           }
         },
@@ -39974,6 +40968,20 @@
             "label": "FDA label for Enbrel (etanercept) injection (openFDA)",
             "locator": "clinical_pharmacology 12.3 Pharmacokinetics",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "etanercept",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "150 kilodaltons",
+          "source": {
+            "excerpt": "It consists of 934 amino acids and has an apparent molecular weight of approximately 150 kilodaltons.",
+            "identifier": "a002b40c-097d-47a5-957f-7a7b1807af7f",
+            "kind": "FDA_LABEL",
+            "label": "Etanercept label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -41451,6 +42459,34 @@
           }
         },
         {
+          "slug": "exenatide",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C184H282N50O60S",
+          "source": {
+            "excerpt": "Exenatide has the empirical formula C 184 H 282 N 50 O 60 S and molecular weight of 4186.6 Daltons.",
+            "identifier": "e6cb5c8f-e97f-4a6a-95a4-939fd2393949",
+            "kind": "FDA_LABEL",
+            "label": "Exenatide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "exenatide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "4186.6 Daltons",
+          "source": {
+            "excerpt": "Exenatide has the empirical formula C 184 H 282 N 50 O 60 S and molecular weight of 4186.6 Daltons.",
+            "identifier": "e6cb5c8f-e97f-4a6a-95a4-939fd2393949",
+            "kind": "FDA_LABEL",
+            "label": "Exenatide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "exenatide-synthetic",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -41503,6 +42539,48 @@
             "identifier": "53d03c03-ebf7-418d-88a8-533eabd2ee4f",
             "kind": "FDA_LABEL",
             "label": "Exenatide Synthetic label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ezetimibe",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "22 hours",
+          "source": {
+            "excerpt": "Both ezetimibe and ezetimibe-glucuronide are eliminated from plasma with a half-life of approximately 22 hours for both ezetimibe and ezetimibe-glucuronide.",
+            "identifier": "57d19491-cba1-4720-b69d-481574459201",
+            "kind": "FDA_LABEL",
+            "label": "Ezetimibe label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ezetimibe",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C24H21F2NO3",
+          "source": {
+            "excerpt": "The molecular formula is C 24 H 21 F 2 NO 3 .",
+            "identifier": "57d19491-cba1-4720-b69d-481574459201",
+            "kind": "FDA_LABEL",
+            "label": "Ezetimibe label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ezetimibe",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "409.4",
+          "source": {
+            "excerpt": "Its molecular weight is 409.4 and its structural formula is: Ezetimibe USP is a white crystalline powder that is freely to very soluble in ethanol, methanol, acetonitrile and acetone and practically insoluble in water.",
+            "identifier": "57d19491-cba1-4720-b69d-481574459201",
+            "kind": "FDA_LABEL",
+            "label": "Ezetimibe label",
             "retrievedAt": "2026-08-30"
           }
         },
@@ -41704,6 +42782,20 @@
             "label": "FDA label for famotidine tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "famotidine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "337.45",
+          "source": {
+            "excerpt": "The empirical formula of famotidine is C 8 H 15 N 7 O 2 S 3 and its molecular weight is 337.45.",
+            "identifier": "900b4fd6-9c62-4b64-b4db-760c49ae0a42",
+            "kind": "FDA_LABEL",
+            "label": "Famotidine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -43404,6 +44496,20 @@
           }
         },
         {
+          "slug": "finasteride",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "372.55",
+          "source": {
+            "excerpt": "The molecular formula of finasteride is C 23 H 36 N 2 O 2 and its molecular weight is 372.55.",
+            "identifier": "cdde1382-a995-4f53-9497-7724d5e25b66",
+            "kind": "FDA_LABEL",
+            "label": "Finasteride label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "finerenone",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -44152,6 +45258,34 @@
           }
         },
         {
+          "slug": "fluconazole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C13H12F2N6O",
+          "source": {
+            "excerpt": "Fluconazole is designated chemically as 2,4-difluoro-α,α 1 -bis(1H-1,2,4-triazol-1-ylmethyl) benzyl alcohol with an empirical formula of C 13 H 12 F 2 N 6 O and molecular weight of 306.3.",
+            "identifier": "afde17e7-b95b-4cd5-97eb-e361724014bd",
+            "kind": "FDA_LABEL",
+            "label": "Fluconazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluconazole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "306.3",
+          "source": {
+            "excerpt": "Fluconazole is designated chemically as 2,4-difluoro-α,α 1 -bis(1H-1,2,4-triazol-1-ylmethyl) benzyl alcohol with an empirical formula of C 13 H 12 F 2 N 6 O and molecular weight of 306.3.",
+            "identifier": "afde17e7-b95b-4cd5-97eb-e361724014bd",
+            "kind": "FDA_LABEL",
+            "label": "Fluconazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "flucytosine",
           "path": "pharmacokinetics.halfLife",
           "module": "pharmacokinetics",
@@ -44573,6 +45707,34 @@
           }
         },
         {
+          "slug": "fluoxetine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H18F3NO•HCl",
+          "source": {
+            "excerpt": "It is designated (±)-N-methyl-3-phenyl-3-[(α,α,α-trifluoro- p -tolyl)oxy]propylamine hydrochloride and has the molecular formula of C 17 H 18 F 3 NO•HCl.",
+            "identifier": "d1c768b5-64bb-4036-aa92-797b3a5f92eb",
+            "kind": "FDA_LABEL",
+            "label": "Fluoxetine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluoxetine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "345.79",
+          "source": {
+            "excerpt": "Its molecular weight is 345.79.",
+            "identifier": "d1c768b5-64bb-4036-aa92-797b3a5f92eb",
+            "kind": "FDA_LABEL",
+            "label": "Fluoxetine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "fluoxymesterone",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -44787,6 +45949,90 @@
             "identifier": "b3558f16-8f9a-4e55-8d9c-836427ebaa57",
             "kind": "FDA_LABEL",
             "label": "Flutemetamol F-18 label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluticasone",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "2%",
+          "source": {
+            "excerpt": "Absorption Indirect calculations indicate that fluticasone propionate delivered by the intranasal route has an absolute bioavailability averaging less than 2%.",
+            "identifier": "549ff4f2-fa68-3dd8-e054-00144ff8d46c",
+            "kind": "FDA_LABEL",
+            "label": "Fluticasone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluticasone",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "7.8 hours",
+          "source": {
+            "excerpt": "Elimination Following intravenous dosing, fluticasone propionate showed polyexponential kinetics and had a terminal elimination half-life of approximately 7.8 hours.",
+            "identifier": "549ff4f2-fa68-3dd8-e054-00144ff8d46c",
+            "kind": "FDA_LABEL",
+            "label": "Fluticasone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluticasone",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "99%",
+          "source": {
+            "excerpt": "The percentage of fluticasone propionate bound to human plasma proteins averaged 99%.",
+            "identifier": "549ff4f2-fa68-3dd8-e054-00144ff8d46c",
+            "kind": "FDA_LABEL",
+            "label": "Fluticasone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluticasone",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "4.2 L/kg",
+          "source": {
+            "excerpt": "The volume of distribution averaged 4.2 L/kg.",
+            "identifier": "549ff4f2-fa68-3dd8-e054-00144ff8d46c",
+            "kind": "FDA_LABEL",
+            "label": "Fluticasone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluticasone",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C25H31F3O5S",
+          "source": {
+            "excerpt": "yl-3-oxoandrosta-1,4-diene-17β-carbothioate, 17-propionate and the following chemical structure: Fluticasone propionate is a white powder with a molecular weight of 500.6, and the empirical formula is C 25 H 31 F 3 O 5 S.",
+            "identifier": "549ff4f2-fa68-3dd8-e054-00144ff8d46c",
+            "kind": "FDA_LABEL",
+            "label": "Fluticasone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "fluticasone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "500.6",
+          "source": {
+            "excerpt": "yl)6α,9-difluoro-11β,17-dihydroxy-16α-methyl-3-oxoandrosta-1,4-diene-17β-carbothioate, 17-propionate and the following chemical structure: Fluticasone propionate is a white powder with a molecular weight of 500.6, and the empirical formula is C 25 H 31 F 3 O 5 S.",
+            "identifier": "549ff4f2-fa68-3dd8-e054-00144ff8d46c",
+            "kind": "FDA_LABEL",
+            "label": "Fluticasone label",
             "retrievedAt": "2026-08-30"
           }
         },
@@ -46034,6 +47280,20 @@
           }
         },
         {
+          "slug": "furosemide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "330.74",
+          "source": {
+            "excerpt": "The structural formula is as follows: Molecular formula: C 12 H 11 CIN 2 O 5 S Molecular weight: 330.74 Furosemide Injection, USP 10 mg/mL is a sterile, non-pyrogenic solution, available in single-dose vials for intravenous and intramuscular injection.",
+            "identifier": "8e0bac29-5a8b-4d4e-93b3-2e21eb3b0650",
+            "kind": "FDA_LABEL",
+            "label": "Furosemide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "futibatinib",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -46191,6 +47451,20 @@
             "label": "FDA label, Gabapentin capsules",
             "locator": "pharmacokinetics 12.3",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "gabapentin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "171.24",
+          "source": {
+            "excerpt": "The molecular formula of gabapentin is C 9 H 17 NO 2 and the molecular weight is 171.24.",
+            "identifier": "b6db5ce9-bd4b-420d-88a7-df9d46144c81",
+            "kind": "FDA_LABEL",
+            "label": "Gabapentin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -48573,6 +49847,20 @@
           }
         },
         {
+          "slug": "glimepiride",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "490.62",
+          "source": {
+            "excerpt": "Chemically, glimepiride is identified as 1-[[p-[2-(3-ethyl-4-methyl-2-oxo-3-pyrroline-1-carboxamido)ethyl]phenyl]sulfonyl]-3-(trans-4-methylcyclohexyl)urea (C 24 H 34 N 4 O 5 S) with a molecular weight of 490.62.",
+            "identifier": "489dc098-0ac7-4f8e-b258-326229539c7c",
+            "kind": "FDA_LABEL",
+            "label": "Glimepiride label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "glipizide",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -48675,6 +49963,34 @@
             "label": "FDA label for glipizide tablets (openFDA)",
             "locator": "clinical_pharmacology, Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "glipizide",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C21H27N5O4S",
+          "source": {
+            "excerpt": "The molecular formula is C 21 H 27 N 5 O 4 S; the molecular weight is 445.55; the structural formula is shown below: Glipizide is a white or almost white crystalline odorless powder with a pKa of 5.9.",
+            "identifier": "0effd04d-172c-5d8c-e063-6294a90a93f4",
+            "kind": "FDA_LABEL",
+            "label": "Glipizide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "glipizide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "445.55",
+          "source": {
+            "excerpt": "The molecular formula is C 21 H 27 N 5 O 4 S; the molecular weight is 445.55; the structural formula is shown below: Glipizide is a white or almost white crystalline odorless powder with a pKa of 5.9.",
+            "identifier": "0effd04d-172c-5d8c-e063-6294a90a93f4",
+            "kind": "FDA_LABEL",
+            "label": "Glipizide label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -51875,6 +53191,20 @@
           }
         },
         {
+          "slug": "hydralazine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "196.64",
+          "source": {
+            "excerpt": "It melts at about 275oC, with decomposition, and has a molecular weight of 196.64.",
+            "identifier": "3b61d1b0-c699-67a8-e054-00144ff88e88",
+            "kind": "FDA_LABEL",
+            "label": "Hydralazine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "hydrastine",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -52024,6 +53354,34 @@
           }
         },
         {
+          "slug": "hydrochlorothiazide",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C7H8ClN3O4S2",
+          "source": {
+            "excerpt": "The molecular formula is C 7 H 8 ClN 3 O 4 S 2 and the molecular weight is 297.74.",
+            "identifier": "41aaea48-6c1b-42c8-a96f-5923d49dc934",
+            "kind": "FDA_LABEL",
+            "label": "Hydrochlorothiazide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "hydrochlorothiazide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "297.74",
+          "source": {
+            "excerpt": "The molecular formula is C 7 H 8 ClN 3 O 4 S 2 and the molecular weight is 297.74.",
+            "identifier": "41aaea48-6c1b-42c8-a96f-5923d49dc934",
+            "kind": "FDA_LABEL",
+            "label": "Hydrochlorothiazide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "hydrocodone",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -52143,6 +53501,62 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Hydrocortamate",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "hydrocortisone",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "0.75 hours",
+          "source": {
+            "excerpt": "The median time to peak serum concentration (Tmax) was 0.75 hours post-dose following oral administration.",
+            "identifier": "26c13a5f-7119-4c6a-bf10-fda4e07d7682",
+            "kind": "FDA_LABEL",
+            "label": "Hydrocortisone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "hydrocortisone",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "1.5 hours",
+          "source": {
+            "excerpt": "The terminal half-life of hydrocortisone is about 1.5 hours following intravenous and oral dosing of hydrocortisone tablets and ALKINDI SPRINKLE in dexamethasone-suppressed healthy adult male volunteers. 12 CLINICAL PHARMACOLOGY 12.1 Mechanism of Action Hydrocortisone is a glucocorticoid.",
+            "identifier": "26c13a5f-7119-4c6a-bf10-fda4e07d7682",
+            "kind": "FDA_LABEL",
+            "label": "Hydrocortisone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "hydrocortisone",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C21H30O5",
+          "source": {
+            "excerpt": "The chemical name of hydrocortisone is 11β,17α,21-trihydroxy-pregn-4-ene-3,20-dione and it has the chemical formula of C 21 H 30 O 5 , and molecular weight of 362 g·mol −1 .",
+            "identifier": "26c13a5f-7119-4c6a-bf10-fda4e07d7682",
+            "kind": "FDA_LABEL",
+            "label": "Hydrocortisone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "hydrocortisone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "362",
+          "source": {
+            "excerpt": "The chemical name of hydrocortisone is 11β,17α,21-trihydroxy-pregn-4-ene-3,20-dione and it has the chemical formula of C 21 H 30 O 5 , and molecular weight of 362 g·mol −1 .",
+            "identifier": "26c13a5f-7119-4c6a-bf10-fda4e07d7682",
+            "kind": "FDA_LABEL",
+            "label": "Hydrocortisone label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -52517,6 +53931,20 @@
             "label": "FDA label, Hydroxychloroquine sulfate tablets",
             "locator": "pharmacokinetics 12.3",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "hydroxychloroquine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C18H26ClN3O•H2SO4",
+          "source": {
+            "excerpt": "11 DESCRIPTION Hydroxychloroquine sulfate tablet, USP is an antimalarial and antirheumatic drug, chemically described as 2-[[4-[(7-Chloro-4-quinolyl) amino]pentyl] ethylamino] ethanol sulfate (1:1) with the molecular formula C18H26ClN3O•H2SO4.",
+            "identifier": "805a1acd-2e0d-48f1-af6b-0e5d8e06c228",
+            "kind": "FDA_LABEL",
+            "label": "Hydroxychloroquine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -53242,6 +54670,20 @@
             "identifier": "0dfd0279-ff17-4ea9-89be-9803c71bab44",
             "kind": "FDA_LABEL",
             "label": "Ibrutinib label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ibuprofen",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "206.28",
+          "source": {
+            "excerpt": "It has a molecular weight of 206.28.",
+            "identifier": "1eaa7790-f1a1-4f51-b10a-cbbaf033f684",
+            "kind": "FDA_LABEL",
+            "label": "Ibuprofen label",
             "retrievedAt": "2026-08-30"
           }
         },
@@ -54386,6 +55828,20 @@
           }
         },
         {
+          "slug": "inclisiran",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "17,284.72 g/mol",
+          "source": {
+            "excerpt": "The molecular formula of inclisiran sodium is C 529 H 664 F 12 N 176 Na 43 O 316 P 43 S 6 and its molecular weight is 17,284.72 g/mol.",
+            "identifier": "6fc0afca-4513-4c35-b594-6544aee29a44",
+            "kind": "FDA_LABEL",
+            "label": "Inclisiran label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "incobotulinumtoxina",
           "path": "molecularIdentity.molecularWeight",
           "module": "molecularIdentity",
@@ -54755,6 +56211,34 @@
             "label": "FDA label for indomethacin capsules (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "indomethacin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C19H16ClNO4",
+          "source": {
+            "excerpt": "Its molecular formula is C 19 H 16 ClNO 4 , and it has the following chemical structure.",
+            "identifier": "73878376-1d24-423b-9f37-3666e83c95da",
+            "kind": "FDA_LABEL",
+            "label": "Indomethacin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "indomethacin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "357.8",
+          "source": {
+            "excerpt": "The molecular weight is 357.8.",
+            "identifier": "73878376-1d24-423b-9f37-3666e83c95da",
+            "kind": "FDA_LABEL",
+            "label": "Indomethacin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -55146,6 +56630,34 @@
           }
         },
         {
+          "slug": "insulin-aspart",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C256H381N65O79S6",
+          "source": {
+            "excerpt": "Insulin aspart has the empirical formula C 256 H 381 N 65 O 79 S 6 and a molecular weight of 5825.8 Da.",
+            "identifier": "19888a44-b330-462a-864d-338c5893dd63",
+            "kind": "FDA_LABEL",
+            "label": "Insulin Aspart label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "insulin-aspart",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "5825.8 Da",
+          "source": {
+            "excerpt": "Insulin aspart has the empirical formula C 256 H 381 N 65 O 79 S 6 and a molecular weight of 5825.8 Da.",
+            "identifier": "19888a44-b330-462a-864d-338c5893dd63",
+            "kind": "FDA_LABEL",
+            "label": "Insulin Aspart label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "insulin-aspart-protamine-recombinant",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -55440,6 +56952,20 @@
           }
         },
         {
+          "slug": "insulin-glargine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "6063 Da",
+          "source": {
+            "excerpt": "Insulin glargine has a molecular weight of 6063 Da.",
+            "identifier": "d5e07a0c-7e14-4756-9152-9fea485d654a",
+            "kind": "FDA_LABEL",
+            "label": "Insulin glargine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "insulin-glargine-aglr",
           "path": "molecularIdentity.molecularWeight",
           "module": "molecularIdentity",
@@ -55667,6 +57193,34 @@
             "label": "FDA label for ADMELOG (insulin lispro) injection (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "insulin-lispro",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C257H383N65O77S6",
+          "source": {
+            "excerpt": "Chemically, it is Lys(B28), Pro(B29) human insulin analog and has the empirical formula C 257 H 383 N 65 O 77 S 6 and a molecular weight of 5.808 kDa, both identical to that of human insulin.",
+            "identifier": "6ee01d2e-3525-4aa9-8ec1-5fb0f63dd47c",
+            "kind": "FDA_LABEL",
+            "label": "Insulin lispro label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "insulin-lispro",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "5.808 kDa",
+          "source": {
+            "excerpt": "Chemically, it is Lys(B28), Pro(B29) human insulin analog and has the empirical formula C 257 H 383 N 65 O 77 S 6 and a molecular weight of 5.808 kDa, both identical to that of human insulin.",
+            "identifier": "6ee01d2e-3525-4aa9-8ec1-5fb0f63dd47c",
+            "kind": "FDA_LABEL",
+            "label": "Insulin lispro label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -56689,6 +58243,20 @@
             "kind": "PUBCHEM",
             "label": "Compound record for Ipodate",
             "retrievedAt": "2026-08-29"
+          }
+        },
+        {
+          "slug": "ipratropium",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "2 hours",
+          "source": {
+            "excerpt": "The half-life of elimination is about 2 hours after inhalation or intravenous administration.",
+            "identifier": "170e98ef-5560-4068-be7d-e649068eb884",
+            "kind": "FDA_LABEL",
+            "label": "Ipratropium label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -57891,6 +59459,20 @@
           }
         },
         {
+          "slug": "isotretinoin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "300.44",
+          "source": {
+            "excerpt": "It is a yellow to orange crystalline powder with a molecular weight of 300.44.",
+            "identifier": "b2cb63c9-f825-4991-9a2c-6260f1bbcc2c",
+            "kind": "FDA_LABEL",
+            "label": "Isotretinoin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "isovitexin",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -58215,6 +59797,34 @@
             "label": "FDA label for ivabradine tablets (openFDA)",
             "locator": "12.3 Pharmacokinetics, Metabolism and Excretion",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "ivabradine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C27H36N2O5·HCl",
+          "source": {
+            "excerpt": "The molecular formula is C 27 H 36 N 2 O 5 ·HCl, and the molecular weight (free base + HCl) is 505.1 (468.6 + 36.5).",
+            "identifier": "53f15531-796d-442b-a73c-05f048218531",
+            "kind": "FDA_LABEL",
+            "label": "Ivabradine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ivabradine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "505.1",
+          "source": {
+            "excerpt": "The molecular formula is C 27 H 36 N 2 O 5 ·HCl, and the molecular weight (free base + HCl) is 505.1 (468.6 + 36.5).",
+            "identifier": "53f15531-796d-442b-a73c-05f048218531",
+            "kind": "FDA_LABEL",
+            "label": "Ivabradine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -58762,6 +60372,34 @@
             "label": "FDA label for ketoconazole shampoo, 2% (openFDA)",
             "locator": "CLINICAL PHARMACOLOGY",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "ketoconazole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C26H28Cl2N4O4",
+          "source": {
+            "excerpt": "The chemical name for ketoconazole is piperazine, 1-acetyl-4-[4-[[2-(2,4-dichlorophenyl)-2-(1 H -imidazol-1-ylmethyl)-1,3-dioxolan-4-yl]methoxy]phenyl]-, cis - with the molecular formula C 26 H 28 Cl 2 N 4 O 4 and a molecular weight of 531.43.",
+            "identifier": "a878a39d-6d26-4ede-9667-b3e201ffc337",
+            "kind": "FDA_LABEL",
+            "label": "Ketoconazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ketoconazole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "531.43",
+          "source": {
+            "excerpt": "The chemical name for ketoconazole is piperazine, 1-acetyl-4-[4-[[2-(2,4-dichlorophenyl)-2-(1 H -imidazol-1-ylmethyl)-1,3-dioxolan-4-yl]methoxy]phenyl]-, cis - with the molecular formula C 26 H 28 Cl 2 N 4 O 4 and a molecular weight of 531.43.",
+            "identifier": "a878a39d-6d26-4ede-9667-b3e201ffc337",
+            "kind": "FDA_LABEL",
+            "label": "Ketoconazole label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -59407,6 +61045,34 @@
             "label": "FDA label for lamotrigine orally disintegrating tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Metabolism",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "lamotrigine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C9H7N5Cl2",
+          "source": {
+            "excerpt": "Lamotrigine’s chemical name is 3,5-diamino-6-(2,3-dichlorophenyl)- as -triazine, its molecular formula is C9H7N5Cl2, and its molecular weight is 256.1.",
+            "identifier": "4bd7193f-a81a-4909-90c2-7f324fc6ddfd",
+            "kind": "FDA_LABEL",
+            "label": "Lamotrigine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "lamotrigine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "256.1",
+          "source": {
+            "excerpt": "Lamotrigine’s chemical name is 3,5-diamino-6-(2,3-dichlorophenyl)- as -triazine, its molecular formula is C9H7N5Cl2, and its molecular weight is 256.1.",
+            "identifier": "4bd7193f-a81a-4909-90c2-7f324fc6ddfd",
+            "kind": "FDA_LABEL",
+            "label": "Lamotrigine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -61258,6 +62924,34 @@
           }
         },
         {
+          "slug": "levetiracetam",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C8H14N2O2",
+          "source": {
+            "excerpt": "The chemical name of levetiracetam, a single enantiomer, is (-)-(S)-α-ethyl-2-oxo-1-pyrrolidine acetamide, its molecular formula is C 8 H 14 N 2 O 2 and its molecular weight is 170.21.",
+            "identifier": "5e5b0ed3-b104-45a7-bb3e-ee56febb46e8",
+            "kind": "FDA_LABEL",
+            "label": "Levetiracetam label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "levetiracetam",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "170.21",
+          "source": {
+            "excerpt": "The chemical name of levetiracetam, a single enantiomer, is (-)-(S)-α-ethyl-2-oxo-1-pyrrolidine acetamide, its molecular formula is C 8 H 14 N 2 O 2 and its molecular weight is 170.21.",
+            "identifier": "5e5b0ed3-b104-45a7-bb3e-ee56febb46e8",
+            "kind": "FDA_LABEL",
+            "label": "Levetiracetam label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "levobetaxolol",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -62127,6 +63821,34 @@
           }
         },
         {
+          "slug": "levothyroxine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C15H10I4NNaO4",
+          "source": {
+            "excerpt": "Levothyroxine sodium has an empirical formula of C 15 H 10 I 4 NNaO 4 , a molecular weight of 798.85 g/mol (anhydrous), and the following structural formula: Levothyroxine Sodium for Injection is a sterile, preservative-free lyophilized powder consisting of the active ingredient, levothyroxine sodium, and the excipients dibasic sodium phosphate heptahydrate; mannitol; and sodium hydroxide in singl",
+            "identifier": "4e9adc35-3aba-4a0d-9c4e-7e7ee2ffdabd",
+            "kind": "FDA_LABEL",
+            "label": "Levothyroxine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "levothyroxine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "798.85 g/mol",
+          "source": {
+            "excerpt": "Levothyroxine sodium has an empirical formula of C 15 H 10 I 4 NNaO 4 , a molecular weight of 798.85 g/mol (anhydrous), and the following structural formula: Levothyroxine Sodium for Injection is a sterile, preservative-free lyophilized powder consisting of the active ingredient, levothyroxine sodium, and the excipients dibasic sodium phosphate heptahydrate; mannitol; and sodium hydroxide in singl",
+            "identifier": "4e9adc35-3aba-4a0d-9c4e-7e7ee2ffdabd",
+            "kind": "FDA_LABEL",
+            "label": "Levothyroxine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "lidocaine",
           "path": "pharmacokinetics.volumeOfDistribution",
           "module": "pharmacokinetics",
@@ -62892,6 +64614,20 @@
           }
         },
         {
+          "slug": "liraglutide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "3751.2 Daltons",
+          "source": {
+            "excerpt": "The molecular formula of liraglutide is C 172 H 265 N 43 O 51 and the molecular weight is 3751.2 Daltons.",
+            "identifier": "0b898330-eca1-f60a-71d2-b91716e336ed",
+            "kind": "FDA_LABEL",
+            "label": "Liraglutide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "lisdexamfetamine",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -62944,6 +64680,76 @@
             "identifier": "efbde0f6-b848-4664-b741-c6c630e66108",
             "kind": "FDA_LABEL",
             "label": "Lisdexamfetamine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "lisinopril",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "16%",
+          "source": {
+            "excerpt": "The absolute bioavailability of lisinopril is reduced to 16% in patientswith stable NYHA Class II to Class IV congestive heart failure, and the volume of distribution appears to be slightly smaller than that in normal subjects.",
+            "identifier": "3a3d4f6c-9f68-44e4-8cf8-32742e3b5021",
+            "kind": "FDA_LABEL",
+            "label": "Lisinopril label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "lisinopril",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "6 hours",
+          "source": {
+            "excerpt": "After dosesof 0.1 mg per kg to 0.2 mg per kg, steady state peak plasma concentrations of lisinopril occurred within 6 hours and the extent of absorption based on urinary recovery was about 28%.",
+            "identifier": "3a3d4f6c-9f68-44e4-8cf8-32742e3b5021",
+            "kind": "FDA_LABEL",
+            "label": "Lisinopril label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "lisinopril",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "12 hours",
+          "source": {
+            "excerpt": "Upon multiple dosing, lisinopril exhibits an effective half-life of 12 hours.Lisinopril does not appear to be bound to other serum proteins.",
+            "identifier": "3a3d4f6c-9f68-44e4-8cf8-32742e3b5021",
+            "kind": "FDA_LABEL",
+            "label": "Lisinopril label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "lisinopril",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C21H31N3O52H2O",
+          "source": {
+            "excerpt": "Its empirical formula is C21H31N3O52H2O and its structural formula is: Lisinopril, USP is a white to off-white, crystalline powder, with a molecular weight of 441.53.",
+            "identifier": "3a3d4f6c-9f68-44e4-8cf8-32742e3b5021",
+            "kind": "FDA_LABEL",
+            "label": "Lisinopril label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "lisinopril",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "441.53",
+          "source": {
+            "excerpt": "Its empirical formula is C21H31N3O52H2O and its structural formula is: Lisinopril, USP is a white to off-white, crystalline powder, with a molecular weight of 441.53.",
+            "identifier": "3a3d4f6c-9f68-44e4-8cf8-32742e3b5021",
+            "kind": "FDA_LABEL",
+            "label": "Lisinopril label",
             "retrievedAt": "2026-08-30"
           }
         },
@@ -63944,6 +65750,34 @@
             "label": "FDA label for losartan potassium tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Elimination",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "losartan",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C22H22ClKN6O",
+          "source": {
+            "excerpt": "Its molecular formula is C 22 H 22 ClKN 6 O, and its structural formula is: Losartan potassium, USP is a white to off-white powder with a molecular weight of 461.01.",
+            "identifier": "be2432ba-2118-418a-addf-56db9b6c39d2",
+            "kind": "FDA_LABEL",
+            "label": "Losartan label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "losartan",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "461.01",
+          "source": {
+            "excerpt": "Its molecular formula is C 22 H 22 ClKN 6 O, and its structural formula is: Losartan potassium, USP is a white to off-white powder with a molecular weight of 461.01.",
+            "identifier": "be2432ba-2118-418a-addf-56db9b6c39d2",
+            "kind": "FDA_LABEL",
+            "label": "Losartan label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -67433,6 +69267,34 @@
           }
         },
         {
+          "slug": "meloxicam",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C14H13N3O4S2",
+          "source": {
+            "excerpt": "Its empirical formula is C 14 H 13 N 3 O 4 S 2 and it has the following structural formula: Meloxicam is a pale yellow solid, practically insoluble in water, with higher solubility observed in strong acids and bases.",
+            "identifier": "cdd282df-572f-42a7-a1c6-a00e1bb4573d",
+            "kind": "FDA_LABEL",
+            "label": "Meloxicam label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "meloxicam",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "351.4",
+          "source": {
+            "excerpt": "The molecular weight is 351.4.",
+            "identifier": "cdd282df-572f-42a7-a1c6-a00e1bb4573d",
+            "kind": "FDA_LABEL",
+            "label": "Meloxicam label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "melphalan",
           "path": "pharmacokinetics.proteinBinding",
           "module": "pharmacokinetics",
@@ -68299,6 +70161,20 @@
           }
         },
         {
+          "slug": "mesalamine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "153.14",
+          "source": {
+            "excerpt": "The structural formula of mesalamine is: Molecular Weight: 153.14 Molecular Formula: C 7 H 7 NO 3 Each Mesalamine Extended-Release Capsule, USP contains granules composed of mesalamine in a polymer matrix with an enteric coating that dissolves at pH 6 and above.",
+            "identifier": "1e6978d0-01db-477d-a90f-27561777480f",
+            "kind": "FDA_LABEL",
+            "label": "Mesalamine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "mescaline",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -68631,6 +70507,34 @@
           }
         },
         {
+          "slug": "metformin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C4H11N5∙HCl",
+          "source": {
+            "excerpt": "The chemical name of metformin HCl is N, N-dimethylimidodicarbonimidic diamide hydrochloride with a molecular formula of C 4 H 11 N 5 ∙HCl and a molecular weight of 165.63.",
+            "identifier": "07b4ee2a-8435-4d38-a6b0-b919e3424153",
+            "kind": "FDA_LABEL",
+            "label": "Metformin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "metformin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "165.63",
+          "source": {
+            "excerpt": "The chemical name of metformin HCl is N, N-dimethylimidodicarbonimidic diamide hydrochloride with a molecular formula of C 4 H 11 N 5 ∙HCl and a molecular weight of 165.63.",
+            "identifier": "07b4ee2a-8435-4d38-a6b0-b919e3424153",
+            "kind": "FDA_LABEL",
+            "label": "Metformin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "methacholine",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -68757,6 +70661,34 @@
             "label": "FDA label for methadone hydrochloride injection (openFDA)",
             "locator": "clinical_pharmacology, Pharmacokinetics — Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "methadone",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C21H27NO•HCl",
+          "source": {
+            "excerpt": "Its molecular formula is C 21 H 27 NO•HCl and it has a molecular weight of 345.91.",
+            "identifier": "50f14803-78c0-4d19-8b5d-9a9c17582ac1",
+            "kind": "FDA_LABEL",
+            "label": "Methadone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "methadone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "345.91",
+          "source": {
+            "excerpt": "Its molecular formula is C 21 H 27 NO•HCl and it has a molecular weight of 345.91.",
+            "identifier": "50f14803-78c0-4d19-8b5d-9a9c17582ac1",
+            "kind": "FDA_LABEL",
+            "label": "Methadone label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -70412,6 +72344,20 @@
           }
         },
         {
+          "slug": "metoprolol",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "652.8",
+          "source": {
+            "excerpt": "Its structural formula is: Metoprolol succinate, USP is a white crystalline powder with a molecular weight of 652.8.",
+            "identifier": "64c65611-d5c9-4802-9edd-32c7c67ce6f4",
+            "kind": "FDA_LABEL",
+            "label": "Metoprolol label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "metreleptin",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -70604,6 +72550,34 @@
             "label": "FDA label for metronidazole tablets (openFDA)",
             "locator": "CLINICAL PHARMACOLOGY, Metabolism/Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "metronidazole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C6H9N3O3",
+          "source": {
+            "excerpt": "Its structural formula is: The molecular formula is C 6 H 9 N 3 O 3 with a molecular weight of 171.16.",
+            "identifier": "585d2553-e19f-4227-82db-e4c2034863bf",
+            "kind": "FDA_LABEL",
+            "label": "Metronidazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "metronidazole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "171.16",
+          "source": {
+            "excerpt": "Its structural formula is: The molecular formula is C 6 H 9 N 3 O 3 with a molecular weight of 171.16.",
+            "identifier": "585d2553-e19f-4227-82db-e4c2034863bf",
+            "kind": "FDA_LABEL",
+            "label": "Metronidazole label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -71819,6 +73793,34 @@
           }
         },
         {
+          "slug": "mirtazapine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H19N3",
+          "source": {
+            "excerpt": "It is designated 1,2,3,4,10,14b-Hexahydro-2-methylpyrazino[2,1-a]pyrido[2,3-c]benzazepine and has the molecular formula of C 17 H 19 N 3 .",
+            "identifier": "7a5545a0-4dbb-48ac-b0d2-477a8dd4b87e",
+            "kind": "FDA_LABEL",
+            "label": "Mirtazapine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "mirtazapine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "265.36",
+          "source": {
+            "excerpt": "Its molecular weight is 265.36.",
+            "identifier": "7a5545a0-4dbb-48ac-b0d2-477a8dd4b87e",
+            "kind": "FDA_LABEL",
+            "label": "Mirtazapine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "mirvetuximab-soravtansine",
           "path": "pharmacokinetics.halfLife",
           "module": "pharmacokinetics",
@@ -72182,6 +74184,34 @@
             "label": "FDA label for modafinil tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Metabolism and Elimination",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "modafinil",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C15H15NO2S",
+          "source": {
+            "excerpt": "The molecular formula is C 15 H 15 NO 2 S and the molecular weight is 273.35.",
+            "identifier": "5b8496fe-b647-4ce6-aeef-71245712e46f",
+            "kind": "FDA_LABEL",
+            "label": "Modafinil label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "modafinil",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "273.35",
+          "source": {
+            "excerpt": "The molecular formula is C 15 H 15 NO 2 S and the molecular weight is 273.35.",
+            "identifier": "5b8496fe-b647-4ce6-aeef-71245712e46f",
+            "kind": "FDA_LABEL",
+            "label": "Modafinil label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -72820,6 +74850,34 @@
           }
         },
         {
+          "slug": "montelukast",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C35H35ClNNaO3S",
+          "source": {
+            "excerpt": "The empirical formula is C 35 H 35 ClNNaO 3 S, and its molecular weight is 608.18.",
+            "identifier": "c69ab399-8ea6-4002-9271-b6a57c862b14",
+            "kind": "FDA_LABEL",
+            "label": "Montelukast label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "montelukast",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "608.18",
+          "source": {
+            "excerpt": "The empirical formula is C 35 H 35 ClNNaO 3 S, and its molecular weight is 608.18.",
+            "identifier": "c69ab399-8ea6-4002-9271-b6a57c862b14",
+            "kind": "FDA_LABEL",
+            "label": "Montelukast label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "moranoline",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -72959,6 +75017,20 @@
             "label": "FDA label for morphine sulfate tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "morphine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "758.83",
+          "source": {
+            "excerpt": "The chemical name of morphine sulfate is 7,8-didehydro-4,5 alpha-epoxy-17-methylmorphinan-3,6 alpha-diol sulfate (2:1) (salt) pentahydrate with a molecular weight of 758.83.",
+            "identifier": "2da87bfa-11fd-43e3-8fef-d16ebeb15680",
+            "kind": "FDA_LABEL",
+            "label": "Morphine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -74564,6 +76636,20 @@
           }
         },
         {
+          "slug": "naloxone",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "1.24 hours",
+          "source": {
+            "excerpt": "1.85 (33% CV) hours and 2.08 (30% CV) hours; respectively, which was longer than that observed after administrations of a 0.4 mg naloxone hydrochloride intramuscular injection, where the half-life was 1.24 hours (26% CV).",
+            "identifier": "76b5a1ce-e601-457c-ab35-43533bba4394",
+            "kind": "FDA_LABEL",
+            "label": "Naloxone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "naltrexone",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -74666,6 +76752,34 @@
             "label": "FDA label for naltrexone hydrochloride tablets (openFDA)",
             "locator": "clinical_pharmacology Pharmacokinetics",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "naltrexone",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C20H23NO4",
+          "source": {
+            "excerpt": "The molecular formula is C 20 H 23 NO 4 and its molecular weight is 341.41 in the anhydrous form (ie, < 1% maximum water content).",
+            "identifier": "cd11c435-b0f0-4bb9-ae78-60f101f3703f",
+            "kind": "FDA_LABEL",
+            "label": "Naltrexone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "naltrexone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "341.41",
+          "source": {
+            "excerpt": "The molecular formula is C 20 H 23 NO 4 and its molecular weight is 341.41 in the anhydrous form (ie, < 1% maximum water content).",
+            "identifier": "cd11c435-b0f0-4bb9-ae78-60f101f3703f",
+            "kind": "FDA_LABEL",
+            "label": "Naltrexone label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -74849,6 +76963,34 @@
             "label": "FDA label for naproxen and naproxen sodium tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "naproxen",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C14H13NaO3",
+          "source": {
+            "excerpt": "Naproxen sodium has a molecular weight of 252.23 and a molecular formula of C 14 H 13 NaO 3 .",
+            "identifier": "37b264f9-b46d-4635-8fab-246b1e08b653",
+            "kind": "FDA_LABEL",
+            "label": "Naproxen label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "naproxen",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "252.23",
+          "source": {
+            "excerpt": "Naproxen sodium has a molecular weight of 252.23 and a molecular formula of C 14 H 13 NaO 3 .",
+            "identifier": "37b264f9-b46d-4635-8fab-246b1e08b653",
+            "kind": "FDA_LABEL",
+            "label": "Naproxen label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -77519,6 +79661,34 @@
           }
         },
         {
+          "slug": "nitrofurantoin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C8H6N4O5·H2O",
+          "source": {
+            "excerpt": "The molecular formula is C8H6N4O5·H2O and the molecular weight is 256.17.",
+            "identifier": "04af8b73-7e15-7da8-e063-6294a90af284",
+            "kind": "FDA_LABEL",
+            "label": "Nitrofurantoin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "nitrofurantoin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "256.17",
+          "source": {
+            "excerpt": "The molecular formula is C8H6N4O5·H2O and the molecular weight is 256.17.",
+            "identifier": "04af8b73-7e15-7da8-e063-6294a90af284",
+            "kind": "FDA_LABEL",
+            "label": "Nitrofurantoin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "nitrofurantoin-macrocrystalline",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -77701,6 +79871,20 @@
             "label": "FDA label for nitroglycerin sublingual tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Elimination",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "nitroglycerin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "227.09",
+          "source": {
+            "excerpt": "The compound has a molecular weight of 227.09.",
+            "identifier": "e7bbeff1-e4f1-43a6-a1b3-a8c3dcae817d",
+            "kind": "FDA_LABEL",
+            "label": "Nitroglycerin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -78550,6 +80734,34 @@
             "label": "FDA label for olanzapine orally disintegrating tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3, Metabolism and Elimination",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "olanzapine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H20N4S",
+          "source": {
+            "excerpt": "The molecular formula is C 17 H 20 N 4 S, which corresponds to a molecular weight of 312.44.",
+            "identifier": "4d768cfe-3b20-4127-95b9-b4151b28afcc",
+            "kind": "FDA_LABEL",
+            "label": "Olanzapine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "olanzapine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "312.44",
+          "source": {
+            "excerpt": "The molecular formula is C 17 H 20 N 4 S, which corresponds to a molecular weight of 312.44.",
+            "identifier": "4d768cfe-3b20-4127-95b9-b4151b28afcc",
+            "kind": "FDA_LABEL",
+            "label": "Olanzapine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -79487,6 +81699,90 @@
           }
         },
         {
+          "slug": "omeprazole",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "30 to 40%",
+          "source": {
+            "excerpt": "Absolute bioavailability (compared with intravenous administration) is about 30 to 40% at doses of 20 to 40 mg, due in large part to presystemic metabolism.",
+            "identifier": "5a09ce48-7139-4fc7-9b6e-439459c8e866",
+            "kind": "FDA_LABEL",
+            "label": "Omeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "omeprazole",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "0.5 to 3.5 hours",
+          "source": {
+            "excerpt": "Absorption is rapid, with peak plasma concentrations of omeprazole occurring within 0.5 to 3.5 hours.",
+            "identifier": "5a09ce48-7139-4fc7-9b6e-439459c8e866",
+            "kind": "FDA_LABEL",
+            "label": "Omeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "omeprazole",
+          "path": "pharmacokinetics.halfLife",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "0.5 to 1 hour",
+          "source": {
+            "excerpt": "In healthy subjects the plasma half-life is 0.5 to 1 hour, and the total body clearance is 500 to 600 mL/min.",
+            "identifier": "5a09ce48-7139-4fc7-9b6e-439459c8e866",
+            "kind": "FDA_LABEL",
+            "label": "Omeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "omeprazole",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "95%",
+          "source": {
+            "excerpt": "Distribution Protein binding is approximately 95%.",
+            "identifier": "5a09ce48-7139-4fc7-9b6e-439459c8e866",
+            "kind": "FDA_LABEL",
+            "label": "Omeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "omeprazole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H19N3O3S",
+          "source": {
+            "excerpt": "Its molecular formula is C 17 H 19 N 3 O 3 S, with a molecular weight of 345.42.",
+            "identifier": "5a09ce48-7139-4fc7-9b6e-439459c8e866",
+            "kind": "FDA_LABEL",
+            "label": "Omeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "omeprazole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "345.42",
+          "source": {
+            "excerpt": "Its molecular formula is C 17 H 19 N 3 O 3 S, with a molecular weight of 345.42.",
+            "identifier": "5a09ce48-7139-4fc7-9b6e-439459c8e866",
+            "kind": "FDA_LABEL",
+            "label": "Omeprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "omidenepag-isopropyl",
           "path": "molecularIdentity.molecularWeight",
           "module": "molecularIdentity",
@@ -79573,6 +81869,34 @@
             "label": "FDA label for ondansetron hydrochloride tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Metabolism and Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "ondansetron",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C18H19N3O",
+          "source": {
+            "excerpt": "It has the following structural formula: The molecular formula is C 18 H 19 N 3 O representing a molecular weight of 293.4 g/mol.",
+            "identifier": "e436e361-da0f-7d6d-e053-2995a90a10e4",
+            "kind": "FDA_LABEL",
+            "label": "Ondansetron label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ondansetron",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "293.4 g/mol",
+          "source": {
+            "excerpt": "It has the following structural formula: The molecular formula is C 18 H 19 N 3 O representing a molecular weight of 293.4 g/mol.",
+            "identifier": "e436e361-da0f-7d6d-e053-2995a90a10e4",
+            "kind": "FDA_LABEL",
+            "label": "Ondansetron label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -80057,6 +82381,34 @@
             "label": "FDA label for oseltamivir phosphate for oral suspension (openFDA)",
             "locator": "clinical_pharmacology 12.3, Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "oseltamivir",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C16H28N2O4",
+          "source": {
+            "excerpt": "The chemical formula is C 16 H 28 N 2 O 4 (free base).",
+            "identifier": "09e119eb-a8fa-4635-96a7-1b134593cdca",
+            "kind": "FDA_LABEL",
+            "label": "Oseltamivir label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "oseltamivir",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "312.4",
+          "source": {
+            "excerpt": "The molecular weight is 312.4 for oseltamivir free base and 410.4 for oseltamivir phosphate salt.",
+            "identifier": "09e119eb-a8fa-4635-96a7-1b134593cdca",
+            "kind": "FDA_LABEL",
+            "label": "Oseltamivir label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -80952,6 +83304,20 @@
             "label": "FDA label for oxybutynin chloride extended-release tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "oxybutynin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "393.95",
+          "source": {
+            "excerpt": "Its structural formula is: Oxybutynin chloride, USP is a white crystalline, practically odorless powder with a molecular weight of 393.95.",
+            "identifier": "c042bf06-79a3-4dc7-ae05-3ef3cfae9d44",
+            "kind": "FDA_LABEL",
+            "label": "Oxybutynin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -82546,6 +84912,34 @@
           }
         },
         {
+          "slug": "pantoprazole",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C16H14F2N3NaO4S",
+          "source": {
+            "excerpt": "Its empirical formula is C16H14F2N3NaO4S . 1.5 H2O, with a molecular weight of 432.4.",
+            "identifier": "8748a588-a1e5-9dfc-e053-2a95a90a846c",
+            "kind": "FDA_LABEL",
+            "label": "Pantoprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "pantoprazole",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "432.4",
+          "source": {
+            "excerpt": "Its empirical formula is C16H14F2N3NaO4S . 1.5 H2O, with a molecular weight of 432.4.",
+            "identifier": "8748a588-a1e5-9dfc-e053-2a95a90a846c",
+            "kind": "FDA_LABEL",
+            "label": "Pantoprazole label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "papaverine",
           "path": "molecularIdentity.molecularWeight",
           "module": "molecularIdentity",
@@ -83734,6 +86128,20 @@
             "label": "FDA label for KEYTRUDA (pembrolizumab) injection (openFDA)",
             "locator": "clinical_pharmacology 12.3 Elimination",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "pembrolizumab",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "149 kDa",
+          "source": {
+            "excerpt": "Pembrolizumab is a humanized monoclonal IgG4 kappa antibody with an approximate molecular weight of 149 kDa.",
+            "identifier": "9333c79b-d487-4538-a9f0-71b91a02b287",
+            "kind": "FDA_LABEL",
+            "label": "Pembrolizumab label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -89003,6 +91411,34 @@
           }
         },
         {
+          "slug": "prednisone",
+          "path": "pharmacokinetics.tMax",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "6.0 - 6.5 hours",
+          "source": {
+            "excerpt": "Median T max of prednisone delayed-release tablets in 27 healthy male subjects was 6.0 - 6.5 hours compared to 2.0 hours for an immediate-release (IR) formulation.",
+            "identifier": "474974ac-9811-c9f5-4050-58e535351d00",
+            "kind": "FDA_LABEL",
+            "label": "Prednisone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "prednisone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "358.44 g/mol",
+          "source": {
+            "excerpt": "The chemical name for prednisone is 17,21-dihydroxypregna-1,4-diene-3,11,20-trione, and the structural formula is: Prednisone, USP is a white to practically white crystalline powder and has a molecular weight of 358.44 g/mol.",
+            "identifier": "474974ac-9811-c9f5-4050-58e535351d00",
+            "kind": "FDA_LABEL",
+            "label": "Prednisone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "pregabalin",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -89105,6 +91541,34 @@
             "label": "FDA label for pregabalin capsules (openFDA)",
             "locator": "clinical_pharmacology 12.3 Metabolism and Elimination",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "pregabalin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C8H17NO2",
+          "source": {
+            "excerpt": "The molecular formula is C 8 H 17 NO 2 and the molecular weight is 159.23.",
+            "identifier": "47d08b8f-a24d-4159-ab43-2eb67a93559b",
+            "kind": "FDA_LABEL",
+            "label": "Pregabalin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "pregabalin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "159.23",
+          "source": {
+            "excerpt": "The molecular formula is C 8 H 17 NO 2 and the molecular weight is 159.23.",
+            "identifier": "47d08b8f-a24d-4159-ab43-2eb67a93559b",
+            "kind": "FDA_LABEL",
+            "label": "Pregabalin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -91091,6 +93555,34 @@
           }
         },
         {
+          "slug": "quetiapine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C42H50N6O4S2•C4H4O4",
+          "source": {
+            "excerpt": "Its molecular formula is C 42 H 50 N 6 O 4 S 2 •C 4 H 4 O 4 and it has a molecular weight of 883.11 (fumarate salt).",
+            "identifier": "e6e25ef9-2671-489e-8eca-58bedb4f59ab",
+            "kind": "FDA_LABEL",
+            "label": "Quetiapine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "quetiapine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "883.11",
+          "source": {
+            "excerpt": "Its molecular formula is C 42 H 50 N 6 O 4 S 2 •C 4 H 4 O 4 and it has a molecular weight of 883.11 (fumarate salt).",
+            "identifier": "e6e25ef9-2671-489e-8eca-58bedb4f59ab",
+            "kind": "FDA_LABEL",
+            "label": "Quetiapine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "quinapril",
           "path": "pharmacokinetics.halfLife",
           "module": "pharmacokinetics",
@@ -92198,6 +94690,34 @@
             "label": "FDA label for ranolazine extended-release tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Metabolism and Excretion",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "ranolazine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C24H33N3O4",
+          "source": {
+            "excerpt": "It has an empirical formula of C 24 H 33 N 3 O 4 , a molecular weight of 427.54 g/mol, and the following structural formula: Ranolazine is a white to off-white powder.",
+            "identifier": "0cf58732-c242-49b0-8e3f-248778b4458d",
+            "kind": "FDA_LABEL",
+            "label": "Ranolazine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "ranolazine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "427.54 g/mol",
+          "source": {
+            "excerpt": "It has an empirical formula of C 24 H 33 N 3 O 4 , a molecular weight of 427.54 g/mol, and the following structural formula: Ranolazine is a white to off-white powder.",
+            "identifier": "0cf58732-c242-49b0-8e3f-248778b4458d",
+            "kind": "FDA_LABEL",
+            "label": "Ranolazine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -94903,6 +97423,34 @@
           }
         },
         {
+          "slug": "risperidone",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C23H27FN4O2",
+          "source": {
+            "excerpt": "Its molecular formula is C 23 H 27 FN 4 O 2 and its molecular weight is 410.49.",
+            "identifier": "390904c2-fcfa-466e-e063-6394a90a03af",
+            "kind": "FDA_LABEL",
+            "label": "Risperidone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "risperidone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "410.49",
+          "source": {
+            "excerpt": "Its molecular formula is C 23 H 27 FN 4 O 2 and its molecular weight is 410.49.",
+            "identifier": "390904c2-fcfa-466e-e063-6394a90a03af",
+            "kind": "FDA_LABEL",
+            "label": "Risperidone label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "ritlecitinib",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -95069,6 +97617,20 @@
             "label": "FDA label for RITUXAN (rituximab) injection (openFDA)",
             "locator": "clinical_pharmacology 12.3 Rheumatoid Arthritis",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "rituximab",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "145 kD",
+          "source": {
+            "excerpt": "Rituximab has an approximate molecular weight of 145 kD.",
+            "identifier": "b172773b-3905-4a1c-ad95-bab4b6126563",
+            "kind": "FDA_LABEL",
+            "label": "Rituximab label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -95300,6 +97862,20 @@
             "label": "FDA label for XARELTO (rivaroxaban) (openFDA)",
             "locator": "clinical_pharmacology 12.3 Metabolism",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "rivaroxaban",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "435.89",
+          "source": {
+            "excerpt": "The molecular formula of rivaroxaban, USP is C 19 H 18 ClN 3 O 5 S and the molecular weight is 435.89.",
+            "identifier": "e8e4275c-6cbe-4976-8cae-f62baf954d27",
+            "kind": "FDA_LABEL",
+            "label": "Rivaroxaban label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -96241,6 +98817,20 @@
             "label": "FDA label for rosuvastatin calcium tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "rosuvastatin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "1001.14",
+          "source": {
+            "excerpt": "The chemical name for rosuvastatin calcium is bis[(E)-7-[4-(4-fluorophenyl)-6-isopropyl-2-[methyl(methylsulfonyl)amino] pyrimidin-5-yl](3R,5S)-3,5-dihydroxyhept-6-enoic acid] calcium salt with the following structural formula: The empirical formula for rosuvastatin calcium is (C 22 H 27 FN 3 O 6 S) 2 Ca and the molecular weight is 1001.14.",
+            "identifier": "3066f572-e3db-4bf8-b9ee-bd32d9ed8c13",
+            "kind": "FDA_LABEL",
+            "label": "Rosuvastatin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -97256,6 +99846,34 @@
             "label": "FDA label for SEREVENT DISKUS (salmeterol xinafoate inhalation powder) (openFDA)",
             "locator": "clinical_pharmacology 12.3, Elimination",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "salmeterol",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C25H37NO4•C11H8O3",
+          "source": {
+            "excerpt": "It has the chemical name 4-hydroxy-α 1 -[[[6-(4-phenylbutoxy)hexyl]amino]methyl]-1,3-benzenedimethanol, 1-hydroxy-2-naphthalenecarboxylate and the following chemical structure: Salmeterol xinafoate is a white powder with a molecular weight of 603.8, and the empirical formula is C 25 H 37 NO 4 •C 11 H 8 O 3 .",
+            "identifier": "12d9728e-6b5c-4aee-bfb0-745e542ed2e4",
+            "kind": "FDA_LABEL",
+            "label": "Salmeterol label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "salmeterol",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "603.8",
+          "source": {
+            "excerpt": "It has the chemical name 4-hydroxy-α 1 -[[[6-(4-phenylbutoxy)hexyl]amino]methyl]-1,3-benzenedimethanol, 1-hydroxy-2-naphthalenecarboxylate and the following chemical structure: Salmeterol xinafoate is a white powder with a molecular weight of 603.8, and the empirical formula is C 25 H 37 NO 4 •C 11 H 8 O 3 .",
+            "identifier": "12d9728e-6b5c-4aee-bfb0-745e542ed2e4",
+            "kind": "FDA_LABEL",
+            "label": "Salmeterol label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -98679,6 +101297,20 @@
           }
         },
         {
+          "slug": "selenium",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "128.97 g/mol",
+          "source": {
+            "excerpt": "Selenious acid has a molecular weight of 128.97 g/mol and a formula of H 2 SeO 3 .",
+            "identifier": "49324999-50e3-43ed-a8dd-156d6dbedd9f",
+            "kind": "FDA_LABEL",
+            "label": "Selenium label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "selenium-dioxide",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -99192,6 +101824,34 @@
           }
         },
         {
+          "slug": "semaglutide",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C187H291N45O59",
+          "source": {
+            "excerpt": "The molecular formula is C 187 H 291 N 45 O 59 and the molecular weight is 4113.58 g/mol.",
+            "identifier": "42bdd912-2393-44c4-b7e0-47672ca28991",
+            "kind": "FDA_LABEL",
+            "label": "Semaglutide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "semaglutide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "4113.58 g/mol",
+          "source": {
+            "excerpt": "The molecular formula is C 187 H 291 N 45 O 59 and the molecular weight is 4113.58 g/mol.",
+            "identifier": "42bdd912-2393-44c4-b7e0-47672ca28991",
+            "kind": "FDA_LABEL",
+            "label": "Semaglutide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "semax",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -99518,6 +102178,34 @@
             "label": "FDA label for sertraline hydrochloride tablets (openFDA)",
             "locator": "clinical_pharmacology, Pharmacokinetics, Metabolism",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "sertraline",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H17NCl2·HCl",
+          "source": {
+            "excerpt": "The empirical formula C 17 H 17 NCl 2 ·HCl is represented by the following structural formula.",
+            "identifier": "4ddfd698-3d47-fc0e-e063-6394a90accec",
+            "kind": "FDA_LABEL",
+            "label": "Sertraline label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "sertraline",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "342.7",
+          "source": {
+            "excerpt": "Sertraline hydrochloride, USP has a molecular weight of 342.7 and has the following chemical name: (1S-cis)-4-(3,4-dichlorophenyl)-1,2,3,4-tetrahydro-N-methyl-1-naphthalenamine hydrochloride.",
+            "identifier": "4ddfd698-3d47-fc0e-e063-6394a90accec",
+            "kind": "FDA_LABEL",
+            "label": "Sertraline label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -100389,6 +103077,20 @@
           }
         },
         {
+          "slug": "simvastatin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "418.57",
+          "source": {
+            "excerpt": "The empirical formula of simvastatin is C 25 H 38 O 5 and its molecular weight is 418.57.",
+            "identifier": "37860f3f-984e-419a-a262-3bacc766953e",
+            "kind": "FDA_LABEL",
+            "label": "Simvastatin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "siponimod",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -100652,6 +103354,34 @@
             "kind": "FDA_LABEL",
             "label": "FDA label for sitagliptin phosphate tablets, Pharmacokinetics section",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "sitagliptin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C16H15F6N5O•H3PO4",
+          "source": {
+            "excerpt": "The empirical formula is C 16 H 15 F 6 N 5 O•H 3 PO 4 •H 2 O and the molecular weight is 523.32.",
+            "identifier": "62c4f58b-2b28-4825-aeb6-213ab9b7a026",
+            "kind": "FDA_LABEL",
+            "label": "Sitagliptin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "sitagliptin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "523.32",
+          "source": {
+            "excerpt": "The empirical formula is C 16 H 15 F 6 N 5 O•H 3 PO 4 •H 2 O and the molecular weight is 523.32.",
+            "identifier": "62c4f58b-2b28-4825-aeb6-213ab9b7a026",
+            "kind": "FDA_LABEL",
+            "label": "Sitagliptin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -104735,6 +107465,20 @@
           }
         },
         {
+          "slug": "tacrolimus",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C44H69NO12•H2O",
+          "source": {
+            "excerpt": "The chemical structure of tacrolimus is: Tacrolimus USP has an molecular formula of C 44 H 69 NO 12 •H 2 O and a formula weight of 822.03.",
+            "identifier": "61dee012-43af-0e9a-3843-9b9b91e022c4",
+            "kind": "FDA_LABEL",
+            "label": "Tacrolimus label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "tadalafil",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -104816,6 +107560,34 @@
             "kind": "FDA_LABEL",
             "label": "FDA label for tadalafil tablets, Pharmacokinetics section",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "tadalafil",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C22H19N3O4",
+          "source": {
+            "excerpt": "Tadalafil has the molecular formula C 22 H 19 N 3 O 4 representing a molecular weight of 389.41.",
+            "identifier": "dc0a6a03-5ef1-4507-b888-5b559653c3e9",
+            "kind": "FDA_LABEL",
+            "label": "Tadalafil label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "tadalafil",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "389.41",
+          "source": {
+            "excerpt": "Tadalafil has the molecular formula C 22 H 19 N 3 O 4 representing a molecular weight of 389.41.",
+            "identifier": "dc0a6a03-5ef1-4507-b888-5b559653c3e9",
+            "kind": "FDA_LABEL",
+            "label": "Tadalafil label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -105427,6 +108199,20 @@
             "label": "FDA label for tamsulosin hydrochloride capsules (openFDA)",
             "locator": "clinical_pharmacology 12.3 Excretion",
             "retrievedAt": "2026-08-28"
+          }
+        },
+        {
+          "slug": "tamsulosin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "444.98",
+          "source": {
+            "excerpt": "The molecular weight of tamsulosin hydrochloride is 444.98.",
+            "identifier": "f543f5d1-3348-4066-99a4-7a00aee1530d",
+            "kind": "FDA_LABEL",
+            "label": "Tamsulosin label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -107864,6 +110650,34 @@
           }
         },
         {
+          "slug": "terbinafine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C21H26ClN",
+          "source": {
+            "excerpt": "The empirical formula C 21 H 26 ClN with a molecular weight of 327.90, and the following structural formula: Terbinafine hydrochloride is a white to off-white fine crystalline powder.",
+            "identifier": "ab6f50a5-87ce-0819-e053-2a95a90a22b7",
+            "kind": "FDA_LABEL",
+            "label": "Terbinafine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "terbinafine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "327.90",
+          "source": {
+            "excerpt": "The empirical formula C 21 H 26 ClN with a molecular weight of 327.90, and the following structural formula: Terbinafine hydrochloride is a white to off-white fine crystalline powder.",
+            "identifier": "ab6f50a5-87ce-0819-e053-2a95a90a22b7",
+            "kind": "FDA_LABEL",
+            "label": "Terbinafine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "terbium",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -109939,6 +112753,62 @@
           }
         },
         {
+          "slug": "tiotropium",
+          "path": "pharmacokinetics.bioavailability",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "2%",
+          "source": {
+            "excerpt": "Oral solutions of tiotropium have an absolute bioavailability of 2% to 3%.",
+            "identifier": "7b656b14-fcaa-2741-f6f0-e0be48971c02",
+            "kind": "FDA_LABEL",
+            "label": "Tiotropium label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "tiotropium",
+          "path": "pharmacokinetics.proteinBinding",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "72%",
+          "source": {
+            "excerpt": "Distribution The drug has a plasma protein binding of 72% and shows a volume of distribution of 32 L/kg after an intravenous dose to young healthy volunteers.",
+            "identifier": "7b656b14-fcaa-2741-f6f0-e0be48971c02",
+            "kind": "FDA_LABEL",
+            "label": "Tiotropium label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "tiotropium",
+          "path": "pharmacokinetics.volumeOfDistribution",
+          "module": "pharmacokinetics",
+          "state": "VERIFIED",
+          "recordedValue": "32 L/kg",
+          "source": {
+            "excerpt": "Distribution The drug has a plasma protein binding of 72% and shows a volume of distribution of 32 L/kg after an intravenous dose to young healthy volunteers.",
+            "identifier": "7b656b14-fcaa-2741-f6f0-e0be48971c02",
+            "kind": "FDA_LABEL",
+            "label": "Tiotropium label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "tiotropium",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C19H22NO4S2Br∙H2O",
+          "source": {
+            "excerpt": "The structural formula is: Tiotropium bromide (monohydrate) has a molecular mass of 490.4 and a molecular formula of C 19 H 22 NO 4 S 2 Br ∙ H 2 O.",
+            "identifier": "7b656b14-fcaa-2741-f6f0-e0be48971c02",
+            "kind": "FDA_LABEL",
+            "label": "Tiotropium label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "tioxolone",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -110184,6 +113054,34 @@
             "kind": "FDA_LABEL",
             "label": "FDA label for MOUNJARO (tirzepatide) injection, Pharmacokinetics section",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "tirzepatide",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C225H348N48O68",
+          "source": {
+            "excerpt": "The molecular weight is 4813.53 Da and the empirical formula is C 225 H 348 N 48 O 68 .",
+            "identifier": "78aad975-4971-49fa-b4b0-6aa39f76d2e7",
+            "kind": "FDA_LABEL",
+            "label": "Tirzepatide label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "tirzepatide",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "4813.53 Da",
+          "source": {
+            "excerpt": "The molecular weight is 4813.53 Da and the empirical formula is C 225 H 348 N 48 O 68 .",
+            "identifier": "78aad975-4971-49fa-b4b0-6aa39f76d2e7",
+            "kind": "FDA_LABEL",
+            "label": "Tirzepatide label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -111349,6 +114247,34 @@
           }
         },
         {
+          "slug": "topiramate",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C12H21NO8S",
+          "source": {
+            "excerpt": "Topiramate has the molecular formula C 12 H 21 NO 8 S and a molecular weight of 339.36.",
+            "identifier": "2917ba32-3355-4d64-966a-8518e6fafdbe",
+            "kind": "FDA_LABEL",
+            "label": "Topiramate label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "topiramate",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "339.36",
+          "source": {
+            "excerpt": "Topiramate has the molecular formula C 12 H 21 NO 8 S and a molecular weight of 339.36.",
+            "identifier": "2917ba32-3355-4d64-966a-8518e6fafdbe",
+            "kind": "FDA_LABEL",
+            "label": "Topiramate label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "topotecan",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -112469,6 +115395,20 @@
             "label": "FDA label for trazodone hydrochloride tablets (openFDA)",
             "locator": "clinical_pharmacology 12.3 Metabolism",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "trazodone",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "408.32",
+          "source": {
+            "excerpt": "The structural formula is represented as follows: Molecular Formula: C 19 H 22 C l N 5 O•HCl Molecular Weight: 408.32 Each trazodone hydrochloride tablet, USP for oral administration contains 50 mg, 100 mg, 150 mg or 300 mg of trazodone hydrochloride, USP.",
+            "identifier": "9265f4f6-df24-4495-9dbf-e3fcfa4c864d",
+            "kind": "FDA_LABEL",
+            "label": "Trazodone label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -115578,6 +118518,34 @@
           }
         },
         {
+          "slug": "valacyclovir",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C13H20N6O4•HCl",
+          "source": {
+            "excerpt": "It has the following structural formula: Valacyclovir hydrochloride, USP is a white to off-white powder with the molecular formula C 13 H 20 N 6 O 4 •HCl and a molecular weight of 360.80.",
+            "identifier": "3277c17e-f953-2b0a-fe0a-4f5d1aeace9d",
+            "kind": "FDA_LABEL",
+            "label": "Valacyclovir label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "valacyclovir",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "360.80",
+          "source": {
+            "excerpt": "It has the following structural formula: Valacyclovir hydrochloride, USP is a white to off-white powder with the molecular formula C 13 H 20 N 6 O 4 •HCl and a molecular weight of 360.80.",
+            "identifier": "3277c17e-f953-2b0a-fe0a-4f5d1aeace9d",
+            "kind": "FDA_LABEL",
+            "label": "Valacyclovir label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "valbenazine",
           "path": "pharmacokinetics.bioavailability",
           "module": "pharmacokinetics",
@@ -116230,6 +119198,34 @@
           }
         },
         {
+          "slug": "vancomycin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C66H75Cl2N9O24•HCl",
+          "source": {
+            "excerpt": "11 DESCRIPTION Vancomycin hydrochloride for oral solution, USP for oral administration contains the hydrochloride salt of vancomycin, a tricyclic glycopeptide antibiotic derived from Amycolatopsis orientalis (formerly Nocardia orientalis ), which has the chemical formula C 66 H 75 Cl 2 N 9 O 24 •HCl .",
+            "identifier": "b9a7c728-750b-467f-bf61-54dd836dba1b",
+            "kind": "FDA_LABEL",
+            "label": "Vancomycin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "vancomycin",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "1485.71 g/mol",
+          "source": {
+            "excerpt": "The molecular weight of vancomycin hydrochloride is 1485.71 g/mol.",
+            "identifier": "b9a7c728-750b-467f-bf61-54dd836dba1b",
+            "kind": "FDA_LABEL",
+            "label": "Vancomycin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "vandetanib",
           "path": "pharmacokinetics.tMax",
           "module": "pharmacokinetics",
@@ -116877,6 +119873,34 @@
             "kind": "FDA_LABEL",
             "label": "FDA label for venlafaxine tablets, Pharmacokinetics section",
             "retrievedAt": "2026-08-27"
+          }
+        },
+        {
+          "slug": "venlafaxine",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C17H27NO2HCl",
+          "source": {
+            "excerpt": "Venlafaxine is designated (R/S)-1-[2-(dimethylamino)-1-(4-methoxyphenyl)ethyl] cyclohexanol hydrochloride or (±)-1-[α- [(dimethylamino)methyl]-p-­methoxybenzyl] cyclohexanol hydrochloride and has the molecular formula of C 17 H 27 NO 2 HCl.",
+            "identifier": "33068acd-d361-4cd9-b994-02a7865ff04f",
+            "kind": "FDA_LABEL",
+            "label": "Venlafaxine label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "venlafaxine",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "313.86",
+          "source": {
+            "excerpt": "Its molecular weight is 313.86.",
+            "identifier": "33068acd-d361-4cd9-b994-02a7865ff04f",
+            "kind": "FDA_LABEL",
+            "label": "Venlafaxine label",
+            "retrievedAt": "2026-08-30"
           }
         },
         {
@@ -119004,6 +122028,20 @@
           }
         },
         {
+          "slug": "warfarin",
+          "path": "molecularIdentity.molecularFormula",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "C19H15NaO4",
+          "source": {
+            "excerpt": "Its empirical formula is C 19 H 15 NaO 4 , and its structural formula is represented by the following: Crystalline warfarin sodium occurs as a white, odorless, crystalline powder that is discolored by light.",
+            "identifier": "bd6ea120-5d1c-4815-94f2-81e28dc6b7a9",
+            "kind": "FDA_LABEL",
+            "label": "Warfarin label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
           "slug": "wax",
           "path": "molecularIdentity.molecularFormula",
           "module": "molecularIdentity",
@@ -120490,6 +123528,20 @@
             "identifier": "9f1d53d6-e495-4a3a-8bb9-680a15d25034",
             "kind": "FDA_LABEL",
             "label": "Zilucoplan label",
+            "retrievedAt": "2026-08-30"
+          }
+        },
+        {
+          "slug": "zinc",
+          "path": "molecularIdentity.molecularWeight",
+          "module": "molecularIdentity",
+          "state": "VERIFIED",
+          "recordedValue": "287.54 g/mol",
+          "source": {
+            "excerpt": "Zinc sulfate heptahydrate has a molecular weight of 287.54 g/mol and a formula of ZnSO 4 ·7H 2 O.",
+            "identifier": "95aa8437-10bc-4205-939f-d21d8fa52a00",
+            "kind": "FDA_LABEL",
+            "label": "Zinc label",
             "retrievedAt": "2026-08-30"
           }
         },
@@ -152573,16 +155625,16 @@
       "byModule": [
         {
           "module": "molecularIdentity",
-          "checked": 2075,
-          "verified": 2075,
+          "checked": 2263,
+          "verified": 2263,
           "numberAbsent": 0,
           "noExcerpt": 0,
           "verifiedShare": 1
         },
         {
           "module": "pharmacokinetics",
-          "checked": 3310,
-          "verified": 3310,
+          "checked": 3340,
+          "verified": 3340,
           "numberAbsent": 0,
           "noExcerpt": 0,
           "verifiedShare": 1
@@ -152596,12 +155648,12 @@
           "verifiedShare": 1
         }
       ],
-      "statementsChecked": 16524,
-      "statementsVerbatim": 16524,
-      "adverseTermsChecked": 6045,
-      "adverseTermsFound": 6045,
-      "totalChecked": 7599,
-      "totalVerified": 7599,
+      "statementsChecked": 17986,
+      "statementsVerbatim": 17986,
+      "adverseTermsChecked": 6365,
+      "adverseTermsFound": 6365,
+      "totalChecked": 7817,
+      "totalVerified": 7817,
       "overallVerifiedShare": 1,
       "normalisationRules": [
         {

@@ -3,50 +3,50 @@
 Generated deterministically from the checked-in public snapshot by
 `scripts/audit/four-audience-evidence-coverage.ts`.
 
-**Snapshot generated:** 2026-08-31T23:07:00.238Z
+**Snapshot generated:** 2026-09-02T08:11:10.093Z
 
-**Measurement digest:** `dc5189d25ce7084020023023fd0ad256cb4ce8220ef397bb881e3728362fe381`
+**Measurement digest:** `5d4d9e92e72a34ac4407048790fb3b3f6ced0df3cbb1b9aa6eb22caef6845ccb`
 
 This is a source-bound evidence eligibility report. It is not an answer-rate claim. The fixed six
 questions produce 59,130 registry pairs over 9,855 records,
-but a registry pair may be an explicit non-answer. Only 4,319 observed pairs meet
+but a registry pair may be an explicit non-answer. Only 4,579 observed pairs meet
 the conservative source-bound rules below.
 
 ## Ordinary-reader questions
 
 | Question                                             | Canonical intent               | Eligible records | Share | Measurement        |
 | ---------------------------------------------------- | ------------------------------ | ---------------: | ----: | ------------------ |
-| What is this medicine used or studied for?           | `purpose`                      |            2,751 | 27.9% | Exact for snapshot |
+| What is this medicine used or studied for?           | `purpose`                      |            2,879 | 29.2% | Exact for snapshot |
 | What happened to people in the cited study or label? | `bottom-line`, `measurement`   |               18 |  0.2% | Exact for snapshot |
 | How large was the measured result?                   | `results-magnitude`            |               18 |  0.2% | Exact for snapshot |
-| What important harm or limitation was recorded?      | `harms`, `meaning-limitations` |            1,510 | 15.3% | Exact for snapshot |
+| What important harm or limitation was recorded?      | `harms`, `meaning-limitations` |            1,642 | 16.7% | Exact for snapshot |
 | Who might this evidence not apply to?                | `applicability`                |               22 |  0.2% | Exact for snapshot |
 | What is unknown, conflicting or stale?               | `unknowns`                     |                0 |  0.0% | Lower bound        |
 
-**All six:** 0 records. No record meets the first five rules, so the all-six count is exactly zero even though runtime stale bindings are not exported.
+**All six:** 0 records. This is a lower bound because exact runtime stale bindings are not exported.
 
 ## Chemistry identity
 
 | Measure                                            |       Records |
 | -------------------------------------------------- | ------------: |
-| Source-bound recorded-background formula or weight |         3,103 |
+| Source-bound recorded-background formula or weight |         3,218 |
 | Legacy molecular formula or structure              |         3,258 |
 | — with SMILES                                      |         3,204 |
 | — with formula                                     |         3,258 |
-| Union available to the canonical dossier           | 4,307 (43.7%) |
+| Union available to the canonical dossier           | 4,309 (43.7%) |
 
 The union keeps both canonical identity paths. It does not count a name or registry identifier as a
 chemical structure.
 
 ## Biotech research coverage
 
-| Source-bound field set             |  Records |
-| ---------------------------------- | -------: |
-| Recorded use or studied purpose    |    2,751 |
-| Recorded mechanism statement       |    1,632 |
-| Pivotal endpoint and result        |       18 |
-| Study applicability and population |       22 |
-| All four conservative core sets    | 0 (0.0%) |
+| Source-bound field set             |   Records |
+| ---------------------------------- | --------: |
+| Recorded use or studied purpose    |     2,879 |
+| Recorded mechanism statement       |     1,766 |
+| Pivotal endpoint and result        |        18 |
+| Study applicability and population |        22 |
+| All four conservative core sets    | 16 (0.2%) |
 
 This is a conservative structured-coverage measure, not a claim that the full biotech lens is
 complete. Dose, comparator, endpoint hierarchy, adverse events, failures, unreported outcomes,
@@ -89,8 +89,8 @@ The checked-in public snapshot does not export the runtime driftedSources projec
 
 | Measure                                        |   Records |
 | ---------------------------------------------- | --------: |
-| At least one qualifying source excerpt         |     3,093 |
-| **No source excerpt read**                     | **6,762** |
+| At least one qualifying source excerpt         |     3,099 |
+| **No source excerpt read**                     | **6,756** |
 | At least one qualifying source object recorded |     9,855 |
 | **No qualifying source recorded**              |     **0** |
 

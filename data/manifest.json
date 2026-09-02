@@ -18,272 +18,286 @@
     "redirectedIdentities": 5,
     "goneIdentities": 2,
     "completeDossiers": 9852,
-    "incompleteDossiers": 0
+    "incompleteDossiers": 0,
+    "agentRuns": 10,
+    "agentCandidates": 3155,
+    "agentFindings": 42857
   },
   "files": [
     {
-      "schemaVersion": "drugs/2",
-      "mediaType": "application/x-ndjson",
-      "licence": "CC BY 4.0 — see LICENSE-DATA",
-      "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
       "path": "data/drugs/drugs-001.ndjson",
       "rows": 1000,
       "bytes": 11841513,
-      "sha256": "f364bd6db6aaee4111ff1dbb2c7a786ce2935faa9d39eae32fdd5647ac5a58ae"
-    },
-    {
+      "sha256": "f364bd6db6aaee4111ff1dbb2c7a786ce2935faa9d39eae32fdd5647ac5a58ae",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-002.ndjson",
       "rows": 1000,
       "bytes": 11233988,
-      "sha256": "b4510d65579831c3c344883bf1536bfb5fef64c760d15f668915c7f47443ab39"
-    },
-    {
+      "sha256": "b4510d65579831c3c344883bf1536bfb5fef64c760d15f668915c7f47443ab39",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-003.ndjson",
       "rows": 1000,
       "bytes": 11998301,
-      "sha256": "94ee34f8b64491879cd98998c20c62b793c240c8b94d635da0b6f5ae20b06a85"
-    },
-    {
+      "sha256": "94ee34f8b64491879cd98998c20c62b793c240c8b94d635da0b6f5ae20b06a85",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-004.ndjson",
       "rows": 1000,
       "bytes": 15742922,
-      "sha256": "a25bad5702d53c19676e99c46a4c2cc25664141ca20a4483fc97dc4673d03ca3"
-    },
-    {
+      "sha256": "a25bad5702d53c19676e99c46a4c2cc25664141ca20a4483fc97dc4673d03ca3",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-005.ndjson",
       "rows": 1000,
       "bytes": 10920948,
-      "sha256": "0f658f48c4eee49481bb18c01ac8b8b3227a5d361a886d03bf27de85f6b966e7"
-    },
-    {
+      "sha256": "0f658f48c4eee49481bb18c01ac8b8b3227a5d361a886d03bf27de85f6b966e7",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-006.ndjson",
       "rows": 1000,
       "bytes": 13699346,
-      "sha256": "7875b351bbda7f0efb48cd412502024f9ad23d880bd9a3bf1cc9a565a2bbb299"
-    },
-    {
+      "sha256": "7875b351bbda7f0efb48cd412502024f9ad23d880bd9a3bf1cc9a565a2bbb299",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-007.ndjson",
       "rows": 1000,
       "bytes": 14351503,
-      "sha256": "d3a5945151af280b68ac7085d257f2365d230035f389deb8c4c5d763143795f2"
-    },
-    {
+      "sha256": "d3a5945151af280b68ac7085d257f2365d230035f389deb8c4c5d763143795f2",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-008.ndjson",
       "rows": 1000,
       "bytes": 12447566,
-      "sha256": "6a70ef43c77ca05b175f054084739701ef62e58106ee008ffe3d021de92ba896"
-    },
-    {
+      "sha256": "6a70ef43c77ca05b175f054084739701ef62e58106ee008ffe3d021de92ba896",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-009.ndjson",
       "rows": 1000,
       "bytes": 11400424,
-      "sha256": "aad94c2d2800b14817d45a0695296fb39a919816413ee42de86889672fb07ff9"
-    },
-    {
+      "sha256": "aad94c2d2800b14817d45a0695296fb39a919816413ee42de86889672fb07ff9",
       "schemaVersion": "drugs/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
-      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
+    },
+    {
       "path": "data/drugs/drugs-010.ndjson",
       "rows": 857,
       "bytes": 12053663,
-      "sha256": "84922d6440930eabfd2351ccf03b4548add896be80329b9134a4ca70a8b1c106"
+      "sha256": "84922d6440930eabfd2351ccf03b4548add896be80329b9134a4ca70a8b1c106",
+      "schemaVersion": "drugs/2",
+      "mediaType": "application/x-ndjson",
+      "licence": "CC BY 4.0 — see LICENSE-DATA",
+      "description": "Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.",
+      "limitations": "Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine."
     },
     {
+      "path": "data/drugs.csv",
+      "rows": 9857,
+      "bytes": 2280298,
+      "sha256": "e53e401693b92ae6295bc10ebf922c161baed758ddd81ea0e577aa0fd6044bf2",
       "schemaVersion": "drugs-csv/1",
       "mediaType": "text/csv",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Flat identity, regulatory, structure and URL columns.",
-      "limitations": "Deliberately flatter than the NDJSON. Use the NDJSON when you need nested detail.",
-      "path": "data/drugs.csv",
-      "rows": 9857,
-      "bytes": 2280298,
-      "sha256": "e53e401693b92ae6295bc10ebf922c161baed758ddd81ea0e577aa0fd6044bf2"
+      "limitations": "Deliberately flatter than the NDJSON. Use the NDJSON when you need nested detail."
     },
     {
+      "path": "data/recorded-background.ndjson",
+      "rows": 9855,
+      "bytes": 64608666,
+      "sha256": "7d7b03a4e46f7d27ac3b7c271607e457e792674b116eecd1d1d1171a9d707ec7",
       "schemaVersion": "recorded-background/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "The source-bound recorded-background corpus, including complete cross-source reading groups, explicit structured-context status, and source excerpts.",
-      "limitations": "A source count is not a count of independent experiments. Consensus population/formulation context is explicitly unknown until structurally extracted, so distinct readings are not source conflicts. An absent module means only that this corpus does not fill it.",
-      "path": "data/recorded-background.ndjson",
-      "rows": 9855,
-      "bytes": 64608666,
-      "sha256": "7d7b03a4e46f7d27ac3b7c271607e457e792674b116eecd1d1d1171a9d707ec7"
+      "limitations": "A source count is not a count of independent experiments. Consensus population/formulation context is explicitly unknown until structurally extracted, so distinct readings are not source conflicts. An absent module means only that this corpus does not fill it."
     },
     {
+      "path": "data/source-consensus.ndjson",
+      "rows": 1681,
+      "bytes": 14659400,
+      "sha256": "e2142e79e7fe5ac3399f8487efce00acd8353e6844cf1ad469a278e2b5673da9",
       "schemaVersion": "source-consensus/2",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "Complete cross-source readings per field, including printed value, unit, explicit structured-context status, comparison reasons, and every represented source record.",
-      "limitations": "Current label parsing does not structurally extract population or formulation context. Distinct otherwise-comparable readings are therefore insufficient_context, never differ; agree may mean printed-reading agreement only. Source records are complete but are not independent-experiment counts.",
-      "path": "data/source-consensus.ndjson",
-      "rows": 1681,
-      "bytes": 14659400,
-      "sha256": "e2142e79e7fe5ac3399f8487efce00acd8353e6844cf1ad469a278e2b5673da9"
+      "limitations": "Current label parsing does not structurally extract population or formulation context. Distinct otherwise-comparable readings are therefore insufficient_context, never differ; agree may mean printed-reading agreement only. Source records are complete but are not independent-experiment counts."
     },
     {
+      "path": "data/inventory-resolution.ndjson",
+      "rows": 9859,
+      "bytes": 6243503,
+      "sha256": "cc325cce566c76c09470f9afedfb6fd235249a519eb67fbdd50cbec4e7474c41",
       "schemaVersion": "inventory-resolution/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One identity resolution for every original medicine record, with the class rule that fired, the kinds of registry identifier recorded on the row, and the exact evidence behind a non-canonical outcome.",
-      "limitations": "A resolution states which public address a stored record answers at. It is not a medical statement and it is not a quality ranking. A registry identifier held by more than one record is published as a warning code only; the other records are never named. resolutionEvidence can name the record a duplicate resolves to, because both describe one entity.",
-      "path": "data/inventory-resolution.ndjson",
-      "rows": 9859,
-      "bytes": 6243503,
-      "sha256": "cc325cce566c76c09470f9afedfb6fd235249a519eb67fbdd50cbec4e7474c41"
+      "limitations": "A resolution states which public address a stored record answers at. It is not a medical statement and it is not a quality ranking. A registry identifier held by more than one record is published as a warning code only; the other records are never named. resolutionEvidence can name the record a duplicate resolves to, because both describe one entity."
     },
     {
-      "schemaVersion": "dossier-completion/1",
-      "mediaType": "application/x-ndjson",
-      "licence": "CC BY 4.0 — see LICENSE-DATA",
-      "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
       "path": "data/dossier-completion/dossier-completion-001.ndjson",
       "rows": 1000,
       "bytes": 11041052,
-      "sha256": "4beda5f0ddecf302540ffe3b2674423c251df05c1f0c67b12cfaec5c56af8068"
-    },
-    {
+      "sha256": "4beda5f0ddecf302540ffe3b2674423c251df05c1f0c67b12cfaec5c56af8068",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-002.ndjson",
       "rows": 1000,
       "bytes": 10965013,
-      "sha256": "77a5d7370b00bc92bd46deca01eda2470dd6353164f998a95df9266fe8e1731b"
-    },
-    {
+      "sha256": "77a5d7370b00bc92bd46deca01eda2470dd6353164f998a95df9266fe8e1731b",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-003.ndjson",
       "rows": 1000,
       "bytes": 10700224,
-      "sha256": "b0eb12fc4504bacb43d96c1bbf58d27c63fad305b84d34211678b2d5d9e4b25a"
-    },
-    {
+      "sha256": "b0eb12fc4504bacb43d96c1bbf58d27c63fad305b84d34211678b2d5d9e4b25a",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-004.ndjson",
       "rows": 1000,
       "bytes": 10825026,
-      "sha256": "9bf71a59ae34759a426fb5b95d9cc82f28ddcbc6b7cab6b46f643fdcf8323b78"
-    },
-    {
+      "sha256": "9bf71a59ae34759a426fb5b95d9cc82f28ddcbc6b7cab6b46f643fdcf8323b78",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-005.ndjson",
       "rows": 1000,
       "bytes": 10630352,
-      "sha256": "7d3b5aad7e030685f71ea771fcfa2391a7c708ba6dbc46e89a75f2e3f546c969"
-    },
-    {
+      "sha256": "7d3b5aad7e030685f71ea771fcfa2391a7c708ba6dbc46e89a75f2e3f546c969",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-006.ndjson",
       "rows": 1000,
       "bytes": 10786779,
-      "sha256": "0e4130a110ac1ccfaf67720a89dfa298f392342d683db367186b64d445168108"
-    },
-    {
+      "sha256": "0e4130a110ac1ccfaf67720a89dfa298f392342d683db367186b64d445168108",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-007.ndjson",
       "rows": 1000,
       "bytes": 10675034,
-      "sha256": "505fb382fab5b762ad4023cd439cf181e79f880d5db875f830329aedcf089c66"
-    },
-    {
+      "sha256": "505fb382fab5b762ad4023cd439cf181e79f880d5db875f830329aedcf089c66",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-008.ndjson",
       "rows": 1000,
       "bytes": 11032558,
-      "sha256": "9e8dbfe941fb14d63df340116058b93b14f460cc556300a9aafaa050e5f6a1b3"
-    },
-    {
+      "sha256": "9e8dbfe941fb14d63df340116058b93b14f460cc556300a9aafaa050e5f6a1b3",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-009.ndjson",
       "rows": 1000,
       "bytes": 10763770,
-      "sha256": "e3083d6ef0f72f5537c56a97e7d396bfce8e66618b11441f6ea99caf3cbd82ff"
-    },
-    {
+      "sha256": "e3083d6ef0f72f5537c56a97e7d396bfce8e66618b11441f6ea99caf3cbd82ff",
       "schemaVersion": "dossier-completion/1",
       "mediaType": "application/x-ndjson",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
       "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
-      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
       "path": "data/dossier-completion/dossier-completion-010.ndjson",
       "rows": 852,
       "bytes": 9161270,
-      "sha256": "8aa97c8532b89a6ac09c783ea80e995c20b092831f198b2cb95440465aa1b80d"
+      "sha256": "8aa97c8532b89a6ac09c783ea80e995c20b092831f198b2cb95440465aa1b80d",
+      "schemaVersion": "dossier-completion/1",
+      "mediaType": "application/x-ndjson",
+      "licence": "CC BY 4.0 — see LICENSE-DATA",
+      "description": "One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.",
+      "limitations": "A section state describes the sources RNAWiki read, never the medicine. \"Searched; no qualifying record found\" and \"not measured in the recorded sources\" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to."
+    },
+    {
+      "path": "data/agents/current/manifest.json",
+      "rows": 10,
+      "bytes": 83132,
+      "sha256": "5b05a16fef35968d45f4acff08195fedbaef4351e2bee6a4446b8ad4a466c8d1",
+      "schemaVersion": "rnawiki-current-agent-manifest/v1",
+      "mediaType": "application/json",
+      "licence": "CC BY 4.0 — see LICENSE-DATA",
+      "description": "Manifest for the current deterministic detector runs used by the bounded public dataset projections and private evidence-review queue.",
+      "limitations": "The manifest describes detector output, not medical findings. Its nested hashes cover the exact run artifacts; public readers expose only allowlisted projections and never the review queue."
     }
   ]
 }

@@ -124,8 +124,108 @@ returns 200 with `index, follow`; `/r/{slug}` and `/c/{slug}` return 301 to `/d/
 
 ## Implementation record
 
-Pending; each workstream is tracked in the JSON ledger.
+All work is on `release-c1/full-corpus-completion`. Implementation was fanned out to Opus agents
+with disjoint file ownership; contracts, migrations, integration and verification stayed with the
+main session.
+
+### W1 Canonical inventory (done)
+
+- `lib/inventory/` holds the `InventoryResolution` contract, the fixed entity-class rule table and
+  the pure resolver. `scripts/inventory/resolve-inventory.ts` writes `data/inventory/*` and
+  `--check` regenerates and compares; `scripts/inventory/apply-inventory.ts` writes
+  `inventory_resolutions` and one `MERGED` ledger row per duplicate (idempotent; a second run writes
+  nothing).
+- Result over the restored production copy: 9,859 = 9,852 canonical + 5 duplicate redirects + 0
+  historical redirects + 2 justified gone + 0 manual review. The five duplicates are punctuation-only
+  name variants; both placeholders (`tbd`, `header`) now answer 410.
+- Warnings recorded, never merged on: 5,389 shared registry identifiers, 373 alias slugs that
+  spell another record's slug, 50 name-only identities, 2 rows without a background envelope.
+
+### W2 Source registry and auditable searches (done)
+
+- ClinicalTrials.gov: `scripts/dossier-completion/fetch-clinicaltrials-snapshot.ts` took one paged
+  API v2 sweep (601,158 studies, data timestamp 2026-09-01T09:00:05, SHA-256
+  `00b7ca207938fb44fc4d24fd14ce1f4c2cc2e2e718cd1a9fb5c5163ce5858e27`), and
+  `match-trial-registry.ts` ran the exact-name pass for every canonical entity: 3,569 entities
+  matched 224,946 registrations. Unmatched name hits are not attributed.
+- PubMed: `run-pubmed-searches.ts` recorded one exact-phrase clinical-trial-type search per
+  canonical entity (9,852 succeeded, 0 unreachable); `import-pubmed-searches.ts` stored them.
+- Local label archive: `build-label-sections-index.ts` reduced 87,141 labels to their declared
+  substances and read sections (80,443 with prose), so "section absent" and "section read, nothing
+  extracted" are distinguishable from "never read".
+- Curated gap: the 155 hand-curated envelopes had never been passed through the label extractor.
+  `scripts/background/build-curated-gap-extraction.ts` ran the same extractor over them and wrote
+  `data/registries/curated-gap-extraction.json`; 145 records gained modules (population statements
+  139, mechanism 134, safety 132, recorded uses 128, molecular identity 115, interaction signals
+  66, adverse reactions 50, pharmacokinetics 14). A curated module always wins; every attached value
+  is marked `extracted`. Ten supplements without FDA label prose gained nothing. Side effect,
+  recorded for the owner: 50 curated rows no longer show `nameFamily`, because a formula from the
+  row's own label now identifies them.
+
+### W3 Evidence-reading architecture and migrations (done)
+
+- Migration `0022_full_corpus_completion`: `inventory_resolutions`, `dossier_completion_assessments`
+  (status agrees with counts by check constraint), `source_search_records` (unique per record,
+  search kind and search space), `dossier_completion_review_decisions` (append-only trigger).
+- `lib/dossier-completion/types.ts` defines 20 sections, the ten terminal states and six visible
+  non-terminal states; `resolve.ts` is the pure resolver; `view.ts` carries reader labels.
+- The stored assessment and identity resolution travel on `DrugDossier` and
+  `MedicineDossierViewModel`, so the page, `/api/drugs/{slug}` and the exporter read one object.
+
+### W4 Dossier completion and rendering (done)
+
+- `scripts/dossier-completion/run-completion.ts` assessed all 9,852 canonical records; `--check`
+  re-derives every assessment and reports 0 changed. `content_changed_at` moves only when the input
+  digest moves.
+- Final state: 9,852 COMPLETE, 0 INCOMPLETE; 6,494 records carry a suggested human read (a label
+  section exists whose deterministic extraction found no qualifying statement, or posted registry
+  results that have not been transcribed). Section states across the corpus: 12,218 exact
+  source-backed, 57,542 exact structured, 8 source-stated not established, 93,286 searched with no
+  qualifying record, 1,138 results not posted, 32,848 not applicable. Every reviewed-conclusion
+  section is `NOT_APPLICABLE` because no development programme exists.
+- `components/dossier/DossierCompletionAssessment.tsx` renders every section's state, basis,
+  counts and safe source links inside the evidence disclosure, with raw codes in a labelled
+  technical disclosure; the navigator lists it. No other record is ever named or linked.
+
+### W5 Discovery (done in code; production submission pending owner go-ahead)
+
+- Third indexability path `indexable_canonical_record`; sitemap merges publication, legacy and
+  canonical reports one per medicine (9,852 indexable of 9,857 public rows; 5 redirect sources
+  excluded), cached in-process for 15 minutes. Placeholder slugs answer 410 from middleware.
+- Canonical records emit a claim-free JSON-LD graph with `dateModified` from the assessment;
+  metadata descriptions are unique per record and quote only class, counts and search outcome.
+- `scripts/discovery/submit-indexnow.ts` (dry run by default), `monitor-discovery.ts` (resumable;
+  classifies only `DISCOVERY_READY`, never crawled or indexed) and the `--orphan-audit` mode of
+  `scripts/quality/audit-public-search.ts` exist with tests. `llms.txt` and
+  `docs/seo-indexing-policy.md` describe the state vocabulary.
+
+### W6 Review workflows (done)
+
+- `/review-queue/completion` (steward or admin, noindex) lists incomplete records, suggested human
+  reads and identity warnings; `POST /api/completion-review` records an append-only decision bound to
+  the exact assessment digest; stale digests are refused. A decision never changes public content.
+
+### W7 Semantic engine (in progress at the time of writing; see the JSON ledger)
+
+### W8 Testing and release verification
+
+- Unit suite: 2,230 passing after the corpus change (two corpus-pinned agent tests were updated to
+  the new half-life spread and to a corpus-independent leader assertion).
+- Full gate, disposable-database integration tests, production build and browser journeys are
+  recorded in the verification record below when run.
+
+## Decisions recorded for the owner
+
+- Duplicate records redirect rather than merge module data; the canonical record's assessment
+  credits modules recorded on the merged duplicate and says where they live.
+- Every canonical record indexes once assessed, including records whose sections are mostly
+  "searched; no qualifying record found". The page says what was searched and where.
+- The curated-gap attachment runs before the name-family fallback; move it after the
+  `NAME_FAMILY` loop in `scripts/seed-data/background/index.ts` to restore `nameFamily` on the 50
+  affected curated rows.
+- `/review-queue/completion` and `/review-queue/search-indexing` are reachable by URL only; neither
+  is linked from `/review-queue`. Linking them is a one-line owner decision.
 
 ## Verification record
 
-Pending.
+Pending the final gate run; interim results are listed per workstream above.

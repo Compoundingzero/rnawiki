@@ -3,10 +3,10 @@
   "historicalPreRepair": false,
   "eligibleForActiveReview": true,
   "corpus": {
-    "commit": "91a275f3bd1d3e72b25a3e6593c2e89a2c65cc98",
-    "digest": "559289a2a3413d7371833ad7ff365c761098a80924196f86617610fd1a2732cf"
+    "commit": "c895392b989822ee0ecff6d5ba43a3df50d97116",
+    "digest": "072fc25e5f61161491aed8850562f112b35fd4773ab87e1d9e2552dc4078962e"
   },
-  "inputDigest": "5cf1feb612bc97fd5de6d88cc6af639c4f56c72352fed3e1c47532a641df5e45",
+  "inputDigest": "bbba4c283122418bc8399a418f7d29eeaa02278e00797589bd0547e22c747726",
   "neurode": {
     "contract": {
       "owner": "RNAWiki maintainers",
@@ -86,17 +86,17 @@
       "dependencyIds": [],
       "status": "SUCCEEDED",
       "cacheStatus": "DISABLED",
-      "cacheKey": "neurode_cache_a38b434a44e31e96ae07dc0dcd0113d99d515abc6ad55f55e0ea4ead7fb4f61b",
-      "inputDigest": "sha256:ea32944630ee01b0afc173905df9b1bcd4d0b5022d0f58d2a699be5c8bc41b4e",
+      "cacheKey": "neurode_cache_4c13321d43f7e42c9726db5f84f3dd7fc874122bd15f74057cebb08042cfff42",
+      "inputDigest": "sha256:0e945756c0dc5adb274f99a98cb2c7db7be8ba93503f0f24709875b4d79d03b0",
       "inputDigestComplete": true,
-      "outputDigest": "sha256:eeb36accee5601a14977b94299f4587fb97bc09e68a5a532c23367cd236b5a73",
+      "outputDigest": "sha256:b62d6698b24e0c93d950da043657b9190e306fc63014aaed7d1dd4435fe49bf2",
       "recordsConsidered": 9855,
       "recordsUsed": 9855,
       "reasonCodes": [
         "COVERAGE_GAP"
       ],
-      "startedAt": "2026-08-31T00:00:00.000Z",
-      "completedAt": "2026-08-31T00:00:00.000Z",
+      "startedAt": "2026-09-02T00:00:00.000Z",
+      "completedAt": "2026-09-02T00:00:00.000Z",
       "failureCode": null
     }
   },
@@ -113,7 +113,7 @@
   "run": {
     "agent": "coverage-ledger",
     "version": "1.4.0",
-    "runDate": "2026-08-31",
+    "runDate": "2026-09-02",
     "seed": 20260828,
     "parameters": {
       "modulesTracked": 25,
@@ -2281,6 +2281,13 @@
           "name": "Acetaminophen",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "supplementMarket",
             "labelPresence",
             "productListing",
@@ -2289,7 +2296,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 7,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -3284,7 +3291,12 @@
           "name": "Acyclovir",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -3294,7 +3306,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -3328,7 +3340,13 @@
           "name": "Adalimumab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -3337,7 +3355,7 @@
             "registryIdentifiers",
             "anatomyTargets"
           ],
-          "moduleCount": 8,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -5469,18 +5487,23 @@
           "name": "Albuterol",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -9052,13 +9075,18 @@
           "name": "Amitriptyline",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 5,
+          "moduleCount": 10,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -9161,18 +9189,23 @@
           "name": "Amlodipine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -9521,17 +9554,22 @@
           "name": "Amoxicillin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -10083,7 +10121,12 @@
           "name": "Anastrozole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -10093,7 +10136,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -11664,18 +11707,24 @@
           "name": "Apixaban",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "applicability"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -12679,7 +12728,14 @@
           "name": "Aripiprazole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -12691,7 +12747,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -14780,6 +14836,7 @@
           "name": "Aspirin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
             "supplementMarket",
             "labelPresence",
             "productListing",
@@ -14788,7 +14845,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 7,
+          "moduleCount": 8,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -15380,19 +15437,25 @@
           "name": "Atorvastatin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -16442,7 +16505,10 @@
           "name": "Azathioprine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -16454,7 +16520,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -16563,7 +16629,12 @@
           "name": "Azithromycin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -16574,7 +16645,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -26688,15 +26759,22 @@
           "name": "Budesonide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 7,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -26915,7 +26993,14 @@
           "name": "Buprenorphine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -26924,7 +27009,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -26934,18 +27019,23 @@
           "name": "Bupropion",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "titration",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -27025,7 +27115,12 @@
           "name": "Buspirone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -27035,7 +27130,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -27944,6 +28039,12 @@
           "name": "Caffeine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
@@ -27954,7 +28055,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -31140,7 +31241,13 @@
           "name": "Carbamazepine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
@@ -31151,7 +31258,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -32279,19 +32386,24 @@
           "name": "Carvedilol",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -34079,7 +34191,13 @@
           "name": "Celecoxib",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -34092,7 +34210,7 @@
             "pivotalResults",
             "costContext"
           ],
-          "moduleCount": 12,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -34588,7 +34706,12 @@
           "name": "Cephalexin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -34598,7 +34721,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -35091,15 +35214,21 @@
           "name": "Cetirizine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 7,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -39432,18 +39561,24 @@
           "name": "Ciprofloxacin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -40754,17 +40889,21 @@
           "name": "Clindamycin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -41020,7 +41159,10 @@
           "name": "Clonidine",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -41030,7 +41172,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 12,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -41056,18 +41198,23 @@
           "name": "Clopidogrel",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -42111,7 +42258,12 @@
           "name": "Codeine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -42121,7 +42273,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -42454,7 +42606,13 @@
           "name": "Colchicine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -42465,7 +42623,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -46898,7 +47056,11 @@
           "name": "Cyclosporine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -46912,7 +47074,7 @@
             "pivotalResults",
             "costContext"
           ],
-          "moduleCount": 13,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -48031,20 +48193,25 @@
           "name": "Dapagliflozin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "applicability",
             "pivotalResults",
             "costContext"
           ],
-          "moduleCount": 12,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -50429,16 +50596,20 @@
           "name": "Dexamethasone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 12,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -51287,6 +51458,12 @@
           "name": "Diclofenac",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -51297,7 +51474,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -51906,7 +52083,12 @@
           "name": "Digoxin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -51918,7 +52100,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -52126,7 +52308,14 @@
           "name": "Diltiazem",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
@@ -52136,7 +52325,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -52888,13 +53077,16 @@
           "name": "Diphenhydramine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "safety",
+            "populationStatements",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 5,
+          "moduleCount": 8,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -54294,18 +54486,23 @@
           "name": "Doxycycline",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -54752,7 +54949,13 @@
           "name": "Dulaglutide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -54765,7 +54968,7 @@
             "pivotalResults",
             "titration"
           ],
-          "moduleCount": 12,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -54775,7 +54978,11 @@
           "name": "Duloxetine",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -54785,7 +54992,7 @@
             "registryIdentifiers",
             "anatomyTargets"
           ],
-          "moduleCount": 9,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -54854,7 +55061,13 @@
           "name": "Dupilumab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -54866,7 +55079,7 @@
             "pivotalResults",
             "titration"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -57592,7 +57805,13 @@
           "name": "Empagliflozin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -57604,7 +57823,7 @@
             "applicability",
             "pivotalResults"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -60200,16 +60419,21 @@
           "name": "Escitalopram",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -60293,14 +60517,21 @@
           "name": "Esomeprazole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers"
           ],
-          "moduleCount": 6,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -60631,7 +60862,11 @@
           "name": "Etanercept",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -60641,7 +60876,7 @@
             "anatomyTargets",
             "titration"
           ],
-          "moduleCount": 9,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -62434,7 +62669,12 @@
           "name": "Exenatide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -62445,7 +62685,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -62535,6 +62775,12 @@
           "name": "Ezetimibe",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
@@ -62544,7 +62790,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -62843,7 +63089,13 @@
           "name": "Famotidine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -62854,7 +63106,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -64838,19 +65090,23 @@
           "name": "Finasteride",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -65743,7 +65999,13 @@
           "name": "Fluconazole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -65753,7 +66015,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -66137,19 +66399,24 @@
           "name": "Fluoxetine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -66384,9 +66651,17 @@
           "name": "Fluticasone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "registryIdentifiers"
           ],
-          "moduleCount": 1,
+          "moduleCount": 9,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -68129,7 +68404,11 @@
           "name": "Furosemide",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -68141,7 +68420,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -68235,7 +68514,13 @@
           "name": "Gabapentin",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -68246,7 +68531,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -71119,19 +71404,23 @@
           "name": "Glimepiride",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -71156,7 +71445,13 @@
           "name": "Glipizide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -71168,7 +71463,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -71889,6 +72184,9 @@
           "name": "Glycine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "safety",
+            "populationStatements",
             "supplementMarket",
             "labelPresence",
             "productListing",
@@ -71897,7 +72195,7 @@
             "nameFamily",
             "registryIdentifiers"
           ],
-          "moduleCount": 7,
+          "moduleCount": 10,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -74402,6 +74700,10 @@
           "name": "Haloperidol",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "safety",
+            "populationStatements",
             "productVariants",
             "supplementMarket",
             "labelPresence",
@@ -74411,7 +74713,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 12,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -78482,7 +78784,12 @@
           "name": "Hydralazine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -78494,7 +78801,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -78668,7 +78975,12 @@
           "name": "Hydrochlorothiazide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "sourceConsensus",
             "labelPresence",
             "productListing",
@@ -78678,7 +78990,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -78742,6 +79054,12 @@
           "name": "Hydrocortisone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "supplementMarket",
             "labelPresence",
             "productListing",
@@ -78750,7 +79068,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 7,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -79203,17 +79521,22 @@
           "name": "Hydroxychloroquine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -79531,6 +79854,8 @@
           "name": "Hydroxyzine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "safety",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -79540,7 +79865,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 10,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -80100,16 +80425,20 @@
           "name": "Ibuprofen",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 12,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -81012,7 +81341,12 @@
           "name": "Inclisiran",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -81022,7 +81356,7 @@
             "applicability",
             "pivotalResults"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -81616,7 +81950,12 @@
           "name": "Indomethacin",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -81629,7 +81968,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 12,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -82501,7 +82840,12 @@
           "name": "Insulin Aspart",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -82513,7 +82857,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -82681,7 +83025,12 @@
           "name": "Insulin glargine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "supplementMarket",
             "labelPresence",
@@ -82691,7 +83040,7 @@
             "registryIdentifiers",
             "anatomyTargets"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -82918,7 +83267,12 @@
           "name": "Insulin lispro",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -82932,7 +83286,7 @@
             "pivotalResults",
             "costContext"
           ],
-          "moduleCount": 13,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -84085,10 +84439,16 @@
           "name": "Ipratropium",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 2,
+          "moduleCount": 8,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -85318,7 +85678,13 @@
           "name": "Isotretinoin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -85330,7 +85696,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -85514,13 +85880,17 @@
           "name": "Ivabradine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "applicability",
@@ -85528,7 +85898,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 13,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -87337,19 +87707,23 @@
           "name": "Ketoconazole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -89228,7 +89602,14 @@
           "name": "Lamotrigine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -89240,7 +89621,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -91731,7 +92112,12 @@
           "name": "Levetiracetam",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -91742,7 +92128,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -92243,7 +92629,12 @@
           "name": "Levothyroxine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -92252,7 +92643,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -93339,7 +93730,12 @@
           "name": "Liraglutide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -93353,7 +93749,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 13,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -93421,6 +93817,12 @@
           "name": "Lisinopril",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "sourceConsensus",
             "labelPresence",
             "productListing",
@@ -93429,7 +93831,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 7,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -94597,6 +94999,7 @@
           "name": "Loratadine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
@@ -94604,7 +95007,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 6,
+          "moduleCount": 7,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -94680,7 +95083,13 @@
           "name": "Losartan",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -94690,7 +95099,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -99615,6 +100024,7 @@
           "name": "Melatonin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
             "pharmacokinetics",
             "supplementMarket",
             "labelPresence",
@@ -99623,7 +100033,7 @@
             "sourceMaterial",
             "registryIdentifiers"
           ],
-          "moduleCount": 7,
+          "moduleCount": 8,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -99875,7 +100285,12 @@
           "name": "Meloxicam",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -99886,7 +100301,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -100842,7 +101257,14 @@
           "name": "Mesalamine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -100853,7 +101275,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -101081,19 +101503,23 @@
           "name": "Metformin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -101153,19 +101579,24 @@
           "name": "Methadone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -101450,7 +101881,11 @@
           "name": "Methotrexate",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -101462,7 +101897,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -102323,7 +102758,13 @@
           "name": "Metoprolol",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -102334,7 +102775,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -102410,7 +102851,13 @@
           "name": "Metronidazole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "labelPresence",
             "productListing",
@@ -102419,7 +102866,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -103350,17 +103797,23 @@
           "name": "Mirtazapine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -103630,19 +104083,25 @@
           "name": "Modafinil",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -104242,17 +104701,22 @@
           "name": "Montelukast",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -104492,7 +104956,13 @@
           "name": "Morphine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -104502,7 +104972,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -106495,6 +106965,11 @@
           "name": "Naloxone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "sourceConsensus",
             "labelPresence",
             "productListing",
@@ -106503,7 +106978,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 7,
+          "moduleCount": 12,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -106513,7 +106988,13 @@
           "name": "Naltrexone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -106522,7 +107003,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -106659,19 +107140,22 @@
           "name": "Naproxen",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -108953,7 +109437,12 @@
           "name": "Nitrofurantoin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -108964,7 +109453,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -109048,7 +109537,12 @@
           "name": "Nitroglycerin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
@@ -109060,7 +109554,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -109089,7 +109583,11 @@
           "name": "Nivolumab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -109100,7 +109598,7 @@
             "applicability",
             "pivotalResults"
           ],
-          "moduleCount": 10,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -109472,6 +109970,9 @@
           "name": "Nortriptyline",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "safety",
+            "populationStatements",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -109479,7 +109980,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 6,
+          "moduleCount": 9,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -110391,17 +110892,22 @@
           "name": "Olanzapine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -111319,15 +111825,22 @@
           "name": "Omeprazole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers"
           ],
-          "moduleCount": 7,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -111399,19 +111912,24 @@
           "name": "Ondansetron",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -112580,17 +113098,21 @@
           "name": "Oseltamivir",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -113263,19 +113785,24 @@
           "name": "Oxybutynin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -114882,18 +115409,23 @@
           "name": "Pantoprazole",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -116835,7 +117367,12 @@
           "name": "Pembrolizumab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -116846,7 +117383,7 @@
             "applicability",
             "pivotalResults"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -121031,7 +121568,13 @@
           "name": "Pioglitazone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -121043,7 +121586,7 @@
             "applicability",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -125758,6 +126301,12 @@
           "name": "Prednisone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "sourceConsensus",
             "supplementMarket",
             "labelPresence",
@@ -125768,7 +126317,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -125778,18 +126327,23 @@
           "name": "Pregabalin",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -129307,13 +129861,14 @@
           "name": "Quercetin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
             "labelPresence",
             "productListing",
             "supplementIngredient",
             "sourceMaterial",
             "registryIdentifiers"
           ],
-          "moduleCount": 5,
+          "moduleCount": 6,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -129799,17 +130354,21 @@
           "name": "Quetiapine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -130619,7 +131178,13 @@
           "name": "Ranolazine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -130630,7 +131195,7 @@
             "anatomyTargets",
             "titration"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -133642,7 +134207,13 @@
           "name": "Risperidone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -133652,7 +134223,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -133729,7 +134300,13 @@
           "name": "Rituximab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -133738,7 +134315,7 @@
             "registryIdentifiers",
             "anatomyTargets"
           ],
-          "moduleCount": 8,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -133815,20 +134392,24 @@
           "name": "Rivaroxaban",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "applicability",
             "pivotalResults",
             "costContext"
           ],
-          "moduleCount": 12,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -134803,18 +135384,24 @@
           "name": "Rosuvastatin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -136351,7 +136938,14 @@
           "name": "Salmeterol",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -136360,7 +136954,7 @@
             "registryIdentifiers",
             "anatomyTargets"
           ],
-          "moduleCount": 8,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -138572,7 +139166,13 @@
           "name": "Secukinumab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -138584,7 +139184,7 @@
             "pivotalResults",
             "titration"
           ],
-          "moduleCount": 11,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -138805,13 +139405,16 @@
           "name": "Selenium",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "molecularIdentity",
+            "populationStatements",
             "labelPresence",
             "productListing",
             "supplementIngredient",
-            "nameFamily",
             "registryIdentifiers"
           ],
-          "moduleCount": 5,
+          "moduleCount": 8,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -139055,7 +139658,12 @@
           "name": "Semaglutide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -139068,7 +139676,7 @@
             "pivotalResults",
             "titration"
           ],
-          "moduleCount": 12,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -139691,18 +140299,23 @@
           "name": "Sertraline",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -141140,7 +141753,14 @@
           "name": "Simvastatin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -141152,7 +141772,7 @@
             "applicability",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -141354,18 +141974,23 @@
           "name": "Sitagliptin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -144436,7 +145061,11 @@
           "name": "Spironolactone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -144448,7 +145077,7 @@
             "applicability",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -147241,7 +147870,10 @@
           "name": "Sulfasalazine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -147252,7 +147884,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -149476,7 +150108,14 @@
           "name": "Tacrolimus",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -149488,7 +150127,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 18,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -149498,18 +150137,23 @@
           "name": "Tadalafil",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -149955,7 +150599,11 @@
           "name": "Tamoxifen",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -149965,7 +150613,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -149975,19 +150623,24 @@
           "name": "Tamsulosin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "titration",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -150577,13 +151230,14 @@
           "name": "Taurine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
             "labelPresence",
             "productListing",
             "supplementIngredient",
             "sourceMaterial",
             "registryIdentifiers"
           ],
-          "moduleCount": 5,
+          "moduleCount": 6,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -152339,18 +152993,23 @@
           "name": "Terbinafine",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -153411,7 +154070,11 @@
           "name": "Theophylline",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -153423,7 +154086,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 11,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -154767,11 +155430,17 @@
           "name": "Tiotropium",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "sourceMaterial",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 3,
+          "moduleCount": 9,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -154878,7 +155547,12 @@
           "name": "Tirzepatide",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -154891,7 +155565,7 @@
             "pivotalResults",
             "titration"
           ],
-          "moduleCount": 12,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -155662,7 +156336,10 @@
           "name": "Topiramate",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -155673,7 +156350,7 @@
             "titration",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -156188,7 +156865,13 @@
           "name": "Tramadol",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -156198,7 +156881,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -156398,7 +157081,12 @@
           "name": "Trastuzumab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "labelPresence",
             "productListing",
@@ -156409,7 +157097,7 @@
             "pivotalResults",
             "titration"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -156628,7 +157316,14 @@
           "name": "Trazodone",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -156638,7 +157333,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 16,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -160135,7 +160830,12 @@
           "name": "Ustekinumab",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -160148,7 +160848,7 @@
             "pivotalResults",
             "titration"
           ],
-          "moduleCount": 12,
+          "moduleCount": 17,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -160554,7 +161254,12 @@
           "name": "Valacyclovir",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
@@ -160563,7 +161268,7 @@
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 8,
+          "moduleCount": 13,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -160965,17 +161670,22 @@
           "name": "Vancomycin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -161480,18 +162190,22 @@
           "name": "Venlafaxine",
           "route": "CURATED",
           "modulesPresent": [
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -161537,7 +162251,12 @@
           "name": "Verapamil",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "safety",
+            "populationStatements",
+            "commonAdverseReactions",
             "sourceConsensus",
             "labelPresence",
             "productListing",
@@ -161547,7 +162266,7 @@
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 9,
+          "moduleCount": 14,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -163831,18 +164550,23 @@
           "name": "Warfarin",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
             "pharmacokinetics",
+            "molecularIdentity",
+            "interactionSignals",
+            "safety",
+            "populationStatements",
             "productVariants",
             "sourceConsensus",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
-            "nameFamily",
             "registryIdentifiers",
             "anatomyTargets",
             "costContext"
           ],
-          "moduleCount": 10,
+          "moduleCount": 15,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -166378,14 +167102,18 @@
           "name": "Zinc",
           "route": "CURATED",
           "modulesPresent": [
+            "recordedUses",
+            "mechanism",
+            "molecularIdentity",
+            "safety",
+            "populationStatements",
             "labelPresence",
             "productListing",
             "regulatoryApproval",
             "supplementIngredient",
-            "nameFamily",
             "registryIdentifiers"
           ],
-          "moduleCount": 6,
+          "moduleCount": 10,
           "ingredientCount": 0,
           "ingredientsDocumented": 0,
           "provenanceTier": "curated"
@@ -167345,7 +168073,7 @@
         {
           "route": "CURATED",
           "records": 155,
-          "medianModuleCount": 9,
+          "medianModuleCount": 15,
           "cannotSupply": "Nothing structural. A person assembled this record and chose what it holds."
         },
         {
@@ -167430,43 +168158,43 @@
       "byModule": [
         {
           "module": "recordedUses",
-          "records": 2751,
-          "shareOfCorpus": 0.2791476407914764
+          "records": 2879,
+          "shareOfCorpus": 0.2921359715880264
         },
         {
           "module": "mechanism",
-          "records": 1632,
-          "shareOfCorpus": 0.16560121765601218
+          "records": 1766,
+          "shareOfCorpus": 0.17919837645865044
         },
         {
           "module": "pharmacokinetics",
-          "records": 1391,
-          "shareOfCorpus": 0.14114662607813291
+          "records": 1405,
+          "shareOfCorpus": 0.14256722475900557
         },
         {
           "module": "molecularIdentity",
-          "records": 3103,
-          "shareOfCorpus": 0.31486555048198883
+          "records": 3218,
+          "shareOfCorpus": 0.3265347539320142
         },
         {
           "module": "interactionSignals",
-          "records": 691,
-          "shareOfCorpus": 0.07011669203450026
+          "records": 757,
+          "shareOfCorpus": 0.07681380010147133
         },
         {
           "module": "safety",
-          "records": 1510,
-          "shareOfCorpus": 0.15322171486555047
+          "records": 1642,
+          "shareOfCorpus": 0.16661593099949265
         },
         {
           "module": "populationStatements",
-          "records": 1857,
-          "shareOfCorpus": 0.18843226788432269
+          "records": 1996,
+          "shareOfCorpus": 0.20253678335870118
         },
         {
           "module": "commonAdverseReactions",
-          "records": 859,
-          "shareOfCorpus": 0.0871638762049721
+          "records": 909,
+          "shareOfCorpus": 0.09223744292237443
         },
         {
           "module": "productVariants",
@@ -167520,8 +168248,8 @@
         },
         {
           "module": "nameFamily",
-          "records": 671,
-          "shareOfCorpus": 0.06808726534753932
+          "records": 621,
+          "shareOfCorpus": 0.06301369863013699
         },
         {
           "module": "registryIdentifiers",
