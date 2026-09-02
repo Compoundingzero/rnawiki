@@ -1,0 +1,13 @@
+{
+  "origin": "https://rnawiki.com",
+  "startedAt": "2026-09-02T13:54:16.665Z",
+  "finishedAt": "2026-09-02T13:56:21.117Z",
+  "sitemapDossierUrls": 9852,
+  "checked": 9852,
+  "resumedFromCheckpoint": 9821,
+  "discoveryReady": 9852,
+  "notDiscoveryReady": 0,
+  "apiAvailable": 9852,
+  "blockerCounts": {},
+  "note": "DISCOVERY_READY describes what this origin served. It is not a record of crawling, indexing or citation."
+}
