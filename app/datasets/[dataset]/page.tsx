@@ -143,12 +143,12 @@ function formatCell(
   type: PublicDatasetField['type'],
 ): ReactNode {
   if (value === null || value === undefined || value === '') {
-    return <span className="text-[#86868B]">Not recorded</span>
+    return <span className="text-[#6E6E73]">Not recorded</span>
   }
   if (typeof value === 'boolean') return value ? 'Yes' : 'No'
   if (typeof value === 'number') return number.format(value)
   if (Array.isArray(value)) {
-    if (value.length === 0) return <span className="text-[#86868B]">None recorded</span>
+    if (value.length === 0) return <span className="text-[#6E6E73]">None recorded</span>
     if (type === 'sentence[]') {
       const sentences = value as PublicDatasetSentenceRecord[]
       return (
@@ -283,7 +283,7 @@ function formatCell(
  * hash pushes a 320 px viewport sideways. Break such tokens anywhere; keep prose breaking at words.
  */
 function wrapClass(value: string): string {
-  return /^\S{24,}$/u.test(value.trim()) ? 'break-all' : 'break-words'
+  return /\S{24,}/u.test(value) ? 'break-all' : 'break-words'
 }
 
 function SampleRows({

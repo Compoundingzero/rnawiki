@@ -2253,7 +2253,7 @@ export async function buildInventoryResolution(
         'A resolution states which public address a stored record answers at. It is not a medical statement.',
       'The rules read the fields stored in this snapshot. A record whose registry identifiers were never recorded is resolved on its name alone, which identityConfidence states.',
       'A resolution can change when the record behind it changes. Read the snapshot date before comparing two exports.',
-      'MANUAL_IDENTITY_REVIEW_REQUIRED means a person still has to decide. The row stays published and visible until they do.',
+      'A row whose identity is marked for manual review means a person still has to decide. The row stays published and visible until they do.',
     ],
     rowCount: rows.length,
     filters: [
@@ -2379,8 +2379,8 @@ export async function buildDossierCompletion(
       'Every state describes the sources that were read, never the medicine. "No qualifying evidence after search" is a statement about this corpus and its dated searches, not a safety finding and not an absence of risk. A complete record is one whose applicable sections all carry an explicit state, not one that holds a positive result in every section.',
     methodology: [
       'A section applies to a record according to the kind of record it is. A section that cannot apply is recorded as NOT_APPLICABLE with the rule that decided it.',
-      'Ten states are terminal: the section has an explicit outcome, including outcomes such as NOT_MEASURED, RESULTS_NOT_POSTED and NO_QUALIFYING_EVIDENCE_AFTER_SEARCH.',
-      'Six states are not terminal and keep the record incomplete: UNASSESSED, SEARCH_PENDING, PARSER_FAILED, IDENTITY_UNRESOLVED, ATTRIBUTION_UNRESOLVED and BLOCKED_HUMAN_REVIEW. Each stays visible rather than being hidden or filled in.',
+      'Ten states are terminal: the section has an explicit outcome, including outcomes such as not measured, results not posted, and searched with no qualifying record found.',
+      'Six states are not terminal and keep the record incomplete: not yet assessed, search pending, source read failed, identity unresolved, attribution unresolved, and waiting for a person to review. Each stays visible rather than being hidden or filled in.',
       'The resolver reads stored records, the local source archives and dated registry searches. It never writes text into a section and never turns an absence into a finding.',
       'Only a record that keeps its own address carries an assessment. A record that resolves to another address is described in the record identity dataset instead.',
     ],
