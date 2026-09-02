@@ -265,6 +265,11 @@ main session.
 |                                                 | 2 px at 320 px (a 64-character digest); fixed with a       |
 |                                                 | break-anywhere rule for unbroken tokens and re-run (below) |
 
+After the fix, `tests/e2e/public-datasets.spec.ts` passed 5 of 5 against a fresh production build
+and a disposable database (`17cf337`): every dataset page fits at 320 px and passes the axe
+WCAG 2 A/AA scan; the identity dataset page had also failed a colour-contrast check on its
+"Not recorded" placeholders, which now use the darker grey the page already uses.
+
 Browser checks against the working database on 2026-09-02: `/d/metformin` renders "How complete
 this record is" with 159 items, no link to any other record and a closed technical disclosure; no
 horizontal overflow at 375 px or 320 px; `/d/tbd` answers 410 with `noindex`; `/d/coenzyme-q-10`
