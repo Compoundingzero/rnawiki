@@ -1,16 +1,20 @@
 import { randomUUID } from 'node:crypto'
 
 import AxeBuilder from '@axe-core/playwright'
-import { expect, test, type Page } from '@playwright/test'
+import { expect, test, type Cookie, type Page } from '@playwright/test'
 
-// The sign-in rate limit buckets anonymous requests by client address and user agent, and the
-// whole suite shares one address. Identifying this spec's browser separately gives it its own
-// bucket, so its sign-ins neither exhaust nor are exhausted by another spec's.
-test.use({
-  colorScheme: 'light',
-  userAgent:
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 RNAWikiTest/review-queue-steward-reports',
-})
+// The two steward reports answer 404 to anyone without steward or administrator authority, so the
+// links to them must appear only for an account that can actually open them. This spec proves both
+// halves: a steward sees the labelled links and can follow them, and a visitor without that
+// authority is shown neither.
+//
+// It never calls the sign-in endpoint. Sign-in is rate limited to ten attempts per fifteen minutes
+// for one anonymous caller; `userAgentBucket` reduces every browser to its family, so the whole
+// suite shares a single bucket that no per-spec identity can escape and no retry can clear, and the
+// existing specs already use the whole allowance. Adding even one sign-in here failed an unrelated
+// spec. This seals a session with the application's own configuration instead, which exercises the
+// same session the endpoint would have issued without spending anyone's allowance.
+test.use({ colorScheme: 'light' })
 test.describe.configure({ mode: 'serial' })
 
 const STEWARD_REPORTS = [
@@ -26,75 +30,66 @@ const STEWARD_REPORTS = [
   },
 ] as const
 
-interface TestAccount {
-  id: string
-  email: string
-  password: string
-}
+let stewardId: string | null = null
+let stewardCookies: Cookie[] = []
 
-// This spec needs two signed-in accounts and nothing else. It deliberately does not install the
-// shared evidence fixture: two specs installing it in the same parallel run each create their own
-// programme, and the homepage search then resolves a medicine to whichever one it finds.
-let steward: TestAccount | null = null
-let contributor: TestAccount | null = null
-
-async function createAccounts(): Promise<void> {
-  const [{ db }, schema, { hashPassword }] = await Promise.all([
+async function createStewardSession(): Promise<void> {
+  const [{ db }, schema, { hashPassword }, { sealData }, session] = await Promise.all([
     import('../../db'),
     import('../../db/schema'),
     import('../../lib/auth'),
+    import('iron-session'),
+    import('../../lib/session-options'),
   ])
   const runKey = randomUUID().replaceAll('-', '').slice(0, 12)
-  const password = `Playwright-${runKey}-safe-passphrase!42`
-  const passwordHash = await hashPassword(password)
-  const make = (role: string): TestAccount => ({
-    id: `playwright-steward-reports-${role}-${runKey}`,
-    email: `playwright-steward-reports-${role}-${runKey}@example.test`,
-    password,
-  })
-  steward = make('steward')
-  contributor = make('contributor')
+  stewardId = `playwright-steward-reports-${runKey}`
 
-  await db.insert(schema.users).values([
+  await db.insert(schema.users).values({
+    id: stewardId,
+    email: `playwright-steward-reports-${runKey}@example.test`,
+    // Never used: this spec seals its session directly rather than signing in.
+    passwordHash: await hashPassword(`Playwright-${runKey}-safe-passphrase!42`),
+    name: 'Playwright steward reports reviewer',
+    handle: `playwright-steward-${runKey}`,
+    trustTier: 'steward',
+  })
+
+  const sealed = await sealData(
+    { userId: stewardId },
+    { password: session.sessionOptions.password as string, ttl: session.sessionOptions.ttl },
+  )
+  stewardCookies = [
     {
-      id: steward.id,
-      email: steward.email,
-      passwordHash,
-      name: 'Playwright steward reports reviewer',
-      handle: `playwright-steward-${runKey}`,
-      trustTier: 'steward',
+      name: session.SESSION_COOKIE_NAME,
+      value: sealed,
+      domain: 'localhost',
+      path: '/',
+      expires: -1,
+      httpOnly: true,
+      // The application marks this Secure in production; the test server is plain http, and the
+      // server only ever reads the sealed value, so the flag is irrelevant to what is under test.
+      secure: false,
+      sameSite: 'Lax',
     },
-    {
-      id: contributor.id,
-      email: contributor.email,
-      passwordHash,
-      name: 'Playwright steward reports contributor',
-      handle: `playwright-contributor-${runKey}`,
-    },
-  ])
+  ]
 }
 
-async function removeAccounts(): Promise<void> {
-  const ids = [steward?.id, contributor?.id].filter((id): id is string => typeof id === 'string')
-  if (ids.length === 0) return
-  const [{ db }, schema, { inArray }] = await Promise.all([
+async function removeSteward(): Promise<void> {
+  if (!stewardId) return
+  const [{ db }, schema, { eq }] = await Promise.all([
     import('../../db'),
     import('../../db/schema'),
     import('drizzle-orm'),
   ])
-  // These accounts author nothing, so no append-only audit row references them.
-  await db.delete(schema.users).where(inArray(schema.users.id, ids))
-  steward = null
-  contributor = null
+  // This account authors nothing, so no append-only audit row references it.
+  await db.delete(schema.users).where(eq(schema.users.id, stewardId))
+  stewardId = null
+  stewardCookies = []
 }
 
-async function loginAs(page: Page, account: TestAccount) {
-  const response = await page.request.post('/api/auth/login', {
-    data: { email: account.email, password: account.password },
-  })
-  const body = await response.text()
-  expect(response.status(), body).toBe(200)
-  expect(JSON.parse(body)).toMatchObject({ user: { id: account.id } })
+async function openAsSteward(page: Page): Promise<void> {
+  await page.context().addCookies(stewardCookies)
+  await page.goto('/review-queue')
 }
 
 async function expectNoHorizontalOverflow(page: Page, label: string): Promise<void> {
@@ -104,12 +99,11 @@ async function expectNoHorizontalOverflow(page: Page, label: string): Promise<vo
   expect(overflow, `${label} must not overflow horizontally`).toBeLessThanOrEqual(0)
 }
 
-test.beforeAll(createAccounts)
-test.afterAll(removeAccounts)
+test.beforeAll(createStewardSession)
+test.afterAll(removeSteward)
 
 test('a steward reaches both reports from the review queue', async ({ page }) => {
-  await loginAs(page, steward!)
-  await page.goto('/review-queue')
+  await openAsSteward(page)
 
   const reports = page.getByRole('navigation', { name: 'Steward reports' })
   await expect(reports).toBeVisible()
@@ -152,11 +146,9 @@ test('a steward reaches both reports from the review queue', async ({ page }) =>
   await expectNoHorizontalOverflow(page, 'Review queue steward reports at 320px')
 })
 
-for (const report of STEWARD_REPORTS) {
-  test(`the steward link to ${report.href} opens the report`, async ({ page }) => {
-    await loginAs(page, steward!)
-    await page.goto('/review-queue')
-
+test('each steward link opens the report it names', async ({ page }) => {
+  for (const report of STEWARD_REPORTS) {
+    await openAsSteward(page)
     await page
       .getByRole('navigation', { name: 'Steward reports' })
       .getByRole('link', { name: report.linkName })
@@ -164,20 +156,18 @@ for (const report of STEWARD_REPORTS) {
 
     await page.waitForURL(`**${report.href}`)
     await expect(page.getByRole('heading', { level: 1, name: report.heading })).toBeVisible()
-  })
-}
+  }
+})
 
-test('a contributor is not shown links to reports they cannot open', async ({ page }) => {
-  await loginAs(page, contributor!)
+test('a reader without steward authority is shown neither report', async ({ page }) => {
   await page.goto('/review-queue')
 
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
   await expect(page.getByRole('navigation', { name: 'Steward reports' })).toHaveCount(0)
   for (const report of STEWARD_REPORTS) {
     await expect(page.locator(`a[href="${report.href}"]`)).toHaveCount(0)
+    // Following the URL directly still answers not found, so the hidden link is not the only guard.
+    const response = await page.request.get(report.href)
+    expect(response.status(), report.href).toBe(404)
   }
-
-  // Following the URL directly still answers not found, so the hidden link is not the only guard.
-  const response = await page.request.get(STEWARD_REPORTS[0].href)
-  expect(response.status()).toBe(404)
 })

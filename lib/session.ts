@@ -4,7 +4,7 @@
 // in it: name, tier and — above all — verification state are read from the database on every
 // request, so a demoted account takes effect immediately instead of when the cookie expires.
 
-import { getIronSession, type IronSession, type SessionOptions } from 'iron-session'
+import { getIronSession, type IronSession } from 'iron-session'
 import { cookies } from 'next/headers'
 import { eq } from 'drizzle-orm'
 import { db } from '@/db'
@@ -14,45 +14,12 @@ import {
   INTERNAL_REVIEW_ROLE_EXPLANATION,
 } from '@/lib/internal-review-policy'
 import { AGENT_REVIEW_ROLE_EXPLANATION, canReviewAgentEvidence } from '@/lib/agent-review-policy'
+import { sessionOptions, type SessionData } from '@/lib/session-options'
 import type { CommentUser } from '@/lib/types'
 
-export interface SessionData {
-  userId?: string
-}
-
-const THIRTY_DAYS_SECONDS = 60 * 60 * 24 * 30
-
-const secret = process.env.SESSION_SECRET
-
-// Module scope on purpose: a missing key must stop the process at import, not hand out cookies
-// sealed with a placeholder. iron-session derives its encryption key from this string, so a short
-// one weakens every session cookie the site has ever issued.
-if (!secret || secret.length < 32) {
-  throw new Error(
-    'SESSION_SECRET is missing or shorter than 32 characters. Set SESSION_SECRET in the ' +
-      'environment (generate one with `openssl rand -base64 32`).',
-  )
-}
-
-export const SESSION_COOKIE_NAME = 'rnawiki_session'
-
-export const sessionOptions: SessionOptions = {
-  cookieName: SESSION_COOKIE_NAME,
-  password: secret,
-  // The seal outlives the cookie by a minute so a request arriving at the very edge of the cookie
-  // lifetime decrypts cleanly instead of throwing. iron-session would otherwise derive
-  // `maxAge = ttl - 60` itself; setting both explicitly keeps the 30 days the product promises.
-  ttl: THIRTY_DAYS_SECONDS + 60,
-  cookieOptions: {
-    httpOnly: true,
-    // Cookies are only marked Secure in production because local development is plain http and a
-    // Secure cookie there is silently dropped, which looks exactly like a broken login.
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
-    maxAge: THIRTY_DAYS_SECONDS,
-  },
-}
+// The cookie name and seal live in `lib/session-options.ts` so a caller outside the Next.js
+// runtime can read them; both are re-exported here so existing imports keep working.
+export { SESSION_COOKIE_NAME, sessionOptions, type SessionData } from '@/lib/session-options'
 
 /**
  * The session for the current request.
