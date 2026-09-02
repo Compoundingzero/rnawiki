@@ -63,6 +63,13 @@ export interface RedirectLedgerRow {
   oldSlug: string
   targetDrugId: string
   reason: string
+  /** Owner rationale. Rows this resolver wrote start with its own version string. */
+  rationale?: string
+}
+
+/** A ledger row the resolver itself wrote is evidence of a duplicate, not an owner decision. */
+function isResolverAuthoredLedgerRow(entry: RedirectLedgerRow): boolean {
+  return typeof entry.rationale === 'string' && entry.rationale.startsWith('inventory-resolution/')
 }
 
 export interface InventoryResolutionResult {
@@ -169,7 +176,14 @@ export function resolveInventory(
   const rows = [...inputRows].sort((left, right) => (left.slug < right.slug ? -1 : left.slug > right.slug ? 1 : 0))
   const byId = new Map(rows.map((row) => [row.id, row]))
   const bySlug = new Map(rows.map((row) => [row.slug, row]))
-  const ledgerByOldSlug = new Map(ledger.map((entry) => [entry.oldSlug, entry]))
+  // Owner-curated rows decide first. Rows this resolver wrote on an earlier run are re-derived from
+  // the same exact-name rule, so the artifact keeps saying "duplicate" rather than "historical".
+  const ledgerByOldSlug = new Map(
+    ledger.filter((entry) => !isResolverAuthoredLedgerRow(entry)).map((entry) => [entry.oldSlug, entry]),
+  )
+  const resolverLedgerByOldSlug = new Map(
+    ledger.filter(isResolverAuthoredLedgerRow).map((entry) => [entry.oldSlug, entry]),
+  )
 
   const placeholder = new Map(
     rows.map((row) => [row.id, isPlaceholderMedicineIdentity({ slug: row.slug, name: row.name })]),
@@ -261,6 +275,16 @@ export function resolveInventory(
       evidence.push(
         `identical name after removing non-alphanumeric characters ("${exactNameKey(row.name)}"): "${row.name}" and "${winner.name}"`,
       )
+      const priorLedger = resolverLedgerByOldSlug.get(row.slug)
+      if (priorLedger && priorLedger.targetDrugId !== winner.id) {
+        status = 'MANUAL_IDENTITY_REVIEW_REQUIRED'
+        canonical = row
+        evidence.push(
+          `an earlier resolver-written ledger row points "${row.slug}" at ${priorLedger.targetDrugId}, not at "${winner.slug}"`,
+        )
+      } else if (priorLedger) {
+        evidence.push('a resolver-written redirect ledger row already records this duplicate')
+      }
       for (const source of sources) {
         const shared = winner.registryIdentifiers[source.kind === 'UNII' ? 'unii' : source.kind === 'PUBCHEM_CID' ? 'pubchemCid' : source.kind === 'CAS' ? 'casNumber' : source.kind === 'RXCUI' ? 'rxcui' : 'ncbiTaxonomyId']
         if (shared && shared === source.identifier) {
@@ -277,6 +301,11 @@ export function resolveInventory(
           relatedSlugs: [winner.slug],
         })
       }
+    } else if (resolverLedgerByOldSlug.has(row.slug)) {
+      status = 'MANUAL_IDENTITY_REVIEW_REQUIRED'
+      evidence.push(
+        `a resolver-written ledger row redirects "${row.slug}", but the exact-name rule no longer finds a duplicate; a person must retire or confirm the ledger row`,
+      )
     } else if (duplicatesOf.has(row.id)) {
       evidence.push(
         `canonical record for exact-name duplicates: ${duplicatesOf

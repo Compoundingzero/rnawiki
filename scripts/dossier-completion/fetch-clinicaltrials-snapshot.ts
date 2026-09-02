@@ -54,6 +54,20 @@ const FIELDS = [
   'LeadSponsorClass',
   'ResultsFirstPostDate',
   'LastUpdatePostDate',
+  'WhyStopped',
+  'Condition',
+  // Structured eligibility fields: exact registry facts about who a study enrolled.
+  'Sex',
+  'MinimumAge',
+  'MaximumAge',
+  'StdAge',
+  'HealthyVolunteers',
+  // Outcome measure titles are what the study said it would measure, never a result.
+  'PrimaryOutcomeMeasure',
+  'PrimaryOutcomeTimeFrame',
+  'DesignAllocation',
+  'DesignMasking',
+  'DesignPrimaryPurpose',
 ] as const
 
 interface Checkpoint {
@@ -127,6 +141,11 @@ async function main(): Promise<void> {
   let checkpoint: Checkpoint
   if (existsSync(checkpointPath)) {
     checkpoint = JSON.parse(readFileSync(checkpointPath, 'utf8')) as Checkpoint
+    if (JSON.stringify(checkpoint.fields) !== JSON.stringify(FIELDS)) {
+      throw new Error(
+        `${checkpointPath} was started with a different field set; remove ${outDir} to refetch`,
+      )
+    }
     if (checkpoint.completedAt) {
       console.log(`[ct-snapshot] ${snapshotId} already complete: ${checkpoint.studiesWritten} studies`)
       return

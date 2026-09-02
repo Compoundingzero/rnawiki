@@ -419,6 +419,10 @@ export interface MedicineDossierViewModel {
   medicineRecord: MedicineRecordContextView
   /** Always populated by production mappers; optional only for older hand-built test fixtures. */
   dynamicModules?: DossierDynamicModulesView
+  /** Stored per-section completion states; absent until the completion resolver has run. */
+  completionAssessment?: DrugDossier['completionAssessment']
+  /** Stored identity resolution; absent until the inventory resolver has run. */
+  inventoryResolution?: DrugDossier['inventoryResolution']
 }
 
 export interface PublishedProgrammeViewInput {
@@ -1215,6 +1219,8 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
     machineFindingCodes: ['LEGACY_PROGRAMME_UNSCOPED', 'LEGACY_FRESHNESS_UNKNOWN'],
     medicineRecord: medicineRecordContext(drug),
     dynamicModules: legacyDossierDynamicModules(drug),
+    completionAssessment: drug.completionAssessment,
+    inventoryResolution: drug.inventoryResolution,
   }
 }
 
@@ -1281,5 +1287,7 @@ export function normalizedMedicineDossierView(
     machineFindingCodes: selected.machineFindingCodes,
     medicineRecord: publishedProgrammeMedicineRecordContext(drug),
     dynamicModules: selected.dynamicModules ?? legacyDossierDynamicModules(drug),
+    completionAssessment: drug.completionAssessment,
+    inventoryResolution: drug.inventoryResolution,
   }
 }

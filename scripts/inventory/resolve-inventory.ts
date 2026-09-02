@@ -95,11 +95,16 @@ export async function loadInventoryRows(): Promise<{
     }
   })
   const ledgerResult = await db.execute(sql`
-    select old_slug, target_drug_id, reason from medicine_slug_redirects order by old_slug
+    select old_slug, target_drug_id, reason, rationale from medicine_slug_redirects order by old_slug
   `)
-  const ledger = (ledgerResult.rows as Array<{ old_slug: string; target_drug_id: string; reason: string }>).map(
-    (row) => ({ oldSlug: row.old_slug, targetDrugId: row.target_drug_id, reason: row.reason }),
-  )
+  const ledger = (
+    ledgerResult.rows as Array<{ old_slug: string; target_drug_id: string; reason: string; rationale: string }>
+  ).map((row) => ({
+    oldSlug: row.old_slug,
+    targetDrugId: row.target_drug_id,
+    reason: row.reason,
+    rationale: row.rationale,
+  }))
   return { rows, ledger }
 }
 
