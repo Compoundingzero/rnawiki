@@ -38,17 +38,33 @@ Roughly 64% of a median page's words match a literal string in this repository's
 
 ## Overlap decomposed
 
-| Measure                            |   Raw | After removing text on >90% of pages |
-| ---------------------------------- | ----: | -----------------------------------: |
-| Lexical, shared vocabulary         | 0.654 |                                0.403 |
-| Positional, five-word sequences    | 0.646 |                                0.269 |
-| Semantic, embedding cosine         | 0.949 |                                    — |
-| Positional, thinnest 30 pages only | 0.917 |                                0.711 |
+All 52,326 pairs, computed exhaustively. The third column is the control that matters: the same
+number of tokens per page deleted at random rather than by targeting shared text. Deleting half a
+document's tokens breaks sequences wherever the cut lands, so without this control a large drop
+proves nothing about what was deleted.
 
-An out-of-domain English page scores 0.737 cosine against these pages, so 0.949 is genuinely close.
-Corpus-wide the overlap collapses when the shared copy is removed, which is what shows it was
-scaffolding. At the thin end it does not collapse: what remains is the statements that nothing is
-recorded, about 87 absence phrases per page.
+| Measure                         |   Raw | Shared text removed | Same volume removed at random |
+| ------------------------------- | ----: | ------------------: | ----------------------------: |
+| Lexical, shared vocabulary      | 0.651 |               0.400 |                         0.444 |
+| Positional, five-word sequences | 0.645 |               0.266 |                         0.116 |
+| Semantic, embedding cosine      | 0.948 |               0.892 |                         0.930 |
+
+An out-of-domain English page scores 0.737 cosine against these pages, so 0.948 is genuinely close.
+
+The reading is not the obvious one. Positional overlap appears to collapse, but a random cut of the
+same size drops it further, to 0.116, so that collapse is mostly the cost of deleting half the page
+rather than evidence about what was deleted. Lexical and semantic similarity do fall below their
+controls, by 0.044 and 0.038, so removing shared copy has a real effect there, and a modest one.
+The same pattern holds at sentence granularity: targeted removal takes containment to 0.438 where a
+volume-matched random cut reaches 0.258.
+
+That is worse news than a removable boilerplate layer would be. The pages are alike all the way
+down. Take out the text that appears everywhere and the remainder is still shared, because the
+remainder is the statements that nothing is recorded, about 87 absence phrases per page. The trim
+simulation below reaches the same conclusion from the other direction.
+
+An earlier version of this document read the positional drop as proof that the overlap was
+scaffolding. That inference did not survive its own control and has been withdrawn.
 
 The earlier 83.7% figure was directionally right and mis-scoped. It corresponds to records with
 three or fewer sourced sections, not to the thinnest half, which measures 0.72.
