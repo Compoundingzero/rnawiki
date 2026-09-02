@@ -6,6 +6,7 @@
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
 import type { ProgrammeSummaryFieldPath } from '@/lib/evidence/types'
 import { resolveLegacyPublicContentDate } from '@/lib/seo/indexability'
+import { dossierCanonicalRecordSummary } from '@/lib/seo/metadata'
 import type { DrugDossier, DrugModality } from '@/lib/types'
 
 const SCHEMA_CONTEXT = 'https://schema.org' as const
@@ -668,6 +669,104 @@ function legacyDossierJsonLdGraph(
 }
 
 /**
+ * The graph for a canonical record that carries no reviewed answer and no provenance-bound legacy
+ * answer. It states what the page is (a medicine record with an explicit per-section completeness
+ * state), when its states last changed, and the recorded registry identifiers shown on the page.
+ * It carries no finding, no mechanism and no citation, because the record asserts none.
+ */
+function canonicalRecordJsonLdGraph(
+  drug: DrugDossier,
+  dossier: MedicineDossierViewModel,
+  siteUrl: string,
+  url: string,
+): JsonLdGraph<DossierJsonLdNode> | null {
+  const assessment = drug.completionAssessment
+  const resolution = drug.inventoryResolution
+  if (!assessment || resolution?.resolutionStatus !== 'CANONICAL_ENTITY') return null
+  const medicineName = text(drug.name)
+  const dateModified = schemaDate(assessment.contentChangedAt)
+  if (!medicineName || !dateModified) return null
+
+  const pageUrl = requiredHttpUrl(url, 'url')
+  const site = siteNodes(siteUrl)
+  const pageId = fragmentUrl(pageUrl, 'webpage')
+  const medicineId = fragmentUrl(pageUrl, 'medicine')
+  const breadcrumbId = fragmentUrl(pageUrl, 'breadcrumb')
+  const legacyEntity = drugJsonLd(drug, pageUrl, dossier)
+  const medicine: MedicineEntityJsonLd = {
+    '@type': legacyEntity['@type'],
+    '@id': medicineId,
+    name: legacyEntity.name,
+    url: legacyEntity.url,
+    mainEntityOfPage: { '@id': pageId },
+  }
+  if (legacyEntity.alternateName) medicine.alternateName = legacyEntity.alternateName
+
+  const recordedIdentifiers = drug.recordedBackground?.registryIdentifiers
+  const identifiers: PropertyValueJsonLd[] = []
+  if (recordedIdentifiers?.pubchemCid && /^[1-9]\d{0,15}$/.test(recordedIdentifiers.pubchemCid)) {
+    identifiers.push({ '@type': 'PropertyValue', propertyID: 'PubChem CID', value: recordedIdentifiers.pubchemCid })
+    medicine.sameAs = [`https://pubchem.ncbi.nlm.nih.gov/compound/${recordedIdentifiers.pubchemCid}`]
+  }
+  if (recordedIdentifiers?.unii && /^[0-9A-Z]{10}$/.test(recordedIdentifiers.unii)) {
+    identifiers.push({ '@type': 'PropertyValue', propertyID: 'FDA UNII', value: recordedIdentifiers.unii })
+  }
+  if (recordedIdentifiers?.casNumber && /^\d{2,7}-\d{2}-\d$/.test(recordedIdentifiers.casNumber)) {
+    identifiers.push({ '@type': 'PropertyValue', propertyID: 'CAS Registry Number', value: recordedIdentifiers.casNumber })
+  }
+  if (identifiers.length > 0) medicine.identifier = identifiers
+
+  const registry = assessment.sections.find((section) => section.id === 'trial-registry')
+  const conclusion = assessment.sections.find((section) => section.id === 'reviewed-conclusion')
+  const description = dossierCanonicalRecordSummary(medicineName, {
+    entityClass: resolution.entityClass,
+    applicableSectionCount: assessment.applicableSectionCount,
+    terminalSectionCount: assessment.terminalSectionCount,
+    registeredTrials:
+      registry?.state === 'EXACT_STRUCTURED_SOURCE_DATA'
+        ? true
+        : registry?.state === 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH'
+          ? false
+          : null,
+    reviewedConclusion: conclusion?.state === 'REVIEWED_INTERPRETATION',
+  })
+
+  const page: DossierPageJsonLd = {
+    '@type': ['MedicalWebPage', 'WebPage'],
+    '@id': pageId,
+    url: pageUrl,
+    name: `${medicineName} medicine record`,
+    description,
+    inLanguage: 'en',
+    isPartOf: { '@id': site.website['@id'] },
+    publisher: { '@id': site.organization['@id'] },
+    mainEntity: { '@id': medicineId },
+    about: { '@id': medicineId },
+    breadcrumb: { '@id': breadcrumbId },
+    citation: [],
+    dateModified,
+  }
+  const breadcrumb: BreadcrumbListJsonLd = {
+    '@type': 'BreadcrumbList',
+    '@id': breadcrumbId,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: SITE_NAME, item: site.root },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Medicines',
+        item: new URL('/browse', site.root).toString(),
+      },
+      { '@type': 'ListItem', position: 3, name: medicineName, item: pageUrl },
+    ],
+  }
+  return {
+    '@context': SCHEMA_CONTEXT,
+    '@graph': [site.organization, site.website, page, medicine, breadcrumb],
+  }
+}
+
+/**
  * A connected graph for a reviewed, sourced dossier. The explicit `eligible` input is mandatory,
  * and the publication/source checks are repeated here so an accidental caller cannot emit a rich
  * medical graph for a stub or an unpublished programme.
@@ -679,14 +778,17 @@ export function dossierJsonLdGraph(
 ): JsonLdGraph<DossierJsonLdNode> | null {
   if (!eligible) return null
   if (dossier.bindingState === 'legacy_record') {
-    return legacyDossierJsonLdGraph(drug, dossier, siteUrl, url)
+    return (
+      legacyDossierJsonLdGraph(drug, dossier, siteUrl, url) ??
+      canonicalRecordJsonLdGraph(drug, dossier, siteUrl, url)
+    )
   }
   if (
     dossier.bindingState !== 'published_programme' ||
     !dossier.conclusion ||
     dossier.sources.length === 0
   ) {
-    return null
+    return canonicalRecordJsonLdGraph(drug, dossier, siteUrl, url)
   }
 
   const medicineName = text(drug.name)

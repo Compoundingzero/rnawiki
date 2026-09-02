@@ -68,6 +68,7 @@ export interface DossierCompletionSectionView {
   state: SectionState
   stateLabel: string
   terminal: boolean
+  basisKind: SectionAssessment['basisKind']
   basis: string
   sourceRefs: SectionAssessment['sourceRefs']
   counts?: Record<string, number>
@@ -120,6 +121,7 @@ export function dossierCompletionAssessmentView(
         state: section.state,
         stateLabel: SECTION_STATE_LABELS[section.state],
         terminal: isTerminalSectionState(section.state),
+        basisKind: section.basisKind,
         basis: section.basis,
         sourceRefs: section.sourceRefs,
         counts: section.counts,

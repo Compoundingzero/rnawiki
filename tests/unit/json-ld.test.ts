@@ -829,3 +829,92 @@ describe('connected public JSON-LD graphs', () => {
     expect(serialiseJsonLd(graph)).not.toMatch(/physician|institution|specialty/i)
   })
 })
+
+describe('canonical-record dossier JSON-LD', () => {
+  const assessmentSection = (id: string, state: string) => ({
+    id,
+    label: id,
+    state,
+    stateLabel: state,
+    terminal: true,
+    basisKind: 'RECORDED_MODULE',
+    basis: 'Recorded.',
+    sourceRefs: [],
+    humanReadSuggested: false,
+  })
+  const canonicalDrug = (): DrugDossier => ({
+    ...drug,
+    completionAssessment: {
+      status: 'COMPLETE',
+      statusCopy: 'Every section has a state.',
+      resolverVersion: 'dossier-completion/v1',
+      inputDigest: 'b'.repeat(64),
+      contentChangedAt: '2026-09-02T07:13:15.000Z',
+      assessedAt: '2026-09-02T07:13:15.000Z',
+      applicableSectionCount: 20,
+      terminalSectionCount: 20,
+      sections: [
+        assessmentSection('trial-registry', 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH'),
+        assessmentSection('reviewed-conclusion', 'NOT_APPLICABLE'),
+      ],
+    } as DrugDossier['completionAssessment'],
+    inventoryResolution: {
+      resolutionStatus: 'CANONICAL_ENTITY',
+      entityClass: 'SUPPLEMENT_INGREDIENT',
+      canonicalSlug: drug.id,
+      redirectTargetSlug: null,
+      identityConfidence: 'REGISTRY_IDENTIFIER_RECORDED',
+      identifierSharedWithOtherRecords: true,
+      resolverVersion: 'inventory-resolution/v1',
+    },
+  })
+
+  it('emits a claim-free record graph for a canonical record without a reviewed or bound answer', () => {
+    const graph = dossierJsonLdGraph(canonicalDrug(), dossier('legacy_record'), {
+      eligible: true,
+      siteUrl: 'https://rnawiki.com',
+      url: `https://rnawiki.com/d/${drug.id}`,
+    })
+    expect(graph).not.toBeNull()
+    const page = graph!['@graph'].find((node) => Array.isArray(node['@type'])) as {
+      dateModified: string
+      citation: unknown[]
+      description: string
+      name: string
+    }
+    expect(page.dateModified).toBe('2026-09-02T07:13:15.000Z')
+    expect(page.citation).toEqual([])
+    expect(page.name).toContain('medicine record')
+    expect(page.description).toContain('registry snapshot searched, none found')
+    expect(page.description).toContain('no reviewed conclusion yet')
+    const serialised = serialiseJsonLd(graph)
+    expect(serialised).not.toContain('mechanismOfAction')
+    expect(serialised).not.toContain('Reviewed programme conclusion')
+    // Never a relation to another record, even when an identifier is shared.
+    expect(serialised).not.toContain('identifierSharedWithOtherRecords')
+  })
+
+  it('emits nothing for a redirecting or unassessed record', () => {
+    const redirected = canonicalDrug()
+    redirected.inventoryResolution = {
+      ...redirected.inventoryResolution!,
+      resolutionStatus: 'DUPLICATE_OF_CANONICAL_ENTITY',
+      redirectTargetSlug: 'other',
+    }
+    expect(
+      dossierJsonLdGraph(redirected, dossier('legacy_record'), {
+        eligible: true,
+        siteUrl: 'https://rnawiki.com',
+        url: `https://rnawiki.com/d/${drug.id}`,
+      }),
+    ).toBeNull()
+    const unassessed = { ...drug }
+    expect(
+      dossierJsonLdGraph(unassessed, dossier('legacy_record'), {
+        eligible: true,
+        siteUrl: 'https://rnawiki.com',
+        url: `https://rnawiki.com/d/${drug.id}`,
+      }),
+    ).toBeNull()
+  })
+})

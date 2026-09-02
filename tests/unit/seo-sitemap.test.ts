@@ -1,10 +1,13 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
+import { PUBLIC_DATASET_IDS } from '@/lib/public-datasets'
+
 const loadReports = vi.hoisted(() => vi.fn())
 const loadContributorProfiles = vi.hoisted(() => vi.fn())
 
 vi.mock('@/lib/seo/publication-indexability', () => ({
   loadMedicineSitemapIndexabilityReports: loadReports,
+  SITEMAP_MAX_URLS: 50_000,
 }))
 vi.mock('@/lib/queries/users', () => ({
   listIndexableContributorProfilesForSitemap: loadContributorProfiles,
@@ -77,6 +80,21 @@ describe('generated sitemap behavior', () => {
         },
       },
       {
+        medicineId: 'canonical-record-id',
+        medicineName: 'Canonical record',
+        canonicalSlug: 'canonical-record',
+        selectedProgrammeId: null,
+        freshness: 'unknown',
+        issues: [],
+        decision: {
+          index: true,
+          follow: true,
+          reason: 'indexable_canonical_record',
+          canonicalSlug: 'canonical-record',
+          lastPublicContentUpdate: new Date('2026-08-22T00:00:00.000Z'),
+        },
+      },
+      {
         medicineId: 'internal-stale-id',
         medicineName: 'Stale',
         canonicalSlug: 'stale-medicine',
@@ -115,6 +133,12 @@ describe('generated sitemap behavior', () => {
         changeFrequency: 'weekly',
         priority: 0.7,
       },
+      {
+        url: 'https://rnawiki.com/d/canonical-record',
+        lastModified: new Date('2026-08-22T00:00:00.000Z'),
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      },
     ])
     expect(dossierEntries.some((entry) => entry.url.endsWith('/thin-import'))).toBe(false)
     expect(entries).toContainEqual({
@@ -129,13 +153,47 @@ describe('generated sitemap behavior', () => {
         .filter((pathname) => pathname === '/datasets' || pathname.startsWith('/datasets/')),
     ).toEqual([
       '/datasets',
-      '/datasets/enzyme-transporter-negatives',
-      '/datasets/source-consensus',
-      '/datasets/silence-ledger',
-      '/datasets/coverage-ledger',
+      // One page per declared public dataset, in declaration order and with nothing extra.
+      ...PUBLIC_DATASET_IDS.map((dataset) => `/datasets/${dataset}`),
     ])
     expect(entries.some((entry) => entry.url.includes('?'))).toBe(false)
     expect(entries.some((entry) => /review-queue|history/.test(entry.url))).toBe(false)
     expect(entries.some((entry) => /\/about$|\/corrections$/.test(entry.url))).toBe(false)
+  })
+
+  it('emits each medicine once and stays inside the 50,000-URL sitemap protocol limit', async () => {
+    vi.stubEnv('SITE_URL', 'https://rnawiki.com')
+    loadContributorProfiles.mockResolvedValue([])
+    const lastPublicContentUpdate = new Date('2026-08-22T00:00:00.000Z')
+    loadReports.mockResolvedValue(
+      Array.from({ length: 9_900 }, (_unused, index) => {
+        const slug = `medicine-${String(index).padStart(5, '0')}`
+        return {
+          medicineId: `id-${index}`,
+          medicineName: slug,
+          canonicalSlug: slug,
+          selectedProgrammeId: null,
+          freshness: 'unknown',
+          issues: [],
+          decision: {
+            index: true,
+            follow: true,
+            reason: 'indexable_canonical_record',
+            canonicalSlug: slug,
+            lastPublicContentUpdate,
+          },
+        }
+      }),
+    )
+
+    const { default: sitemap } = await import('@/app/sitemap')
+    const entries = await sitemap()
+    const dossierUrls = entries
+      .map((entry) => new URL(entry.url).pathname)
+      .filter((pathname) => pathname.startsWith('/d/'))
+
+    expect(dossierUrls).toHaveLength(9_900)
+    expect(new Set(dossierUrls).size).toBe(9_900)
+    expect(entries.length).toBeLessThan(50_000)
   })
 })

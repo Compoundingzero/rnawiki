@@ -207,6 +207,21 @@ export function dossierNavigatorSections(
       present: isNonEmpty(context?.commonQuestions),
     },
     { id: 'molecular-record', label: 'Technical record', present: isNonEmpty(context?.molecular) },
+
+    /*
+     * Offered only when the record carries a completion assessment, because the anchor exists only
+     * then. `answered` means every applicable section reached an explicit state; an incomplete
+     * assessment takes the ordinary absence state, since some section still has no state to read.
+     */
+    ...(dossier.completionAssessment
+      ? [
+          {
+            id: 'record-completeness',
+            label: 'How complete this record is',
+            present: dossier.completionAssessment.status === 'COMPLETE',
+          },
+        ]
+      : []),
   ]
 
   return candidates.map((candidate) => {

@@ -152,3 +152,36 @@ published claims, and published nodes are internally consistent. Otherwise, medi
 remains visibly labelled **General research summary** or **What the research reports**, and missing
 reviewed answers say **No reviewed answer yet**. Existing content is never silently promoted into a
 reviewed answer for one specific use.
+
+## Record completeness
+
+A record that carries a completion assessment shows one **How complete this record is** section,
+placed directly after the question universe inside the closed advanced evidence disclosure. A record
+without an assessment shows nothing in its place, and the section navigator offers the row only where
+the anchor exists.
+
+The section prints the status sentence, the date the states last changed, the number of applicable
+sections that have reached a state, and then all twenty sections in reading order: the section name,
+its state as visible text, the sentence saying what was found or not found and where, the counts
+behind it in words, and the exact source references. A reference links out only where a public page
+exists for that identifier shape: label set ids to DailyMed, registration numbers to
+ClinicalTrials.gov, compound ids to PubChem, organism ids to NCBI Taxonomy. A search record, an
+ingest label or an identifier of an unexpected shape stays text, because a link that may not open is
+worse than the identifier on its own. Where a person reading the named source could add something
+the parser did not, the section says so. Where a section has no state yet, it carries what has to
+happen, and every such section is repeated in a short **Still open** list above the full list.
+
+Two rules govern the copy.
+
+1. **A state describes the sources that were read, never the medicine.** "Searched; no qualifying
+   record found" is a search result. "Registered; results not posted" is a registry fact.
+   "Does not apply to this kind of record" is a rule about the record class. None of them is
+   evidence about safety, effect or use, and none may be summarised as one.
+2. **No record is shown in relation to another record.** Where a registry identifier on this record
+   also appears elsewhere in the corpus, the identity sentence says that the records are kept
+   separate. It never names, counts or links the other records, because the corpus holds salt and
+   parent pairs, biosimilar families and registry errors under one identifier, and a pointer between
+   them would assert a sameness no resolver established.
+
+Raw state codes, basis kinds, the resolver version and the input digest appear only inside the
+labelled technical record disclosure at the end of the section, which is closed by default.

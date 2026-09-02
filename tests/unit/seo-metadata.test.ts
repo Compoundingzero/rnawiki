@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest'
 
 import type { MedicineDossierViewModel } from '@/lib/medicine-dossier-view-model'
+import { ENTITY_CLASSES } from '@/lib/inventory/entity-class-types'
 import {
+  dossierCanonicalRecordSummary,
   dossierDiscoveryProjection,
   dossierMetadataDescription,
   dossierMetadataTitle,
   dossierSocialPreview,
+  ENTITY_CLASS_PHRASES,
   HOME_METADATA,
 } from '@/lib/seo/metadata'
 import type { DrugDossier } from '@/lib/types'
@@ -219,5 +222,133 @@ describe('shared dossier discovery projection', () => {
     expect(preview.finding?.length).toBeLessThanOrEqual(220)
     expect(preview.finding?.endsWith('…')).toBe(true)
     expect(longFinding.startsWith(preview.finding!.slice(0, -1))).toBe(true)
+  })
+})
+
+function canonicalRecordDrug(name: string, entityClass = 'APPROVED_MEDICINE'): DrugDossier {
+  return {
+    id: name.toLowerCase().replace(/\s+/g, '-'),
+    name,
+    hasDiscrepancy: false,
+    inventoryResolution: {
+      resolutionStatus: 'CANONICAL_ENTITY',
+      entityClass,
+      canonicalSlug: name.toLowerCase().replace(/\s+/g, '-'),
+      redirectTargetSlug: null,
+      identityConfidence: 'REGISTRY_IDENTIFIER_RECORDED',
+      identifierSharedWithOtherRecords: false,
+      resolverVersion: 'inventory-resolution/v1',
+    },
+    completionAssessment: {
+      status: 'INCOMPLETE',
+      applicableSectionCount: 18,
+      terminalSectionCount: 16,
+      contentChangedAt: '2026-08-22T00:00:00.000Z',
+      sections: [
+        { id: 'trial-registry', state: 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH' },
+        { id: 'reviewed-conclusion', state: 'UNASSESSED' },
+      ],
+    },
+  } as unknown as DrugDossier
+}
+
+describe('canonical-record discovery description', () => {
+  it('gives every entity class a short ordinary-language phrase', () => {
+    for (const entityClass of ENTITY_CLASSES) {
+      const phrase = ENTITY_CLASS_PHRASES[entityClass]
+      expect(phrase.length).toBeGreaterThan(0)
+      expect(phrase.length).toBeLessThanOrEqual(52)
+      expect(phrase).toBe(phrase.toLowerCase())
+    }
+  })
+
+  it('describes the record from its class, counts and search outcomes, never a finding', () => {
+    const description = dossierMetadataDescription({
+      name: 'Sodium cromoglicate',
+      reviewed: false,
+      canonicalRecord: {
+        entityClass: 'APPROVED_MEDICINE',
+        applicableSectionCount: 18,
+        terminalSectionCount: 16,
+        registeredTrials: false,
+        reviewedConclusion: false,
+      },
+    })
+
+    expect(description).toContain('Sodium cromoglicate')
+    expect(description).toContain('an approved medicine record')
+    expect(description).toContain('16/18 sections have a recorded state')
+    expect(description).toContain('registry snapshot searched, none found')
+    expect(description).toContain('no reviewed conclusion yet')
+    expect(description).not.toMatch(/effective|works|safe|proven|benefit/i)
+    expect(description.length).toBeLessThanOrEqual(158)
+  })
+
+  it('keeps the 158-character bound for a long name and a full clause set', () => {
+    const description = dossierMetadataDescription({
+      name: 'An exceptionally long recorded medicine identity that will not fit in a search snippet',
+      reviewed: false,
+      canonicalRecord: {
+        entityClass: 'BOTANICAL_OR_ORGANISM_PREPARATION',
+        applicableSectionCount: 20,
+        terminalSectionCount: 20,
+        registeredTrials: true,
+        reviewedConclusion: true,
+      },
+    })
+    expect(description.length).toBeLessThanOrEqual(158)
+  })
+
+  it('gives two different records two different descriptions', () => {
+    const first = dossierMetadataDescription(
+      dossierDiscoveryProjection(canonicalRecordDrug('Aspirin'), null).input,
+    )
+    const second = dossierMetadataDescription(
+      dossierDiscoveryProjection(canonicalRecordDrug('Ibuprofen'), null).input,
+    )
+    expect(first).not.toBe(second)
+    expect(first).toContain('Aspirin')
+    expect(second).toContain('Ibuprofen')
+  })
+
+  it('reads the trial-registry and reviewed-conclusion states from the stored assessment', () => {
+    const { input } = dossierDiscoveryProjection(canonicalRecordDrug('Aspirin'), null)
+    expect(input.canonicalRecord).toEqual({
+      entityClass: 'APPROVED_MEDICINE',
+      applicableSectionCount: 18,
+      terminalSectionCount: 16,
+      registeredTrials: false,
+      reviewedConclusion: false,
+    })
+  })
+
+  it('shows no answer text on the social card for a canonical record with no reviewed answer', () => {
+    const { input } = dossierDiscoveryProjection(canonicalRecordDrug('Aspirin'), null)
+    expect(dossierSocialPreview(input)).toEqual({
+      reviewedAnswer: false,
+      badgeLabel: 'Medicine evidence record',
+      finding: null,
+    })
+    expect(
+      dossierCanonicalRecordSummary('Aspirin', input.canonicalRecord!).startsWith('Aspirin:'),
+    ).toBe(true)
+  })
+
+  it('keeps the reviewed answer ahead of the canonical-record wording', () => {
+    const description = dossierMetadataDescription({
+      name: 'Example medicine',
+      reviewed: true,
+      usedFor: 'Studied for one defined use and population',
+      finding: 'The measured result was lower than with the comparison treatment',
+      canonicalRecord: {
+        entityClass: 'APPROVED_MEDICINE',
+        applicableSectionCount: 18,
+        terminalSectionCount: 18,
+        registeredTrials: true,
+        reviewedConclusion: true,
+      },
+    })
+    expect(description).toContain('Studied for one defined use')
+    expect(description).not.toContain('sections have a recorded state')
   })
 })

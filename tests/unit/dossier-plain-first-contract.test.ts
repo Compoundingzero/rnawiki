@@ -93,6 +93,17 @@ describe('medicine dossier plain-first contract', () => {
     )
   })
 
+  it('binds the completeness states to the sources read rather than to the medicine', () => {
+    const specification = source('docs/dossier-v2-product-spec.md').replace(/\s+/g, ' ')
+
+    expect(specification).toContain('## Record completeness')
+    expect(specification).toContain(
+      '**A state describes the sources that were read, never the medicine.**',
+    )
+    expect(specification).toContain('**No record is shown in relation to another record.**')
+    expect(specification).toContain('It never names, counts or links the other records')
+  })
+
   it('keeps direct evidence hashes keyboard-usable after opening the disclosure', () => {
     const disclosure = source('components/AdvancedEvidenceDisclosure.tsx')
     const nestedDisclosure = source('components/dossier/disclosure-deep-link.ts')

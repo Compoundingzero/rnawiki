@@ -45,3 +45,26 @@ npm run audit:search -- --origin https://rnawiki.com --max-urls 2000 --json
 The audit excludes `/_next/` assets and `/api/` routes. It sends no application cookies, does not
 submit forms and does not infer medical facts. External links and external source availability are
 outside this route/search audit's scope.
+
+## Reachability mode: which canonical dossiers no link reaches
+
+`--orphan-audit` replaces the page audit with one question: can a crawler arrive at every canonical
+dossier by following links? It starts at `/` and `/browse`, follows only those two hubs and their
+pagination up to `--max-depth` hops (default 6, bounded by `--max-urls`), and records every `/d/`
+link it sees. Dossier URLs are recorded from the link and not fetched: the question is whether a
+crawler can arrive, not what the page then says.
+
+```bash
+npm run audit:search -- --origin https://rnawiki.com --orphan-audit --max-urls 2000
+```
+
+The report is written to `docs/audits/discovery/orphan-audit.json` (change it with `--out`) and
+names two lists:
+
+- `orphanSlugs` — in the sitemap, but no link path reached them inside the bound.
+- `reachableSlugsMissingFromSitemap` — linked from a public page but absent from the sitemap.
+
+A slug is an orphan only for the crawl bound that was used. When `truncated` is true the crawl hit
+`--max-urls` before the queue emptied, and the orphan list is incomplete; raise the bound rather
+than reading the partial scan as clean. The command exits `1` when it finds orphans or a truncated
+crawl, `0` when the crawl completed with none, and `2` for invalid arguments.

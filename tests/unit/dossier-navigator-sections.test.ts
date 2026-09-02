@@ -50,6 +50,22 @@ function dossier(overrides: Partial<MedicineDossierViewModel> = {}): MedicineDos
   } as MedicineDossierViewModel
 }
 
+function completionAssessment(
+  status: 'COMPLETE' | 'INCOMPLETE',
+): NonNullable<MedicineDossierViewModel['completionAssessment']> {
+  return {
+    status,
+    statusCopy: 'Section states are recorded for this record.',
+    resolverVersion: 'dossier-completion/v1',
+    inputDigest: 'f'.repeat(64),
+    contentChangedAt: '2026-09-02T00:00:00.000Z',
+    assessedAt: '2026-09-02T00:00:00.000Z',
+    applicableSectionCount: 1,
+    terminalSectionCount: status === 'COMPLETE' ? 1 : 0,
+    sections: [],
+  }
+}
+
 describe('the navigator reports coverage rather than assuming it', () => {
   it('marks every section not documented on a record that holds nothing', () => {
     const sections = dossierNavigatorSections(dossier())
@@ -235,6 +251,27 @@ describe('the navigator reports coverage rather than assuming it', () => {
   it('gives every section a unique anchor, so no two rows fight over the same destination', () => {
     const ids = dossierNavigatorSections(dossier()).map((section) => section.id)
     expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  /**
+   * The completeness section exists only where an assessment does, so the row must not be offered
+   * on a record without one: it would scroll to an anchor the page never rendered.
+   */
+  it('offers the completeness row only when the record carries an assessment', () => {
+    expect(
+      dossierNavigatorSections(dossier()).some((section) => section.id === 'record-completeness'),
+    ).toBe(false)
+
+    const complete = dossierNavigatorSections(
+      dossier({ completionAssessment: completionAssessment('COMPLETE') }),
+    ).find((section) => section.id === 'record-completeness')
+    expect(complete?.label).toBe('How complete this record is')
+    expect(complete?.coverage).toBe('answered')
+
+    const incomplete = dossierNavigatorSections(
+      dossier({ completionAssessment: completionAssessment('INCOMPLETE') }),
+    ).find((section) => section.id === 'record-completeness')
+    expect(incomplete?.coverage).toBe('not_documented')
   })
 
   it('labels sections in plain language, never as a field name or an enum', () => {

@@ -2,8 +2,10 @@ import { and, eq, getTableColumns, sql } from 'drizzle-orm'
 
 import { db } from '@/db'
 import {
+  dossierCompletionAssessments,
   drugs,
   developmentProgrammes,
+  inventoryResolutions,
   medicineSlugRedirects,
   programmeCurrentPublications,
   programmeFreshnessStates,
@@ -15,11 +17,13 @@ import {
 import { rowToDossier, type DrugRow } from '@/lib/dossier'
 import type { SourceFreshnessStatus } from '@/lib/evidence/types'
 import { legacyMedicineDossierView } from '@/lib/medicine-dossier-view-model'
+import type { InventoryResolutionState } from '@/lib/inventory/types'
 import { publicMedicineFilter } from '@/lib/queries/drugs'
 import { explainDossierIndexability } from '@/lib/seo/dossier-indexability'
 import { aggregatePublicContentFreshness, type PublicContentFreshness } from '@/lib/seo/freshness'
 import {
   explainMedicineIndexability,
+  type CanonicalRecordIndexingInput,
   type MedicineIndexabilityDecision,
   type MedicineIndexabilityIssue,
 } from '@/lib/seo/indexability'
@@ -29,7 +33,12 @@ export interface MedicineIdentityIndexingRow {
   medicineName: string
   canonicalSlug: string
   isRedirectSource: boolean
+  /** Scalar identity/completeness projection, when the caller read it alongside the identity. */
+  canonicalRecord?: CanonicalRecordIndexingInput | null
 }
+
+/** The XML sitemap protocol allows at most this many URLs in one sitemap file. */
+export const SITEMAP_MAX_URLS = 50_000
 
 export interface CurrentPublicationIndexingRow {
   medicineId: string
@@ -68,6 +77,7 @@ export interface LegacyFlagshipIndexingRow {
   isRedirectSource: boolean
   /** Any normalized programme changes the canonical route away from `legacy_record`. */
   hasAnyProgramme: boolean
+  canonicalRecord?: CanonicalRecordIndexingInput | null
 }
 
 /**
@@ -81,7 +91,7 @@ export function buildLegacyFlagshipIndexabilityReports(
 ): MedicinePublicationIndexabilityReport[] {
   return [...rows]
     .sort((left, right) => left.drug.id.localeCompare(right.drug.id))
-    .map(({ medicineId, drug, isRedirectSource, hasAnyProgramme }) => {
+    .map(({ medicineId, drug, isRedirectSource, hasAnyProgramme, canonicalRecord }) => {
       const legacyDossier = legacyMedicineDossierView(drug)
       const routeDossier = hasAnyProgramme
         ? { ...legacyDossier, bindingState: 'programme_unpublished' as const }
@@ -89,6 +99,7 @@ export function buildLegacyFlagshipIndexabilityReports(
       const report = explainDossierIndexability(drug, routeDossier, {
         isRedirectSource,
         evaluatedAt,
+        ...(canonicalRecord === undefined ? {} : { canonicalRecord }),
       })
 
       return {
@@ -97,6 +108,67 @@ export function buildLegacyFlagshipIndexabilityReports(
         canonicalSlug: drug.id,
         selectedProgrammeId: null,
         freshness: 'unknown',
+        ...report,
+      }
+    })
+}
+
+export interface CanonicalRecordIndexingRow {
+  medicineId: string
+  medicineName: string
+  canonicalSlug: string
+  isRedirectSource: boolean
+  resolutionStatus: InventoryResolutionState | null
+  assessmentStatus: 'COMPLETE' | 'INCOMPLETE' | null
+  contentChangedAt: Date | null
+  applicableSectionCount: number | null
+  terminalSectionCount: number | null
+}
+
+/** Build the scalar policy input. A row with no inventory resolution is not offered the path. */
+export function toCanonicalRecordInput(
+  row: Pick<
+    CanonicalRecordIndexingRow,
+    | 'resolutionStatus'
+    | 'assessmentStatus'
+    | 'contentChangedAt'
+    | 'applicableSectionCount'
+    | 'terminalSectionCount'
+  >,
+): CanonicalRecordIndexingInput | null {
+  if (row.resolutionStatus === null) return null
+  return {
+    resolutionStatus: row.resolutionStatus,
+    assessmentStatus: row.assessmentStatus,
+    contentChangedAt: row.contentChangedAt,
+    applicableSectionCount: row.applicableSectionCount ?? 0,
+    terminalSectionCount: row.terminalSectionCount ?? 0,
+  }
+}
+
+/**
+ * Reports for the canonical-record path. These rows carry no publication and no legacy answer, so
+ * the shared policy either admits the record on its resolved identity and stated section states or
+ * reports exactly which of those two is missing.
+ */
+export function buildCanonicalRecordIndexabilityReports(
+  rows: readonly CanonicalRecordIndexingRow[],
+): MedicinePublicationIndexabilityReport[] {
+  return [...rows]
+    .sort((left, right) => left.canonicalSlug.localeCompare(right.canonicalSlug))
+    .map((row) => {
+      const report = explainMedicineIndexability({
+        canonicalSlug: row.canonicalSlug,
+        isRedirectSource: row.isRedirectSource,
+        publication: null,
+        canonicalRecord: toCanonicalRecordInput(row),
+      })
+      return {
+        medicineId: row.medicineId,
+        medicineName: row.medicineName,
+        canonicalSlug: row.canonicalSlug,
+        selectedProgrammeId: null,
+        freshness: 'unknown' as const,
         ...report,
       }
     })
@@ -168,6 +240,7 @@ export function buildMedicinePublicationIndexabilityReports(
       const report = explainMedicineIndexability({
         canonicalSlug: medicine.canonicalSlug,
         isRedirectSource: medicine.isRedirectSource,
+        canonicalRecord: medicine.canonicalRecord ?? null,
         publication: selectedPublication
           ? {
               reviewStatus: selectedPublication.reviewStatus,
@@ -195,6 +268,19 @@ export function buildMedicinePublicationIndexabilityReports(
     })
 }
 
+/**
+ * The only completeness columns any discovery surface reads. Section prose, source refs and the
+ * resolver's evidence arrays are JSONB and stay in the database: a search decision is made from
+ * identity and counts, never from what a section says.
+ */
+const CANONICAL_RECORD_COLUMNS = {
+  resolutionStatus: inventoryResolutions.resolutionStatus,
+  assessmentStatus: dossierCompletionAssessments.status,
+  contentChangedAt: dossierCompletionAssessments.contentChangedAt,
+  applicableSectionCount: dossierCompletionAssessments.applicableSectionCount,
+  terminalSectionCount: dossierCompletionAssessments.terminalSectionCount,
+} as const
+
 /** Load the editor/sitemap projection without selecting legacy dossier JSONB or unsafe fields. */
 export async function loadMedicinePublicationIndexabilityReports(
   evaluatedAt = new Date(),
@@ -216,15 +302,18 @@ export async function loadMedicinePublicationIndexabilityReports(
     where ${medicineSlugRedirects.oldSlug} = ${drugs.slug}
   )`
 
-  const [medicineRows, publicationRows, freshnessRows] = await Promise.all([
+  const [identityRows, publicationRows, freshnessRows] = await Promise.all([
     db
       .select({
         medicineId: drugs.id,
         medicineName: drugs.name,
         canonicalSlug: drugs.slug,
         isRedirectSource,
+        ...CANONICAL_RECORD_COLUMNS,
       })
       .from(drugs)
+      .leftJoin(inventoryResolutions, eq(inventoryResolutions.drugId, drugs.id))
+      .leftJoin(dossierCompletionAssessments, eq(dossierCompletionAssessments.drugId, drugs.id))
       .where(publicMedicineFilter),
     db
       .select({
@@ -286,6 +375,14 @@ export async function loadMedicinePublicationIndexabilityReports(
       .where(publicMedicineFilter),
   ])
 
+  const medicineRows: MedicineIdentityIndexingRow[] = identityRows.map((row) => ({
+    medicineId: row.medicineId,
+    medicineName: row.medicineName,
+    canonicalSlug: row.canonicalSlug,
+    isRedirectSource: row.isRedirectSource,
+    canonicalRecord: toCanonicalRecordInput(row),
+  }))
+
   return buildMedicinePublicationIndexabilityReports(
     medicineRows,
     publicationRows,
@@ -322,35 +419,107 @@ export async function loadLegacyFlagshipIndexabilityReports(
       ...legacyFlagshipDrugColumns,
       isRedirectSource,
       hasAnyProgramme,
+      ...CANONICAL_RECORD_COLUMNS,
     })
     .from(drugs)
+    .leftJoin(inventoryResolutions, eq(inventoryResolutions.drugId, drugs.id))
+    .leftJoin(dossierCompletionAssessments, eq(dossierCompletionAssessments.drugId, drugs.id))
     .where(and(publicMedicineFilter, eq(drugs.dossierDepth, 'flagship')))
 
   return buildLegacyFlagshipIndexabilityReports(
-    rows.map(({ isRedirectSource: redirect, hasAnyProgramme: programme, ...row }) => ({
-      medicineId: row.id,
-      drug: rowToDossier(row as DrugRow),
-      isRedirectSource: redirect,
-      hasAnyProgramme: programme,
-    })),
+    rows.map(
+      ({
+        isRedirectSource: redirect,
+        hasAnyProgramme: programme,
+        resolutionStatus,
+        assessmentStatus,
+        contentChangedAt,
+        applicableSectionCount,
+        terminalSectionCount,
+        ...row
+      }) => ({
+        medicineId: row.id,
+        drug: rowToDossier(row as DrugRow),
+        isRedirectSource: redirect,
+        hasAnyProgramme: programme,
+        canonicalRecord: toCanonicalRecordInput({
+          resolutionStatus,
+          assessmentStatus,
+          contentChangedAt,
+          applicableSectionCount,
+          terminalSectionCount,
+        }),
+      }),
+    ),
     evaluatedAt,
   )
 }
 
-/** Shared sitemap projection: current publications plus only the bound flagship legacy cohort. */
+/**
+ * Load the canonical-record path from scalar columns only. Every public medicine identity is read,
+ * including the ones the shared policy will exclude, so the projection stays auditable and a
+ * duplicate, redirected or unassessed row is visibly refused rather than silently absent.
+ */
+export async function loadCanonicalRecordIndexabilityReports(): Promise<
+  MedicinePublicationIndexabilityReport[]
+> {
+  const isRedirectSource = sql<boolean>`exists(
+    select 1
+    from ${medicineSlugRedirects}
+    where ${medicineSlugRedirects.oldSlug} = ${drugs.slug}
+  )`
+
+  const rows = await db
+    .select({
+      medicineId: drugs.id,
+      medicineName: drugs.name,
+      canonicalSlug: drugs.slug,
+      isRedirectSource,
+      ...CANONICAL_RECORD_COLUMNS,
+    })
+    .from(drugs)
+    .leftJoin(inventoryResolutions, eq(inventoryResolutions.drugId, drugs.id))
+    .leftJoin(dossierCompletionAssessments, eq(dossierCompletionAssessments.drugId, drugs.id))
+    .where(publicMedicineFilter)
+
+  return buildCanonicalRecordIndexabilityReports(rows)
+}
+
+/**
+ * Merge the three report sets into exactly one report per medicine. A medicine with a current
+ * publication is described by its publication report, a flagship without one by its legacy report,
+ * and everything else by its canonical-record report. All three sets are built from the same pure
+ * policy with the same canonical-record projection, so the winning report cannot disagree with a
+ * losing one about whether the URL may be indexed.
+ */
+export function mergeMedicineSitemapReports(
+  publicationReports: readonly MedicinePublicationIndexabilityReport[],
+  legacyReports: readonly MedicinePublicationIndexabilityReport[],
+  canonicalRecordReports: readonly MedicinePublicationIndexabilityReport[],
+): MedicinePublicationIndexabilityReport[] {
+  const merged = new Map<string, MedicinePublicationIndexabilityReport>()
+  for (const report of publicationReports) {
+    if (report.selectedProgrammeId === null) continue
+    merged.set(report.medicineId, report)
+  }
+  for (const report of [...legacyReports, ...canonicalRecordReports]) {
+    if (merged.has(report.medicineId)) continue
+    merged.set(report.medicineId, report)
+  }
+  return [...merged.values()].sort((left, right) =>
+    left.canonicalSlug.localeCompare(right.canonicalSlug),
+  )
+}
+
+/** Shared sitemap projection: current publications, the bound flagship cohort, canonical records. */
 export async function loadMedicineSitemapIndexabilityReports(
   evaluatedAt = new Date(),
 ): Promise<MedicinePublicationIndexabilityReport[]> {
-  const [publicationReports, legacyReports] = await Promise.all([
+  const [publicationReports, legacyReports, canonicalRecordReports] = await Promise.all([
     loadMedicinePublicationIndexabilityReports(evaluatedAt),
     loadLegacyFlagshipIndexabilityReports(evaluatedAt),
+    loadCanonicalRecordIndexabilityReports(),
   ])
 
-  // Identity-only rows have no chance of entering the sitemap and need not be retained in memory.
-  // Flagships with any normalized programme are present in `legacyReports` only as an auditable
-  // noindex decision, so an incomplete programme can never fall back to a legacy search result.
-  return [
-    ...publicationReports.filter((report) => report.selectedProgrammeId !== null),
-    ...legacyReports,
-  ]
+  return mergeMedicineSitemapReports(publicationReports, legacyReports, canonicalRecordReports)
 }
