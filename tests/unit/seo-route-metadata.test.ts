@@ -58,6 +58,11 @@ describe('dossier discovery surface contract', () => {
   })
 })
 
+let requestHost: string | null = 'rnawiki.com'
+vi.mock('next/headers', () => ({
+  headers: async () => new Headers(requestHost === null ? {} : { host: requestHost }),
+}))
+
 describe('browse search metadata', () => {
   beforeEach(() => {
     vi.stubEnv('NODE_ENV', 'production')
@@ -69,23 +74,43 @@ describe('browse search metadata', () => {
     vi.unstubAllEnvs()
   })
 
-  it('indexes only the unfiltered canonical first page', async () => {
-    const canonical = await browseMetadata({ searchParams: Promise.resolve({}) })
-    expect(canonical.alternates).toEqual({ canonical: '/browse' })
-    expect(canonical.robots).toEqual({
-      index: true,
-      follow: true,
-      googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
-    })
+  const INDEXED = {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  }
+  const NOT_INDEXED = { index: false, follow: true, googleBot: { index: false, follow: true } }
 
-    for (const searchParams of [{ modality: 'Small Molecule' }, { page: '1' }, { page: '2' }]) {
-      const variant = await browseMetadata({ searchParams: Promise.resolve(searchParams) })
-      expect(variant.alternates).toEqual({ canonical: '/browse' })
-      expect(variant.robots).toEqual({
-        index: false,
-        follow: true,
-        googleBot: { index: false, follow: true },
+  it('indexes every page of the unfiltered record list', async () => {
+    // Page two onwards lists a different sixty records and carries the only internal link to them.
+    // Leaving those pages out of the index left 99% of the corpus with no link a crawler follows.
+    for (const [searchParams, canonical] of [
+      [{}, '/browse'],
+      [{ page: '1' }, '/browse'],
+      [{ page: '2' }, '/browse?page=2'],
+      [{ page: '165' }, '/browse?page=165'],
+    ] as const) {
+      const metadata = await browseMetadata({ searchParams: Promise.resolve(searchParams) })
+      expect(metadata.alternates, `canonical for ${JSON.stringify(searchParams)}`).toEqual({
+        canonical,
       })
+      expect(metadata.robots, `robots for ${JSON.stringify(searchParams)}`).toEqual(INDEXED)
+    }
+  })
+
+  it('keeps filter combinations out of the index and pointing at themselves', async () => {
+    // A filtered view re-cuts records that are already listed elsewhere, so it stays unindexed. It
+    // still points at itself: saying "do not index me" while naming a different address gives a
+    // crawler two conflicting instructions about one URL.
+    for (const [searchParams, canonical] of [
+      [{ modality: 'Small Molecule' }, '/browse?modality=Small+Molecule'],
+      [{ depth: 'flagship', page: '3' }, '/browse?depth=flagship&page=3'],
+    ] as const) {
+      const metadata = await browseMetadata({ searchParams: Promise.resolve(searchParams) })
+      expect(metadata.alternates, `canonical for ${JSON.stringify(searchParams)}`).toEqual({
+        canonical,
+      })
+      expect(metadata.robots, `robots for ${JSON.stringify(searchParams)}`).toEqual(NOT_INDEXED)
     }
   })
 
@@ -117,6 +142,7 @@ describe('robots deployment boundary', () => {
   afterEach(() => {
     vi.unstubAllEnvs()
     vi.resetModules()
+    requestHost = 'rnawiki.com'
   })
 
   async function loadRobots() {
@@ -124,6 +150,26 @@ describe('robots deployment boundary', () => {
     const { default: robots } = await import('@/app/robots')
     return robots()
   }
+
+  it('blocks every crawler on a hostname that is not the canonical one', async () => {
+    // A platform-generated service domain aimed at the same container answers with the same
+    // environment variables, so only the request's own Host header can tell the two apart.
+    vi.stubEnv('NODE_ENV', 'production')
+    vi.stubEnv('SEO_DEPLOYMENT_ENV', 'production')
+    vi.stubEnv('SITE_URL', 'https://rnawiki.com')
+
+    for (const host of [
+      'doswiki-production.up.railway.app',
+      'rnawiki.com.example.test',
+      '',
+      null,
+    ]) {
+      requestHost = host
+      expect(await loadRobots(), `host ${JSON.stringify(host)}`).toEqual({
+        rules: [{ userAgent: '*', disallow: '/' }],
+      })
+    }
+  })
 
   it('blocks every crawler outside the canonical production deployment', async () => {
     vi.stubEnv('NODE_ENV', 'production')

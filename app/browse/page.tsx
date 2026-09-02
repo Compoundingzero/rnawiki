@@ -6,7 +6,12 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
-import { browsePageLinks, parseBrowsePage } from '@/lib/browse-pagination'
+import {
+  BROWSE_PAGE_SIZE,
+  browsePageLinks,
+  lastBrowsePage,
+  parseBrowsePage,
+} from '@/lib/browse-pagination'
 import { listDrugs, type DossierDepth } from '@/lib/queries/drugs'
 import { getPublicMedicineProjections } from '@/lib/queries/public-medicine-projection'
 import {
@@ -29,8 +34,6 @@ import {
 // dynamic segment is a prerender candidate, so without this the production build fails here while
 // passing locally.
 export const dynamic = 'force-dynamic'
-
-const PAGE_SIZE = 60
 
 const DEPTHS: NonNullable<DossierDepth>[] = ['flagship', 'curated', 'stub']
 
@@ -78,7 +81,6 @@ interface BrowseFilters {
   approvalStatus?: ApprovalStatus
   depth?: NonNullable<DossierDepth>
   page: number
-  hasExplicitPage: boolean
 }
 
 function readFilters(params: SearchParams): BrowseFilters {
@@ -91,7 +93,7 @@ function readFilters(params: SearchParams): BrowseFilters {
   if (hasExplicitPage && rawPage === '') notFound()
   const page = parseBrowsePage(rawPage)
   if (page === null) notFound()
-  const filters: BrowseFilters = { page, hasExplicitPage }
+  const filters: BrowseFilters = { page }
 
   const modality = strictOneOf(params, 'modality', DRUG_MODALITIES)
   if (modality) filters.modality = modality
@@ -249,8 +251,13 @@ export async function generateMetadata({ searchParams }: BrowsePageProps): Promi
   // Next.js 15: `searchParams` is a Promise, exactly like `params`.
   const filters = readFilters(await searchParams)
   const description = describeFilters(filters)
-  const isCanonicalIndexPage =
-    !hasBrowseFilter(filters) && filters.page === 1 && !filters.hasExplicitPage
+  // Each page of the unfiltered list holds a different sixty records, so page two is a distinct
+  // page rather than a copy of page one, and it is the only internal link to the records it lists.
+  // Filter combinations stay out of the index: they re-cut the same records into many overlapping
+  // URLs. Indexability and the canonical address are now decided separately, because a page that
+  // says "do not index me" while pointing at a different address gives a crawler two conflicting
+  // instructions about the same URL.
+  const indexable = !hasBrowseFilter(filters)
 
   return {
     title: description
@@ -261,8 +268,10 @@ export async function generateMetadata({ searchParams }: BrowsePageProps): Promi
     description: description
       ? `RNAWiki medicine records filed under ${description}.`
       : 'Browse every medicine record on RNAWiki, from detailed records to basic records that identify the medicine and its regulatory status.',
-    alternates: { canonical: '/browse' },
-    robots: pageRobotsMetadata({ index: isCanonicalIndexPage, follow: true }),
+    // Every view points at itself. `browseHref` leaves page one implicit, so `/browse?page=1`
+    // still resolves to `/browse` rather than becoming a second address for the same list.
+    alternates: { canonical: browseHref(filters) },
+    robots: pageRobotsMetadata({ index: indexable, follow: true }),
   }
 }
 
@@ -272,8 +281,8 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   const [user, result] = await Promise.all([
     getCurrentUser(),
     listDrugs({
-      limit: PAGE_SIZE,
-      offset: (filters.page - 1) * PAGE_SIZE,
+      limit: BROWSE_PAGE_SIZE,
+      offset: (filters.page - 1) * BROWSE_PAGE_SIZE,
       ...(filters.modality ? { modality: filters.modality } : {}),
       ...(filters.approvalStatus ? { approvalStatus: filters.approvalStatus } : {}),
       ...(filters.depth ? { depth: filters.depth } : {}),
@@ -281,13 +290,13 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   ])
 
   const { items, total } = result
-  const lastPage = Math.max(1, Math.ceil(total / PAGE_SIZE))
+  const lastPage = lastBrowsePage(total)
   if (filters.page > lastPage) notFound()
   if (total === 0 && hasBrowseFilter(filters)) notFound()
 
   const projections = await getPublicMedicineProjections(items.map((drug) => drug.id))
-  const firstOnPage = total === 0 ? 0 : (filters.page - 1) * PAGE_SIZE + 1
-  const lastOnPage = (filters.page - 1) * PAGE_SIZE + items.length
+  const firstOnPage = total === 0 ? 0 : (filters.page - 1) * BROWSE_PAGE_SIZE + 1
+  const lastOnPage = (filters.page - 1) * BROWSE_PAGE_SIZE + items.length
 
   // `total` is a real `count(*)` over the same filter, from the same query as the rows
   // (`listDrugs` reads it with a window function). It is never a rounded headline number.
@@ -304,7 +313,9 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
             Medicine library
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#1D1D1F] tracking-tight">
-            Browse medicines
+            {filters.page > 1
+              ? `Browse medicines, page ${filters.page} of ${lastPage}`
+              : 'Browse medicines'}
           </h1>
           <p className="text-xs sm:text-sm text-[#6E6E73] leading-relaxed">
             Some records contain detailed evidence; others currently contain only basic identity and

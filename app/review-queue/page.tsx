@@ -1127,6 +1127,44 @@ export default async function ReviewQueuePage({ searchParams }: ReviewQueuePageP
 
         {showQualificationControls && (
           <section className="space-y-3" aria-label="Private steward and administrator work">
+            <nav
+              aria-labelledby="steward-reports-heading"
+              className="rounded-3xl border border-black/[0.08] bg-white p-4 shadow-[0_2px_16px_rgba(0,0,0,0.03)] sm:p-6"
+            >
+              <h2 id="steward-reports-heading" className="text-sm font-bold text-[#1D1D1F]">
+                Steward reports
+              </h2>
+              <p className="pt-1 text-[11px] leading-5 text-[#6E6E73]">
+                Both reports read stored rows and change nothing. Only stewards and administrators
+                can open them.
+              </p>
+              <ul className="space-y-3 pt-3">
+                <li className="min-w-0">
+                  <Link
+                    href="/review-queue/completion"
+                    className="inline-flex min-h-11 items-center text-xs font-bold text-[#0071E3] hover:underline"
+                  >
+                    Completion and identity review
+                  </Link>
+                  <p className="text-[11px] leading-5 text-[#6E6E73]">
+                    Medicine records whose completion assessment still has an open question, and
+                    identities that need a person to decide what they are.
+                  </p>
+                </li>
+                <li className="min-w-0">
+                  <Link
+                    href="/review-queue/search-indexing"
+                    className="inline-flex min-h-11 items-center text-xs font-bold text-[#0071E3] hover:underline"
+                  >
+                    Search indexing report
+                  </Link>
+                  <p className="text-[11px] leading-5 text-[#6E6E73]">
+                    Which medicine pages this site allows search engines to index, with the recorded
+                    reason for each. It does not say whether a search engine has indexed them.
+                  </p>
+                </li>
+              </ul>
+            </nav>
             <ReviewerQualificationPanel />
             <FeedbackReviewPanel />
           </section>
