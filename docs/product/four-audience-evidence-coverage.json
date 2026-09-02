@@ -7,7 +7,7 @@
     "inputs": {
       "data/drugs.csv": "e53e401693b92ae6295bc10ebf922c161baed758ddd81ea0e577aa0fd6044bf2",
       "data/drugs/*.ndjson": "09ae22a3920408f18e31970c0bd6e8e5aa1b0b99421b5c8b7d875df7021f45b6",
-      "data/manifest.json": "ebf511233f4f5bb81a96192eacc47c8cc329bf0c0313e948b7077d16e2d86850",
+      "data/manifest.json": "95aa80f25b8c9c6f63cca753efb183fd44ec22d8f97e3ec366a8487380ed3148",
       "data/recorded-background.ndjson": "7d7b03a4e46f7d27ac3b7c271607e457e792674b116eecd1d1d1171a9d707ec7",
       "data/source-consensus.ndjson": "e2142e79e7fe5ac3399f8487efce00acd8353e6844cf1ad469a278e2b5673da9",
       "docs/product/four-audience-evidence-contract.json": "d3496d980db3d4e9ca2474cdf95684743ad5c550bea571aabffec3ec668a7e73"

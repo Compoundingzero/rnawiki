@@ -200,17 +200,17 @@
       {
         "neurodeId": "peer-group-anomaly-screen",
         "neurodeVersion": "1.1.0",
-        "contractCacheDigest": "sha256:1fd2d7bee0e773f557d96955c730fcb0c555943d5a03908f8bdb72542607796b",
+        "contractCacheDigest": "sha256:149b1aefe18a686ae8cf73b05116ad5360fb0822c070bce241a0160be0468353",
         "category": "PRIORITIZATION_FEATURE",
         "inputSchemaId": "rnawiki/agent-corpus/v1",
         "outputSchemaId": "rnawiki/agent-run/peer-group-anomaly-screen/v1",
         "dependencyIds": [],
         "status": "SUCCEEDED",
         "cacheStatus": "DISABLED",
-        "cacheKey": "neurode_cache_7b30da8c85c8e16d46574cc059d6cd787f1966eec928cf9174b3b25d1cff11e6",
-        "inputDigest": "sha256:d81972f575ceba10294cba6b1b5e1a7a5682bb8c056f6b014d0747584420bb73",
+        "cacheKey": "neurode_cache_1afecafb2b39f7378a9f0204866e47e53c6e74f925866699cb8f749e089cf364",
+        "inputDigest": "sha256:3094b1169e9aef2a65c682af20e57a2b348200c5ce0e16a373590d0bbcfa84a0",
         "inputDigestComplete": true,
-        "outputDigest": "sha256:5f096fe20cfe83c6f66e9753390607039183f2eac534b980e9b834a5d45bf90f",
+        "outputDigest": "sha256:7aeaf7a975d1faf344cd604b5315961d4837c8a8919cb14dcfc96609d7f7b560",
         "recordsConsidered": 9855,
         "recordsUsed": 1347,
         "reasonCodes": [
@@ -267,7 +267,7 @@
         "failureCode": null
       }
     ],
-    "runId": "neurode_run_cbf3fc24094733bec22f4ee8611caa7c00d41b56844ec6b7fb1402c0ef07ebc3"
+    "runId": "neurode_run_dd65fc14c02dbff73d4b442bc0781f1db161e97fbb18164f634c923409ef137d"
   },
   "artifacts": [
     {
@@ -563,9 +563,9 @@
         "scripts/agents/current-run.ts",
         "scripts/agents/registry.ts"
       ],
-      "implementationDigest": "1a0083faad2d7c0d316c9dfde46916455ccf40c145f23fc2d8e0d8d5a2c7655c",
-      "inputDigest": "1ca3bc895bc4b5860055abe9d38f422a902c17657b1a3464ef4fb56a154d9bc3",
-      "outputDigest": "4893ea94575e78da7a8c8165eaa220877d0ba2144b44cd7a9317501fe204a9dc",
+      "implementationDigest": "d0973f3488ac0c4f7d89771d9decbaf50a936c4292c5b5e83f738f46ac5ef36e",
+      "inputDigest": "93c5f2af813c1b37d50bb83caf588c55c5f0fe91f36ac63aca45ac4679281f16",
+      "outputDigest": "6fc853cf9f6d3b96031ba7244167eef8f07d9b6d671aecb29e4f60e6cc5279ed",
       "candidateCount": 122,
       "availableCandidateCount": 122,
       "candidateSelectionMode": "complete",
@@ -627,7 +627,7 @@
           "mode": "FIXED",
           "seed": 20260828
         },
-        "cacheDigest": "sha256:1fd2d7bee0e773f557d96955c730fcb0c555943d5a03908f8bdb72542607796b",
+        "cacheDigest": "sha256:149b1aefe18a686ae8cf73b05116ad5360fb0822c070bce241a0160be0468353",
         "reasonCodes": [
           "UNUSUAL_FOR_PEER_GROUP"
         ],
