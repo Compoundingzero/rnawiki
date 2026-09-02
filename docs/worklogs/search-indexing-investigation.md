@@ -128,6 +128,30 @@ of work, not a header tweak.
 **`Disallow: /api/`** keeps the machine-readable representation away from the same answer engines
 `robots.txt` explicitly welcomes. Worth a decision; unchanged here.
 
+## Deployed and verified
+
+Merged as `b9dc561` and deployed on Railway as `5e276644`. Checked against the live site
+afterwards:
+
+| URL                               | Robots directive | Canonical link                    |
+| --------------------------------- | ---------------- | --------------------------------- |
+| `/browse`                         | index, follow    | `/browse`                         |
+| `/browse?page=1`                  | index, follow    | `/browse`                         |
+| `/browse?page=2`                  | index, follow    | `/browse?page=2`                  |
+| `/browse?page=165`                | index, follow    | `/browse?page=165`                |
+| `/browse?modality=Small+Molecule` | noindex, follow  | `/browse?modality=Small+Molecule` |
+
+`/browse?page=2` now heads its own page: "Browse medicines, page 2 of 165". The sitemap serves
+10,027 URLs: 9,852 dossiers, the 164 later browse pages and 11 other routes, with no filtered view.
+Titles read `Metformin — evidence record` and, where the name is long,
+`Streptococcus Pneumoniae Type 19a Ca…Polysaccharide Antigen`. `robots.txt` serves the public rules
+on `rnawiki.com` and `Disallow: /` on `doswiki-production.up.railway.app`, which still answers
+requests directly, so removing that domain is still worth doing.
+
+All 9,852 dossiers were resubmitted through IndexNow at 2026-09-02T17:13:11Z, one batch, HTTP 200,
+none rejected, because their titles changed. The 164 browse pages are announced through the sitemap
+rather than IndexNow, which this command scopes to dossiers.
+
 ## What to expect
 
 The sitemap-scoped population in Search Console should climb from 169 toward 10,027 over days to
