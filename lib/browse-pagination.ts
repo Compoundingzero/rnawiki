@@ -1,5 +1,15 @@
 export const MAX_BROWSE_PAGE = 10_000
 
+/** Records listed on one browse page. The sitemap needs the same value the route paginates by, so
+ *  the two cannot drift into advertising a page number the route would answer as not found. */
+export const BROWSE_PAGE_SIZE = 60
+
+/** The last page number for a list of `total` records, never below one. */
+export function lastBrowsePage(total: number): number {
+  if (!Number.isFinite(total) || total <= 0) return 1
+  return Math.max(1, Math.ceil(total / BROWSE_PAGE_SIZE))
+}
+
 /** Strict, bounded parsing for the public browse offset. Missing means page one; malformed,
  * fractional, unsafe or excessive values are invalid rather than partially parsed. */
 export function parseBrowsePage(raw: string | undefined): number | null {

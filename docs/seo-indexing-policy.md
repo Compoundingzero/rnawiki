@@ -11,7 +11,7 @@ rather than thousands of identity-only records, work queues, histories or URL pe
 The XML sitemap contains only:
 
 - `/`
-- `/browse`
+- `/browse`, and `/browse?page=N` for every later page of the unfiltered record list
 - `/how-it-works`
 - `/editorial-policy`
 - one `/d/{canonicalSlug}` URL for each medicine admitted by any of the three eligibility paths:
@@ -223,8 +223,20 @@ slots and a polite pause, and writes a resumable NDJSON checkpoint plus a summar
 
 ## Browse URL policy
 
-Only the unfiltered first page at `/browse` is indexable. Any valid filter, pagination parameter
-(including explicit `?page=1`) or combination is `noindex,follow` and canonicalizes to `/browse`.
+Every page of the unfiltered record list is indexable and points at itself. Any filter or
+combination of filters is `noindex,follow` and also points at itself.
+
+Each browse page lists a different sixty records, and a record's browse entry is currently the only
+internal link to it, so page two onward carries the sole link to all but the first sixty records.
+While those pages were `noindex` and named `/browse` as their canonical address, 9,792 of 9,852
+records had no link to them from any indexable page and were reachable through the sitemap alone.
+Indexability and the canonical address are now decided separately: telling a crawler not to index a
+page while naming a different address for it gives two conflicting instructions about one URL.
+
+`/browse?page=1` still resolves to `/browse` through its canonical link rather than through a
+`noindex`, because it is a duplicate address for one list rather than a page to keep out of search.
+Filtered views re-cut records that are already listed elsewhere, so they stay out of the index and
+out of the sitemap.
 
 The browse route returns 404 for:
 
@@ -240,8 +252,15 @@ responses.
 
 ## Crawler deployment guard
 
-Non-production deployments serve `Disallow: /` and advertise no sitemap. Public crawl rules are
-enabled only when all of the following are true:
+Non-production deployments serve `Disallow: /` and advertise no sitemap. So does any request that
+arrives on a hostname other than the canonical one. The environment checks below cannot tell one
+hostname from another, so a platform-generated service domain aimed at the same container answers
+with the same variables; `app/robots.ts` compares the request's own `Host` header as well, and an
+absent, malformed or different host fails closed. A crawlable duplicate host still costs crawl
+capacity even though every page names its canonical address, so remove the generated domain at the
+platform as well.
+
+Public crawl rules are enabled only when all of the following are true:
 
 - `NODE_ENV=production`;
 - `SITE_URL` is explicitly `https://rnawiki.com` (the equivalent root-slash form is accepted), with

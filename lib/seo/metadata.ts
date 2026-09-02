@@ -5,7 +5,16 @@ import { decideDossierIndexability } from '@/lib/seo/dossier-indexability'
 import type { MedicineIndexabilityDecision } from '@/lib/seo/indexability'
 import type { DrugDossier } from '@/lib/types'
 
+/**
+ * The record name is the only part of a dossier title that tells one page from another, so it is
+ * given the budget first and the suffix below is what gives way. The previous order spent 48 of
+ * 64 characters on a fixed phrase and cut names to sixteen characters, which left 1,979 records
+ * sharing a byte-identical title with another record. That phrase also promised trial results on
+ * the thousands of records where the registry search found none.
+ */
+const TITLE_NAME_LIMIT = 60
 const TITLE_LIMIT = 64
+const TITLE_SUFFIX = ' — evidence record'
 const DESCRIPTION_LIMIT = 158
 /** Bound for the one finding sentence rendered on the generated social-card image. */
 const SOCIAL_FINDING_LIMIT = 220
@@ -24,11 +33,27 @@ function truncate(value: string, limit: number): string {
   return `${safe.replace(/[\s,;:–—-]+$/u, '')}…`
 }
 
+/**
+ * Long record names in this corpus often differ only in their closing words: "…Type 19a Capsular
+ * Polysaccharide Antigen" against "…Type 19a Capsular Polysaccharide Diphtheria Crm197 Protein
+ * Conjugate Antigen". Cutting the end alone makes those two pages share one title, so a name that
+ * does not fit keeps both ends and drops the middle.
+ */
+function elideMiddle(value: string, limit: number): string {
+  const normalized = compact(value)
+  if (normalized.length <= limit) return normalized
+  const head = Math.ceil((limit - 1) * 0.6)
+  const tail = limit - 1 - head
+  const start = normalized.slice(0, head).replace(/[\s,;:–—-]+$/u, '')
+  const end = normalized.slice(normalized.length - tail).replace(/^[\s,;:–—-]+/u, '')
+  return `${start}…${end}`
+}
+
 /** Page title without the site-name suffix supplied by app/layout.tsx. */
 export function dossierMetadataTitle(name: string): string {
-  const entity = compact(name) || 'Medicine'
-  const intent = ': Evidence, Trial Results & What Remains Unknown'
-  return `${truncate(entity, TITLE_LIMIT - intent.length)}${intent}`
+  const entity = elideMiddle(compact(name) || 'Medicine', TITLE_NAME_LIMIT)
+  const withSuffix = `${entity}${TITLE_SUFFIX}`
+  return withSuffix.length <= TITLE_LIMIT ? withSuffix : entity
 }
 
 /**

@@ -10,3 +10,7 @@ export interface CanonicalProductionEnvironment {
 
 export function isExactCanonicalSiteUrl(siteUrl: string | undefined): boolean
 export function isCanonicalProductionOrigin(environment?: CanonicalProductionEnvironment): boolean
+export function isCanonicalRequestHost(
+  host: string | null | undefined,
+  environment?: Pick<CanonicalProductionEnvironment, 'SITE_URL'>,
+): boolean

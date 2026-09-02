@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next'
 
+import { lastBrowsePage } from '@/lib/browse-pagination'
 import { PUBLIC_DATASET_IDS } from '@/lib/public-datasets'
+import { listDrugs } from '@/lib/queries/drugs'
 import { listIndexableContributorProfilesForSitemap } from '@/lib/queries/users'
 import {
   loadMedicineSitemapIndexabilityReports,
@@ -52,10 +54,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 }
 
 async function buildSitemap(): Promise<MetadataRoute.Sitemap> {
-  const [reports, contributorProfiles] = await Promise.all([
+  const [reports, contributorProfiles, browseTotal] = await Promise.all([
     loadMedicineSitemapIndexabilityReports(),
     listIndexableContributorProfilesForSitemap(),
+    // Only the count matters here. It must come from the same query the browse route paginates,
+    // or the sitemap could advertise a page number that route answers as not found.
+    listDrugs({ limit: 1, offset: 0 }).then((result) => result.total),
   ])
+
+  // Page two onwards of the unfiltered record list. Each lists a different sixty records and is
+  // the only internal link to them, so a crawler that never reaches these pages never follows a
+  // link to 99% of the corpus. Filtered views stay out: they re-cut the same records.
+  const browsePages: MetadataRoute.Sitemap = Array.from(
+    { length: Math.max(0, lastBrowsePage(browseTotal) - 1) },
+    (_unused, index) => ({
+      url: `${siteOrigin}/browse?page=${index + 2}`,
+      changeFrequency: 'daily' as const,
+      priority: 0.5,
+    }),
+  )
   const dossiers: MetadataRoute.Sitemap = reports.flatMap((report) => {
     const { decision } = report
     if (!decision.index || !decision.canonicalSlug || !decision.lastPublicContentUpdate) return []
@@ -75,11 +92,12 @@ async function buildSitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.4,
   }))
 
-  const entries = [...STATIC_ROUTES, ...dossiers, ...profiles]
+  const entries = [...STATIC_ROUTES, ...browsePages, ...dossiers, ...profiles]
   console.info(
     '[seo.sitemap_size]',
     JSON.stringify({
       staticRoutes: STATIC_ROUTES.length,
+      browsePages: browsePages.length,
       dossiers: dossiers.length,
       contributorProfiles: profiles.length,
       total: entries.length,

@@ -14,14 +14,41 @@ import {
 import type { DrugDossier } from '@/lib/types'
 
 describe('safe SEO metadata builders', () => {
-  it('expresses evidence intent and bounds long dossier titles', () => {
+  it('bounds a long dossier title and spends the room on the name', () => {
     const title = dossierMetadataTitle(
       'An exceptionally long medicine identity whose complete database name cannot fit in a useful search title',
     )
 
     expect(title.length).toBeLessThanOrEqual(64)
-    expect(title).toContain('Evidence')
     expect(title).not.toContain('RNAWiki')
+    // A name this long takes the whole budget, so the descriptive suffix gives way.
+    expect(title).not.toContain('evidence record')
+    expect(title.startsWith('An exceptionally long medicine')).toBe(true)
+    expect(title.endsWith('search title')).toBe(true)
+  })
+
+  it('names what the page is when the record name leaves room', () => {
+    expect(dossierMetadataTitle('Metformin')).toBe('Metformin — evidence record')
+    expect(dossierMetadataTitle('  Metformin  ')).toBe('Metformin — evidence record')
+    expect(dossierMetadataTitle('')).toBe('Medicine — evidence record')
+  })
+
+  it('keeps both ends of a long name so records that differ only at the end differ in the title', () => {
+    // These two records are distinct and their names diverge only after sixty characters. Cutting
+    // the end alone gave 1,982 records a title they shared with another record.
+    const shorter = dossierMetadataTitle(
+      'Streptococcus Pneumoniae Type 19a Capsular Polysaccharide Antigen',
+    )
+    const longer = dossierMetadataTitle(
+      'Streptococcus Pneumoniae Type 19a Capsular Polysaccharide Diphtheria Crm197 Protein Conjugate Antigen',
+    )
+
+    expect(shorter).not.toBe(longer)
+    for (const title of [shorter, longer]) {
+      expect(title.length).toBeLessThanOrEqual(64)
+      expect(title.startsWith('Streptococcus Pneumoniae Type 19a')).toBe(true)
+      expect(title.endsWith('Antigen')).toBe(true)
+    }
   })
 
   it('uses only the supplied visible reviewed answer fields', () => {

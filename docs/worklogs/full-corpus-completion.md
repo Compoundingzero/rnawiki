@@ -337,6 +337,13 @@ The corpus publication chain ran end to end: export, snapshot commit `c895392`, 
   delay. The rate limit is a property of the monitor's
   pace, not of the records; every record answered 200 when re-checked.
 
+- Follow-up investigation, 2026-09-02: Google Search Console reported one indexed page of a
+  169-URL population. That export predates this release and describes the previous corpus. The
+  audit behind it found no indexing blocker but did find that `/browse?page=2` onward were
+  `noindex` and canonicalised to `/browse` while carrying the only internal link to 9,792 of the
+  9,852 records. See `docs/worklogs/search-indexing-investigation.md` for the findings, the fixes
+  and the parts deliberately left alone.
+
 ## Release and resume commands
 
 Pre-release production backup, taken over certificate-verified TLS (CA read from the database

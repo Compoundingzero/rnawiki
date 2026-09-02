@@ -4,6 +4,7 @@ import { PUBLIC_DATASET_IDS } from '@/lib/public-datasets'
 
 const loadReports = vi.hoisted(() => vi.fn())
 const loadContributorProfiles = vi.hoisted(() => vi.fn())
+const listDrugs = vi.hoisted(() => vi.fn())
 
 vi.mock('@/lib/seo/publication-indexability', () => ({
   loadMedicineSitemapIndexabilityReports: loadReports,
@@ -12,17 +13,22 @@ vi.mock('@/lib/seo/publication-indexability', () => ({
 vi.mock('@/lib/queries/users', () => ({
   listIndexableContributorProfilesForSitemap: loadContributorProfiles,
 }))
+// The sitemap needs the browse list's own record count so it cannot advertise a page number the
+// browse route would answer as not found.
+vi.mock('@/lib/queries/drugs', () => ({ listDrugs }))
 
 describe('generated sitemap behavior', () => {
   afterEach(() => {
     loadReports.mockReset()
     loadContributorProfiles.mockReset()
+    listDrugs.mockReset()
     vi.unstubAllEnvs()
     vi.resetModules()
   })
 
   it('emits only eligible canonical slugs and uses the publication event as lastmod', async () => {
     vi.stubEnv('SITE_URL', 'https://rnawiki.com/')
+    listDrugs.mockResolvedValue({ items: [], total: 3 })
     const publishedAt = new Date('2026-08-20T10:00:00.000Z')
     const contributionAcceptedAt = new Date('2026-08-21T09:00:00.000Z')
     loadContributorProfiles.mockResolvedValue([
@@ -156,13 +162,17 @@ describe('generated sitemap behavior', () => {
       // One page per declared public dataset, in declaration order and with nothing extra.
       ...PUBLIC_DATASET_IDS.map((dataset) => `/datasets/${dataset}`),
     ])
-    expect(entries.some((entry) => entry.url.includes('?'))).toBe(false)
+    // The only query-string URLs are the later pages of the unfiltered record list. Those pages
+    // carry the sole internal link to nearly every record, so leaving them out of the sitemap and
+    // out of the index left the corpus reachable by sitemap alone.
+    expect(entries.filter((entry) => entry.url.includes('?'))).toEqual([])
     expect(entries.some((entry) => /review-queue|history/.test(entry.url))).toBe(false)
     expect(entries.some((entry) => /\/about$|\/corrections$/.test(entry.url))).toBe(false)
   })
 
   it('emits each medicine once and stays inside the 50,000-URL sitemap protocol limit', async () => {
     vi.stubEnv('SITE_URL', 'https://rnawiki.com')
+    listDrugs.mockResolvedValue({ items: [], total: 9_900 })
     loadContributorProfiles.mockResolvedValue([])
     const lastPublicContentUpdate = new Date('2026-08-22T00:00:00.000Z')
     loadReports.mockResolvedValue(
@@ -195,5 +205,37 @@ describe('generated sitemap behavior', () => {
     expect(dossierUrls).toHaveLength(9_900)
     expect(new Set(dossierUrls).size).toBe(9_900)
     expect(entries.length).toBeLessThan(50_000)
+
+    // Page two through the last page of the browse list, and no filtered view.
+    const browseUrls = entries.map((entry) => entry.url).filter((url) => url.includes('/browse?'))
+    expect(browseUrls).toEqual(
+      Array.from(
+        { length: 164 },
+        (_unused, index) => `https://rnawiki.com/browse?page=${index + 2}`,
+      ),
+    )
+  })
+
+  it('advertises no browse page beyond the one the browse route would serve', async () => {
+    vi.stubEnv('SITE_URL', 'https://rnawiki.com')
+    loadContributorProfiles.mockResolvedValue([])
+    loadReports.mockResolvedValue([])
+
+    for (const [total, expected] of [
+      [0, []],
+      [1, []],
+      [60, []],
+      [61, ['https://rnawiki.com/browse?page=2']],
+      [180, ['https://rnawiki.com/browse?page=2', 'https://rnawiki.com/browse?page=3']],
+    ] as const) {
+      listDrugs.mockResolvedValue({ items: [], total })
+      vi.resetModules()
+      const { default: sitemap } = await import('@/app/sitemap')
+      const entries = await sitemap()
+      expect(
+        entries.map((entry) => entry.url).filter((url) => url.includes('/browse?')),
+        `total ${total}`,
+      ).toEqual(expected)
+    }
   })
 })
