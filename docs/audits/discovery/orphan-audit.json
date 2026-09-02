@@ -3,10 +3,7 @@
   "auditedAt": "2026-09-02T12:53:29.766Z",
   "maxDepth": 12,
   "maxUrls": 8000,
-  "entryPoints": [
-    "https://rnawiki.com/",
-    "https://rnawiki.com/browse"
-  ],
+  "entryPoints": ["https://rnawiki.com/", "https://rnawiki.com/browse"],
   "pagesVisited": 636,
   "sitemapDossierSlugs": 9852,
   "reachableDossierSlugs": 3045,
