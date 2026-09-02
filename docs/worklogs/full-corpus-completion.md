@@ -320,7 +320,7 @@ The corpus publication chain ran end to end: export, snapshot commit `c895392`, 
   deployed as `6a44e612` (SUCCESS). Live `/browse?page=47` exposes the first, last, every tenth
   and neighbouring page links with the current page marked.
 - Orphan audit rerun against the live site after that deployment (`--max-depth 20 --max-urls
-  8000`): 1,676 hub pages visited from two entry points, 9,852 of 9,852 sitemap dossiers reached
+8000`): 1,676 hub pages visited from two entry points, 9,852 of 9,852 sitemap dossiers reached
   by crawlable links, 0 orphans, 0 linked slugs missing from the sitemap, not truncated
   (`docs/audits/discovery/orphan-audit.json`).
 
