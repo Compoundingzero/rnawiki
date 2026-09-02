@@ -187,7 +187,7 @@ main session.
   counts and safe source links inside the evidence disclosure, with raw codes in a labelled
   technical disclosure; the navigator lists it. No other record is ever named or linked.
 
-### W5 Discovery (done in code; production submission pending owner go-ahead)
+### W5 Discovery (done; deployed and submitted, see the deployment record)
 
 - Third indexability path `indexable_canonical_record`; sitemap merges publication, legacy and
   canonical reports one per medicine (9,852 indexable of 9,857 public rows; 5 redirect sources
@@ -316,6 +316,26 @@ The corpus publication chain ran end to end: export, snapshot commit `c895392`, 
   canonical dossier is therefore `SUBMITTED_FOR_DISCOVERY`. `CRAWLED_OBSERVED`,
   `INDEXED_OBSERVED` and `CITED_OR_RETRIEVED_OBSERVED` remain `NOT_OBSERVABLE` until crawler logs
   and a Search Console reading exist; a sitemap or IndexNow submission is not proof of indexing.
+- PR #9 (numbered browse pager, recorded rollout artifacts) merged as `72a5c1a` after CI passed and
+  deployed as `6a44e612` (SUCCESS). Live `/browse?page=47` exposes the first, last, every tenth
+  and neighbouring page links with the current page marked.
+- Orphan audit rerun against the live site after that deployment (`--max-depth 20 --max-urls
+8000`): 1,676 hub pages visited from two entry points, 9,852 of 9,852 sitemap dossiers reached
+  by crawlable links, 0 orphans, 0 linked slugs missing from the sitemap, not truncated
+  (`docs/audits/discovery/orphan-audit.json`).
+
+- Discovery monitor against the live site, finished 2026-09-02T13:53Z with a final single-request
+  pass: 9,852 of 9,852 sitemap dossiers `DISCOVERY_READY` (status 200, no `noindex`,
+  self-canonical, JSON-LD present) and 9,852 machine records answering 200
+  (`docs/audits/discovery/discovery-monitor-rnawiki.com.ndjson` and its summary). The first pass
+  aborted with a JavaScript heap exhaustion after 4,352 records because
+  `scripts/discovery/monitor-discovery.ts` keeps every result in memory; it resumed from its
+  checkpoint with a 6 GB heap. Defect to fix: stream results to the checkpoint file instead of
+  holding them. A second interaction to remember: the site's API rate limiter answered HTTP 429
+  to 1,130 machine-record checks during the monitor's default burst, so those rows were re-checked
+  at two concurrent requests with a 400 ms delay, and the last 31 one at a time with a two-second
+  delay. The rate limit is a property of the monitor's
+  pace, not of the records; every record answered 200 when re-checked.
 
 ## Release and resume commands
 
@@ -344,14 +364,15 @@ npm run semantic:project          # optional: projects evidence-reading units
 npx tsx scripts/discovery/submit-indexnow.ts             # dry run: counts only
 npx tsx scripts/discovery/submit-indexnow.ts --submit --json
 npx tsx scripts/discovery/monitor-discovery.ts --origin https://rnawiki.com --resume
-npm run audit:search -- --origin https://rnawiki.com --orphan-audit --max-urls 12000
+npm run audit:search -- --origin https://rnawiki.com --orphan-audit --max-depth 20 --max-urls 8000
 ```
 
 The registry snapshot and PubMed records live on this machine under
-`/Users/admin/rnawiki-ingest-data`; the simplest production path for `source_search_records` is
-`pg_dump --table=source_search_records` from `rnawiki_corpus_completion` restored into production,
-because the rows are content-addressed and idempotent.
+`/Users/admin/rnawiki-ingest-data`; production received `source_search_records` by re-running the
+content-addressed, idempotent `completion:match-trials` and `completion:pubmed:import` steps over
+verified TLS rather than by restoring a dump.
 
-Discovery states: every canonical dossier is `DISCOVERY_READY` in code. `SUBMITTED_FOR_DISCOVERY`,
-`CRAWLED_OBSERVED`, `INDEXED_OBSERVED` and `CITED_OR_RETRIEVED_OBSERVED` are `NOT_OBSERVABLE` until
-the deployment, the IndexNow submission and a Search Console reading exist.
+Discovery states: every canonical dossier is `DISCOVERY_READY` as served by the live origin and
+`SUBMITTED_FOR_DISCOVERY` through IndexNow. `CRAWLED_OBSERVED`, `INDEXED_OBSERVED` and
+`CITED_OR_RETRIEVED_OBSERVED` are `NOT_OBSERVABLE` until crawler logs and a Search Console reading
+exist. No indexing is claimed.
