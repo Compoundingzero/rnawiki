@@ -144,7 +144,8 @@ async function main(): Promise<void> {
   const limit = Number(flag('limit') ?? Number.POSITIVE_INFINITY)
   const dataDir = process.env.RNAWIKI_INGEST_DATA ?? join(process.cwd(), 'tmp')
   const indexPath = flag('label-index') ?? join(dataDir, 'label-sections-index.json')
-  const outDir = join(process.cwd(), 'data', 'dossier-completion')
+  // Audit artifacts live under docs/audits; data/ is regenerated wholesale by the exporter.
+  const outDir = join(process.cwd(), 'docs', 'audits', 'dossier-completion')
 
   const labelIndex = JSON.parse(readFileSync(indexPath, 'utf8')) as LabelSectionsIndex
   if (labelIndex.schema !== 'rnawiki-label-sections-index/v1') throw new Error('unexpected label index schema')
