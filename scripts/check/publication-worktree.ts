@@ -7,6 +7,7 @@ export type PublicationWorktreePhase = (typeof PUBLICATION_WORKTREE_PHASES)[numb
 
 const CORPUS_OUTPUTS = new Set([
   'data/drugs.csv',
+  'data/inventory-resolution.ndjson',
   'data/manifest.json',
   'data/recorded-background.ndjson',
   'data/source-consensus.ndjson',
@@ -34,9 +35,18 @@ const DERIVED_OUTPUTS = new Set([
 
 const DRUG_SHARD = /^data\/drugs\/drugs-(?:00[1-9]|0[1-9]\d|[1-9]\d{2})\.ndjson$/u
 
+/**
+ * The completion corpus is sharded exactly like the medicine corpus, and is allowed in the corpus
+ * phase on the same terms: a numbered shard of the published directory, and nothing else.
+ */
+const COMPLETION_SHARD =
+  /^data\/dossier-completion\/dossier-completion-(?:00[1-9]|0[1-9]\d|[1-9]\d{2})\.ndjson$/u
+
 export function isAllowedPublicationPath(phase: PublicationWorktreePhase, path: string): boolean {
   if (phase === 'clean') return false
-  if (phase === 'corpus') return CORPUS_OUTPUTS.has(path) || DRUG_SHARD.test(path)
+  if (phase === 'corpus') {
+    return CORPUS_OUTPUTS.has(path) || DRUG_SHARD.test(path) || COMPLETION_SHARD.test(path)
+  }
   return DERIVED_OUTPUTS.has(path)
 }
 

@@ -21,3 +21,8 @@ scripts/seed-data/enriched-batch-27.ts
 scripts/seed-data/enriched-batch-28.ts
 scripts/seed-data/enriched-batch-29.ts
 scripts/seed-data/enriched-batch-30.ts
+# Generated retrieval measurements, written wholesale by scripts/semantic/benchmark.ts. Same reason
+# as data/audits/: the bytes are the measurement, and reformatting them would put a diff in front of
+# a reviewer that says nothing about the corpus. The Markdown copy is still scanned by
+# scripts/quality/slop-scan.mjs, which is the check that matters for it.
+docs/audits/semantic/

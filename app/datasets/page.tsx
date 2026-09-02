@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Public datasets',
   description:
-    'Four bounded, source-aware RNAWiki datasets covering recorded negative statements, source comparison, silence and corpus coverage.',
+    'Six bounded, source-aware RNAWiki datasets covering recorded negative statements, source comparison, silence, corpus coverage, record identity and dossier completion states.',
   alternates: { canonical: '/datasets' },
 }
 
@@ -35,7 +35,7 @@ export default async function DatasetsPage() {
             Inspect what this corpus records—and what it does not.
           </h1>
           <p className="max-w-2xl text-base leading-7 text-[#424245]">
-            These four read-only views publish deterministic measurements of RNAWiki’s recorded
+            These six read-only views publish deterministic measurements of RNAWiki’s recorded
             corpus. Each one states its scope, method, source boundary, and limitations before the
             rows.
           </p>
@@ -49,7 +49,7 @@ export default async function DatasetsPage() {
         <section aria-labelledby="dataset-list-heading" className="space-y-5">
           <div className="space-y-1">
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#6E6E73]">
-              Four allowlisted projections
+              Six allowlisted projections
             </p>
             <h2 id="dataset-list-heading" className="text-2xl font-extrabold text-[#1D1D1F]">
               Choose a dataset

@@ -295,3 +295,12 @@ attribute the run to a fixed date rather than the clock.
 The boundary screen runs on every run and not only in tests: `run-agents.ts` passes each agent's
 authored strings through `findForbiddenPhrases` and exits non-zero on a violation, because the
 corpus changes and a string built from corpus content can cross a line no fixture would have caught.
+
+## Datasets that are not agent output
+
+Two of the public dataset readers do not come from an agent run at all. `inventory-resolution` and
+`dossier-completion` are written by the corpus exporter from database tables, as
+`data/inventory-resolution.ndjson` and the `data/dossier-completion/` shards, and their contract is in
+`data/README.md` and `data/dictionary.md`. The medicine-pair rule above holds for them too: an
+identity resolution can say that one record resolves to the address of the same entity, and no file
+here names one medicine beside another.

@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node
 import { join, resolve } from 'node:path'
 import { asc } from 'drizzle-orm'
 import { db } from '@/db'
-import { drugAliases, drugs } from '@/db/schema'
+import { dossierCompletionAssessments, drugAliases, drugs, inventoryResolutions } from '@/db/schema'
 import { rowToDossier, type DrugRow } from '@/lib/dossier'
 import { serializePublicDossier } from '@/lib/dossier-read-serializer'
 import {
@@ -17,6 +17,7 @@ import {
   toPublicDatasetProgrammeEvidence,
   type PublicMedicineProjection,
 } from '@/lib/public-medicine-projection'
+import { loadCompletionSurfaces } from '@/lib/queries/dossier-completion'
 import { getPublicMedicineProjections } from '@/lib/queries/public-medicine-projection'
 import { stableJsonStringify } from '@/lib/stable-json'
 import { extractPatientFriendlyIndication } from '@/scripts/ingest/normalise'
@@ -58,6 +59,18 @@ function exportDirectoryFromArguments(args: readonly string[]): string {
 
 const EXPORT_DIR = exportDirectoryFromArguments(process.argv.slice(2))
 const DRUGS_DIR = join(EXPORT_DIR, 'drugs')
+
+/**
+ * The completion corpus is sharded exactly like the medicine corpus, for the same reason: one line
+ * per canonical record carrying every applicable section, its basis sentence and its source refs
+ * reaches roughly 10 KB, so a single file passes 100 MB at this corpus size and GitHub refuses to
+ * store it. A reader streams `dossier-completion/*.ndjson` the same way they already stream
+ * `drugs/*.ndjson`, and every shard stays small enough to download, diff and review on its own.
+ */
+const COMPLETION_DIR = join(EXPORT_DIR, 'dossier-completion')
+
+/** The pre-shard single-file path, removed on export so a stale copy cannot be served or committed. */
+const LEGACY_COMPLETION_FILE = join(EXPORT_DIR, 'dossier-completion.ndjson')
 
 /**
  * The one place the core dataset licence is written down, so every regenerated manifest agrees.
@@ -143,6 +156,14 @@ interface Manifest {
     aliases: number
     programmes: number
     currentProgrammePublications: number
+    /** Original records that answer at their own address. */
+    canonicalEntities: number
+    /** Original records that redirect to the canonical record for the same entity. */
+    redirectedIdentities: number
+    /** Original records that never identified a medicine and are withdrawn with a reason. */
+    goneIdentities: number
+    completeDossiers: number
+    incompleteDossiers: number
   }
   files: Array<{
     path: string
@@ -164,6 +185,10 @@ const DERIVED_MANIFEST_COUNT_KEYS = ['agentRuns', 'agentCandidates', 'agentFindi
 const DERIVED_MANIFEST_FILE = 'data/agents/current/manifest.json'
 
 /**
+ * Every key of `counts` is core metadata this exporter owns, so the five identity and completion
+ * counts added above are compared like the rest. Only the derived-agent keys named here may appear
+ * in a published manifest without being written by this file.
+ *
  * A published manifest may also contain the derived-agent attachment added after the corpus commit.
  * Compare only the core fields this exporter owns. When those are byte-for-byte equivalent, keeping
  * the prior manifest preserves both its truthful generation time and its still-valid derived links.
@@ -234,12 +259,13 @@ function priorManifestHasSameCore(prior: unknown, next: CoreManifest): boolean {
 /** Metadata every artifact carries, so a downloader never has to guess what a file is. */
 const FILE_META = {
   drugsNdjson: {
-    schemaVersion: 'drugs/1',
+    schemaVersion: 'drugs/2',
     mediaType: 'application/x-ndjson',
     licence: CORE_DATASET_LICENCE,
-    description: 'Legacy medicine-wide records in the snapshot shape.',
+    description:
+      'Legacy medicine-wide records in the snapshot shape, each carrying its identity resolution and a compact summary of its dossier completion assessment.',
     limitations:
-      'Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none.',
+      'Object-valued fields can be absent on a repaired snapshot. An empty field means no recorded value, never zero or none. A record that resolves to another address is still published here, with the address it resolves to, so a reader who held the old identifier can follow it. dossierCompletion carries one state per applicable section and no basis sentence or source ref; the full assessment is in data/dossier-completion/. A completion state describes the sources RNAWiki read for that section, never the medicine.',
   },
   drugsCsv: {
     schemaVersion: 'drugs-csv/1',
@@ -258,6 +284,24 @@ const FILE_META = {
     limitations:
       'A source count is not a count of independent experiments. Consensus population/formulation context is explicitly unknown until structurally extracted, so distinct readings are not source conflicts. An absent module means only that this corpus does not fill it.',
   },
+  inventoryResolution: {
+    schemaVersion: 'inventory-resolution/1',
+    mediaType: 'application/x-ndjson',
+    licence: CORE_DATASET_LICENCE,
+    description:
+      'One identity resolution for every original medicine record, with the class rule that fired, the kinds of registry identifier recorded on the row, and the exact evidence behind a non-canonical outcome.',
+    limitations:
+      'A resolution states which public address a stored record answers at. It is not a medical statement and it is not a quality ranking. A registry identifier held by more than one record is published as a warning code only; the other records are never named. resolutionEvidence can name the record a duplicate resolves to, because both describe one entity.',
+  },
+  dossierCompletion: {
+    schemaVersion: 'dossier-completion/1',
+    mediaType: 'application/x-ndjson',
+    licence: CORE_DATASET_LICENCE,
+    description:
+      'One completion assessment per canonical entity: every section that applies to the record, the state it reached, what that state rests on, and the exact sources read.',
+    limitations:
+      'A section state describes the sources RNAWiki read, never the medicine. "Searched; no qualifying record found" and "not measured in the recorded sources" are statements about this corpus and its dated searches. A record that resolves to another address carries no separate assessment row; read the row for the record it resolves to.',
+  },
   sourceConsensus: {
     schemaVersion: 'source-consensus/2',
     mediaType: 'application/x-ndjson',
@@ -273,21 +317,75 @@ function sha256(text: string): string {
   return createHash('sha256').update(text).digest('hex')
 }
 
+/**
+ * What a medicine row says about completion.
+ *
+ * WHY THE MEDICINE ROW CARRIES A SUMMARY RATHER THAN THE ASSESSMENT. Embedding the whole
+ * assessment — twenty sections, each with a basis sentence, its reader-facing labels and its source
+ * refs — more than doubled `data/drugs/`, from about 110 MB to 234 MB, to restate bytes the
+ * completion corpus already publishes in full. The medicine row keeps the part a reader of the
+ * medicine files actually needs to answer "which sections have reached a state": the status, the
+ * two counts, the resolver, the date the inputs last moved, and one state per applicable section.
+ * The basis sentence, the counts behind it and the exact sources read live in
+ * `data/dossier-completion/`, keyed by the same slug.
+ */
+function compactCompletionSummary(assessment: {
+  status: string
+  resolverVersion: string
+  contentChangedAt: string
+  applicableSectionCount: number
+  terminalSectionCount: number
+  sections: ReadonlyArray<{ id: string; state: string }>
+}): Record<string, unknown> {
+  return {
+    status: assessment.status,
+    contentChangedAt: assessment.contentChangedAt,
+    resolverVersion: assessment.resolverVersion,
+    applicableSectionCount: assessment.applicableSectionCount,
+    terminalSectionCount: assessment.terminalSectionCount,
+    sectionStates: Object.fromEntries(
+      assessment.sections.map((section) => [section.id, section.state]),
+    ),
+  }
+}
+
 async function main(): Promise<void> {
   console.log('[export] reading the corpus…')
 
   // The normalized projection loader uses one corpus query plus one fixed-size bulk snapshot
   // stage. It never performs a programme, publication, claim, or snapshot query per medicine.
-  const [drugRows, aliasRows, publicProjections] = await Promise.all([
+  const [
+    drugRows,
+    aliasRows,
+    publicProjections,
+    completionSurfaces,
+    resolutionRows,
+    assessmentRows,
+  ] = await Promise.all([
     db.select().from(drugs).orderBy(asc(drugs.slug)),
     db
       .select({ drugId: drugAliases.drugId, alias: drugAliases.alias, kind: drugAliases.kind })
       .from(drugAliases)
       .orderBy(asc(drugAliases.drugId), asc(drugAliases.alias)),
     getPublicMedicineProjections(),
+    // The reader-facing subset attached to every medicine row.
+    loadCompletionSurfaces(),
+    // The stored rows behind the two identity and completion artifacts. They carry fields the
+    // reader-facing subset deliberately drops, such as the rule that fired and the basis kind.
+    db.select().from(inventoryResolutions),
+    db.select().from(dossierCompletionAssessments),
   ])
-  const rows = (drugRows as unknown as DrugRow[]).filter(
+  const inventoryRecords = drugRows as unknown as DrugRow[]
+  const rows = inventoryRecords.filter(
     (row) => !isPlaceholderMedicineIdentity({ slug: row.slug, name: row.name }),
+  )
+  /*
+   * Identity for the resolution artifact comes from the whole `drugs` table, not from the public
+   * subset. A placeholder row is not published as a medicine, but the record that it is a
+   * placeholder — and that its address is gone — is exactly what the inventory artifact is for.
+   */
+  const identityByRecordId = new Map(
+    inventoryRecords.map((row) => [row.id, { slug: row.slug, name: row.name }] as const),
   )
   // Check before the first destructive filesystem call below, while the previous manifest still
   // describes what is published.
@@ -331,6 +429,101 @@ async function main(): Promise<void> {
   // file nobody notices is stale.
   rmSync(DRUGS_DIR, { recursive: true, force: true })
   mkdirSync(DRUGS_DIR, { recursive: true })
+  rmSync(COMPLETION_DIR, { recursive: true, force: true })
+  mkdirSync(COMPLETION_DIR, { recursive: true })
+  rmSync(LEGACY_COMPLETION_FILE, { force: true })
+
+  /*
+   * The identity and completion artifacts, built before the shards so their counts can be declared
+   * in the same manifest. Every row is a statement about a record, never about a medicine.
+   */
+  const canonicalRecords = new Map<string, { slug: string; name: string; entityClass: string }>()
+  const resolutionLines: Array<{ originalSlug: string; line: string }> = []
+  const resolutionStatusCounts = new Map<string, number>()
+
+  for (const resolution of resolutionRows) {
+    const identity = identityByRecordId.get(resolution.drugId)
+    if (!identity) continue
+    resolutionStatusCounts.set(
+      resolution.resolutionStatus,
+      (resolutionStatusCounts.get(resolution.resolutionStatus) ?? 0) + 1,
+    )
+    if (resolution.resolutionStatus === 'CANONICAL_ENTITY') {
+      canonicalRecords.set(resolution.drugId, {
+        slug: identity.slug,
+        name: identity.name,
+        entityClass: resolution.entityClass,
+      })
+    }
+    resolutionLines.push({
+      originalSlug: identity.slug,
+      line: stableJsonStringify({
+        originalRecordId: resolution.drugId,
+        originalSlug: identity.slug,
+        originalName: identity.name,
+        entityClass: resolution.entityClass,
+        entityClassRule: resolution.entityClassRule,
+        resolutionStatus: resolution.resolutionStatus,
+        canonicalSlug: resolution.canonicalSlug,
+        redirectTargetSlug: resolution.redirectTargetSlug,
+        identityConfidence: resolution.identityConfidence,
+        // Kinds only. Publishing the identifier values here would restate the registry columns
+        // already carried on the medicine row.
+        identitySourceKinds: [
+          ...new Set(resolution.identitySources.map((source) => source.kind)),
+        ].sort(),
+        // Codes only. A warning's `relatedSlugs` name other records on the strength of a shared
+        // registry identifier, which is not merge evidence, so they never leave the database.
+        attributionWarningCodes: [
+          ...new Set(resolution.attributionWarnings.map((warning) => warning.code)),
+        ].sort(),
+        resolutionEvidence: resolution.resolutionEvidence,
+        contentDigest: resolution.contentDigest,
+        resolverVersion: resolution.resolverVersion,
+      }),
+    })
+  }
+  resolutionLines.sort((left, right) => left.originalSlug.localeCompare(right.originalSlug))
+
+  const completionLines: Array<{ slug: string; line: string }> = []
+  let completeDossiers = 0
+  let incompleteDossiers = 0
+
+  for (const assessment of assessmentRows) {
+    const canonical = canonicalRecords.get(assessment.drugId)
+    // A record that resolves elsewhere has no address of its own to describe.
+    if (!canonical) continue
+    if (assessment.status === 'COMPLETE') completeDossiers += 1
+    else incompleteDossiers += 1
+    completionLines.push({
+      slug: canonical.slug,
+      line: stableJsonStringify({
+        slug: canonical.slug,
+        name: canonical.name,
+        entityClass: canonical.entityClass,
+        status: assessment.status,
+        resolverVersion: assessment.resolverVersion,
+        inputDigest: assessment.inputDigest,
+        contentChangedAt: new Date(assessment.contentChangedAt).toISOString(),
+        applicableSectionCount: assessment.applicableSectionCount,
+        terminalSectionCount: assessment.terminalSectionCount,
+        nonTerminalSectionIds: assessment.nonTerminalSectionIds,
+        humanReadSuggestedSectionIds: assessment.humanReadSuggestedSectionIds,
+        sections: assessment.sections.map((section) => ({
+          sectionId: section.sectionId,
+          state: section.state,
+          basisKind: section.basisKind,
+          basis: section.basis,
+          ...(section.counts ? { counts: section.counts } : {}),
+          sourceRefs: section.sourceRefs,
+        })),
+      }),
+    })
+  }
+  completionLines.sort((left, right) => left.slug.localeCompare(right.slug))
+
+  const resolutionCountFor = (...states: readonly string[]): number =>
+    states.reduce((total, state) => total + (resolutionStatusCounts.get(state) ?? 0), 0)
 
   const files: Manifest['files'] = []
   const counts = {
@@ -355,6 +548,15 @@ async function main(): Promise<void> {
           ?.programmes.filter((programme) => programme.currentPublication !== null).length ?? 0),
       0,
     ),
+    canonicalEntities: resolutionCountFor('CANONICAL_ENTITY'),
+    redirectedIdentities: resolutionCountFor(
+      'DUPLICATE_OF_CANONICAL_ENTITY',
+      'ALIAS_OF_CANONICAL_ENTITY',
+      'HISTORICAL_REDIRECT',
+    ),
+    goneIdentities: resolutionCountFor('INVALID_IDENTITY_GONE'),
+    completeDossiers,
+    incompleteDossiers,
   }
 
   const projectionFor = (row: DrugRow): PublicMedicineProjection =>
@@ -393,6 +595,14 @@ async function main(): Promise<void> {
       for (const field of OMITTED_PUBLIC_FIELDS) delete record[field]
       record.aliases = aliasesByDrug.get(row.id) ?? []
       record.url = `https://rnawiki.com/d/${row.slug}`
+
+      // Both are absent, rather than empty, on a record the resolver has not reached yet. An
+      // absent field says nothing was recorded; a present one names no other record. The identity
+      // subset is the one the page shows; completion is summarized to one state per section.
+      const resolution = completionSurfaces.resolutions.get(row.id)
+      if (resolution) record.inventoryResolution = resolution
+      const completion = completionSurfaces.assessments.get(row.id)
+      if (completion) record.dossierCompletion = compactCompletionSummary(completion)
 
       // One object per line, keys sorted, so a diff between two exports shows what actually
       // changed rather than a reshuffle of key order.
@@ -583,6 +793,45 @@ async function main(): Promise<void> {
     `[export] recorded background ${backgroundRows} row(s) · consensus ${consensusRows} field(s) · states ${JSON.stringify(Object.fromEntries([...comparisonStateCounts.entries()].sort()))}`,
   )
 
+  const resolutionBody =
+    resolutionLines.length > 0 ? `${resolutionLines.map(({ line }) => line).join('\n')}\n` : ''
+  writeFileSync(join(EXPORT_DIR, 'inventory-resolution.ndjson'), resolutionBody)
+  files.push({
+    ...FILE_META.inventoryResolution,
+    path: 'data/inventory-resolution.ndjson',
+    rows: resolutionLines.length,
+    bytes: Buffer.byteLength(resolutionBody),
+    sha256: sha256(resolutionBody),
+  })
+
+  /*
+   * One shard per thousand assessments, named and counted exactly like the medicine shards. An
+   * export that produced no assessment still writes shard 001, empty, so the published layout is
+   * the same shape whether or not the resolver has reached anything yet.
+   */
+  const completionShardCount = Math.max(1, Math.ceil(completionLines.length / SHARD_SIZE))
+  for (let shard = 0; shard < completionShardCount; shard += 1) {
+    const slice = completionLines.slice(shard * SHARD_SIZE, (shard + 1) * SHARD_SIZE)
+    const name = `dossier-completion-${String(shard + 1).padStart(3, '0')}.ndjson`
+    const body = slice.length > 0 ? `${slice.map(({ line }) => line).join('\n')}\n` : ''
+    writeFileSync(join(COMPLETION_DIR, name), body)
+    files.push({
+      ...FILE_META.dossierCompletion,
+      path: `data/dossier-completion/${name}`,
+      rows: slice.length,
+      bytes: Buffer.byteLength(body),
+      sha256: sha256(body),
+    })
+    console.log(
+      `[export] ${name} · ${slice.length} rows · ${(Buffer.byteLength(body) / 1e6).toFixed(1)} MB`,
+    )
+  }
+
+  console.log(
+    `[export] identity ${resolutionLines.length} row(s) · ${JSON.stringify(Object.fromEntries([...resolutionStatusCounts.entries()].sort()))} · ` +
+      `completion ${completionLines.length} row(s) · ${completeDossiers} complete · ${incompleteDossiers} incomplete`,
+  )
+
   const coreManifest: CoreManifest = {
     source: 'https://rnawiki.com',
     licence: CORE_DATASET_LICENCE,
@@ -601,7 +850,14 @@ async function main(): Promise<void> {
   }
 
   const totalBytes = files.reduce((sum, file) => sum + file.bytes, 0)
+  // The largest file is reported on every run because a single artifact over 100 MB is refused by
+  // the host and would fail the publication after the export appears to have succeeded.
+  // `scripts/check/dataset-export.ts` enforces the bound.
+  const largest = [...files].sort((left, right) => right.bytes - left.bytes)[0]
   console.log(`\n[export] done · ${files.length} files · ${(totalBytes / 1e6).toFixed(1)} MB`)
+  if (largest) {
+    console.log(`[export] largest file ${largest.path} · ${(largest.bytes / 1e6).toFixed(1)} MB`)
+  }
   console.log(
     `[export] ${counts.flagship} flagship · ${counts.curated} curated · ${counts.stub} stub · ` +
       `${counts.programmes} programmes · ${counts.currentProgrammePublications} current publications · ` +

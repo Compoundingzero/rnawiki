@@ -103,7 +103,8 @@ jobs:
           git config user.name 'rnawiki-bot'
           git config user.email 'bot@rnawiki.com'
           git add --all -- ':(glob)data/drugs/drugs-[0-9][0-9][0-9].ndjson'
-          git add -- data/drugs.csv data/manifest.json data/recorded-background.ndjson data/source-consensus.ndjson
+          git add --all -- ':(glob)data/dossier-completion/dossier-completion-[0-9][0-9][0-9].ndjson'
+          git add -- data/drugs.csv data/manifest.json data/recorded-background.ndjson data/source-consensus.ndjson data/inventory-resolution.ndjson
           if ! git diff --cached --quiet; then
             ROWS=$(python3 -c "import json;print(json.load(open('data/manifest.json'))['counts']['total'])")
             git commit -m "Publish corpus snapshot: ${ROWS} medicines

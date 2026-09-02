@@ -1,22 +1,35 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 
 import { GET } from '@/app/api/datasets/[dataset]/route'
 import {
+  buildDossierCompletion,
+  buildInventoryResolution,
   clearPublicDatasetCacheForTests,
   derivePublicSilenceScope,
+  normalizePublicDatasetQuery,
   PUBLIC_DATASET_IDS,
   PUBLIC_DATASET_MAX_LIMIT,
   publicBackgroundSourceHref,
+  publicDatasetAllowedParameters,
+  publicDatasetRowMatches,
   publicDatasetSourceCandidates,
   resolveCurrentPublicAgentArtifact,
   type PublicDatasetConsensusReadingRecord,
+  type PublicDatasetRow,
   type PublicDatasetSentenceRecord,
   queryPublicDataset,
 } from '@/lib/public-datasets'
 import { resetRateLimits } from '@/lib/rate-limit'
+
+/** True once the corpus exporter has written the file a dataset reads. */
+function artifactPresent(id: (typeof PUBLIC_DATASET_IDS)[number]): boolean {
+  return publicDatasetSourceCandidates(id).some((candidate) =>
+    existsSync(join(process.cwd(), candidate)),
+  )
+}
 
 function context(dataset: string) {
   return { params: Promise.resolve({ dataset }) }
@@ -44,12 +57,14 @@ afterEach(() => {
 })
 
 describe('public dataset projections', () => {
-  it('has exactly four allowlisted identifiers and permits only current post-repair agent runs', () => {
+  it('has exactly six allowlisted identifiers and permits only current post-repair agent runs', () => {
     expect(PUBLIC_DATASET_IDS).toEqual([
       'enzyme-transporter-negatives',
       'source-consensus',
       'silence-ledger',
       'coverage-ledger',
+      'inventory-resolution',
+      'dossier-completion',
     ])
 
     for (const id of [
@@ -63,6 +78,12 @@ describe('public dataset projections', () => {
     expect(publicDatasetSourceCandidates('source-consensus')).toEqual([
       'data/source-consensus.ndjson',
     ])
+    expect(publicDatasetSourceCandidates('inventory-resolution')).toEqual([
+      'data/inventory-resolution.ndjson',
+    ])
+    // The completion corpus is sharded, so the candidate is the published directory and the shard
+    // list is read from the manifest rather than guessed from a filename.
+    expect(publicDatasetSourceCandidates('dossier-completion')).toEqual(['data/dossier-completion'])
   })
 
   it('fails closed when the current package is absent instead of serving historical output', async () => {
@@ -79,6 +100,14 @@ describe('public dataset projections', () => {
   it.each(PUBLIC_DATASET_IDS)(
     '%s names every public field and never exposes review work',
     async (id) => {
+      if (!artifactPresent(id)) {
+        // A dataset whose artifact has not been exported yet refuses to serve rather than
+        // serving an older or partial file.
+        await expect(queryPublicDataset(id, { limit: 3 })).rejects.toThrow(
+          'public dataset artifact is unavailable',
+        )
+        return
+      }
       const page = await queryPublicDataset(id, { limit: 3 })
       expect(page.dataset.id).toBe(id)
       expect(page.dataset.rowCount).toBeGreaterThan(0)
@@ -706,5 +735,298 @@ describe('dataset discoverability', () => {
     const shell = readFileSync(join(process.cwd(), 'components/AppShell.tsx'), 'utf8')
     expect(shell).toContain("pathname.startsWith('/datasets')")
     expect(shell).toContain('sessionActionLocked && !publicReadingStaysAvailable')
+  })
+})
+
+/**
+ * The identity and completion projections read files the corpus exporter writes, so these cases
+ * build them from fixture lines rather than from whatever the checked-in snapshot happens to hold.
+ * Two rules are pinned here because breaking either one is a release failure rather than a bug:
+ * a published identity row never names another record, and a completion state is never described
+ * as a fact about a medicine.
+ */
+describe('record identity and dossier completion projections', () => {
+  const INVENTORY_LINES = [
+    {
+      originalRecordId: 'drg_alpha',
+      originalSlug: 'alpha-medicine',
+      originalName: 'Alpha medicine',
+      entityClass: 'APPROVED_MEDICINE',
+      entityClassRule: 'approval-status-is-fda-approved',
+      resolutionStatus: 'CANONICAL_ENTITY',
+      canonicalSlug: 'alpha-medicine',
+      redirectTargetSlug: null,
+      identityConfidence: 'REGISTRY_IDENTIFIER_RECORDED',
+      identitySourceKinds: ['PUBCHEM_CID', 'UNII'],
+      attributionWarningCodes: ['SHARED_REGISTRY_IDENTIFIER'],
+      resolutionEvidence: [],
+      contentDigest: 'a'.repeat(64),
+      resolverVersion: 'inventory-resolution/v1',
+    },
+    {
+      originalRecordId: 'drg_alpha_dup',
+      originalSlug: 'alpha-medicine-2',
+      originalName: 'Alpha medicine',
+      entityClass: 'APPROVED_MEDICINE',
+      entityClassRule: 'approval-status-is-fda-approved',
+      resolutionStatus: 'DUPLICATE_OF_CANONICAL_ENTITY',
+      canonicalSlug: 'alpha-medicine',
+      redirectTargetSlug: 'alpha-medicine',
+      identityConfidence: 'NAME_ONLY',
+      identitySourceKinds: [],
+      attributionWarningCodes: ['NAME_ONLY_IDENTITY'],
+      resolutionEvidence: ['Identical name after punctuation removal: alpha-medicine'],
+      contentDigest: 'b'.repeat(64),
+      resolverVersion: 'inventory-resolution/v1',
+    },
+    {
+      originalRecordId: 'drg_placeholder',
+      originalSlug: 'header',
+      originalName: 'Header',
+      entityClass: 'PLACEHOLDER',
+      entityClassRule: 'placeholder-identity',
+      resolutionStatus: 'INVALID_IDENTITY_GONE',
+      canonicalSlug: 'header',
+      redirectTargetSlug: null,
+      identityConfidence: 'PLACEHOLDER',
+      identitySourceKinds: [],
+      attributionWarningCodes: [],
+      resolutionEvidence: ['The recorded name identifies no substance.'],
+      contentDigest: 'c'.repeat(64),
+      resolverVersion: 'inventory-resolution/v1',
+    },
+  ]
+
+  const COMPLETION_LINES = [
+    {
+      slug: 'alpha-medicine',
+      name: 'Alpha medicine',
+      entityClass: 'APPROVED_MEDICINE',
+      status: 'COMPLETE',
+      resolverVersion: 'dossier-completion/v1',
+      inputDigest: 'd'.repeat(64),
+      contentChangedAt: '2026-09-01T00:00:00.000Z',
+      applicableSectionCount: 2,
+      terminalSectionCount: 2,
+      nonTerminalSectionIds: [],
+      humanReadSuggestedSectionIds: ['literature-search'],
+      sections: [
+        {
+          sectionId: 'identity',
+          state: 'EXACT_STRUCTURED_SOURCE_DATA',
+          basisKind: 'REGISTRY_IDENTIFIER',
+          basis: 'Two registry identifiers are recorded on this record.',
+          sourceRefs: [{ kind: 'UNII', identifier: '9100L32L2N' }],
+        },
+        {
+          sectionId: 'literature-search',
+          state: 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH',
+          basisKind: 'PUBMED_SEARCH_RECORD',
+          basis: 'A dated search returned no report that met the recorded rule.',
+          counts: { searchHits: 4, qualifying: 0 },
+          sourceRefs: [{ kind: 'PUBMED_SEARCH', identifier: 'alpha-medicine-2026-09-01' }],
+        },
+      ],
+    },
+    {
+      slug: 'beta-preparation',
+      name: 'Beta preparation',
+      entityClass: 'BOTANICAL_OR_ORGANISM_PREPARATION',
+      status: 'INCOMPLETE',
+      resolverVersion: 'dossier-completion/v1',
+      inputDigest: 'e'.repeat(64),
+      contentChangedAt: '2026-09-02T00:00:00.000Z',
+      applicableSectionCount: 2,
+      terminalSectionCount: 1,
+      nonTerminalSectionIds: ['trial-registry'],
+      humanReadSuggestedSectionIds: [],
+      sections: [
+        {
+          sectionId: 'biological-identity',
+          state: 'EXACT_SOURCE_BACKED',
+          basisKind: 'TAXONOMY_RECORD',
+          basis: 'A taxonomy record names the organism.',
+          sourceRefs: [{ kind: 'NCBI_TAXONOMY', identifier: '3562' }],
+        },
+        {
+          sectionId: 'trial-registry',
+          state: 'SEARCH_PENDING',
+          basisKind: 'NOT_YET_RUN',
+          basis: 'The dated registry search for this record has not run.',
+          sourceRefs: [],
+        },
+      ],
+    },
+  ]
+
+  function writeFixture(name: string, lines: readonly unknown[]): string {
+    const directory = mkdtempSync(join(tmpdir(), 'rnawiki-public-dataset-fixture-'))
+    const path = join(directory, name)
+    writeFileSync(path, `${lines.map((line) => JSON.stringify(line)).join('\n')}\n`)
+    return path
+  }
+
+  /** Two rows fit in one shard, which is the layout the exporter writes for a small corpus. */
+  function writeCompletionShards(lines: readonly unknown[]): string[] {
+    return [writeFixture('dossier-completion-001.ndjson', lines)]
+  }
+
+  it('publishes an identity resolution without naming any other record', async () => {
+    const path = writeFixture('inventory-resolution.ndjson', INVENTORY_LINES)
+    try {
+      const loaded = await buildInventoryResolution(path, 'data/inventory-resolution.ndjson')
+      expect(loaded.descriptor.id).toBe('inventory-resolution')
+      expect(loaded.descriptor.rowCount).toBe(3)
+      expect(loaded.rows.map((row) => row.resolutionStatus)).toEqual([
+        'CANONICAL_ENTITY',
+        'DUPLICATE_OF_CANONICAL_ENTITY',
+        'INVALID_IDENTITY_GONE',
+      ])
+      const shared = loaded.rows[0]!
+      expect(shared.attributionWarningCodes).toEqual(['SHARED_REGISTRY_IDENTIFIER'])
+      // The warning says an identifier is shared. It never says with whom.
+      expect(JSON.stringify(shared)).not.toContain('alpha-medicine-2')
+      expect(JSON.stringify(loaded)).not.toContain('relatedSlugs')
+      const duplicate = loaded.rows[1]!
+      expect(duplicate.redirectTargetSlug).toBe('alpha-medicine')
+      expect(loaded.descriptor.filters.map((filter) => filter.parameter)).toEqual([
+        'q',
+        'state',
+        'role',
+      ])
+      expect(loaded.descriptor.doesNotMean).toContain('never treated as evidence to merge')
+      expect(publicDatasetAllowedParameters('inventory-resolution')).toEqual(
+        new Set(['q', 'limit', 'offset', 'format', 'state', 'role']),
+      )
+    } finally {
+      rmSync(path, { force: true })
+    }
+  })
+
+  it('refuses an identity line that names one record in relation to another', async () => {
+    const path = writeFixture('inventory-resolution.ndjson', [
+      { ...INVENTORY_LINES[0], relatedSlugs: ['alpha-medicine-2'] },
+    ])
+    try {
+      await expect(
+        buildInventoryResolution(path, 'data/inventory-resolution.ndjson'),
+      ).rejects.toThrow('names one record in relation to another')
+    } finally {
+      rmSync(path, { force: true })
+    }
+  })
+
+  it('publishes completion states as statements about the sources that were read', async () => {
+    const shards = writeCompletionShards(COMPLETION_LINES)
+    try {
+      const loaded = await buildDossierCompletion(shards, 'data/dossier-completion/*.ndjson')
+      expect(loaded.descriptor.id).toBe('dossier-completion')
+      expect(loaded.rows.map((row) => row.status)).toEqual(['COMPLETE', 'INCOMPLETE'])
+      expect(loaded.rows[0]!.sectionStates).toEqual([
+        'identity: EXACT_STRUCTURED_SOURCE_DATA',
+        'literature-search: NO_QUALIFYING_EVIDENCE_AFTER_SEARCH',
+      ])
+      expect(loaded.rows[0]!.nonTerminalSectionIds).toEqual([])
+      expect(loaded.rows[1]!.nonTerminalSectionIds).toEqual(['trial-registry'])
+      expect(loaded.descriptor.doesNotMean).toContain('never the medicine')
+      expect(loaded.descriptor.doesNotMean).toContain('not a safety finding')
+      expect(loaded.descriptor.filters.map((filter) => filter.parameter)).toEqual([
+        'q',
+        'state',
+        'meaning',
+        'module',
+      ])
+      expect(publicDatasetAllowedParameters('dossier-completion')).toEqual(
+        new Set(['q', 'limit', 'offset', 'format', 'state', 'meaning', 'module']),
+      )
+      // Nothing in the projection carries the resolver's input digest.
+      expect(JSON.stringify(loaded)).not.toContain('inputDigest')
+    } finally {
+      for (const shard of shards) rmSync(shard, { force: true })
+    }
+  })
+
+  it('reads every shard in the order it is given, as one dataset', async () => {
+    const shards = [
+      writeFixture('dossier-completion-001.ndjson', [COMPLETION_LINES[0]]),
+      writeFixture('dossier-completion-002.ndjson', [COMPLETION_LINES[1]]),
+    ]
+    try {
+      const loaded = await buildDossierCompletion(shards, 'data/dossier-completion/*.ndjson')
+      expect(loaded.descriptor.rowCount).toBe(2)
+      expect(loaded.rows.map((row) => row.medicineSlug)).toEqual([
+        'alpha-medicine',
+        'beta-preparation',
+      ])
+      // A shard that never loaded would leave a smaller dataset that still looks internally
+      // consistent, so the count and the order are both asserted.
+      expect(loaded.rows.map((row) => row.status)).toEqual(['COMPLETE', 'INCOMPLETE'])
+    } finally {
+      for (const shard of shards) rmSync(shard, { force: true })
+    }
+  })
+
+  it('refuses a completion line that holds fewer sections than it declares', async () => {
+    const shards = writeCompletionShards([{ ...COMPLETION_LINES[0], applicableSectionCount: 5 }])
+    try {
+      await expect(
+        buildDossierCompletion(shards, 'data/dossier-completion/*.ndjson'),
+      ).rejects.toThrow('declares more applicable sections than it holds')
+    } finally {
+      for (const shard of shards) rmSync(shard, { force: true })
+    }
+  })
+
+  it('filters identity rows by resolution and kind, and completion rows by state and section', () => {
+    const inventoryRows = INVENTORY_LINES.map((line): PublicDatasetRow => ({
+      medicineSlug: line.originalSlug,
+      medicineName: line.originalName,
+      entityClass: line.entityClass,
+      resolutionStatus: line.resolutionStatus,
+    }))
+    const searchFields = ['medicineSlug', 'medicineName']
+    const kept = (query: Parameters<typeof normalizePublicDatasetQuery>[0]) =>
+      inventoryRows
+        .filter((row) =>
+          publicDatasetRowMatches(
+            'inventory-resolution',
+            row,
+            normalizePublicDatasetQuery(query),
+            searchFields,
+          ),
+        )
+        .map((row) => row.medicineSlug)
+
+    expect(kept({ state: 'CANONICAL_ENTITY' })).toEqual(['alpha-medicine'])
+    expect(kept({ role: 'PLACEHOLDER' })).toEqual(['header'])
+    expect(kept({ q: 'alpha' })).toEqual(['alpha-medicine', 'alpha-medicine-2'])
+
+    const completionRows: PublicDatasetRow[] = [
+      {
+        medicineSlug: 'alpha-medicine',
+        status: 'COMPLETE',
+        statesPresent: ['EXACT_STRUCTURED_SOURCE_DATA', 'NO_QUALIFYING_EVIDENCE_AFTER_SEARCH'],
+        nonTerminalSectionIds: [],
+      },
+      {
+        medicineSlug: 'beta-preparation',
+        status: 'INCOMPLETE',
+        statesPresent: ['EXACT_SOURCE_BACKED', 'SEARCH_PENDING'],
+        nonTerminalSectionIds: ['trial-registry'],
+      },
+    ]
+    const keptCompletion = (query: Parameters<typeof normalizePublicDatasetQuery>[0]) =>
+      completionRows
+        .filter((row) =>
+          publicDatasetRowMatches('dossier-completion', row, normalizePublicDatasetQuery(query), [
+            'medicineSlug',
+          ]),
+        )
+        .map((row) => row.medicineSlug)
+
+    expect(keptCompletion({ state: 'COMPLETE' })).toEqual(['alpha-medicine'])
+    expect(keptCompletion({ meaning: 'SEARCH_PENDING' })).toEqual(['beta-preparation'])
+    expect(keptCompletion({ module: 'trial-registry' })).toEqual(['beta-preparation'])
+    expect(keptCompletion({ module: 'identity' })).toEqual([])
   })
 })
