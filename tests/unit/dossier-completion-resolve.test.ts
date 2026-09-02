@@ -75,6 +75,7 @@ function input(overrides: Partial<CompletionInput> & { background?: Partial<Medi
     registrySearch: null,
     literatureSearch: null,
     programmes: { total: 0, published: 0 },
+    labelExtractorRan: true,
     ...rest,
   }
 }
@@ -181,6 +182,7 @@ describe('dossier completion resolver', () => {
     const curated = assessDossierCompletion(
       input({
         background: { provenanceTier: 'curated' },
+        labelExtractorRan: false,
         labels: [{ setId: 'set-1', declared: 1, sections: ['mechanism_of_action'], productTypes: [] }],
         registrySearch: registrySearch([]),
         literatureSearch: literatureSearch(0),

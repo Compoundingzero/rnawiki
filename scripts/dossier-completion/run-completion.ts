@@ -148,6 +148,12 @@ async function main(): Promise<void> {
 
   const labelIndex = JSON.parse(readFileSync(indexPath, 'utf8')) as LabelSectionsIndex
   if (labelIndex.schema !== 'rnawiki-label-sections-index/v1') throw new Error('unexpected label index schema')
+  // The curated-gap builder runs the label extractor over every hand-curated record and writes this
+  // registry (scripts/background/build-curated-gap-extraction.ts). Its presence means the extractor
+  // has been run for the curated tier; without it, a curated record's label sections are unread.
+  const curatedGapPath = join(process.cwd(), 'data', 'registries', 'curated-gap-extraction.json')
+  const curatedGapExtractionBuilt =
+    existsSync(curatedGapPath) && Object.keys(JSON.parse(readFileSync(curatedGapPath, 'utf8')) as object).length > 0
   const labelLookup = buildLabelLookup(labelIndex)
   const archives: CompletionInput['archives'] = {
     labelArchive: registryDate('label-presence.json'),
@@ -261,6 +267,10 @@ async function main(): Promise<void> {
           registrySearch: searchInput(searches.get(`${drug.id}|${CLINICALTRIALS_SEARCH_KIND}`)),
           literatureSearch: searchInput(searches.get(`${drug.id}|${PUBMED_SEARCH_KIND}`)),
           programmes: { total: programme?.total ?? 0, published: programme?.published ?? 0 },
+          labelExtractorRan:
+            drug.recorded_background?.provenanceTier === 'extracted' ||
+            drug.recorded_background?.provenanceTier === 'transcribed' ||
+            curatedGapExtractionBuilt,
         }
         return assessDossierCompletion(input)
       })

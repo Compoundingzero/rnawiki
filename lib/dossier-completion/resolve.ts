@@ -88,6 +88,12 @@ export interface CompletionInput {
   registrySearch: SearchRecordInput | null
   literatureSearch: SearchRecordInput | null
   programmes: { total: number; published: number }
+  /**
+   * Whether the deterministic label extractor has been run for this record. True for the extracted
+   * and transcribed tiers by construction, and for hand-curated records once the curated-gap
+   * extraction registry has been built over them. False means a label section may exist unread.
+   */
+  labelExtractorRan: boolean
 }
 
 interface RegistryMatchEnvelope {
@@ -212,6 +218,7 @@ export function completionInputDigest(input: CompletionInput): string {
         ? { ...input.literatureSearch, requestedAt: undefined }
         : null,
       programmes: input.programmes,
+      labelExtractorRan: input.labelExtractorRan,
     }),
   )
 }
@@ -304,12 +311,9 @@ class Resolver {
       labelsWithReadSection: withSection.length,
     }
     if (withSection.length > 0) {
-      // The label extractor produces the extracted and transcribed tiers. A hand-curated envelope
-      // was never passed through it, so an absent module there is an unread section, not a
-      // section the extractor read and found empty.
-      const tier = this.input.drug.recordedBackground?.provenanceTier
-      const extractorRan = tier === 'extracted' || tier === 'transcribed'
-      if (!extractorRan) {
+      // A hand-curated envelope that the extractor has not been run over holds an unread section,
+      // not a section the extractor read and found empty. The runner states which case applies.
+      if (!this.input.labelExtractorRan) {
         return {
           sectionId,
           state: 'BLOCKED_HUMAN_REVIEW',
