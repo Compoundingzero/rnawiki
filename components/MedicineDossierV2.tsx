@@ -26,6 +26,7 @@ import { CitationExportPanel } from '@/components/dossier/CitationExportPanel'
 import { DossierEvidenceIntroduction } from '@/components/dossier/DossierEvidenceIntroduction'
 import { DossierAccountActionsGuard } from '@/components/dossier/DossierAccountActionsGuard'
 import { DossierAudienceLensSelector } from '@/components/dossier/DossierAudienceLensSelector'
+import { DossierCompletionAssessment } from '@/components/dossier/DossierCompletionAssessment'
 import { DossierEvidencePath, evidenceNodeAnchorId } from '@/components/dossier/DossierEvidencePath'
 import { DossierOtherProgrammes } from '@/components/dossier/DossierOtherProgrammes'
 import { DossierHeader } from '@/components/dossier/DossierHeader'
@@ -2492,6 +2493,8 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
             )}
 
             <DossierQuestionCoverage dossier={dossier} />
+
+            <DossierCompletionAssessment dossier={dossier} />
 
             <section
               id="sources"

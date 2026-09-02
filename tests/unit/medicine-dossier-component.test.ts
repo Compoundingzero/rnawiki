@@ -2025,6 +2025,62 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html.toLowerCase()).not.toContain('you should')
   })
 
+  /**
+   * The completeness section sits beside the question universe inside the evidence disclosure, so a
+   * reader who opens one finds the other. It must never appear on a record without an assessment.
+   */
+  it('places the completeness section directly after the question universe, when one exists', () => {
+    const without = renderDossier(view())
+    expect(without).not.toContain('data-testid="dossier-completion-assessment"')
+
+    const html = renderDossier(
+      view({
+        completionAssessment: {
+          status: 'COMPLETE',
+          statusCopy: 'Every section that applies to this record has an explicit state.',
+          resolverVersion: 'dossier-completion/v1',
+          inputDigest: 'c'.repeat(64),
+          contentChangedAt: '2026-09-02T00:00:00.000Z',
+          assessedAt: '2026-09-02T00:00:00.000Z',
+          applicableSectionCount: 1,
+          terminalSectionCount: 1,
+          sections: [
+            {
+              id: 'identity',
+              label: 'What this record is',
+              state: 'EXACT_STRUCTURED_SOURCE_DATA',
+              stateLabel: 'Recorded as structured source data',
+              terminal: true,
+              basisKind: 'REGISTRY_IDENTIFIER',
+              basis: 'Identity rests on one recorded registry identifier.',
+              sourceRefs: [{ kind: 'UNII', identifier: 'TR046Y3K1G' }],
+              humanReadSuggested: false,
+            },
+          ],
+        },
+        inventoryResolution: {
+          resolutionStatus: 'CANONICAL_ENTITY',
+          entityClass: 'APPROVED_MEDICINE',
+          canonicalSlug: 'synthetic-medicine',
+          redirectTargetSlug: null,
+          identityConfidence: 'REGISTRY_IDENTIFIER_RECORDED',
+          identifierSharedWithOtherRecords: false,
+          resolverVersion: 'inventory-resolution/v1',
+        },
+      }),
+    )
+
+    const coverage = html.indexOf('data-testid="dossier-question-coverage"')
+    const completeness = html.indexOf('data-testid="dossier-completion-assessment"')
+    expect(coverage).toBeGreaterThanOrEqual(0)
+    expect(completeness).toBeGreaterThan(coverage)
+    expect(html).toContain('id="record-completeness"')
+    expect(html).toContain('How complete this record is')
+    /* One anchor per section id, so the page's own anchors keep their destinations. */
+    expect(html.split('id="record-completeness-identity"').length).toBe(2)
+    expect(html.split('id="record-completeness"').length).toBe(2)
+  })
+
   it('ends with plain links to the related RNAWiki pages', () => {
     const html = renderDossier(view())
     const nav = html.indexOf('aria-label="Related RNAWiki pages"')

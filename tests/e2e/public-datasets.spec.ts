@@ -8,6 +8,8 @@ const DATASET_PATHS = [
   '/datasets/source-consensus',
   '/datasets/silence-ledger',
   '/datasets/coverage-ledger',
+  '/datasets/inventory-resolution',
+  '/datasets/dossier-completion',
 ] as const
 
 async function expectNoHorizontalOverflow(page: Page, surface: string): Promise<void> {
@@ -36,7 +38,7 @@ async function expectNoSeriousWcagViolations(page: Page, surface: string): Promi
   ).toEqual([])
 }
 
-test('publishes exactly four keyboard-reachable source-first dataset readers', async ({ page }) => {
+test('publishes exactly six keyboard-reachable source-first dataset readers', async ({ page }) => {
   await page.goto('/datasets')
   await expect(
     page.getByRole('heading', { level: 1, name: /inspect what this corpus records/i }),
@@ -87,6 +89,27 @@ test('persists reader search and filters across GET pagination and API links', a
   await expect(json).toHaveAttribute('href', /q=hours/u)
   await expect(json).toHaveAttribute('href', /state=agree/u)
   await expectNoSeriousWcagViolations(page, 'Filtered source-consensus reader')
+})
+
+test('keeps the identity and completion readers usable at 320 pixels', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 })
+
+  await page.goto('/datasets/inventory-resolution')
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/resolves to/i)
+  await expect(page.locator('main')).toHaveCount(1)
+  await expect(page.getByRole('combobox', { name: 'Resolution' })).toBeVisible()
+  await expect(page.getByRole('combobox', { name: 'Kind of record' })).toBeVisible()
+  await expectNoHorizontalOverflow(page, 'Record identity dataset at 320px')
+  await expectNoSeriousWcagViolations(page, 'Record identity dataset')
+
+  await page.goto('/datasets/dossier-completion')
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/sections have reached/i)
+  await expect(page.locator('main')).toHaveCount(1)
+  await expect(page.getByText('What this does not mean:', { exact: false })).toBeVisible()
+  await expect(page.getByRole('combobox', { name: 'Completion' })).toBeVisible()
+  await expect(page.getByRole('combobox', { name: 'Section state' })).toBeVisible()
+  await expectNoHorizontalOverflow(page, 'Dossier completion dataset at 320px')
+  await expectNoSeriousWcagViolations(page, 'Dossier completion dataset')
 })
 
 test('serves each allowlisted public dataset and rejects a private-looking id', async ({

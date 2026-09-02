@@ -44,6 +44,7 @@ import {
   type PublicSearchSummaryBinding,
 } from '@/lib/queries/public-search-hit-projection'
 import type { ApprovalStatus, DrugDossier, DrugModality } from '@/lib/types'
+import { getCompletionAssessmentForDrug, getInventoryResolutionForDrug } from './dossier-completion'
 import { listNotesForDrug } from './notes'
 
 /**
@@ -151,15 +152,22 @@ export async function getDrugBySlug(
   const row = await getPublicDrugRowBySlug(slug)
   if (!row) return null
 
-  const [notes, driftedSources] = await Promise.all([
+  const [notes, driftedSources, completionAssessment, inventoryResolution] = await Promise.all([
     listNotesForDrug(row.id, viewerUserId),
     currentBackgroundDriftSummaries({
       drugId: row.id,
       slug: row.slug,
       background: row.recordedBackground,
     }),
+    getCompletionAssessmentForDrug(row.id),
+    getInventoryResolutionForDrug(row.id),
   ])
-  return rowToDossier(row, { notes, driftedSources })
+  return rowToDossier(row, {
+    notes,
+    driftedSources,
+    completionAssessment: completionAssessment ?? undefined,
+    inventoryResolution: inventoryResolution ?? undefined,
+  })
 }
 
 async function getPublicDrugRowBySlug(slug: string): Promise<DrugRow | null> {
@@ -179,12 +187,20 @@ async function getPublicDrugRowBySlug(slug: string): Promise<DrugRow | null> {
 export async function getPublicDrugBySlug(slug: string): Promise<DrugDossier | null> {
   const row = await getPublicDrugRowBySlug(slug)
   if (!row) return null
-  const driftedSources = await currentBackgroundDriftSummaries({
-    drugId: row.id,
-    slug: row.slug,
-    background: row.recordedBackground,
+  const [driftedSources, completionAssessment, inventoryResolution] = await Promise.all([
+    currentBackgroundDriftSummaries({
+      drugId: row.id,
+      slug: row.slug,
+      background: row.recordedBackground,
+    }),
+    getCompletionAssessmentForDrug(row.id),
+    getInventoryResolutionForDrug(row.id),
+  ])
+  return rowToDossier(row, {
+    driftedSources,
+    completionAssessment: completionAssessment ?? undefined,
+    inventoryResolution: inventoryResolution ?? undefined,
   })
-  return rowToDossier(row, { driftedSources })
 }
 
 /** Lean identity for generated social cards; avoids loading the dossier's JSONB sections. */

@@ -146,8 +146,8 @@ describe('recorded numeric distributions on the real corpus', () => {
     expect(halfLife?.binEdges.at(-2)).toBe(306.70507018735)
 
     const spread = halfLife?.overall?.logSpread
-    expect(spread?.medianAbsoluteDeviationLog10).toBe(0.58629596137865)
-    expect(spread?.spreadFactor).toBe(3.8574114154504)
+    expect(spread?.medianAbsoluteDeviationLog10).toBe(0.57860037483365)
+    expect(spread?.spreadFactor).toBe(3.7896611087982)
   })
 })
 

@@ -20,12 +20,23 @@ function formatDate(value: Date | null): string {
   return value.toISOString().slice(0, 10)
 }
 
+/** Ordinary-language name for the path that admitted a page, for the three admitting reasons. */
+const QUALIFYING_PATH_LABELS: Readonly<Record<string, string>> = {
+  indexable_reviewed_publication: 'Reviewed programme publication',
+  indexable_provenance_bound_legacy_flagship: 'Bound flagship record',
+  indexable_canonical_record: 'Canonical record with stated section states',
+}
+
 export default async function SearchIndexingReportPage() {
   const user = await getCurrentUser()
   if (!user || !canManageInternalReview(user)) notFound()
 
   const reports = await loadMedicinePublicationIndexabilityReports()
   const indexableCount = reports.filter((report) => report.decision.index).length
+  const byPath = Object.entries(QUALIFYING_PATH_LABELS).map(([reason, label]) => ({
+    label,
+    count: reports.filter((report) => report.decision.reason === reason).length,
+  }))
 
   return (
     <AppShell initialUser={user}>
@@ -38,13 +49,21 @@ export default async function SearchIndexingReportPage() {
             Search indexing report
           </h1>
           <p className="max-w-3xl text-sm leading-6 text-[#6E6E73]">
-            This report applies the same fail-closed publication policy as dossier metadata and the
-            XML sitemap. It reports stored workflow and monitoring state; it does not grade medical
-            evidence or suggest replacement claims.
+            This report applies the same fail-closed policy as dossier metadata and the XML sitemap.
+            It reports stored workflow, identity and monitoring state; it does not grade medical
+            evidence or suggest replacement claims. A page admitted by one path shows no exclusions
+            for the paths it did not use.
           </p>
           <p className="text-xs font-semibold tabular-nums text-[#424245]">
             {indexableCount} of {reports.length} public medicine identities are currently eligible.
           </p>
+          <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs tabular-nums text-[#6E6E73]">
+            {byPath.map((path) => (
+              <li key={path.label}>
+                {path.label}: {path.count}
+              </li>
+            ))}
+          </ul>
           <Link
             href="/review-queue"
             className="inline-flex min-h-6 items-center text-xs font-bold text-[#0071E3] hover:underline"
@@ -90,11 +109,17 @@ export default async function SearchIndexingReportPage() {
                   </span>
                 </div>
 
-                <dl className="grid gap-2 text-xs text-[#424245] sm:grid-cols-3">
+                <dl className="grid gap-2 text-xs text-[#424245] sm:grid-cols-2 lg:grid-cols-4">
                   <div>
                     <dt className="font-bold">Selected programme</dt>
                     <dd className="mt-0.5 font-mono text-[11px]">
                       {report.selectedProgrammeId ?? 'No current publication'}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-bold">Qualifying path</dt>
+                    <dd className="mt-0.5">
+                      {QUALIFYING_PATH_LABELS[report.decision.reason] ?? 'None'}
                     </dd>
                   </div>
                   <div>

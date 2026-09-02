@@ -6,10 +6,12 @@ import {
   explainMedicineIndexability,
   MINIMUM_INDEPENDENT_PROGRAMME_REVIEWS,
   resolveLegacyPublicContentDate,
+  type CanonicalRecordIndexingInput,
   type MedicineIndexingInput,
 } from '@/lib/seo/indexability'
 
 const publicationDate = new Date('2026-08-20T10:00:00.000Z')
+const contentChangedAt = new Date('2026-08-22T00:00:00.000Z')
 
 function eligibleInput(): MedicineIndexingInput {
   return {
@@ -231,5 +233,184 @@ describe('medicine search indexability', () => {
         new Date('2026-08-26T00:00:00.000Z'),
       )?.toISOString(),
     ).toBe('2026-08-01T00:00:00.000Z')
+  })
+})
+
+function canonicalRecord(
+  patch: Partial<CanonicalRecordIndexingInput> = {},
+): CanonicalRecordIndexingInput {
+  return {
+    resolutionStatus: 'CANONICAL_ENTITY',
+    assessmentStatus: 'INCOMPLETE',
+    contentChangedAt,
+    applicableSectionCount: 17,
+    terminalSectionCount: 15,
+    ...patch,
+  }
+}
+
+describe('canonical-record indexability path', () => {
+  it('admits a resolved canonical record whose sections carry stated states', () => {
+    expect(
+      decideMedicineIndexability({
+        canonicalSlug: 'sodium-cromoglicate',
+        isRedirectSource: false,
+        publication: null,
+        canonicalRecord: canonicalRecord(),
+      }),
+    ).toEqual({
+      index: true,
+      follow: true,
+      reason: 'indexable_canonical_record',
+      canonicalSlug: 'sodium-cromoglicate',
+      lastPublicContentUpdate: contentChangedAt,
+    })
+  })
+
+  it('admits an incomplete assessment: every section still carries a visible state', () => {
+    const complete = decideMedicineIndexability({
+      canonicalSlug: 'example-record',
+      isRedirectSource: false,
+      publication: null,
+      canonicalRecord: canonicalRecord({
+        assessmentStatus: 'COMPLETE',
+        terminalSectionCount: 17,
+      }),
+    })
+    expect(complete.index).toBe(true)
+    expect(complete.reason).toBe('indexable_canonical_record')
+  })
+
+  it.each([
+    [
+      'a duplicate identity',
+      { resolutionStatus: 'DUPLICATE_OF_CANONICAL_ENTITY' as const },
+      'identity_not_canonical',
+    ],
+    [
+      'a row held for manual identity review',
+      { resolutionStatus: 'MANUAL_IDENTITY_REVIEW_REQUIRED' as const },
+      'identity_not_canonical',
+    ],
+    [
+      'an identity the resolver marked permanently gone',
+      { resolutionStatus: 'INVALID_IDENTITY_GONE' as const },
+      'identity_not_canonical',
+    ],
+    ['no stored assessment', { assessmentStatus: null }, 'no_completion_assessment'],
+    ['an assessment with no sections', { applicableSectionCount: 0 }, 'no_completion_assessment'],
+    ['no content date', { contentChangedAt: null }, 'missing_completion_content_date'],
+    [
+      'an unusable content date',
+      { contentChangedAt: new Date('not a date') },
+      'missing_completion_content_date',
+    ],
+  ])('refuses %s', (_label, patch, code) => {
+    const report = explainMedicineIndexability({
+      canonicalSlug: 'example-record',
+      isRedirectSource: false,
+      publication: null,
+      canonicalRecord: canonicalRecord(patch as Partial<CanonicalRecordIndexingInput>),
+    })
+    expect(report.decision.index).toBe(false)
+    expect(report.issues.map((issue) => issue.code)).toContain(code)
+  })
+
+  it('never admits a redirect source or a placeholder slug through the canonical-record path', () => {
+    const redirect = explainMedicineIndexability({
+      canonicalSlug: 'old-merged-slug',
+      isRedirectSource: true,
+      publication: null,
+      canonicalRecord: canonicalRecord(),
+    })
+    expect(redirect.decision.index).toBe(false)
+    expect(redirect.issues.map((issue) => issue.code)).toContain('canonical_identity_redirected')
+
+    const placeholder = explainMedicineIndexability({
+      canonicalSlug: 'header',
+      isRedirectSource: false,
+      publication: null,
+      canonicalRecord: canonicalRecord({ resolutionStatus: 'INVALID_IDENTITY_GONE' }),
+    })
+    expect(placeholder.decision.index).toBe(false)
+    expect(placeholder.issues.map((issue) => issue.code)).toEqual([
+      'no_current_publication',
+      'identity_not_canonical',
+      'placeholder_identity_slug',
+    ])
+  })
+
+  it('keeps the reviewed publication and bound legacy paths ahead of the canonical record', () => {
+    const reviewed = decideMedicineIndexability({
+      ...eligibleInput(),
+      canonicalRecord: canonicalRecord(),
+    })
+    expect(reviewed.reason).toBe('indexable_reviewed_publication')
+    expect(reviewed.lastPublicContentUpdate).toEqual(publicationDate)
+
+    const legacyDate = new Date('2026-08-01T00:00:00.000Z')
+    const legacy = decideMedicineIndexability({
+      canonicalSlug: 'creatine-monohydrate',
+      isRedirectSource: false,
+      publication: null,
+      legacy: {
+        bindingState: 'legacy_record',
+        dossierDepth: 'flagship',
+        authoredEvidenceBinding: {
+          kind: 'legacy_answer_and_evidence_fingerprint',
+          version: 'legacy-ten-second-answer/v2',
+          fingerprint: `sha256:${'d'.repeat(64)}`,
+        },
+        usedFor: 'One use.',
+        bestSupportedFinding: 'One finding.',
+        mainLimitation: 'One limitation.',
+        sourceCount: 1,
+        publicContentDate: legacyDate,
+      },
+      canonicalRecord: canonicalRecord(),
+    })
+    expect(legacy.reason).toBe('indexable_provenance_bound_legacy_flagship')
+    expect(legacy.lastPublicContentUpdate).toEqual(legacyDate)
+  })
+
+  it('rescues a record whose publication is stale, and reports no exclusions once admitted', () => {
+    const input = eligibleInput()
+    const report = explainMedicineIndexability({
+      ...input,
+      publication: { ...input.publication!, freshness: 'stale' },
+      canonicalRecord: canonicalRecord(),
+    })
+
+    expect(report.decision).toMatchObject({
+      index: true,
+      reason: 'indexable_canonical_record',
+      lastPublicContentUpdate: contentChangedAt,
+    })
+    expect(report.issues).toEqual([])
+  })
+
+  it('reports the publication and canonical-record failures together when both paths fail', () => {
+    const input = eligibleInput()
+    const report = explainMedicineIndexability({
+      ...input,
+      publication: { ...input.publication!, freshness: 'stale' },
+      canonicalRecord: canonicalRecord({ assessmentStatus: null, contentChangedAt: null }),
+    })
+
+    expect(report.decision.index).toBe(false)
+    expect(report.issues.map((issue) => issue.code)).toEqual([
+      'public_content_not_current',
+      'no_completion_assessment',
+      'missing_completion_content_date',
+    ])
+  })
+
+  it('offers no third path at all when no inventory resolution was read', () => {
+    const report = explainMedicineIndexability({
+      canonicalSlug: 'example-record',
+      isRedirectSource: false,
+      publication: null,
+    })
+    expect(report.issues.map((issue) => issue.code)).toEqual(['no_current_publication'])
   })
 })

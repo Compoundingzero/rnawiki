@@ -67,6 +67,9 @@ export interface ProgrammeScopedMedicineIdentity {
   lastEditedBy?: string
   isMachineVerifiedStructure?: boolean
   viewCount?: number
+  /** Identity and completeness are record facts, not medicine-wide evidence, so they stay here. */
+  completionAssessment?: DrugDossier['completionAssessment']
+  inventoryResolution?: DrugDossier['inventoryResolution']
 }
 
 export interface LegacyMedicineEvidenceBoundary {
@@ -231,6 +234,8 @@ export function separateLegacyMedicineEvidence<T extends DossierReadPayload>(
     lastEditedBy,
     isMachineVerifiedStructure,
     viewCount,
+    completionAssessment,
+    inventoryResolution,
     ...legacyFields
   } = payload.drug
 
@@ -238,6 +243,8 @@ export function separateLegacyMedicineEvidence<T extends DossierReadPayload>(
     id,
     name,
     modality,
+    ...(completionAssessment ? { completionAssessment } : {}),
+    ...(inventoryResolution ? { inventoryResolution } : {}),
     ...(tradeName ? { tradeName } : {}),
     ...(molecularSchema ? { molecularSchema } : {}),
     ...(dossierDepth ? { dossierDepth } : {}),

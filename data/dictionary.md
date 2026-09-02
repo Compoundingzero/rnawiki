@@ -109,6 +109,82 @@ selected programme binding per medicine; use NDJSON for the complete list.
 | `current_publication_input_digest`        | SHA-256 RNA Intelligence input digest for the publication.                          |
 | `current_publication_source_snapshot_ids` | Sorted snapshot ids separated with `;`; blank when there is no current publication. |
 
+## Record identity and dossier completion
+
+Every NDJSON medicine row in a `drugs/2` snapshot carries two objects that say what the record is
+and how much of it has been settled. Read `manifest.json` for the file's `schemaVersion`: a
+`drugs/1` snapshot predates both fields.
+
+`inventoryResolution` is the reader-facing subset of the identity decision for that record. It never
+names another record.
+
+| Field                                                  | Type           | Notes                                                                                                                                                                  |
+| ------------------------------------------------------ | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `inventoryResolution.resolutionStatus`                 | enum           | `CANONICAL_ENTITY`, `DUPLICATE_OF_CANONICAL_ENTITY`, `ALIAS_OF_CANONICAL_ENTITY`, `HISTORICAL_REDIRECT`, `INVALID_IDENTITY_GONE` or `MANUAL_IDENTITY_REVIEW_REQUIRED`. |
+| `inventoryResolution.entityClass`                      | enum           | What kind of thing the row is. It selects which dossier sections apply and is not a quality ranking.                                                                   |
+| `inventoryResolution.canonicalSlug`                    | string         | The address this entity is served at. Equal to the record's own slug on a canonical record.                                                                            |
+| `inventoryResolution.redirectTargetSlug`               | string \| null | Set only on a resolving status; one hop, and the same entity described twice.                                                                                          |
+| `inventoryResolution.identityConfidence`               | enum           | `REGISTRY_IDENTIFIER_RECORDED`, `NAME_ONLY` or `PLACEHOLDER`.                                                                                                          |
+| `inventoryResolution.identifierSharedWithOtherRecords` | boolean        | True when a registry identifier on this row is also recorded on another row. **Not merge evidence.** The other rows are never named in any public file.                |
+| `inventoryResolution.resolverVersion`                  | string         | The resolver that produced the decision.                                                                                                                               |
+
+`dossierCompletion` is a summary of the completion assessment for that record: the status, the two
+counts, and one state per applicable section. Every state describes the sources RNAWiki read for
+that section, never the medicine.
+
+The basis sentence behind a state, the counts it rests on and the exact sources read are **not** on
+the medicine row. They are published in full in `dossier-completion/dossier-completion-NNN.ndjson`,
+keyed by the same slug. Restating them on every medicine row more than doubled `drugs/` to repeat
+bytes the completion files already carry.
+
+| Field                                      | Type   | Notes                                                                                                              |
+| ------------------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------ |
+| `dossierCompletion.status`                 | enum   | `COMPLETE` when every applicable section carries one of the ten terminal states, otherwise `INCOMPLETE`.           |
+| `dossierCompletion.contentChangedAt`       | string | When the inputs behind the assessment last moved. Re-running the resolver over unchanged inputs does not move it.  |
+| `dossierCompletion.resolverVersion`        | string | The resolver that produced the assessment.                                                                         |
+| `dossierCompletion.applicableSectionCount` | number | How many of the twenty sections apply to this kind of record.                                                      |
+| `dossierCompletion.terminalSectionCount`   | number | Applicable sections that reached a terminal state.                                                                 |
+| `dossierCompletion.sectionStates`          | object | One entry per applicable section: the section id mapped to the state it reached. No basis text and no source refs. |
+
+A state such as `NOT_MEASURED`, `NO_QUALIFYING_EVIDENCE_AFTER_SEARCH` or `RESULTS_NOT_POSTED` is an
+outcome, not a gap: it says a source was read or a dated search was run and what it returned. Keep
+them apart from each other and from `NOT_APPLICABLE`, which says the section cannot apply to this
+kind of record.
+
+### `inventory-resolution.ndjson`
+
+One line per original medicine record, sorted by `originalSlug`, covering every stored row including
+the placeholder identities the medicine files leave out.
+
+| Field                                                     | Type     | Notes                                                                                                                    |
+| --------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `originalRecordId`, `originalSlug`, `originalName`        | string   | The stored record this line resolves.                                                                                    |
+| `entityClass`, `entityClassRule`                          | string   | The kind decided, and the rule from the fixed class table that decided it.                                               |
+| `resolutionStatus`, `canonicalSlug`, `redirectTargetSlug` | string   | The outcome and the address for the entity. `redirectTargetSlug` is null unless the status resolves elsewhere.           |
+| `identityConfidence`                                      | enum     | What the identity rests on.                                                                                              |
+| `identitySourceKinds[]`                                   | string[] | Kinds of registry identifier read from the row, such as `UNII` or `PUBCHEM_CID`. Kinds only; the values stay on the row. |
+| `attributionWarningCodes[]`                               | string[] | Warning codes only. The records a warning was raised against are never published.                                        |
+| `resolutionEvidence[]`                                    | string[] | Deterministic evidence behind a non-canonical outcome. It can name the address a record resolves to: one entity, twice.  |
+| `contentDigest`, `resolverVersion`                        | string   | SHA-256 over the exact stored inputs, and the resolver that read them.                                                   |
+
+### `dossier-completion/dossier-completion-NNN.ndjson`
+
+One line per canonical entity, sorted by `slug` and split into files of 1,000 lines, exactly like
+`drugs/drugs-NNN.ndjson`. Read the shards in numeric order, or concatenate them: `cat
+data/dossier-completion/*.ndjson`. A record that resolves to another address has no line here; read
+the line for the address it resolves to.
+
+Each file's row count, byte length and SHA-256 are declared separately in `manifest.json`.
+
+| Field                                                      | Type     | Notes                                                                                                      |
+| ---------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| `slug`, `name`, `entityClass`                              | string   | The canonical record and the class that selected its sections.                                             |
+| `status`, `applicableSectionCount`, `terminalSectionCount` |          | The same three values as the row-level object above.                                                       |
+| `nonTerminalSectionIds[]`                                  | string[] | Sections still waiting on something. Empty exactly when the status is `COMPLETE`.                          |
+| `humanReadSuggestedSectionIds[]`                           | string[] | Sections where a person reading the named source could add something the parser did not. Never a blocker.  |
+| `sections[]`                                               | array    | `sectionId`, `state`, `basisKind`, `basis`, `sourceRefs[]` and, where the basis rests on counts, `counts`. |
+| `inputDigest`, `resolverVersion`, `contentChangedAt`       | string   | The digest over the inputs read, the resolver, and when those inputs last moved.                           |
+
 ## Chemistry
 
 | Field                                                                        | Type            | Notes                                                                                                                                                   |

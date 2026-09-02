@@ -1,8 +1,11 @@
+import { mkdir, writeFile } from 'node:fs/promises'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { resolve } from 'node:path'
 
 const DEFAULT_ORIGIN = 'http://127.0.0.1:3000'
 const DEFAULT_MAX_URLS = 1_000
+const DEFAULT_MAX_DEPTH = 6
+const DEFAULT_ORPHAN_REPORT = 'docs/audits/discovery/orphan-audit.json'
 const DEFAULT_TIMEOUT_MS = 10_000
 const MAX_RESPONSE_CHARACTERS = 10_000_000
 
@@ -931,6 +934,127 @@ export async function auditPublicSearch(
   }
 }
 
+export interface ReachabilityOptions extends AuditOptions {
+  /** Link hops allowed from the entry points. `/browse` pagination consumes one hop per page. */
+  maxDepth: number
+}
+
+export interface DossierReachabilityResult {
+  origin: string
+  auditedAt: string
+  maxDepth: number
+  maxUrls: number
+  entryPoints: string[]
+  pagesVisited: number
+  sitemapDossierSlugs: number
+  reachableDossierSlugs: number
+  /** In the sitemap, but no link path from the entry points reached them within the bound. */
+  orphanSlugs: string[]
+  /** Linked from a public page but absent from the sitemap. */
+  reachableSlugsMissingFromSitemap: string[]
+  truncated: boolean
+  note: string
+}
+
+/** One segment after `/d/`, which is the canonical dossier address. */
+export function dossierSlugFromPath(pathname: string): string | null {
+  const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+  return /^\/d\/([^/]+)$/.exec(normalized)?.[1] ?? null
+}
+
+function isReachabilityHubPath(pathname: string): boolean {
+  const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+  return normalized === '' || normalized === '/' || normalized === '/browse'
+}
+
+/**
+ * Follow links from `/` and `/browse` (including its pagination) and report which canonical
+ * dossiers no link path reaches. Dossier URLs are recorded from the link, not fetched: the question
+ * is whether a crawler can arrive, not what the page then says. A truncated crawl is reported as
+ * truncated, never as a clean result.
+ */
+export async function auditDossierReachability(
+  options: ReachabilityOptions,
+  fetchImplementation: FetchImplementation = fetch,
+): Promise<DossierReachabilityResult> {
+  const auditedAt = new Date().toISOString()
+  const issues: AuditIssue[] = []
+  const cache = new Map<string, Promise<FetchedResource>>()
+  const sitemapUrls = await loadSitemapUrls(options, fetchImplementation, cache, issues)
+  const sitemapSlugs = new Set(
+    [...sitemapUrls.values()].flatMap((url) => {
+      const slug = dossierSlugFromPath(url.pathname)
+      return slug ? [slug] : []
+    }),
+  )
+
+  const entryPoints = [new URL('/', options.origin), new URL('/browse', options.origin)]
+  const queue: Array<{ url: URL; depth: number }> = entryPoints.map((url) => ({ url, depth: 0 }))
+  const queued = new Set(queue.map(({ url }) => canonicalUrlKey(url)))
+  const visited = new Set<string>()
+  const reachable = new Set<string>()
+
+  while (queue.length > 0 && visited.size < options.maxUrls) {
+    const next = queue.shift()
+    if (!next) continue
+    const key = canonicalUrlKey(next.url)
+    if (visited.has(key)) continue
+    visited.add(key)
+
+    const response = await fetchResource(next.url, options, fetchImplementation)
+    if (response.error || response.status < 200 || response.status >= 300) continue
+    if (!/\b(?:text\/html|application\/xhtml\+xml)\b/i.test(response.contentType)) continue
+
+    for (const href of parsePublicHtml(response.body).internalLinkCandidates) {
+      const candidate = safeUrl(href, next.url)
+      if (!candidate || !sameAuditOrigin(candidate, options.origin)) continue
+      const slug = dossierSlugFromPath(candidate.pathname)
+      if (slug) {
+        reachable.add(slug)
+        continue
+      }
+      if (next.depth >= options.maxDepth || !isReachabilityHubPath(candidate.pathname)) continue
+      const candidateKey = canonicalUrlKey(candidate)
+      if (queued.has(candidateKey) || visited.has(candidateKey)) continue
+      queued.add(candidateKey)
+      queue.push({ url: candidate, depth: next.depth + 1 })
+    }
+  }
+
+  const orphanSlugs = [...sitemapSlugs].filter((slug) => !reachable.has(slug)).sort()
+  const missingFromSitemap = [...reachable].filter((slug) => !sitemapSlugs.has(slug)).sort()
+  return {
+    origin: options.origin.origin,
+    auditedAt,
+    maxDepth: options.maxDepth,
+    maxUrls: options.maxUrls,
+    entryPoints: entryPoints.map((url) => url.href),
+    pagesVisited: visited.size,
+    sitemapDossierSlugs: sitemapSlugs.size,
+    reachableDossierSlugs: reachable.size,
+    orphanSlugs,
+    reachableSlugsMissingFromSitemap: missingFromSitemap,
+    truncated: queue.length > 0,
+    note: 'A slug is listed as an orphan only for this crawl bound. Raise --max-depth or --max-urls before treating the list as final.',
+  }
+}
+
+export function formatReachabilityResult(result: DossierReachabilityResult): string {
+  const lines = [
+    `Dossier reachability: ${result.origin}`,
+    `Visited ${result.pagesVisited} hub pages to depth ${result.maxDepth}.`,
+    `Sitemap dossiers: ${result.sitemapDossierSlugs}; reached by links: ${result.reachableDossierSlugs}.`,
+    `Orphans (in sitemap, not linked): ${result.orphanSlugs.length}.`,
+    `Linked but absent from the sitemap: ${result.reachableSlugsMissingFromSitemap.length}.`,
+  ]
+  if (result.truncated) lines.push('The crawl hit its bound; the orphan list is incomplete.')
+  for (const slug of result.orphanSlugs.slice(0, 50)) lines.push(`  orphan: /d/${slug}`)
+  if (result.orphanSlugs.length > 50) {
+    lines.push(`  ...and ${result.orphanSlugs.length - 50} more in the report file.`)
+  }
+  return lines.join('\n')
+}
+
 export function formatAuditResult(result: AuditResult): string {
   const lines = [
     `Search audit: ${result.origin}`,
@@ -960,15 +1084,20 @@ function usage(): string {
     `  --max-urls <count>   Maximum same-origin URLs to check (default: ${DEFAULT_MAX_URLS})`,
     `  --timeout-ms <ms>    Per-request timeout (default: ${DEFAULT_TIMEOUT_MS})`,
     '  --json               Print machine-readable JSON',
+    '  --orphan-audit       Instead of the page audit, report canonical dossiers no link reaches',
+    `  --max-depth <n>      Link hops from / and /browse in --orphan-audit (default: ${DEFAULT_MAX_DEPTH})`,
+    `  --out <path>         Where --orphan-audit writes its report (default: ${DEFAULT_ORPHAN_REPORT})`,
     '  --help               Show this help',
     '',
     'The default is deliberately loopback-only. Pass --origin explicitly to audit a deployment.',
   ].join('\n')
 }
 
-interface CliArguments extends AuditOptions {
+interface CliArguments extends ReachabilityOptions {
   json: boolean
   help: boolean
+  orphanAudit: boolean
+  outFile: string
 }
 
 function optionValue(args: string[], index: number, name: string): [string, number] {
@@ -1001,12 +1130,16 @@ export function parseAuditArguments(
   let sitemapPath = '/sitemap.xml'
   let maxUrls = DEFAULT_MAX_URLS
   let timeoutMs = DEFAULT_TIMEOUT_MS
+  let maxDepth = DEFAULT_MAX_DEPTH
+  let outFile = DEFAULT_ORPHAN_REPORT
+  let orphanAudit = false
   let json = false
   let help = false
 
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index] ?? ''
     if (argument === '--json') json = true
+    else if (argument === '--orphan-audit') orphanAudit = true
     else if (argument === '--help' || argument === '-h') help = true
     else if (argument === '--origin' || argument.startsWith('--origin=')) {
       const [value, consumed] = optionValue(args, index, '--origin')
@@ -1023,6 +1156,14 @@ export function parseAuditArguments(
     } else if (argument === '--timeout-ms' || argument.startsWith('--timeout-ms=')) {
       const [value, consumed] = optionValue(args, index, '--timeout-ms')
       timeoutMs = parsePositiveInteger(value, '--timeout-ms', 500, 60_000)
+      index = consumed
+    } else if (argument === '--max-depth' || argument.startsWith('--max-depth=')) {
+      const [value, consumed] = optionValue(args, index, '--max-depth')
+      maxDepth = parsePositiveInteger(value, '--max-depth', 1, 100)
+      index = consumed
+    } else if (argument === '--out' || argument.startsWith('--out=')) {
+      const [value, consumed] = optionValue(args, index, '--out')
+      outFile = value
       index = consumed
     } else {
       throw new Error(`Unknown option: ${argument}`)
@@ -1043,7 +1184,7 @@ export function parseAuditArguments(
     throw new Error('--origin must contain only a scheme and host, without a path, query or hash.')
   }
   origin.pathname = '/'
-  return { origin, sitemapPath, maxUrls, timeoutMs, json, help }
+  return { origin, sitemapPath, maxUrls, timeoutMs, maxDepth, outFile, orphanAudit, json, help }
 }
 
 async function runCli(): Promise<void> {
@@ -1053,6 +1194,20 @@ async function runCli(): Promise<void> {
       console.log(usage())
       return
     }
+    if (options.orphanAudit) {
+      const reachability = await auditDossierReachability(options)
+      const reportPath = resolve(options.outFile)
+      await mkdir(dirname(reportPath), { recursive: true })
+      await writeFile(reportPath, `${JSON.stringify(reachability, null, 2)}\n`, 'utf8')
+      console.log(
+        options.json
+          ? JSON.stringify(reachability, null, 2)
+          : `${formatReachabilityResult(reachability)}\nWrote ${reportPath}`,
+      )
+      if (reachability.orphanSlugs.length > 0 || reachability.truncated) process.exitCode = 1
+      return
+    }
+
     const result = await auditPublicSearch(options)
     console.log(options.json ? JSON.stringify(result, null, 2) : formatAuditResult(result))
     if (result.errors > 0) process.exitCode = 1

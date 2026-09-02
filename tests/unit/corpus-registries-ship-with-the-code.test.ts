@@ -35,6 +35,10 @@ const CORPUS_REGISTRIES = [
   { file: 'supplement-ingredient.json', evidence: 'supplementIngredient' },
   { file: 'source-material.json', evidence: 'sourceMaterial' },
   { file: 'name-family.json', evidence: 'nameFamily' },
+  // Shared with the extracted tier, which is why the merge assertion below cannot tell this
+  // registry's records apart on `mechanism` alone. The sharp check — that these modules land on
+  // curated-tier records and replace nothing — is in tests/unit/background-corpus-merge.test.ts.
+  { file: 'curated-gap-extraction.json', evidence: 'mechanism' },
 ] as const
 
 describe('registries the published corpus reads', () => {
@@ -64,6 +68,27 @@ describe('registries the published corpus reads', () => {
         counts.get(registry.evidence) ?? 0,
         `no corpus record carries ${registry.evidence}, so ${registry.file} reached nothing`,
       ).toBeGreaterThan(0)
+    }
+  })
+
+  it('lands every curated-gap record on the curated row it was built for', () => {
+    const gap = JSON.parse(
+      readFileSync(join(REGISTRY_DIR, 'curated-gap-extraction.json'), 'utf8'),
+    ) as Record<string, Record<string, unknown>>
+    const envelopeFields = new Set(['version', 'authoredAt', 'provenanceTier', 'attribution'])
+    for (const [slug, record] of Object.entries(gap)) {
+      const merged = ALL_RECORDED_BACKGROUND[slug]
+      expect(
+        merged,
+        `${slug} is in curated-gap-extraction.json but not in the corpus`,
+      ).toBeDefined()
+      for (const moduleName of Object.keys(record)) {
+        if (envelopeFields.has(moduleName)) continue
+        expect(
+          JSON.stringify(merged![moduleName as keyof typeof merged]),
+          `${slug}.${moduleName} did not reach the corpus`,
+        ).toBe(JSON.stringify(record[moduleName]))
+      }
     }
   })
 })

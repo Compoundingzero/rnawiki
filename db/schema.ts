@@ -20,6 +20,13 @@ import {
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
 import { BACKGROUND_SOURCE_KINDS, type MedicineRecordedBackground } from '@/lib/background/types'
+import { DOSSIER_COMPLETION_STATUSES, type SectionAssessment } from '@/lib/dossier-completion/types'
+import {
+  ENTITY_CLASSES,
+  INVENTORY_RESOLUTION_STATES,
+  type AttributionWarning,
+  type IdentitySource,
+} from '@/lib/inventory/types'
 import type {
   AuditPoint,
   ClinicalTrialRecord,
@@ -4286,6 +4293,335 @@ export const engineValidationRuns = pgTable(
     check(
       'engine_validation_runs_finding_count',
       sql`${table.findingCount} >= 0 and (${table.passed} or ${table.findingCount} > 0)`,
+    ),
+  ],
+)
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Corpus completion: one identity state per inventory row, one completion assessment per        */
+/* canonical dossier, every auditable registry search, and the append-only review decisions.      */
+/*                                                                                                  */
+/* None of these tables holds medical content. An inventory resolution is a statement about which  */
+/* public URL a stored record answers at. A completion assessment lists, for every section that    */
+/* applies to the record, which honest state the stored evidence reached and where that evidence   */
+/* came from. A search record is a dated question put to a registry, with its exact answer. The    */
+/* review decisions are what people did about the assessment, never what the assessment should say.*/
+/* ---------------------------------------------------------------------------------------------- */
+
+export const inventoryResolutionStatusEnum = pgEnum(
+  'inventory_resolution_status',
+  INVENTORY_RESOLUTION_STATES,
+)
+export const inventoryEntityClassEnum = pgEnum('inventory_entity_class', ENTITY_CLASSES)
+
+export const inventoryResolutions = pgTable(
+  'inventory_resolutions',
+  {
+    drugId: varchar('drug_id', { length: 96 })
+      .primaryKey()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    resolverVersion: varchar('resolver_version', { length: 64 }).notNull(),
+    resolutionStatus: inventoryResolutionStatusEnum('resolution_status').notNull(),
+    entityClass: inventoryEntityClassEnum('entity_class').notNull(),
+    entityClassRule: text('entity_class_rule').notNull(),
+    canonicalDrugId: varchar('canonical_drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'restrict' }),
+    canonicalSlug: varchar('canonical_slug', { length: 128 }).notNull(),
+    /** Present exactly for a redirecting status; always one hop to a canonical slug. */
+    redirectTargetSlug: varchar('redirect_target_slug', { length: 128 }),
+    identityConfidence: varchar('identity_confidence', { length: 40 }).notNull(),
+    identitySources: jsonb('identity_sources')
+      .$type<IdentitySource[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    attributionWarnings: jsonb('attribution_warnings')
+      .$type<AttributionWarning[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    resolutionEvidence: jsonb('resolution_evidence')
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    resolvedAt: timestamp('resolved_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('inventory_resolutions_status_idx').on(table.resolutionStatus),
+    index('inventory_resolutions_canonical_idx').on(table.canonicalDrugId),
+    index('inventory_resolutions_entity_class_idx').on(table.entityClass),
+    check(
+      'inventory_resolutions_redirect_shape',
+      sql`(${table.redirectTargetSlug} is null) = (${table.resolutionStatus} in ('CANONICAL_ENTITY', 'INVALID_IDENTITY_GONE', 'MANUAL_IDENTITY_REVIEW_REQUIRED'))`,
+    ),
+    check(
+      'inventory_resolutions_canonical_self',
+      sql`${table.resolutionStatus} in ('DUPLICATE_OF_CANONICAL_ENTITY', 'ALIAS_OF_CANONICAL_ENTITY', 'HISTORICAL_REDIRECT') or ${table.canonicalDrugId} = ${table.drugId}`,
+    ),
+    check(
+      'inventory_resolutions_redirect_target_matches_canonical',
+      sql`${table.redirectTargetSlug} is null or ${table.redirectTargetSlug} = ${table.canonicalSlug}`,
+    ),
+    check('inventory_resolutions_digest', sql`${table.contentDigest} ~ '^[0-9a-f]{64}$'`),
+  ],
+)
+
+export const dossierCompletionStatusEnum = pgEnum(
+  'dossier_completion_status',
+  DOSSIER_COMPLETION_STATUSES,
+)
+
+export const dossierCompletionAssessments = pgTable(
+  'dossier_completion_assessments',
+  {
+    drugId: varchar('drug_id', { length: 96 })
+      .primaryKey()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    resolverVersion: varchar('resolver_version', { length: 64 }).notNull(),
+    status: dossierCompletionStatusEnum('status').notNull(),
+    /** SHA-256 over every input the resolver read; a re-run with equal inputs changes nothing. */
+    inputDigest: varchar('input_digest', { length: 64 }).notNull(),
+    sections: jsonb('sections').$type<SectionAssessment[]>().notNull(),
+    applicableSectionCount: integer('applicable_section_count').notNull(),
+    terminalSectionCount: integer('terminal_section_count').notNull(),
+    nonTerminalSectionIds: jsonb('non_terminal_section_ids')
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    humanReadSuggestedSectionIds: jsonb('human_read_suggested_section_ids')
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** Moves only when the input digest moves. This is the public content date, never a clock. */
+    contentChangedAt: timestamp('content_changed_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    assessedAt: timestamp('assessed_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('dossier_completion_assessments_status_idx').on(table.status, table.contentChangedAt),
+    check('dossier_completion_assessments_digest', sql`${table.inputDigest} ~ '^[0-9a-f]{64}$'`),
+    check(
+      'dossier_completion_assessments_counts',
+      sql`${table.applicableSectionCount} >= 0 and ${table.terminalSectionCount} >= 0 and ${table.terminalSectionCount} <= ${table.applicableSectionCount}`,
+    ),
+    check(
+      'dossier_completion_assessments_status_agrees',
+      sql`(${table.status} = 'COMPLETE') = (${table.terminalSectionCount} = ${table.applicableSectionCount} and jsonb_array_length(${table.nonTerminalSectionIds}) = 0)`,
+    ),
+    check(
+      'dossier_completion_assessments_sections_shape',
+      sql`jsonb_typeof(${table.sections}) = 'array' and jsonb_array_length(${table.sections}) = ${table.applicableSectionCount}`,
+    ),
+  ],
+)
+
+export const sourceSearchStatusEnum = pgEnum('source_search_status', [
+  'SUCCEEDED',
+  'UNREACHABLE',
+  'FAILED',
+])
+
+export const sourceSearchRecords = pgTable(
+  'source_search_records',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    /** Which fixed procedure asked the question, e.g. an exact-name pass over a dated snapshot. */
+    searchKind: varchar('search_kind', { length: 64 }).notNull(),
+    /** The exact search space: a snapshot identifier with its hash, or the endpoint queried. */
+    sourceIdentifier: text('source_identifier').notNull(),
+    query: text('query').notNull(),
+    requestedAt: timestamp('requested_at', { withTimezone: true }).notNull(),
+    status: sourceSearchStatusEnum('status').notNull(),
+    resultCount: integer('result_count'),
+    /** Exact matches only, as registry facts. Never an interpretation. */
+    matched: jsonb('matched')
+      .$type<unknown[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    responseDigest: varchar('response_digest', { length: 64 }),
+    error: text('error'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex('source_search_records_identity').on(
+      table.drugId,
+      table.searchKind,
+      table.sourceIdentifier,
+    ),
+    index('source_search_records_drug_idx').on(table.drugId),
+    index('source_search_records_kind_status_idx').on(table.searchKind, table.status),
+    check(
+      'source_search_records_outcome_shape',
+      sql`(${table.status} = 'SUCCEEDED' and ${table.resultCount} is not null and ${table.resultCount} >= 0 and ${table.error} is null)
+        or (${table.status} <> 'SUCCEEDED' and ${table.resultCount} is null and nullif(btrim(${table.error}), '') is not null)`,
+    ),
+    check(
+      'source_search_records_digest',
+      sql`${table.responseDigest} is null or ${table.responseDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+  ],
+)
+
+export const dossierCompletionReviewDecisionEnum = pgEnum('dossier_completion_review_decision', [
+  'ACKNOWLEDGED',
+  'SOURCE_READ_NO_CHANGE',
+  'CORRECTION_PROPOSED',
+  'IDENTITY_DISPUTED',
+])
+
+/**
+ * Append-only. A decision names the exact assessment it answered through the input digest, so a
+ * later re-assessment cannot inherit an older decision, and the explanation must be non-empty.
+ */
+export const dossierCompletionReviewDecisions = pgTable(
+  'dossier_completion_review_decisions',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    sectionId: varchar('section_id', { length: 64 }).notNull(),
+    decision: dossierCompletionReviewDecisionEnum('decision').notNull(),
+    reviewerUserId: varchar('reviewer_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    explanation: text('explanation').notNull(),
+    assessmentInputDigest: varchar('assessment_input_digest', { length: 64 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('dossier_completion_review_decisions_drug_idx').on(table.drugId, table.createdAt),
+    check(
+      'dossier_completion_review_decisions_explanation',
+      sql`nullif(btrim(${table.explanation}), '') is not null`,
+    ),
+    check(
+      'dossier_completion_review_decisions_digest',
+      sql`${table.assessmentInputDigest} ~ '^[0-9a-f]{64}$'`,
+    ),
+  ],
+)
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Semantic reading units: one row per recorded reading, and the corrections people file against  */
+/* what a query returned.                                                                          */
+/*                                                                                                  */
+/* A unit is a projection, never an authored record. Its text is source wording or a fixed template */
+/* over stored fields, its sources are the exact ones behind that reading, and an absence is stored */
+/* as its own row rather than as a missing one. Nothing here decides what a medicine does; the      */
+/* projector in lib/semantic/units.ts is the only writer and is pure.                               */
+/*                                                                                                  */
+/* The two enum lists below mirror UNIT_KINDS and UNIT_ASSERTIONS in lib/semantic/units.ts BY HAND, */
+/* for the same reason the modality lists are mirrored: this file must not pull node:crypto into    */
+/* any bundle that imports the schema. tests/unit/semantic-units.test.ts fails when they drift.     */
+/* ---------------------------------------------------------------------------------------------- */
+
+export const evidenceUnitKindEnum = pgEnum('evidence_unit_kind', [
+  'RECORDED_VALUE',
+  'RECORDED_STATEMENT',
+  'POPULATION_STATEMENT',
+  'ADVERSE_REACTION_LIST',
+  'CONSENSUS_READING',
+  'SEARCH_RESULT',
+  'SECTION_STATE',
+])
+
+export const evidenceUnitAssertionEnum = pgEnum('evidence_unit_assertion', [
+  'ASSERTED',
+  'NEGATED',
+  'ABSENT',
+])
+
+export const evidenceReadingUnits = pgTable(
+  'evidence_reading_units',
+  {
+    /** SHA-256 over the reading's exact content, so equal content re-projects to the same row. */
+    id: varchar('id', { length: 64 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    canonicalSlug: varchar('canonical_slug', { length: 128 }).notNull(),
+    unitKind: evidenceUnitKindEnum('unit_kind').notNull(),
+    assertion: evidenceUnitAssertionEnum('assertion').notNull(),
+    /** One of the twenty dossier completion sections. */
+    sectionId: varchar('section_id', { length: 64 }).notNull(),
+    /** Path into the recorded envelope, the completion assessment, or the recorded search. */
+    fieldPath: text('field_path').notNull(),
+    populationScope: text('population_scope'),
+    formulationScope: text('formulation_scope'),
+    /** Source wording or a fixed structural rendering. Never prose composed about a medicine. */
+    text: text('text').notNull(),
+    sourceRefs: jsonb('source_refs')
+      .$type<Array<Record<string, string>>>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    comparisonState: varchar('comparison_state', { length: 24 }),
+    projectorVersion: varchar('projector_version', { length: 64 }).notNull(),
+    contentDigest: varchar('content_digest', { length: 64 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+
+    // Generated full-text column. BARE, UNQUALIFIED column name on purpose — see the same note on
+    // `drugs.searchVector`; interpolating the column here reintroduces TS7022 under strict mode.
+    // "text" stays quoted because it is also a type name.
+    searchVector: tsvector('search_vector').generatedAlwaysAs(
+      sql`to_tsvector('english', coalesce("text", ''))`,
+    ),
+  },
+  (table) => [
+    index('evidence_reading_units_drug_idx').on(table.drugId),
+    index('evidence_reading_units_section_idx').on(table.sectionId),
+    index('evidence_reading_units_kind_idx').on(table.unitKind),
+    index('evidence_reading_units_search_idx').using('gin', table.searchVector),
+    check('evidence_reading_units_id_digest', sql`${table.id} ~ '^[0-9a-f]{64}$'`),
+    check('evidence_reading_units_content_digest', sql`${table.contentDigest} ~ '^[0-9a-f]{64}$'`),
+    check('evidence_reading_units_text', sql`nullif(btrim(${table.text}), '') is not null`),
+    check(
+      'evidence_reading_units_comparison_state',
+      sql`${table.comparisonState} is null or ${table.comparisonState} in ('agree', 'differ', 'not_comparable', 'insufficient_context')`,
+    ),
+  ],
+)
+
+/**
+ * Append-only. One row is one person saying a query returned the wrong reading, or missed a
+ * recorded absence. Nothing here changes a unit: a correction is evidence about the retrieval, and
+ * the projector stays the only writer of units.
+ */
+export const resultDebuggerCorrections = pgTable(
+  'result_debugger_corrections',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    query: text('query').notNull(),
+    reviewerUserId: varchar('reviewer_user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'restrict' }),
+    /** The unit ids the query actually returned, in returned order. */
+    returnedUnitIds: jsonb('returned_unit_ids')
+      .$type<string[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    /** The unit that should have come back, when the reviewer names one. */
+    expectedUnitId: varchar('expected_unit_id', { length: 64 }),
+    /** True when the right answer is a recorded absence rather than any returned reading. */
+    expectedAbsence: boolean('expected_absence').notNull().default(false),
+    reason: text('reason').notNull(),
+    engineVersion: varchar('engine_version', { length: 64 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('result_debugger_corrections_created_idx').on(table.createdAt),
+    check('result_debugger_corrections_query', sql`nullif(btrim(${table.query}), '') is not null`),
+    check(
+      'result_debugger_corrections_reason',
+      sql`nullif(btrim(${table.reason}), '') is not null`,
+    ),
+    check(
+      'result_debugger_corrections_expected_unit',
+      sql`${table.expectedUnitId} is null or ${table.expectedUnitId} ~ '^[0-9a-f]{64}$'`,
     ),
   ],
 )

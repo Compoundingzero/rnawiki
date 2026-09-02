@@ -1,3 +1,5 @@
+import { PUBLIC_PLACEHOLDER_MEDICINE_SLUGS } from '@/lib/public-data-integrity'
+
 /**
  * Verified old-slug exceptions from the archived 641-URL legacy crawl. Same-slug compound routes
  * are resolved dynamically; this map exists only where the old and current public identities differ.
@@ -33,4 +35,30 @@ export function legacyPathIsGone(pathname: string): boolean {
   return LEGACY_GONE_PREFIXES.some(
     (prefix) => normalized === prefix || normalized.startsWith(`${prefix}/`),
   )
+}
+
+/**
+ * Slugs that name a spreadsheet artifact rather than a medicine. The inventory resolver classifies
+ * these rows `INVALID_IDENTITY_GONE`, so their URLs identify nothing and never will. Shared with
+ * the ingestion and read filters in `lib/public-data-integrity.ts`, which imports nothing and uses
+ * no Node API, so this list stays available to edge middleware.
+ */
+const PLACEHOLDER_MEDICINE_SLUGS: ReadonlySet<string> = new Set(PUBLIC_PLACEHOLDER_MEDICINE_SLUGS)
+
+/**
+ * True when a `/d/` path names a placeholder identity. A 410 is correct here and a 404 is not: the
+ * URL is permanently without a subject, and saying so stops a crawler returning to it.
+ */
+export function placeholderMedicineRouteIsGone(pathname: string): boolean {
+  const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+  const match = /^\/d\/([^/]+)(?:\/.*)?$/.exec(normalized)
+  const encoded = match?.[1]
+  if (!encoded) return false
+  let slug: string
+  try {
+    slug = decodeURIComponent(encoded)
+  } catch {
+    return false
+  }
+  return PLACEHOLDER_MEDICINE_SLUGS.has(slug.trim().toLowerCase())
 }

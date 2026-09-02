@@ -1,0 +1,761 @@
+{
+  "benchmark": "semantic-retrieval/v1",
+  "generated": "template-generated from the corpus; no query was written by a person",
+  "projectorVersion": "semantic-units/v1",
+  "lexicalEngineVersion": "semantic-lexical/v1",
+  "scopeGateVersion": "semantic-scope-gates/v1",
+  "seed": 20260902,
+  "sampledRecords": 400,
+  "unitsPerRecord": 5,
+  "candidatePoolUnits": 2000,
+  "corpusUnits": 273110,
+  "queries": 1943,
+  "queriesByUnitKind": {
+    "ADVERSE_REACTION_LIST": 2,
+    "CONSENSUS_READING": 3,
+    "POPULATION_STATEMENT": 36,
+    "RECORDED_STATEMENT": 59,
+    "RECORDED_VALUE": 44,
+    "SEARCH_RESULT": 184,
+    "SECTION_STATE": 1615
+  },
+  "topK": 20,
+  "lexical": {
+    "raw": {
+      "queries": 1943,
+      "recallAt1": 0.964,
+      "recallAt5": 0.9768,
+      "recallAt20": 0.9768,
+      "mrr": 0.9701,
+      "refusedQueries": 0
+    },
+    "gated": {
+      "queries": 1943,
+      "recallAt1": 0.9207,
+      "recallAt5": 0.9326,
+      "recallAt20": 0.9326,
+      "mrr": 0.9265,
+      "refusedQueries": 86
+    }
+  },
+  "refusedByScopeGates": [
+    {
+      "query": "enzyme and transporter signals for Acacia Dealbata Pollen",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "acacia-dealbata-pollen",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Ambrosia Artemisiifolia Whole",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "ambrosia-artemisiifolia-whole",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Andarine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "andarine",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Andrographis Paniculata",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "andrographis-paniculata",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Azadirachta Indica Seed Oil",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "azadirachta-indica-seed-oil",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Baliospermum",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "baliospermum",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Bassia Scoparia",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "bassia-scoparia",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Boneset",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "boneset",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Bos Taurus Pituitary Gland, Posterior",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "bos-taurus-pituitary-gland-posterior",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Bromus Inermis Pollen",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "bromus-inermis-pollen",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Calcium Ascorbate",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "calcium-ascorbate",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Cauliflower",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "cauliflower",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Cevimeline",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "cevimeline",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Chlamydophila Psittaci",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "chlamydophila-psittaci",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Coix Lacryma-Jobi Seed",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "coix-lacryma-jobi-seed",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Coriander Oil",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "coriander-oil",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Creatine Glutamine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "creatine-glutamine",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Crocus Sativus Whole",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "crocus-sativus-whole",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Cyanocobalamin Co-58",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "cyanocobalamin-co-58",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Cyclizine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "cyclizine",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Cynara Scolymus Leaf",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "cynara-scolymus-leaf",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Dalfampridine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "dalfampridine",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Demannose",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "demannose",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Dimethicone 350",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "dimethicone-350",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Dipeptide-2",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "dipeptide-2",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Diphenoxylate",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "diphenoxylate",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Edrophonium",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "edrophonium",
+        "enzyme"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Euphrasia Officinalis Leaf",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "euphrasia-officinalis-leaf"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Fraxinus Americana Bark",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "fraxinus-americana-bark"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Gland",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "gland"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Glycol",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "glycol"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Gymnema",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "gymnema"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Hepatitis B Virus Hbsag Surface Protein Antigen",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "hepatitis-b-virus-hbsag-surface-protein-antigen"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Hydroxymatairesinol",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "hydroxymatairesinol"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Hypromellose 2208",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "hypromellose-2208"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Isothiocyanate",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "isothiocyanate"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Iva Annua Pollen",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "iva-annua-pollen"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Jerusalem Artichoke",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "jerusalem-artichoke"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Juniperus Californica Pollen",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "juniperus-californica-pollen"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for JWH-018 and the Synthetic Cannabinoid Class (K2 / Spice)",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "jwh-018"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for L-Arginine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "l-arginine"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Letibotulinumtoxina",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "letibotulinumtoxina"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Liquidambar Styraciflua Resin",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "liquidambar-styraciflua-resin"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Lolium Multiflorum Pollen",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "lolium-multiflorum-pollen"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Lonicera Canadensis Whole",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "lonicera-canadensis-whole"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Melia",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "melia"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Mephitis Mephitis Anal Gland Fluid",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "mephitis-mephitis-anal-gland-fluid"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Night-Blooming Cereus",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "night-blooming-cereus"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Ononis Repens Root",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "ononis-repens-root"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Oregon Grape",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "oregon-grape"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Oryctolagus Cuniculus Bone",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "oryctolagus-cuniculus-bone"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Panax Quinquefolius Whole",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "panax-quinquefolius-whole"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Parthenium Hysterophorus",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "parthenium-hysterophorus"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Peony",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "peony"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Pineal Gland",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "pineal-gland"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Polypodium",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "polypodium"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Prickly Ash",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "prickly-ash"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Pseudognaphalium Luteoalbum Leaf",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "pseudognaphalium-luteoalbum-leaf"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Pyrethrum Extract",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "pyrethrum-extract"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Queen's Delight",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "queens-delight"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Quercus Spp. Whole",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "quercus-spp-whole"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Risedronate Sodium Hemi-Pentahydrate",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "risedronate-sodium-hemi-pentahydrate"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Rosiglitazone",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "rosiglitazone"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Sangre De Grado",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "sangre-de-grado"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Shantung Maple",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "shantung-maple"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Shikimic Acid",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "shikimic-acid"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Sibeprenlimab-Szsi",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "sibeprenlimab-szsi"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Spanish Oregano",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "spanish-oregano"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Stellaria Media",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "stellaria-media"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Streptococcus Agalactiae",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "streptococcus-agalactiae"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Sulfisoxazole Diolamine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "sulfisoxazole-diolamine"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Sumac",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "sumac"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Suprofen",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "suprofen"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Sus Scrofa Duodenum",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "sus-scrofa-duodenum"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Telbivudine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "telbivudine"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Thimerosal",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "thimerosal"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Thymus Serpyllum Whole",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "thymus-serpyllum-whole"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals for Wasabia Japonica",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "wasabia-japonica"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals of Erlotinib",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "erlotinib"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals of Fosphenytoin",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "fosphenytoin"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals of Landiolol",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "landiolol"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals of Paliperidone",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "paliperidone"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals of Ranolazine",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "ranolazine"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals of Tretinoin (topical)",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "tretinoin"
+      ]
+    },
+    {
+      "query": "enzyme and transporter signals of Zanubrutinib",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "enzyme",
+        "zanubrutinib"
+      ]
+    },
+    {
+      "query": "plasma protein binding of Esmolol",
+      "code": "TWO_MEDICINES",
+      "candidates": [
+        "esmolol",
+        "protein"
+      ]
+    }
+  ],
+  "dense": {
+    "status": "MEASURED",
+    "model": "Xenova/bge-small-en-v1.5",
+    "cacheDir": "/Users/admin/rnawiki-ingest-data/models",
+    "raw": {
+      "queries": 1943,
+      "recallAt1": 0.8636,
+      "recallAt5": 0.999,
+      "recallAt20": 1,
+      "mrr": 0.926,
+      "refusedQueries": 0
+    },
+    "gated": {
+      "queries": 1943,
+      "recallAt1": 0.8281,
+      "recallAt5": 0.9557,
+      "recallAt20": 0.9557,
+      "mrr": 0.8871,
+      "refusedQueries": 86
+    }
+  },
+  "passRule": {
+    "statement": "dense must beat lexical on recall@5 by at least 5 points absolute, with the scope gates applied",
+    "lexicalRecallAt5": 0.9326,
+    "denseRecallAt5": 0.9557,
+    "met": false
+  },
+  "pgvectorAvailable": false,
+  "vectorIndexAdded": false,
+  "queryDigest": "15d31641b4cec454ba37dabf6eb1536216bbbf0cf3fba6264f9a5c45c87e609a"
+}

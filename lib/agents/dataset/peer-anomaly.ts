@@ -73,6 +73,16 @@ const ALPHA = 0.05
 const AGENT_NAME = 'peer-group-anomaly-screen'
 const AGENT_VERSION = '1.1.0'
 
+/**
+ * Arithmetic on the log scale differs in its last bits between CPU architectures (fused
+ * multiply-add on arm64, separate operations on x86), so the same corpus produced two different
+ * artifacts on a developer machine and the Linux release runner. Fourteen significant decimal
+ * digits is far beyond what any recorded value carries and gives every platform one representation.
+ */
+function portableFloat(value: number): number {
+  return Number(value.toPrecision(14))
+}
+
 export interface PeerAnomalySourceRef {
   kind: BackgroundSourceKind
   identifier: string
@@ -278,7 +288,7 @@ function screenOneQuantity(
     // reference point moved to meet it.
     const nonconformity = logScaleNonconformity(numerics)
     for (const member of members) {
-      scored.push({ item: member, score: nonconformity(member.numeric) })
+      scored.push({ item: member, score: portableFloat(nonconformity(member.numeric)) })
     }
     const summary = robustSummary(numerics)
     if (summary) {
@@ -287,9 +297,9 @@ function screenOneQuantity(
         group,
         size: members.length,
         calibrationSize: members.length - 1,
-        resolutionLimit: 1 / members.length,
+        resolutionLimit: portableFloat(1 / members.length),
         underpowered: members.length - 1 < required,
-        medianOfRecordedValues: summary.median,
+        medianOfRecordedValues: portableFloat(summary.median),
         p25OfRecordedValues: summary.p25,
         p75OfRecordedValues: summary.p75,
       })
@@ -314,10 +324,10 @@ function screenOneQuantity(
       group: flag.group,
       groupSize: flag.calibrationSize + 1,
       calibrationSize: flag.calibrationSize,
-      resolutionLimit: flag.resolutionLimit,
-      pValue: flag.pValue,
-      nonconformity: flag.score,
-      medianOfRecordedGroupValues: groupMedian,
+      resolutionLimit: portableFloat(flag.resolutionLimit),
+      pValue: portableFloat(flag.pValue),
+      nonconformity: portableFloat(flag.score),
+      medianOfRecordedGroupValues: portableFloat(groupMedian),
       positionRelativeToGroupMedian: position,
       source: flag.item.source,
       note: `This recorded ${fieldLabel} sits far from the other ${flag.calibrationSize + 1} recorded ${fieldLabel} values in the ${flag.group} peer group and is worth a human look. A value at the edge of a group is often precisely what its source states.`,
@@ -343,7 +353,7 @@ function screenOneQuantity(
     groupCount: byGroup.size,
     alpha: ALPHA,
     testCount: result.testCount,
-    expectedFalseFlags: result.expectedFalseFlags,
+    expectedFalseFlags: portableFloat(result.expectedFalseFlags),
     falseDiscoveryControl: {
       achievable: result.falseDiscoveryControl.achievable,
       bhSelected: result.falseDiscoveryControl.bhSelected,
@@ -355,7 +365,7 @@ function screenOneQuantity(
       .map((group) => ({
         group: group.group,
         size: group.size,
-        resolutionLimit: group.resolutionLimit,
+        resolutionLimit: portableFloat(group.resolutionLimit),
       }))
       .sort((left, right) => (left.group < right.group ? -1 : left.group > right.group ? 1 : 0)),
     flags,

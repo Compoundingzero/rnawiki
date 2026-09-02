@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 
 import { ALL_RECORDED_BACKGROUND, RECORDED_BACKGROUND } from '@/scripts/seed-data/background'
 import { EXTRACTED_BACKGROUND } from '@/scripts/seed-data/background/extracted-background.generated'
+import { CURATED_GAP_EXTRACTION } from '@/scripts/seed-data/background/curated-gap-extraction'
+import type { MedicineRecordedBackground } from '@/lib/background/types'
 import { medicineBackgroundContext } from '@/lib/medicine-background-view'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
 
@@ -44,6 +46,12 @@ describe('recorded-background corpus merge', () => {
     // `biologicalIdentity` joins them for the same reason: what organism a name denotes is a fact
     // about biological nomenclature, and it cannot contradict anything a person wrote about the
     // medicine.
+    //
+    // The label-extraction modules join them on a narrower licence, and the narrowness is what
+    // makes them safe. `curated-gap-extraction.json` holds only modules the curated envelope
+    // leaves absent — a module a person wrote is not in that file at all — so nothing here can
+    // replace curated judgement, and every value it carries states its own tier and quotes the
+    // label sentence it was read from.
     const allowed = new Set([
       'sourceConsensus',
       'supplementMarket',
@@ -55,6 +63,14 @@ describe('recorded-background corpus merge', () => {
       'supplementIngredient',
       'sourceMaterial',
       'nameFamily',
+      'pharmacokinetics',
+      'recordedUses',
+      'mechanism',
+      'molecularIdentity',
+      'interactionSignals',
+      'safety',
+      'populationStatements',
+      'commonAdverseReactions',
     ])
     for (const slug of Object.keys(RECORDED_BACKGROUND)) {
       const curatedKeys = new Set(Object.keys(RECORDED_BACKGROUND[slug]!))
@@ -112,6 +128,145 @@ describe('recorded-background corpus merge', () => {
       if (!report.passed) failures.push(`${slug}: ${report.findings.map((f) => f.code).join(', ')}`)
     }
     expect(failures).toEqual([])
+  })
+})
+
+/**
+ * The third tier, and the one that touches curated records.
+ *
+ * Extraction skipped every curated slug wholesale, which left the 155 most-read rows in the corpus
+ * with no mechanism, no recorded uses, no safety statements, no population statements and no
+ * adverse reactions while thousands of thinner rows carried all five from the same label archive.
+ * `curated-gap-extraction.json` closes that gap by attaching only what a curator left absent. These
+ * tests pin the three properties that make it safe to attach a parser's output to a person's
+ * record: a curated module is never replaced, an absent one is filled with exactly what the
+ * registry holds, and the envelope keeps saying it is curated while every attached value keeps
+ * saying it was extracted.
+ */
+describe('curated-gap extraction', () => {
+  const ENVELOPE_FIELDS = new Set(['version', 'authoredAt', 'provenanceTier', 'attribution'])
+
+  /** Every `provenanceTier` marking anywhere inside a value, however deeply nested. */
+  function tiersWithin(value: unknown, found: string[] = []): string[] {
+    if (Array.isArray(value)) {
+      for (const item of value) tiersWithin(item, found)
+    } else if (value && typeof value === 'object') {
+      for (const [key, nested] of Object.entries(value)) {
+        if (key === 'provenanceTier' && typeof nested === 'string') found.push(nested)
+        else tiersWithin(nested, found)
+      }
+    }
+    return found
+  }
+
+  it('reaches the rows that needed it', () => {
+    expect(Object.keys(CURATED_GAP_EXTRACTION).length).toBeGreaterThan(0)
+    // Metformin is the case that made the gap visible: 390 published labels, 316 of them naming it
+    // as their only active substance, and a page that stated no mechanism at all.
+    expect(ALL_RECORDED_BACKGROUND['metformin']?.mechanism).toBeDefined()
+  })
+
+  it('holds only modules the curated record leaves absent', () => {
+    for (const [slug, extracted] of Object.entries(CURATED_GAP_EXTRACTION)) {
+      const curated = RECORDED_BACKGROUND[slug]
+      expect(curated, `${slug} is not a curated record`).toBeDefined()
+      for (const moduleName of Object.keys(extracted)) {
+        if (ENVELOPE_FIELDS.has(moduleName)) continue
+        const held: unknown = curated![moduleName as keyof MedicineRecordedBackground]
+        const present = Array.isArray(held) ? held.length > 0 : held !== undefined
+        expect(present, `${slug}.${moduleName} is curated and must not be in this registry`).toBe(
+          false,
+        )
+      }
+    }
+  })
+
+  it('never replaces a module a curator wrote', () => {
+    // The general guarantee is asserted above for the whole corpus; this states it against this
+    // registry specifically, so a future change that let it overwrite would fail here by name.
+    for (const [slug, extracted] of Object.entries(CURATED_GAP_EXTRACTION)) {
+      const curated = RECORDED_BACKGROUND[slug]!
+      const merged = ALL_RECORDED_BACKGROUND[slug]!
+      for (const [key, value] of Object.entries(curated)) {
+        expect(JSON.stringify(merged[key as keyof typeof merged]), `${slug}.${key}`).toBe(
+          JSON.stringify(value),
+        )
+        // Envelope fields are excluded: both records carry a version and an authoring date, and
+        // the merge keeps the curated one, which the assertion above already states.
+        if (!ENVELOPE_FIELDS.has(key)) expect(Object.keys(extracted)).not.toContain(key)
+      }
+    }
+  })
+
+  it('fills an absent module with exactly what the registry holds', () => {
+    let filled = 0
+    for (const [slug, extracted] of Object.entries(CURATED_GAP_EXTRACTION)) {
+      const merged = ALL_RECORDED_BACKGROUND[slug]!
+      for (const [moduleName, value] of Object.entries(extracted)) {
+        if (ENVELOPE_FIELDS.has(moduleName)) continue
+        expect(
+          JSON.stringify(merged[moduleName as keyof typeof merged]),
+          `${slug}.${moduleName}`,
+        ).toBe(JSON.stringify(value))
+        filled += 1
+      }
+    }
+    expect(filled).toBeGreaterThan(0)
+  })
+
+  it('leaves the envelope curated while every attached value stays extracted', () => {
+    for (const [slug, extracted] of Object.entries(CURATED_GAP_EXTRACTION)) {
+      const merged = ALL_RECORDED_BACKGROUND[slug]!
+      // The record is still mostly a person's work, and says so.
+      expect(merged.provenanceTier ?? 'curated', slug).toBe('curated')
+      // The registry value itself is marked extracted, so the tier is never lost on the way.
+      expect(extracted.provenanceTier, slug).toBe('extracted')
+      // Envelope fields belong to the curated record and are never taken from the extraction: an
+      // `attribution` counting one extraction source would be a false statement about a record
+      // whose other values came from sources a person chose.
+      expect(merged.version, slug).toBe(RECORDED_BACKGROUND[slug]!.version)
+      expect(merged.authoredAt, slug).toBe(RECORDED_BACKGROUND[slug]!.authoredAt)
+      expect(merged.attribution, slug).toEqual(RECORDED_BACKGROUND[slug]!.attribution)
+
+      for (const [moduleName, value] of Object.entries(extracted)) {
+        if (ENVELOPE_FIELDS.has(moduleName)) continue
+        const tiers = tiersWithin(value)
+        // Every attached module carries per-value tiers. A module whose type has no place to put
+        // one cannot be attached to a curated record at all, because nothing would tell a reader
+        // a parser read it.
+        expect(
+          tiers.length,
+          `${slug}.${moduleName} carries no per-value provenance`,
+        ).toBeGreaterThan(0)
+        expect(new Set(tiers), `${slug}.${moduleName}`).toEqual(new Set(['extracted']))
+      }
+    }
+  })
+
+  it('quotes a label sentence and names its label for every attached value', () => {
+    for (const [slug, extracted] of Object.entries(CURATED_GAP_EXTRACTION)) {
+      for (const [moduleName, value] of Object.entries(extracted)) {
+        if (ENVELOPE_FIELDS.has(moduleName)) continue
+        const sources: Array<Record<string, unknown>> = []
+        const collect = (node: unknown) => {
+          if (Array.isArray(node)) node.forEach(collect)
+          else if (node && typeof node === 'object') {
+            for (const [key, nested] of Object.entries(node)) {
+              if (key === 'source' && nested && typeof nested === 'object') {
+                sources.push(nested as Record<string, unknown>)
+              }
+              collect(nested)
+            }
+          }
+        }
+        collect(value)
+        expect(sources.length, `${slug}.${moduleName} carries no source`).toBeGreaterThan(0)
+        for (const source of sources) {
+          expect(source.identifier, `${slug}.${moduleName} source identifier`).toBeTruthy()
+          expect(String(source.excerpt ?? ''), `${slug}.${moduleName} source excerpt`).not.toBe('')
+        }
+      }
+    }
   })
 })
 

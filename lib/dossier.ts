@@ -76,6 +76,10 @@ export interface RowToDossierOptions {
   notes?: CommunityNote[]
   /** Exact persisted drift checks for bindings in this row's current recorded envelope. */
   driftedSources?: readonly StaleSourceSummary[]
+  /** Stored completion assessment, loaded by the caller; undefined when not loaded or not run. */
+  completionAssessment?: DrugDossier['completionAssessment']
+  /** Stored inventory resolution, loaded by the caller; undefined when not loaded or not run. */
+  inventoryResolution?: DrugDossier['inventoryResolution']
 }
 
 export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDossier {
@@ -108,6 +112,8 @@ export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDoss
     pricing: row.pricing ?? undefined,
     recordedBackground: row.recordedBackground ?? undefined,
     sourceFreshness: opts?.driftedSources,
+    completionAssessment: opts?.completionAssessment,
+    inventoryResolution: opts?.inventoryResolution,
     substitutes: row.substitutes ?? undefined,
     molecularSchema: row.molecularSchema ?? undefined,
     auditPointsCount: countAuditPoints(row.keyAudits),

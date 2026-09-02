@@ -39,6 +39,7 @@ import { SUBSTANCE_BACKED_BACKGROUND } from './substance-backed-background'
 import { SUPPLEMENT_BACKGROUND } from './supplement-background'
 import { LABEL_PRESENCE_BACKGROUND } from './label-presence'
 import { COMBINATION_ROW_COMPOSITION } from './combination-row-composition'
+import { CURATED_GAP_EXTRACTION } from './curated-gap-extraction'
 import { ACQUISITION_COST_BACKGROUND } from './acquisition-cost'
 import { BIOLOGICAL_IDENTITY_BACKGROUND } from './biological-identity'
 import { PRODUCT_LISTING_BACKGROUND } from './product-listing'
@@ -107,6 +108,37 @@ export const ALL_RECORDED_BACKGROUND: RecordedBackgroundBySlug = (() => {
   // showed before.
   for (const [slug, background] of Object.entries(COMPOUND_IDENTITY_BACKGROUND)) {
     if (!merged[slug]) merged[slug] = background
+  }
+
+  // What the label extractor found for a row the curated corpus already covers, attached module by
+  // module and only where the curated envelope has nothing. Extraction skips a curated slug
+  // wholesale, which is right — a parser must never overwrite a person's judgement — but it left
+  // the 155 most-read rows with no mechanism, no recorded uses, no safety statements, no population
+  // statements and no adverse reactions, while thousands of thinner rows carried all five from the
+  // same archive. A curator always wins: a module a person wrote is not in this registry at all, so
+  // there is nothing here that could replace one. The envelope stays curated tier, because most of
+  // it was authored by a person; each attached value keeps `provenanceTier: 'extracted'` and its own
+  // label excerpt, so the page says which sentences a parser read.
+  //
+  // Attached before the registry fallbacks below so their `if (existing?.x) continue` guards defer
+  // to it, which is the right precedence: a value read out of a label sentence naming this
+  // substance alone is a stronger claim than a record assembled from the best available label.
+  for (const [slug, extracted] of Object.entries(CURATED_GAP_EXTRACTION)) {
+    const existing = merged[slug]
+    if (!existing) continue
+    const gained: RecordedBackgroundBySlug[string] = { ...existing }
+    for (const [moduleName, value] of Object.entries(extracted)) {
+      // The envelope's own fields are never taken from an extracted value: `version` and
+      // `authoredAt` belong to the curated record, `provenanceTier` stays curated, and
+      // `attribution` describes one extraction source rather than this record's sources.
+      if (moduleName === 'version' || moduleName === 'authoredAt') continue
+      if (moduleName === 'provenanceTier' || moduleName === 'attribution') continue
+      const held = existing[moduleName as keyof typeof existing]
+      const alreadyHeld = Array.isArray(held) ? held.length > 0 : held !== undefined
+      if (alreadyHeld) continue
+      Object.assign(gained, { [moduleName]: value })
+    }
+    merged[slug] = gained
   }
 
   // Supplement market data is merged before anything else, so a record that also has extracted or

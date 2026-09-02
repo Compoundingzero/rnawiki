@@ -1,0 +1,265 @@
+{
+  "schema": "rnawiki-full-corpus-completion-ledger/v1",
+  "startedAt": "2026-09-02T02:30:00+08:00",
+  "updatedAt": "2026-09-02T18:10:00+08:00",
+  "startingCommit": "d00f27b00a95bfa25366096cc1fb960ba54f411f",
+  "branch": "release-c1/full-corpus-completion",
+  "worktree": "ClaudeRepo/Claude Projects/RNAwiki-corpus-completion",
+  "workingDatabase": {
+    "name": "rnawiki_corpus_completion",
+    "restoredFrom": "/Users/admin/rnawiki-backups/release-b1-20260901.pRTNXH/rnawiki-pre-b1.pgcustom",
+    "archiveSha256": "2e4501b434d802bfcfba36294ee90f92bbba8441e8e15d430ad2b0637be60c8d",
+    "migrationsApplied": 24,
+    "note": "The archive predates the Release B1 source-consensus transition; npm run apply:background brought the working copy in line with the checked corpus (765 envelopes changed, zero findings)."
+  },
+  "baseline": {
+    "recomputedAt": "2026-09-02",
+    "rawInventoryRecords": 9859,
+    "publicFilterRows": 9857,
+    "placeholderIdentities": 2,
+    "aliases": 27859,
+    "redirects": 0,
+    "exactSourceObjects": {
+      "evidenceSources": 100,
+      "sourceSnapshots": 100,
+      "backgroundFetches": 100
+    },
+    "exactSourceBindings": 751,
+    "assertionChecks": 751,
+    "exactExcerpts": 56696,
+    "rowsWithQuotableExcerpt": 3093,
+    "structuredSourcePointers": 6741,
+    "approvedMedicines": 3141,
+    "investigationalMedicines": 391,
+    "supplements": 6149,
+    "botanicalsOrOrganisms": 2999,
+    "combinationProducts": 35,
+    "biologics": 849,
+    "recordsWithLegacyTrials": 6515,
+    "legacyTrialRows": 31232,
+    "recordsWithPostedTrialResults": "NOT_OBSERVABLE_IN_LEGACY_SHAPE",
+    "recordedPivotalResults": 18,
+    "applicabilityRecords": 22,
+    "programmes": 0,
+    "currentProgrammePublications": 0,
+    "publishedEvidenceReadings": 0,
+    "reviewedProgrammeConclusions": 0,
+    "genuineReviewDecisions": 0,
+    "indexableDossiersLive": 165,
+    "sitemapDossiersLive": 165,
+    "sitemapUrlsLive": 174,
+    "noindexDossiersLive": 9692,
+    "robotsBlockedDossiers": 0,
+    "orphanDossiers": "PENDING_CRAWL_AUDIT",
+    "recordedBackgroundEnvelopes": 9855,
+    "engineValidationRuns": 9855
+  },
+  "results": {
+    "inventory": {
+      "resolverVersion": "inventory-resolution/v1",
+      "originalInventoryCount": 9859,
+      "canonicalEntities": 9852,
+      "aliasesOrDuplicatesRedirected": 5,
+      "historicalRedirects": 0,
+      "justifiedGoneIdentities": 2,
+      "manualReviewRequired": 0,
+      "accountingBalanced": true,
+      "byEntityClass": {
+        "APPROVED_MEDICINE": 2624,
+        "APPROVED_BIOLOGIC": 496,
+        "INVESTIGATIONAL_MEDICINE": 391,
+        "OFF_LABEL_OR_COMPOUNDED": 128,
+        "WITHDRAWN_MEDICINE": 29,
+        "CONTROLLED_NO_APPROVED_USE": 21,
+        "COMBINATION_PRODUCT": 21,
+        "BOTANICAL_OR_ORGANISM_PREPARATION": 2758,
+        "SUPPLEMENT_INGREDIENT": 3025,
+        "MARKETED_PRODUCT_INGREDIENT": 359,
+        "REGISTRY_ONLY_IDENTITY": 5,
+        "PLACEHOLDER": 2
+      },
+      "registryOnlyIdentities": 5
+    },
+    "searches": {
+      "clinicalTrialsSnapshot": {
+        "dataTimestamp": "2026-09-01T09:00:05",
+        "studies": 601158,
+        "studiesSha256": "00b7ca207938fb44fc4d24fd14ce1f4c2cc2e2e718cd1a9fb5c5163ce5858e27",
+        "entitiesSearched": 9852,
+        "entitiesWithExactMatches": 3569,
+        "registrationsMatched": 224946,
+        "recordsWithPostedResults": 2413,
+        "recordsWithRegistrationsButNoPostedResults": 1138
+      },
+      "pubmedClinicalTrialSearch": {
+        "entitiesSearched": 9852,
+        "succeeded": 9852,
+        "unreachable": 0,
+        "entitiesWithHits": 5369
+      },
+      "labelSectionsIndex": {
+        "labels": 87141,
+        "labelsWithReadSections": 80443
+      }
+    },
+    "curatedGapExtraction": {
+      "curatedRowsConsidered": 155,
+      "rowsGainingModules": 145,
+      "modulesGained": {
+        "populationStatements": 139,
+        "mechanism": 134,
+        "safety": 132,
+        "recordedUses": 128,
+        "molecularIdentity": 115,
+        "interactionSignals": 66,
+        "commonAdverseReactions": 50,
+        "pharmacokinetics": 14
+      }
+    },
+    "completion": {
+      "resolverVersion": "dossier-completion/v1",
+      "assessedRecords": 9852,
+      "complete": 9852,
+      "incomplete": 0,
+      "humanReadSuggestedRecords": 6494,
+      "idempotenceCheck": "0 changed on re-run",
+      "byState": {
+        "EXACT_SOURCE_BACKED": 12218,
+        "EXACT_STRUCTURED_SOURCE_DATA": 57542,
+        "SOURCE_STATED_NOT_ESTABLISHED": 8,
+        "NO_QUALIFYING_EVIDENCE_AFTER_SEARCH": 93286,
+        "RESULTS_NOT_POSTED": 1138,
+        "NOT_APPLICABLE": 32848
+      },
+      "audit": "docs/audits/dossier-completion/summary.json"
+    },
+    "discovery": {
+      "indexableCanonicalDossiers": 9852,
+      "sitemapDossiersExpected": 9852,
+      "excludedRedirectSources": 5,
+      "goneIdentities": 2,
+      "state": "DISCOVERY_READY_IN_CODE",
+      "submittedForDiscovery": "NOT_YET_RUN",
+      "crawledObserved": "NOT_OBSERVABLE_UNTIL_DEPLOYED",
+      "indexedObserved": "NOT_OBSERVABLE_WITHOUT_SEARCH_CONSOLE",
+      "citedOrRetrievedObserved": "NOT_OBSERVABLE"
+    },
+    "semantic": {
+      "unitsProjected": 273110,
+      "projectorIdempotent": true,
+      "benchmark": {
+        "seed": 20260902,
+        "unitPool": 2000,
+        "queries": 1943,
+        "lexicalGatedRecallAt5": 0.9326,
+        "denseGatedRecallAt5": 0.9557,
+        "denseModel": "Xenova/bge-small-en-v1.5",
+        "passRule": "dense ahead of lexical by >= 5 points at gated recall@5",
+        "passRuleMet": false,
+        "pgvectorAvailable": false,
+        "vectorIndexAdded": false
+      },
+      "resultDebuggerCorrections": 0,
+      "audit": "docs/audits/semantic/lexical-benchmark.json"
+    }
+  },
+  "workstreams": [
+    {
+      "id": "W1",
+      "name": "Canonical inventory and identity resolution",
+      "dependsOn": [],
+      "status": "DONE",
+      "verification": [
+        "tests/unit/inventory-resolution.test.ts",
+        "scripts/inventory/resolve-inventory.ts --check"
+      ]
+    },
+    {
+      "id": "W2",
+      "name": "Source registry and ingestion (registry snapshot, auditable searches, curated-gap extraction)",
+      "dependsOn": ["W1"],
+      "status": "DONE",
+      "verification": [
+        "npm run check:medicine-content",
+        "tests/unit/background-corpus-merge.test.ts"
+      ]
+    },
+    {
+      "id": "W3",
+      "name": "Evidence-reading architecture and database migrations",
+      "dependsOn": ["W1"],
+      "status": "DONE",
+      "verification": ["npx drizzle-kit check", "npm run db:migrate (0022, 0023)"]
+    },
+    {
+      "id": "W4",
+      "name": "Dossier completion and rendering",
+      "dependsOn": ["W2", "W3"],
+      "status": "DONE",
+      "verification": [
+        "tests/unit/dossier-completion-resolve.test.ts",
+        "tests/unit/dossier-completion-component.test.ts",
+        "scripts/dossier-completion/run-completion.ts --check"
+      ]
+    },
+    {
+      "id": "W5",
+      "name": "SEO, GEO and crawler discovery",
+      "dependsOn": ["W1", "W3"],
+      "status": "DONE_PENDING_DEPLOYMENT",
+      "verification": ["npm run check:seo", "tests/unit/discovery-*.test.ts"]
+    },
+    {
+      "id": "W6",
+      "name": "Review workflows",
+      "dependsOn": ["W3"],
+      "status": "DONE",
+      "verification": [
+        "tests/unit/completion-review-policy.test.ts",
+        "tests/integration/completion-review.test.ts"
+      ]
+    },
+    {
+      "id": "W7",
+      "name": "Semantic retrieval",
+      "dependsOn": ["W4"],
+      "status": "DONE_NO_VECTOR_INDEX_BY_RULE",
+      "verification": [
+        "tests/unit/semantic-*.test.ts",
+        "scripts/semantic/project-units.ts --check",
+        "docs/audits/semantic/lexical-benchmark.md"
+      ]
+    },
+    {
+      "id": "W8",
+      "name": "Testing and release verification",
+      "dependsOn": ["W4", "W5", "W6"],
+      "status": "GATE_PASSED_EXCEPT_ONE_E2E_ASSERTION_FIXED_AND_RERUN",
+      "verification": [
+        "npm run gate on dde8bfc: typecheck, lint, copy, medicine-content, denial-corpus, agents, datasets, seo (265), format, drizzle, unit (2238), integration (167), build all pass; e2e 26/27 then fixed",
+        "browser checks on working database recorded in the worklog"
+      ]
+    }
+  ],
+  "blockedRecords": [],
+  "externalActions": [
+    {
+      "id": "E1",
+      "action": "Deploy release-c1/full-corpus-completion to Railway (migrations 0022 and 0023, then npm run apply:background, apply-inventory, run-completion against production)",
+      "reason": "Production deploy and database writes require the owner's go-ahead; nothing has been written to production.",
+      "resumeCommand": "see docs/worklogs/full-corpus-completion.md verification record"
+    },
+    {
+      "id": "E2",
+      "action": "Submit canonical URLs through IndexNow on the canonical production deployment and record the ledger",
+      "reason": "Requires the production IndexNow key and origin; dry run verified locally.",
+      "resumeCommand": "npx tsx scripts/discovery/submit-indexnow.ts --submit --json"
+    },
+    {
+      "id": "E3",
+      "action": "Google Search Console sitemap submission and index coverage reading",
+      "reason": "Needs the owner's Search Console account; INDEXED_OBSERVED cannot be reported without it.",
+      "resumeCommand": "external"
+    }
+  ]
+}

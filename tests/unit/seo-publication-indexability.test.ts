@@ -1,10 +1,15 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  buildCanonicalRecordIndexabilityReports,
   buildLegacyFlagshipIndexabilityReports,
   buildMedicinePublicationIndexabilityReports,
+  mergeMedicineSitemapReports,
+  toCanonicalRecordInput,
+  type CanonicalRecordIndexingRow,
   type CurrentPublicationIndexingRow,
   type MedicineIdentityIndexingRow,
+  type MedicinePublicationIndexabilityReport,
   type ProgrammeFreshnessIndexingRow,
 } from '@/lib/seo/publication-indexability'
 import { SEED_DOSSIERS } from '@/scripts/seed-data'
@@ -235,5 +240,191 @@ describe('provenance-bound flagship legacy projection', () => {
     ])
 
     expect(report?.decision).toMatchObject({ index: false, reason: 'legacy_record_not_active' })
+  })
+})
+
+function canonicalRecordRow(
+  patch: Partial<CanonicalRecordIndexingRow> = {},
+): CanonicalRecordIndexingRow {
+  return {
+    medicineId: 'internal-canonical-1',
+    medicineName: 'Canonical record',
+    canonicalSlug: 'canonical-record',
+    isRedirectSource: false,
+    resolutionStatus: 'CANONICAL_ENTITY',
+    assessmentStatus: 'INCOMPLETE',
+    contentChangedAt: new Date('2026-08-22T00:00:00.000Z'),
+    applicableSectionCount: 18,
+    terminalSectionCount: 16,
+    ...patch,
+  }
+}
+
+function report(
+  medicineId: string,
+  canonicalSlug: string,
+  patch: Partial<MedicinePublicationIndexabilityReport> = {},
+): MedicinePublicationIndexabilityReport {
+  return {
+    medicineId,
+    medicineName: canonicalSlug,
+    canonicalSlug,
+    selectedProgrammeId: null,
+    freshness: 'unknown',
+    issues: [],
+    decision: {
+      index: true,
+      follow: true,
+      reason: 'indexable_canonical_record',
+      canonicalSlug,
+      lastPublicContentUpdate: new Date('2026-08-22T00:00:00.000Z'),
+    },
+    ...patch,
+  }
+}
+
+describe('canonical-record indexability projection', () => {
+  it('admits a resolved canonical record and dates it from the assessment', () => {
+    const reports = buildCanonicalRecordIndexabilityReports([canonicalRecordRow()])
+
+    expect(reports).toHaveLength(1)
+    expect(reports[0]).toMatchObject({
+      medicineId: 'internal-canonical-1',
+      canonicalSlug: 'canonical-record',
+      selectedProgrammeId: null,
+      decision: {
+        index: true,
+        reason: 'indexable_canonical_record',
+        lastPublicContentUpdate: new Date('2026-08-22T00:00:00.000Z'),
+      },
+    })
+  })
+
+  it('refuses a duplicate identity, an unassessed record and a redirect source', () => {
+    const reports = buildCanonicalRecordIndexabilityReports([
+      canonicalRecordRow({
+        medicineId: 'duplicate',
+        canonicalSlug: 'duplicate-record',
+        resolutionStatus: 'DUPLICATE_OF_CANONICAL_ENTITY',
+      }),
+      canonicalRecordRow({
+        medicineId: 'unassessed',
+        canonicalSlug: 'unassessed-record',
+        assessmentStatus: null,
+        contentChangedAt: null,
+        applicableSectionCount: null,
+        terminalSectionCount: null,
+      }),
+      canonicalRecordRow({
+        medicineId: 'redirected',
+        canonicalSlug: 'redirected-record',
+        isRedirectSource: true,
+      }),
+    ])
+
+    expect(reports.map((entry) => entry.decision.index)).toEqual([false, false, false])
+    expect(reports.flatMap((entry) => entry.issues.map((issue) => issue.code))).toEqual(
+      expect.arrayContaining([
+        'identity_not_canonical',
+        'no_completion_assessment',
+        'canonical_identity_redirected',
+      ]),
+    )
+  })
+
+  it('does not offer the path to a row with no stored inventory resolution', () => {
+    expect(
+      toCanonicalRecordInput({
+        resolutionStatus: null,
+        assessmentStatus: null,
+        contentChangedAt: null,
+        applicableSectionCount: null,
+        terminalSectionCount: null,
+      }),
+    ).toBeNull()
+  })
+
+  it('carries the projection into the publication build so a stale programme still indexes', () => {
+    const reports = buildMedicinePublicationIndexabilityReports(
+      [
+        {
+          ...medicine,
+          canonicalRecord: {
+            resolutionStatus: 'CANONICAL_ENTITY',
+            assessmentStatus: 'COMPLETE',
+            contentChangedAt: new Date('2026-08-22T00:00:00.000Z'),
+            applicableSectionCount: 18,
+            terminalSectionCount: 18,
+          },
+        },
+      ],
+      [publication()],
+      [freshness('programme-current', { freshnessStatus: 'STALE' })],
+      evaluatedAt,
+    )
+
+    expect(reports[0]?.decision).toMatchObject({
+      index: true,
+      reason: 'indexable_canonical_record',
+      lastPublicContentUpdate: new Date('2026-08-22T00:00:00.000Z'),
+    })
+  })
+})
+
+describe('sitemap report merge', () => {
+  it('keeps one report per medicine with publication ahead of legacy ahead of canonical record', () => {
+    const merged = mergeMedicineSitemapReports(
+      [
+        report('shared-id', 'shared-medicine', {
+          selectedProgrammeId: 'programme-1',
+          decision: {
+            index: true,
+            follow: true,
+            reason: 'indexable_reviewed_publication',
+            canonicalSlug: 'shared-medicine',
+            lastPublicContentUpdate: new Date('2026-08-20T00:00:00.000Z'),
+          },
+        }),
+        report('no-programme-id', 'identity-only'),
+      ],
+      [
+        report('shared-id', 'shared-medicine', {
+          decision: {
+            index: true,
+            follow: true,
+            reason: 'indexable_provenance_bound_legacy_flagship',
+            canonicalSlug: 'shared-medicine',
+            lastPublicContentUpdate: new Date('2026-08-01T00:00:00.000Z'),
+          },
+        }),
+        report('flagship-id', 'flagship-medicine', {
+          decision: {
+            index: true,
+            follow: true,
+            reason: 'indexable_provenance_bound_legacy_flagship',
+            canonicalSlug: 'flagship-medicine',
+            lastPublicContentUpdate: new Date('2026-08-02T00:00:00.000Z'),
+          },
+        }),
+      ],
+      [
+        report('shared-id', 'shared-medicine'),
+        report('flagship-id', 'flagship-medicine'),
+        report('canonical-id', 'canonical-medicine'),
+      ],
+    )
+
+    expect(merged.map((entry) => entry.medicineId)).toEqual([
+      'canonical-id',
+      'flagship-id',
+      'shared-id',
+    ])
+    expect(merged.map((entry) => entry.decision.reason)).toEqual([
+      'indexable_canonical_record',
+      'indexable_provenance_bound_legacy_flagship',
+      'indexable_reviewed_publication',
+    ])
+    // A publication report with no selected programme is identity-only and never wins a slot.
+    expect(merged.some((entry) => entry.canonicalSlug === 'identity-only')).toBe(false)
   })
 })

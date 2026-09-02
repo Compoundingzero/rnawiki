@@ -29,6 +29,10 @@ context as structurally unextracted, so distinct same-unit readings are `insuffi
 rather than source conflicts; `agree` can mean printed-reading agreement only.
 `check:b1-source-consensus-transition` compares the checked corpus with the immutable A.1 commit,
 proves that no other field moved, and verifies an exact expected and desired digest for every row.
+That guard belonged to the Release B1 transition, which production has applied; it is no longer
+part of `npm run gate` because the corpus has legitimately moved past that release (the curated-gap
+extraction attached label modules to hand-curated records). The command remains available for
+the historical audit.
 After the release backup, restored-backup rehearsal and full green gate, the operator runs:
 
 ```bash

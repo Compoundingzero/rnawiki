@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-import { legacyPathIsGone } from '@/lib/seo/legacy-routes'
+import { legacyPathIsGone, placeholderMedicineRouteIsGone } from '@/lib/seo/legacy-routes'
 
 function gone(): NextResponse {
   return new NextResponse('Gone', {
@@ -14,12 +14,15 @@ function gone(): NextResponse {
 }
 
 /**
- * Close retired protocol and compound-era route families with a real 410. A single old compound
+ * Close retired protocol and compound-era route families with a real 410, and close the placeholder
+ * medicine identities the inventory resolver marked permanently gone. A single old compound
  * identity continues to its route handler, which can verify an exact current medicine before it
- * redirects; middleware never guesses at a database identity.
+ * redirects; middleware never guesses at a database identity. The placeholder list is a fixed
+ * vocabulary of spreadsheet words, so no lookup is needed to decide it.
  */
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+  if (placeholderMedicineRouteIsGone(pathname)) return gone()
   if (/^\/c\/[^/]+\/?$/.test(pathname) || /^\/t\/compound\/[^/]+\/?$/.test(pathname)) {
     return NextResponse.next()
   }
@@ -29,6 +32,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/d/:path*',
     '/c/:path*',
     '/t/compound/:path*',
     '/exercise/:path*',

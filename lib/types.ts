@@ -266,6 +266,10 @@ export interface DrugDossier {
    * recorded envelope so a failed fetch or a checker run can never rewrite medical content.
    */
   sourceFreshness?: readonly import('./dossier-question-issues').StaleSourceSummary[]
+  /** Stored per-section completion states for this record; absent until the resolver has run. */
+  completionAssessment?: import('./dossier-completion/view').DossierCompletionAssessmentView
+  /** Stored identity resolution for this record; absent until the inventory resolver has run. */
+  inventoryResolution?: import('./queries/dossier-completion').InventoryResolutionView
   substitutes?: DrugSubstitutes
   molecularSchema?: MolecularSchema
   auditPointsCount: {

@@ -1,10 +1,16 @@
 import { createHash } from 'node:crypto'
 import { readFile, stat } from 'node:fs/promises'
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
 
 import { canonicalLocatorForBackgroundSource } from '@/lib/background/source-fetch'
 import { BACKGROUND_SOURCE_KINDS, type BackgroundSourceKind } from '@/lib/background/types'
+import {
+  DOSSIER_COMPLETION_STATUSES,
+  DOSSIER_SECTION_IDS,
+  SECTION_STATES,
+} from '@/lib/dossier-completion/types'
 import { CONSENSUS_FIELD_TO_INTENT } from '@/lib/dossier-question-issues'
+import { ENTITY_CLASSES, INVENTORY_RESOLUTION_STATES } from '@/lib/inventory/types'
 import { resolveSafeSourceLocator } from '@/lib/source-locator'
 
 export const PUBLIC_DATASET_IDS = [
@@ -12,6 +18,8 @@ export const PUBLIC_DATASET_IDS = [
   'source-consensus',
   'silence-ledger',
   'coverage-ledger',
+  'inventory-resolution',
+  'dossier-completion',
 ] as const
 
 export type PublicDatasetId = (typeof PUBLIC_DATASET_IDS)[number]
@@ -172,7 +180,7 @@ const LICENCE: PublicDatasetDescriptor['licence'] = {
 
 const CORRECTION_HREF = '/editorial-policy' as const
 
-interface LoadedPublicDataset {
+export interface LoadedPublicDataset {
   descriptor: PublicDatasetDescriptor
   rows: PublicDatasetRow[]
   searchFields: string[]
@@ -287,6 +295,39 @@ async function resolveSource(
 
 async function readJsonObject(path: string, context: string): Promise<UnknownRecord> {
   return record(JSON.parse(await readFile(path, 'utf8')) as unknown, context)
+}
+
+/** The published directory holding the completion corpus, one shard per thousand records. */
+export const DOSSIER_COMPLETION_DIRECTORY = 'data/dossier-completion'
+
+/**
+ * Every completion shard the manifest declares, in manifest order.
+ *
+ * The manifest is the list, not the directory. A shard written but not yet declared is not part of
+ * the published dataset, and a shard declared but missing must fail loudly rather than quietly
+ * serving a short corpus — which is exactly what globbing the directory would do.
+ */
+async function resolveDossierCompletionShards(root = process.cwd()): Promise<
+  Array<{
+    absolutePath: string
+    relativePath: string
+    signature: string
+  }>
+> {
+  const manifestSource = await resolveSource(['data/manifest.json'], root)
+  const manifest = await readJsonObject(manifestSource.absolutePath, 'dataset manifest')
+  const shardPaths = records(manifest.files, 'dataset manifest files')
+    .map((entry) => entry.path)
+    .filter(
+      (path): path is string =>
+        typeof path === 'string' &&
+        path.startsWith(`${DOSSIER_COMPLETION_DIRECTORY}/`) &&
+        path.endsWith('.ndjson'),
+    )
+  if (shardPaths.length === 0) throw new Error('The public dataset artifact is unavailable')
+  const shards = []
+  for (const shardPath of shardPaths) shards.push(await resolveSource([shardPath], root))
+  return shards
 }
 
 export async function resolveCurrentPublicAgentArtifact(
@@ -1081,7 +1122,21 @@ async function loadRecordedBackgroundFacts(): Promise<RecordedBackgroundFactsInd
   }
 }
 
-async function manifestMetadata(): Promise<{
+/**
+ * Snapshot metadata for one exported file, read from the manifest the exporter wrote.
+ *
+ * The declared schema version falls back to the version this code was written against, so a reader
+ * can still open a freshly exported file whose manifest entry has not been committed yet.
+ */
+async function manifestFileMetadata(
+  /**
+   * One published path, or a predicate for a sharded dataset. Every shard of one dataset carries
+   * the same schema version, description and limitation, so the first matching entry describes the
+   * whole set.
+   */
+  match: string | ((path: string) => boolean),
+  fallbackVersion: string,
+): Promise<{
   generatedAt: string
   version: string
   limitation: string | null
@@ -1089,14 +1144,24 @@ async function manifestMetadata(): Promise<{
   const manifestPath = join(process.cwd(), 'data/manifest.json')
   const manifest = await readJsonObject(manifestPath, 'dataset manifest')
   const files = records(manifest.files, 'dataset manifest files')
-  const sourceConsensus = files.find((entry) => entry.path === 'data/source-consensus.ndjson')
+  const matches = typeof match === 'string' ? (path: string) => path === match : match
+  const entry = files.find(
+    (candidate) => typeof candidate.path === 'string' && matches(candidate.path),
+  )
+  const label = typeof match === 'string' ? match : 'the sharded dataset'
   return {
     generatedAt: text(manifest.generatedAt, 'dataset manifest generatedAt'),
-    version: sourceConsensus
-      ? text(sourceConsensus.schemaVersion, 'source consensus schema')
-      : 'source-consensus/2',
-    limitation: sourceConsensus ? optionalText(sourceConsensus.limitations) : null,
+    version: entry ? text(entry.schemaVersion, `${label} schema`) : fallbackVersion,
+    limitation: entry ? optionalText(entry.limitations) : null,
   }
+}
+
+async function manifestMetadata(): Promise<{
+  generatedAt: string
+  version: string
+  limitation: string | null
+}> {
+  return manifestFileMetadata('data/source-consensus.ndjson', 'source-consensus/2')
 }
 
 async function buildSourceConsensus(
@@ -2001,6 +2066,454 @@ async function buildCoverageLedger(
   }
 }
 
+async function ndjsonRecords(absolutePath: string, context: string): Promise<UnknownRecord[]> {
+  return (await readFile(absolutePath, 'utf8'))
+    .split('\n')
+    .filter((line) => line.trim().length > 0)
+    .map((line, index) => record(JSON.parse(line) as unknown, `${context} line ${index + 1}`))
+}
+
+/**
+ * Identity resolutions: which address each stored record answers at.
+ *
+ * The projection publishes attribution warning codes and never the rows a warning points at. Two
+ * records sharing a registry identifier is a reason for a person to look, not evidence that they
+ * are one substance, and printing the other record's name here would put two medicines on one line.
+ */
+export async function buildInventoryResolution(
+  absolutePath: string,
+  relativePath: string,
+): Promise<LoadedPublicDataset> {
+  const raw = await ndjsonRecords(absolutePath, 'inventory resolution')
+  const rows: PublicDatasetRow[] = raw.map((entry, index) => {
+    const context = `inventory resolution line ${index + 1}`
+    if (Object.keys(entry).includes('relatedSlugs')) {
+      throw new Error(`${context} names one record in relation to another`)
+    }
+    return {
+      medicineSlug: text(entry.originalSlug, `${context}.originalSlug`),
+      medicineName: text(entry.originalName, `${context}.originalName`),
+      entityClass: text(entry.entityClass, `${context}.entityClass`),
+      entityClassRule: text(entry.entityClassRule, `${context}.entityClassRule`),
+      resolutionStatus: text(entry.resolutionStatus, `${context}.resolutionStatus`),
+      canonicalSlug: text(entry.canonicalSlug, `${context}.canonicalSlug`),
+      redirectTargetSlug: optionalText(entry.redirectTargetSlug),
+      identityConfidence: text(entry.identityConfidence, `${context}.identityConfidence`),
+      identitySourceKinds: stringList(entry.identitySourceKinds, `${context}.identitySourceKinds`),
+      attributionWarningCodes: stringList(
+        entry.attributionWarningCodes,
+        `${context}.attributionWarningCodes`,
+      ),
+      resolutionEvidence: stringList(entry.resolutionEvidence, `${context}.resolutionEvidence`),
+    }
+  })
+
+  const statusCounts = new Map<string, number>()
+  const classCounts = new Map<string, number>()
+  const warningCounts = new Map<string, number>()
+  for (const row of rows) {
+    const status = String(row.resolutionStatus)
+    const entityClass = String(row.entityClass)
+    statusCounts.set(status, (statusCounts.get(status) ?? 0) + 1)
+    classCounts.set(entityClass, (classCounts.get(entityClass) ?? 0) + 1)
+    for (const code of row.attributionWarningCodes as string[]) {
+      warningCounts.set(code, (warningCounts.get(code) ?? 0) + 1)
+    }
+  }
+  // Every declared outcome stays selectable even when this export contains none of it, so a reader
+  // can tell "no record reached this state" from "this state was dropped".
+  const statuses = [...INVENTORY_RESOLUTION_STATES]
+  const entityClasses = [...ENTITY_CLASSES]
+  const manifest = await manifestFileMetadata(
+    'data/inventory-resolution.ndjson',
+    'inventory-resolution/1',
+  )
+
+  const examples: PublicDatasetSourceExample[] = statuses.flatMap((status) => {
+    const row = rows.find((candidate) => candidate.resolutionStatus === status)
+    if (!row) return []
+    const evidence = row.resolutionEvidence as string[]
+    return [
+      {
+        label: `${String(row.medicineName)} · ${status}`,
+        detail: `${String(row.entityClass)} by ${String(row.entityClassRule)}; identity confidence ${String(row.identityConfidence)}`,
+        ...(evidence.length > 0 ? { excerpt: evidence.join(' ') } : {}),
+      },
+    ]
+  })
+
+  const descriptor = baseDescriptor('inventory-resolution', {
+    title: 'What each stored medicine record resolves to',
+    shortTitle: 'Record identity resolution',
+    purpose:
+      'Look up what one stored record was decided to be: an entity that keeps its own address, a record that resolves to the address of the same entity, or an identifier that never named a medicine.',
+    doesNotMean:
+      'This is about records, not about substances. It does not say two substances are the same thing, that a record is correct, or that a withdrawn address means the substance does not exist. A registry identifier held by more than one record is published as a warning code and is never treated as evidence to merge.',
+    methodology: [
+      'Every row in the medicine table receives exactly one resolution, decided by a fixed rule table read over stored fields.',
+      'Two records resolve to one entity only on exact deterministic evidence, such as an identical name once punctuation is removed. Salts, stereoisomers, metabolites, formulations, combinations, brands, botanical preparations, organisms and biologics are never merged by rule.',
+      'A registry identifier recorded on more than one record produces the SHARED_REGISTRY_IDENTIFIER warning code. The other records are not named in this dataset.',
+      'entityClassRule names the rule that fired and resolutionEvidence carries the deterministic evidence behind a non-canonical outcome, so a reader can repeat the decision or disagree with it.',
+      'identitySourceKinds names the kinds of registry identifier read from the record, such as UNII or PUBCHEM_CID, without repeating the identifier values already published on the medicine row.',
+    ],
+    schema: [
+      {
+        key: 'medicineSlug',
+        label: 'Record slug',
+        type: 'string',
+        description: 'The stored record being resolved, by its original RNAWiki route key.',
+      },
+      {
+        key: 'medicineName',
+        label: 'Record name',
+        type: 'string',
+        description: 'The name recorded on that row; not normalized for display style.',
+      },
+      {
+        key: 'entityClass',
+        label: 'Kind of record',
+        type: 'string',
+        description:
+          'What kind of thing the row is, such as APPROVED_MEDICINE, SUPPLEMENT_INGREDIENT or REGISTRY_ONLY_IDENTITY. It selects which dossier sections apply and is never a quality ranking.',
+      },
+      {
+        key: 'entityClassRule',
+        label: 'Class rule',
+        type: 'string',
+        description: 'The rule from the fixed class table that decided the kind.',
+      },
+      {
+        key: 'resolutionStatus',
+        label: 'Resolution',
+        type: 'string',
+        description:
+          'CANONICAL_ENTITY keeps its own address. DUPLICATE_OF_CANONICAL_ENTITY, ALIAS_OF_CANONICAL_ENTITY and HISTORICAL_REDIRECT resolve to the address of the same entity. INVALID_IDENTITY_GONE never named a medicine. MANUAL_IDENTITY_REVIEW_REQUIRED is waiting for a person.',
+      },
+      {
+        key: 'canonicalSlug',
+        label: 'Address for this entity',
+        type: 'string',
+        description:
+          'The route key this entity is served at. It equals the record slug for a canonical record.',
+      },
+      {
+        key: 'redirectTargetSlug',
+        label: 'Redirects to',
+        type: 'string',
+        description:
+          'Present only for a resolving status, always one hop, and always the same entity described twice. Null on every other row.',
+      },
+      {
+        key: 'identityConfidence',
+        label: 'What the identity rests on',
+        type: 'string',
+        description:
+          'REGISTRY_IDENTIFIER_RECORDED, NAME_ONLY when the row is identified by its recorded name alone, or PLACEHOLDER when it identifies nothing.',
+      },
+      {
+        key: 'identitySourceKinds',
+        label: 'Registry identifier kinds',
+        type: 'string[]',
+        description: 'Kinds of identifier recorded on the row. Empty when none was recorded.',
+      },
+      {
+        key: 'attributionWarningCodes',
+        label: 'Attribution warnings',
+        type: 'string[]',
+        description:
+          'Codes a reviewer should see, such as SHARED_REGISTRY_IDENTIFIER or NAME_ONLY_IDENTITY. Codes only: the records a warning was raised against are never named here.',
+      },
+      {
+        key: 'resolutionEvidence',
+        label: 'Evidence',
+        type: 'string[]',
+        description:
+          'The deterministic evidence behind a non-canonical outcome. It can name the address a record resolves to, because both describe one entity.',
+      },
+    ],
+    coverage: [
+      { label: 'Stored records resolved', value: rows.length },
+      ...statuses.map((status) => ({ label: status, value: statusCounts.get(status) ?? 0 })),
+      {
+        label: 'Kinds of record represented',
+        value: classCounts.size,
+        detail: [...classCounts.keys()].sort().join(', '),
+      },
+      {
+        label: 'Rows carrying an attribution warning',
+        value: rows.filter((row) => (row.attributionWarningCodes as string[]).length > 0).length,
+        detail: [...warningCounts.keys()].sort().join(', '),
+      },
+    ],
+    generatedAt: manifest.generatedAt,
+    version: manifest.version,
+    sourceArtifact: relativePath,
+    sourceLimitations: [
+      manifest.limitation ??
+        'A resolution states which public address a stored record answers at. It is not a medical statement.',
+      'The rules read the fields stored in this snapshot. A record whose registry identifiers were never recorded is resolved on its name alone, which identityConfidence states.',
+      'A resolution can change when the record behind it changes. Read the snapshot date before comparing two exports.',
+      'A row whose identity is marked for manual review means a person still has to decide. The row stays published and visible until they do.',
+    ],
+    rowCount: rows.length,
+    filters: [
+      COMMON_FILTER,
+      {
+        parameter: 'state',
+        label: 'Resolution',
+        description: 'Exact resolution status.',
+        values: statuses,
+      },
+      {
+        parameter: 'role',
+        label: 'Kind of record',
+        description: 'Exact entity class.',
+        values: entityClasses,
+      },
+    ],
+    sourceExamples: examples,
+  })
+
+  return {
+    descriptor,
+    rows,
+    searchFields: ['medicineSlug', 'medicineName', 'canonicalSlug', 'resolutionEvidence'],
+  }
+}
+
+/**
+ * Completion states: for one canonical record, which sections applied and what each rests on.
+ *
+ * Every state is about the sources that were read. None of them is a finding about the medicine,
+ * which is why the reader-facing copy repeats that in the dataset header rather than only here.
+ */
+export async function buildDossierCompletion(
+  /** Every shard of `data/dossier-completion/`, in manifest order. Rows keep that order. */
+  absolutePaths: readonly string[],
+  relativePath: string,
+): Promise<LoadedPublicDataset> {
+  const raw: UnknownRecord[] = []
+  for (const absolutePath of absolutePaths) {
+    raw.push(...(await ndjsonRecords(absolutePath, `dossier completion ${basename(absolutePath)}`)))
+  }
+  const rows: PublicDatasetRow[] = raw.map((entry, index) => {
+    const context = `dossier completion row ${index + 1}`
+    const status = text(entry.status, `${context}.status`)
+    if (status !== 'COMPLETE' && status !== 'INCOMPLETE') {
+      throw new Error(`${context}.status is not a declared completion status`)
+    }
+    const sections = records(entry.sections, `${context}.sections`).map((section, position) => ({
+      sectionId: text(section.sectionId, `${context}.sections[${position}].sectionId`),
+      state: text(section.state, `${context}.sections[${position}].state`),
+    }))
+    const applicableSectionCount = numberValue(
+      entry.applicableSectionCount,
+      `${context}.applicableSectionCount`,
+    )
+    if (sections.length !== applicableSectionCount) {
+      throw new Error(`${context} declares more applicable sections than it holds`)
+    }
+    return {
+      medicineSlug: text(entry.slug, `${context}.slug`),
+      medicineName: text(entry.name, `${context}.name`),
+      entityClass: text(entry.entityClass, `${context}.entityClass`),
+      status,
+      applicableSectionCount,
+      terminalSectionCount: numberValue(
+        entry.terminalSectionCount,
+        `${context}.terminalSectionCount`,
+      ),
+      sectionStates: sections.map((section) => `${section.sectionId}: ${section.state}`),
+      statesPresent: [...new Set(sections.map((section) => section.state))].sort(),
+      nonTerminalSectionIds: stringList(
+        entry.nonTerminalSectionIds,
+        `${context}.nonTerminalSectionIds`,
+      ),
+      humanReadSuggestedSectionIds: stringList(
+        entry.humanReadSuggestedSectionIds,
+        `${context}.humanReadSuggestedSectionIds`,
+      ),
+      contentChangedAt: text(entry.contentChangedAt, `${context}.contentChangedAt`),
+    }
+  })
+
+  const statusCounts = new Map<string, number>()
+  const stateCounts = new Map<string, number>()
+  const sectionIds = new Set<string>()
+  for (const row of rows) {
+    const status = String(row.status)
+    statusCounts.set(status, (statusCounts.get(status) ?? 0) + 1)
+    for (const entry of row.sectionStates as string[]) {
+      const [sectionId, state] = entry.split(': ')
+      if (sectionId) sectionIds.add(sectionId)
+      if (state) stateCounts.set(state, (stateCounts.get(state) ?? 0) + 1)
+    }
+  }
+  const states = [...SECTION_STATES]
+  const sections = [...DOSSIER_SECTION_IDS]
+  const observedStates = [...stateCounts.keys()].sort()
+  const observedSections = [...sectionIds].sort()
+  const manifest = await manifestFileMetadata(
+    (path) => path.startsWith(`${DOSSIER_COMPLETION_DIRECTORY}/`) && path.endsWith('.ndjson'),
+    'dossier-completion/1',
+  )
+
+  const examples: PublicDatasetSourceExample[] = ['COMPLETE', 'INCOMPLETE'].flatMap((status) => {
+    const row = rows.find((candidate) => candidate.status === status)
+    if (!row) return []
+    return [
+      {
+        label: `${String(row.medicineName)} · ${status}`,
+        detail: `${String(row.terminalSectionCount)} of ${String(row.applicableSectionCount)} applicable sections have reached a state`,
+        excerpt: (row.sectionStates as string[]).join(' · '),
+      },
+    ]
+  })
+
+  const descriptor = baseDescriptor('dossier-completion', {
+    title: 'Which dossier sections have reached a state',
+    shortTitle: 'Dossier completion states',
+    purpose:
+      'Read, for one canonical record, every section that applies to it and the state that section reached over the sources RNAWiki holds.',
+    doesNotMean:
+      'Every state describes the sources that were read, never the medicine. "No qualifying evidence after search" is a statement about this corpus and its dated searches, not a safety finding and not an absence of risk. A complete record is one whose applicable sections all carry an explicit state, not one that holds a positive result in every section.',
+    methodology: [
+      'A section applies to a record according to the kind of record it is. A section that cannot apply is recorded as NOT_APPLICABLE with the rule that decided it.',
+      'Ten states are terminal: the section has an explicit outcome, including outcomes such as not measured, results not posted, and searched with no qualifying record found.',
+      'Six states are not terminal and keep the record incomplete: not yet assessed, search pending, source read failed, identity unresolved, attribution unresolved, and waiting for a person to review. Each stays visible rather than being hidden or filled in.',
+      'The resolver reads stored records, the local source archives and dated registry searches. It never writes text into a section and never turns an absence into a finding.',
+      'Only a record that keeps its own address carries an assessment. A record that resolves to another address is described in the record identity dataset instead.',
+    ],
+    schema: [
+      {
+        key: 'medicineSlug',
+        label: 'Record slug',
+        type: 'string',
+        description: 'Stable RNAWiki route key for the canonical record.',
+      },
+      {
+        key: 'medicineName',
+        label: 'Record name',
+        type: 'string',
+        description: 'The name recorded on that row.',
+      },
+      {
+        key: 'entityClass',
+        label: 'Kind of record',
+        type: 'string',
+        description: 'The class that selected which sections apply.',
+      },
+      {
+        key: 'status',
+        label: 'Completion',
+        type: 'string',
+        description:
+          'COMPLETE when every applicable section carries a terminal state; INCOMPLETE when at least one does not.',
+      },
+      {
+        key: 'applicableSectionCount',
+        label: 'Applicable sections',
+        type: 'number',
+        description: 'How many of the twenty sections apply to this kind of record.',
+      },
+      {
+        key: 'terminalSectionCount',
+        label: 'Sections with an outcome',
+        type: 'number',
+        description: 'Applicable sections that have reached one of the ten terminal states.',
+      },
+      {
+        key: 'sectionStates',
+        label: 'State by section',
+        type: 'string[]',
+        description:
+          'Every applicable section in reading order, each with the state it reached. The basis sentence and the exact sources read are in the published files named below.',
+      },
+      {
+        key: 'statesPresent',
+        label: 'States present',
+        type: 'string[]',
+        description: 'The distinct states this record uses, sorted.',
+      },
+      {
+        key: 'nonTerminalSectionIds',
+        label: 'Sections without an outcome',
+        type: 'string[]',
+        description:
+          'Sections still waiting on something. Empty exactly when the status is COMPLETE.',
+      },
+      {
+        key: 'humanReadSuggestedSectionIds',
+        label: 'Worth a person reading',
+        type: 'string[]',
+        description:
+          'Sections where a person reading the named source could add something the parser did not. This never blocks completion.',
+      },
+      {
+        key: 'contentChangedAt',
+        label: 'Inputs last changed',
+        type: 'string',
+        description:
+          'When the inputs behind this assessment last moved. It does not move when the resolver is merely re-run.',
+      },
+    ],
+    coverage: [
+      { label: 'Canonical records assessed', value: rows.length },
+      { label: 'Complete', value: statusCounts.get('COMPLETE') ?? 0 },
+      { label: 'Incomplete', value: statusCounts.get('INCOMPLETE') ?? 0 },
+      {
+        label: 'Sections represented',
+        value: observedSections.length,
+        detail: observedSections.join(', '),
+      },
+      {
+        label: 'States represented',
+        value: observedStates.length,
+        detail: observedStates.join(', '),
+      },
+    ],
+    generatedAt: manifest.generatedAt,
+    version: manifest.version,
+    sourceArtifact: relativePath,
+    sourceLimitations: [
+      manifest.limitation ??
+        'A section state describes the sources RNAWiki read, never the medicine.',
+      'A dated search records what a named source returned on that date. A later search can return something else.',
+      'The projection carries one state per section. The basis sentence, the counts behind it and the exact sources read are in the published shards, not in this page.',
+      'A record that resolves to another address carries no row here.',
+    ],
+    rowCount: rows.length,
+    filters: [
+      COMMON_FILTER,
+      {
+        parameter: 'state',
+        label: 'Completion',
+        description: 'COMPLETE or INCOMPLETE.',
+        values: [...DOSSIER_COMPLETION_STATUSES],
+      },
+      {
+        parameter: 'meaning',
+        label: 'Section state',
+        description: 'Records that use this exact section state anywhere.',
+        values: states,
+      },
+      {
+        parameter: 'module',
+        label: 'Section without an outcome',
+        description: 'Records whose named section has not reached a state yet.',
+        values: sections,
+      },
+    ],
+    sourceExamples: examples,
+  })
+
+  return {
+    descriptor,
+    rows,
+    searchFields: ['medicineSlug', 'medicineName', 'sectionStates'],
+  }
+}
+
 const SOURCE_CANDIDATES: Record<PublicDatasetId, readonly string[]> = {
   'enzyme-transporter-negatives': relativeAgentCandidates(
     'enzyme-and-transporter-documentation.json',
@@ -2008,7 +2521,18 @@ const SOURCE_CANDIDATES: Record<PublicDatasetId, readonly string[]> = {
   'source-consensus': ['data/source-consensus.ndjson'],
   'silence-ledger': relativeAgentCandidates('silence-ledger.json'),
   'coverage-ledger': relativeAgentCandidates('coverage-ledger.json'),
+  'inventory-resolution': ['data/inventory-resolution.ndjson'],
+  // A directory, because the completion corpus is published as shards. The shard list comes from
+  // the manifest, so this reader never guesses a filename or a shard count.
+  'dossier-completion': [DOSSIER_COMPLETION_DIRECTORY],
 }
+
+/** Datasets read straight from an exported corpus file rather than from an agent run. */
+const CORPUS_FILE_DATASETS = new Set<PublicDatasetId>([
+  'source-consensus',
+  'inventory-resolution',
+  'dossier-completion',
+])
 
 export function publicDatasetSourceCandidates(id: PublicDatasetId): readonly string[] {
   return SOURCE_CANDIDATES[id]
@@ -2019,25 +2543,29 @@ export function isPublicDatasetId(value: string): value is PublicDatasetId {
 }
 
 async function loadDataset(id: PublicDatasetId): Promise<LoadedPublicDataset> {
-  const source =
-    id === 'source-consensus'
-      ? await resolveSource(SOURCE_CANDIDATES[id])
-      : await resolveCurrentPublicAgentArtifact(SOURCE_CANDIDATES[id][0]!.split('/').at(-1)!)
-  const dependencies =
-    id === 'source-consensus'
-      ? [await resolveSource(['data/manifest.json'])]
-      : id === 'silence-ledger'
-        ? [await resolveSource(['data/recorded-background.ndjson'])]
-        : id === 'coverage-ledger'
-          ? await Promise.all([
-              resolveSource(['data/recorded-background.ndjson']),
-              resolveSource(['data/source-consensus.ndjson']),
-              resolveSource(relativeAgentCandidates('silence-ledger.json')),
-              resolveSource(['docs/product/four-audience-evidence-contract.json']),
-              resolveSource(['docs/product/four-audience-evidence-coverage.json']),
-            ])
-          : []
-  const signature = [source.signature, ...dependencies.map((item) => item.signature)].join('|')
+  // A sharded dataset resolves to every shard. The cache signature covers all of them, so adding,
+  // removing or rewriting any one shard invalidates the cached projection.
+  const sources =
+    id === 'dossier-completion'
+      ? await resolveDossierCompletionShards()
+      : CORPUS_FILE_DATASETS.has(id)
+        ? [await resolveSource(SOURCE_CANDIDATES[id])]
+        : [await resolveCurrentPublicAgentArtifact(SOURCE_CANDIDATES[id][0]!.split('/').at(-1)!)]
+  const source = sources[0]!
+  const dependencies = CORPUS_FILE_DATASETS.has(id)
+    ? [await resolveSource(['data/manifest.json'])]
+    : id === 'silence-ledger'
+      ? [await resolveSource(['data/recorded-background.ndjson'])]
+      : id === 'coverage-ledger'
+        ? await Promise.all([
+            resolveSource(['data/recorded-background.ndjson']),
+            resolveSource(['data/source-consensus.ndjson']),
+            resolveSource(relativeAgentCandidates('silence-ledger.json')),
+            resolveSource(['docs/product/four-audience-evidence-contract.json']),
+            resolveSource(['docs/product/four-audience-evidence-coverage.json']),
+          ])
+        : []
+  const signature = [...sources, ...dependencies].map((item) => item.signature).join('|')
   const cached = datasetCache.get(id)
   if (cached?.signature === signature) return cached.value
 
@@ -2048,7 +2576,14 @@ async function loadDataset(id: PublicDatasetId): Promise<LoadedPublicDataset> {
         ? await buildSourceConsensus(source.absolutePath, source.relativePath)
         : id === 'silence-ledger'
           ? await buildSilenceLedger(source.absolutePath, source.relativePath)
-          : await buildCoverageLedger(source.absolutePath, source.relativePath)
+          : id === 'inventory-resolution'
+            ? await buildInventoryResolution(source.absolutePath, source.relativePath)
+            : id === 'dossier-completion'
+              ? await buildDossierCompletion(
+                  sources.map((shard) => shard.absolutePath),
+                  `${DOSSIER_COMPLETION_DIRECTORY}/*.ndjson`,
+                )
+              : await buildCoverageLedger(source.absolutePath, source.relativePath)
 
   datasetCache.set(id, { signature, value })
   return value
@@ -2080,7 +2615,11 @@ function equalsFilter(value: PublicDatasetCell | undefined, expected: string | u
   return cellText(value).toLocaleLowerCase('en-US') === target
 }
 
-function rowMatches(
+/**
+ * Which rows a filtered request keeps. Exported so each dataset's filter contract can be tested
+ * against known rows, rather than only against whatever the current export happens to contain.
+ */
+export function publicDatasetRowMatches(
   id: PublicDatasetId,
   row: PublicDatasetRow,
   query: PublicDatasetQuery,
@@ -2107,6 +2646,18 @@ function rowMatches(
       equalsFilter(row.questionId, query.field)
     )
   }
+  if (id === 'inventory-resolution') {
+    return (
+      equalsFilter(row.resolutionStatus, query.state) && equalsFilter(row.entityClass, query.role)
+    )
+  }
+  if (id === 'dossier-completion') {
+    return (
+      equalsFilter(row.status, query.state) &&
+      equalsFilter(row.statesPresent, query.meaning) &&
+      equalsFilter(row.nonTerminalSectionIds, query.module)
+    )
+  }
   return equalsFilter(row.route, query.route) && equalsFilter(row.modulesPresent, query.module)
 }
 
@@ -2117,6 +2668,8 @@ export function publicDatasetAllowedParameters(id: PublicDatasetId): ReadonlySet
     return new Set([...base, 'state', 'field'])
   }
   if (id === 'silence-ledger') return new Set([...base, 'state', 'meaning', 'field'])
+  if (id === 'inventory-resolution') return new Set([...base, 'state', 'role'])
+  if (id === 'dossier-completion') return new Set([...base, 'state', 'meaning', 'module'])
   return new Set([...base, 'route', 'module'])
 }
 
@@ -2155,7 +2708,9 @@ export async function queryPublicDataset(
 ): Promise<PublicDatasetPage> {
   const query = normalizePublicDatasetQuery(queryInput)
   const loaded = await loadDataset(id)
-  const filtered = loaded.rows.filter((row) => rowMatches(id, row, query, loaded.searchFields))
+  const filtered = loaded.rows.filter((row) =>
+    publicDatasetRowMatches(id, row, query, loaded.searchFields),
+  )
   const rows = filtered.slice(query.offset, query.offset + query.limit)
   return {
     dataset: loaded.descriptor,

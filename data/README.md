@@ -42,13 +42,15 @@ requests. That is code, and it lives outside this directory.
 
 ## What is here
 
-| File                         | What it is                                                                                                                                                             |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `manifest.json`              | Export time, legacy row counts, and each generated file's SHA-256                                                                                                      |
-| `drugs.csv`                  | Flat identity, regulatory, structure, trial-count, and URL columns                                                                                                     |
-| `drugs/drugs-NNN.ndjson`     | Repaired legacy records in the snapshot's medicine-wide shape                                                                                                          |
-| `recorded-background.ndjson` | **The source-bound corpus.** Every recorded value with the exact fetched sentence it was read from, its population context, its source identity and its retrieval date |
-| `source-consensus.ndjson`    | Cross-source readings per field, with the comparability state                                                                                                          |
+| File                                               | What it is                                                                                                                                                             |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `manifest.json`                                    | Export time, legacy row counts, and each generated file's SHA-256                                                                                                      |
+| `drugs.csv`                                        | Flat identity, regulatory, structure, trial-count, and URL columns                                                                                                     |
+| `drugs/drugs-NNN.ndjson`                           | Repaired legacy records in the snapshot's medicine-wide shape                                                                                                          |
+| `recorded-background.ndjson`                       | **The source-bound corpus.** Every recorded value with the exact fetched sentence it was read from, its population context, its source identity and its retrieval date |
+| `source-consensus.ndjson`                          | Cross-source readings per field, with the comparability state                                                                                                          |
+| `inventory-resolution.ndjson`                      | One identity resolution per stored record: the address it answers at, the rule that decided it, and the evidence                                                       |
+| `dossier-completion/dossier-completion-NNN.ndjson` | One completion assessment per canonical entity: every applicable section, the state it reached, and what that state rests on                                           |
 
 Newline-delimited JSON, so you can stream it without loading 14 MB into memory:
 
@@ -189,6 +191,65 @@ for hand-researched records, the individual papers cited on each one.
 
 These are public sources, but access conditions can change. Source coverage also varies by record;
 inspect the identifiers and links actually stored with the medicine before relying on a statement.
+
+## Record identity and dossier completion
+
+Two files answer questions the medicine files cannot: which address a stored record answers at, and
+how much of a record has actually been settled.
+
+`inventory-resolution.ndjson` holds one line for every row in the medicine table, including the
+placeholder identities the medicine files leave out. A line says what kind of record it is, which
+rule decided that, whether it keeps its own address or resolves to the address of the same entity,
+and what evidence produced a non-canonical outcome.
+
+Two rules govern what those lines may say:
+
+- **A resolution is about records, not substances.** Two rows resolve to one entity only on exact
+  deterministic evidence, such as an identical name once punctuation is removed. Salts,
+  stereoisomers, metabolites, formulations, combinations, brands, botanical preparations, organisms
+  and biologics are never merged by rule.
+- **A shared registry identifier is a warning, not a merge.** 552 UNII values in this corpus are
+  recorded on more than one row, and inspection shows salt/parent pairs, biosimilar families,
+  ingredient leakage from combination products and plain registry errors among them. The published
+  line therefore carries the warning code `SHARED_REGISTRY_IDENTIFIER` and does not name the other
+  rows. No file in this directory places one medicine beside another.
+
+`dossier-completion/dossier-completion-NNN.ndjson` holds one line per canonical entity, split into
+files of 1,000 lines like the medicine files. Each line lists every section that applies to that
+kind of record and the state that section reached, with the basis sentence, the counts it rests on
+and the exact sources read.
+
+### Complete does not mean full
+
+A record is complete when every applicable section carries an explicit state. Ten states are
+terminal, and most of them are statements that something is absent:
+
+| State                                 | What it says                                           |
+| ------------------------------------- | ------------------------------------------------------ |
+| `EXACT_SOURCE_BACKED`                 | A saved source sentence carries the value              |
+| `EXACT_STRUCTURED_SOURCE_DATA`        | A structured source record carries it                  |
+| `REVIEWED_INTERPRETATION`             | A reviewed programme conclusion covers it              |
+| `SOURCE_STATED_NOT_ESTABLISHED`       | A source says this was not established                 |
+| `NO_QUALIFYING_EVIDENCE_AFTER_SEARCH` | A dated search ran and returned nothing that qualified |
+| `RESULTS_NOT_POSTED`                  | A trial is registered and its results are not posted   |
+| `NOT_MEASURED`                        | The recorded sources did not measure it                |
+| `NOT_APPLICABLE`                      | The section cannot apply to this kind of record        |
+| `SOURCE_CONFLICT`                     | The sources differ                                     |
+| `SOURCE_UNAVAILABLE`                  | The source could not be reached                        |
+
+Six more states are not terminal and keep a record incomplete: `UNASSESSED`, `SEARCH_PENDING`,
+`PARSER_FAILED`, `IDENTITY_UNRESOLVED`, `ATTRIBUTION_UNRESOLVED` and `BLOCKED_HUMAN_REVIEW`. Each
+one stays on the page rather than being hidden or filled in.
+
+Every one of these is a statement about the sources RNAWiki read on a stated date. None of them is a
+statement about the medicine, and `NO_QUALIFYING_EVIDENCE_AFTER_SEARCH` is not a finding of safety
+or of absence of risk.
+
+In a `drugs/2` snapshot both answers also ride on each medicine row, as `inventoryResolution` and
+`dossierCompletion`, so a reader who only wants the medicine files does not have to join anything.
+The row-level `dossierCompletion` is a summary: the status, the two counts and one state per
+applicable section. The basis sentence, the counts behind it and the sources read are in the
+completion files, keyed by the same slug.
 
 ## Not medical advice
 

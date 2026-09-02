@@ -2,7 +2,8 @@ import 'dotenv/config'
 import { execFileSync } from 'node:child_process'
 import { createReadStream, existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { createInterface } from 'node:readline'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 import { extractBackgroundFromLabel, type LabelArtifact } from '@/lib/background/label-extraction'
 import { runBackgroundIntelligence } from '@/lib/rna-intelligence/background-rules'
@@ -35,13 +36,13 @@ import { RECORDED_BACKGROUND } from '../seed-data/background'
  * decompressed partition exceeds the maximum string length a Node process can hold.
  */
 
-interface MedicineRow {
+export interface MedicineRow {
   slug: string
   name: string
   tradeName?: string
 }
 
-interface IndexedLabel {
+export interface IndexedLabel {
   setId: string
   /** Distinct active substances the document declares, after salt forms collapse. */
   declaredSubstanceCount?: number
@@ -72,7 +73,7 @@ interface SubstanceIdentity {
   setId: string
 }
 
-type IdentityIndex = Map<string, SubstanceIdentity>
+export type IdentityIndex = Map<string, SubstanceIdentity>
 
 /**
  * Which of two labels answering to the same name should supply this medicine's record.
@@ -98,7 +99,7 @@ function preferred(candidate: IndexedLabel, held: IndexedLabel): boolean {
  * name and by any brand name on the label; when several labels answer to one name, `preferred`
  * decides between them.
  */
-async function buildIndex(
+export async function buildIndex(
   indexPath: string,
 ): Promise<{ names: Map<string, IndexedLabel>; identity: IdentityIndex }> {
   const index = new Map<string, IndexedLabel>()
@@ -157,7 +158,7 @@ async function buildIndex(
   return { names: index, identity }
 }
 
-function loadMedicineRows(): MedicineRow[] {
+export function loadMedicineRows(): MedicineRow[] {
   const dir = join(process.cwd(), 'data', 'drugs')
   const rows: MedicineRow[] = []
   for (const file of readdirSync(dir)
@@ -176,6 +177,79 @@ function loadMedicineRows(): MedicineRow[] {
     }
   }
   return rows
+}
+
+/** What one medicine row resolved to in the label index, and what the parser read out of it. */
+export interface RowExtraction {
+  /** The label the row's name or trade name matched, absent when no indexed name matched. */
+  label?: IndexedLabel
+  background: MedicineRecordedBackground | null
+  modules: string[]
+}
+
+/**
+ * Resolves one medicine row to a label and reads whatever that label supports out of it.
+ *
+ * Lifted out of the CLI loop unchanged so a second builder can run exactly this extraction —
+ * the same name matching, the same identity resolution, the same attribution rules — rather than
+ * a second implementation of it that could drift.
+ */
+export function extractRowBackground(args: {
+  row: MedicineRow
+  index: Map<string, IndexedLabel>
+  identity: IdentityIndex
+  retrievedAt: string
+}): RowExtraction {
+  const { row, index, identity, retrievedAt } = args
+  const candidates = [row.name, ...(row.tradeName ? row.tradeName.split(/\s*[/,]\s*/u) : [])]
+  let label: IndexedLabel | undefined
+  for (const candidate of candidates) {
+    label = index.get(normalizeName(candidate))
+    if (label) break
+  }
+  if (!label) return { background: null, modules: [] }
+
+  const artifact: LabelArtifact = {
+    setId: label.setId,
+    declaredSubstanceCount: label.declaredSubstanceCount,
+    effectiveTime: label.effectiveTime,
+    brandNames: label.brandNames,
+    genericNames: label.genericNames,
+    routes: label.routes,
+    unii: label.unii,
+    rxcui: label.rxcui,
+    sections: label.sections,
+  }
+  // This medicine's identifiers come from the identity index, which is built only from documents
+  // declaring a single substance — the one situation where a document-level identifier can only
+  // belong to one thing. The content label may well be a combination product; its identifiers
+  // are never split between its substances, because openFDA's name and identifier arrays are not
+  // positionally aligned and doing so assigns one substance's identifier to another.
+  const resolved = identity.get(normalizeIdentityName(row.name))
+  const ownUnii = resolved?.unii
+  const ownRxcui = resolved?.rxcui
+  const identifiers =
+    ownUnii || ownRxcui
+      ? {
+          ...(ownUnii ? { unii: ownUnii } : {}),
+          ...(ownRxcui ? { rxcui: ownRxcui } : {}),
+          source: {
+            // The document cited is the one that established the identity: a label naming this
+            // substance and nothing else.
+            kind: 'FDA_LABEL' as const,
+            identifier: resolved!.setId,
+            label: `${row.name} label naming this substance alone`,
+            retrievedAt,
+          },
+        }
+      : undefined
+
+  const { background, modules } = extractBackgroundFromLabel({
+    artifact,
+    options: { retrievedAt, sourceLabel: `${row.name} label` },
+    registryIdentifiers: identifiers,
+  })
+  return { label, background, modules }
 }
 
 function serialize(dataset: Record<string, MedicineRecordedBackground>): string {
@@ -253,57 +327,16 @@ async function main() {
       continue
     }
 
-    const candidates = [row.name, ...(row.tradeName ? row.tradeName.split(/\s*[/,]\s*/u) : [])]
-    let label: IndexedLabel | undefined
-    for (const candidate of candidates) {
-      label = index.get(normalizeName(candidate))
-      if (label) break
-    }
+    const { label, background, modules } = extractRowBackground({
+      row,
+      index,
+      identity,
+      retrievedAt,
+    })
     if (!label) {
       stats.noLabelMatch += 1
       continue
     }
-
-    const artifact: LabelArtifact = {
-      setId: label.setId,
-      declaredSubstanceCount: label.declaredSubstanceCount,
-      effectiveTime: label.effectiveTime,
-      brandNames: label.brandNames,
-      genericNames: label.genericNames,
-      routes: label.routes,
-      unii: label.unii,
-      rxcui: label.rxcui,
-      sections: label.sections,
-    }
-    // This medicine's identifiers come from the identity index, which is built only from documents
-    // declaring a single substance — the one situation where a document-level identifier can only
-    // belong to one thing. The content label may well be a combination product; its identifiers
-    // are never split between its substances, because openFDA's name and identifier arrays are not
-    // positionally aligned and doing so assigns one substance's identifier to another.
-    const resolved = identity.get(normalizeIdentityName(row.name))
-    const ownUnii = resolved?.unii
-    const ownRxcui = resolved?.rxcui
-    const identifiers =
-      ownUnii || ownRxcui
-        ? {
-            ...(ownUnii ? { unii: ownUnii } : {}),
-            ...(ownRxcui ? { rxcui: ownRxcui } : {}),
-            source: {
-              // The document cited is the one that established the identity: a label naming this
-              // substance and nothing else.
-              kind: 'FDA_LABEL' as const,
-              identifier: resolved!.setId,
-              label: `${row.name} label naming this substance alone`,
-              retrievedAt,
-            },
-          }
-        : undefined
-
-    const { background, modules } = extractBackgroundFromLabel({
-      artifact,
-      options: { retrievedAt, sourceLabel: `${row.name} label` },
-      registryIdentifiers: identifiers,
-    })
     if (!background) {
       stats.nothingExtractable += 1
       continue
@@ -350,7 +383,11 @@ async function main() {
   console.log(`[extract] wrote ${stats.written} record(s) to ${outPath}`)
 }
 
-void main().catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+// Guarded so a second builder can import the functions above without running this one's CLI.
+const entryPath = process.argv[1] ? pathToFileURL(resolve(process.argv[1])).href : null
+if (entryPath === import.meta.url) {
+  void main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
+}

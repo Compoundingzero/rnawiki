@@ -143,12 +143,12 @@ function formatCell(
   type: PublicDatasetField['type'],
 ): ReactNode {
   if (value === null || value === undefined || value === '') {
-    return <span className="text-[#86868B]">Not recorded</span>
+    return <span className="text-[#6E6E73]">Not recorded</span>
   }
   if (typeof value === 'boolean') return value ? 'Yes' : 'No'
   if (typeof value === 'number') return number.format(value)
   if (Array.isArray(value)) {
-    if (value.length === 0) return <span className="text-[#86868B]">None recorded</span>
+    if (value.length === 0) return <span className="text-[#6E6E73]">None recorded</span>
     if (type === 'sentence[]') {
       const sentences = value as PublicDatasetSentenceRecord[]
       return (
@@ -268,14 +268,22 @@ function formatCell(
     return (
       <ul className="space-y-1">
         {strings.map((entry, index) => (
-          <li key={`${entry}-${index}`} className="break-words">
+          <li key={`${entry}-${index}`} className={wrapClass(entry)}>
             {entry}
           </li>
         ))}
       </ul>
     )
   }
-  return <span className="break-words">{value}</span>
+  return <span className={wrapClass(String(value))}>{value}</span>
+}
+
+/**
+ * A digest, slug or identifier has no spaces, so `break-words` cannot wrap it and a 64-character
+ * hash pushes a 320 px viewport sideways. Break such tokens anywhere; keep prose breaking at words.
+ */
+function wrapClass(value: string): string {
+  return /\S{24,}/u.test(value) ? 'break-all' : 'break-words'
 }
 
 function SampleRows({
