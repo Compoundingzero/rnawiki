@@ -292,7 +292,7 @@
       "path": "data/agents/current/manifest.json",
       "rows": 10,
       "bytes": 83132,
-      "sha256": "1f5b3725404bf1a3acd5d98918efde10f3220667b01be082832ed9df79ea81d9",
+      "sha256": "41da7fcde91632cdece97f78ec535ddccfb1df0b8d9be30d23cbbe029b04c33c",
       "schemaVersion": "rnawiki-current-agent-manifest/v1",
       "mediaType": "application/json",
       "licence": "CC BY 4.0 — see LICENSE-DATA",
