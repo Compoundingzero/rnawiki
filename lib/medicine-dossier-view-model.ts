@@ -423,6 +423,8 @@ export interface MedicineDossierViewModel {
   completionAssessment?: DrugDossier['completionAssessment']
   /** Stored identity resolution; absent until the inventory resolver has run. */
   inventoryResolution?: DrugDossier['inventoryResolution']
+  /** Ranked registrations from the stored registry pass; absent when none matched. */
+  trialRegistrations?: DrugDossier['trialRegistrations']
 }
 
 export interface PublishedProgrammeViewInput {
@@ -1221,6 +1223,7 @@ export function legacyMedicineDossierView(drug: DrugDossier): MedicineDossierVie
     dynamicModules: legacyDossierDynamicModules(drug),
     completionAssessment: drug.completionAssessment,
     inventoryResolution: drug.inventoryResolution,
+    trialRegistrations: drug.trialRegistrations,
   }
 }
 
@@ -1289,5 +1292,6 @@ export function normalizedMedicineDossierView(
     dynamicModules: selected.dynamicModules ?? legacyDossierDynamicModules(drug),
     completionAssessment: drug.completionAssessment,
     inventoryResolution: drug.inventoryResolution,
+    trialRegistrations: drug.trialRegistrations,
   }
 }

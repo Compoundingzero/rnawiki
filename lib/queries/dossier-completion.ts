@@ -1,12 +1,18 @@
-import { eq, inArray } from 'drizzle-orm'
+import { and, desc, eq, inArray } from 'drizzle-orm'
 
 import { db } from '@/db'
-import { dossierCompletionAssessments, inventoryResolutions } from '@/db/schema'
+import {
+  dossierCompletionAssessments,
+  inventoryResolutions,
+  sourceSearchRecords,
+} from '@/db/schema'
+import { buildTrialRegistrationsView } from '@/lib/dossier'
 import {
   dossierCompletionAssessmentView,
   type DossierCompletionAssessmentView,
 } from '@/lib/dossier-completion/view'
 import type { InventoryResolutionState } from '@/lib/inventory/types'
+import type { TrialRegistrationsView } from '@/lib/types'
 
 export interface InventoryResolutionView {
   resolutionStatus: InventoryResolutionState
@@ -80,4 +86,43 @@ export async function loadCompletionSurfaces(drugIds?: readonly string[]): Promi
       assessmentRows.map((row) => [row.drugId, dossierCompletionAssessmentView(row)]),
     ),
   }
+}
+
+/**
+ * The search kind the registry pass writes (scripts/dossier-completion/match-trial-registry.ts).
+ * Spelled here rather than imported, because that module is an operator command with a `main`.
+ */
+export const CLINICALTRIALS_SEARCH_KIND = 'CLINICALTRIALS_SNAPSHOT_EXACT_INTERVENTION' as const
+
+/**
+ * The ranked registrations for one record, read from the most recent successful registry pass.
+ * Null when no pass has run, the pass failed, or it matched nothing: the completion assessment
+ * states each of those outcomes, and this loader never turns one into an empty list on the page.
+ */
+export async function getTrialRegistrationsForDrug(
+  drugId: string,
+): Promise<TrialRegistrationsView | null> {
+  const rows = await db
+    .select({
+      sourceIdentifier: sourceSearchRecords.sourceIdentifier,
+      requestedAt: sourceSearchRecords.requestedAt,
+      matched: sourceSearchRecords.matched,
+    })
+    .from(sourceSearchRecords)
+    .where(
+      and(
+        eq(sourceSearchRecords.drugId, drugId),
+        eq(sourceSearchRecords.searchKind, CLINICALTRIALS_SEARCH_KIND),
+        eq(sourceSearchRecords.status, 'SUCCEEDED'),
+      ),
+    )
+    .orderBy(desc(sourceSearchRecords.requestedAt))
+    .limit(1)
+  const row = rows[0]
+  if (!row) return null
+  return buildTrialRegistrationsView({
+    sourceIdentifier: row.sourceIdentifier,
+    requestedAt: row.requestedAt,
+    envelope: row.matched[0],
+  })
 }

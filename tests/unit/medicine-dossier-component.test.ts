@@ -2081,6 +2081,79 @@ describe('MedicineDossierV2 server markup', () => {
     expect(html.split('id="record-completeness"').length).toBe(2)
   })
 
+  /**
+   * Registrations are registry facts about the record, so they sit with the record-level sections:
+   * after the question universe and directly before the completeness section, which states the
+   * search outcome the list came from. A record without matched registrations renders no section.
+   */
+  it('places registered trials between the question universe and the completeness section', () => {
+    expect(renderDossier(view())).not.toContain('data-testid="dossier-registered-trials"')
+
+    const html = renderDossier(
+      view({
+        trialRegistrations: {
+          sourceIdentifier: 'clinicaltrials.gov/api/v2 studies snapshot 2026-09-01T09:00:05',
+          snapshotDate: '2026-09-01',
+          searchedAt: '2026-09-02T00:00:00.000Z',
+          matchedNames: ['Synthetic Medicine'],
+          totalMatched: 1,
+          storedCount: 1,
+          withPostedResults: 0,
+          shownLimit: 8,
+          shown: [
+            {
+              nctId: 'NCT00000001',
+              briefTitle: null,
+              overallStatus: 'COMPLETED',
+              studyType: 'INTERVENTIONAL',
+              phases: ['PHASE2'],
+              hasResults: false,
+              resultsFirstPostDate: null,
+              startDate: '2020-01',
+              primaryCompletionDate: null,
+              completionDate: '2021-06',
+              lastUpdatePostDate: null,
+              whyStopped: null,
+              enrollment: { count: 30, type: 'ACTUAL' },
+              leadSponsor: { name: 'Synthetic Sponsor', class: 'OTHER' },
+              conditions: ['Synthetic condition'],
+              matchedInterventionNames: ['Synthetic Medicine'],
+              eligibility: {
+                sex: 'ALL',
+                minimumAge: '18 Years',
+                maximumAge: null,
+                stdAges: ['ADULT'],
+                healthyVolunteers: false,
+              },
+              primaryOutcomes: [{ measure: 'Synthetic measure', timeFrame: '12 weeks' }],
+              design: { allocation: 'RANDOMIZED', masking: 'DOUBLE', primaryPurpose: 'TREATMENT' },
+            },
+          ],
+        },
+        completionAssessment: {
+          status: 'COMPLETE',
+          statusCopy: 'Every section that applies to this record has an explicit state.',
+          resolverVersion: 'dossier-completion/v1',
+          inputDigest: 'c'.repeat(64),
+          contentChangedAt: '2026-09-02T00:00:00.000Z',
+          assessedAt: '2026-09-02T00:00:00.000Z',
+          applicableSectionCount: 0,
+          terminalSectionCount: 0,
+          sections: [],
+        },
+      }),
+    )
+
+    const coverage = html.indexOf('data-testid="dossier-question-coverage"')
+    const registrations = html.indexOf('data-testid="dossier-registered-trials"')
+    const completeness = html.indexOf('data-testid="dossier-completion-assessment"')
+    expect(coverage).toBeGreaterThanOrEqual(0)
+    expect(registrations).toBeGreaterThan(coverage)
+    expect(completeness).toBeGreaterThan(registrations)
+    expect(html).toContain('href="https://clinicaltrials.gov/study/NCT00000001"')
+    expect(html.split('id="registered-trials"').length).toBe(2)
+  })
+
   it('ends with plain links to the related RNAWiki pages', () => {
     const html = renderDossier(view())
     const nav = html.indexOf('aria-label="Related RNAWiki pages"')

@@ -209,6 +209,21 @@ export function dossierNavigatorSections(
     { id: 'molecular-record', label: 'Technical record', present: isNonEmpty(context?.molecular) },
 
     /*
+     * Offered only when the record carries ranked registrations, because the section renders only
+     * then; a record whose registry pass matched nothing states that in the completeness section.
+     */
+    ...(dossier.trialRegistrations
+      ? [
+          {
+            id: 'registered-trials',
+            label: 'Registered clinical trials',
+            present: dossier.trialRegistrations.shown.length > 0,
+            count: dossier.trialRegistrations.totalMatched,
+          },
+        ]
+      : []),
+
+    /*
      * Offered only when the record carries a completion assessment, because the anchor exists only
      * then. `answered` means every applicable section reached an explicit state; an incomplete
      * assessment takes the ordinary absence state, since some section still has no state to read.

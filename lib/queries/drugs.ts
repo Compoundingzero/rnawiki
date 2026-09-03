@@ -44,7 +44,11 @@ import {
   type PublicSearchSummaryBinding,
 } from '@/lib/queries/public-search-hit-projection'
 import type { ApprovalStatus, DrugDossier, DrugModality } from '@/lib/types'
-import { getCompletionAssessmentForDrug, getInventoryResolutionForDrug } from './dossier-completion'
+import {
+  getCompletionAssessmentForDrug,
+  getInventoryResolutionForDrug,
+  getTrialRegistrationsForDrug,
+} from './dossier-completion'
 import { listNotesForDrug } from './notes'
 
 /**
@@ -152,21 +156,24 @@ export async function getDrugBySlug(
   const row = await getPublicDrugRowBySlug(slug)
   if (!row) return null
 
-  const [notes, driftedSources, completionAssessment, inventoryResolution] = await Promise.all([
-    listNotesForDrug(row.id, viewerUserId),
-    currentBackgroundDriftSummaries({
-      drugId: row.id,
-      slug: row.slug,
-      background: row.recordedBackground,
-    }),
-    getCompletionAssessmentForDrug(row.id),
-    getInventoryResolutionForDrug(row.id),
-  ])
+  const [notes, driftedSources, completionAssessment, inventoryResolution, trialRegistrations] =
+    await Promise.all([
+      listNotesForDrug(row.id, viewerUserId),
+      currentBackgroundDriftSummaries({
+        drugId: row.id,
+        slug: row.slug,
+        background: row.recordedBackground,
+      }),
+      getCompletionAssessmentForDrug(row.id),
+      getInventoryResolutionForDrug(row.id),
+      getTrialRegistrationsForDrug(row.id),
+    ])
   return rowToDossier(row, {
     notes,
     driftedSources,
     completionAssessment: completionAssessment ?? undefined,
     inventoryResolution: inventoryResolution ?? undefined,
+    trialRegistrations: trialRegistrations ?? undefined,
   })
 }
 
@@ -187,19 +194,22 @@ async function getPublicDrugRowBySlug(slug: string): Promise<DrugRow | null> {
 export async function getPublicDrugBySlug(slug: string): Promise<DrugDossier | null> {
   const row = await getPublicDrugRowBySlug(slug)
   if (!row) return null
-  const [driftedSources, completionAssessment, inventoryResolution] = await Promise.all([
-    currentBackgroundDriftSummaries({
-      drugId: row.id,
-      slug: row.slug,
-      background: row.recordedBackground,
-    }),
-    getCompletionAssessmentForDrug(row.id),
-    getInventoryResolutionForDrug(row.id),
-  ])
+  const [driftedSources, completionAssessment, inventoryResolution, trialRegistrations] =
+    await Promise.all([
+      currentBackgroundDriftSummaries({
+        drugId: row.id,
+        slug: row.slug,
+        background: row.recordedBackground,
+      }),
+      getCompletionAssessmentForDrug(row.id),
+      getInventoryResolutionForDrug(row.id),
+      getTrialRegistrationsForDrug(row.id),
+    ])
   return rowToDossier(row, {
     driftedSources,
     completionAssessment: completionAssessment ?? undefined,
     inventoryResolution: inventoryResolution ?? undefined,
+    trialRegistrations: trialRegistrations ?? undefined,
   })
 }
 

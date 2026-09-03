@@ -413,6 +413,21 @@ const NOT_A_STATEMENT_ABOUT_THE_MEDICINE =
   /^\s*(?:see\b|refer to\b|for (?:external|topical|rectal|oral) use only\b|shake well\b|keep out of reach\b|store\b|do not use if\b)|\bnot (?:been )?evaluated by the food and drug administration\b|^\s*not fda evaluated\.?\s*$|^\s*pregnancy category\b/iu
 
 /**
+ * A disclaimer or a labeling note printed as a sentence of its own.
+ *
+ * "This product is not intended to diagnose, treat, cure, or prevent any disease." and "They have
+ * not been reviewed by the Food and Drug Administration." followed the use on a homeopathic panel
+ * and were recorded as second and third uses. "Pediatric use information is approved for
+ * Boehringer Ingelheim Pharmaceuticals, Inc.'s Pradaxa" is a generic label's carve-out note, about
+ * another company's labeling rather than about the medicine. Anchored to the start of the sentence
+ * on purpose: a use whose own sentence carries the disclaimer as a tail ("…low energy These
+ * statements are based upon homeopathic principles.") is still the use, printed with its caveat,
+ * and stays recorded verbatim.
+ */
+const OPENS_AS_A_DISCLAIMER =
+  /^\s*[*†]*\s*(?:this product is not intended to diagnose\b|(?:these\s+)?statements (?:are|have been) based (?:up)?on\b|claims based (?:up)?on\b|they have not been reviewed by the food and drug administration\b|\w+ use information is approved for\b|however, due to\b.{0,120}\bmarketing exclusivity\b)/iu
+
+/**
  * A short sentence that is not a use, in the shapes this corpus actually produces.
  *
  * Named rather than derived, because the failures are specific and the harm from each is different.
@@ -421,15 +436,22 @@ const NOT_A_STATEMENT_ABOUT_THE_MEDICINE =
  * RNAWiki the thing telling them to do it. A fragment closing a bracket it never opened
  * ("Morquio A syndrome).") is the tail of a sentence the splitter cut. A pack size
  * ("HAIR GROWTH 60ml/2 fl oz") is carton text. A leading conjunction is a heading the splitter
- * halved ("& USAGE IMMUNE SUPPORT" from "INDICATIONS & USAGE").
+ * halved ("& USAGE IMMUNE SUPPORT" from "INDICATIONS & USAGE"), and so is a short fragment that
+ * still contains the word "indications" or "usage" ("82699-201 Indications & Usage Section").
  *
  * These matter only at short lengths: a forty-character sentence has room to be a real statement
  * that merely begins with one of these words.
+ *
+ * "Dry" and "clean" are verbs only when an instruction follows them. "Dry skin rash with itching"
+ * is a symptom the label says the preparation is for, and it was refused for a year because the
+ * word is also the imperative in "Dry the affected area". The two are told apart by the next word.
  */
 const SHORT_STATEMENT_IS_NOT_A_USE = [
   /^\s*[&/,;-]/u,
-  /^\s*(?:first|then|next|apply|wet|rinse|wash|shake|store|keep|spray|remove|replace|discard|dispense|clean|dry|hold|press|insert|place|repeat|massage|cover|open|close|squeeze|swallow|chew|dissolve)\b/iu,
+  /^\s*(?:first|then|next|apply|use|wet|rinse|wash|shake|store|keep|spray|remove|replace|discard|dispense|hold|press|insert|place|repeat|massage|cover|open|close|squeeze|swallow|chew|dissolve)\b/iu,
+  /^\s*(?:dry|clean)\s+(?:the|your|and|with|thoroughly|completely|before|after|off|area|skin\s+(?:and|before|after|thoroughly|completely))\b/iu,
   /^\s*(?:after|before|while|during|directions?)\b/iu,
+  /\b(?:indications?|usage)\b/iu,
   // A frequency is a direction however it is phrased: "Use 2-3 times a week" says when to use the
   // product, not what it is for.
   /\btimes?\s+(?:a|per)\s+(?:day|week|month)\b/iu,
@@ -438,6 +460,18 @@ const SHORT_STATEMENT_IS_NOT_A_USE = [
   /\bno rinsing\b/iu,
   /\d\s*(?:ml|mg|g|gm|oz|fl\s*oz|lb|kg|mcg|count|ct)\b/iu,
 ] as const
+
+/**
+ * What a heading looks like when the sentence is short enough to be one.
+ *
+ * `SECTION_HEADING` treats any short run of letters without punctuation as a heading, which is
+ * right for prose modules and wrong for the one module that admits terse statements: "For the
+ * temporary relief of pain", "For moisturizing dry nasal passages" and "Arthritic pain in spine"
+ * are whole indications sections printed without a full stop, and every one was refused as a
+ * heading. A heading is numbered, in capitals, or in Title Case; a phrase with lowercase words in it
+ * is a statement the label chose not to punctuate.
+ */
+const SHORT_STATEMENT_LOOKS_LIKE_HEADING = /^(?:\d+(?:\.\d+)*\s*)?(?:[A-Z][A-Za-z]*(?:\s+|$))+$/u
 
 function closesABracketItNeverOpened(sentence: string): boolean {
   let depth = 0
@@ -453,11 +487,12 @@ function closesABracketItNeverOpened(sentence: string): boolean {
 
 function isAdmissibleStatement(sentence: string, allowShort = false): boolean {
   if (sentence.length > MAX_STATEMENT_CHARS) return false
-  if (SECTION_HEADING.test(sentence)) return false
   if (UNFILLED_TEMPLATE.test(sentence)) return false
   if (NOT_A_STATEMENT_ABOUT_THE_MEDICINE.test(sentence)) return false
-  if (sentence.length >= MIN_STATEMENT_CHARS) return true
+  if (OPENS_AS_A_DISCLAIMER.test(sentence)) return false
+  if (sentence.length >= MIN_STATEMENT_CHARS) return !SECTION_HEADING.test(sentence)
   if (!allowShort || sentence.length < MIN_SHORT_STATEMENT_CHARS) return false
+  if (SHORT_STATEMENT_LOOKS_LIKE_HEADING.test(sentence)) return false
   if (closesABracketItNeverOpened(sentence)) return false
   if (SHORT_STATEMENT_IS_NOT_A_USE.some((pattern) => pattern.test(sentence))) return false
   return (
@@ -484,11 +519,96 @@ const SECTION_HEADING = /^(?:\d+(?:\.\d+)*\s*)?[A-Z][A-Za-z ]{0,40}$/u
  */
 function stripSectionHeading(sentence: string, heading: RegExp | undefined): string {
   if (!heading) return sentence
+  // Repeated, because labels print the heading twice ("INDICATIONS INDICATIONS: For the temporary
+  // relief…"), and each copy is the same contiguous prefix of the source.
   const prefix = new RegExp(
-    `^\\s*(?:\\d+(?:\\.\\d+)*\\s*)?(?:${heading.source})\\s*[:.\\-]?\\s*`,
+    `^\\s*(?:(?:\\d+(?:\\.\\d+)*\\s*)?(?:${heading.source})\\b\\s*[:.\\-]?\\s*)+`,
     'iu',
   )
   return sentence.replace(prefix, '').trim()
+}
+
+/**
+ * Where a label printed list boundaries inside what the sentence splitter saw as one sentence.
+ *
+ * A prescribing-information indications section opens with the Highlights list: "X is indicated
+ * for: Prophylaxis of deep vein thrombosis … ( 1.1 ) Inpatient treatment of acute DVT … ( 1.2 )
+ * …" — items separated by bullets or by the section cross-reference that closes each one, and
+ * not one full stop until the list ends. The splitter, which needs a full stop, returned the whole
+ * list as a single 500- to 2,300-character sentence, the excerpt cap refused it, and the medicines
+ * with the most carefully written labels in the corpus — enoxaparin, golimumab, rivaroxaban,
+ * dabigatran, filgrastim — recorded no use at all. 72 of the 158 records whose single-substance
+ * label carried an indications section that yielded nothing failed this way.
+ *
+ * The boundaries are the ones the label printed: a bullet glyph, or a section cross-reference
+ * "( 1.2 )" followed by the next item. A cross-reference inside square brackets ("[see Warnings
+ * and Precautions ( 5.1 )]") is a citation within a sentence, not a list boundary, and is left
+ * alone. Each fragment is a contiguous verbatim span of the source.
+ */
+const PRINTED_LIST_BOUNDARY =
+  /\s*[•■▪‣●○◦]\s*|(?<=\(\s*\d+(?:\.\d+)?(?:\s*,\s*\d+(?:\.\d+)?)*\s*\)\.?)\s+(?![\])])/u
+
+/**
+ * A list lead-in is not a statement; its items follow as their own.
+ *
+ * Labels end the lead-in with a colon ("X is indicated for:"), or with nothing at all when a bullet
+ * follows ("CAVERJECT is a prostaglandin E1 agonist indicated", "FRAGMIN is a low molecular weight
+ * heparin (LMWH) indicated for"). A fragment ending in a conjunction or a preposition was cut at a
+ * boundary the label printed inside a sentence, and is a piece of one.
+ */
+const LIST_LEAD_IN =
+  /(?:[:;,]|\b(?:indicated(?:\s+(?:for|to|in|as))?|for|to|of|with|in|including|following|and|or))\s*$/iu
+
+/** The tail of a sentence the list boundary cut: "or type 2 diabetes mellitus … ( 1 )". */
+const LIST_TAIL = /^(?:and|or)\b/iu
+
+/**
+ * A fragment that begins with a subsection number carries the subsection heading glued to its
+ * first sentence ("1.1 Prophylaxis of Deep Vein Thrombosis Enoxaparin sodium injection is
+ * indicated for…"). Where the heading ends and the sentence begins is not decidable from the text,
+ * so the fragment is refused rather than recorded with a heading inside it. The Highlights list
+ * above it states the same indication without one.
+ */
+const SUBSECTION_NUMBER_LEAD = /^\d+(?:\.\d+)+\s/u
+
+function bracketsBalance(fragment: string): boolean {
+  let round = 0
+  let square = 0
+  for (const char of fragment) {
+    if (char === '(') round += 1
+    else if (char === ')') round -= 1
+    else if (char === '[') square += 1
+    else if (char === ']') square -= 1
+    if (round < 0 || square < 0) return false
+  }
+  return round === 0 && square === 0
+}
+
+/**
+ * Re-splits a sentence the excerpt cap would refuse at the list boundaries the label printed.
+ *
+ * Only ever applied to a sentence longer than `MAX_STATEMENT_CHARS`: a sentence within the cap is
+ * kept exactly as the splitter produced it, bullets and all, so nothing already recorded changes.
+ * A fragment is dropped when it is a lead-in ending in a colon, when it starts with a subsection
+ * number, or when it opens or closes a bracket the rest of the fragment does not — each is a piece
+ * of a sentence rather than a sentence. What survives still has to pass `isAdmissibleStatement`.
+ */
+function printedListItems(sentence: string): string[] {
+  const items: string[] = []
+  for (const raw of sentence.split(PRINTED_LIST_BOUNDARY)) {
+    const fragment = raw.trim()
+    if (
+      fragment.length === 0 ||
+      LIST_LEAD_IN.test(fragment) ||
+      LIST_TAIL.test(fragment) ||
+      SUBSECTION_NUMBER_LEAD.test(fragment) ||
+      !bracketsBalance(fragment)
+    )
+      continue
+    // Highlights repeat the full-text list, so the same item arrives twice in one sentence.
+    if (!items.includes(fragment)) items.push(fragment)
+  }
+  return items
 }
 
 /**
@@ -506,11 +626,26 @@ const UNFILLED_TEMPLATE =
 function statementSentences(
   text: string | undefined,
   heading?: RegExp,
-  options: { allowShort?: boolean } = {},
+  options: {
+    allowShort?: boolean
+    caseSensitiveHeading?: RegExp
+    splitPrintedLists?: boolean
+  } = {},
 ): string[] {
   if (!text) return []
   return sentences(text)
-    .map((sentence, index) => (index === 0 ? stripSectionHeading(sentence, heading) : sentence))
+    .map((sentence, index) => {
+      if (index !== 0) return sentence
+      const stripped = stripSectionHeading(sentence, heading)
+      return options.caseSensitiveHeading
+        ? stripped.replace(options.caseSensitiveHeading, '').trim()
+        : stripped
+    })
+    .flatMap((sentence) =>
+      options.splitPrintedLists && sentence.length > MAX_STATEMENT_CHARS
+        ? printedListItems(sentence)
+        : [sentence],
+    )
     .filter((sentence) => isAdmissibleStatement(sentence, options.allowShort ?? false))
 }
 
@@ -811,8 +946,27 @@ export function extractInteractionSignals(
   )
 }
 
-/** Headings labels put in front of an indications section. */
-const USES_HEADING = /(?:indications?\s+and\s+usage|indications?|uses)/u
+/**
+ * Headings labels put in front of an indications section.
+ *
+ * "INDICATIONS & USAGE" is printed with an ampersand as often as with the word, and the old
+ * pattern knew only the word: it stripped "INDICATIONS" and recorded "& USAGE Argatroban is a
+ * direct thrombin inhibitor indicated…" as the statement. "Usage" alone and "HOMEOPATHIC
+ * INDICATIONS" are the other spellings this corpus prints.
+ */
+const USES_HEADING =
+  /(?:homeopathic\s+)?(?:indications?\s*(?:and|&)\s*usage(?:\s+section)?|indications?|usage|uses)/u
+
+/**
+ * The singular heading an over-the-counter Drug Facts panel prints: "Use To prevent pregnancy",
+ * "Use For the temporary relief of pain". Matched case-sensitively, because only a capital letter,
+ * a digit, a bullet, a bracket, or the present-tense verb a Drug Facts item opens with ("Use
+ * reduces underarm wetness", "Use temporarily relieves…") marks the word as the heading — "Use on
+ * muscles and veins as needed" is a direction that happens to start with the same word, and
+ * stripping it there would leave "on muscles and veins as needed" to be recorded as a use.
+ */
+const USES_SINGULAR_HEADING =
+  /^(?:Use|USE)\s*[:.\-]?\s*(?=[A-Z0-9•■(]|(?:temporarily|helps|relieves|reduces|treats|prevents|protects|provides|supports|soothes)\b)/u
 
 /** Statements kept. Enough to say what a source is for, short enough to stay readable. */
 const MAX_USE_STATEMENTS = 3
@@ -836,6 +990,12 @@ export function extractRecordedUses(
   // says, in full.
   const statements = statementSentences(artifact.sections.indications_and_usage, USES_HEADING, {
     allowShort: true,
+    caseSensitiveHeading: USES_SINGULAR_HEADING,
+    // Only the indications section prints its items as a bulleted list with no full stop until the
+    // list ends. A boxed warning opens with its own capitalised title, and re-splitting one there
+    // records that title as the warning: abrocitinib's boxed warning became "WARNING: SERIOUS
+    // INFECTIONS, MORTALITY, MALIGNANCY…" in place of an actual instruction.
+    splitPrintedLists: true,
   }).slice(0, MAX_USE_STATEMENTS)
   if (statements.length === 0) return null
   const source = labelSource(artifact, options)
@@ -854,9 +1014,14 @@ export function extractSafetyStatements(
   const [boxed] = statementSentences(artifact.sections.boxed_warning, /boxed warning/u)
   if (boxed) safety.boxedWarning = toStatement(boxed, source)
 
+  // A contraindications section prints its items as a list the same way an indications section
+  // does ("X is contraindicated in patients with: • known hypersensitivity • …"), so the same
+  // re-split applies. The boxed warning above is deliberately left out of it: its own capitalised
+  // title is the first thing in the section, and re-splitting records that title as the warning.
   const contraindications = statementSentences(
     artifact.sections.contraindications,
     CONTRAINDICATIONS_HEADING,
+    { splitPrintedLists: true },
   ).slice(0, MAX_CONTRAINDICATION_STATEMENTS)
   if (contraindications.length > 0) {
     safety.contraindications = contraindications.map((sentence) => toStatement(sentence, source))

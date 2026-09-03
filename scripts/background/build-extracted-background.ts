@@ -40,7 +40,28 @@ export interface MedicineRow {
   slug: string
   name: string
   tradeName?: string
+  /** The row's approval status as the ingest classified it; gates the salt/ester fallback. */
+  approvalStatus?: string
 }
+
+/**
+ * Statuses under which a row may fall back to a label filed under a salt, ester or hydrate form.
+ *
+ * A salt or ester form is a property of a chemical medicine. A botanical, supplement or other
+ * non-medicine row never has one, and treating its name as a stem finds the wrong thing: the row
+ * "Tea" (the plant) matched "TEA salicylate", where TEA abbreviates triethanolamine. Measured over
+ * the corpus, the only fallback matches for non-medicine rows were of that kind.
+ */
+export const SALT_FORM_FALLBACK_STATUSES: ReadonlySet<string> = new Set([
+  'FDA Approved',
+  'Accelerated Approval',
+  'EMA Approved',
+  'Phase 3 Clinical Trial',
+  'Phase 2 Investigational',
+  'Pre-clinical / Open Source',
+  'Off-Label / Compounded',
+  'Withdrawn from Market',
+])
 
 export interface IndexedLabel {
   setId: string
@@ -95,14 +116,311 @@ function preferred(candidate: IndexedLabel, held: IndexedLabel): boolean {
 }
 
 /**
+ * Words that may trail a substance name on a single-substance label and still name a form of that
+ * same substance: a salt, an ester or other prodrug moiety, or a hydrate.
+ *
+ * `normalizeContentName` already strips the common salt words (hydrochloride, sodium, acetate,
+ * sulfate and so on), so a row filed under "metformin" finds "metformin hydrochloride" directly.
+ * This table covers the trailing words that normalization keeps. Every entry occurs as the last
+ * token of at least one single-substance label name in the openFDA archive index; the audit in
+ * `scripts/inventory/audit-empty-records.ts` lists every trailing token in the index together with
+ * the ones this table selects, so the selection can be checked against the archive rather than
+ * taken on trust. Misspellings are included only where the archive prints them on a real label.
+ *
+ * Deliberately absent: oxide, dioxide, hydroxide, peroxide, sulfide and cyanide (bonded compounds,
+ * not salts of the stem), acetonide and hexacetonide (a ketal that changes the medicine),
+ * antibody-conjugate linkers such as emtansine, vedotin and deruxtecan (a different medicine),
+ * and phosphate words (already stripped, and covalent in adenosine diphosphate).
+ */
+export const SALT_OR_ESTER_SUFFIXES: ReadonlySet<string> = new Set([
+  // Counter-ions the content normalizer keeps.
+  'chloride',
+  'dichloride',
+  'dihydrochloride',
+  'tetrahydrochloride',
+  'bromide',
+  'iodide',
+  'fluoride',
+  'nitrate',
+  'mononitrate',
+  'dinitrate',
+  'nitrite',
+  'carbonate',
+  'bicarbonate',
+  'gluconate',
+  'digluconate',
+  'lactate',
+  'lactobionate',
+  'malate',
+  'oxalate',
+  'salicylate',
+  'benzoate',
+  'bisulfate',
+  'disulfate',
+  'hemifumarate',
+  'camsylate',
+  'esylate',
+  'besilate',
+  'dimesylate',
+  'ditosylate',
+  'methylsulfate',
+  'mandelate',
+  'hippurate',
+  'pidolate',
+  'sorbate',
+  'adipate',
+  'glycolate',
+  'histidinate',
+  'olamine',
+  'epolamine',
+  'benzathine',
+  'erbumine',
+  // Esters and other prodrug moieties.
+  'diacetate',
+  'triacetate',
+  'propionate',
+  'dipropionate',
+  'valerate',
+  'butyrate',
+  'caproate',
+  'decanoate',
+  'undecanoate',
+  'undecylenate',
+  'enanthate',
+  'cypionate',
+  'oleate',
+  'pivalate',
+  'ethylsuccinate',
+  'etabonate',
+  'furoate',
+  'medoxomil',
+  'mofetil',
+  'disoproxil',
+  'alafenamide',
+  'dipivoxil',
+  'proxetil',
+  'axetil',
+  'cilexetil',
+  'etexilate',
+  'fosamil',
+  'marboxil',
+  'medocaril',
+  'enacarbil',
+  'lauroxil',
+  // Hydrates the content normalizer keeps.
+  'hexahydrate',
+  'heptahydrate',
+  'tetrahydrate',
+  'octahydrate',
+  'nonahydrate',
+  'decahydrate',
+  'tetradecahydrate',
+  'hemipentahydrate',
+  // Hydrochloride and chloride as the archive misspells them on real labels.
+  'hci',
+  'hchloride',
+  'hydchloride',
+  'hydochloride',
+  'hydrochloide',
+  'hydrocloride',
+  'hyrdochloride',
+  'chlloride',
+  'chlolride',
+  'cloride',
+  'flouride',
+  'gluonate',
+  'succiate',
+  'sucinate',
+])
+
+/**
+ * Stems for which a trailing anion names a different substance, not a form of the stem.
+ *
+ * "Metformin hydrochloride" is metformin; "sodium chloride" is not sodium. The list is the
+ * elemental and simple inorganic cations the ingest normaliser guards in the same way
+ * (`scripts/ingest/normalise.ts`), plus the non-metal elements that appear as medicine rows.
+ */
+export const INORGANIC_STEMS: ReadonlySet<string> = new Set([
+  'aluminum',
+  'aluminium',
+  'ammonium',
+  'antimony',
+  'arsenic',
+  'auric',
+  'barium',
+  'beryllium',
+  'bismuth',
+  'boron',
+  'cadmium',
+  'calcium',
+  'cesium',
+  'chromic',
+  'chromium',
+  'cobalt',
+  'cobaltic',
+  'cobaltous',
+  'copper',
+  'cupric',
+  'cuprous',
+  'ferric',
+  'ferrous',
+  'gallium',
+  'germanium',
+  'gold',
+  'hafnium',
+  'indium',
+  'iridium',
+  'iron',
+  'lanthanum',
+  'lead',
+  'lithic',
+  'lithium',
+  'magnesium',
+  'manganese',
+  'mercuric',
+  'mercurous',
+  'mercury',
+  'molybdenum',
+  'nickel',
+  'nickelous',
+  'niobium',
+  'osmium',
+  'palladium',
+  'platinum',
+  'plumbous',
+  'polonium',
+  'potassium',
+  'radium',
+  'rhenium',
+  'rhodium',
+  'rubidium',
+  'ruthenium',
+  'samarium',
+  'scandium',
+  'selenium',
+  'silver',
+  'sodium',
+  'stannic',
+  'stannous',
+  'strontium',
+  'tantalum',
+  'tellurium',
+  'thallium',
+  'thorium',
+  'titanium',
+  'tungsten',
+  'uranium',
+  'vanadium',
+  'yttrium',
+  'zinc',
+  'zirconium',
+  // Non-metal elements and simple inorganic stems that are medicine rows.
+  'hydrogen',
+  'carbon',
+  'nitrogen',
+  'oxygen',
+  'sulfur',
+  'sulphur',
+  'phosphorus',
+  'chlorine',
+  'bromine',
+  'iodine',
+  'fluorine',
+  'silicon',
+  'helium',
+  'neon',
+  'argon',
+  'krypton',
+  'xenon',
+  'nitrous',
+  'nitric',
+])
+
+/** One single-substance label filed under a salt, ester or hydrate form of a stem name. */
+export interface FormCandidate<T> {
+  /** The trailing word that names the form, e.g. "diacetate". */
+  form: string
+  /** The full normalized label name, e.g. "ethynodiol diacetate". */
+  labelKey: string
+  label: T
+}
+
+/** Stem name (content-normalized) to the single-substance labels filed under a form of it. */
+export type FormIndex<T> = Map<string, FormCandidate<T>[]>
+
+/**
+ * Registers a label's names in the form index. Only a label declaring exactly one active
+ * substance is registered: on any other label the trailing word may belong to a different
+ * ingredient, and a multi-substance label must never stand in for a substance alone.
+ */
+export function addFormCandidates<T>(
+  forms: FormIndex<T>,
+  names: readonly string[],
+  declaredSubstanceCount: number | undefined,
+  label: T,
+): void {
+  if (declaredSubstanceCount !== 1) return
+  for (const name of names) {
+    const key = normalizeName(name)
+    const tokens = key.split(' ')
+    if (tokens.length < 2) continue
+    const form = tokens[tokens.length - 1]!
+    if (!SALT_OR_ESTER_SUFFIXES.has(form)) continue
+    const stem = tokens.slice(0, -1).join(' ')
+    if (stem.length < 3) continue
+    const list = forms.get(stem) ?? []
+    if (list.some((entry) => entry.labelKey === key && entry.label === label)) continue
+    list.push({ form, labelKey: key, label })
+    forms.set(stem, list)
+  }
+}
+
+export type FormResolution<T> =
+  | { kind: 'MATCHED'; form: string; labelKey: string; label: T }
+  /** More than one form has its own single-substance label; choosing between them would be a judgement. */
+  | { kind: 'AMBIGUOUS_FORMS'; forms: string[] }
+  /** The stem is an element or simple inorganic cation, whose salts are different substances. */
+  | { kind: 'INORGANIC_STEM'; forms: string[] }
+  | { kind: 'NONE' }
+
+/**
+ * Resolves a bare stem name to the single-substance label filed under a form of it.
+ *
+ * Deterministic and narrow: exactly one form may be on the market alone. When "tenofovir" finds
+ * both "tenofovir disoproxil" and "tenofovir alafenamide", the two prodrugs have different
+ * pharmacokinetics and picking one for the parent would be a medical judgement, so the result is
+ * an explicit ambiguity rather than a label. Among several labels of the one form, `better`
+ * decides, which is the caller's own label preference.
+ */
+export function resolveByForm<T>(
+  stemKey: string,
+  forms: FormIndex<T>,
+  better: (candidate: T, held: T) => boolean,
+): FormResolution<T> {
+  const candidates = forms.get(stemKey)
+  if (!candidates || candidates.length === 0) return { kind: 'NONE' }
+  const distinctForms = [...new Set(candidates.map((entry) => entry.form))].sort()
+  if (INORGANIC_STEMS.has(stemKey)) return { kind: 'INORGANIC_STEM', forms: distinctForms }
+  if (distinctForms.length > 1) return { kind: 'AMBIGUOUS_FORMS', forms: distinctForms }
+  let chosen = candidates[0]!
+  for (const entry of candidates.slice(1)) {
+    if (better(entry.label, chosen.label)) chosen = entry
+  }
+  return { kind: 'MATCHED', form: chosen.form, labelKey: chosen.labelKey, label: chosen.label }
+}
+
+/**
  * Builds the name index by streaming the reduced NDJSON. A medicine is reachable by its generic
  * name and by any brand name on the label; when several labels answer to one name, `preferred`
- * decides between them.
+ * decides between them. The form index is built beside it from single-substance labels only.
  */
-export async function buildIndex(
-  indexPath: string,
-): Promise<{ names: Map<string, IndexedLabel>; identity: IdentityIndex }> {
+export async function buildIndex(indexPath: string): Promise<{
+  names: Map<string, IndexedLabel>
+  identity: IdentityIndex
+  forms: FormIndex<IndexedLabel>
+}> {
   const index = new Map<string, IndexedLabel>()
+  const forms: FormIndex<IndexedLabel> = new Map()
   const candidates = new Map<string, Map<string, SubstanceIdentity>>()
   let lineCount = 0
   // The reduced index is larger than the maximum string a Node process can hold, so it is read a
@@ -126,6 +444,13 @@ export async function buildIndex(
       const existing = index.get(key)
       if (!existing || preferred(entry, existing)) index.set(key, entry)
     }
+    // Brand names are left out: a brand is not a form of a substance name.
+    addFormCandidates(
+      forms,
+      [...entry.genericNames, ...(entry.substanceNames ?? [])],
+      entry.declaredSubstanceCount,
+      entry,
+    )
 
     // Identity is learned only from documents about a single substance, where the document-level
     // identifier can refer to nothing else. Candidates are keyed by the identifier itself so a
@@ -153,9 +478,9 @@ export async function buildIndex(
     if (byUnii.size === 1) identity.set(key, [...byUnii.values()][0]!)
   }
   console.log(
-    `[extract] read ${lineCount} indexed labels · ${index.size} distinct names · ${identity.size} unambiguous substance identities`,
+    `[extract] read ${lineCount} indexed labels · ${index.size} distinct names · ${identity.size} unambiguous substance identities · ${forms.size} stem names with a single-substance label under a salt, ester or hydrate form`,
   )
-  return { names: index, identity }
+  return { names: index, identity, forms }
 }
 
 export function loadMedicineRows(): MedicineRow[] {
@@ -166,12 +491,18 @@ export function loadMedicineRows(): MedicineRow[] {
     .sort()) {
     for (const line of readFileSync(join(dir, file), 'utf8').split('\n')) {
       if (!line.trim()) continue
-      const record = JSON.parse(line) as { id?: string; name?: string; tradeName?: string }
+      const record = JSON.parse(line) as {
+        id?: string
+        name?: string
+        tradeName?: string
+        approvalStatus?: string
+      }
       if (record.id && record.name) {
         rows.push({
           slug: record.id,
           name: record.name,
           ...(record.tradeName ? { tradeName: record.tradeName } : {}),
+          ...(record.approvalStatus ? { approvalStatus: record.approvalStatus } : {}),
         })
       }
     }
@@ -183,6 +514,13 @@ export function loadMedicineRows(): MedicineRow[] {
 export interface RowExtraction {
   /** The label the row's name or trade name matched, absent when no indexed name matched. */
   label?: IndexedLabel
+  /**
+   * Present when no label answered to the row's bare name and the label came from the
+   * salt/ester fallback instead: which form matched, and the name the label prints.
+   */
+  matchedForm?: { form: string; labelKey: string; printedName: string }
+  /** Why the fallback produced nothing, when it was tried and declined. */
+  formResolution?: Exclude<FormResolution<IndexedLabel>, { kind: 'MATCHED' }>
   background: MedicineRecordedBackground | null
   modules: string[]
 }
@@ -193,21 +531,47 @@ export interface RowExtraction {
  * Lifted out of the CLI loop unchanged so a second builder can run exactly this extraction —
  * the same name matching, the same identity resolution, the same attribution rules — rather than
  * a second implementation of it that could drift.
+ *
+ * When `forms` is supplied, the row carries a medicine status (`SALT_FORM_FALLBACK_STATUSES`) and
+ * no indexed name answers to the row's bare name or trade names, the row falls back to a
+ * single-substance label filed under one salt, ester or hydrate form of the same name
+ * (`resolveByForm`). The fallback never runs when a direct match exists, never runs for a row
+ * without a medicine status, never picks a multi-substance label, refuses an elemental stem, and
+ * refuses when more than one form is on the market alone.
  */
 export function extractRowBackground(args: {
   row: MedicineRow
   index: Map<string, IndexedLabel>
   identity: IdentityIndex
   retrievedAt: string
+  forms?: FormIndex<IndexedLabel>
 }): RowExtraction {
-  const { row, index, identity, retrievedAt } = args
+  const { row, index, identity, retrievedAt, forms } = args
   const candidates = [row.name, ...(row.tradeName ? row.tradeName.split(/\s*[/,]\s*/u) : [])]
   let label: IndexedLabel | undefined
   for (const candidate of candidates) {
     label = index.get(normalizeName(candidate))
     if (label) break
   }
-  if (!label) return { background: null, modules: [] }
+  let matchedForm: RowExtraction['matchedForm']
+  let formResolution: RowExtraction['formResolution']
+  if (!label && forms && SALT_FORM_FALLBACK_STATUSES.has(row.approvalStatus ?? '')) {
+    // Trade names are not tried here: a brand plus a salt word is not a name anything is filed under.
+    const resolution = resolveByForm(normalizeName(row.name), forms, preferred)
+    if (resolution.kind === 'MATCHED') {
+      label = resolution.label
+      matchedForm = {
+        form: resolution.form,
+        labelKey: resolution.labelKey,
+        printedName: resolution.label.genericNames[0] ?? resolution.labelKey,
+      }
+    } else if (resolution.kind !== 'NONE') {
+      formResolution = resolution
+    }
+  }
+  if (!label) {
+    return { background: null, modules: [], ...(formResolution ? { formResolution } : {}) }
+  }
 
   const artifact: LabelArtifact = {
     setId: label.setId,
@@ -246,10 +610,18 @@ export function extractRowBackground(args: {
 
   const { background, modules } = extractBackgroundFromLabel({
     artifact,
-    options: { retrievedAt, sourceLabel: `${row.name} label` },
+    options: {
+      retrievedAt,
+      // A fallback label says on the record which name it was published under, so a reader of
+      // "ethynodiol" sees that the source is the ethynodiol diacetate label and not a label that
+      // names the parent alone.
+      sourceLabel: matchedForm
+        ? `${row.name} label, published as "${matchedForm.printedName}"`
+        : `${row.name} label`,
+    },
     registryIdentifiers: identifiers,
   })
-  return { label, background, modules }
+  return { label, background, modules, ...(matchedForm ? { matchedForm } : {}) }
 }
 
 function serialize(dataset: Record<string, MedicineRecordedBackground>): string {
@@ -301,7 +673,7 @@ async function main() {
     console.error(`[extract] --retrieved-at must be YYYY-MM-DD, got "${retrievedAt}"`)
     process.exit(1)
   }
-  const { names: index, identity } = await buildIndex(indexPath)
+  const { names: index, identity, forms } = await buildIndex(indexPath)
   const rows = loadMedicineRows()
   console.log(`[extract] ${rows.length} medicine rows · ${index.size} indexed label names`)
 
@@ -310,11 +682,15 @@ async function main() {
     considered: 0,
     curatedSkipped: 0,
     noLabelMatch: 0,
+    saltOrEsterFallback: 0,
+    fallbackAmbiguousForms: 0,
+    fallbackInorganicStem: 0,
     nothingExtractable: 0,
     engineRejected: 0,
     written: 0,
   }
   const moduleCounts = new Map<string, number>()
+  const fallbackMatches: string[] = []
   let multiSubstanceSources = 0
 
   for (const row of rows) {
@@ -327,12 +703,19 @@ async function main() {
       continue
     }
 
-    const { label, background, modules } = extractRowBackground({
+    const { label, background, modules, matchedForm, formResolution } = extractRowBackground({
       row,
       index,
       identity,
       retrievedAt,
+      forms,
     })
+    if (matchedForm) {
+      stats.saltOrEsterFallback += 1
+      fallbackMatches.push(`${row.slug} -> "${matchedForm.labelKey}" (${label!.setId})`)
+    }
+    if (formResolution?.kind === 'AMBIGUOUS_FORMS') stats.fallbackAmbiguousForms += 1
+    if (formResolution?.kind === 'INORGANIC_STEM') stats.fallbackInorganicStem += 1
     if (!label) {
       stats.noLabelMatch += 1
       continue
@@ -380,6 +763,13 @@ async function main() {
   console.log(
     `[extract] ${multiSubstanceSources} record(s) came from a multi-substance source and carry product context only`,
   )
+  // Listed rather than counted: each fallback is a record whose source is a label published under
+  // a different name, and a reader of the run should be able to see every one.
+  if (fallbackMatches.length > 0) {
+    console.log(
+      `[extract] ${fallbackMatches.length} record(s) resolved through a salt, ester or hydrate form:\n  ${fallbackMatches.join('\n  ')}`,
+    )
+  }
   console.log(`[extract] wrote ${stats.written} record(s) to ${outPath}`)
 }
 
