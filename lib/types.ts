@@ -241,6 +241,36 @@ export interface DeliverySystem {
   safetyProfile: string
 }
 
+/**
+ * One registration as summarized from the snapshot by `summarizeStudy`
+ * (lib/dossier-completion/trial-registry-match.ts). Every field is a registry fact copied as
+ * printed; registry vocabulary such as `COMPLETED` or `QUADRUPLE` is kept verbatim here and
+ * translated into ordinary words only at the component.
+ */
+export type TrialRegistrationRecord =
+  import('./dossier-completion/trial-registry-match').RegistryStudySummary
+
+export interface TrialRegistrationsView {
+  /** The exact search space: snapshot identifier with its content hash. */
+  sourceIdentifier: string
+  /** ISO date (YYYY-MM-DD) parsed from the snapshot identifier; null when it carries none. */
+  snapshotDate: string | null
+  /** ISO timestamp of the stored pass that produced these matches. */
+  searchedAt: string
+  /** Corpus names (record name, brand, INN, salt form) that produced at least one match. */
+  matchedNames: string[]
+  /** Distinct registrations that matched, before the storage cap. */
+  totalMatched: number
+  /** Registrations kept on the search record (the storage cap is 250). */
+  storedCount: number
+  /** Matched registrations whose registry entry carries the posted-results flag. */
+  withPostedResults: number
+  /** The ranked, capped registrations the page shows; see `rankTrialRegistrations`. */
+  shown: TrialRegistrationRecord[]
+  /** How many registrations the page shows at most. */
+  shownLimit: number
+}
+
 export interface DrugDossier {
   id: string
   name: string
@@ -270,6 +300,12 @@ export interface DrugDossier {
   completionAssessment?: import('./dossier-completion/view').DossierCompletionAssessmentView
   /** Stored identity resolution for this record; absent until the inventory resolver has run. */
   inventoryResolution?: import('./queries/dossier-completion').InventoryResolutionView
+  /**
+   * Registrations from the stored exact-name pass over one dated ClinicalTrials.gov snapshot,
+   * ranked and capped for the page. Absent when the pass has not run or matched nothing; the
+   * completion assessment already states that outcome, so absence here adds no claim.
+   */
+  trialRegistrations?: TrialRegistrationsView
   substitutes?: DrugSubstitutes
   molecularSchema?: MolecularSchema
   auditPointsCount: {

@@ -27,6 +27,7 @@ import { DossierEvidenceIntroduction } from '@/components/dossier/DossierEvidenc
 import { DossierAccountActionsGuard } from '@/components/dossier/DossierAccountActionsGuard'
 import { DossierAudienceLensSelector } from '@/components/dossier/DossierAudienceLensSelector'
 import { DossierCompletionAssessment } from '@/components/dossier/DossierCompletionAssessment'
+import { RegisteredTrials } from '@/components/dossier/RegisteredTrials'
 import { DossierEvidencePath, evidenceNodeAnchorId } from '@/components/dossier/DossierEvidencePath'
 import { DossierOtherProgrammes } from '@/components/dossier/DossierOtherProgrammes'
 import { DossierHeader } from '@/components/dossier/DossierHeader'
@@ -2493,6 +2494,8 @@ export function MedicineDossierV2({ dossier }: MedicineDossierV2Props) {
             )}
 
             <DossierQuestionCoverage dossier={dossier} />
+
+            <RegisteredTrials dossier={dossier} />
 
             <DossierCompletionAssessment dossier={dossier} />
 

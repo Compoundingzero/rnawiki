@@ -21,6 +21,10 @@ function row(
     aliases: [],
     backgroundModules: ['authoredAt', 'labelPresence', 'version'],
     compositionIngredientCount: 0,
+    // A prescription label keeps the default row out of rule 5, which only reclassifies a record
+    // whose every label is a non-prescription product declaring it alongside other substances.
+    labelProductTypes: ['HUMAN PRESCRIPTION DRUG'],
+    singleSubstanceLabelCount: 1,
     registryIdentifiers: {},
     biologicalIdentityTaxonomyId: null,
     supplementIngredientGroupId: null,

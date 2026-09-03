@@ -1,0 +1,131 @@
+{
+  "schema": "rnawiki-empty-record-triage/v1",
+  "labelIndex": {
+    "path": "/Users/admin/rnawiki-ingest-data/label-sections-index.json",
+    "builtAt": "2026-09-02T02:39:02.412Z",
+    "labels": 87141,
+    "labelIndexSha256": "c679e72ddf8848723232835c528fc998507ce1ae25686ece63d5141abf48ccb9",
+    "presenceSha256": "daa24e175afe60240d708c58abaefb3bcf7898890140e178aafe7b5f7ddb823d"
+  },
+  "canonicalRecords": 9852,
+  "recordsWithoutCompletionAssessment": 0,
+  "emptyDefinition": "none of recorded-uses, mechanism, safety-statements, adverse-reactions, pharmacokinetics, population-statements is in a source-backed state (EXACT_SOURCE_BACKED, EXACT_STRUCTURED_SOURCE_DATA, REVIEWED_INTERPRETATION, SOURCE_STATED_NON_ESTABLISHMENT, REPRESENTED_SOURCE_CONFLICT)",
+  "emptyRecords": 6760,
+  "emptyByEntityClass": {
+    "APPROVED_BIOLOGIC": 99,
+    "APPROVED_MEDICINE": 973,
+    "BOTANICAL_OR_ORGANISM_PREPARATION": 2327,
+    "CONTROLLED_NO_APPROVED_USE": 21,
+    "INVESTIGATIONAL_MEDICINE": 209,
+    "MARKETED_PRODUCT_INGREDIENT": 293,
+    "OFF_LABEL_OR_COMPOUNDED": 100,
+    "REGISTRY_ONLY_IDENTITY": 3,
+    "SUPPLEMENT_INGREDIENT": 2709,
+    "WITHDRAWN_MEDICINE": 26
+  },
+  "medicineClassTriage": {
+    "classes": [
+      "APPROVED_MEDICINE",
+      "APPROVED_BIOLOGIC",
+      "INVESTIGATIONAL_MEDICINE",
+      "OFF_LABEL_OR_COMPOUNDED",
+      "WITHDRAWN_MEDICINE"
+    ],
+    "buckets": [
+      "SALT_OR_ESTER_LABEL_EXISTS",
+      "DISCONTINUED_NO_CURRENT_LABEL",
+      "INGREDIENT_MISCLASSIFIED",
+      "EXTRACTOR_MISSED",
+      "SINGLE_LABEL_WITHOUT_READ_SECTION",
+      "MULTI_SUBSTANCE_LABELS_ONLY"
+    ],
+    "byClass": {
+      "APPROVED_MEDICINE": {
+        "SALT_OR_ESTER_LABEL_EXISTS": 0,
+        "DISCONTINUED_NO_CURRENT_LABEL": 532,
+        "INGREDIENT_MISCLASSIFIED": 279,
+        "EXTRACTOR_MISSED": 27,
+        "SINGLE_LABEL_WITHOUT_READ_SECTION": 21,
+        "MULTI_SUBSTANCE_LABELS_ONLY": 114
+      },
+      "APPROVED_BIOLOGIC": {
+        "SALT_OR_ESTER_LABEL_EXISTS": 0,
+        "DISCONTINUED_NO_CURRENT_LABEL": 79,
+        "INGREDIENT_MISCLASSIFIED": 4,
+        "EXTRACTOR_MISSED": 1,
+        "SINGLE_LABEL_WITHOUT_READ_SECTION": 0,
+        "MULTI_SUBSTANCE_LABELS_ONLY": 15
+      },
+      "INVESTIGATIONAL_MEDICINE": {
+        "SALT_OR_ESTER_LABEL_EXISTS": 0,
+        "DISCONTINUED_NO_CURRENT_LABEL": 196,
+        "INGREDIENT_MISCLASSIFIED": 0,
+        "EXTRACTOR_MISSED": 0,
+        "SINGLE_LABEL_WITHOUT_READ_SECTION": 0,
+        "MULTI_SUBSTANCE_LABELS_ONLY": 13
+      },
+      "OFF_LABEL_OR_COMPOUNDED": {
+        "SALT_OR_ESTER_LABEL_EXISTS": 0,
+        "DISCONTINUED_NO_CURRENT_LABEL": 0,
+        "INGREDIENT_MISCLASSIFIED": 57,
+        "EXTRACTOR_MISSED": 1,
+        "SINGLE_LABEL_WITHOUT_READ_SECTION": 1,
+        "MULTI_SUBSTANCE_LABELS_ONLY": 41
+      },
+      "WITHDRAWN_MEDICINE": {
+        "SALT_OR_ESTER_LABEL_EXISTS": 0,
+        "DISCONTINUED_NO_CURRENT_LABEL": 24,
+        "INGREDIENT_MISCLASSIFIED": 1,
+        "EXTRACTOR_MISSED": 0,
+        "SINGLE_LABEL_WITHOUT_READ_SECTION": 0,
+        "MULTI_SUBSTANCE_LABELS_ONLY": 1
+      }
+    },
+    "approvedMedicine": {
+      "empty": 973,
+      "byBucket": {
+        "SALT_OR_ESTER_LABEL_EXISTS": 0,
+        "DISCONTINUED_NO_CURRENT_LABEL": 532,
+        "INGREDIENT_MISCLASSIFIED": 279,
+        "EXTRACTOR_MISSED": 27,
+        "SINGLE_LABEL_WITHOUT_READ_SECTION": 21,
+        "MULTI_SUBSTANCE_LABELS_ONLY": 114
+      },
+      "fractionOfEmpties": {
+        "SALT_OR_ESTER_LABEL_EXISTS": 0,
+        "DISCONTINUED_NO_CURRENT_LABEL": 0.5468,
+        "INGREDIENT_MISCLASSIFIED": 0.2867,
+        "EXTRACTOR_MISSED": 0.0277,
+        "SINGLE_LABEL_WITHOUT_READ_SECTION": 0.0216,
+        "MULTI_SUBSTANCE_LABELS_ONLY": 0.1172
+      }
+    }
+  },
+  "rule5": {
+    "description": "approved status, every label naming the record is a non-prescription product, no label declares it alone, no Drugs@FDA application recorded -> MARKETED_PRODUCT_INGREDIENT",
+    "classChanges": 284,
+    "byPair": {
+      "APPROVED_BIOLOGIC -> MARKETED_PRODUCT_INGREDIENT": 4,
+      "APPROVED_MEDICINE -> MARKETED_PRODUCT_INGREDIENT": 280
+    },
+    "emptyMedicineClassAgreement": {
+      "indexAndStoredAgree": 280,
+      "indexOnly": 61,
+      "storedOnly": 1
+    }
+  },
+  "saltOrEsterFallback": {
+    "suffixTableSize": 94,
+    "suffixesFoundAsTrailingTokenInIndex": 94,
+    "suffixesNotFoundInIndex": [],
+    "stemsWithSingleSubstanceFormLabels": 271,
+    "matched": [],
+    "declined": [
+      {
+        "slug": "tenofovir",
+        "entityClass": "APPROVED_MEDICINE",
+        "reason": "declined: more than one form has its own label (alafenamide, disoproxil)"
+      }
+    ]
+  }
+}

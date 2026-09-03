@@ -55,6 +55,14 @@ export interface InventoryRowInput {
   biologicalIdentityTaxonomyId: string | null
   supplementIngredientGroupId: string | null
   fdaApplicationNumber: string | null
+  /**
+   * Product types of the labels naming this record as an active ingredient, exactly as the archive
+   * records them. Rule 5 reads these to tell a medicine from a substance that reaches the corpus
+   * only as a declared ingredient of non-prescription products.
+   */
+  labelProductTypes: readonly string[]
+  /** Labels declaring this record as their only active ingredient. */
+  singleSubstanceLabelCount: number
   sampleProductNdcs: readonly string[]
   sampleLabelSetIds: readonly string[]
 }
@@ -268,6 +276,9 @@ export function resolveInventory(
       backgroundModules: row.backgroundModules,
       compositionIngredientCount: row.compositionIngredientCount,
       isPlaceholder,
+      labelProductTypes: row.labelProductTypes,
+      singleSubstanceLabelCount: row.singleSubstanceLabelCount,
+      hasRegulatoryApplication: row.fdaApplicationNumber !== null,
     })
     const warnings: AttributionWarning[] = []
     const evidence: string[] = []

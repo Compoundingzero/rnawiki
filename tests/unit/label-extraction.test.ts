@@ -823,3 +823,237 @@ describe('interaction signals are canonical evidence and are never capped', () =
     expect(JSON.stringify(second)).toBe(JSON.stringify(first))
   })
 })
+
+/**
+ * The recorded-uses misses, read from the labels themselves.
+ *
+ * 158 records had a label naming them alone whose indications section yielded nothing. Every
+ * sentence below is quoted from one of those labels; the rejecting rule is named beside it. The
+ * junk shapes at the end are the ones every fix here had to keep refusing.
+ */
+describe('label extraction: recorded-uses misses read from real labels', () => {
+  const uses = (text: string) =>
+    extractRecordedUses(
+      artifact({ sections: { indications_and_usage: text } }),
+      OPTIONS,
+    )?.statements.map((statement) => statement.textAsRecorded) ?? []
+
+  describe('a Highlights list the splitter could not end', () => {
+    // Enoxaparin, set id 014c6710-f2c4-fd1e-e063-6394a90ae525. One 900-character "sentence" with
+    // no full stop until the list ends; the excerpt cap refused all of it.
+    const ENOXAPARIN =
+      '1 INDICATIONS AND USAGE Enoxaparin sodium injection is a low molecular weight heparin (LMWH) indicated for: Prophylaxis of deep vein thrombosis (DVT) in abdominal surgery, hip replacement surgery, knee replacement surgery, or medical patients with severely restricted mobility during acute illness ( 1.1 ) Inpatient treatment of acute DVT with or without pulmonary embolism ( 1.2 ) Outpatient treatment of acute DVT without pulmonary embolism ( 1.2 ) Prophylaxis of ischemic complications of unstable angina and non−Q-wave myocardial infarction (MI) ( 1.3 ) Treatment of acute ST-segment elevation myocardial infarction (STEMI) managed medically or with subsequent percutaneous coronary intervention (PCI) ( 1.4 ) 1.1 Prophylaxis of Deep Vein Thrombosis Enoxaparin sodium injection is indicated for the prophylaxis of deep vein thrombosis (DVT), which may lead to pulmonary embolism (PE): in patients undergoing abdominal surgery who are at risk for thromboembolic complications.'
+
+    it('records the items at the cross-references the label printed between them', () => {
+      expect(uses(ENOXAPARIN)).toEqual([
+        'Enoxaparin sodium injection is a low molecular weight heparin (LMWH) indicated for: Prophylaxis of deep vein thrombosis (DVT) in abdominal surgery, hip replacement surgery, knee replacement surgery, or medical patients with severely restricted mobility during acute illness ( 1.1 )',
+        'Inpatient treatment of acute DVT with or without pulmonary embolism ( 1.2 )',
+        'Outpatient treatment of acute DVT without pulmonary embolism ( 1.2 )',
+      ])
+    })
+
+    it('splits at bullets, refuses the lead-in that ends in a colon, and keeps each item verbatim', () => {
+      // Aflibercept-jbvf, set id from label YESAFILI; 541 characters as one sentence.
+      const statements = uses(
+        '1 INDICATIONS AND USAGE YESAFILI is indicated for the treatment of: YESAFILI is a vascular endothelial growth factor (VEGF) inhibitor indicated for the treatment of patients with: • Neovascular (Wet) Age-Related Macular Degeneration (AMD) ( 1.1 ) • Macular Edema Following Retinal Vein Occlusion (RVO) ( 1.2 ) • Diabetic Macular Edema (DME) ( 1.3 ) • Diabetic Retinopathy (DR) ( 1.4 ) 1.1 Neovascular (Wet) Age-Related Macular Degeneration (AMD) YESAFILI is indicated for the treatment of patients with Neovascular (Wet) Age-Related Macular Degeneration (AMD).',
+      )
+      expect(statements).toEqual([
+        'Neovascular (Wet) Age-Related Macular Degeneration (AMD) ( 1.1 )',
+        'Macular Edema Following Retinal Vein Occlusion (RVO) ( 1.2 )',
+        'Diabetic Macular Edema (DME) ( 1.3 )',
+      ])
+      for (const statement of statements) expect(statement.endsWith(':')).toBe(false)
+    })
+
+    it('refuses a fragment that starts with a subsection number, whose heading cannot be separated', () => {
+      for (const statement of uses(ENOXAPARIN)) {
+        expect(statement).not.toMatch(/^\d+\.\d+\s/u)
+      }
+    })
+
+    it('leaves a citation in square brackets inside its sentence', () => {
+      // Lithium carbonate, set id 01c4facd-ed79-4078-ba33-2044de372d0f. "[see Clinical Studies
+      // ( 14 )]" is a citation, not a list boundary.
+      const statements = uses(
+        '1 INDICATIONS AND USAGE Lithium is a mood-stabilizing agent indicated as monotherapy for the treatment of bipolar I disorder: • Treatment of acute manic and mixed episodes in patients 7 years and older [see Clinical Studies ( 14 )] • Maintenance treatment in patients 7 years and older [see Clinical Studies ( 14 )] Lithium is a mood-stabilizing agent indicated as monotherapy for the treatment of bipolar I disorder: • Treatment of acute manic and mixed episodes in patients 7 years and older ( 1 ) • Maintenance treatment in patients 7 years and older ( 1 )',
+      )
+      expect(statements[0]).toBe(
+        'Treatment of acute manic and mixed episodes in patients 7 years and older [see Clinical Studies ( 14 )]',
+      )
+      for (const statement of statements) {
+        expect((statement.match(/\[/gu) ?? []).length).toBe((statement.match(/\]/gu) ?? []).length)
+      }
+    })
+
+    it('does not re-split a sentence that is within the cap, so nothing already recorded changes', () => {
+      const withinCap =
+        'SYNTHETIBRAND is indicated for: • synthetic condition one ( 1.1 ) • synthetic condition two ( 1.2 )'
+      expect(uses(withinCap)).toEqual([withinCap])
+    })
+
+    it('still refuses a single sentence longer than the excerpt cap when it has no printed boundary', () => {
+      // Decitabine, 509 characters and one real sentence. The excerpt cap is the engine's, not
+      // this module's, and a truncated sentence is not a sentence.
+      expect(
+        uses(
+          'Decitabine for Injection is indicated for treatment of adult patients with myelodysplastic syndromes (MDS) including previously treated and untreated, de novo and secondary MDS of all French-American-British subtypes (refractory anemia, refractory anemia with ringed sideroblasts, refractory anemia with excess blasts, refractory anemia with excess blasts in transformation, and chronic myelomonocytic leukemia) and intermediate-1, intermediate-2, and high-risk International Prognostic Scoring System groups.',
+        ),
+      ).toEqual([])
+    })
+  })
+
+  describe('a heading the old pattern did not know', () => {
+    it('strips "INDICATIONS & USAGE" whole rather than leaving "& USAGE" on the statement', () => {
+      // Argatroban. The old record began "& USAGE Argatroban is a direct thrombin inhibitor…".
+      expect(
+        uses(
+          '1 INDICATIONS & USAGE Argatroban is a direct thrombin inhibitor indicated for prophylaxis or treatment of thrombosis in adult patients with heparin-induced thrombocytopenia.',
+        )[0],
+      ).toMatch(/^Argatroban is a direct thrombin inhibitor/u)
+    })
+
+    it('strips the singular "Use" heading a Drug Facts panel prints', () => {
+      // Norgestrel and juniper tar, verbatim.
+      expect(uses('Use To prevent pregnancy')).toEqual(['To prevent pregnancy'])
+      expect(uses('Use For the temporary relief of pain')).toEqual([
+        'For the temporary relief of pain',
+      ])
+      // Aluminum zirconium pentachlorohydrex gly, verbatim: the item opens in lowercase with the
+      // verb a Drug Facts panel uses, and that verb is what marks "Use" as the heading.
+      expect(uses('Use reduces underarm wetness')).toEqual(['reduces underarm wetness'])
+    })
+
+    it('strips a heading printed twice, and one prefixed with "HOMEOPATHIC"', () => {
+      expect(
+        uses(
+          'INDICATIONS INDICATIONS: For the temporary relief of hot flashes, irritable disposition, liver, uterine, vaginal and sleep complaints.',
+        )[0],
+      ).toMatch(/^For the temporary relief of hot flashes/u)
+      expect(
+        uses(
+          'HOMEOPATHIC INDICATIONS: For the temporary relief of symptoms related to illness and infections such as cold and flu.',
+        )[0],
+      ).toMatch(/^For the temporary relief of symptoms/u)
+    })
+
+    it('refuses a short fragment that is a heading remnant', () => {
+      expect(uses('82699-201 Indications & Usage Section')).toEqual([])
+      expect(uses('INDICATIONS & USAGE SECTION Anxiety;')).toEqual([])
+    })
+  })
+
+  describe('a terse use the heading filter mistook for a heading', () => {
+    it('records a sentence-case phrase printed without a full stop', () => {
+      // Calcium cation and Sus scrofa bone marrow, verbatim: the whole section each time.
+      expect(uses('Uses For moisturizing dry nasal passages')).toEqual([
+        'For moisturizing dry nasal passages',
+      ])
+      expect(uses('INDICATIONS Arthritic pain in spine')).toEqual(['Arthritic pain in spine'])
+    })
+
+    it('still refuses a heading in capitals or Title Case', () => {
+      expect(uses('FOR ORAL USE ONLY')).toEqual([])
+      expect(uses('Topical Antisepsis')).toEqual([])
+      expect(uses('Uses Skin')).toEqual([])
+      expect(uses('Laxative')).toEqual([])
+    })
+  })
+
+  describe('a direction filter that was too broad', () => {
+    it('records a symptom that begins with the word "dry"', () => {
+      // Fumaria officinalis, verbatim.
+      expect(uses('Uses Dry skin rash with itching*')).toEqual(['Dry skin rash with itching*'])
+    })
+
+    it('still refuses the imperative', () => {
+      for (const direction of [
+        'Uses Dry the affected area completely.',
+        'Uses Clean the area before applying.',
+        'Uses Dry skin thoroughly before use.',
+        'Uses Use on muscles and veins as needed',
+        'Uses Use as directed by a physician.',
+      ]) {
+        expect(uses(direction), direction).toEqual([])
+      }
+    })
+  })
+
+  describe('what stays refused', () => {
+    it('refuses the regulatory disclaimers a homeopathic panel prints as their own sentences', () => {
+      const statements = uses(
+        'Uses Temporarily relieves occasional tiredness, mild body discomfort, appetite loss, sneezing, runny nose, dry cough, and irritation in the eyes, mouth, and throat.* *CLAIMS BASED ON TRADITIONAL HOMEOPATHIC PRACTICE, NOT ACCEPTED MEDICAL EVIDENCE, NOT FDA EVALUATED. This product is not intended to diagnose, treat, cure, or prevent any disease. These statements are based upon homeopathic principles. They have not been reviewed by the Food and Drug Administration.',
+      )
+      expect(statements).toHaveLength(1)
+      expect(statements[0]).toMatch(/^Temporarily relieves occasional tiredness/u)
+    })
+
+    it('keeps a use whose own sentence carries the disclaimer as a tail', () => {
+      // DHEA, verbatim: the panel prints no full stop between the list and the disclaimer, so
+      // the use and its caveat are one sentence. That sentence is the use, and it stays.
+      const statements = uses(
+        'USES: • For the temporary relief of symptoms including: • fatigue • low energy These statements are based upon homeopathic principles. They have not been reviewed by the Food and Drug Administration.',
+      )
+      expect(statements).toEqual([
+        '• For the temporary relief of symptoms including: • fatigue • low energy These statements are based upon homeopathic principles.',
+      ])
+    })
+
+    it('refuses a carve-out about another company’s labeling', () => {
+      // Dabigatran etexilate generics print these two sentences inside the indications section.
+      expect(
+        uses(
+          'Pediatric use information is approved for Boehringer Ingelheim Pharmaceuticals, Inc.’s Pradaxa (dabigatran etexilate) capsules. However, due to Boehringer Ingelheim Pharmaceuticals, Inc.’s marketing exclusivity rights, this drug product is not labeled with that information.',
+        ),
+      ).toEqual([])
+    })
+
+    it('refuses a cosmetic claim and a carton line', () => {
+      expect(uses('Regul Oil Serum indications')).toEqual([])
+      expect(uses('Uses HAIR GROWTH 60ml/2 fl oz')).toEqual([])
+      expect(uses('Uses Topical gel, applied to skin 30 ml')).toEqual([])
+    })
+
+    it('refuses a fragment that is only a cross-reference, a prescription marker or a pointer', () => {
+      for (const fragment of [
+        '( 1 )',
+        '( 1 , 14.1 )',
+        'Rx Only*',
+        'See symptoms on front panel.',
+      ]) {
+        expect(uses(fragment), fragment).toEqual([])
+      }
+    })
+
+    it('keeps refusing a one- or two-word fragment, which is a category label at that length', () => {
+      // "Hypertension." is methyldopa's whole indications section and "Hives*" a homeopathic
+      // one; both are left for a person, because no rule tells them from "Skin" or "Allergies.".
+      for (const fragment of [
+        '& USAGE Hypertension.',
+        'Hives*',
+        'Allergies.',
+        'Relieves hives *',
+      ]) {
+        expect(uses(fragment), fragment).toEqual([])
+      }
+    })
+
+    it('keeps the fallback away from the prose modules’ short fragments', () => {
+      const safety = extractSafetyStatements(
+        artifact({
+          sections: {
+            contraindications:
+              '4 CONTRAINDICATIONS SYNTHETIBRAND is contraindicated in: • patients with a known hypersensitivity to the synthetic medicine or any component of the synthetic formulation [see Warnings and Precautions ( 5.1 )] • patients with synthetic active bleeding of a serious synthetic kind [see Warnings and Precautions ( 5.2 )] • patients with a synthetic history of the synthetic outcome in the synthetic model described elsewhere in this synthetic labeling and repeated here to pass the cap [see Warnings and Precautions ( 5.3 )] • patients undergoing the synthetic procedure in the synthetic study period described in the synthetic clinical studies section of this synthetic labeling [see Clinical Studies ( 14 )]',
+          },
+        }),
+        OPTIONS,
+      )
+      // The lead-in ends in a colon and is refused; each item is a balanced verbatim span.
+      expect(safety!.contraindications![0]!.textAsRecorded).toMatch(
+        /^patients with a known hypersensitivity/u,
+      )
+      for (const statement of safety!.contraindications!) {
+        expect(statement.textAsRecorded.endsWith(':')).toBe(false)
+      }
+    })
+  })
+})

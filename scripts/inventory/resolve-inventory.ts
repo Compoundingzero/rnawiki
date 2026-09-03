@@ -38,6 +38,8 @@ interface RawRow {
   fda_application: string | null
   ndcs: string[] | null
   label_ids: string[] | null
+  label_product_types: string[] | null
+  single_substance_labels: string | null
 }
 
 function flag(name: string): string | undefined {
@@ -63,7 +65,9 @@ export async function loadInventoryRows(): Promise<{
       d.recorded_background->'supplementIngredient'->'source'->>'identifier' as dsld_group,
       d.recorded_background->'regulatoryApproval'->>'earliestApplicationNumber' as fda_application,
       d.recorded_background->'productListing'->'sampleProductNdcs' as ndcs,
-      d.recorded_background->'labelPresence'->'sampleLabelIds' as label_ids
+      d.recorded_background->'labelPresence'->'sampleLabelIds' as label_ids,
+      d.recorded_background->'labelPresence'->'productTypesAsRecorded' as label_product_types,
+      d.recorded_background->'labelPresence'->>'singleSubstanceLabelCount' as single_substance_labels
     from drugs d
     order by d.slug
   `)
@@ -88,6 +92,10 @@ export async function loadInventoryRows(): Promise<{
       biologicalIdentityTaxonomyId: stringOrNull(row.taxonomy_id),
       supplementIngredientGroupId: stringOrNull(row.dsld_group),
       fdaApplicationNumber: stringOrNull(row.fda_application),
+      labelProductTypes: Array.isArray(row.label_product_types)
+        ? row.label_product_types.filter((v): v is string => typeof v === 'string')
+        : [],
+      singleSubstanceLabelCount: Number(row.single_substance_labels ?? 0),
       sampleProductNdcs: Array.isArray(row.ndcs)
         ? row.ndcs.filter((v): v is string => typeof v === 'string')
         : [],

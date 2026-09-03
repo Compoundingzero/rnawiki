@@ -4,11 +4,11 @@
   "complete": 9852,
   "incomplete": 0,
   "byState": {
-    "EXACT_SOURCE_BACKED": 12218,
+    "EXACT_SOURCE_BACKED": 12374,
     "EXACT_STRUCTURED_SOURCE_DATA": 57542,
     "REVIEWED_INTERPRETATION": 0,
     "SOURCE_STATED_NOT_ESTABLISHED": 8,
-    "NO_QUALIFYING_EVIDENCE_AFTER_SEARCH": 93286,
+    "NO_QUALIFYING_EVIDENCE_AFTER_SEARCH": 93130,
     "RESULTS_NOT_POSTED": 1138,
     "NOT_MEASURED": 0,
     "NOT_APPLICABLE": 32848,
@@ -59,11 +59,11 @@
       "BLOCKED_HUMAN_REVIEW": 0
     },
     "recorded-uses": {
-      "EXACT_SOURCE_BACKED": 2912,
+      "EXACT_SOURCE_BACKED": 3017,
       "EXACT_STRUCTURED_SOURCE_DATA": 0,
       "REVIEWED_INTERPRETATION": 0,
       "SOURCE_STATED_NOT_ESTABLISHED": 0,
-      "NO_QUALIFYING_EVIDENCE_AFTER_SEARCH": 6940,
+      "NO_QUALIFYING_EVIDENCE_AFTER_SEARCH": 6835,
       "RESULTS_NOT_POSTED": 0,
       "NOT_MEASURED": 0,
       "NOT_APPLICABLE": 0,
@@ -131,11 +131,11 @@
       "BLOCKED_HUMAN_REVIEW": 0
     },
     "safety-statements": {
-      "EXACT_SOURCE_BACKED": 1642,
+      "EXACT_SOURCE_BACKED": 1693,
       "EXACT_STRUCTURED_SOURCE_DATA": 0,
       "REVIEWED_INTERPRETATION": 0,
       "SOURCE_STATED_NOT_ESTABLISHED": 0,
-      "NO_QUALIFYING_EVIDENCE_AFTER_SEARCH": 8210,
+      "NO_QUALIFYING_EVIDENCE_AFTER_SEARCH": 8159,
       "RESULTS_NOT_POSTED": 0,
       "NOT_MEASURED": 0,
       "NOT_APPLICABLE": 0,
@@ -405,8 +405,8 @@
     "literature-search": 0,
     "reviewed-conclusion": 0
   },
-  "humanReadSuggestedRecords": 6494,
-  "inputDigest": "8985774cd12d7b7a3d89d2e7ecce147119843f9c63b5c58c0cecb1b17e33f135",
-  "assessedAt": "2026-09-02",
+  "humanReadSuggestedRecords": 6490,
+  "inputDigest": "dc4380f5e9aa9a975544be9e2a34c83ef8d3443c163ffeff9d91deaa686d3b13",
+  "assessedAt": "2026-09-03",
   "check": false
 }

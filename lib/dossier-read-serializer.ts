@@ -70,6 +70,8 @@ export interface ProgrammeScopedMedicineIdentity {
   /** Identity and completeness are record facts, not medicine-wide evidence, so they stay here. */
   completionAssessment?: DrugDossier['completionAssessment']
   inventoryResolution?: DrugDossier['inventoryResolution']
+  /** Registry facts about registration only; they carry no result and belong to no programme. */
+  trialRegistrations?: DrugDossier['trialRegistrations']
 }
 
 export interface LegacyMedicineEvidenceBoundary {
@@ -236,6 +238,7 @@ export function separateLegacyMedicineEvidence<T extends DossierReadPayload>(
     viewCount,
     completionAssessment,
     inventoryResolution,
+    trialRegistrations,
     ...legacyFields
   } = payload.drug
 
@@ -245,6 +248,7 @@ export function separateLegacyMedicineEvidence<T extends DossierReadPayload>(
     modality,
     ...(completionAssessment ? { completionAssessment } : {}),
     ...(inventoryResolution ? { inventoryResolution } : {}),
+    ...(trialRegistrations ? { trialRegistrations } : {}),
     ...(tradeName ? { tradeName } : {}),
     ...(molecularSchema ? { molecularSchema } : {}),
     ...(dossierDepth ? { dossierDepth } : {}),

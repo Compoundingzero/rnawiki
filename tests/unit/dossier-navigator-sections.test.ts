@@ -274,6 +274,62 @@ describe('the navigator reports coverage rather than assuming it', () => {
     expect(incomplete?.coverage).toBe('not_documented')
   })
 
+  /**
+   * The registrations section renders only where the registry pass matched something, so the row
+   * is offered only then; a record whose pass matched nothing says so in the completeness section.
+   */
+  it('offers the registered-trials row only when the record carries matched registrations', () => {
+    expect(
+      dossierNavigatorSections(dossier()).some((section) => section.id === 'registered-trials'),
+    ).toBe(false)
+
+    const study = {
+      nctId: 'NCT00000001',
+      briefTitle: null,
+      overallStatus: 'COMPLETED',
+      studyType: null,
+      phases: [],
+      hasResults: false,
+      resultsFirstPostDate: null,
+      startDate: null,
+      primaryCompletionDate: null,
+      completionDate: null,
+      lastUpdatePostDate: null,
+      whyStopped: null,
+      enrollment: { count: null, type: null },
+      leadSponsor: { name: null, class: null },
+      conditions: [],
+      matchedInterventionNames: [],
+      eligibility: {
+        sex: null,
+        minimumAge: null,
+        maximumAge: null,
+        stdAges: [],
+        healthyVolunteers: null,
+      },
+      primaryOutcomes: [],
+      design: { allocation: null, masking: null, primaryPurpose: null },
+    }
+    const row = dossierNavigatorSections(
+      dossier({
+        trialRegistrations: {
+          sourceIdentifier: 'clinicaltrials.gov/api/v2 studies snapshot 2026-09-01T09:00:05',
+          snapshotDate: '2026-09-01',
+          searchedAt: '2026-09-02T00:00:00.000Z',
+          matchedNames: ['Example medicine'],
+          totalMatched: 12,
+          storedCount: 12,
+          withPostedResults: 0,
+          shown: [study],
+          shownLimit: 8,
+        },
+      }),
+    ).find((section) => section.id === 'registered-trials')
+    expect(row?.label).toBe('Registered clinical trials')
+    expect(row?.coverage).toBe('answered')
+    expect(row?.count).toBe(12)
+  })
+
   it('labels sections in plain language, never as a field name or an enum', () => {
     for (const section of dossierNavigatorSections(dossier())) {
       expect(section.label).not.toMatch(/[A-Z]{3,}|_|\bAsRecorded\b|[a-z][A-Z]/u)

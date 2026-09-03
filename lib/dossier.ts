@@ -11,6 +11,8 @@ import type {
   DrugDossier,
   DrugModality,
   MeasuredVsInferredSummary,
+  TrialRegistrationRecord,
+  TrialRegistrationsView,
 } from '@/lib/types'
 import type { StaleSourceSummary } from '@/lib/dossier-question-issues'
 
@@ -80,6 +82,8 @@ export interface RowToDossierOptions {
   completionAssessment?: DrugDossier['completionAssessment']
   /** Stored inventory resolution, loaded by the caller; undefined when not loaded or not run. */
   inventoryResolution?: DrugDossier['inventoryResolution']
+  /** Ranked registrations from the stored registry pass; undefined when not loaded or none matched. */
+  trialRegistrations?: DrugDossier['trialRegistrations']
 }
 
 export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDossier {
@@ -114,6 +118,7 @@ export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDoss
     sourceFreshness: opts?.driftedSources,
     completionAssessment: opts?.completionAssessment,
     inventoryResolution: opts?.inventoryResolution,
+    trialRegistrations: opts?.trialRegistrations,
     substitutes: row.substitutes ?? undefined,
     molecularSchema: row.molecularSchema ?? undefined,
     auditPointsCount: countAuditPoints(row.keyAudits),
@@ -139,6 +144,178 @@ export function rowToDossier(row: DrugRow, opts?: RowToDossierOptions): DrugDoss
     lastEditedBy: row.lastEditedBy ?? undefined,
     isMachineVerifiedStructure: row.isMachineVerifiedStructure,
     viewCount: row.viewCount,
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Trial registrations
+// ---------------------------------------------------------------------------
+
+/** How many registrations the page shows per record. Everything beyond it is counted, not listed. */
+export const TRIAL_REGISTRATIONS_SHOWN_LIMIT = 8
+
+/** The ordering rule, in the words the page prints beside the list. */
+export const TRIAL_REGISTRATIONS_ORDER_SENTENCE =
+  'Registrations with results posted on ClinicalTrials.gov come first, then completed studies, then larger enrolments, then the most recent start dates.'
+
+const NCT_ID = /^NCT\d{8}$/u
+
+function optionalText(value: unknown): string | null {
+  return typeof value === 'string' && value.trim() ? value.trim() : null
+}
+
+function textList(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((entry): entry is string => typeof entry === 'string' && entry.trim() !== '')
+    : []
+}
+
+/**
+ * Re-reads one stored study summary defensively. The stored shape is what `summarizeStudy` wrote,
+ * but a JSON column is not a type, so every field is checked before it reaches a page. Anything
+ * that is not the expected primitive becomes the absent value rather than an invented one.
+ */
+export function toTrialRegistrationRecord(raw: unknown): TrialRegistrationRecord | null {
+  if (!raw || typeof raw !== 'object') return null
+  const study = raw as Record<string, unknown>
+  const nctId = optionalText(study.nctId)
+  if (!nctId || !NCT_ID.test(nctId)) return null
+  const enrollment = (study.enrollment ?? {}) as Record<string, unknown>
+  const sponsor = (study.leadSponsor ?? {}) as Record<string, unknown>
+  const eligibility = (study.eligibility ?? {}) as Record<string, unknown>
+  const design = (study.design ?? {}) as Record<string, unknown>
+  return {
+    nctId,
+    briefTitle: optionalText(study.briefTitle),
+    overallStatus: optionalText(study.overallStatus),
+    studyType: optionalText(study.studyType),
+    phases: textList(study.phases),
+    hasResults: study.hasResults === true,
+    resultsFirstPostDate: optionalText(study.resultsFirstPostDate),
+    startDate: optionalText(study.startDate),
+    primaryCompletionDate: optionalText(study.primaryCompletionDate),
+    completionDate: optionalText(study.completionDate),
+    lastUpdatePostDate: optionalText(study.lastUpdatePostDate),
+    whyStopped: optionalText(study.whyStopped),
+    enrollment: {
+      count:
+        typeof enrollment.count === 'number' && Number.isFinite(enrollment.count)
+          ? enrollment.count
+          : null,
+      type: optionalText(enrollment.type),
+    },
+    leadSponsor: { name: optionalText(sponsor.name), class: optionalText(sponsor.class) },
+    conditions: textList(study.conditions),
+    matchedInterventionNames: textList(study.matchedInterventionNames),
+    eligibility: {
+      sex: optionalText(eligibility.sex),
+      minimumAge: optionalText(eligibility.minimumAge),
+      maximumAge: optionalText(eligibility.maximumAge),
+      stdAges: textList(eligibility.stdAges),
+      healthyVolunteers:
+        typeof eligibility.healthyVolunteers === 'boolean' ? eligibility.healthyVolunteers : null,
+    },
+    primaryOutcomes: Array.isArray(study.primaryOutcomes)
+      ? study.primaryOutcomes.flatMap((outcome) => {
+          const entry = (outcome ?? {}) as Record<string, unknown>
+          const measure = optionalText(entry.measure)
+          return measure ? [{ measure, timeFrame: optionalText(entry.timeFrame) }] : []
+        })
+      : [],
+    design: {
+      allocation: optionalText(design.allocation),
+      masking: optionalText(design.masking),
+      primaryPurpose: optionalText(design.primaryPurpose),
+    },
+  }
+}
+
+/**
+ * The page order: results posted first, then completed, then larger enrolments, then the most
+ * recent start date. The NCT id closes the order so two runs over the same rows agree exactly.
+ * Nothing in the rule reads a result; "results posted" is the registry flag, not an outcome.
+ */
+export function rankTrialRegistrations(
+  studies: readonly TrialRegistrationRecord[],
+): TrialRegistrationRecord[] {
+  return [...studies].sort((left, right) => {
+    if (left.hasResults !== right.hasResults) return left.hasResults ? -1 : 1
+    const leftDone = left.overallStatus === 'COMPLETED'
+    const rightDone = right.overallStatus === 'COMPLETED'
+    if (leftDone !== rightDone) return leftDone ? -1 : 1
+    const leftCount = left.enrollment.count ?? -1
+    const rightCount = right.enrollment.count ?? -1
+    if (leftCount !== rightCount) return rightCount - leftCount
+    const leftStart = left.startDate ?? ''
+    const rightStart = right.startDate ?? ''
+    if (leftStart !== rightStart) return leftStart < rightStart ? 1 : -1
+    return left.nctId.localeCompare(right.nctId)
+  })
+}
+
+/** The dated part of a snapshot identifier such as `… studies snapshot 2026-09-01T09:00:05 sha256:…`. */
+export function snapshotDateFromIdentifier(sourceIdentifier: string): string | null {
+  const match = /\b(\d{4}-\d{2}-\d{2})(?:T\d{2}:\d{2}:\d{2})?\b/u.exec(sourceIdentifier)
+  return match?.[1] ?? null
+}
+
+export interface TrialRegistrationsInput {
+  sourceIdentifier: string
+  requestedAt: Date | string
+  /** `matched[0]` of the stored search record, as written by the registry pass. */
+  envelope: unknown
+}
+
+/**
+ * Builds the page view from one stored search record. Returns null when the record holds no
+ * studies, so a page never renders an empty registrations section: the completion assessment
+ * already states the search outcome for that case.
+ */
+export function buildTrialRegistrationsView(
+  input: TrialRegistrationsInput,
+): TrialRegistrationsView | null {
+  if (!input.envelope || typeof input.envelope !== 'object') return null
+  const envelope = input.envelope as Record<string, unknown>
+  const studies = Array.isArray(envelope.studies)
+    ? envelope.studies.flatMap((raw) => {
+        const record = toTrialRegistrationRecord(raw)
+        return record ? [record] : []
+      })
+    : []
+  if (studies.length === 0) return null
+  const ranked = rankTrialRegistrations(studies)
+  const totalMatched =
+    typeof envelope.totalMatchedStudies === 'number' &&
+    envelope.totalMatchedStudies >= studies.length
+      ? envelope.totalMatchedStudies
+      : studies.length
+  const postedInStored = studies.filter((study) => study.hasResults).length
+  const withPostedResults =
+    typeof envelope.withPostedResults === 'number' && envelope.withPostedResults >= postedInStored
+      ? envelope.withPostedResults
+      : postedInStored
+  const matchedNames = Array.isArray(envelope.matchedKeys)
+    ? [
+        ...new Set(
+          envelope.matchedKeys.flatMap((entry) => {
+            const name = optionalText((entry as Record<string, unknown> | null)?.name)
+            return name ? [name] : []
+          }),
+        ),
+      ]
+    : []
+  const requestedAt =
+    input.requestedAt instanceof Date ? input.requestedAt : new Date(input.requestedAt)
+  return {
+    sourceIdentifier: input.sourceIdentifier,
+    snapshotDate: snapshotDateFromIdentifier(input.sourceIdentifier),
+    searchedAt: requestedAt.toISOString(),
+    matchedNames,
+    totalMatched,
+    storedCount: studies.length,
+    withPostedResults,
+    shown: ranked.slice(0, TRIAL_REGISTRATIONS_SHOWN_LIMIT),
+    shownLimit: TRIAL_REGISTRATIONS_SHOWN_LIMIT,
   }
 }
 

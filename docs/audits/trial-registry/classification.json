@@ -1,0 +1,257 @@
+{
+  "schema": "rnawiki-trial-registry-classification/v1",
+  "measuredAt": "2026-09-03",
+  "snapshot": {
+    "dataTimestamp": "2026-09-01T09:00:05",
+    "studies": 601158,
+    "matchingRule": "exact normalised intervention name, unambiguous aliases only, at most 250 stored per record"
+  },
+  "storedStudyRows": 148733,
+  "distinctStudies": 101831,
+  "resultsPostedShareOfDistinctStudies": 30,
+  "totals": {
+    "distinct_studies": 101831,
+    "with_results_posted": 30556,
+    "completed_with_results": 24827,
+    "completed_without_results": 39496,
+    "ongoing": 12847,
+    "stopped": 13470,
+    "status_unknown": 10754
+  },
+  "byStatusAndResults": [
+    {
+      "status": "COMPLETED",
+      "results_posted": false,
+      "n": 39496
+    },
+    {
+      "status": "COMPLETED",
+      "results_posted": true,
+      "n": 24827
+    },
+    {
+      "status": "UNKNOWN",
+      "results_posted": false,
+      "n": 10706
+    },
+    {
+      "status": "RECRUITING",
+      "results_posted": false,
+      "n": 6550
+    },
+    {
+      "status": "TERMINATED",
+      "results_posted": true,
+      "n": 5004
+    },
+    {
+      "status": "TERMINATED",
+      "results_posted": false,
+      "n": 4384
+    },
+    {
+      "status": "WITHDRAWN",
+      "results_posted": false,
+      "n": 3825
+    },
+    {
+      "status": "ACTIVE_NOT_RECRUITING",
+      "results_posted": false,
+      "n": 3196
+    },
+    {
+      "status": "NOT_YET_RECRUITING",
+      "results_posted": false,
+      "n": 2148
+    },
+    {
+      "status": "ACTIVE_NOT_RECRUITING",
+      "results_posted": true,
+      "n": 673
+    },
+    {
+      "status": "ENROLLING_BY_INVITATION",
+      "results_posted": false,
+      "n": 277
+    },
+    {
+      "status": "SUSPENDED",
+      "results_posted": false,
+      "n": 256
+    },
+    {
+      "status": "NO_LONGER_AVAILABLE",
+      "results_posted": false,
+      "n": 205
+    },
+    {
+      "status": "APPROVED_FOR_MARKETING",
+      "results_posted": false,
+      "n": 148
+    },
+    {
+      "status": "AVAILABLE",
+      "results_posted": false,
+      "n": 79
+    },
+    {
+      "status": "UNKNOWN",
+      "results_posted": true,
+      "n": 48
+    },
+    {
+      "status": "TEMPORARILY_NOT_AVAILABLE",
+      "results_posted": false,
+      "n": 5
+    },
+    {
+      "status": "RECRUITING",
+      "results_posted": true,
+      "n": 3
+    },
+    {
+      "status": "SUSPENDED",
+      "results_posted": true,
+      "n": 1
+    }
+  ],
+  "perRecordByEntityClass": [
+    {
+      "entity_class": "SUPPLEMENT_INGREDIENT",
+      "records": 3023,
+      "no_registration_matched": 2276,
+      "matched_none_with_results": 467,
+      "at_least_one_with_results": 280,
+      "three_or_more_with_results": 130,
+      "median_matched": "0.0",
+      "max_matched": 250
+    },
+    {
+      "entity_class": "BOTANICAL_OR_ORGANISM_PREPARATION",
+      "records": 2758,
+      "no_registration_matched": 2493,
+      "matched_none_with_results": 193,
+      "at_least_one_with_results": 72,
+      "three_or_more_with_results": 13,
+      "median_matched": "0.0",
+      "max_matched": 250
+    },
+    {
+      "entity_class": "APPROVED_MEDICINE",
+      "records": 2622,
+      "no_registration_matched": 744,
+      "matched_none_with_results": 313,
+      "at_least_one_with_results": 1565,
+      "three_or_more_with_results": 1249,
+      "median_matched": "9.0",
+      "max_matched": 250
+    },
+    {
+      "entity_class": "APPROVED_BIOLOGIC",
+      "records": 496,
+      "no_registration_matched": 133,
+      "matched_none_with_results": 69,
+      "at_least_one_with_results": 294,
+      "three_or_more_with_results": 229,
+      "median_matched": "7.0",
+      "max_matched": 250
+    },
+    {
+      "entity_class": "INVESTIGATIONAL_MEDICINE",
+      "records": 390,
+      "no_registration_matched": 200,
+      "matched_none_with_results": 34,
+      "at_least_one_with_results": 156,
+      "three_or_more_with_results": 110,
+      "median_matched": "0.0",
+      "max_matched": 250
+    },
+    {
+      "entity_class": "MARKETED_PRODUCT_INGREDIENT",
+      "records": 359,
+      "no_registration_matched": 321,
+      "matched_none_with_results": 19,
+      "at_least_one_with_results": 19,
+      "three_or_more_with_results": 8,
+      "median_matched": "0.0",
+      "max_matched": 200
+    },
+    {
+      "entity_class": "OFF_LABEL_OR_COMPOUNDED",
+      "records": 128,
+      "no_registration_matched": 94,
+      "matched_none_with_results": 18,
+      "at_least_one_with_results": 16,
+      "three_or_more_with_results": 9,
+      "median_matched": "0.0",
+      "max_matched": 167
+    },
+    {
+      "entity_class": "WITHDRAWN_MEDICINE",
+      "records": 29,
+      "no_registration_matched": 7,
+      "matched_none_with_results": 11,
+      "at_least_one_with_results": 11,
+      "three_or_more_with_results": 6,
+      "median_matched": "4.0",
+      "max_matched": 52
+    },
+    {
+      "entity_class": "CONTROLLED_NO_APPROVED_USE",
+      "records": 21,
+      "no_registration_matched": 7,
+      "matched_none_with_results": 8,
+      "at_least_one_with_results": 6,
+      "three_or_more_with_results": 4,
+      "median_matched": "2.0",
+      "max_matched": 236
+    },
+    {
+      "entity_class": "COMBINATION_PRODUCT",
+      "records": 21,
+      "no_registration_matched": 3,
+      "matched_none_with_results": 6,
+      "at_least_one_with_results": 12,
+      "three_or_more_with_results": 9,
+      "median_matched": "5.0",
+      "max_matched": 29
+    },
+    {
+      "entity_class": "REGISTRY_ONLY_IDENTITY",
+      "records": 5,
+      "no_registration_matched": 5,
+      "matched_none_with_results": 0,
+      "at_least_one_with_results": 0,
+      "three_or_more_with_results": 0,
+      "median_matched": "0.0",
+      "max_matched": 0
+    }
+  ],
+  "recordsByResultsPostedCount": [
+    {
+      "bucket": "0",
+      "records": 7421
+    },
+    {
+      "bucket": "1-2",
+      "records": 664
+    },
+    {
+      "bucket": "3-9",
+      "records": 703
+    },
+    {
+      "bucket": "10-49",
+      "records": 796
+    },
+    {
+      "bucket": "50+",
+      "records": 268
+    }
+  ],
+  "whatIsStored": "registration facts only: title, status, phases, dates, enrollment, sponsor, conditions, eligibility, primary outcome measures and time frames, design, whether results are posted and when. No outcome values, no adverse-event tables.",
+  "decisionGate": {
+    "rule": "fewer than 30% of trials with usable data escalates",
+    "measured": "results posted for 30.0% of distinct studies; reaches 2,431 of 9,852 records (24.7%)"
+  }
+}
