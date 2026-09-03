@@ -140,6 +140,26 @@ page, the search result and the site header, and it is a product decision about 
 substance that genuinely holds an FDA label of that kind. It is left for the owner rather than
 changed here.
 
+## Deployed
+
+Merged as `f7f8285` and deployed; the data was applied to production over certificate-verified TLS
+(9,855 background envelopes validated with 0 failures, 9,859 resolution rows, 1,017 assessments
+changed, then an idempotent re-check reporting 0 changed). All 9,852 dossiers were resubmitted to
+IndexNow, one batch, HTTP 200, none rejected.
+
+One deployment trap is worth writing down. `agents:import` refuses a deploy when production's
+recorded background disagrees with the checked agent package, and the package's per-record digests
+come from `data/recorded-background.ndjson`, which `agents:run` reads rather than writes. Changing
+the extractor therefore invalidates that file, and rebuilding the agent package alone does not fix
+it: three deployments failed identically, each reporting the same 733 subjects and the same stale
+corpus digest, while `agents:import:check` passed locally because `--check` never opens the
+transaction that performs the comparison.
+
+The order that works is: apply the background, republish the export with `export:dataset
+--output-dir data`, commit it, then `agents:run` and `attach:agent-datasets`, because the manifest
+digest is checked against the committed corpus as well as the working tree. Verified before pushing
+by comparing all 9,855 package digests against production directly: 0 mismatched.
+
 ## What was not done, and why
 
 - **No trial narratives.** Phase 4 asked for a sentence saying what a trial showed against its
