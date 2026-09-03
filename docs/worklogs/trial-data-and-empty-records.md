@@ -123,6 +123,23 @@ The re-split is now opt-in and enabled only for indications and contraindication
 bulleted lists. The count fell from ten to two, and both survivors are false positives of the
 detector: real contraindication sentences that open with a brand name in capitals.
 
+## The reclassification is only half visible
+
+Rule 5 changes the stored entity class, and with it the meta description and the completion
+assessment. `1,2-hexanediol` now describes itself to a search engine as "an ingredient of marketed
+products".
+
+The page header still reads "Small chemical medicine. Approved in the United States (FDA)", because
+that line is built from `drugs.modality` and `drugs.approval_status`, which are ingest facts and are
+literally true: openFDA does carry an over-the-counter drug label listing this substance as an
+active ingredient. Presented as the first line under the name, it still tells a reader that a
+cosmetic humectant is an approved medicine.
+
+Making that header follow the entity class is a copy change across the dossier header, the home
+page, the search result and the site header, and it is a product decision about how to describe a
+substance that genuinely holds an FDA label of that kind. It is left for the owner rather than
+changed here.
+
 ## What was not done, and why
 
 - **No trial narratives.** Phase 4 asked for a sentence saying what a trial showed against its
