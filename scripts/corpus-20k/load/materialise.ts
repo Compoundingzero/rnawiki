@@ -20,6 +20,7 @@
  *   --no-checkpoint         skip the batch.ts checkpoint call
  *   --indexable-threshold n present-field floor for `indexable`; default: Gate 1b, else 3
  *   --allow-working-database  permit writes to rnawiki_corpus_completion (refused by default)
+ *   --production-confirmed  required before any write to a remote database (deployment plan)
  *
  * Idempotence. Each batch writes a marker file under `--load-dir` holding the batch's input
  * digest. Re-running a batch whose marker records the same digest does no database work at all.
@@ -50,7 +51,7 @@ import { fileURLToPath } from 'node:url'
 import 'dotenv/config'
 import { Client } from 'pg'
 
-import { databaseSslConfig } from '@/db/ssl'
+import { databaseSslConfig, isLocalDatabaseHost } from '@/db/ssl'
 
 /* ------------------------------------------------------------------------------------------- */
 /* Shapes of the recorded inputs                                                                 */
@@ -738,6 +739,20 @@ async function main(): Promise<void> {
     throw new Error(
       'Refusing to write to the working database rnawiki_corpus_completion. Re-run with ' +
         '--dry-run, point DATABASE_URL at a disposable database, or pass --allow-working-database.',
+    )
+  }
+
+  /*
+   * The deployment plan (docs/specs/deployment-plan.md, step 2) requires that a load against a
+   * remote database is never something the operator can reach by accident: the loader "takes an
+   * explicit production URL and refuses without --production-confirmed". A local or
+   * railway.internal host is a workstation or disposable database and stays unguarded; anything
+   * reachable over the network is treated as production until the operator says otherwise.
+   */
+  if (!dryRun && !isLocalDatabaseHost(connectionString) && !flag('production-confirmed')) {
+    throw new Error(
+      `Refusing to write to the remote database "${databaseName}" without --production-confirmed. ` +
+        'Re-run with --dry-run to rehearse, or pass --production-confirmed to load it for real.',
     )
   }
 

@@ -149,8 +149,8 @@
     "page-text.records": 28966,
     "gate-1b.batches": 2,
     "gate-1b.records": 9,
-    "materialise-tier-1.batches": 2,
-    "materialise-tier-1.records": 500,
+    "materialise-tier-1.batches": 7,
+    "materialise-tier-1.records": 1719,
     "identity-pass2.batches": 5,
     "identity-pass2.records": 34823,
     "reconciliation-pass2.batches": 4,
@@ -4841,24 +4841,6 @@
       "sha256": "920dd317cf8902624910edbcb43c9b4361c64ae89b43c5d00596ef74a57ab3b1",
       "records": 1,
       "at": "2026-09-04T11:33:34.886Z"
-    },
-    {
-      "phase": "5",
-      "step": "materialise-tier-1",
-      "batch": 1,
-      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0001.json",
-      "sha256": "2625717376eff6777cd2c8e14171e12c4626ff505cc13d436d6ae801c41b0187",
-      "records": 250,
-      "at": "2026-09-04T11:43:15.347Z"
-    },
-    {
-      "phase": "5",
-      "step": "materialise-tier-1",
-      "batch": 2,
-      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0002.json",
-      "sha256": "80a1d96c2a8d192f774d32ae3b0a1ab08191f9c9c7e7cffa1196b91fd83eff8f",
-      "records": 250,
-      "at": "2026-09-04T11:43:17.506Z"
     },
     {
       "phase": "2c",
@@ -12769,6 +12751,69 @@
       "sha256": "b46e4e9434d86aedc5c48e3b03e735c52bb4ed307775751b9e06870f0ded9612",
       "records": 28832,
       "at": "2026-09-04T18:07:28.718Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-1",
+      "batch": 1,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0001.json",
+      "sha256": "5ae451442b456e3b7b87415ddf8fb981e073a179198aa75074d6f7e467a3f23b",
+      "records": 250,
+      "at": "2026-09-04T22:16:57.350Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-1",
+      "batch": 2,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0002.json",
+      "sha256": "d027e623e80082c364d3283ab85b69d4148fb97986c71b0026be4e4f696e3012",
+      "records": 250,
+      "at": "2026-09-04T22:17:17.308Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-1",
+      "batch": 3,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0003.json",
+      "sha256": "35932a0db8faba9fa36644b9ed8421177f47d40bca59acf7e0cb2eacec733dc4",
+      "records": 250,
+      "at": "2026-09-04T22:17:33.699Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-1",
+      "batch": 4,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0004.json",
+      "sha256": "9dbec5e6bc5dab55d123539a444b5f67a66eba82dd5b56e68dffd153ff485530",
+      "records": 250,
+      "at": "2026-09-04T22:17:51.744Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-1",
+      "batch": 5,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0005.json",
+      "sha256": "c639a386a2694ad03e3f3e17358d2a598e4c72adbcb7eecda97eca29e538eac4",
+      "records": 250,
+      "at": "2026-09-04T22:18:05.685Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-1",
+      "batch": 6,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0006.json",
+      "sha256": "78a8aeba25a1677af332eebc23e6a3680303dfc0bdf67c0baf8f8652faa513b4",
+      "records": 250,
+      "at": "2026-09-04T22:18:20.501Z"
+    },
+    {
+      "phase": "5",
+      "step": "materialise-tier-1",
+      "batch": 7,
+      "file": "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion/data/corpus-20k/load/tier-1/batch-0007.json",
+      "sha256": "ff345e2076636c7fa4e219898ba428cadd6a66ef2b272a3af2a3b65b6ca14f30",
+      "records": 219,
+      "at": "2026-09-04T22:18:33.616Z"
     }
   ],
   "legalGate": {},
@@ -12922,5 +12967,5 @@
     }
   },
   "awaiting": null,
-  "updated_at": "2026-09-04T21:17:56.242Z"
+  "updated_at": "2026-09-04T22:18:33.619Z"
 }

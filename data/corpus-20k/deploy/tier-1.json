@@ -1,0 +1,200 @@
+{
+  "schema": "rnawiki-corpus-20k-deploy-tier/v1",
+  "tier": 1,
+  "ranAt": "2026-09-05",
+  "spec": "docs/specs/deployment-plan.md",
+  "outcome": "LOADED AND VERIFIED; STAGE STOPPED BEFORE INDEXNOW",
+  "stopReason": "Step 3 cannot be performed as specified: npm run discovery:indexnow submits the legacy publication set, not this tier's indexable set, and would announce 756 URLs the sitemap deliberately withholds. Nothing was submitted. Step 4 was still run because it is read-only; it found a structured-data regression on all 610 pages and 93 indexed records at four clicks. Tier 2 was not started.",
+
+  "load": {
+    "command": "npx tsx scripts/corpus-20k/load/materialise.ts --tier 1 --indexable-threshold 11 --production-confirmed",
+    "target": "Railway RNAwiki / production PostgreSQL over the Railway TCP proxy, sslmode verify-ca, PGSSLSERVERNAME=localhost",
+    "indexableThreshold": 11,
+    "thresholdSource": "data/corpus-20k/deploy/threshold.json",
+    "batchSize": 250,
+    "batches": 7,
+    "batchesSkipped": 0,
+    "pagesLoaded": 1719,
+    "elapsedSeconds": 117.44,
+    "pagesPerSecond": 14.64,
+    "throughputFloor": "1 page/second (deployment plan); met with 14.6x headroom",
+    "rows": {
+      "corpus_pages": 1719,
+      "page_synonyms": 31473,
+      "page_fields": 24456,
+      "page_seeds": 7350,
+      "page_questions": 14361,
+      "page_relations": 202,
+      "page_sources": 10537,
+      "page_registry_studies": 118204,
+      "medicine_slug_redirects": 215
+    },
+    "indexableLoaded": 610,
+    "nonIndexableLoaded": 1109,
+    "redirectsBefore": 5,
+    "redirectsAfter": 220,
+    "checkpoints": "state.json phase 5 step materialise-tier-1, batches 1-7, recorded by the loader's own batch.ts calls",
+    "staleMarkerNote": "Two markers from a 2026-09-04 smoke load (threshold 3, disposable database) were present. Their input digests no longer matched the Phase 5a corpus, so the dry run reported 0 skipped and every batch was rebuilt against production. No batch was skipped on the strength of a pre-production marker.",
+    "productionStateBefore": {
+      "migrationsApplied": 26,
+      "corpus_pages": 0,
+      "page_fields": 0,
+      "page_questions": 0,
+      "page_seeds": 0,
+      "page_registry_studies": 0,
+      "medicine_slug_redirects": 5,
+      "drugs": 9859
+    }
+  },
+
+  "loaderChange": {
+    "file": "scripts/corpus-20k/load/materialise.ts",
+    "why": "The deployment plan (step 2) states the loader 'takes an explicit production URL and refuses without --production-confirmed'. No such guard existed: the flag was accepted and ignored, so any remote DATABASE_URL loaded production without a confirmation step.",
+    "change": "A non-dry-run write to a host that is neither localhost nor *.railway.internal now throws unless --production-confirmed is passed. The existing working-database guard is unchanged.",
+    "verified": "Refusal reproduced against the production URL without the flag; typecheck clean; the load then ran with the flag."
+  },
+
+  "verifyLive": {
+    "command": "npx tsx scripts/corpus-20k/deploy/verify-live.ts --base-url https://rnawiki.com (5 tier-1 samples, 3 suppressed, 20 loaded redirect slugs)",
+    "ok": true,
+    "passed": 6,
+    "failed": 0,
+    "notRun": 1,
+    "checks": {
+      "sitemap-index": "PASS - 3 children, 8926 dossier URLs, each child within 50000",
+      "samples-200": "PASS - 5 sampled dossier URLs answered 200",
+      "redirects": "PASS - 20 old slugs answered 301 or 308 with a target",
+      "tier-3-noindex": "NOT RUN - Tier 3 is not loaded yet; expected at this point in the plan",
+      "robots-allows-dossiers": "PASS - no wildcard Disallow covers /d/",
+      "no-vendor-hosts": "PASS - no selling host or affiliate shape on 5 fetched pages",
+      "suppression": "PASS - 6 suppressed pages read, none renders a bioavailability, n-of-1 or time-to-signal block"
+    },
+    "externalHostsSeen": [
+      "clinicaltrials.gov",
+      "europepmc.org",
+      "mor.nlm.nih.gov",
+      "open.fda.gov",
+      "phenome.jax.org",
+      "platform.opentargets.org",
+      "precision.fda.gov",
+      "pubchem.ncbi.nlm.nih.gov",
+      "www.ebi.ac.uk"
+    ],
+    "sitemap": {
+      "index": ["/sitemaps/tier-1.xml", "/sitemaps/browse.xml", "/sitemaps/pages.xml"],
+      "tier1Urls": 610,
+      "pagesUrls": 8326,
+      "browseUrls": 577,
+      "ceiling": 50000,
+      "tier1UrlsThatAreNotIndexable": 0,
+      "indexableUrlsMissingFromTier1": 0,
+      "nonIndexableCorpusSlugsAnnouncedInPagesXml": 0,
+      "overlapBetweenTier1AndPages": 0,
+      "note": "The sitemap index and its children are cached for 15 minutes per process, so tier-1.xml appeared about six minutes after the load finished. The first verify-live run read the pre-load index; the recorded run is the one after the refresh."
+    }
+  },
+
+  "samples": {
+    "source": "data/corpus-20k/gate2/samples.json, the five entries whose tier is tier1",
+    "allRenderTheNewTemplate": true,
+    "perSample": {
+      "metformin": { "role": "data-rich Tier 1", "http": 200, "questionBlocks": 17, "badges": 17, "questionHeadings": 17, "hairlines": 17, "expectedQuestions": 17, "emptyElements": 0, "placeholderPhrases": 0, "mainElements": 1, "suppressed": true, "firstBlock": "supervision", "seed126BlocksPresent": false },
+      "cysteamine": { "role": "mid Tier 1 (median)", "http": 200, "questionBlocks": 14, "badges": 14, "questionHeadings": 14, "hairlines": 14, "expectedQuestions": 14, "emptyElements": 0, "placeholderPhrases": 0, "mainElements": 1, "suppressed": false, "firstBlock": "human-data", "carriesNOf1Block": true },
+      "rofecoxib": { "role": "withdrawn arc", "http": 200, "questionBlocks": 11, "badges": 11, "questionHeadings": 11, "hairlines": 11, "expectedQuestions": 11, "emptyElements": 0, "placeholderPhrases": 0, "mainElements": 1, "suppressed": true, "firstBlock": "supervision", "seed126BlocksPresent": false, "withdrawalStated": true },
+      "sirolimus": { "role": "suppression class (S1/S3/S4/S6)", "http": 200, "questionBlocks": 18, "badges": 18, "questionHeadings": 18, "hairlines": 18, "expectedQuestions": 18, "emptyElements": 0, "placeholderPhrases": 0, "mainElements": 1, "suppressed": true, "firstBlock": "supervision", "seed126BlocksPresent": false },
+      "amlodipine": { "role": "formerly withdrawn (control)", "http": 200, "questionBlocks": 16, "badges": 16, "questionHeadings": 16, "hairlines": 16, "expectedQuestions": 16, "emptyElements": 0, "placeholderPhrases": 0, "mainElements": 1, "suppressed": false, "firstBlock": "human-data", "withdrawalStated": false }
+    },
+    "browserChecks": {
+      "command": "npx tsx scripts/corpus-20k/gate2/browser-checks.ts --base https://rnawiki.com",
+      "widths": ["320", "desktop 1440"],
+      "h1PerPage": 1,
+      "headingOrderOk": true,
+      "horizontalOverflowAt320": false,
+      "badgeInFlowAt320": true,
+      "emptyElements": 0,
+      "placeholderHits": 0,
+      "contrastBodyMin": 16.145,
+      "contrastGreyMin": 4.865,
+      "liveTextToHtml": "0.031 to 0.049",
+      "elementsWiderThanViewportInsideScrollContainers": 5,
+      "elementsWiderThanViewportNote": "Identical to the committed Gate 2 baseline for the same four samples; documentElement.scrollWidth equals innerWidth, so the page body does not scroll horizontally."
+    },
+    "frozenHomeSearchBar": {
+      "baseline": "data/corpus-20k/gate2/browser-checks-v2.json homeSearchBar.baseline",
+      "widthsMeasured": [1440, 375, 320],
+      "maxDeltaPx": 0.0,
+      "tolerancePx": 0.5,
+      "verdict": "unchanged"
+    }
+  },
+
+  "redirects": {
+    "written": 215,
+    "of864Total": "the 215 whose target page is in Tier 1; the remaining dispositions wait for their tier",
+    "sampled": 20,
+    "answered301or308": 20,
+    "sampledFrom": "medicine_slug_redirects rows written by this load, not the full dispositions file, because a redirect to a Tier 2 or Tier 3 target has no page yet"
+  },
+
+  "indexNow": {
+    "attempted": false,
+    "submitted": 0,
+    "accepted": 0,
+    "command": "npm run discovery:indexnow -- --origin https://rnawiki.com (dry run only)",
+    "dryRunEligibleUrlCount": 9637,
+    "blocker": "scripts/discovery/submit-indexnow.ts builds its URL set from loadMedicineSitemapIndexabilityReports(), the legacy publication projection. It has no corpus or tier awareness and no --tier flag.",
+    "measuredDivergence": {
+      "sitemapDossierUrls": 8926,
+      "indexNowUrls": 9637,
+      "announcedButWithheldBySitemap": 756,
+      "announcedButWithheldAllCorpusNonIndexable": true,
+      "inSitemapButNotSubmitted": 45,
+      "inSitemapButNotSubmittedAllTier1Indexable": true,
+      "tier1IndexableThatWouldBeSubmitted": 565,
+      "tier1IndexableTotal": 610
+    },
+    "invariantBroken": "The script's own contract - 'it can never announce a URL the sitemap withholds' - stopped holding the moment corpus_pages became the sitemap's authority for a corpus slug. 756 Tier 1 pages held back below the threshold of 11 present fields would have been announced to IndexNow.",
+    "decision": "Not submitted. Announcing 756 deliberately withheld URLs is a worse outcome than a delayed submission, and the fix changes what the whole site announces, so it belongs to the spec owner rather than to this stage."
+  },
+
+  "audit": {
+    "command": "npm run discovery:monitor -- --origin https://rnawiki.com --input https://rnawiki.com/sitemaps/tier-1.xml --resume --click-depth-budget 5000",
+    "checked": 610,
+    "clickDepth": {
+      "pagesWalked": 729,
+      "budget": 5000,
+      "budgetExhausted": false,
+      "distribution": { "1": 4, "2": 21, "3": 492, "4": 93 },
+      "unreachable": 0,
+      "deeperThanThree": 93,
+      "requirement": "0 (R12: every indexed record within three clicks of home)",
+      "firstRunNote": "The default 600-page budget was exhausted on the first run, which the script itself says makes a deep record untrustworthy. The recorded figures are from the re-run with a 5000-page budget, which finished the walk in 729 pages.",
+      "cause": {
+        "method": "Independent breadth-first walk from home to depth 4 recording the first page that links each record (93 of 93 located).",
+        "letterSubPage": 68,
+        "paginatedFacetValue": 25,
+        "explanation": "68 records are first linked from a letter sub-page of a facet value that splits by letter (home -> facet index -> facet value -> letter sub-page -> record). 25 are first linked from page 2 or later of a facet value that paginates without splitting (home -> facet index -> facet value -> ?page=n -> record). Both are the structure docs/specs/browse.md describes; neither is a browse or facet defect, so nothing was changed. What is new is the population: Tier 1 gives pathway and class values enough records that these two shapes now carry 15% of the tier's indexed records instead of a rare few.",
+        "notADefect": true,
+        "wouldNeedASpecChange": "Putting these 93 within three clicks means linking letter sub-pages or later pages from the facet index itself, which changes docs/specs/browse.md."
+      }
+    },
+    "discoveryState": {
+      "discoveryReady": 0,
+      "notDiscoveryReady": 610,
+      "blockerCounts": { "no_structured_data": 610 },
+      "apiAvailable": 391,
+      "regression": true,
+      "cause": "app/d/[slug]/page.tsx returns the corpus branch (CorpusDossierPage) before reaching the legacy branch's <script type=\"application/ld+json\"> block, so no corpus page emits structured data. A legacy dossier still serves 2 ld+json blocks; every one of the 610 Tier 1 pages serves 0.",
+      "effect": "Every page this tier promoted lost the structured data it had as a legacy page. The monitor therefore records DISCOVERY_READY for none of them.",
+      "notFixedHere": "The fix is a code change to the deployed dossier route and needs its own build, gate and deployment, which is not this stage."
+    }
+  },
+
+  "issues": [
+    "IndexNow submission is not corpus-aware: it would announce 756 URLs the sitemap withholds and would miss 45 of this tier's 610 indexable URLs. Nothing was submitted.",
+    "Structured-data regression: all 610 Tier 1 pages serve no application/ld+json, where their legacy versions served two. Cause located in app/d/[slug]/page.tsx.",
+    "93 of 610 indexed Tier 1 records are four clicks from home, against R12's three. Caused by the designed letter-split and pagination paths meeting a larger population, not by a browse defect.",
+    "scripts/corpus-20k/load/materialise.ts had no --production-confirmed guard despite the deployment plan stating it does. Added and verified before the load.",
+    "npm run discovery:monitor runs out of heap when it follows the full sitemap index (8926 records; OOM after 4823 under Node's default heap). It completed for this tier when scoped to tier-1.xml."
+  ]
+}
