@@ -20,12 +20,19 @@
  *   --no-checkpoint         skip the batch.ts checkpoint call
  *   --indexable-threshold n present-field floor for `indexable`; default: Gate 1b, else 3
  *   --allow-working-database  permit writes to rnawiki_corpus_completion (refused by default)
+ *   --production-confirmed  required before any write to a remote database (deployment plan)
  *
- * Idempotence. Each batch writes a marker file under `--load-dir` holding the batch's input
- * digest. Re-running a batch whose marker records the same digest does no database work at all.
- * A marker with a different digest means the inputs changed, so the batch is rewritten. Every
- * write is an upsert preceded by a delete of that page's child rows, so a partial batch that was
- * interrupted before its marker converges on re-run.
+ * Idempotence. Each batch writes a marker file under `--load-dir` holding the batch's input digest
+ * and a fingerprint of the database it was written against. Re-running a batch whose marker
+ * records the same digest *and* the same target does no database work at all. A marker with a
+ * different digest means the inputs changed; a marker with a different target — or with none, as
+ * markers written before this rule carried — describes work done somewhere else and never counts
+ * as done here, so a disposable-database rehearsal can no longer make a production load look
+ * finished. Every write is an upsert preceded by a delete of that page's child rows, so a partial
+ * batch that was interrupted before its marker converges on re-run.
+ *
+ * The fingerprint is the sha256 of the host and the database name. It identifies the target
+ * without recording a credential: nothing in a marker can be used to reach the database.
  *
  * Ordering. Child rows are deleted before the page row is upserted, so a page that has just become
  * suppressed loses its seed 1/2/6 rows inside the same transaction and the suppression trigger
@@ -50,7 +57,7 @@ import { fileURLToPath } from 'node:url'
 import 'dotenv/config'
 import { Client } from 'pg'
 
-import { databaseSslConfig } from '@/db/ssl'
+import { databaseSslConfig, isLocalDatabaseHost } from '@/db/ssl'
 
 /* ------------------------------------------------------------------------------------------- */
 /* Shapes of the recorded inputs                                                                 */
@@ -741,6 +748,23 @@ async function main(): Promise<void> {
     )
   }
 
+  /*
+   * The deployment plan (docs/specs/deployment-plan.md, step 2) requires that a load against a
+   * remote database is never something the operator can reach by accident: the loader "takes an
+   * explicit production URL and refuses without --production-confirmed". A local or
+   * railway.internal host is a workstation or disposable database and stays unguarded; anything
+   * reachable over the network is treated as production until the operator says otherwise.
+   */
+  if (!dryRun && !isLocalDatabaseHost(connectionString) && !flag('production-confirmed')) {
+    throw new Error(
+      `Refusing to write to the remote database "${databaseName}" without --production-confirmed. ` +
+        'Re-run with --dry-run to rehearse, or pass --production-confirmed to load it for real.',
+    )
+  }
+
+  // Markers from every target share one directory; this is what keeps them apart.
+  const target = loadTargetFingerprint(connectionString)
+
   const client = new Client({ connectionString, ssl: databaseSslConfig(connectionString) })
   await client.connect()
 
@@ -983,14 +1007,21 @@ async function main(): Promise<void> {
         `batch-${String(batchNumber).padStart(4, '0')}.json`,
       )
       const recorded = await readMarker(markerPath)
-      if (recorded !== null && recorded === built.inputDigest) {
-        totals.batches += 1
-        totals.skipped += 1
+      if (recorded !== null && recorded.inputDigest === built.inputDigest) {
+        if (recorded.target === target) {
+          totals.batches += 1
+          totals.skipped += 1
+          process.stdout.write(
+            `batch ${batchNumber}: recorded already (${keys.length} pages) — no database work.\n`,
+          )
+          batchNumber += 1
+          continue
+        }
         process.stdout.write(
-          `batch ${batchNumber}: recorded already (${keys.length} pages) — no database work.\n`,
+          `batch ${batchNumber}: marker was written against ${
+            recorded.target === null ? 'an unrecorded database' : 'a different database'
+          } — loading it here.\n`,
         )
-        batchNumber += 1
-        continue
       }
 
       if (!dryRun) await writeBatch(client, built)
@@ -1028,6 +1059,7 @@ async function main(): Promise<void> {
               tier,
               batch: batchNumber,
               inputDigest: built.inputDigest,
+              target,
               pages: built.pages.length,
               rows: {
                 corpus_pages: built.pages.length,
@@ -1093,14 +1125,38 @@ async function batchFiles(directory: string, prefix: string): Promise<string[]> 
     .map((name) => join(directory, name))
 }
 
-async function readMarker(path: string): Promise<string | null> {
+interface RecordedMarker {
+  inputDigest: string | null
+  /** Absent in a marker written before the target was recorded. */
+  target: string | null
+}
+
+async function readMarker(path: string): Promise<RecordedMarker | null> {
   if (!existsSync(path)) return null
   try {
-    const parsed = JSON.parse(await readFile(path, 'utf8')) as { inputDigest?: string }
-    return typeof parsed.inputDigest === 'string' ? parsed.inputDigest : null
+    const parsed = JSON.parse(await readFile(path, 'utf8')) as {
+      inputDigest?: string
+      target?: string
+    }
+    return {
+      inputDigest: typeof parsed.inputDigest === 'string' ? parsed.inputDigest : null,
+      target: typeof parsed.target === 'string' ? parsed.target : null,
+    }
   } catch {
     return null
   }
+}
+
+/**
+ * Which database a marker belongs to: the sha256 of the host and the database name.
+ *
+ * A load against a disposable database, a rehearsal against the working database and the
+ * production load all write markers into the same directory. Without this, the first of them makes
+ * the others look done.
+ */
+export function loadTargetFingerprint(connectionString: string): string {
+  const url = new URL(connectionString)
+  return sha256(`${url.host.toLowerCase()}\n${url.pathname.replace(/^\//, '')}`)
 }
 
 async function indexableThreshold(

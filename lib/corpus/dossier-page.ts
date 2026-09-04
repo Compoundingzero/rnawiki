@@ -95,6 +95,8 @@ export interface CorpusLadderRung {
 }
 
 export interface CorpusIdentifierRow {
+  /** The recorded column the value came from: `unii`, `chemblId`, `pubchemCid`, `cas`, … */
+  field: string
   label: string
   value: string
   href?: string
@@ -701,7 +703,7 @@ export async function loadCorpusDossier(slug: string): Promise<CorpusDossier | n
   ] as Array<[string, string, string | null]>) {
     if (!value) continue
     const href = IDENTIFIER_LINKS[field]?.(value)
-    identifiers.push({ label, value, ...(href ? { href } : {}) })
+    identifiers.push({ field, label, value, ...(href ? { href } : {}) })
   }
 
   const relations: CorpusRelationRow[] = []

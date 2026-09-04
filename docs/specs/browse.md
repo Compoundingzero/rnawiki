@@ -25,6 +25,12 @@ at 60). Every record row = the badge triplet (as markup) + name + one value-bear
 (the first derived question) — so rows differ per record and repeat no prose. Rows are `<li>` with
 data attributes, never sentences.
 
+## Three-click guarantee (amended 2026-09-05 after the Tier 1 audit)
+
+The facet index page lists, under each value, its letter sub-pages (when split) and its page
+numbers (when paginated) as inline links, so the path is home → facet index → letter page or page n
+→ record. The Tier 1 audit found 93 of 610 indexed records at four clicks before this change.
+
 ## Record (click 3)
 
 Home → facet index → facet page (or its letter sub-page → page n) → record. The longest path is

@@ -23,6 +23,7 @@
 import { sql } from 'drizzle-orm'
 
 import { db } from '@/db'
+import { BROWSE_PAGE_SIZE, lastBrowsePage } from '@/lib/browse-pagination'
 import { EVIDENCE_KINDS } from '@/lib/corpus/organism-ladder'
 
 export type CorpusFacetId = 'class' | 'pathway' | 'evidence' | 'status' | 'type'
@@ -633,6 +634,91 @@ export function recordsForLetter(
   letter: string,
 ): CorpusFacetRecord[] {
   return records.filter((record) => recordLetter(record.name) === letter)
+}
+
+// ---------------------------------------------------------------------------
+// Sub-pages of a facet value (the three-click guarantee, docs/specs/browse.md)
+// ---------------------------------------------------------------------------
+
+/**
+ * One list page beneath a facet value: a letter sub-page where the value split, a numbered page
+ * where it paginated, or a numbered page of a letter where it did both.
+ *
+ * The facet index links these directly. Without them a record on the second page of a value, or
+ * on any letter sub-page, is four clicks from home (home → facet index → facet value → page or
+ * letter → record) and the browse spec's three-click guarantee does not hold. The Tier 1 audit
+ * found 93 of 610 indexed records in exactly that position.
+ */
+export interface FacetSubPage {
+  /** `a`…`z`, `0-9` or `other`; absent where the value did not split by letter. */
+  letter?: string
+  /** 1-based page within the value, or within the letter when there is one. */
+  page: number
+  /** `A`, `A 2`, `2` — a label, never a sentence. */
+  label: string
+  /** Records this page lists. */
+  count: number
+}
+
+/** Records one list page holds, given the total it is cut from. */
+function pageCount(total: number, page: number): number {
+  return Math.max(0, Math.min(BROWSE_PAGE_SIZE, total - (page - 1) * BROWSE_PAGE_SIZE))
+}
+
+/**
+ * Every list page beneath one facet value, in reading order.
+ *
+ * A value that fits on its own single page has none: the value link is already the list. A
+ * paginated value contributes pages 2..n, because page one is the value link itself. A split value
+ * contributes each letter, and each further page of a letter that runs past one page.
+ */
+export function facetValueSubPages(records: readonly CorpusFacetRecord[]): FacetSubPage[] {
+  const subPages: FacetSubPage[] = []
+  if (records.length > FACET_LETTER_SPLIT_THRESHOLD) {
+    for (const bucket of letterBuckets(records)) {
+      const pages = lastBrowsePage(bucket.count)
+      for (let page = 1; page <= pages; page += 1) {
+        subPages.push({
+          letter: bucket.id,
+          page,
+          label: page === 1 ? bucket.label : `${bucket.label} ${page}`,
+          count: pageCount(bucket.count, page),
+        })
+      }
+    }
+    return subPages
+  }
+  const pages = lastBrowsePage(records.length)
+  for (let page = 2; page <= pages; page += 1) {
+    subPages.push({ page, label: String(page), count: pageCount(records.length, page) })
+  }
+  return subPages
+}
+
+export interface CorpusFacetIndexValue extends CorpusFacetValue {
+  subPages: FacetSubPage[]
+}
+
+/**
+ * The facet index: every value of one dimension with its count and its list pages, so that every
+ * record under it is one click from this page and three from home.
+ */
+export async function corpusFacetIndexValues(
+  facet: CorpusFacetId,
+): Promise<CorpusFacetIndexValue[]> {
+  const [values, records] = await Promise.all([corpusFacetValues(facet), loadCorpusFacetRecords()])
+  const byValue = new Map<string, CorpusFacetRecord[]>()
+  for (const record of records) {
+    for (const value of record.values[facet]) {
+      const bucket = byValue.get(value)
+      if (bucket) bucket.push(record)
+      else byValue.set(value, [record])
+    }
+  }
+  return values.map((value) => ({
+    ...value,
+    subPages: facetValueSubPages(orderRecords(byValue.get(value.id) ?? [])),
+  }))
 }
 
 // ---------------------------------------------------------------------------

@@ -11,7 +11,10 @@ import {
   pageLinks,
   parseMonitorArguments,
   readSitemapDossierUrls,
+  selectedSitemapChildren,
   sitemapIndexChildren,
+  streamSitemapDossierUrls,
+  tierSitemapChild,
 } from '@/scripts/discovery/monitor-discovery'
 
 const ORIGIN = 'https://rnawiki.com'
@@ -159,5 +162,65 @@ describe('click depth from the home page', () => {
     })
     await measureClickDepth([], options(), fetchImpl)
     expect(requested).toEqual([`${ORIGIN}/`])
+  })
+})
+
+describe('reading one child at a time', () => {
+  it("hands each child's URLs over as it reads it, and holds no second document", async () => {
+    const { fetchImpl, requested } = serve({
+      [`${ORIGIN}/sitemaps/tier-1.xml`]: urlset(['/d/rapamycin', '/browse/class']),
+      [`${ORIGIN}/sitemaps/tier-2.xml`]: urlset(['/d/metformin']),
+    })
+    const handed: Array<{ child: string | null; urls: string[] }> = []
+    const result = await streamSitemapDossierUrls(
+      INDEX_XML,
+      options(),
+      fetchImpl,
+      (urls, child) => {
+        // The next child is requested only after this callback returns, so at most one child's URLs
+        // are in play at a time.
+        handed.push({ child, urls })
+        expect(requested).toHaveLength(handed.length)
+      },
+    )
+
+    expect(handed).toEqual([
+      { child: `${ORIGIN}/sitemaps/tier-1.xml`, urls: [`${ORIGIN}/d/rapamycin`] },
+      { child: `${ORIGIN}/sitemaps/tier-2.xml`, urls: [`${ORIGIN}/d/metformin`] },
+    ])
+    expect(result.documentsRead).toBe(3)
+  })
+
+  it('scopes the run to one tier when asked, and says so when the index does not name it', async () => {
+    expect(parseMonitorArguments([]).tier).toBeNull()
+    expect(parseMonitorArguments(['--tier', '2']).tier).toBe(2)
+    expect(() => parseMonitorArguments(['--tier', '3'])).toThrow(/1 to 2/)
+    expect(tierSitemapChild(ORIGIN, 1)).toBe(`${ORIGIN}/sitemaps/tier-1.xml`)
+
+    expect(selectedSitemapChildren(INDEX_XML, options({ tier: 1 }))).toEqual({
+      children: [`${ORIGIN}/sitemaps/tier-1.xml`],
+      missing: [],
+    })
+
+    const onlyTierTwo = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>${ORIGIN}/sitemaps/tier-2.xml</loc></sitemap>
+</sitemapindex>`
+    expect(selectedSitemapChildren(onlyTierTwo, options({ tier: 1 }))).toEqual({
+      children: [],
+      missing: [{ url: `${ORIGIN}/sitemaps/tier-1.xml`, reason: 'not named by the sitemap index' }],
+    })
+  })
+
+  it('reads only the named tier, leaving its siblings unrequested', async () => {
+    const { fetchImpl, requested } = serve({
+      [`${ORIGIN}/sitemaps/tier-1.xml`]: urlset(['/d/rapamycin']),
+      [`${ORIGIN}/sitemaps/tier-2.xml`]: urlset(['/d/metformin']),
+    })
+    const result = await readSitemapDossierUrls(INDEX_XML, options({ tier: 1 }), fetchImpl)
+
+    expect(result.urls).toEqual([`${ORIGIN}/d/rapamycin`])
+    expect(result.children).toEqual([`${ORIGIN}/sitemaps/tier-1.xml`])
+    expect(requested).toEqual([`${ORIGIN}/sitemaps/tier-1.xml`])
   })
 })

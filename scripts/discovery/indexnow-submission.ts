@@ -1,11 +1,27 @@
 /**
- * Pure helpers for the IndexNow submission command: argument parsing, the URL projection, and the
+ * Pure helpers for the IndexNow submission command: argument parsing, the URL projections, and the
  * ledger line. Nothing here opens a database, reads the environment or performs a request, so the
  * decisions the command makes can be tested without a deployment.
  *
  * The ledger records what was sent and what came back. It never records the key: an IndexNow key is
  * public by design, but a submission log is not the place to republish it.
+ *
+ * Two URL sources exist, and both are the sitemap's own set rather than a broader list of rows:
+ *
+ *  - Without `--tier`, the legacy publication projection, which is what `/sitemaps/pages.xml`
+ *    serves for the slugs the corpus has not loaded.
+ *  - With `--tier n`, the corpus tier: either the served sitemap child `/sitemaps/tier-n.xml`
+ *    itself, or the same `indexable` rows that child is built from when `--source db` is passed.
+ *
+ * A corpus tier never reads the legacy projection: the corpus decides the eligibility of a slug it
+ * holds, so the legacy report would both announce URLs the tier child withholds and miss URLs it
+ * lists.
  */
+
+import { parseSitemapLocations } from './discovery-states'
+
+/** Where the tier's URL list comes from. `sitemap` reads what the deployment actually serves. */
+export type IndexNowUrlSource = 'sitemap' | 'db'
 
 export interface SubmitIndexNowOptions {
   /** Absolute HTTPS origin whose canonical dossier URLs will be submitted. */
@@ -15,6 +31,9 @@ export interface SubmitIndexNowOptions {
   outFile: string
   json: boolean
   help: boolean
+  /** Corpus deployment tier to submit, or null for the legacy publication projection. */
+  tier: 1 | 2 | null
+  source: IndexNowUrlSource
 }
 
 export const DEFAULT_INDEXNOW_LEDGER = 'docs/audits/discovery/indexnow-submissions.ndjson'
@@ -45,6 +64,8 @@ export function parseSubmitIndexNowArguments(
   let outFile = DEFAULT_INDEXNOW_LEDGER
   let json = false
   let help = false
+  let tier: 1 | 2 | null = null
+  let source: IndexNowUrlSource = 'sitemap'
 
   for (let index = 0; index < args.length; index += 1) {
     const argument = args[index] ?? ''
@@ -59,6 +80,25 @@ export function parseSubmitIndexNowArguments(
     } else if (argument === '--out' || argument.startsWith('--out=')) {
       const [value, consumed] = optionValue(args, index, '--out')
       outFile = value
+      index = consumed
+    } else if (argument === '--tier' || argument.startsWith('--tier=')) {
+      const [value, consumed] = optionValue(args, index, '--tier')
+      if (value === '1') tier = 1
+      else if (value === '2') tier = 2
+      else if (value === '3') {
+        // R6: a Tier 3 record carries `noindex` and appears in no sitemap child. Announcing one
+        // would be exactly the thing this command must never do.
+        throw new Error(
+          'Tier 3 records are not indexed and appear in no sitemap, so none is announced.',
+        )
+      } else throw new Error('--tier must be 1 or 2.')
+      index = consumed
+    } else if (argument === '--source' || argument.startsWith('--source=')) {
+      const [value, consumed] = optionValue(args, index, '--source')
+      if (value !== 'sitemap' && value !== 'db') {
+        throw new Error('--source must be sitemap or db.')
+      }
+      source = value
       index = consumed
     } else {
       throw new Error(`Unknown option: ${argument}`)
@@ -77,7 +117,40 @@ export function parseSubmitIndexNowArguments(
     throw new Error('--origin must contain only a scheme and host, without a path, query or hash.')
   }
 
-  return { origin, dryRun, outFile, json, help }
+  if (source === 'db' && tier === null) {
+    throw new Error('--source db reads one corpus tier, so it needs --tier 1 or --tier 2.')
+  }
+
+  return { origin, dryRun, outFile, json, help, tier, source }
+}
+
+/**
+ * The dossier URLs a served sitemap document lists, on this origin only.
+ *
+ * This is the whole of the invariant for `--tier`: the submitted set is read out of the sitemap
+ * the deployment is serving, so a URL the sitemap withholds cannot be announced, whatever the
+ * workstation's copy of the corpus happens to hold.
+ */
+export function sitemapSubmissionUrls(xml: string, origin: string): string[] {
+  const urls = new Set<string>()
+  for (const location of parseSitemapLocations(xml)) {
+    let url: URL
+    try {
+      url = new URL(location)
+    } catch {
+      continue
+    }
+    if (url.origin !== origin) continue
+    if (!url.pathname.startsWith('/d/')) continue
+    url.hash = ''
+    urls.add(url.toString())
+  }
+  return [...urls].sort()
+}
+
+/** The sitemap child one corpus tier is served from. */
+export function tierSitemapUrl(origin: string, tier: 1 | 2): string {
+  return `${origin}/sitemaps/tier-${tier}.xml`
 }
 
 /** The only shape of a report this command reads. */
@@ -113,6 +186,8 @@ export interface IndexNowLedgerEntry {
   submittedAt: string
   mode: 'dry_run' | 'submitted'
   origin: string
+  /** Which set was submitted: one corpus tier, or the legacy publication projection. */
+  urlSet: string
   eligibleUrlCount: number
   acceptedUrlCount: number
   rejectedUrlCount: number
@@ -129,6 +204,7 @@ export function indexNowLedgerEntry(input: {
   submittedAt: string
   mode: 'dry_run' | 'submitted'
   origin: string
+  urlSet: string
   eligibleUrlCount: number
   batches: readonly (readonly string[])[]
   rejectedUrlCount: number
@@ -140,6 +216,7 @@ export function indexNowLedgerEntry(input: {
     submittedAt: input.submittedAt,
     mode: input.mode,
     origin: input.origin,
+    urlSet: input.urlSet,
     eligibleUrlCount: input.eligibleUrlCount,
     acceptedUrlCount: input.batches.reduce((total, batch) => total + batch.length, 0),
     rejectedUrlCount: input.rejectedUrlCount,

@@ -6,6 +6,8 @@ import {
   indexableCanonicalUrls,
   indexNowLedgerEntry,
   parseSubmitIndexNowArguments,
+  sitemapSubmissionUrls,
+  tierSitemapUrl,
   type IndexableDecisionReport,
 } from '@/scripts/discovery/indexnow-submission'
 
@@ -96,6 +98,7 @@ describe('submission ledger', () => {
       submittedAt: '2026-09-01T00:00:00.000Z',
       mode: 'submitted',
       origin: ORIGIN,
+      urlSet: 'tier-1-sitemap',
       eligibleUrlCount: 9_900,
       batches: [Array.from({ length: 9_900 }, (_unused, index) => `${ORIGIN}/d/m-${index}`)],
       rejectedUrlCount: 3,
@@ -119,6 +122,7 @@ describe('submission ledger', () => {
       submittedAt: '2026-09-01T00:00:00.000Z',
       mode: 'dry_run',
       origin: ORIGIN,
+      urlSet: 'legacy-publication',
       eligibleUrlCount: 2,
       batches: [[`${ORIGIN}/d/a`, `${ORIGIN}/d/b`]],
       rejectedUrlCount: 0,
@@ -128,5 +132,50 @@ describe('submission ledger', () => {
 
     expect(entry.failedBatchCount).toBe(1)
     expect(entry.refusedReason).toBe('deployment_guard_or_key_not_configured')
+  })
+})
+
+describe('corpus tier submission', () => {
+  it('reads a tier from the sitemap by default and refuses a tier that is in no sitemap', () => {
+    expect(parseSubmitIndexNowArguments([]).tier).toBeNull()
+    expect(parseSubmitIndexNowArguments([]).source).toBe('sitemap')
+    expect(parseSubmitIndexNowArguments(['--tier', '1']).tier).toBe(1)
+    expect(parseSubmitIndexNowArguments(['--tier=2', '--source=db']).source).toBe('db')
+    expect(() => parseSubmitIndexNowArguments(['--tier', '3'])).toThrow(/no sitemap/)
+    expect(() => parseSubmitIndexNowArguments(['--tier', '0'])).toThrow(/--tier must be 1 or 2/)
+    expect(() => parseSubmitIndexNowArguments(['--source', 'guess'])).toThrow(/sitemap or db/)
+    // Reading rows instead of the served document is still one tier's rows, never everything.
+    expect(() => parseSubmitIndexNowArguments(['--source', 'db'])).toThrow(/needs --tier/)
+  })
+
+  it('names the sitemap child a tier is served from', () => {
+    expect(tierSitemapUrl(ORIGIN, 1)).toBe(`${ORIGIN}/sitemaps/tier-1.xml`)
+    expect(tierSitemapUrl(ORIGIN, 2)).toBe(`${ORIGIN}/sitemaps/tier-2.xml`)
+  })
+
+  it('announces exactly the dossier URLs the served child lists, and nothing else', () => {
+    const fixture = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${ORIGIN}/d/metformin</loc><lastmod>2026-09-05T00:00:00.000Z</lastmod></url>
+  <url><loc>${ORIGIN}/d/rofecoxib</loc></url>
+  <url><loc>${ORIGIN}/d/metformin</loc></url>
+  <url><loc>${ORIGIN}/browse/type/longevity</loc></url>
+  <url><loc>https://elsewhere.example/d/copied</loc></url>
+  <url><loc>not a url</loc></url>
+</urlset>`
+
+    // Sorted, deduplicated, this origin only, dossiers only: a withheld URL cannot appear because
+    // the list is read out of the document the deployment served.
+    expect(sitemapSubmissionUrls(fixture, ORIGIN)).toEqual([
+      `${ORIGIN}/d/metformin`,
+      `${ORIGIN}/d/rofecoxib`,
+    ])
+  })
+
+  it('finds no URL in a child a deployment serves empty', () => {
+    const empty = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+</urlset>`
+    expect(sitemapSubmissionUrls(empty, ORIGIN)).toEqual([])
   })
 })

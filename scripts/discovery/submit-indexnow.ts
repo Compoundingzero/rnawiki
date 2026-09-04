@@ -1,14 +1,20 @@
 /**
- * Submit every indexable canonical dossier URL to IndexNow.
+ * Submit indexable canonical dossier URLs to IndexNow.
  *
- * The command reads the same shared eligibility projection the XML sitemap reads, so it can never
- * announce a URL the sitemap withholds. It is a dry run unless `--submit` is passed, and even then
- * it refuses unless the canonical-production deployment guard in lib/seo/indexnow.ts passes and the
- * requested origin is the configured one. Every run appends one line to the submission ledger.
+ * The command never builds its own idea of what is indexable: it reads the same set the XML
+ * sitemap serves, so it can never announce a URL the sitemap withholds. Without `--tier` that is
+ * the shared legacy publication projection; with `--tier n` it is the corpus tier — the served
+ * `/sitemaps/tier-n.xml` document itself, or, with `--source db`, the same `indexable` rows that
+ * child is built from. A corpus tier never consults the legacy projection, which would announce
+ * URLs the tier child withholds and miss URLs it lists.
+ *
+ * It is a dry run unless `--submit` is passed, and even then it refuses unless the
+ * canonical-production deployment guard in lib/seo/indexnow.ts passes and the requested origin is
+ * the configured one. Every run appends one line to the submission ledger.
  *
  * Usage:
  *   npx tsx scripts/discovery/submit-indexnow.ts                    # dry run, prints counts
- *   npx tsx scripts/discovery/submit-indexnow.ts --submit --json
+ *   npx tsx scripts/discovery/submit-indexnow.ts --tier 1 --submit --json
  */
 
 import 'dotenv/config'
@@ -27,6 +33,8 @@ import {
   indexableCanonicalUrls,
   indexNowLedgerEntry,
   parseSubmitIndexNowArguments,
+  sitemapSubmissionUrls,
+  tierSitemapUrl,
   type IndexNowBatchOutcome,
   type IndexNowLedgerEntry,
   type SubmitIndexNowOptions,
@@ -76,11 +84,50 @@ async function postBatch(
   }
 }
 
+export type FetchImplementation = (input: string | URL, init?: RequestInit) => Promise<Response>
+
+/**
+ * The URL set for this run, and the name the ledger records it under.
+ *
+ * Every branch returns a set some sitemap serves. The `db` branch calls `tierSitemapEntries`, the
+ * very function `/sitemaps/tier-n.xml` is rendered from, rather than a second query that could
+ * drift away from it.
+ */
+async function submissionUrls(
+  options: SubmitIndexNowOptions,
+  fetchImpl: FetchImplementation,
+): Promise<{ urls: string[]; urlSet: string }> {
+  const origin = options.origin.origin
+  if (options.tier === null) {
+    const reports = await loadMedicineSitemapIndexabilityReports()
+    return { urls: indexableCanonicalUrls(reports, origin), urlSet: 'legacy-publication' }
+  }
+
+  if (options.source === 'db') {
+    const { tierSitemapEntries } = await import('@/lib/corpus/sitemap')
+    const entries = await tierSitemapEntries(options.tier)
+    return {
+      urls: [...new Set(entries.map((entry) => `${origin}${entry.path}`))].sort(),
+      urlSet: `tier-${options.tier}-db`,
+    }
+  }
+
+  const sitemapUrl = tierSitemapUrl(origin, options.tier)
+  const response = await fetchImpl(sitemapUrl, { headers: { accept: 'application/xml' } })
+  if (!response.ok) {
+    throw new Error(`GET ${sitemapUrl} answered HTTP ${response.status}.`)
+  }
+  return {
+    urls: sitemapSubmissionUrls(await response.text(), origin),
+    urlSet: `tier-${options.tier}-sitemap`,
+  }
+}
+
 export async function runSubmitIndexNow(
   options: SubmitIndexNowOptions,
+  fetchImpl: FetchImplementation = fetch,
 ): Promise<IndexNowLedgerEntry> {
-  const reports = await loadMedicineSitemapIndexabilityReports()
-  const urls = indexableCanonicalUrls(reports, options.origin.origin)
+  const { urls, urlSet } = await submissionUrls(options, fetchImpl)
   const { batches, rejectedUrlCount } = buildIndexNowBatches(urls, options.origin.origin)
 
   const keyFile = options.dryRun ? null : indexNowKeyFile(process.env)
@@ -108,6 +155,7 @@ export async function runSubmitIndexNow(
     submittedAt: new Date().toISOString(),
     mode: options.dryRun || refusedReason ? 'dry_run' : 'submitted',
     origin: options.origin.origin,
+    urlSet,
     eligibleUrlCount: urls.length,
     batches,
     rejectedUrlCount,
@@ -127,6 +175,8 @@ function usage(): string {
     '',
     'Options:',
     '  --origin <url>   HTTPS origin to submit (default: SITE_URL or https://rnawiki.com)',
+    '  --tier <1|2>     Submit one corpus tier instead of the legacy publication projection',
+    '  --source <s>     sitemap (default) reads the served child; db reads the rows it is built from',
     '  --dry-run        Build and count batches without submitting (default)',
     '  --submit         Submit, if the canonical-production guard and key are configured',
     '  --out <path>     Ledger file (default: docs/audits/discovery/indexnow-submissions.ndjson)',
@@ -154,6 +204,7 @@ async function runCli(): Promise<void> {
     console.log(
       [
         `IndexNow ${entry.mode === 'submitted' ? 'submission' : 'dry run'}: ${entry.origin}`,
+        `URL set: ${entry.urlSet}`,
         `Indexable canonical URLs: ${entry.eligibleUrlCount}`,
         `Accepted after validation: ${entry.acceptedUrlCount} (rejected ${entry.rejectedUrlCount})`,
         `Batches: ${entry.batchCount} [${entry.batchSizes.join(', ')}]`,

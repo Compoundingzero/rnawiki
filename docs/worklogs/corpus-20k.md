@@ -16,7 +16,11 @@ cd "/Users/admin/ClaudeRepo/Claude Projects/RNAwiki/RNAwiki-corpus-completion"
 npx tsx scripts/corpus-20k/status.ts     # phase, exact next step + command, completed steps, batches, gates
 ```
 
-**Where work is:** Phase 5c deploying as workflow `corpus-20k-phase5c`. Phase 5b's hygiene stage
+**Where work is:** TIER 1 IS LIVE on rnawiki.com (PR #16, deployment 3ef6829f). Phase 5d runs as
+workflow `corpus-20k-phase5d`: code fixes (JSON-LD on corpus pages, corpus-aware IndexNow,
+three-click facet index, monitor memory, marker identity) → PR → deploy → IndexNow Tier 1 → Tier 2
+→ Tier 3 → final measurement. The worktree's main now equals origin/main; corpus data is present
+but untracked (archive branch + tarball). Earlier: Phase 5c Phase 5b's hygiene stage
 made the gate green (18 of 18; commit `15bc55a`) and took the production backup
 (`rnawiki-backups/corpus-20k-2026-09-05/`, 131 MB, sha256 f66f8fb0…), but the push was refused:
 local main carries 3.56 GB of corpus data with ten files over GitHub's 100 MiB limit. Decision
@@ -76,7 +80,8 @@ attach. Production writes over verified TLS with the CA at
 | 2d | Evidence-age fix, CLINICAL templates, Gate 1b final, integration, **Gate 2** | ✅ GATE 2 PROCEED (indexed 0.191; like-for-like HTML 0.799 → 0.279) |
 | 5a | Pre-load fixes + Gate 2 recheck | ✅ threshold 11 → 636 indexed (0.188 / 0.196 / lexical 0.369); 7–10 promotion band |
 | 5b | Hygiene to a green gate; production backup | ✅ gate 18/18 (`15bc55a`); backup taken; push refused (oversize data) |
-| 5c | Filtered release branch, PR, merge, deploy, verify; Tier 1 → 2 → 3; measure | 🔄 workflow `corpus-20k-phase5c` |
+| 5c | Filtered release, PR #16, deploy 3ef6829f, verify; **Tier 1 live** | ✅ 1,719 pages, 610 indexable; stopped before IndexNow on JSON-LD / IndexNow / click-depth defects |
+| 5d | Fix JSON-LD, corpus-aware IndexNow, three-click facet index, monitor memory, marker identity; deploy; IndexNow Tier 1; Tier 2; Tier 3; measure | 🔄 workflow `corpus-20k-phase5d` |
 | 3 | Derived content table | ✅ below (counts from 2c; seed 7 re-run in 2d) |
 | 4 | Templates, browse, home, sitemap index, definitions, ITP page | ✅ built and verified on an isolated production build (`d6af1da`) |
 | 3 | Derived content (Fable): ten seeds + at least six own, fire counts, question wording, suppression | ⛔ |
@@ -498,6 +503,43 @@ item). `npm run gate`: 14 of 18 stages pass; lint (captured third-party file und
 eslint), copy (the word `harness` in these logs — now replaced), format (nine files) and Playwright
 (a 4.31 : 1 small link on the home facet strip) are fixed in Phase 5b's hygiene stage before deploy.
 The withdrawn sample slot is refilled (amlodipine is no longer withdrawn).
+
+## Phase 5b/5c — gate green, backup, release, deploy, Tier 1 live (2026-09-05)
+
+Hygiene (`15bc55a`): `npm run gate` 18 of 18 stages green; every facet link on the body ground
+raised from 4.31 : 1 to 9.2 : 1 with the existing ink token (palette unchanged, bar untouched);
+eslint ignores `data/**`; prettier over 46 source files with `.prettierignore` extended for
+generated data; the registry's literal "undefined" stop reason quoted in rows; samples file with
+rofecoxib as the withdrawn arc (amlodipine kept as a formerly-withdrawn control).
+
+Backup: `rnawiki-backups/corpus-20k-2026-09-05/rnawiki-pre-corpus-20k.pgcustom`, 131,165,251
+bytes, sha256 f66f8fb0…e4cc, 70 table-data entries; production then held 24 migrations, 9,859
+medicines, 5 redirects, a single 10,027-URL sitemap.
+
+Release: GitHub refused the push (ten files over 100 MiB among 3.56 GB of tracked corpus data).
+Decision logged: the release carries code, specs, worklogs and small evidence; the corpus data
+lives on the workstation (branch `archive/corpus-20k-full-history`, 68 commits; tarball
+`rnawiki-backups/corpus-20k-data-2026-09-05/corpus-20k-data.tar.zst`, 1.77 GB, sha256
+ea3df0c3…fd4e). Release commit `c0b5057` (317 MB added, largest file 24.7 MB, corpus-20k share
+52.8 MB), gate green on the branch, **PR #16** merged after one CI flake (a slow e2e spec burned its
+retries against the sign-in rate limit; the re-run was green), **Railway deployment 3ef6829f
+SUCCESS, migrations 26**. Verified live with empty corpus tables: legacy pages unchanged, `/sitemap.xml`
+now an index, robots allows dossiers, frozen bar 0.000 px, `drug_aliases` digest unchanged.
+
+**Tier 1 live:** 1,719 pages loaded at 14.6 pages/s in 7 checkpointed batches; 215 redirect rows
+(the rest target later tiers); `tier-1.xml` 610 URLs, all indexable, none missing; 20 of 20 sampled
+redirects 301/308; robots ok; 0 vendor hosts; samples all on the new template with 0 empty elements
+and 0 placeholders (metformin 17 blocks, supervision first; cysteamine 14; rofecoxib 11 with the
+withdrawal stated; sirolimus 18, supervision first, no seed 1/2/6; amlodipine 16, not withdrawn);
+320 px clean; frozen bar 0.0 px. The stage stopped before IndexNow on three defects, all fixed in
+Phase 5d before Tier 2: corpus pages emit no JSON-LD (the route returned before the legacy schema
+script; all 610 read as not discovery-ready); the IndexNow script is not corpus-aware (it would
+have announced 756 withheld URLs and missed 45); 93 of 610 records sit four clicks deep through
+letter sub-pages (spec amended: the facet index links letter and page sub-pages inline). Also
+found: the loader accepted `--production-confirmed` without enforcing it (fixed before the load);
+stale disposable-run markers cannot be told from production markers (hardened in 5d);
+`discovery:monitor` exhausts Node's heap on the full index (streamed per child in 5d); the sitemap
+cache is 15 minutes, so verification runs after the refresh.
 
 ## Risk register (binding; resolved in the phase named)
 
